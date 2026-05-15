@@ -1,6 +1,9 @@
 import { create } from 'zustand'
 import { supabase } from '@/lib/supabase'
-import type { Layout, Layouts } from 'react-grid-layout'
+// react-grid-layout's bundled .d.ts exports `Layout` and `ResponsiveLayouts`
+// (the latter is what older docs call `Layouts`). Alias here so the rest of
+// the file can keep using the simpler name.
+import type { Layout, ResponsiveLayouts as Layouts } from 'react-grid-layout'
 
 export interface DashboardCard {
   id: string
@@ -9,6 +12,10 @@ export interface DashboardCard {
   minH?: number
   maxW?: number
   maxH?: number
+  // Optional grouping bucket used by CardVisibilityPanel to render cards
+  // under labeled sections (e.g. "Performance", "Recent activity"). When
+  // omitted, the panel falls back to a single ungrouped list.
+  section?: string
 }
 
 export interface DashboardLayoutPreferences {
@@ -42,16 +49,19 @@ interface DashboardLayoutState {
 }
 
 // Card definitions with size constraints (relaxed for free movement)
+// `section` is consumed by CardVisibilityPanel to group toggles. Without
+// it, all cards collapse into the unrendered 'default' bucket and the panel
+// shows up empty.
 const DEFAULT_CARDS: DashboardCard[] = [
-  { id: 'stats-revenue', visible: true, minW: 2, minH: 2 },
-  { id: 'stats-users', visible: true, minW: 2, minH: 2 },
-  { id: 'stats-classrooms', visible: true, minW: 2, minH: 2 },
-  { id: 'stats-sessions', visible: true, minW: 2, minH: 2 },
-  { id: 'todays-sessions', visible: true, minW: 3, minH: 3 },
-  { id: 'recent-activity', visible: true, minW: 3, minH: 3 },
-  { id: 'classroom-rankings', visible: true, minW: 3, minH: 3 },
-  { id: 'top-students', visible: true, minW: 3, minH: 3 },
-  { id: 'bottom-students', visible: true, minW: 3, minH: 3 },
+  { id: 'stats-revenue',     visible: true, minW: 2, minH: 2, section: 'stats' },
+  { id: 'stats-users',       visible: true, minW: 2, minH: 2, section: 'stats' },
+  { id: 'stats-classrooms',  visible: true, minW: 2, minH: 2, section: 'stats' },
+  { id: 'stats-sessions',    visible: true, minW: 2, minH: 2, section: 'stats' },
+  { id: 'todays-sessions',   visible: true, minW: 3, minH: 3, section: 'main' },
+  { id: 'recent-activity',   visible: true, minW: 3, minH: 3, section: 'main' },
+  { id: 'classroom-rankings', visible: true, minW: 3, minH: 3, section: 'performance' },
+  { id: 'top-students',      visible: true, minW: 3, minH: 3, section: 'performance' },
+  { id: 'bottom-students',   visible: true, minW: 3, minH: 3, section: 'performance' },
 ]
 
 // Default layouts for different breakpoints (12 column grid)
@@ -151,8 +161,17 @@ export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) =
 
       if (data?.dashboard_layout) {
         const { cards, layouts } = data.dashboard_layout
+        // Migrate stored card records that predate the `section` field —
+        // overlay the canonical section by id from DEFAULT_CARDS so the
+        // visibility panel groups them correctly without forcing the user
+        // to reset their layout.
+        const sectionById = new Map(DEFAULT_CARDS.map(c => [c.id, c.section]))
+        const migratedCards: DashboardCard[] = (cards || DEFAULT_CARDS).map((c: DashboardCard) => ({
+          ...c,
+          section: c.section ?? sectionById.get(c.id),
+        }))
         set({
-          cards: cards || DEFAULT_CARDS,
+          cards: migratedCards,
           layouts: layouts || DEFAULT_LAYOUTS,
           loading: false
         })
@@ -221,6 +240,9 @@ export const getVisibleLayouts = (layouts: Layouts, cards: DashboardCard[]): Lay
   const result: Layouts = {}
 
   for (const [breakpoint, layout] of Object.entries(layouts)) {
+    // ResponsiveLayouts breakpoint values are typed as optional, so guard
+    // before filtering. In practice non-empty entries are always defined.
+    if (!layout) continue
     result[breakpoint] = layout.filter(item => visibleIds.has(item.i))
   }
 

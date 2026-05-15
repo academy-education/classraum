@@ -13,30 +13,12 @@ interface CardVisibilityPanelProps {
   isEditMode: boolean
 }
 
-const CARD_LABELS: Record<string, { en: string; ko: string }> = {
-  'stats-revenue': { en: 'Revenue', ko: '수익' },
-  'stats-users': { en: 'Active Users', ko: '활성 사용자' },
-  'stats-classrooms': { en: 'Classrooms', ko: '클래스룸' },
-  'stats-sessions': { en: 'Sessions', ko: '수업' },
-  'todays-sessions': { en: "Today's Sessions", ko: '오늘의 수업' },
-  'recent-activity': { en: 'Recent Activity', ko: '최근 활동' },
-  'classroom-rankings': { en: 'Classroom Performance', ko: '클래스룸 성적' },
-  'top-students': { en: 'Top Students', ko: '우수 학생' },
-  'bottom-students': { en: 'Bottom Students', ko: '하위 학생' }
-}
-
-const SECTION_LABELS: Record<string, { en: string; ko: string }> = {
-  stats: { en: 'Statistics', ko: '통계' },
-  main: { en: 'Main', ko: '메인' },
-  performance: { en: 'Performance', ko: '성적' }
-}
-
 export const CardVisibilityPanel = React.memo(function CardVisibilityPanel({
   cards,
   onToggleVisibility,
   isEditMode
 }: CardVisibilityPanelProps) {
-  const { t, language } = useTranslation()
+  const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
 
@@ -66,22 +48,28 @@ export const CardVisibilityPanel = React.memo(function CardVisibilityPanel({
 
   if (!isEditMode) return null
 
+  // Resolve labels via i18n. Falls back to the card/section id if the key
+  // isn't translated yet, so newly added cards keep working until strings land.
   const getCardLabel = (cardId: string) => {
-    const labels = CARD_LABELS[cardId]
-    return labels ? (language === 'korean' ? labels.ko : labels.en) : cardId
+    const key = `dashboard.cardLabels.${cardId}`
+    const translated = t(key)
+    return typeof translated === 'string' && translated !== key ? translated : cardId
   }
 
   const getSectionLabel = (section: string) => {
-    const labels = SECTION_LABELS[section]
-    return labels ? (language === 'korean' ? labels.ko : labels.en) : section
+    const key = `dashboard.sectionLabels.${section}`
+    const translated = t(key)
+    return typeof translated === 'string' && translated !== key ? translated : section
   }
 
-  // Group cards by section
+  // Group cards by section. Cards without a section land in 'default' so
+  // they still render somewhere instead of being dropped silently.
   const cardsBySection = cards.reduce((acc, card) => {
-    if (!acc[card.section]) {
-      acc[card.section] = []
+    const section = card.section ?? 'default'
+    if (!acc[section]) {
+      acc[section] = []
     }
-    acc[card.section].push(card)
+    acc[section].push(card)
     return acc
   }, {} as Record<string, DashboardCard[]>)
 
@@ -113,20 +101,25 @@ export const CardVisibilityPanel = React.memo(function CardVisibilityPanel({
 
       {/* Dropdown Panel */}
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-72 bg-white rounded-lg border border-gray-200 shadow-lg z-50">
+        <div className="absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl ring-1 ring-gray-100 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.10)] z-50">
           <div className="p-3 border-b border-gray-100">
             <h3 className="font-medium text-gray-900 text-sm">
               {t('dashboard.editMode.cardVisibility')}
             </h3>
             <p className="text-xs text-gray-500 mt-0.5">
-              {language === 'korean'
-                ? '표시할 카드를 선택하세요'
-                : 'Choose which cards to display'}
+              {t('dashboard.editMode.chooseCardsToDisplay')}
             </p>
           </div>
 
           <div className="max-h-80 overflow-y-auto p-2">
-            {['stats', 'main', 'performance'].map((section) => (
+            {/* Render in the canonical order, plus any extra section keys the
+                cards array contains (so a newly added section without a code
+                update still surfaces, instead of silently disappearing). */}
+            {(() => {
+              const ordered = ['stats', 'main', 'performance']
+              const extras = Object.keys(cardsBySection).filter(s => !ordered.includes(s))
+              return [...ordered, ...extras].filter(s => cardsBySection[s]?.length)
+            })().map((section) => (
               <div key={section} className="mb-3 last:mb-0">
                 <div className="text-xs font-medium text-gray-400 uppercase tracking-wide px-2 py-1">
                   {getSectionLabel(section)}

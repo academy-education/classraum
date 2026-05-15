@@ -1,6 +1,10 @@
 "use client"
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { useDirtyState } from '@/hooks/useDirtyState'
+import { useConfirm } from '@/hooks/useConfirm'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -20,9 +24,12 @@ import {
   Paperclip,
   CheckCircle
 } from 'lucide-react'
+import { TableCheckbox, BulkActionBar } from '@/components/ui/dashboard'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useCreateShortcut } from '@/hooks/useCreateShortcut'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useAuth } from '@/contexts/AuthContext'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { FileUpload } from './file-upload'
@@ -96,9 +103,19 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
   const [classroomFilter, setClassroomFilter] = useState<string>('all')
   const [showClassroomFilter, setShowClassroomFilter] = useState(false)
   const classroomFilterRef = useRef<HTMLDivElement>(null)
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
+
+  // Manager keyboard shortcuts: `/` → search, `n` → new announcement.
+  useListPageShortcuts({
+    searchInputRef,
+    onCreate: () => setShowAddModal(true),
+    isCreateBlocked: showAddModal || showViewModal || showDeleteModal,
+  })
 
   // Row selection state
   const [selectedRows, setSelectedRows] = useState<string[]>([])
+  const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false)
+  const [bulkDeleting, setBulkDeleting] = useState(false)
   const [selectAll, setSelectAll] = useState(false)
 
   // Fetch classrooms
@@ -226,6 +243,12 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
     setShowAddModal(true)
   }, [resetForm])
 
+  // Wire 'n' shortcut + command-palette "Create new" → open add modal.
+  useCreateShortcut({
+    onTrigger: handleOpenAddModal,
+    enabled: !showAddModal && !showViewModal && !showDeleteModal,
+  })
+
   // Open edit modal
   const handleOpenEditModal = useCallback((announcement: Announcement) => {
     setSelectedAnnouncement(announcement)
@@ -261,11 +284,35 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
     resetForm()
   }, [resetForm])
 
-  // Close only Add/Edit modal
-  const handleCloseAddModal = useCallback(() => {
+  // Force-close path — bypasses the dirty check. Used by the submit handler
+  // after a successful save (where the form is "dirty" by definition but the
+  // user asked for that change to land).
+  const forceCloseAddModal = useCallback(() => {
     setShowAddModal(false)
     resetForm()
   }, [resetForm])
+
+  // User-initiated close — guarded by dirty-state confirm so backdrop / Cancel
+  // / Esc don't drop typed values.
+  const isAnnouncementDirty = useDirtyState(
+    { formTitle, formContent, selectedClassroomIds, attachments },
+    showAddModal,
+  )
+  const confirm = useConfirm()
+  const handleCloseAddModal = useCallback(async () => {
+    if (!isAnnouncementDirty) {
+      forceCloseAddModal()
+      return
+    }
+    const ok = await confirm({
+      title: String(t('common.discardChanges')),
+      description: String(t('common.discardChangesDescription')),
+      variant: 'warning',
+      confirmText: String(t('common.discard')),
+      cancelText: String(t('common.keepEditing')),
+    })
+    if (ok) forceCloseAddModal()
+  }, [isAnnouncementDirty, confirm, forceCloseAddModal, t])
 
   // Close only View modal
   const handleCloseViewModal = useCallback(() => {
@@ -433,7 +480,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         showSuccessToast(t('announcements.announcementCreated'))
       }
 
-      handleCloseAddModal()
+      forceCloseAddModal()
       fetchAnnouncements()
     } catch (error) {
       console.error('Error saving announcement:', error)
@@ -451,7 +498,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
     academyId,
     userId,
     t,
-    handleCloseAddModal,
+    forceCloseAddModal,
     fetchAnnouncements
   ])
 
@@ -492,6 +539,48 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
       setDeleting(false)
     }
   }, [selectedAnnouncement, t, handleCloseModals, fetchAnnouncements])
+
+  // ===== Bulk delete =====
+  const handleBulkDelete = useCallback(async () => {
+    if (selectedRows.length === 0) return
+    setBulkDeleting(true)
+    try {
+      // Best-effort: clean up storage attachments for selected announcements
+      const selected = announcements.filter(a => selectedRows.includes(a.id))
+      for (const announcement of selected) {
+        for (const attachment of announcement.attachments) {
+          if (attachment.url) {
+            const path = attachment.url.split('/announcement-attachments/')[1]
+            if (path) {
+              try {
+                await supabase.storage.from('announcement-attachments').remove([path])
+              } catch {
+                // Ignore storage errors — DB delete still proceeds
+              }
+            }
+          }
+        }
+      }
+
+      const { error } = await supabase
+        .from('announcements')
+        .delete()
+        .in('id', selectedRows)
+
+      if (error) throw error
+
+      showSuccessToast(t('announcements.bulkDeleteSuccess', { count: selectedRows.length }) as string)
+      setSelectedRows([])
+      setSelectAll(false)
+      setShowBulkDeleteConfirm(false)
+      fetchAnnouncements()
+    } catch (error) {
+      console.error('Error bulk deleting announcements:', error)
+      showErrorToast(t('announcements.bulkDeleteError') as string)
+    } finally {
+      setBulkDeleting(false)
+    }
+  }, [selectedRows, announcements, t, fetchAnnouncements])
 
   // Format date
   const formatDate = useCallback((dateString: string) => {
@@ -657,7 +746,8 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.announcements')}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
             {t('announcements.title')}
           </h1>
           <p className="text-gray-500">
@@ -675,6 +765,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
+            ref={searchInputRef}
             type="text"
             placeholder={String(t('announcements.searchPlaceholder'))}
             value={searchQuery}
@@ -682,106 +773,87 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
               setSearchQuery(e.target.value)
               setCurrentPage(1)
             }}
-            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
+        <SearchKbdHint />
         </div>
       </div>
 
-      {/* Content */}
-      <Card className="overflow-hidden">
+      {/* Bulk Action Bar — appears when announcements are selected. */}
+      {selectedRows.length > 0 && (
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedRows.length}
+            onClear={() => { setSelectedRows([]); setSelectAll(false) }}
+          >
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkDeleting}
+              onClick={() => setShowBulkDeleteConfirm(true)}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+              {t('common.delete')}
+            </Button>
+          </BulkActionBar>
+        </div>
+      )}
+
+      {/* Content — table chrome matching DataTable */}
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         {loading ? (
-          <div className="animate-pulse">
-            <div className="overflow-x-auto min-h-[640px] flex flex-col">
-              <table className="w-full min-w-[900px]">
-                <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50">
-                    <th className="text-left p-3 sm:p-4">
-                      <div className="h-4 bg-gray-300 rounded w-4"></div>
+          <div className="overflow-x-auto min-h-[640px]">
+            <table className="w-full min-w-[900px] text-sm">
+              <thead className="bg-gray-50/60">
+                <tr>
+                  <th className="w-10 px-4 py-3"><div className="h-3 w-3 bg-gray-200 rounded" /></th>
+                  {['w-20', 'w-16', 'w-16', 'w-16', 'w-12', 'w-8'].map((w, i) => (
+                    <th key={i} className="px-4 py-3 text-left">
+                      <div className={`h-3 ${w} bg-gray-200 rounded`} />
                     </th>
-                    <th className="text-left p-3 sm:p-4">
-                      <div className="h-4 bg-gray-300 rounded w-24"></div>
-                    </th>
-                    <th className="text-left p-3 sm:p-4">
-                      <div className="h-4 bg-gray-300 rounded w-20"></div>
-                    </th>
-                    <th className="text-left p-3 sm:p-4">
-                      <div className="h-4 bg-gray-300 rounded w-20"></div>
-                    </th>
-                    <th className="text-left p-3 sm:p-4">
-                      <div className="h-4 bg-gray-300 rounded w-20"></div>
-                    </th>
-                    <th className="text-left p-3 sm:p-4">
-                      <div className="h-4 bg-gray-300 rounded w-16"></div>
-                    </th>
-                    <th className="text-left p-3 sm:p-4">
-                      <div className="h-4 bg-gray-300 rounded w-8"></div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[...Array(8)].map((_, i) => (
-                    <tr key={i} className="border-b border-gray-100">
-                      <td className="p-3 sm:p-4">
-                        <div className="h-4 bg-gray-200 rounded w-4"></div>
-                      </td>
-                      <td className="p-3 sm:p-4">
-                        <div className="space-y-2">
-                          <div className="h-4 bg-gray-200 rounded w-40"></div>
-                          <div className="h-3 bg-gray-200 rounded w-32"></div>
-                        </div>
-                      </td>
-                      <td className="p-3 sm:p-4">
-                        <div className="flex gap-1">
-                          <div className="h-5 bg-gray-200 rounded w-16"></div>
-                          <div className="h-5 bg-gray-200 rounded w-16"></div>
-                        </div>
-                      </td>
-                      <td className="p-3 sm:p-4">
-                        <div className="h-4 bg-gray-200 rounded w-20"></div>
-                      </td>
-                      <td className="p-3 sm:p-4">
-                        <div className="h-4 bg-gray-200 rounded w-24"></div>
-                      </td>
-                      <td className="p-3 sm:p-4">
-                        <div className="h-4 bg-gray-200 rounded w-20"></div>
-                      </td>
-                      <td className="p-3 sm:p-4">
-                        <div className="h-4 bg-gray-200 rounded w-4"></div>
-                      </td>
-                    </tr>
                   ))}
-                </tbody>
-              </table>
-            </div>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {[...Array(10)].map((_, i) => (
+                  <tr key={i} className="animate-pulse">
+                    <td className="px-4 py-3"><div className="h-4 w-4 bg-gray-100 rounded" /></td>
+                    {[...Array(6)].map((_, j) => (
+                      <td key={j} className="px-4 py-3">
+                        <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : announcements.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-12 min-h-[400px]">
-            <Megaphone className="w-12 h-12 text-gray-300 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-1">
-              {t('announcements.noAnnouncements')}
-            </h3>
-            <p className="text-gray-500 mb-4">
-              {t('announcements.noAnnouncementsDescription')}
-            </p>
-            <Button onClick={handleOpenAddModal} variant="outline">
-              <Plus className="w-4 h-4 mr-2" />
-              {t('announcements.newAnnouncement')}
-            </Button>
+          <div className="min-h-[400px] flex items-center justify-center">
+            <EmptyState
+              icon={Megaphone}
+              title={String(t('announcements.noAnnouncements'))}
+              description={String(t('announcements.noAnnouncementsDescription'))}
+              actionLabel={String(t('announcements.newAnnouncement'))}
+              onAction={handleOpenAddModal}
+              actionVariant="outline"
+              actionIcon={<Plus className="w-4 h-4" />}
+            />
           </div>
         ) : (
           <div className="overflow-x-auto min-h-[640px] flex flex-col">
             <table className="w-full min-w-[900px]">
-              <thead>
-                <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="text-left p-3 sm:p-4 w-12">
-                    <input
-                      type="checkbox"
+              <thead className="bg-gray-50/60">
+                <tr>
+                  <th className="text-left p-3 sm:p-4 w-10">
+                    <TableCheckbox
                       checked={selectAll}
-                      onChange={handleSelectAll}
-                      className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
+                      ariaLabel={String(t('common.selectAll') || 'Select all')}
+                      onChange={() => handleSelectAll()}
                     />
                   </th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[180px]">
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap min-w-[180px]">
                     <div className="flex items-center gap-2">
                       {t('announcements.announcementTitle')}
                       <button onClick={() => handleSort('title')} className="text-gray-400 hover:text-primary">
@@ -789,7 +861,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                       </button>
                     </div>
                   </th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap min-w-[120px]">
                     <div className="flex items-center gap-2 relative">
                       {t('announcements.classrooms')}
                       <div className="relative z-20" ref={classroomFilterRef}>
@@ -806,7 +878,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                           </svg>
                         </button>
                         {showClassroomFilter && (
-                          <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[160px] z-50 max-h-[300px] overflow-y-auto">
+                          <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[160px] z-50 max-h-[300px] overflow-y-auto normal-case tracking-normal font-normal">
                             <button
                               onClick={() => {
                                 setClassroomFilter('all')
@@ -833,10 +905,10 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                       </div>
                     </div>
                   </th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap min-w-[100px]">
                     {t('announcements.attachments')}
                   </th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap min-w-[120px]">
                     <div className="flex items-center gap-2">
                       {t('announcements.createdBy')}
                       <button onClick={() => handleSort('creator')} className="text-gray-400 hover:text-primary">
@@ -844,7 +916,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                       </button>
                     </div>
                   </th>
-                  <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap min-w-[120px]">
                     <div className="flex items-center gap-2">
                       {t('announcements.createdAt')}
                       <button onClick={() => handleSort('created_at')} className="text-gray-400 hover:text-primary">
@@ -852,19 +924,19 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                       </button>
                     </div>
                   </th>
-                  <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap w-20"></th>
+                  <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap w-20"></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-gray-100">
                 {filteredAnnouncements.length > 0 ? (
                   filteredAnnouncements.map((announcement) => (
-                    <tr key={announcement.id} className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="p-3 sm:p-4 w-12">
-                        <input
-                          type="checkbox"
+                    <tr key={announcement.id} className={`transition-colors ${selectedRows.includes(announcement.id) ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-gray-50'}`}>
+                      <td className="p-3 sm:p-4 w-10">
+                        <TableCheckbox
                           checked={selectedRows.includes(announcement.id)}
+                          ariaLabel={String(t('common.selectRow') || 'Select row')}
                           onChange={() => handleRowSelect(announcement.id)}
-                          className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
+                          onClick={(e) => e.stopPropagation()}
                         />
                       </td>
                       <td className="p-3 sm:p-4">
@@ -884,7 +956,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                           {announcement.classrooms.slice(0, 2).map((classroom) => (
                             <span
                               key={classroom.id}
-                              className="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800"
+                              className="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded text-xs font-medium bg-sky-50 text-sky-700"
                             >
                               {classroom.name}
                             </span>
@@ -957,7 +1029,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                                 {t('common.edit')}
                               </button>
                               <button
-                                className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
+                                className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-rose-600"
                                 onClick={(e) => {
                                   e.preventDefault()
                                   e.stopPropagation()
@@ -975,11 +1047,11 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} className="p-8 text-center">
-                      <div className="flex flex-col items-center justify-center py-8">
-                        <Megaphone className="w-12 h-12 text-gray-300 mb-4" />
-                        <p className="text-gray-500">{t('announcements.noAnnouncementsFound')}</p>
-                      </div>
+                    <td colSpan={7}>
+                      <EmptyState
+                        icon={Megaphone}
+                        title={String(t('announcements.noAnnouncementsFound'))}
+                      />
                     </td>
                   </tr>
                 )}
@@ -987,34 +1059,51 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
             </table>
           </div>
         )}
-      </Card>
+      </div>
+
+      {/* Bulk Delete Confirmation Modal */}
+      <ModalShell.Confirm
+        isOpen={showBulkDeleteConfirm}
+        onClose={() => setShowBulkDeleteConfirm(false)}
+        onConfirm={handleBulkDelete}
+        title={String(t("announcements.bulkDeleteTitle"))}
+        message={String(t("announcements.bulkDeleteConfirm", { count: selectedRows.length }))}
+        variant="danger"
+        confirmLabel={bulkDeleting ? String(t("common.deleting")) : String(t("common.delete"))}
+        cancelLabel={String(t("common.cancel"))}
+        loading={bulkDeleting}
+      />
 
       {/* Add/Edit Modal */}
-      <Modal isOpen={showAddModal} onClose={handleCloseAddModal} size="2xl">
-        <div className="flex flex-col flex-1 min-h-0">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-            <div>
-              <h2 className="text-xl font-bold text-gray-900">
-                {isEditing ? t('announcements.editAnnouncement') : t('announcements.newAnnouncement')}
-              </h2>
-              <p className="text-gray-500">{t('announcements.description')}</p>
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleCloseAddModal}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
+      <ModalShell
+        isOpen={showAddModal}
+        onClose={handleCloseAddModal}
+        size="2xl"
+        title={String(isEditing ? t('announcements.editAnnouncement') : t('announcements.newAnnouncement'))}
+        subtitle={String(t('announcements.description'))}
+        bodyClassName="space-y-6"
+        closeDisabled={saving}
+        footer={
+          <ModalShell.Footer>
+            <Button variant="outline" onClick={handleCloseAddModal} disabled={saving}>
+              {t('common.cancel')}
             </Button>
-          </div>
-
-          {/* Content */}
-          <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
+            <Button onClick={handleSave} disabled={saving}>
+              {saving ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  {isEditing ? t('announcements.saving') : t('announcements.creating')}
+                </>
+              ) : (
+                isEditing ? t('common.save') : t('common.create')
+              )}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
             {/* Title */}
             <div className="space-y-2">
-              <Label htmlFor="title">{t('announcements.announcementTitle')} <span className="text-red-500">*</span></Label>
+              <Label htmlFor="title">{t('announcements.announcementTitle')} <span className="text-rose-500">*</span></Label>
               <Input
                 id="title"
                 value={formTitle}
@@ -1038,7 +1127,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
 
             {/* Classrooms */}
             <div className="space-y-2">
-              <Label>{t('announcements.selectClassrooms')} <span className="text-red-500">*</span></Label>
+              <Label>{t('announcements.selectClassrooms')} <span className="text-rose-500">*</span></Label>
               <div className="border border-border rounded-lg bg-gray-50 p-4">
                 {classrooms.length === 0 ? (
                   <div className="text-center py-4 text-gray-500 text-sm">
@@ -1098,11 +1187,10 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                               className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white"
                             >
                               <label className="flex items-center gap-3 cursor-pointer">
-                                <input
-                                  type="checkbox"
+                                <TableCheckbox
                                   checked={isSelected}
+                                  ariaLabel={classroom.name}
                                   onChange={() => toggleClassroom(classroom.id)}
-                                  className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
                                 />
                                 <span className="text-sm font-medium text-gray-900">{classroom.name}</span>
                               </label>
@@ -1135,52 +1223,39 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                 maxFiles={5}
               />
             </div>
-          </div>
-
-          {/* Footer */}
-          <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-            <div className="flex items-center gap-3">
-              <Button variant="outline" onClick={handleCloseAddModal} disabled={saving}>
-                {t('common.cancel')}
-              </Button>
-              <Button onClick={handleSave} disabled={saving}>
-                {saving ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    {isEditing ? t('announcements.saving') : t('announcements.creating')}
-                  </>
-                ) : (
-                  isEditing ? t('common.save') : t('common.create')
-                )}
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Modal>
+      </ModalShell>
 
       {/* View Modal */}
-      <Modal isOpen={showViewModal && !!selectedAnnouncement} onClose={handleCloseViewModal} size="2xl">
-        {selectedAnnouncement && (
-          <div className="flex flex-col flex-1 min-h-0">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">
-                  {t('announcements.viewAnnouncement')}
-                </h2>
-              </div>
+      {selectedAnnouncement && (
+        <ModalShell
+          isOpen={showViewModal}
+          onClose={handleCloseViewModal}
+          size="2xl"
+          title={String(t('announcements.viewAnnouncement'))}
+          bodyClassName="space-y-6"
+          footer={
+            <ModalShell.Footer>
               <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleCloseViewModal}
-                className="p-1"
+                variant="outline"
+                onClick={() => {
+                  setFormTitle(selectedAnnouncement.title)
+                  setFormContent(selectedAnnouncement.content || '')
+                  setSelectedClassroomIds(selectedAnnouncement.classrooms.map(c => c.id))
+                  setAttachments(selectedAnnouncement.attachments)
+                  setIsEditing(true)
+                  setShowAddModal(true)
+                }}
+                className="flex items-center gap-2"
               >
-                <X className="w-4 h-4" />
+                <Edit className="w-4 h-4" />
+                {t('common.edit')}
               </Button>
-            </div>
-
-            {/* Content */}
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
+              <Button onClick={handleCloseViewModal}>
+                {t('common.close')}
+              </Button>
+            </ModalShell.Footer>
+          }
+        >
               {/* Title */}
               <div>
                 <h3 className="text-xl font-semibold text-gray-900">
@@ -1207,7 +1282,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                   {selectedAnnouncement.classrooms.map((classroom) => (
                     <span
                       key={classroom.id}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
+                      className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-sky-50 text-sky-700"
                     >
                       {classroom.name}
                     </span>
@@ -1237,91 +1312,29 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                   </div>
                 </div>
               )}
-            </div>
-
-            {/* Footer */}
-            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    // Open edit modal without closing view modal first
-                    setFormTitle(selectedAnnouncement.title)
-                    setFormContent(selectedAnnouncement.content || '')
-                    setSelectedClassroomIds(selectedAnnouncement.classrooms.map(c => c.id))
-                    setAttachments(selectedAnnouncement.attachments)
-                    setIsEditing(true)
-                    setShowAddModal(true)
-                  }}
-                  className="flex items-center gap-2"
-                >
-                  <Edit className="w-4 h-4" />
-                  {t('common.edit')}
-                </Button>
-                <Button onClick={handleCloseViewModal}>
-                  {t('common.close')}
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-      </Modal>
+        </ModalShell>
+      )}
 
       {/* Delete Confirmation Modal */}
-      <Modal isOpen={showDeleteModal && !!selectedAnnouncement} onClose={handleCloseModals} size="md">
-        {selectedAnnouncement && (
-          <div className="flex flex-col flex-1 min-h-0">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <h2 className="text-xl font-bold text-gray-900">
-                {t('announcements.deleteConfirmTitle')}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleCloseModals}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Content */}
-            <div className="flex-shrink-0 p-6">
-              <p className="text-gray-600">
-                {t('announcements.deleteConfirmMessage')}
-              </p>
-              <p className="mt-2 font-medium text-gray-900">
-                &ldquo;{selectedAnnouncement.title}&rdquo;
-              </p>
-            </div>
-
-            {/* Footer */}
-            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <Button variant="outline" onClick={handleCloseModals} disabled={deleting}>
-                  {t('common.cancel')}
-                </Button>
-                <Button
-                  variant="destructive"
-                  onClick={handleDelete}
-                  disabled={deleting}
-                  className="bg-red-600 hover:bg-red-700 text-white"
-                >
-                  {deleting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      {t('announcements.deleting')}
-                    </>
-                  ) : (
-                    t('common.delete')
-                  )}
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-      </Modal>
+      {selectedAnnouncement && (
+        <ModalShell.Confirm
+          isOpen={showDeleteModal}
+          onClose={handleCloseModals}
+          onConfirm={handleDelete}
+          title={String(t('announcements.deleteConfirmTitle'))}
+          message={
+            <>
+              {String(t('announcements.deleteConfirmMessage'))}
+              <br />
+              <span className="font-medium text-gray-900">&ldquo;{selectedAnnouncement.title}&rdquo;</span>
+            </>
+          }
+          variant="danger"
+          confirmLabel={deleting ? String(t('announcements.deleting')) : String(t('common.delete'))}
+          cancelLabel={String(t('common.cancel'))}
+          loading={deleting}
+        />
+      )}
     </div>
   )
 }

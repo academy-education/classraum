@@ -30,9 +30,10 @@ export const ClassroomRankingsCard = React.memo<ClassroomRankingsCardProps>(func
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full animate-pulse">
-        <div className="px-4 sm:px-5 py-3 bg-blue-50 border-b border-gray-100">
-          <div className="h-5 bg-blue-200 rounded w-40"></div>
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] h-full animate-pulse">
+        <div className="flex items-center gap-2 px-4 sm:px-6 pt-4 sm:pt-6 pb-3">
+          <div className="w-7 h-7 bg-gray-200 rounded-lg"></div>
+          <div className="h-3 bg-gray-200 rounded w-28"></div>
         </div>
         <div className="p-4 sm:p-5">
           <div className="space-y-4">
@@ -54,11 +55,11 @@ export const ClassroomRankingsCard = React.memo<ClassroomRankingsCardProps>(func
 
   const getScoreColor = (value: number, type: 'score' | 'attendance', isHighest: boolean) => {
     if (isHighest) {
-      return 'text-green-600 bg-green-50'
+      return 'text-emerald-700 bg-emerald-50'
     }
-    if (value >= 80) return 'text-blue-600 bg-blue-50'
-    if (value >= 60) return 'text-yellow-600 bg-yellow-50'
-    return 'text-red-600 bg-red-50'
+    if (value >= 80) return 'text-sky-700 bg-sky-50'
+    if (value >= 60) return 'text-amber-700 bg-amber-50'
+    return 'text-rose-700 bg-rose-50'
   }
 
   const renderMetric = (
@@ -69,7 +70,7 @@ export const ClassroomRankingsCard = React.memo<ClassroomRankingsCardProps>(func
     isHighest: boolean,
     Icon: React.ElementType
   ) => {
-    const iconColor = isHighest ? 'text-green-500' : 'text-gray-400'
+    const iconColor = isHighest ? 'text-emerald-600' : 'text-gray-400'
 
     return (
       <div
@@ -110,15 +111,16 @@ export const ClassroomRankingsCard = React.memo<ClassroomRankingsCardProps>(func
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full flex flex-col overflow-hidden">
-      <div className="px-4 sm:px-5 py-3 bg-blue-50 border-b border-gray-100 flex-shrink-0">
-        <div className="flex items-center gap-2">
-          <School className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
-          <h3 className="font-semibold text-blue-600">{t('dashboard.classroomPerformance')}</h3>
+    <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] h-full flex flex-col overflow-hidden">
+      {/* Header — eyebrow style to match the four graph cards. */}
+      <div className="flex items-center gap-2 px-4 sm:px-6 pt-4 sm:pt-6 pb-3 flex-shrink-0">
+        <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+          <School className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
         </div>
+        <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 truncate">{t('dashboard.classroomPerformance')}</h3>
       </div>
       <div className="flex-1 overflow-y-auto min-h-0">
-        <div className="space-y-1 p-4 sm:p-5">
+        <div className="space-y-1 px-4 sm:px-6 pb-4 sm:pb-5">
           {renderMetric(
             highestScore,
             String(t('dashboard.highestScoreClassroom')),

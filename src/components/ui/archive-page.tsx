@@ -1,36 +1,31 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
+import { useListPageShortcuts } from "@/hooks/useListPageShortcuts"
+import { SearchKbdHint } from "@/components/ui/search-kbd-hint"
 import { useTranslation } from "@/hooks/useTranslation"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Modal } from "@/components/ui/modal"
+import { ModalShell } from "@/components/ui/common/ModalShell"
 import { supabase } from "@/lib/supabase"
 import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText, Users, Layout } from "lucide-react"
-import { invalidateClassroomsCache } from "@/components/ui/classrooms-page"
-import { invalidateSessionsCache } from "@/components/ui/sessions-page"
-import { invalidateAssignmentsCache } from "@/components/ui/assignments-page"
-import { invalidateAttendanceCache } from "@/components/ui/attendance-page"
-import { invalidateFamiliesCache } from "@/components/ui/families-page"
+import { EmptyState } from "@/components/ui/common/EmptyState"
+// All sibling-page invalidate helpers from the shared module — keeps the
+// classrooms/sessions/assignments/attendance/families page bundles out of
+// this chunk. See src/lib/cache.ts.
+import {
+  invalidateClassroomsCache,
+  invalidateSessionsCache,
+  invalidateAssignmentsCache,
+  invalidateAttendanceCache,
+  invalidateFamiliesCache,
+} from '@/lib/cache'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
-// Cache invalidation function for archive
-export const invalidateArchiveCache = (academyId: string) => {
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
-
-  keys.forEach(key => {
-    // Clear cache for all roles (teacher, manager, etc.)
-    if (key.startsWith(`archive-${academyId}-page`) ||
-        key.includes(`archive-${academyId}-page`)) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
+import { invalidateArchiveCache } from '@/lib/cache'
+export { invalidateArchiveCache }
 
 interface ArchivePageProps {
   academyId?: string
@@ -39,7 +34,7 @@ interface ArchivePageProps {
 interface DeletedItem {
   id: string
   name: string
-  type: 'classroom' | 'session' | 'assignment' | 'payment_plan' | 'invoice' | 'template'
+  type: 'classroom' | 'session' | 'assignment' | 'payment_plan' | 'invoice' | 'template' | 'family'
   deletedAt: string
   grade?: string | null
   subject?: string | null
@@ -59,6 +54,9 @@ interface DeletedItem {
 
 export function ArchivePage({ academyId }: ArchivePageProps) {
   const { t } = useTranslation()
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
+  // Archive has no create flow — only `/` shortcut.
+  useListPageShortcuts({ searchInputRef })
   const [searchQuery, setSearchQuery] = useState("")
   const [typeFilter, setTypeFilter] = useState<'all' | 'classrooms' | 'sessions' | 'assignments' | 'payment_plans' | 'invoices' | 'families' | 'templates'>('all')
   const [deletedItems, setDeletedItems] = useState<DeletedItem[]>([])
@@ -592,11 +590,11 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       case 'classroom':
         return <School className="w-4 h-4 text-blue-500" />
       case 'session':
-        return <Calendar className="w-4 h-4 text-green-500" />
+        return <Calendar className="w-4 h-4 text-emerald-500" />
       case 'assignment':
         return <ClipboardList className="w-4 h-4 text-purple-500" />
       case 'payment_plan':
-        return <DollarSign className="w-4 h-4 text-orange-500" />
+        return <DollarSign className="w-4 h-4 text-amber-500" />
       case 'invoice':
         return <FileText className="w-4 h-4 text-teal-500" />
       case 'family':
@@ -1057,7 +1055,8 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("archive.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.archive")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("archive.title")}</h1>
           <p className="text-gray-500">{t("archive.description")}</p>
         </div>
       </div>
@@ -1066,19 +1065,21 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       <div className="relative mb-4 max-w-md">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
+          ref={searchInputRef}
           type="text"
           placeholder={String(t("archive.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
         />
+        <SearchKbdHint />
       </div>
 
       {/* Type Filter - Dropdown on mobile, Tabs on desktop */}
       {/* Mobile Dropdown */}
       <div className="sm:hidden mb-4">
         <Select value={typeFilter} onValueChange={(value) => setTypeFilter(value as typeof typeFilter)}>
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -1194,7 +1195,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             variant="outline"
             size="sm"
             onClick={handleRecoverAll}
-            className="text-green-600 hover:text-green-700 border-green-200 hover:border-green-300"
+            className="text-emerald-600 hover:text-emerald-700 ring-emerald-100 hover:border-green-300"
           >
             <Undo2 className="w-4 h-4 mr-2" />
             <span className="whitespace-nowrap">
@@ -1211,7 +1212,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
             variant="outline"
             size="sm"
             onClick={handleDeleteAll}
-            className="text-red-600 hover:text-red-700 border-red-200 hover:border-red-300"
+            className="text-rose-600 hover:text-rose-700 border-red-200 hover:border-red-300"
           >
             <X className="w-4 h-4 mr-2" />
             <span className="whitespace-nowrap">
@@ -1254,16 +1255,13 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
               ))}
             </div>
           ) : initialized && filteredItems.length === 0 ? (
-            <div className="text-center py-12">
-              <Trash2 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">{t("archive.noItemsTitle")}</h3>
-              <p className="text-gray-600">
-                {typeFilter === 'all'
-                  ? String(t("archive.noItemsDescription"))
-                  : String(t("archive.noFilteredItemsDescription", { type: String(getItemTypeLabel(typeFilter)) }))
-                }
-              </p>
-            </div>
+            <EmptyState
+              icon={Trash2}
+              title={String(t("archive.noItemsTitle"))}
+              description={typeFilter === 'all'
+                ? String(t("archive.noItemsDescription"))
+                : String(t("archive.noFilteredItemsDescription", { type: String(getItemTypeLabel(typeFilter)) }))}
+            />
           ) : (
             <div className="space-y-3">
               {paginatedItems.map((item) => (
@@ -1289,7 +1287,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
                       variant="outline"
                       size="sm"
                       onClick={() => handleRestore(item)}
-                      className="text-green-600 hover:text-green-700"
+                      className="text-emerald-600 hover:text-emerald-700"
                     >
                       <RotateCcw className="w-4 h-4 sm:mr-1" />
                       <span className="hidden sm:inline">{t("archive.restore")}</span>
@@ -1298,7 +1296,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
                       variant="outline"
                       size="sm"
                       onClick={() => handlePermanentDelete(item)}
-                      className="text-red-600 hover:text-red-700"
+                      className="text-rose-600 hover:text-rose-700"
                     >
                       <Trash2 className="w-4 h-4 sm:mr-1" />
                       <span className="hidden sm:inline">{t("archive.deleteForever")}</span>
@@ -1363,136 +1361,93 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       </Card>
 
       {/* Bulk Action Confirmation Modal */}
-      <Modal isOpen={showBulkConfirmModal && !!bulkAction} onClose={() => setShowBulkConfirmModal(false)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-xl font-bold text-gray-900">
-              {bulkAction === 'recover' ? t('archive.confirmBulkRecover') : t('archive.confirmBulkDelete')}
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowBulkConfirmModal(false)}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
-            <p className="text-sm text-gray-600 mb-6">
-              {bulkAction === 'recover' ? (
-                typeFilter === 'all'
-                  ? t("archive.confirmRecoverAll", { count: Number(filteredItems.length) })
-                  : t("archive.confirmRecoverAllType", {
-                      count: Number(filteredItems.length),
-                      type: String(getItemTypeLabel(typeFilter)).toLowerCase()
-                    })
-              ) : (
-                typeFilter === 'all'
-                  ? t("archive.confirmDeleteAll", { count: Number(filteredItems.length) })
-                  : t("archive.confirmDeleteAllType", {
-                      count: Number(filteredItems.length),
-                      type: String(getItemTypeLabel(typeFilter)).toLowerCase()
-                    })
-              )}
-            </p>
-          </div>
-          <div className="flex gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-            <Button
-              variant="outline"
-              onClick={() => setShowBulkConfirmModal(false)}
-              className="flex-1"
-            >
+      <ModalShell
+        isOpen={showBulkConfirmModal && !!bulkAction}
+        onClose={() => setShowBulkConfirmModal(false)}
+        size="md"
+        title={bulkAction === 'recover' ? String(t('archive.confirmBulkRecover')) : String(t('archive.confirmBulkDelete'))}
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={() => setShowBulkConfirmModal(false)}>
               {t('common.cancel')}
             </Button>
             <Button
-              variant={bulkAction === 'recover' ? "default" : "destructive"}
+              variant={bulkAction === 'recover' ? 'default' : 'destructive'}
               onClick={confirmBulkAction}
-              className="flex-1"
             >
               {bulkAction === 'recover'
                 ? t('archive.recoverAll', { count: Number(filteredItems.length) })
                 : t('archive.deleteAll', { count: Number(filteredItems.length) })}
             </Button>
-          </div>
-        </div>
-      </Modal>
+          </ModalShell.Footer>
+        }
+      >
+        <p className="text-sm text-gray-600">
+          {bulkAction === 'recover' ? (
+            typeFilter === 'all'
+              ? t("archive.confirmRecoverAll", { count: Number(filteredItems.length) })
+              : t("archive.confirmRecoverAllType", {
+                  count: Number(filteredItems.length),
+                  type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                })
+          ) : (
+            typeFilter === 'all'
+              ? t("archive.confirmDeleteAll", { count: Number(filteredItems.length) })
+              : t("archive.confirmDeleteAllType", {
+                  count: Number(filteredItems.length),
+                  type: String(getItemTypeLabel(typeFilter)).toLowerCase()
+                })
+          )}
+        </p>
+      </ModalShell>
 
       {/* Bulk Action Result Modal */}
-      <Modal isOpen={showBulkResultModal && !!bulkActionResult} onClose={() => setShowBulkResultModal(false)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              {bulkActionResult?.success ? (
-                <CheckCircle className="w-5 h-5 text-green-600" />
-              ) : (
-                <AlertCircle className="w-5 h-5 text-red-600" />
-              )}
-              {bulkActionResult?.success ? t('common.success') : t('common.error')}
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowBulkResultModal(false)}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
-            <p className="text-sm text-gray-600 mb-6">
-              {bulkActionResult?.message}
-            </p>
-          </div>
-          <div className="flex gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-            <Button
-              variant="default"
-              onClick={() => setShowBulkResultModal(false)}
-              className="flex-1"
-            >
+      <ModalShell
+        isOpen={showBulkResultModal && !!bulkActionResult}
+        onClose={() => setShowBulkResultModal(false)}
+        size="md"
+        headerSlot={
+          <h2 className="text-xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
+            {bulkActionResult?.success ? (
+              <CheckCircle className="w-5 h-5 text-emerald-600" />
+            ) : (
+              <AlertCircle className="w-5 h-5 text-rose-600" />
+            )}
+            {bulkActionResult?.success ? t('common.success') : t('common.error')}
+          </h2>
+        }
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="default" onClick={() => setShowBulkResultModal(false)}>
               {t('common.ok')}
             </Button>
-          </div>
-        </div>
-      </Modal>
+          </ModalShell.Footer>
+        }
+      >
+        <p className="text-sm text-gray-600">{bulkActionResult?.message}</p>
+      </ModalShell>
 
       {/* Permanent Delete Confirmation Modal */}
-      <Modal isOpen={showPermanentDeleteModal && !!itemToDelete} onClose={() => setShowPermanentDeleteModal(false)} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-            <h2 className="text-xl font-bold text-gray-900">{t('archive.confirmPermanentDelete')}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowPermanentDeleteModal(false)}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
-            <p className="text-sm text-gray-600 mb-6">
-              {t('archive.permanentDeleteWarning', { name: itemToDelete?.name })}
-            </p>
-          </div>
-          <div className="flex gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-            <Button
-              variant="outline"
-              onClick={() => setShowPermanentDeleteModal(false)}
-              className="flex-1"
-            >
+      <ModalShell
+        isOpen={showPermanentDeleteModal && !!itemToDelete}
+        onClose={() => setShowPermanentDeleteModal(false)}
+        size="md"
+        title={String(t('archive.confirmPermanentDelete'))}
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={() => setShowPermanentDeleteModal(false)}>
               {t('common.cancel')}
             </Button>
-            <Button
-              variant="destructive"
-              onClick={confirmPermanentDelete}
-              className="flex-1"
-            >
+            <Button variant="destructive" onClick={confirmPermanentDelete}>
               {t('archive.deleteForever')}
             </Button>
-          </div>
-        </div>
-      </Modal>
+          </ModalShell.Footer>
+        }
+      >
+        <p className="text-sm text-gray-600">
+          {t('archive.permanentDeleteWarning', { name: itemToDelete?.name })}
+        </p>
+      </ModalShell>
     </div>
   )
 }

@@ -5,28 +5,18 @@ import { Loader2, Sparkles, AlertTriangle, X, ArrowLeft, Check, Upload, FileText
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { DateInput } from '@/components/ui/common/DateInput'
 import { supabase } from '@/lib/supabase'
 import { showErrorToast } from '@/stores'
 import type { ParsedAssignmentDraft, AssignmentType } from '@/lib/assignment-parser'
+// Re-exported from the standalone types module so consumers wanting only
+// the type signatures don't drag this 676-line modal into their bundles.
+export type { ConfirmedImportDraft, ImportCategoryOption } from './AssignmentImportTypes'
+import type { ConfirmedImportDraft, ImportCategoryOption } from './AssignmentImportTypes'
 
 const ASSIGNMENT_TYPES: AssignmentType[] = ['quiz', 'homework', 'test', 'project']
-
-export interface ConfirmedImportDraft {
-  title: string
-  description?: string
-  assignment_type: AssignmentType
-  due_date?: string
-  /** UUID of the chosen assignment_category, or empty string for none */
-  assignment_categories_id?: string
-}
-
-export interface ImportCategoryOption {
-  id: string
-  name: string
-}
 
 interface AssignmentImportModalProps {
   isOpen: boolean
@@ -365,50 +355,83 @@ export function AssignmentImportModal({
     onClose()
   }
 
-  return (
-    <Modal isOpen={isOpen} onClose={close} size="3xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <div className="flex items-center gap-3">
-            {step === 'preview' && (
-              <button
-                onClick={() => !parsing && setStep('paste')}
-                className="text-gray-500 hover:text-gray-700"
-                disabled={parsing}
-                aria-label={t('common.back') as string}
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </button>
-            )}
-            <div>
-              <h2 className="text-xl font-bold text-gray-900">
-                {t('assignments.import.title')}
-              </h2>
-              {step === 'preview' && parseMode && (
-                <p className="text-xs text-gray-500 mt-0.5">
-                  {parseMode === 'ai'
-                    ? t('assignments.import.parsedByAI')
-                    : t('assignments.import.parsedFromMarkdown')}
-                </p>
-              )}
-            </div>
+  // Footer JSX lifted out of the body so it gets ModalShell's canonical
+  // padding + top border (matches every other manager modal).
+  const footerContent = (
+    <div className="flex items-center justify-between gap-3 w-full">
+      {step === 'paste' ? (
+        <>
+          <span className="text-xs text-gray-500">
+            {t('assignments.import.aiDisclaimer')}
+          </span>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={close} disabled={parsing}>
+              {t('common.cancel')}
+            </Button>
+            <Button onClick={handleParse} disabled={!text.trim() || parsing || extractingFile}>
+              {parsing && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              <Sparkles className="w-4 h-4 mr-2" />
+              {parsing ? t('assignments.import.parsing') : t('assignments.import.parse')}
+            </Button>
           </div>
-          <button
-            onClick={close}
-            disabled={parsing}
-            className="text-gray-500 hover:text-gray-700 disabled:opacity-50"
-            aria-label={t('common.close') as string}
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+        </>
+      ) : (
+        <>
+          <span className="text-xs text-gray-500">
+            {t('assignments.import.rowsReady', { count: includedRows.length })}
+          </span>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={close}>
+              {t('common.cancel')}
+            </Button>
+            <Button onClick={handleConfirm} disabled={includedRows.length === 0}>
+              <Check className="w-4 h-4 mr-2" />
+              {t('assignments.import.addToSession', { count: includedRows.length })}
+            </Button>
+          </div>
+        </>
+      )}
+    </div>
+  )
 
-        {/* Body */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-6">
+  return (
+    <ModalShell
+      isOpen={isOpen}
+      onClose={close}
+      size="3xl"
+      closeDisabled={parsing}
+      footer={footerContent}
+      headerSlot={
+        <div className="flex items-center gap-3 min-w-0">
+          {step === 'preview' && (
+            <button
+              onClick={() => !parsing && setStep('paste')}
+              className="text-gray-500 hover:text-gray-700 flex-shrink-0"
+              disabled={parsing}
+              aria-label={t('common.back') as string}
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+          )}
+          <div className="min-w-0">
+            <h2 className="text-xl font-semibold tracking-tight text-gray-900 truncate">
+              {t('assignments.import.title')}
+            </h2>
+            {step === 'preview' && parseMode && (
+              <p className="text-sm text-gray-500 mt-1">
+                {parseMode === 'ai'
+                  ? t('assignments.import.parsedByAI')
+                  : t('assignments.import.parsedFromMarkdown')}
+              </p>
+            )}
+          </div>
+        </div>
+      }
+    >
+      <div>
           {step === 'paste' && (
             <div className="space-y-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-900">
+              <div className="bg-sky-50 border border-sky-200 rounded-lg p-4 text-sm text-sky-900">
                 <div className="flex gap-2">
                   <Sparkles className="w-4 h-4 mt-0.5 flex-shrink-0" />
                   <div>
@@ -441,9 +464,9 @@ export function AssignmentImportModal({
                 </div>
 
                 {loadedFile && (
-                  <div className="flex items-center gap-2 p-2 bg-blue-50 border border-blue-200 rounded-md mb-2 text-sm">
+                  <div className="flex items-center gap-2 p-2 bg-sky-50 border border-sky-200 rounded-md mb-2 text-sm">
                     <FileText className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                    <span className="flex-1 truncate text-blue-900 font-medium">{loadedFile.name}</span>
+                    <span className="flex-1 truncate text-sky-900 font-medium">{loadedFile.name}</span>
                     <span className="text-xs text-blue-700 flex-shrink-0">
                       {formatFileSize(loadedFile.size)}
                     </span>
@@ -622,7 +645,7 @@ export function AssignmentImportModal({
                     <button
                       type="button"
                       onClick={() => removeRow(row.rowId)}
-                      className="text-gray-400 hover:text-red-600 mt-3 flex-shrink-0"
+                      className="text-gray-400 hover:text-rose-600 mt-3 flex-shrink-0"
                       aria-label={t('common.delete') as string}
                     >
                       <X className="w-4 h-4" />
@@ -639,46 +662,6 @@ export function AssignmentImportModal({
             </div>
           )}
         </div>
-
-        {/* Footer */}
-        <div className="flex-shrink-0 p-6 pt-4 border-t border-gray-200 flex items-center justify-between gap-3">
-          {step === 'paste' ? (
-            <>
-              <span className="text-xs text-gray-500">
-                {t('assignments.import.aiDisclaimer')}
-              </span>
-              <div className="flex gap-2">
-                <Button variant="outline" onClick={close} disabled={parsing}>
-                  {t('common.cancel')}
-                </Button>
-                <Button onClick={handleParse} disabled={!text.trim() || parsing || extractingFile}>
-                  {parsing && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  {parsing ? t('assignments.import.parsing') : t('assignments.import.parse')}
-                </Button>
-              </div>
-            </>
-          ) : (
-            <>
-              <span className="text-xs text-gray-500">
-                {t('assignments.import.rowsReady', { count: includedRows.length })}
-              </span>
-              <div className="flex gap-2">
-                <Button variant="outline" onClick={close}>
-                  {t('common.cancel')}
-                </Button>
-                <Button
-                  onClick={handleConfirm}
-                  disabled={includedRows.length === 0}
-                >
-                  <Check className="w-4 h-4 mr-2" />
-                  {t('assignments.import.addToSession', { count: includedRows.length })}
-                </Button>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

@@ -1,10 +1,18 @@
 "use client"
 
 import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Medal, TrendingUp, TrendingDown, GraduationCap } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import type { StudentPerformance } from '../hooks/useClassroomPerformance'
-import { StudentAssignmentsModal } from './StudentAssignmentsModal'
+
+// Modal is only mounted when a row is clicked. Defer the 305-line
+// bundle (and its supabase + grade-fetching code path) until then.
+const StudentAssignmentsModal = dynamic(
+  () => import('./StudentAssignmentsModal').then(m => m.StudentAssignmentsModal),
+  { ssr: false }
+)
 
 interface TopStudentsCardProps {
   title: string
@@ -47,14 +55,14 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg p-4 sm:p-5 shadow-sm border border-gray-100 h-full">
-        <div className="flex items-center gap-2 mb-4">
-          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-200 rounded-full animate-pulse"></div>
-          <div className="h-5 bg-gray-200 rounded w-40 animate-pulse"></div>
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] h-full animate-pulse">
+        <div className="flex items-center gap-2 px-4 sm:px-6 pt-4 sm:pt-6 pb-3">
+          <div className="w-7 h-7 bg-gray-200 rounded-lg"></div>
+          <div className="h-3 bg-gray-200 rounded w-28"></div>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-3 px-4 sm:px-6 pb-4 sm:pb-5">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="flex items-center gap-3 animate-pulse">
+            <div key={i} className="flex items-center gap-3">
               <div className="w-6 h-6 bg-gray-200 rounded-full"></div>
               <div className="flex-1">
                 <div className="h-4 bg-gray-200 rounded w-32 mb-1"></div>
@@ -68,37 +76,28 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
     )
   }
 
-  const getHeaderColor = () => {
-    return type === 'top' ? 'text-green-600' : 'text-red-600'
-  }
-
-  const getHeaderBg = () => {
-    return type === 'top' ? 'bg-green-50' : 'bg-red-50'
-  }
+  const HeaderIcon = type === 'top' ? TrendingUp : TrendingDown
 
   const getScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600 bg-green-50'
-    if (score >= 80) return 'text-blue-600 bg-blue-50'
-    if (score >= 70) return 'text-yellow-600 bg-yellow-50'
-    return 'text-red-600 bg-red-50'
+    if (score >= 90) return 'text-emerald-700 bg-emerald-50'
+    if (score >= 80) return 'text-sky-700 bg-sky-50'
+    if (score >= 70) return 'text-amber-700 bg-amber-50'
+    return 'text-rose-700 bg-rose-50'
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full flex flex-col overflow-hidden">
-      <div className={`px-4 sm:px-5 py-3 ${getHeaderBg()} border-b border-gray-100 flex-shrink-0`}>
-        <div className="flex items-center gap-2">
-          {type === 'top' ? (
-            <TrendingUp className={`w-4 h-4 sm:w-5 sm:h-5 ${getHeaderColor()}`} />
-          ) : (
-            <TrendingDown className={`w-4 h-4 sm:w-5 sm:h-5 ${getHeaderColor()}`} />
-          )}
-          <h3 className={`font-semibold ${getHeaderColor()}`}>{title}</h3>
+    <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] h-full flex flex-col overflow-hidden">
+      {/* Header — eyebrow style to match the four graph cards. */}
+      <div className="flex items-center gap-2 px-4 sm:px-6 pt-4 sm:pt-6 pb-3 flex-shrink-0">
+        <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+          <HeaderIcon className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
         </div>
+        <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 truncate">{title}</h3>
       </div>
 
       <div className="flex-1 overflow-y-auto min-h-0">
         {students.length > 0 ? (
-          <div className="space-y-2 p-4 sm:p-5">
+          <div className="space-y-2 px-4 sm:px-6 pb-4 sm:pb-5">
             {students.map((student, index) => (
               <div
                 key={student.id}
@@ -129,10 +128,12 @@ export const TopStudentsCard = React.memo<TopStudentsCardProps>(function TopStud
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-8 px-4 sm:px-5 text-gray-400">
-            <GraduationCap className="w-8 h-8 sm:w-10 sm:h-10 mb-2" />
-            <span className="text-sm">{t('dashboard.noStudentData')}</span>
-          </div>
+          <EmptyState
+            icon={GraduationCap}
+            title={String(t('dashboard.noStudentData'))}
+            size="sm"
+            variant="subtle"
+          />
         )}
       </div>
 

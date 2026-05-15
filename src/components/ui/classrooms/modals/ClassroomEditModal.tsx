@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
+import { useDirtyState } from '@/hooks/useDirtyState'
+import { useConfirm } from '@/hooks/useConfirm'
 import {
   Plus,
   Trash2,
@@ -12,9 +14,10 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
+import { TableCheckbox } from '@/components/ui/dashboard'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { TimePickerComponent } from '@/components/ui/classrooms-page'
@@ -128,32 +131,53 @@ export function ClassroomEditModal({
   const [hoveredStudent, setHoveredStudent] = useState<string | null>(null)
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
 
+  // Dirty-state guard for the edit form. Snapshot includes everything a
+  // manager can mutate so any field-level edit triggers the confirm.
+  const isDirty = useDirtyState({ formData, schedules, selectedStudents }, isOpen)
+  const confirm = useConfirm()
+  const handleSafeClose = useCallback(async () => {
+    if (!isDirty) {
+      onClose()
+      return
+    }
+    const ok = await confirm({
+      title: String(t('common.discardChanges')),
+      description: String(t('common.discardChangesDescription')),
+      variant: 'warning',
+      confirmText: String(t('common.discard')),
+      cancelText: String(t('common.keepEditing')),
+    })
+    if (ok) onClose()
+  }, [isDirty, confirm, onClose, t])
+
   if (!editingClassroom) return null
 
   return (
-    <Modal
+    <ModalShell
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleSafeClose}
       size="3xl"
-    >
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-lg font-bold text-gray-900">{t("classrooms.editClassroom")}</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="p-1"
-          >
-            <X className="w-4 h-4" />
+      title={String(t("classrooms.editClassroom"))}
+      footer={
+        <ModalShell.Footer split>
+          <Button type="button" variant="outline" onClick={handleSafeClose}>
+            {t("common.cancel")}
           </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-4">
+          <Button
+            type="submit"
+            form="edit-classroom-form"
+            disabled={!formData.name || !formData.teacher_id || isSaving}
+          >
+            {isSaving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+            {isSaving ? t("common.saving") : t("classrooms.saveChanges")}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <form id="edit-classroom-form" onSubmit={handleEditSubmit} className="space-y-5">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
-                {t("classrooms.classroomName")} <span className="text-red-500">*</span>
+                {t("classrooms.classroomName")} <span className="text-rose-500">*</span>
               </Label>
               <Input
                 type="text"
@@ -261,7 +285,7 @@ export function ClassroomEditModal({
             {userRole !== 'teacher' && (
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {t("classrooms.teacher")} <span className="text-red-500">*</span>
+                  {t("classrooms.teacher")} <span className="text-rose-500">*</span>
                 </Label>
                 <Select
                   value={formData.teacher_id}
@@ -571,9 +595,9 @@ export function ClassroomEditModal({
                             key={student.id}
                             className="flex items-center gap-3 p-2 hover:bg-white/50 rounded-md cursor-pointer transition-colors"
                           >
-                            <input
-                              type="checkbox"
+                            <TableCheckbox
                               checked={selectedStudents.includes(student.user_id)}
+                              ariaLabel={student.name}
                               onChange={() => {
                                 if (selectedStudents.includes(student.user_id)) {
                                   setSelectedStudents(selectedStudents.filter(id => id !== student.user_id))
@@ -581,7 +605,6 @@ export function ClassroomEditModal({
                                   setSelectedStudents([...selectedStudents, student.user_id])
                                 }
                               }}
-                              className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
                             />
                             <div className="flex-1 min-w-0 relative">
                               <div className="flex items-center justify-between">
@@ -668,28 +691,6 @@ export function ClassroomEditModal({
               </div>
             </div>
           </form>
-        </div>
-
-        <div className="flex items-center gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onClose}
-            className="flex-1"
-          >
-            {t("common.cancel")}
-          </Button>
-          <Button
-            type="submit"
-            form="edit-classroom-form"
-            className="flex-1"
-            disabled={!formData.name || !formData.teacher_id || isSaving}
-          >
-            {isSaving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-            {isSaving ? t("common.saving") : t("classrooms.saveChanges")}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

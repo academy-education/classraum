@@ -15,6 +15,7 @@ import {
   Bell 
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 
 interface RecentActivityItem {
   id: string
@@ -40,13 +41,13 @@ const getNotificationIcon = (type: string) => {
     case 'session':
       return <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
     case 'attendance':
-      return <Users className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+      return <Users className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
     case 'billing':
-      return <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+      return <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-violet-600" />
     case 'alert':
       return <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
     case 'assignment':
-      return <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+      return <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
     default:
       return <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
   }
@@ -73,12 +74,9 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
       <Card className="p-4 sm:p-6 h-full">
         <div className="animate-pulse">
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 rounded-lg"></div>
-              <div>
-                <div className="h-5 bg-gray-200 rounded w-32 mb-1"></div>
-                <div className="h-4 bg-gray-200 rounded w-40"></div>
-              </div>
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 bg-gray-200 rounded-lg"></div>
+              <div className="h-3 bg-gray-200 rounded w-24"></div>
             </div>
           </div>
           <div className="space-y-3">
@@ -99,21 +97,19 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
 
   return (
     <Card className="h-full flex flex-col overflow-hidden py-0 gap-0">
+      {/* Header — eyebrow style to match the four graph cards. */}
       <div className="flex items-center justify-between px-4 sm:px-6 pt-4 sm:pt-6 pb-3 flex-shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-            <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+            <Activity className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
           </div>
-          <div>
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900">{t("dashboard.recentActivity")}</h3>
-            <p className="text-sm text-gray-600">{t("dashboard.latestUpdatesFromAcademy")}</p>
-          </div>
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 truncate">{t("dashboard.recentActivity")}</h3>
         </div>
         <Button
           variant="ghost"
           size="sm"
           onClick={() => router.push('/notifications')}
-          className="text-purple-600 hover:text-purple-700"
+          className="text-primary hover:text-primary/80"
         >
           {t("dashboard.viewAll")}
           <ChevronRight className="w-4 h-4 ml-1" />
@@ -122,10 +118,12 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
 
       <div className="flex-1 overflow-y-auto min-h-0">
         {activities.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-8 px-4 sm:px-6 text-gray-500">
-            <Activity className="w-6 h-6 sm:w-8 sm:h-8 mb-2 text-gray-300" />
-            <p className="text-sm">{t("dashboard.noRecentActivity")}</p>
-          </div>
+          <EmptyState
+            icon={Activity}
+            title={String(t("dashboard.noRecentActivity"))}
+            size="sm"
+            variant="subtle"
+          />
         ) : (
           <div className="space-y-3 p-4 sm:px-6 sm:pt-5 sm:pb-5">
             {activities.map((activity) => (

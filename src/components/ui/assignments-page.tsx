@@ -3,9 +3,13 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { triggerAssignmentGradedNotifications } from '@/lib/notification-triggers'
 import { useAssignmentsData } from '@/components/ui/assignments/hooks/useAssignmentsData'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { DashboardCard, DataTable, BulkActionBar, type DataTableColumn, type DataTableSortState } from '@/components/ui/dashboard'
+import { StatusPill } from '@/components/ui/status-pill'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
@@ -30,6 +34,7 @@ import {
   Paperclip,
   Grid3X3,
   List,
+  Rows3,
   Eye,
   ClipboardList,
   Loader2,
@@ -40,21 +45,28 @@ import {
   Filter
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { FileUpload } from '@/components/ui/file-upload'
 import { AttachmentList } from '@/components/ui/attachment-list'
-import { Modal } from '@/components/ui/modal'
 import { Skeleton } from '@/components/ui/skeleton'
-import { showSuccessToast, showErrorToast } from '@/stores'
-import { invalidateSessionsCache } from '@/components/ui/sessions-page'
-import { invalidateArchiveCache } from '@/components/ui/archive-page'
-import { AssignmentCreateEditModal } from '@/components/ui/assignments/modals/AssignmentCreateEditModal'
-import { AssignmentDeleteModal } from '@/components/ui/assignments/modals/AssignmentDeleteModal'
-import { AssignmentDetailsModal } from '@/components/ui/assignments/modals/AssignmentDetailsModal'
-import { SubmissionsGradeModal } from '@/components/ui/assignments/modals/SubmissionsGradeModal'
-import { exportAssignmentsToMarkdown, downloadFilename } from '@/lib/assignment-exporter'
+import { showSuccessToast, showSuccessToastWithAction, showErrorToast } from '@/stores'
+// Sibling-page caches via the shared module — keeps sessions/archive
+// bundles out of this chunk. See src/lib/cache.ts.
+import { invalidateSessionsCache, invalidateArchiveCache } from '@/lib/cache'
+// Modals are conditionally rendered — defer their bundles (~900 lines
+// combined plus the AssignmentsDatePicker and shared modal/select deps)
+// until the user actually opens one.
+import dynamic from 'next/dynamic'
+const AssignmentCreateEditModal = dynamic(() => import('@/components/ui/assignments/modals/AssignmentCreateEditModal').then(m => m.AssignmentCreateEditModal), { ssr: false })
+const AssignmentDeleteModal = dynamic(() => import('@/components/ui/assignments/modals/AssignmentDeleteModal').then(m => m.AssignmentDeleteModal), { ssr: false })
+const AssignmentDetailsModal = dynamic(() => import('@/components/ui/assignments/modals/AssignmentDetailsModal').then(m => m.AssignmentDetailsModal), { ssr: false })
+const SubmissionsGradeModal = dynamic(() => import('@/components/ui/assignments/modals/SubmissionsGradeModal').then(m => m.SubmissionsGradeModal), { ssr: false })
+import { useAssignmentsExport } from '@/components/ui/assignments/hooks/useAssignmentsExport'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 
 interface AttachmentFile {
   id?: string
@@ -123,7 +135,7 @@ interface SubmissionGrade {
   submitted_date?: string
   created_at?: string
   updated_at?: string
-  attendance_status?: 'present' | 'late' | 'absent' | 'pending'
+  attendance_status?: 'present' | 'late' | 'absent' | 'pending' | 'excused'
 }
 
 // interface RawSubmissionGrade {
@@ -143,318 +155,14 @@ interface SubmissionGrade {
 //   }
 // }
 
-// PERFORMANCE: Helper function to invalidate cache
-export const invalidateAssignmentsCache = (academyId: string) => {
-  // Clear all assignment caches for this academy
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
+// Re-exported from the shared cache module. See src/lib/cache.ts. Import
+// + export keeps the helper bound locally for in-file consumers.
+import { invalidateAssignmentsCache } from '@/lib/cache'
+export { invalidateAssignmentsCache }
 
-  keys.forEach(key => {
-    if (key.startsWith(`assignments-`) && key.includes(academyId)) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
-
-// Extracted outside AssignmentsPage to avoid hooks-in-nested-component issues
-export function AssignmentsDatePicker({
-  value,
-  onChange,
-  fieldId,
-  multiSelect = false,
-  selectedDates = [],
-  disabled = false,
-  placeholder,
-  height = 'h-12',
-  shadow = 'shadow-sm',
-  activeDatePicker,
-  setActiveDatePicker,
-  t,
-  language
-}: {
-  value: string
-  onChange: (value: string | string[]) => void
-  fieldId: string
-  multiSelect?: boolean
-  selectedDates?: string[]
-  disabled?: boolean
-  placeholder?: string
-  height?: string
-  shadow?: string
-  activeDatePicker: string | null
-  setActiveDatePicker: (id: string | null) => void
-  t: (key: string) => string | Record<string, unknown>
-  language: string
-}) {
-  const isOpen = activeDatePicker === fieldId
-  const datePickerRef = useRef<HTMLDivElement>(null)
-
-  // Parse date string as local date to avoid timezone issues
-  const parseLocalDate = (dateStr: string) => {
-    if (!dateStr) return new Date()
-    const [year, month, day] = dateStr.split('-').map(Number)
-    return new Date(year, month - 1, day)
-  }
-
-  const currentDate = value ? parseLocalDate(value) : new Date()
-  const today = new Date()
-
-  // Get current month and year for navigation
-  const [viewMonth, setViewMonth] = useState(currentDate.getMonth())
-  const [viewYear, setViewYear] = useState(currentDate.getFullYear())
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
-        setActiveDatePicker(null)
-      }
-    }
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }
-  }, [isOpen, setActiveDatePicker])
-  const formatDisplayDate = (dateString: string) => {
-    if (!dateString) return placeholder || t('assignments.selectDate')
-    const locale = language === 'korean' ? 'ko-KR' : 'en-US'
-    const localDate = parseLocalDate(dateString)
-    return localDate.toLocaleDateString(locale, {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    })
-  }
-  const getDaysInMonth = (month: number, year: number) => {
-    return new Date(year, month + 1, 0).getDate()
-  }
-  const getFirstDayOfMonth = (month: number, year: number) => {
-    return new Date(year, month, 1).getDay()
-  }
-  const selectDate = (day: number) => {
-    const selectedDateObj = new Date(viewYear, viewMonth, day)
-    // Format as YYYY-MM-DD in local timezone instead of UTC
-    const year = selectedDateObj.getFullYear()
-    const month = String(selectedDateObj.getMonth() + 1).padStart(2, '0')
-    const dayStr = String(selectedDateObj.getDate()).padStart(2, '0')
-    const dateString = `${year}-${month}-${dayStr}`
-
-    if (multiSelect) {
-      // Handle multiple date selection
-      const currentDates = [...selectedDates]
-      const dateIndex = currentDates.indexOf(dateString)
-
-      if (dateIndex > -1) {
-        // Date already selected, remove it
-        currentDates.splice(dateIndex, 1)
-      } else {
-        // Add new date
-        currentDates.push(dateString)
-        currentDates.sort() // Keep dates sorted
-      }
-
-      onChange(currentDates)
-      // Don't close picker in multi-select mode
-    } else {
-      // Single date selection
-      onChange(dateString)
-      setActiveDatePicker(null)
-    }
-  }
-  const navigateMonth = (direction: number) => {
-    let newMonth = viewMonth + direction
-    let newYear = viewYear
-    if (newMonth < 0) {
-      newMonth = 11
-      newYear -= 1
-    } else if (newMonth > 11) {
-      newMonth = 0
-      newYear += 1
-    }
-    setViewMonth(newMonth)
-    setViewYear(newYear)
-  }
-  const monthNames = [
-    t('assignments.months.january'), t('assignments.months.february'), t('assignments.months.march'),
-    t('assignments.months.april'), t('assignments.months.may'), t('assignments.months.june'),
-    t('assignments.months.july'), t('assignments.months.august'), t('assignments.months.september'),
-    t('assignments.months.october'), t('assignments.months.november'), t('assignments.months.december')
-  ]
-  const dayNames = [
-    t('assignments.days.sun'), t('assignments.days.mon'), t('assignments.days.tue'),
-    t('assignments.days.wed'), t('assignments.days.thu'), t('assignments.days.fri'), t('assignments.days.sat')
-  ]
-  const daysInMonth = getDaysInMonth(viewMonth, viewYear)
-  const firstDay = getFirstDayOfMonth(viewMonth, viewYear)
-  const selectedDate = value ? parseLocalDate(value) : null
-  return (
-    <div className="relative" ref={datePickerRef}>
-      <div
-        onClick={() => !disabled && setActiveDatePicker(isOpen ? null : fieldId)}
-        className={`w-full ${height} px-3 py-2 text-left text-sm border rounded-lg cursor-pointer ${shadow} flex items-center ${
-          disabled
-            ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
-            : isOpen
-              ? 'bg-white border-blue-500'
-              : 'bg-white border-border hover:border-blue-500'
-        }`}
-      >
-        {multiSelect ? (
-          selectedDates.length > 0 ? (
-            <div className="flex flex-wrap gap-1">
-              {selectedDates.map((date, index) => (
-                <span
-                  key={index}
-                  className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
-                >
-                  {formatDisplayDate(date)}
-                  <span
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      const newDates = selectedDates.filter(d => d !== date)
-                      onChange(newDates)
-                    }}
-                    className="text-blue-600 hover:text-blue-800 ml-1 cursor-pointer"
-                  >
-                    ×
-                  </span>
-                </span>
-              ))}
-            </div>
-          ) : (
-            <span className="text-gray-500">{t("assignments.selectDates")}</span>
-          )
-        ) : (
-          formatDisplayDate(value)
-        )}
-      </div>
-
-      {isOpen && !disabled && (
-        <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
-          {/* Header with month/year navigation */}
-          <div className="flex items-center justify-between mb-4">
-            <button
-              type="button"
-              onClick={() => navigateMonth(-1)}
-              className="p-1 hover:bg-gray-100 rounded"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <div className="font-medium text-gray-900">
-              {monthNames[viewMonth]} {viewYear}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => navigateMonth(1)}
-              className="p-1 hover:bg-gray-100 rounded"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-          {/* Day names header */}
-          <div className="grid grid-cols-7 gap-1 mb-2">
-            {dayNames.map((day) => (
-              <div key={String(day)} className="text-xs text-gray-500 text-center py-1 font-medium">
-                {String(day)}
-              </div>
-            ))}
-          </div>
-          {/* Calendar grid */}
-          <div className="grid grid-cols-7 gap-1">
-            {/* Empty cells for days before the first day of the month */}
-            {Array.from({ length: firstDay }, (_, i) => (
-              <div key={`empty-${i}`} className="h-8"></div>
-            ))}
-
-            {/* Days of the month */}
-            {Array.from({ length: daysInMonth }, (_, i) => {
-              const day = i + 1
-              const currentDateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-
-              const isSelected = multiSelect
-                ? selectedDates.includes(currentDateStr)
-                : selectedDate &&
-                  selectedDate.getDate() === day &&
-                  selectedDate.getMonth() === viewMonth &&
-                  selectedDate.getFullYear() === viewYear
-
-              const isToday = today.getDate() === day &&
-                today.getMonth() === viewMonth &&
-                today.getFullYear() === viewYear
-              return (
-                <button
-                  key={day}
-                  type="button"
-                  onClick={() => selectDate(day)}
-                  className={`h-8 w-8 text-sm rounded hover:bg-gray-100 flex items-center justify-center ${
-                    isSelected
-                      ? multiSelect
-                        ? 'bg-blue-500 text-white font-medium'
-                        : 'bg-blue-50 text-blue-600 font-medium'
-                      : isToday
-                      ? 'bg-gray-100 font-medium'
-                      : ''
-                  }`}
-                >
-                  {day}
-                </button>
-              )
-            })}
-          </div>
-          {/* Footer actions */}
-          <div className="mt-3 pt-3 border-t border-gray-200">
-            {multiSelect ? (
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    onChange([])
-                  }}
-                  className="flex-1 text-sm text-gray-600 hover:text-gray-700 font-medium"
-                >
-                  {t("common.selectAll") === "Select All" ? "Clear All" : "전체 해제"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveDatePicker(null)
-                  }}
-                  className="flex-1 text-sm bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 font-medium"
-                >
-                  {t("common.done")}
-                </button>
-              </div>
-            ) : (
-              <button
-                type="button"
-                onClick={() => {
-                  const year = today.getFullYear()
-                  const month = String(today.getMonth() + 1).padStart(2, '0')
-                  const day = String(today.getDate()).padStart(2, '0')
-                  const todayString = `${year}-${month}-${day}`
-                  onChange(todayString)
-                  setActiveDatePicker(null)
-                }}
-                className="w-full text-sm text-blue-600 hover:text-blue-700 font-medium"
-              >
-                {t("assignments.today")}
-              </button>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
-  )
-}
+// Re-export so the extracted modals can keep importing from this module
+// (their existing import path) without reaching into the assignments folder.
+export { AssignmentsDatePicker } from '@/components/ui/assignments/AssignmentsDatePicker'
 
 export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageProps) {
   const { t, language } = useTranslation()
@@ -493,10 +201,23 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   const [editingAssignment, setEditingAssignment] = useState<Assignment | null>(null)
   const [submissionsAssignment, setSubmissionsAssignment] = useState<Assignment | null>(null)
   const [submissionGrades, setSubmissionGrades] = useState<SubmissionGrade[]>([])
+  // Snapshot of grade scores at modal open time. After saveSubmissionGrades,
+  // we compare against this to fire triggerAssignmentGradedNotifications
+  // only for grades that genuinely transitioned from unscored to scored —
+  // re-saving an already-graded row shouldn't push parents again.
+  const [originalGradeScores, setOriginalGradeScores] = useState<Map<string, number | null>>(new Map())
   const [assignmentSearchQuery, setAssignmentSearchQuery] = useState('')
-  const [viewMode, setViewMode] = useState<'card' | 'list'>('list')
+  const [viewMode, setViewMode] = useState<'card' | 'list' | 'table'>('list')
+  const [selectedAssignmentIds, setSelectedAssignmentIds] = useState<Set<string>>(new Set())
+  const [tableSort, setTableSort] = useState<DataTableSortState | null>(null)
+  const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false)
+  const [bulkUpdating, setBulkUpdating] = useState(false)
+  const searchInputRef = useRef<HTMLInputElement>(null)
   const [sortBy, setSortBy] = useState<{field: 'session' | 'due', direction: 'asc' | 'desc'} | null>(null)
-  const [showPendingOnly, setShowPendingOnly] = useState(false)
+  // `?pending=true` lands the user with the pending-only filter active.
+  // Used by the dashboard "X awaiting grades" chip → click → here.
+  const pendingFromUrl = searchParams.get('pending') === 'true'
+  const [showPendingOnly, setShowPendingOnly] = useState(pendingFromUrl)
 
   // Initialize classroom filter from URL parameter
   const classroomFromUrl = searchParams.get('classroom')
@@ -933,7 +654,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return
       }
 
-      setAssignments(prev => prev.filter(a => a.id !== assignmentToDelete.id))
+      const deletedAssignment = assignmentToDelete
+      setAssignments(prev => prev.filter(a => a.id !== deletedAssignment.id))
       setShowDeleteModal(false)
       setAssignmentToDelete(null)
 
@@ -942,12 +664,111 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       invalidateSessionsCache(academyId)
       invalidateArchiveCache(academyId)
 
-      showSuccessToast(t('assignments.deletedSuccessfully') as string)
+      // Soft-delete is reversible — give managers a window to take it back.
+      // The Undo restores `deleted_at = null` and refetches.
+      showSuccessToastWithAction(
+        t('assignments.deletedSuccessfully') as string,
+        t('common.undo') as string,
+        async () => {
+          const { error: restoreError } = await supabase
+            .from('assignments')
+            .update({ deleted_at: null })
+            .eq('id', deletedAssignment.id)
+          if (restoreError) {
+            showErrorToast(t('assignments.unexpectedError') as string, restoreError.message)
+            return
+          }
+          invalidateAssignmentsCache(academyId)
+          invalidateSessionsCache(academyId)
+          invalidateArchiveCache(academyId)
+          await fetchAssignments()
+          showSuccessToast(t('common.restored') as string)
+        }
+      )
 
     } catch (error: unknown) {
       showErrorToast(t('assignments.unexpectedError') as string, ((error as Error).message))
     } finally {
       setIsSaving(false)
+    }
+  }
+
+  // ===== Bulk actions (table view selection) =====
+  const handleBulkDelete = async () => {
+    if (selectedAssignmentIds.size === 0) return
+    setBulkUpdating(true)
+    try {
+      const ids = Array.from(selectedAssignmentIds)
+      const { error } = await supabase
+        .from('assignments')
+        .update({ deleted_at: new Date().toISOString() })
+        .in('id', ids)
+      if (error) throw error
+      setAssignments(prev => prev.filter(a => !selectedAssignmentIds.has(a.id)))
+      setSelectedAssignmentIds(new Set())
+      setShowBulkDeleteConfirm(false)
+      invalidateAssignmentsCache(academyId)
+      invalidateSessionsCache(academyId)
+      invalidateArchiveCache(academyId)
+
+      // Bulk delete is the highest-impact destructive action — Undo here is
+      // the difference between "annoying" and "catastrophic" misclick.
+      showSuccessToastWithAction(
+        t('assignments.bulkDeleteSuccess', { count: ids.length }) as string,
+        t('common.undo') as string,
+        async () => {
+          const { error: restoreError } = await supabase
+            .from('assignments')
+            .update({ deleted_at: null })
+            .in('id', ids)
+          if (restoreError) {
+            showErrorToast(t('assignments.unexpectedError') as string, restoreError.message)
+            return
+          }
+          invalidateAssignmentsCache(academyId)
+          invalidateSessionsCache(academyId)
+          invalidateArchiveCache(academyId)
+          await fetchAssignments()
+          showSuccessToast(t('common.restored') as string)
+        }
+      )
+    } catch (err) {
+      console.error('[Assignments] Bulk delete failed:', err)
+      showErrorToast(t('assignments.bulkDeleteError') as string)
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
+  // Manager keyboard shortcuts: `/` → search, `n` → create, `Esc` → clear selection.
+  // Hook also bridges the `app:create-new` event from the command palette.
+  useListPageShortcuts({
+    searchInputRef,
+    onCreate: () => setShowModal(true),
+    isCreateBlocked: showModal || showDeleteModal || showViewModal || showSubmissionsModal,
+    onEscape: selectedAssignmentIds.size > 0
+      ? () => setSelectedAssignmentIds(new Set())
+      : undefined,
+  })
+
+  const handleBulkTypeUpdate = async (newType: Assignment['assignment_type']) => {
+    if (selectedAssignmentIds.size === 0) return
+    setBulkUpdating(true)
+    try {
+      const ids = Array.from(selectedAssignmentIds)
+      const { error } = await supabase
+        .from('assignments')
+        .update({ assignment_type: newType, updated_at: new Date().toISOString() })
+        .in('id', ids)
+      if (error) throw error
+      setAssignments(prev => prev.map(a => selectedAssignmentIds.has(a.id) ? { ...a, assignment_type: newType } : a))
+      showSuccessToast(t('assignments.bulkTypeSuccess', { count: ids.length }) as string)
+      invalidateAssignmentsCache(academyId)
+    } catch (err) {
+      console.error('[Assignments] Bulk type update failed:', err)
+      showErrorToast(t('assignments.bulkTypeError') as string)
+    } finally {
+      setBulkUpdating(false)
     }
   }
 
@@ -1037,28 +858,75 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return
       }
 
-      const attendanceMap = new Map<string, 'present' | 'late' | 'absent' | 'pending'>()
+      type AttendanceStatus = 'present' | 'late' | 'absent' | 'pending' | 'excused'
+      const attendanceMap = new Map<string, AttendanceStatus>()
       if (attendanceResult.data) {
-        attendanceResult.data.forEach((record: { student_id: string, status: 'present' | 'late' | 'absent' | 'pending' }) => {
+        attendanceResult.data.forEach((record: { student_id: string, status: AttendanceStatus }) => {
           attendanceMap.set(record.student_id, record.status)
         })
       }
 
-      const formattedGrades = gradesResult.data?.map((grade: Record<string, unknown>) => ({
-        id: grade.id as string,
-        assignment_id: grade.assignment_id as string,
-        student_id: grade.student_id as string,
-        student_name: (grade.users as { name?: string })?.name || 'Unknown Student',
-        status: grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue',
-        score: grade.score as number | undefined,
-        feedback: grade.feedback as string | undefined,
-        submitted_date: grade.submitted_date as string | undefined,
-        created_at: grade.created_at as string | undefined,
-        updated_at: grade.updated_at as string | undefined,
-        attendance_status: attendanceMap.get(grade.student_id as string)
-      })) || []
+      const formattedGrades = gradesResult.data?.map((grade: Record<string, unknown>) => {
+        const studentId = grade.student_id as string
+        const attendance = attendanceMap.get(studentId)
+        let status = grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue'
 
-      setSubmissionGrades(formattedGrades)
+        // Cross-flow pre-fill: if the manager already marked this student
+        // absent (or excused-absence) for the session, default the still-
+        // untouched grade to a matching submission state. Avoids the
+        // recurring chore of re-telling the system something it already
+        // knows. Only fires when the grade is `pending` — never overrides
+        // an explicit choice. Manager can flip the pill on save.
+        if ((!status || status === 'pending') && attendance) {
+          if (attendance === 'absent') status = 'not submitted'
+          else if (attendance === 'excused') status = 'excused'
+        }
+
+        return {
+          id: grade.id as string,
+          assignment_id: grade.assignment_id as string,
+          student_id: studentId,
+          student_name: (grade.users as { name?: string })?.name || 'Unknown Student',
+          status,
+          score: grade.score as number | undefined,
+          feedback: grade.feedback as string | undefined,
+          submitted_date: grade.submitted_date as string | undefined,
+          created_at: grade.created_at as string | undefined,
+          updated_at: grade.updated_at as string | undefined,
+          attendance_status: attendance,
+        }
+      }) || []
+
+      // Sort rows by "how much attention does this need from me right now?"
+      // Top: rows that still want a score or status decision.
+      // Bottom: rows that are already settled (graded / excused / explicitly
+      // not submitted / overdue). Within each tier, alphabetical by student
+      // name so the order is predictable across modal opens. Sorting only
+      // happens once at load time — we don't re-sort as the manager edits,
+      // because that would shuffle rows out from under their cursor.
+      const actionPriority = (g: typeof formattedGrades[number]): number => {
+        const status = (g.status || '').toLowerCase()
+        const hasScore = g.score !== null && g.score !== undefined
+        // 0 = needs the most attention; higher = less.
+        if (status === 'pending') return 0
+        if (status === 'submitted' && !hasScore) return 1
+        if (status === 'submitted' && hasScore) return 2
+        if (status === 'overdue') return 3
+        if (status === 'not submitted') return 4
+        if (status === 'excused') return 5
+        return 6
+      }
+      const sortedGrades = [...formattedGrades].sort((a, b) => {
+        const pa = actionPriority(a)
+        const pb = actionPriority(b)
+        if (pa !== pb) return pa - pb
+        return (a.student_name || '').localeCompare(b.student_name || '')
+      })
+
+      setSubmissionGrades(sortedGrades)
+      // Capture per-grade pre-edit score so we can detect "newly scored"
+      // grades on save and fire the notification trigger only for those.
+      setOriginalGradeScores(new Map(sortedGrades.map(g => [g.id, g.score ?? null])))
     } catch (error: unknown) {
       console.error('Unexpected error:', error)
       showErrorToast(t('assignments.errors.errorLoadingGrades') as string, t('assignments.errors.tryAgain') as string)
@@ -1170,6 +1038,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       invalidateAssignmentsCache(academyId)
       await fetchAssignments() // Refresh to update counts
 
+      // Fire per-student "assignment graded" pushes for grades that
+      // genuinely transitioned from unscored → scored. Re-saving a row
+      // that was already graded doesn't re-notify the parent. Each call
+      // swallows its own errors; never blocks the save flow.
+      const newlyGraded = submissionGrades.filter(g => {
+        const original = originalGradeScores.get(g.id) ?? null
+        const nowHasScore = g.score !== null && g.score !== undefined
+        const hadScore = original !== null && original !== undefined
+        return nowHasScore && !hadScore
+      })
+      await Promise.all(newlyGraded.map(g => triggerAssignmentGradedNotifications(g.id)))
+
     } catch (error: unknown) {
       console.error('Error updating submission grades:', error)
       showErrorToast(t('assignments.errorUpdatingSubmissions') as string, t('assignments.errors.tryAgain') as string)
@@ -1236,22 +1116,22 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       case 'test':
         return <FileText className={`${sizeClass} text-purple-500`} />
       case 'project':
-        return <Building className={`${sizeClass} text-green-500`} />
+        return <Building className={`${sizeClass} text-emerald-500`} />
       default:
-        return <BookOpen className={`${sizeClass} text-orange-500`} />
+        return <BookOpen className={`${sizeClass} text-amber-500`} />
     }
   }
 
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'quiz':
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-sky-50 text-sky-700'
       case 'test':
         return 'bg-purple-100 text-purple-800'
       case 'project':
-        return 'bg-green-100 text-green-800'
+        return 'bg-emerald-50 text-emerald-700'
       default:
-        return 'bg-orange-100 text-orange-800'
+        return 'bg-amber-50 text-amber-700'
     }
   }
 
@@ -1319,64 +1199,16 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Always use filtered length as total count (hybrid approach)
   const filteredTotalCount = filteredAssignments.length
 
-  // Build Markdown for export. Uses the currently filtered set so what the
-  // user sees is what they export.
-  const buildExportMarkdown = useCallback(() => {
-    return exportAssignmentsToMarkdown(
-      filteredAssignments.map(a => ({
-        title: a.title,
-        assignment_type: a.assignment_type,
-        due_date: a.due_date,
-        description: a.description,
-      })),
-      { header: true }
-    )
-  }, [filteredAssignments])
-
-  const handleCopyMarkdown = async () => {
-    const md = buildExportMarkdown()
-    if (!md) {
-      showErrorToast(
-        t('assignments.export.nothingToExport') as string,
-        t('assignments.export.nothingToExportDescription') as string
-      )
-      return
-    }
-    try {
-      await navigator.clipboard.writeText(md)
-      showSuccessToast(
-        t('assignments.export.copiedCount', { count: filteredAssignments.length }) as string
-      )
-    } catch {
-      showErrorToast(
-        t('assignments.export.copyFailed') as string,
-        t('assignments.export.clipboardUnavailable') as string
-      )
-    } finally {
-      setShowExportMenu(false)
-    }
-  }
-
-  const handleDownloadMarkdown = () => {
-    const md = buildExportMarkdown()
-    if (!md) {
-      showErrorToast(
-        t('assignments.export.nothingToExport') as string,
-        t('assignments.export.nothingToExportDescription') as string
-      )
-      return
-    }
-    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = downloadFilename()
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(url)
-    setShowExportMenu(false)
-  }
+  // Markdown-export actions live in a small hook so the orchestrator stays
+  // focused on data + composition. The hook closes the export menu on
+  // success/failure via the onComplete callback.
+  const { handleCopyMarkdown, handleDownloadMarkdown } = useAssignmentsExport({
+    filteredAssignments,
+    t,
+    showSuccessToast,
+    showErrorToast,
+    onComplete: () => setShowExportMenu(false),
+  })
 
   // Count of assignments that have pending grades (respects classroom filter)
   const assignmentsWithPendingCount = useMemo(() => {
@@ -1469,7 +1301,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.assignments")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("assignments.title")}</h1>
             <p className="text-gray-500">{t("assignments.description")}</p>
           </div>
           <Button className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
@@ -1505,12 +1338,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
             <div className="h-9 w-9 bg-gray-200 rounded"></div>
             <div className="h-9 w-9 bg-gray-200 rounded"></div>
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
           </div>
         </div>
         
         {/* Search Bar and Filters Skeleton */}
         <div className="flex flex-wrap gap-4 mb-4 animate-pulse">
-          <div className="flex-1 min-w-[250px] sm:max-w-md">
+          <div className="flex-1 min-w-[180px] sm:min-w-[250px] sm:max-w-md">
             <div className="h-12 bg-gray-200 rounded-lg"></div>
           </div>
           <div className="w-full sm:w-60">
@@ -1571,7 +1405,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("assignments.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.assignments")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("assignments.title")}</h1>
           <p className="text-gray-500">{t("assignments.description")}</p>
         </div>
         <div className="flex flex-wrap gap-2 self-start sm:self-auto">
@@ -1586,7 +1421,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               {t("assignments.export.button")}
             </Button>
             {showExportMenu && (
-              <div className="absolute right-0 mt-1 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20 py-1">
+              <div className="absolute right-0 mt-1 w-56 bg-white border border-gray-300 rounded-lg shadow-xl z-20 py-1">
                 <button
                   onClick={handleCopyMarkdown}
                   className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 text-left"
@@ -1616,73 +1451,74 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
-        <Card className="w-full p-4 sm:p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
-          <div className="space-y-3">
-            <p className="text-sm font-medium text-blue-700">
+        <Card className="w-full p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <ClipboardList className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
+            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
               {assignmentSearchQuery ? t("assignments.filteredResults") : t("assignments.title")}
             </p>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
-                {filteredTotalCount}
-              </p>
-              <p className="text-sm text-gray-500">
-                {filteredTotalCount === 1
-                  ? t("assignments.assignment")
-                  : t("assignments.assignmentsPlural")
-                }
-              </p>
-            </div>
-            {(assignmentSearchQuery || classroomFilter !== 'all' || showPendingOnly || sortBy) && (
-              <p className="text-xs text-gray-500">
-                {language === 'korean' ? `전체 ${totalCount}개 중` : `out of ${totalCount} total`}
-              </p>
-            )}
-            {assignmentSearchQuery && (
-              <div className="text-xs text-blue-600">
-                {t("assignments.searchQuery", { query: assignmentSearchQuery })}
-              </div>
-            )}
           </div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+              {filteredTotalCount}
+            </p>
+            <p className="text-sm text-gray-400">
+              {filteredTotalCount === 1
+                ? t("assignments.assignment")
+                : t("assignments.assignmentsPlural")
+              }
+            </p>
+          </div>
+          {(assignmentSearchQuery || classroomFilter !== 'all' || showPendingOnly || sortBy) && (
+            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[11px] font-medium">
+              {language === 'korean' ? `전체 ${totalCount}개 중` : `of ${totalCount} total`}
+            </div>
+          )}
+          {assignmentSearchQuery && (
+            <div className="text-xs text-primary mt-2">
+              {t("assignments.searchQuery", { query: assignmentSearchQuery })}
+            </div>
+          )}
         </Card>
 
         <Card
-          className={`w-full p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
-            showPendingOnly
-              ? 'border-orange-600 bg-orange-50 shadow-md'
-              : 'border-orange-500'
+          className={`w-full p-5 cursor-pointer transition-all ${
+            showPendingOnly ? 'ring-2 ring-amber-300' : 'hover:-translate-y-0.5'
           }`}
           onClick={() => setShowPendingOnly(!showPendingOnly)}
         >
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <p className={`text-sm font-medium ${showPendingOnly ? 'text-orange-800' : 'text-orange-700'}`}>
-                {t("assignments.pendingGrades")}
-              </p>
-              <Filter className={`w-4 h-4 ${showPendingOnly ? 'text-orange-600' : 'text-orange-500'}`} />
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
+              <Filter className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.25} />
             </div>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
-                {assignmentsWithPendingCount}
-              </p>
-              <p className="text-sm text-gray-500">
-                {assignmentsWithPendingCount === 1
-                  ? t("assignments.assignment")
-                  : t("assignments.assignmentsPlural")}
-              </p>
-            </div>
-            {filteredPendingGradesCount > 0 && (
-              <p className="text-xs text-gray-500">
-                {language === 'korean'
-                  ? `${filteredPendingGradesCount}개 제출물 대기 중`
-                  : `${filteredPendingGradesCount} submissions pending`}
-              </p>
-            )}
-            {showPendingOnly && (
-              <div className="mt-2 text-xs text-orange-600 font-medium">
-                ✓ {t("assignments.filterActive")}
-              </div>
-            )}
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+              {t("assignments.pendingGrades")}
+            </p>
           </div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+              {assignmentsWithPendingCount}
+            </p>
+            <p className="text-sm text-gray-400">
+              {assignmentsWithPendingCount === 1
+                ? t("assignments.assignment")
+                : t("assignments.assignmentsPlural")}
+            </p>
+          </div>
+          {filteredPendingGradesCount > 0 && (
+            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 text-[11px] font-medium ring-1 ring-amber-100">
+              {language === 'korean'
+                ? `${filteredPendingGradesCount}개 제출물 대기`
+                : `${filteredPendingGradesCount} pending`}
+            </div>
+          )}
+          {showPendingOnly && (
+            <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 text-[11px] font-medium ring-1 ring-amber-100 ml-2">
+              ✓ {t("assignments.filterActive")}
+            </div>
+          )}
         </Card>
       </div>
 
@@ -1692,7 +1528,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <Button
             variant={viewMode === 'list' ? 'default' : 'ghost'}
             size="sm"
-            onClick={() => setViewMode('list')}
+            onClick={() => { setViewMode('list'); setSelectedAssignmentIds(new Set()) }}
             className={`h-9 px-3 ${viewMode === 'list' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
             title={String(t("assignments.listView"))}
           >
@@ -1701,26 +1537,37 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           <Button
             variant={viewMode === 'card' ? 'default' : 'ghost'}
             size="sm"
-            onClick={() => setViewMode('card')}
+            onClick={() => { setViewMode('card'); setSelectedAssignmentIds(new Set()) }}
             className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
             title={String(t("assignments.cardView"))}
           >
             <Grid3X3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.tableView"))}
+          >
+            <Rows3 className="w-4 h-4" />
           </Button>
         </div>
       </div>
 
       {/* Search Bar and Sort Filters */}
       <div className="flex flex-wrap gap-4 mb-4">
-        <div className="relative flex-1 min-w-[250px] sm:max-w-md">
+        <div className="relative flex-1 min-w-[180px] sm:min-w-[250px] sm:max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
+            ref={searchInputRef}
             type="text"
             placeholder={String(t("assignments.searchPlaceholder"))}
             value={assignmentSearchQuery}
             onChange={(e) => setAssignmentSearchQuery(e.target.value)}
-            className="w-full h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="w-full h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
+        <SearchKbdHint />
         </div>
 
         {/* Classroom Filter */}
@@ -1728,7 +1575,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           value={classroomFilter}
           onValueChange={updateClassroomFilter}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue placeholder={String(t("sessions.allClassrooms"))} />
           </SelectTrigger>
           <SelectContent>
@@ -1816,113 +1663,231 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         </button>
       </div>
 
+      {/* Bulk Action Bar — only renders in table view when rows are selected */}
+      {viewMode === 'table' && selectedAssignmentIds.size > 0 && (
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedAssignmentIds.size}
+            onClear={() => setSelectedAssignmentIds(new Set())}
+          >
+            <Select
+              value=""
+              onValueChange={(value) => handleBulkTypeUpdate(value as Assignment['assignment_type'])}
+              disabled={bulkUpdating}
+            >
+              <SelectTrigger className="h-8 w-auto min-w-[140px] rounded-md border border-border bg-white text-sm shadow-sm focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
+                <SelectValue placeholder={String(t('assignments.bulkSetType'))} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="quiz">{t('assignments.quiz')}</SelectItem>
+                <SelectItem value="homework">{t('assignments.homework')}</SelectItem>
+                <SelectItem value="test">{t('assignments.test')}</SelectItem>
+                <SelectItem value="project">{t('assignments.project')}</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkUpdating}
+              onClick={() => setShowBulkDeleteConfirm(true)}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              {t('common.delete')}
+            </Button>
+          </BulkActionBar>
+        </div>
+      )}
+
       {/* Assignments Content */}
       {viewMode === 'card' ? (
         /* Card View */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {paginatedAssignments.map((assignment) => (
-          <Card key={assignment.id} className="p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full">
-            <div className="flex items-start justify-between mb-3 sm:mb-4">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div
-                  className="w-3 h-3 sm:w-4 sm:h-4 rounded-full"
-                  style={{ backgroundColor: assignment.classroom_color || '#6B7280' }}
-                />
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{assignment.title}</h3>
-                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mt-1">
-                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span>{assignment.classroom_name}</span>
+          <DashboardCard
+            key={assignment.id}
+            accentColor={assignment.classroom_color || '#6B7280'}
+            statusLabel={t(`assignments.${assignment.assignment_type}`)}
+            statusToneClass="text-violet-600"
+            title={assignment.title}
+            subtitle={
+              <>
+                <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                <span>{assignment.classroom_name}</span>
+              </>
+            }
+            actions={
+              <>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleEditClick(assignment)}>
+                  <Edit className="w-4 h-4" strokeWidth={1.75} />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50" onClick={() => handleDeleteClick(assignment)}>
+                  <Trash2 className="w-4 h-4" strokeWidth={1.75} />
+                </Button>
+              </>
+            }
+            metrics={[
+              {
+                label: t('assignments.due') as string,
+                value: assignment.due_date ? formatDate(assignment.due_date) : '—'
+              },
+              {
+                label: t('common.type') as string,
+                value: t(`assignments.${assignment.assignment_type}`)
+              },
+              {
+                label: t('assignments.submitted') as string,
+                value: `${assignment.submitted_count || 0}/${assignment.student_count || 0}`
+              }
+            ]}
+            meta={
+              <>
+                <div className="flex items-start gap-1.5">
+                  <Users className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                  <span>{assignment.teacher_name}</span>
+                </div>
+                {assignment.category_name && (
+                  <div className="flex items-start gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                    <span>{assignment.category_name}</span>
                   </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-1">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleEditClick(assignment)}
-                >
-                  <Edit className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                )}
+                {assignment.session_date && (
+                  <div className="flex items-start gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                    <span>{formatDate(assignment.session_date)}</span>
+                  </div>
+                )}
+              </>
+            }
+            notes={assignment.description}
+            footerActions={
+              <>
+                <Button variant="outline" className="w-full text-xs sm:text-sm h-9" onClick={() => handleViewDetails(assignment)}>
+                  {t("assignments.viewDetails")}
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleDeleteClick(assignment)}
-                >
-                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                <Button className="w-full text-xs sm:text-sm h-9" onClick={() => handleUpdateSubmissions(assignment)}>
+                  {t("assignments.updateSubmissions")}
                 </Button>
-              </div>
-            </div>
-
-            <div className="space-y-2 sm:space-y-3 flex-grow">
-              {assignment.description && (
-                <div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-500 mb-1">{t("assignments.descriptionLabel")}</p>
-                  <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed">
-                    {assignment.description}
-                  </p>
-                </div>
-              )}
-
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>{assignment.teacher_name}</span>
-              </div>
-
-              {assignment.session_date && (
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span>{formatDate(assignment.session_date)}</span>
-                </div>
-              )}
-
-              {assignment.due_date && (
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                  <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span>{t("assignments.due")}: {formatDate(assignment.due_date)}</span>
-                </div>
-              )}
-
-              <div className="flex items-center gap-2">
-                {getTypeIcon(assignment.assignment_type)}
-                <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getTypeColor(assignment.assignment_type)}`}>
-                  {t(`assignments.${assignment.assignment_type}`)}
-                </span>
-              </div>
-
-              {assignment.category_name && (
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                  <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span>{assignment.category_name}</span>
-                </div>
-              )}
-
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>{assignment.submitted_count || 0}/{assignment.student_count || 0} {t("assignments.submitted")}</span>
-              </div>
-            </div>
-
-            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 space-y-1.5 sm:space-y-2">
-              <Button
-                variant="outline"
-                className="w-full text-xs sm:text-sm h-8 sm:h-9"
-                onClick={() => handleViewDetails(assignment)}
-              >
-                {t("assignments.viewDetails")}
-              </Button>
-              <Button
-                className="w-full text-xs sm:text-sm h-8 sm:h-9"
-                onClick={() => handleUpdateSubmissions(assignment)}
-              >
-                {t("assignments.updateSubmissions")}
-              </Button>
-            </div>
-          </Card>
+              </>
+            }
+          />
         ))}
         </div>
+      ) : viewMode === 'table' ? (
+        /* Table View — sortable, selectable, mobile falls back to cards */
+        (() => {
+          const typeTone = (type: Assignment['assignment_type']) =>
+            type === 'quiz' ? 'sky' :
+            type === 'test' ? 'rose' :
+            type === 'project' ? 'violet' :
+            'amber'
+
+          const columns: DataTableColumn<Assignment>[] = [
+            {
+              id: 'classroom',
+              header: t('navigation.classrooms'),
+              sortable: true,
+              sortFn: (a, b) => (a.classroom_name || '').localeCompare(b.classroom_name || ''),
+              cell: (a) => (
+                <div className="flex items-center gap-2 min-w-0">
+                  <div
+                    className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: a.classroom_color || '#6B7280' }}
+                  />
+                  <span className="font-medium text-gray-900 truncate">{a.classroom_name}</span>
+                </div>
+              ),
+            },
+            {
+              id: 'title',
+              header: t('assignments.title'),
+              sortable: true,
+              sortFn: (a, b) => a.title.localeCompare(b.title),
+              cell: (a) => <span className="text-sm font-medium text-gray-900 truncate">{a.title}</span>,
+            },
+            {
+              id: 'due',
+              header: t('assignments.due'),
+              sortable: true,
+              sortFn: (a, b) => (a.due_date || '').localeCompare(b.due_date || ''),
+              cell: (a) => (
+                <span className="text-sm text-gray-700 tabular-nums">
+                  {a.due_date ? formatDate(a.due_date) : '—'}
+                </span>
+              ),
+            },
+            {
+              id: 'type',
+              header: t('common.type'),
+              sortable: true,
+              sortFn: (a, b) => a.assignment_type.localeCompare(b.assignment_type),
+              cell: (a) => (
+                <StatusPill tone={typeTone(a.assignment_type)}>
+                  {t(`assignments.${a.assignment_type}`)}
+                </StatusPill>
+              ),
+            },
+            {
+              id: 'teacher',
+              header: t('navigation.teachers'),
+              cell: (a) => <span className="text-sm text-gray-700">{a.teacher_name}</span>,
+              hideOnMobile: true,
+            },
+            {
+              id: 'submissions',
+              header: t('assignments.submitted'),
+              align: 'right',
+              cell: (a) => (
+                <span className="text-sm text-gray-700 tabular-nums">
+                  {a.submitted_count || 0}/{a.student_count || 0}
+                </span>
+              ),
+              hideOnMobile: true,
+            },
+          ]
+
+          return (
+            <DataTable<Assignment>
+              data={filteredAssignments}
+              columns={columns}
+              getRowId={(a) => a.id}
+              selection={{
+                selected: selectedAssignmentIds,
+                onChange: setSelectedAssignmentIds,
+              }}
+              sort={{
+                state: tableSort,
+                onChange: setTableSort,
+              }}
+              onRowClick={(a) => handleViewDetails(a)}
+              emptyState={{
+                icon: ClipboardList,
+                title: String(t('assignments.noAssignmentsFound')),
+                description: String(t('sessions.tryDifferentSearch')),
+              }}
+              mobileRender={(a) => (
+                <DashboardCard
+                  accentColor={a.classroom_color || '#6B7280'}
+                  statusLabel={t(`assignments.${a.assignment_type}`)}
+                  statusToneClass="text-violet-600"
+                  title={a.title}
+                  subtitle={
+                    <>
+                      <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                      <span>{a.classroom_name}</span>
+                    </>
+                  }
+                  metrics={[
+                    { label: t('assignments.due') as string, value: a.due_date ? formatDate(a.due_date) : '—' },
+                    { label: t('common.type') as string, value: t(`assignments.${a.assignment_type}`) },
+                    { label: t('assignments.submitted') as string, value: `${a.submitted_count || 0}/${a.student_count || 0}` }
+                  ]}
+                  onClick={() => handleViewDetails(a)}
+                />
+              )}
+            />
+          )
+        })()
       ) : (
         /* List View - Grouped by Session */
         <div className="space-y-6">
@@ -2043,7 +2008,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                             onClick={() => handleDeleteClick(assignment)}
                             title={String(t("assignments.delete"))}
                           >
-                            <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
+                            <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-rose-500" />
                           </Button>
                         </div>
                       </div>
@@ -2138,55 +2103,27 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
       {/* Empty State */}
       {initialized && paginatedAssignments.length === 0 && (
-        <Card className="p-12 text-center gap-2">
-          <BookOpen className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-          <h3 className="text-lg font-medium text-gray-900">
-            {showPendingOnly
+        <Card>
+          <EmptyState
+            icon={BookOpen}
+            title={showPendingOnly
               ? (language === 'korean' ? '대기 중인 과제가 없습니다' : 'No pending assignments')
-              : t("assignments.noAssignmentsFound")}
-          </h3>
-          <p className="text-gray-500 mb-2">
-            {showPendingOnly
+              : String(t("assignments.noAssignmentsFound"))}
+            description={showPendingOnly
               ? (language === 'korean' ? '모든 과제의 채점이 완료되었습니다' : 'All assignments have been graded')
               : assignmentSearchQuery
-                ? t("assignments.tryAdjustingSearch")
+                ? String(t("assignments.tryAdjustingSearch"))
                 : classroomFilter !== 'all'
                   ? (language === 'korean' ? '선택한 클래스에 과제가 없습니다' : 'No assignments in the selected classroom')
-                  : t("assignments.getStartedFirstAssignment")}
-          </p>
-          {showPendingOnly ? (
-            <Button
-              variant="outline"
-              className="flex items-center gap-2 mx-auto"
-              onClick={() => setShowPendingOnly(false)}
-            >
-              <X className="w-4 h-4" />
-              {language === 'korean' ? '필터 해제' : 'Clear filter'}
-            </Button>
-          ) : assignmentSearchQuery ? (
-            <Button
-              variant="outline"
-              className="flex items-center gap-2 mx-auto"
-              onClick={() => setAssignmentSearchQuery('')}
-            >
-              <X className="w-4 h-4" />
-              {t("assignments.clearSearch")}
-            </Button>
-          ) : classroomFilter !== 'all' ? (
-            <Button
-              variant="outline"
-              className="flex items-center gap-2 mx-auto"
-              onClick={() => updateClassroomFilter('all')}
-            >
-              <X className="w-4 h-4" />
-              {language === 'korean' ? '필터 해제' : 'Clear filter'}
-            </Button>
-          ) : (
-            <Button onClick={() => setShowModal(true)} className="flex items-center gap-2 mx-auto">
-              <Plus className="w-4 h-4" />
-              {t("assignments.addAssignment")}
-            </Button>
-          )}
+                  : String(t("assignments.getStartedFirstAssignment"))}
+            {...(showPendingOnly
+              ? { actionLabel: language === 'korean' ? '필터 해제' : 'Clear filter', onAction: () => setShowPendingOnly(false), actionVariant: 'outline' as const, actionIcon: <X className="w-4 h-4" /> }
+              : assignmentSearchQuery
+                ? { actionLabel: String(t("assignments.clearSearch")), onAction: () => setAssignmentSearchQuery(''), actionVariant: 'outline' as const, actionIcon: <X className="w-4 h-4" /> }
+                : classroomFilter !== 'all'
+                  ? { actionLabel: language === 'korean' ? '필터 해제' : 'Clear filter', onAction: () => updateClassroomFilter('all'), actionVariant: 'outline' as const, actionIcon: <X className="w-4 h-4" /> }
+                  : { actionLabel: String(t("assignments.addAssignment")), onAction: () => setShowModal(true), actionIcon: <Plus className="w-4 h-4" /> })}
+          />
         </Card>
       )}
 
@@ -2216,6 +2153,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         activeDatePicker={activeDatePicker}
         setActiveDatePicker={setActiveDatePicker}
         isFormValid={isFormValid}
+      />
+
+      <ModalShell.Confirm
+        isOpen={showBulkDeleteConfirm}
+        onClose={() => setShowBulkDeleteConfirm(false)}
+        onConfirm={handleBulkDelete}
+        title={String(t("assignments.bulkDeleteTitle"))}
+        message={String(t("assignments.bulkDeleteConfirm", { count: selectedAssignmentIds.size }))}
+        variant="danger"
+        confirmLabel={bulkUpdating ? String(t("common.deleting")) : String(t("common.delete"))}
+        cancelLabel={String(t("common.cancel"))}
+        loading={bulkUpdating}
       />
 
       <AssignmentDeleteModal

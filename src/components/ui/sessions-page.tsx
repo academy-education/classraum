@@ -1,11 +1,17 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { useDirtyState } from '@/hooks/useDirtyState'
+import { useConfirm } from '@/hooks/useConfirm'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { DashboardCard, DataTable, BulkActionBar, TableCheckbox, type DataTableColumn, type DataTableSortState } from '@/components/ui/dashboard'
+import { StatusPill, type StatusPillTone } from '@/components/ui/status-pill'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -29,6 +35,8 @@ import {
   XCircle,
   AlertCircle,
   Grid3X3,
+  List,
+  Rows3,
   CalendarDays,
   ChevronLeft,
   ChevronRight,
@@ -38,47 +46,56 @@ import {
   DoorOpen,
   Save,
   Filter,
-  ArrowRight
+  ArrowRight,
+  FileText
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
 import { useDebounce } from '@/hooks/useDebounce'
 import { FileUpload } from '@/components/ui/file-upload'
-import { showSuccessToast, showErrorToast } from '@/stores'
-import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
-import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
-import { invalidateArchiveCache } from '@/components/ui/archive-page'
-import { ConfirmationModal } from '@/components/ui/common/ConfirmationModal'
-import { Modal } from '@/components/ui/modal'
-import { AssignmentImportModal, type ConfirmedImportDraft } from '@/components/ui/assignments/modals/AssignmentImportModal'
-import { ManageCategoriesModal } from '@/components/ui/assignments/modals/ManageCategoriesModal'
+import { showSuccessToast, showSuccessToastWithAction, showErrorToast } from '@/stores'
+// Cross-page cache invalidations come from the shared module so we don't
+// drag the entire assignments/attendance/archive page bundles into this
+// chunk just to call a small helper. See src/lib/cache.ts.
+import {
+  invalidateAssignmentsCache,
+  invalidateAttendanceCache,
+  invalidateArchiveCache,
+} from '@/lib/cache'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+// Type-only import from the tiny types module — doesn't pull the modal.
+import type { ConfirmedImportDraft } from '@/components/ui/assignments/modals/AssignmentImportTypes'
+// Both modals are conditionally rendered — defer their bundles until use.
+// Combined ~1,050 lines of modal JSX + their dep trees.
+import dynamic from 'next/dynamic'
+const AssignmentImportModal = dynamic(
+  () => import('@/components/ui/assignments/modals/AssignmentImportModal').then(m => m.AssignmentImportModal),
+  { ssr: false }
+)
+const ManageCategoriesModal = dynamic(
+  () => import('@/components/ui/assignments/modals/ManageCategoriesModal').then(m => m.ManageCategoriesModal),
+  { ssr: false }
+)
 import { Skeleton } from '@/components/ui/skeleton'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
-import { triggerSessionCreatedNotifications } from '@/lib/notification-triggers'
-import { getSessionsForDateRange, isVirtualSession, materializeSession } from '@/lib/virtual-sessions'
+import {
+  triggerSessionCreatedNotifications,
+  triggerSessionCanceledNotifications,
+  triggerSessionRescheduledNotifications,
+} from '@/lib/notification-triggers'
+import { getSessionsForDateRange, isVirtualSession, materializeSession, type VirtualSession } from '@/lib/virtual-sessions'
 import { startOfMonth, endOfMonth, addMonths, subMonths } from 'date-fns'
 
-// Cache invalidation function for sessions
-export const invalidateSessionsCache = (academyId: string) => {
-  // Clear all page caches for this academy (both card and calendar view caches)
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
-
-  keys.forEach(key => {
-    if (key.startsWith(`sessions-${academyId}-card-page`) ||
-        key.startsWith(`sessions-${academyId}-calendar-page`) ||
-        key.includes(`sessions-${academyId}-card-page`) ||
-        key.includes(`sessions-${academyId}-calendar-page`) ||
-        key === `all-sessions-${academyId}` ||
-        key === `all-sessions-${academyId}-timestamp`) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
+// Re-exported from the shared cache module so cross-page consumers
+// (notably settings-page) don't have to import this huge module just to
+// call one helper. See src/lib/cache.ts for the implementation. Import +
+// export keeps the helper bound in this module's scope (the page calls
+// it from internal handlers below).
+import { invalidateSessionsCache } from '@/lib/cache'
+export { invalidateSessionsCache }
 
 interface Session {
   id: string
@@ -196,7 +213,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const router = useRouter()
   const { t, language } = useTranslation()
   const { toast } = useToast()
-  const { getCategoriesBySubjectId, refreshCategories, getSubjectById } = useSubjectData(academyId)
+  const { categories: allCategories, getCategoriesBySubjectId, refreshCategories, getSubjectById } = useSubjectData(academyId)
   const { createAssignmentCategory } = useSubjectActions()
   const [sessions, setSessions] = useState<Session[]>([])
   const [allSessions, setAllSessions] = useState<Session[]>([]) // Store all sessions for independent filter counts
@@ -235,7 +252,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Debounced search queries for better performance
   const debouncedSessionSearchQuery = useDebounce(sessionSearchQuery, 300)
   const debouncedAttendanceSearchQuery = useDebounce(attendanceSearchQuery, 300)
-  const [viewMode, setViewMode] = useState<'card' | 'calendar'>('calendar')
+  const [viewMode, setViewMode] = useState<'card' | 'table' | 'calendar'>('calendar')
+  const [selectedSessionIds, setSelectedSessionIds] = useState<Set<string>>(new Set())
+  const [tableSort, setTableSort] = useState<DataTableSortState | null>({ columnId: 'date', direction: 'desc' })
+  const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false)
+  const [bulkUpdating, setBulkUpdating] = useState(false)
+  const searchInputRef = useRef<HTMLInputElement>(null)
   const [classroomFilter, setClassroomFilter] = useState<string>(filterClassroomId || 'all')
   const [teacherFilter, setTeacherFilter] = useState<string>('all')
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -248,6 +270,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   useEffect(() => {
     setCurrentPage(1)
   }, [sessionSearchQuery, classroomFilter, teacherFilter, statusFilter, showTodayOnly, showUpcomingOnly])
+
+  // Manager keyboard shortcuts: `/` → search, `n` → create, `Esc` → clear selection.
+  useListPageShortcuts({
+    searchInputRef,
+    onCreate: () => {
+      setOriginalAssignments([])
+      setOriginalAttendance([])
+      setShowModal(true)
+    },
+    onEscape: selectedSessionIds.size > 0
+      ? () => setSelectedSessionIds(new Set())
+      : undefined,
+  })
+
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [calendarDate, setCalendarDate] = useState(new Date())
@@ -334,6 +370,34 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       allAssignmentsHaveDueDates
     )
   }, [formData.classroom_id, formData.date, formData.start_time, formData.end_time, multipleSessions, selectedDates, modalAssignments])
+
+  // Dirty-state guard for the create/edit session modal — backdrop-click /
+  // Cancel both funnel through `handleSafeCloseModal` so users can't lose
+  // typed values to a stray click. New-session forms are long; this matters.
+  const isSessionModalDirty = useDirtyState(
+    { formData, modalAssignments, modalAttendance, selectedDates },
+    showModal,
+  )
+  const confirm = useConfirm()
+  const handleSafeCloseModal = useCallback(async () => {
+    if (!isSessionModalDirty) {
+      setShowModal(false)
+      resetForm()
+      return
+    }
+    const ok = await confirm({
+      title: String(t('common.discardChanges')),
+      description: String(t('common.discardChangesDescription')),
+      variant: 'warning',
+      confirmText: String(t('common.discard')),
+      cancelText: String(t('common.keepEditing')),
+    })
+    if (ok) {
+      setShowModal(false)
+      resetForm()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSessionModalDirty, confirm, t])
 
   // Force re-render when language changes
   const [, forceUpdate] = useState({})
@@ -919,33 +983,29 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   // Get filtered categories based on selected classroom's subject
+  // Filtering for the new-session modal's assignment rows.
+  //
+  // Previous behavior returned `[]` whenever the classroom had no `subject_id`
+  // OR the subject had no categories yet — leaving the dropdown visibly empty
+  // even when the academy DOES have categories. That was the "categories
+  // sometimes don't load" bug. Fall back to the full list in those cases so
+  // the manager always has something to pick; subject-scoped filtering is
+  // a nicety, not a hard constraint.
   const getFilteredCategories = useCallback(() => {
     const selectedClassroom = classrooms.find(c => c.id === formData.classroom_id)
-    
-    if (!selectedClassroom?.subject_id) {
-      return []
-    }
-    
-    const categories = getCategoriesBySubjectId(selectedClassroom.subject_id)
-    return categories
-  }, [classrooms, formData.classroom_id, getCategoriesBySubjectId])
+    if (!selectedClassroom?.subject_id) return allCategories
+    const filtered = getCategoriesBySubjectId(selectedClassroom.subject_id)
+    return filtered.length > 0 ? filtered : allCategories
+  }, [classrooms, formData.classroom_id, getCategoriesBySubjectId, allCategories])
 
-  // Get filtered categories for session details modal
+  // Same behavior for the read-only session-details modal.
   const getFilteredCategoriesForSession = useCallback(() => {
-    
-    if (!viewingSession?.classroom_id) {
-      return []
-    }
-    
+    if (!viewingSession?.classroom_id) return allCategories
     const selectedClassroom = classrooms.find(c => c.id === viewingSession.classroom_id)
-    
-    if (!selectedClassroom?.subject_id) {
-      return []
-    }
-    
-    const categories = getCategoriesBySubjectId(selectedClassroom.subject_id)
-    return categories
-  }, [classrooms, viewingSession?.classroom_id, viewingSession?.id, getCategoriesBySubjectId])
+    if (!selectedClassroom?.subject_id) return allCategories
+    const filtered = getCategoriesBySubjectId(selectedClassroom.subject_id)
+    return filtered.length > 0 ? filtered : allCategories
+  }, [classrooms, viewingSession?.classroom_id, viewingSession?.id, getCategoriesBySubjectId, allCategories])
 
   const loadClassroomStudentsForAttendance = useCallback(async (classroomId: string, sessionId?: string) => {
     try {
@@ -2173,6 +2233,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         setIsSaving(true)
         currentSessionId = editingSession.id
+
+        // Capture pre-update values so we can detect cancel- and reschedule-
+        // transitions after the row is saved. Compared below to fire the
+        // matching notification trigger exactly once per real change.
+        const prevStatus = editingSession.status
+        const prevDate = editingSession.date
+        const prevStartTime = editingSession.start_time
+        const prevEndTime = editingSession.end_time
+
         // Update existing session
         const { error } = await supabase
           .from('classroom_sessions')
@@ -2193,6 +2262,37 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         if (error) {
           showErrorToast(t('sessions.errorUpdating') as string, error.message)
           return
+        }
+
+        // Fire side-effecting parent/student notifications based on what
+        // changed. Cancel takes priority — if the session was canceled,
+        // the date/time fields don't matter for the message. Both calls
+        // are best-effort; they swallow their own errors.
+        if (prevStatus !== 'cancelled' && formData.status === 'cancelled') {
+          // Use the original date/time (parents need to know which session
+          // is no longer happening — using the new date if the admin also
+          // edited it would confuse).
+          await triggerSessionCanceledNotifications(
+            editingSession.id,
+            prevDate,
+            prevStartTime,
+            prevEndTime,
+          )
+        } else if (
+          formData.status !== 'cancelled' &&
+          (prevDate !== formData.date ||
+            prevStartTime !== formData.start_time ||
+            prevEndTime !== formData.end_time)
+        ) {
+          await triggerSessionRescheduledNotifications(
+            editingSession.id,
+            prevDate,
+            prevStartTime,
+            formData.date,
+            formData.start_time,
+            prevEndTime,
+            formData.end_time,
+          )
         }
 
         // OPTIMIZED: Fetch enrollment data once and pass to efficient save
@@ -2219,8 +2319,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         // Cascade: Also invalidate attendance cache since session changes affect attendance views
         invalidateAttendanceCache(academyId)
 
-        // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
-        await fetchAllSessionsForCounts()
+        // Refetch the displayed list AND the counts. fetchAllSessionsForCounts
+        // alone only updates filter badges; without fetchSessions() the cards
+        // and modal stay stale until a hard refresh.
+        await Promise.all([
+          fetchSessions(),
+          fetchAllSessionsForCounts()
+        ])
       } else {
         // Check if creating a new session with completed status - show warning
         if (!skipWarning && formData.status === 'completed') {
@@ -2583,7 +2688,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     let sessionToEdit = session
     if (session.is_virtual) {
       try {
-        const { data: materializedData, error: materializeError } = await materializeSession(session)
+        // is_virtual === true narrows the runtime shape to VirtualSession;
+        // TS doesn't carry that through the discriminator so we assert.
+        const { data: materializedData, error: materializeError } = await materializeSession(session as unknown as VirtualSession)
 
         if (materializeError || !materializedData) {
           console.error('Error materializing session:', materializeError)
@@ -2879,6 +2986,98 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     setSessionModalLoading(false)
   }
 
+  // ===== Bulk actions (table view selection) =====
+  const handleBulkDelete = async () => {
+    if (selectedSessionIds.size === 0) return
+    setBulkUpdating(true)
+    try {
+      const ids = Array.from(selectedSessionIds)
+      const { error } = await supabase
+        .from('classroom_sessions')
+        .update({ deleted_at: new Date().toISOString() })
+        .in('id', ids)
+      if (error) throw error
+      // Remove from local state
+      setSessions(prev => prev.filter(s => !selectedSessionIds.has(s.id)))
+      setSelectedSessionIds(new Set())
+      setShowBulkDeleteConfirm(false)
+      invalidateSessionsCache(academyId)
+
+      // Bulk delete on sessions can wipe a whole week's classes — Undo is
+      // critical here. Soft-delete restore brings them all back.
+      showSuccessToastWithAction(
+        t('sessions.bulkDeleteSuccess', { count: ids.length }) as string,
+        t('common.undo') as string,
+        async () => {
+          const { error: restoreError } = await supabase
+            .from('classroom_sessions')
+            .update({ deleted_at: null })
+            .in('id', ids)
+          if (restoreError) {
+            showErrorToast(t('sessions.unexpectedError') as string, restoreError.message)
+            return
+          }
+          invalidateSessionsCache(academyId)
+          await Promise.all([fetchSessions(), fetchAllSessionsForCounts()])
+          showSuccessToast(t('common.restored') as string)
+        }
+      )
+    } catch (err) {
+      console.error('[Sessions] Bulk delete failed:', err)
+      showErrorToast(t('sessions.bulkDeleteError') as string)
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
+  const handleBulkStatusUpdate = async (newStatus: Session['status']) => {
+    if (selectedSessionIds.size === 0) return
+    setBulkUpdating(true)
+    try {
+      const ids = Array.from(selectedSessionIds)
+
+      // Capture pre-update rows so we can fire cancel notifications for
+      // sessions that genuinely transitioned to cancelled (skipping any
+      // that were already cancelled, to avoid duplicate pushes).
+      const sessionsBeforeUpdate = sessions.filter(s => selectedSessionIds.has(s.id))
+
+      const { error } = await supabase
+        .from('classroom_sessions')
+        .update({ status: newStatus, updated_at: new Date().toISOString() })
+        .in('id', ids)
+      if (error) throw error
+
+      // Fire cancel notifications in parallel for the transitioning rows.
+      // Each trigger swallows its own errors — never blocks the bulk save.
+      if (newStatus === 'cancelled') {
+        await Promise.all(
+          sessionsBeforeUpdate
+            .filter(s => s.status !== 'cancelled')
+            .map(s =>
+              triggerSessionCanceledNotifications(
+                s.id,
+                s.date,
+                s.start_time,
+                s.end_time,
+              ),
+            ),
+        )
+      }
+
+      setSessions(prev => prev.map(s =>
+        selectedSessionIds.has(s.id) ? { ...s, status: newStatus } : s
+      ))
+      setSelectedSessionIds(new Set())
+      showSuccessToast(t('sessions.bulkStatusSuccess', { count: ids.length }) as string)
+      invalidateSessionsCache(academyId)
+    } catch (err) {
+      console.error('[Sessions] Bulk status update failed:', err)
+      showErrorToast(t('sessions.bulkStatusError') as string)
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
   const handleDeleteClick = (session: Session) => {
     setSessionToDelete(session)
     setShowDeleteModal(true)
@@ -2997,19 +3196,26 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   }
 
   const handleViewDetails = async (session: Session) => {
+    // Open modal immediately so the user gets instant feedback,
+    // then load assignments + attendance behind a skeleton (matches AssignmentDetailsModal pattern).
     setViewingSession(session)
+    setSessionAssignments([])
+    setModalAttendance([])
+    setShowDetailsModal(true)
 
-    // Only load assignments and attendance for real sessions (not virtual)
-    if (!session.is_virtual) {
-      await loadSessionAssignments(session.id)
-      await loadSessionAttendance(session.id)
-    } else {
-      // Clear assignments and attendance for virtual sessions
-      setSessionAssignments([])
-      setModalAttendance([])
+    if (session.is_virtual) {
+      return
     }
 
-    setShowDetailsModal(true)
+    setSessionModalLoading(true)
+    try {
+      await Promise.all([
+        loadSessionAssignments(session.id),
+        loadSessionAttendance(session.id),
+      ])
+    } finally {
+      setSessionModalLoading(false)
+    }
   }
 
   const updateAttendanceStatus = (studentId: string, status: Attendance['status']) => {
@@ -3265,17 +3471,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
 
+      const deletedSession = sessionToDelete
       // Update both sessions and allSessions state immediately
-      setSessions(prev => prev.filter(s => s.id !== sessionToDelete.id))
-      setAllSessions(prev => prev.filter(s => s.id !== sessionToDelete.id))
+      setSessions(prev => prev.filter(s => s.id !== deletedSession.id))
+      setAllSessions(prev => prev.filter(s => s.id !== deletedSession.id))
 
       // Update total count for pagination
       setTotalCount(prev => Math.max(0, prev - 1))
 
       setShowDeleteModal(false)
       setSessionToDelete(null)
-
-      showSuccessToast(t('sessions.deletedSuccessfully') as string)
 
       // Invalidate sessions cache so deletion appears immediately and in archive
       invalidateSessionsCache(academyId)
@@ -3286,6 +3491,28 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Refetch all sessions for filter counts (bypasses cache since we just invalidated it)
       await fetchAllSessionsForCounts()
+
+      // Soft-delete is reversible — offer Undo for ~8 seconds.
+      showSuccessToastWithAction(
+        t('sessions.deletedSuccessfully') as string,
+        t('common.undo') as string,
+        async () => {
+          const { error: restoreError } = await supabase
+            .from('classroom_sessions')
+            .update({ deleted_at: null })
+            .eq('id', deletedSession.id)
+          if (restoreError) {
+            showErrorToast(t('sessions.unexpectedError') as string, restoreError.message)
+            return
+          }
+          invalidateSessionsCache(academyId)
+          invalidateArchiveCache(academyId)
+          invalidateAttendanceCache(academyId)
+          invalidateAssignmentsCache(academyId)
+          await Promise.all([fetchSessions(), fetchAllSessionsForCounts()])
+          showSuccessToast(t('common.restored') as string)
+        }
+      )
 
     } catch (error) {
       showErrorToast(t('sessions.unexpectedError') as string, (error as Error).message)
@@ -3338,9 +3565,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
-        return <CheckCircle className="w-4 h-4 text-green-500" />
+        return <CheckCircle className="w-4 h-4 text-emerald-500" />
       case 'cancelled':
-        return <XCircle className="w-4 h-4 text-red-500" />
+        return <XCircle className="w-4 h-4 text-rose-500" />
       default:
         return <AlertCircle className="w-4 h-4 text-blue-500" />
     }
@@ -3349,11 +3576,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800'
+        return 'bg-emerald-50 text-emerald-700'
       case 'cancelled':
-        return 'bg-red-100 text-red-800'
+        return 'bg-rose-50 text-rose-700'
       default:
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-sky-50 text-sky-700'
     }
   }
 
@@ -3394,19 +3621,21 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
     }
 
-    // Apply today filter
+    // Apply today filter — created sessions only (matches the chip count,
+    // which excludes virtuals).
     if (showTodayOnly) {
       const today = formatLocalDate(new Date())
-      if (session.date !== today) {
-        return false
-      }
+      if (session.date !== today) return false
+      if ((session as { is_virtual?: boolean }).is_virtual) return false
     }
 
-    // Apply upcoming filter (all scheduled sessions)
+    // Apply upcoming filter — created scheduled sessions only. Virtuals are
+    // recurring projections, not actual scheduled rows in the DB; including
+    // them here would contradict the chip count and surface "예정된 수업 that
+    // hasn't been created" in the list.
     if (showUpcomingOnly) {
-      if (session.status !== 'scheduled') {
-        return false
-      }
+      if (session.status !== 'scheduled') return false
+      if ((session as { is_virtual?: boolean }).is_virtual) return false
     }
 
     // Then apply search query filter
@@ -3420,9 +3649,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     )
   }), [sessions, classrooms, classroomFilter, teacherFilter, statusFilter, showTodayOnly, showUpcomingOnly, debouncedSessionSearchQuery])
 
-  // Always use filtered length as total count (hybrid approach)
-  // Exclude virtual sessions from the count display
-  const filteredTotalCount = useMemo(() => filteredSessions.filter((s: any) => !s.is_virtual).length, [filteredSessions])
+  // The shared source for all three stat cards (Total / Today / Upcoming).
+  // Counts only *created* sessions — i.e., real DB rows. Virtual sessions
+  // (recurring projections rendered in the calendar grid as dashed slots)
+  // are excluded so the chips reflect actual scheduled work, stable across
+  // calendar navigation. Driving all three off the same array guarantees
+  // Upcoming ⊆ Today ⊆ Total.
+  const sessionsForStats = useMemo(
+    () => filteredSessions.filter((s: any) => !s.is_virtual),
+    [filteredSessions]
+  )
+
+  const filteredTotalCount = useMemo(() => sessionsForStats.length, [sessionsForStats])
 
   // Always apply client-side pagination to filtered results (for card view)
   const paginatedSessions = useMemo(() => {
@@ -3440,15 +3678,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     attendance.student_name?.toLowerCase().includes(debouncedAttendanceSearchQuery.toLowerCase()) || false
   ), [modalAttendance, debouncedAttendanceSearchQuery])
 
-  // Memoized stat counts to avoid repeated filtering in JSX
+  // Today / Upcoming both derive from `sessionsForStats` so they're guaranteed
+  // to be subsets of the Total card. In calendar view this means all three
+  // numbers reflect what's actually on the calendar (real + virtual). When
+  // the user navigates months the calendar reload changes `filteredSessions`,
+  // so all three counts move together — they're meaningful relative to each
+  // other rather than three independently-sourced numbers.
   const todaySessionCount = useMemo(() => {
     const today = formatLocalDate(new Date())
-    return allSessions.filter(s => s.date === today).length
-  }, [allSessions])
+    return sessionsForStats.filter(s => s.date === today).length
+  }, [sessionsForStats])
 
   const upcomingSessionCount = useMemo(() =>
-    allSessions.filter(s => s.status === 'scheduled').length
-  , [allSessions])
+    sessionsForStats.filter(s => s.status === 'scheduled').length
+  , [sessionsForStats])
 
   // Memoized active classrooms for dropdowns
   const activeClassrooms = useMemo(() =>
@@ -3620,7 +3863,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         type="button"
                         onClick={() => setTime(hour, parseInt(minutes), ampm)}
                         className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                          hour12 === hour ? 'bg-blue-50 text-blue-600' : ''
+                          hour12 === hour ? 'bg-sky-50 text-sky-700' : ''
                         }`}
                       >
                         {hour}
@@ -3640,7 +3883,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       type="button"
                       onClick={() => setTime(hour12, i, ampm)}
                       className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                        parseInt(minutes) === i ? 'bg-blue-50 text-blue-600' : ''
+                        parseInt(minutes) === i ? 'bg-sky-50 text-sky-700' : ''
                       }`}
                     >
                       {i.toString().padStart(2, '0')}
@@ -3659,7 +3902,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       type="button"
                       onClick={() => setTime(hour12, parseInt(minutes), period.key)}
                       className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                        ampm === period.key ? 'bg-blue-50 text-blue-600' : ''
+                        ampm === period.key ? 'bg-sky-50 text-sky-700' : ''
                       }`}
                     >
                       {period.label}
@@ -3853,7 +4096,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </div>
         
         {isOpen && !disabled && (
-          <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
+          <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 max-w-[90vw] left-0" style={{ zIndex: 9999 }}>
             {/* Header with month/year navigation */}
             <div className="flex items-center justify-between mb-4">
               <button
@@ -3977,51 +4220,48 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     )
   }
 
+  // Skeleton mirrors the new DashboardCard structure: top accent bar +
+  // status eyebrow + title + subtitle + 3-column metric strip + meta + footer.
   const SessionSkeleton = () => (
-    <Card className="p-4 sm:p-6 animate-pulse">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 bg-gray-200 rounded-full"></div>
-          <div>
-            <div className="h-6 bg-gray-200 rounded w-32 mb-2"></div>
-            <div className="h-4 bg-gray-200 rounded w-24"></div>
+    <Card className="!gap-0 !py-0 overflow-hidden animate-pulse">
+      <div className="h-1 w-full bg-gray-200" />
+      <div className="p-4 sm:p-5">
+        {/* Header: status eyebrow + title + subtitle, action icons */}
+        <div className="flex items-start justify-between mb-3 gap-2">
+          <div className="min-w-0 flex-1 space-y-1.5">
+            <div className="h-2.5 bg-gray-200 rounded w-16" />
+            <div className="h-5 bg-gray-200 rounded w-3/4" />
+            <div className="h-3 bg-gray-200 rounded w-1/2" />
+          </div>
+          <div className="flex items-center gap-1 flex-shrink-0">
+            <div className="w-7 h-7 bg-gray-200 rounded" />
+            <div className="w-7 h-7 bg-gray-200 rounded" />
+            <div className="w-7 h-7 bg-gray-200 rounded" />
           </div>
         </div>
-        <div className="flex items-center gap-1">
-          <div className="w-8 h-8 bg-gray-200 rounded"></div>
-          <div className="w-8 h-8 bg-gray-200 rounded"></div>
-        </div>
-      </div>
 
-      <div className="space-y-3">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-28"></div>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-20"></div>
+        {/* 3-column metric strip */}
+        <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+          {[0, 1, 2].map(i => (
+            <div key={i} className="space-y-1">
+              <div className="h-2 bg-gray-200 rounded w-12" />
+              <div className="h-4 bg-gray-200 rounded w-16" />
+            </div>
+          ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-16"></div>
+        {/* Meta row */}
+        <div className="space-y-1.5 mb-3">
+          <div className="h-3 bg-gray-200 rounded w-2/3" />
         </div>
-        
-        <div className="h-6 bg-gray-200 rounded-full w-20"></div>
-        
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded w-24"></div>
-        </div>
-      </div>
 
-      <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
-        <div className="h-9 bg-gray-200 rounded w-full"></div>
-        <div className="flex gap-2">
-          <div className="h-9 bg-gray-200 rounded flex-1"></div>
-          <div className="h-9 bg-gray-200 rounded flex-1"></div>
+        {/* Footer actions */}
+        <div className="pt-3 space-y-1.5">
+          <div className="h-9 bg-gray-200 rounded w-full" />
+          <div className="flex gap-1.5">
+            <div className="h-9 bg-gray-200 rounded flex-1" />
+            <div className="h-9 bg-gray-200 rounded flex-1" />
+          </div>
         </div>
       </div>
     </Card>
@@ -4033,7 +4273,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.sessions")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("sessions.title")}</h1>
             <p className="text-gray-500">{t("sessions.description")}</p>
           </div>
           <Button className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
@@ -4075,7 +4316,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         {/* Toggle Skeleton */}
         <div className="flex justify-end mb-4 animate-pulse">
-          <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+          <div className="flex items-center gap-1 ring-1 ring-gray-200 rounded-lg p-1 bg-gray-50">
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
             <div className="h-9 w-9 bg-gray-200 rounded"></div>
             <div className="h-9 w-9 bg-gray-200 rounded"></div>
           </div>
@@ -4084,7 +4326,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         {/* Search Bar and Filters Skeleton */}
         <div className="flex flex-wrap gap-4 mb-4">
           {/* Search skeleton */}
-          <div className="relative flex-1 min-w-[250px] sm:max-w-md animate-pulse">
+          <div className="relative flex-1 min-w-[180px] sm:min-w-[250px] sm:max-w-md animate-pulse">
             <div className="h-12 bg-gray-200 rounded-lg"></div>
           </div>
           {/* Classroom filter skeleton */}
@@ -4115,6 +4357,36 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               <SessionSkeleton key={i} />
             ))}
           </div>
+        ) : viewMode === 'table' ? (
+          /* Table Skeleton — matches DataTable chrome (rounded-2xl, ring, header bg, divide-y) */
+          <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-gray-50/60">
+                  <tr>
+                    <th className="w-10 px-4 py-3"><div className="h-3 w-3 bg-gray-200 rounded" /></th>
+                    {['w-24', 'w-16', 'w-20', 'w-20', 'w-16', 'w-16', 'w-12'].map((w, i) => (
+                      <th key={i} className="px-4 py-3 text-left">
+                        <div className={`h-3 ${w} bg-gray-200 rounded`} />
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[...Array(10)].map((_, i) => (
+                    <tr key={i} className="animate-pulse">
+                      <td className="px-4 py-3"><div className="h-4 w-4 bg-gray-100 rounded" /></td>
+                      {[...Array(7)].map((_, j) => (
+                        <td key={j} className="px-4 py-3">
+                          <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         ) : (
           /* Calendar Skeleton */
           <div className="space-y-4">
@@ -4124,24 +4396,30 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 <div className="h-7 w-48 bg-gray-200 rounded"></div>
               </div>
 
-              {/* Day Names Skeleton */}
-              <div className="grid grid-cols-7 gap-2 mb-2">
-                {[...Array(7)].map((_, i) => (
-                  <div key={i} className="h-6 bg-gray-200 rounded"></div>
-                ))}
-              </div>
-
-              {/* Calendar Grid Skeleton */}
-              <div className="grid grid-cols-7 gap-2">
-                {[...Array(35)].map((_, i) => (
-                  <div key={i} className="aspect-square bg-gray-100 rounded-lg p-2">
-                    <div className="h-4 w-6 bg-gray-200 rounded mb-1"></div>
-                    <div className="space-y-1">
-                      <div className="h-2 bg-gray-200 rounded w-3/4"></div>
-                      <div className="h-2 bg-gray-200 rounded w-1/2"></div>
-                    </div>
+              {/* Mirror the live calendar's mobile-scroll wrapper so the
+                  skeleton doesn't squish on narrow screens. */}
+              <div className="overflow-x-auto -mx-4 px-4 sm:-mx-6 sm:px-6">
+                <div className="min-w-[700px]">
+                  {/* Day Names Skeleton */}
+                  <div className="grid grid-cols-7 gap-2 mb-2">
+                    {[...Array(7)].map((_, i) => (
+                      <div key={i} className="h-6 bg-gray-200 rounded"></div>
+                    ))}
                   </div>
-                ))}
+
+                  {/* Calendar Grid Skeleton */}
+                  <div className="grid grid-cols-7 gap-2">
+                    {[...Array(35)].map((_, i) => (
+                      <div key={i} className="aspect-square bg-gray-100 rounded-lg p-2">
+                        <div className="h-4 w-6 bg-gray-200 rounded mb-1"></div>
+                        <div className="space-y-1">
+                          <div className="h-2 bg-gray-200 rounded w-3/4"></div>
+                          <div className="h-2 bg-gray-200 rounded w-1/2"></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </Card>
 
@@ -4165,7 +4443,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("sessions.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.sessions")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("sessions.title")}</h1>
           <p className="text-gray-500">{t("sessions.description")}</p>
         </div>
         <Button
@@ -4184,158 +4463,174 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
-        <Card className="w-full p-4 sm:p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
-          <div className="space-y-3">
-            <p className="text-sm font-medium text-blue-700">
+        <Card className="w-full p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Calendar className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
+            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
               {debouncedSessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
             </p>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
-                {filteredTotalCount}
-              </p>
-              <p className="text-sm text-gray-500">
-                {filteredTotalCount === 1
-                  ? t("sessions.session")
-                  : t("navigation.sessions")
-                }
-              </p>
-            </div>
-            {(debouncedSessionSearchQuery || classroomFilter !== 'all' || teacherFilter !== 'all' || statusFilter !== 'all' || showTodayOnly || showUpcomingOnly) && (
-              <p className="text-xs text-gray-500">
-                {language === 'korean' ? `전체 ${totalCount}개 중` : `out of ${totalCount} total`}
-              </p>
-            )}
           </div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+              {filteredTotalCount}
+            </p>
+            <p className="text-sm text-gray-400">
+              {filteredTotalCount === 1
+                ? t("sessions.session")
+                : t("navigation.sessions")
+              }
+            </p>
+          </div>
+          {(debouncedSessionSearchQuery || classroomFilter !== 'all' || teacherFilter !== 'all' || statusFilter !== 'all' || showTodayOnly || showUpcomingOnly) && (
+            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[11px] font-medium">
+              {language === 'korean' ? `전체 ${totalCount}개 중` : `of ${totalCount} total`}
+            </div>
+          )}
         </Card>
         <Card
-          className={`w-full p-4 sm:p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
-            showTodayOnly
-              ? 'border-green-600 bg-green-50 shadow-md'
-              : 'border-green-500'
+          className={`w-full p-5 cursor-pointer transition-all ${
+            showTodayOnly ? 'ring-2 ring-emerald-300' : 'hover:-translate-y-0.5'
           }`}
           onClick={() => {
             setShowTodayOnly(!showTodayOnly)
             if (!showTodayOnly) {
-              setShowUpcomingOnly(false) // Turn off upcoming filter
-              setCurrentPage(1) // Reset to page 1
-              // Reset other filters
+              setShowUpcomingOnly(false)
+              setCurrentPage(1)
               setClassroomFilter('all')
               setTeacherFilter('all')
               setStatusFilter('all')
               setStartDateFilter('')
               setEndDateFilter('')
-              setSessionSearchQuery('') // Clear search query
-              // Invalidate cache to force fresh fetch without pagination
+              setSessionSearchQuery('')
               invalidateSessionsCache(academyId)
             }
           }}
         >
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <p className={`text-sm font-medium ${showTodayOnly ? 'text-green-800' : 'text-green-700'}`}>
-                {t("sessions.todaysSessions")}
-              </p>
-              <Filter className={`w-4 h-4 ${showTodayOnly ? 'text-green-600' : 'text-green-500'}`} />
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center">
+              <Filter className="w-3.5 h-3.5 text-emerald-600" strokeWidth={2.25} />
             </div>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
-                {todaySessionCount}
-              </p>
-              <p className="text-sm text-gray-500">
-                {todaySessionCount === 1
-                  ? t("sessions.session")
-                  : t("navigation.sessions")
-                }
-              </p>
-            </div>
-            {showTodayOnly && (
-              <p className="text-xs text-green-600">{t("sessions.filterActive")}</p>
-            )}
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+              {t("sessions.todaysSessions")}
+            </p>
           </div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+              {todaySessionCount}
+            </p>
+            <p className="text-sm text-gray-400">
+              {todaySessionCount === 1
+                ? t("sessions.session")
+                : t("navigation.sessions")
+              }
+            </p>
+          </div>
+          {showTodayOnly && (
+            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[11px] font-medium ring-1 ring-emerald-100">
+              {t("sessions.filterActive")}
+            </div>
+          )}
         </Card>
         <Card
-          className={`w-full p-4 sm:p-6 hover:shadow-md transition-all cursor-pointer border-l-4 ${
-            showUpcomingOnly
-              ? 'border-purple-600 bg-purple-50 shadow-md'
-              : 'border-purple-500'
+          className={`w-full p-5 cursor-pointer transition-all ${
+            showUpcomingOnly ? 'ring-2 ring-violet-300' : 'hover:-translate-y-0.5'
           }`}
           onClick={() => {
             setShowUpcomingOnly(!showUpcomingOnly)
             if (!showUpcomingOnly) {
-              setShowTodayOnly(false) // Turn off today filter
-              setCurrentPage(1) // Reset to page 1
-              // Reset other filters
+              setShowTodayOnly(false)
+              setCurrentPage(1)
               setClassroomFilter('all')
               setTeacherFilter('all')
               setStatusFilter('all')
               setStartDateFilter('')
               setEndDateFilter('')
-              setSessionSearchQuery('') // Clear search query
-              // Invalidate cache to force fresh fetch without pagination
+              setSessionSearchQuery('')
               invalidateSessionsCache(academyId)
             }
           }}
         >
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <p className={`text-sm font-medium ${showUpcomingOnly ? 'text-purple-800' : 'text-purple-700'}`}>
-                {t("sessions.upcomingSessions")}
-              </p>
-              <Filter className={`w-4 h-4 ${showUpcomingOnly ? 'text-purple-600' : 'text-purple-500'}`} />
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-violet-50 flex items-center justify-center">
+              <Filter className="w-3.5 h-3.5 text-violet-600" strokeWidth={2.25} />
             </div>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
-                {upcomingSessionCount}
-              </p>
-              <p className="text-sm text-gray-500">
-                {upcomingSessionCount === 1
-                  ? t("sessions.session")
-                  : t("navigation.sessions")
-                }
-              </p>
-            </div>
-            {showUpcomingOnly && (
-              <p className="text-xs text-purple-600">{t("sessions.filterActive")}</p>
-            )}
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+              {t("sessions.upcomingSessions")}
+            </p>
           </div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+              {upcomingSessionCount}
+            </p>
+            <p className="text-sm text-gray-400">
+              {upcomingSessionCount === 1
+                ? t("sessions.session")
+                : t("navigation.sessions")
+              }
+            </p>
+          </div>
+          {showUpcomingOnly && (
+            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-violet-50 text-violet-700 text-[11px] font-medium ring-1 ring-violet-100">
+              {t("sessions.filterActive")}
+            </div>
+          )}
         </Card>
       </div>
 
-      {/* View Toggle */}
+      {/* View Toggle — 3-state: calendar / cards / table */}
       <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+        <div className="flex items-center gap-1 ring-1 ring-gray-200 rounded-lg p-1 bg-white">
           <Button
             variant={viewMode === 'calendar' ? 'default' : 'ghost'}
             size="sm"
-            onClick={() => setViewMode('calendar')}
+            onClick={() => { setViewMode('calendar'); setSelectedSessionIds(new Set()) }}
             className={`h-9 px-3 ${viewMode === 'calendar' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
             title={String(t("sessions.calendarView"))}
+            aria-label={String(t("sessions.calendarView"))}
+            aria-pressed={viewMode === 'calendar'}
           >
             <CalendarDays className="w-4 h-4" />
           </Button>
           <Button
             variant={viewMode === 'card' ? 'default' : 'ghost'}
             size="sm"
-            onClick={() => setViewMode('card')}
+            onClick={() => { setViewMode('card'); setSelectedSessionIds(new Set()) }}
             className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
             title={String(t("sessions.cardView"))}
+            aria-label={String(t("sessions.cardView"))}
+            aria-pressed={viewMode === 'card'}
           >
             <Grid3X3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.tableView"))}
+            aria-label={String(t("common.tableView"))}
+            aria-pressed={viewMode === 'table'}
+          >
+            <Rows3 className="w-4 h-4" />
           </Button>
         </div>
       </div>
 
       {/* Search Bar and Filters */}
       <div className="flex flex-wrap gap-4 mb-4">
-        <div className="relative flex-1 min-w-[250px] sm:max-w-md">
+        <div className="relative flex-1 min-w-[180px] sm:min-w-[250px] sm:max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
+            ref={searchInputRef}
             type="text"
             placeholder={String(t("sessions.searchSessions"))}
             value={sessionSearchQuery}
             onChange={handleSessionSearchChange}
-            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
+        <SearchKbdHint />
         </div>
         
         {/* Classroom Filter */}
@@ -4357,7 +4652,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
           }}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue placeholder={String(t("sessions.allClassrooms"))} />
           </SelectTrigger>
           <SelectContent>
@@ -4391,7 +4686,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             setCurrentPage(1)
           }}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue placeholder={String(t("sessions.allTeachers"))} />
           </SelectTrigger>
           <SelectContent>
@@ -4412,7 +4707,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             setCurrentPage(1)
           }}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue placeholder={String(t("sessions.allStatuses"))} />
           </SelectTrigger>
           <SelectContent>
@@ -4458,140 +4753,263 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </div>
       </div>
 
+      {/* Bulk Action Bar — only renders in table view when rows are selected */}
+      {viewMode === 'table' && selectedSessionIds.size > 0 && (
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedSessionIds.size}
+            onClear={() => setSelectedSessionIds(new Set())}
+          >
+            <Select
+              value=""
+              onValueChange={(value) => handleBulkStatusUpdate(value as Session['status'])}
+              disabled={bulkUpdating}
+            >
+              <SelectTrigger className="h-8 w-auto min-w-[140px] rounded-md border border-border bg-white text-sm shadow-sm focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
+                <SelectValue placeholder={String(t('sessions.bulkSetStatus'))} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="scheduled">{t('sessions.scheduled')}</SelectItem>
+                <SelectItem value="completed">{t('sessions.completed')}</SelectItem>
+                <SelectItem value="cancelled">{t('sessions.cancelled')}</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkUpdating}
+              onClick={() => setShowBulkDeleteConfirm(true)}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              {t('common.delete')}
+            </Button>
+          </BulkActionBar>
+        </div>
+      )}
+
       {/* Sessions Content */}
       {viewMode === 'card' ? (
         /* Card View */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {paginatedSessions.map((session) => (
-          <Card key={session.id} className={`p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full ${session.is_virtual ? 'border-dashed opacity-70' : ''}`}>
-            <div className="flex items-start justify-between mb-3 sm:mb-4">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div
-                  className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${session.is_virtual ? 'border-2 border-dashed' : ''}`}
-                  style={{
-                    backgroundColor: session.is_virtual ? 'transparent' : (session.classroom_color || '#6B7280'),
-                    borderColor: session.is_virtual ? (session.classroom_color || '#6B7280') : 'transparent'
-                  }}
-                />
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{session.classroom_name}</h3>
-                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mt-1">
-                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span>{session.teacher_name}</span>
+          <DashboardCard
+            key={session.id}
+            virtual={session.is_virtual}
+            accentColor={session.classroom_color || '#6B7280'}
+            statusLabel={t(`sessions.${session.status}`)}
+            statusToneClass={
+              session.status === 'completed' ? 'text-emerald-600' :
+              session.status === 'cancelled' ? 'text-rose-600' :
+              session.status === 'scheduled' ? 'text-sky-600' :
+              'text-gray-500'
+            }
+            title={session.classroom_name}
+            subtitle={
+              <>
+                <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                <span>{session.teacher_name}</span>
+              </>
+            }
+            actions={
+              <>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleEditClick(session)}>
+                  <Edit className="w-4 h-4" strokeWidth={1.75} />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleCopyClick(session)}>
+                  <Copy className="w-4 h-4" strokeWidth={1.75} />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleSaveTemplateClick(session)} title={String(t('sessions.saveAsTemplate'))}>
+                  <Save className="w-4 h-4" strokeWidth={1.75} />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50" onClick={() => handleDeleteClick(session)}>
+                  <Trash2 className="w-4 h-4" strokeWidth={1.75} />
+                </Button>
+              </>
+            }
+            metrics={[
+              { label: t('sessions.date') as string, value: formatDate(session.date) },
+              { label: t('sessions.time') as string, value: `${formatTime(session.start_time)}–${formatTime(session.end_time)}` },
+              { label: t('navigation.assignments') as string, value: String(session.assignment_count || 0) }
+            ]}
+            meta={
+              <>
+                <div className="flex items-start gap-1.5">
+                  {session.location === 'online' ? (
+                    <Monitor className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                  ) : (
+                    <Building className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                  )}
+                  <span>
+                    {t(`sessions.${session.location}`)}
+                    {session.room_number && ` · ${session.room_number}`}
+                  </span>
+                </div>
+                {session.substitute_teacher_name && (
+                  <div className="flex items-start gap-1.5 text-amber-600">
+                    <Users className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                    <span>{t("sessions.substitute")} {session.substitute_teacher_name}</span>
                   </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-1">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleEditClick(session)}
-                >
-                  <Edit className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleCopyClick(session)}
-                >
-                  <Copy className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleSaveTemplateClick(session)}
-                  title={String(t('sessions.saveAsTemplate'))}
-                >
-                  <Save className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleDeleteClick(session)}
-                >
-                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
-                </Button>
-              </div>
-            </div>
-
-            <div className="space-y-2 sm:space-y-3 flex-grow">
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>{formatDate(session.date)}</span>
-              </div>
-
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>{formatTime(session.start_time)} - {formatTime(session.end_time)}</span>
-              </div>
-
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                {session.location === 'online' ? (
-                  <Monitor className="w-3 h-3 sm:w-4 sm:h-4" />
-                ) : (
-                  <Building className="w-3 h-3 sm:w-4 sm:h-4" />
                 )}
-                <span className="capitalize">{t(`sessions.${session.location}`)}</span>
-              </div>
-
-              {session.room_number && (
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                  <DoorOpen className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span>{session.room_number}</span>
-                </div>
-              )}
-
-              <div className="flex items-center gap-2">
-                {getStatusIcon(session.status)}
-                <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(session.status)}`}>
-                  {t(`sessions.${session.status}`)}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>{session.assignment_count || 0}{t((session.assignment_count || 0) !== 1 ? 'sessions.assignmentCountPlural' : 'sessions.assignmentCount')}</span>
-              </div>
-
-              {session.substitute_teacher_name && (
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-orange-600">
-                  <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span>{t("sessions.substitute")} {session.substitute_teacher_name}</span>
-                </div>
-              )}
-            </div>
-
-            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 space-y-1.5 sm:space-y-2">
-              <Button
-                variant="outline"
-                className="w-full text-xs sm:text-sm h-8 sm:h-9"
-                onClick={() => handleViewDetails(session)}
-              >
-                {t("sessions.viewDetails")}
-              </Button>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                <Button
-                  className="flex-1 text-xs sm:text-sm h-8 sm:h-9 min-w-[100px] sm:min-w-[140px]"
-                  onClick={() => handleViewAssignments(session)}
-                  disabled={(session.assignment_count || 0) === 0}
-                >
-                  {t("sessions.viewAssignments")}
+              </>
+            }
+            footerActions={
+              <>
+                <Button variant="outline" className="w-full text-xs sm:text-sm h-9" onClick={() => handleViewDetails(session)}>
+                  {t("sessions.viewDetails")}
                 </Button>
-                <Button
-                  className="flex-1 text-xs sm:text-sm h-8 sm:h-9 min-w-[100px] sm:min-w-[140px]"
-                  onClick={() => handleViewAttendance(session)}
-                >
-                  {t("sessions.viewAttendance")}
-                </Button>
-              </div>
-            </div>
-          </Card>
+                <div className="flex gap-1.5">
+                  <Button
+                    className="flex-1 text-xs sm:text-sm h-9"
+                    onClick={() => handleViewAssignments(session)}
+                    disabled={(session.assignment_count || 0) === 0}
+                  >
+                    {t("sessions.viewAssignments")}
+                  </Button>
+                  <Button
+                    className="flex-1 text-xs sm:text-sm h-9"
+                    onClick={() => handleViewAttendance(session)}
+                  >
+                    {t("sessions.viewAttendance")}
+                  </Button>
+                </div>
+              </>
+            }
+          />
           ))}
         </div>
+      ) : viewMode === 'table' ? (
+        /* Table View — sortable, selectable, mobile falls back to cards */
+        (() => {
+          const sessionTone = (status: Session['status']): StatusPillTone =>
+            status === 'completed' ? 'emerald' :
+            status === 'cancelled' ? 'rose' :
+            status === 'scheduled' ? 'sky' :
+            'gray'
+
+          const columns: DataTableColumn<Session>[] = [
+            {
+              id: 'classroom',
+              header: t('navigation.classrooms'),
+              sortable: true,
+              sortFn: (a, b) => (a.classroom_name || '').localeCompare(b.classroom_name || ''),
+              cell: (session) => (
+                <div className="flex items-center gap-2 min-w-0">
+                  <div
+                    className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: session.classroom_color || '#6B7280' }}
+                  />
+                  <span className="font-medium text-gray-900 truncate">{session.classroom_name}</span>
+                </div>
+              ),
+            },
+            {
+              id: 'date',
+              header: t('sessions.date'),
+              sortable: true,
+              sortFn: (a, b) => a.date.localeCompare(b.date),
+              cell: (session) => <span className="text-sm text-gray-700 tabular-nums">{formatDate(session.date)}</span>,
+            },
+            {
+              id: 'time',
+              header: t('sessions.time'),
+              cell: (session) => (
+                <span className="text-sm text-gray-700 tabular-nums">
+                  {formatTime(session.start_time)}–{formatTime(session.end_time)}
+                </span>
+              ),
+              hideOnMobile: true,
+            },
+            {
+              id: 'teacher',
+              header: t('navigation.teachers'),
+              sortable: true,
+              sortFn: (a, b) => (a.teacher_name || '').localeCompare(b.teacher_name || ''),
+              cell: (session) => (
+                <span className="text-sm text-gray-700">{session.teacher_name}</span>
+              ),
+              hideOnMobile: true,
+            },
+            {
+              id: 'location',
+              header: t('sessions.location'),
+              cell: (session) => (
+                <span className="text-sm text-gray-700">
+                  {t(`sessions.${session.location}`)}
+                  {session.room_number ? ` · ${session.room_number}` : ''}
+                </span>
+              ),
+              hideOnMobile: true,
+            },
+            {
+              id: 'status',
+              header: t('sessions.status'),
+              sortable: true,
+              sortFn: (a, b) => a.status.localeCompare(b.status),
+              cell: (session) => (
+                <StatusPill tone={sessionTone(session.status)}>
+                  {t(`sessions.${session.status}`)}
+                </StatusPill>
+              ),
+            },
+            {
+              id: 'assignments',
+              header: t('navigation.assignments'),
+              align: 'right',
+              cell: (session) => (
+                <span className="text-sm text-gray-700 tabular-nums">{session.assignment_count || 0}</span>
+              ),
+              hideOnMobile: true,
+            },
+          ]
+
+          return (
+            <DataTable<Session>
+              data={paginatedSessions.filter(s => !s.is_virtual) as Session[]}
+              columns={columns}
+              getRowId={(s) => s.id}
+              selection={{
+                selected: selectedSessionIds,
+                onChange: setSelectedSessionIds,
+              }}
+              sort={{
+                state: tableSort,
+                onChange: setTableSort,
+              }}
+              onRowClick={(session) => handleViewDetails(session)}
+              emptyState={{
+                icon: Calendar,
+                title: String(t('sessions.noSessionsFound')),
+                description: String(t('sessions.tryDifferentSearch')),
+              }}
+              mobileRender={(session) => (
+                <DashboardCard
+                  virtual={session.is_virtual}
+                  accentColor={session.classroom_color || '#6B7280'}
+                  statusLabel={t(`sessions.${session.status}`)}
+                  statusToneClass={
+                    session.status === 'completed' ? 'text-emerald-600' :
+                    session.status === 'cancelled' ? 'text-rose-600' :
+                    session.status === 'scheduled' ? 'text-sky-600' :
+                    'text-gray-500'
+                  }
+                  title={session.classroom_name}
+                  subtitle={
+                    <>
+                      <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                      <span>{session.teacher_name}</span>
+                    </>
+                  }
+                  metrics={[
+                    { label: t('sessions.date') as string, value: formatDate(session.date) },
+                    { label: t('sessions.time') as string, value: `${formatTime(session.start_time)}–${formatTime(session.end_time)}` },
+                    { label: t('navigation.assignments') as string, value: String(session.assignment_count || 0) }
+                  ]}
+                  onClick={() => handleViewDetails(session)}
+                />
+              )}
+            />
+          )
+        })()
       ) : (
         /* Calendar View */
         <div className="space-y-4">
@@ -4622,14 +5040,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             {/* Calendar Legend */}
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-4 pb-3 border-b border-gray-200">
               <div className="flex items-center gap-2">
-                <div className="w-12 sm:w-16 h-6 rounded border-2 border-blue-500 bg-blue-100 flex items-center justify-center">
-                  <span className="text-[10px] font-medium text-blue-700 hidden sm:inline">{t('sessions.legend.exampleClass')}</span>
+                <div className="w-12 sm:w-16 h-6 rounded border-2 border-primary bg-primary/15 flex items-center justify-center">
+                  <span className="text-[10px] font-medium text-primary hidden sm:inline">{t('sessions.legend.exampleClass')}</span>
                 </div>
                 <span className="text-xs sm:text-sm text-gray-600">{t('sessions.legend.createdSessions')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-12 sm:w-16 h-6 rounded border-2 border-dashed border-blue-400 bg-blue-50 opacity-70 flex items-center justify-center">
-                  <span className="text-[10px] font-medium text-blue-600 hidden sm:inline">{t('sessions.legend.exampleClass')}</span>
+                <div className="w-12 sm:w-16 h-6 rounded border-2 border-dashed border-primary/60 bg-primary/10 opacity-70 flex items-center justify-center">
+                  <span className="text-[10px] font-medium text-primary hidden sm:inline">{t('sessions.legend.exampleClass')}</span>
                 </div>
                 <span className="text-xs sm:text-sm text-gray-600">{t('sessions.legend.scheduledSessions')}</span>
               </div>
@@ -4666,20 +5084,21 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     onClick={() => handleCalendarDateClick(date)}
                     className={`
                       min-h-32 p-2 rounded-lg border transition-all hover:shadow-md overflow-hidden
-                      ${isToday ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}
-                      ${sessionsOnDate.length > 0 ? 'hover:border-blue-300' : 'hover:border-gray-300'}
+                      ${isToday ? 'border-primary bg-primary/10' : 'border-gray-200'}
+                      ${sessionsOnDate.length > 0 ? 'hover:border-primary/40' : 'hover:border-gray-300'}
                     `}
                   >
                     <div className="flex flex-col h-full">
-                      <div className={`text-sm font-medium ${isToday ? 'text-blue-700' : 'text-gray-700'}`}>
+                      <div className={`text-sm font-medium ${isToday ? 'text-primary' : 'text-gray-700'}`}>
                         {date.getDate()}
                       </div>
                       {sessionsOnDate.length > 0 && (
                         <div className="flex-1 mt-1 space-y-1">
                           {sessionsOnDate.map((session) => {
-                            const textColor = getReadableTextColor(session.classroom_color)
+                            const classroomColor = session.classroom_color || '#6b7280'
+                            const textColor = getReadableTextColor(classroomColor)
                             // Convert hex to rgba for soft background
-                            const hex = session.classroom_color.replace('#', '')
+                            const hex = classroomColor.replace('#', '')
                             const r = parseInt(hex.substring(0, 2), 16)
                             const g = parseInt(hex.substring(2, 4), 16)
                             const b = parseInt(hex.substring(4, 6), 16)
@@ -4726,7 +5145,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Empty State */}
       {viewMode === 'card' && initialized && paginatedSessions.length === 0 && (
         <Card className="p-8 sm:p-12 text-center gap-2">
-          <Calendar className="w-10 h-10 text-gray-400 mx-auto mb-1" />
+          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+            <Calendar className="w-7 h-7 text-primary" strokeWidth={1.75} />
+          </div>
           {debouncedSessionSearchQuery ? (
             <>
               <h3 className="text-lg font-medium text-gray-900">{t("sessions.noResultsFound")}</h3>
@@ -4771,15 +5192,21 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
               variant="outline"
+              size="sm"
+              className="flex items-center gap-1"
             >
+              <ChevronLeft className="w-4 h-4" />
               {t("sessions.pagination.previous")}
             </Button>
             <Button
               onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
               disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
               variant="outline"
+              size="sm"
+              className="flex items-center gap-1"
             >
               {t("sessions.pagination.next")}
+              <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
@@ -4799,15 +5226,21 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
                 variant="outline"
+                size="sm"
+                className="flex items-center gap-1"
               >
+                <ChevronLeft className="w-4 h-4" />
                 {t("sessions.pagination.previous")}
               </Button>
               <Button
                 onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredTotalCount / itemsPerPage), p + 1))}
                 disabled={currentPage >= Math.ceil(filteredTotalCount / itemsPerPage)}
                 variant="outline"
+                size="sm"
+                className="flex items-center gap-1"
               >
                 {t("sessions.pagination.next")}
+                <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -4815,30 +5248,40 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       )}
 
       {/* Add/Edit Session Modal */}
-      <Modal isOpen={showModal} onClose={() => { setShowModal(false); resetForm() }} size="3xl">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {editingSession ? t("sessions.editSession") : isCreatingFromVirtual ? t("sessions.addRegularSession") : t("sessions.addNewSession")}
-              </h2>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => {
-                  setShowModal(false)
-                  resetForm()
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
+      <ModalShell
+        isOpen={showModal}
+        onClose={handleSafeCloseModal}
+        size="3xl"
+        title={String(editingSession ? t("sessions.editSession") : isCreatingFromVirtual ? t("sessions.addRegularSession") : t("sessions.addNewSession"))}
+        footer={
+          <ModalShell.Footer split>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleSafeCloseModal}
+            >
+              {t("sessions.cancel")}
+            </Button>
+            <Button
+              type="submit"
+              form="session-form"
+              disabled={!isFormValid || isCreating || isSaving}
+            >
+              {(editingSession ? isSaving : isCreating) && (
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              )}
+              {editingSession
+                ? (isSaving ? t("common.saving") : t("sessions.updateSession"))
+                : (isCreating ? t("common.creating") : isCreatingFromVirtual ? t("sessions.addRegularSessionButton") : t("sessions.addSession"))
+              }
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
               <form id="session-form" onSubmit={handleSubmit} className="space-y-5">
                 {/* Template Selector */}
                 {templates.length > 0 && (
-                  <div className="space-y-2 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="space-y-2 p-4 bg-sky-50 border border-sky-200 rounded-lg">
                     <div className="flex items-center justify-between">
                       <Label className="text-sm font-medium text-foreground/80">
                         {t("sessions.applyTemplate")}
@@ -4853,7 +5296,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               setSelectedTemplateId('')
                               resetForm()
                             }}
-                            className="text-xs text-red-600 hover:text-red-700 h-6 px-2"
+                            className="text-xs text-rose-600 hover:text-rose-700 h-6 px-2"
                           >
                             <X className="w-3 h-3 mr-1" />
                             {t("sessions.resetTemplate")}
@@ -4922,7 +5365,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
-                    {t("sessions.classroom")} <span className="text-red-500">*</span>
+                    {t("sessions.classroom")} <span className="text-rose-500">*</span>
                   </Label>
                   <Select
                     value={formData.classroom_id}
@@ -4981,33 +5424,29 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
-                        {t("sessions.date")} <span className="text-red-500">*</span>
+                        {t("sessions.date")} <span className="text-rose-500">*</span>
                       </Label>
                       {!editingSession && (
                         <div className="flex items-center space-x-2">
-                          <input
-                            type="checkbox"
+                          <TableCheckbox
                             id="multiple-sessions"
-                            disabled={!formData.classroom_id}
                             checked={multipleSessions}
-                            onChange={(e) => {
-                              setMultipleSessions(e.target.checked)
-                              if (e.target.checked) {
-                                // Switch to multi-select mode
+                            disabled={!formData.classroom_id}
+                            ariaLabel={String(t("sessions.multipleSessions"))}
+                            onChange={() => {
+                              const next = !multipleSessions
+                              setMultipleSessions(next)
+                              if (next) {
                                 if (formData.date) {
                                   setSelectedDates([formData.date])
                                 }
                               } else {
-                                // Switch to single mode
                                 if (selectedDates.length > 0) {
                                   setFormData(prev => ({ ...prev, date: selectedDates[0] }))
                                 }
                                 setSelectedDates([])
                               }
                             }}
-                            className={`w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary checked:bg-primary checked:border-primary accent-primary ${
-                              !formData.classroom_id ? 'cursor-not-allowed opacity-50' : ''
-                            }`}
                           />
                           <label htmlFor="multiple-sessions" className={`text-xs ${!formData.classroom_id ? 'text-gray-400' : 'text-gray-600'}`}>
                             {t("sessions.multipleSessions")}
@@ -5065,7 +5504,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
-                      {t("sessions.startTime")} <span className="text-red-500">*</span>
+                      {t("sessions.startTime")} <span className="text-rose-500">*</span>
                     </Label>
                     <TimePickerComponent
                       value={formData.start_time}
@@ -5076,7 +5515,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </div>
                   <div className="space-y-2">
                     <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
-                      {t("sessions.endTime")} <span className="text-red-500">*</span>
+                      {t("sessions.endTime")} <span className="text-rose-500">*</span>
                     </Label>
                     <TimePickerComponent
                       value={formData.end_time}
@@ -5222,10 +5661,12 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           ))}
                         </div>
                       ) : modalAttendance.length === 0 ? (
-                        <div className="text-center py-4">
-                          <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <p className="text-sm text-gray-500">{t("sessions.noStudentsInClassroom")}</p>
-                        </div>
+                        <EmptyState
+                          icon={Users}
+                          title={String(t("sessions.noStudentsInClassroom"))}
+                          size="sm"
+                          variant="subtle"
+                        />
                       ) : (
                         <>
                           {/* Search Bar */}
@@ -5247,7 +5688,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               variant="outline"
                               size="sm"
                               onClick={markAllPresent}
-                              className="h-8 px-3 text-xs text-green-600 border-green-200 hover:bg-green-50 hover:text-green-700"
+                              className="h-8 px-3 text-xs text-emerald-600 ring-emerald-100 hover:bg-emerald-50 hover:text-emerald-700"
                             >
                               <CheckCircle className="w-3 h-3 mr-1" />
                               {t("sessions.markAllPresent")}
@@ -5256,13 +5697,15 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           
                           <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-hide">
                             {filteredAttendance.length === 0 ? (
-                              <div className="text-center py-4">
-                                <Users className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                                <p className="text-sm text-gray-500">{t("sessions.noStudentsFound")}</p>
-                              </div>
+                              <EmptyState
+                                icon={Users}
+                                title={String(t("sessions.noStudentsFound"))}
+                                size="sm"
+                                variant="subtle"
+                              />
                             ) : (
                               filteredAttendance.map((attendance) => (
-                                <div key={attendance.id} className="p-3 bg-white rounded-lg border space-y-2">
+                                <div key={attendance.id} className="p-3 bg-white rounded-lg ring-1 ring-gray-100 space-y-2">
                                   <div className="flex items-center justify-between">
                                     <span className="text-sm font-medium text-gray-900">{attendance.student_name}</span>
                                     <Select 
@@ -5381,9 +5824,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         ))}
                       </div>
                     ) : modalAssignments.length === 0 ? (
-                      <div className="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                        <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-sm text-gray-500">{t("sessions.noAssignmentsAdded")}</p>
+                      <div className="bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                        <EmptyState
+                          icon={BookOpen}
+                          title={String(t("sessions.noAssignmentsAdded"))}
+                          size="sm"
+                          variant="subtle"
+                        />
                       </div>
                     ) : (
                       <div className="space-y-3">
@@ -5523,7 +5970,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               </div>
                               
                               <div>
-                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.dueDate")} <span className="text-red-500">*</span></Label>
+                                <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.dueDate")} <span className="text-rose-500">*</span></Label>
                                 <DatePickerComponent
                                   value={assignment.due_date}
                                   onChange={(value) => handleAssignmentUpdate(assignment.id, 'due_date', Array.isArray(value) ? value[0] || '' : value)}
@@ -5573,112 +6020,68 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   />
                 </div>
               </form>
-            </div>
+      </ModalShell>
 
-            <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
+      {/* Delete Session Confirmation Modal */}
+      {sessionToDelete && (
+        <ModalShell.Confirm
+          isOpen={showDeleteModal}
+          onClose={() => { setShowDeleteModal(false); setSessionToDelete(null) }}
+          onConfirm={handleDeleteConfirm}
+          title={String(t("sessions.deleteSession"))}
+          message={String(t("sessions.deleteSessionConfirm"))}
+          variant="danger"
+          confirmLabel={isSaving ? String(t("common.deleting")) : String(t("sessions.deleteSession"))}
+          cancelLabel={String(t("sessions.cancel"))}
+          loading={isSaving}
+        />
+      )}
+
+      {/* Bulk Delete Confirmation Modal */}
+      <ModalShell.Confirm
+        isOpen={showBulkDeleteConfirm}
+        onClose={() => setShowBulkDeleteConfirm(false)}
+        onConfirm={handleBulkDelete}
+        title={String(t("sessions.bulkDeleteTitle"))}
+        message={String(t("sessions.bulkDeleteConfirm", { count: selectedSessionIds.size }))}
+        variant="danger"
+        confirmLabel={bulkUpdating ? String(t("common.deleting")) : String(t("common.delete"))}
+        cancelLabel={String(t("sessions.cancel"))}
+        loading={bulkUpdating}
+      />
+
+      {/* Save Template Modal */}
+      {templateToSave && (
+        <ModalShell
+          isOpen={showSaveTemplateModal}
+          onClose={() => { setShowSaveTemplateModal(false); setSaveTemplateFormData({ name: '', includeAssignments: false }); setTemplateToSave(null) }}
+          size="md"
+          title={String(t("sessions.saveAsTemplate"))}
+          bodyClassName="space-y-4"
+          footer={
+            <ModalShell.Footer split>
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => {
-                  setShowModal(false)
-                  resetForm()
+                  setShowSaveTemplateModal(false)
+                  setSaveTemplateFormData({ name: '', includeAssignments: false })
+                  setTemplateToSave(null)
                 }}
-                className="flex-1"
               >
                 {t("sessions.cancel")}
               </Button>
               <Button
-                type="submit"
-                form="session-form"
-                className="flex-1"
-                disabled={!isFormValid || isCreating || isSaving}
+                type="button"
+                onClick={handleSaveTemplate}
+                disabled={isSaving || !saveTemplateFormData.name.trim()}
               >
-                {(editingSession ? isSaving : isCreating) && (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                )}
-                {editingSession
-                  ? (isSaving ? t("common.saving") : t("sessions.updateSession"))
-                  : (isCreating ? t("common.creating") : isCreatingFromVirtual ? t("sessions.addRegularSessionButton") : t("sessions.addSession"))
-                }
+                {isSaving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                {isSaving ? t("common.saving") : t("sessions.saveTemplate")}
               </Button>
-            </div>
-        </div>
-      </Modal>
-
-      {/* Delete Session Confirmation Modal */}
-      {sessionToDelete && (
-        <Modal isOpen={showDeleteModal} onClose={() => { setShowDeleteModal(false); setSessionToDelete(null) }} size="md">
-          <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteSession")}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowDeleteModal(false)
-                setSessionToDelete(null)
-              }}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="p-6">
-            <p className="text-sm text-gray-600">
-              {t("sessions.deleteSessionConfirm")}
-            </p>
-          </div>
-
-          <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-0">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => {
-                setShowDeleteModal(false)
-                setSessionToDelete(null)
-              }}
-              className="flex-1"
-            >
-              {t("sessions.cancel")}
-            </Button>
-            <Button
-              type="button"
-              onClick={handleDeleteConfirm}
-              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-              disabled={isSaving}
-            >
-              {isSaving && (
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              )}
-              {isSaving ? t("common.deleting") : t("sessions.deleteSession")}
-            </Button>
-          </div>
-          </div>
-        </Modal>
-      )}
-
-      {/* Save Template Modal */}
-      {templateToSave && (
-        <Modal isOpen={showSaveTemplateModal} onClose={() => { setShowSaveTemplateModal(false); setSaveTemplateFormData({ name: '', includeAssignments: false }); setTemplateToSave(null) }} size="md">
-          <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t("sessions.saveAsTemplate")}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowSaveTemplateModal(false)
-                setSaveTemplateFormData({ name: '', includeAssignments: false })
-                setTemplateToSave(null)
-              }}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="p-6 space-y-4">
+            </ModalShell.Footer>
+          }
+        >
             <div>
               <Label htmlFor="template-name" className="text-sm font-medium text-gray-700">
                 {t('sessions.templateName')}
@@ -5694,124 +6097,62 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </div>
 
             <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
+              <TableCheckbox
                 id="include-assignments"
                 checked={saveTemplateFormData.includeAssignments}
-                onChange={(e) => setSaveTemplateFormData(prev => ({ ...prev, includeAssignments: e.target.checked }))}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                ariaLabel={String(t('sessions.includeAssignments'))}
+                onChange={() => setSaveTemplateFormData(prev => ({ ...prev, includeAssignments: !prev.includeAssignments }))}
               />
               <Label htmlFor="include-assignments" className="text-sm text-gray-700 cursor-pointer">
                 {t('sessions.includeAssignments')}
               </Label>
             </div>
-          </div>
-
-          <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-0">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => {
-                setShowSaveTemplateModal(false)
-                setSaveTemplateFormData({ name: '', includeAssignments: false })
-                setTemplateToSave(null)
-              }}
-              className="flex-1"
-            >
-              {t("sessions.cancel")}
-            </Button>
-            <Button
-              type="button"
-              onClick={handleSaveTemplate}
-              className="flex-1"
-              disabled={isSaving || !saveTemplateFormData.name.trim()}
-            >
-              {isSaving && (
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              )}
-              {isSaving ? t("common.saving") : t("sessions.saveTemplate")}
-            </Button>
-          </div>
-          </div>
-        </Modal>
+        </ModalShell>
       )}
 
       {/* Delete Template Confirmation Modal */}
       {(templateToDelete || selectedTemplates.size > 0) && (
-        <Modal isOpen={showDeleteTemplateModal} onClose={() => { setShowDeleteTemplateModal(false); setTemplateToDelete(null) }} size="md">
-          <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t("sessions.deleteTemplate")}</h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowDeleteTemplateModal(false)
-                setTemplateToDelete(null)
-              }}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="p-6">
-            <p className="text-sm text-gray-600">
-              {selectedTemplates.size > 0
-                ? t("sessions.deleteSelectedTemplatesConfirm").replace("{count}", String(selectedTemplates.size))
-                : t("sessions.deleteTemplateConfirm")
-              }
-            </p>
-          </div>
-
-          <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-0">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => {
-                setShowDeleteTemplateModal(false)
-                setTemplateToDelete(null)
-              }}
-              className="flex-1"
-            >
-              {t("sessions.cancel")}
-            </Button>
-            <Button
-              type="button"
-              onClick={handleDeleteTemplate}
-              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-              disabled={isSaving}
-            >
-              {isSaving && (
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              )}
-              {isSaving ? t("common.deleting") : t("sessions.deleteTemplate")}
-            </Button>
-          </div>
-          </div>
-        </Modal>
+        <ModalShell.Confirm
+          isOpen={showDeleteTemplateModal}
+          onClose={() => { setShowDeleteTemplateModal(false); setTemplateToDelete(null) }}
+          onConfirm={handleDeleteTemplate}
+          title={String(t("sessions.deleteTemplate"))}
+          message={selectedTemplates.size > 0
+            ? String(t("sessions.deleteSelectedTemplatesConfirm")).replace("{count}", String(selectedTemplates.size))
+            : String(t("sessions.deleteTemplateConfirm"))}
+          variant="danger"
+          confirmLabel={isSaving ? String(t("common.deleting")) : String(t("sessions.deleteTemplate"))}
+          cancelLabel={String(t("sessions.cancel"))}
+          loading={isSaving}
+        />
       )}
 
       {/* Template Confirmation Modal */}
-      <Modal isOpen={showTemplateConfirmModal} onClose={() => { setShowTemplateConfirmModal(false); setPendingTemplateId(''); setTemplateFieldChanges({}) }} size="2xl">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t("sessions.applyTemplateConfirm")}</h2>
+      <ModalShell
+        isOpen={showTemplateConfirmModal}
+        onClose={() => { setShowTemplateConfirmModal(false); setPendingTemplateId(''); setTemplateFieldChanges({}) }}
+        size="2xl"
+        title={String(t("sessions.applyTemplateConfirm"))}
+        bodyClassName="space-y-4"
+        footer={
+          <ModalShell.Footer split>
             <Button
-              variant="ghost"
-              size="sm"
+              type="button"
+              variant="outline"
               onClick={() => {
                 setShowTemplateConfirmModal(false)
                 setPendingTemplateId('')
                 setTemplateFieldChanges({})
               }}
-              className="p-1"
             >
-              <X className="w-4 h-4" />
+              {t("common.cancel")}
             </Button>
-          </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-4">
+            <Button type="button" onClick={handleConfirmTemplateApplication}>
+              {t("sessions.applyTemplate")}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
               <div className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-lg">
                 <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
@@ -5894,8 +6235,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   const templateAssignmentsCount = template.assignments_data.length
 
                   return (
-                    <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-lg">
-                      <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                    <div className="flex items-start gap-3 p-4 bg-rose-50 border border-rose-200 rounded-lg">
+                      <AlertCircle className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" />
                       <p className="text-sm text-red-900">
                         {t("sessions.assignmentsWillBeReplaced")
                           .replace("{current}", String(currentAssignmentsCount))
@@ -5906,53 +6247,36 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 }
                 return null
               })()}
-            </div>
-
-            <div className="flex-shrink-0 flex items-center gap-3 p-6 pt-4 border-t border-gray-200">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setShowTemplateConfirmModal(false)
-                  setPendingTemplateId('')
-                  setTemplateFieldChanges({})
-                }}
-                className="flex-1"
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button
-                type="button"
-                onClick={handleConfirmTemplateApplication}
-                className="flex-1"
-              >
-              {t("sessions.applyTemplate")}
-          </Button>
-        </div>
-        </div>
-      </Modal>
+      </ModalShell>
 
       {/* Manage Templates Modal */}
-      <Modal isOpen={showManageTemplatesModal} onClose={() => { setShowManageTemplatesModal(false); setSelectedTemplates(new Set()) }} size="2xl">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t("sessions.manageTemplatesTitle")}</h2>
+      <ModalShell
+        isOpen={showManageTemplatesModal}
+        onClose={() => { setShowManageTemplatesModal(false); setSelectedTemplates(new Set()) }}
+        size="2xl"
+        title={String(t("sessions.manageTemplatesTitle"))}
+        footer={
+          <ModalShell.Footer>
             <Button
-              variant="ghost"
-              size="sm"
+              type="button"
+              variant="outline"
               onClick={() => {
                 setShowManageTemplatesModal(false)
                 setSelectedTemplates(new Set())
               }}
-              className="p-1"
             >
-              <X className="w-4 h-4" />
+              {t("common.close")}
             </Button>
-          </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          </ModalShell.Footer>
+        }
+      >
               {templates.length === 0 ? (
-                <p className="text-sm text-gray-500 text-center py-8">{t("sessions.noTemplatesYet")}</p>
+                <EmptyState
+                  icon={FileText}
+                  title={String(t("sessions.noTemplatesYet"))}
+                  size="sm"
+                  variant="subtle"
+                />
               ) : (
                 <>
                   {/* Select/Deselect All */}
@@ -5979,7 +6303,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         onClick={() => {
                           setShowDeleteTemplateModal(true)
                         }}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                        className="text-rose-600 hover:text-rose-700 hover:bg-rose-50"
                       >
                         <Trash2 className="w-4 h-4 mr-1" />
                         {t("common.delete")} ({selectedTemplates.size})
@@ -5991,21 +6315,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     {templates.map((template) => (
                       <div
                         key={template.id}
-                        className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50"
+                        className="flex items-center gap-3 p-3 ring-1 ring-gray-100 rounded-lg hover:bg-gray-50"
                       >
-                        <input
-                          type="checkbox"
+                        <TableCheckbox
                           checked={selectedTemplates.has(template.id)}
-                          onChange={(e) => {
+                          ariaLabel={String(t('common.selectRow') || 'Select row')}
+                          onChange={() => {
                             const newSelected = new Set(selectedTemplates)
-                            if (e.target.checked) {
-                              newSelected.add(template.id)
-                            } else {
+                            if (newSelected.has(template.id)) {
                               newSelected.delete(template.id)
+                            } else {
+                              newSelected.add(template.id)
                             }
                             setSelectedTemplates(newSelected)
                           }}
-                          className="w-4 h-4 rounded border-gray-300 accent-primary"
                         />
                         <div className="flex-1">
                           <p className="font-medium text-gray-900">{template.name}</p>
@@ -6021,7 +6344,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           onClick={() => {
                             handleDeleteTemplateClick(template)
                           }}
-                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                          className="text-rose-600 hover:text-rose-700 hover:bg-rose-50"
                         >
                           <Trash2 className="w-4 h-4 mr-1" />
                           {t("common.delete")}
@@ -6031,71 +6354,121 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </div>
                 </>
               )}
-            </div>
-
-            <div className="flex-shrink-0 flex items-center justify-end p-6 border-t border-gray-200">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setShowManageTemplatesModal(false)
-                  setSelectedTemplates(new Set())
-                }}
-              >
-                {t("common.close")}
-              </Button>
-          </div>
-        </div>
-      </Modal>
+      </ModalShell>
 
       {/* Completion Warning Modal */}
-      <ConfirmationModal
+      <ModalShell.Confirm
         isOpen={showCompletionWarningModal}
         onClose={() => setShowCompletionWarningModal(false)}
         onConfirm={handleConfirmedCompletion}
         title={t('sessions.completionWarningTitle') as string}
         message={t('sessions.completionWarning') as string}
-        confirmText={t('common.confirm') as string}
-        cancelText={t('common.cancel') as string}
+        confirmLabel={t('common.confirm') as string}
+        cancelLabel={t('common.cancel') as string}
         variant="warning"
         loading={isSaving}
       />
 
       {/* Session Details Modal */}
       {viewingSession && (
-        <Modal isOpen={showDetailsModal} onClose={() => { setShowDetailsModal(false); setViewingSession(null); setSessionAssignments([]); setSessionAttendance([]) }} size="6xl">
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-6 h-6 rounded-full"
-                  style={{ backgroundColor: viewingSession.classroom_color || '#6B7280' }}
-                />
-                <div className="flex items-center gap-2">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{viewingSession.classroom_name}</h2>
-                  {viewingSession.is_virtual && (
-                    <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-medium">
-                      {t('sessions.virtualSession')}
+        <ModalShell
+          isOpen={showDetailsModal}
+          onClose={() => { setShowDetailsModal(false); setViewingSession(null); setSessionAssignments([]); setSessionAttendance([]) }}
+          size="6xl"
+          headerSlot={
+            <div className="flex items-center gap-3">
+              <div
+                className="w-6 h-6 rounded-full flex-shrink-0"
+                style={{ backgroundColor: viewingSession.classroom_color || '#6B7280' }}
+              />
+              <div className="flex items-center gap-2 min-w-0">
+                <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 truncate">{viewingSession.classroom_name}</h2>
+                {viewingSession.is_virtual && (
+                  <span className="text-xs px-2 py-1 bg-sky-50 text-sky-700 rounded-full font-medium flex-shrink-0">
+                    {t('sessions.virtualSession')}
+                  </span>
+                )}
+              </div>
+            </div>
+          }
+          footer={
+            <div className="flex flex-col gap-3">
+              {!viewingSession.is_virtual && (
+                <div className="text-sm text-gray-500">
+                  {t("common.created")}: {new Date(viewingSession.created_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
+                  {viewingSession.updated_at !== viewingSession.created_at && (
+                    <span className="ml-4">
+                      {t("sessions.updatedColon")} {new Date(viewingSession.updated_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
                     </span>
                   )}
                 </div>
+              )}
+              <div className="flex items-center justify-end gap-3 flex-wrap">
+                {viewingSession.is_virtual ? (
+                  <Button
+                    variant="outline"
+                    onClick={async () => {
+                      const virtualSession = viewingSession
+                      setShowDetailsModal(false)
+                      setViewingSession(null)
+                      setSessionAssignments([])
+                      setSessionAttendance([])
+                      setEditingSession(null)
+                      setModalAssignments([])
+                      setOriginalAssignments([])
+                      setOriginalAttendance([])
+                      setFormData({
+                        classroom_id: virtualSession.classroom_id,
+                        // Virtual sessions haven't been materialized yet, so default
+                        // status to 'scheduled' — matches what the materialize call will set.
+                        status: 'scheduled',
+                        date: virtualSession.date,
+                        start_time: virtualSession.start_time,
+                        end_time: virtualSession.end_time,
+                        location: virtualSession.location,
+                        room_number: virtualSession.room_number || '',
+                        notes: virtualSession.notes || '',
+                        substitute_teacher: virtualSession.substitute_teacher || ''
+                      })
+                      await loadClassroomStudentsForAttendance(virtualSession.classroom_id)
+                      // Materializing a virtual session = adding a regular class
+                      // (not a make-up). Flag drives the modal title + submit
+                      // label to "Add Class" / "수업 추가" instead of the
+                      // make-up wording used by the top-level button.
+                      setIsCreatingFromVirtual(true)
+                      setShowModal(true)
+                    }}
+                    className="flex items-center gap-2"
+                  >
+                    <Plus className="w-4 h-4" />
+                    {t("sessions.createSession")}
+                  </Button>
+                ) : (
+                  <>
+                    <Button variant="outline" onClick={() => handleSaveTemplateClick(viewingSession)} className="flex items-center gap-2">
+                      <Save className="w-4 h-4" />
+                      {t("sessions.saveAsTemplate")}
+                    </Button>
+                    <Button variant="outline" onClick={() => handleEditClick(viewingSession)} className="flex items-center gap-2">
+                      <Edit className="w-4 h-4" />
+                      {t("sessions.editSession")}
+                    </Button>
+                  </>
+                )}
+                <Button
+                  onClick={() => {
+                    setShowDetailsModal(false)
+                    setViewingSession(null)
+                    setSessionAssignments([])
+                    setSessionAttendance([])
+                  }}
+                >
+                  {t("common.close")}
+                </Button>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowDetailsModal(false)
-                  setViewingSession(null)
-                  setSessionAssignments([])
-                  setSessionAttendance([])
-                }}
-                className="p-1"
-              >
-                <X className="w-5 h-5" />
-              </Button>
             </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
+          }
+        >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Column - Session Info & Assignments */}
                 <div className="space-y-6">
@@ -6154,10 +6527,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       </div>
                       {viewingSession.substitute_teacher_name && (
                         <div className="flex items-center gap-3">
-                          <Users className="w-5 h-5 text-orange-500" />
+                          <Users className="w-5 h-5 text-amber-500" />
                           <div>
                             <p className="text-sm text-gray-600">{t("sessions.substituteTeacher")}</p>
-                            <p className="font-medium text-orange-600">{viewingSession.substitute_teacher_name}</p>
+                            <p className="font-medium text-amber-600">{viewingSession.substitute_teacher_name}</p>
                           </div>
                         </div>
                       )}
@@ -6168,23 +6541,38 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <BookOpen className="w-5 h-5" />
-                      {t("sessions.assignmentsCount")} ({sessionAssignments.length})
+                      {t("sessions.assignmentsCount")} {!sessionModalLoading && `(${sessionAssignments.length})`}
                     </h3>
-                    {sessionAssignments.length === 0 ? (
-                      <div className="text-center py-8">
-                        <BookOpen className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">{t("sessions.noAssignmentsForSession")}</p>
+                    {sessionModalLoading ? (
+                      <div className="space-y-3">
+                        {[...Array(3)].map((_, i) => (
+                          <div key={i} className="p-4 bg-gray-50 rounded-lg ring-1 ring-gray-100">
+                            <div className="flex items-start justify-between mb-2">
+                              <Skeleton className="h-4 w-1/3" />
+                              <Skeleton className="h-5 w-16 rounded-full" />
+                            </div>
+                            <Skeleton className="h-3 w-full mb-2" />
+                            <Skeleton className="h-3 w-1/2" />
+                          </div>
+                        ))}
                       </div>
+                    ) : sessionAssignments.length === 0 ? (
+                      <EmptyState
+                        icon={BookOpen}
+                        title={String(t("sessions.noAssignmentsForSession"))}
+                        size="sm"
+                        variant="subtle"
+                      />
                     ) : (
                       <div className="space-y-3 max-h-96 overflow-y-auto">
                         {sessionAssignments.map((assignment) => (
-                          <div key={assignment.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                          <div key={assignment.id} className="p-4 bg-gray-50 rounded-lg ring-1 ring-gray-100">
                             <div className="flex items-start justify-between mb-2">
                               <h4 className="font-medium text-gray-900">{assignment.title}</h4>
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                assignment.assignment_type === 'quiz' ? 'bg-blue-100 text-blue-800' :
-                                assignment.assignment_type === 'homework' ? 'bg-green-100 text-green-800' :
-                                assignment.assignment_type === 'test' ? 'bg-red-100 text-red-800' :
+                                assignment.assignment_type === 'quiz' ? 'bg-sky-50 text-sky-700' :
+                                assignment.assignment_type === 'homework' ? 'bg-emerald-50 text-emerald-700' :
+                                assignment.assignment_type === 'test' ? 'bg-rose-50 text-rose-700' :
                                 'bg-purple-100 text-purple-800'
                               }`}>
                                 {t(`sessions.${assignment.assignment_type}`)}
@@ -6221,13 +6609,28 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Card className="p-4 sm:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Users className="w-5 h-5" />
-                      {t("sessions.attendanceCount")} ({sessionAttendance.length})
+                      {t("sessions.attendanceCount")} {!sessionModalLoading && `(${sessionAttendance.length})`}
                     </h3>
-                    {sessionAttendance.length === 0 ? (
-                      <div className="text-center py-8">
-                        <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">{t("sessions.noAttendanceRecords")}</p>
+                    {sessionModalLoading ? (
+                      <div className="space-y-3">
+                        {[...Array(4)].map((_, i) => (
+                          <div key={i} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <Skeleton className="w-10 h-10 rounded-full" />
+                            <div className="flex-1 space-y-1">
+                              <Skeleton className="h-4 w-24" />
+                              <Skeleton className="h-3 w-16" />
+                            </div>
+                            <Skeleton className="h-6 w-20 rounded-full" />
+                          </div>
+                        ))}
                       </div>
+                    ) : sessionAttendance.length === 0 ? (
+                      <EmptyState
+                        icon={Users}
+                        title={String(t("sessions.noAttendanceRecords"))}
+                        size="sm"
+                        variant="subtle"
+                      />
                     ) : (
                       <div className="space-y-3">
                         {sessionAttendance.map((attendance) => (
@@ -6244,16 +6647,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               </div>
                             </div>
                             {attendance.status === 'pending' ? (
-                              <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">
+                              <span className="px-2 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700">
                                 {t('sessions.pending')}
                               </span>
                             ) : (
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                attendance.status === 'present' ? 'bg-green-100 text-green-800' :
-                                attendance.status === 'absent' ? 'bg-red-100 text-red-800' :
-                                attendance.status === 'late' ? 'bg-yellow-100 text-yellow-800' :
-                                attendance.status === 'excused' ? 'bg-blue-100 text-blue-800' :
-                                'bg-gray-100 text-gray-800'
+                                attendance.status === 'present' ? 'bg-emerald-50 text-emerald-700' :
+                                attendance.status === 'absent' ? 'bg-rose-50 text-rose-700' :
+                                attendance.status === 'late' ? 'bg-amber-50 text-amber-700' :
+                                attendance.status === 'excused' ? 'bg-sky-50 text-sky-700' :
+                                'bg-gray-50 text-gray-700'
                               }`}>
                                 {t(`sessions.${attendance.status}`)}
                               </span>
@@ -6269,23 +6672,23 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     <Card className="p-4 sm:p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("sessions.attendanceSummary")}</h3>
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="text-center p-3 bg-green-50 rounded-lg">
-                          <p className="text-xl sm:text-2xl font-bold text-green-600">
+                        <div className="text-center p-3 bg-emerald-50 rounded-lg">
+                          <p className="text-xl sm:text-2xl font-bold text-emerald-600">
                             {sessionAttendance.filter(a => a.status === 'present').length}
                           </p>
-                          <p className="text-sm text-green-700">{t("sessions.present")}</p>
+                          <p className="text-sm text-emerald-700">{t("sessions.present")}</p>
                         </div>
-                        <div className="text-center p-3 bg-red-50 rounded-lg">
-                          <p className="text-xl sm:text-2xl font-bold text-red-600">
+                        <div className="text-center p-3 bg-rose-50 rounded-lg">
+                          <p className="text-xl sm:text-2xl font-bold text-rose-600">
                             {sessionAttendance.filter(a => a.status === 'absent').length}
                           </p>
-                          <p className="text-sm text-red-700">{t("sessions.absent")}</p>
+                          <p className="text-sm text-rose-700">{t("sessions.absent")}</p>
                         </div>
-                        <div className="text-center p-3 bg-yellow-50 rounded-lg">
-                          <p className="text-xl sm:text-2xl font-bold text-yellow-600">
+                        <div className="text-center p-3 bg-amber-50 rounded-lg">
+                          <p className="text-xl sm:text-2xl font-bold text-amber-600">
                             {sessionAttendance.filter(a => a.status === 'late').length}
                           </p>
-                          <p className="text-sm text-yellow-700">{t("sessions.late")}</p>
+                          <p className="text-sm text-amber-700">{t("sessions.late")}</p>
                         </div>
                         <div className="text-center p-3 bg-blue-50 rounded-lg">
                           <p className="text-xl sm:text-2xl font-bold text-blue-600">
@@ -6298,130 +6701,35 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   )}
                 </div>
               </div>
-            </div>
-
-            <div className="flex-shrink-0 flex flex-col gap-3 p-6 pt-4 border-t border-gray-200">
-              {!viewingSession.is_virtual && (
-                <div className="text-sm text-gray-500">
-                  {t("common.created")}: {new Date(viewingSession.created_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
-                  {viewingSession.updated_at !== viewingSession.created_at && (
-                    <span className="ml-4">
-                      {t("sessions.updatedColon")} {new Date(viewingSession.updated_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
-                    </span>
-                  )}
-                </div>
-              )}
-              <div className="flex items-center justify-end gap-3 flex-wrap">
-                {viewingSession.is_virtual ? (
-                  <Button
-                    variant="outline"
-                    onClick={async () => {
-                      // Capture virtual session data before closing modal
-                      const virtualSession = viewingSession
-
-                      // Close details modal
-                      setShowDetailsModal(false)
-                      setViewingSession(null)
-                      setSessionAssignments([])
-                      setSessionAttendance([])
-
-                      // Clear editing session to indicate create mode
-                      setEditingSession(null)
-
-                      // Clear modal state for fresh create
-                      setModalAssignments([])
-                      setOriginalAssignments([])
-                      setOriginalAttendance([])
-
-                      // Mark as creating from virtual session
-                      setIsCreatingFromVirtual(true)
-
-                      // Pre-fill form with virtual session data
-                      setFormData({
-                        classroom_id: virtualSession.classroom_id,
-                        date: virtualSession.date,
-                        start_time: virtualSession.start_time,
-                        end_time: virtualSession.end_time,
-                        status: 'scheduled',
-                        location: virtualSession.location,
-                        room_number: virtualSession.room_number || '',
-                        notes: virtualSession.notes || '',
-                        substitute_teacher: virtualSession.substitute_teacher || ''
-                      })
-
-                      // Load students for attendance (for new session creation)
-                      await loadClassroomStudentsForAttendance(virtualSession.classroom_id)
-
-                      // Open create modal
-                      setShowModal(true)
-                    }}
-                    className="flex items-center gap-2"
-                  >
-                    <Plus className="w-4 h-4" />
-                    {t("sessions.createSession")}
-                  </Button>
-                ) : (
-                  <>
-                    <Button
-                      variant="outline"
-                      onClick={() => handleSaveTemplateClick(viewingSession)}
-                      className="flex items-center gap-2"
-                    >
-                      <Save className="w-4 h-4" />
-                      {t("sessions.saveAsTemplate")}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        handleEditClick(viewingSession)
-                      }}
-                      className="flex items-center gap-2"
-                    >
-                      <Edit className="w-4 h-4" />
-                      {t("sessions.editSession")}
-                    </Button>
-                  </>
-                )}
-                <Button
-                  onClick={() => {
-                    setShowDetailsModal(false)
-                    setViewingSession(null)
-                    setSessionAssignments([])
-                    setSessionAttendance([])
-                  }}
-                >
-                  {t("common.close")}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Modal>
+        </ModalShell>
       )}
 
       {/* Add Attendance Modal */}
-      <Modal isOpen={showAddAttendanceModal} onClose={() => { setShowAddAttendanceModal(false); setAvailableStudents([]) }} size="md">
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">{t("sessions.addStudentsToAttendance")}</h2>
+      <ModalShell
+        isOpen={showAddAttendanceModal}
+        onClose={() => { setShowAddAttendanceModal(false); setAvailableStudents([]) }}
+        size="md"
+        title={String(t("sessions.addStudentsToAttendance"))}
+        footer={
+          <ModalShell.Footer>
             <Button
-              variant="ghost"
-              size="sm"
               onClick={() => {
                 setShowAddAttendanceModal(false)
                 setAvailableStudents([])
               }}
-              className="p-1"
             >
-              <X className="w-4 h-4" />
+              {t("common.done")}
             </Button>
-          </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
+          </ModalShell.Footer>
+        }
+      >
             {availableStudents.length === 0 ? (
-              <div className="text-center py-8">
-                <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                <p className="text-gray-500">{t("sessions.allStudentsInAttendance")}</p>
-              </div>
+              <EmptyState
+                icon={Users}
+                title={String(t("sessions.allStudentsInAttendance"))}
+                size="sm"
+                variant="subtle"
+              />
             ) : (
               <div className="space-y-2">
                 <p className="text-sm text-gray-600 mb-4">
@@ -6443,47 +6751,31 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 ))}
               </div>
             )}
-          </div>
-
-          <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-            <Button
-              onClick={() => {
-                setShowAddAttendanceModal(false)
-                setAvailableStudents([])
-              }}
-            >
-              {t("common.done")}
-            </Button>
-          </div>
-        </div>
-      </Modal>
+      </ModalShell>
 
       {/* Day Sessions Modal */}
       {selectedCalendarDate && (
-        <Modal isOpen={showDaySessionsModal} onClose={() => setShowDaySessionsModal(false)} size="2xl">
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">
-                {selectedCalendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowDaySessionsModal(false)
-                }}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <X className="w-4 h-4" />
+        <ModalShell
+          isOpen={showDaySessionsModal}
+          onClose={() => setShowDaySessionsModal(false)}
+          size="2xl"
+          title={selectedCalendarDate.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+          footer={
+            <ModalShell.Footer justify="between">
+              <p className="text-sm text-gray-500">
+                {t('sessions.sessionsOnDate', { count: getSessionsForDate(selectedCalendarDate).length })}
+              </p>
+              <Button onClick={() => setShowDaySessionsModal(false)}>
+                {t('common.close')}
               </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            </ModalShell.Footer>
+          }
+        >
               <div className="space-y-3">
                 {getSessionsForDate(selectedCalendarDate).map(session => (
                   <div
@@ -6531,9 +6823,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                         )}
                       </div>
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        session.status === 'completed' ? 'bg-green-100 text-green-800' :
-                        session.status === 'cancelled' ? 'bg-red-100 text-red-800' :
-                        'bg-blue-100 text-blue-800'
+                        session.status === 'completed' ? 'bg-emerald-50 text-emerald-700' :
+                        session.status === 'cancelled' ? 'bg-rose-50 text-rose-700' :
+                        'bg-sky-50 text-sky-700'
                       }`}>
                         {t(`sessions.${session.status}`)}
                       </span>
@@ -6548,23 +6840,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <p className="text-sm text-gray-500">
-                {t('sessions.sessionsOnDate', { count: getSessionsForDate(selectedCalendarDate).length })}
-              </p>
-              <Button
-                variant="default"
-                onClick={() => {
-                  setShowDaySessionsModal(false)
-                }}
-              >
-                {t('common.close')}
-              </Button>
-            </div>
-          </div>
-        </Modal>
+        </ModalShell>
       )}
 
       <AssignmentImportModal

@@ -14,6 +14,13 @@ export interface TodaySession {
   classroom_color: string
   status: string
   location: string
+  /**
+   * Number of attendance rows still in `pending` status for this session.
+   * Only meaningful for sessions whose own status is `scheduled` — cancelled
+   * and completed sessions don't surface this even if pending rows exist.
+   * Zero when every student has been marked.
+   */
+  pending_attendance_count: number
 }
 
 interface UseTodaysSessionsReturn {
@@ -34,7 +41,7 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
       return
     }
 
-    const cacheKey = `today_sessions_${academyId}_${new Date().toDateString()}`
+    const cacheKey = `today_sessions_v2_${academyId}_${new Date().toDateString()}`
 
     // Check sessionStorage first for persistence
     const sessionCachedData = sessionStorage.getItem(cacheKey)
@@ -102,6 +109,28 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
         return
       }
 
+      // Fetch pending-attendance counts for these sessions in parallel.
+      // We only need rows where status='pending'; counting per session is
+      // cheap (≤10 sessions × however many enrolled students).
+      const sessionIds = (todaySessions || []).map(s => s.id)
+      const pendingCounts = new Map<string, number>()
+      if (sessionIds.length > 0) {
+        const { data: pendingRows, error: pendingError } = await supabase
+          .from('attendance')
+          .select('classroom_session_id')
+          .in('classroom_session_id', sessionIds)
+          .eq('status', 'pending')
+        if (pendingError) {
+          // Non-fatal — we just won't show the pill if counts fail.
+          console.warn('[useTodaysSessions] Pending counts failed:', pendingError)
+        } else {
+          for (const row of pendingRows ?? []) {
+            const id = (row as { classroom_session_id: string }).classroom_session_id
+            pendingCounts.set(id, (pendingCounts.get(id) ?? 0) + 1)
+          }
+        }
+      }
+
       const formattedSessions: TodaySession[] = (todaySessions || []).map(session => ({
         id: session.id,
         date: session.date,
@@ -110,7 +139,8 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
         classroom_name: (session.classroom as { name?: string })?.name || 'Unknown Classroom',
         classroom_color: (session.classroom as { color?: string })?.color || '#6B7280',
         status: session.status || 'scheduled',
-        location: session.location || 'offline'
+        location: session.location || 'offline',
+        pending_attendance_count: pendingCounts.get(session.id) ?? 0,
       }))
 
       queryCache.set(cacheKey, formattedSessions, CACHE_TTL.SHORT)
@@ -142,7 +172,7 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
       return
     }
 
-    const cacheKey = `today_sessions_${academyId}_${new Date().toDateString()}`
+    const cacheKey = `today_sessions_v2_${academyId}_${new Date().toDateString()}`
 
     // Check sessionStorage first for persistence
     const sessionCachedData = sessionStorage.getItem(cacheKey)

@@ -1,16 +1,18 @@
 "use client"
 
-import { useMemo } from 'react'
+import { useMemo, useCallback } from 'react'
+import { useDirtyState } from '@/hooks/useDirtyState'
+import { useConfirm } from '@/hooks/useConfirm'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { TableCheckbox } from '@/components/ui/dashboard'
 import { DateInput } from '@/components/ui/common/DateInput'
 import {
   Search,
-  X,
   Users,
   CheckCircle,
   ChevronDown,
@@ -24,41 +26,12 @@ import type {
   PaymentsStudent,
 } from '../hooks/usePaymentsData'
 
-export interface PaymentFormData {
-  payment_type: string
-  recurring_template_id: string
-  selected_students: string[]
-  invoice_name: string
-  amount: string
-  due_date: string
-  description: string
-  status: string
-  discount_amount: string
-  discount_reason: string
-  paid_at: string
-  payment_method: string
-  refunded_amount: string
-  student_amount_overrides: { [studentId: string]: { enabled: boolean; amount: string; reason?: string } }
-  student_discount_overrides: { [studentId: string]: { enabled: boolean; amount: string; reason: string } }
-}
-
-export const emptyPaymentFormData: PaymentFormData = {
-  payment_type: 'one_time',
-  recurring_template_id: '',
-  selected_students: [],
-  invoice_name: '',
-  amount: '',
-  due_date: '',
-  description: '',
-  status: 'pending',
-  discount_amount: '',
-  discount_reason: '',
-  paid_at: '',
-  payment_method: '',
-  refunded_amount: '',
-  student_amount_overrides: {},
-  student_discount_overrides: {}
-}
+// Re-exported from the standalone form-data module so existing consumers
+// (e.g. `import { emptyPaymentFormData } from './AddPaymentModal'`) keep
+// working. Pulling these out lets payments-page hold form state without
+// statically importing this 690-line modal. See ../payment-form-data.ts.
+export { emptyPaymentFormData, type PaymentFormData } from '../payment-form-data'
+import type { PaymentFormData } from '../payment-form-data'
 
 interface AddPaymentModalProps {
   isOpen: boolean
@@ -115,22 +88,70 @@ export function AddPaymentModal({
 }: AddPaymentModalProps) {
   const { t } = useTranslation()
 
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} size="3xl">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">{t('payments.addPayment')}</h2>
-          <Button variant="ghost" size="sm" onClick={onClose} className="p-1">
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
+  // Dirty-state guard. The Add Payment form has student selection, amounts,
+  // due dates, and per-student discount overrides — easy to lose to a stray
+  // backdrop click. Snapshot is the entire payment form blob.
+  const isDirty = useDirtyState({ paymentFormData }, isOpen)
+  const confirm = useConfirm()
+  const handleSafeClose = useCallback(async () => {
+    if (!isDirty) {
+      onClose()
+      return
+    }
+    const ok = await confirm({
+      title: String(t('common.discardChanges')),
+      description: String(t('common.discardChangesDescription')),
+      variant: 'warning',
+      confirmText: String(t('common.discard')),
+      cancelText: String(t('common.keepEditing')),
+    })
+    if (ok) onClose()
+  }, [isDirty, confirm, onClose, t])
 
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
+  return (
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleSafeClose}
+      size="3xl"
+      title={String(t('payments.addPayment'))}
+      closeDisabled={isCreating || isSaving}
+      footer={
+        <ModalShell.Footer>
+          <Button variant="outline" onClick={handleSafeClose} disabled={isCreating || isSaving}>
+            {t('common.cancel')}
+          </Button>
+          <Button
+            onClick={handleAddPayment}
+            disabled={
+              isCreating || isSaving || !paymentFormData.invoice_name ||
+              (paymentFormData.payment_type === 'one_time' && (
+                !paymentFormData.amount || !paymentFormData.due_date || paymentFormData.selected_students.length === 0 ||
+                paymentFormData.selected_students.some(studentId => {
+                  const discountOverride = paymentFormData.student_discount_overrides[studentId]
+                  const overrideAmount = discountOverride?.enabled && discountOverride?.amount ? parseFloat(discountOverride.amount) : parseFloat(paymentFormData.amount || '0')
+                  const baseAmount = parseFloat(paymentFormData.amount || '0')
+                  return overrideAmount < 0 || overrideAmount > baseAmount
+                })
+              )) ||
+              (paymentFormData.payment_type === 'recurring' && (
+                !paymentFormData.recurring_template_id || paymentFormData.selected_students.length === 0
+              ))
+            }
+          >
+            {isCreating ? (
+              <><Loader2 className="h-4 w-4 animate-spin mr-2" />{t('common.creating')}</>
+            ) : (
+              t('payments.addPayment')
+            )}
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <form className="space-y-5">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
                 {t('payments.paymentType')}
-                <span className="text-red-500 ml-1">*</span>
+                <span className="text-rose-500 ml-1">*</span>
               </Label>
               <Select
                 value={paymentFormData.payment_type}
@@ -150,7 +171,7 @@ export function AddPaymentModal({
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
                 {t('payments.invoiceName')}
-                <span className="text-red-500 ml-1">*</span>
+                <span className="text-rose-500 ml-1">*</span>
               </Label>
               <Input
                 type="text"
@@ -166,7 +187,7 @@ export function AddPaymentModal({
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t('payments.paymentPlan')}
-                    <span className="text-red-500 ml-1">*</span>
+                    <span className="text-rose-500 ml-1">*</span>
                   </Label>
                   <Select
                     value={paymentFormData.recurring_template_id}
@@ -188,7 +209,7 @@ export function AddPaymentModal({
                 {/* Payment Plan Information */}
                 {paymentFormData.recurring_template_id && (
                   <div className="space-y-2">
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="bg-sky-50 border border-sky-200 rounded-lg p-4">
                       {(() => {
                         const selectedTemplate = paymentTemplates.find(t => t.id === paymentFormData.recurring_template_id)
                         if (!selectedTemplate) return null
@@ -215,14 +236,14 @@ export function AddPaymentModal({
 
                         return (
                           <div className="space-y-2">
-                            <h4 className="font-medium text-blue-900">{selectedTemplate.name}</h4>
+                            <h4 className="font-medium text-sky-900">{selectedTemplate.name}</h4>
                             <div className="grid grid-cols-2 gap-4 text-sm">
                               <div>
                                 <span className="text-blue-700 font-medium">{t('payments.amount')}:</span>
                                 <p className="text-blue-800">₩{selectedTemplate.amount.toLocaleString()}</p>
                               </div>
                               <div>
-                                <span className="text-blue-700 font-medium">일정:</span>
+                                <span className="text-blue-700 font-medium">{t('payments.scheduleLabel')}:</span>
                                 <p className="text-blue-800">{getRecurrenceText()}</p>
                               </div>
                             </div>
@@ -244,7 +265,7 @@ export function AddPaymentModal({
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t('common.students')}
-                    <span className="text-red-500 ml-1">*</span>
+                    <span className="text-rose-500 ml-1">*</span>
                   </Label>
                   {paymentFormData.recurring_template_id && (() => {
                     const hiddenStudentsCount = students.filter(student => {
@@ -256,7 +277,7 @@ export function AddPaymentModal({
 
                     if (hiddenStudentsCount > 0) {
                       return (
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
                           <p className="text-xs text-blue-700">
                             {t('payments.studentsHiddenDueToExistingEnrollment', { count: hiddenStudentsCount })}
                           </p>
@@ -310,9 +331,9 @@ export function AddPaymentModal({
                               <div key={student.user_id} className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white">
                                 <div className="flex items-center gap-3">
                                   <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
-                                    <input
-                                      type="checkbox"
+                                    <TableCheckbox
                                       checked={isSelected}
+                                      ariaLabel={student.name}
                                       onChange={() => {
                                         const updatedSelectedStudents = isSelected
                                           ? paymentFormData.selected_students.filter(id => id !== student.user_id)
@@ -321,7 +342,6 @@ export function AddPaymentModal({
                                         if (isSelected) delete updatedOverrides[student.user_id]
                                         setPaymentFormData(prev => ({ ...prev, selected_students: updatedSelectedStudents, student_amount_overrides: updatedOverrides }));
                                       }}
-                                      className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
                                     />
                                     <div className="flex-1 min-w-0 relative">
                                       <div className="flex items-center justify-between gap-2">
@@ -348,11 +368,13 @@ export function AddPaymentModal({
 
                                   {isSelected && (
                                     <label className="flex items-center gap-1 cursor-pointer shrink-0">
-                                      <input type="checkbox" checked={hasAmountOverride || false}
-                                        onChange={(e) => {
-                                          setPaymentFormData(prev => ({ ...prev, student_amount_overrides: { ...prev.student_amount_overrides, [student.user_id]: { enabled: e.target.checked, amount: e.target.checked ? (prev.student_amount_overrides[student.user_id]?.amount || '') : '' } } }))
+                                      <TableCheckbox
+                                        checked={hasAmountOverride || false}
+                                        ariaLabel={String(t('payments.amount'))}
+                                        onChange={() => {
+                                          const next = !hasAmountOverride
+                                          setPaymentFormData(prev => ({ ...prev, student_amount_overrides: { ...prev.student_amount_overrides, [student.user_id]: { enabled: next, amount: next ? (prev.student_amount_overrides[student.user_id]?.amount || '') : '' } } }))
                                         }}
-                                        className="w-4 h-4 text-primary border-border rounded focus:ring-1 focus:ring-primary focus:outline-none"
                                       />
                                       <span className="text-xs font-medium text-gray-600">₩</span>
                                     </label>
@@ -412,7 +434,7 @@ export function AddPaymentModal({
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t('payments.amount')}
-                    <span className="text-red-500 ml-1">*</span>
+                    <span className="text-rose-500 ml-1">*</span>
                   </Label>
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium">₩</span>
@@ -426,7 +448,7 @@ export function AddPaymentModal({
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t('common.students')}
-                    <span className="text-red-500 ml-1">*</span>
+                    <span className="text-rose-500 ml-1">*</span>
                   </Label>
                   <div className="border border-border rounded-lg bg-gray-50 p-4">
                     {studentsLoading ? (
@@ -470,7 +492,9 @@ export function AddPaymentModal({
                               <div key={student.user_id} className="border border-gray-200 rounded-lg p-3 hover:border-primary hover:shadow-sm transition-all bg-white">
                                 <div className="flex items-center gap-3">
                                   <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
-                                    <input type="checkbox" checked={isSelected}
+                                    <TableCheckbox
+                                      checked={isSelected}
+                                      ariaLabel={student.name}
                                       onChange={() => {
                                         const updatedSelectedStudents = isSelected
                                           ? paymentFormData.selected_students.filter(id => id !== student.user_id)
@@ -480,7 +504,6 @@ export function AddPaymentModal({
                                         if (isSelected) { delete updatedAmountOverrides[student.user_id]; delete updatedDiscountOverrides[student.user_id] }
                                         setPaymentFormData(prev => ({ ...prev, selected_students: updatedSelectedStudents, student_amount_overrides: updatedAmountOverrides, student_discount_overrides: updatedDiscountOverrides }));
                                       }}
-                                      className="w-4 h-4 text-primary border-border rounded focus:ring-0 focus:outline-none hover:border-border focus:border-border"
                                     />
                                     <div className="flex-1 min-w-0 relative">
                                       <div className="flex items-center justify-between gap-2">
@@ -507,11 +530,13 @@ export function AddPaymentModal({
 
                                   {isSelected && (
                                     <label className="flex items-center gap-1 cursor-pointer shrink-0">
-                                      <input type="checkbox" checked={hasDiscount || false}
-                                        onChange={(e) => {
-                                          setPaymentFormData(prev => ({ ...prev, student_discount_overrides: { ...prev.student_discount_overrides, [student.user_id]: { enabled: e.target.checked, amount: e.target.checked ? (prev.student_discount_overrides[student.user_id]?.amount || '') : '', reason: e.target.checked ? (prev.student_discount_overrides[student.user_id]?.reason || '') : '' } } }))
+                                      <TableCheckbox
+                                        checked={hasDiscount || false}
+                                        ariaLabel={String(t('payments.discountAmount') || 'Discount')}
+                                        onChange={() => {
+                                          const next = !hasDiscount
+                                          setPaymentFormData(prev => ({ ...prev, student_discount_overrides: { ...prev.student_discount_overrides, [student.user_id]: { enabled: next, amount: next ? (prev.student_discount_overrides[student.user_id]?.amount || '') : '', reason: next ? (prev.student_discount_overrides[student.user_id]?.reason || '') : '' } } }))
                                         }}
-                                        className="w-4 h-4 text-primary border-border rounded focus:ring-1 focus:ring-primary focus:outline-none"
                                       />
                                       <span className="text-xs font-medium text-gray-600">₩</span>
                                     </label>
@@ -588,10 +613,10 @@ export function AddPaymentModal({
                 </div>
 
                 {paymentFormData.discount_amount && parseFloat(paymentFormData.discount_amount) > 0 && paymentFormData.amount && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="bg-sky-50 border border-sky-200 rounded-lg p-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-blue-900">{t('payments.finalPrice')}</span>
-                      <span className="text-lg font-bold text-blue-900">
+                      <span className="text-sm font-medium text-sky-900">{t('payments.finalPrice')}</span>
+                      <span className="text-lg font-bold text-sky-900">
                         ₩{(parseFloat(paymentFormData.amount) - parseFloat(paymentFormData.discount_amount)).toLocaleString()}
                       </span>
                     </div>
@@ -601,7 +626,7 @@ export function AddPaymentModal({
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
                     {t('payments.dueDate')}
-                    <span className="text-red-500 ml-1">*</span>
+                    <span className="text-rose-500 ml-1">*</span>
                   </Label>
                   <DateInput value={paymentFormData.due_date} onChange={(value) => setPaymentFormData(prev => ({ ...prev, due_date: value }))} />
                 </div>
@@ -653,39 +678,6 @@ export function AddPaymentModal({
               </div>
             )}
           </form>
-        </div>
-
-        <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-          <Button variant="outline" onClick={onClose} className="flex-1 mr-3">
-            {t('common.cancel')}
-          </Button>
-          <Button
-            onClick={handleAddPayment}
-            disabled={
-              isCreating || isSaving || !paymentFormData.invoice_name ||
-              (paymentFormData.payment_type === 'one_time' && (
-                !paymentFormData.amount || !paymentFormData.due_date || paymentFormData.selected_students.length === 0 ||
-                paymentFormData.selected_students.some(studentId => {
-                  const discountOverride = paymentFormData.student_discount_overrides[studentId]
-                  const overrideAmount = discountOverride?.enabled && discountOverride?.amount ? parseFloat(discountOverride.amount) : parseFloat(paymentFormData.amount || '0')
-                  const baseAmount = parseFloat(paymentFormData.amount || '0')
-                  return overrideAmount < 0 || overrideAmount > baseAmount
-                })
-              )) ||
-              (paymentFormData.payment_type === 'recurring' && (
-                !paymentFormData.recurring_template_id || paymentFormData.selected_students.length === 0
-              ))
-            }
-            className="flex-1"
-          >
-            {isCreating ? (
-              <><Loader2 className="h-4 w-4 animate-spin mr-2" />{t('common.creating')}</>
-            ) : (
-              t('payments.addPayment')
-            )}
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

@@ -1,28 +1,49 @@
 "use client"
 
 import { useState, useEffect, useRef, useMemo } from 'react'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import {
   Search,
-  Download
+  Download,
+  Grid3X3,
+  Rows3,
+  User,
+  Mail,
+  Home,
+  School,
+  BookOpen,
+  Edit,
+  UserCheck,
+  UserX,
+  UserPlus,
 } from 'lucide-react'
+import { DashboardCard, BulkActionBar } from '@/components/ui/dashboard'
+import { StatusPill } from '@/components/ui/status-pill'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { useSubscriptionLimits } from '@/hooks/useSubscriptionLimits'
 import { useStudentData, Student, invalidateStudentsCache } from '@/hooks/useStudentData'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useStudentActions } from '@/hooks/useStudentActions'
 import { usePageShortcuts, studentPageShortcuts } from '@/hooks/usePageShortcuts'
 import { StudentsTable } from './StudentsTable'
-import { StudentsEditModal } from './StudentsEditModal'
-import { StudentsDeleteModal } from './StudentsDeleteModal'
-import { StudentsViewClassroomsModal } from './StudentsViewClassroomsModal'
-import { StudentsClassroomDetailsModal } from './StudentsClassroomDetailsModal'
-import { StudentsViewFamilyModal } from './StudentsViewFamilyModal'
-import { DataExportModal } from '@/components/ui/common/DataExportModal'
-import { DataImportModal } from '@/components/ui/common/DataImportModal'
+
+// Modals are conditionally rendered — dynamic-import keeps the ~700
+// lines of modal JSX (plus the 521-line DataImportModal with its tabs/
+// progress/alert deps) out of the page chunk until the user opens one.
+import dynamic from 'next/dynamic'
+const StudentsEditModal = dynamic(() => import('./StudentsEditModal').then(m => m.StudentsEditModal), { ssr: false })
+const StudentsDeleteModal = dynamic(() => import('./StudentsDeleteModal').then(m => m.StudentsDeleteModal), { ssr: false })
+const StudentsViewClassroomsModal = dynamic(() => import('./StudentsViewClassroomsModal').then(m => m.StudentsViewClassroomsModal), { ssr: false })
+const StudentsClassroomDetailsModal = dynamic(() => import('./StudentsClassroomDetailsModal').then(m => m.StudentsClassroomDetailsModal), { ssr: false })
+const StudentsViewFamilyModal = dynamic(() => import('./StudentsViewFamilyModal').then(m => m.StudentsViewFamilyModal), { ssr: false })
+const DataExportModal = dynamic(() => import('@/components/ui/common/DataExportModal').then(m => m.DataExportModal), { ssr: false })
+const DataImportModal = dynamic(() => import('@/components/ui/common/DataImportModal').then(m => m.DataImportModal), { ssr: false })
 import { ImportResult } from '@/hooks/useDataImport'
 
 interface StudentsPageOriginalUIProps {
@@ -60,7 +81,17 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   })
 
   const [searchQuery, setSearchQuery] = useState('')
+  const [viewMode, setViewMode] = useState<'card' | 'table'>('table')
   const [selectedStudents, setSelectedStudents] = useState<Set<string>>(new Set())
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
+
+  // Manager keyboard shortcuts: `/` → search, `Esc` → clear selection.
+  useListPageShortcuts({
+    searchInputRef,
+    onEscape: selectedStudents.size > 0
+      ? () => setSelectedStudents(new Set())
+      : undefined,
+  })
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
   const [showStatusFilter, setShowStatusFilter] = useState(false)
@@ -400,49 +431,33 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [dropdownOpen])
 
-  // Loading skeleton
+  // Loading skeleton — matches DataTable chrome used by sessions / payments / etc.
   const TableSkeleton = () => (
-    <div className="animate-pulse">
-      <div className="overflow-x-auto min-h-[640px] flex flex-col">
-        <table className="w-full min-w-[800px]">
-          <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
-              {[...Array(6)].map((_, i) => (
-                <th key={i} className="text-left p-4">
-                  <div className="h-4 bg-gray-300 rounded w-16"></div>
-                </th>
+    <div className="overflow-x-auto min-h-[640px]">
+      <table className="w-full min-w-[800px] text-sm">
+        <thead className="bg-gray-50/60">
+          <tr>
+            <th className="w-10 px-4 py-3"><div className="h-3 w-3 bg-gray-200 rounded" /></th>
+            {['w-20', 'w-16', 'w-16', 'w-16', 'w-12', 'w-8'].map((w, i) => (
+              <th key={i} className="px-4 py-3 text-left">
+                <div className={`h-3 ${w} bg-gray-200 rounded`} />
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-100">
+          {[...Array(10)].map((_, i) => (
+            <tr key={i} className="animate-pulse">
+              <td className="px-4 py-3"><div className="h-4 w-4 bg-gray-100 rounded" /></td>
+              {[...Array(6)].map((_, j) => (
+                <td key={j} className="px-4 py-3">
+                  <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
+                </td>
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {[...Array(8)].map((_, i) => (
-              <tr key={i} className="border-b border-gray-100">
-                <td className="p-4">
-                  <div className="h-4 bg-gray-200 rounded w-4"></div>
-                </td>
-                <td className="p-4">
-                  <div className="space-y-2">
-                    <div className="h-4 bg-gray-200 rounded w-32"></div>
-                    <div className="h-3 bg-gray-200 rounded w-24"></div>
-                  </div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-20"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-24"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-20"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-4 bg-gray-200 rounded w-4"></div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 
@@ -451,7 +466,8 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("students.title")}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.students")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("students.title")}</h1>
             <p className="text-gray-500">{t("students.description")}</p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -465,13 +481,21 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           </div>
         </div>
 
+        {/* Toggle Skeleton */}
+        <div className="flex justify-end mb-4 animate-pulse">
+          <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
-        
-        <Card className="overflow-hidden">
+
+        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
           <TableSkeleton />
-        </Card>
+        </div>
       </div>
     )
   }
@@ -481,13 +505,14 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("students.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.students")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("students.title")}</h1>
           <p className="text-gray-500">{t("students.description")}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           {!limitsLoading && totalUserLimit > 0 && (
             <span className={`text-xs sm:text-sm font-medium px-2.5 py-1 rounded-full ${
-              canAddUsers ? 'bg-gray-100 text-gray-600' : 'bg-red-100 text-red-700'
+              canAddUsers ? 'bg-gray-100 text-gray-600' : 'bg-rose-50 text-rose-700'
             }`}>
               {t('subscription.usersCount', { current: totalUsers, limit: totalUserLimit })}
             </span>
@@ -515,44 +540,71 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         </div>
       </div>
 
+      {/* View Mode Toggle */}
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.tableView"))}
+          >
+            <Rows3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => { setViewMode('card'); setSelectedStudents(new Set()) }}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.cardView"))}
+          >
+            <Grid3X3 className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
+          ref={searchInputRef}
           type="text"
           placeholder={String(t("students.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
         />
+        <SearchKbdHint />
       </div>
 
-      {/* Bulk Actions Menu */}
+      {/* Bulk Action Bar — uses shared BulkActionBar primitive for visual consistency
+          with sessions / assignments / classrooms / attendance / payments pages. */}
       {selectedStudents.size > 0 && (
-        <Card className="mb-4 p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium text-gray-700">
-                {selectedStudents.size}개 선택됨
-              </span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setSelectedStudents(new Set())}
-              >
-                {t("students.clearSelection")}
-              </Button>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button onClick={() => handleBulkStatusUpdate(true)} size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                {t("students.makeActive")}
-              </Button>
-              <Button onClick={() => handleBulkStatusUpdate(false)} size="sm" className="bg-red-600 hover:bg-red-700 text-white">
-                {t("students.makeInactive")}
-              </Button>
-            </div>
-          </div>
-        </Card>
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedStudents.size}
+            onClear={() => setSelectedStudents(new Set())}
+          >
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleBulkStatusUpdate(true)}
+            >
+              <UserCheck className="w-3.5 h-3.5 mr-1.5" />
+              {t("students.makeActive")}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleBulkStatusUpdate(false)}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              <UserX className="w-3.5 h-3.5 mr-1.5" />
+              {t("students.makeInactive")}
+            </Button>
+          </BulkActionBar>
+        </div>
       )}
 
       {/* Status Filter Tabs */}
@@ -598,8 +650,117 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         </button>
       </div>
 
-      {/* Students Table */}
-      <Card className="overflow-hidden">
+      {/* Students Content — card or table */}
+      {viewMode === 'card' ? (
+        tableLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => (
+              <Card key={i} className="!gap-0 !py-0 overflow-hidden flex flex-col h-full">
+                <div className="h-1 w-full bg-gray-200" />
+                <div className="p-4 sm:p-5 flex flex-col flex-1 animate-pulse">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                      <div className="h-3 w-16 bg-gray-200 rounded" />
+                      <div className="h-5 w-3/4 bg-gray-200 rounded" />
+                      <div className="h-3 w-1/2 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                  </div>
+                  <div className="h-3 w-2/3 bg-gray-200 rounded" />
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : filteredStudents.length === 0 ? (
+          <Card>
+            <EmptyState
+              icon={UserPlus}
+              title={String(t("students.noStudentsFound"))}
+              description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('students.getStartedFirstStudent'))}
+            />
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredStudents.map((student) => (
+              <DashboardCard
+                key={student.user_id}
+                paused={!student.active}
+                accentColor={student.active ? '#10b981' : '#9ca3af'}
+                statusLabel={student.active ? t('students.active') : t('students.inactive')}
+                statusToneClass={student.active ? 'text-emerald-600' : 'text-gray-500'}
+                title={student.name}
+                subtitle={
+                  <>
+                    <Mail className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                    <span className="truncate">{student.email}</span>
+                  </>
+                }
+                actions={
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                    onClick={() => handleViewClassroomsClick(student)}
+                    title={String(t("students.viewClassrooms"))}
+                  >
+                    <BookOpen className="w-4 h-4" strokeWidth={1.75} />
+                  </Button>
+                }
+                metrics={[
+                  {
+                    label: t('students.school') as string,
+                    value: student.school_name && student.school_name.trim() ? student.school_name : '—',
+                  },
+                  {
+                    label: t('students.family') as string,
+                    value: student.family_name && student.family_name.trim() ? student.family_name : '—',
+                  },
+                  {
+                    label: t('navigation.classrooms') as string,
+                    value: String(student.classroom_count || 0),
+                  },
+                ]}
+                meta={
+                  student.phone ? (
+                    <div className="flex items-start gap-1.5">
+                      <User className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                      <span>{student.phone}</span>
+                    </div>
+                  ) : null
+                }
+                footerActions={
+                  <>
+                    <Button
+                      variant="outline"
+                      className="w-full text-xs sm:text-sm h-9"
+                      onClick={() => handleViewFamilyClick(student)}
+                    >
+                      <Home className="w-3.5 h-3.5 mr-1.5" />
+                      {t("students.viewFamily")}
+                    </Button>
+                    <Button
+                      className="w-full text-xs sm:text-sm h-9"
+                      variant={student.active ? 'outline' : 'default'}
+                      onClick={() => student.active ? handleDeleteClick(student) : handleActivateClick(student)}
+                    >
+                      {student.active ? (
+                        <><UserX className="w-3.5 h-3.5 mr-1.5" />{t("students.makeInactive")}</>
+                      ) : (
+                        <><UserCheck className="w-3.5 h-3.5 mr-1.5" />{t("students.makeActive")}</>
+                      )}
+                    </Button>
+                  </>
+                }
+              />
+            ))}
+          </div>
+        )
+      ) : (
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         {tableLoading ? (
           <TableSkeleton />
         ) : (
@@ -611,6 +772,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           sortDirection={sortDirection}
           statusFilter={statusFilter}
           showStatusFilter={showStatusFilter}
+          searchQuery={searchQuery}
           dropdownOpen={dropdownOpen}
           dropdownButtonRefs={dropdownButtonRefs}
           statusFilterRef={statusFilterRef}
@@ -680,7 +842,8 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
         )}
         </>
         )}
-      </Card>
+      </div>
+      )}
 
       {/* Modals */}
       <StudentsEditModal

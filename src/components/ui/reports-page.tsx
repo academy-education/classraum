@@ -5,6 +5,11 @@ import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { TableCheckbox, BulkActionBar } from '@/components/ui/dashboard'
+import { useCreateShortcut } from '@/hooks/useCreateShortcut'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { useConfirm } from '@/hooks/useConfirm'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { Input } from '@/components/ui/input'
 import {
   Search,
@@ -29,38 +34,30 @@ import {
   Filter,
   Save,
   AlertTriangle,
-  Loader2
+  Loader2,
+  School
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Label } from '@/components/ui/label'
-import { sanitizeRichText } from './RichTextEditor'
+// Import from the standalone sanitize module — importing from
+// './RichTextEditor' would statically pull tiptap (~200kB) into this
+// page's bundle and defeat the dynamic import below.
+import { sanitizeRichText } from '@/lib/sanitize-rich-text'
 
 const RichTextEditor = dynamic(
   () => import('./RichTextEditor').then(mod => ({ default: mod.RichTextEditor })),
   { ssr: false, loading: () => <div className="h-32 bg-gray-100 rounded animate-pulse" /> }
 )
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { SubjectAndClassroomSelector } from '@/components/ui/reports/SubjectAndClassroomSelector'
 import { useAuth } from '@/contexts/AuthContext'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
-// Cache invalidation function for reports
-export const invalidateReportsCache = (academyId: string) => {
-  // Clear all page caches for this academy (reports-academyId-page1, page2, etc.)
-  // Include both manager and teacher role caches
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
-
-  keys.forEach(key => {
-    if (key.startsWith(`reports-${academyId}-`) && key.includes('-page')) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
+import { invalidateReportsCache } from '@/lib/cache'
+export { invalidateReportsCache }
 
 interface ReportData {
   id: string
@@ -322,19 +319,19 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Draft':
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-50 text-gray-700'
       case 'Finished':
-        return 'bg-blue-100 text-blue-800'  
+        return 'bg-sky-50 text-sky-700'  
       case 'Approved':
-        return 'bg-green-100 text-green-800'
+        return 'bg-emerald-50 text-emerald-700'
       case 'Sent':
         return 'bg-purple-100 text-purple-800'
       case 'Viewed':
         return 'bg-indigo-100 text-indigo-800'
       case 'Error':
-        return 'bg-red-100 text-red-800'
+        return 'bg-rose-50 text-rose-700'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-50 text-gray-700'
     }
   }
 
@@ -364,20 +361,22 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       case 'Finished':
         return <FileCheck className="w-4 h-4 text-blue-600" />
       case 'Approved':
-        return <CheckCircle className="w-4 h-4 text-green-600" />
+        return <CheckCircle className="w-4 h-4 text-emerald-600" />
       case 'Sent':
-        return <Send className="w-4 h-4 text-purple-600" />
+        return <Send className="w-4 h-4 text-violet-600" />
       case 'Viewed':
         return <Eye className="w-4 h-4 text-indigo-600" />
       case 'Error':
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-rose-600" />
       default:
         return <FileText className="w-4 h-4 text-gray-600" />
     }
   }
 
   const [reports, setReports] = useState<ReportData[]>([])
-  const [loading, setLoading] = useState(false)
+  // Start `loading=true` so the first render shows the skeleton rather than
+  // briefly flashing the EmptyState while userRole + the first fetch resolve.
+  const [loading, setLoading] = useState(true)
   const [initialized, setInitialized] = useState(false)
   const [loadingSubjects, setLoadingSubjects] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
@@ -399,6 +398,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
   const [students, setStudents] = useState<Student[]>([])
   const [showAddReportModal, setShowAddReportModal] = useState(false)
+
+  // Wire 'n' shortcut + command-palette "Create new" → open add report modal.
+  useCreateShortcut({
+    onTrigger: () => setShowAddReportModal(true),
+    enabled: !showAddReportModal,
+  })
+  // `/` focuses search wired below at the searchInputRef declaration.
+
   const [assignmentCategories, setAssignmentCategories] = useState<AssignmentCategory[]>([])
   const [, setStudentClassrooms] = useState<Classroom[]>([])
   const [subjects, setSubjects] = useState<{ id: string; name: string }[]>([])
@@ -474,6 +481,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       totalStudents: number
       studentRank: number
     }>
+    // Per-assignment grade entries — populated when the report includes the
+    // individual breakdown chart. Each row represents one assignment with
+    // its score and completion date.
+    individualGrades?: Array<{
+      score: number | null
+      completedDate: string | Date
+      [key: string]: unknown
+    }>
   } | null>(null)
   const [loadingReportData, setLoadingReportData] = useState(false)
   
@@ -493,7 +508,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const [showStatusFilter, setShowStatusFilter] = useState(false)
   const statusFilterRef = useRef<HTMLDivElement>(null)
   const streamingAbortControllerRef = useRef<AbortController | null>(null)
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
+  // `/` focuses search (composes cleanly with useCreateShortcut above).
+  useListPageShortcuts({ searchInputRef })
   const [selectedRows, setSelectedRows] = useState<string[]>([])
+  const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false)
+  const [bulkUpdating, setBulkUpdating] = useState(false)
   const [selectAll, setSelectAll] = useState(false)
 
   const fetchStudents = useCallback(async () => {
@@ -1585,7 +1605,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Show success feedback to user
       // You can replace this with a toast notification system
       const successMessage = document.createElement('div')
-      successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
+      successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-emerald-700 px-4 py-3 rounded z-50'
       successMessage.textContent = String(t('reports.feedbackSavedSuccessfully'))
       document.body.appendChild(successMessage)
       
@@ -1604,7 +1624,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       // Show error message to user
       const errorMessage = document.createElement('div')
-      errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50'
+      errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-rose-700 px-4 py-3 rounded z-50'
       errorMessage.textContent = String(t('reports.feedbackSaveError'))
       document.body.appendChild(errorMessage)
       
@@ -1912,7 +1932,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             console.error('Failed to save AI feedback to database:', saveError)
             // Show error to user but don't break the flow
             const errorMessage = document.createElement('div')
-            errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50'
+            errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-rose-700 px-4 py-3 rounded z-50'
             errorMessage.textContent = 'AI feedback generated but failed to save to database'
             document.body.appendChild(errorMessage)
             setTimeout(() => {
@@ -1931,7 +1951,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       // Show success message
       const successMessage = document.createElement('div')
-      successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
+      successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-emerald-700 px-4 py-3 rounded z-50'
       successMessage.textContent = String(t('reports.aiGeneratedSuccessfully'))
       document.body.appendChild(successMessage)
       
@@ -1956,7 +1976,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       // Show error message
       const errorMessage = document.createElement('div')
-      errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50 max-w-md'
+      errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-rose-700 px-4 py-3 rounded z-50 max-w-md'
       errorMessage.textContent = String(errorText)
       document.body.appendChild(errorMessage)
       
@@ -1970,22 +1990,34 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }
   }, [selectedTemplate, selectedLanguage, formData, reportData, t, assignmentCategories, classrooms, students, subjects, userId, userName, currentReportId, academyId])
 
-  const handleCancelEditingFeedback = useCallback(() => {
+  const confirm = useConfirm()
+
+  const handleCancelEditingFeedback = useCallback(async () => {
     if (feedbackHasChanges) {
-      const confirmed = window.confirm(String(t('reports.unsavedChangesWarning')))
-      if (!confirmed) return
+      const ok = await confirm({
+        title: String(t('reports.unsavedChangesWarning')),
+        variant: 'warning',
+        confirmText: String(t('common.discard')),
+        cancelText: String(t('common.keepEditing')),
+      })
+      if (!ok) return
     }
     setEditableFeedback(formData.feedback || '')
     setIsEditingFeedback(false)
     setFeedbackHasChanges(false)
-  }, [formData.feedback, feedbackHasChanges, t])
+  }, [formData.feedback, feedbackHasChanges, t, confirm])
 
-  const handleClosePreviewModal = useCallback(() => {
+  const handleClosePreviewModal = useCallback(async () => {
     if (isEditingFeedback && feedbackHasChanges) {
-      const confirmed = window.confirm(String(t('reports.unsavedChangesWarning')))
-      if (!confirmed) return
+      const ok = await confirm({
+        title: String(t('reports.unsavedChangesWarning')),
+        variant: 'warning',
+        confirmText: String(t('common.discard')),
+        cancelText: String(t('common.keepEditing')),
+      })
+      if (!ok) return
     }
-    
+
     // Only reset editing state, don't clear form data
     setIsEditingFeedback(false)
     setFeedbackHasChanges(false)
@@ -1998,7 +2030,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       setAiFeedbackCreatedAt('')
       setAiFeedbackTemplate('')
     }
-  }, [isEditingFeedback, feedbackHasChanges, currentReportId, t])
+  }, [isEditingFeedback, feedbackHasChanges, currentReportId, t, confirm])
 
   const resetForm = () => {
     setFormData({
@@ -2335,6 +2367,51 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }
   }
 
+  // ===== Bulk actions =====
+  const handleBulkStatusUpdate = async (newStatus: string) => {
+    if (selectedRows.length === 0) return
+    setBulkUpdating(true)
+    try {
+      const { error } = await supabase
+        .from('student_reports')
+        .update({ status: newStatus, updated_at: new Date().toISOString() })
+        .in('id', selectedRows)
+      if (error) throw error
+      setReports(prev => prev.map(r => selectedRows.includes(r.id) ? { ...r, status: newStatus as ReportData['status'] } : r))
+      showSuccessToast(t('reports.bulkStatusSuccess', { count: selectedRows.length }) as string)
+      invalidateReportsCache(academyId)
+    } catch (err) {
+      console.error('[Reports] Bulk status update failed:', err)
+      showErrorToast(t('reports.bulkStatusError') as string)
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
+  const handleBulkDelete = async () => {
+    if (selectedRows.length === 0) return
+    setBulkUpdating(true)
+    try {
+      const { error } = await supabase
+        .from('student_reports')
+        .delete()
+        .in('id', selectedRows)
+      if (error) throw error
+      setReports(prev => prev.filter(r => !selectedRows.includes(r.id)))
+      setTotalCount(prev => Math.max(0, prev - selectedRows.length))
+      showSuccessToast(t('reports.bulkDeleteSuccess', { count: selectedRows.length }) as string)
+      invalidateReportsCache(academyId)
+      setSelectedRows([])
+      setSelectAll(false)
+      setShowBulkDeleteConfirm(false)
+    } catch (err) {
+      console.error('[Reports] Bulk delete failed:', err)
+      showErrorToast(t('reports.bulkDeleteError') as string)
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
   const renderSortIcon = (field: string) => {
     const isActiveField = sortField === field
     const isAscending = isActiveField && sortDirection === 'asc'
@@ -2440,76 +2517,33 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       })
   }, [reports, searchQuery, statusFilter, sortField, sortDirection])
 
+  // Loading skeleton — matches DataTable chrome used by sessions / payments / etc.
   const TableSkeleton = () => (
-    <div className="animate-pulse">
-      <div className="overflow-x-auto min-h-[640px] flex flex-col">
-        <table className="w-full min-w-[900px]">
-          <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="text-left p-4">
-                <div className="h-4 bg-gray-300 rounded w-4"></div>
+    <div className="overflow-x-auto min-h-[640px]">
+      <table className="w-full min-w-[900px] text-sm">
+        <thead className="bg-gray-50/60">
+          <tr>
+            <th className="w-10 px-4 py-3"><div className="h-3 w-3 bg-gray-200 rounded" /></th>
+            {['w-20', 'w-16', 'w-16', 'w-16', 'w-16', 'w-12', 'w-8'].map((w, i) => (
+              <th key={i} className="px-4 py-3 text-left">
+                <div className={`h-3 ${w} bg-gray-200 rounded`} />
               </th>
-              <th className="text-left p-4">
-                <div className="h-4 bg-gray-300 rounded w-24"></div>
-              </th>
-              <th className="text-left p-4">
-                <div className="h-4 bg-gray-300 rounded w-20"></div>
-              </th>
-              <th className="text-left p-4">
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
-              </th>
-              <th className="text-left p-4">
-                <div className="h-4 bg-gray-300 rounded w-20"></div>
-              </th>
-              <th className="text-left p-4">
-                <div className="h-4 bg-gray-300 rounded w-20"></div>
-              </th>
-              <th className="text-left p-4">
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
-              </th>
-              <th className="text-left p-4">
-                <div className="h-4 bg-gray-300 rounded w-8"></div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...Array(8)].map((_, i) => (
-              <tr key={i} className="border-b border-gray-100">
-                <td className="p-4">
-                  <div className="h-4 bg-gray-200 rounded w-4"></div>
-                </td>
-                <td className="p-4">
-                  <div className="space-y-2">
-                    <div className="h-4 bg-gray-200 rounded w-32"></div>
-                    <div className="h-3 bg-gray-200 rounded w-24"></div>
-                  </div>
-                </td>
-                <td className="p-4">
-                  <div className="space-y-1">
-                    <div className="h-4 bg-gray-200 rounded w-28"></div>
-                    <div className="h-3 bg-gray-200 rounded w-36"></div>
-                  </div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-20"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-16"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-16"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-16"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-4 bg-gray-200 rounded w-4"></div>
-                </td>
-              </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-100">
+          {[...Array(10)].map((_, i) => (
+            <tr key={i} className="animate-pulse">
+              <td className="px-4 py-3"><div className="h-4 w-4 bg-gray-100 rounded" /></td>
+              {[...Array(7)].map((_, j) => (
+                <td key={j} className="px-4 py-3">
+                  <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 
@@ -2518,7 +2552,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("reports.title")}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.reports")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("reports.title")}</h1>
             <p className="text-gray-500">{t('reports.description')}</p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -2532,10 +2567,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
-        
-        <Card className="overflow-hidden">
+
+        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
           <TableSkeleton />
-        </Card>
+        </div>
       </div>
     )
   }
@@ -2544,7 +2579,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     <div className="p-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("reports.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.reports")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("reports.title")}</h1>
           <p className="text-gray-500">{t('reports.description')}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
@@ -2570,31 +2606,67 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
+            ref={searchInputRef}
             type="text"
             placeholder={String(t('reports.searchPlaceholder'))}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
+        <SearchKbdHint />
         </div>
       </div>
 
-      <Card className="overflow-hidden">
+      {/* Bulk Action Bar — shows when reports are selected. */}
+      {selectedRows.length > 0 && (
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedRows.length}
+            onClear={() => { setSelectedRows([]); setSelectAll(false) }}
+          >
+            <Select
+              value=""
+              onValueChange={(value) => handleBulkStatusUpdate(value)}
+              disabled={bulkUpdating}
+            >
+              <SelectTrigger className="h-8 w-auto min-w-[140px] rounded-md border border-border bg-white text-sm shadow-sm focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
+                <SelectValue placeholder={String(t('reports.bulkSetStatus'))} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Draft">{t('reports.draft')}</SelectItem>
+                <SelectItem value="Finished">{t('reports.finished')}</SelectItem>
+                <SelectItem value="Approved">{t('reports.approved')}</SelectItem>
+                <SelectItem value="Sent">{t('reports.sent')}</SelectItem>
+                <SelectItem value="Viewed">{t('reports.viewed')}</SelectItem>
+                <SelectItem value="Error">{t('reports.error')}</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkUpdating}
+              onClick={() => setShowBulkDeleteConfirm(true)}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              {t('common.delete')}
+            </Button>
+          </BulkActionBar>
+        </div>
+      )}
+
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
           <table className="w-full min-w-[900px]">
-            <thead>
-              <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap w-12">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="rounded border-gray-300 accent-primary"
-                      checked={selectAll}
-                      onChange={handleSelectAll}
-                    />
-                  </div>
+            <thead className="bg-gray-50/60">
+              <tr>
+                <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap w-10">
+                  <TableCheckbox
+                    checked={selectAll}
+                    ariaLabel={String(t('common.selectAll') || 'Select all')}
+                    onChange={() => handleSelectAll()}
+                  />
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[180px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[180px]">
                   <div className="flex items-center gap-2">
                     {t('reports.reportName')}
                     <button onClick={() => handleSort('report_name')} className="text-gray-400 hover:text-primary">
@@ -2602,7 +2674,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.student')}
                     <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -2610,7 +2682,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.school')}
                     <button onClick={() => handleSort('school')} className="text-gray-400 hover:text-primary">
@@ -2618,7 +2690,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.createdDate')}
                     <button onClick={() => handleSort('created_date')} className="text-gray-400 hover:text-primary">
@@ -2626,7 +2698,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     {t('reports.updatedDate')}
                     <button onClick={() => handleSort('updated_date')} className="text-gray-400 hover:text-primary">
@@ -2634,7 +2706,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2 relative">
                     {t('common.status')}
                     <div className="relative z-20" ref={statusFilterRef}>
@@ -2651,7 +2723,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         </svg>
                       </button>
                       {showStatusFilter && (
-                        <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50">
+                        <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50 normal-case tracking-normal font-normal">
                           <button
                             onClick={() => {
                               setStatusFilter('all')
@@ -2720,30 +2792,31 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </div>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap w-20"></th>
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap w-20"></th>
               </tr>
             </thead>
-            <tbody>
-              {loading ? (
-                <tr>
-                  <td colSpan={8} className="p-8 text-center">
-                    <div className="flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                      <span className="ml-2">{t('reports.loadingReports')}</span>
-                    </div>
-                  </td>
-                </tr>
-              ) : !initialized ? (
-                <tr><td colSpan={8}></td></tr>
+            <tbody className="divide-y divide-gray-100">
+              {loading || !initialized ? (
+                // DataTable-style skeleton rows that match other pages
+                [...Array(8)].map((_, i) => (
+                  <tr key={`skeleton-${i}`} className="animate-pulse">
+                    <td className="px-4 py-3"><div className="h-4 w-4 bg-gray-100 rounded" /></td>
+                    {[...Array(7)].map((_, j) => (
+                      <td key={j} className="px-4 py-3">
+                        <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
+                      </td>
+                    ))}
+                  </tr>
+                ))
               ) : filteredReports.length > 0 ? (
                 filteredReports.map((report) => (
-                  <tr key={report.id} className="border-b border-gray-100 hover:bg-gray-50">
+                  <tr key={report.id} className={`transition-colors ${selectedRows.includes(report.id) ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-gray-50'}`}>
                     <td className="p-3 sm:p-4">
-                      <input
-                        type="checkbox"
-                        className="rounded border-gray-300 accent-primary"
+                      <TableCheckbox
                         checked={selectedRows.includes(report.id)}
+                        ariaLabel={String(t('common.selectRow') || 'Select row')}
                         onChange={() => handleRowSelect(report.id)}
+                        onClick={(e) => e.stopPropagation()}
                       />
                     </td>
                     <td className="p-3 sm:p-4">
@@ -2800,7 +2873,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         
                         {dropdownOpen === report.id && (
                           <div 
-                            className="dropdown-menu absolute right-0 top-8 z-50 bg-white rounded-lg border border-gray-300 shadow-xl py-1 min-w-[160px]"
+                            className="dropdown-menu absolute right-0 top-8 z-50 bg-white rounded-xl ring-1 ring-gray-100 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.10)] py-1 min-w-[160px]"
                             style={{ zIndex: 9999 }}
                             onClick={(e) => {
                               e.stopPropagation()
@@ -2907,7 +2980,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                 e.stopPropagation()
                                 handleDeleteClick(report)
                               }}
-                              className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
+                              className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-rose-600"
                             >
                               <Trash2 className="w-4 h-4" />
                               {t('common.delete')}
@@ -2920,14 +2993,21 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={8} className="p-12 text-center">
-                    <div className="flex flex-col items-center">
-                      <FileText className="w-10 h-10 text-gray-400 mx-auto mb-2" />
-                      <h3 className="text-lg font-medium text-gray-900 mb-1">{t('reports.noReportsFound')}</h3>
-                      <p className="text-gray-600">
-                        {searchQuery ? t('common.tryAdjustingSearch') : t('reports.noReportsCreated')}
-                      </p>
-                    </div>
+                  <td colSpan={8}>
+                    <EmptyState
+                      icon={FileText}
+                      title={String(t('reports.noReportsFound'))}
+                      description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('reports.noReportsCreated'))}
+                      // Don't offer "Create" when the user is just searching — that's
+                      // the wrong action there. Only show the CTA on the truly-empty
+                      // (no-search) state, since fresh academies otherwise see a
+                      // dead-end message.
+                      {...(!searchQuery && {
+                        actionLabel: String(t('reports.createReport')),
+                        actionIcon: <Plus className="w-4 h-4" />,
+                        onAction: () => setShowAddReportModal(true),
+                      })}
+                    />
                   </td>
                 </tr>
               )}
@@ -2943,15 +3023,21 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
                 variant="outline"
+                size="sm"
+                className="flex items-center gap-1"
               >
+                <ChevronLeft className="w-4 h-4" />
                 {t("reports.pagination.previous")}
               </Button>
               <Button
                 onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
                 disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
                 variant="outline"
+                size="sm"
+                className="flex items-center gap-1"
               >
                 {t("reports.pagination.next")}
+                <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
@@ -2971,62 +3057,128 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
                   variant="outline"
+                  size="sm"
+                  className="flex items-center gap-1"
                 >
+                  <ChevronLeft className="w-4 h-4" />
                   {t("reports.pagination.previous")}
                 </Button>
                 <Button
                   onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
                   disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
                   variant="outline"
+                  size="sm"
+                  className="flex items-center gap-1"
                 >
                   {t("reports.pagination.next")}
+                  <ChevronRight className="w-4 h-4" />
                 </Button>
               </div>
             </div>
           </div>
         )}
 
-      </Card>
+      </div>
+
+      {/* Bulk Delete Confirmation Modal */}
+      <ModalShell.Confirm
+        isOpen={showBulkDeleteConfirm}
+        onClose={() => setShowBulkDeleteConfirm(false)}
+        onConfirm={handleBulkDelete}
+        title={String(t("reports.bulkDeleteTitle"))}
+        message={String(t("reports.bulkDeleteConfirm", { count: selectedRows.length }))}
+        variant="danger"
+        confirmLabel={bulkUpdating ? String(t("common.deleting")) : String(t("common.delete"))}
+        cancelLabel={String(t("common.cancel"))}
+        loading={bulkUpdating}
+      />
 
       {/* Add Report Modal */}
-      <Modal isOpen={showAddReportModal} onClose={() => {
-        setShowAddReportModal(false)
-        resetForm()
-      }} size="2xl">
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{t('reports.createNewReport')}</h2>
-                <p className="text-gray-500">{t('reports.generateComprehensiveReport')}</p>
-              </div>
+      <ModalShell
+        isOpen={showAddReportModal}
+        onClose={() => {
+          setShowAddReportModal(false)
+          resetForm()
+        }}
+        size="2xl"
+        title={String(t('reports.createNewReport'))}
+        subtitle={String(t('reports.generateComprehensiveReport'))}
+        footer={
+          <ModalShell.Footer justify="between">
+            <Button
+              variant="outline"
+              onClick={() => openPreviewModal(null)}
+              disabled={!formData.student_id || !formData.report_name || !formData.start_date || !formData.end_date}
+              className="flex items-center gap-2"
+            >
+              <Eye className="w-4 h-4" />
+              {t('reports.previewReport')}
+            </Button>
+            <div className="flex items-center gap-3">
               <Button
-                variant="ghost"
-                size="sm"
+                variant="outline"
                 onClick={() => {
                   setShowAddReportModal(false)
                   resetForm()
                 }}
-                className="p-1"
+                disabled={submitting}
               >
-                <X className="w-4 h-4" />
+                {t('common.cancel')}
+              </Button>
+              <Button
+                onClick={handleCreateReport}
+                disabled={isCreating || isSaving}
+                className="bg-primary text-white flex items-center gap-2"
+              >
+                {isCreating ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    {t('common.creating')}
+                  </>
+                ) : (
+                  t('reports.createReport')
+                )}
+                {formData.feedback && (
+                  <div className="w-2 h-2 bg-primary/30 rounded-full" title={String(t('reports.feedbackWillBeSavedOnCreate'))}></div>
+                )}
+              </Button>
+              <Button
+                onClick={handleCreateAndFinishReport}
+                disabled={isCreating || isSaving}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-2"
+              >
+                {isSaving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    {t('reports.finishing')}
+                  </>
+                ) : (
+                  t('reports.createAndFinish')
+                )}
+                {formData.feedback && (
+                  <div className="w-2 h-2 bg-emerald-200 rounded-full" title={String(t('reports.feedbackWillBeSavedOnCreate'))}></div>
+                )}
               </Button>
             </div>
-
-            <div className="flex-1 min-h-0 p-6 overflow-y-auto">
+          </ModalShell.Footer>
+        }
+      >
               <div className="space-y-6">
                 {/* Student Selection */}
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-2">
-                    {t('reports.student')} <span className="text-red-500">*</span>
+                    {t('reports.student')} <span className="text-rose-500">*</span>
                   </label>
                   <div className={`border rounded-lg bg-gray-50 p-4 ${
-                    formErrors.student_id ? 'border-red-500' : 'border-border'
+                    formErrors.student_id ? 'border-rose-500' : 'border-border'
                   }`}>
                     {students.length === 0 ? (
-                      <div className="text-center py-4">
-                        <Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-sm text-gray-500">{t('reports.noStudentsAvailable')}</p>
-                      </div>
+                      <EmptyState
+                        icon={Users}
+                        title={String(t('reports.noStudentsAvailable'))}
+                        size="sm"
+                        variant="subtle"
+                      />
                     ) : (
                       <>
                         <div className="relative mb-3">
@@ -3097,14 +3249,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     )}
                   </div>
                   {formErrors.student_id && (
-                    <p className="mt-1 text-sm text-red-600">{formErrors.student_id}</p>
+                    <p className="mt-1 text-sm text-rose-600">{formErrors.student_id}</p>
                   )}
                 </div>
 
                 {/* Report Title */}
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-2">
-                    {t('reports.reportTitle')} <span className="text-red-500">*</span>
+                    {t('reports.reportTitle')} <span className="text-rose-500">*</span>
                   </label>
                   <Input
                     type="text"
@@ -3114,10 +3266,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setFormErrors({ ...formErrors, report_name: '' })
                     }}
                     placeholder={String(t('reports.enterReportTitlePlaceholder'))}
-                    className={formErrors.report_name ? 'border-red-500' : ''}
+                    className={formErrors.report_name ? 'border-rose-500' : ''}
                   />
                   {formErrors.report_name && (
-                    <p className="mt-1 text-sm text-red-600">{formErrors.report_name}</p>
+                    <p className="mt-1 text-sm text-rose-600">{formErrors.report_name}</p>
                   )}
                 </div>
 
@@ -3125,7 +3277,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-900 mb-2">
-                      {t('reports.startDate')} <span className="text-red-500">*</span>
+                      {t('reports.startDate')} <span className="text-rose-500">*</span>
                     </label>
                     <DatePickerComponent
                       value={formData.start_date}
@@ -3139,12 +3291,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setActiveDatePicker={setActiveDatePicker}
                     />
                     {formErrors.start_date && (
-                      <p className="mt-1 text-sm text-red-600">{formErrors.start_date}</p>
+                      <p className="mt-1 text-sm text-rose-600">{formErrors.start_date}</p>
                     )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-900 mb-2">
-                      {t('reports.endDate')} <span className="text-red-500">*</span>
+                      {t('reports.endDate')} <span className="text-rose-500">*</span>
                     </label>
                     <DatePickerComponent
                       value={formData.end_date}
@@ -3158,7 +3310,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setActiveDatePicker={setActiveDatePicker}
                     />
                     {formErrors.end_date && (
-                      <p className="mt-1 text-sm text-red-600">{formErrors.end_date}</p>
+                      <p className="mt-1 text-sm text-rose-600">{formErrors.end_date}</p>
                     )}
                   </div>
                 </div>
@@ -3201,29 +3353,26 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   </label>
                   <div className="space-y-2">
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
+                      <TableCheckbox
                         checked={formData.show_category_average}
-                        onChange={(e) => setFormData({ ...formData, show_category_average: e.target.checked })}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        ariaLabel={String(t('reports.showCategoryAverage'))}
+                        onChange={() => setFormData({ ...formData, show_category_average: !formData.show_category_average })}
                       />
                       <span className="text-sm text-gray-700">{t('reports.showCategoryAverage')}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
+                      <TableCheckbox
                         checked={formData.show_individual_grades}
-                        onChange={(e) => setFormData({ ...formData, show_individual_grades: e.target.checked })}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        ariaLabel={String(t('reports.showIndividualGrades'))}
+                        onChange={() => setFormData({ ...formData, show_individual_grades: !formData.show_individual_grades })}
                       />
                       <span className="text-sm text-gray-700">{t('reports.showIndividualGrades')}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
+                      <TableCheckbox
                         checked={formData.show_percentile_ranking}
-                        onChange={(e) => setFormData({ ...formData, show_percentile_ranking: e.target.checked })}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        ariaLabel={String(t('reports.showPercentileRanking'))}
+                        onChange={() => setFormData({ ...formData, show_percentile_ranking: !formData.show_percentile_ranking })}
                       />
                       <span className="text-sm text-gray-700">{t('reports.showPercentileRanking')}</span>
                     </label>
@@ -3256,13 +3405,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 )}
 
                 {/* Feedback Guidance */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-sky-50 border border-sky-200 rounded-lg p-4">
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0">
                       <Eye className="w-5 h-5 text-blue-600 mt-0.5" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-sm font-medium text-blue-900 mb-1">
+                      <h4 className="text-sm font-medium text-sky-900 mb-1">
                         {t('reports.feedbackGuidance')}
                       </h4>
                       <p className="text-sm text-blue-800 leading-relaxed">
@@ -3273,112 +3422,36 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </div>
 
                 {formErrors.submit && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-sm text-red-600">{formErrors.submit}</p>
+                  <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg">
+                    <p className="text-sm text-rose-700">{formErrors.submit}</p>
                   </div>
                 )}
               </div>
-            </div>
-
-            <div className="flex items-center justify-between p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <Button
-                variant="outline"
-                onClick={() => openPreviewModal(null)}
-                disabled={!formData.student_id || !formData.report_name || !formData.start_date || !formData.end_date}
-                className="flex items-center gap-2"
-              >
-                <Eye className="w-4 h-4" />
-                {t('reports.previewReport')}
-              </Button>
-
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowAddReportModal(false)
-                    resetForm()
-                  }}
-                  disabled={submitting}
-                >
-                  {t('common.cancel')}
-                </Button>
-                <Button
-                  onClick={handleCreateReport}
-                  disabled={isCreating || isSaving}
-                  className="bg-primary text-white flex items-center gap-2"
-                >
-                  {isCreating ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      {t('common.creating')}
-                    </>
-                  ) : (
-                    t('reports.createReport')
-                  )}
-                  {formData.feedback && (
-                    <div className="w-2 h-2 bg-blue-200 rounded-full" title={String(t('reports.feedbackWillBeSavedOnCreate'))}></div>
-                  )}
-                </Button>
-                <Button
-                  onClick={handleCreateAndFinishReport}
-                  disabled={isCreating || isSaving}
-                  className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
-                >
-                  {isSaving ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      {t('reports.finishing')}
-                    </>
-                  ) : (
-                    t('reports.createAndFinish')
-                  )}
-                  {formData.feedback && (
-                    <div className="w-2 h-2 bg-green-200 rounded-full" title={String(t('reports.feedbackWillBeSavedOnCreate'))}></div>
-                  )}
-                </Button>
-              </div>
-            </div>
-          </div>
-      </Modal>
+      </ModalShell>
 
       {/* Edit Report Modal */}
-      <Modal isOpen={showEditReportModal} onClose={() => {
-        setShowEditReportModal(false)
-        setEditingReport(null)
-        setCurrentReportId(null)
-        setAiFeedbackCreatedBy('')
-        setAiFeedbackCreatedAt('')
-        setAiFeedbackTemplate('')
-      }} size="2xl">
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{t('reports.editReport')}</h2>
-                <p className="text-gray-500">{t('reports.updateReportDetails')}</p>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setShowEditReportModal(false)
-                  setEditingReport(null)
-                  setCurrentReportId(null)
-                  setAiFeedbackCreatedBy('')
-                  setAiFeedbackCreatedAt('')
-                  setAiFeedbackTemplate('')
-                }}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+      <ModalShell
+        isOpen={showEditReportModal}
+        onClose={() => {
+          setShowEditReportModal(false)
+          setEditingReport(null)
+          setCurrentReportId(null)
+          setAiFeedbackCreatedBy('')
+          setAiFeedbackCreatedAt('')
+          setAiFeedbackTemplate('')
+        }}
+        size="2xl"
+        title={String(t('reports.editReport'))}
+        subtitle={String(t('reports.updateReportDetails'))}
+        bodyPadding={false}
+      >
 
-            <div className="flex-1 min-h-0 p-6 overflow-y-auto">
+            <div className="p-6">
               <div className="space-y-6">
                 {/* Student Selection - Read-only in edit mode */}
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-2">
-                    {t('reports.student')} <span className="text-red-500">*</span>
+                    {t('reports.student')} <span className="text-rose-500">*</span>
                   </label>
                   <div className="border rounded-lg bg-gray-50 p-4 border-border">
                     <div className="flex items-center gap-3 p-2">
@@ -3404,7 +3477,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 {/* Report Title */}
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-2">
-                    {t('reports.reportTitle')} <span className="text-red-500">*</span>
+                    {t('reports.reportTitle')} <span className="text-rose-500">*</span>
                   </label>
                   <Input
                     type="text"
@@ -3414,10 +3487,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setFormErrors({ ...formErrors, report_name: '' })
                     }}
                     placeholder={String(t('reports.enterReportTitlePlaceholder'))}
-                    className={formErrors.report_name ? 'border-red-500' : ''}
+                    className={formErrors.report_name ? 'border-rose-500' : ''}
                   />
                   {formErrors.report_name && (
-                    <p className="mt-1 text-sm text-red-600">{formErrors.report_name}</p>
+                    <p className="mt-1 text-sm text-rose-600">{formErrors.report_name}</p>
                   )}
                 </div>
 
@@ -3425,7 +3498,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-900 mb-2">
-                      {t('reports.startDate')} <span className="text-red-500">*</span>
+                      {t('reports.startDate')} <span className="text-rose-500">*</span>
                     </label>
                     <DatePickerComponent
                       value={formData.start_date}
@@ -3439,12 +3512,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setActiveDatePicker={setActiveDatePicker}
                     />
                     {formErrors.start_date && (
-                      <p className="mt-1 text-sm text-red-600">{formErrors.start_date}</p>
+                      <p className="mt-1 text-sm text-rose-600">{formErrors.start_date}</p>
                     )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-900 mb-2">
-                      {t('reports.endDate')} <span className="text-red-500">*</span>
+                      {t('reports.endDate')} <span className="text-rose-500">*</span>
                     </label>
                     <DatePickerComponent
                       value={formData.end_date}
@@ -3458,7 +3531,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       setActiveDatePicker={setActiveDatePicker}
                     />
                     {formErrors.end_date && (
-                      <p className="mt-1 text-sm text-red-600">{formErrors.end_date}</p>
+                      <p className="mt-1 text-sm text-rose-600">{formErrors.end_date}</p>
                     )}
                   </div>
                 </div>
@@ -3501,29 +3574,26 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   </label>
                   <div className="space-y-2">
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
+                      <TableCheckbox
                         checked={formData.show_category_average}
-                        onChange={(e) => setFormData({ ...formData, show_category_average: e.target.checked })}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        ariaLabel={String(t('reports.showCategoryAverage'))}
+                        onChange={() => setFormData({ ...formData, show_category_average: !formData.show_category_average })}
                       />
                       <span className="text-sm text-gray-700">{t('reports.showCategoryAverage')}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
+                      <TableCheckbox
                         checked={formData.show_individual_grades}
-                        onChange={(e) => setFormData({ ...formData, show_individual_grades: e.target.checked })}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        ariaLabel={String(t('reports.showIndividualGrades'))}
+                        onChange={() => setFormData({ ...formData, show_individual_grades: !formData.show_individual_grades })}
                       />
                       <span className="text-sm text-gray-700">{t('reports.showIndividualGrades')}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
+                      <TableCheckbox
                         checked={formData.show_percentile_ranking}
-                        onChange={(e) => setFormData({ ...formData, show_percentile_ranking: e.target.checked })}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        ariaLabel={String(t('reports.showPercentileRanking'))}
+                        onChange={() => setFormData({ ...formData, show_percentile_ranking: !formData.show_percentile_ranking })}
                       />
                       <span className="text-sm text-gray-700">{t('reports.showPercentileRanking')}</span>
                     </label>
@@ -3554,13 +3624,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 )}
 
                 {/* Feedback Guidance */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-sky-50 border border-sky-200 rounded-lg p-4">
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0">
                       <Eye className="w-5 h-5 text-blue-600 mt-0.5" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-sm font-medium text-blue-900 mb-1">
+                      <h4 className="text-sm font-medium text-sky-900 mb-1">
                         {t('reports.feedbackGuidance')}
                       </h4>
                       <p className="text-sm text-blue-800 leading-relaxed">
@@ -3716,31 +3786,26 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </Button>
               </div>
             </div>
-          </div>
-      </Modal>
+      </ModalShell>
 
       {/* Preview Modal */}
-      <Modal isOpen={showPreviewModal} onClose={handleClosePreviewModal} size="5xl">
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{t('reports.previewReport')}</h2>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleClosePreviewModal}
-                className="p-1"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 p-6 overflow-y-auto">
+      <ModalShell
+        isOpen={showPreviewModal}
+        onClose={handleClosePreviewModal}
+        size="5xl"
+        title={String(t('reports.previewReport'))}
+        footer={
+          <ModalShell.Footer>
+            <Button variant="outline" onClick={handleClosePreviewModal}>
+              {t('reports.closePreview')}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
               {loadingReportData ? (
                 <div className="flex items-center justify-center h-64">
                   <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
                     <p className="text-gray-600">{t('common.loading')}</p>
                   </div>
                 </div>
@@ -3760,7 +3825,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         {students.find(s => s.user_id === formData.student_id)?.name?.charAt(0).toUpperCase() || 'S'}
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-gray-900">
+                        <h3 className="text-xl font-semibold tracking-tight text-gray-900">
                           {students.find(s => s.user_id === formData.student_id)?.name || t('reports.studentName')}
                         </h3>
                         <p className="text-gray-600">
@@ -3790,7 +3855,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         return selectedSubjects.length > 0 ? (
                           <div className="flex flex-wrap gap-2">
                             {selectedSubjects.map(subject => (
-                              <span key={subject.id} className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                              <span key={subject.id} className="inline-block bg-sky-50 text-sky-700 px-3 py-1 rounded-full text-sm font-medium">
                                 {subject.name}
                               </span>
                             ))}
@@ -3811,7 +3876,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       {formData.selected_assignment_categories?.length > 0 ? (
                         <div className="space-y-1">
                           {assignmentCategories.filter(c => formData.selected_assignment_categories.includes(c.id)).map(category => (
-                            <span key={category.id} className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-2 mb-1">
+                            <span key={category.id} className="inline-block bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium mr-2 mb-1">
                               {category.name}
                             </span>
                           ))}
@@ -3844,10 +3909,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   <div className="bg-white rounded-lg border border-gray-200 p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2">
-                        <BookOpen className="w-5 h-5 text-green-600" />
+                        <BookOpen className="w-5 h-5 text-emerald-600" />
                         <h4 className="font-semibold text-gray-900">{t('navigation.assignments')}</h4>
                       </div>
-                      <span className="text-xl sm:text-2xl font-bold text-green-600">{(reportData?.grades?.total || 0) > 0 ? `${reportData?.grades?.average || 0}%` : `${reportData?.assignments?.completionRate || 0}%`}</span>
+                      <span className="text-xl sm:text-2xl font-bold text-emerald-600">{(reportData?.grades?.total || 0) > 0 ? `${reportData?.grades?.average || 0}%` : `${reportData?.assignments?.completionRate || 0}%`}</span>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
@@ -3855,14 +3920,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         <span className="font-medium">{reportData?.assignments.completed || 0}/{reportData?.assignments.total || 0}</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full" style={{ width: `${reportData?.assignments.completionRate || 0}%` }}></div>
+                        <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${reportData?.assignments.completionRate || 0}%` }}></div>
                       </div>
                       {reportData?.assignments.statuses && (
                         <div className="grid grid-cols-2 gap-2 text-xs mt-4">
                           {[
-                            { key: 'submitted', color: 'text-green-700', bg: 'bg-green-50', border: 'border-green-200' },
-                            { key: 'pending', color: 'text-yellow-700', bg: 'bg-yellow-50', border: 'border-yellow-200' },
-                            { key: 'overdue', color: 'text-red-700', bg: 'bg-red-50', border: 'border-red-200' },
+                            { key: 'submitted', color: 'text-emerald-700', bg: 'bg-emerald-50', border: 'ring-emerald-100' },
+                            { key: 'pending', color: 'text-amber-700', bg: 'bg-amber-50', border: 'border-yellow-200' },
+                            { key: 'overdue', color: 'text-rose-700', bg: 'bg-rose-50', border: 'border-red-200' },
                             { key: 'not submitted', color: 'text-gray-700', bg: 'bg-gray-50', border: 'border-gray-200' },
                             { key: 'excused', color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-200' }
                           ].map(({ key, color, bg, border }) => {
@@ -3896,14 +3961,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         <span className="font-medium">{reportData?.attendance.present || 0}/{reportData?.attendance.total || 0}</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${reportData?.attendance.attendanceRate || 0}%` }}></div>
+                        <div className="bg-primary h-2 rounded-full" style={{ width: `${reportData?.attendance.attendanceRate || 0}%` }}></div>
                       </div>
                       {reportData?.attendance.statuses && (
                         <div className="grid grid-cols-2 gap-2 text-xs mt-4">
                           {[
-                            { key: 'present', color: 'text-green-700', bg: 'bg-green-50', border: 'border-green-200' },
-                            { key: 'absent', color: 'text-red-700', bg: 'bg-red-50', border: 'border-red-200' },
-                            { key: 'late', color: 'text-yellow-700', bg: 'bg-yellow-50', border: 'border-yellow-200' },
+                            { key: 'present', color: 'text-emerald-700', bg: 'bg-emerald-50', border: 'ring-emerald-100' },
+                            { key: 'absent', color: 'text-rose-700', bg: 'bg-rose-50', border: 'border-red-200' },
+                            { key: 'late', color: 'text-amber-700', bg: 'bg-amber-50', border: 'border-yellow-200' },
                             { key: 'excused', color: 'text-blue-700', bg: 'bg-blue-50', border: 'border-blue-200' },
                             { key: 'pending', color: 'text-gray-700', bg: 'bg-gray-50', border: 'border-gray-200' }
                           ].map(({ key, color, bg, border }) => {
@@ -3929,19 +3994,19 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     <h4 className="text-lg font-semibold text-gray-900">{t('reports.overallAverageGrade')}</h4>
                     <div className="flex items-center gap-4 text-sm">
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-sky-500"></div>
                         <span className="text-gray-600">{t('sessions.quiz')}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
                         <span className="text-gray-600">{t('sessions.homework')}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-violet-500"></div>
                         <span className="text-gray-600">{t('sessions.test')}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-amber-500"></div>
                         <span className="text-gray-600">{t('sessions.project')}</span>
                       </div>
                     </div>
@@ -4206,7 +4271,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                     const lastScore = chartData[chartData.length - 1].score
                                     const change = lastScore - firstScore
                                     return (
-                                      <span className={`${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                      <span className={`${change >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                                         {change >= 0 ? '+' : ''}{change}% {t('reports.trend')}
                                       </span>
                                     )
@@ -4295,14 +4360,13 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     
                     if (classrooms.length === 0) {
                       return (
-                        <div className="text-center py-8 text-gray-500">
-                          <div className="mb-2">
-                            {t('reports.noClassroomsSelected')}
-                          </div>
-                          <div className="text-sm">
-                            {t('reports.noClassroomData')}
-                          </div>
-                        </div>
+                        <EmptyState
+                          icon={School}
+                          title={String(t('reports.noClassroomsSelected'))}
+                          description={String(t('reports.noClassroomData'))}
+                          size="sm"
+                          variant="subtle"
+                        />
                       )
                     }
                     
@@ -4484,7 +4548,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">{t('reports.overallClassRanking')}</span>
                       <div className="flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-green-600" />
+                        <TrendingUp className="w-4 h-4 text-emerald-600" />
                         <span className="font-semibold text-gray-900">
                           {(() => {
                             const percentiles = Object.values(reportData?.classroomPercentiles || {})
@@ -4533,7 +4597,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       >
                         {(isGeneratingAi || isStreamingAi) ? (
                           <>
-                            <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
+                            <Loader2 className="w-3 h-3 animate-spin" />
                             {isStreamingAi ? t('reports.streamingMode') + '...' : t('reports.generating')}
                           </>
                         ) : (
@@ -4553,7 +4617,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2">
                             <Bot className="w-5 h-5 text-blue-600" />
-                            <h5 className="font-semibold text-blue-900">{t('reports.aiGeneratedFeedback')}</h5>
+                            <h5 className="font-semibold text-sky-900">{t('reports.aiGeneratedFeedback')}</h5>
                           </div>
                           {(formData.feedback || editableFeedback) && !isEditingFeedback && (
                             <div className="flex items-center gap-2">
@@ -4615,14 +4679,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                     }}
                                     hideUndoRedo={true}
                                     placeholder={String(t('reports.enterAiFeedback'))}
-                                    className="border-blue-300 focus-within:ring-blue-500 focus-within:border-blue-500"
+                                    className="border-primary/30 focus-within:ring-primary focus-within:border-primary"
                                     disabled={isStreamingAi}
                                   />
                                   {isStreamingAi && (
                                     <div className="absolute inset-0 bg-white rounded-md border border-blue-300 overflow-hidden flex flex-col">
                                       <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border-b border-blue-200 flex-shrink-0">
-                                        <div className="animate-pulse w-2 h-2 bg-blue-500 rounded-full"></div>
-                                        <span className="text-xs font-medium text-blue-900">AI {t('reports.streamingMode')}...</span>
+                                        <div className="animate-pulse w-2 h-2 bg-primary rounded-full"></div>
+                                        <span className="text-xs font-medium text-sky-900">AI {t('reports.streamingMode')}...</span>
                                       </div>
                                       <div className="flex-1 min-h-0 p-3 overflow-y-auto">
                                         <div
@@ -4666,7 +4730,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                         
                                         // Show success message
                                         const successMessage = document.createElement('div')
-                                        successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50'
+                                        successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-emerald-700 px-4 py-3 rounded z-50'
                                         successMessage.textContent = String(t('reports.feedbackSavedSuccessfully'))
                                         document.body.appendChild(successMessage)
                                         setTimeout(() => {
@@ -4678,7 +4742,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                         console.error('Error saving feedback:', error)
                                         // Show error message
                                         const errorMessage = document.createElement('div')
-                                        errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50'
+                                        errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-rose-700 px-4 py-3 rounded z-50'
                                         errorMessage.textContent = String(t('reports.feedbackSaveError'))
                                         document.body.appendChild(errorMessage)
                                         setTimeout(() => {
@@ -4740,8 +4804,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                               {isStreamingAi && (
                                 <div className="absolute inset-0 bg-white rounded-md border border-blue-300 overflow-hidden flex flex-col">
                                   <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border-b border-blue-200 flex-shrink-0">
-                                    <div className="animate-pulse w-2 h-2 bg-blue-500 rounded-full"></div>
-                                    <span className="text-xs font-medium text-blue-900">AI {t('reports.streamingMode')}...</span>
+                                    <div className="animate-pulse w-2 h-2 bg-primary rounded-full"></div>
+                                    <span className="text-xs font-medium text-sky-900">AI {t('reports.streamingMode')}...</span>
                                   </div>
                                   <div className="flex-1 min-h-0 p-3 overflow-y-auto">
                                     <div
@@ -4754,7 +4818,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                             </div>
                             {feedbackHasChanges && (
                               <div className="text-xs text-blue-600 flex items-center gap-1">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <div className="w-2 h-2 bg-primary rounded-full"></div>
                                 {t('reports.unsavedChanges')}
                               </div>
                             )}
@@ -4822,7 +4886,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                               {/* Show info message for new reports */}
                               {!currentReportId && (
                                 <div className="text-xs text-blue-600 mt-2 flex items-center gap-1">
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                  <div className="w-2 h-2 bg-primary rounded-full"></div>
                                   {t('reports.feedbackWillBeSavedOnCreate')}
                                 </div>
                               )}
@@ -4837,18 +4901,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 </div>
               </div>
                 )}
-            </div>
-
-            <div className="flex items-center justify-end p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-              <Button
-                variant="outline"
-                onClick={handleClosePreviewModal}
-              >
-                {t('reports.closePreview')}
-              </Button>
-            </div>
-          </div>
-      </Modal>
+      </ModalShell>
 
       {/* Tooltip */}
       {tooltip.show && (
@@ -4865,17 +4918,43 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       )}
 
       {/* AI Generation Confirmation Modal */}
-      <Modal isOpen={showAiConfirmModal} onClose={() => {
-        setShowAiConfirmModal(false)
-        setSelectedTemplate('comprehensive')
-        setSelectedLanguage('english')
-      }} size="lg">
-            <div className="flex flex-col flex-1 min-h-0 p-6">
-              <div className="flex items-center gap-3 mb-4 flex-shrink-0">
-                <Bot className="w-6 h-6 text-blue-600" />
-                <h2 className="text-xl font-bold text-gray-900">{t('reports.generateAiFeedback')}</h2>
-              </div>
-              <p className="text-gray-600 mb-4 flex-shrink-0">
+      <ModalShell
+        isOpen={showAiConfirmModal}
+        onClose={() => {
+          setShowAiConfirmModal(false)
+          setSelectedTemplate('comprehensive')
+          setSelectedLanguage('english')
+        }}
+        size="lg"
+        headerSlot={
+          <div className="flex items-center gap-3">
+            <Bot className="w-6 h-6 text-primary" />
+            <h2 className="text-xl font-semibold tracking-tight text-gray-900">{t('reports.generateAiFeedback')}</h2>
+          </div>
+        }
+        footer={
+          <ModalShell.Footer split>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowAiConfirmModal(false)
+                setSelectedTemplate('comprehensive')
+                setSelectedLanguage('english')
+              }}
+            >
+              {t('common.cancel')}
+            </Button>
+            <Button
+              onClick={useStreaming ? handleGenerateStreamingAiFeedback : handleGenerateAiFeedback}
+              className="bg-primary hover:bg-primary/90 text-white"
+            >
+              <Bot className="w-4 h-4 mr-2" />
+              {t('reports.generateAi')}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
+              <p className="text-gray-600 mb-4">
                 {t('reports.selectFeedbackTemplate')}
               </p>
 
@@ -4899,7 +4978,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <div 
                   className={`border rounded-lg p-4 cursor-pointer transition-colors ${
                     selectedTemplate === 'comprehensive' 
-                      ? 'border-blue-500 bg-blue-50' 
+                      ? 'border-primary bg-primary/10' 
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onClick={() => setSelectedTemplate('comprehensive')}
@@ -4908,11 +4987,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     <h3 className="font-medium text-gray-900">{t('reports.comprehensiveTemplate')}</h3>
                     <div className={`w-4 h-4 rounded-full border-2 ${
                       selectedTemplate === 'comprehensive' 
-                        ? 'border-blue-500 bg-blue-500' 
+                        ? 'border-primary bg-primary/100' 
                         : 'border-gray-300'
                     }`}>
                       {selectedTemplate === 'comprehensive' && (
-                        <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                        <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
                           <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
                         </div>
                       )}
@@ -4924,7 +5003,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <div 
                   className={`border rounded-lg p-4 cursor-pointer transition-colors ${
                     selectedTemplate === 'focused' 
-                      ? 'border-blue-500 bg-blue-50' 
+                      ? 'border-primary bg-primary/10' 
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onClick={() => setSelectedTemplate('focused')}
@@ -4933,11 +5012,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     <h3 className="font-medium text-gray-900">{t('reports.focusedTemplate')}</h3>
                     <div className={`w-4 h-4 rounded-full border-2 ${
                       selectedTemplate === 'focused' 
-                        ? 'border-blue-500 bg-blue-500' 
+                        ? 'border-primary bg-primary/100' 
                         : 'border-gray-300'
                     }`}>
                       {selectedTemplate === 'focused' && (
-                        <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                        <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
                           <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
                         </div>
                       )}
@@ -4949,7 +5028,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <div 
                   className={`border rounded-lg p-4 cursor-pointer transition-colors ${
                     selectedTemplate === 'encouraging' 
-                      ? 'border-blue-500 bg-blue-50' 
+                      ? 'border-primary bg-primary/10' 
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                   onClick={() => setSelectedTemplate('encouraging')}
@@ -4958,11 +5037,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     <h3 className="font-medium text-gray-900">{t('reports.encouragingTemplate')}</h3>
                     <div className={`w-4 h-4 rounded-full border-2 ${
                       selectedTemplate === 'encouraging' 
-                        ? 'border-blue-500 bg-blue-500' 
+                        ? 'border-primary bg-primary/100' 
                         : 'border-gray-300'
                     }`}>
                       {selectedTemplate === 'encouraging' && (
-                        <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                        <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
                           <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
                         </div>
                       )}
@@ -4979,7 +5058,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   <div 
                     className={`flex-1 border rounded-lg p-3 cursor-pointer transition-colors ${
                       selectedLanguage === 'english' 
-                        ? 'border-blue-500 bg-blue-50' 
+                        ? 'border-primary bg-primary/10' 
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                     onClick={() => setSelectedLanguage('english')}
@@ -4991,11 +5070,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       </div>
                       <div className={`w-4 h-4 rounded-full border-2 ${
                         selectedLanguage === 'english' 
-                          ? 'border-blue-500 bg-blue-500' 
+                          ? 'border-primary bg-primary/100' 
                           : 'border-gray-300'
                       }`}>
                         {selectedLanguage === 'english' && (
-                          <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                          <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
                             <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
                           </div>
                         )}
@@ -5006,7 +5085,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   <div 
                     className={`flex-1 border rounded-lg p-3 cursor-pointer transition-colors ${
                       selectedLanguage === 'korean' 
-                        ? 'border-blue-500 bg-blue-50' 
+                        ? 'border-primary bg-primary/10' 
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                     onClick={() => setSelectedLanguage('korean')}
@@ -5018,11 +5097,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                       </div>
                       <div className={`w-4 h-4 rounded-full border-2 ${
                         selectedLanguage === 'korean' 
-                          ? 'border-blue-500 bg-blue-500' 
+                          ? 'border-primary bg-primary/100' 
                           : 'border-gray-300'
                       }`}>
                         {selectedLanguage === 'korean' && (
-                          <div className="w-full h-full rounded-full bg-blue-500 flex items-center justify-center">
+                          <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
                             <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
                           </div>
                         )}
@@ -5031,69 +5110,24 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   </div>
                 </div>
               </div>
-
-              <div className="flex gap-3 flex-shrink-0">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowAiConfirmModal(false)
-                    setSelectedTemplate('comprehensive')
-                    setSelectedLanguage('english')
-                  }}
-                  className="flex-1"
-                >
-                  {t('common.cancel')}
-                </Button>
-                <Button
-                  onClick={useStreaming ? handleGenerateStreamingAiFeedback : handleGenerateAiFeedback}
-                  className="flex-1 bg-primary hover:bg-primary/90 text-white"
-                >
-                  <Bot className="w-4 h-4 mr-2" />
-                  {t('reports.generateAi')}
-                </Button>
-              </div>
-            </div>
-      </Modal>
+      </ModalShell>
 
       {/* Delete Confirmation Modal */}
       {reportToDelete && (
-      <Modal isOpen={showDeleteModal} onClose={() => {
-        setShowDeleteModal(false)
-        setReportToDelete(null)
-      }} size="md">
-            <div className="flex flex-col flex-1 min-h-0 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex-shrink-0">{t('reports.deleteReport')}</h2>
-              <p className="text-gray-600 mb-6 flex-shrink-0">
-                {t('reports.confirmDeleteReport', { reportName: reportToDelete.report_name || `${reportToDelete.student_name}'s report` })}
-              </p>
-              <div className="flex gap-3 flex-shrink-0">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowDeleteModal(false)
-                    setReportToDelete(null)
-                  }}
-                  className="flex-1"
-                >
-                  {t('common.cancel')}
-                </Button>
-                <Button
-                  onClick={handleDeleteConfirm}
-                  disabled={isSaving}
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                >
-                  {isSaving ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      {t('common.deleting')}
-                    </>
-                  ) : (
-                    t('common.delete')
-                  )}
-                </Button>
-              </div>
-            </div>
-      </Modal>
+      <ModalShell.Confirm
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false)
+          setReportToDelete(null)
+        }}
+        onConfirm={handleDeleteConfirm}
+        title={String(t('reports.deleteReport'))}
+        message={String(t('reports.confirmDeleteReport', { reportName: reportToDelete.report_name || `${reportToDelete.student_name}'s report` }))}
+        variant="danger"
+        confirmLabel={isSaving ? String(t('common.deleting')) : String(t('common.delete'))}
+        cancelLabel={String(t('common.cancel'))}
+        loading={isSaving}
+      />
       )}
     </div>
   )

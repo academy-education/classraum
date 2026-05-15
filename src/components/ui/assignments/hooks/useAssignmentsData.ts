@@ -4,7 +4,10 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
-import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
+// Import directly from the shared cache module rather than through the
+// 2,000-line assignments-page re-export. Behavior identical; bundle is
+// not.
+import { invalidateAssignmentsCache } from '@/lib/cache'
 
 // ---- Interfaces (re-exported for consumers) ----
 
@@ -37,6 +40,16 @@ export interface Assignment {
   student_count?: number
   submitted_count?: number
   pending_count?: number
+  // Joined data from the supabase query in fetchAssignments — present on
+  // every assignment when fetched, used by the page-level classroom filter.
+  classroom_sessions?: {
+    id: string
+    classroom_id: string
+    classrooms?: {
+      id: string
+      academy_id: string
+    }
+  }
 }
 
 export interface Session {
@@ -60,7 +73,7 @@ export interface AssignmentGrade {
   submitted_date?: string
   created_at?: string
   updated_at?: string
-  attendance_status?: 'present' | 'late' | 'absent' | 'pending'
+  attendance_status?: 'present' | 'late' | 'absent' | 'pending' | 'excused'
 }
 
 // Cache version constant - increment when changing data fetch logic

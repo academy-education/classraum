@@ -1,16 +1,21 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { supabase } from '@/lib/supabase'
 import { useClassroomsData } from '@/components/ui/classrooms/hooks/useClassroomsData'
 import type { Classroom, Teacher, Student, Schedule } from '@/components/ui/classrooms/hooks/useClassroomsData'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { DashboardCard, DataTable, BulkActionBar, type DataTableColumn, type DataTableSortState } from '@/components/ui/dashboard'
+import { StatusPill } from '@/components/ui/status-pill'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import {
   School,
   Plus,
@@ -26,25 +31,35 @@ import {
   Loader2,
   CalendarOff,
   Pause,
-  Play
+  Play,
+  Grid3X3,
+  Rows3
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
-import { showSuccessToast, showErrorToast } from '@/stores'
-import { invalidateSessionsCache } from '@/components/ui/sessions-page'
-import { invalidateAssignmentsCache } from '@/components/ui/assignments-page'
-import { invalidateAttendanceCache } from '@/components/ui/attendance-page'
-import { invalidateArchiveCache } from '@/components/ui/archive-page'
+import { showSuccessToast, showSuccessToastWithAction, showErrorToast } from '@/stores'
+// Sibling-page caches via the shared module — keeps sessions/assignments/
+// attendance/archive bundles out of this chunk. See src/lib/cache.ts.
+import {
+  invalidateSessionsCache,
+  invalidateAssignmentsCache,
+  invalidateAttendanceCache,
+  invalidateArchiveCache,
+} from '@/lib/cache'
 import { triggerClassroomCreatedNotifications } from '@/lib/notification-triggers'
-import { ScheduleBreaksModal } from '@/components/ui/classrooms/ScheduleBreaksModal'
-import { ScheduleUpdateModal } from '@/components/ui/classrooms/ScheduleUpdateModal'
-import { ClassroomCreateModal } from '@/components/ui/classrooms/modals/ClassroomCreateModal'
-import { ClassroomEditModal } from '@/components/ui/classrooms/modals/ClassroomEditModal'
-import { ClassroomDeleteModal } from '@/components/ui/classrooms/modals/ClassroomDeleteModal'
-import { ClassroomDetailsModal } from '@/components/ui/classrooms/modals/ClassroomDetailsModal'
-import { ClassroomColorPickerModal } from '@/components/ui/classrooms/modals/ClassroomColorPickerModal'
+// Modals are conditionally rendered — defer their bundles until the user
+// opens one. Combined ~2,190 lines of modal JSX (the create + edit modals
+// alone are 657 + 675 lines) plus their ModalShell/Select/DateInput deps.
+import dynamic from 'next/dynamic'
+const ScheduleBreaksModal = dynamic(() => import('@/components/ui/classrooms/ScheduleBreaksModal').then(m => m.ScheduleBreaksModal), { ssr: false })
+const ScheduleUpdateModal = dynamic(() => import('@/components/ui/classrooms/ScheduleUpdateModal').then(m => m.ScheduleUpdateModal), { ssr: false })
+const ClassroomCreateModal = dynamic(() => import('@/components/ui/classrooms/modals/ClassroomCreateModal').then(m => m.ClassroomCreateModal), { ssr: false })
+const ClassroomEditModal = dynamic(() => import('@/components/ui/classrooms/modals/ClassroomEditModal').then(m => m.ClassroomEditModal), { ssr: false })
+const ClassroomDeleteModal = dynamic(() => import('@/components/ui/classrooms/modals/ClassroomDeleteModal').then(m => m.ClassroomDeleteModal), { ssr: false })
+const ClassroomDetailsModal = dynamic(() => import('@/components/ui/classrooms/modals/ClassroomDetailsModal').then(m => m.ClassroomDetailsModal), { ssr: false })
+const ClassroomColorPickerModal = dynamic(() => import('@/components/ui/classrooms/modals/ClassroomColorPickerModal').then(m => m.ClassroomColorPickerModal), { ssr: false })
 import {
   updateClassroomSchedule,
   requiresScheduleUpdateModal,
@@ -52,21 +67,8 @@ import {
   type ScheduleUpdateOptions
 } from '@/lib/schedule-updates'
 
-// Cache invalidation function for classrooms
-export const invalidateClassroomsCache = (academyId: string) => {
-  // Clear all page caches for this academy (classrooms-academyId-page1, page2, etc.)
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
-
-  keys.forEach(key => {
-    if (key.startsWith(`classrooms-${academyId}-page`) ||
-        key.includes(`classrooms-${academyId}-page`)) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
+import { invalidateClassroomsCache } from '@/lib/cache'
+export { invalidateClassroomsCache }
 
 interface ClassroomsPageProps {
   academyId: string
@@ -144,7 +146,7 @@ export function TimePickerComponent({
 
       {isOpen && (
         <div
-          className={`absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 ${
+          className={`absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 max-w-[90vw] ${
             field === 'end_time' ? 'right-0' : 'left-0'
           }`}
           style={{ zIndex: 9999 }}
@@ -162,7 +164,7 @@ export function TimePickerComponent({
                       type="button"
                       onClick={() => setTime(hour, parseInt(minutes), ampm)}
                       className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                        hour12 === hour ? 'bg-blue-50 text-blue-600' : ''
+                        hour12 === hour ? 'bg-sky-50 text-sky-700' : ''
                       }`}
                     >
                       {hour}
@@ -182,7 +184,7 @@ export function TimePickerComponent({
                     type="button"
                     onClick={() => setTime(hour12, i, ampm)}
                     className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                      parseInt(minutes) === i ? 'bg-blue-50 text-blue-600' : ''
+                      parseInt(minutes) === i ? 'bg-sky-50 text-sky-700' : ''
                     }`}
                   >
                     {i.toString().padStart(2, '0')}
@@ -201,7 +203,7 @@ export function TimePickerComponent({
                     type="button"
                     onClick={() => setTime(hour12, parseInt(minutes), period.key.toUpperCase())}
                     className={`w-full px-2 py-1 text-sm text-left hover:bg-gray-100 rounded ${
-                      ampm === period.key.toUpperCase() ? 'bg-blue-50 text-blue-600' : ''
+                      ampm === period.key.toUpperCase() ? 'bg-sky-50 text-sky-700' : ''
                     }`}
                   >
                     {period.label}
@@ -275,6 +277,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const [activeTimePicker, setActiveTimePicker] = useState<string | null>(null)
   const [studentSearchQuery, setStudentSearchQuery] = useState('')
   const [classroomSearchQuery, setClassroomSearchQuery] = useState('')
+  const [viewMode, setViewMode] = useState<'card' | 'table'>('card')
+  const [selectedClassroomIds, setSelectedClassroomIds] = useState<Set<string>>(new Set())
+  const [tableSort, setTableSort] = useState<DataTableSortState | null>(null)
+  const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false)
+  const [bulkUpdating, setBulkUpdating] = useState(false)
+  const searchInputRef = useRef<HTMLInputElement>(null)
   const [teacherSearchQuery, setTeacherSearchQuery] = useState('')
   const [pauseFilter, setPauseFilter] = useState<'active' | 'paused' | 'all'>('active')
 
@@ -1243,6 +1251,90 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     }
   }
 
+  // ===== Bulk actions (table view selection) =====
+  const handleBulkDelete = async () => {
+    if (selectedClassroomIds.size === 0) return
+    setBulkUpdating(true)
+    try {
+      const ids = Array.from(selectedClassroomIds)
+      const { error } = await supabase
+        .from('classrooms')
+        .update({ deleted_at: new Date().toISOString() })
+        .in('id', ids)
+      if (error) throw error
+      setClassrooms(prev => prev.filter(c => !selectedClassroomIds.has(c.id)))
+      setSelectedClassroomIds(new Set())
+      setShowBulkDeleteConfirm(false)
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+      invalidateAssignmentsCache(academyId)
+      invalidateAttendanceCache(academyId)
+      invalidateArchiveCache(academyId)
+
+      // Bulk-deleting classrooms cascades into sessions/assignments/attendance
+      // — easily catastrophic if misclicked. Undo restores the classrooms;
+      // child rows still reference the parent so they re-appear automatically.
+      showSuccessToastWithAction(
+        t('classrooms.bulkDeleteSuccess', { count: ids.length }) as string,
+        t('common.undo') as string,
+        async () => {
+          const { error: restoreError } = await supabase
+            .from('classrooms')
+            .update({ deleted_at: null })
+            .in('id', ids)
+          if (restoreError) {
+            showErrorToast(t('classrooms.bulkDeleteError') as string, restoreError.message)
+            return
+          }
+          invalidateClassroomsCache(academyId)
+          invalidateSessionsCache(academyId)
+          invalidateAssignmentsCache(academyId)
+          invalidateAttendanceCache(academyId)
+          invalidateArchiveCache(academyId)
+          await fetchClassrooms()
+          showSuccessToast(t('common.restored') as string)
+        }
+      )
+    } catch (err) {
+      console.error('[Classrooms] Bulk delete failed:', err)
+      showErrorToast(t('classrooms.bulkDeleteError') as string)
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
+  const handleBulkPauseUpdate = async (paused: boolean) => {
+    if (selectedClassroomIds.size === 0) return
+    setBulkUpdating(true)
+    try {
+      const ids = Array.from(selectedClassroomIds)
+      const { error } = await supabase
+        .from('classrooms')
+        .update({ paused })
+        .in('id', ids)
+      if (error) throw error
+      setClassrooms(prev => prev.map(c => selectedClassroomIds.has(c.id) ? { ...c, paused } : c))
+      showSuccessToast(t(paused ? 'classrooms.bulkPauseSuccess' : 'classrooms.bulkUnpauseSuccess', { count: ids.length }) as string)
+      invalidateClassroomsCache(academyId)
+      invalidateSessionsCache(academyId)
+    } catch (err) {
+      console.error('[Classrooms] Bulk pause update failed:', err)
+      showErrorToast(t('classrooms.bulkPauseError') as string)
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
+  // Manager keyboard shortcuts: `/` → search, `n` → create, `Esc` → clear selection.
+  useListPageShortcuts({
+    searchInputRef,
+    onCreate: () => handleCreateClick(),
+    isCreateBlocked: showModal || showEditModal || showDeleteModal || showDetailsModal,
+    onEscape: selectedClassroomIds.size > 0
+      ? () => setSelectedClassroomIds(new Set())
+      : undefined,
+  })
+
   const handleCreateClick = () => {
     // Reset form first
     setFormData({
@@ -1346,11 +1438,10 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       }
 
       // Remove from local state
-      setClassrooms(prev => prev.filter(c => c.id !== classroomToDelete.id))
+      const deletedClassroom = classroomToDelete
+      setClassrooms(prev => prev.filter(c => c.id !== deletedClassroom.id))
       setShowDeleteModal(false)
       setClassroomToDelete(null)
-
-      showSuccessToast(String(t('classrooms.deletedSuccessfully')), String(t('classrooms.deletedDescription')))
 
       // Invalidate caches so deleted classroom is removed from related pages and appears in archive
       invalidateClassroomsCache(academyId)
@@ -1358,6 +1449,31 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       invalidateAssignmentsCache(academyId)
       invalidateAttendanceCache(academyId)
       invalidateArchiveCache(academyId)
+
+      // Soft-delete with Undo — restores `deleted_at = null`; cascaded child
+      // rows aren't deleted from the DB so they reappear with the parent.
+      showSuccessToastWithAction(
+        String(t('classrooms.deletedSuccessfully')),
+        String(t('common.undo')),
+        async () => {
+          const { error: restoreError } = await supabase
+            .from('classrooms')
+            .update({ deleted_at: null })
+            .eq('id', deletedClassroom.id)
+          if (restoreError) {
+            showErrorToast(String(t('classrooms.errorDeleting')), restoreError.message)
+            return
+          }
+          invalidateClassroomsCache(academyId)
+          invalidateSessionsCache(academyId)
+          invalidateAssignmentsCache(academyId)
+          invalidateAttendanceCache(academyId)
+          invalidateArchiveCache(academyId)
+          await fetchClassrooms()
+          showSuccessToast(String(t('common.restored')))
+        },
+        String(t('classrooms.deletedDescription')),
+      )
 
     } catch (error) {
       showErrorToast(String(t('classrooms.unexpectedError')), (error as Error).message)
@@ -1432,7 +1548,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.classrooms")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("classrooms.title")}</h1>
             <p className="text-gray-500">{t("classrooms.description")}</p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -1460,6 +1577,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           </Card>
         </div>
 
+        {/* Toggle Skeleton */}
+        <div className="flex justify-end mb-4 animate-pulse">
+          <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+
         {/* Search Bar Skeleton */}
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
@@ -1480,7 +1605,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("classrooms.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.classrooms")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("classrooms.title")}</h1>
           <p className="text-gray-500">{t("classrooms.description")}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
@@ -1502,26 +1628,57 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         </div>
       </div>
 
-      {/* Stats Card */}
+      {/* Stats Card — hero number with icon chip + trend pill */}
       <div className="mb-8">
-        <Card className="w-full sm:w-80 p-4 sm:p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500">
-          <div className="space-y-3">
-            <p className="text-sm font-medium text-purple-700">
+        <Card className="w-full sm:w-80 p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <School className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
+            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
               {classroomSearchQuery || pauseFilter !== 'active' ? "검색 결과" : t("classrooms.totalActiveClassrooms")}
             </p>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl sm:text-4xl font-semibold text-gray-900">
-                {filteredTotalCount}
-              </p>
-              <p className="text-sm text-gray-500">
-                {filteredTotalCount === 1 ? t("classrooms.classroom") : t("classrooms.classrooms")}
-              </p>
-            </div>
-            {(classroomSearchQuery || pauseFilter !== 'all') && (
-              <p className="text-xs text-gray-500">전체 {totalCount}개 중</p>
-            )}
           </div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+              {filteredTotalCount}
+            </p>
+            <p className="text-sm text-gray-400">
+              {totalCount > 0 && (classroomSearchQuery || pauseFilter !== 'all')
+                ? `/ ${totalCount}`
+                : (filteredTotalCount === 1 ? t("classrooms.classroom") : t("classrooms.classrooms"))}
+            </p>
+          </div>
+          {totalCount > 0 && (
+            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[11px] font-medium">
+              {Math.round((filteredTotalCount / totalCount) * 100)}% of total
+            </div>
+          )}
         </Card>
+      </div>
+
+      {/* View Mode Toggle */}
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.tableView"))}
+          >
+            <Rows3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => { setViewMode('card'); setSelectedClassroomIds(new Set()) }}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.cardView"))}
+          >
+            <Grid3X3 className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
 
       {/* Search Bar and Filters */}
@@ -1529,12 +1686,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
+            ref={searchInputRef}
             type="text"
             placeholder={language === 'korean' ? "클래스룸 검색..." : "Search classrooms..."}
             value={classroomSearchQuery}
             onChange={(e) => setClassroomSearchQuery(e.target.value)}
-            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
           />
+        <SearchKbdHint />
         </div>
 
         {/* Pause Status Filter */}
@@ -1545,7 +1704,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             setCurrentPage(1)
           }}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-blue-500 focus-visible:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
             <SelectValue placeholder={String(t("classrooms.allClassrooms"))} />
           </SelectTrigger>
           <SelectContent>
@@ -1556,131 +1715,267 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         </Select>
       </div>
 
-      {/* Classrooms Grid */}
+      {/* Bulk Action Bar */}
+      {viewMode === 'table' && selectedClassroomIds.size > 0 && (
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedClassroomIds.size}
+            onClear={() => setSelectedClassroomIds(new Set())}
+          >
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkUpdating}
+              onClick={() => handleBulkPauseUpdate(true)}
+            >
+              <Pause className="w-3.5 h-3.5 mr-1.5" />
+              {t('classrooms.pause')}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkUpdating}
+              onClick={() => handleBulkPauseUpdate(false)}
+            >
+              <Play className="w-3.5 h-3.5 mr-1.5" />
+              {t('classrooms.unpause')}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkUpdating}
+              onClick={() => setShowBulkDeleteConfirm(true)}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              {t('common.delete')}
+            </Button>
+          </BulkActionBar>
+        </div>
+      )}
+
+      {/* Classrooms Content — table or card */}
+      {viewMode === 'table' ? (
+        (() => {
+          const columns: DataTableColumn<Classroom>[] = [
+            {
+              id: 'name',
+              header: t('classrooms.classroomName'),
+              sortable: true,
+              sortFn: (a, b) => a.name.localeCompare(b.name),
+              cell: (c) => (
+                <div className="flex items-center gap-2 min-w-0">
+                  <div
+                    className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: c.color || '#6B7280' }}
+                  />
+                  <span className="font-medium text-gray-900 truncate">{c.name}</span>
+                </div>
+              ),
+            },
+            {
+              id: 'teacher',
+              header: t('navigation.teachers'),
+              sortable: true,
+              sortFn: (a, b) => (a.teacher_name || '').localeCompare(b.teacher_name || ''),
+              cell: (c) => <span className="text-sm text-gray-700">{c.teacher_name || '—'}</span>,
+            },
+            {
+              id: 'grade',
+              header: t('classrooms.grade'),
+              sortable: true,
+              sortFn: (a, b) => (a.grade || '').localeCompare(b.grade || ''),
+              cell: (c) => <span className="text-sm text-gray-700">{c.grade && c.grade.trim() ? c.grade : '—'}</span>,
+              hideOnMobile: true,
+            },
+            {
+              id: 'subject',
+              header: t('classrooms.subject'),
+              cell: (c) => <span className="text-sm text-gray-700">{c.subject_name && c.subject_name.trim() ? c.subject_name : '—'}</span>,
+              hideOnMobile: true,
+            },
+            {
+              id: 'students',
+              header: t('classrooms.students'),
+              align: 'right',
+              sortable: true,
+              sortFn: (a, b) => (a.student_count || 0) - (b.student_count || 0),
+              cell: (c) => <span className="text-sm text-gray-700 tabular-nums">{c.student_count || 0}</span>,
+            },
+            {
+              id: 'status',
+              header: t('common.status'),
+              cell: (c) => (
+                <StatusPill tone={c.paused ? 'amber' : 'emerald'}>
+                  {c.paused ? t('classrooms.paused') : t('classrooms.active')}
+                </StatusPill>
+              ),
+            },
+          ]
+
+          return (
+            <DataTable<Classroom>
+              data={filteredClassrooms}
+              columns={columns}
+              getRowId={(c) => c.id}
+              selection={{
+                selected: selectedClassroomIds,
+                onChange: setSelectedClassroomIds,
+              }}
+              sort={{ state: tableSort, onChange: setTableSort }}
+              onRowClick={(c) => handleDetailsClick(c)}
+              emptyState={{
+                icon: School,
+                title: String(t('classrooms.noClassrooms')),
+                description: String(t('sessions.tryDifferentSearch')),
+              }}
+              mobileRender={(c) => (
+                <DashboardCard
+                  paused={c.paused}
+                  accentColor={c.color || '#6B7280'}
+                  statusLabel={c.paused ? t('classrooms.paused') : t('classrooms.active')}
+                  statusToneClass={c.paused ? 'text-amber-600' : 'text-emerald-600'}
+                  title={c.name}
+                  subtitle={c.teacher_name ? (
+                    <>
+                      <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                      <span>{c.teacher_name}</span>
+                    </>
+                  ) : null}
+                  metrics={[
+                    { label: t('classrooms.students') as string, value: String(c.student_count || 0) },
+                    { label: t('classrooms.grade') as string, value: c.grade && c.grade.trim() ? c.grade : '—' },
+                    { label: t('classrooms.subject') as string, value: c.subject_name && c.subject_name.trim() ? c.subject_name : '—' }
+                  ]}
+                  onClick={() => handleDetailsClick(c)}
+                />
+              )}
+            />
+          )
+        })()
+      ) : (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
-        {paginatedClassrooms.map((classroom) => (
-          <Card key={classroom.id} className={`p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col h-full ${classroom.paused ? 'opacity-60' : ''}`}>
-            <div className="flex items-start justify-between mb-3 sm:mb-4">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div
-                  className="w-3 h-3 sm:w-4 sm:h-4 rounded-full relative"
-                  style={{ backgroundColor: classroom.color || '#6B7280' }}
-                >
-                  {classroom.paused && (
-                    <div className="absolute -top-1 -right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-orange-500 rounded-full flex items-center justify-center">
-                      <Pause className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white" />
-                    </div>
-                  )}
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{classroom.name}</h3>
-                  {classroom.teacher_name && (
-                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mt-1">
-                      <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span>{classroom.teacher_name}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center gap-1">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleTogglePause(classroom)}
-                  title={classroom.paused ? t('classrooms.unpause') : t('classrooms.pause')}
-                >
-                  {classroom.paused ? (
-                    <Play className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
-                  ) : (
-                    <Pause className="w-3 h-3 sm:w-4 sm:h-4 text-orange-600" />
-                  )}
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleEditClick(classroom)}
-                >
-                  <Edit className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
-                  onClick={() => handleDeleteClick(classroom)}
-                >
-                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
-                </Button>
-              </div>
-            </div>
-
-            <div className="space-y-2 sm:space-y-3 flex-1">
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-<span>
-                  {language === 'korean' 
-                    ? `${t("classrooms.students")} ${classroom.student_count || 0}명`
-                    : `${classroom.student_count || 0} ${t("classrooms.students")}`
-                  }
-                </span>
-              </div>
-
-              {classroom.grade && classroom.grade.trim() && (
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                  <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
-<span>
-                    {language === 'korean' 
-                      ? `${classroom.grade}${t("classrooms.grade")}`
-                      : `${t("classrooms.grade")} ${classroom.grade}`
-                    }
-                  </span>
-                </div>
-              )}
-
-              {classroom.subject_name && classroom.subject_name.trim() && (
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                  <Book className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span>{classroom.subject_name}</span>
-                </div>
-              )}
-
-              {formatScheduleDisplay(classroom.schedules) && (
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                  <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <div className="flex flex-col">
-                    {formatScheduleDisplay(classroom.schedules)?.map((scheduleText, index) => (
-                      <span key={index}>{scheduleText}</span>
-                    ))}
+        {paginatedClassrooms.map((classroom) => {
+          const accentColor = classroom.color || '#6B7280'
+          const stateLabel = classroom.paused ? t('classrooms.paused') : t('classrooms.active')
+          const stateColor = classroom.paused ? 'text-amber-600' : 'text-emerald-600'
+          return (
+            <Card
+              key={classroom.id}
+              className={`!gap-0 !py-0 hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-6px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all flex flex-col h-full overflow-hidden ${classroom.paused ? 'opacity-60' : ''}`}
+            >
+              {/* Top accent bar in the classroom's color */}
+              <div className="h-1 w-full" style={{ backgroundColor: accentColor }} />
+              <div className="p-4 sm:p-5 flex flex-col flex-1">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="min-w-0">
+                    <p className={`text-[10px] font-semibold uppercase tracking-[0.1em] mb-1 ${stateColor}`}>
+                      {stateLabel}
+                    </p>
+                    <h3 className="text-lg font-semibold text-gray-900 tracking-tight truncate">
+                      {classroom.name}
+                    </h3>
+                    {classroom.teacher_name && (
+                      <p className="text-xs text-gray-500 flex items-center gap-1.5 mt-0.5">
+                        <GraduationCap className="w-3.5 h-3.5" strokeWidth={1.75} />
+                        <span className="truncate">{classroom.teacher_name}</span>
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-0.5 -mr-1 flex-shrink-0">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                      onClick={() => handleTogglePause(classroom)}
+                      title={classroom.paused ? t('classrooms.unpause') : t('classrooms.pause')}
+                    >
+                      {classroom.paused ? (
+                        <Play className="w-4 h-4 text-emerald-600" strokeWidth={1.75} />
+                      ) : (
+                        <Pause className="w-4 h-4" strokeWidth={1.75} />
+                      )}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                      onClick={() => handleEditClick(classroom)}
+                    >
+                      <Edit className="w-4 h-4" strokeWidth={1.75} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50"
+                      onClick={() => handleDeleteClick(classroom)}
+                    >
+                      <Trash2 className="w-4 h-4" strokeWidth={1.75} />
+                    </Button>
                   </div>
                 </div>
-              )}
 
-              {classroom.notes && (
-                <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
-                  <p className="text-xs sm:text-sm text-gray-600">{classroom.notes}</p>
+                {/* 3-column metric strip */}
+                <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+                  <div>
+                    <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-0.5">
+                      {t("classrooms.students")}
+                    </p>
+                    <p className="text-sm font-semibold text-gray-900">{classroom.student_count || 0}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-0.5">
+                      {t("classrooms.grade")}
+                    </p>
+                    <p className="text-sm font-semibold text-gray-900 truncate">{classroom.grade && classroom.grade.trim() ? classroom.grade : '—'}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-0.5">
+                      {t("classrooms.subject")}
+                    </p>
+                    <p className="text-sm font-semibold text-gray-900 truncate">{classroom.subject_name && classroom.subject_name.trim() ? classroom.subject_name : '—'}</p>
+                  </div>
                 </div>
-              )}
-            </div>
 
-            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100 space-y-1.5 sm:space-y-2">
-              <Button
-                variant="outline"
-                className="w-full text-xs sm:text-sm h-8 sm:h-9"
-                onClick={() => handleDetailsClick(classroom)}
-              >
-                {t("common.viewDetails")}
-              </Button>
-              <Button
-                className="w-full text-xs sm:text-sm h-8 sm:h-9"
-                onClick={() => onNavigateToSessions?.(classroom.id)}
-              >
-                {t("classrooms.viewSessions")}
-              </Button>
-            </div>
-          </Card>
-        ))}
+                {/* Schedule */}
+                {formatScheduleDisplay(classroom.schedules) && (
+                  <div className="flex items-start gap-1.5 text-xs text-gray-500 mb-3">
+                    <Clock className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" strokeWidth={1.75} />
+                    <div className="flex flex-col min-w-0">
+                      {formatScheduleDisplay(classroom.schedules)?.map((scheduleText, index) => (
+                        <span key={index} className="truncate">{scheduleText}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {classroom.notes && (
+                  <div className="bg-gray-50 rounded-lg p-2 sm:p-3 mb-3">
+                    <p className="text-xs text-gray-600 line-clamp-2">{classroom.notes}</p>
+                  </div>
+                )}
+
+                {/* Actions push to bottom */}
+                <div className="mt-auto pt-3 space-y-1.5">
+                  <Button
+                    variant="outline"
+                    className="w-full text-xs sm:text-sm h-9"
+                    onClick={() => handleDetailsClick(classroom)}
+                  >
+                    {t("common.viewDetails")}
+                  </Button>
+                  <Button
+                    className="w-full text-xs sm:text-sm h-9"
+                    onClick={() => onNavigateToSessions?.(classroom.id)}
+                  >
+                    {t("classrooms.viewSessions")}
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          )
+        })}
       </div>
+      )}
 
       {/* Pagination Controls */}
       {filteredTotalCount > 0 && (
@@ -1735,33 +2030,27 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       {/* Empty State */}
       {!initialized ? null : classrooms.length === 0 ? (
-        <Card className="p-12 text-center gap-2">
-          <School className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-          <h3 className="text-lg font-medium text-gray-900">{t("classrooms.noClassrooms")}</h3>
-          <p className="text-gray-500 mb-2">{t("classrooms.createFirstClassroom")}</p>
-          <Button
-            className="flex items-center gap-2 mx-auto"
-            onClick={handleCreateClick}
-          >
-            <Plus className="w-4 h-4" />
-            {t("classrooms.createClassroom")}
-          </Button>
+        <Card>
+          <EmptyState
+            icon={School}
+            title={String(t("classrooms.noClassrooms"))}
+            description={String(t("classrooms.createFirstClassroom"))}
+            actionLabel={String(t("classrooms.createClassroom"))}
+            actionIcon={<Plus className="w-4 h-4" />}
+            onAction={handleCreateClick}
+          />
         </Card>
       ) : filteredClassrooms.length === 0 && classroomSearchQuery ? (
-        <Card className="p-12 text-center gap-2">
-          <Search className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-          <h3 className="text-lg font-medium text-gray-900">검색 결과가 없습니다</h3>
-          <p className="text-gray-500 mb-2">
-            &ldquo;{classroomSearchQuery}&rdquo;에 해당하는 클래스룸이 없습니다. 다른 검색어를 시도해보세요.
-          </p>
-          <Button 
-            variant="outline"
-            className="flex items-center gap-2 mx-auto"
-            onClick={() => setClassroomSearchQuery('')}
-          >
-            <X className="w-4 h-4" />
-            {t("classrooms.clearSearch")}
-          </Button>
+        <Card>
+          <EmptyState
+            icon={Search}
+            title={String(t("classrooms.noSearchResults"))}
+            description={String(t("classrooms.noSearchResultsFor", { query: classroomSearchQuery }))}
+            actionLabel={String(t("classrooms.clearSearch"))}
+            actionIcon={<X className="w-4 h-4" />}
+            actionVariant="outline"
+            onAction={() => setClassroomSearchQuery('')}
+          />
         </Card>
       ) : null}
 
@@ -1820,6 +2109,19 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         updateSchedule={updateSchedule}
         removeCustomColor={removeCustomColor}
         openColorPicker={openColorPicker}
+      />
+
+      {/* Bulk Delete Confirmation Modal */}
+      <ModalShell.Confirm
+        isOpen={showBulkDeleteConfirm}
+        onClose={() => setShowBulkDeleteConfirm(false)}
+        onConfirm={handleBulkDelete}
+        title={String(t("classrooms.bulkDeleteTitle"))}
+        message={String(t("classrooms.bulkDeleteConfirm", { count: selectedClassroomIds.size }))}
+        variant="danger"
+        confirmLabel={bulkUpdating ? String(t("common.deleting")) : String(t("common.delete"))}
+        cancelLabel={String(t("common.cancel"))}
+        loading={bulkUpdating}
       />
 
       {/* Delete Classroom Confirmation Modal */}

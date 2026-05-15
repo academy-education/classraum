@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Modal } from '@/components/ui/modal'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
   Search,
@@ -23,28 +24,23 @@ import {
   Book,
   GraduationCap,
   Clock,
-  UserPlus
+  UserPlus,
+  Mail,
+  Grid3X3,
+  Rows3
 } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { DashboardCard, BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
 import { useTranslation } from '@/hooks/useTranslation'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { useSubscriptionLimits } from '@/hooks/useSubscriptionLimits'
 
-// Cache invalidation function for teachers
-export const invalidateTeachersCache = (academyId: string) => {
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
-
-  keys.forEach(key => {
-    if (key.startsWith(`teachers-${academyId}-page`) ||
-        key.includes(`teachers-${academyId}-page`)) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
+import { invalidateTeachersCache } from '@/lib/cache'
+export { invalidateTeachersCache }
 
 interface Teacher {
   user_id: string
@@ -104,7 +100,17 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     }
   }, [currentPage])
 
+  const [viewMode, setViewMode] = useState<'card' | 'table'>('table')
   const [selectedTeachers, setSelectedTeachers] = useState<Set<string>>(new Set())
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
+
+  // Manager keyboard shortcuts: `/` → search, `Esc` → clear selection.
+  useListPageShortcuts({
+    searchInputRef,
+    onEscape: selectedTeachers.size > 0
+      ? () => setSelectedTeachers(new Set())
+      : undefined,
+  })
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all')
@@ -689,48 +695,33 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
   }, [dropdownOpen])
 
   // Loading skeleton
+  // Loading skeleton — matches DataTable chrome used by sessions / payments / etc.
   const TableSkeleton = () => (
-    <div className="animate-pulse">
-      <div className="overflow-x-auto min-h-[640px] flex flex-col">
-        <table className="w-full min-w-[700px]">
-          <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
-              {[...Array(6)].map((_, i) => (
-                <th key={i} className="text-left p-4">
-                  <div className="h-4 bg-gray-300 rounded w-16"></div>
-                </th>
+    <div className="overflow-x-auto min-h-[640px]">
+      <table className="w-full min-w-[700px] text-sm">
+        <thead className="bg-gray-50/60">
+          <tr>
+            <th className="w-10 px-4 py-3"><div className="h-3 w-3 bg-gray-200 rounded" /></th>
+            {['w-20', 'w-16', 'w-16', 'w-12', 'w-8'].map((w, i) => (
+              <th key={i} className="px-4 py-3 text-left">
+                <div className={`h-3 ${w} bg-gray-200 rounded`} />
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-100">
+          {[...Array(10)].map((_, i) => (
+            <tr key={i} className="animate-pulse">
+              <td className="px-4 py-3"><div className="h-4 w-4 bg-gray-100 rounded" /></td>
+              {[...Array(5)].map((_, j) => (
+                <td key={j} className="px-4 py-3">
+                  <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
+                </td>
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {[...Array(8)].map((_, i) => (
-              <tr key={i} className="border-b border-gray-100">
-                <td className="p-4">
-                  <div className="h-4 bg-gray-200 rounded w-4"></div>
-                </td>
-                <td className="p-4">
-                  <div className="space-y-2">
-                    <div className="h-4 bg-gray-200 rounded w-32"></div>
-                    <div className="h-3 bg-gray-200 rounded w-24"></div>
-                  </div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-20"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-3 bg-gray-200 rounded w-16"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-6 bg-gray-200 rounded w-16"></div>
-                </td>
-                <td className="p-4">
-                  <div className="h-4 bg-gray-200 rounded w-4"></div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 
@@ -739,7 +730,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.teachers")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("teachers.title")}</h1>
             <p className="text-gray-500">{t("teachers.description")}</p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -753,13 +745,21 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           </div>
         </div>
 
+        {/* Toggle Skeleton */}
+        <div className="flex justify-end mb-4 animate-pulse">
+          <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+            <div className="h-9 w-9 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+
         <div className="relative mb-4 max-w-md animate-pulse">
           <div className="h-12 bg-gray-200 rounded-lg"></div>
         </div>
-        
-        <Card className="overflow-hidden">
+
+        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
           <TableSkeleton />
-        </Card>
+        </div>
       </div>
     )
   }
@@ -769,13 +769,14 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("teachers.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.teachers")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("teachers.title")}</h1>
           <p className="text-gray-500">{t("teachers.description")}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           {!limitsLoading && totalUserLimit > 0 && (
             <span className={`text-xs sm:text-sm font-medium px-2.5 py-1 rounded-full ${
-              canAddUsers ? 'bg-gray-100 text-gray-600' : 'bg-red-100 text-red-700'
+              canAddUsers ? 'bg-gray-100 text-gray-600' : 'bg-rose-50 text-rose-700'
             }`}>
               {t('subscription.usersCount', { current: totalUsers, limit: totalUserLimit })}
             </span>
@@ -800,44 +801,71 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         </div>
       </div>
 
+      {/* View Mode Toggle */}
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.tableView"))}
+          >
+            <Rows3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => { setViewMode('card'); setSelectedTeachers(new Set()) }}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.cardView"))}
+          >
+            <Grid3X3 className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
+          ref={searchInputRef}
           type="text"
           placeholder={String(t("teachers.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
         />
+        <SearchKbdHint />
       </div>
 
-      {/* Bulk Actions Menu */}
+      {/* Bulk Action Bar — uses shared BulkActionBar primitive for visual consistency
+          with the other refactored pages. */}
       {selectedTeachers.size > 0 && (
-        <Card className="mb-4 p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium text-gray-700">
-                {t("teachers.selectedTeachers", { count: selectedTeachers.size })}
-              </span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setSelectedTeachers(new Set())}
-              >
-                {t("teachers.clearSelection")}
-              </Button>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button onClick={() => handleBulkStatusUpdate(true)} size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                {t("teachers.makeActive")}
-              </Button>
-              <Button onClick={() => handleBulkStatusUpdate(false)} size="sm" className="bg-red-600 hover:bg-red-700 text-white">
-                {t("teachers.makeInactive")}
-              </Button>
-            </div>
-          </div>
-        </Card>
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedTeachers.size}
+            onClear={() => setSelectedTeachers(new Set())}
+          >
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleBulkStatusUpdate(true)}
+            >
+              <UserCheck className="w-3.5 h-3.5 mr-1.5" />
+              {t("teachers.makeActive")}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleBulkStatusUpdate(false)}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              <UserX className="w-3.5 h-3.5 mr-1.5" />
+              {t("teachers.makeInactive")}
+            </Button>
+          </BulkActionBar>
+        </div>
       )}
 
       {/* Status Filter Tabs */}
@@ -883,27 +911,121 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         </button>
       </div>
 
-      {/* Teachers Table */}
-      <Card className="overflow-hidden">
+      {/* Teachers Content — card or table */}
+      {viewMode === 'card' ? (
+        tableLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => (
+              <Card key={i} className="!gap-0 !py-0 overflow-hidden flex flex-col h-full">
+                <div className="h-1 w-full bg-gray-200" />
+                <div className="p-4 sm:p-5 flex flex-col flex-1 animate-pulse">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                      <div className="h-3 w-16 bg-gray-200 rounded" />
+                      <div className="h-5 w-3/4 bg-gray-200 rounded" />
+                      <div className="h-3 w-1/2 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                  </div>
+                  <div className="h-3 w-2/3 bg-gray-200 rounded" />
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : filteredTeachers.length === 0 ? (
+          <Card>
+            <EmptyState
+              icon={UserPlus}
+              title={String(t("teachers.noTeachersFound"))}
+              description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('teachers.getStartedFirstTeacher'))}
+            />
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredTeachers.map((teacher) => (
+              <DashboardCard
+                key={teacher.user_id}
+                paused={!teacher.active}
+                accentColor={teacher.active ? '#10b981' : '#9ca3af'}
+                statusLabel={teacher.active ? t('common.active') : t('common.inactive')}
+                statusToneClass={teacher.active ? 'text-emerald-600' : 'text-gray-500'}
+                title={teacher.name}
+                subtitle={
+                  <>
+                    <Mail className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                    <span className="truncate">{teacher.email}</span>
+                  </>
+                }
+                metrics={[
+                  {
+                    label: t('teachers.classrooms') as string,
+                    value: String(teacher.classroom_count || 0),
+                  },
+                  {
+                    label: t('common.phone') as string,
+                    value: teacher.phone && teacher.phone.trim() ? teacher.phone : '—',
+                  },
+                  {
+                    label: t('common.status') as string,
+                    value: teacher.active ? t('common.active') : t('common.inactive'),
+                  },
+                ]}
+                footerActions={
+                  <>
+                    <Button
+                      variant="outline"
+                      className="w-full text-xs sm:text-sm h-9"
+                      onClick={() => handleViewClassroomsClick(teacher)}
+                    >
+                      <BookOpen className="w-3.5 h-3.5 mr-1.5" />
+                      {t("teachers.viewClassrooms")}
+                    </Button>
+                    <Button
+                      className="w-full text-xs sm:text-sm h-9"
+                      variant={teacher.active ? 'outline' : 'default'}
+                      onClick={() => teacher.active ? handleDeleteClick(teacher) : handleActivateClick(teacher)}
+                    >
+                      {teacher.active ? (
+                        <><UserX className="w-3.5 h-3.5 mr-1.5" />{t("teachers.makeInactive")}</>
+                      ) : (
+                        <><UserCheck className="w-3.5 h-3.5 mr-1.5" />{t("teachers.makeActive")}</>
+                      )}
+                    </Button>
+                  </>
+                }
+              />
+            ))}
+          </div>
+        )
+      ) : (
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         {tableLoading ? (
           <TableSkeleton />
         ) : (
         <>
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
           <table className="w-full min-w-[700px]">
-            <thead>
-              <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="rounded border-gray-300 accent-primary"
-                      checked={filteredTeachers.length > 0 && selectedTeachers.size === filteredTeachers.length}
-                      onChange={(e) => handleSelectAll(e.target.checked)}
-                    />
-                  </div>
+            <thead className="bg-gray-50/60">
+              <tr>
+                <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap w-10">
+                  {(() => {
+                    const allSelected = filteredTeachers.length > 0 && selectedTeachers.size === filteredTeachers.length
+                    const someSelected = selectedTeachers.size > 0 && selectedTeachers.size < filteredTeachers.length
+                    return (
+                      <TableCheckbox
+                        checked={allSelected}
+                        indeterminate={someSelected}
+                        ariaLabel={String(t('common.selectAll') || 'Select all')}
+                        onChange={() => handleSelectAll(!allSelected)}
+                      />
+                    )
+                  })()}
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[150px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1">
                       {t("common.teacher")}
@@ -911,7 +1033,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('phone')} className="flex items-center gap-1">
                       {t("common.phone")}
@@ -919,7 +1041,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('classrooms')} className="flex items-center gap-1">
                       {t("teachers.classrooms")}
@@ -927,7 +1049,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2 relative">
                     {t("common.status")}
                     <div className="relative z-20" ref={statusFilterRef}>
@@ -943,7 +1065,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                       </button>
                       
                       {showStatusFilter && (
-                        <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50">
+                        <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50 normal-case tracking-normal font-normal">
                           <button
                             onClick={() => {
                               setStatusFilter('all')
@@ -976,27 +1098,31 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                     </div>
                   </div>
                 </th>
-                <th className="text-left p-4 font-medium text-gray-900 whitespace-nowrap"></th>
+                <th className="text-left p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-gray-100">
               {filteredTeachers.length > 0 ? filteredTeachers.map((teacher) => (
-                <tr key={teacher.user_id} className="border-b border-gray-100 hover:bg-gray-50">
+                <tr key={teacher.user_id} className={cn(
+                  'transition-colors',
+                  selectedTeachers.has(teacher.user_id) ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-gray-50'
+                )}>
                   <td className="p-3 sm:p-4">
-                    <input
-                      type="checkbox"
-                      className="rounded border-gray-300 accent-primary"
+                    <TableCheckbox
                       checked={selectedTeachers.has(teacher.user_id)}
-                      onChange={(e) => handleSelectTeacher(teacher.user_id, e.target.checked)}
+                      ariaLabel={String(t('common.selectRow') || 'Select row')}
+                      onChange={() => handleSelectTeacher(teacher.user_id, !selectedTeachers.has(teacher.user_id))}
+                      onClick={(e) => e.stopPropagation()}
                     />
                   </td>
                   <td className="p-3 sm:p-4">
-                    <div className="flex items-center gap-2 sm:gap-3">
-                      <div>
-                        <div className="text-sm sm:text-base font-medium text-gray-900">{teacher.name}</div>
-                        <div className="text-xs sm:text-sm text-gray-500 flex items-center gap-1">
-                          {teacher.email}
-                        </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center text-sm font-semibold flex-shrink-0">
+                        {teacher.name?.charAt(0).toUpperCase() || '?'}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-sm font-semibold text-gray-900 truncate">{teacher.name}</div>
+                        <div className="text-xs text-gray-500 truncate">{teacher.email}</div>
                       </div>
                     </div>
                   </td>
@@ -1017,14 +1143,14 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   <td className="p-3 sm:p-4">
                     <div className="flex items-center gap-1 sm:gap-2">
                       {teacher.active ? (
-                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
                       ) : (
                         <XCircle className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
                       )}
                       <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-medium ${
                         teacher.active
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-gray-100 text-gray-800'
+                          ? 'bg-emerald-50 text-emerald-700'
+                          : 'bg-gray-50 text-gray-700'
                       }`}>
                         {teacher.active ? t('common.active') : t('common.inactive')}
                       </span>
@@ -1061,7 +1187,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                           </button>
                           {teacher.active ? (
                             <button
-                              className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
+                              className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-rose-600"
                               onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
@@ -1073,7 +1199,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                             </button>
                           ) : (
                             <button
-                              className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-green-600"
+                              className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-emerald-600"
                               onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
@@ -1091,14 +1217,12 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                 </tr>
               )) : (
                 <tr>
-                  <td colSpan={6} className="p-12 text-center">
-                    <div className="flex flex-col items-center">
-                      <GraduationCap className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">{t("teachers.noTeachersFound")}</h3>
-                      <p className="text-gray-600">
-                        {searchQuery ? t('common.tryAdjustingSearch') : t('teachers.getStartedFirstTeacher')}
-                      </p>
-                    </div>
+                  <td colSpan={6}>
+                    <EmptyState
+                      icon={UserPlus}
+                      title={String(t("teachers.noTeachersFound"))}
+                      description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('teachers.getStartedFirstTeacher'))}
+                    />
                   </td>
                 </tr>
               )}
@@ -1158,53 +1282,30 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         )}
         </>
         )}
-      </Card>
-
-
+      </div>
+      )}
 
       {/* Delete Confirmation Modal */}
       {teacherToDelete && (
-        <Modal
+        <ModalShell.Confirm
           isOpen={showDeleteModal}
           onClose={() => {
             setShowDeleteModal(false)
             setTeacherToDelete(null)
           }}
-          size="md"
-        >
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{teacherToDelete.active ? t('teachers.makeTeacherInactive') : t('teachers.makeTeacherActive')}</h2>
-              <p className="text-gray-600 mb-6">
-                {teacherToDelete.active
-                  ? `${t('teachers.makeInactiveConfirm', { name: teacherToDelete.name })} ${t('teachers.dataPreserved')}`
-                  : `${t('teachers.makeActiveConfirm', { name: teacherToDelete.name })} ${t('teachers.regainAccess')}`}
-              </p>
-            </div>
-            <div className="flex-shrink-0 p-6 border-t border-gray-200 flex gap-3">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowDeleteModal(false)
-                  setTeacherToDelete(null)
-                }}
-                className="flex-1"
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button
-                onClick={handleDeleteConfirm}
-                className={`flex-1 text-white ${teacherToDelete.active ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
-              >
-                {teacherToDelete.active ? t('teachers.makeInactive') : t('teachers.makeActive')}
-              </Button>
-            </div>
-          </div>
-        </Modal>
+          onConfirm={handleDeleteConfirm}
+          title={String(teacherToDelete.active ? t('teachers.makeTeacherInactive') : t('teachers.makeTeacherActive'))}
+          message={teacherToDelete.active
+            ? `${t('teachers.makeInactiveConfirm', { name: teacherToDelete.name })} ${t('teachers.dataPreserved')}`
+            : `${t('teachers.makeActiveConfirm', { name: teacherToDelete.name })} ${t('teachers.regainAccess')}`}
+          variant={teacherToDelete.active ? 'danger' : 'info'}
+          confirmLabel={String(teacherToDelete.active ? t('teachers.makeInactive') : t('teachers.makeActive'))}
+          cancelLabel={String(t('common.cancel'))}
+        />
       )}
 
       {/* View Classrooms Modal */}
-      <Modal
+      <ModalShell
         isOpen={showViewClassroomsModal}
         onClose={() => {
           setShowViewClassroomsModal(false)
@@ -1212,27 +1313,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
           setTeacherClassrooms([])
         }}
         size="3xl"
+        title={`${t("teachers.classrooms")} - ${viewingTeacher?.name}`}
       >
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">
-              {t("teachers.classrooms")} - {viewingTeacher?.name}
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setShowViewClassroomsModal(false)
-                setViewingTeacher(null)
-                setTeacherClassrooms([])
-              }}
-              className="p-1"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-
-          <div className="flex-1 min-h-0 overflow-y-auto p-6">
             {classroomsModalLoading ? (
               <div className="space-y-4">
                 <Skeleton className="h-4 w-36" />
@@ -1290,53 +1372,58 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   </div>
                 </div>
               ) : (
-                <div className="text-center py-12">
-                  <div className="flex flex-col items-center">
-                    <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">{t("teachers.noClassroomsAssigned")}</h3>
-                    <p className="text-gray-600">
-                      {t("teachers.teacherNoClassrooms")}
-                    </p>
-                  </div>
-                </div>
+                <EmptyState
+                  icon={BookOpen}
+                  title={String(t("teachers.noClassroomsAssigned"))}
+                  description={String(t("teachers.teacherNoClassrooms"))}
+                />
               )}
-            </div>
-          </div>
-        </Modal>
+      </ModalShell>
 
       {/* Classroom Details Modal */}
       {selectedClassroomForDetails && (
-        <Modal
+        <ModalShell
           isOpen={showClassroomDetailsModal}
           onClose={() => {
             setShowClassroomDetailsModal(false)
             setSelectedClassroomForDetails(null)
           }}
           size="6xl"
-        >
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-6 h-6 rounded-full"
-                  style={{ backgroundColor: selectedClassroomForDetails.color || '#6B7280' }}
-                />
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{selectedClassroomForDetails.name}</h2>
+          headerSlot={
+            <div className="flex items-center gap-3">
+              <div
+                className="w-6 h-6 rounded-full flex-shrink-0"
+                style={{ backgroundColor: selectedClassroomForDetails.color || '#6B7280' }}
+              />
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 truncate">{selectedClassroomForDetails.name}</h2>
+            </div>
+          }
+          footer={
+            <ModalShell.Footer justify="between">
+              <div className="text-sm text-gray-500">
+                {selectedClassroomForDetails.created_at && (
+                  <>
+                    {t("common.created")}: {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
+                    {selectedClassroomForDetails.updated_at !== selectedClassroomForDetails.created_at && selectedClassroomForDetails.updated_at && (
+                      <span className="ml-4">
+                        {t("common.updated")}: {new Date(selectedClassroomForDetails.updated_at).toLocaleDateString()}
+                      </span>
+                    )}
+                  </>
+                )}
               </div>
               <Button
-                variant="ghost"
-                size="sm"
+                variant="outline"
                 onClick={() => {
                   setShowClassroomDetailsModal(false)
                   setSelectedClassroomForDetails(null)
                 }}
-                className="p-1"
               >
-                <X className="w-5 h-5" />
+                {t("common.close")}
               </Button>
-            </div>
-
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            </ModalShell.Footer>
+          }
+        >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Column - Classroom Info & Enrollment */}
                 <div className="space-y-6">
@@ -1431,35 +1518,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   </Card>
                 </div>
               </div>
-            </div>
-
-            <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-              <div className="text-sm text-gray-500">
-                {selectedClassroomForDetails.created_at && (
-                  <>
-                    {t("common.created")}: {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
-                    {selectedClassroomForDetails.updated_at !== selectedClassroomForDetails.created_at && selectedClassroomForDetails.updated_at && (
-                      <span className="ml-4">
-                        {t("common.updated")}: {new Date(selectedClassroomForDetails.updated_at).toLocaleDateString()}
-                      </span>
-                    )}
-                  </>
-                )}
-              </div>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowClassroomDetailsModal(false)
-                    setSelectedClassroomForDetails(null)
-                  }}
-                >
-                  {t("common.close")}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Modal>
+        </ModalShell>
       )}
     </div>
   )

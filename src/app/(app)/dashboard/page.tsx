@@ -1,27 +1,45 @@
 "use client"
 
 import React, { useMemo, useEffect, useState, useCallback } from 'react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import type { Layout, Layouts } from 'react-grid-layout'
+// react-grid-layout's bundled .d.ts exports `Layout` and `ResponsiveLayouts`
+// (the latter is what older docs call `Layouts`). Type-only import — it
+// doesn't pull the runtime into this chunk.
+import type { Layout, ResponsiveLayouts as Layouts } from 'react-grid-layout'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { DashboardErrorBoundary } from '@/components/ui/error-boundary'
+import { EmptyState } from '@/components/ui/common/EmptyState'
+import { LayoutDashboard, AlertCircle } from 'lucide-react'
 import { StatsCard, TodaysSessions, RecentActivity, ClassroomRankingsCard, TopStudentsCard } from './components'
 import { DashboardEditToggle } from './components/DashboardEditToggle'
-import { CardVisibilityPanel } from './components/CardVisibilityPanel'
-import { useDashboardStats, useTodaysSessions, useRecentActivities, useClassroomPerformance } from './hooks'
+
+// Edit-mode-only — defer the bundle until the user enters edit mode. The
+// panel is mounted via `{isEditMode && <CardVisibilityPanel ... />}` so
+// this dynamic boundary only fires when needed; first paint stays lean.
+const CardVisibilityPanel = dynamic(
+  () => import('./components/CardVisibilityPanel').then(m => m.CardVisibilityPanel),
+  { ssr: false }
+)
+import { useDashboardStats, useTodaysSessions, useRecentActivities, useClassroomPerformance, useAssignmentsAwaitingGrades } from './hooks'
 import { useDashboardLayoutStore, getVisibleLayouts } from '@/stores'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import styles from './dashboard.module.css'
 
-// Import react-grid-layout styles
+// Import react-grid-layout styles. CSS is fine at module load — it's a
+// side-effect import with no JS bundle cost; keeping it eager avoids a
+// layout-shift when the dynamic grid chunk lands.
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 
-// Use legacy wrapper for v1 API compatibility
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { Responsive, WidthProvider } = require('react-grid-layout/legacy')
-const ResponsiveGridLayout = WidthProvider(Responsive)
+// Dynamic-import the grid wrapper so the heavy react-grid-layout +
+// react-resizable + react-draggable runtime drops out of the dashboard
+// page bundle. Loads on first render after the page chunk parses.
+const DashboardGrid = dynamic(() => import('./components/DashboardGrid'), {
+  ssr: false,
+  loading: () => null,
+})
 
 export default function DashboardPage() {
   const { academyId, userId, user, isLoading: authLoading, isInitialized, userDataLoading } = useAuth()
@@ -108,6 +126,7 @@ export default function DashboardPage() {
   const { stats, trends, loading: statsLoading, error: statsError } = useDashboardStats(academyId || null)
   const { sessions, loading: sessionsLoading } = useTodaysSessions(academyId || null)
   const { activities, loading: activitiesLoading } = useRecentActivities(userId || null, language)
+  const { count: awaitingGradesCount } = useAssignmentsAwaitingGrades(academyId || null)
   const {
     highestScoreClassroom,
     lowestScoreClassroom,
@@ -266,6 +285,9 @@ export default function DashboardPage() {
     }))
     const result: Layouts = {}
     for (const [breakpoint, layout] of Object.entries(filtered)) {
+      // ResponsiveLayouts breakpoint values are typed as optional; skip
+      // empty entries instead of pushing undefined.
+      if (!layout) continue
       result[breakpoint] = layout.map(item => ({
         ...item,
         ...cardConstraints.get(item.i)
@@ -346,32 +368,26 @@ export default function DashboardPage() {
     }
   }
 
-  // Dashboard content with react-grid-layout
+  // Dashboard content with react-grid-layout — DashboardGrid is dynamic-
+  // imported so the layout library doesn't bloat the page chunk.
   const dashboardContent = (
-    <ResponsiveGridLayout
-      className="layout"
+    <DashboardGrid
       layouts={visibleLayouts}
       breakpoints={breakpoints}
       cols={cols}
-      rowHeight={80}
-      margin={[16, 16]}
-      containerPadding={[0, 0]}
-      isDraggable={isEditMode}
-      isResizable={isEditMode}
+      isEditMode={isEditMode}
       onLayoutChange={handleLayoutChange}
       onResizeStop={handleResizeStop}
-      draggableHandle=".drag-handle"
-      useCSSTransforms={true}
-      compactType="vertical"
-      preventCollision={false}
     >
       {visibleCards.map((card) => (
         <div
           key={card.id}
-          className={`${isEditMode ? 'ring-2 ring-primary/20 ring-offset-2 rounded-lg' : ''}`}
+          // Match the widget chrome's rounded-2xl so the edit-mode ring sits flush
+          // around the card instead of clipping its rounded corners.
+          className={`${isEditMode ? 'ring-2 ring-primary/20 ring-offset-2 rounded-2xl' : ''}`}
         >
           {isEditMode && (
-            <div className="drag-handle absolute -top-2 -left-2 z-10 p-1.5 rounded-lg bg-white border border-gray-200 shadow-sm cursor-grab active:cursor-grabbing">
+            <div className="drag-handle absolute -top-2 -left-2 z-10 p-1.5 rounded-lg bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] cursor-grab active:cursor-grabbing">
               <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
               </svg>
@@ -380,41 +396,64 @@ export default function DashboardPage() {
           {renderCardById(card.id)}
         </div>
       ))}
-    </ResponsiveGridLayout>
+    </DashboardGrid>
   )
 
   return (
     <DashboardErrorBoundary>
       <div className={`p-4 ${styles.dashboardContainer}`}>
-        {/* Header with Edit Controls - hidden when bottom nav is visible */}
-        <div className="hidden lg:flex items-center justify-end gap-2 mb-6">
-          <CardVisibilityPanel
-            cards={cards}
-            onToggleVisibility={toggleCardVisibility}
-            isEditMode={isEditMode}
-          />
-          <DashboardEditToggle
-            isEditMode={isEditMode}
-            saving={saving}
-            onToggleEditMode={handleToggleEditMode}
-            onSave={handleSave}
-            onReset={resetToDefault}
-          />
+        {/* Page Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.dashboard')}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('dashboard.title')}</h1>
+            <p className="text-gray-500 mt-1">{t('dashboard.description')}</p>
+            {/* Top-of-page action chip — surfaces "things you need to do today"
+                that aren't tied to a specific session card. The
+                pending-attendance chip lives inside Today's Sessions because
+                it's session-scoped; this one is academy-wide so it lives at
+                the top. Click → /assignments?pending=true (the assignments
+                page reads that param and opens with pending-only filter). */}
+            {awaitingGradesCount > 0 && (
+              <button
+                type="button"
+                onClick={() => router.push('/assignments?pending=true')}
+                className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 ring-1 ring-amber-200 hover:bg-amber-100 transition-colors"
+              >
+                <AlertCircle className="w-3.5 h-3.5" />
+                {String(t('dashboard.assignmentsAwaitingGrades', { count: awaitingGradesCount }))}
+              </button>
+            )}
+          </div>
+          {/* Edit controls - hidden when bottom nav is visible */}
+          <div className="hidden lg:flex items-center gap-2">
+            <CardVisibilityPanel
+              cards={cards}
+              onToggleVisibility={toggleCardVisibility}
+              isEditMode={isEditMode}
+            />
+            <DashboardEditToggle
+              isEditMode={isEditMode}
+              saving={saving}
+              onToggleEditMode={handleToggleEditMode}
+              onSave={handleSave}
+              onReset={resetToDefault}
+            />
+          </div>
         </div>
 
         {visibleCards.length > 0 ? (
           dashboardContent
         ) : (
-          <div className="flex flex-col items-center justify-center py-20 text-gray-500">
-            <p className="text-lg mb-2">
-              {language === 'korean' ? '표시할 카드가 없습니다' : 'No cards to display'}
-            </p>
-            <p className="text-sm">
-              {language === 'korean'
-                ? '카드 표시 설정에서 카드를 활성화하세요'
-                : 'Enable cards from the visibility settings'}
-            </p>
-          </div>
+          <EmptyState
+            icon={LayoutDashboard}
+            title={String(t('dashboard.noCardsToDisplay'))}
+            description={String(t('dashboard.noCardsToDisplayDescription'))}
+            actionLabel={String(t('dashboard.showCards'))}
+            onAction={() => setEditMode(true)}
+            actionVariant="outline"
+            size="lg"
+          />
         )}
       </div>
     </DashboardErrorBoundary>

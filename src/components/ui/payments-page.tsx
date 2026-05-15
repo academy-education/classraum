@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -23,12 +25,14 @@ import {
   Loader2,
   ChevronDown,
 } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { BulkActionBar, DashboardCard, TableCheckbox } from '@/components/ui/dashboard'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Modal } from '@/components/ui/modal'
 import {
   usePaymentsData,
   invalidatePaymentsCache,
@@ -36,15 +40,28 @@ import {
   type PaymentTemplate,
   type RecurringStudent,
 } from '@/components/ui/payments/hooks/usePaymentsData'
-import { ViewPlansModal } from '@/components/ui/payments/modals/ViewPlansModal'
-import { AddPlanModal } from '@/components/ui/payments/modals/AddPlanModal'
-import { EditPlanModal } from '@/components/ui/payments/modals/EditPlanModal'
-import { DeleteInvoiceModal, DeleteRecurringModal, BulkDeleteModal, DeletePlanModal, PausePlanModal } from '@/components/ui/payments/modals/DeleteConfirmModals'
-import { EditRecurringStudentModal } from '@/components/ui/payments/modals/EditRecurringStudentModal'
-import { ViewPaymentModal } from '@/components/ui/payments/modals/ViewPaymentModal'
-import { AddPaymentModal, emptyPaymentFormData } from '@/components/ui/payments/modals/AddPaymentModal'
-import { EditPaymentModal } from '@/components/ui/payments/modals/EditPaymentModal'
-import { TemplatePaymentsModal } from '@/components/ui/payments/modals/TemplatePaymentsModal'
+// Modals are conditionally rendered (`{showXxxModal && <XxxModal ... />}`),
+// so dynamic-import them — the ~2,300 lines of modal JSX + their
+// ModalShell/Select/DateInput dep trees only load when the user opens one.
+// `emptyPaymentFormData` lives in a tiny standalone module so importing it
+// statically (the page holds form state in useState) doesn't drag the
+// 690-line AddPaymentModal back into the eager bundle.
+import dynamic from 'next/dynamic'
+import { emptyPaymentFormData } from '@/components/ui/payments/payment-form-data'
+
+const ViewPlansModal = dynamic(() => import('@/components/ui/payments/modals/ViewPlansModal').then(m => m.ViewPlansModal), { ssr: false })
+const AddPlanModal = dynamic(() => import('@/components/ui/payments/modals/AddPlanModal').then(m => m.AddPlanModal), { ssr: false })
+const EditPlanModal = dynamic(() => import('@/components/ui/payments/modals/EditPlanModal').then(m => m.EditPlanModal), { ssr: false })
+const DeleteInvoiceModal = dynamic(() => import('@/components/ui/payments/modals/DeleteConfirmModals').then(m => m.DeleteInvoiceModal), { ssr: false })
+const DeleteRecurringModal = dynamic(() => import('@/components/ui/payments/modals/DeleteConfirmModals').then(m => m.DeleteRecurringModal), { ssr: false })
+const BulkDeleteModal = dynamic(() => import('@/components/ui/payments/modals/DeleteConfirmModals').then(m => m.BulkDeleteModal), { ssr: false })
+const DeletePlanModal = dynamic(() => import('@/components/ui/payments/modals/DeleteConfirmModals').then(m => m.DeletePlanModal), { ssr: false })
+const PausePlanModal = dynamic(() => import('@/components/ui/payments/modals/DeleteConfirmModals').then(m => m.PausePlanModal), { ssr: false })
+const EditRecurringStudentModal = dynamic(() => import('@/components/ui/payments/modals/EditRecurringStudentModal').then(m => m.EditRecurringStudentModal), { ssr: false })
+const ViewPaymentModal = dynamic(() => import('@/components/ui/payments/modals/ViewPaymentModal').then(m => m.ViewPaymentModal), { ssr: false })
+const AddPaymentModal = dynamic(() => import('@/components/ui/payments/modals/AddPaymentModal').then(m => m.AddPaymentModal), { ssr: false })
+const EditPaymentModal = dynamic(() => import('@/components/ui/payments/modals/EditPaymentModal').then(m => m.EditPaymentModal), { ssr: false })
+const TemplatePaymentsModal = dynamic(() => import('@/components/ui/payments/modals/TemplatePaymentsModal').then(m => m.TemplatePaymentsModal), { ssr: false })
 
 // Re-export for consumers that import from this file
 export { invalidatePaymentsCache }
@@ -59,6 +76,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const { t, language } = useTranslation()
   const { toast } = useToast()
   const [searchQuery, setSearchQuery] = useState('')
+  const searchInputRef = useRef<HTMLInputElement>(null)
 
   const [showPaymentPlansModal, setShowPaymentPlansModal] = useState(false)
   const [showAddPlanModal, setShowAddPlanModal] = useState(false)
@@ -104,6 +122,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     paymentTemplates, setPaymentTemplates,
     students,
     loading,
+    invoicesLoading,
     initialized,
     totalCount,
     allTimeRevenue,
@@ -247,6 +266,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     }
   }, [activeTab])
 
+  // Manager keyboard shortcuts: `/` → search, `n` → new payment, `Esc` → clear selections.
+  useListPageShortcuts({
+    searchInputRef,
+    onCreate: () => setShowAddPaymentModal(true),
+    isCreateBlocked: showAddPaymentModal,
+    onEscape: (selectedOneTimeInvoices.size > 0 || selectedRecurringStudents.size > 0)
+      ? () => {
+          setSelectedOneTimeInvoices(new Set())
+          setSelectedRecurringStudents(new Set())
+        }
+      : undefined,
+  })
+
   // Template payment sorting function
   const handleTemplateSort = (field: string) => {
     if (templateSortField === field) {
@@ -347,21 +379,22 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     setSelectedTemplatePayments(newSelected)
   }
 
-  const handleBulkStatusUpdate = async () => {
+  const handleBulkStatusUpdate = async (statusOverride?: string) => {
+    const status = statusOverride ?? bulkStatus
     if (activeTab === 'one_time') {
       const selectedIds = Array.from(selectedOneTimeInvoices)
-      
+
       if (selectedIds.length === 0) return
 
       try {
         // Update invoice statuses
         const { error } = await supabase
           .from('invoices')
-          .update({ status: bulkStatus })
+          .update({ status })
           .in('id', selectedIds)
-        
+
         if (error) throw error
-        
+
         // Refresh data
         fetchInvoices()
         setSelectedOneTimeInvoices(new Set())
@@ -371,18 +404,18 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
     } else if (activeTab === 'recurring') {
       const selectedIds = Array.from(selectedRecurringStudents)
-      
+
       if (selectedIds.length === 0) return
 
       try {
         // Update recurring student statuses
         const { error } = await supabase
           .from('recurring_payment_template_students')
-          .update({ status: bulkStatus })
+          .update({ status })
           .in('id', selectedIds)
-        
+
         if (error) throw error
-        
+
         // Refresh data
         fetchRecurringStudents()
         setSelectedRecurringStudents(new Set())
@@ -1669,7 +1702,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </button>
         
         {isOpen && (
-          <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 left-0" style={{ zIndex: 9999 }}>
+          <div className="absolute top-full mt-1 bg-white border border-border rounded-lg shadow-lg p-4 w-80 max-w-[90vw] left-0" style={{ zIndex: 9999 }}>
             {/* Header with month/year navigation */}
             <div className="flex items-center justify-between mb-4">
               <button
@@ -1766,28 +1799,28 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'paid':
-        return 'bg-green-100 text-green-800'
+        return 'bg-emerald-50 text-emerald-700'
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800'
+        return 'bg-amber-50 text-amber-700'
       case 'failed':
-        return 'bg-red-100 text-red-800'
+        return 'bg-rose-50 text-rose-700'
       case 'refunded':
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-sky-50 text-sky-700'
       case 'not_generated':
         return 'bg-gray-100 text-gray-600'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-50 text-gray-700'
     }
   }
 
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'paid':
-        return <CheckCircle className="w-4 h-4 text-green-600" />
+        return <CheckCircle className="w-4 h-4 text-emerald-600" />
       case 'pending':
-        return <Clock className="w-4 h-4 text-yellow-600" />
+        return <Clock className="w-4 h-4 text-amber-600" />
       case 'failed':
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-rose-600" />
       case 'refunded':
         return <RotateCcw className="w-4 h-4 text-blue-600" />
       case 'not_generated':
@@ -2039,29 +2072,21 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     ? filteredInvoices.length
     : totalCount
 
+  // Matches the rendered stat card layout (icon chip + tiny eyebrow label + big number)
   const StatCardSkeleton = ({ delay = 0 }: { delay?: number }) => (
-    <div 
-      className="bg-white rounded-lg border border-gray-200 p-6 animate-pulse"
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      <div className="flex items-center">
-        <div className="flex-shrink-0">
-          <div className="w-8 h-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full"></div>
-        </div>
-        <div className="ml-5 w-0 flex-1">
-          <div className="space-y-3">
-            <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-md w-28"></div>
-            <div className="h-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-md w-20"></div>
-          </div>
-        </div>
+    <Card className="p-5 animate-pulse" style={{ animationDelay: `${delay}ms` }}>
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-7 h-7 rounded-lg bg-gray-100" />
+        <div className="h-3 w-28 bg-gray-200 rounded" />
       </div>
-    </div>
+      <div className="h-8 sm:h-9 w-32 bg-gray-200 rounded" />
+    </Card>
   )
 
   const TabsSkeleton = () => (
-    <div className="flex space-x-1 border-b border-gray-200 mb-6 animate-pulse">
+    <div className="inline-flex items-center bg-white rounded-lg border border-gray-200 mb-4 p-1 animate-pulse">
       {[...Array(3)].map((_, i) => (
-        <div key={i} className="px-4 py-2">
+        <div key={i} className={`px-4 py-2 ${i > 0 ? 'ml-1' : ''}`}>
           <div className="h-5 bg-gray-200 rounded w-20"></div>
         </div>
       ))}
@@ -2107,37 +2132,24 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     const columns = getColumns()
 
     return (
-      <div className="animate-pulse">
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         <div className="overflow-x-auto min-h-[500px]">
           <table className="w-full min-w-[800px]">
-            <thead className="bg-gray-50">
-              <tr className="border-b border-gray-200">
+            <thead className="bg-gray-50/60">
+              <tr>
                 {columns.map((col, i) => (
-                  <th key={i} className="text-left p-4">
-                    <div className={`h-4 bg-gradient-to-r from-gray-300 to-gray-400 rounded-md ${col.width}`}></div>
+                  <th key={i} className="text-left p-3 sm:p-4">
+                    <div className={`h-3 bg-gray-200 rounded ${col.width}`}></div>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-100">
+            <tbody className="divide-y divide-gray-100">
               {[...Array(10)].map((_, i) => (
-                <tr key={i} className="hover:bg-gray-50/50">
+                <tr key={i} className="animate-pulse">
                   {columns.map((col, j) => (
-                    <td key={j} className="p-4">
-                      {col.label === 'checkbox' ? (
-                        <div className="h-4 w-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded border"></div>
-                      ) : col.label === 'actions' ? (
-                        <div className="h-8 w-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full"></div>
-                      ) : col.label === 'status' ? (
-                        <div className="h-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full w-16"></div>
-                      ) : col.twoLine ? (
-                        <div className="space-y-2">
-                          <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-md w-full max-w-[180px]"></div>
-                          <div className="h-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded-md w-32"></div>
-                        </div>
-                      ) : (
-                        <div className={`h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-md ${col.width === 'w-20' ? 'w-16' : col.width === 'w-24' ? 'w-20' : 'w-full max-w-[120px]'}`}></div>
-                      )}
+                    <td key={j} className="p-3 sm:p-4">
+                      <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
                     </td>
                   ))}
                 </tr>
@@ -2145,17 +2157,15 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </tbody>
           </table>
         </div>
-        
+
         {/* Pagination Skeleton */}
-        <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 bg-gray-50">
-          <div className="flex items-center space-x-4 animate-pulse">
-            <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-32"></div>
-          </div>
-          <div className="flex items-center space-x-2 animate-pulse">
-            <div className="h-8 w-20 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
-            <div className="h-8 w-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
-            <div className="h-8 w-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
-            <div className="h-8 w-20 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
+        <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100 bg-gray-50/60 animate-pulse">
+          <div className="h-4 w-32 bg-gray-200 rounded" />
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-20 bg-gray-200 rounded" />
+            <div className="h-8 w-8 bg-gray-200 rounded" />
+            <div className="h-8 w-8 bg-gray-200 rounded" />
+            <div className="h-8 w-20 bg-gray-200 rounded" />
           </div>
         </div>
       </div>
@@ -2165,7 +2175,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   // Check if academyId is available after all hooks are called
   if (!academyId) {
     console.error('PaymentsPage: No academyId provided')
-    return <div>Loading academy data...</div>
+    return <div>{String(t('common.loading'))}</div>
   }
 
   if (loading ) {
@@ -2174,7 +2184,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("payments.title")}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.payments")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("payments.title")}</h1>
             <p className="text-gray-500">{t("payments.description")}</p>
           </div>
           <div className="flex items-center gap-3">
@@ -2194,20 +2205,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         <TabsSkeleton />
         
         {/* Search Bar Skeleton */}
-        <div className="flex items-center justify-between">
-          <div className="relative max-w-md flex-1 animate-pulse">
+        <div className="flex flex-wrap gap-4 mb-4 animate-pulse">
+          <div className="relative flex-1 min-w-[180px] sm:min-w-[250px] sm:max-w-md">
             <div className="h-12 bg-gray-200 rounded-lg"></div>
           </div>
-          <div className="flex items-center gap-2 ml-4">
-            <div className="h-10 w-24 bg-gray-200 rounded-md animate-pulse"></div>
-            <div className="h-10 w-10 bg-gray-200 rounded-md animate-pulse"></div>
-          </div>
         </div>
-        
+
         {/* Table Skeleton */}
-        <Card className="overflow-hidden">
-          <TableSkeleton />
-        </Card>
+        <TableSkeleton />
       </div>
     )
   }
@@ -2217,7 +2222,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('payments.title')}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.payments')}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('payments.title')}</h1>
           <p className="text-gray-500">{t('payments.description')}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
@@ -2236,114 +2242,90 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       </div>
 
       {/* Stats Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {/* Total Revenue */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                </svg>
-              </div>
+        <Card className="p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+              </svg>
             </div>
-            <div className="ml-5 w-0 flex-1">
-              <dl>
-                <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.totalRevenue')}</dt>
-                <dd className="text-lg font-medium text-gray-900">
-                  {formatCurrency(allTimeRevenue)}
-                </dd>
-              </dl>
-            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.totalRevenue')}</p>
           </div>
-        </div>
+          <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            {formatCurrency(allTimeRevenue)}
+          </p>
+        </Card>
 
         {/* Pending Payments */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
+        <Card className="p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
             </div>
-            <div className="ml-5 w-0 flex-1">
-              <dl>
-                <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.pendingAmount')}</dt>
-                <dd className="text-lg font-medium text-gray-900">
-                  {formatCurrency(allTimePending)}
-                </dd>
-              </dl>
-            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.pendingAmount')}</p>
           </div>
-        </div>
+          <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            {formatCurrency(allTimePending)}
+          </p>
+        </Card>
 
         {/* Active Templates */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
+        <Card className="p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
             </div>
-            <div className="ml-5 w-0 flex-1">
-              <dl>
-                <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.activeTemplates')}</dt>
-                <dd className="text-lg font-medium text-gray-900">
-                  {paymentTemplates.filter(t => t.is_active).length}
-                </dd>
-              </dl>
-            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.activeTemplates')}</p>
           </div>
-        </div>
+          <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            {paymentTemplates.filter(t => t.is_active).length}
+          </p>
+        </Card>
 
         {/* Monthly Recurring Revenue */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
+        <Card className="p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-violet-50 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
             </div>
-            <div className="ml-5 w-0 flex-1">
-              <dl>
-                <dt className="text-sm font-medium text-gray-500 truncate">{t('payments.monthlyRecurringRevenue')}</dt>
-                <dd className="text-lg font-medium text-gray-900">
-                  {formatCurrency(
-                    paymentTemplates
-                      .filter(t => t.is_active && t.recurrence_type === 'monthly')
-                      .reduce((sum, t) => sum + (t.amount * (t.student_count || 0)), 0)
-                  )}
-                </dd>
-              </dl>
-            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.monthlyRecurringRevenue')}</p>
           </div>
-        </div>
+          <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            {formatCurrency(
+              paymentTemplates
+                .filter(t => t.is_active && t.recurrence_type === 'monthly')
+                .reduce((sum, t) => sum + (t.amount * (t.student_count || 0)), 0)
+            )}
+          </p>
+        </Card>
       </div>
 
-      {/* Tabs */}
-      <div className="flex space-x-1 border-b border-gray-200 mb-6">
+      {/* Tabs — pill-style segmented control matching the archive page. */}
+      <div className="inline-flex items-center bg-white rounded-lg border border-gray-200 mb-4 p-1">
         <button
           onClick={() => setActiveTab('one_time')}
-          className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
             activeTab === 'one_time'
-              ? 'bg-primary/10 text-primary border-b-2 border-blue-600'
-              : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
           {t('payments.oneTime')}
         </button>
         <button
           onClick={() => setActiveTab('recurring')}
-          className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ml-1 ${
             activeTab === 'recurring'
-              ? 'bg-primary/10 text-primary border-b-2 border-blue-600'
-              : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
           {t('payments.recurring')}
@@ -2353,10 +2335,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             setActiveTab('plans')
             fetchPaymentTemplates()
           }}
-          className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ml-1 ${
             activeTab === 'plans'
-              ? 'bg-primary/10 text-primary border-b-2 border-blue-600'
-              : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
           {t('payments.paymentPlans')}
@@ -2368,10 +2350,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         /* Payment Plans Tab */
         <div className="space-y-6">
           {/* Recurring Payments Status */}
-          <Card className="p-4 bg-blue-50 border-blue-200">
+          <Card className="p-4 bg-sky-50 border-sky-200">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-medium text-blue-900">{t('payments.automatedRecurringPayments')}</h3>
+                <h3 className="text-sm font-medium text-sky-900">{t('payments.automatedRecurringPayments')}</h3>
                 <p className="text-xs text-blue-700 mt-1">
                   {t('payments.systemAutoGeneratesInvoices')}
                 </p>
@@ -2402,129 +2384,139 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </Button>
           </div>
 
-          {/* Payment Plans Grid */}
+          {/* Payment Plans Grid — uses shared DashboardCard for visual consistency
+              with sessions / assignments / classrooms / attendance card views. */}
           {templatesLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(3)].map((_, i) => (
-                <Card key={i} className="p-6 animate-pulse">
-                  <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-                  <div className="space-y-3">
-                    <div className="h-4 bg-gray-200 rounded w-full"></div>
-                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {[...Array(4)].map((_, i) => (
+                <Card key={i} className="!gap-0 !py-0 overflow-hidden flex flex-col h-full">
+                  <div className="h-1 w-full bg-gray-200" />
+                  <div className="p-4 sm:p-5 flex flex-col flex-1 animate-pulse">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-1 min-w-0 space-y-1.5">
+                        <div className="h-3 w-16 bg-gray-200 rounded" />
+                        <div className="h-5 w-3/4 bg-gray-200 rounded" />
+                        <div className="h-3 w-1/2 bg-gray-200 rounded" />
+                      </div>
+                      <div className="flex gap-1">
+                        <div className="h-7 w-7 bg-gray-200 rounded" />
+                        <div className="h-7 w-7 bg-gray-200 rounded" />
+                        <div className="h-7 w-7 bg-gray-200 rounded" />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+                      <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                      <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                      <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    </div>
+                    <div className="h-3 w-2/3 bg-gray-200 rounded mb-3" />
                   </div>
                 </Card>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {paymentTemplates
-                .filter(template => 
-                  !planSearchQuery || 
+                .filter(template =>
+                  !planSearchQuery ||
                   template.name.toLowerCase().includes(planSearchQuery.toLowerCase()) ||
                   template.recurrence_type.toLowerCase().includes(planSearchQuery.toLowerCase())
                 )
-                .map((template) => (
-                <Card key={template.id} className={`p-6 hover:shadow-md transition-shadow ${!template.is_active ? 'opacity-75' : ''}`}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-lg font-bold text-gray-900">{template.name}</h3>
-                        <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          template.is_active 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-gray-100 text-gray-800'
-                        }`}>
-                          {template.is_active ? t('common.active') : t('payments.paused')}
+                .map((template) => {
+                  const scheduleLabel =
+                    template.recurrence_type === 'monthly' && template.day_of_month
+                      ? (language === 'korean' ? `매월 ${template.day_of_month}일` : `Monthly · day ${template.day_of_month}`)
+                      : template.recurrence_type === 'weekly' && template.day_of_week !== null
+                        ? (language === 'korean'
+                            ? `매주 ${integerToDayOfWeek(template.day_of_week ?? null)}요일`
+                            : `Weekly · ${integerToDayOfWeek(template.day_of_week ?? null)}`)
+                        : template.recurrence_type
+                  return (
+                    <DashboardCard
+                      key={template.id}
+                      paused={!template.is_active}
+                      accentColor={template.is_active ? '#10b981' : '#9ca3af'}
+                      statusLabel={template.is_active ? t('common.active') : t('payments.paused')}
+                      statusToneClass={template.is_active ? 'text-emerald-600' : 'text-gray-500'}
+                      title={template.name}
+                      subtitle={
+                        <>
+                          <Clock className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                          <span>{scheduleLabel}</span>
+                        </>
+                      }
+                      actions={
+                        <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                            onClick={() => handleEditTemplate(template)}
+                            title={String(t('payments.editTemplate'))}
+                          >
+                            <Edit className="w-4 h-4" strokeWidth={1.75} />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                            onClick={() => {
+                              setTemplateToPauseResume(template)
+                              setShowPauseResumeModal(true)
+                            }}
+                            title={String(template.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan'))}
+                          >
+                            {template.is_active ? (
+                              <XCircle className="w-4 h-4 text-amber-600" strokeWidth={1.75} />
+                            ) : (
+                              <CheckCircle className="w-4 h-4 text-emerald-600" strokeWidth={1.75} />
+                            )}
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50"
+                            onClick={() => handleDeleteTemplate(template)}
+                            title={String(t('payments.deleteTemplate'))}
+                          >
+                            <Trash2 className="w-4 h-4" strokeWidth={1.75} />
+                          </Button>
+                        </>
+                      }
+                      metrics={[
+                        {
+                          label: t('payments.amount') as string,
+                          value: `₩${template.amount.toLocaleString()}`,
+                        },
+                        {
+                          label: t('payments.students') as string,
+                          value: String(template.student_count || 0),
+                        },
+                        {
+                          label: t('payments.nextDue') as string,
+                          value: formatDate(calculateNextDueDate(template)),
+                        },
+                      ]}
+                      meta={
+                        <div className="flex items-start gap-1.5">
+                          <Calendar className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                          <span>{t('payments.started')}: {formatDate(template.start_date)}</span>
                         </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="p-1"
-                        onClick={() => handleEditTemplate(template)}
-                        title={String(t('payments.editTemplate'))}
-                      >
-                        <Edit className="w-4 h-4 text-gray-500" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="p-1"
-                        onClick={() => {
-                          setTemplateToPauseResume(template)
-                          setShowPauseResumeModal(true)
-                        }}
-                        title={String(template.is_active ? t('payments.pausePaymentPlan') : t('payments.resumePaymentPlan'))}
-                      >
-                        {template.is_active ? (
-                          <XCircle className="w-4 h-4 text-yellow-600" />
-                        ) : (
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                        )}
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="p-1"
-                        onClick={() => handleDeleteTemplate(template)}
-                        title={String(t('payments.deleteTemplate'))}
-                      >
-                        <Trash2 className="w-4 h-4 text-red-500" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <span className="text-gray-500 font-medium text-sm">₩</span>
-                      <span>{template.amount.toLocaleString()}</span>
-                    </div>
-                    
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Clock className="w-4 h-4" />
-                      <span>
-                        {template.recurrence_type === 'monthly' && template.day_of_month && (
-                          `매월 ${template.day_of_month}일`
-                        )}
-                        {template.recurrence_type === 'weekly' && template.day_of_week !== null && (
-                          `매주 ${integerToDayOfWeek(template.day_of_week ?? null)}요일`
-                        )}
-                      </span>
-                    </div>
-                    
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Users className="w-4 h-4" />
-                      <span>{t('payments.studentsEnrolled', { count: template.student_count || 0 })}</span>
-                    </div>
-                    
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Calendar className="w-4 h-4" />
-                      <span>{t('payments.nextDue')}: {formatDate(calculateNextDueDate(template))}</span>
-                    </div>
-                    
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Calendar className="w-4 h-4" />
-                      <span>{t('payments.started')}: {formatDate(template.start_date)}</span>
-                    </div>
-                  </div>
-                </Card>
-              ))}
+                      }
+                    />
+                  )
+                })}
             </div>
           )}
 
           {paymentTemplates.length === 0 && !templatesLoading && (
-            <div className="text-center py-12">
-              <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noPaymentPlans')}</h3>
-              <p className="text-gray-600 mb-4">{t('payments.getStartedFirstPaymentPlan')}</p>
-              <Button onClick={() => setShowAddPlanModal(true)} className="flex items-center gap-2 mx-auto">
-                <Plus className="w-4 h-4" />
-  {t('payments.addPaymentPlan')}
-              </Button>
-            </div>
+            <EmptyState
+              icon={Calendar}
+              title={String(t('payments.noPaymentPlans'))}
+              description={String(t('payments.getStartedFirstPaymentPlan'))}
+              actionLabel={String(t('payments.addPaymentPlan'))}
+              onAction={() => setShowAddPlanModal(true)}
+            />
           )}
         </div>
       ) : (
@@ -2534,102 +2526,100 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           <div className="relative mb-4 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
             <Input
+              ref={searchInputRef}
               type="text"
               placeholder={String(t('payments.searchByStatusEmailAmount'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+              className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
             />
+              <SearchKbdHint />
           </div>
 
-          {/* Bulk Actions Menu */}
-          {((activeTab === 'one_time' && selectedOneTimeInvoices.size > 0) || 
+          {/* Bulk Actions Bar — uses shared BulkActionBar primitive for visual consistency
+              with sessions / assignments / classrooms / attendance pages. */}
+          {((activeTab === 'one_time' && selectedOneTimeInvoices.size > 0) ||
             (activeTab === 'recurring' && selectedRecurringStudents.size > 0)) && (
-            <Card className="mb-4 p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <span className="text-sm font-medium text-gray-700">
-                    {activeTab === 'one_time' 
-                      ? `${selectedOneTimeInvoices.size}개 선택됨`
-                      : `${selectedRecurringStudents.size}개 선택됨`}
-                  </span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      if (activeTab === 'one_time') {
-                        setSelectedOneTimeInvoices(new Set())
-                      } else {
-                        setSelectedRecurringStudents(new Set())
-                      }
-                    }}
-                  >
-                    {t('payments.clearSelection')}
-                  </Button>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Select value={bulkStatus} onValueChange={setBulkStatus}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue placeholder={t('common.status')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {activeTab === 'one_time' ? (
-                        <>
-                          <SelectItem value="pending">{t('payments.pending')}</SelectItem>
-                          <SelectItem value="paid">{t('payments.paid')}</SelectItem>
-                          <SelectItem value="failed">{t('payments.failed')}</SelectItem>
-                          <SelectItem value="refunded">{t('payments.refunded')}</SelectItem>
-                        </>
-                      ) : (
-                        <>
-                          <SelectItem value="active">{t('common.active')}</SelectItem>
-                          <SelectItem value="paused">{t('payments.paused')}</SelectItem>
-                        </>
-                      )}
-                    </SelectContent>
-                  </Select>
-                  <Button onClick={handleBulkStatusUpdate} className="bg-primary text-white">
-                    {t('common.apply')}
-                  </Button>
-                  <Button
-                    onClick={handleBulkDeleteClick}
-                    className="bg-red-600 hover:bg-red-700 text-white"
-                  >
-                    {t('common.delete')}
-                  </Button>
-                </div>
-              </div>
-            </Card>
+            <div className="mb-4">
+              <BulkActionBar
+                selectedCount={activeTab === 'one_time' ? selectedOneTimeInvoices.size : selectedRecurringStudents.size}
+                onClear={() => {
+                  if (activeTab === 'one_time') {
+                    setSelectedOneTimeInvoices(new Set())
+                  } else {
+                    setSelectedRecurringStudents(new Set())
+                  }
+                }}
+              >
+                <Select
+                  value=""
+                  onValueChange={(value) => {
+                    setBulkStatus(value)
+                    handleBulkStatusUpdate(value)
+                  }}
+                >
+                  <SelectTrigger className="h-8 w-auto min-w-[140px] rounded-md border border-border bg-white text-sm shadow-sm focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0">
+                    <SelectValue placeholder={String(t('payments.bulkSetStatus'))} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {activeTab === 'one_time' ? (
+                      <>
+                        <SelectItem value="pending">{t('payments.pending')}</SelectItem>
+                        <SelectItem value="paid">{t('payments.paid')}</SelectItem>
+                        <SelectItem value="failed">{t('payments.failed')}</SelectItem>
+                        <SelectItem value="refunded">{t('payments.refunded')}</SelectItem>
+                      </>
+                    ) : (
+                      <>
+                        <SelectItem value="active">{t('common.active')}</SelectItem>
+                        <SelectItem value="paused">{t('payments.paused')}</SelectItem>
+                      </>
+                    )}
+                  </SelectContent>
+                </Select>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleBulkDeleteClick}
+                  className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+                >
+                  {t('common.delete')}
+                </Button>
+              </BulkActionBar>
+            </div>
           )}
 
-          {/* Payments Table */}
-          <Card className="overflow-hidden">
+          {/* Payments Table — chrome matches DataTable used by sessions / assignments / classrooms / attendance */}
+          <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
             <div className="overflow-x-auto min-h-[640px] flex flex-col">
               <table className="w-full min-w-[800px]">
-                <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50">
-                    <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          className="rounded border-gray-300 accent-primary"
-                          checked={activeTab === 'recurring'
-                            ? (filteredRecurringStudents.length > 0 && selectedRecurringStudents.size === filteredRecurringStudents.length)
-                            : (filteredInvoices.length > 0 && selectedOneTimeInvoices.size === filteredInvoices.length)
-                          }
-                          onChange={(e) => {
-                            if (activeTab === 'recurring') {
-                              handleSelectAllRecurring(e.target.checked, filteredRecurringStudents)
-                            } else {
-                              handleSelectAllOneTime(e.target.checked, filteredInvoices)
-                            }
-                          }}
-                        />
-                      </div>
+                <thead className="bg-gray-50/60">
+                  <tr>
+                    <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap w-10">
+                      {(() => {
+                        const total = activeTab === 'recurring' ? filteredRecurringStudents.length : filteredInvoices.length
+                        const selectedCount = activeTab === 'recurring' ? selectedRecurringStudents.size : selectedOneTimeInvoices.size
+                        const allSelected = total > 0 && selectedCount === total
+                        const someSelected = selectedCount > 0 && selectedCount < total
+                        return (
+                          <TableCheckbox
+                            checked={allSelected}
+                            indeterminate={someSelected}
+                            ariaLabel={String(t('common.selectAll') || 'Select all')}
+                            onChange={() => {
+                              if (activeTab === 'recurring') {
+                                handleSelectAllRecurring(!allSelected, filteredRecurringStudents)
+                              } else {
+                                handleSelectAllOneTime(!allSelected, filteredInvoices)
+                              }
+                            }}
+                          />
+                        )
+                      })()}
                     </th>
                     {activeTab === 'recurring' ? (
                       <>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[150px]">
                           <div className="flex items-center gap-2">
                             {t('common.roles.student')}
                             <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -2637,7 +2627,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
                           <div className="flex items-center gap-2">
                             {t('payments.template')}
                             <button onClick={() => handleSort('template')} className="text-gray-400 hover:text-primary">
@@ -2645,7 +2635,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.amount')}
                             <button onClick={() => handleSort('amount')} className="text-gray-400 hover:text-primary">
@@ -2653,7 +2643,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500">
                           <div className="flex items-center gap-2 relative">
                             {t('common.status')}
                             <div className="relative z-20" ref={recurringStatusFilterRef}>
@@ -2671,7 +2661,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               </button>
 
                               {activeTab === 'recurring' && showRecurringStatusFilter && (
-                                <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50">
+                                <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50 normal-case tracking-normal font-normal">
                                   <button
                                     onClick={() => {
                                       setRecurringStatusFilter('all')
@@ -2711,7 +2701,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 </div>
                               )}
                               {(activeTab as 'one_time' | 'recurring' | 'plans') === 'one_time' && showOneTimeStatusFilter && (
-                                <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50">
+                                <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-50 normal-case tracking-normal font-normal">
                                   <button
                                     onClick={() => {
                                       setOneTimeStatusFilter('all')
@@ -2762,11 +2752,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </div>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap"></th>
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap"></th>
                       </>
                     ) : (
                       <>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[150px]">
                           <div className="flex items-center gap-2">
                             {t('common.roles.student')}
                             <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -2774,7 +2764,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
                           <div className="flex items-center gap-2">
                             {t('payments.invoiceName')}
                             <button onClick={() => handleSort('invoice_name')} className="text-gray-400 hover:text-primary">
@@ -2782,7 +2772,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.amount')}
                             <button onClick={() => handleSort('amount')} className="text-gray-400 hover:text-primary">
@@ -2790,7 +2780,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.dueDate')}
                             <button onClick={() => handleSort('due_date')} className="text-gray-400 hover:text-primary">
@@ -2798,7 +2788,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2">
                             {t('payments.paidDate')}
                             <button onClick={() => handleSort('paid_at')} className="text-gray-400 hover:text-primary">
@@ -2806,7 +2796,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </button>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                           <div className="flex items-center gap-2 relative">
                             {t('common.status')}
                             <div className="relative z-20" ref={oneTimeStatusFilterRef}>
@@ -2824,7 +2814,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               </button>
 
                               {(((activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring' && showRecurringStatusFilter) || ((activeTab as 'one_time' | 'recurring' | 'plans') === 'one_time' && showOneTimeStatusFilter)) && (
-                                <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-[9999]">
+                                <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 min-w-[120px] z-[9999] normal-case tracking-normal font-normal">
                                   <button
                                     onClick={() => {
                                       if ((activeTab as 'one_time' | 'recurring' | 'plans') === 'recurring') {
@@ -2900,33 +2890,37 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             </div>
                           </div>
                         </th>
-                        <th className="text-left p-3 sm:p-4 font-medium text-gray-900"></th>
+                        <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500"></th>
                       </>
                     )}
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-gray-100">
                   {activeTab === 'recurring' ? (
                     /* Recurring Students Rows */
                     recurringStudentsLoading ? (
-                      <tr>
-                        <td colSpan={5} className="p-8 text-center">
-                          <div className="flex items-center justify-center">
-                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                            <span className="ml-2">{t('payments.loadingRecurringStudents')}</span>
-                          </div>
-                        </td>
-                      </tr>
+                      [...Array(8)].map((_, i) => (
+                        <tr key={`recurring-skeleton-${i}`} className="animate-pulse">
+                          {[...Array(5)].map((_, j) => (
+                            <td key={j} className="p-3 sm:p-4">
+                              <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
+                            </td>
+                          ))}
+                        </tr>
+                      ))
                     ) : filteredRecurringStudents.length > 0 ? (
                       filteredRecurringStudents.map((recurringStudent) => {
                         return (
-                      <tr key={recurringStudent.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <tr key={recurringStudent.id} className={cn(
+                        'transition-colors',
+                        selectedRecurringStudents.has(recurringStudent.id) ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-gray-50'
+                      )}>
                         <td className="p-3 sm:p-4">
-                          <input
-                            type="checkbox"
-                            className="rounded border-gray-300 accent-primary"
+                          <TableCheckbox
                             checked={selectedRecurringStudents.has(recurringStudent.id)}
-                            onChange={(e) => handleSelectRecurringStudent(recurringStudent.id, e.target.checked)}
+                            ariaLabel={String(t('common.selectRow') || 'Select row')}
+                            onChange={() => handleSelectRecurringStudent(recurringStudent.id, !selectedRecurringStudents.has(recurringStudent.id))}
+                            onClick={(e) => e.stopPropagation()}
                           />
                         </td>
                         <td className="p-3 sm:p-4">
@@ -2962,9 +2956,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <td className="p-3 sm:p-4">
                           <div className="flex items-center gap-1 sm:gap-2">
                             <div className={`inline-flex items-center px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-xs font-medium ${
-                              recurringStudent.status === 'active' ? 'bg-green-100 text-green-800' :
-                              recurringStudent.status === 'paused' ? 'bg-yellow-100 text-yellow-800' :
-                              'bg-gray-100 text-gray-800'
+                              recurringStudent.status === 'active' ? 'bg-emerald-50 text-emerald-700' :
+                              recurringStudent.status === 'paused' ? 'bg-amber-50 text-amber-700' :
+                              'bg-gray-50 text-gray-700'
                             }`}>
                               {t(`payments.${recurringStudent.status}`)}
                             </div>
@@ -3021,10 +3015,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                     setShowDeleteRecurringModal(true)
                                     setOpenInvoiceDropdownId(null)
                                   }}
-                                  className="block w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-gray-50"
+                                  className="block w-full text-left px-3 py-2 text-sm text-rose-600 hover:bg-gray-50"
                                 >
                                   <div className="flex items-center gap-2">
-                                    <Trash2 className="w-4 h-4 text-red-600" />
+                                    <Trash2 className="w-4 h-4 text-rose-600" />
                                     {t('common.delete')}
                                   </div>
                                 </button>
@@ -3037,29 +3031,38 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       })
                     ) : (
                       <tr>
-                        <td colSpan={7} className="p-12 text-center">
-                          <div className="flex flex-col items-center">
-                            <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noRecurringStudents')}</h3>
-                            <p className="text-gray-600">
-                              {searchQuery ? t('common.tryAdjustingSearch') : t('payments.noStudentsEnrolledRecurring')}
-                            </p>
-                          </div>
+                        <td colSpan={7}>
+                          <EmptyState
+                            icon={Users}
+                            title={String(t('payments.noRecurringStudents'))}
+                            description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('payments.noStudentsEnrolledRecurring'))}
+                          />
                         </td>
                       </tr>
                     )
-                  ) : !initialized ? (
-                    <tr><td colSpan={7}></td></tr>
+                  ) : invoicesLoading ? (
+                    [...Array(8)].map((_, i) => (
+                      <tr key={`onetime-skeleton-${i}`} className="animate-pulse">
+                        {[...Array(7)].map((_, j) => (
+                          <td key={j} className="p-3 sm:p-4">
+                            <div className="h-4 bg-gray-100 rounded" style={{ width: `${60 + ((i * 7 + j * 3) % 30)}%` }} />
+                          </td>
+                        ))}
+                      </tr>
+                    ))
                   ) : (
                     /* Invoice Rows for One-time tab */
                     filteredInvoices.length > 0 ? filteredInvoices.map((invoice) => (
-                      <tr key={invoice.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <tr key={invoice.id} className={cn(
+                        'transition-colors',
+                        selectedOneTimeInvoices.has(invoice.id) ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-gray-50'
+                      )}>
                         <td className="p-4">
-                          <input 
-                            type="checkbox" 
-                            className="rounded border-gray-300 accent-primary"
+                          <TableCheckbox
                             checked={selectedOneTimeInvoices.has(invoice.id)}
-                            onChange={(e) => handleSelectOneTimeInvoice(invoice.id, e.target.checked)}
+                            ariaLabel={String(t('common.selectRow') || 'Select row')}
+                            onChange={() => handleSelectOneTimeInvoice(invoice.id, !selectedOneTimeInvoices.has(invoice.id))}
+                            onClick={(e) => e.stopPropagation()}
                           />
                         </td>
                         <td className="p-4">
@@ -3111,12 +3114,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                 setOpenInvoiceDropdownId(openInvoiceDropdownId === invoice.id ? null : invoice.id)
                               }}
                             >
-                              <MoreHorizontal className="w-4 h-4 text-gray-600" />
+                              <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
                             </Button>
                             
                             {openInvoiceDropdownId === invoice.id && (
                               <div 
-                                className="dropdown-menu absolute right-0 top-8 z-50 bg-white rounded-lg border border-gray-300 shadow-xl py-1 min-w-[160px]"
+                                className="dropdown-menu absolute right-0 top-8 z-50 bg-white rounded-xl ring-1 ring-gray-100 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.10)] py-1 min-w-[160px]"
                                 style={{ zIndex: 9999 }}
                                 onClick={(e) => {
                                   e.stopPropagation()
@@ -3162,7 +3165,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   {t('common.edit')}
                                 </button>
                                 <button
-                                  className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
+                                  className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-rose-600"
                                   onClick={(e) => {
                                     e.preventDefault()
                                     e.stopPropagation()
@@ -3179,14 +3182,12 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                       </tr>
                     )) : (
                       <tr>
-                        <td colSpan={7} className="p-12 text-center">
-                          <div className="flex flex-col items-center">
-                            <DollarSign className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('payments.noPayments')}</h3>
-                            <p className="text-gray-600">
-                              {searchQuery ? t('common.tryAdjustingSearch') : t('payments.noPaymentRecordsCreated')}
-                            </p>
-                          </div>
+                        <td colSpan={7}>
+                          <EmptyState
+                            icon={DollarSign}
+                            title={String(t('payments.noPayments'))}
+                            description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('payments.noPaymentRecordsCreated'))}
+                          />
                         </td>
                       </tr>
                     )
@@ -3247,7 +3248,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             )}
 
             {/* Footer */}
-          </Card>
+          </div>
         </div>
       )}
 

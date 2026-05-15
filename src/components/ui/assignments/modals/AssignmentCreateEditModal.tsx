@@ -1,15 +1,17 @@
 "use client"
 
-import { useState, useMemo } from 'react'
-import { Plus, X, Search, Paperclip, Loader2 } from 'lucide-react'
+import { useState, useMemo, useCallback } from 'react'
+import { Plus, Search, Paperclip, Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
+import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FileUpload } from '@/components/ui/file-upload'
 import { AssignmentsDatePicker } from '@/components/ui/assignments-page'
+import { useDirtyState } from '@/hooks/useDirtyState'
+import { useConfirm } from '@/hooks/useConfirm'
 import type { Assignment, Session, AttachmentFile } from '@/components/ui/assignments/hooks/useAssignmentsData'
 
 interface FormData {
@@ -83,6 +85,26 @@ export function AssignmentCreateEditModal({
   const { t, language } = useTranslation()
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
 
+  // Track dirty state across the form + attachments. Backdrop / Cancel /
+  // Esc all funnel through `handleSafeClose` so users can't lose typed
+  // values to a stray click.
+  const isDirty = useDirtyState({ formData, attachmentFiles }, isOpen)
+  const confirm = useConfirm()
+  const handleSafeClose = useCallback(async () => {
+    if (!isDirty) {
+      onClose()
+      return
+    }
+    const ok = await confirm({
+      title: String(t('common.discardChanges')),
+      description: String(t('common.discardChangesDescription')),
+      variant: 'warning',
+      confirmText: String(t('common.discard')),
+      cancelText: String(t('common.keepEditing')),
+    })
+    if (ok) onClose()
+  }, [isDirty, confirm, onClose, t])
+
   const filteredSessionOptions = useMemo(() => sessions.filter(session => {
     const searchTerm = sessionSearchQuery.toLowerCase()
     return (
@@ -93,28 +115,38 @@ export function AssignmentCreateEditModal({
   }), [sessions, sessionSearchQuery, formatDate])
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <div className="flex flex-col flex-1 min-h-0">
-        <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <h2 className="text-xl font-bold text-gray-900">
-            {editingAssignment ? t("assignments.editAssignment") : t("assignments.addNewAssignment")}
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="p-1"
-            onClick={onClose}
-          >
-            <X className="w-4 h-4" />
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleSafeClose}
+      size="md"
+      title={String(editingAssignment ? t("assignments.editAssignment") : t("assignments.addNewAssignment"))}
+      footer={
+        <ModalShell.Footer split>
+          <Button variant="outline" onClick={handleSafeClose}>
+            {t("assignments.cancel")}
           </Button>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 pt-4">
+          <Button
+            type="submit"
+            form="assignment-form"
+            disabled={!isFormValid || isCreating || isSaving}
+            className={!isFormValid || isCreating || isSaving ? 'opacity-50 cursor-not-allowed' : ''}
+          >
+            {(editingAssignment ? isSaving : isCreating) && (
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            )}
+            {editingAssignment
+              ? (isSaving ? t("common.saving") : t("assignments.updateAssignment"))
+              : (isCreating ? t("common.creating") : t("assignments.addAssignment"))
+            }
+          </Button>
+        </ModalShell.Footer>
+      }
+    >
           <form id="assignment-form" onSubmit={handleSubmit} className="space-y-5">
             {!editingAssignment && (
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {String(t("assignments.sessionRequired")).replace(' *', '')} <span className="text-red-500">*</span>
+                  {String(t("assignments.sessionRequired")).replace(' *', '')} <span className="text-rose-500">*</span>
                 </Label>
                 <Select
                   value={formData.classroom_session_id}
@@ -167,7 +199,7 @@ export function AssignmentCreateEditModal({
 
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
-                {String(t("assignments.titleRequired")).replace(' *', '')} <span className="text-red-500">*</span>
+                {String(t("assignments.titleRequired")).replace(' *', '')} <span className="text-rose-500">*</span>
               </Label>
               <Input
                 type="text"
@@ -194,7 +226,7 @@ export function AssignmentCreateEditModal({
 
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
-                {String(t("assignments.typeRequired")).replace(' *', '')} <span className="text-red-500">*</span>
+                {String(t("assignments.typeRequired")).replace(' *', '')} <span className="text-rose-500">*</span>
               </Label>
               <Select
                 value={formData.assignment_type}
@@ -295,7 +327,7 @@ export function AssignmentCreateEditModal({
 
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
-                {t("assignments.dueDate")} <span className="text-red-500">*</span>
+                {t("assignments.dueDate")} <span className="text-rose-500">*</span>
               </Label>
               <AssignmentsDatePicker
                 value={formData.due_date}
@@ -325,32 +357,6 @@ export function AssignmentCreateEditModal({
             </div>
 
           </form>
-        </div>
-
-        <div className="flex gap-3 p-6 pt-4 border-t border-gray-200 flex-shrink-0">
-          <Button
-            variant="outline"
-            onClick={onClose}
-            className="flex-1"
-          >
-            {t("assignments.cancel")}
-          </Button>
-          <Button
-            type="submit"
-            form="assignment-form"
-            disabled={!isFormValid || isCreating || isSaving}
-            className={`flex-1 ${!isFormValid || isCreating || isSaving ? 'opacity-50 cursor-not-allowed' : ''}`}
-          >
-            {(editingAssignment ? isSaving : isCreating) && (
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-            )}
-            {editingAssignment
-              ? (isSaving ? t("common.saving") : t("assignments.updateAssignment"))
-              : (isCreating ? t("common.creating") : t("assignments.addAssignment"))
-            }
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    </ModalShell>
   )
 }

@@ -1,13 +1,16 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
+import { useDirtyState } from '@/hooks/useDirtyState'
+import { useConfirm } from '@/hooks/useConfirm'
+import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Modal } from '@/components/ui/modal'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   Search,
@@ -20,28 +23,28 @@ import {
   Eye,
   Copy,
   Share,
-  Upload
+  Upload,
+  Grid3X3,
+  Rows3
 } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { DashboardCard, BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
+import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { useTranslation } from '@/hooks/useTranslation'
+import { ModalShell } from '@/components/ui/common/ModalShell'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { FamilyImportModal } from '@/components/ui/families/FamilyImportModal'
+// 520-line modal, conditionally rendered — defer the bundle until use.
+import dynamic from 'next/dynamic'
+const FamilyImportModal = dynamic(
+  () => import('@/components/ui/families/FamilyImportModal').then(m => m.FamilyImportModal),
+  { ssr: false }
+)
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
-// Cache invalidation function for families
-export const invalidateFamiliesCache = (academyId: string) => {
-  const keys = Object.keys(sessionStorage)
-  let clearedCount = 0
-
-  keys.forEach(key => {
-    if (key.startsWith(`families-${academyId}-page`) ||
-        key.includes(`families-${academyId}-page`)) {
-      sessionStorage.removeItem(key)
-      clearedCount++
-    }
-  })
-
-}
+import { invalidateFamiliesCache } from '@/lib/cache'
+export { invalidateFamiliesCache }
 
 interface Family {
   id: string
@@ -100,11 +103,14 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     }
   }, [currentPage])
 
+
+  const [viewMode, setViewMode] = useState<'card' | 'table'>('table')
   const [selectedFamilies, setSelectedFamilies] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
 
   // Modal states
   const [showAddModal, setShowAddModal] = useState(false)
@@ -117,6 +123,18 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   const [editingFamily, setEditingFamily] = useState<Family | null>(null)
   const [viewingFamily, setViewingFamily] = useState<Family | null>(null)
   const [createdFamilyId, setCreatedFamilyId] = useState<string | null>(null)
+
+  // Manager keyboard shortcuts: `/` → search, `n` → add family, `Esc` → clear selection.
+  useListPageShortcuts({
+    searchInputRef,
+    onCreate: () => setShowAddModal(true),
+    isCreateBlocked: showAddModal || showEditModal || showDeleteModal || showMembersModal || showInvitationModal || showImportModal,
+    onEscape: selectedFamilies.size > 0
+      ? () => setSelectedFamilies(new Set())
+      : undefined,
+  })
+
+  const confirm = useConfirm()
 
   // Form states
   interface FormMember {
@@ -144,6 +162,55 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
   // Available users for family assignment
   const [availableUsers, setAvailableUsers] = useState<User[]>([])
+
+  // Dirty-state guards for the Add and Edit family modals.
+  // Family create includes a name + zero-or-more existing/manual members,
+  // and an unsaved manual-member sub-form; the edit modal mirrors it.
+  // We call `resetForm` only after the user confirms discard so a successful
+  // submit (which already closes + resets) keeps its happy path.
+  const isAddDirty = useDirtyState({ formData, manualMemberData, showManualMemberForm }, showAddModal)
+  const handleSafeCloseAdd = useCallback(async () => {
+    if (!isAddDirty) {
+      setShowAddModal(false)
+      resetForm()
+      return
+    }
+    const ok = await confirm({
+      title: String(t('common.discardChanges')),
+      description: String(t('common.discardChangesDescription')),
+      variant: 'warning',
+      confirmText: String(t('common.discard')),
+      cancelText: String(t('common.keepEditing')),
+    })
+    if (ok) {
+      setShowAddModal(false)
+      resetForm()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAddDirty, confirm, t])
+
+  const isEditDirty = useDirtyState({ formData, manualMemberData, showManualMemberForm }, showEditModal)
+  const handleSafeCloseEdit = useCallback(async () => {
+    if (!isEditDirty) {
+      setShowEditModal(false)
+      setEditingFamily(null)
+      resetForm()
+      return
+    }
+    const ok = await confirm({
+      title: String(t('common.discardChanges')),
+      description: String(t('common.discardChangesDescription')),
+      variant: 'warning',
+      confirmText: String(t('common.discard')),
+      cancelText: String(t('common.keepEditing')),
+    })
+    if (ok) {
+      setShowEditModal(false)
+      setEditingFamily(null)
+      resetForm()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEditDirty, confirm, t])
 
   // Fetch families
   const fetchFamilies = useCallback(async () => {
@@ -742,6 +809,12 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     fetchAvailableUsers()
   }
 
+  // Wire 'n' shortcut + command-palette "Create new" → open add modal.
+  useCreateShortcut({
+    onTrigger: handleAddClick,
+    enabled: !showAddModal && !showEditModal && !showDeleteModal,
+  })
+
   const handleEditClick = (family: Family) => {
     setEditingFamily(family)
     setFormData({
@@ -1008,7 +1081,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       <div className="overflow-x-auto min-h-[640px] flex flex-col">
         <table className="w-full min-w-[800px]">
           <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
+            <tr className="border-b border-gray-100 bg-gray-50/50">
               {[...Array(6)].map((_, i) => (
                 <th key={i} className="text-left p-4">
                   <div className="h-4 bg-gray-300 rounded w-16"></div>
@@ -1053,7 +1126,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("families.title")}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.families")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("families.title")}</h1>
             <p className="text-gray-500">{t("families.description")}</p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -1087,7 +1161,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t("families.title")}</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.families")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("families.title")}</h1>
           <p className="text-gray-500">{t("families.description")}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
@@ -1106,60 +1181,164 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         </div>
       </div>
 
+      {/* View Mode Toggle */}
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.tableView"))}
+          >
+            <Rows3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => { setViewMode('card'); setSelectedFamilies(new Set()) }}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.cardView"))}
+          >
+            <Grid3X3 className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
       {/* Search Bar */}
       <div className="relative mb-4 max-w-md">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
         <Input
+          ref={searchInputRef}
           type="text"
           placeholder={String(t("families.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
         />
+        <SearchKbdHint />
       </div>
 
-      {/* Bulk Actions Menu */}
+      {/* Bulk Action Bar — uses shared BulkActionBar primitive for visual consistency
+          with the other refactored pages. */}
       {selectedFamilies.size > 0 && (
-        <Card className="mb-4 p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium text-gray-700">
-                {selectedFamilies.size}개 선택됨
-              </span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setSelectedFamilies(new Set())}
-              >
-                {t("families.clearSelection")}
-              </Button>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button onClick={handleBulkDelete} size="sm" className="bg-red-600 hover:bg-red-700 text-white">
-                {t("families.deleteSelected")}
-              </Button>
-            </div>
-          </div>
-        </Card>
+        <div className="mb-4">
+          <BulkActionBar
+            selectedCount={selectedFamilies.size}
+            onClear={() => setSelectedFamilies(new Set())}
+          >
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleBulkDelete}
+              className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+            >
+              <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+              {t("common.delete")}
+            </Button>
+          </BulkActionBar>
+        </div>
       )}
 
-      {/* Families Table */}
-      <Card className="overflow-hidden">
+      {/* Families Content — card or table */}
+      {viewMode === 'card' ? (
+        !initialized ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => (
+              <Card key={i} className="!gap-0 !py-0 overflow-hidden flex flex-col h-full">
+                <div className="h-1 w-full bg-gray-200" />
+                <div className="p-4 sm:p-5 flex flex-col flex-1 animate-pulse">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                      <div className="h-3 w-16 bg-gray-200 rounded" />
+                      <div className="h-5 w-3/4 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : filteredFamilies.length === 0 ? (
+          <Card>
+            <EmptyState
+              icon={Users}
+              title={String(t("families.noFamiliesFound"))}
+              description={String(t("common.tryAdjustingSearch"))}
+            />
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredFamilies.map((family) => (
+              <DashboardCard
+                key={family.id}
+                accentColor="#8b5cf6"
+                statusLabel={t("families.family")}
+                statusToneClass="text-violet-600"
+                title={family.name || `Family ${family.id.slice(0, 8)}`}
+                metrics={[
+                  {
+                    label: t('families.members') as string,
+                    value: String(family.member_count || 0),
+                  },
+                  {
+                    label: t('families.parents') as string,
+                    value: String(family.parent_count || 0),
+                  },
+                  {
+                    label: t('families.students') as string,
+                    value: String(family.student_count || 0),
+                  },
+                ]}
+                footerActions={
+                  <>
+                    <Button
+                      variant="outline"
+                      className="w-full text-xs sm:text-sm h-9"
+                      onClick={() => handleEditClick(family)}
+                    >
+                      <Edit className="w-3.5 h-3.5 mr-1.5" />
+                      {t("common.edit")}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full text-xs sm:text-sm h-9 text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+                      onClick={() => handleDeleteClick(family)}
+                    >
+                      <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+                      {t("common.delete")}
+                    </Button>
+                  </>
+                }
+              />
+            ))}
+          </div>
+        )
+      ) : (
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
           <table className="w-full min-w-[800px]">
-            <thead>
-              <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="rounded border-gray-300 accent-primary"
-                      checked={filteredFamilies.length > 0 && selectedFamilies.size === filteredFamilies.length}
-                      onChange={(e) => handleSelectAll(e.target.checked)}
-                    />
-                  </div>
+            <thead className="bg-gray-50/60">
+              <tr>
+                <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap w-10">
+                  {(() => {
+                    const allSelected = filteredFamilies.length > 0 && selectedFamilies.size === filteredFamilies.length
+                    const someSelected = selectedFamilies.size > 0 && selectedFamilies.size < filteredFamilies.length
+                    return (
+                      <TableCheckbox
+                        checked={allSelected}
+                        indeterminate={someSelected}
+                        ariaLabel={String(t('common.selectAll') || 'Select all')}
+                        onChange={() => handleSelectAll(!allSelected)}
+                      />
+                    )
+                  })()}
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[150px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[150px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('name')} className="flex items-center gap-1 ">
                       {t("families.familyName")}
@@ -1167,7 +1346,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[100px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('members')} className="flex items-center gap-1 ">
                       {t("families.members")}
@@ -1175,7 +1354,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[80px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[80px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('parents')} className="flex items-center gap-1 ">
                       {t("families.parents")}
@@ -1183,7 +1362,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[80px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[80px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('students')} className="flex items-center gap-1 ">
                       {t("families.students")}
@@ -1191,7 +1370,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
                   <div className="flex items-center gap-2">
                     <button onClick={() => handleSort('created_at')} className="flex items-center gap-1 ">
                       {t("families.created")}
@@ -1199,26 +1378,34 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 font-medium text-gray-900 whitespace-nowrap"></th>
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-gray-100">
               {!initialized ? (
                 <tr><td colSpan={4}></td></tr>
               ) : filteredFamilies.length > 0 ? filteredFamilies.map((family) => (
-                <tr key={family.id} className="border-b border-gray-100 hover:bg-gray-50">
+                <tr key={family.id} className={cn(
+                  'transition-colors',
+                  selectedFamilies.has(family.id) ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-gray-50'
+                )}>
                   <td className="p-3 sm:p-4">
-                    <input
-                      type="checkbox"
-                      className="rounded border-gray-300 accent-primary"
+                    <TableCheckbox
                       checked={selectedFamilies.has(family.id)}
-                      onChange={(e) => handleSelectFamily(family.id, e.target.checked)}
+                      ariaLabel={String(t('common.selectRow') || 'Select row')}
+                      onChange={() => handleSelectFamily(family.id, !selectedFamilies.has(family.id))}
+                      onClick={(e) => e.stopPropagation()}
                     />
                   </td>
                   <td className="p-3 sm:p-4">
-                    <div>
-                      <div className="text-sm sm:text-base font-medium text-gray-900">{family.name}</div>
-                      <div className="text-xs sm:text-sm text-gray-500">ID: {family.id.slice(0, 8)}</div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-violet-400 to-violet-600 text-white flex items-center justify-center text-sm font-semibold flex-shrink-0">
+                        {family.name?.charAt(0).toUpperCase() || '?'}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-sm font-semibold text-gray-900 truncate">{family.name}</div>
+                        <div className="text-xs text-gray-500 truncate">ID: {family.id.slice(0, 8)}</div>
+                      </div>
                     </div>
                   </td>
                   <td className="p-3 sm:p-4">
@@ -1304,7 +1491,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                             {t("families.shareLinks")}
                           </button>
                           <button
-                            className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-red-600"
+                            className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap text-rose-600"
                             onClick={(e) => {
                               e.preventDefault()
                               e.stopPropagation()
@@ -1321,14 +1508,12 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 </tr>
               )) : (
                 <tr>
-                  <td colSpan={7} className="p-12 text-center">
-                    <div className="flex flex-col items-center">
-                      <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">{t("families.noFamiliesFound")}</h3>
-                      <p className="text-gray-600">
-                        {searchQuery ? t("families.tryAdjustingSearch") : t("families.getStartedCreating")}
-                      </p>
-                    </div>
+                  <td colSpan={7}>
+                    <EmptyState
+                      icon={Users}
+                      title={String(t("families.noFamiliesFound"))}
+                      description={searchQuery ? String(t("families.tryAdjustingSearch")) : String(t("families.getStartedCreating"))}
+                    />
                   </td>
                 </tr>
               )}
@@ -1386,53 +1571,47 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             </div>
           </div>
         )}
-      </Card>
-
+      </div>
+      )}
 
       {/* Edit Family Modal */}
-      <Modal
-        isOpen={showEditModal && !!editingFamily}
-        onClose={() => {
-          setShowEditModal(false)
-          setEditingFamily(null)
-          resetForm()
-        }}
-        size="2xl"
-      >
-        {editingFamily && (
-          <div className="flex flex-col flex-1 min-h-0">
-              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900">{t("families.editFamily")}</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setShowEditModal(false)
-                    setEditingFamily(null)
-                    resetForm()
-                  }}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="flex-1 min-h-0 overflow-y-auto p-6">
+      {editingFamily && (
+        <ModalShell
+          isOpen={showEditModal}
+          onClose={handleSafeCloseEdit}
+          size="2xl"
+          title={String(t("families.editFamily"))}
+          closeDisabled={submitting}
+          footer={
+            <ModalShell.Footer justify="between">
+              <Button
+                variant="outline"
+                onClick={handleSafeCloseEdit}
+                disabled={submitting}
+              >
+                {t("common.cancel")}
+              </Button>
+              <Button onClick={handleUpdateFamily} disabled={submitting}>
+                {submitting ? t('families.updating') : t('families.updateFamily')}
+              </Button>
+            </ModalShell.Footer>
+          }
+        >
               <div className="space-y-6">
                 <div>
                   <Label htmlFor="edit-name" className="text-sm font-medium text-gray-700">
-                    {t("families.familyName")} <span className="text-red-500">*</span>
+                    {t("families.familyName")} <span className="text-rose-500">*</span>
                   </Label>
                   <Input
                     id="edit-name"
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`mt-1 ${formErrors.name ? 'border-red-500' : ''}`}
+                    className={`mt-1 ${formErrors.name ? 'border-rose-500' : ''}`}
                     placeholder={String(t("families.enterFamilyName"))}
                   />
                   {formErrors.name && (
-                    <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
+                    <p className="mt-1 text-sm text-rose-600">{formErrors.name}</p>
                   )}
                 </div>
 
@@ -1467,7 +1646,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   </div>
                   {availableUsers.length === 0 && (
                     <p className="text-xs text-amber-600 text-right mb-3">
-                      All users are already assigned to families
+                      {t('families.allUsersAssigned')}
                     </p>
                   )}
                   
@@ -1486,7 +1665,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               variant="ghost"
                               size="sm"
                               onClick={() => removeMemberFromForm(index)}
-                              className="absolute top-2 right-2 text-red-500 hover:text-red-700 p-1 h-auto"
+                              className="absolute top-2 right-2 text-rose-500 hover:text-rose-700 p-1 h-auto"
                             >
                               <X className="w-4 h-4" />
                             </Button>
@@ -1514,7 +1693,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               <div className="space-y-3 flex-1">
                                 <div>
                                   <Label className="text-xs font-medium text-gray-600">
-                                    {t("families.name")} <span className="text-red-500">*</span>
+                                    {t("families.name")} <span className="text-rose-500">*</span>
                                   </Label>
                                   <Input
                                     type="text"
@@ -1552,7 +1731,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                                 </div>
                                 <div>
                                   <Label className="text-xs font-medium text-gray-600">
-                                    {t("families.role")} <span className="text-red-500">*</span>
+                                    {t("families.role")} <span className="text-rose-500">*</span>
                                   </Label>
                                   <Select
                                     value={member.role}
@@ -1576,7 +1755,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               variant="ghost"
                               size="sm"
                               onClick={() => removeMemberFromForm(index)}
-                              className="text-red-500 hover:text-red-700 p-1"
+                              className="text-rose-500 hover:text-rose-700 p-1"
                             >
                               <X className="w-4 h-4" />
                             </Button>
@@ -1613,7 +1792,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
                         <div>
                           <Label htmlFor="manual-name" className="text-sm font-medium text-gray-700">
-                            {t("families.name")} <span className="text-red-500">*</span>
+                            {t("families.name")} <span className="text-rose-500">*</span>
                           </Label>
                           <Input
                             id="manual-name"
@@ -1655,7 +1834,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
                         <div>
                           <Label htmlFor="manual-role" className="text-sm font-medium text-gray-700">
-                            {t("families.role")} <span className="text-red-500">*</span>
+                            {t("families.role")} <span className="text-rose-500">*</span>
                           </Label>
                           <Select
                             value={manualMemberData.role}
@@ -1683,84 +1862,57 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   )}
 
                   {formErrors.members && (
-                    <p className="mt-1 text-sm text-red-600">{formErrors.members}</p>
+                    <p className="mt-1 text-sm text-rose-600">{formErrors.members}</p>
                   )}
                 </div>
               </div>
-            </div>
-
-              <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowEditModal(false)
-                    setEditingFamily(null)
-                    resetForm()
-                  }}
-                  disabled={submitting}
-                >
-                  {t("common.cancel")}
-                </Button>
-                <Button
-                  onClick={handleUpdateFamily}
-                  disabled={submitting}
-                  className="bg-primary text-white"
-                >
-                  {submitting ? t('families.updating') : t('families.updateFamily')}
-                </Button>
-              </div>
-            </div>
-        )}
-      </Modal>
+        </ModalShell>
+      )}
 
       {/* Add Family Modal */}
-      <Modal
+      <ModalShell
         isOpen={showAddModal}
-        onClose={() => {
-          setShowAddModal(false)
-          resetForm()
-        }}
+        onClose={handleSafeCloseAdd}
         size="2xl"
+        title={String(t("families.createNewFamily"))}
+        closeDisabled={submitting}
+        footer={
+          <ModalShell.Footer justify="between">
+            <Button
+              variant="outline"
+              onClick={handleSafeCloseAdd}
+              disabled={submitting}
+            >
+              {t("common.cancel")}
+            </Button>
+            <Button onClick={handleAddFamily} disabled={submitting}>
+              {submitting ? t('families.creating') : t('families.createFamily')}
+            </Button>
+          </ModalShell.Footer>
+        }
       >
-        <div className="flex flex-col flex-1 min-h-0">
-              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900">{t("families.createNewFamily")}</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setShowAddModal(false)
-                    resetForm()
-                  }}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="flex-1 min-h-0 overflow-y-auto p-6">
                 <div className="space-y-6">
                   <div>
                     <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-                      {t("families.familyName")} <span className="text-red-500">*</span>
+                      {t("families.familyName")} <span className="text-rose-500">*</span>
                     </Label>
                   <Input
                     id="name"
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`mt-1 ${formErrors.name ? 'border-red-500' : ''}`}
+                    className={`mt-1 ${formErrors.name ? 'border-rose-500' : ''}`}
                     placeholder={String(t("families.enterFamilyName"))}
                   />
                   {formErrors.name && (
-                    <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
+                    <p className="mt-1 text-sm text-rose-600">{formErrors.name}</p>
                   )}
                 </div>
 
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <Label className="text-sm font-medium text-gray-700">
-                      {t("families.familyMembers")} <span className="text-red-500">*</span>
+                      {t("families.familyMembers")} <span className="text-rose-500">*</span>
                     </Label>
                     <div className="flex items-center gap-2">
                       <Button
@@ -1788,7 +1940,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   </div>
                   {availableUsers.length === 0 && (
                     <p className="text-xs text-amber-600 text-right mb-3">
-                      All users are already assigned to families
+                      {t('families.allUsersAssigned')}
                     </p>
                   )}
                   
@@ -1807,7 +1959,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               variant="ghost"
                               size="sm"
                               onClick={() => removeMemberFromForm(index)}
-                              className="absolute top-2 right-2 text-red-500 hover:text-red-700 p-1 h-auto"
+                              className="absolute top-2 right-2 text-rose-500 hover:text-rose-700 p-1 h-auto"
                             >
                               <X className="w-4 h-4" />
                             </Button>
@@ -1835,7 +1987,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               <div className="space-y-3 flex-1">
                                 <div>
                                   <Label className="text-xs font-medium text-gray-600">
-                                    {t("families.name")} <span className="text-red-500">*</span>
+                                    {t("families.name")} <span className="text-rose-500">*</span>
                                   </Label>
                                   <Input
                                     type="text"
@@ -1873,7 +2025,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                                 </div>
                                 <div>
                                   <Label className="text-xs font-medium text-gray-600">
-                                    {t("families.role")} <span className="text-red-500">*</span>
+                                    {t("families.role")} <span className="text-rose-500">*</span>
                                   </Label>
                                   <Select
                                     value={member.role}
@@ -1897,7 +2049,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               variant="ghost"
                               size="sm"
                               onClick={() => removeMemberFromForm(index)}
-                              className="text-red-500 hover:text-red-700 p-1"
+                              className="text-rose-500 hover:text-rose-700 p-1"
                             >
                               <X className="w-4 h-4" />
                             </Button>
@@ -1934,7 +2086,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
                         <div>
                           <Label htmlFor="manual-name" className="text-sm font-medium text-gray-700">
-                            {t("families.name")} <span className="text-red-500">*</span>
+                            {t("families.name")} <span className="text-rose-500">*</span>
                           </Label>
                           <Input
                             id="manual-name"
@@ -1976,7 +2128,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
                         <div>
                           <Label htmlFor="manual-role" className="text-sm font-medium text-gray-700">
-                            {t("families.role")} <span className="text-red-500">*</span>
+                            {t("families.role")} <span className="text-rose-500">*</span>
                           </Label>
                           <Select
                             value={manualMemberData.role}
@@ -2004,63 +2156,36 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   )}
 
                   {formErrors.members && (
-                    <p className="mt-1 text-sm text-red-600">{formErrors.members}</p>
+                    <p className="mt-1 text-sm text-rose-600">{formErrors.members}</p>
                   )}
                 </div>
               </div>
-            </div>
-
-              <div className="flex-shrink-0 flex items-center justify-between p-6 pt-4 border-t border-gray-200">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowAddModal(false)
-                    resetForm()
-                  }}
-                  disabled={submitting}
-                >
-                  {t("common.cancel")}
-                </Button>
-                <Button
-                  onClick={handleAddFamily}
-                  disabled={submitting}
-                  className="bg-primary text-white"
-                >
-                  {submitting ? t('families.creating') : t('families.createFamily')}
-                </Button>
-              </div>
-        </div>
-      </Modal>
+      </ModalShell>
 
       {/* View Members Modal */}
-      <Modal
-        isOpen={showMembersModal && !!viewingFamily}
-        onClose={() => {
-          setShowMembersModal(false)
-          setViewingFamily(null)
-        }}
-        size="3xl"
-      >
-        {viewingFamily && (
-          <div className="flex flex-col flex-1 min-h-0">
-              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900">
-                  {t("families.familyMembers")} - {viewingFamily.name}
-                </h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setShowMembersModal(false)
-                    setViewingFamily(null)
-                  }}
-                  className="p-1"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="flex-1 min-h-0 overflow-y-auto p-6">
+      {viewingFamily && (
+        <ModalShell
+          isOpen={showMembersModal}
+          onClose={() => {
+            setShowMembersModal(false)
+            setViewingFamily(null)
+          }}
+          size="3xl"
+          title={`${t("families.familyMembers")} - ${viewingFamily.name}`}
+          footer={
+            <ModalShell.Footer>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowMembersModal(false)
+                  setViewingFamily(null)
+                }}
+              >
+                {t("common.close")}
+              </Button>
+            </ModalShell.Footer>
+          }
+        >
               {viewingFamily.members.length > 0 ? (
                 <div className="space-y-4">
                   <p className="text-sm text-gray-600 mb-4">
@@ -2076,7 +2201,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                                 <div className="flex items-center gap-2 mb-2">
                                   <h3 className="font-semibold text-gray-900 text-lg">{member.name}</h3>
                                   {!member.user_id && (
-                                    <span className="px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                    <span className="px-2 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700">
                                       {t("families.notSignedUp")}
                                     </span>
                                   )}
@@ -2099,7 +2224,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ml-1 ${
                                       member.user_role === 'parent'
                                         ? 'bg-purple-100 text-purple-800'
-                                        : 'bg-green-100 text-green-800'
+                                        : 'bg-emerald-50 text-emerald-700'
                                     }`}>
                                       {t(`common.roles.${member.user_role}`)}
                                     </span>
@@ -2114,101 +2239,58 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   </div>
                 </div>
               ) : (
-                <div className="text-center py-12">
-                  <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t("families.noFamilyMembers")}</h3>
-                  <p className="text-gray-600">{t("families.noMembersYet")}</p>
-                </div>
+                <EmptyState
+                  icon={Users}
+                  title={String(t("families.noFamilyMembers"))}
+                  description={String(t("families.noMembersYet"))}
+                />
               )}
-            </div>
-            <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowMembersModal(false)
-                  setViewingFamily(null)
-                }}
-              >
-                {t("common.close")}
-              </Button>
-            </div>
-          </div>
-        )}
-      </Modal>
+        </ModalShell>
+      )}
 
       {/* Delete Confirmation Modal */}
-      <Modal
-        isOpen={showDeleteModal && !!familyToDelete}
-        onClose={() => {
-          setShowDeleteModal(false)
-          setFamilyToDelete(null)
-        }}
-        size="md"
-      >
-        {familyToDelete && (
-          <div className="flex flex-col flex-1 min-h-0">
-            <div className="flex-shrink-0 p-6 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{t("families.deleteFamily")}</h2>
-            </div>
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
-              <p className="text-gray-600">
-                {t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) })}
-              </p>
-            </div>
-            <div className="flex-shrink-0 flex gap-3 p-6 pt-0">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowDeleteModal(false)
-                  setFamilyToDelete(null)
-                }}
-                className="flex-1"
-              >
-                {t("common.cancel")}
-              </Button>
-              <Button
-                onClick={handleDeleteConfirm}
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-              >
-                {t("families.delete")}
-              </Button>
-            </div>
-          </div>
-        )}
-      </Modal>
+      {familyToDelete && (
+        <ModalShell.Confirm
+          isOpen={showDeleteModal}
+          onClose={() => {
+            setShowDeleteModal(false)
+            setFamilyToDelete(null)
+          }}
+          onConfirm={handleDeleteConfirm}
+          title={String(t("families.deleteFamily"))}
+          message={String(t("families.deleteFamilyConfirm", { name: familyToDelete.name || String(t("common.unnamed")) }))}
+          variant="danger"
+          confirmLabel={String(t("families.delete"))}
+          cancelLabel={String(t("common.cancel"))}
+        />
+      )}
 
       {/* Family Invitation Modal */}
-      <Modal
-        isOpen={showInvitationModal && !!createdFamilyId}
-        onClose={() => {
-          setShowInvitationModal(false)
-          setCreatedFamilyId(null)
-        }}
-        size="2xl"
-      >
-        {createdFamilyId && (() => {
-          const currentFamily = families.find(f => f.id === createdFamilyId)
-          const manualMembers = currentFamily?.members.filter(m => m.user_id === null) || []
-
-          return (
-            <div className="flex flex-col flex-1 min-h-0">
-              <div className="flex-shrink-0 flex items-center justify-between p-6 pb-4 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900">{t("families.shareLinks")}</h2>
+      {createdFamilyId && (() => {
+        const currentFamily = families.find(f => f.id === createdFamilyId)
+        const manualMembers = currentFamily?.members.filter(m => m.user_id === null) || []
+        return (
+          <ModalShell
+            isOpen={showInvitationModal}
+            onClose={() => {
+              setShowInvitationModal(false)
+              setCreatedFamilyId(null)
+            }}
+            size="2xl"
+            title={String(t("families.shareLinks"))}
+            footer={
+              <ModalShell.Footer>
                 <Button
-                  variant="ghost"
-                  size="sm"
                   onClick={() => {
                     setShowInvitationModal(false)
                     setCreatedFamilyId(null)
                   }}
-                  className="p-1"
                 >
-                  <X className="w-4 h-4" />
+                  {t("families.done")}
                 </Button>
-              </div>
-
-              <div className="flex-1 min-h-0 overflow-y-auto p-6">
-
+              </ModalShell.Footer>
+            }
+          >
               <div className="space-y-6">
                   {/* General Links Section */}
                   <div>
@@ -2282,7 +2364,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                               <div>
                                 <h4 className="text-base font-semibold text-gray-900">{member.name}</h4>
                                 <div className="flex items-center gap-2 mt-1">
-                                  <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                  <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700">
                                     {t(`common.roles.${member.role}`)}
                                   </span>
                                   <span className="text-xs text-gray-500">{t("families.notSignedUp")}</span>
@@ -2320,23 +2402,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                     </div>
                   )}
                 </div>
-              </div>
-
-              <div className="flex-shrink-0 flex items-center justify-end p-6 pt-4 border-t border-gray-200">
-                <Button
-                  onClick={() => {
-                    setShowInvitationModal(false)
-                    setCreatedFamilyId(null)
-                  }}
-                  className="bg-primary text-white"
-                >
-                  {t("families.done")}
-                </Button>
-              </div>
-            </div>
-          )
-        })()}
-      </Modal>
+          </ModalShell>
+        )
+      })()}
 
       {/* Family Import Modal */}
       <FamilyImportModal
