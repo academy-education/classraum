@@ -5,7 +5,9 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import {
   Search,
   MessageSquare,
@@ -14,6 +16,7 @@ import {
   Send,
   Loader2,
   User,
+  Users,
   RefreshCw,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -21,15 +24,30 @@ import { showErrorToast } from '@/stores'
 import { cn } from '@/lib/utils'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
+import { StaggeredListSkeleton } from '@/components/ui/skeleton'
+
+interface ConversationParticipant {
+  id: string
+  name: string
+  email: string
+  role: string
+}
 
 interface Conversation {
   id: string
-  participant: {
-    id: string
-    name: string
-    email: string
-    role: string
-  }
+  /** True for multi-party group chats. The API returns `is_group` from
+   *  the user_conversations row. Without surfacing this on mobile, group
+   *  chats showed "Unknown" because the legacy `participant` field is null. */
+  isGroup: boolean
+  /** Group name (set by the manager who created the group). Null for 1:1. */
+  name: string | null
+  /** Optional avatar uploaded by group admin. */
+  avatarUrl: string | null
+  /** Everyone in the conversation EXCEPT the current user. Always populated. */
+  participants: ConversationParticipant[]
+  /** Legacy single-user shape — only set for 1:1 conversations. Kept so any
+   *  code that still reads `conversation.participant` for 1:1 keeps working. */
+  participant: ConversationParticipant | null
   lastMessage: {
     id: string
     message: string
@@ -83,12 +101,17 @@ function MobileMessagesPageContent() {
   const [sendingMessage, setSendingMessage] = useState(false)
   const [newMessage, setNewMessage] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
+  const [unreadOnly, setUnreadOnly] = useState(false)
   const [viewMode, setViewMode] = useState<ViewMode>('list')
   const [groupedContacts, setGroupedContacts] = useState<GroupedContacts>({ teachers: [], students: [], parents: [], family: [] })
   const [contactsLoading, setContactsLoading] = useState(false)
   const [contactSearchQuery, setContactSearchQuery] = useState('')
   const [creatingConversation, setCreatingConversation] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  // Composer textarea ref + auto-grow effect — mirrors the desktop ChatPanel
+  // pattern so multi-line messages display naturally and Shift+Enter inserts
+  // a newline. Capped at ~6 lines (144px) before scrolling.
+  const composerRef = useRef<HTMLTextAreaElement>(null)
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [isOtherTyping, setIsOtherTyping] = useState(false)
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null)
@@ -140,9 +163,25 @@ function MobileMessagesPageContent() {
     fetchConversations()
   }, [fetchConversations])
 
-  // Fetch messages for selected conversation
+  // Fetch messages for selected conversation.
+  //
+  // Optimistic clear runs BEFORE the await so the bell badge + conversation
+  // list unread count drop the instant the user taps in — not 200-500ms
+  // later after the network round-trip. The server-side bulk mark-as-read
+  // happens inside the GET handler (`UPDATE user_messages SET is_read=true
+  // WHERE conversation_id=$id AND sender_id<>me AND is_read=false`), and
+  // those UPDATE rows trigger realtime subscribers on the manager's web
+  // bell to refetch — keeping cross-device unread state in sync.
   const fetchMessages = useCallback(async (conversationId: string) => {
     setMessagesLoading(true)
+
+    // Optimistic: clear unread for this conversation now, dispatch event so
+    // MobileHeader and other listeners refetch their bell counts.
+    setConversations(prev => prev.map(conv =>
+      conv.id === conversationId ? { ...conv, unreadCount: 0 } : conv
+    ))
+    window.dispatchEvent(new CustomEvent('messageRead'))
+
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session?.access_token) return
@@ -159,14 +198,6 @@ function MobileMessagesPageContent() {
 
       const data = await response.json()
       setMessages(data.messages || [])
-
-      // Update unread count in conversation list
-      setConversations(prev => prev.map(conv =>
-        conv.id === conversationId ? { ...conv, unreadCount: 0 } : conv
-      ))
-
-      // Dispatch event to update header unread count
-      window.dispatchEvent(new CustomEvent('messageRead'))
     } catch (error) {
       console.error('Error fetching messages:', error)
       showErrorToast(String(t('messages.fetchError') || 'Failed to load messages'))
@@ -365,7 +396,12 @@ function MobileMessagesPageContent() {
     }
   }, [currentUserId, fetchConversations, markMessageAsRead])
 
-  // Presence channel for typing indicators
+  // Presence channel for typing indicators.
+  // Hold the SUBSCRIBED channel in a ref so handleInputChange / stopTyping
+  // can reuse it. Calling supabase.channel(name) per keystroke creates a
+  // brand-new unsubscribed channel object — every track() silently no-ops
+  // AND each call leaks a channel.
+  const typingChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null)
   useEffect(() => {
     if (!selectedConversation || !currentUserId) return
 
@@ -384,7 +420,10 @@ function MobileMessagesPageContent() {
       })
       .subscribe()
 
+    typingChannelRef.current = channel
+
     return () => {
+      typingChannelRef.current = null
       supabase.removeChannel(channel)
     }
   }, [selectedConversation, currentUserId])
@@ -393,21 +432,15 @@ function MobileMessagesPageContent() {
   const handleInputChange = (value: string) => {
     setNewMessage(value)
 
-    if (!selectedConversation || !currentUserId) return
+    const channel = typingChannelRef.current
+    if (!channel || !currentUserId) return
 
-    const channelName = `typing:conversation:${selectedConversation.id}`
-    const channel = supabase.channel(channelName)
-
-    // Clear existing timeout
     if (typingTimeout) {
       clearTimeout(typingTimeout)
     }
 
-    // Track typing state
     if (value.length > 0) {
       channel.track({ isTyping: true, userId: currentUserId })
-
-      // Stop typing after 2 seconds of inactivity
       const timeout = setTimeout(() => {
         channel.track({ isTyping: false, userId: currentUserId })
       }, 2000)
@@ -419,10 +452,9 @@ function MobileMessagesPageContent() {
 
   // Stop typing when sending message
   const stopTyping = () => {
-    if (!selectedConversation || !currentUserId) return
+    const channel = typingChannelRef.current
+    if (!channel || !currentUserId) return
 
-    const channelName = `typing:conversation:${selectedConversation.id}`
-    const channel = supabase.channel(channelName)
     channel.track({ isTyping: false, userId: currentUserId })
 
     if (typingTimeout) {
@@ -435,6 +467,17 @@ function MobileMessagesPageContent() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  // Composer auto-grow — pure CSS can't auto-grow a <textarea>; the
+  // conventional pattern is reset to 'auto' then set to scrollHeight.
+  // Cap at 144px (~6 lines) so the input never eats more than a third of
+  // the screen on mobile.
+  useEffect(() => {
+    const el = composerRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${Math.min(el.scrollHeight, 144)}px`
+  }, [newMessage])
 
   // Create new conversation
   const handleCreateConversation = async (contact: Contact) => {
@@ -520,11 +563,20 @@ function MobileMessagesPageContent() {
     }
   }
 
-  // Filter conversations by search
-  const filteredConversations = conversations.filter(conv =>
-    conv.participant?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    conv.participant?.email?.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  // Filter conversations by search — covers both 1:1 (participant name/email)
+  // and groups (group name, plus any member's name).
+  const filteredConversations = conversations.filter(conv => {
+    const q = searchQuery.toLowerCase()
+    if (!q) return true
+    if (conv.isGroup) {
+      if (conv.name?.toLowerCase().includes(q)) return true
+      return conv.participants.some(p => p.name?.toLowerCase().includes(q))
+    }
+    return (
+      conv.participant?.name?.toLowerCase().includes(q) ||
+      conv.participant?.email?.toLowerCase().includes(q)
+    )
+  })
 
   // Flatten and filter contacts by search
   const allContacts = [
@@ -583,13 +635,13 @@ function MobileMessagesPageContent() {
   const getRoleColor = (role: string) => {
     switch (role) {
       case 'manager':
-        return 'bg-purple-100 text-purple-700'
+        return 'bg-violet-50 text-violet-700'
       case 'teacher':
-        return 'bg-blue-100 text-blue-700'
+        return 'bg-emerald-50 text-emerald-700'
       case 'student':
-        return 'bg-green-100 text-green-700'
+        return 'bg-sky-50 text-sky-700'
       case 'parent':
-        return 'bg-orange-100 text-orange-700'
+        return 'bg-amber-50 text-amber-700'
       default:
         return 'bg-gray-100 text-gray-700'
     }
@@ -597,6 +649,11 @@ function MobileMessagesPageContent() {
 
   // Calculate unread count
   const totalUnreadCount = conversations.reduce((acc, conv) => acc + conv.unreadCount, 0)
+  // Unread-only filter applied AFTER the search filter — both are local-only,
+  // no DB hit. Mirrors the desktop ConversationList affordance.
+  const visibleConversations = unreadOnly
+    ? filteredConversations.filter(c => c.unreadCount > 0)
+    : filteredConversations
 
   // Render conversation list view
   const renderListView = () => (
@@ -639,7 +696,7 @@ function MobileMessagesPageContent() {
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+              <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                 <MessageSquare className="w-6 h-6" />
                 {t('messages.title')}
               </h1>
@@ -664,7 +721,7 @@ function MobileMessagesPageContent() {
         </div>
 
         {/* Search */}
-        <div className="mb-4">
+        <div className="mb-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
             <Input
@@ -677,33 +734,63 @@ function MobileMessagesPageContent() {
           </div>
         </div>
 
+        {/* Unread filter chips — only when there's unread to filter. Same
+            behavior as the desktop ConversationList so the mobile/web
+            experiences match. */}
+        {totalUnreadCount > 0 && (
+          <div className="flex items-center gap-2 mb-4">
+            <button
+              type="button"
+              onClick={() => setUnreadOnly(false)}
+              className={cn(
+                'h-7 px-3 rounded-full text-xs font-medium transition-colors',
+                !unreadOnly
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              )}
+            >
+              {String(t('messages.filterAll'))}
+            </button>
+            <button
+              type="button"
+              onClick={() => setUnreadOnly(true)}
+              className={cn(
+                'h-7 px-3 rounded-full text-xs font-medium transition-colors inline-flex items-center gap-1.5',
+                unreadOnly
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              )}
+            >
+              {String(t('messages.filterUnread'))}
+              <span className={cn(
+                'min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-semibold inline-flex items-center justify-center',
+                unreadOnly ? 'bg-white/20 text-white' : 'bg-primary/10 text-primary'
+              )}>
+                {totalUnreadCount > 9 ? '9+' : totalUnreadCount}
+              </span>
+            </button>
+          </div>
+        )}
+
         {/* Conversations */}
         {loading ? (
-          <div className="space-y-3">
-            {[...Array(4)].map((_, i) => (
-              <Card key={i} className="p-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-gray-200 rounded-full animate-pulse" />
-                  <div className="flex-1">
-                    <div className="h-4 bg-gray-200 rounded w-1/3 mb-2 animate-pulse" />
-                    <div className="h-3 bg-gray-200 rounded w-full mb-1 animate-pulse" />
-                    <div className="h-3 bg-gray-200 rounded w-2/3 animate-pulse" />
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        ) : filteredConversations.length === 0 ? (
-          <Card className="p-6 text-center">
-            <div className="flex flex-col items-center gap-2">
-              <MessageSquare className="w-10 h-10 text-gray-300" />
-              <div className="text-gray-500 font-medium text-sm">{String(t('messages.noConversations'))}</div>
-              <div className="text-gray-400 text-xs">{String(t('messages.noConversationsDescription'))}</div>
-            </div>
+          <StaggeredListSkeleton items={4} variant="message" />
+        ) : visibleConversations.length === 0 ? (
+          <Card>
+            <EmptyState
+              icon={MessageSquare}
+              title={String(unreadOnly && filteredConversations.length > 0
+                ? t('messages.allCaughtUp')
+                : t('messages.noConversations'))}
+              description={String(unreadOnly && filteredConversations.length > 0
+                ? t('messages.allCaughtUpDescription')
+                : t('messages.noConversationsDescription'))}
+              size="sm"
+            />
           </Card>
         ) : (
           <div className="space-y-3">
-            {filteredConversations.map((conversation) => (
+            {visibleConversations.map((conversation) => (
               <Card
                 key={conversation.id}
                 className={cn(
@@ -713,9 +800,15 @@ function MobileMessagesPageContent() {
                 onClick={() => handleSelectConversation(conversation)}
               >
                 <div className="flex items-start gap-3">
-                  {/* Avatar */}
+                  {/* Avatar — group icon for groups, person icon for 1:1.
+                      Mirrors the desktop ConversationList pattern so groups
+                      created on web look right when opened on mobile. */}
                   <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
-                    <User className="h-6 w-6 text-gray-500" />
+                    {conversation.isGroup ? (
+                      <Users className="h-6 w-6 text-gray-500" />
+                    ) : (
+                      <User className="h-6 w-6 text-gray-500" />
+                    )}
                   </div>
 
                   {/* Content */}
@@ -727,14 +820,22 @@ function MobileMessagesPageContent() {
                             "font-semibold truncate",
                             conversation.unreadCount > 0 ? "text-gray-900" : "text-gray-700"
                           )}>
-                            {conversation.participant?.name || 'Unknown'}
+                            {conversation.isGroup
+                              ? (conversation.name || conversation.participants.map(p => p.name).join(', ') || String(t('messages.newGroupChat')))
+                              : (conversation.participant?.name || 'Unknown')}
                           </span>
-                          <span className={cn(
-                            "text-xs px-1.5 py-0.5 rounded-full font-medium flex-shrink-0",
-                            getRoleColor(conversation.participant?.role)
-                          )}>
-                            {getRoleLabel(conversation.participant?.role)}
-                          </span>
+                          {conversation.isGroup ? (
+                            <span className="text-xs px-1.5 py-0.5 rounded-full font-medium flex-shrink-0 bg-gray-100 text-gray-700">
+                              {String(t('messages.membersCount', { count: conversation.participants.length + 1 }))}
+                            </span>
+                          ) : (
+                            <span className={cn(
+                              "text-xs px-1.5 py-0.5 rounded-full font-medium flex-shrink-0",
+                              getRoleColor(conversation.participant?.role || '')
+                            )}>
+                              {getRoleLabel(conversation.participant?.role || '')}
+                            </span>
+                          )}
                         </div>
                         {conversation.lastMessage && (
                           <p className={cn(
@@ -744,6 +845,12 @@ function MobileMessagesPageContent() {
                             {conversation.lastMessage.isOwn && (
                               <span className="text-gray-400">{String(t('messages.you'))}: </span>
                             )}
+                            {/* Group: prefix non-own messages with sender name so users
+                                can scan who-said-what without opening the chat. */}
+                            {conversation.isGroup && !conversation.lastMessage.isOwn && (() => {
+                              const sender = conversation.participants.find(p => p.id === conversation.lastMessage?.senderId)
+                              return sender ? <span className="text-gray-400">{sender.name}: </span> : null
+                            })()}
                             {conversation.lastMessage.message}
                           </p>
                         )}
@@ -771,9 +878,20 @@ function MobileMessagesPageContent() {
     </div>
   )
 
-  // Render chat view
+  // Render chat view.
+  //
+  // Uses `h-[calc(100dvh-...)]` (definite height) instead of `flex-1` plus
+  // `position: fixed` for the input. The previous fixed-position composer
+  // got hidden by the iOS soft keyboard — `position: fixed` is anchored to
+  // the layout viewport, NOT the visual viewport, so it sits BEHIND the
+  // keyboard instead of being pushed up.
+  //
+  // Now: the chat view is a flex column anchored to dvh (dynamic viewport
+  // height, which DOES respond to the keyboard). Messages take `flex-1`
+  // and shrink when the keyboard appears; the input is the last flex child
+  // and stays visible above the keyboard.
   const renderChatView = () => (
-    <div className="flex flex-col flex-1 bg-gray-50">
+    <div className="flex flex-col h-[calc(100dvh-120px)] bg-gray-50">
       {/* Chat Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 bg-white">
         <Button
@@ -785,23 +903,35 @@ function MobileMessagesPageContent() {
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </Button>
         <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
-          <User className="h-5 w-5 text-gray-500" />
+          {selectedConversation?.isGroup ? (
+            <Users className="h-5 w-5 text-gray-500" />
+          ) : (
+            <User className="h-5 w-5 text-gray-500" />
+          )}
         </div>
         <div className="flex-1 min-w-0">
           <h2 className="font-semibold text-gray-900 truncate">
-            {selectedConversation?.participant?.name || 'Unknown'}
+            {selectedConversation?.isGroup
+              ? (selectedConversation.name || selectedConversation.participants.map(p => p.name).join(', ') || String(t('messages.newGroupChat')))
+              : (selectedConversation?.participant?.name || 'Unknown')}
           </h2>
-          <span className={cn(
-            "text-xs px-1.5 py-0.5 rounded-full font-medium inline-block",
-            getRoleColor(selectedConversation?.participant?.role || '')
-          )}>
-            {getRoleLabel(selectedConversation?.participant?.role || '')}
-          </span>
+          {selectedConversation?.isGroup ? (
+            <span className="text-xs px-1.5 py-0.5 rounded-full font-medium inline-block bg-gray-100 text-gray-700">
+              {String(t('messages.membersCount', { count: selectedConversation.participants.length + 1 }))}
+            </span>
+          ) : (
+            <span className={cn(
+              "text-xs px-1.5 py-0.5 rounded-full font-medium inline-block",
+              getRoleColor(selectedConversation?.participant?.role || '')
+            )}>
+              {getRoleLabel(selectedConversation?.participant?.role || '')}
+            </span>
+          )}
         </div>
       </div>
 
-      {/* Messages - scrollable area with padding for fixed input */}
-      <div className="flex-1 overflow-y-auto p-4 pb-24 space-y-3">
+      {/* Messages — flex-1 so it shrinks when the keyboard reduces dvh. */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0">
         {messagesLoading ? (
           <div className="flex items-center justify-center h-full">
             <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
@@ -823,10 +953,10 @@ function MobileMessagesPageContent() {
               >
                 <div
                   className={cn(
-                    "max-w-[80%] rounded-2xl px-4 py-2.5 shadow-sm",
+                    "max-w-[80%] rounded-2xl px-4 py-2.5",
                     message.isOwn
-                      ? "bg-primary text-white rounded-br-md"
-                      : "bg-white text-gray-900 rounded-bl-md border border-gray-100"
+                      ? "bg-primary text-white rounded-br-md shadow-[0_4px_12px_-4px_rgba(40,133,232,0.4)]"
+                      : "bg-gray-50 text-gray-900 rounded-bl-md ring-1 ring-gray-100"
                   )}
                 >
                   <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">{message.message}</p>
@@ -844,7 +974,7 @@ function MobileMessagesPageContent() {
             {/* Typing Indicator */}
             {isOtherTyping && (
               <div className="flex justify-start">
-                <div className="bg-white text-gray-500 rounded-2xl rounded-bl-md px-4 py-3 shadow-sm border border-gray-100">
+                <div className="bg-gray-50 text-gray-500 rounded-2xl rounded-bl-md px-4 py-3 ring-1 ring-gray-100">
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -858,10 +988,13 @@ function MobileMessagesPageContent() {
         )}
       </div>
 
-      {/* Message Input - Fixed at bottom */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white safe-area-bottom z-10">
-        <div className="flex items-center gap-3">
-          <Input
+      {/* Message Input — last flex child of the dvh-anchored column above.
+          No more position:fixed; the column shrinks naturally when the iOS
+          keyboard reduces 100dvh, keeping the input visible. */}
+      <div className="flex-shrink-0 p-4 border-t border-gray-200 bg-white safe-area-bottom">
+        <div className="flex items-end gap-3">
+          <Textarea
+            ref={composerRef}
             placeholder={String(t('messages.typeMessage'))}
             value={newMessage}
             onChange={(e) => handleInputChange(e.target.value)}
@@ -872,13 +1005,14 @@ function MobileMessagesPageContent() {
               }
             }}
             disabled={sendingMessage}
-            className="flex-1 h-11 rounded-full border border-gray-200 bg-gray-50 focus:bg-white px-4"
+            rows={1}
+            className="flex-1 min-h-[44px] py-2.5 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white px-4 text-sm leading-relaxed"
           />
           <Button
             onClick={handleSendMessage}
             disabled={!newMessage.trim() || sendingMessage}
             size="icon"
-            className="h-11 w-11 rounded-full"
+            className="h-11 w-11 rounded-full flex-shrink-0"
           >
             {sendingMessage ? (
               <Loader2 className="h-5 w-5 animate-spin" />
@@ -940,11 +1074,12 @@ function MobileMessagesPageContent() {
             ))}
           </div>
         ) : filteredContacts.length === 0 ? (
-          <Card className="p-6 text-center">
-            <div className="flex flex-col items-center gap-2">
-              <User className="w-10 h-10 text-gray-300" />
-              <div className="text-gray-500 font-medium text-sm">{String(t('messages.noContacts'))}</div>
-            </div>
+          <Card>
+            <EmptyState
+              icon={User}
+              title={String(t('messages.noContacts'))}
+              size="sm"
+            />
           </Card>
         ) : (
           <div className="space-y-3">
