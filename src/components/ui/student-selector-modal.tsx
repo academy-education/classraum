@@ -62,7 +62,7 @@ export function StudentSelectorModal({
             <button
               onClick={onClose}
               className="absolute top-4 right-4 w-8 h-8 rounded-full hover:bg-gray-50 flex items-center justify-center transition-colors"
-              aria-label={String(t('common.close') || 'Close')}
+              aria-label={String(t('common.close'))}
             >
               <X className="w-4 h-4 text-gray-500" />
             </button>

@@ -31,6 +31,7 @@ import {
   Rows3
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { triggerAttendanceChangedNotifications } from '@/lib/notification-triggers'
@@ -1422,10 +1423,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           footer={
             <ModalShell.Footer justify="between">
               <div className="text-sm text-gray-500">
-                {t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString()}
+                {t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString(getDateLocale(language))}
                 {viewingRecord.updated_at !== viewingRecord.created_at && (
                   <span className="ml-4">
-                    {t('common.updated')}: {new Date(viewingRecord.updated_at).toLocaleDateString()}
+                    {t('common.updated')}: {new Date(viewingRecord.updated_at).toLocaleDateString(getDateLocale(language))}
                   </span>
                 )}
               </div>
@@ -1538,7 +1539,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                           ))}
                         </>
                       ) : sessionAttendance.map((attendance) => {
-                        const studentName = attendance.student_name || 'Unknown Student'
+                        const studentName = attendance.student_name || String(t('common.fallbacks.unknownStudent'))
                         const initials = studentName.split(' ').map((n: string) => n[0]).join('').toUpperCase()
 
                         return (
@@ -1550,7 +1551,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                               <div className="min-w-0">
                                 <p className="font-medium text-gray-900">{studentName}</p>
                                 {attendance.created_at && (
-                                  <p className="text-xs text-gray-400">{t('attendance.recorded')}: {new Date(attendance.created_at).toLocaleDateString()}</p>
+                                  <p className="text-xs text-gray-400">{t('attendance.recorded')}: {new Date(attendance.created_at).toLocaleDateString(getDateLocale(language))}</p>
                                 )}
                               </div>
                             </div>

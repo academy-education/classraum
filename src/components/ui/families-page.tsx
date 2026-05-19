@@ -347,7 +347,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               familyMembers[typedMember.family_id].push({
                 id: typedMember.id,
                 user_id: null,
-                name: typedMember.user_name || 'Unknown',
+                name: typedMember.user_name || String(t('common.fallbacks.unknown')),
                 email: typedMember.email || null,
                 phone: typedMember.phone || null,
                 role: typedMember.role,
@@ -1332,7 +1332,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                       <TableCheckbox
                         checked={allSelected}
                         indeterminate={someSelected}
-                        ariaLabel={String(t('common.selectAll') || 'Select all')}
+                        ariaLabel={String(t('common.selectAll'))}
                         onChange={() => handleSelectAll(!allSelected)}
                       />
                     )
@@ -1392,7 +1392,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   <td className="p-3 sm:p-4">
                     <TableCheckbox
                       checked={selectedFamilies.has(family.id)}
-                      ariaLabel={String(t('common.selectRow') || 'Select row')}
+                      ariaLabel={String(t('common.selectRow'))}
                       onChange={() => handleSelectFamily(family.id, !selectedFamilies.has(family.id))}
                       onClick={(e) => e.stopPropagation()}
                     />

@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useToast } from '@/hooks/use-toast'
 import { Loader2, CreditCard, Calendar, TrendingUp, AlertCircle, CheckCircle2, Plus, Minus } from 'lucide-react'
 import { UsageProgressBar } from '@/components/ui/usage-progress-bar'
+import { Skeleton } from '@/components/ui/skeleton'
 import * as PortOne from '@portone/browser-sdk/v2'
 import { getPortOneConfig } from '@/lib/portone-config'
 import { supabase } from '@/lib/supabase'
@@ -68,7 +70,7 @@ interface AddonData {
 
 export default function SubscriptionManagementPage() {
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const { toast } = useToast()
 
   const [loading, setLoading] = useState(true)
@@ -483,7 +485,7 @@ export default function SubscriptionManagementPage() {
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('ko-KR', {
+    return new Date(dateString).toLocaleDateString(getDateLocale(language), {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -530,16 +532,16 @@ export default function SubscriptionManagementPage() {
           <div className="lg:col-span-4">
             <Card className="p-4 sm:p-6">
               <div className="space-y-4">
-                <div className="h-6 bg-gray-200 rounded w-1/2 animate-pulse"></div>
-                <div className="h-8 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+                <Skeleton className="h-6 w-1/2" />
+                <Skeleton className="h-8 w-3/4" />
                 <div className="space-y-3 pt-4">
                   {[1,2,3].map(i => (
-                    <div key={i} className="h-16 bg-gray-200 rounded animate-pulse"></div>
+                    <Skeleton key={i} className="h-16 w-full" />
                   ))}
                 </div>
                 <div className="space-y-2 pt-4">
                   {[1,2,3].map(i => (
-                    <div key={i} className="h-10 bg-gray-200 rounded animate-pulse"></div>
+                    <Skeleton key={i} className="h-10 w-full" />
                   ))}
                 </div>
               </div>
@@ -548,12 +550,12 @@ export default function SubscriptionManagementPage() {
           <div className="lg:col-span-8">
             <Card className="p-4 sm:p-6">
               <div className="space-y-4">
-                <div className="h-6 bg-gray-200 rounded w-1/4 animate-pulse"></div>
+                <Skeleton className="h-6 w-1/4" />
                 <div className="space-y-6">
                   {[1,2,3,4].map(i => (
                     <div key={i} className="space-y-2">
-                      <div className="h-4 bg-gray-200 rounded w-1/3 animate-pulse"></div>
-                      <div className="h-3 bg-gray-200 rounded w-full animate-pulse"></div>
+                      <Skeleton className="h-4 w-1/3" />
+                      <Skeleton className="h-3 w-full" />
                     </div>
                   ))}
                 </div>

@@ -538,7 +538,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       
       const studentsData = data?.map((student: Record<string, unknown>) => ({
         user_id: student.user_id as string,
-        name: ((student.users as Record<string, unknown>)?.name as string) || 'Unknown',
+        name: ((student.users as Record<string, unknown>)?.name as string) || String(t('common.fallbacks.unknown')),
         email: ((student.users as Record<string, unknown>)?.email as string) || '',
         school_name: student.school_name as string
       })) || []
@@ -1063,12 +1063,12 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Collect individual grades for AI context
       const individualGrades = assignments.map(assignment => ({
         id: assignment.id,
-        title: (assignment.assignments as any)?.title || (assignment.assignments as any)?.id || 'Unknown Assignment',
+        title: (assignment.assignments as any)?.title || (assignment.assignments as any)?.id || String(t('common.fallbacks.unknownAssignment')),
         type: (assignment.assignments as any)?.assignment_type || 'unknown',
         subject: (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.name || 
                  (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.[0]?.name || 
                  'Unknown Subject',
-        classroom: (assignment.assignments as any)?.classroom_sessions?.classrooms?.name || 'Unknown Classroom',
+        classroom: (assignment.assignments as any)?.classroom_sessions?.classrooms?.name || String(t('common.fallbacks.unknownClassroom')),
         categoryId: (assignment.assignments as any)?.assignment_categories_id || '',
         score: assignment.score,
         status: assignment.status,
@@ -1149,7 +1149,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         const category = assignmentCategories.find(c => c.id === categoryId)
         
         assignmentsByCategory[categoryId] = {
-          name: category?.name || 'Unknown Category',
+          name: category?.name || String(t('common.fallbacks.unknownCategory')),
           total: categoryAssignments.length,
           completed: categoryCompletedAssignments.length,
           completionRate: Math.round(categoryCompletionRate),
@@ -1273,7 +1273,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       const categoryNames: Record<string, string> = {}
       for (const categoryId of Object.keys(assignmentsByCategory)) {
         const category = assignmentCategories.find(c => c.id === categoryId)
-        categoryNames[categoryId] = category?.name || 'Unknown Category'
+        categoryNames[categoryId] = category?.name || String(t('common.fallbacks.unknownCategory'))
       }
 
       // Calculate classroom percentiles for selected classrooms
@@ -1388,7 +1388,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               const studentRank = studentsWithLowerScores + 1
 
               classroomPercentiles[classroomId] = {
-                classroomName: classroom.name || 'Unknown Classroom',
+                classroomName: classroom.name || String(t('common.fallbacks.unknownClassroom')),
                 classroomAverage: Math.round(classroomAverage),
                 percentile: percentile || 0, // Ensure we have a valid percentile value
                 totalStudents: finalAverages.length,
@@ -1672,7 +1672,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         classrooms: classrooms.filter(c => formData.selected_classrooms?.includes(c.id)).map(classroom => ({
           id: classroom.id,
           name: classroom.name,
-          subject: subjects.find(s => s.id === classroom.subject_id)?.name || 'Unknown Subject'
+          subject: subjects.find(s => s.id === classroom.subject_id)?.name || String(t('common.fallbacks.unknownSubject'))
         })),
         // Add assignment category information
         categories: assignmentCategories.filter(c => formData.selected_assignment_categories?.includes(c.id)).map(category => ({
@@ -1706,7 +1706,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           formData: enhancedFormData,
           template: selectedTemplate,
           language: selectedLanguage,
-          requestedBy: userName || 'Unknown User'
+          requestedBy: userName || String(t('common.fallbacks.unknownUser'))
         }),
         signal: abortController.signal
       })
@@ -1759,7 +1759,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       setFeedbackHasChanges(true)
       
       // Set AI feedback metadata
-      setAiFeedbackCreatedBy(userName || 'Unknown User')
+      setAiFeedbackCreatedBy(userName || String(t('common.fallbacks.unknownUser')))
       setAiFeedbackCreatedAt(new Date().toISOString())
       
       // Save AI feedback to database if this is an existing report
@@ -1851,7 +1851,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         classrooms: classrooms.filter(c => formData.selected_classrooms?.includes(c.id)).map(classroom => ({
           id: classroom.id,
           name: classroom.name,
-          subject: subjects.find(s => s.id === classroom.subject_id)?.name || 'Unknown Subject'
+          subject: subjects.find(s => s.id === classroom.subject_id)?.name || String(t('common.fallbacks.unknownSubject'))
         })),
         // Add assignment category information
         categories: assignmentCategories.filter(c => formData.selected_assignment_categories?.includes(c.id)).map(category => ({
@@ -1887,7 +1887,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           formData: enhancedFormData,
           template: selectedTemplate,
           language: selectedLanguage,
-          requestedBy: userName || 'Unknown User'
+          requestedBy: userName || String(t('common.fallbacks.unknownUser'))
         }),
         signal: controller.signal
       })
@@ -1907,7 +1907,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       setFeedbackHasChanges(true)
       
       // Set AI feedback metadata
-      setAiFeedbackCreatedBy(userName || 'Unknown User')
+      setAiFeedbackCreatedBy(userName || String(t('common.fallbacks.unknownUser')))
       setAiFeedbackCreatedAt(new Date().toISOString())
       
       // Save AI feedback to database immediately if this is an existing report
@@ -2662,7 +2662,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                 <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap w-10">
                   <TableCheckbox
                     checked={selectAll}
-                    ariaLabel={String(t('common.selectAll') || 'Select all')}
+                    ariaLabel={String(t('common.selectAll'))}
                     onChange={() => handleSelectAll()}
                   />
                 </th>
@@ -2814,7 +2814,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     <td className="p-3 sm:p-4">
                       <TableCheckbox
                         checked={selectedRows.includes(report.id)}
-                        ariaLabel={String(t('common.selectRow') || 'Select row')}
+                        ariaLabel={String(t('common.selectRow'))}
                         onChange={() => handleRowSelect(report.id)}
                         onClick={(e) => e.stopPropagation()}
                       />

@@ -222,7 +222,7 @@ export function FileUpload({
           <Upload className="mx-auto h-8 w-8 text-gray-400 mb-2" />
         )}
         <p className="text-sm text-gray-600 mb-1">
-          {isNativeApp ? t("assignments.tapToAddPhoto") || "Tap to add photo" : t("assignments.dropFilesHere")}
+          {isNativeApp ? t("assignments.tapToAddPhoto") : t("assignments.dropFilesHere")}
         </p>
         <p className="text-xs text-gray-400">
           {t("assignments.maxFilesLimit", { maxFiles: maxFiles.toString() })}
@@ -249,7 +249,7 @@ export function FileUpload({
           <div className="relative w-full max-w-md bg-white rounded-t-xl p-4 pb-8 animate-in slide-in-from-bottom duration-300">
             <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-center mb-4">
-              {t("assignments.addAttachment") || "Add Attachment"}
+              {t("assignments.addAttachment")}
             </h3>
             <div className="space-y-2">
               <button
@@ -259,7 +259,7 @@ export function FileUpload({
               >
                 <Camera className="w-6 h-6 text-blue-500" />
                 <span className="text-gray-900 font-medium">
-                  {t("assignments.takePhoto") || "Take Photo"}
+                  {t("assignments.takePhoto")}
                 </span>
               </button>
               <button
@@ -269,7 +269,7 @@ export function FileUpload({
               >
                 <ImagePlus className="w-6 h-6 text-green-500" />
                 <span className="text-gray-900 font-medium">
-                  {t("assignments.chooseFromGallery") || "Choose from Gallery"}
+                  {t("assignments.chooseFromGallery")}
                 </span>
               </button>
               <button
@@ -281,7 +281,7 @@ export function FileUpload({
               >
                 <File className="w-6 h-6 text-orange-500" />
                 <span className="text-gray-900 font-medium">
-                  {t("assignments.chooseFile") || "Choose File"}
+                  {t("assignments.chooseFile")}
                 </span>
               </button>
             </div>

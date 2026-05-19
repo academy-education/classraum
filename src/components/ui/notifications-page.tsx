@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { getDateLocale } from '@/utils/dateUtils'
 import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
 import { languages } from '@/locales'
 import { Button } from '@/components/ui/button'
@@ -177,7 +178,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
     if (diffInDays === 1) return String(t("notifications.yesterday"))
     if (diffInDays < 7) return `${diffInDays}${String(t("notifications.daysAgo"))}`
     
-    return date.toLocaleDateString('ko-KR', {
+    return date.toLocaleDateString(getDateLocale(language), {
       month: 'short',
       day: 'numeric',
       year: date.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
@@ -186,7 +187,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
   // Format time
   const formatTime = (dateString: string) => {
-    return new Date(dateString).toLocaleTimeString('ko-KR', {
+    return new Date(dateString).toLocaleTimeString(getDateLocale(language), {
       hour: 'numeric',
       minute: '2-digit',
       hour12: true
@@ -486,7 +487,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                       <div className="mt-1">
                         <TableCheckbox
                           checked={selectedNotifications.includes(notification.id)}
-                          ariaLabel={String(t('common.selectRow') || 'Select row')}
+                          ariaLabel={String(t('common.selectRow'))}
                           onChange={() => toggleNotificationSelection(notification.id)}
                           onClick={(e) => e.stopPropagation()}
                         />

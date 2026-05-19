@@ -15,6 +15,7 @@ import {
   Bell 
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 
 interface RecentActivityItem {
@@ -59,7 +60,7 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
   onActivityClick 
 }: RecentActivityProps) {
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   
   const handleActivityClick = (activity: RecentActivityItem) => {
     if (onActivityClick) {
@@ -143,7 +144,7 @@ export const RecentActivity = React.memo<RecentActivityProps>(function RecentAct
                     {activity.description}
                   </p>
                   <p className="text-xs text-gray-500 mt-1">
-                    {new Date(activity.timestamp).toLocaleDateString()} {new Date(activity.timestamp).toLocaleTimeString()}
+                    {new Date(activity.timestamp).toLocaleDateString(getDateLocale(language))} {new Date(activity.timestamp).toLocaleTimeString(getDateLocale(language))}
                   </p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />

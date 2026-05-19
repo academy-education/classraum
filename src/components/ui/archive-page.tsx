@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { useListPageShortcuts } from "@/hooks/useListPageShortcuts"
 import { SearchKbdHint } from "@/components/ui/search-kbd-hint"
 import { useTranslation } from "@/hooks/useTranslation"
+import { getDateLocale } from "@/utils/dateUtils"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -53,7 +54,7 @@ interface DeletedItem {
 }
 
 export function ArchivePage({ academyId }: ArchivePageProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const searchInputRef = useRef<HTMLInputElement | null>(null)
   // Archive has no create flow — only `/` shortcut.
   useListPageShortcuts({ searchInputRef })
@@ -444,7 +445,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         typedSessions
           .filter(item => item.classroom?.academy_id === academyId)
           .forEach(item => {
-            const sessionName = `${item.classroom?.name || 'Unknown'} - ${new Date(item.date).toLocaleDateString()} ${item.start_time}-${item.end_time}`
+            const sessionName = `${item.classroom?.name || String(t('common.fallbacks.unknown'))} - ${new Date(item.date).toLocaleDateString(getDateLocale(language))} ${item.start_time}-${item.end_time}`
             allDeletedItems.push({
               id: item.id,
               name: sessionName,
@@ -494,7 +495,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         typedInvoices.forEach(item => {
           allDeletedItems.push({
             id: item.id,
-            name: `Invoice - ${item.student?.name || 'Unknown Student'}`,
+            name: `Invoice - ${item.student?.name || String(t('common.fallbacks.unknownStudent'))}`,
             type: 'invoice',
             deletedAt: item.deleted_at,
             amount: item.amount,
@@ -1277,7 +1278,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
                       <h4 className="font-medium text-gray-900 truncate">{item.name}</h4>
                       <p className="text-sm text-gray-500">
                         {getItemTypeLabel(item.type)} • {t("archive.deletedOn", {
-                          date: new Date(item.deletedAt).toLocaleDateString()
+                          date: new Date(item.deletedAt).toLocaleDateString(getDateLocale(language))
                         })}
                       </p>
                     </div>

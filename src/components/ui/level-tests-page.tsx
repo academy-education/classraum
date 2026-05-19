@@ -497,7 +497,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                         <TableCheckbox
                           checked={allSelected}
                           indeterminate={someSelected}
-                          ariaLabel={String(t('common.selectAll') || 'Select all')}
+                          ariaLabel={String(t('common.selectAll'))}
                           onChange={() => {
                             if (allSelected) setSelectedTestIds(new Set())
                             else setSelectedTestIds(new Set(tests.map(t => t.id)))
@@ -527,7 +527,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                       <td className="p-3 sm:p-4">
                         <TableCheckbox
                           checked={isSelected}
-                          ariaLabel={String(t('common.selectRow') || 'Select row')}
+                          ariaLabel={String(t('common.selectRow'))}
                           onChange={() => {
                             const next = new Set(selectedTestIds)
                             if (next.has(test.id)) next.delete(test.id); else next.add(test.id)

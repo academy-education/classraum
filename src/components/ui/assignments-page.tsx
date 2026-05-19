@@ -804,7 +804,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           id: grade.id as string,
           assignment_id: grade.assignment_id as string,
           student_id: grade.student_id as string,
-          student_name: (grade.users as { name?: string })?.name || 'Unknown Student',
+          student_name: (grade.users as { name?: string })?.name || String(t('common.fallbacks.unknownStudent')),
           status: grade.status as 'pending' | 'submitted' | 'not submitted' | 'excused' | 'overdue',
           score: grade.score as number | undefined,
           feedback: grade.feedback as string | undefined,
@@ -886,7 +886,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           id: grade.id as string,
           assignment_id: grade.assignment_id as string,
           student_id: studentId,
-          student_name: (grade.users as { name?: string })?.name || 'Unknown Student',
+          student_name: (grade.users as { name?: string })?.name || String(t('common.fallbacks.unknownStudent')),
           status,
           score: grade.score as number | undefined,
           feedback: grade.feedback as string | undefined,
@@ -1010,7 +1010,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             throw new Error(
               isPermissionError
                 ? 'PERMISSION_DENIED'
-                : (error.message || 'Unknown error occurred')
+                : (error.message || String(t('common.fallbacks.unknownErrorOccurred')))
             )
           }
           
@@ -1717,10 +1717,10 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             }
             actions={
               <>
-                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleEditClick(assignment)}>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleEditClick(assignment)} aria-label={String(t('common.edit'))}>
                   <Edit className="w-4 h-4" strokeWidth={1.75} />
                 </Button>
-                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50" onClick={() => handleDeleteClick(assignment)}>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50" onClick={() => handleDeleteClick(assignment)} aria-label={String(t('common.delete'))}>
                   <Trash2 className="w-4 h-4" strokeWidth={1.75} />
                 </Button>
               </>

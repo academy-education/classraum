@@ -4188,7 +4188,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     }}
                     className="flex-1 text-sm text-gray-600 hover:text-gray-700 font-medium"
                   >
-                    {t("common.selectAll") === "Select All" ? "Clear All" : "전체 해제"}
+                    {String(t("common.clearAll"))}
                   </button>
                   <button
                     type="button"
@@ -4485,7 +4485,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
           {(debouncedSessionSearchQuery || classroomFilter !== 'all' || teacherFilter !== 'all' || statusFilter !== 'all' || showTodayOnly || showUpcomingOnly) && (
             <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[11px] font-medium">
-              {language === 'korean' ? `전체 ${totalCount}개 중` : `of ${totalCount} total`}
+              {String(t("common.ofTotal", { total: totalCount }))}
             </div>
           )}
         </Card>
@@ -4812,16 +4812,16 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
             actions={
               <>
-                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleEditClick(session)}>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleEditClick(session)} aria-label={String(t('common.edit'))}>
                   <Edit className="w-4 h-4" strokeWidth={1.75} />
                 </Button>
-                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleCopyClick(session)}>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleCopyClick(session)} aria-label={String(t('sessions.copySession'))}>
                   <Copy className="w-4 h-4" strokeWidth={1.75} />
                 </Button>
-                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleSaveTemplateClick(session)} title={String(t('sessions.saveAsTemplate'))}>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700" onClick={() => handleSaveTemplateClick(session)} aria-label={String(t('sessions.saveAsTemplate'))} title={String(t('sessions.saveAsTemplate'))}>
                   <Save className="w-4 h-4" strokeWidth={1.75} />
                 </Button>
-                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50" onClick={() => handleDeleteClick(session)}>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50" onClick={() => handleDeleteClick(session)} aria-label={String(t('common.delete'))}>
                   <Trash2 className="w-4 h-4" strokeWidth={1.75} />
                 </Button>
               </>
@@ -6319,7 +6319,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       >
                         <TableCheckbox
                           checked={selectedTemplates.has(template.id)}
-                          ariaLabel={String(t('common.selectRow') || 'Select row')}
+                          ariaLabel={String(t('common.selectRow'))}
                           onChange={() => {
                             const newSelected = new Set(selectedTemplates)
                             if (newSelected.has(template.id)) {

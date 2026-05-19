@@ -120,13 +120,13 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
 
     if (currentAmount === planAmount) {
       return {
-        text: '현재 플랜',
+        text: String(t('upgrade.currentPlan')),
         disabled: true,
         variant: 'outline' as const,
       }
     } else if (planAmount < currentAmount) {
       return {
-        text: '다운그레이드',
+        text: String(t('upgrade.downgrade')),
         disabled: false,
         variant: 'outline' as const,
       }
@@ -354,14 +354,14 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
             <ExternalLink className="w-12 h-12 text-gray-400 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">
-            {t('upgrade.iosNotAvailable') || '앱에서는 구독 결제가 지원되지 않습니다'}
+            {t('upgrade.iosNotAvailable')}
           </h2>
           <p className="text-gray-600 mb-6">
-            {t('upgrade.iosNotAvailableDescription') || '플랜 업그레이드는 웹 브라우저(app.classraum.com)에서 진행해 주세요.'}
+            {t('upgrade.iosNotAvailableDescription')}
           </p>
           <Button onClick={() => router.push('/dashboard')} variant="outline" className="flex items-center gap-2 mx-auto">
             <ArrowLeft className="w-4 h-4" />
-            {t('upgrade.backToDashboard') || '대시보드로 돌아가기'}
+            {t('upgrade.backToDashboard')}
           </Button>
         </Card>
       </div>

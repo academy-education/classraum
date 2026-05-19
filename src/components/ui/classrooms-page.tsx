@@ -835,7 +835,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           )
 
           if (!result.success) {
-            showErrorToast(String(t('classrooms.errorUpdatingSchedules')), result.error?.message || 'Unknown error')
+            showErrorToast(String(t('classrooms.errorUpdatingSchedules')), result.error?.message || String(t('common.fallbacks.unknownError')))
             return
           }
         } else if (!oldSchedule) {
@@ -1636,7 +1636,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               <School className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
-              {classroomSearchQuery || pauseFilter !== 'active' ? "검색 결과" : t("classrooms.totalActiveClassrooms")}
+              {classroomSearchQuery || pauseFilter !== 'active' ? String(t("common.searchResults")) : t("classrooms.totalActiveClassrooms")}
             </p>
           </div>
           <div className="flex items-baseline gap-2 mb-3">
@@ -1651,7 +1651,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           </div>
           {totalCount > 0 && (
             <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[11px] font-medium">
-              {Math.round((filteredTotalCount / totalCount) * 100)}% of total
+              {String(t("common.percentOfTotal", { percent: Math.round((filteredTotalCount / totalCount) * 100) }))}
             </div>
           )}
         </Card>
@@ -1688,7 +1688,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           <Input
             ref={searchInputRef}
             type="text"
-            placeholder={language === 'korean' ? "클래스룸 검색..." : "Search classrooms..."}
+            placeholder={String(t("classrooms.searchClassrooms"))}
             value={classroomSearchQuery}
             onChange={(e) => setClassroomSearchQuery(e.target.value)}
             className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"

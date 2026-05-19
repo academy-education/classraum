@@ -52,3 +52,31 @@ export const getWeekdayShort = (language: string | undefined | null): string[] =
     ? ['일', '월', '화', '수', '목', '금', '토']
     : ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 }
+
+/**
+ * Short month labels (Jan-first), localized.
+ */
+export const getMonthShort = (language: string | undefined | null): string[] => {
+  return language === 'korean'
+    ? ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+    : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+}
+
+/**
+ * Full weekday labels keyed by lowercase English day name.
+ * Used by classrooms-page for the recurring-schedule UI.
+ */
+export const getWeekdayFullMap = (language: string | undefined | null): Record<string, string> => {
+  return language === 'korean'
+    ? { monday: '월요일', tuesday: '화요일', wednesday: '수요일', thursday: '목요일', friday: '금요일', saturday: '토요일', sunday: '일요일' }
+    : { monday: 'Monday', tuesday: 'Tuesday', wednesday: 'Wednesday', thursday: 'Thursday', friday: 'Friday', saturday: 'Saturday', sunday: 'Sunday' }
+}
+
+/**
+ * Map of weekday index (0 = Sunday) to short label, localized.
+ * Used by payments-page recurring schedule pickers.
+ */
+export const getWeekdayShortMap = (language: string | undefined | null): Record<number, string> => {
+  const arr = getWeekdayShort(language)
+  return { 0: arr[0], 1: arr[1], 2: arr[2], 3: arr[3], 4: arr[4], 5: arr[5], 6: arr[6] }
+}

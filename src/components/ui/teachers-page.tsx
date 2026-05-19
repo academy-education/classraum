@@ -32,6 +32,7 @@ import {
 import { cn } from '@/lib/utils'
 import { DashboardCard, BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
@@ -76,7 +77,7 @@ interface TeachersPageProps {
 
 export function TeachersPage({ academyId }: TeachersPageProps) {
   // State management
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const { toast } = useToast()
   const { totalUsers, totalUserLimit, canAddUsers, loading: limitsLoading } = useSubscriptionLimits(academyId)
   const [teachers, setTeachers] = useState<Teacher[]>([])
@@ -590,7 +591,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       classroomStudentsData.forEach(enrollment => {
         if (!studentsByClassroom[enrollment.classroom_id]) studentsByClassroom[enrollment.classroom_id] = []
         studentsByClassroom[enrollment.classroom_id].push({
-          name: userMap[enrollment.student_id]?.name || 'Unknown Student',
+          name: userMap[enrollment.student_id]?.name || String(t('common.fallbacks.unknownStudent')),
           school_name: studentMap[enrollment.student_id]?.school_name
         })
       })
@@ -1019,7 +1020,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                       <TableCheckbox
                         checked={allSelected}
                         indeterminate={someSelected}
-                        ariaLabel={String(t('common.selectAll') || 'Select all')}
+                        ariaLabel={String(t('common.selectAll'))}
                         onChange={() => handleSelectAll(!allSelected)}
                       />
                     )
@@ -1110,7 +1111,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   <td className="p-3 sm:p-4">
                     <TableCheckbox
                       checked={selectedTeachers.has(teacher.user_id)}
-                      ariaLabel={String(t('common.selectRow') || 'Select row')}
+                      ariaLabel={String(t('common.selectRow'))}
                       onChange={() => handleSelectTeacher(teacher.user_id, !selectedTeachers.has(teacher.user_id))}
                       onClick={(e) => e.stopPropagation()}
                     />
@@ -1403,10 +1404,10 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               <div className="text-sm text-gray-500">
                 {selectedClassroomForDetails.created_at && (
                   <>
-                    {t("common.created")}: {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
+                    {t("common.created")}: {new Date(selectedClassroomForDetails.created_at).toLocaleDateString(getDateLocale(language))}
                     {selectedClassroomForDetails.updated_at !== selectedClassroomForDetails.created_at && selectedClassroomForDetails.updated_at && (
                       <span className="ml-4">
-                        {t("common.updated")}: {new Date(selectedClassroomForDetails.updated_at).toLocaleDateString()}
+                        {t("common.updated")}: {new Date(selectedClassroomForDetails.updated_at).toLocaleDateString(getDateLocale(language))}
                       </span>
                     )}
                   </>
@@ -1464,7 +1465,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                           <div>
                             <p className="text-sm text-gray-600">{t("common.created")}</p>
                             <p className="font-medium text-gray-900">
-                              {new Date(selectedClassroomForDetails.created_at).toLocaleDateString()}
+                              {new Date(selectedClassroomForDetails.created_at).toLocaleDateString(getDateLocale(language))}
                             </p>
                           </div>
                         </div>

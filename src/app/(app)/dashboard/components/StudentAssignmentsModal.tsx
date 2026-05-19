@@ -15,6 +15,7 @@ import {
   TrendingUp
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { supabase } from '@/lib/supabase'
 
 interface Assignment {
@@ -44,7 +45,7 @@ export function StudentAssignmentsModal({
   studentId,
   studentName
 }: StudentAssignmentsModalProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [assignments, setAssignments] = useState<Assignment[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -82,14 +83,14 @@ export function StudentAssignmentsModal({
 
       const formattedAssignments: Assignment[] = (data || []).map((grade: any) => ({
         id: grade.id,
-        title: grade.assignments?.title || 'Unknown Assignment',
+        title: grade.assignments?.title || String(t('common.fallbacks.unknownAssignment')),
         due_date: grade.assignments?.due_date,
         assignment_type: grade.assignments?.assignment_type || 'assignment',
         score: grade.score,
         status: grade.status || 'pending',
         feedback: grade.feedback,
         submitted_date: grade.submitted_date,
-        classroom_name: grade.assignments?.classroom_sessions?.classrooms?.name || 'Unknown',
+        classroom_name: grade.assignments?.classroom_sessions?.classrooms?.name || String(t('common.fallbacks.unknown')),
         classroom_color: grade.assignments?.classroom_sessions?.classrooms?.color,
         session_date: grade.assignments?.classroom_sessions?.date
       }))
@@ -111,7 +112,7 @@ export function StudentAssignmentsModal({
 
   const formatDate = (dateString: string | null) => {
     if (!dateString) return '-'
-    return new Date(dateString).toLocaleDateString()
+    return new Date(dateString).toLocaleDateString(getDateLocale(language))
   }
 
   const getStatusIcon = (status: string) => {

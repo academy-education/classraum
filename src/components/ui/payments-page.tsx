@@ -30,6 +30,7 @@ import { BulkActionBar, DashboardCard, TableCheckbox } from '@/components/ui/das
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getWeekdayShortMap } from '@/utils/dateUtils'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
@@ -726,7 +727,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       const formattedInvoices = invoices?.map((item: Record<string, unknown>) => ({
         id: item.id as string,
         student_id: item.student_id as string,
-        student_name: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string || 'Unknown',
+        student_name: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string || String(t('common.fallbacks.unknown')),
         student_email: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.email as string || 'unknown@example.com',
         template_id: item.template_id as string,
         amount: item.amount as number,
@@ -1055,18 +1056,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     return dayMap[dayString.toLowerCase()] ?? null
   }
 
-  // Convert day of week integer to string (for display purposes)
+  // Convert day of week integer to localized display string
   const integerToDayOfWeek = (dayInt: number | null): string => {
-    const dayMap: { [key: number]: string } = {
-      0: '일',
-      1: '월',
-      2: '화',
-      3: '수',
-      4: '목',
-      5: '금',
-      6: '토'
-    }
-    return dayInt !== null ? dayMap[dayInt] || '' : ''
+    if (dayInt === null) return ''
+    const dayMap = getWeekdayShortMap(language)
+    return dayMap[dayInt] || ''
   }
 
   // Convert day of week integer to English string (for form fields)
@@ -2605,7 +2599,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           <TableCheckbox
                             checked={allSelected}
                             indeterminate={someSelected}
-                            ariaLabel={String(t('common.selectAll') || 'Select all')}
+                            ariaLabel={String(t('common.selectAll'))}
                             onChange={() => {
                               if (activeTab === 'recurring') {
                                 handleSelectAllRecurring(!allSelected, filteredRecurringStudents)
@@ -2918,7 +2912,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <td className="p-3 sm:p-4">
                           <TableCheckbox
                             checked={selectedRecurringStudents.has(recurringStudent.id)}
-                            ariaLabel={String(t('common.selectRow') || 'Select row')}
+                            ariaLabel={String(t('common.selectRow'))}
                             onChange={() => handleSelectRecurringStudent(recurringStudent.id, !selectedRecurringStudents.has(recurringStudent.id))}
                             onClick={(e) => e.stopPropagation()}
                           />
@@ -3060,7 +3054,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <td className="p-4">
                           <TableCheckbox
                             checked={selectedOneTimeInvoices.has(invoice.id)}
-                            ariaLabel={String(t('common.selectRow') || 'Select row')}
+                            ariaLabel={String(t('common.selectRow'))}
                             onChange={() => handleSelectOneTimeInvoice(invoice.id, !selectedOneTimeInvoices.has(invoice.id))}
                             onClick={(e) => e.stopPropagation()}
                           />

@@ -193,7 +193,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         created_by: item.created_by,
         created_at: item.created_at,
         updated_at: item.updated_at,
-        creator_name: item.users?.name || 'Unknown',
+        creator_name: item.users?.name || String(t('common.fallbacks.unknown')),
         classrooms: (item.announcement_classrooms || [])
           .map((ac: any) => ac.classrooms)
           .filter(Boolean),
@@ -849,7 +849,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                   <th className="text-left p-3 sm:p-4 w-10">
                     <TableCheckbox
                       checked={selectAll}
-                      ariaLabel={String(t('common.selectAll') || 'Select all')}
+                      ariaLabel={String(t('common.selectAll'))}
                       onChange={() => handleSelectAll()}
                     />
                   </th>
@@ -934,7 +934,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
                       <td className="p-3 sm:p-4 w-10">
                         <TableCheckbox
                           checked={selectedRows.includes(announcement.id)}
-                          ariaLabel={String(t('common.selectRow') || 'Select row')}
+                          ariaLabel={String(t('common.selectRow'))}
                           onChange={() => handleRowSelect(announcement.id)}
                           onClick={(e) => e.stopPropagation()}
                         />

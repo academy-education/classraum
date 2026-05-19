@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Check, ArrowLeft, Info, ExternalLink } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { useRouter } from 'next/navigation'
 import * as PortOne from '@portone/browser-sdk/v2'
 import { getPortOneConfig } from '@/lib/portone-config'
@@ -48,7 +49,7 @@ interface ExistingSubscription {
 }
 
 export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSummaryPageProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const router = useRouter()
   const { toast } = useToast()
   const [userInfo, setUserInfo] = useState<UserInfo>({ name: '', email: '', phone: '', address: '' })
@@ -601,14 +602,14 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
             <ExternalLink className="w-12 h-12 text-gray-400 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">
-            {t('orderSummary.iosNotAvailable') || '앱에서는 구독 결제가 지원되지 않습니다'}
+            {t('orderSummary.iosNotAvailable')}
           </h2>
           <p className="text-gray-600 mb-6">
-            {t('orderSummary.iosNotAvailableDescription') || '구독 결제는 웹 브라우저(app.classraum.com)에서 진행해 주세요.'}
+            {t('orderSummary.iosNotAvailableDescription')}
           </p>
           <Button onClick={() => router.push('/dashboard')} variant="outline" className="flex items-center gap-2 mx-auto">
             <ArrowLeft className="w-4 h-4" />
-            {t('orderSummary.backToDashboard') || '대시보드로 돌아가기'}
+            {t('orderSummary.backToDashboard')}
           </Button>
         </Card>
       </div>
@@ -743,7 +744,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                       {t('orderSummary.proration.upgradeDescription', {
                         amount: formatKRW(prorationInfo.proratedAmount),
                         days: prorationInfo.daysRemaining,
-                        date: new Date(prorationInfo.nextBillingDate).toLocaleDateString()
+                        date: new Date(prorationInfo.nextBillingDate).toLocaleDateString(getDateLocale(language))
                       })}
                     </p>
                   </div>
@@ -762,12 +763,12 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                     </h3>
                     <p className="text-sm text-amber-800">
                       {t('orderSummary.scheduled.downgradeNotice', {
-                        date: new Date(prorationInfo.nextBillingDate).toLocaleDateString()
+                        date: new Date(prorationInfo.nextBillingDate).toLocaleDateString(getDateLocale(language))
                       })}
                     </p>
                     <p className="text-xs text-amber-700 mt-2">
                       {t('orderSummary.scheduled.currentPlanUntil', {
-                        date: new Date(prorationInfo.nextBillingDate).toLocaleDateString()
+                        date: new Date(prorationInfo.nextBillingDate).toLocaleDateString(getDateLocale(language))
                       })}
                     </p>
                   </div>
