@@ -640,6 +640,22 @@ export default function AuthPage() {
       if (signInError) {
         let errorMessage = signInError.message || 'Sign in failed'
 
+        // Detect a banned account — this is how Supabase reports the
+        // ban set by /api/account/delete. Route the user to the reactivation
+        // page instead of showing a generic failure.
+        const lowerMsg = errorMessage.toLowerCase()
+        const isBanned =
+          lowerMsg.includes('banned') ||
+          lowerMsg.includes('user_banned') ||
+          lowerMsg.includes('not_allowed')
+
+        if (isBanned) {
+          setLoading(false)
+          // Pass email so the reactivation form can pre-fill it.
+          router.push(`/account/reactivate?email=${encodeURIComponent(email)}`)
+          return
+        }
+
         // Provide more user-friendly error messages
         if (errorMessage.includes('Invalid login credentials')) {
           errorMessage = 'Invalid email or password. Please check your credentials and try again.'

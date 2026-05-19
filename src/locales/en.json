@@ -2513,7 +2513,10 @@
       "deleteAccountFinal": "This action is permanent and cannot be reversed.",
       "deleteAccountError": "Failed to delete account. Please try again.",
       "confirmDelete": "Yes, Delete My Account",
-      "deletingAccount": "Deleting..."
+      "deletingAccount": "Deleting...",
+      "deleteAccountEmailMismatch": "The email you typed does not match your account email.",
+      "deleteAccountGracePeriod": "Your account will be deactivated immediately and permanently deleted after 30 days. You can sign back in during this period to reactivate it.",
+      "deleteAccountTypeEmail": "Type your email ({email}) to confirm:"
     }
   },
   "upgrade": {
@@ -6164,5 +6167,30 @@
     "usersCount": "{current} / {limit} users",
     "userLimitReached": "User limit reached. Please upgrade your plan to add more users.",
     "userLimitReachedSignup": "This academy has reached its user limit. Please contact the academy administrator to upgrade the plan."
+  },
+  "account": {
+    "goodbye": {
+      "title": "Your account is scheduled for deletion",
+      "description": "We're sorry to see you go. Your account has been deactivated and will be permanently deleted in 30 days.",
+      "changedMindTitle": "Changed your mind?",
+      "changedMindDescription": "You have 30 days to reactivate your account by signing back in with your email and password.",
+      "reactivateButton": "Reactivate my account",
+      "homeButton": "Return to home"
+    },
+    "reactivate": {
+      "title": "Reactivate your account",
+      "subtitle": "Your account is scheduled for deletion. Sign in to cancel the deletion and restore access.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Reactivate account",
+      "submitting": "Reactivating...",
+      "successTitle": "Account reactivated",
+      "successDescription": "Welcome back! You can now sign in normally.",
+      "redirecting": "Redirecting you to sign in...",
+      "failedTitle": "Reactivation failed",
+      "failedDescription": "We couldn't reactivate your account. Check your credentials and try again, or contact support.",
+      "helpText": "If you don't remember your password, use the password reset on the sign-in page first.",
+      "backToSignIn": "Back to sign in"
+    }
   }
 }

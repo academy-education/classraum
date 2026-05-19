@@ -104,6 +104,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   const [pendingSection, setPendingSection] = useState<string | null>(null)
   const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false)
   const [deletingAccount, setDeletingAccount] = useState(false)
+  const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('')
 
   // Logo upload state
   const [academyLogo, setAcademyLogo] = useState<string | null>(null)
@@ -241,30 +242,65 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     setPendingSection(null)
   }
 
-  // Handle account deletion
+  // Handle account deletion. Schedules a 30-day soft-delete:
+  // 1. POST /api/account/delete (requires email confirmation matching the
+  //    signed-in user's email) — server sets users.deletion_scheduled_at +
+  //    bans the auth identity + writes an audit log row.
+  // 2. Sign the user out (their existing session is still live until they
+  //    sign out, but the ban prevents future sign-ins).
+  // 3. Redirect to /account/goodbye, which explains the 30-day window and
+  //    offers a reactivation path.
   const handleDeleteAccount = async () => {
+    if (!deleteConfirmEmail || deleteConfirmEmail.trim().toLowerCase() !== (userData?.email || '').toLowerCase()) {
+      toast({
+        title: String(t('settings.dataStorage.deleteAccountEmailMismatch')),
+        variant: 'destructive',
+      })
+      return
+    }
+
     setDeletingAccount(true)
     try {
-      // TODO: Implement actual account deletion logic here
-      // This would typically involve:
-      // 1. Calling a backend API to delete the account
-      // 2. Signing out the user
-      // 3. Redirecting to a goodbye page or login page
-
-      // For now, just simulate the process
-      await new Promise(resolve => setTimeout(resolve, 2000))
-
-      // Sign out and redirect
-      const { error } = await supabase.auth.signOut()
-      if (!error) {
-        window.location.href = '/auth'
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
+        toast({ title: String(t('settings.dataStorage.deleteAccountError')), variant: 'destructive' })
+        setDeletingAccount(false)
+        return
       }
+
+      const res = await fetch('/api/account/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ confirmEmail: deleteConfirmEmail.trim() }),
+      })
+
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        console.error('[settings] account delete failed:', data)
+        toast({
+          title: String(t('settings.dataStorage.deleteAccountError')),
+          description: (data as { error?: string })?.error,
+          variant: 'destructive',
+        })
+        setDeletingAccount(false)
+        return
+      }
+
+      // Clear local caches before signing out so a leftover cache entry
+      // doesn't leak data into the next session on the same device.
+      if (typeof window !== 'undefined') {
+        try { sessionStorage.clear() } catch {}
+      }
+
+      await supabase.auth.signOut()
+      window.location.href = '/account/goodbye'
     } catch (error) {
       console.error('Error deleting account:', error)
-      toast({ title: t('settings.dataStorage.deleteAccountError'), variant: 'destructive' })
-    } finally {
+      toast({ title: String(t('settings.dataStorage.deleteAccountError')), variant: 'destructive' })
       setDeletingAccount(false)
-      setShowDeleteAccountModal(false)
     }
   }
 
@@ -1347,7 +1383,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       {/* Delete Account Modal */}
       <ModalShell
         isOpen={showDeleteAccountModal}
-        onClose={() => !deletingAccount && setShowDeleteAccountModal(false)}
+        onClose={() => {
+          if (!deletingAccount) {
+            setShowDeleteAccountModal(false)
+            setDeleteConfirmEmail('')
+          }
+        }}
         size="md"
         closeDisabled={deletingAccount}
         bodyClassName="space-y-3"
@@ -1368,14 +1409,25 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         }
         footer={
           <ModalShell.Footer split>
-            <Button variant="outline" onClick={() => setShowDeleteAccountModal(false)} disabled={deletingAccount}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowDeleteAccountModal(false)
+                setDeleteConfirmEmail('')
+              }}
+              disabled={deletingAccount}
+            >
               {t('common.cancel')}
             </Button>
             <Button
               variant="outline"
               className="text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
               onClick={handleDeleteAccount}
-              disabled={deletingAccount}
+              disabled={
+                deletingAccount ||
+                !deleteConfirmEmail ||
+                deleteConfirmEmail.trim().toLowerCase() !== (userData?.email || '').toLowerCase()
+              }
             >
               {deletingAccount ? (
                 <span className="flex items-center">
@@ -1402,6 +1454,31 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         <p className="text-sm text-gray-600">
           {t('settings.dataStorage.deleteAccountFinal')}
         </p>
+
+        {/* 30-day grace period notice */}
+        <div className="p-3 bg-amber-50 rounded-lg border border-amber-200">
+          <p className="text-xs text-amber-800">
+            {String(t('settings.dataStorage.deleteAccountGracePeriod'))}
+          </p>
+        </div>
+
+        {/* Email confirmation gate — prevents accidental clicks. */}
+        <div className="space-y-2 pt-1">
+          <label className="text-sm font-medium text-gray-700">
+            {String(t('settings.dataStorage.deleteAccountTypeEmail', {
+              email: userData?.email || '',
+            }))}
+          </label>
+          <input
+            type="email"
+            value={deleteConfirmEmail}
+            onChange={(e) => setDeleteConfirmEmail(e.target.value)}
+            disabled={deletingAccount}
+            placeholder={userData?.email || ''}
+            autoComplete="off"
+            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent disabled:bg-gray-100"
+          />
+        </div>
       </ModalShell>
     </div>
   )

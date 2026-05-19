@@ -2574,7 +2574,10 @@
       "deleteAccountFinal": "이 작업은 영구적이며 되돌릴 수 없습니다.",
       "deleteAccountError": "계정 삭제에 실패했습니다. 다시 시도해주세요.",
       "confirmDelete": "네, 계정을 삭제합니다",
-      "deletingAccount": "삭제 중..."
+      "deletingAccount": "삭제 중...",
+      "deleteAccountEmailMismatch": "입력한 이메일이 계정 이메일과 일치하지 않습니다.",
+      "deleteAccountGracePeriod": "계정이 즉시 비활성화되며 30일 후 영구적으로 삭제됩니다. 이 기간 내에 다시 로그인하면 계정을 복구할 수 있습니다.",
+      "deleteAccountTypeEmail": "확인을 위해 이메일을 입력하세요 ({email}):"
     }
   },
   "upgrade": {
@@ -6213,5 +6216,30 @@
     "usersCount": "{current} / {limit} 사용자",
     "userLimitReached": "사용자 한도에 도달했습니다. 더 많은 사용자를 추가하려면 플랜을 업그레이드해주세요.",
     "userLimitReachedSignup": "이 학원의 사용자 한도에 도달했습니다. 학원 관리자에게 플랜 업그레이드를 문의해주세요."
+  },
+  "account": {
+    "goodbye": {
+      "title": "계정 삭제가 예약되었습니다",
+      "description": "떠나신다니 아쉽습니다. 계정이 비활성화되었으며 30일 후에 영구적으로 삭제됩니다.",
+      "changedMindTitle": "마음이 바뀌셨나요?",
+      "changedMindDescription": "30일 이내에 이메일과 비밀번호로 다시 로그인하시면 계정을 복구할 수 있습니다.",
+      "reactivateButton": "계정 복구하기",
+      "homeButton": "홈으로 돌아가기"
+    },
+    "reactivate": {
+      "title": "계정 복구",
+      "subtitle": "계정 삭제가 예약된 상태입니다. 로그인하여 삭제를 취소하고 계정을 복구하세요.",
+      "email": "이메일",
+      "password": "비밀번호",
+      "submit": "계정 복구",
+      "submitting": "복구 중...",
+      "successTitle": "계정이 복구되었습니다",
+      "successDescription": "다시 오신 것을 환영합니다! 정상적으로 로그인하실 수 있습니다.",
+      "redirecting": "로그인 페이지로 이동 중...",
+      "failedTitle": "복구 실패",
+      "failedDescription": "계정을 복구할 수 없습니다. 인증 정보를 확인하고 다시 시도하거나 고객센터에 문의해주세요.",
+      "helpText": "비밀번호가 기억나지 않으시면 먼저 로그인 페이지에서 비밀번호 재설정을 이용해주세요.",
+      "backToSignIn": "로그인으로 돌아가기"
+    }
   }
 }

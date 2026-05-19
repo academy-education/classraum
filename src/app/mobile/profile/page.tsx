@@ -69,6 +69,8 @@ function MobileProfilePageContent() {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
   const [showStudentSelector, setShowStudentSelector] = useState(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('')
+  const [deletingAccount, setDeletingAccount] = useState(false)
 
   // Handle body scroll prevention when modal is open
   useEffect(() => {
@@ -119,33 +121,64 @@ function MobileProfilePageContent() {
     }
   }
 
+  // Schedule a 30-day soft-delete via /api/account/delete. Mirrors the
+  // dashboard flow in settings-page.tsx — see that file for the full
+  // rationale. The previously-used `delete_user_account` RPC has been
+  // retired in favour of the server endpoint, which handles the ban + audit
+  // log atomically.
   const handleDeleteAccount = async () => {
-    try {
-      // Call the delete account RPC function
-      const { error } = await supabase.rpc('delete_user_account', {
-        user_id: user?.userId
+    const userEmail = (profile?.email || '').toLowerCase()
+    if (!deleteConfirmEmail || deleteConfirmEmail.trim().toLowerCase() !== userEmail) {
+      toast({
+        title: String(t('settings.dataStorage.deleteAccountEmailMismatch')),
+        variant: 'destructive',
       })
+      return
+    }
 
-      if (error) {
-        console.error('Delete account error:', error)
+    setDeletingAccount(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
         toast({ title: String(t('common.failedToDeleteAccount')), variant: 'destructive' })
+        setDeletingAccount(false)
         return
       }
 
-      // Sign out after successful deletion
-      await supabase.auth.signOut()
+      const res = await fetch('/api/account/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ confirmEmail: deleteConfirmEmail.trim() }),
+      })
 
-      // Clear all storage
-      if (typeof window !== 'undefined') {
-        localStorage.clear()
-        sessionStorage.clear()
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        console.error('[mobile/profile] account delete failed:', data)
+        toast({
+          title: String(t('common.failedToDeleteAccount')),
+          description: (data as { error?: string })?.error,
+          variant: 'destructive',
+        })
+        setDeletingAccount(false)
+        return
       }
 
-      // Redirect to auth page
-      router.push('/auth')
+      // Clear all client storage so a logged-out shared device doesn't
+      // surface stale data from this account.
+      if (typeof window !== 'undefined') {
+        try { localStorage.clear() } catch {}
+        try { sessionStorage.clear() } catch {}
+      }
+
+      await supabase.auth.signOut()
+      router.push('/account/goodbye')
     } catch (error) {
       console.error('Delete account failed:', error)
-      toast({ title: 'Failed to delete account. Please contact support.', variant: 'destructive' })
+      toast({ title: String(t('common.failedToDeleteAccount')), variant: 'destructive' })
+      setDeletingAccount(false)
     }
   }
 
@@ -609,7 +642,12 @@ function MobileProfilePageContent() {
       <>
         <div
           className="fixed inset-0 backdrop-blur-sm bg-black/20 z-[9998]"
-          onClick={() => setShowDeleteConfirm(false)}
+          onClick={() => {
+            if (!deletingAccount) {
+              setShowDeleteConfirm(false)
+              setDeleteConfirmEmail('')
+            }
+          }}
         />
         <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
           <Card className="w-full max-w-sm p-6">
@@ -624,7 +662,7 @@ function MobileProfilePageContent() {
                 {t('mobile.profile.deleteAccountConfirm')}
               </p>
             </div>
-            <div className="mb-5 bg-rose-50 ring-1 ring-rose-100 rounded-xl p-3">
+            <div className="mb-3 bg-rose-50 ring-1 ring-rose-100 rounded-xl p-3">
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-rose-700 mb-1.5">
                 {t('mobile.profile.deleteAccountConsequences')}
               </p>
@@ -634,23 +672,54 @@ function MobileProfilePageContent() {
                 <li>{t('mobile.profile.deleteData3')}</li>
               </ul>
             </div>
-            <p className="text-xs text-gray-600 font-medium text-center mb-5">
-              {t('mobile.profile.deleteAccountFinal')}
-            </p>
+            {/* 30-day grace period notice */}
+            <div className="mb-4 bg-amber-50 ring-1 ring-amber-200 rounded-xl p-3">
+              <p className="text-xs text-amber-800">
+                {String(t('settings.dataStorage.deleteAccountGracePeriod'))}
+              </p>
+            </div>
+            {/* Email confirmation gate */}
+            <div className="mb-4">
+              <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                {String(t('settings.dataStorage.deleteAccountTypeEmail', {
+                  email: profile?.email || '',
+                }))}
+              </label>
+              <input
+                type="email"
+                value={deleteConfirmEmail}
+                onChange={(e) => setDeleteConfirmEmail(e.target.value)}
+                disabled={deletingAccount}
+                placeholder={profile?.email || ''}
+                autoComplete="off"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent disabled:bg-gray-100"
+              />
+            </div>
             <div className="flex gap-2">
               <Button
                 variant="outline"
                 className="flex-1"
-                onClick={() => setShowDeleteConfirm(false)}
+                onClick={() => {
+                  setShowDeleteConfirm(false)
+                  setDeleteConfirmEmail('')
+                }}
+                disabled={deletingAccount}
               >
                 {t('common.cancel')}
               </Button>
               <Button
                 className="flex-1 bg-rose-600 hover:bg-rose-700 text-white"
                 onClick={handleDeleteAccount}
+                disabled={
+                  deletingAccount ||
+                  !deleteConfirmEmail ||
+                  deleteConfirmEmail.trim().toLowerCase() !== (profile?.email || '').toLowerCase()
+                }
               >
                 <Trash2 className="w-4 h-4 mr-2" strokeWidth={1.75} />
-                {t('mobile.profile.confirmDelete')}
+                {deletingAccount
+                  ? String(t('settings.dataStorage.deletingAccount'))
+                  : t('mobile.profile.confirmDelete')}
               </Button>
             </div>
           </Card>
