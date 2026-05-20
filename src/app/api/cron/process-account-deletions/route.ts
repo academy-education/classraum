@@ -96,6 +96,9 @@ async function runAcademyCascade(managerUserId: string): Promise<
       // sole-manages any academy (maybe a co-manager was added between
       // the deletion request and the cron run). Fall through to the
       // normal user cascade.
+      // The manager's own deletion request IS schedule-gated — they
+      // requested deletion + 30 days have elapsed, that's why we're
+      // here — so the default schedule check is fine.
       const { error: userErr } = await supabaseAdmin.rpc(
         'delete_user_account_cascade',
         { p_user_id: managerUserId }
@@ -156,10 +159,13 @@ async function runAcademyCascade(managerUserId: string): Promise<
             `[CRON] PortOne billing key cancelled for academy=${a.academy_id}`
           )
         } else {
-          // Loud log so ops can manually clean up at PortOne.
+          // Loud log so ops can manually clean up at PortOne. NOTE: we
+          // intentionally do NOT log any portion of the billing key —
+          // even a prefix is sensitive payment credential material, and
+          // Vercel logs are team-readable. Ops cross-references via
+          // academy_id + the academy_subscriptions row instead.
           console.error(
-            `[CRON] PortOne billing-key cancel FAILED for academy=${a.academy_id} ` +
-              `(key=${billingKey.substring(0, 12)}…): ${cancelResult.error}`
+            `[CRON] PortOne billing-key cancel FAILED for academy=${a.academy_id}: ${cancelResult.error}`
           )
         }
       } else if (billingKey && alreadyCancelled) {
@@ -222,9 +228,13 @@ async function runAcademyCascade(managerUserId: string): Promise<
           }),
         })
 
+        // Former academy member: they didn't personally request deletion
+        // but their academy is being closed by the (verified, schedule-
+        // gated) sole-manager cascade flow. Pass p_skip_schedule_check
+        // so the function doesn't reject them with `not_scheduled`.
         const { error: ucErr } = await supabaseAdmin.rpc(
           'delete_user_account_cascade',
-          { p_user_id: memberId }
+          { p_user_id: memberId, p_skip_schedule_check: true }
         )
         if (ucErr) throw new Error(ucErr.message)
 
@@ -401,6 +411,26 @@ export async function GET(req: NextRequest) {
             p_user_id: userId,
           })
 
+        // H1 guard: if the cascade function refused (user reactivated
+        // between our SELECT and this RPC, or grace period somehow not
+        // elapsed), log + skip — do NOT proceed with auth.deleteUser.
+        // The reactivated user is healthy; next cron run won't pick
+        // them up because deletion_scheduled_at is NULL.
+        const cascadeStatus = (cascadeResult as { status?: string } | null)?.status
+        if (cascadeStatus === 'not_scheduled') {
+          console.warn(
+            `[CRON account-deletions] user=${userId} reactivated mid-flight or grace period not elapsed:`,
+            cascadeResult
+          )
+          results.push({
+            userId,
+            status: 'error',
+            detail: 'reactivated_or_not_scheduled',
+            cascadeSummary: cascadeResult,
+          })
+          continue
+        }
+
         if (cascadeError) {
           // PostgREST surfaces raised exceptions in the .message field.
           // Match on the codes we documented in the function.
@@ -414,11 +444,45 @@ export async function GET(req: NextRequest) {
             // academy).
             const confirmed = await getCascadeConfirmation(userId)
             if (!confirmed) {
+              // H2: this is a GDPR right-of-erasure failure mode — the
+              // user requested deletion, became sole-manager after the
+              // request, and now the cron can't safely complete it. The
+              // user's account stays banned-but-not-deleted indefinitely
+              // unless an admin intervenes. Surface to admins via the
+              // alerts table so it shows up on the AdminDashboard, and
+              // log loudly. Idempotent: we use a (severity, title, user_id)
+              // pattern so a daily cron retry doesn't pile up duplicate
+              // alerts — we check for an existing unresolved alert first.
               console.warn(
                 `[CRON account-deletions] user=${userId} requires Phase 3 ` +
                   `(sole manager) but did not confirm academy cascade. ` +
-                  `Leaving pending for manual review.`
+                  `Surfacing alert for admin remediation.`
               )
+
+              const { data: existingAlert } = await supabaseAdmin
+                .from('alerts')
+                .select('id')
+                .eq('severity', 'warning')
+                .eq('resolved', false)
+                .contains('context', { user_id: userId, kind: 'phase_3_stuck' })
+                .limit(1)
+                .maybeSingle()
+
+              if (!existingAlert) {
+                await supabaseAdmin.from('alerts').insert({
+                  severity: 'warning',
+                  title: 'Account stuck in deletion grace period',
+                  message:
+                    `User ${userId} requested deletion but became sole-manager ` +
+                    `of one or more academies before the 30-day window elapsed. ` +
+                    `They did not confirm academy cascade in the original request, ` +
+                    `so the cron cannot safely proceed. Manually trigger the ` +
+                    `academy cascade (via Phase 3 admin endpoint) OR contact the ` +
+                    `user to re-confirm via a fresh deletion request.`,
+                  context: { user_id: userId, kind: 'phase_3_stuck' },
+                })
+              }
+
               results.push({
                 userId,
                 status: 'phase_3_pending_confirmation',

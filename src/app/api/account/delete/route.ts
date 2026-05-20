@@ -254,6 +254,13 @@ export async function POST(request: NextRequest) {
   })
 
   // Academy cascade case: send heads-up to other members.
+  //
+  // SECURITY (H3): rate-limit per academy. A sole-manager could otherwise
+  // toggle delete → reactivate → delete repeatedly and spam every member
+  // with the scary "academy closing" email from our verified Postmark
+  // sender. Skip the email blast if we sent one within the last 7 days
+  // for this academy.
+  const NOTICE_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000
   if (body.confirmCascadeAcademy === true && userRoleRow?.role === 'manager') {
     void (async () => {
       try {
@@ -266,6 +273,24 @@ export async function POST(request: NextRequest) {
           academy_name: string
         }>
         for (const academy of academies) {
+          // Cool-down check: skip if a notice went out recently.
+          const { data: academyRow } = await supabaseAdmin
+            .from('academies')
+            .select('closure_notice_sent_at')
+            .eq('id', academy.academy_id)
+            .maybeSingle()
+          const lastSent = (academyRow as { closure_notice_sent_at?: string } | null)
+            ?.closure_notice_sent_at
+          if (lastSent) {
+            const elapsed = Date.now() - new Date(lastSent).getTime()
+            if (elapsed < NOTICE_COOLDOWN_MS) {
+              console.warn(
+                `[account/delete] skipping closure notice for academy=${academy.academy_id} ` +
+                  `(last sent ${Math.floor(elapsed / 86400000)}d ago, cooldown 7d)`
+              )
+              continue
+            }
+          }
           // Collect other member user_ids from each role table.
           // (Schema reference: students/parents/teachers/managers each
           // have user_id + academy_id columns. We're the sole manager so
@@ -320,6 +345,13 @@ export async function POST(request: NextRequest) {
               )
             }
           }
+
+          // Stamp the cool-down so a subsequent delete/reactivate/delete
+          // cycle within 7 days won't re-spam these members.
+          await supabaseAdmin
+            .from('academies')
+            .update({ closure_notice_sent_at: new Date().toISOString() })
+            .eq('id', academy.academy_id)
         }
       } catch (e) {
         console.error('[account/delete] academy closure email batch failed:', e)

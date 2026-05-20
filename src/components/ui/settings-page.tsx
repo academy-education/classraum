@@ -345,7 +345,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       // Clear local caches before signing out so a leftover cache entry
       // doesn't leak data into the next session on the same device.
+      // Clear both localStorage and sessionStorage — aligns with the
+      // mobile profile flow (security review I4).
       if (typeof window !== 'undefined') {
+        try { localStorage.clear() } catch {}
         try { sessionStorage.clear() } catch {}
       }
 

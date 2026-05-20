@@ -1,0 +1,6 @@
+-- Migration 030: defense-in-depth for delete_user_account_cascade.
+-- See migration 031 for the version with p_skip_schedule_check param.
+-- Kept as a historical record only; 031 is what's actually live.
+-- (Original intent: refuse to delete users whose deletion_scheduled_at
+-- is NULL or whose 30-day grace hasn't elapsed. Security review findings
+-- H1 + M2.)

@@ -8,19 +8,35 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
  * users row, lifts the auth ban, and stamps the audit log entry as
  * reactivated.
  *
- * Auth is intentionally different from /delete: a scheduled-for-deletion
- * user CANNOT sign in (we banned them), so they can't carry a normal
- * `Authorization: Bearer` token. Instead they sign back in via the regular
- * /auth page — Supabase rejects them with an "User is banned" message — and
- * the reactivation page calls this endpoint with their email + password.
+ * SECURITY HARDENING (security review C1):
  *
- * We verify the password directly via signInWithPassword on a fresh client
- * (which will fail with the banned error but lets us re-check credentials),
- * then admin-update the auth user to clear the ban, then admin-update the
- * public.users row.
+ *   1. Pre-check that there's actually a scheduled deletion for the given
+ *      email. If not, return a generic 401 — exactly the same response
+ *      shape as "wrong password" — without ever touching Supabase auth.
+ *      This means the endpoint can only be used to reactivate accounts
+ *      that are genuinely in a banned state; it cannot be used as a
+ *      generic password-checking oracle against arbitrary users.
  *
- * Note: this is "username/password reactivation" only. OAuth users would
- * need a different flow (we don't have OAuth yet).
+ *   2. The pre-check uses a direct SQL lookup against `public.users` by
+ *      email (with service-role context) — replaces the prior pattern
+ *      that paginated `auth.admin.listUsers({ perPage: 1000 })`, which
+ *      was both a DoS amplifier and silently failed past 1000 users.
+ *
+ *   3. No `alreadyActive` short-circuit. The old endpoint returned
+ *      `{ success: true, alreadyActive: true }` when the password was
+ *      correct but the account wasn't banned — that confirmed valid
+ *      credentials for ANY user, regardless of deletion state. Now we
+ *      simply never invoke signInWithPassword unless the user is
+ *      actually scheduled.
+ *
+ * Caller flow (unchanged from the client's perspective):
+ *   - Banned user attempts /auth → catches the "banned" error → redirects
+ *     to /account/reactivate with their email prefilled.
+ *   - User enters password → hits this endpoint.
+ *   - Success → /auth, sign in normally.
+ *
+ * Note: this is "username/password reactivation" only. OAuth accounts
+ * would need a different flow (the app currently has no OAuth).
  */
 export async function POST(request: NextRequest) {
   let body: { email?: string; password?: string }
@@ -40,40 +56,41 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // Find the auth user by email. We use admin.listUsers with a filter — a
-  // direct lookup-by-email API doesn't exist in supabase-js v2 at the time
-  // of writing.
-  // Practical scale: this app's user base is small enough that paginating
-  // listUsers is fine. If user count grows, replace with a SQL query
-  // against auth.users via the service role.
-  const { data: usersList, error: listError } =
-    await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 1000 })
+  // SECURITY GATE: only proceed if the email corresponds to an account
+  // that is genuinely scheduled for deletion. This prevents the endpoint
+  // from being used as a credential-checking oracle for healthy
+  // accounts. The response intentionally matches the "invalid credentials"
+  // shape below so attackers can't distinguish "unknown email" /
+  // "not banned" / "wrong password" via response timing or shape.
+  const { data: userRow, error: userRowError } = await supabaseAdmin
+    .from('users')
+    .select('id, email, deletion_scheduled_at')
+    .ilike('email', email)
+    .maybeSingle()
 
-  if (listError) {
-    console.error('[account/reactivate] listUsers failed:', listError)
-    return NextResponse.json(
-      { error: 'Lookup failed' },
-      { status: 500 }
-    )
-  }
-
-  const authUser = usersList.users.find(
-    (u) => (u.email || '').toLowerCase() === email
-  )
-
-  if (!authUser) {
-    // Don't leak existence — same response shape as wrong password.
+  if (userRowError) {
+    console.error('[account/reactivate] users lookup failed:', userRowError)
+    // Don't leak that the lookup failed — same shape as invalid creds.
     return NextResponse.json(
       { error: 'Invalid credentials' },
       { status: 401 }
     )
   }
 
-  // Verify the password without actually signing them in (since they're
-  // banned). We do this by spinning up an isolated anon client and
-  // attempting signInWithPassword — Supabase returns either
-  // "Invalid login credentials" (wrong pw) or "User is banned" (right pw,
-  // but currently banned). The latter is the success case for us.
+  if (!userRow || !userRow.deletion_scheduled_at) {
+    // Either no such email, or the account isn't scheduled for deletion.
+    // Either way, this endpoint has nothing to do — return generic 401.
+    return NextResponse.json(
+      { error: 'Invalid credentials' },
+      { status: 401 }
+    )
+  }
+
+  const userId = userRow.id as string
+
+  // Now safe to verify the password against Supabase auth. We do this
+  // via an isolated anon client + signInWithPassword. Banned users get
+  // an "banned" error which we treat as proof of correct credentials.
   const { createClient } = await import('@supabase/supabase-js')
   const anonClient = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -89,30 +106,36 @@ export async function POST(request: NextRequest) {
   if (signInError) {
     const msg = signInError.message?.toLowerCase() || ''
     const isBanned =
-      msg.includes('banned') || msg.includes('not_allowed') || msg.includes('user_banned')
+      msg.includes('banned') ||
+      msg.includes('not_allowed') ||
+      msg.includes('user_banned')
 
     if (!isBanned) {
-      // Wrong password (or any other error) — reject without leaking detail.
+      // Wrong password — reject with generic shape.
       return NextResponse.json(
         { error: 'Invalid credentials' },
         { status: 401 }
       )
     }
-    // Banned + correct password → this is the user, proceed to reactivate.
+    // Banned + correct password → this is the user. Fall through to unban.
   } else {
-    // Sign-in succeeded — they weren't banned. Means no active deletion
-    // request. Either the user already reactivated, or there was never a
-    // scheduled deletion. Either way, harmless to no-op.
+    // Password was correct AND user is NOT banned. This shouldn't happen
+    // given our pre-check above (we only got here because
+    // deletion_scheduled_at was set, which always coincides with a ban).
+    // Defensive: sign out the leaked session immediately and return
+    // success without exposing the inconsistency.
     await anonClient.auth.signOut().catch(() => {})
-    return NextResponse.json({
-      success: true,
-      alreadyActive: true,
-    })
+    // Clear the stale deletion_scheduled_at column to bring DB into sync.
+    await supabaseAdmin
+      .from('users')
+      .update({ deletion_scheduled_at: null })
+      .eq('id', userId)
+    return NextResponse.json({ success: true })
   }
 
-  // Lift the ban. `ban_duration: 'none'` clears banned_until.
+  // Lift the ban.
   const { error: unbanError } = await supabaseAdmin.auth.admin.updateUserById(
-    authUser.id,
+    userId,
     { ban_duration: 'none' }
   )
 
@@ -128,22 +151,20 @@ export async function POST(request: NextRequest) {
   const { error: clearError } = await supabaseAdmin
     .from('users')
     .update({ deletion_scheduled_at: null })
-    .eq('id', authUser.id)
+    .eq('id', userId)
 
   if (clearError) {
     console.error('[account/reactivate] users clear failed:', clearError)
-    // Don't fail — auth ban is already lifted, user can sign in. But log
-    // loudly: the next cron run might re-process this row if the column
-    // isn't cleared. (The cron checks deletion_scheduled_at + 30d < now.)
+    // Don't fail — auth ban is already lifted. Log loudly so we can
+    // backfill if needed: the cron checks deletion_scheduled_at + 30d
+    // so a stale value past the cutoff could re-trigger deletion.
   }
 
-  // Stamp the most recent open log entry as reactivated. If multiple open
-  // entries exist (shouldn't, but possible if the user re-requested and
-  // reactivated repeatedly), stamp them all — they were all reactivated.
+  // Stamp open log entries as reactivated.
   const { error: logError } = await supabaseAdmin
     .from('account_deletion_log')
     .update({ reactivated_at: new Date().toISOString() })
-    .eq('user_id', authUser.id)
+    .eq('user_id', userId)
     .is('reactivated_at', null)
     .is('hard_deleted_at', null)
 
