@@ -16,6 +16,7 @@ import {
 import { AdminUser } from '@/lib/admin-auth';
 import { performLogout } from '@/lib/logout';
 import { supabase } from '@/lib/supabase';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface AdminHeaderProps {
   adminUser: AdminUser;
@@ -25,6 +26,7 @@ interface AdminHeaderProps {
 
 
 export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: AdminHeaderProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -53,7 +55,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
         <button
           onClick={onToggleSidebar}
           className="p-2 -ml-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-          aria-label={sidebarOpen ? 'Hide sidebar' : 'Show sidebar'}
+          aria-label={sidebarOpen ? String(t('admin.header.hideSidebar')) : String(t('admin.header.showSidebar'))}
         >
           {sidebarOpen ? (
             <PanelLeftClose className="h-5 w-5" />
@@ -70,7 +72,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none transition-colors group-focus-within:text-[#2885e8]" />
               <input
                 type="text"
-                placeholder="Search academies, users…"
+                placeholder={String(t('admin.header.search'))}
                 className="w-72 pl-10 pr-3 h-9 bg-gray-50 border border-gray-200 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#2885e8] focus:ring-4 focus:ring-[#2885e8]/15 transition-all"
               />
             </div>
@@ -81,7 +83,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
             onClick={handleRefresh}
             disabled={isRefreshing}
             className="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
-            title="Refresh"
+            title={String(t('admin.header.refresh'))}
           >
             <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
           </button>
@@ -89,7 +91,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
           {/* Notifications */}
           <button
             className="relative p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-            title="Notifications"
+            title={String(t('admin.header.notifications'))}
           >
             <Bell className="h-4 w-4" />
             {/* Unread dot with subtle ring */}
@@ -113,10 +115,12 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
               </div>
               <div className="hidden md:block text-left leading-tight">
                 <p className="text-xs font-semibold text-gray-900 truncate max-w-[140px]">
-                  {adminUser.name || 'Admin User'}
+                  {adminUser.name || String(t('admin.header.adminUserFallback'))}
                 </p>
                 <p className="text-[10px] text-gray-500 uppercase tracking-wider">
-                  {adminUser.role === 'super_admin' ? 'Super Admin' : 'Admin'}
+                  {adminUser.role === 'super_admin'
+                    ? String(t('admin.users.roles.superAdmin'))
+                    : String(t('admin.users.roles.admin'))}
                 </p>
               </div>
               <ChevronDown className="h-3.5 w-3.5 text-gray-400" />
@@ -130,7 +134,9 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
                   </p>
                   <p className="text-xs text-gray-500 truncate mt-0.5">{adminUser.email}</p>
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-[#2885e8]/10 text-[#1f6fc7] mt-2">
-                    {adminUser.role === 'super_admin' ? 'Super Admin' : 'Admin'}
+                    {adminUser.role === 'super_admin'
+                      ? String(t('admin.users.roles.superAdmin'))
+                      : String(t('admin.users.roles.admin'))}
                   </span>
                 </div>
 
@@ -143,7 +149,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
                     className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                   >
                     <User className="mr-3 h-4 w-4 text-gray-400" />
-                    Profile Settings
+                    {String(t('admin.header.profileSettings'))}
                   </button>
 
                   <button
@@ -154,7 +160,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
                     className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                   >
                     <Settings className="mr-3 h-4 w-4 text-gray-400" />
-                    Admin Settings
+                    {String(t('admin.header.adminSettings'))}
                   </button>
                 </div>
 
@@ -164,7 +170,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
                     className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50 transition-colors"
                   >
                     <LogOut className="mr-3 h-4 w-4" />
-                    Sign Out
+                    {String(t('admin.header.signOut'))}
                   </button>
                 </div>
               </div>
