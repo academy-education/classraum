@@ -105,6 +105,17 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false)
   const [deletingAccount, setDeletingAccount] = useState(false)
   const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('')
+  // Phase 3: if the user is the sole manager of any academy, an extra
+  // confirmation toggle is required before they can submit.
+  const [deletionEligibility, setDeletionEligibility] = useState<{
+    requiresCascadeConfirmation: boolean
+    soleManagedAcademies: Array<{
+      academyId: string
+      academyName: string
+      otherMemberCount: number
+    }>
+  } | null>(null)
+  const [confirmCascadeAcademy, setConfirmCascadeAcademy] = useState(false)
 
   // Logo upload state
   const [academyLogo, setAcademyLogo] = useState<string | null>(null)
@@ -242,6 +253,41 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     setPendingSection(null)
   }
 
+  // Fetch deletion eligibility when the modal opens so we can show the
+  // right warnings (and the extra cascade-confirmation toggle for sole
+  // managers).
+  useEffect(() => {
+    if (!showDeleteAccountModal) {
+      setDeletionEligibility(null)
+      setConfirmCascadeAcademy(false)
+      return
+    }
+    let cancelled = false
+    ;(async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (!session?.access_token) return
+        const res = await fetch('/api/account/check-deletion-eligibility', {
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        })
+        const data = await res.json().catch(() => ({}))
+        if (cancelled) return
+        if (res.ok && data?.canDelete) {
+          setDeletionEligibility({
+            requiresCascadeConfirmation:
+              data.requiresCascadeConfirmation === true,
+            soleManagedAcademies: data.soleManagedAcademies ?? [],
+          })
+        }
+      } catch (err) {
+        console.warn('[settings] eligibility check failed:', err)
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [showDeleteAccountModal])
+
   // Handle account deletion. Schedules a 30-day soft-delete:
   // 1. POST /api/account/delete (requires email confirmation matching the
   //    signed-in user's email) — server sets users.deletion_scheduled_at +
@@ -274,7 +320,15 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${session.access_token}`,
         },
-        body: JSON.stringify({ confirmEmail: deleteConfirmEmail.trim() }),
+        body: JSON.stringify({
+          confirmEmail: deleteConfirmEmail.trim(),
+          // Only send the academy cascade flag when both the eligibility
+          // check said it's required AND the user explicitly toggled it.
+          // The server re-validates regardless.
+          confirmCascadeAcademy:
+            deletionEligibility?.requiresCascadeConfirmation === true &&
+            confirmCascadeAcademy,
+        }),
       })
 
       const data = await res.json().catch(() => ({}))
@@ -1426,7 +1480,9 @@ export function SettingsPage({ userId }: SettingsPageProps) {
               disabled={
                 deletingAccount ||
                 !deleteConfirmEmail ||
-                deleteConfirmEmail.trim().toLowerCase() !== (userData?.email || '').toLowerCase()
+                deleteConfirmEmail.trim().toLowerCase() !== (userData?.email || '').toLowerCase() ||
+                // Sole-manager: extra cascade toggle must also be checked.
+                (deletionEligibility?.requiresCascadeConfirmation === true && !confirmCascadeAcademy)
               }
             >
               {deletingAccount ? (
@@ -1461,6 +1517,48 @@ export function SettingsPage({ userId }: SettingsPageProps) {
             {String(t('settings.dataStorage.deleteAccountGracePeriod'))}
           </p>
         </div>
+
+        {/* Sole-manager: academy cascade warning + extra confirmation toggle */}
+        {deletionEligibility?.requiresCascadeConfirmation && (
+          <div className="p-3 bg-rose-100 rounded-lg border-2 border-rose-300 space-y-2">
+            <p className="text-sm font-semibold text-rose-900">
+              {String(t('settings.dataStorage.deleteAccountSoleManagerTitle'))}
+            </p>
+            <p className="text-xs text-rose-800">
+              {String(t('settings.dataStorage.deleteAccountSoleManagerDescription'))}
+            </p>
+            <ul className="text-xs text-rose-700 space-y-1 list-disc list-inside">
+              {deletionEligibility.soleManagedAcademies.map((a) => (
+                <li key={a.academyId}>
+                  <strong>{a.academyName}</strong>
+                  {a.otherMemberCount > 0 && (
+                    <>
+                      {' '}
+                      —{' '}
+                      {String(
+                        t('settings.dataStorage.deleteAccountSoleManagerMemberCount', {
+                          count: a.otherMemberCount,
+                        })
+                      )}
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <label className="flex items-start gap-2 pt-1 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={confirmCascadeAcademy}
+                onChange={(e) => setConfirmCascadeAcademy(e.target.checked)}
+                disabled={deletingAccount}
+                className="mt-0.5 w-4 h-4 text-rose-600 border-rose-400 rounded focus:ring-rose-500"
+              />
+              <span className="text-xs text-rose-900 font-medium">
+                {String(t('settings.dataStorage.deleteAccountSoleManagerConfirmToggle'))}
+              </span>
+            </label>
+          </div>
+        )}
 
         {/* Email confirmation gate — prevents accidental clicks. */}
         <div className="space-y-2 pt-1">

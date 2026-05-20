@@ -33,7 +33,11 @@ export async function POST(request: NextRequest) {
   }
 
   // Parse + validate body.
-  let body: { confirmEmail?: string; reason?: string }
+  let body: {
+    confirmEmail?: string
+    reason?: string
+    confirmCascadeAcademy?: boolean
+  }
   try {
     body = await request.json()
   } catch {
@@ -53,6 +57,49 @@ export async function POST(request: NextRequest) {
       { error: 'Email confirmation does not match the account email' },
       { status: 400 }
     )
+  }
+
+  // Sole-manager gate. We re-check server-side (the eligibility endpoint
+  // is purely for UX and is not trusted as the authority). If the user is
+  // the sole manager of any academy AND they didn't opt-in to the cascade
+  // confirmation, reject with a structured error so the client can prompt
+  // for the extra confirmation.
+  const { data: userRoleRow } = await supabaseAdmin
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
+  if (userRoleRow?.role === 'manager') {
+    const { data: soleAcademies, error: soleErr } = await supabaseAdmin
+      .rpc('user_sole_managed_academies', { p_user_id: user.id })
+    if (soleErr) {
+      console.error('[account/delete] sole-manager check failed:', soleErr)
+      return NextResponse.json(
+        { error: 'Eligibility check failed' },
+        { status: 500 }
+      )
+    }
+    const academies = (soleAcademies ?? []) as Array<{
+      academy_id: string
+      academy_name: string
+      member_count: number
+    }>
+
+    if (academies.length > 0 && body.confirmCascadeAcademy !== true) {
+      return NextResponse.json(
+        {
+          error: 'Sole manager — academy cascade confirmation required',
+          code: 'SOLE_MANAGER_REQUIRES_CASCADE_CONFIRMATION',
+          soleManagedAcademies: academies.map((a) => ({
+            academyId: a.academy_id,
+            academyName: a.academy_name,
+            otherMemberCount: Math.max(0, Number(a.member_count) - 1),
+          })),
+        },
+        { status: 400 }
+      )
+    }
   }
 
   // Look up the public.users row to capture audit metadata before anything
@@ -127,6 +174,14 @@ export async function POST(request: NextRequest) {
     null
   const requestedUserAgent = request.headers.get('user-agent') || null
 
+  // Encode whether the user confirmed academy cascade into the audit row.
+  // The cron uses this when deciding whether to run delete_academy_cascade()
+  // for sole-manager rows.
+  const reasonPayload = JSON.stringify({
+    text: typeof body.reason === 'string' ? body.reason.slice(0, 500) : null,
+    confirmCascadeAcademy: body.confirmCascadeAcademy === true,
+  })
+
   const { error: logError } = await supabaseAdmin
     .from('account_deletion_log')
     .insert({
@@ -137,7 +192,7 @@ export async function POST(request: NextRequest) {
       scheduled_at: now.toISOString(),
       requested_from_ip: requestedFromIp,
       requested_user_agent: requestedUserAgent,
-      reason: typeof body.reason === 'string' ? body.reason.slice(0, 500) : null,
+      reason: reasonPayload,
     })
 
   if (logError) {

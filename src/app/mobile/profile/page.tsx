@@ -71,6 +71,19 @@ function MobileProfilePageContent() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('')
   const [deletingAccount, setDeletingAccount] = useState(false)
+  // Sole-manager case (Phase 3). Mobile audience is mostly students/parents
+  // for whom this is always false, but we still wire it for defense — a
+  // manager who somehow lands on /mobile/profile shouldn't bypass the
+  // academy-cascade confirmation.
+  const [deletionEligibility, setDeletionEligibility] = useState<{
+    requiresCascadeConfirmation: boolean
+    soleManagedAcademies: Array<{
+      academyId: string
+      academyName: string
+      otherMemberCount: number
+    }>
+  } | null>(null)
+  const [confirmCascadeAcademy, setConfirmCascadeAcademy] = useState(false)
 
   // Handle body scroll prevention when modal is open
   useEffect(() => {
@@ -121,6 +134,40 @@ function MobileProfilePageContent() {
     }
   }
 
+  // Eligibility fetch — same pattern as settings-page. Modals open is the
+  // trigger.
+  useEffect(() => {
+    if (!showDeleteConfirm) {
+      setDeletionEligibility(null)
+      setConfirmCascadeAcademy(false)
+      return
+    }
+    let cancelled = false
+    ;(async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (!session?.access_token) return
+        const res = await fetch('/api/account/check-deletion-eligibility', {
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        })
+        const data = await res.json().catch(() => ({}))
+        if (cancelled) return
+        if (res.ok && data?.canDelete) {
+          setDeletionEligibility({
+            requiresCascadeConfirmation:
+              data.requiresCascadeConfirmation === true,
+            soleManagedAcademies: data.soleManagedAcademies ?? [],
+          })
+        }
+      } catch (err) {
+        console.warn('[mobile/profile] eligibility check failed:', err)
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [showDeleteConfirm])
+
   // Schedule a 30-day soft-delete via /api/account/delete. Mirrors the
   // dashboard flow in settings-page.tsx — see that file for the full
   // rationale. The previously-used `delete_user_account` RPC has been
@@ -151,7 +198,12 @@ function MobileProfilePageContent() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${session.access_token}`,
         },
-        body: JSON.stringify({ confirmEmail: deleteConfirmEmail.trim() }),
+        body: JSON.stringify({
+          confirmEmail: deleteConfirmEmail.trim(),
+          confirmCascadeAcademy:
+            deletionEligibility?.requiresCascadeConfirmation === true &&
+            confirmCascadeAcademy,
+        }),
       })
 
       const data = await res.json().catch(() => ({}))
@@ -673,11 +725,52 @@ function MobileProfilePageContent() {
               </ul>
             </div>
             {/* 30-day grace period notice */}
-            <div className="mb-4 bg-amber-50 ring-1 ring-amber-200 rounded-xl p-3">
+            <div className="mb-3 bg-amber-50 ring-1 ring-amber-200 rounded-xl p-3">
               <p className="text-xs text-amber-800">
                 {String(t('settings.dataStorage.deleteAccountGracePeriod'))}
               </p>
             </div>
+            {/* Sole-manager academy cascade warning + toggle */}
+            {deletionEligibility?.requiresCascadeConfirmation && (
+              <div className="mb-4 bg-rose-100 ring-2 ring-rose-300 rounded-xl p-3 space-y-2">
+                <p className="text-sm font-semibold text-rose-900">
+                  {String(t('settings.dataStorage.deleteAccountSoleManagerTitle'))}
+                </p>
+                <p className="text-xs text-rose-800">
+                  {String(t('settings.dataStorage.deleteAccountSoleManagerDescription'))}
+                </p>
+                <ul className="text-xs text-rose-700 space-y-1 list-disc list-inside">
+                  {deletionEligibility.soleManagedAcademies.map((a) => (
+                    <li key={a.academyId}>
+                      <strong>{a.academyName}</strong>
+                      {a.otherMemberCount > 0 && (
+                        <>
+                          {' '}
+                          —{' '}
+                          {String(
+                            t('settings.dataStorage.deleteAccountSoleManagerMemberCount', {
+                              count: a.otherMemberCount,
+                            })
+                          )}
+                        </>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+                <label className="flex items-start gap-2 pt-1 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={confirmCascadeAcademy}
+                    onChange={(e) => setConfirmCascadeAcademy(e.target.checked)}
+                    disabled={deletingAccount}
+                    className="mt-0.5 w-4 h-4 text-rose-600 border-rose-400 rounded focus:ring-rose-500"
+                  />
+                  <span className="text-xs text-rose-900 font-medium">
+                    {String(t('settings.dataStorage.deleteAccountSoleManagerConfirmToggle'))}
+                  </span>
+                </label>
+              </div>
+            )}
             {/* Email confirmation gate */}
             <div className="mb-4">
               <label className="block text-xs font-medium text-gray-700 mb-1.5">
@@ -713,7 +806,8 @@ function MobileProfilePageContent() {
                 disabled={
                   deletingAccount ||
                   !deleteConfirmEmail ||
-                  deleteConfirmEmail.trim().toLowerCase() !== (profile?.email || '').toLowerCase()
+                  deleteConfirmEmail.trim().toLowerCase() !== (profile?.email || '').toLowerCase() ||
+                  (deletionEligibility?.requiresCascadeConfirmation === true && !confirmCascadeAcademy)
                 }
               >
                 <Trash2 className="w-4 h-4 mr-2" strokeWidth={1.75} />

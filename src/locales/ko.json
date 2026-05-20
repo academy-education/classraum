@@ -2577,7 +2577,11 @@
       "deletingAccount": "삭제 중...",
       "deleteAccountEmailMismatch": "입력한 이메일이 계정 이메일과 일치하지 않습니다.",
       "deleteAccountGracePeriod": "계정이 즉시 비활성화되며 30일 후 영구적으로 삭제됩니다. 이 기간 내에 다시 로그인하면 계정을 복구할 수 있습니다.",
-      "deleteAccountTypeEmail": "확인을 위해 이메일을 입력하세요 ({email}):"
+      "deleteAccountTypeEmail": "확인을 위해 이메일을 입력하세요 ({email}):",
+      "deleteAccountSoleManagerTitle": "경고: 귀하는 이 학원의 유일한 관리자입니다",
+      "deleteAccountSoleManagerDescription": "계정을 삭제하면 학원도 함께 영구적으로 폐쇄되며(모든 수업, 세션, 과제, 결제 데이터 포함), 다른 모든 구성원의 접근 권한이 제거됩니다.",
+      "deleteAccountSoleManagerMemberCount": "다른 구성원 {count}명",
+      "deleteAccountSoleManagerConfirmToggle": "학원 전체와 모든 구성원의 계정이 영구적으로 삭제됨을 이해합니다."
     }
   },
   "upgrade": {

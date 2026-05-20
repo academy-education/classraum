@@ -2516,7 +2516,11 @@
       "deletingAccount": "Deleting...",
       "deleteAccountEmailMismatch": "The email you typed does not match your account email.",
       "deleteAccountGracePeriod": "Your account will be deactivated immediately and permanently deleted after 30 days. You can sign back in during this period to reactivate it.",
-      "deleteAccountTypeEmail": "Type your email ({email}) to confirm:"
+      "deleteAccountTypeEmail": "Type your email ({email}) to confirm:",
+      "deleteAccountSoleManagerTitle": "Warning: You are the sole manager of this academy",
+      "deleteAccountSoleManagerDescription": "Deleting your account will also permanently close your academy (and all its data: classrooms, sessions, assignments, payments) and remove access for all other members.",
+      "deleteAccountSoleManagerMemberCount": "{count} other member(s)",
+      "deleteAccountSoleManagerConfirmToggle": "I understand this will permanently delete my entire academy and all its members' accounts."
     }
   },
   "upgrade": {
