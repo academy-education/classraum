@@ -113,14 +113,14 @@ function scheduledTemplate(p: ScheduledEmailParams) {
         'ko',
         '계정 삭제 예약됨',
         `<h2 style="margin-top:0;color:#111;">계정 삭제가 예약되었습니다, ${name}님</h2>
-        <p>요청하신 대로 Classraum 계정을 ${dateStr}에 영구적으로 삭제하도록 예약하였습니다.</p>
+        <p>요청하신 대로 <strong>${dateStr}</strong>에 Classraum 계정을 영구적으로 삭제할 예정입니다.</p>
         <div style="background:#fef3c7;border-radius:8px;padding:16px;margin:20px 0;">
           <p style="margin:0;color:#92400e;"><strong>중요:</strong> 30일 이내에 다시 로그인하시면 계정을 복구할 수 있습니다. 30일이 지나면 모든 데이터가 영구적으로 삭제되며 복구할 수 없습니다.</p>
         </div>
         <p style="text-align:center;margin:30px 0;">
           <a href="${reactivateUrl}" style="${buttonStyles()}">계정 복구하기</a>
         </p>
-        <p style="font-size:13px;color:#666;">실수로 삭제를 요청하셨거나 마음이 바뀌셨다면, 위 링크를 통해 언제든지 복구하실 수 있습니다.</p>`
+        <p style="font-size:13px;color:#666;">실수로 요청하셨거나 마음이 바뀌신 경우, 30일 이내에 위 링크로 언제든지 복구하실 수 있습니다.</p>`
       ),
     }
   }
@@ -182,9 +182,9 @@ function academyClosureTemplate(p: AcademyClosureEmailParams) {
         '학원 폐쇄 알림',
         `<h2 style="margin-top:0;color:#dc2626;">학원 폐쇄 알림</h2>
         <p>안녕하세요 ${name}님,</p>
-        <p>소속하고 계신 <strong>${academyName}</strong> 학원이 학원 소유자에 의해 ${dateStr}에 영구적으로 폐쇄될 예정입니다.</p>
+        <p>회원님이 소속된 <strong>${academyName}</strong> 학원을 학원 운영자가 ${dateStr}에 영구 폐쇄하기로 결정했습니다.</p>
         <div style="background:#fee2e2;border-radius:8px;padding:16px;margin:20px 0;">
-          <p style="margin:0 0 10px 0;color:#991b1b;"><strong>이는 귀하의 계정에 어떤 영향을 미치나요?</strong></p>
+          <p style="margin:0 0 10px 0;color:#991b1b;"><strong>계정에 미치는 영향</strong></p>
           <ul style="margin:0;padding-left:20px;color:#7f1d1d;">
             <li>학원이 폐쇄되면 귀하의 계정도 함께 영구적으로 삭제됩니다</li>
             <li>모든 수업, 과제, 성적, 결제 기록이 삭제됩니다</li>
