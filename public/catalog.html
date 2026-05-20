@@ -2914,6 +2914,24 @@
 </div>
 
 <script>
+  // Export resolution for all download buttons.
+  // A4 at 300 DPI = 2480 × 3508 px. We target an export scale that gives
+  // at least that pixel width for any captured element, with comfortable
+  // headroom so re-positioning / cropping in Photoshop doesn't degrade
+  // quality. 6× the on-screen CSS pixels produces ~4800 px wide for an
+  // 800 px component, ~2400 px for a 400 px badge — both well above the
+  // A4-300dpi width. PNG output keeps it lossless.
+  //
+  // Larger = sharper but slower render + bigger files. Bump to 8 if
+  // you ever need 600-DPI print quality.
+  const EXPORT_SCALE = 6;
+
+  // Shared html2canvas options for consistent high-quality output:
+  //   useCORS:        load cross-origin images via CORS (data URLs unaffected)
+  //   imageTimeout:0: don't bail if a remote image takes a while
+  //   logging: false: keep the browser console clean during export
+  const H2C_OPTS = { useCORS: true, imageTimeout: 0, logging: false };
+
 function show(id) {
     document.querySelectorAll('.spread').forEach(s => s.classList.remove('visible'));
     document.getElementById('spread-' + id).classList.add('visible');
@@ -3049,9 +3067,8 @@ function show(id) {
 
     const canvas = await html2canvas(wrapper, {
       backgroundColor: null,
-      scale: 3,
-      useCORS: true,
-      logging: false,
+      scale: EXPORT_SCALE,
+      ...H2C_OPTS,
     });
 
     document.body.removeChild(wrapper);
@@ -3094,9 +3111,8 @@ function show(id) {
 
     const canvas = await html2canvas(el, {
       backgroundColor: null,
-      scale: 3,
-      useCORS: true,
-      logging: false,
+      scale: EXPORT_SCALE,
+      ...H2C_OPTS,
     });
 
     document.body.removeChild(el);
@@ -3229,9 +3245,9 @@ function show(id) {
 
   async function captureAndDownload(elId, filename, transparent = false) {
     const el = document.getElementById(elId);
-    const scale = 3;
+    const scale = EXPORT_SCALE;
     const undos = await rasteriseAll(el, scale);
-    const canvas = await html2canvas(el, { scale, backgroundColor: transparent ? null : '#ffffff', useCORS: true });
+    const canvas = await html2canvas(el, { scale, backgroundColor: transparent ? null : '#ffffff', ...H2C_OPTS });
     undoRasterise(undos);
     const a = document.createElement('a');
     a.download = filename;
@@ -3400,7 +3416,7 @@ function show(id) {
     try {
       await _imgPreload; // ensure logo hrefs are already data URLs
       var svgEls = Array.from(document.getElementById('desktop-mockups').querySelectorAll('svg'));
-      var scale  = 3;
+      var scale  = EXPORT_SCALE;
       var gap    = Math.round(8 * scale);  // gap between mockups
       var outerP = Math.round(8 * scale);  // outer padding
       var br     = Math.round(8 * scale);  // border-radius: 8px CSS → 24px at 3×
@@ -3464,7 +3480,7 @@ function show(id) {
     try {
       await _imgPreload; // ensure screenshot hrefs are already data URLs
 
-      var scale    = 3;
+      var scale    = EXPORT_SCALE;
       var colGap   = Math.round(14 * scale);
       var rowGap   = Math.round(18 * scale);
       var cellGap  = Math.round(6  * scale); // gap between phone and label
