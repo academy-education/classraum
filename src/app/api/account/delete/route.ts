@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
+import {
+  sendAccountScheduledForDeletionEmail,
+  sendAcademyClosureNoticeEmail,
+} from '@/lib/account-deletion-emails'
 
 /**
  * POST /api/account/delete
@@ -204,12 +208,129 @@ export async function POST(request: NextRequest) {
     )
   }
 
+  const hardDeletionDate = new Date(
+    now.getTime() + 30 * 24 * 60 * 60 * 1000
+  ).toISOString()
+
+  // Notification emails — best-effort. We fire-and-forget; failures are
+  // logged but never block the response, since the deletion has already
+  // been applied at this point.
+  //
+  // 1) Confirmation to the requesting user.
+  //
+  // 2) If this is a confirmed sole-manager cascade, warn every other
+  //    member of each affected academy that their account will be
+  //    hard-deleted in 30 days. They didn't request this — they need a
+  //    chance to export data or talk to their academy owner.
+
+  // Pull the user's language preference for the email. Default to English
+  // if missing; defensive — never block on a preference lookup.
+  let recipientLanguage: string | null = null
+  try {
+    const { data: pref } = await supabaseAdmin
+      .from('user_preferences')
+      .select('language')
+      .eq('user_id', user.id)
+      .maybeSingle()
+    recipientLanguage = (pref as { language?: string } | null)?.language ?? null
+  } catch (e) {
+    console.warn('[account/delete] preference lookup failed (continuing):', e)
+  }
+
+  void sendAccountScheduledForDeletionEmail({
+    email: userRow?.email ?? user.email ?? '',
+    name: userRow?.name ?? 'there',
+    language: recipientLanguage,
+    hardDeletionDate,
+  }).then((res) => {
+    if (!res.sent) {
+      console.error(
+        '[account/delete] scheduled email failed:',
+        res.error,
+        'user=',
+        user.id
+      )
+    }
+  })
+
+  // Academy cascade case: send heads-up to other members.
+  if (body.confirmCascadeAcademy === true && userRoleRow?.role === 'manager') {
+    void (async () => {
+      try {
+        const { data: soleAcademies } = await supabaseAdmin.rpc(
+          'user_sole_managed_academies',
+          { p_user_id: user.id }
+        )
+        const academies = (soleAcademies ?? []) as Array<{
+          academy_id: string
+          academy_name: string
+        }>
+        for (const academy of academies) {
+          // Collect other member user_ids from each role table.
+          // (Schema reference: students/parents/teachers/managers each
+          // have user_id + academy_id columns. We're the sole manager so
+          // managers will only contain ourselves — but defensive anyway.)
+          const tables = ['students', 'parents', 'teachers', 'managers'] as const
+          const userIds = new Set<string>()
+          for (const table of tables) {
+            const { data } = await supabaseAdmin
+              .from(table)
+              .select('user_id')
+              .eq('academy_id', academy.academy_id)
+            for (const row of (data ?? []) as Array<{ user_id: string }>) {
+              if (row.user_id && row.user_id !== user.id) {
+                userIds.add(row.user_id)
+              }
+            }
+          }
+          if (userIds.size === 0) continue
+
+          // Fetch emails/names/language preferences in two batches.
+          const idArray = Array.from(userIds)
+          const { data: members } = await supabaseAdmin
+            .from('users')
+            .select('id, email, name')
+            .in('id', idArray)
+          const { data: prefs } = await supabaseAdmin
+            .from('user_preferences')
+            .select('user_id, language')
+            .in('user_id', idArray)
+          const langByUser = new Map<string, string>()
+          for (const p of (prefs ?? []) as Array<{ user_id: string; language?: string }>) {
+            if (p.language) langByUser.set(p.user_id, p.language)
+          }
+
+          for (const m of (members ?? []) as Array<{ id: string; email: string; name: string }>) {
+            if (!m.email) continue
+            const res = await sendAcademyClosureNoticeEmail({
+              email: m.email,
+              name: m.name || 'there',
+              language: langByUser.get(m.id) ?? null,
+              academyName: academy.academy_name,
+              hardDeletionDate,
+            })
+            if (!res.sent) {
+              console.error(
+                '[account/delete] academy closure email failed:',
+                res.error,
+                'member=',
+                m.id,
+                'academy=',
+                academy.academy_id
+              )
+            }
+          }
+        }
+      } catch (e) {
+        console.error('[account/delete] academy closure email batch failed:', e)
+      }
+    })()
+  }
+
   return NextResponse.json({
     success: true,
     scheduledAt: now.toISOString(),
     // 30 days from now — client uses this for the countdown / message.
-    hardDeletionDate: new Date(
-      now.getTime() + 30 * 24 * 60 * 60 * 1000
-    ).toISOString(),
+    hardDeletionDate,
   })
 }

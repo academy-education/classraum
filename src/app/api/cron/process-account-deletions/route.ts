@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { deletePortOneBillingKey } from '@/lib/portone-billing-key'
+import { sendAccountPermanentlyDeletedEmail } from '@/lib/account-deletion-emails'
 
 /**
  * Daily cron — processes accounts whose 30-day soft-delete window has
@@ -237,6 +238,24 @@ async function runAcademyCascade(managerUserId: string): Promise<
           throw new Error(aErr.message)
         }
 
+        // Final confirmation email — best-effort. Their academy was
+        // closed by the owner; they were warned 30 days ago via the
+        // academy-closure-notice email from /api/account/delete.
+        if (memberRow?.email) {
+          void sendAccountPermanentlyDeletedEmail({
+            email: memberRow.email,
+            name: memberRow.name || 'there',
+            language: null,
+          }).then((res) => {
+            if (!res.sent) {
+              console.error(
+                `[CRON] final email failed for member=${memberId}:`,
+                res.error
+              )
+            }
+          })
+        }
+
         memberResults.push({ id: memberId, ok: true })
       } catch (e) {
         const err = (e as Error).message
@@ -248,7 +267,15 @@ async function runAcademyCascade(managerUserId: string): Promise<
       }
     }
 
-    // Step 5: finally clean up the manager.
+    // Step 5: finally clean up the manager. Capture their email + name
+    // BEFORE the cascade nukes the users row so we can send the final
+    // confirmation email after delete succeeds.
+    const { data: managerRow } = await supabaseAdmin
+      .from('users')
+      .select('email, name')
+      .eq('id', managerUserId)
+      .maybeSingle()
+
     const { error: managerCascadeErr } = await supabaseAdmin.rpc(
       'delete_user_account_cascade',
       { p_user_id: managerUserId }
@@ -276,6 +303,22 @@ async function runAcademyCascade(managerUserId: string): Promise<
       .eq('user_id', managerUserId)
       .is('hard_deleted_at', null)
       .is('reactivated_at', null)
+
+    // Final confirmation email for the manager — best-effort.
+    if (managerRow?.email) {
+      void sendAccountPermanentlyDeletedEmail({
+        email: managerRow.email,
+        name: managerRow.name || 'there',
+        language: null,
+      }).then((res) => {
+        if (!res.sent) {
+          console.error(
+            `[CRON] final email failed for manager=${managerUserId}:`,
+            res.error
+          )
+        }
+      })
+    }
 
     return {
       success: true,
@@ -487,6 +530,29 @@ export async function GET(req: NextRequest) {
           `[CRON account-deletions] hard-deleted user=${userId} role=${user.role}`,
           cascadeResult
         )
+
+        // Step 4: final confirmation email. Best-effort; the user's row
+        // is already gone — we use the email/name we captured in the
+        // initial SELECT above. Don't block on this.
+        if (user.email) {
+          void sendAccountPermanentlyDeletedEmail({
+            email: user.email,
+            name: (user.name as string) || 'there',
+            // The user_preferences row was cascade-deleted along with the
+            // users row, so we can't look up their language at this point.
+            // Default to English. (Could be improved by capturing language
+            // alongside email at SELECT time — file as follow-up if it
+            // matters.)
+            language: null,
+          }).then((res) => {
+            if (!res.sent) {
+              console.error(
+                `[CRON account-deletions] final email failed for ${userId}:`,
+                res.error
+              )
+            }
+          })
+        }
       } catch (perUserError) {
         console.error(
           `[CRON account-deletions] error processing user=${userId}:`,
