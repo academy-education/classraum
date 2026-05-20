@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { Search } from 'lucide-react';
 import { PortOnePayout, PayoutStatus } from '@/types/subscription';
 import { supabase } from '@/lib/supabase';
@@ -27,7 +28,7 @@ interface PayoutHistoryProps {
 export function PayoutHistory({ onClose }: PayoutHistoryProps) {
   const adminFetch = useAdminFetch();
   const { toast } = useDedupedToast();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [payouts, setPayouts] = useState<PortOnePayout[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -126,7 +127,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return '-';
-    return new Date(dateString).toLocaleDateString('ko-KR', {
+    return new Date(dateString).toLocaleDateString(getDateLocale(language), {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -138,8 +139,8 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
   return (
     <ModalShell
       onClose={onClose}
-      title="Payout History"
-      description="Track bank transfer payouts to academies"
+      title={String(t('admin.settlements.payoutHistory'))}
+      description={String(t('admin.settlements.payoutHistoryDesc'))}
       className="!max-w-6xl"
       bodyClassName="p-0"
       footer={totalCount > 20 ? (
@@ -153,14 +154,14 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
               disabled={page === 0}
               className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Previous
+              {String(t('admin.common.previous'))}
             </button>
             <button
               onClick={() => setPage(page + 1)}
               disabled={(page + 1) * 20 >= totalCount}
               className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Next
+              {String(t('admin.common.next'))}
             </button>
           </div>
         </div>
@@ -172,7 +173,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Academy Name
+                {String(t('admin.settlements.academyNameLabel'))}
               </label>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -180,7 +181,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
                   type="text"
                   value={filters.academyName}
                   onChange={(e) => setFilters({ ...filters, academyName: e.target.value })}
-                  placeholder="Search academy..."
+                  placeholder={String(t('admin.settlements.searchAcademyPlaceholder'))}
                   className="pl-10"
                 />
               </div>
@@ -188,45 +189,45 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Status
+                {String(t('admin.settlements.statusLabel'))}
               </label>
               <Select
                 value={filters.status}
                 onValueChange={(value) => setFilters({ ...filters, status: value as PayoutStatus | 'all' })}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Status" />
+                  <SelectValue placeholder={String(t('admin.settlements.allStatuses'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="SCHEDULED">Scheduled</SelectItem>
-                  <SelectItem value="PROCESSING">Processing</SelectItem>
-                  <SelectItem value="SUCCEEDED">Succeeded</SelectItem>
-                  <SelectItem value="FAILED">Failed</SelectItem>
-                  <SelectItem value="CANCELED">Canceled</SelectItem>
+                  <SelectItem value="all">{String(t('admin.settlements.allStatuses'))}</SelectItem>
+                  <SelectItem value="SCHEDULED">{String(t('admin.settlements.statuses.scheduled'))}</SelectItem>
+                  <SelectItem value="PROCESSING">{String(t('admin.settlements.statuses.inProcess'))}</SelectItem>
+                  <SelectItem value="SUCCEEDED">{String(t('admin.settlements.statuses.paidOut'))}</SelectItem>
+                  <SelectItem value="FAILED">{String(t('admin.settlements.failed'))}</SelectItem>
+                  <SelectItem value="CANCELED">{String(t('admin.settlements.statuses.canceled'))}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                From Date
+                {String(t('admin.settlements.fromDateLabel'))}
               </label>
               <DateInput
                 value={filters.dateFrom}
                 onChange={(value) => setFilters({ ...filters, dateFrom: value })}
-                placeholder="Select start date"
+                placeholder={String(t('admin.settlements.selectStartDate'))}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                To Date
+                {String(t('admin.settlements.toDateLabel'))}
               </label>
               <DateInput
                 value={filters.dateTo}
                 onChange={(value) => setFilters({ ...filters, dateTo: value })}
-                placeholder="Select end date"
+                placeholder={String(t('admin.settlements.selectEndDate'))}
               />
             </div>
           </div>
@@ -271,7 +272,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
               ) : payouts.length === 0 ? (
                 <tr>
                   <td colSpan={7}>
-                    <AdminEmptyState icon={Search} title="No payouts found" compact />
+                    <AdminEmptyState icon={Search} title={String(t('admin.settlements.noPayoutsFound'))} compact />
                   </td>
                 </tr>
               ) : (

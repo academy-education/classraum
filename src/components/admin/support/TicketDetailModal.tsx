@@ -49,23 +49,29 @@ interface Message {
   isInternal?: boolean;
 }
 
-// Convert to KST timezone
+import { ModalShell } from '../ModalShell';
+import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
+
+// KST helpers — chat times are always displayed in Korea Standard Time
+// (the admin team works on KST), but the *formatting locale* respects the
+// viewer's language preference (ko-KR gives 오전/오후; en-US gives AM/PM).
 const toKST = (date: Date) => {
   return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
 };
 
-const formatKSTTime = (date: Date) => {
+const formatKSTTime = (date: Date, language: string | null | undefined) => {
   const kstDate = toKST(date);
-  return kstDate.toLocaleTimeString('en-US', {
+  return kstDate.toLocaleTimeString(getDateLocale(language), {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true
   });
 };
 
-const formatKSTDateTime = (date: Date) => {
+const formatKSTDateTime = (date: Date, language: string | null | undefined) => {
   const kstDate = toKST(date);
-  return kstDate.toLocaleString('en-US', {
+  return kstDate.toLocaleString(getDateLocale(language), {
     timeZone: 'Asia/Seoul',
     year: 'numeric',
     month: '2-digit',
@@ -76,9 +82,8 @@ const formatKSTDateTime = (date: Date) => {
   });
 };
 
-import { ModalShell } from '../ModalShell';
-
 export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailModalProps) {
+  const { t, language } = useTranslation();
   const [newMessage, setNewMessage] = useState('');
   const [isInternal, setIsInternal] = useState(false);
   const [newStatus, setNewStatus] = useState(ticket.status || 'active');
@@ -505,7 +510,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                         <span className={`text-xs whitespace-nowrap ${
                           message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-400'
                         }`}>
-                          {formatKSTTime(message.timestamp)}
+                          {formatKSTTime(message.timestamp, language)}
                         </span>
                       </div>
                       <p className="text-sm whitespace-pre-wrap">{message.message}</p>
@@ -550,7 +555,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                 <textarea
                   value={newMessage}
                   onChange={handleInputChange}
-                  placeholder="Type your reply..."
+                  placeholder={String(t('admin.support.replyPlaceholder'))}
                   rows={3}
                   className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
@@ -576,7 +581,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
               <button
                 onClick={onClose}
                 className="text-gray-400 hover:text-gray-600 p-2"
-               aria-label="Close">
+               aria-label={String(t('admin.common.close'))}>
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -613,7 +618,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                     onValueChange={setNewStatus}
                   >
                     <SelectTrigger className="!h-9 w-full rounded-lg border border-gray-300 bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 text-sm">
-                      <SelectValue placeholder="Select status" />
+                      <SelectValue placeholder={String(t('admin.support.statuses.open'))} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="active">Active</SelectItem>
@@ -649,7 +654,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5" />
                   <div className="text-xs">
                     <p className="font-medium">Conversation Created</p>
-                    <p className="text-gray-500">{formatKSTDateTime(ticket.createdAt)}</p>
+                    <p className="text-gray-500">{formatKSTDateTime(ticket.createdAt, language)}</p>
                   </div>
                 </div>
                 {ticket.lastMessageAt && (
@@ -657,7 +662,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                     <MessageSquare className="h-4 w-4 text-primary mt-0.5" />
                     <div className="text-xs">
                       <p className="font-medium">Last Message</p>
-                      <p className="text-gray-500">{formatKSTDateTime(ticket.lastMessageAt)}</p>
+                      <p className="text-gray-500">{formatKSTDateTime(ticket.lastMessageAt, language)}</p>
                     </div>
                   </div>
                 )}
@@ -665,7 +670,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   <MessageSquare className="h-4 w-4 text-purple-500 mt-0.5" />
                   <div className="text-xs">
                     <p className="font-medium">Last Updated</p>
-                    <p className="text-gray-500">{formatKSTDateTime(ticket.updatedAt)}</p>
+                    <p className="text-gray-500">{formatKSTDateTime(ticket.updatedAt, language)}</p>
                   </div>
                 </div>
                 {ticket.closedAt && (
@@ -673,7 +678,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                     <XCircle className="h-4 w-4 text-gray-500 mt-0.5" />
                     <div className="text-xs">
                       <p className="font-medium">Closed</p>
-                      <p className="text-gray-500">{formatKSTDateTime(ticket.closedAt)}</p>
+                      <p className="text-gray-500">{formatKSTDateTime(ticket.closedAt, language)}</p>
                     </div>
                   </div>
                 )}

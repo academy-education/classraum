@@ -8,6 +8,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useAdminFetch } from '../useAdminFetch';
 import { ModalShell } from '../ModalShell';
+import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 
 interface Invoice {
   id: string;
@@ -25,6 +27,7 @@ interface RefundModalProps {
 }
 
 export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalProps) {
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const [refundType, setRefundType] = useState<'full' | 'partial'>('full');
   const [partialAmount, setPartialAmount] = useState('');
@@ -45,13 +48,13 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
   // Format amount with commas for display
   const formatAmountDisplay = (value: string) => {
     if (!value) return '';
-    return parseInt(value).toLocaleString('ko-KR');
+    return parseInt(value).toLocaleString(getDateLocale(language));
   };
 
   const handleRefund = async () => {
     // Validate inputs
     if (!reason.trim()) {
-      setError('Please provide a reason for the refund');
+      setError(String(t('admin.subscriptions.refundReasonRequired')));
       return;
     }
 
@@ -105,12 +108,12 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
   return (
     <ModalShell
       onClose={onClose}
-      title="Process Refund"
+      title={String(t('admin.subscriptions.processRefund'))}
       disableBackdropClose={isProcessing}
       footer={
         <>
           <Button onClick={onClose} disabled={isProcessing} variant="outline">
-            Cancel
+            {String(t('admin.common.cancel'))}
           </Button>
           <Button
             onClick={handleRefund}
@@ -120,10 +123,10 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                Processing...
+                {String(t('admin.subscriptions.processing'))}
               </>
             ) : (
-              `Process ${refundType === 'full' ? 'Full' : 'Partial'} Refund`
+              String(t(refundType === 'full' ? 'admin.subscriptions.processFullRefund' : 'admin.subscriptions.processPartialRefund'))
             )}
           </Button>
         </>
@@ -134,10 +137,9 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
           <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start space-x-3">
             <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <h3 className="text-sm font-medium text-amber-800">Warning</h3>
+              <h3 className="text-sm font-medium text-amber-800">{String(t('admin.subscriptions.refundWarning'))}</h3>
               <p className="text-sm text-amber-700 mt-1">
-                This action will process a refund through PortOne. This action cannot be undone.
-                Please verify all details before proceeding.
+                {String(t('admin.subscriptions.refundWarningDesc'))}
               </p>
             </div>
           </div>
@@ -145,20 +147,20 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
           {/* Invoice Details */}
           <div className="bg-gray-50 rounded-lg p-4 space-y-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Invoice ID:</span>
+              <span className="text-gray-600">{String(t('admin.subscriptions.invoiceId'))}</span>
               <span className="font-medium text-gray-900">{invoice.id}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Original Amount:</span>
+              <span className="text-gray-600">{String(t('admin.subscriptions.originalAmount'))}</span>
               <span className="font-medium text-gray-900">{formatPrice(invoice.amount)}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Payment Date:</span>
-              <span className="font-medium text-gray-900">{invoice.date.toLocaleDateString()}</span>
+              <span className="text-gray-600">{String(t('admin.subscriptions.paymentDate'))}</span>
+              <span className="font-medium text-gray-900">{invoice.date.toLocaleDateString(getDateLocale(language))}</span>
             </div>
             {invoice.paymentMethod && (
               <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Payment Method:</span>
+                <span className="text-gray-600">{String(t('admin.subscriptions.paymentMethodLabel'))}</span>
                 <span className="font-medium text-gray-900">{invoice.paymentMethod}</span>
               </div>
             )}
@@ -166,7 +168,7 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
 
           {/* Refund Type Selection */}
           <div className="space-y-3">
-            <label className="text-sm font-medium text-gray-700">Refund Type</label>
+            <label className="text-sm font-medium text-gray-700">{String(t('admin.subscriptions.refundType'))}</label>
 
             <div className="space-y-2">
               <label className="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
@@ -180,8 +182,8 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
                   className="h-4 w-4 text-primary"
                 />
                 <div className="ml-3 flex-1">
-                  <div className="text-sm font-medium text-gray-900">Full Refund</div>
-                  <div className="text-xs text-gray-500">Refund the entire amount: {formatPrice(maxRefundAmount)}</div>
+                  <div className="text-sm font-medium text-gray-900">{String(t('admin.subscriptions.fullRefundLabel'))}</div>
+                  <div className="text-xs text-gray-500">{String(t('admin.subscriptions.fullRefundDesc', { amount: formatPrice(maxRefundAmount) }))}</div>
                 </div>
               </label>
 
@@ -196,8 +198,8 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
                   className="h-4 w-4 text-primary"
                 />
                 <div className="ml-3 flex-1">
-                  <div className="text-sm font-medium text-gray-900">Partial Refund</div>
-                  <div className="text-xs text-gray-500">Refund a specific amount</div>
+                  <div className="text-sm font-medium text-gray-900">{String(t('admin.subscriptions.partialRefundLabel'))}</div>
+                  <div className="text-xs text-gray-500">{String(t('admin.subscriptions.partialRefundDesc'))}</div>
                 </div>
               </label>
             </div>
@@ -206,7 +208,7 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
           {/* Partial Amount Input */}
           {refundType === 'partial' && (
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Refund Amount</label>
+              <label className="text-sm font-medium text-gray-700">{String(t('admin.subscriptions.refundAmountLabel'))}</label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-400 z-10">₩</span>
                 <Input
@@ -219,23 +221,23 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
                 />
               </div>
               <p className="text-xs text-gray-500">
-                Maximum refundable amount: {formatPrice(maxRefundAmount)}
+                {String(t('admin.subscriptions.maxRefundable', { amount: formatPrice(maxRefundAmount) }))}
               </p>
             </div>
           )}
 
           {/* Reason Input */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Refund Reason *</label>
+            <label className="text-sm font-medium text-gray-700">{String(t('admin.subscriptions.refundReasonLabel'))}</label>
             <Textarea
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               disabled={isProcessing}
-              placeholder="Provide a reason for this refund..."
+              placeholder={String(t('admin.subscriptions.refundReasonPlaceholderModal'))}
               rows={3}
             />
             <p className="text-xs text-gray-500">
-              This reason will be recorded and visible in the invoice history
+              {String(t('admin.subscriptions.refundReasonHelp'))}
             </p>
           </div>
 
@@ -243,12 +245,12 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
           {(refundType === 'full' || (refundType === 'partial' && refundAmount > 0)) && (
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-primary">Refund Amount:</span>
+                <span className="text-sm font-medium text-primary">{String(t('admin.subscriptions.refundAmountSummary'))}</span>
                 <span className="text-lg font-semibold text-primary">{formatPrice(refundAmount)}</span>
               </div>
               {refundType === 'partial' && (
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-xs text-primary/80">Remaining Amount:</span>
+                  <span className="text-xs text-primary/80">{String(t('admin.subscriptions.remainingAmount'))}</span>
                   <span className="text-sm font-medium text-primary/80">
                     {formatPrice(maxRefundAmount - refundAmount)}
                   </span>

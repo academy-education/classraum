@@ -29,6 +29,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useLiveAnnounce } from '../useLiveAnnounce';
 import { useConfirm } from '../useConfirm';
@@ -57,7 +58,7 @@ interface ChatConversation {
 }
 
 export function SupportManagement() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { announce, LiveRegion } = useLiveAnnounce();
   const confirm = useConfirm();
   const [conversations, setConversations] = useState<ChatConversation[]>([]);
@@ -286,9 +287,9 @@ export function SupportManagement() {
       <div className="space-y-6">
         {/* Header always visible — body switches to skeleton during load */}
         <AdminPageHeader
-          kicker="Customers"
-          title="Support"
-          description="Open conversations from academies and end users."
+          kicker={String(t('admin.support.kicker'))}
+          title={String(t('admin.support.title'))}
+          description={String(t('admin.support.subtitle'))}
         />
         <LiveRegion />
 
@@ -299,25 +300,25 @@ export function SupportManagement() {
         {/* Stats Overview */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <DashboardCard
-            title="Total Conversations"
+            title={String(t('admin.support.totalConversations'))}
             value={stats.total.toLocaleString()}
             icon={<MessageSquare className="h-5 w-5" />}
             accent="blue"
           />
           <DashboardCard
-            title="Active"
+            title={String(t('admin.support.active'))}
             value={stats.active.toLocaleString()}
             icon={<CheckCircle className="h-5 w-5" />}
             accent="emerald"
           />
           <DashboardCard
-            title="Closed"
+            title={String(t('admin.support.closed'))}
             value={stats.closed.toLocaleString()}
             icon={<XCircle className="h-5 w-5" />}
             accent="slate"
           />
           <DashboardCard
-            title="Unread Messages"
+            title={String(t('admin.support.unreadMessages'))}
             value={stats.unread.toLocaleString()}
             icon={<AlertTriangle className="h-5 w-5" />}
             accent="rose"
@@ -332,7 +333,7 @@ export function SupportManagement() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
                 <Input
                   type="text"
-                  placeholder="Search conversations..."
+                  placeholder={String(t('admin.support.searchConversationsPlaceholder'))}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -342,12 +343,12 @@ export function SupportManagement() {
 
             <Select value={filterStatus} onValueChange={(value) => setFilterStatus(value)}>
               <SelectTrigger className="w-[140px]">
-                <SelectValue placeholder="All Status" />
+                <SelectValue placeholder={String(t('admin.support.allStatuses'))} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="active">Active</SelectItem>
-                <SelectItem value="closed">Closed</SelectItem>
+                <SelectItem value="all">{String(t('admin.support.allStatuses'))}</SelectItem>
+                <SelectItem value="active">{String(t('admin.support.active'))}</SelectItem>
+                <SelectItem value="closed">{String(t('admin.support.closed'))}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -425,16 +426,16 @@ export function SupportManagement() {
                       </div>
                       {conversation.lastMessageAt && (
                         <div className="text-xs text-gray-500">
-                          {conversation.lastMessageAt.toLocaleDateString()}
+                          {conversation.lastMessageAt.toLocaleDateString(getDateLocale(language))}
                         </div>
                       )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {conversation.updatedAt.toLocaleDateString()}
+                        {conversation.updatedAt.toLocaleDateString(getDateLocale(language))}
                       </div>
                       <div className="text-xs text-gray-500">
-                        {conversation.updatedAt.toLocaleTimeString()}
+                        {conversation.updatedAt.toLocaleTimeString(getDateLocale(language))}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right">
@@ -511,7 +512,7 @@ export function SupportManagement() {
           {filteredConversations.length === 0 && (
             <AdminEmptyState
               icon={MessageSquare}
-              title="No conversations found"
+              title={String(t('admin.support.noTicketsFound'))}
               description="Try adjusting your search or filters"
             />
           )}

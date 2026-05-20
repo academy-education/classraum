@@ -19,6 +19,8 @@ import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { useAdminFetch } from '../useAdminFetch';
 import { ModalShell } from '../ModalShell';
 import { AdminSkeleton } from '../AdminSkeleton';
+import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 
 interface Subscription {
   id: string;
@@ -63,6 +65,7 @@ interface SubscriptionDetailModalProps {
 }
 
 export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: SubscriptionDetailModalProps) {
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const [activeTab, setActiveTab] = useState<'overview' | 'billing' | 'usage' | 'history'>('overview');
   const [showRefundModal, setShowRefundModal] = useState(false);
@@ -98,7 +101,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
           amount: parseFloat(inv.amount),
           status: inv.status,
           paymentMethod: inv.paymentMethod,
-          description: `${inv.planTier} plan - ${new Date(inv.billingPeriodStart).toLocaleDateString()} to ${new Date(inv.billingPeriodEnd).toLocaleDateString()}`,
+          description: `${inv.planTier} plan - ${new Date(inv.billingPeriodStart).toLocaleDateString(getDateLocale(language))} to ${new Date(inv.billingPeriodEnd).toLocaleDateString(getDateLocale(language))}`,
           refunded: inv.refunded,
           refundDetails: inv.refundDetails,
           portoneReceiptUrl: inv.portoneReceiptUrl,
@@ -182,13 +185,13 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
           <CreditCard className="h-6 w-6 text-[#1f6fc7]" />
           <span className="flex flex-col">
             <span className="text-xl font-semibold text-gray-900">{subscription.academyName}</span>
-            <span className="text-sm font-normal text-gray-500">Subscription ID: {subscription.id}</span>
+            <span className="text-sm font-normal text-gray-500">{String(t('admin.subscriptions.subscriptionId'))}{subscription.id}</span>
           </span>
         </span>
       }
       footer={
         <Button onClick={onClose} variant="outline">
-          Close
+          {String(t('admin.common.close'))}
         </Button>
       }
     >
@@ -204,7 +207,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                   activeTab === tab ? 'text-[#1f6fc7]' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {String(t(`admin.subscriptions.tabs.${tab}`))}
                 {activeTab === tab && (
                   <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
                 )}
@@ -219,7 +222,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
             <div className="space-y-6">
               {/* Subscription Status */}
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="text-sm font-medium text-gray-900 mb-3">Subscription Status</h3>
+                <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.subscriptions.subscriptionStatus'))}</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-xs text-gray-600">Current Plan</p>
@@ -252,16 +255,16 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Current Period Start</span>
-                      <span>{subscription.currentPeriodStart.toLocaleDateString()}</span>
+                      <span>{subscription.currentPeriodStart.toLocaleDateString(getDateLocale(language))}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Current Period End</span>
-                      <span>{subscription.currentPeriodEnd.toLocaleDateString()}</span>
+                      <span>{subscription.currentPeriodEnd.toLocaleDateString(getDateLocale(language))}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Next Billing Date</span>
                       <span className={subscription.status === 'past_due' ? 'text-rose-600 font-medium' : ''}>
-                        {subscription.nextBillingDate.toLocaleDateString()}
+                        {subscription.nextBillingDate.toLocaleDateString(getDateLocale(language))}
                       </span>
                     </div>
                   </div>
@@ -272,18 +275,18 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Payment Method</span>
-                      <span>{subscription.paymentMethod || 'Not set'}</span>
+                      <span>{subscription.paymentMethod || String(t('admin.subscriptions.notSet'))}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Auto Renew</span>
                       <span className={subscription.autoRenew ? 'text-emerald-600' : 'text-rose-600'}>
-                        {subscription.autoRenew ? 'Enabled' : 'Disabled'}
+                        {subscription.autoRenew ? String(t('admin.subscriptions.enabled')) : String(t('admin.subscriptions.disabled'))}
                       </span>
                     </div>
                     {subscription.lastPaymentDate && (
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-gray-600">Last Payment</span>
-                        <span>{subscription.lastPaymentDate.toLocaleDateString()}</span>
+                        <span>{subscription.lastPaymentDate.toLocaleDateString(getDateLocale(language))}</span>
                       </div>
                     )}
                   </div>
@@ -304,7 +307,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Next Billing</p>
-                    <p className="text-lg font-medium">{subscription.nextBillingDate.toLocaleDateString()}</p>
+                    <p className="text-lg font-medium">{subscription.nextBillingDate.toLocaleDateString(getDateLocale(language))}</p>
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Days Remaining</p>
@@ -348,13 +351,13 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                             <div className="flex items-center space-x-2">
                               <p className="font-medium text-gray-900">{invoice.id.substring(0, 8)}...</p>
                               {invoice.refunded && (
-                                <StatusBadge tone="pending" size="sm">Refunded</StatusBadge>
+                                <StatusBadge tone="pending" size="sm">{String(t('admin.subscriptions.refunded'))}</StatusBadge>
                               )}
                             </div>
                             <p className="text-sm text-gray-500">{invoice.description}</p>
                             {invoice.refunded && invoice.refundDetails && (
                               <p className="text-xs text-amber-600 mt-1">
-                                {invoice.refundDetails.refundType === 'partial' ? 'Partial refund' : 'Full refund'}:
+                                {invoice.refundDetails.refundType === 'partial' ? String(t('admin.subscriptions.partialRefund')) : String(t('admin.subscriptions.fullRefund'))}:
                                 {invoice.refundDetails.refundAmount && ` ${formatPrice(invoice.refundDetails.refundAmount)}`}
                               </p>
                             )}
@@ -362,7 +365,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                         </div>
                         <div className="text-right mr-4">
                           <p className="font-medium">{formatPrice(invoice.amount)}</p>
-                          <p className="text-sm text-gray-500">{invoice.date.toLocaleDateString()}</p>
+                          <p className="text-sm text-gray-500">{invoice.date.toLocaleDateString(getDateLocale(language))}</p>
                           <p className="text-xs text-gray-400">{invoice.paymentMethod}</p>
                         </div>
                         <div className="flex items-center space-x-2">
@@ -388,7 +391,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                                 setShowRefundModal(true);
                               }}
                               className="text-rose-600 hover:text-rose-800 p-1 rounded hover:bg-rose-50"
-                              title="Process Refund"
+                              title={String(t('admin.subscriptions.processRefund'))}
                             >
                               <Undo2 className="h-4 w-4" />
                             </button>
@@ -399,7 +402,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-[#1f6fc7] hover:text-primary/90 p-1"
-                              title="View Receipt"
+                              title={String(t('admin.subscriptions.viewReceipt'))}
                             >
                               <Download className="h-4 w-4" />
                             </a>
@@ -444,7 +447,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                             {key}
                           </h4>
                           <span className="text-sm text-gray-600">
-                            {data.current.toLocaleString()} / {data.limit === -1 ? 'Unlimited' : data.limit.toLocaleString()}
+                            {data.current.toLocaleString(getDateLocale(language))} / {data.limit === -1 ? String(t('admin.subscriptions.unlimited')) : data.limit.toLocaleString(getDateLocale(language))}
                           </span>
                         </div>
                         {data.limit !== -1 && (
@@ -498,7 +501,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-900">Subscription Created</p>
                     <p className="text-xs text-gray-500">
-                      {subscription.currentPeriodStart.toLocaleString()}
+                      {subscription.currentPeriodStart.toLocaleString(getDateLocale(language))}
                     </p>
                   </div>
                 </div>
@@ -532,9 +535,9 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                         )}
                         <div className="flex-1">
                           <p className="text-sm font-medium text-gray-900">
-                            {isFailed ? 'Payment Failed' :
-                             isRefunded ? 'Payment Refunded' :
-                             isPaid ? 'Payment Successful' :
+                            {isFailed ? String(t('admin.subscriptions.paymentFailed')) :
+                             isRefunded ? String(t('admin.subscriptions.paymentRefunded')) :
+                             isPaid ? String(t('admin.subscriptions.paymentSuccessful')) :
                              `Payment ${invoice.status}`}
                           </p>
                           <p className="text-xs text-gray-500">
@@ -542,7 +545,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                             {invoice.paymentMethod ? ` · ${invoice.paymentMethod}` : ''}
                           </p>
                           <p className="text-xs text-gray-500 mt-0.5">
-                            {invoice.date.toLocaleString()}
+                            {invoice.date.toLocaleString(getDateLocale(language))}
                           </p>
                         </div>
                       </div>

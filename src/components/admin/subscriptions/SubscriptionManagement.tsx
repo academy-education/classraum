@@ -32,6 +32,7 @@ import { useTableSort } from '../useTableSort';
 import { SortableTh } from '../SortableTh';
 import { useDebouncedValue } from '../useDebouncedValue';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface SubscriptionData {
   id: string;
@@ -63,6 +64,7 @@ interface RevenueMetrics {
 }
 
 export function SubscriptionManagement() {
+  const { t } = useTranslation();
   const adminFetch = useAdminFetch();
   const { announce, LiveRegion } = useLiveAnnounce();
   const [subscriptions, setSubscriptions] = useState<SubscriptionData[]>([]);
@@ -210,13 +212,13 @@ export function SubscriptionManagement() {
       <div className="space-y-6">
         {/* Header always visible — body shows skeleton or error during load */}
         <AdminPageHeader
-          kicker="Revenue"
-          title="Subscriptions"
-          description="Track MRR, churn and the lifecycle of every paying academy."
+          kicker={String(t('admin.subscriptions.kicker'))}
+          title={String(t('admin.subscriptions.title'))}
+          description={String(t('admin.subscriptions.subtitle'))}
           actions={
             <Button onClick={loadSubscriptionData} variant="outline" size="sm" disabled={loading} className="gap-1.5">
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-              Refresh
+              {String(t('admin.header.refresh'))}
             </Button>
           }
         />
@@ -227,31 +229,30 @@ export function SubscriptionManagement() {
         ) : !metrics ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <AlertCircle className="h-10 w-10 text-rose-400 mb-3" />
-            <p className="text-sm font-medium text-gray-900">Failed to load subscription data</p>
+            <p className="text-sm font-medium text-gray-900">{String(t('admin.subscriptions.failedToLoad'))}</p>
             <p className="text-xs text-gray-500 mt-1 max-w-sm">
-              The API didn&apos;t return any metrics. Try refreshing — if the issue persists, check the
-              server logs.
+              {String(t('admin.subscriptions.failedToLoadDesc'))}
             </p>
             <Button onClick={loadSubscriptionData} variant="outline" className="mt-4">
               <RefreshCw className="w-4 h-4 mr-1.5" />
-              Retry
+              {String(t('admin.subscriptions.retry'))}
             </Button>
           </div>
         ) : (<>
         {/* Revenue Metrics — uses shared DashboardCard for consistent surfaces */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <DashboardCard
-            title="Monthly Recurring Revenue"
+            title={String(t('admin.subscriptions.monthlyRecurringRevenue'))}
             value={formatPrice(metrics.totalMRR)}
-            subtitle={`+${metrics.growth}% from last month`}
+            subtitle={String(t('admin.subscriptions.growthFromLastMonth', { percent: metrics.growth }))}
             icon={<DollarSign className="h-5 w-5" />}
             accent="emerald"
             trend={{ value: metrics.growth, isPositive: metrics.growth >= 0 }}
           />
           <DashboardCard
-            title="Annual Recurring Revenue"
+            title={String(t('admin.subscriptions.annualRecurringRevenue'))}
             value={formatPrice(metrics.totalARR)}
-            subtitle="Projected annualized"
+            subtitle={String(t('admin.subscriptions.annualRecurringRevenueSubtitle'))}
             icon={<TrendingUp className="h-5 w-5" />}
             accent="blue"
           />
@@ -260,15 +261,15 @@ export function SubscriptionManagement() {
               would be a lie. Add the subtitle back once the metrics
               endpoint exposes a comparable historical churn rate. */}
           <DashboardCard
-            title="Churn Rate"
+            title={String(t('admin.subscriptions.churnRate'))}
             value={`${metrics.churnRate}%`}
             icon={<AlertCircle className="h-5 w-5" />}
             accent="amber"
           />
           <DashboardCard
-            title="Net Growth"
+            title={String(t('admin.subscriptions.netGrowth'))}
             value={`+${metrics.newSubscriptions - metrics.canceledSubscriptions}`}
-            subtitle={`+${metrics.newSubscriptions} new · -${metrics.canceledSubscriptions} canceled`}
+            subtitle={String(t('admin.subscriptions.netGrowthSubtitle', { newCount: metrics.newSubscriptions, canceledCount: metrics.canceledSubscriptions }))}
             icon={<Building2 className="h-5 w-5" />}
             accent="violet"
           />
@@ -282,7 +283,7 @@ export function SubscriptionManagement() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
                 <Input
                   type="text"
-                  placeholder="Search subscriptions..."
+                  placeholder={String(t('admin.subscriptions.searchPlaceholder'))}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -293,34 +294,34 @@ export function SubscriptionManagement() {
             <div className="flex gap-2">
               <Select value={filterStatus} onValueChange={setFilterStatus}>
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="All Status" />
+                  <SelectValue placeholder={String(t('admin.subscriptions.allStatuses'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="past_due">Past Due</SelectItem>
-                  <SelectItem value="trialing">Trial</SelectItem>
-                  <SelectItem value="canceled">Canceled</SelectItem>
+                  <SelectItem value="all">{String(t('admin.subscriptions.allStatuses'))}</SelectItem>
+                  <SelectItem value="active">{String(t('admin.subscriptions.active'))}</SelectItem>
+                  <SelectItem value="past_due">{String(t('admin.subscriptions.pastDueStatus'))}</SelectItem>
+                  <SelectItem value="trialing">{String(t('admin.subscriptions.trial'))}</SelectItem>
+                  <SelectItem value="canceled">{String(t('admin.subscriptions.cancelledStatus'))}</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select value={filterTier} onValueChange={setFilterTier}>
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="All Tiers" />
+                  <SelectValue placeholder={String(t('admin.subscriptions.allTiers'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Tiers</SelectItem>
-                  <SelectItem value="free">Free</SelectItem>
-                  <SelectItem value="individual">Individual</SelectItem>
-                  <SelectItem value="basic">Basic</SelectItem>
-                  <SelectItem value="pro">Pro</SelectItem>
-                  <SelectItem value="enterprise">Enterprise</SelectItem>
+                  <SelectItem value="all">{String(t('admin.subscriptions.allTiers'))}</SelectItem>
+                  <SelectItem value="free">{String(t('admin.subscriptions.tierFree'))}</SelectItem>
+                  <SelectItem value="individual">{String(t('admin.subscriptions.tierIndividual'))}</SelectItem>
+                  <SelectItem value="basic">{String(t('admin.subscriptions.tierBasic'))}</SelectItem>
+                  <SelectItem value="pro">{String(t('admin.subscriptions.tierPro'))}</SelectItem>
+                  <SelectItem value="enterprise">{String(t('admin.subscriptions.tierEnterprise'))}</SelectItem>
                 </SelectContent>
               </Select>
-              
+
               <Button variant="outline" onClick={handleExportCSV} disabled={filteredSubscriptions.length === 0}>
                 <Download className="w-4 h-4" />
-                Export
+                {String(t('admin.users.export'))}
               </Button>
             </div>
           </div>
@@ -332,12 +333,12 @@ export function SubscriptionManagement() {
             <table className="w-full">
               <thead className="bg-gray-50/60 border-b border-gray-200/70">
                 <tr>
-                  <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>Academy</SortableTh>
-                  <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>Status</SortableTh>
-                  <SortableTh sortKey="plan" toggle={toggleSort} indicator={sortIndicator('plan')}>Plan</SortableTh>
-                  <SortableTh sortKey="revenue" toggle={toggleSort} indicator={sortIndicator('revenue')}>Revenue</SortableTh>
-                  <SortableTh sortKey="nextBilling" toggle={toggleSort} indicator={sortIndicator('nextBilling')}>Next Billing</SortableTh>
-                  <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>Users</SortableTh>
+                  <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>{String(t('admin.subscriptions.columns.academy'))}</SortableTh>
+                  <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>{String(t('admin.subscriptions.columns.status'))}</SortableTh>
+                  <SortableTh sortKey="plan" toggle={toggleSort} indicator={sortIndicator('plan')}>{String(t('admin.subscriptions.columns.plan'))}</SortableTh>
+                  <SortableTh sortKey="revenue" toggle={toggleSort} indicator={sortIndicator('revenue')}>{String(t('admin.subscriptions.columns.revenue'))}</SortableTh>
+                  <SortableTh sortKey="nextBilling" toggle={toggleSort} indicator={sortIndicator('nextBilling')}>{String(t('admin.subscriptions.columns.nextBilling'))}</SortableTh>
+                  <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>{String(t('admin.subscriptions.columns.users'))}</SortableTh>
                   <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Actions
                   </th>
@@ -412,7 +413,7 @@ export function SubscriptionManagement() {
                             setShowActions(showActions === subscription.id ? null : subscription.id);
                           }}
                           className="text-gray-400 hover:text-gray-600"
-                          aria-label="Row actions"
+                          aria-label={String(t('admin.subscriptions.rowActions'))}
                           aria-haspopup="menu"
                           aria-expanded={showActions === subscription.id}
                         >
@@ -451,7 +452,7 @@ export function SubscriptionManagement() {
           {filteredSubscriptions.length === 0 && (
             <AdminEmptyState
               icon={CreditCard}
-              title="No subscriptions found"
+              title={String(t('admin.subscriptions.noSubscriptionsTitle'))}
               description="Try adjusting your search or filters"
             />
           )}

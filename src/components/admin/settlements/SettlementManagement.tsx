@@ -25,6 +25,7 @@ import { DateInput } from '@/components/ui/common/DateInput';
 import { Button } from '@/components/ui/button';
 import { useDedupedToast } from '../useDedupedToast';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { AdminEmptyState } from '../AdminEmptyState';
 
 interface Filters {
@@ -36,7 +37,7 @@ interface Filters {
 
 export function SettlementManagement() {
   const { toast } = useDedupedToast();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const { announce, LiveRegion } = useLiveAnnounce();
   const [settlements, setSettlements] = useState<PortOneSettlement[]>([]);
@@ -146,7 +147,7 @@ export function SettlementManagement() {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('ko-KR', {
+    return new Date(dateString).toLocaleDateString(getDateLocale(language), {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -206,18 +207,18 @@ export function SettlementManagement() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        kicker="Payouts"
-        title="Settlements"
-        description="Track and manage partner settlements from PortOne."
+        kicker={String(t('admin.settlements.kicker'))}
+        title={String(t('admin.settlements.title'))}
+        description={String(t('admin.settlements.subtitle'))}
         actions={
           <>
             <Button onClick={() => setShowPayoutHistory(true)} variant="outline" size="sm" className="gap-1.5">
               <Calendar className="w-4 h-4" />
-              Payout History
+              {String(t('admin.settlements.payoutHistory'))}
             </Button>
             <Button onClick={handleExportCSV} size="sm" className="gap-1.5">
               <Download className="w-4 h-4" />
-              Export CSV
+              {String(t('admin.settlements.exportCsv'))}
             </Button>
           </>
         }
@@ -229,7 +230,7 @@ export function SettlementManagement() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Academy Name
+              {String(t('admin.settlements.academyNameLabel'))}
             </label>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -237,7 +238,7 @@ export function SettlementManagement() {
                 type="text"
                 value={filters.academyName}
                 onChange={(e) => setFilters({ ...filters, academyName: e.target.value })}
-                placeholder="Search academy..."
+                placeholder={String(t('admin.settlements.searchAcademyPlaceholder'))}
                 className="pl-10"
               />
             </div>
@@ -245,46 +246,46 @@ export function SettlementManagement() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Status
+              {String(t('admin.settlements.statusLabel'))}
             </label>
             <Select
               value={filters.status}
               onValueChange={(value) => setFilters({ ...filters, status: value as SettlementStatus | 'all' })}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="All Status" />
+                <SelectValue placeholder={String(t('admin.settlements.allStatuses'))} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="SCHEDULED">Scheduled</SelectItem>
-                <SelectItem value="IN_PROCESS">In Process</SelectItem>
-                <SelectItem value="SETTLED">Settled</SelectItem>
-                <SelectItem value="PAYOUT_SCHEDULED">Payout Scheduled</SelectItem>
-                <SelectItem value="PAID_OUT">Paid Out</SelectItem>
-                <SelectItem value="CANCELED">Canceled</SelectItem>
+                <SelectItem value="all">{String(t('admin.settlements.allStatuses'))}</SelectItem>
+                <SelectItem value="SCHEDULED">{String(t('admin.settlements.statuses.scheduled'))}</SelectItem>
+                <SelectItem value="IN_PROCESS">{String(t('admin.settlements.statuses.inProcess'))}</SelectItem>
+                <SelectItem value="SETTLED">{String(t('admin.settlements.statuses.settled'))}</SelectItem>
+                <SelectItem value="PAYOUT_SCHEDULED">{String(t('admin.settlements.statuses.payoutScheduled'))}</SelectItem>
+                <SelectItem value="PAID_OUT">{String(t('admin.settlements.statuses.paidOut'))}</SelectItem>
+                <SelectItem value="CANCELED">{String(t('admin.settlements.statuses.canceled'))}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              From Date
+              {String(t('admin.settlements.fromDateLabel'))}
             </label>
             <DateInput
               value={filters.dateFrom}
               onChange={(value) => setFilters({ ...filters, dateFrom: value })}
-              placeholder="Select start date"
+              placeholder={String(t('admin.settlements.selectStartDate'))}
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              To Date
+              {String(t('admin.settlements.toDateLabel'))}
             </label>
             <DateInput
               value={filters.dateTo}
               onChange={(value) => setFilters({ ...filters, dateTo: value })}
-              placeholder="Select end date"
+              placeholder={String(t('admin.settlements.selectEndDate'))}
             />
           </div>
         </div>
@@ -325,7 +326,7 @@ export function SettlementManagement() {
                   <td colSpan={8}>
                     <AdminEmptyState
                       icon={Search}
-                      title="No settlements found"
+                      title={String(t('admin.settlements.noSettlementsFound'))}
                       description="No settlements match your current filters. Try widening the date range or clearing filters."
                       compact
                     />
