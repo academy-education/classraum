@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
+import { deletePortOneBillingKey } from '@/lib/portone-billing-key'
 
 /**
  * Daily cron — processes accounts whose 30-day soft-delete window has
@@ -107,9 +108,75 @@ async function runAcademyCascade(managerUserId: string): Promise<
 
     const academySummaries: unknown[] = []
     const allOtherMemberIds = new Set<string>()
+    const billingKeyResults: Array<{
+      academyId: string
+      cancelled: boolean
+      error?: string
+    }> = []
 
     // Step 1+2: cascade each academy.
+    //
+    // BEFORE the SQL cascade, we cancel the PortOne billing key (so the
+    // customer's stored card token is actually released — the cascade
+    // deletes the academy_subscriptions row, which would otherwise leave
+    // the key orphaned at PortOne). Failures here are logged but do not
+    // abort the cascade — better to delete the academy with a stranded
+    // billing key than to leave the customer's deletion request pending.
     for (const a of academies) {
+      // Look up the academy's billing_key from academy_subscriptions
+      // BEFORE the cascade runs (otherwise the row will be gone).
+      const { data: subRow } = await supabaseAdmin
+        .from('academy_subscriptions')
+        .select('billing_key, billing_key_cancelled_at')
+        .eq('academy_id', a.academy_id)
+        .maybeSingle()
+
+      const billingKey = (subRow as { billing_key?: string } | null)
+        ?.billing_key
+      const alreadyCancelled = (subRow as { billing_key_cancelled_at?: string } | null)
+        ?.billing_key_cancelled_at
+
+      if (billingKey && !alreadyCancelled) {
+        const cancelResult = await deletePortOneBillingKey(billingKey)
+        billingKeyResults.push({
+          academyId: a.academy_id,
+          cancelled: cancelResult.cancelled,
+          error: cancelResult.error,
+        })
+        if (cancelResult.cancelled) {
+          // Best-effort stamp — the row is about to be deleted by the
+          // cascade anyway, but recording it now means a partial failure
+          // (PortOne ok, cascade not yet run) leaves a meaningful trail.
+          await supabaseAdmin
+            .from('academy_subscriptions')
+            .update({ billing_key_cancelled_at: new Date().toISOString() })
+            .eq('academy_id', a.academy_id)
+          console.info(
+            `[CRON] PortOne billing key cancelled for academy=${a.academy_id}`
+          )
+        } else {
+          // Loud log so ops can manually clean up at PortOne.
+          console.error(
+            `[CRON] PortOne billing-key cancel FAILED for academy=${a.academy_id} ` +
+              `(key=${billingKey.substring(0, 12)}…): ${cancelResult.error}`
+          )
+        }
+      } else if (billingKey && alreadyCancelled) {
+        // Idempotent: prior cron run already cancelled it. Skip.
+        billingKeyResults.push({
+          academyId: a.academy_id,
+          cancelled: true,
+          error: 'already_cancelled',
+        })
+      } else {
+        // No subscription / no billing key — nothing to cancel.
+        billingKeyResults.push({
+          academyId: a.academy_id,
+          cancelled: true,
+          error: 'no_billing_key',
+        })
+      }
+
       const { data: result, error: cascadeErr } = await supabaseAdmin.rpc(
         'delete_academy_cascade',
         { p_academy_id: a.academy_id }
@@ -215,6 +282,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
       summary: {
         academies: academySummaries,
         memberResults,
+        billingKeyResults,
       },
     }
   } catch (e) {
