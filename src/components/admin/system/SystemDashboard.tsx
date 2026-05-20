@@ -19,6 +19,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AdminPageHeader } from '../AdminPageHeader';
+import { useTranslation } from '@/hooks/useTranslation';
 import { DashboardCard } from '../DashboardCard';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { AdminSkeleton } from '../AdminSkeleton';
@@ -54,6 +55,7 @@ interface SystemPayload {
 }
 
 export function SystemDashboard() {
+  const { t } = useTranslation();
   const adminFetch = useAdminFetch();
   const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'logs'>('overview');
   const [refreshing, setRefreshing] = useState(false);
@@ -144,13 +146,13 @@ export function SystemDashboard() {
     <div className="space-y-6">
       {/* Header always visible — body switches to skeleton during load */}
       <AdminPageHeader
-        kicker="Infrastructure"
-        title="System"
-        description="Live health, services and logs across the platform."
+        kicker={String(t('admin.system.kicker'))}
+        title={String(t('admin.system.title'))}
+        description={String(t('admin.system.subtitle'))}
         actions={
           <Button onClick={loadSystemData} disabled={refreshing || loading} size="sm" className="gap-1.5">
             <RefreshCw className={`w-4 h-4 ${refreshing || loading ? 'animate-spin' : ''}`} />
-            Refresh
+            {String(t('admin.header.refresh'))}
           </Button>
         }
       />
@@ -174,15 +176,15 @@ export function SystemDashboard() {
       {/* System Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <DashboardCard
-          title="System Status"
-          value={systemStatus.overall ? systemStatus.overall.charAt(0).toUpperCase() + systemStatus.overall.slice(1) : 'Unknown'}
+          title={String(t('admin.system.systemStatus'))}
+          value={systemStatus.overall ? systemStatus.overall.charAt(0).toUpperCase() + systemStatus.overall.slice(1) : String(t('admin.common.unknown'))}
           icon={<CheckCircle className="h-5 w-5" />}
           accent={toTone(systemStatus.overall || '') === 'active' ? 'emerald'
                   : toTone(systemStatus.overall || '') === 'pending' ? 'amber'
                   : toTone(systemStatus.overall || '') === 'danger' ? 'rose' : 'slate'}
         />
         <DashboardCard
-          title="Uptime"
+          title={String(t('admin.system.uptime'))}
           value={systemStatus.uptime || '—'}
           icon={<Clock className="h-5 w-5" />}
           accent="blue"

@@ -194,13 +194,13 @@ export function CommentReportsModeration() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        kicker="Moderation"
-        title="Comment Reports"
-        description="Review and moderate user-reported comments across the platform."
+        kicker={String(t('admin.commentReports.kicker'))}
+        title={String(t('admin.commentReports.title'))}
+        description={String(t('admin.commentReports.subtitle'))}
         actions={
           <Button onClick={loadReports} disabled={loading} variant="outline" size="sm" className="gap-1.5">
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
+            {String(t('admin.header.refresh'))}
           </Button>
         }
       />
@@ -208,25 +208,25 @@ export function CommentReportsModeration() {
       {/* Statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <DashboardCard
-          title="Total Reports"
+          title={String(t('admin.commentReports.totalReports'))}
           value={statistics.total.toLocaleString()}
           icon={<Flag className="w-5 h-5" />}
           accent="slate"
         />
         <DashboardCard
-          title="Spam"
+          title={String(t('admin.commentReports.spam'))}
           value={statistics.spam.toLocaleString()}
           icon={<AlertTriangle className="w-5 h-5" />}
           accent="amber"
         />
         <DashboardCard
-          title="Abuse"
+          title={String(t('admin.commentReports.abuse'))}
           value={statistics.abuse.toLocaleString()}
           icon={<AlertTriangle className="w-5 h-5" />}
           accent="rose"
         />
         <DashboardCard
-          title="Other"
+          title={String(t('admin.commentReports.other'))}
           value={statistics.other.toLocaleString()}
           icon={<MessageSquare className="w-5 h-5" />}
           accent="violet"
@@ -240,7 +240,7 @@ export function CommentReportsModeration() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <Input
               type="text"
-              placeholder="Search reports..."
+              placeholder={String(t('admin.commentReports.searchReportsPlaceholder'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"

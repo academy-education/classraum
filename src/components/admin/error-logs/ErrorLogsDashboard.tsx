@@ -238,22 +238,22 @@ export function ErrorLogsDashboard() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        kicker="System"
-        title="Error Logs"
-        description="Monitor system errors, exceptions and debugging information."
+        kicker={String(t('admin.errorLogs.kicker'))}
+        title={String(t('admin.errorLogs.title'))}
+        description={String(t('admin.errorLogs.subtitle'))}
         actions={
           <>
             <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5" disabled={sortedLogs.length === 0}>
               <Download className="w-4 h-4" />
-              Export CSV
+              {String(t('admin.settlements.exportCsv'))}
             </Button>
             <Button onClick={handleCleanup} variant="outline" size="sm" className="gap-1.5">
               <Trash2 className="w-4 h-4" />
-              Cleanup Old Logs
+              {String(t('admin.activityLogs.deleteOldLogs'))}
             </Button>
             <Button onClick={() => loadErrorLogs()} disabled={loading} size="sm" className="gap-1.5">
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-              Refresh
+              {String(t('admin.header.refresh'))}
             </Button>
           </>
         }
@@ -266,7 +266,7 @@ export function ErrorLogsDashboard() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <Input
               type="text"
-              placeholder="Search logs..."
+              placeholder={String(t('admin.errorLogs.searchPlaceholder'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"

@@ -19,6 +19,7 @@ import { formatPrice } from '@/lib/subscription';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AdminPageHeader } from '../AdminPageHeader';
+import { useTranslation } from '@/hooks/useTranslation';
 import { DashboardCard } from '../DashboardCard';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { useAdminFetch } from '../useAdminFetch';
@@ -66,6 +67,7 @@ interface AnalyticsData {
 }
 
 export function AnalyticsDashboard() {
+  const { t } = useTranslation();
   const adminFetch = useAdminFetch();
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -120,20 +122,20 @@ export function AnalyticsDashboard() {
     <div className="space-y-6">
       {/* Header always visible — body switches to skeleton during load */}
       <AdminPageHeader
-        kicker="Insights"
-        title="Analytics"
-        description="Revenue insights and business metrics across all academies."
+        kicker={String(t('admin.analytics.kicker'))}
+        title={String(t('admin.analytics.title'))}
+        description={String(t('admin.analytics.subtitle'))}
         actions={
           <>
             <Select value={timeRange} onValueChange={(v) => setTimeRange(v as '7d' | '30d' | '90d' | '1y')}>
               <SelectTrigger className="h-9 w-[160px]">
-                <SelectValue placeholder="Time range" />
+                <SelectValue placeholder={String(t('admin.analytics.timeRange'))} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="7d">Last 7 days</SelectItem>
-                <SelectItem value="30d">Last 30 days</SelectItem>
-                <SelectItem value="90d">Last 90 days</SelectItem>
-                <SelectItem value="1y">Last year</SelectItem>
+                <SelectItem value="7d">{String(t('admin.analytics.last7Days'))}</SelectItem>
+                <SelectItem value="30d">{String(t('admin.analytics.last30Days'))}</SelectItem>
+                <SelectItem value="90d">{String(t('admin.analytics.last90Days'))}</SelectItem>
+                <SelectItem value="1y">{String(t('admin.analytics.last12Months'))}</SelectItem>
               </SelectContent>
             </Select>
             <Button onClick={loadAnalyticsData} variant="outline" size="sm" className="gap-1.5">
@@ -141,7 +143,7 @@ export function AnalyticsDashboard() {
             </Button>
             <Button size="sm" className="gap-1.5" onClick={handleExportCSV} disabled={!data}>
               <Download className="h-4 w-4" />
-              Export
+              {String(t('admin.users.export'))}
             </Button>
           </>
         }

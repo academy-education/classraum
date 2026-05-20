@@ -17,6 +17,7 @@ import { Label } from '@/components/ui/label';
 import { performLogout } from '@/lib/logout';
 import { useRouter } from 'next/navigation';
 import { AdminPageHeader } from '../AdminPageHeader';
+import { useTranslation } from '@/hooks/useTranslation';
 import { StatusBadge } from '../StatusBadge';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { getAdminPermissions } from '@/lib/admin-auth';
@@ -44,6 +45,7 @@ interface AdminProfile {
  * add them here as proper sections with proper API calls.
  */
 export function SettingsDashboard() {
+  const { t } = useTranslation()
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [profile, setProfile] = useState<AdminProfile | null>(null)
@@ -135,9 +137,9 @@ export function SettingsDashboard() {
     return (
       <div className="space-y-6">
         <AdminPageHeader
-          kicker="Account"
-          title="Settings"
-          description="Your admin profile and the permissions granted to your role."
+          kicker={String(t('admin.settings.kicker'))}
+          title={String(t('admin.settings.title'))}
+          description={String(t('admin.settings.subtitle'))}
         />
         <AdminSkeleton.List rows={3} />
         <AdminSkeleton.Table rows={5} cols={2} />
@@ -179,15 +181,15 @@ export function SettingsDashboard() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        kicker="Account"
-        title="Settings"
-        description="Your admin profile and the permissions granted to your role."
+        kicker={String(t('admin.settings.kicker'))}
+        title={String(t('admin.settings.title'))}
+        description={String(t('admin.settings.subtitle'))}
       />
 
       {/* Account section */}
       <section className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
         <header className="px-6 py-4 border-b border-gray-100">
-          <h2 className="text-sm font-semibold text-gray-900">Profile</h2>
+          <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.settings.profile'))}</h2>
           <p className="text-xs text-gray-500 mt-0.5">Visible only to admins. Email and role are managed elsewhere.</p>
         </header>
 

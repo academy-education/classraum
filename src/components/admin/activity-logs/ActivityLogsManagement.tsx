@@ -22,6 +22,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { AdminPageHeader } from '../AdminPageHeader';
+import { useTranslation } from '@/hooks/useTranslation';
 import { useAdminFetch } from '../useAdminFetch';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
@@ -62,6 +63,7 @@ const actionTypes = [
 const targetTypes = ['academy', 'user', 'subscription', 'notification', 'support_ticket'];
 
 export function ActivityLogsManagement() {
+  const { t } = useTranslation();
   const adminFetch = useAdminFetch();
   const [logs, setLogs] = useState<ActivityLog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -222,18 +224,18 @@ export function ActivityLogsManagement() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        kicker="Audit"
-        title="Activity Logs"
-        description="Every administrative action and system change, with full traceability."
+        kicker={String(t('admin.activityLogs.kicker'))}
+        title={String(t('admin.activityLogs.title'))}
+        description={String(t('admin.activityLogs.subtitle'))}
         actions={
           <>
             <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5">
               <Download className="w-4 h-4" />
-              Export CSV
+              {String(t('admin.settlements.exportCsv'))}
             </Button>
             <Button onClick={() => loadActivityLogs()} disabled={loading} size="sm" className="gap-1.5">
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-              Refresh
+              {String(t('admin.header.refresh'))}
             </Button>
           </>
         }
@@ -246,7 +248,7 @@ export function ActivityLogsManagement() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <Input
               type="text"
-              placeholder="Search logs..."
+              placeholder={String(t('admin.activityLogs.searchPlaceholder'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"

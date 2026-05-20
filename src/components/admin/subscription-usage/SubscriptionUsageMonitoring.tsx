@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AdminPageHeader } from '../AdminPageHeader';
+import { useTranslation } from '@/hooks/useTranslation';
 import { useAdminFetch } from '../useAdminFetch';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { DashboardCard } from '../DashboardCard';
@@ -62,6 +63,7 @@ interface ApproachingLimit {
 }
 
 export function SubscriptionUsageMonitoring() {
+  const { t } = useTranslation();
   const adminFetch = useAdminFetch();
   const [usageData, setUsageData] = useState<UsageData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -129,13 +131,13 @@ export function SubscriptionUsageMonitoring() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        kicker="Capacity"
-        title="Subscription Usage"
-        description="Monitor resource usage across all academies and spot accounts approaching limits."
+        kicker={String(t('admin.usage.kicker'))}
+        title={String(t('admin.usage.title'))}
+        description={String(t('admin.usage.subtitle'))}
         actions={
           <Button onClick={loadUsageData} disabled={loading} size="sm" className="gap-1.5">
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
+            {String(t('admin.header.refresh'))}
           </Button>
         }
       />
@@ -143,25 +145,25 @@ export function SubscriptionUsageMonitoring() {
       {/* Overview Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <DashboardCard
-          title="Total Students"
+          title={String(t('admin.usage.totalStudents'))}
           value={statistics.total_usage.students.toLocaleString()}
           icon={<Users className="w-5 h-5" />}
           accent="blue"
         />
         <DashboardCard
-          title="Total Teachers"
+          title={String(t('admin.usage.totalTeachers'))}
           value={statistics.total_usage.teachers.toLocaleString()}
           icon={<GraduationCap className="w-5 h-5" />}
           accent="violet"
         />
         <DashboardCard
-          title="Total Storage"
+          title={String(t('admin.usage.storageUsed'))}
           value={`${statistics.total_usage.storage.toFixed(1)} GB`}
           icon={<HardDrive className="w-5 h-5" />}
           accent="emerald"
         />
         <DashboardCard
-          title="Total Classrooms"
+          title={String(t('admin.usage.totalClassrooms'))}
           value={statistics.total_usage.classrooms.toLocaleString()}
           icon={<BookOpen className="w-5 h-5" />}
           accent="amber"

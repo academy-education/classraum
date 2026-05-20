@@ -22,6 +22,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { AdminPageHeader } from '../AdminPageHeader';
+import { useTranslation } from '@/hooks/useTranslation';
 import { useAdminFetch } from '../useAdminFetch';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { DashboardCard } from '../DashboardCard';
@@ -50,6 +51,7 @@ interface WebhookEvent {
 const webhookTypes = ['settlement', 'payout'];
 
 export function WebhookEventViewer() {
+  const { t } = useTranslation();
   const adminFetch = useAdminFetch();
   const [events, setEvents] = useState<WebhookEvent[]>([]);
   const [eventTypes, setEventTypes] = useState<string[]>([]);
@@ -244,18 +246,18 @@ export function WebhookEventViewer() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        kicker="Integrations"
-        title="Webhook Events"
-        description="Monitor PortOne webhook events for settlements and payouts."
+        kicker={String(t('admin.webhooks.kicker'))}
+        title={String(t('admin.webhooks.title'))}
+        description={String(t('admin.webhooks.subtitle'))}
         actions={
           <>
             <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5" disabled={sortedEvents.length === 0}>
               <Download className="w-4 h-4" />
-              Export CSV
+              {String(t('admin.settlements.exportCsv'))}
             </Button>
             <Button onClick={() => loadWebhookEvents()} disabled={loading} size="sm" className="gap-1.5">
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-              Refresh
+              {String(t('admin.header.refresh'))}
             </Button>
           </>
         }
@@ -264,25 +266,25 @@ export function WebhookEventViewer() {
       {/* Statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <DashboardCard
-          title="Total Events"
+          title={String(t('admin.webhooks.totalEvents'))}
           value={statistics.total.toLocaleString()}
           icon={<Webhook className="w-5 h-5" />}
           accent="blue"
         />
         <DashboardCard
-          title="Processed"
+          title={String(t('admin.webhooks.succeeded'))}
           value={statistics.processed.toLocaleString()}
           icon={<CheckCircle2 className="w-5 h-5" />}
           accent="emerald"
         />
         <DashboardCard
-          title="Unprocessed"
+          title={String(t('admin.webhooks.pending'))}
           value={statistics.unprocessed.toLocaleString()}
           icon={<Clock className="w-5 h-5" />}
           accent="amber"
         />
         <DashboardCard
-          title="Errors"
+          title={String(t('admin.webhooks.failed'))}
           value={statistics.errors.toLocaleString()}
           icon={<XCircle className="w-5 h-5" />}
           accent="rose"
