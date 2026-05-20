@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { FileQuestion, Plus, Trash2, Loader2, X, Grid3X3, Rows3 } from 'lucide-react'
@@ -54,7 +55,7 @@ async function authHeaders(): Promise<HeadersInit> {
 }
 
 export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const router = useRouter()
   const [tests, setTests] = useState<LevelTest[]>([])
   const [subjects, setSubjects] = useState<Subject[]>([])
@@ -478,7 +479,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
               </div>
 
               <div className="mt-auto text-xs text-gray-400">
-                {new Date(test.created_at).toLocaleDateString()}
+                {new Date(test.created_at).toLocaleDateString(getDateLocale(language))}
               </div>
             </Card>
           ))}
@@ -561,7 +562,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                         </span>
                       </td>
                       <td className="p-3 sm:p-4 text-sm text-gray-500">
-                        {new Date(test.created_at).toLocaleDateString()}
+                        {new Date(test.created_at).toLocaleDateString(getDateLocale(language))}
                       </td>
                       <td className="p-3 sm:p-4">
                         <Button

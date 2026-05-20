@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Trash2, AlertTriangle, Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { ReportData } from '@/hooks/useReports'
 
 interface DeleteConfirmationModalProps {
@@ -22,7 +23,7 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
   report,
   loading = false
 }) => {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
 
   if (!report) return null
 
@@ -86,7 +87,7 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
             {t('reports.student')}: {report.student_name}
           </div>
           <div className="text-gray-500 text-xs mt-1">
-            {t('reports.created')}: {new Date(report.created_at).toLocaleDateString()}
+            {t('reports.created')}: {new Date(report.created_at).toLocaleDateString(getDateLocale(language))}
           </div>
         </div>
       </div>

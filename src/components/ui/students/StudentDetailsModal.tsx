@@ -19,6 +19,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import type { Student, Classroom } from '@/hooks/useStudentData'
 
 interface StudentDetailsModalProps {
@@ -36,7 +37,7 @@ export function StudentDetailsModal({
   onEdit,
   getStudentClassrooms
 }: StudentDetailsModalProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [studentClassrooms, setStudentClassrooms] = useState<Classroom[]>([])
   const [loadingClassrooms, setLoadingClassrooms] = useState(false)
 
@@ -62,7 +63,7 @@ export function StudentDetailsModal({
   }, [isOpen, student, loadStudentClassrooms])
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString()
+    return new Date(dateString).toLocaleDateString(getDateLocale(language))
   }
 
   if (!student) return null

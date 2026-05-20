@@ -9,6 +9,7 @@ import {
   Calendar,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ModalShell } from '@/components/ui/common/ModalShell'
@@ -32,7 +33,7 @@ export function ClassroomDetailsModal({
   getTranslatedDay,
   onEditClick,
 }: ClassroomDetailsModalProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
 
   if (!selectedClassroom) return null
 
@@ -53,10 +54,10 @@ export function ClassroomDetailsModal({
       footer={
         <ModalShell.Footer justify="between">
           <div className="text-sm text-gray-500">
-            {t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString()}
+            {t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString(getDateLocale(language))}
             {selectedClassroom.updated_at !== selectedClassroom.created_at && (
               <span className="ml-4">
-                {t("classrooms.updated")}: {new Date(selectedClassroom.updated_at).toLocaleDateString()}
+                {t("classrooms.updated")}: {new Date(selectedClassroom.updated_at).toLocaleDateString(getDateLocale(language))}
               </span>
             )}
           </div>

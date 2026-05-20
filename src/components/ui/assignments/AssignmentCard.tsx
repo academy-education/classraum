@@ -15,6 +15,7 @@ import {
   CheckCircle
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import type { Assignment } from '@/hooks/useAssignmentData'
 
 interface AssignmentCardProps {
@@ -32,7 +33,7 @@ export const AssignmentCard = memo(function AssignmentCard({
   onView,
   onViewSubmissions 
 }: AssignmentCardProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
 
   const { typeIcon, typeColor, isOverdue, formattedDueDate, formattedSessionDate } = useMemo(() => {
     const getTypeIcon = () => {
@@ -66,7 +67,7 @@ export const AssignmentCard = memo(function AssignmentCard({
     }
 
     const formatDate = (dateString: string) => {
-      return new Date(dateString).toLocaleDateString()
+      return new Date(dateString).toLocaleDateString(getDateLocale(language))
     }
 
     return {

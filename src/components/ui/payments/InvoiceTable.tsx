@@ -18,6 +18,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { TableCheckbox } from '@/components/ui/dashboard'
 
 interface Invoice {
@@ -62,7 +63,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
   onBulkStatusUpdate,
   showBulkActions = true
 }) => {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   
   // Table state
   const [sortField, setSortField] = useState<SortField>('created_at')
@@ -152,7 +153,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
   }, [])
 
   const formatDate = React.useCallback((dateString: string) => {
-    return new Date(dateString).toLocaleDateString()
+    return new Date(dateString).toLocaleDateString(getDateLocale(language))
   }, [])
 
   const getStatusDisplay = React.useCallback((status: Invoice['status']) => {

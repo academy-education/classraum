@@ -50,6 +50,7 @@ import {
   FileText
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
@@ -6583,7 +6584,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             )}
                             <div className="flex items-center gap-4 text-xs text-gray-500">
                               {assignment.due_date && (
-                                <span>{t("sessions.due")} {new Date(assignment.due_date).toLocaleDateString()}</span>
+                                <span>{t("sessions.due")} {new Date(assignment.due_date).toLocaleDateString(getDateLocale(language))}</span>
                               )}
                               {assignment.category_name && (
                                 <span>{t("sessions.categoryColon")} {assignment.category_name}</span>

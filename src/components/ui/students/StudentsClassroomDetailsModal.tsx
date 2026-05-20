@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { School, GraduationCap, Book, Clock, Users } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { getDateLocale } from '@/utils/dateUtils'
 
 interface Classroom {
   id: string
@@ -37,6 +39,7 @@ export function StudentsClassroomDetailsModal({
   t,
   onClose
 }: StudentsClassroomDetailsModalProps) {
+  const { language } = useLanguage()
   if (!classroom) return null
 
   return (
@@ -58,10 +61,10 @@ export function StudentsClassroomDetailsModal({
           <div className="text-sm text-gray-500">
             {classroom.created_at && (
               <>
-                {t("students.created")}: {new Date(classroom.created_at).toLocaleDateString()}
+                {t("students.created")}: {new Date(classroom.created_at).toLocaleDateString(getDateLocale(language))}
                 {classroom.updated_at !== classroom.created_at && classroom.updated_at && (
                   <span className="ml-4">
-                    {t("students.updated")}: {new Date(classroom.updated_at).toLocaleDateString()}
+                    {t("students.updated")}: {new Date(classroom.updated_at).toLocaleDateString(getDateLocale(language))}
                   </span>
                 )}
               </>
@@ -113,7 +116,7 @@ export function StudentsClassroomDetailsModal({
                       <div>
                         <p className="text-sm text-gray-600">{t("students.created")}</p>
                         <p className="font-medium text-gray-900">
-                          {new Date(classroom.created_at).toLocaleDateString()}
+                          {new Date(classroom.created_at).toLocaleDateString(getDateLocale(language))}
                         </p>
                       </div>
                     </div>

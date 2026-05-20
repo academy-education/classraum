@@ -1,6 +1,8 @@
 "use client"
 
 import Image from 'next/image'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { getDateLocale } from '@/utils/dateUtils'
 
 interface Message {
   id: string
@@ -15,8 +17,9 @@ interface ChatMessageProps {
 }
 
 export function ChatMessage({ message }: ChatMessageProps) {
+  const { language } = useLanguage()
   const isUser = message.sender === 'user'
-  const timeString = message.timestamp.toLocaleTimeString('en-US', {
+  const timeString = message.timestamp.toLocaleTimeString(getDateLocale(language), {
     hour: '2-digit',
     minute: '2-digit'
   })

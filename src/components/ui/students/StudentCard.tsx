@@ -16,6 +16,7 @@ import {
   BookOpen
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import type { Student } from '@/hooks/useStudentData'
 
 interface StudentCardProps {
@@ -33,10 +34,10 @@ export const StudentCard = memo(function StudentCard({
   onToggleStatus,
   showActions = true
 }: StudentCardProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
 
   const formattedJoinDate = useMemo(() => {
-    return new Date(student.created_at).toLocaleDateString()
+    return new Date(student.created_at).toLocaleDateString(getDateLocale(language))
   }, [student.created_at])
 
   return (

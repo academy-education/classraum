@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { TableCheckbox } from '@/components/ui/dashboard'
 import { Edit, Trash2, Eye } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { StatusBadge } from './StatusBadge'
 import { ReportData } from '@/hooks/useReports'
 
@@ -27,7 +28,7 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
   onPreview,
   showBulkActions = true
 }) => {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
 
   // Memoized event handlers
   const handleSelect = React.useCallback(() => {
@@ -49,7 +50,7 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
   // Memoized date formatters
   const formatDate = React.useCallback((dateString: string) => {
     if (!dateString) return '-'
-    return new Date(dateString).toLocaleDateString()
+    return new Date(dateString).toLocaleDateString(getDateLocale(language))
   }, [])
 
   const formattedStartDate = React.useMemo(() => 

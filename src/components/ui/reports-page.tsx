@@ -38,6 +38,7 @@ import {
   School
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Label } from '@/components/ui/label'
 // Import from the standalone sanitize module — importing from
@@ -4304,7 +4305,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                             return (
                               <div key={grade.id} className="flex flex-col items-center gap-2" style={{ minWidth: '70px' }}>
                                 <div className="text-xs text-gray-500 text-center h-8 flex items-center justify-center">
-                                  {new Date(grade.completedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                  {new Date(grade.completedDate).toLocaleDateString(getDateLocale(language), { month: 'short', day: 'numeric' })}
                                 </div>
                                 <div className="relative h-48 w-12 bg-gray-100 rounded-lg flex items-end justify-center overflow-hidden">
                                   <div
