@@ -202,9 +202,9 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
         <button
           onClick={onClose}
           className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
-          aria-label="Close"
+          aria-label={String(t('admin.common.close'))}
         >
-          Close
+          {String(t('admin.common.close'))}
         </button>
       }
     >
@@ -222,7 +222,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                   activeTab === tab ? 'text-[#1f6fc7]' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {String(t(`admin.academies.tabs.${tab}`))}
                 {activeTab === tab && (
                   <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
                 )}
@@ -238,7 +238,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               {/* Basic Info */}
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900 mb-3">Contact Information</h3>
+                  <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.academies.contactInformation'))}</h3>
                   <div className="space-y-2">
                     <div className="flex items-center text-sm">
                       <Mail className="mr-2 h-4 w-4 text-gray-400" />

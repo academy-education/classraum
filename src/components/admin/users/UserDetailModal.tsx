@@ -17,6 +17,8 @@ import {
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { ModalShell } from '../ModalShell';
 import { supabase } from '@/lib/supabase';
+import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 
 interface AdminUser {
   id: string;
@@ -46,6 +48,7 @@ interface UserActivityLog {
 }
 
 export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
+  const { t, language } = useTranslation();
   // Dropped the "settings" tab — its 8 buttons (Reset Password / Suspend /
   // Delete / Update Role / etc.) had no corresponding admin-user mutation
   // API. Reintroduce it as a real form once /api/admin/users supports
@@ -90,9 +93,9 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
   // treatment match the rest of the admin UI 1:1.
   const getStatusBadge = (status: string) => {
     const map: Record<string, { tone: StatusTone; icon: typeof CheckCircle; label: string }> = {
-      active:    { tone: 'active',  icon: CheckCircle,   label: 'Active' },
-      suspended: { tone: 'danger',  icon: XCircle,       label: 'Suspended' },
-      pending:   { tone: 'pending', icon: AlertTriangle, label: 'Pending' },
+      active:    { tone: 'active',  icon: CheckCircle,   label: String(t('admin.users.statuses.active')) },
+      suspended: { tone: 'danger',  icon: XCircle,       label: String(t('admin.users.statuses.suspended')) },
+      pending:   { tone: 'pending', icon: AlertTriangle, label: String(t('admin.users.statuses.pending')) },
     }
     const entry = map[status]
     if (!entry) return null
@@ -108,9 +111,12 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       admin:       'brand',
       super_admin: 'brand',
     }
+    // Localized role labels via the admin.users.roles namespace.
+    const roleKey = role === 'super_admin' ? 'superAdmin' : role
+    const label = String(t(`admin.users.roles.${roleKey}`))
     return (
       <StatusBadge tone={map[role] || 'muted'}>
-        {role === 'super_admin' ? 'Super Admin' : role.charAt(0).toUpperCase() + role.slice(1)}
+        {label}
       </StatusBadge>
     )
   };
@@ -158,7 +164,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                     activeTab === tab ? 'text-[#1f6fc7]' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {String(t(`admin.users.tabs.${tab}`))}
                   {activeTab === tab && (
                     <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
                   )}
@@ -174,27 +180,27 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                 {/* User Info */}
                 <div className="grid grid-cols-2 gap-6">
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">User Information</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">{String(t('admin.users.userInformation'))}</h3>
                     <div className="space-y-3">
                       <div className="flex items-center">
                         <User className="mr-3 h-4 w-4 text-gray-400" />
                         <div>
                           <p className="text-sm font-medium text-gray-900">{user.name}</p>
-                          <p className="text-xs text-gray-500">Full Name</p>
+                          <p className="text-xs text-gray-500">{String(t('admin.users.fullName'))}</p>
                         </div>
                       </div>
                       <div className="flex items-center">
                         <Mail className="mr-3 h-4 w-4 text-gray-400" />
                         <div>
                           <p className="text-sm font-medium text-gray-900">{user.email}</p>
-                          <p className="text-xs text-gray-500">Email Address</p>
+                          <p className="text-xs text-gray-500">{String(t('admin.users.emailAddress'))}</p>
                         </div>
                       </div>
                       <div className="flex items-center">
                         <Calendar className="mr-3 h-4 w-4 text-gray-400" />
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{user.createdAt.toLocaleDateString()}</p>
-                          <p className="text-xs text-gray-500">Account Created</p>
+                          <p className="text-sm font-medium text-gray-900">{user.createdAt.toLocaleDateString(getDateLocale(language))}</p>
+                          <p className="text-xs text-gray-500">{String(t('admin.users.accountCreated'))}</p>
                         </div>
                       </div>
                       {user.academyName && (
@@ -202,7 +208,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                           <Building2 className="mr-3 h-4 w-4 text-gray-400" />
                           <div>
                             <p className="text-sm font-medium text-gray-900">{user.academyName}</p>
-                            <p className="text-xs text-gray-500">Academy</p>
+                            <p className="text-xs text-gray-500">{String(t('admin.users.academy'))}</p>
                           </div>
                         </div>
                       )}
@@ -210,24 +216,24 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">Account Status</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">{String(t('admin.users.accountStatus'))}</h3>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Status</span>
+                        <span className="text-sm text-gray-600">{String(t('admin.users.statusLabel'))}</span>
                         {getStatusBadge(user.status)}
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Role</span>
+                        <span className="text-sm text-gray-600">{String(t('admin.users.roleLabel'))}</span>
                         {getRoleBadge(user.role)}
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Last Login</span>
+                        <span className="text-sm text-gray-600">{String(t('admin.users.lastLogin'))}</span>
                         <span className="text-sm text-gray-900">
-                          {user.lastLoginAt ? user.lastLoginAt.toLocaleDateString() : 'Never'}
+                          {user.lastLoginAt ? user.lastLoginAt.toLocaleDateString(getDateLocale(language)) : String(t('admin.common.never'))}
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Login Count</span>
+                        <span className="text-sm text-gray-600">{String(t('admin.users.loginCount'))}</span>
                         <span className="text-sm text-gray-900">{user.loginCount}</span>
                       </div>
                     </div>
@@ -245,9 +251,9 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">Recent admin activity</h3>
+                    <h3 className="text-lg font-medium text-gray-900">{String(t('admin.users.recentAdminActivity'))}</h3>
                     <p className="text-xs text-gray-500 mt-0.5">
-                      Admin actions taken against this user (last 20).
+                      {String(t('admin.users.recentAdminActivityDesc'))}
                     </p>
                   </div>
                   {/* When the user is themselves an admin, offer a deep link
@@ -260,7 +266,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                       className="inline-flex items-center gap-1 text-xs font-medium text-[#2885e8] hover:text-[#1f6cc4] whitespace-nowrap"
                       onClick={onClose}
                     >
-                      View actions by this admin
+                      {String(t('admin.users.viewAdminActions'))}
                       <ExternalLink className="w-3.5 h-3.5" />
                     </Link>
                   )}
@@ -289,9 +295,9 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                     <div className="w-10 h-10 rounded-full bg-white ring-1 ring-gray-200/70 flex items-center justify-center mx-auto mb-2">
                       <Clock className="w-4 h-4 text-gray-400" />
                     </div>
-                    <p className="text-sm font-medium text-gray-900">No admin activity recorded</p>
+                    <p className="text-sm font-medium text-gray-900">{String(t('admin.users.noAdminActivity'))}</p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Actions taken against this user will appear here.
+                      {String(t('admin.users.noAdminActivityDesc'))}
                     </p>
                   </div>
                 )}
@@ -308,7 +314,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                             </p>
                             <p className="text-sm text-gray-600 mt-0.5">{log.description}</p>
                             <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
-                              <span>{new Date(log.created_at).toLocaleString()}</span>
+                              <span>{new Date(log.created_at).toLocaleString(getDateLocale(language))}</span>
                               {log.ip_address && (
                                 <>
                                   <span className="text-gray-300">·</span>
@@ -327,24 +333,24 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
 
             {activeTab === 'permissions' && (
               <div className="space-y-6">
-                <h3 className="text-lg font-medium text-gray-900">Permissions & Access</h3>
-                
+                <h3 className="text-lg font-medium text-gray-900">{String(t('admin.users.permissionsAccess'))}</h3>
+
                 <div className="space-y-4">
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-medium text-gray-900 mb-2">Current Role: {getRoleBadge(user.role)}</h4>
+                    <h4 className="font-medium text-gray-900 mb-2">{String(t('admin.users.currentRoleLabel'))}{getRoleBadge(user.role)}</h4>
                     <p className="text-sm text-gray-600">
-                      This role grants access to specific features and functions within the platform.
+                      {String(t('admin.users.roleDescription'))}
                     </p>
                   </div>
 
                   <div className="space-y-3">
-                    <h4 className="font-medium text-gray-900">Feature Access</h4>
+                    <h4 className="font-medium text-gray-900">{String(t('admin.users.featureAccess'))}</h4>
                     {[
-                      { feature: 'Dashboard Access', granted: true },
-                      { feature: 'User Management', granted: user.role === 'admin' || user.role === 'super_admin' },
-                      { feature: 'Academy Settings', granted: ['manager', 'admin', 'super_admin'].includes(user.role) },
-                      { feature: 'Financial Reports', granted: ['manager', 'admin', 'super_admin'].includes(user.role) },
-                      { feature: 'System Configuration', granted: user.role === 'super_admin' }
+                      { feature: String(t('admin.users.features.dashboardAccess')), granted: true },
+                      { feature: String(t('admin.users.features.userManagement')), granted: user.role === 'admin' || user.role === 'super_admin' },
+                      { feature: String(t('admin.users.features.academySettings')), granted: ['manager', 'admin', 'super_admin'].includes(user.role) },
+                      { feature: String(t('admin.users.features.financialReports')), granted: ['manager', 'admin', 'super_admin'].includes(user.role) },
+                      { feature: String(t('admin.users.features.systemConfiguration')), granted: user.role === 'super_admin' }
                     ].map((access, index) => (
                       <div key={index} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
                         <span className="text-sm text-gray-700">{access.feature}</span>

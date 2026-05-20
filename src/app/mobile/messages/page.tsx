@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
+import { MobileBackButton } from '@/components/ui/mobile/MobileBackButton'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Input } from '@/components/ui/input'
@@ -12,7 +13,6 @@ import {
   Search,
   MessageSquare,
   Plus,
-  ArrowLeft,
   Send,
   Loader2,
   User,
@@ -687,14 +687,7 @@ function MobileMessagesPageContent() {
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.back()}
-              className="p-2"
-            >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
-            </Button>
+            <MobileBackButton />
             <div>
               <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                 <MessageSquare className="w-6 h-6" />
@@ -894,14 +887,7 @@ function MobileMessagesPageContent() {
     <div className="flex flex-col h-[calc(100dvh-120px)] bg-gray-50">
       {/* Chat Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 bg-white">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleBack}
-          className="p-2"
-        >
-          <ArrowLeft className="w-5 h-5 text-gray-600" />
-        </Button>
+        <MobileBackButton onClick={handleBack} />
         <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
           {selectedConversation?.isGroup ? (
             <Users className="h-5 w-5 text-gray-500" />
@@ -1030,14 +1016,7 @@ function MobileMessagesPageContent() {
     <div className="flex flex-col flex-1">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 bg-white">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleBack}
-          className="p-2"
-        >
-          <ArrowLeft className="w-5 h-5 text-gray-600" />
-        </Button>
+        <MobileBackButton onClick={handleBack} />
         <h2 className="text-lg font-semibold text-gray-900">
           {String(t('messages.newMessage'))}
         </h2>

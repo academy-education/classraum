@@ -12,6 +12,7 @@ import { Eyebrow } from '@/components/ui/eyebrow'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { MobileBackButton } from '@/components/ui/mobile/MobileBackButton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { CardSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
@@ -20,7 +21,6 @@ import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePag
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import {
-  ArrowLeft,
   Receipt,
   CheckCircle,
   Clock,
@@ -583,14 +583,7 @@ function MobileInvoicesPageContent() {
           {/* Header - same as loaded state */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => router.back()}
-                className="p-2"
-              >
-                <ArrowLeft className="w-5 h-5 text-gray-600" />
-              </Button>
+              <MobileBackButton />
               <div>
                 <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                   <Receipt className="w-6 h-6" />
@@ -656,14 +649,7 @@ function MobileInvoicesPageContent() {
           {/* Header - same as loaded state */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => router.back()}
-                className="p-2"
-              >
-                <ArrowLeft className="w-5 h-5 text-gray-600" />
-              </Button>
+              <MobileBackButton />
               <div>
                 <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                   <Receipt className="w-6 h-6" />
@@ -755,14 +741,7 @@ function MobileInvoicesPageContent() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => router.back()}
-            className="p-2"
-          >
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
-          </Button>
+          <MobileBackButton />
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
               <Receipt className="w-6 h-6" />

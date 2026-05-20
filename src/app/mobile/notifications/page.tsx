@@ -9,8 +9,9 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { supabase } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { MobileBackButton } from '@/components/ui/mobile/MobileBackButton'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
-import { Bell, ArrowLeft, Check, X, RefreshCw } from 'lucide-react'
+import { Bell, Check, X, RefreshCw } from 'lucide-react'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
@@ -939,14 +940,7 @@ function MobileNotificationsPageContent() {
         {/* Header - same as loaded state */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.back()}
-              className="p-2"
-            >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
-            </Button>
+            <MobileBackButton />
             <div>
               <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                 <Bell className="w-6 h-6" />
@@ -1003,14 +997,7 @@ function MobileNotificationsPageContent() {
         {/* Header - same as loaded state */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.back()}
-              className="p-2"
-            >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
-            </Button>
+            <MobileBackButton />
             <div>
               <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
                 <Bell className="w-6 h-6" />
@@ -1103,14 +1090,7 @@ function MobileNotificationsPageContent() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => router.back()}
-            className="p-2"
-          >
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
-          </Button>
+          <MobileBackButton />
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
               <Bell className="w-6 h-6" />

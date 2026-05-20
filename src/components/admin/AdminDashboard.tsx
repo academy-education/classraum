@@ -25,6 +25,7 @@ import { ChartOverview } from './ChartOverview';
 import { supabase } from '@/lib/supabase';
 import { AdminPageHeader } from './AdminPageHeader';
 import { AdminSkeleton } from './AdminSkeleton';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface DashboardStats {
   totalAcademies: number;
@@ -59,6 +60,7 @@ interface SystemAlert {
 }
 
 export function AdminDashboard() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [resolvingAlertId, setResolvingAlertId] = useState<string | null>(null);
 
@@ -435,9 +437,9 @@ export function AdminDashboard() {
     return (
       <div className="space-y-6">
         <AdminPageHeader
-          kicker="Overview"
-          title="Platform Dashboard"
-          description="A real-time view of academies, users, revenue and system health."
+          kicker={String(t('admin.dashboard.kicker'))}
+          title={String(t('admin.dashboard.title'))}
+          description={String(t('admin.dashboard.subtitle'))}
         />
         <AdminSkeleton.StatsGrid count={4} />
         {/* Two-column charts row matching the real layout */}
@@ -452,7 +454,7 @@ export function AdminDashboard() {
   if (!stats) {
     return (
       <div className="flex items-center justify-center h-64">
-        <p className="text-gray-500">Failed to load dashboard data</p>
+        <p className="text-gray-500">{String(t('admin.dashboard.failedToLoad'))}</p>
       </div>
     );
   }
@@ -460,16 +462,16 @@ export function AdminDashboard() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        kicker="Overview"
-        title="Platform Dashboard"
-        description="A real-time view of academies, users, revenue and system health."
+        kicker={String(t('admin.dashboard.kicker'))}
+        title={String(t('admin.dashboard.title'))}
+        description={String(t('admin.dashboard.subtitle'))}
         actions={
           <div className="hidden sm:flex items-center gap-1.5 px-2.5 h-7 rounded-full bg-emerald-50 ring-1 ring-emerald-200/60 text-[11px] font-semibold text-emerald-700">
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
             </span>
-            Live
+            {String(t('admin.dashboard.live'))}
           </div>
         }
       />
@@ -479,7 +481,7 @@ export function AdminDashboard() {
         <div className="space-y-3">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center">
             <AlertTriangle className="mr-2 h-5 w-5 text-amber-500" />
-            System Alerts
+            {String(t('admin.dashboard.alerts'))}
           </h2>
           <div className="space-y-2">
             {alerts.filter(alert => !alert.resolved).map((alert) => (
@@ -502,7 +504,7 @@ export function AdminDashboard() {
                     disabled={resolvingAlertId === alert.id}
                     className="text-sm font-medium text-[#2885e8] hover:text-[#1f6fc7] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {resolvingAlertId === alert.id ? 'Resolving…' : 'Resolve'}
+                    {resolvingAlertId === alert.id ? String(t('admin.dashboard.resolving')) : String(t('admin.dashboard.resolve'))}
                   </button>
                 </div>
               </div>
@@ -515,7 +517,7 @@ export function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Total Academies</h3>
+            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.totalAcademies'))}</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.totalAcademies.toLocaleString()}
@@ -525,7 +527,7 @@ export function AdminDashboard() {
               <TrendingUp className="w-4 h-4 mr-1" /> : 
               <TrendingDown className="w-4 h-4 mr-1" />
             }
-            <span>{stats.academiesGrowth >= 0 ? '+' : ''}{stats.academiesGrowth}% over 10 days</span>
+            <span>{String(t('admin.dashboard.percentChangeOverDays', { sign: stats.academiesGrowth >= 0 ? '+' : '', percent: stats.academiesGrowth }))}</span>
           </div>
           
           {/* Mini Academy Trend Chart */}
@@ -538,7 +540,7 @@ export function AdminDashboard() {
               />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-gray-400">
-                No data
+                {String(t('admin.dashboard.noData'))}
               </div>
             )}
           </div>
@@ -546,7 +548,7 @@ export function AdminDashboard() {
 
         <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Total Users</h3>
+            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.totalUsers'))}</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.totalUsers.toLocaleString()}
@@ -556,7 +558,7 @@ export function AdminDashboard() {
               <TrendingUp className="w-4 h-4 mr-1" /> : 
               <TrendingDown className="w-4 h-4 mr-1" />
             }
-            <span>{stats.usersGrowth >= 0 ? '+' : ''}{stats.usersGrowth}% over 10 days</span>
+            <span>{String(t('admin.dashboard.percentChangeOverDays', { sign: stats.usersGrowth >= 0 ? '+' : '', percent: stats.usersGrowth }))}</span>
           </div>
           
           {/* Mini Users Trend Chart */}
@@ -569,7 +571,7 @@ export function AdminDashboard() {
               />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-gray-400">
-                No data
+                {String(t('admin.dashboard.noData'))}
               </div>
             )}
           </div>
@@ -577,14 +579,14 @@ export function AdminDashboard() {
 
         <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Monthly Revenue</h3>
+            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.monthlyRevenue'))}</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {formatCurrency(stats.monthlyRevenue)}
           </div>
           <div className="flex items-center text-sm text-emerald-600">
             <TrendingUp className="w-4 h-4 mr-1" />
-            <span>+{stats.revenueGrowth}% from last month</span>
+            <span>{String(t('admin.dashboard.percentChangeFromLastMonth', { sign: '+', percent: stats.revenueGrowth }))}</span>
           </div>
           
           {/* Mini Revenue Trend Chart */}
@@ -598,7 +600,7 @@ export function AdminDashboard() {
               />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-gray-400">
-                No data
+                {String(t('admin.dashboard.noData'))}
               </div>
             )}
           </div>
@@ -606,7 +608,7 @@ export function AdminDashboard() {
 
         <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Active Subscriptions</h3>
+            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.activeSubscriptions'))}</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.activeSubscriptions.toLocaleString()}
@@ -616,7 +618,7 @@ export function AdminDashboard() {
               <TrendingUp className="w-4 h-4 mr-1" /> : 
               <TrendingDown className="w-4 h-4 mr-1" />
             }
-            <span>{stats.subscriptionsGrowth >= 0 ? '+' : ''}{stats.subscriptionsGrowth}% over 10 days</span>
+            <span>{String(t('admin.dashboard.percentChangeOverDays', { sign: stats.subscriptionsGrowth >= 0 ? '+' : '', percent: stats.subscriptionsGrowth }))}</span>
           </div>
           
           {/* Mini Subscriptions Trend Chart */}
@@ -629,7 +631,7 @@ export function AdminDashboard() {
               />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-gray-400">
-                No data
+                {String(t('admin.dashboard.noData'))}
               </div>
             )}
           </div>
@@ -640,20 +642,20 @@ export function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Support Tickets</h3>
+            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.supportTickets'))}</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.supportTickets}
           </div>
           <div className="flex items-center text-sm text-rose-600">
             <AlertTriangle className="w-4 h-4 mr-1" />
-            <span>{stats.urgentTickets} urgent • {stats.normalTickets} normal</span>
+            <span>{String(t('admin.dashboard.ticketBreakdown', { urgent: stats.urgentTickets, normal: stats.normalTickets }))}</span>
           </div>
         </div>
 
         <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">System Health</h3>
+            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.systemHealth'))}</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.systemHealth}%
@@ -662,12 +664,12 @@ export function AdminDashboard() {
             {stats.servicesOperational ? (
               <>
                 <CheckCircle className="w-4 h-4 mr-1" />
-                <span>All services operational</span>
+                <span>{String(t('admin.dashboard.allServicesOperational'))}</span>
               </>
             ) : (
               <>
                 <AlertTriangle className="w-4 h-4 mr-1" />
-                <span>Some services degraded</span>
+                <span>{String(t('admin.dashboard.someServicesDegraded'))}</span>
               </>
             )}
           </div>
@@ -675,7 +677,7 @@ export function AdminDashboard() {
 
         <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">Growth Rate</h3>
+            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.growthRate'))}</h3>
           </div>
           <div className="text-2xl font-bold text-gray-900 mb-2">
             {stats.revenueGrowth >= 0 ? '+' : ''}{stats.revenueGrowth}%
@@ -686,12 +688,12 @@ export function AdminDashboard() {
             {stats.revenueGrowth >= 0 ? (
               <>
                 <TrendingUp className="w-4 h-4 mr-1" />
-                <span>Up vs. last month</span>
+                <span>{String(t('admin.dashboard.upVsLastMonth'))}</span>
               </>
             ) : (
               <>
                 <TrendingDown className="w-4 h-4 mr-1" />
-                <span>Down vs. last month</span>
+                <span>{String(t('admin.dashboard.downVsLastMonth'))}</span>
               </>
             )}
           </div>
@@ -706,7 +708,7 @@ export function AdminDashboard() {
 
       {/* Quick Actions */}
       <div>
-        <h2 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-[0.06em]">Quick actions</h2>
+        <h2 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-[0.06em]">{String(t('admin.dashboard.quickActions'))}</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           {[
             // All four actions navigate to the relevant management page.
@@ -714,10 +716,10 @@ export function AdminDashboard() {
             // open the create modal from there. We don't auto-open the modal
             // on navigation because the existing list view doesn't accept a
             // ?new=1 query param yet. Add one if you want one-click creation.
-            { icon: Building2, label: 'Create Academy', desc: 'Add new academy account', accent: 'blue' as const, href: '/admin/academies' },
-            { icon: Users, label: 'Manage Users', desc: 'User account management', accent: 'emerald' as const, href: '/admin/users' },
-            { icon: CreditCard, label: 'Billing Issues', desc: 'Review subscriptions and payments', accent: 'violet' as const, href: '/admin/subscriptions?status=past_due' },
-            { icon: Headphones, label: 'Support Queue', desc: 'Handle support tickets', accent: 'rose' as const, href: '/admin/support' },
+            { icon: Building2, label: String(t('admin.dashboard.createAcademy')), desc: String(t('admin.dashboard.createAcademyDesc')), accent: 'blue' as const, href: '/admin/academies' },
+            { icon: Users, label: String(t('admin.dashboard.manageUsers')), desc: String(t('admin.dashboard.manageUsersDesc')), accent: 'emerald' as const, href: '/admin/users' },
+            { icon: CreditCard, label: String(t('admin.dashboard.billingIssues')), desc: String(t('admin.dashboard.billingIssuesDesc')), accent: 'violet' as const, href: '/admin/subscriptions?status=past_due' },
+            { icon: Headphones, label: String(t('admin.dashboard.supportQueue')), desc: String(t('admin.dashboard.supportQueueDesc')), accent: 'rose' as const, href: '/admin/support' },
           ].map(action => {
             const accentMap = {
               blue:    { iconBg: 'bg-[#2885e8]/10', iconColor: 'text-[#2885e8]', border: 'group-hover:border-[#2885e8]/40' },

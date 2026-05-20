@@ -515,9 +515,9 @@ export function AcademyManagement() {
             teacher / manager pages so the real title and description are
             visible immediately on navigation. */}
         <AdminPageHeader
-          kicker="Customers"
-          title="Academies"
-          description="Manage academy accounts, subscriptions and onboarding invites."
+          kicker={String(t('admin.academies.kicker'))}
+          title={String(t('admin.academies.title'))}
+          description={String(t('admin.academies.subtitle'))}
         />
 
         {/* Visually-hidden region read aloud by screen readers when the
@@ -579,25 +579,25 @@ export function AcademyManagement() {
         {/* Stats Overview — uses shared DashboardCard for consistent surfaces + accents */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <DashboardCard
-            title="Total Academies"
+            title={String(t('admin.academies.totalAcademies'))}
             value={academies.length.toLocaleString()}
             icon={<Building2 className="h-5 w-5" />}
             accent="blue"
           />
           <DashboardCard
-            title="Active"
+            title={String(t('admin.academies.active'))}
             value={academies.filter(a => a.status === 'active' && !a.isSuspended).length.toLocaleString()}
             icon={<CheckCircle className="h-5 w-5" />}
             accent="emerald"
           />
           <DashboardCard
-            title="Trial"
+            title={String(t('admin.academies.trial'))}
             value={academies.filter(a => a.status === 'trial').length.toLocaleString()}
             icon={<AlertCircle className="h-5 w-5" />}
             accent="amber"
           />
           <DashboardCard
-            title="Suspended"
+            title={String(t('admin.academies.suspended'))}
             value={academies.filter(a => a.isSuspended).length.toLocaleString()}
             icon={<Ban className="h-5 w-5" />}
             accent="rose"
@@ -881,8 +881,8 @@ export function AcademyManagement() {
           {filteredAcademies.length === 0 && (
             <AdminEmptyState
               icon={Building2}
-              title="No academies found"
-              description="Try adjusting your search or filters"
+              title={String(t('admin.academies.noAcademiesFound'))}
+              description={String(t('admin.academies.noAcademiesFoundDesc'))}
             />
           )}
         </div>

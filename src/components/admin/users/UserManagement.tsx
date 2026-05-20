@@ -42,6 +42,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { supabase } from '@/lib/supabase';
+import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 
 interface User {
   id: string;
@@ -57,6 +59,7 @@ interface User {
 }
 
 export function UserManagement() {
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const { announce, LiveRegion } = useLiveAnnounce();
   const { toast } = useDedupedToast();
@@ -323,9 +326,9 @@ export function UserManagement() {
       <div className="space-y-6">
         {/* Header always visible — only the body switches to skeleton */}
         <AdminPageHeader
-          kicker="People"
-          title="Users"
-          description="All accounts across every academy — search, filter and audit."
+          kicker={String(t('admin.users.kicker'))}
+          title={String(t('admin.users.title'))}
+          description={String(t('admin.users.subtitle'))}
         />
         <LiveRegion />
 
@@ -335,30 +338,30 @@ export function UserManagement() {
         {/* Stats Overview — shared DashboardCard for consistent surfaces */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <DashboardCard
-            title="Total Users"
+            title={String(t('admin.users.totalUsers'))}
             value={stats.total.toLocaleString()}
-            subtitle="All registered users"
+            subtitle={String(t('admin.users.totalUsersSubtitle'))}
             icon={<Users className="h-5 w-5" />}
             accent="blue"
           />
           <DashboardCard
-            title="Active Users"
+            title={String(t('admin.users.activeUsers'))}
             value={stats.active.toLocaleString()}
-            subtitle="Currently active"
+            subtitle={String(t('admin.users.activeUsersSubtitle'))}
             icon={<CheckCircle className="h-5 w-5" />}
             accent="emerald"
           />
           <DashboardCard
-            title="Suspended"
+            title={String(t('admin.users.suspendedStat'))}
             value={stats.suspended.toLocaleString()}
-            subtitle="Suspended accounts"
+            subtitle={String(t('admin.users.suspendedSubtitle'))}
             icon={<XCircle className="h-5 w-5" />}
             accent="rose"
           />
           <DashboardCard
-            title="Admin Users"
+            title={String(t('admin.users.adminUsers'))}
             value={stats.admins.toLocaleString()}
-            subtitle="Admin privileges"
+            subtitle={String(t('admin.users.adminUsersSubtitle'))}
             icon={<Shield className="h-5 w-5" />}
             accent="violet"
           />
@@ -372,7 +375,7 @@ export function UserManagement() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
                 <Input
                   type="text"
-                  placeholder="Search users by name, email, or academy..."
+                  placeholder={String(t('admin.users.searchPlaceholder'))}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -383,28 +386,28 @@ export function UserManagement() {
             <div className="flex gap-2">
               <Select value={filterRole} onValueChange={(value) => setFilterRole(value)}>
                 <SelectTrigger className="w-[150px]">
-                  <SelectValue placeholder="All Roles" />
+                  <SelectValue placeholder={String(t('admin.users.allRoles'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Roles</SelectItem>
-                  <SelectItem value="student">Students</SelectItem>
-                  <SelectItem value="parent">Parents</SelectItem>
-                  <SelectItem value="teacher">Teachers</SelectItem>
-                  <SelectItem value="manager">Managers</SelectItem>
-                  <SelectItem value="admin">Admins</SelectItem>
-                  <SelectItem value="super_admin">Super Admins</SelectItem>
+                  <SelectItem value="all">{String(t('admin.users.allRoles'))}</SelectItem>
+                  <SelectItem value="student">{String(t('admin.users.students'))}</SelectItem>
+                  <SelectItem value="parent">{String(t('admin.users.parents'))}</SelectItem>
+                  <SelectItem value="teacher">{String(t('admin.users.teachers'))}</SelectItem>
+                  <SelectItem value="manager">{String(t('admin.users.managers'))}</SelectItem>
+                  <SelectItem value="admin">{String(t('admin.users.admins'))}</SelectItem>
+                  <SelectItem value="super_admin">{String(t('admin.users.superAdmins'))}</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select value={filterStatus} onValueChange={(value) => setFilterStatus(value)}>
                 <SelectTrigger className="w-[140px]">
-                  <SelectValue placeholder="All Status" />
+                  <SelectValue placeholder={String(t('admin.users.allStatuses'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="suspended">Suspended</SelectItem>
-                  <SelectItem value="pending">Pending</SelectItem>
+                  <SelectItem value="all">{String(t('admin.users.allStatuses'))}</SelectItem>
+                  <SelectItem value="active">{String(t('admin.users.active'))}</SelectItem>
+                  <SelectItem value="suspended">{String(t('admin.users.suspended'))}</SelectItem>
+                  <SelectItem value="pending">{String(t('admin.users.pending'))}</SelectItem>
                 </SelectContent>
               </Select>
               
@@ -412,7 +415,7 @@ export function UserManagement() {
                   API. Reintroduce when /api/admin/users supports POST. */}
               <Button variant="outline" onClick={handleExportCSV} disabled={filteredUsers.length === 0}>
                 <Download className="w-4 h-4" />
-                Export
+                {String(t('admin.users.export'))}
               </Button>
             </div>
           </div>
@@ -422,16 +425,16 @@ export function UserManagement() {
         {selectedIds.size > 0 && (
           <div className="bg-[#2885e8]/5 border border-[#2885e8]/20 rounded-xl px-4 py-3 flex items-center justify-between">
             <div className="text-sm font-medium text-[#1f6cc4]">
-              {selectedIds.size} selected
+              {String(t('admin.users.selected', { count: selectedIds.size }))}
             </div>
             <div className="flex items-center gap-2">
               <Button size="sm" variant="outline" onClick={handleExportCSV}>
                 <Download className="w-4 h-4" />
-                Export selected
+                {String(t('admin.users.exportSelected'))}
               </Button>
               <Button size="sm" variant="outline" onClick={handleEmailSelected}>
                 <Mail className="w-4 h-4" />
-                Email selected
+                {String(t('admin.users.emailSelected'))}
               </Button>
               {/* Bulk role change — server enforces that only super_admin
                   can grant elevated roles, so we just show every option and
@@ -453,25 +456,25 @@ export function UserManagement() {
                 }}
               >
                 <SelectTrigger className="h-8 w-[140px] text-xs">
-                  <SelectValue placeholder="Set role…" />
+                  <SelectValue placeholder={String(t('admin.users.setRole'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="student">Student</SelectItem>
-                  <SelectItem value="parent">Parent</SelectItem>
-                  <SelectItem value="teacher">Teacher</SelectItem>
-                  <SelectItem value="manager">Manager</SelectItem>
-                  {callerRole === 'super_admin' && <SelectItem value="admin">Admin</SelectItem>}
-                  {callerRole === 'super_admin' && <SelectItem value="super_admin">Super Admin</SelectItem>}
+                  <SelectItem value="student">{String(t('admin.users.roles.student'))}</SelectItem>
+                  <SelectItem value="parent">{String(t('admin.users.roles.parent'))}</SelectItem>
+                  <SelectItem value="teacher">{String(t('admin.users.roles.teacher'))}</SelectItem>
+                  <SelectItem value="manager">{String(t('admin.users.roles.manager'))}</SelectItem>
+                  {callerRole === 'super_admin' && <SelectItem value="admin">{String(t('admin.users.roles.admin'))}</SelectItem>}
+                  {callerRole === 'super_admin' && <SelectItem value="super_admin">{String(t('admin.users.roles.superAdmin'))}</SelectItem>}
                 </SelectContent>
               </Select>
               <Button
                 size="sm"
                 variant="outline"
                 disabled={bulkBusy}
-                onClick={() => updateUsers(Array.from(selectedIds), { status: 'active' }, 'Reactivated')}
+                onClick={() => updateUsers(Array.from(selectedIds), { status: 'active' }, String(t('admin.users.reactivate')))}
               >
                 <CheckCircle className="w-4 h-4" />
-                Reactivate
+                {String(t('admin.users.reactivate'))}
               </Button>
               <Button
                 size="sm"
@@ -488,10 +491,10 @@ export function UserManagement() {
                 }}
               >
                 <Ban className="w-4 h-4" />
-                Suspend
+                {String(t('admin.users.suspend'))}
               </Button>
               <Button size="sm" variant="ghost" onClick={() => setSelectedIds(new Set())} disabled={bulkBusy}>
-                Clear
+                {String(t('admin.users.clear'))}
               </Button>
             </div>
           </div>
@@ -528,7 +531,7 @@ export function UserManagement() {
                         }
                         setSelectedIds(next);
                       }}
-                      aria-label="Select all visible users"
+                      aria-label={String(t('admin.users.selectAllVisible'))}
                       className="h-4 w-4 rounded border-gray-300 text-[#2885e8] focus:ring-[#2885e8]"
                     />
                   </th>
@@ -586,7 +589,7 @@ export function UserManagement() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {user.lastLoginAt ? user.lastLoginAt.toLocaleDateString() : 'Never'}
+                        {user.lastLoginAt ? user.lastLoginAt.toLocaleDateString(getDateLocale(language)) : String(t('admin.common.never'))}
                       </div>
                       <div className="text-sm text-gray-500">
                         {user.lastLoginAt ? user.lastLoginAt.toLocaleTimeString() : ''}
@@ -603,7 +606,7 @@ export function UserManagement() {
                         <button
                           onClick={() => setShowActions(showActions === user.id ? null : user.id)}
                           className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
-                          aria-label="Row actions"
+                          aria-label={String(t('admin.users.rowActions'))}
                           aria-haspopup="menu"
                           aria-expanded={showActions === user.id}
                         >
@@ -690,7 +693,7 @@ export function UserManagement() {
           {filteredUsers.length === 0 && (
             <AdminEmptyState
               icon={Users}
-              title="No users found"
+              title={String(t('admin.users.noUsersFound'))}
               description="Try adjusting your search or filter criteria."
             />
           )}
