@@ -624,6 +624,7 @@
   <button onclick="show('inside-c')">안쪽 C안 — 비용 절감</button>
   <button onclick="show('outside')">바깥쪽 A안 — 패널 5·6·1</button>
   <button onclick="show('outside-b')">바깥쪽 B안 — 패널 5·6·1</button>
+  <button onclick="show('mobile-v2')">신규 모바일 UI — 스크린샷 v2</button>
   <button class="dl-btn" onclick="downloadPayBtn()">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
@@ -653,6 +654,12 @@
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
     </svg>
     비용 절감 PNG 저장
+  </button>
+  <button class="dl-btn" onclick="downloadMobileUIv2()">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    신규 Mobile UI PNG 저장
   </button>
 </div>
 
@@ -2919,6 +2926,91 @@
   </div>
 </div>
 
+
+<!-- ══════════ NEW MOBILE UI v2 — fresh screenshots ══════════ -->
+<!--
+  Screenshots are loaded from /screenshots/v2/*.png (NOT embedded as
+  base64 like the original mobile panel). To swap in new ones: just
+  drop the new PNG over the file at the same path — no re-encoding.
+
+  The download button "신규 Mobile UI PNG 저장" in the top nav uses
+  downloadMobileUIv2() which captures #mobile-phones-v2 at EXPORT_SCALE
+  (6×) — same print-quality output as the other download flows.
+-->
+<div class="spread" id="spread-mobile-v2">
+  <div class="spread-label">신규 모바일 UI — 스크린샷 v2 (파일 교체 가능)</div>
+  <div class="panels-row">
+    <div class="panel p4" id="panel-mobile-v2">
+      <div class="p4-topband"><span class="t1"></span><span class="t2"></span><span class="t3"></span><span class="t4"></span><span class="t5"></span></div>
+      <span class="eyebrow">Mobile Interface · v2</span>
+      <h2 class="section-title">학생·학부모<br>모바일 앱 (신규)</h2>
+      <div class="accent-bar"></div>
+
+      <!-- 4 phones, 2×2 grid. URLs reference public/screenshots/v2/*.png
+           so you can swap the PNG files without touching this markup. -->
+      <div id="mobile-phones-v2" style="display:grid;grid-template-columns:repeat(2,auto);gap:18px 14px;justify-content:center;margin-bottom:12px;">
+
+        <!-- 1: 홈 -->
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;">
+          <svg width="100" height="209" viewBox="0 0 88 184" style="display:block;width:100px;height:209px;overflow:hidden;" xmlns="http://www.w3.org/2000/svg">
+            <rect width="88" height="184" rx="13" fill="#1e293b"/>
+            <rect x="-1" y="51" width="3" height="9" rx="1.5" fill="#374151"/>
+            <rect x="-1" y="64" width="3" height="9" rx="1.5" fill="#374151"/>
+            <rect x="86" y="60" width="3" height="14" rx="1.5" fill="#374151"/>
+            <defs><clipPath id="clip-v2-1"><rect x="3" y="3" width="82" height="178" rx="11"/></clipPath></defs>
+            <image href="/screenshots/v2/mobile-home.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-1)"/>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+
+        <!-- 2: 과제 -->
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;">
+          <svg width="100" height="209" viewBox="0 0 88 184" style="display:block;width:100px;height:209px;overflow:hidden;" xmlns="http://www.w3.org/2000/svg">
+            <rect width="88" height="184" rx="13" fill="#1e293b"/>
+            <rect x="-1" y="51" width="3" height="9" rx="1.5" fill="#374151"/>
+            <rect x="-1" y="64" width="3" height="9" rx="1.5" fill="#374151"/>
+            <rect x="86" y="60" width="3" height="14" rx="1.5" fill="#374151"/>
+            <defs><clipPath id="clip-v2-2"><rect x="3" y="3" width="82" height="178" rx="11"/></clipPath></defs>
+            <image href="/screenshots/v2/mobile-assignments.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-2)"/>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+
+        <!-- 3: 결제 -->
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;">
+          <svg width="100" height="209" viewBox="0 0 88 184" style="display:block;width:100px;height:209px;overflow:hidden;" xmlns="http://www.w3.org/2000/svg">
+            <rect width="88" height="184" rx="13" fill="#1e293b"/>
+            <rect x="-1" y="51" width="3" height="9" rx="1.5" fill="#374151"/>
+            <rect x="-1" y="64" width="3" height="9" rx="1.5" fill="#374151"/>
+            <rect x="86" y="60" width="3" height="14" rx="1.5" fill="#374151"/>
+            <defs><clipPath id="clip-v2-3"><rect x="3" y="3" width="82" height="178" rx="11"/></clipPath></defs>
+            <image href="/screenshots/v2/mobile-payments.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-3)"/>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+
+        <!-- 4: AI 리포트 -->
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;">
+          <svg width="100" height="209" viewBox="0 0 88 184" style="display:block;width:100px;height:209px;overflow:hidden;" xmlns="http://www.w3.org/2000/svg">
+            <rect width="88" height="184" rx="13" fill="#1e293b"/>
+            <rect x="-1" y="51" width="3" height="9" rx="1.5" fill="#374151"/>
+            <rect x="-1" y="64" width="3" height="9" rx="1.5" fill="#374151"/>
+            <rect x="86" y="60" width="3" height="14" rx="1.5" fill="#374151"/>
+            <defs><clipPath id="clip-v2-4"><rect x="3" y="3" width="82" height="178" rx="11"/></clipPath></defs>
+            <image href="/screenshots/v2/mobile-reports.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-4)"/>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        </div>
+
+      </div>
+
+      <div style="margin-top:8px;font-size:8px;color:rgba(255,255,255,0.5);text-align:center;font-family:'Inter',sans-serif;">
+        스크린샷 파일: <code>/public/screenshots/v2/mobile-*.png</code> — 파일만 교체하면 자동 반영
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // Export resolution for all download buttons.
   // A4 at 300 DPI = 2480 × 3508 px. We target an export scale that gives
@@ -2948,7 +3040,8 @@ function show(id) {
         (id === 'inside-b'   && i === 1) ||
         (id === 'inside-c'   && i === 2) ||
         (id === 'outside'    && i === 3) ||
-        (id === 'outside-b'  && i === 4)
+        (id === 'outside-b'  && i === 4) ||
+        (id === 'mobile-v2'  && i === 5)
       );
     });
   }
@@ -3590,6 +3683,114 @@ function show(id) {
       }
       triggerDownload(finalC.toDataURL('image/png'), 'classraum-mobile-ui.png');
     } catch(e) { alert('Mobile download error: ' + e.message); }
+  }
+
+  // ── /신규 Mobile UI PNG 저장 ── identical pipeline, targets #mobile-phones-v2
+  async function downloadMobileUIv2() {
+    try {
+      await _imgPreload;
+
+      var scale    = EXPORT_SCALE;
+      var colGap   = Math.round(14 * scale);
+      var rowGap   = Math.round(18 * scale);
+      var cellGap  = Math.round(6  * scale);
+      var iconSize = Math.round(20 * scale);
+      var iconR    = Math.round(6  * scale);
+      var labelH   = iconSize;
+
+      var phoneLabels = [
+        { bg: 'rgba(255,255,255,0.13)', title: '홈 대시보드', desc: '오늘 수업·과제 한눈에' },
+        { bg: 'rgba(139,92,246,0.3)',   title: '수업·과제',   desc: '일정·성적 한 곳에서'  },
+        { bg: 'rgba(34,197,94,0.25)',   title: '간편 결제',   desc: '청구서 즉시 납부'     },
+        { bg: 'rgba(251,191,36,0.25)',  title: 'AI 리포트',   desc: 'AI 학습 성취 분석'   },
+      ];
+
+      var host = document.getElementById('mobile-phones-v2');
+      if (!host) { alert('mobile-phones-v2 container not found'); return; }
+      var cells = Array.from(host.children);
+      var cellCanvases = [];
+
+      for (var i = 0; i < Math.min(cells.length, phoneLabels.length); i++) {
+        var allSvgs = cells[i].querySelectorAll('svg');
+        var phoneSvg = allSvgs[0];
+        var iconSvg  = allSvgs[1];
+        if (!phoneSvg) continue;
+
+        var phoneCanvas = await svgToCanvas(phoneSvg, scale);
+        if (!phoneCanvas) continue;
+
+        var pw    = phoneCanvas.width;
+        var ph    = phoneCanvas.height;
+        var cellH = ph + cellGap + labelH;
+
+        var cellC = document.createElement('canvas');
+        cellC.width = pw; cellC.height = cellH;
+        var ctx = cellC.getContext('2d');
+
+        ctx.drawImage(phoneCanvas, 0, 0);
+
+        var lbl = phoneLabels[i];
+        var ly  = ph + cellGap;
+        var lx  = Math.round(2 * scale);
+
+        ctx.save();
+        ctx.fillStyle = lbl.bg;
+        ctx.beginPath();
+        ctx.moveTo(lx + iconR, ly);
+        ctx.lineTo(lx + iconSize - iconR, ly);
+        ctx.quadraticCurveTo(lx + iconSize, ly, lx + iconSize, ly + iconR);
+        ctx.lineTo(lx + iconSize, ly + iconSize - iconR);
+        ctx.quadraticCurveTo(lx + iconSize, ly + iconSize, lx + iconSize - iconR, ly + iconSize);
+        ctx.lineTo(lx + iconR, ly + iconSize);
+        ctx.quadraticCurveTo(lx, ly + iconSize, lx, ly + iconSize - iconR);
+        ctx.lineTo(lx, ly + iconR);
+        ctx.quadraticCurveTo(lx, ly, lx + iconR, ly);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+
+        if (iconSvg) {
+          var iconC = await svgToCanvas(iconSvg, scale);
+          if (iconC) {
+            ctx.drawImage(iconC,
+              lx + (iconSize - iconC.width)  / 2,
+              ly + (iconSize - iconC.height) / 2
+            );
+          }
+        }
+
+        var tx       = lx + iconSize + Math.round(5 * scale);
+        var midY     = ly + iconSize / 2;
+        var titlePx  = Math.round(8   * scale);
+        var descPx   = Math.round(6.5 * scale);
+
+        ctx.fillStyle   = 'white';
+        ctx.font        = '800 ' + titlePx + 'px "Noto Sans KR", sans-serif';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(lbl.title, tx, midY);
+
+        ctx.fillStyle   = 'rgba(255,255,255,0.5)';
+        ctx.font        = descPx + 'px "Noto Sans KR", sans-serif';
+        ctx.textBaseline = 'top';
+        ctx.fillText(lbl.desc, tx, midY + 2);
+
+        cellCanvases.push(cellC);
+      }
+
+      if (!cellCanvases.length) { alert('SVG rendering failed — check browser console'); return; }
+
+      var gridW = cellCanvases[0].width;
+      var gridH = cellCanvases[0].height;
+      var finalC = document.createElement('canvas');
+      finalC.width  = gridW * 2 + colGap;
+      finalC.height = gridH * 2 + rowGap;
+      var gctx = finalC.getContext('2d');
+      var pos = [[0,0],[gridW+colGap,0],[0,gridH+rowGap],[gridW+colGap,gridH+rowGap]];
+      for (var i = 0; i < cellCanvases.length; i++) {
+        if (cellCanvases[i]) gctx.drawImage(cellCanvases[i], pos[i][0], pos[i][1]);
+      }
+      triggerDownload(finalC.toDataURL('image/png'), 'classraum-mobile-ui-v2.png');
+    } catch(e) { alert('Mobile v2 download error: ' + e.message); }
   }
 </script>
 </body>
