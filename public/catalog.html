@@ -3391,9 +3391,35 @@ function show(id) {
   async function downloadImpactRow() { await captureAndDownload('impact-row-card', 'classraum-impact.png'); }
   async function downloadWhyList() { await captureAndDownload('why-list-card', 'classraum-why.png'); }
   async function downloadCostSavings() { await captureAndDownload('cost-savings-card', 'classraum-cost-savings.png'); }
-  // Images are statically embedded as data URLs in SVG href attributes.
-  // data: URLs are always same-origin for canvas — toDataURL() never throws.
-  var _imgPreload = Promise.resolve();
+  // V1 images are statically embedded as data URLs in SVG href attributes.
+  // V2 images live at /screenshots/v2/*.png (URL refs) so files can be swapped
+  // without editing markup. We fetch + inline them as data URLs at load so:
+  //   1) inline SVG <image> renders in all browsers (Safari is picky about
+  //      cross-fetch + xlink:href in SVG 2)
+  //   2) svgToCanvas → Image→blob pipeline can rasterise without external
+  //      refs being dropped (SVG-as-image refuses external resource loads)
+  var _imgPreload = (async function() {
+    var imgs = Array.from(document.querySelectorAll(
+      'image[href^="/screenshots/v2/"], image[*|href^="/screenshots/v2/"]'
+    ));
+    await Promise.all(imgs.map(async function(el) {
+      var url = el.getAttribute('href') || el.getAttribute('xlink:href');
+      if (!url || url.startsWith('data:')) return;
+      try {
+        var resp = await fetch(url);
+        if (!resp.ok) return;
+        var blob = await resp.blob();
+        var dataUrl = await new Promise(function(resolve, reject) {
+          var r = new FileReader();
+          r.onload  = function() { resolve(r.result); };
+          r.onerror = reject;
+          r.readAsDataURL(blob);
+        });
+        el.setAttribute('href', dataUrl);
+        el.setAttribute('xlink:href', dataUrl);
+      } catch(e) { /* leave URL ref as-is */ }
+    }));
+  })();
 
   // Load an image to a canvas-safe Image element.
   // data: URLs are same-origin and never taint. For regular URLs use fetch→blob.
