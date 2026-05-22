@@ -2958,7 +2958,7 @@
             <rect x="-1" y="51" width="3" height="9" rx="1.5" fill="#374151"/>
             <rect x="-1" y="64" width="3" height="9" rx="1.5" fill="#374151"/>
             <rect x="86" y="60" width="3" height="14" rx="1.5" fill="#374151"/>
-            <image href="/screenshots/v2/mobile-home.png" xlink:href="/screenshots/v2/mobile-home.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-1)"/>
+            <image href="screenshots/v2/mobile-home.png" xlink:href="screenshots/v2/mobile-home.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-1)"/>
           </svg>
           <div style="display:flex;align-items:center;gap:5px;padding:0 2px;">
             <div style="width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,0.13);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
@@ -2979,7 +2979,7 @@
             <rect x="-1" y="51" width="3" height="9" rx="1.5" fill="#374151"/>
             <rect x="-1" y="64" width="3" height="9" rx="1.5" fill="#374151"/>
             <rect x="86" y="60" width="3" height="14" rx="1.5" fill="#374151"/>
-            <image href="/screenshots/v2/mobile-assignments.png" xlink:href="/screenshots/v2/mobile-assignments.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-2)"/>
+            <image href="screenshots/v2/mobile-assignments.png" xlink:href="screenshots/v2/mobile-assignments.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-2)"/>
           </svg>
           <div style="display:flex;align-items:center;gap:5px;padding:0 2px;">
             <div style="width:20px;height:20px;border-radius:6px;background:rgba(139,92,246,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
@@ -3000,7 +3000,7 @@
             <rect x="-1" y="51" width="3" height="9" rx="1.5" fill="#374151"/>
             <rect x="-1" y="64" width="3" height="9" rx="1.5" fill="#374151"/>
             <rect x="86" y="60" width="3" height="14" rx="1.5" fill="#374151"/>
-            <image href="/screenshots/v2/mobile-payments.png" xlink:href="/screenshots/v2/mobile-payments.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-3)"/>
+            <image href="screenshots/v2/mobile-payments.png" xlink:href="screenshots/v2/mobile-payments.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-3)"/>
           </svg>
           <div style="display:flex;align-items:center;gap:5px;padding:0 2px;">
             <div style="width:20px;height:20px;border-radius:6px;background:rgba(34,197,94,0.25);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
@@ -3021,7 +3021,7 @@
             <rect x="-1" y="51" width="3" height="9" rx="1.5" fill="#374151"/>
             <rect x="-1" y="64" width="3" height="9" rx="1.5" fill="#374151"/>
             <rect x="86" y="60" width="3" height="14" rx="1.5" fill="#374151"/>
-            <image href="/screenshots/v2/mobile-reports.png" xlink:href="/screenshots/v2/mobile-reports.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-4)"/>
+            <image href="screenshots/v2/mobile-reports.png" xlink:href="screenshots/v2/mobile-reports.png" x="3" y="3" width="82" height="178" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-v2-4)"/>
           </svg>
           <div style="display:flex;align-items:center;gap:5px;padding:0 2px;">
             <div style="width:20px;height:20px;border-radius:6px;background:rgba(251,191,36,0.25);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
@@ -3400,7 +3400,7 @@ function show(id) {
   //      refs being dropped (SVG-as-image refuses external resource loads)
   var _imgPreload = (async function() {
     var imgs = Array.from(document.querySelectorAll(
-      'image[href^="/screenshots/v2/"], image[*|href^="/screenshots/v2/"]'
+      'image[href*="screenshots/v2/"], image[*|href*="screenshots/v2/"]'
     ));
     await Promise.all(imgs.map(async function(el) {
       var url = el.getAttribute('href') || el.getAttribute('xlink:href');
