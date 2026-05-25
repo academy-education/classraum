@@ -14,6 +14,25 @@ interface Contact {
   category: string
 }
 
+/**
+ * Shape of a joined `users(id, name, email, role)` row.
+ * Supabase's PostgREST nested join can return either a single object or
+ * (less commonly here, since these are 1:1 joins) a single-element array.
+ * Both forms are tolerated.
+ */
+interface JoinedUser {
+  id: string
+  name: string
+  email: string
+  role: string
+}
+
+/** Extract the joined-user object regardless of object-vs-array form. */
+function getJoinedUser(joined: JoinedUser | JoinedUser[] | null | undefined): JoinedUser | null {
+  if (!joined) return null
+  return Array.isArray(joined) ? (joined[0] ?? null) : joined
+}
+
 // GET - Get list of users that the current user can message
 export async function GET(request: NextRequest) {
   try {
@@ -68,8 +87,8 @@ export async function GET(request: NextRequest) {
           .eq('active', true)
 
         teachers?.forEach(t => {
-          const u = t.users as any
-          addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'teachers' })
+          const u = getJoinedUser(t.users as JoinedUser | JoinedUser[] | null)
+          if (u) addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'teachers' })
         })
 
         // Get all students
@@ -80,8 +99,8 @@ export async function GET(request: NextRequest) {
           .eq('active', true)
 
         students?.forEach(s => {
-          const u = s.users as any
-          addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'students' })
+          const u = getJoinedUser(s.users as JoinedUser | JoinedUser[] | null)
+          if (u) addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'students' })
         })
 
         // Get all parents
@@ -92,8 +111,8 @@ export async function GET(request: NextRequest) {
           .eq('active', true)
 
         parents?.forEach(p => {
-          const u = p.users as any
-          addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'parents' })
+          const u = getJoinedUser(p.users as JoinedUser | JoinedUser[] | null)
+          if (u) addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'parents' })
         })
       }
     } else if (userData.role === 'teacher') {
@@ -131,8 +150,8 @@ export async function GET(request: NextRequest) {
               .in('user_id', studentUserIds)
 
             studentUsers?.forEach(s => {
-              const u = s.users as any
-              addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'students' })
+              const u = getJoinedUser(s.users as JoinedUser | JoinedUser[] | null)
+              if (u) addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'students' })
             })
 
             // Get parents of these students via family_members
@@ -152,8 +171,8 @@ export async function GET(request: NextRequest) {
                 .eq('role', 'parent')
 
               parentMembers?.forEach(pm => {
-                const u = pm.users as any
-                addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'parents' })
+                const u = getJoinedUser(pm.users as JoinedUser | JoinedUser[] | null)
+                if (u) addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'parents' })
               })
             }
           }
@@ -184,10 +203,8 @@ export async function GET(request: NextRequest) {
             .in('id', classroomIds)
 
           classroomData?.forEach(c => {
-            const u = c.users as any
-            if (u) {
-              addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'teachers' })
-            }
+            const u = getJoinedUser(c.users as JoinedUser | JoinedUser[] | null)
+            if (u) addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'teachers' })
           })
         }
 
@@ -207,8 +224,8 @@ export async function GET(request: NextRequest) {
             .eq('role', 'parent')
 
           familyParents?.forEach(fp => {
-            const u = fp.users as any
-            addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'family' })
+            const u = getJoinedUser(fp.users as JoinedUser | JoinedUser[] | null)
+            if (u) addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'family' })
           })
         }
       }
@@ -232,9 +249,11 @@ export async function GET(request: NextRequest) {
 
         const childUserIds: string[] = []
         children?.forEach(c => {
-          const u = c.users as any
-          childUserIds.push(u.id)
-          addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'family' })
+          const u = getJoinedUser(c.users as JoinedUser | JoinedUser[] | null)
+          if (u) {
+            childUserIds.push(u.id)
+            addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'family' })
+          }
         })
 
         if (childUserIds.length > 0) {
@@ -254,10 +273,8 @@ export async function GET(request: NextRequest) {
               .in('id', classroomIds)
 
             classroomData?.forEach(c => {
-              const u = c.users as any
-              if (u) {
-                addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'teachers' })
-              }
+              const u = getJoinedUser(c.users as JoinedUser | JoinedUser[] | null)
+              if (u) addContact({ id: u.id, name: u.name, email: u.email, role: u.role, category: 'teachers' })
             })
           }
         }
