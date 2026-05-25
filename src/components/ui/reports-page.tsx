@@ -1604,36 +1604,17 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       // Re-enable effects after save is complete
         
       // Show success feedback to user
-      // You can replace this with a toast notification system
-      const successMessage = document.createElement('div')
-      successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-emerald-700 px-4 py-3 rounded z-50'
-      successMessage.textContent = String(t('reports.feedbackSavedSuccessfully'))
-      document.body.appendChild(successMessage)
-      
-      setTimeout(() => {
-        document.body.removeChild(successMessage)
-      }, 3000)
-      
+      showSuccessToast(String(t('reports.feedbackSavedSuccessfully')))
+
     } catch (error) {
       console.error('Error saving feedback:', error)
-      
-      // Re-enable effects even on error
-        
+
       // Revert states on error
       setIsEditingFeedback(true)
       setFeedbackHasChanges(true)
-      
+
       // Show error message to user
-      const errorMessage = document.createElement('div')
-      errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-rose-700 px-4 py-3 rounded z-50'
-      errorMessage.textContent = String(t('reports.feedbackSaveError'))
-      document.body.appendChild(errorMessage)
-      
-      setTimeout(() => {
-        if (document.body.contains(errorMessage)) {
-          document.body.removeChild(errorMessage)
-        }
-      }, 3000)
+      showErrorToast(String(t('reports.feedbackSaveError')))
     }
   }, [editableFeedback, t, currentReportId, academyId])
 
@@ -1932,15 +1913,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           if (saveError) {
             console.error('Failed to save AI feedback to database:', saveError)
             // Show error to user but don't break the flow
-            const errorMessage = document.createElement('div')
-            errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-rose-700 px-4 py-3 rounded z-50'
-            errorMessage.textContent = 'AI feedback generated but failed to save to database'
-            document.body.appendChild(errorMessage)
-            setTimeout(() => {
-              if (document.body.contains(errorMessage)) {
-                document.body.removeChild(errorMessage)
-              }
-            }, 5000)
+            showErrorToast('AI feedback generated but failed to save to database')
           } else {
             // Invalidate cache to ensure fresh data across all pages
             invalidateReportsCache(academyId)
@@ -1951,20 +1924,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       }
       
       // Show success message
-      const successMessage = document.createElement('div')
-      successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-emerald-700 px-4 py-3 rounded z-50'
-      successMessage.textContent = String(t('reports.aiGeneratedSuccessfully'))
-      document.body.appendChild(successMessage)
-      
-      setTimeout(() => {
-        if (document.body.contains(successMessage)) {
-          document.body.removeChild(successMessage)
-        }
-      }, 3000)
-      
+      showSuccessToast(String(t('reports.aiGeneratedSuccessfully')))
+
     } catch (error) {
       console.error('Error generating AI feedback:', error)
-      
+
       // Handle different error types
       let errorText = t('reports.aiGenerationError')
       if (error instanceof Error) {
@@ -1974,18 +1938,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           errorText = error.message
         }
       }
-      
+
       // Show error message
-      const errorMessage = document.createElement('div')
-      errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-rose-700 px-4 py-3 rounded z-50 max-w-md'
-      errorMessage.textContent = String(errorText)
-      document.body.appendChild(errorMessage)
-      
-      setTimeout(() => {
-        if (document.body.contains(errorMessage)) {
-          document.body.removeChild(errorMessage)
-        }
-      }, 5000)
+      showErrorToast(String(errorText))
     } finally {
       setIsGeneratingAi(false)
     }
@@ -4730,27 +4685,11 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                         ))
                                         
                                         // Show success message
-                                        const successMessage = document.createElement('div')
-                                        successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-emerald-700 px-4 py-3 rounded z-50'
-                                        successMessage.textContent = String(t('reports.feedbackSavedSuccessfully'))
-                                        document.body.appendChild(successMessage)
-                                        setTimeout(() => {
-                                          if (document.body.contains(successMessage)) {
-                                            document.body.removeChild(successMessage)
-                                          }
-                                        }, 3000)
+                                        showSuccessToast(String(t('reports.feedbackSavedSuccessfully')))
                                       } catch (error) {
                                         console.error('Error saving feedback:', error)
                                         // Show error message
-                                        const errorMessage = document.createElement('div')
-                                        errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-rose-700 px-4 py-3 rounded z-50'
-                                        errorMessage.textContent = String(t('reports.feedbackSaveError'))
-                                        document.body.appendChild(errorMessage)
-                                        setTimeout(() => {
-                                          if (document.body.contains(errorMessage)) {
-                                            document.body.removeChild(errorMessage)
-                                          }
-                                        }, 3000)
+                                        showErrorToast(String(t('reports.feedbackSaveError')))
                                       }
                                     }}
                                     className="bg-primary hover:bg-primary/90 text-white"

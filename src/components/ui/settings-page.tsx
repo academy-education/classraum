@@ -526,11 +526,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     if (!isValid) {
       // Show toast error if phone validation failed
       if (validationErrors.phone) {
-        const errorToast = document.createElement('div')
-        errorToast.className = 'fixed top-4 right-4 bg-red-100 border border-red-300 text-rose-800 px-4 py-2 rounded-lg shadow-lg z-50'
-        errorToast.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>${t('validation.phoneAlreadyExistsToast')}</div>`
-        document.body.appendChild(errorToast)
-        setTimeout(() => errorToast.remove(), 3000)
+        toast({ title: String(t('validation.phoneAlreadyExistsToast')), variant: 'destructive' })
       }
       return
     }
@@ -595,11 +591,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       setValidationErrors({})
 
       // Show success message
-      const successMsg = document.createElement('div')
-      successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg z-50'
-      successMsg.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>${t('success.saved')}</div>`
-      document.body.appendChild(successMsg)
-      setTimeout(() => successMsg.remove(), 3000)
+      toast({ title: String(t('success.saved')), variant: 'success' })
 
     } catch (error) {
       console.error('Error saving user data:', error)
@@ -630,12 +622,8 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       setPreferences(data)
       
       // Show success message briefly
-      const successMsg = document.createElement('div')
-      successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg z-50'
-      successMsg.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>${t('settings.settingsSaved')}</div>`
-      document.body.appendChild(successMsg)
-      setTimeout(() => successMsg.remove(), 3000)
-      
+      toast({ title: String(t('settings.settingsSaved')), variant: 'success' })
+
     } catch (error) {
       console.error('Error updating preferences:', error)
       toast({ title: t('settings.errorSavingSettings'), variant: 'destructive' })
@@ -728,11 +716,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       window.dispatchEvent(new CustomEvent('academyLogoUpdated', { detail: { logoUrl: publicUrl } }))
 
       // Show success message
-      const successMsg = document.createElement('div')
-      successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg z-50'
-      successMsg.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>${t('settings.branding.logoUploaded')}</div>`
-      document.body.appendChild(successMsg)
-      setTimeout(() => successMsg.remove(), 3000)
+      toast({ title: String(t('settings.branding.logoUploaded')), variant: 'success' })
 
     } catch (error) {
       console.error('Error uploading logo:', error)
@@ -771,11 +755,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       window.dispatchEvent(new CustomEvent('academyLogoUpdated', { detail: { logoUrl: null } }))
 
       // Show success message
-      const successMsg = document.createElement('div')
-      successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg z-50'
-      successMsg.innerHTML = `<div class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>${t('settings.branding.logoRemoved')}</div>`
-      document.body.appendChild(successMsg)
-      setTimeout(() => successMsg.remove(), 3000)
+      toast({ title: String(t('settings.branding.logoRemoved')), variant: 'success' })
 
     } catch (error) {
       console.error('Error removing logo:', error)
