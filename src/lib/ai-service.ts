@@ -662,12 +662,14 @@ export function formatIndividualGrades(grades: IndividualGrade[] | undefined, la
 function translateStatus(status: string, language: FeedbackLanguage): string {
   if (language === 'english') return status
   
+  // Keys must match the DB CHECK constraints — see src/types/db-enums.ts.
+  // 'graded' kept as legacy alias (not in DB enum but historical reports use it).
   const translations: Record<string, string> = {
     'submitted': '제출됨',
     'graded': '채점됨',
     'pending': '대기중',
     'overdue': '지연',
-    'not_submitted': '미제출',
+    'not submitted': '미제출',
     'excused': '면제'
   }
   

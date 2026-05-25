@@ -719,7 +719,7 @@ function MobileAssignmentsPageContent() {
         
         // Determine status
         let status: 'pending' | 'completed' | 'overdue' = 'pending'
-        if (userGrade && userGrade.status && userGrade.status !== 'not_submitted') {
+        if (userGrade && userGrade.status && userGrade.status !== "not submitted") {
           status = 'completed'
         } else if (assignment.due_date) {
           const due = new Date(assignment.due_date)
@@ -1710,7 +1710,6 @@ function MobileAssignmentsPageContent() {
       case 'submitted':
         return <Badge className="bg-primary/10 text-primary">{t('mobile.assignments.grades.status.submitted')}</Badge>
       case 'not submitted':
-      case 'not_submitted':
         return <Badge className="bg-amber-50 text-amber-700">{t('mobile.assignments.grades.status.notSubmitted')}</Badge>
       case 'pending':
         return <Badge className="bg-amber-50 text-amber-700">{t('mobile.assignments.grades.status.pending')}</Badge>
@@ -1763,7 +1762,7 @@ function MobileAssignmentsPageContent() {
     const gradeableGrades = allGrades.map(grade => {
       if (typeof grade.grade === 'number') {
         return grade // Keep as is
-      } else if (grade.status === 'not submitted' || grade.status === 'not_submitted') {
+      } else if (grade.status === "not submitted") {
         return { ...grade, grade: 0 } // Convert not submitted to 0
       } else {
         return null // Exclude pending/submitted but not graded
@@ -2112,7 +2111,7 @@ function MobileAssignmentsPageContent() {
                   const numericGrades = scopedGrades
                     .map(g => {
                       if (typeof g.grade === 'number') return g.grade
-                      if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                      if (g.status === "not submitted") return 0
                       return null
                     })
                     .filter((v): v is number => v !== null)
@@ -2610,7 +2609,7 @@ function MobileAssignmentsPageContent() {
                   const numericGrades = scopedGrades
                     .map(g => {
                       if (typeof g.grade === 'number') return g.grade
-                      if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                      if (g.status === "not submitted") return 0
                       return null
                     })
                     .filter((v): v is number => v !== null)
@@ -2746,7 +2745,7 @@ function MobileAssignmentsPageContent() {
                   if (filteredGrades.length === 0) return 'N/A' as const
                   const arr = filteredGrades.map(g => {
                     if (typeof g.grade === 'number') return g.grade
-                    if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                    if (g.status === "not submitted") return 0
                     return null
                   }).filter((v): v is number => v !== null)
                   return arr.length > 0
@@ -2759,7 +2758,7 @@ function MobileAssignmentsPageContent() {
                     .filter(g => g.assignment_type === 'homework')
                     .map(g => {
                       if (typeof g.grade === 'number') return g.grade
-                      if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                      if (g.status === "not submitted") return 0
                       return null
                     })
                     .filter((v): v is number => v !== null)
@@ -2773,7 +2772,7 @@ function MobileAssignmentsPageContent() {
                     .filter(g => g.assignment_type === 'quiz' || g.assignment_type === 'test')
                     .map(g => {
                       if (typeof g.grade === 'number') return g.grade
-                      if (g.status === 'not submitted' || g.status === 'not_submitted') return 0
+                      if (g.status === "not submitted") return 0
                       return null
                     })
                     .filter((v): v is number => v !== null)
@@ -3124,9 +3123,9 @@ function MobileAssignmentsPageContent() {
                   <div className="flex items-center gap-2 ml-3 flex-shrink-0">
                     {getStatusBadgeGrade(grade.status)}
                     <div className={`text-lg font-bold ${getGradeColor(
-                      (grade.status === 'not submitted' || grade.status === 'not_submitted') ? 0 : grade.grade
+                      (grade.status === "not submitted") ? 0 : grade.grade
                     )}`}>
-                      {(grade.status === 'not submitted' || grade.status === 'not_submitted')
+                      {(grade.status === "not submitted")
                         ? '0%'
                         : grade.grade === '--'
                         ? '--'

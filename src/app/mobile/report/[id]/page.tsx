@@ -113,7 +113,7 @@ export default function MobileReportDetailsPage() {
     const allAssignments = typeAssignments
       .map(a => ({
         ...a,
-        score: a.score !== null ? a.score : (a.status === 'not_submitted' || a.status === 'not submitted' ? 0 : null),
+        score: a.score !== null ? a.score : (a.status === 'not submitted' ? 0 : null),
         graded_date: a.submitted_date || a.updated_at
       }))
       .filter((a: any) =>a.score !== null && a.graded_date) // Only assignments with scores or 0 for not submitted
@@ -370,7 +370,7 @@ export default function MobileReportDetailsPage() {
             submitted: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'quiz' && a.status === 'submitted').length,
             pending: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'quiz' && a.status === 'pending').length,
             overdue: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'quiz' && a.status === 'overdue').length,
-            'not submitted': filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'quiz' && (a.status === 'not_submitted' || a.status === 'not submitted')).length,
+            'not submitted': filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'quiz' && a.status === "not submitted").length,
             excused: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'quiz' && a.status === 'excused').length
           }
         },
@@ -395,7 +395,7 @@ export default function MobileReportDetailsPage() {
             submitted: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'homework' && a.status === 'submitted').length,
             pending: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'homework' && a.status === 'pending').length,
             overdue: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'homework' && a.status === 'overdue').length,
-            'not submitted': filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'homework' && (a.status === 'not_submitted' || a.status === 'not submitted')).length,
+            'not submitted': filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'homework' && a.status === "not submitted").length,
             excused: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'homework' && a.status === 'excused').length
           }
         },
@@ -420,7 +420,7 @@ export default function MobileReportDetailsPage() {
             submitted: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'test' && a.status === 'submitted').length,
             pending: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'test' && a.status === 'pending').length,
             overdue: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'test' && a.status === 'overdue').length,
-            'not submitted': filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'test' && (a.status === 'not_submitted' || a.status === 'not submitted')).length,
+            'not submitted': filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'test' && a.status === "not submitted").length,
             excused: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'test' && a.status === 'excused').length
           }
         },
@@ -445,7 +445,7 @@ export default function MobileReportDetailsPage() {
             submitted: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'project' && a.status === 'submitted').length,
             pending: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'project' && a.status === 'pending').length,
             overdue: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'project' && a.status === 'overdue').length,
-            'not submitted': filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'project' && (a.status === 'not_submitted' || a.status === 'not submitted')).length,
+            'not submitted': filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'project' && a.status === "not submitted").length,
             excused: filteredAssignments.filter((a: any) =>(a.assignments as any)?.assignment_type === 'project' && a.status === 'excused').length
           }
         }
@@ -466,7 +466,7 @@ export default function MobileReportDetailsPage() {
           submitted: filteredAssignments.filter((a: any) =>a.status === 'submitted').length,
           pending: filteredAssignments.filter((a: any) =>a.status === 'pending').length,
           overdue: filteredAssignments.filter((a: any) =>a.status === 'overdue').length,
-          'not submitted': filteredAssignments.filter((a: any) =>(a.status === 'not_submitted' || a.status === 'not submitted')).length,
+          'not submitted': filteredAssignments.filter((a: any) =>a.status === "not submitted").length,
           excused: filteredAssignments.filter((a: any) =>a.status === 'excused').length
         }
       }
@@ -500,7 +500,7 @@ export default function MobileReportDetailsPage() {
               submitted: categoryAssignments.filter((a: any) =>a.status === 'submitted').length,
               pending: categoryAssignments.filter((a: any) =>a.status === 'pending').length,
               overdue: categoryAssignments.filter((a: any) =>a.status === 'overdue').length,
-              'not submitted': categoryAssignments.filter((a: any) =>(a.status === 'not_submitted' || a.status === 'not submitted')).length,
+              'not submitted': categoryAssignments.filter((a: any) =>a.status === "not submitted").length,
               excused: categoryAssignments.filter((a: any) =>a.status === 'excused').length
             },
             chartData

@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useStableCallback } from './useStableCallback'
+import { type AssignmentGradeStatus, isAssignmentGradeStatus } from '@/types/db-enums'
 
 export interface Assignment {
   id: string
@@ -49,7 +50,7 @@ export interface SubmissionGrade {
   submitted_at?: string
   grade?: number
   feedback?: string
-  status: 'not_submitted' | 'submitted' | 'graded'
+  status: AssignmentGradeStatus
   submission_content?: string
 }
 
@@ -251,7 +252,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
         submitted_at: item.submitted_date,
         grade: item.score,
         feedback: item.feedback,
-        status: (item.status || 'not_submitted') as 'submitted' | 'graded' | 'not_submitted',
+        status: (isAssignmentGradeStatus(item.status) ? item.status : 'not submitted'),
         submission_content: undefined // assignment_grades table doesn't have submission_content
       })) as SubmissionGrade[]
     } catch (error) {

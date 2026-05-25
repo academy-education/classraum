@@ -770,7 +770,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     const allAssignments = typeAssignments
       .map(a => ({
         ...a,
-        score: a.score !== null ? a.score : (a.status === 'not_submitted' ? 0 : null),
+        score: a.score !== null ? a.score : (a.status === 'not submitted' ? 0 : null),
         graded_date: a.submitted_date || a.updated_at
       }))
       .filter(a => a.score !== null && a.graded_date) // Only assignments with scores or 0 for not submitted

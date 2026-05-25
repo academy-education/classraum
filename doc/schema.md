@@ -5,13 +5,13 @@ assignment_categories (teachers, parents, students with same academy_id can view
 id (uuid), name (text), academy_id (uuid) 
 
 assignment_grades (students with same student_id has view access, parents in the same family of the students has view access, teachers of the classrooms of the session of the assignment has full access): 
-id (uuid), assignment_id (uuid), student_id (uuid), score (numeric), feedback (text), status (enum: pending, submitted, graded, not submitted, excused, overdue) 
+id (uuid), assignment_id (uuid), student_id (uuid), score (numeric), feedback (text), status (enum: pending, submitted, not submitted, excused, overdue — verbatim DB CHECK; note 'not submitted' has a space, not an underscore), submitted_date (timestamptz), student_record_id (uuid) 
 
 assignments (students in the classrooms of the sessions of the assignment has view access, parents in the same family of the students has view access, teachers of the classrooms of the session of the assignment has full access, managers of the academies of the classrooms of the session of the assignment has full access): 
 id (uuid), assignment_type (enum: quiz, homework, test, project), title (text), description (text), due date (date), classroom_session_id (uuid), assignment_categories_id (uuid), deleted_at (timestamp) 
 
 attendance (students in the classrooms of the sessions of the attendance has view access, parents in the same family of the students has view access, teachers of the classrooms of the session of the assignment has full access, managers in the academies of the classrooms of the session of the attendance has full access): 
-id (uuid), classroom_session_id (uuid), student_id (uuid), status (enum: present, absent, excused, late, other), note (text) 
+id (uuid), classroom_session_id (uuid), student_id (uuid), status (enum: pending, present, absent, excused, late — verbatim DB CHECK), note (text) 
 
 classroom_schedules (students in the classrooms of the schedule has view access, parents in the same family of the students has view access, teachers of the classrooms of the schedule has full access, managers in the academies of the classroom of the schedule has full access): 
 id (uuid), classroom_id (uuid), day (enum: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday), start_time (text), end_time (text) 

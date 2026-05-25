@@ -101,10 +101,14 @@ export function SubmissionsModal({
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'submitted':
-        return <Clock className="w-4 h-4 text-yellow-600" />
-      case 'graded':
         return <CheckCircle className="w-4 h-4 text-green-600" />
-      case 'not_submitted':
+      case 'pending':
+        return <Clock className="w-4 h-4 text-yellow-600" />
+      case 'excused':
+        return <CheckCircle className="w-4 h-4 text-blue-600" />
+      case 'overdue':
+        return <XCircle className="w-4 h-4 text-amber-600" />
+      case 'not submitted':
         return <XCircle className="w-4 h-4 text-rose-600" />
       default:
         return <Clock className="w-4 h-4 text-gray-600" />
@@ -115,9 +119,13 @@ export function SubmissionsModal({
     switch (status) {
       case 'submitted':
         return t('assignments.status.submitted')
-      case 'graded':
-        return t('assignments.status.graded')
-      case 'not_submitted':
+      case 'pending':
+        return t('assignments.status.pending')
+      case 'excused':
+        return t('assignments.status.excused')
+      case 'overdue':
+        return t('assignments.status.overdue')
+      case 'not submitted':
         return t('assignments.status.notSubmitted')
       default:
         return t('assignments.status.unknown')
@@ -173,7 +181,7 @@ export function SubmissionsModal({
               <div className="flex items-center justify-between">
                 <div className="text-sm text-gray-600">
                   {t('assignments.totalSubmissions', { 
-                    submitted: submissions.filter(s => s.status !== 'not_submitted').length,
+                    submitted: submissions.filter(s => s.status !== 'not submitted').length,
                     total: submissions.length 
                   })}
                 </div>
