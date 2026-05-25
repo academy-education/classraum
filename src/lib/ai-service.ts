@@ -951,35 +951,68 @@ export async function generateStreamingAIFeedback(
   })
 }
 
-// Function to extract performance data from report data
+// Function to extract performance data from report data.
+//
+// `ReportData` mirrors the aggregate shape produced by both report pages
+// (src/app/mobile/report/[id]/page.tsx and src/components/ui/reports-page.tsx).
+// If those pages change what they put on the reportData object, update this
+// interface in the same commit — extractPerformanceData depends on it.
 interface ReportData {
-  student_name?: string;
-  student_grade?: string;
-  student_school?: string;
-  subjects?: Record<string, unknown>;
-  classrooms?: Record<string, unknown>;
-  categories?: Record<string, unknown>;
-  assignmentsByCategory?: Record<string, {
-    total?: number;
-    completed?: number;
-    completionRate?: number;
-    averageGrade?: number;
-  }>;
-  categoryNames?: Record<string, string>;
+  student_name?: string
+  student_grade?: string
+  student_school?: string
+
+  // Top-level metric blocks
+  grades?: { total: number; average: number }
+  assignments?: {
+    total: number
+    completed: number
+    completionRate: number
+    statuses: Record<string, number>
+  }
+  attendance?: {
+    total: number
+    present: number
+    attendanceRate: number
+    statuses: Record<string, number>
+  }
+
+  // Per-type / per-category aggregates
+  assignmentsByType?: {
+    quiz?: AssignmentTypeMetrics
+    homework?: AssignmentTypeMetrics
+    test?: AssignmentTypeMetrics
+    project?: AssignmentTypeMetrics
+  }
+  assignmentsByCategory?: Record<string, CategoryMetrics & {
+    statuses?: Record<string, number>
+  }>
   classroomPercentiles?: Record<string, {
-    name?: string;
-    subject?: string;
-    percentile?: number;
-    classAverage?: number;
-  }>;
-  [key: string]: unknown;
+    name?: string
+    subject?: string
+    percentile?: number
+    classAverage?: number
+  }>
+  categoryNames?: Record<string, string>
+
+  // Enhanced AI context
+  subjects?: Array<{ id: string; name: string }>
+  classrooms?: Array<{ id: string; name: string; subject: string }>
+  categories?: Array<{ id: string; name: string }>
+  dataContext?: DataContext
+  individualGrades?: IndividualGrade[]
+  aiStats?: AIGradeStatistics | null
+  aiPriorityGrades?: AIPriorityGradesResult | null
 }
 
 interface FormData {
-  student_name?: string;
-  student_grade?: string;
-  student_school?: string;
-  [key: string]: unknown;
+  student_name?: string
+  student_grade?: string
+  student_school?: string
+  start_date?: string
+  end_date?: string
+  selected_classrooms?: string[]
+  selected_assignment_categories?: string[]
 }
 
 export function extractPerformanceData(reportData: ReportData, formData: FormData): StudentPerformanceData {
@@ -997,120 +1030,86 @@ export function extractPerformanceData(reportData: ReportData, formData: FormDat
     hasEnhancedData: !!(reportData?.subjects || reportData?.classrooms || reportData?.categories)
   })
   
+  // Default shape used when a per-type metric block is missing from reportData.
+  const emptyTypeMetrics: AssignmentTypeMetrics = {
+    total: 0,
+    completed: 0,
+    completionRate: 0,
+    averageGrade: 0,
+    statuses: {
+      submitted: 0,
+      pending: 0,
+      overdue: 0,
+      notSubmitted: 0,
+      excused: 0,
+    },
+  }
+
   return {
     student: {
       name: studentName,
       grade: studentGrade,
-      school: studentSchool
+      school: studentSchool,
     },
     period: {
       startDate: String(formData.start_date || ''),
-      endDate: String(formData.end_date || '')
+      endDate: String(formData.end_date || ''),
     },
     metrics: {
       overall: {
-        gradeAverage: (reportData?.grades as any)?.average || 0,
-        totalAssignments: (reportData?.assignments as any)?.total || 0,
-        completedAssignments: (reportData?.assignments as any)?.completed || 0,
-        completionRate: (reportData?.assignments as any)?.completionRate || 0
+        gradeAverage: reportData?.grades?.average || 0,
+        totalAssignments: reportData?.assignments?.total || 0,
+        completedAssignments: reportData?.assignments?.completed || 0,
+        completionRate: reportData?.assignments?.completionRate || 0,
       },
       attendance: {
-        present: (reportData?.attendance as any)?.present || 0,
-        total: (reportData?.attendance as any)?.total || 0,
-        rate: (reportData?.attendance as any)?.attendanceRate || 0
+        present: reportData?.attendance?.present || 0,
+        total: reportData?.attendance?.total || 0,
+        rate: reportData?.attendance?.attendanceRate || 0,
       },
       byType: {
-        quiz: (reportData?.assignmentsByType as any)?.quiz || {
-          total: 0,
-          completed: 0,
-          completionRate: 0,
-          averageGrade: 0,
-          statuses: {
-            submitted: 0,
-            pending: 0,
-            overdue: 0,
-            notSubmitted: 0,
-            excused: 0
-          }
-        },
-        homework: (reportData?.assignmentsByType as any)?.homework || {
-          total: 0,
-          completed: 0,
-          completionRate: 0,
-          averageGrade: 0,
-          statuses: {
-            submitted: 0,
-            pending: 0,
-            overdue: 0,
-            notSubmitted: 0,
-            excused: 0
-          }
-        },
-        test: (reportData?.assignmentsByType as any)?.test || {
-          total: 0,
-          completed: 0,
-          completionRate: 0,
-          averageGrade: 0,
-          statuses: {
-            submitted: 0,
-            pending: 0,
-            overdue: 0,
-            notSubmitted: 0,
-            excused: 0
-          }
-        },
-        project: (reportData?.assignmentsByType as any)?.project || {
-          total: 0,
-          completed: 0,
-          completionRate: 0,
-          averageGrade: 0,
-          statuses: {
-            submitted: 0,
-            pending: 0,
-            overdue: 0,
-            notSubmitted: 0,
-            excused: 0
-          }
-        }
+        quiz: reportData?.assignmentsByType?.quiz || emptyTypeMetrics,
+        homework: reportData?.assignmentsByType?.homework || emptyTypeMetrics,
+        test: reportData?.assignmentsByType?.test || emptyTypeMetrics,
+        project: reportData?.assignmentsByType?.project || emptyTypeMetrics,
       },
-      byCategory: (reportData?.assignmentsByCategory as any) ?
-        Object.entries((reportData.assignmentsByCategory as any)).reduce((acc, [id, data]: any) => {
-          return {
-            ...acc,
-            [id]: data
-          }
-        }, {}) : undefined,
-      classroomPercentiles: (reportData as any)?.classroomPercentiles ?
-        Object.entries((reportData as any).classroomPercentiles).reduce((acc: any, [id, data]: [string, any]) => {
-          acc[id] = {
-            name: data.name || 'Unknown',
-            subject: data.subject || 'Unknown',
-            percentile: data.percentile || 0,
-            average: data.classAverage || 0
-          }
-          return acc
-        }, {}) : undefined
+      byCategory: reportData?.assignmentsByCategory
+        ? Object.fromEntries(Object.entries(reportData.assignmentsByCategory))
+        : undefined,
+      classroomPercentiles: reportData?.classroomPercentiles
+        ? Object.fromEntries(
+            Object.entries(reportData.classroomPercentiles).map(([id, data]) => [
+              id,
+              {
+                name: data.name || 'Unknown',
+                subject: data.subject || 'Unknown',
+                percentile: data.percentile || 0,
+                average: data.classAverage || 0,
+              },
+            ])
+          )
+        : undefined,
     },
     selectedFilters: {
-      classrooms: (formData.selected_classrooms as any) || [],
-      categories: (formData.selected_assignment_categories as any) || []
+      classrooms: formData.selected_classrooms || [],
+      categories: formData.selected_assignment_categories || [],
     },
     // Include enhanced context data if available
-    subjects: (reportData?.subjects as any) || [],
-    classrooms: (reportData?.classrooms as any) || [],
-    categories: (reportData?.categories as any) || [],
-    dataContext: (reportData?.dataContext as any) || {
+    subjects: reportData?.subjects || [],
+    classrooms: reportData?.classrooms || [],
+    categories: reportData?.categories || [],
+    dataContext: reportData?.dataContext || {
       hasGradeData: false,
       hasAssignmentData: false,
       hasAttendanceData: false,
       selectedSubjectCount: 0,
       selectedClassroomCount: 0,
-      selectedCategoryCount: 0
+      selectedCategoryCount: 0,
     },
     // Include individual grades for detailed analysis (legacy)
-    individualGrades: (reportData?.individualGrades as any) || [],
+    individualGrades: reportData?.individualGrades || [],
     // Include new AI-optimized data from RPC functions
-    aiStats: (reportData?.aiStats as AIGradeStatistics) || null,
-    aiPriorityGrades: (reportData?.aiPriorityGrades as AIPriorityGradesResult) || null
+    aiStats: reportData?.aiStats || null,
+    aiPriorityGrades: reportData?.aiPriorityGrades || null,
   }
 }
