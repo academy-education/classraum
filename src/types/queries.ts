@@ -81,3 +81,76 @@ export function getReportSubjectName(subjects: ReportSubjectJoin): string | null
   if (Array.isArray(subjects)) return subjects[0]?.name ?? null
   return subjects.name
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * Student-mobile assignment-list RPCs
+ *
+ * Three RPCs fetch the mobile assignments+grades view:
+ *   get_student_classrooms(student_uuid, academy_uuids)
+ *     → TABLE(classroom_id uuid, classrooms jsonb)
+ *   get_classroom_sessions(classroom_uuids)
+ *     → TABLE(id uuid, classroom_id uuid, date date, start_time, end_time,
+ *             status text, location text, classrooms jsonb)
+ *   get_assignments_for_sessions(session_uuids)
+ *     → TABLE(id uuid, title, description, due_date timestamptz,
+ *             classroom_session_id uuid, assignment_type, assignment_categories_id,
+ *             category_name)
+ *
+ * Note: the `classrooms` column is a JSON payload built by jsonb_build_object
+ * inside the SQL function. Shape varies slightly per RPC — model what each
+ * caller actually reads, not every possible field.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/**
+ * Sub-shape embedded in `classrooms` jsonb from get_student_classrooms /
+ * get_classroom_sessions. The PostgREST jsonb payload includes whatever
+ * the SQL function's jsonb_build_object emits — we model the fields the
+ * mobile pages actually read.
+ */
+export interface MobileClassroomEmbed {
+  id?: string
+  name?: string
+  color?: string
+  subject?: string
+  subjects?: { name?: string } | null
+  teacher_id?: string
+  academy_id?: string
+}
+
+/** Resolve a classroom join that may come back as object or 1-element array. */
+export function unwrapClassroom(
+  c: MobileClassroomEmbed | MobileClassroomEmbed[] | null | undefined
+): MobileClassroomEmbed | null {
+  if (!c) return null
+  return Array.isArray(c) ? (c[0] ?? null) : c
+}
+
+export interface MobileStudentClassroomRow {
+  classroom_id: string
+  classrooms: MobileClassroomEmbed | MobileClassroomEmbed[]
+}
+
+export interface MobileClassroomSessionRow {
+  id: string
+  classroom_id: string
+  date: string
+  start_time: string | null
+  end_time: string | null
+  status: string  // 'scheduled' | 'completed' | 'cancelled' but the RPC returns text
+  location: string | null
+  classrooms?: MobileClassroomEmbed | null
+}
+
+export interface MobileAssignmentRow {
+  id: string
+  title: string
+  description: string | null
+  due_date: string
+  classroom_session_id: string
+  assignment_type: string
+  assignment_categories_id: string | null
+  category_name: string | null
+  /** Not in the current RPC return, but some callers tolerate it for downstream
+   *  components that expected created_at on legacy direct-query paths. */
+  created_at?: string
+}

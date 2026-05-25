@@ -7,6 +7,13 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { useStableCallback } from '@/hooks/useStableCallback'
+import {
+  type MobileStudentClassroomRow,
+  type MobileClassroomSessionRow,
+  type MobileAssignmentRow,
+  type MobileClassroomEmbed,
+  unwrapClassroom,
+} from '@/types/queries'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { CacheUtils, CacheCategory } from '@/lib/universal-cache'
 import { useAssignments, useGrades } from '@/stores/mobileStore'
@@ -481,21 +488,12 @@ function MobileAssignmentsPageContent() {
         return []
       }
 
-      const classroomIds = enrolledClassrooms.map((ec: any) => ec.classroom_id)
-      const classroomMap = new Map()
-      enrolledClassrooms.forEach((ec: any) => {
+      const enrolled = enrolledClassrooms as unknown as MobileStudentClassroomRow[]
+      const classroomIds = enrolled.map(ec => ec.classroom_id)
+      const classroomMap = new Map<string, MobileClassroomEmbed | MobileClassroomEmbed[]>()
+      enrolled.forEach(ec => {
         classroomMap.set(ec.classroom_id, ec.classrooms)
       })
-
-      // console.log('🏫 [ASSIGNMENTS DEBUG] Processing classrooms:', {
-      //   enrolledClassrooms_count: enrolledClassrooms.length,
-      //   enrolledClassrooms_data: enrolledClassrooms,
-      //   extracted_classroomIds: classroomIds,
-      //   extracted_classroomIds_values: JSON.stringify(classroomIds),
-      //   first_classroom_id: enrolledClassrooms[0]?.classroom_id,
-      //   expected_classroom_id: '36259e28-7a19-44f8-a25d-a3f76ad196b0',
-      //   classroomMap_size: classroomMap.size
-      // })
 
       // Step 2: Get sessions for enrolled classrooms - FIXED: Use RPC to bypass RLS
       const { data: sessions, error: sessionsError } = await supabase
@@ -526,7 +524,8 @@ function MobileAssignmentsPageContent() {
       // Show assignments from completed AND scheduled (upcoming) sessions —
       // students need to see work that's coming up, not just past work.
       // Cancelled sessions are excluded because their assignments are moot.
-      const completedSessions = sessions?.filter((s: any) => s.status !== 'cancelled') || []
+      const completedSessions: MobileClassroomSessionRow[] =
+        (sessions as unknown as MobileClassroomSessionRow[] | null)?.filter(s => s.status !== 'cancelled') || []
 
       if (ENABLE_ASSIGNMENTS_DEBUG) {
       }
@@ -546,9 +545,9 @@ function MobileAssignmentsPageContent() {
         return []
       }
 
-      const sessionIds = completedSessions.map((s: any) => s.id)
-      const sessionMap = new Map()
-      completedSessions.forEach((s: any) => {
+      const sessionIds = completedSessions.map(s => s.id)
+      const sessionMap = new Map<string, MobileClassroomSessionRow & { classroom?: MobileClassroomEmbed | MobileClassroomEmbed[] }>()
+      completedSessions.forEach(s => {
         sessionMap.set(s.id, { ...s, classroom: classroomMap.get(s.classroom_id) })
       })
       
@@ -580,30 +579,29 @@ function MobileAssignmentsPageContent() {
         return []
       }
 
-      const assignmentsData = assignments || []
-      const assignmentIds = assignmentsData.map((a: any) => a.id)
+      const assignmentsData: MobileAssignmentRow[] = (assignments as unknown as MobileAssignmentRow[] | null) || []
+      const assignmentIds = assignmentsData.map(a => a.id)
 
-      if (assignments.length === 0) {
+      if (assignmentsData.length === 0) {
         console.warn('No assignments found for user')
         return []
       }
 
       // OPTIMIZATION: Prepare all IDs needed for parallel fetches
-      const teacherIds = Array.from(new Set(enrolledClassrooms.map((ec: any) => {
-        const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
-        if (Array.isArray(classrooms)) {
-          return classrooms.map(c => c.teacher_id)
-        } else if (classrooms && 'teacher_id' in classrooms) {
-          return [classrooms.teacher_id]
-        }
+      const teacherIds = Array.from(new Set(enrolled.map(ec => {
+        const c = ec.classrooms
+        if (Array.isArray(c)) return c.map(x => x.teacher_id)
+        if (c && 'teacher_id' in c) return [c.teacher_id]
         return []
-      }).flat().filter(Boolean))) as string[]
+      }).flat().filter((id): id is string => !!id)))
 
-      const assignmentAcademyIds = Array.from(new Set(assignmentsData.map((a: any) => {
+      const assignmentAcademyIds = Array.from(new Set(assignmentsData.map(a => {
         const session = sessionMap.get(a.classroom_session_id)
         const classroom = session?.classroom
-        return classroom?.academy_id
-      }).filter(Boolean))) as string[]
+        if (!classroom) return undefined
+        if (Array.isArray(classroom)) return classroom[0]?.academy_id
+        return classroom.academy_id
+      }).filter((id): id is string => !!id)))
 
       // OPTIMIZATION: Run grades, teacher names, and academy names in parallel
       const gradesCacheKey = `grades_${effectiveUserId}_${assignmentIds.sort().join(',')}`
@@ -691,32 +689,23 @@ function MobileAssignmentsPageContent() {
       })
 
       // Process assignments with all data available
-      const processedAssignments: Assignment[] = assignmentsData.flatMap((assignment: {
-        id: string
-        title: string
-        description?: string
-        assignment_type?: string
-        due_date?: string
-        created_at: string
-        classroom_session_id: string
-        category_name?: string
-      }) => {
+      const processedAssignments: Assignment[] = assignmentsData.flatMap(assignment => {
         const session = sessionMap.get(assignment.classroom_session_id)
         if (!session) return []
-        
-        const classroom = session.classroom
+
+        const classroom = unwrapClassroom(session.classroom)
         if (!classroom) return []
-        
-        const teacherId = classroom.teacher_id
+
+        const teacherId = classroom.teacher_id || ''
         const teacherName = teacherMap.get(teacherId) || 'Unknown Teacher'
-        
+
         const getInitials = (name: string) => {
           return name?.split(' ').map(n => n[0]).join('') || 'T'
         }
-        
+
         // Get student's grade for this assignment from the map
         const userGrade = userGradesMap.get(assignment.id)
-        
+
         // Determine status
         let status: 'pending' | 'completed' | 'overdue' = 'pending'
         if (userGrade && userGrade.status && userGrade.status !== "not submitted") {
@@ -726,17 +715,15 @@ function MobileAssignmentsPageContent() {
           const now = new Date()
           if (due < now) status = 'overdue'
         }
-        
-        const academyName = academyNamesMap.get(classroom.academy_id) || 'Academy'
 
-        // Comments will be fetched separately for better performance
+        const academyName = academyNamesMap.get(classroom.academy_id || '') || 'Academy'
 
         return [{
           id: assignment.id,
           title: assignment.title,
           description: assignment.description || '',
           due_date: assignment.due_date || '',
-          session_date: session.date || session.session_date || '',
+          session_date: session.date || '',
           created_at: assignment.created_at || '',
           status,
           classroom_name: classroom.name || 'Unknown Class',
@@ -861,60 +848,49 @@ function MobileAssignmentsPageContent() {
         return []
       }
       
-      const classroomIds = enrolledClassrooms.map((ec: any) => ec.classroom_id)
-      const classroomMap = new Map()
-      enrolledClassrooms.forEach((ec: any) => {
+      const enrolled = enrolledClassrooms as unknown as MobileStudentClassroomRow[]
+      const classroomIds = enrolled.map(ec => ec.classroom_id)
+      const classroomMap = new Map<string, MobileClassroomEmbed | MobileClassroomEmbed[]>()
+      enrolled.forEach(ec => {
         classroomMap.set(ec.classroom_id, ec.classrooms)
       })
-      
+
       // Step 2: Get sessions for enrolled classrooms - FIXED: Use RPC to bypass RLS
       const { data: sessions } = await supabase
         .rpc('get_classroom_sessions', {
           classroom_uuids: classroomIds
         })
 
-      // console.log('🔧 [GRADES DEBUG] Using RPC function for sessions:', {
-      //   rpc_function: 'get_classroom_sessions',
-      //   classroom_uuids: classroomIds,
-      //   result_count: sessions?.length || 0
-      // })
-
       // Same as the assignments fetcher above — include scheduled (upcoming)
       // alongside completed; exclude cancelled.
-      const completedSessions = sessions?.filter((s: any) => s.status !== 'cancelled') || []
+      const completedSessions: MobileClassroomSessionRow[] =
+        (sessions as unknown as MobileClassroomSessionRow[] | null)?.filter(s => s.status !== 'cancelled') || []
 
       if (!completedSessions || completedSessions.length === 0) {
-        // console.log('No completed sessions found')
         return []
       }
 
-      const sessionIds = completedSessions.map((s: any) => s.id)
-      const sessionMap = new Map()
-      completedSessions.forEach((s: any) => {
+      const sessionIds = completedSessions.map(s => s.id)
+      const sessionMap = new Map<string, MobileClassroomSessionRow>()
+      completedSessions.forEach(s => {
         sessionMap.set(s.id, s)
       })
-      
+
       // Step 3: Get assignments for those sessions - FIXED: Use RPC to bypass RLS
       const { data: assignments } = await supabase
         .rpc('get_assignments_for_sessions', {
           session_uuids: sessionIds
         })
 
-      // console.log('🔧 [GRADES DEBUG] Using RPC function for assignments:', {
-      //   rpc_function: 'get_assignments_for_sessions',
-      //   session_uuids: sessionIds,
-      //   result_count: assignments?.length || 0
-      // })
+      const typedAssignments: MobileAssignmentRow[] = (assignments as unknown as MobileAssignmentRow[] | null) || []
 
-      
-      if (!assignments || assignments.length === 0) {
-        // console.log('No assignments found')
+      if (typedAssignments.length === 0) {
         return []
       }
-      
-      const assignmentIds = assignments.map((a: any) => a.id)
-      const assignmentMap = new Map()
-      assignments.forEach((a: any) => {
+
+      const assignmentIds = typedAssignments.map(a => a.id)
+      const assignmentMap = new Map<string, MobileAssignmentRow>()
+      typedAssignments.forEach(a => {
         assignmentMap.set(a.id, a)
       })
       
@@ -1016,16 +992,12 @@ function MobileAssignmentsPageContent() {
       }
       
       // Step 5: Batch fetch all teacher names
-      const teacherIds = Array.from(new Set(enrolledClassrooms.map((ec: any) => {
-        // Handle both single object and array cases
-        const classrooms = (ec as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
-        if (Array.isArray(classrooms)) {
-          return classrooms.map(c => c.teacher_id)
-        } else if (classrooms && 'teacher_id' in classrooms) {
-          return [classrooms.teacher_id]
-        }
+      const teacherIds = Array.from(new Set(enrolled.map(ec => {
+        const c = ec.classrooms
+        if (Array.isArray(c)) return c.map(x => x.teacher_id)
+        if (c && 'teacher_id' in c) return [c.teacher_id]
         return []
-      }).flat().filter(Boolean))) as string[]
+      }).flat().filter((id): id is string => !!id)))
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
       
       // Step 6: Construct the formatted grades
@@ -1036,11 +1008,11 @@ function MobileAssignmentsPageContent() {
         const session = sessionMap.get(assignment.classroom_session_id)
         if (!session) return []
         
-        const classroom = classroomMap.get(session.classroom_id)
+        const classroom = unwrapClassroom(classroomMap.get(session.classroom_id))
         if (!classroom) return []
-        
-        const teacherName = teacherMap.get(classroom.teacher_id) || 'Unknown Teacher'
-        
+
+        const teacherName = teacherMap.get(classroom.teacher_id || '') || 'Unknown Teacher'
+
         return [{
           id: gradeRecord.id,
           assignment_title: assignment.title || 'Unknown Assignment',
@@ -1053,8 +1025,8 @@ function MobileAssignmentsPageContent() {
           graded_date: gradeRecord.updated_at || gradeRecord.submitted_date || '',
           teacher_name: teacherName,
           classroom_name: classroom.name || 'Unknown Class',
-          classroom_id: classroom.id,
-          academy_id: classroom.academy_id,
+          classroom_id: classroom.id || '',
+          academy_id: classroom.academy_id || '',
           status: gradeRecord.status || 'not submitted',
           due_date: assignment.due_date || '',
           submitted_date: gradeRecord.submitted_date,
@@ -1062,8 +1034,8 @@ function MobileAssignmentsPageContent() {
           teacher_comment: gradeRecord.feedback,
           classroom_color: classroom.color || '#3B82F6',
           attachments: [], // Will be populated separately
-          session_date: session.date || session.session_date || '',
-          created_at: assignment.created_at || (gradeRecord as any).created_at || ''
+          session_date: session.date || '',
+          created_at: assignment.created_at || ''
         }]
       })
 
