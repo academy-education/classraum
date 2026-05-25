@@ -38,6 +38,9 @@ export interface ReportClassroomJoin {
 }
 
 export interface ReportClassroomSessionJoin {
+  /** Some callers select session id + date, others don't. */
+  id?: string
+  date?: string
   classroom_id: string
   classrooms: ReportClassroomJoin
 }

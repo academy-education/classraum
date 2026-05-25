@@ -58,6 +58,11 @@ import { showSuccessToast, showErrorToast } from '@/stores'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 import { invalidateReportsCache } from '@/lib/cache'
+import {
+  type ReportAssignmentGrade,
+  getReportSubjectName,
+} from '@/types/queries'
+import type { AssignmentGradeStatus, AttendanceStatus } from '@/types/db-enums'
 export { invalidateReportsCache }
 
 interface ReportData {
@@ -755,25 +760,25 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   }, [academyId])
 
   // Generate cumulative chart data for assignment type - always 8 points
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const generateChartDataForType = useCallback((typeAssignments: any[], reportStartDate?: string, reportEndDate?: string) => {
+  const generateChartDataForType = useCallback((typeAssignments: ReportAssignmentGrade[], reportStartDate?: string, reportEndDate?: string) => {
     // Use report date range if provided, otherwise use reasonable defaults
     const startDate = reportStartDate ? new Date(reportStartDate) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
     const endDate = reportEndDate ? new Date(reportEndDate) : new Date()
     const timeDiff = endDate.getTime() - startDate.getTime()
-    
+
     // Always generate exactly 8 points
     const pointCount = 8
     const interval = timeDiff / (pointCount - 1)
 
     // Filter and sort assignments (include all assignments, treat missing scores properly)
-    const allAssignments = typeAssignments
+    type ChartAssignment = Omit<ReportAssignmentGrade, 'score'> & { score: number; graded_date: string }
+    const allAssignments: ChartAssignment[] = typeAssignments
       .map(a => ({
         ...a,
         score: a.score !== null ? a.score : (a.status === 'not submitted' ? 0 : null),
-        graded_date: a.submitted_date || a.updated_at
+        graded_date: a.submitted_date || a.updated_at,
       }))
-      .filter(a => a.score !== null && a.graded_date) // Only assignments with scores or 0 for not submitted
+      .filter((a): a is ChartAssignment => a.score !== null && !!a.graded_date)
       .sort((a, b) => new Date(a.graded_date).getTime() - new Date(b.graded_date).getTime())
 
     const chartData = []
@@ -1048,226 +1053,159 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         // Continue without RPC data - will fall back to existing individualGrades
       }
 
-      // Process assignments data
-      const assignments = assignmentsData || []
+      // Process assignments data — Supabase nested select returns this exact
+      // shape (see ReportAssignmentGrade in src/types/queries.ts). The cast
+      // is needed because the generated DB types model `status` as bare
+      // `string` and don't infer the nested join shape; ReportAssignmentGrade
+      // is the hand-modeled truth for this query.
+      const assignments: ReportAssignmentGrade[] =
+        (assignmentsData as unknown as ReportAssignmentGrade[] | null) || []
 
-      // Debug log to see the structure
-      
-      if (assignments.length > 0) {
-        
-        // Log which assignments have null/undefined assignment data
-        const nullAssignments = assignments.filter(a => !a.assignments)
-        if (nullAssignments.length > 0) {
-        }
-      }
-      
       // Collect individual grades for AI context
-      const individualGrades = assignments.map(assignment => ({
-        id: assignment.id,
-        title: (assignment.assignments as any)?.title || (assignment.assignments as any)?.id || String(t('common.fallbacks.unknownAssignment')),
-        type: (assignment.assignments as any)?.assignment_type || 'unknown',
-        subject: (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.name || 
-                 (assignment.assignments as any)?.classroom_sessions?.classrooms?.subjects?.[0]?.name || 
-                 'Unknown Subject',
-        classroom: (assignment.assignments as any)?.classroom_sessions?.classrooms?.name || String(t('common.fallbacks.unknownClassroom')),
-        categoryId: (assignment.assignments as any)?.assignment_categories_id || '',
-        score: assignment.score,
-        status: assignment.status,
-        dueDate: (assignment.assignments as any)?.due_date || '',
-        completedDate: assignment.updated_at,
-        feedback: assignment.feedback || null
-      }))
-      
-      // Debug log individual grades for AI
-      if (individualGrades.length > 0) {
-      }
+      const individualGrades = assignments.map(assignment => {
+        const a = assignment.assignments
+        return {
+          id: assignment.id,
+          title: a?.title || a?.id || String(t('common.fallbacks.unknownAssignment')),
+          type: a?.assignment_type || 'unknown',
+          subject:
+            getReportSubjectName(a?.classroom_sessions?.classrooms?.subjects ?? null) ||
+            'Unknown Subject',
+          classroom:
+            a?.classroom_sessions?.classrooms?.name ||
+            String(t('common.fallbacks.unknownClassroom')),
+          categoryId: a?.assignment_categories_id || '',
+          score: assignment.score,
+          status: assignment.status,
+          dueDate: a?.due_date || '',
+          completedDate: assignment.updated_at,
+          feedback: assignment.feedback || null,
+        }
+      })
 
-      // Process attendance data
-      const attendance = (attendanceData || []).filter(a => a.classroom_sessions)
-      const presentSessions = attendance.filter(a => a.status === 'present').length
+      // Process attendance data. Query shape (line ~985): { id, status, classroom_sessions: { id, date, classroom_id } }
+      interface AttendanceRow {
+        id: string
+        status: AttendanceStatus
+        classroom_sessions: { id: string; date: string; classroom_id: string } | null
+      }
+      const attendance: AttendanceRow[] = ((attendanceData ?? []) as unknown as AttendanceRow[]).filter(
+        a => !!a.classroom_sessions
+      )
+
+      const countAtt = (s: AttendanceStatus) => attendance.filter(a => a.status === s).length
+
+      const presentSessions = countAtt('present')
       const totalSessions = attendance.length
       const attendanceRate = totalSessions > 0 ? (presentSessions / totalSessions) * 100 : 0
-      
+
       // Calculate attendance status breakdown
       const attendanceStatuses = {
-        present: attendance.filter(a => a.status === 'present').length,
-        absent: attendance.filter(a => a.status === 'absent').length,
-        late: attendance.filter(a => a.status === 'late').length,
-        excused: attendance.filter(a => a.status === 'excused').length,
-        pending: attendance.filter(a => a.status === 'pending').length
+        present: presentSessions,
+        absent: countAtt('absent'),
+        late: countAtt('late'),
+        excused: countAtt('excused'),
+        pending: countAtt('pending'),
+      }
+
+      // ── Local helpers, typed against ReportAssignmentGrade ──────────────
+      const ofType = (type: string) =>
+        assignments.filter(a => a.assignments?.assignment_type === type)
+
+      const withScores = (rows: ReportAssignmentGrade[]) =>
+        rows.filter((r): r is ReportAssignmentGrade & { score: number } => r.score !== null)
+
+      const countByStatus = (rows: ReportAssignmentGrade[], status: AssignmentGradeStatus) =>
+        rows.filter(r => r.status === status).length
+
+      const statusBreakdown = (rows: ReportAssignmentGrade[]) => ({
+        submitted: countByStatus(rows, 'submitted'),
+        pending: countByStatus(rows, 'pending'),
+        overdue: countByStatus(rows, 'overdue'),
+        'not submitted': countByStatus(rows, 'not submitted'),
+        excused: countByStatus(rows, 'excused'),
+      })
+
+      const buildTypeStats = (type: 'quiz' | 'homework' | 'test' | 'project') => {
+        const rows = ofType(type)
+        const completed = countByStatus(rows, 'submitted')
+        const scored = withScores(rows)
+        return {
+          total: rows.length,
+          completed,
+          completionRate: rows.length > 0 ? Math.round((completed / rows.length) * 100) : 0,
+          averageGrade:
+            scored.length > 0
+              ? Math.round(scored.reduce((sum, r) => sum + r.score, 0) / scored.length)
+              : 0,
+          chartData: generateChartDataForType(rows, startDate, endDate),
+          statuses: statusBreakdown(rows),
+        }
       }
 
       // Process grades data - only include assignments with valid types to match individual type cards
-      const validTypes = ['quiz', 'homework', 'test', 'project']
-      const typedAssignments = assignments.filter(a =>
-        (a.assignments as any)?.assignment_type && validTypes.includes((a.assignments as any).assignment_type)
-      )
+      const validTypes = ['quiz', 'homework', 'test', 'project'] as const
+      const typedAssignments = assignments.filter(a => {
+        const t = a.assignments?.assignment_type
+        return !!t && (validTypes as readonly string[]).includes(t)
+      })
 
-
-      const gradedAssignments = typedAssignments.filter(a => a.score !== null)
-      const averageGrade = gradedAssignments.length > 0
-        ? gradedAssignments.reduce((sum, a) => sum + (a.score || 0), 0) / gradedAssignments.length
-        : 0
+      const gradedAssignments = withScores(typedAssignments)
+      const averageGrade =
+        gradedAssignments.length > 0
+          ? gradedAssignments.reduce((sum, a) => sum + a.score, 0) / gradedAssignments.length
+          : 0
 
       // Calculate assignment completion and status breakdown using filtered typed assignments
-      const completedAssignments = typedAssignments.filter(a => a.status === 'submitted').length
+      const completedAssignments = countByStatus(typedAssignments, 'submitted')
       const totalAssignments = typedAssignments.length
 
       const assignmentCompletionRate = totalAssignments > 0 ? (completedAssignments / totalAssignments) * 100 : 0
 
-      const assignmentStatuses = {
-        submitted: typedAssignments.filter(a => a.status === 'submitted').length,
-        pending: typedAssignments.filter(a => a.status === 'pending').length,
-        overdue: typedAssignments.filter(a => a.status === 'overdue').length,
-        'not submitted': typedAssignments.filter(a => a.status === 'not submitted').length,
-        excused: typedAssignments.filter(a => a.status === 'excused').length
-      }
+      const assignmentStatuses = statusBreakdown(typedAssignments)
 
       // Process assignment categories data - include selected categories, even those with no data
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const assignmentsByCategory: Record<string, any> = {}
-      
+
       // Get selected category IDs, or all if none selected
-      const selectedCategoryIds = selectedCategories.length > 0 
-        ? selectedCategories 
+      const selectedCategoryIds = selectedCategories.length > 0
+        ? selectedCategories
         : assignmentCategories.map(cat => cat.id)
-      
+
       // Process each selected category (show selected categories, even with no data)
       selectedCategoryIds.forEach((categoryId) => {
-        const categoryAssignments = assignments.filter(a => (a.assignments as any)?.assignment_categories_id === categoryId)
-        const categoryGradedAssignments = categoryAssignments.filter(a => a.score !== null)
-        const categoryCompletedAssignments = categoryAssignments.filter(a => a.status === 'submitted')
-        const categoryAverageGrade = categoryGradedAssignments.length > 0
-          ? categoryGradedAssignments.reduce((sum, a) => sum + (a.score || 0), 0) / categoryGradedAssignments.length
-          : 0
-        const categoryCompletionRate = categoryAssignments.length > 0 
-          ? (categoryCompletedAssignments.length / categoryAssignments.length) * 100
-          : 0
+        const categoryAssignments = assignments.filter(
+          a => a.assignments?.assignment_categories_id === categoryId
+        )
+        const categoryCompleted = countByStatus(categoryAssignments, 'submitted')
+        const categoryScored = withScores(categoryAssignments)
 
-        // Generate chart data for this category (will be empty if no assignments)
-        const chartData = generateChartDataForType(categoryAssignments, startDate, endDate)
-
-        // Get the category name
         const category = assignmentCategories.find(c => c.id === categoryId)
-        
+
         assignmentsByCategory[categoryId] = {
           name: category?.name || String(t('common.fallbacks.unknownCategory')),
           total: categoryAssignments.length,
-          completed: categoryCompletedAssignments.length,
-          completionRate: Math.round(categoryCompletionRate),
-          averageGrade: Math.round(categoryAverageGrade),
-          statuses: {
-            submitted: categoryAssignments.filter(a => a.status === 'submitted').length,
-            pending: categoryAssignments.filter(a => a.status === 'pending').length,
-            overdue: categoryAssignments.filter(a => a.status === 'overdue').length,
-            'not submitted': categoryAssignments.filter(a => a.status === 'not submitted').length,
-            excused: categoryAssignments.filter(a => a.status === 'excused').length
-          },
-          chartData
+          completed: categoryCompleted,
+          completionRate:
+            categoryAssignments.length > 0
+              ? Math.round((categoryCompleted / categoryAssignments.length) * 100)
+              : 0,
+          averageGrade:
+            categoryScored.length > 0
+              ? Math.round(categoryScored.reduce((sum, r) => sum + r.score, 0) / categoryScored.length)
+              : 0,
+          statuses: statusBreakdown(categoryAssignments),
+          chartData: generateChartDataForType(categoryAssignments, startDate, endDate),
         }
       })
-      
+
       // Process assignment types for main chart
       const assignmentsByType = {
-        quiz: {
-          total: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz').length,
-          completed: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'submitted').length,
-          completionRate: Math.round(
-            assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz').length > 0
-              ? (assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'submitted').length /
-                 assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz').length) * 100
-              : 0
-          ),
-          averageGrade: Math.round(
-            assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.score !== null).length > 0
-              ? assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.score !== null)
-                  .reduce((sum, a) => sum + (a.score || 0), 0) /
-                assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.score !== null).length
-              : 0
-          ),
-          chartData: generateChartDataForType(assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz'), startDate, endDate),
-          statuses: {
-            submitted: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'submitted').length,
-            pending: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'pending').length,
-            overdue: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => (a.assignments as any)?.assignment_type === 'quiz' && a.status === 'excused').length
-          }
-        },
-        homework: {
-          total: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework').length,
-          completed: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'submitted').length,
-          completionRate: Math.round(
-            assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework').length > 0
-              ? (assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'submitted').length /
-                 assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework').length) * 100
-              : 0
-          ),
-          averageGrade: Math.round(
-            assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.score !== null).length > 0
-              ? assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.score !== null)
-                  .reduce((sum, a) => sum + (a.score || 0), 0) /
-                assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.score !== null).length
-              : 0
-          ),
-          chartData: generateChartDataForType(assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework'), startDate, endDate),
-          statuses: {
-            submitted: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'submitted').length,
-            pending: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'pending').length,
-            overdue: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => (a.assignments as any)?.assignment_type === 'homework' && a.status === 'excused').length
-          }
-        },
-        test: {
-          total: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test').length,
-          completed: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'submitted').length,
-          completionRate: Math.round(
-            assignments.filter(a => (a.assignments as any)?.assignment_type === 'test').length > 0
-              ? (assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'submitted').length /
-                 assignments.filter(a => (a.assignments as any)?.assignment_type === 'test').length) * 100
-              : 0
-          ),
-          averageGrade: Math.round(
-            assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.score !== null).length > 0
-              ? assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.score !== null)
-                  .reduce((sum, a) => sum + (a.score || 0), 0) /
-                assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.score !== null).length
-              : 0
-          ),
-          chartData: generateChartDataForType(assignments.filter(a => (a.assignments as any)?.assignment_type === 'test'), startDate, endDate),
-          statuses: {
-            submitted: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'submitted').length,
-            pending: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'pending').length,
-            overdue: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => (a.assignments as any)?.assignment_type === 'test' && a.status === 'excused').length
-          }
-        },
-        project: {
-          total: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project').length,
-          completed: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'submitted').length,
-          completionRate: Math.round(
-            assignments.filter(a => (a.assignments as any)?.assignment_type === 'project').length > 0
-              ? (assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'submitted').length /
-                 assignments.filter(a => (a.assignments as any)?.assignment_type === 'project').length) * 100
-              : 0
-          ),
-          averageGrade: Math.round(
-            assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.score !== null).length > 0
-              ? assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.score !== null)
-                  .reduce((sum, a) => sum + (a.score || 0), 0) /
-                assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.score !== null).length
-              : 0
-          ),
-          chartData: generateChartDataForType(assignments.filter(a => (a.assignments as any)?.assignment_type === 'project'), startDate, endDate),
-          statuses: {
-            submitted: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'submitted').length,
-            pending: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'pending').length,
-            overdue: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'overdue').length,
-            'not submitted': assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'not submitted').length,
-            excused: assignments.filter(a => (a.assignments as any)?.assignment_type === 'project' && a.status === 'excused').length
-          }
-        }
+        quiz: buildTypeStats('quiz'),
+        homework: buildTypeStats('homework'),
+        test: buildTypeStats('test'),
+        project: buildTypeStats('project'),
       }
 
       // Get category names for display
