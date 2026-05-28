@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useSafeParams } from '@/hooks/useSafeParams'
 import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { ArrowLeft, BookOpen, Users, Clock } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -731,9 +732,17 @@ export default function MobileReportDetailsPage() {
             <ArrowLeft className="w-4 h-4 text-gray-700" />
           </button>
         </div>
-        <Card className="p-8 text-center">
-          <p className="text-sm text-gray-500">{error || t('mobile.reports.notFound')}</p>
-        </Card>
+        {error ? (
+          // Fetch failed — offer a retry instead of leaving the user staring
+          // at a "not found" message that's actually a network issue.
+          <Card>
+            <ErrorState onRetry={() => { fetchReportDetails() }} />
+          </Card>
+        ) : (
+          <Card className="p-8 text-center">
+            <p className="text-sm text-gray-500">{t('mobile.reports.notFound')}</p>
+          </Card>
+        )}
       </div>
     )
   }

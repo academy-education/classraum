@@ -9,6 +9,7 @@ import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { supabase } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { ChevronLeft, Megaphone, Calendar, RefreshCw } from 'lucide-react'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
@@ -32,6 +33,7 @@ export default function AnnouncementsPage() {
 
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
   const [loading, setLoading] = useState(true)
+  const [fetchError, setFetchError] = useState<Error | null>(null)
 
   // Pull-to-refresh state — same pattern as /mobile/invoices, /mobile/notifications,
   // and the rest of the mobile pages. Without this, parents who learn the
@@ -58,7 +60,7 @@ export default function AnnouncementsPage() {
 
       if (error) {
         console.error('Error fetching announcements:', error)
-        setAnnouncements([])
+        setFetchError(new Error(error.message || 'Failed to load announcements'))
         return
       }
 
@@ -88,9 +90,10 @@ export default function AnnouncementsPage() {
       }))
 
       setAnnouncements(formattedAnnouncements)
+      setFetchError(null)
     } catch (error) {
       console.error('Error fetching announcements:', error)
-      setAnnouncements([])
+      setFetchError(error instanceof Error ? error : new Error(String(error)))
     } finally {
       setLoading(false)
     }
@@ -199,6 +202,10 @@ export default function AnnouncementsPage() {
         {/* Content */}
         {loading ? (
           <StaggeredListSkeleton items={5} variant="notification" />
+        ) : fetchError && announcements.length === 0 ? (
+          <Card>
+            <ErrorState onRetry={() => { fetchAnnouncements() }} />
+          </Card>
         ) : announcements.length > 0 ? (
           <div className="space-y-4">
             {announcements.map((announcement) => (

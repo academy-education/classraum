@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import {
   Search,
   FileText,
@@ -55,6 +56,7 @@ function MobileReportsPageContent() {
   const { effectiveUserId, isReady, isLoading: authLoading } = useEffectiveUserId()
 
   const [reports, setReports] = useState<ReportData[]>([])
+  const [fetchError, setFetchError] = useState<Error | null>(null)
   const [loading, setLoading] = useState(() => {
     const shouldSuppress = simpleTabDetection.isReturningToTab()
     if (shouldSuppress) {
@@ -130,8 +132,10 @@ function MobileReportsPageContent() {
 
       if (reportsError) {
         console.error('Error fetching reports:', reportsError)
+        setFetchError(new Error(reportsError.message || 'Failed to load reports'))
         return
       }
+      setFetchError(null)
 
       if (!reportsData || reportsData.length === 0) {
         setReports([])
@@ -196,6 +200,7 @@ function MobileReportsPageContent() {
       }
     } catch (error) {
       console.error('Error:', error)
+      setFetchError(error instanceof Error ? error : new Error(String(error)))
     } finally {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
@@ -468,6 +473,10 @@ function MobileReportsPageContent() {
         {/* Content */}
         {(loading && reports.length === 0) ? (
           <StaggeredListSkeleton items={4} variant="message" />
+        ) : fetchError && reports.length === 0 ? (
+          <Card>
+            <ErrorState onRetry={() => { fetchReports() }} />
+          </Card>
         ) : filteredReports.length === 0 ? (
           <Card>
             <EmptyState

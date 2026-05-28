@@ -8,6 +8,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { supabase } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Button } from '@/components/ui/button'
 import { MobileBackButton } from '@/components/ui/mobile/MobileBackButton'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
@@ -103,6 +104,7 @@ function MobileNotificationsPageContent() {
     const shouldShowInitialLoading = !shouldSuppressLoading && !hasCachedNotifications
     return shouldShowInitialLoading
   })
+  const [fetchError, setFetchError] = useState<Error | null>(null)
 
   // Sync local state with Zustand when hydration completes
   useEffect(() => {
@@ -579,10 +581,13 @@ function MobileNotificationsPageContent() {
       setNotifications(result || [])
       // Update local state
       setLocalNotifications(result || [])
+      setFetchError(null)
     } catch (error) {
       console.error('❌ [Notifications] Fetch error:', error)
-      setNotifications([])
-      setLocalNotifications([])
+      // Preserve stale data on screen so the user doesn't lose context.
+      // The list "going empty" on a transient network blip would also
+      // make the bell badge count look wrong relative to the page.
+      setFetchError(error instanceof Error ? error : new Error(String(error)))
     } finally {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
@@ -1218,6 +1223,13 @@ function MobileNotificationsPageContent() {
             </Card>
           ))}
         </div>
+      ) : fetchError && allDisplayNotifications.length === 0 ? (
+        // Fetch failed AND nothing cached — show retry instead of the
+        // "all caught up" empty state which would lie to the user about
+        // their actual notification state.
+        <Card>
+          <ErrorState size="sm" onRetry={() => { refetchNotifications(true) }} />
+        </Card>
       ) : allDisplayNotifications.length === 0 ? (
         <Card className="p-4 text-center">
           <div className="flex flex-col items-center gap-1">

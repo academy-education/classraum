@@ -13,6 +13,7 @@ import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Button } from '@/components/ui/button'
 import { SessionDetailSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
@@ -217,6 +218,7 @@ export default function MobileSessionDetailsPage() {
     }
     return true
   })
+  const [fetchError, setFetchError] = useState<Error | null>(null)
 
   const refetchSession = useStableCallback(async () => {
     if (!sessionId || !effectiveUserId || !isReady) {
@@ -231,9 +233,12 @@ export default function MobileSessionDetailsPage() {
       }
       const result = await fetchSessionDetailsOptimized(sessionId)
       setSession(result)
+      setFetchError(null)
     } catch (error) {
       console.error('❌ [Session] Fetch error:', error)
-      setSession(null)
+      // Don't clear existing session — stale-while-error gives the user
+      // the previous view to fall back on if this was just a refresh blip.
+      setFetchError(error instanceof Error ? error : new Error(String(error)))
     } finally {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
@@ -353,11 +358,17 @@ export default function MobileSessionDetailsPage() {
             {t('mobile.session.title')}
           </h1>
         </div>
-        <Card className="p-6">
-          <div className="text-center">
-            <p className="text-gray-500">{t('mobile.session.notFound')}</p>
-          </div>
-        </Card>
+        {fetchError ? (
+          <Card>
+            <ErrorState onRetry={() => { refetchSession() }} />
+          </Card>
+        ) : (
+          <Card className="p-6">
+            <div className="text-center">
+              <p className="text-gray-500">{t('mobile.session.notFound')}</p>
+            </div>
+          </Card>
+        )}
       </div>
     )
   }

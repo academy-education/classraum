@@ -22,6 +22,7 @@ import { Eyebrow } from '@/components/ui/eyebrow'
 import { StatusPill } from '@/components/ui/status-pill'
 import { Button } from '@/components/ui/button'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import {
@@ -1199,6 +1200,7 @@ function MobileAssignmentsPageContent() {
 
       setAssignmentsData(assignmentsResult || [])
       setGradesData(gradesResult || [])
+      setParallelFetchError(null)
 
       // Record successful fetch timestamps for staleness tracking
       const fetchTime = Date.now()
@@ -1210,8 +1212,9 @@ function MobileAssignmentsPageContent() {
       }
     } catch (error) {
       console.error('❌ [PARALLEL FETCH] Error:', error)
-      setAssignmentsData([])
-      setGradesData([])
+      // Preserve any stale data on screen instead of wiping it — the user
+      // would rather see slightly old assignments than a blank list.
+      setParallelFetchError(error instanceof Error ? error : new Error(String(error)))
     } finally {
       setAssignmentsProgLoading(false)
       setGradesProgLoading(false)
@@ -1270,6 +1273,10 @@ function MobileAssignmentsPageContent() {
 
   // Replace useMobileData with direct useEffect pattern like working pages
   // Initialize from sessionStorage synchronously to prevent skeleton flash
+  // Track whether the last parallel fetch succeeded so we can distinguish
+  // "no assignments yet" from "fetch failed silently." Previously the catch
+  // block reset to [] for both cases.
+  const [parallelFetchError, setParallelFetchError] = useState<Error | null>(null)
   const [assignmentsData, setAssignmentsData] = useState<any[]>(() => {
     if (typeof window === 'undefined' || !effectiveUserId) return []
 
@@ -2493,6 +2500,15 @@ function MobileAssignmentsPageContent() {
                   description={String(t('mobile.assignments.tryDifferentSearch'))}
                   size="sm"
                 />
+              </Card>
+            )
+          } else if (parallelFetchError) {
+            // No assignments AND the fetch errored — surface the failure
+            // with a retry instead of the "no assignments" empty state
+            // (which falsely reassures the user nothing's due).
+            return (
+              <Card>
+                <ErrorState onRetry={() => { refetchAllData() }} />
               </Card>
             )
           } else {

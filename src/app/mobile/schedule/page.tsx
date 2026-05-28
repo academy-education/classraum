@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { StatusPill } from '@/components/ui/status-pill'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
@@ -94,6 +95,7 @@ function MobileSchedulePageContent() {
   
   // Use state to manage sessions instead of progressive loading for date-specific data
   const [sessions, setSessions] = useState<Session[]>([])
+  const [fetchError, setFetchError] = useState<Error | null>(null)
   const [selectedAcademyId, setSelectedAcademyId] = useState<string>('all')
   const [loading, setLoading] = useState(() => {
     // Only suppress on true tab returns, not regular navigation
@@ -472,17 +474,34 @@ function MobileSchedulePageContent() {
         // Cache miss - this should only happen for dates outside current month or before initial monthly fetch
         const freshData = await fetchScheduleForDate(dateKey)
         setSessions(freshData)
+        setFetchError(null)
       } catch (error) {
         console.error('Error fetching schedule:', error)
-        setSessions([])
+        setFetchError(error instanceof Error ? error : new Error(String(error)))
       } finally {
         setLoading(false)
         simpleTabDetection.markAppLoaded()
       }
     }
-    
+
     fetchData()
   }, [dateKey, effectiveUserId, hasAcademyIds, academyIds, fetchScheduleForDate])
+
+  // Retry handler for the ErrorState card — clears cache for the current
+  // dateKey and re-runs the effect by toggling a refetch state.
+  const retrySchedule = useCallback(() => {
+    setFetchError(null)
+    // Force re-fetch by clearing the cache for this date
+    const currentCache = useMobileStore.getState().scheduleCache
+    const studentCacheKey = `student_${effectiveUserId}_${dateKey}`
+    if (currentCache[studentCacheKey]) {
+      const { [studentCacheKey]: _, ...rest } = currentCache
+      void _
+      setScheduleCache(rest)
+    }
+    // Trigger the useEffect by re-setting loading
+    setLoading(true)
+  }, [effectiveUserId, dateKey, setScheduleCache])
   
   // Monthly data fetching
   useEffect(() => {
@@ -804,6 +823,10 @@ function MobileSchedulePageContent() {
       {/* Schedule List */}
       {loading ? (
         <StaggeredListSkeleton items={5} variant="session" />
+      ) : fetchError && sessions.length === 0 ? (
+        <Card>
+          <ErrorState onRetry={retrySchedule} />
+        </Card>
       ) : filteredSessions.length > 0 ? (
         <div className="space-y-3">
           {filteredSessions.map((session) => {
