@@ -11,8 +11,6 @@ import { DashboardCard, DataTable, BulkActionBar, type DataTableColumn, type Dat
 import { StatusPill } from '@/components/ui/status-pill'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   Calendar,
@@ -31,13 +29,11 @@ import {
   Search,
   CheckCircle,
   FileText,
-  Paperclip,
   Grid3X3,
   List,
   Rows3,
   Eye,
   ClipboardList,
-  Loader2,
   CalendarDays,
   ArrowUpDown,
   ArrowDown,
@@ -49,9 +45,6 @@ import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
-import { FileUpload } from '@/components/ui/file-upload'
-import { AttachmentList } from '@/components/ui/attachment-list'
-import { Skeleton } from '@/components/ui/skeleton'
 import { showSuccessToast, showSuccessToastWithAction, showErrorToast } from '@/stores'
 // Sibling-page caches via the shared module — keeps sessions/archive
 // bundles out of this chunk. See src/lib/cache.ts.
@@ -102,26 +95,6 @@ interface Assignment {
 interface AssignmentsPageProps {
   academyId: string
   filterSessionId?: string
-}
-
-interface StudentCountRecord {
-  classroom_id: string
-}
-
-interface SubmissionCountRecord {
-  assignment_id: string
-  status?: string
-}
-
-
-interface Session {
-  id: string
-  classroom_name: string
-  classroom_id: string
-  subject_id?: string
-  date: string
-  start_time: string
-  end_time: string
 }
 
 interface SubmissionGrade {

@@ -4,15 +4,9 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
 import {
-  Search,
-  MessageSquare,
   Plus,
   ArrowLeft,
-  Send,
-  Loader2,
-  User,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useCreateShortcut } from '@/hooks/useCreateShortcut'

@@ -5,13 +5,12 @@ import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { supabase } from '@/lib/supabase'
 import { useClassroomsData } from '@/components/ui/classrooms/hooks/useClassroomsData'
-import type { Classroom, Teacher, Student, Schedule } from '@/components/ui/classrooms/hooks/useClassroomsData'
+import type { Classroom, Schedule } from '@/components/ui/classrooms/hooks/useClassroomsData'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { DashboardCard, DataTable, BulkActionBar, type DataTableColumn, type DataTableSortState } from '@/components/ui/dashboard'
 import { StatusPill } from '@/components/ui/status-pill'
@@ -21,14 +20,10 @@ import {
   Plus,
   Edit,
   Trash2,
-  Users,
   GraduationCap,
-  Book,
   X,
   Search,
   Clock,
-  Calendar,
-  Loader2,
   CalendarOff,
   Pause,
   Play,
