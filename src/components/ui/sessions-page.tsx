@@ -397,7 +397,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setShowModal(false)
       resetForm()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [isSessionModalDirty, confirm, t])
 
   // Force re-render when language changes

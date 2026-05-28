@@ -186,7 +186,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setShowAddModal(false)
       resetForm()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [isAddDirty, confirm, t])
 
   const isEditDirty = useDirtyState({ formData, manualMemberData, showManualMemberForm }, showEditModal)
@@ -209,7 +209,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       setEditingFamily(null)
       resetForm()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [isEditDirty, confirm, t])
 
   // Fetch families

@@ -370,7 +370,7 @@ export function ChatPanel({
           >
             <div className="w-11 h-11 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center shadow-sm overflow-hidden">
               {conversation.avatarUrl ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
+                 
                 <img src={conversation.avatarUrl} alt="" className="w-full h-full object-cover" />
               ) : (
                 <Users className="h-5 w-5 text-gray-500" />

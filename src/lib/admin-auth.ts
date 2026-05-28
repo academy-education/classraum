@@ -238,7 +238,7 @@ export function isAdminRole(role: string): role is 'admin' | 'super_admin' {
 /**
  * Generate admin session token for client-side admin authentication
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 export async function generateAdminSessionToken(_adminUserId: string): Promise<string | null> {
   try {
     // For admin users, we'll use Supabase's built-in JWT tokens

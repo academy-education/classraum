@@ -351,7 +351,7 @@ async function parseCSV<T>(content: string | ArrayBuffer, config: ImportConfig):
 }
 
 // XLSX Parser (simplified)
-async function parseXLSX<T>(__content: string | ArrayBuffer, __config: ImportConfig): Promise<ImportResult<T>> { /* eslint-disable-line @typescript-eslint/no-unused-vars */
+async function parseXLSX<T>(__content: string | ArrayBuffer, __config: ImportConfig): Promise<ImportResult<T>> {  
   // This is a placeholder implementation
   // In a real app, you'd use a library like xlsx or exceljs
   
@@ -412,7 +412,7 @@ async function previewCSV(content: string | ArrayBuffer, config: ImportConfig) {
   }
 }
 
-async function previewJSON(content: string | ArrayBuffer, __config: ImportConfig) { /* eslint-disable-line @typescript-eslint/no-unused-vars */
+async function previewJSON(content: string | ArrayBuffer, __config: ImportConfig) {  
   const text = content instanceof ArrayBuffer ? new TextDecoder().decode(content) : content
   const parsed = JSON.parse(text)
   
@@ -426,7 +426,7 @@ async function previewJSON(content: string | ArrayBuffer, __config: ImportConfig
   }
 }
 
-async function previewXLSX(__content: string | ArrayBuffer, __config: ImportConfig): Promise<{ headers: string[]; preview: Record<string, unknown>[]; totalRows: number; }> { /* eslint-disable-line @typescript-eslint/no-unused-vars */
+async function previewXLSX(__content: string | ArrayBuffer, __config: ImportConfig): Promise<{ headers: string[]; preview: Record<string, unknown>[]; totalRows: number; }> {  
   // Return empty preview for now - XLSX not implemented
   return {
     headers: [],
@@ -438,7 +438,7 @@ async function previewXLSX(__content: string | ArrayBuffer, __config: ImportConf
 // Data validation
 async function validateImportedData<T>(
   result: ImportResult<T>, 
-  __config: ImportConfig /* eslint-disable-line @typescript-eslint/no-unused-vars */
+  __config: ImportConfig  
 ): Promise<ImportResult<T>> {
   // This is where you'd add custom validation logic
   // For now, we'll just return the result as-is

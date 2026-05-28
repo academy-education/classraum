@@ -157,7 +157,7 @@ export function useWebSocket(config: WebSocketConfig) {
     setConnectionState('disconnected')
   }, [])
 
-  const subscribe = useCallback((eventType: string, __callback: (data: unknown) => void) => { /* eslint-disable-line @typescript-eslint/no-unused-vars */
+  const subscribe = useCallback((eventType: string, __callback: (data: unknown) => void) => {  
     const unsubscribe = () => {
       // This would be implemented based on your WebSocket protocol
       sendMessage({

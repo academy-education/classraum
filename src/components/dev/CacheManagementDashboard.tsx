@@ -326,7 +326,7 @@ export function CacheManagementDashboard({ academyId }: CacheManagementDashboard
 /**
  * Compact version for smaller spaces
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 export function CompactCacheStatus({ academyId: _academyId }: { academyId?: string }) {
   const [metrics, setMetrics] = useState<CacheMetrics | null>(null)
 

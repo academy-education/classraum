@@ -78,7 +78,7 @@ export const PerformanceProvider: React.FC<PerformanceProviderProps> = ({
     
     if (enableWarnings) {
       monitoringInterval = setInterval(() => {
-        const __warnings = performanceUtils.checkPerformance() /* eslint-disable-line @typescript-eslint/no-unused-vars */
+        const __warnings = performanceUtils.checkPerformance()  
         
         // Custom warning thresholds
         const summary = performanceMonitor.getSummary()

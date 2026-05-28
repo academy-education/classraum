@@ -463,7 +463,7 @@ export function GroupSettingsModal({
           <div className="relative">
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden ring-1 ring-gray-200">
               {conversation.avatarUrl ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
+                 
                 <img
                   src={conversation.avatarUrl}
                   alt={conversation.name || ''}

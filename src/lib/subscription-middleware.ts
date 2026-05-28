@@ -280,7 +280,7 @@ export function createUpgradeResponse(
  */
 export function withStudentLimitCheck(count: number = 1) {
   return withSubscriptionCheck(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     
     async (_req: NextRequest, _academyId: string) => {
       // This will be replaced by the actual handler
       return NextResponse.json({ success: true });
@@ -295,7 +295,7 @@ export function withStudentLimitCheck(count: number = 1) {
  */
 export function withTeacherLimitCheck(count: number = 1) {
   return withSubscriptionCheck(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     
     async (_req: NextRequest, _academyId: string) => {
       // This will be replaced by the actual handler
       return NextResponse.json({ success: true });
@@ -310,7 +310,7 @@ export function withTeacherLimitCheck(count: number = 1) {
  */
 export function withFeatureAccess(feature: string) {
   return withSubscriptionCheck(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     
     async (_req: NextRequest, _academyId: string) => {
       // This will be replaced by the actual handler
       return NextResponse.json({ success: true });

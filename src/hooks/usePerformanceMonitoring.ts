@@ -180,7 +180,7 @@ export function usePerformanceMonitoring() {
               bundleName: src.split('/').pop() || 'unknown',
               bundleUrl: src
             })
-          } catch (__fetchError) { /* eslint-disable-line @typescript-eslint/no-unused-vars */
+          } catch (__fetchError) {  
             // Ignore fetch errors for bundle size tracking
           }
         }

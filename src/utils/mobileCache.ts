@@ -283,12 +283,12 @@ export const fetchDashboardDataOptimized = async (user: { userId: string; academ
   }
 }
 
-export const fetchAssignmentsOptimized = async (__user: { userId: string; academyId: string }) => { /* eslint-disable-line @typescript-eslint/no-unused-vars */
+export const fetchAssignmentsOptimized = async (__user: { userId: string; academyId: string }) => {  
   // Implementation similar to the assignments page optimization
   return []
 }
 
-export const fetchGradesOptimized = async (__user: { userId: string; academyId: string }) => { /* eslint-disable-line @typescript-eslint/no-unused-vars */
+export const fetchGradesOptimized = async (__user: { userId: string; academyId: string }) => {  
   // Implementation similar to the grades optimization
   return []
 }

@@ -311,7 +311,7 @@ export const usePerformanceTracking = (componentName: string) => {
     startMeasurement: (name: string) => performanceMonitor.start(`${componentName}-${name}`),
     endMeasurement: (name: string) => performanceMonitor.end(`${componentName}-${name}`),
     measure: <T,>(name: string, fn: () => T) => {
-      const __startTime = performanceMonitor.start(`${componentName}-${name}`) /* eslint-disable-line @typescript-eslint/no-unused-vars */
+      const __startTime = performanceMonitor.start(`${componentName}-${name}`)  
       const result = fn()
       performanceMonitor.end(`${componentName}-${name}`)
       return result
@@ -339,7 +339,7 @@ export function withPerformanceTracking<P extends object,>(
 export const performanceUtils = {
   // Measure async operations
   async measureAsync<T,>(name: string, operation: () => Promise<T>): Promise<T> {
-    const __startTime = performanceMonitor.start(name) /* eslint-disable-line @typescript-eslint/no-unused-vars */
+    const __startTime = performanceMonitor.start(name)  
     try {
       const result = await operation()
       performanceMonitor.end(name)
@@ -352,7 +352,7 @@ export const performanceUtils = {
   
   // Measure sync operations
   measureSync<T,>(name: string, operation: () => T): T {
-    const __startTime = performanceMonitor.start(name) /* eslint-disable-line @typescript-eslint/no-unused-vars */
+    const __startTime = performanceMonitor.start(name)  
     try {
       const result = operation()
       performanceMonitor.end(name)

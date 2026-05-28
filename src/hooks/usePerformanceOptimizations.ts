@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect, useRef } from 'react'
 
 export function useOptimizedCallbacks<T>(
   actions: Record<string, (item: T) => void>,
-  _dependencies: React.DependencyList = [] // eslint-disable-line @typescript-eslint/no-unused-vars
+  _dependencies: React.DependencyList = []  
 ) {
   return useMemo(() => {
     const optimizedActions: Record<string, (item: T) => void> = {}
@@ -67,7 +67,7 @@ export function useDebounced<T>(value: T, delay: number): T {
 export function useMemoizedFilter<T>(
   items: T[],
   filterFn: (item: T) => boolean,
-  _dependencies: React.DependencyList // eslint-disable-line @typescript-eslint/no-unused-vars
+  _dependencies: React.DependencyList  
 ) {
   return useMemo(
     () => items.filter(filterFn),
