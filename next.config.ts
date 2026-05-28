@@ -22,9 +22,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // TypeScript errors ignored during build
+  // Build-time type checking. Previously set to `ignoreBuildErrors: true`,
+  // which let bugs like the 'not_submitted' vs 'not submitted' status
+  // mismatch ship to production silently. Now that `npx tsc --noEmit`
+  // passes clean, the build enforces it.
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   // Suppress warnings during builds
   onDemandEntries: {
