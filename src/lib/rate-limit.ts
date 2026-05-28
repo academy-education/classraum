@@ -61,3 +61,69 @@ export function checkRateLimit(key: string, opts: RateLimitOptions): RateLimitRe
 export function __resetRateLimitStore() {
   store.clear()
 }
+
+import type { NextRequest, NextResponse } from 'next/server'
+import { NextResponse as NextResponseImpl } from 'next/server'
+
+/**
+ * Pull a reasonable client identifier from a NextRequest.
+ *
+ * Prefers x-forwarded-for (Vercel sets this), then x-real-ip, then
+ * falls back to "unknown" so the limiter at least has a key. Behind a
+ * shared proxy / corporate NAT this will be the proxy's IP — combine
+ * with a user identifier (see `userOrIpKey` below) for endpoints where
+ * shared-IP collisions would block legitimate users.
+ */
+export function getClientIp(request: NextRequest | Request): string {
+  const headers = 'headers' in request ? request.headers : (request as Request).headers
+  return (
+    headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    headers.get('x-real-ip') ||
+    'unknown'
+  )
+}
+
+/**
+ * Build a rate-limit key that prefers user.id when available and falls
+ * back to IP. Use this for endpoints called by authenticated users — it
+ * prevents:
+ *   1. Coffee-shop NAT problem: 10 users behind one IP sharing a counter
+ *   2. VPN-rotation bypass: an attacker rotating IPs would otherwise
+ *      reset the counter every request
+ * Returns a namespaced key like `bucket:user:UUID` or `bucket:ip:1.2.3.4`.
+ */
+export function userOrIpKey(bucket: string, userId: string | null | undefined, request: NextRequest | Request): string {
+  if (userId) return `${bucket}:user:${userId}`
+  return `${bucket}:ip:${getClientIp(request)}`
+}
+
+/**
+ * Convenience: check + return a 429 Response in one go. Returns null
+ * when allowed (caller proceeds normally) or a JSON 429 response when
+ * blocked. Adds Retry-After + X-RateLimit-* headers for client UX.
+ */
+export function enforceRateLimit(
+  key: string,
+  opts: RateLimitOptions,
+  message = 'Too many requests. Please try again later.'
+): NextResponse | null {
+  const result = checkRateLimit(key, opts)
+  if (result.allowed) return null
+  const retryAfterSec = Math.max(1, Math.ceil((result.resetAt - Date.now()) / 1000))
+  return NextResponseImpl.json(
+    { error: message, retryAfter: retryAfterSec },
+    {
+      status: 429,
+      headers: {
+        'Retry-After': String(retryAfterSec),
+        'X-RateLimit-Limit': String(opts.max),
+        'X-RateLimit-Remaining': '0',
+        'X-RateLimit-Reset': String(Math.ceil(result.resetAt / 1000)),
+      },
+    }
+  )
+}
+
+// Re-export NextResponse only to satisfy the return type; consumers
+// import NextResponse from 'next/server' themselves.
+export type { NextResponse }

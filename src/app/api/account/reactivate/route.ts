@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
 
 /**
  * POST /api/account/reactivate
@@ -55,6 +56,25 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     )
   }
+
+  // Rate limit: 5 attempts per email per 15 minutes, plus 20/IP/15min for
+  // multi-account attackers. This endpoint is the only authenticated
+  // entry point a banned user has, so it would be the obvious target for
+  // password-spraying. The email-keyed limit defends a specific account;
+  // the IP-keyed one defends against credential-stuffing across many.
+  const emailBlocked = enforceRateLimit(
+    `account-reactivate:email:${email}`,
+    { windowMs: 15 * 60 * 1000, max: 5 },
+    'Too many reactivation attempts. Try again in a few minutes.'
+  )
+  if (emailBlocked) return emailBlocked
+
+  const ipBlocked = enforceRateLimit(
+    `account-reactivate:ip:${getClientIp(request)}`,
+    { windowMs: 15 * 60 * 1000, max: 20 },
+    'Too many reactivation attempts. Try again in a few minutes.'
+  )
+  if (ipBlocked) return ipBlocked
 
   // SECURITY GATE: only proceed if the email corresponds to an account
   // that is genuinely scheduled for deletion. This prevents the endpoint

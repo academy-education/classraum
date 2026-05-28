@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
+import { enforceRateLimit, userOrIpKey } from '@/lib/rate-limit'
 import {
   sendAccountScheduledForDeletionEmail,
   sendAcademyClosureNoticeEmail,
@@ -35,6 +36,17 @@ export async function POST(request: NextRequest) {
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
+
+  // Rate limit: 3 deletion requests per user per hour. Tighter than most
+  // endpoints because this is irreversible *and* fires off email blasts
+  // (academy-closure notices to every member if the user is a sole
+  // manager). Without this, a compromised session could spam the cron's
+  // audit log and burn through Postmark quota.
+  const blocked = enforceRateLimit(
+    userOrIpKey('account-delete', user.id, request),
+    { windowMs: 60 * 60 * 1000, max: 3 }
+  )
+  if (blocked) return blocked
 
   // Parse + validate body.
   let body: {

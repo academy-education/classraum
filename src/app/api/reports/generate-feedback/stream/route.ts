@@ -2,44 +2,27 @@ import { NextRequest } from 'next/server'
 import { streamText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { extractPerformanceData, type FeedbackTemplate, type FeedbackLanguage } from '@/lib/ai-service'
-
-// Simple rate limiting (in production, use Redis or similar)
-const rateLimitMap = new Map<string, { count: number; timestamp: number }>()
-const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
-const RATE_LIMIT_MAX_REQUESTS = 10 // 10 requests per minute
-
-function checkRateLimit(identifier: string): boolean {
-  const now = Date.now()
-  const userLimit = rateLimitMap.get(identifier)
-
-  if (!userLimit) {
-    rateLimitMap.set(identifier, { count: 1, timestamp: now })
-    return true
-  }
-
-  // Reset if window has passed
-  if (now - userLimit.timestamp > RATE_LIMIT_WINDOW) {
-    rateLimitMap.set(identifier, { count: 1, timestamp: now })
-    return true
-  }
-
-  // Check if under limit
-  if (userLimit.count < RATE_LIMIT_MAX_REQUESTS) {
-    userLimit.count++
-    return true
-  }
-
-  return false
-}
+import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
   try {
-    // Simple rate limiting by IP
-    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
-    if (!checkRateLimit(ip)) {
+    // IP rate limit: 5/min as a basic shield. Each call streams from an
+    // LLM provider — without this, an attacker rotating IPs could
+    // amplify API spend. Per-student limit applied after body parse.
+    const ipResult = checkRateLimit(
+      `generate-feedback-stream:ip:${getClientIp(request)}`,
+      { windowMs: 60 * 1000, max: 5 }
+    )
+    if (!ipResult.allowed) {
       return new Response(
         JSON.stringify({ success: false, error: 'Rate limit exceeded. Please try again later.' }),
-        { status: 429, headers: { 'Content-Type': 'application/json' } }
+        {
+          status: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': String(Math.ceil((ipResult.resetAt - Date.now()) / 1000)),
+          },
+        }
       )
     }
 
@@ -84,6 +67,25 @@ export async function POST(request: NextRequest) {
       return new Response(
         JSON.stringify({ success: false, error: 'Missing student or report data' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
+
+    // Per-student rate limit: same as the non-streaming sibling. A single
+    // student rarely needs more than 1–2 AI feedback versions per hour.
+    const studentResult = checkRateLimit(
+      `generate-feedback-stream:student:${formData.student_id}`,
+      { windowMs: 60 * 60 * 1000, max: 3 }
+    )
+    if (!studentResult.allowed) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Rate limit exceeded for this student. Please try again later.' }),
+        {
+          status: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': String(Math.ceil((studentResult.resetAt - Date.now()) / 1000)),
+          },
+        }
       )
     }
 

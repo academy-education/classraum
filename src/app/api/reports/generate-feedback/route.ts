@@ -1,45 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { generateAIFeedback, extractPerformanceData, type FeedbackTemplate, type FeedbackLanguage } from '@/lib/ai-service'
-
-// Simple rate limiting (in production, use Redis or similar)
-const rateLimitMap = new Map<string, { count: number; timestamp: number }>()
-const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
-const RATE_LIMIT_MAX_REQUESTS = 10 // 10 requests per minute
-
-function checkRateLimit(identifier: string): boolean {
-  const now = Date.now()
-  const userLimit = rateLimitMap.get(identifier)
-
-  if (!userLimit) {
-    rateLimitMap.set(identifier, { count: 1, timestamp: now })
-    return true
-  }
-
-  // Reset if window has passed
-  if (now - userLimit.timestamp > RATE_LIMIT_WINDOW) {
-    rateLimitMap.set(identifier, { count: 1, timestamp: now })
-    return true
-  }
-
-  // Check if under limit
-  if (userLimit.count < RATE_LIMIT_MAX_REQUESTS) {
-    userLimit.count++
-    return true
-  }
-
-  return false
-}
+import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
   try {
-    // Simple rate limiting by IP
-    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
-    if (!checkRateLimit(ip)) {
-      return NextResponse.json(
-        { success: false, error: 'Rate limit exceeded. Please try again later.' },
-        { status: 429 }
-      )
-    }
+    // Rate limit: by IP at 5/min as a basic shield, since this endpoint
+    // doesn't auth at the request level (the user identity comes inside
+    // body.requestedBy). Each call hits Anthropic — at ~$0.10/call, an
+    // unrate-limited attacker rotating IPs could rack up real cost fast.
+    // For tighter control, the body's requestedBy/formData.student_id
+    // could be added to the key once the body is parsed (see ipBlocked
+    // first, then userBlocked after the parse below).
+    const ipBlocked = enforceRateLimit(
+      `generate-feedback:ip:${getClientIp(request)}`,
+      { windowMs: 60 * 1000, max: 5 }
+    )
+    if (ipBlocked) return ipBlocked
 
     // Parse request body
     const body = await request.json()
@@ -84,6 +60,16 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+
+    // Per-student rate limit: 3 AI feedback generations per student per
+    // hour. This is the tighter ceiling — a single legitimate use case
+    // generates 1, maybe 2 versions for the same student. Anything more
+    // is either accidental double-clicks or scripted abuse.
+    const studentBlocked = enforceRateLimit(
+      `generate-feedback:student:${formData.student_id}`,
+      { windowMs: 60 * 60 * 1000, max: 3 }
+    )
+    if (studentBlocked) return studentBlocked
 
     // Extract performance data with enhanced student info
     const performanceData = extractPerformanceData(reportData, formData)

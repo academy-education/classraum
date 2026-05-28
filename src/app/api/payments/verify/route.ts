@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyPayment } from '@/lib/portone';
 import { createClient } from '@/lib/supabase/server';
+import { enforceRateLimit, userOrIpKey } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,6 +16,16 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
+
+    // Rate limit: 20 verifications per user per minute. Each call hits
+    // PortOne's API — without this, an attacker could enumerate payment
+    // IDs or run up our PortOne quota. 20/min is well above any
+    // legitimate flow (a user usually verifies once per checkout).
+    const blocked = enforceRateLimit(
+      userOrIpKey('payments-verify', user.id, request),
+      { windowMs: 60 * 1000, max: 20 }
+    );
+    if (blocked) return blocked;
 
     const { paymentId, orderData } = await request.json();
 

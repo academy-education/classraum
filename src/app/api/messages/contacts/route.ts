@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { enforceRateLimit, userOrIpKey } from '@/lib/rate-limit'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -48,6 +49,16 @@ export async function GET(request: NextRequest) {
     if (authError || !user) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
     }
+
+    // Rate limit: 30 requests per user per minute. This endpoint can
+    // return every teacher/student/parent in an academy (full roster
+    // with emails) — without a limit, an attacker with valid creds
+    // could scrape the contact directory at high speed.
+    const blocked = enforceRateLimit(
+      userOrIpKey('messages-contacts', user.id, request),
+      { windowMs: 60 * 1000, max: 30 }
+    )
+    if (blocked) return blocked
 
     // Get user's role and academy
     const { data: userData } = await supabase
