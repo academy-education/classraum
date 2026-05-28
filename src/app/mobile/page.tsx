@@ -1146,7 +1146,7 @@ export default function MobilePage() {
       }
     })
     return Array.from(academyMap.values()).sort((a, b) => a.name.localeCompare(b.name))
-  }, [sessions])
+  }, [sessions, t])
 
   // Filter sessions based on selected academy
   const filteredSessions = useMemo(() => {

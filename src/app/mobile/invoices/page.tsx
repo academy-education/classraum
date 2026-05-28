@@ -271,7 +271,7 @@ function MobileInvoicesPageContent() {
       console.warn('[Invoices] Error getting academy name:', error)
       return String(t('mobile.fallbacks.academy'))
     }
-  }, [])
+  }, [t])
 
   // Fallback fetch strategy with simplified queries
   const fetchInvoicesSimplified = useCallback(async (): Promise<Invoice[]> => {

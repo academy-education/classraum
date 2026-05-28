@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import React, { createContext, useContext, useEffect, useState, useCallback, useMemo, ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
 import { languages, getNestedValue, SupportedLanguage } from '@/locales'
@@ -54,7 +54,14 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   // Translation function with parameter interpolation. Always returns a
   // string — array-valued keys are joined with commas as a defensive
   // fallback. Callers wanting the array should use tList instead.
-  const t = (key: string, params?: Record<string, string | number | undefined>): string => {
+  //
+  // Wrapped in useCallback so the returned reference is stable across
+  // renders (only changes when `language` flips). Without this, every
+  // consumer that lists `t` in useEffect/useCallback deps would re-run
+  // on every render — and the ESLint rule rightly warns about consumers
+  // that DON'T list it (stale closures). Memoising at the source means
+  // both kinds of consumers are correct.
+  const t = useCallback((key: string, params?: Record<string, string | number | undefined>): string => {
     const translations = languages[language]
     const raw = getNestedValue(translations, key) || key
     let translation: string = Array.isArray(raw) ? raw.join(', ') : raw
@@ -69,19 +76,20 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
 
     return translation
-  }
+  }, [language])
 
   // Sibling of t() for keys that resolve to string arrays (weekday lists,
   // feature bullet lists, etc.). Returns [] when the key is missing or not
   // an array, so callers can map without an extra Array.isArray guard.
-  const tList = (key: string): unknown[] => {
+  // Memoised for the same reason as `t` above.
+  const tList = useCallback((key: string): unknown[] => {
     const translations = languages[language]
     // getNestedValue's signature claims string | string[] but at runtime
     // arrays may also hold objects ({ title, description }). Read as
     // unknown and let the caller cast to its expected element shape.
     const raw = getNestedValue(translations, key) as unknown
     return Array.isArray(raw) ? raw : []
-  }
+  }, [language])
 
   // Load user's language preference from database with caching
   const loadUserLanguage = async (userId?: string): Promise<SupportedLanguage | null> => {
@@ -180,8 +188,9 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       }
     }
 
-  // Update language preference in database and state
-  const setLanguage = async (newLanguage: SupportedLanguage) => {
+  // Update language preference in database and state. Memoised so the
+  // identity is stable across renders — see the same note on `t` above.
+  const setLanguage = useCallback(async (newLanguage: SupportedLanguage) => {
     try {
       // Update local state immediately for responsive UI
       setLanguageState(newLanguage)
@@ -235,7 +244,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     } catch {
       // Even if database update fails, local state and cookies should still work
     }
-  }
+  }, [user?.id])
 
   // Handle client-side initialization with enhanced debugging
   useEffect(() => {
@@ -348,13 +357,14 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
   }, [user, isInitialized])
 
-  // Always render children - language now has immediate default value
-  const value: LanguageContextType = {
-    language,
-    setLanguage,
-    t,
-    tList
-  }
+  // Memoise the context value so consumers using `useContext` only re-render
+  // when one of the four fields actually changes. Without this, every
+  // re-render of LanguageProvider (e.g. when `isHydrated` flips) would
+  // create a new object reference and force-re-render every subscriber.
+  const value: LanguageContextType = useMemo(
+    () => ({ language, setLanguage, t, tList }),
+    [language, setLanguage, t, tList]
+  )
 
   return (
     <LanguageContext.Provider value={value}>

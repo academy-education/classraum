@@ -97,7 +97,7 @@ export default function AnnouncementsPage() {
     } finally {
       setLoading(false)
     }
-  }, [effectiveUserId, academyIds])
+  }, [effectiveUserId, academyIds, t])
 
   useEffect(() => {
     if (isReady) {

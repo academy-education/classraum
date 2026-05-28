@@ -102,7 +102,7 @@ export function StudentAssignmentsModal({
     } finally {
       setLoading(false)
     }
-  }, [studentId])
+  }, [studentId, t])
 
   useEffect(() => {
     if (isOpen && studentId) {

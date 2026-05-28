@@ -206,8 +206,8 @@ export default function MobileSessionDetailsPage() {
       })
       return null
     }
-  }, [effectiveUserId, hasAcademyIds, academyIds, user])
-  
+  }, [effectiveUserId, hasAcademyIds, academyIds, user, t])
+
   // Progressive loading for session details
   // Replace useMobileData with direct useEffect pattern like working pages
   const [session, setSession] = useState<SessionDetails | null>(null)

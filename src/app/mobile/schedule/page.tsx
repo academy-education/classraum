@@ -119,7 +119,7 @@ function MobileSchedulePageContent() {
       }
     })
     return Array.from(academyMap.values()).sort((a, b) => a.name.localeCompare(b.name))
-  }, [sessions])
+  }, [sessions, t])
 
   // Filter sessions based on selected academy
   const filteredSessions = useMemo(() => {
@@ -271,7 +271,7 @@ function MobileSchedulePageContent() {
       console.error('Error fetching schedule:', error)
       return []
     }
-  }, [effectiveUserId, hasAcademyIds, academyIds, setScheduleCache])
+  }, [effectiveUserId, hasAcademyIds, academyIds, setScheduleCache, t])
 
   const fetchMonthlySessionDates = useCallback(async () => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return
@@ -447,7 +447,7 @@ function MobileSchedulePageContent() {
     } catch (error) {
       console.error('Error fetching monthly sessions:', error)
     }
-  }, [effectiveUserId, hasAcademyIds, academyIds, currentMonth, setScheduleCache, setMonthlySessionDates])
+  }, [effectiveUserId, hasAcademyIds, academyIds, currentMonth, setScheduleCache, setMonthlySessionDates, t])
 
   // Fetch schedule when date or user changes
   useEffect(() => {

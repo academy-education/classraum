@@ -163,8 +163,8 @@ export default function MobileInvoiceDetailsPage() {
       }
       return null
     }
-  }, [invoiceId, user])
-  
+  }, [invoiceId, user, t])
+
   // Replace useMobileData with direct useEffect pattern like working pages
   const [invoice, setInvoice] = useState<InvoiceDetails | null>(null)
   const [loading, setLoading] = useState(() => {
