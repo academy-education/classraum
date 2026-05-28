@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { enforceRateLimit, userOrIpKey } from '@/lib/rate-limit'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -84,6 +85,16 @@ export async function POST(request: Request) {
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+
+    // Rate limit: 10 new conversations/user/hour. Conversation creation
+    // is the heaviest spam vector — each one creates a row + notifies
+    // the participant. Without this, a script could create thousands
+    // of empty conversations to nuisance other users.
+    const blocked = enforceRateLimit(
+      userOrIpKey('chat-conversations-create', user.id, request as NextRequest),
+      { windowMs: 60 * 60 * 1000, max: 10 }
+    )
+    if (blocked) return blocked
 
     const body = await request.json()
     const { academy_id, title } = body

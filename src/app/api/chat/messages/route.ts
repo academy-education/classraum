@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { enforceRateLimit, userOrIpKey } from '@/lib/rate-limit'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -113,12 +114,33 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
+    // Per-user rate limit: 30 messages/min. Comfortable for legit
+    // burst typing (5 messages/10s is fast); anything past 30/min is
+    // either a runaway client loop or scripted spam. The notification
+    // fan-out from chat_messages INSERT means flooding is also a
+    // mobile-push spam vector for the recipient.
+    const userBlocked = enforceRateLimit(
+      userOrIpKey('chat-messages-send', user.id, request as NextRequest),
+      { windowMs: 60 * 1000, max: 30 }
+    )
+    if (userBlocked) return userBlocked
+
     const body = await request.json()
     const { conversation_id, message, message_type = 'text', file_url, file_name, file_size } = body
 
     if (!conversation_id || !message) {
       return NextResponse.json({ error: 'conversation_id and message are required' }, { status: 400 })
     }
+
+    // Per-conversation rate limit on top: 15 msgs/min into the same
+    // conversation, regardless of who sent them. Protects the
+    // conversation recipient from being flooded even when multiple
+    // group-chat participants spam concurrently.
+    const convBlocked = enforceRateLimit(
+      `chat-messages-conv:${conversation_id}`,
+      { windowMs: 60 * 1000, max: 15 }
+    )
+    if (convBlocked) return convBlocked
 
     // Verify user owns this conversation
     const { data: conversation, error: convError } = await supabaseServer

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -46,13 +47,25 @@ async function resolveToken(token: string): Promise<
 // code otherwise. Never exposes the academy id when the token is invalid —
 // that prevents enumeration.
 export async function GET(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ token: string }> }
 ) {
   const { token } = await params
   if (!token || token.length < 16) {
     return NextResponse.json({ ok: false, reason: 'not_found' }, { status: 404 })
   }
+
+  // Brute-force protection: 30 token lookups/IP/minute. Without this,
+  // an attacker could enumerate the 16+ char token namespace. The
+  // token-space is huge so guessing is statistically infeasible, but a
+  // rate limit closes the door entirely and also bounds the DB cost of
+  // a scripted scan.
+  const blocked = enforceRateLimit(
+    `onboarding-token-lookup:ip:${getClientIp(request)}`,
+    { windowMs: 60 * 1000, max: 30 },
+    'Too many onboarding token lookups. Try again in a minute.'
+  )
+  if (blocked) return blocked
 
   const result = await resolveToken(token)
   if (!result.ok) {
@@ -96,6 +109,17 @@ export async function POST(
   { params }: { params: Promise<{ token: string }> }
 ) {
   const { token } = await params
+
+  // Tighter rate limit on signup attempts than on GET lookups.
+  // 10/IP/hour — a real onboarding flow only submits once. Higher
+  // than that is either a stuck retry loop or a probe trying to brute-
+  // force the token + then sign up against the resolved academy.
+  const blocked = enforceRateLimit(
+    `onboarding-signup:ip:${getClientIp(request)}`,
+    { windowMs: 60 * 60 * 1000, max: 10 },
+    'Too many signup attempts. Try again later.'
+  )
+  if (blocked) return blocked
 
   try {
     const result = await resolveToken(token)
