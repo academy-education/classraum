@@ -40,8 +40,37 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get invoice details including academy
-    // Use academy_id foreign key to join with academies table
+    // ── IDOR guard ────────────────────────────────────────────────────
+    // This endpoint is callable by any authenticated user (the comment
+    // above says students/parents call it post-checkout). Without an
+    // invoice-ownership check, any logged-in user could:
+    //   1. POST a victim's invoiceId with their own paymentId
+    //   2. Trigger a PortOne settlement to flow money to whatever
+    //      partner account the victim's academy has configured
+    //   3. Spam unlimited settlement-create calls against PortOne
+    //
+    // Get the invoice WITH the user-context auth client (respects RLS)
+    // so a user can only fetch invoices they're allowed to see — which
+    // in this schema is their own student_id or, for parents, invoices
+    // in their family. If the fetch returns 404, the user doesn't own
+    // it and we bail with a generic error (no enumeration oracle).
+    const { data: ownedInvoice, error: ownedInvoiceError } = await authClient
+      .from('invoices')
+      .select('id')
+      .eq('id', invoiceId)
+      .maybeSingle();
+
+    if (ownedInvoiceError || !ownedInvoice) {
+      // Generic 404 — don't leak whether the invoice exists at all.
+      return NextResponse.json(
+        { error: 'Invoice not found' },
+        { status: 404 }
+      );
+    }
+
+    // Now fetch the full invoice + academy join with the service-role
+    // client (RLS-bypassing) for the partner_id read that the user
+    // legitimately can't see directly.
     const { data: invoice, error: invoiceError } = await supabase
       .from('invoices')
       .select(`
@@ -91,11 +120,28 @@ export async function POST(request: NextRequest) {
 
     // Create settlement in PortOne using Platform API
     // Reference: https://developers.portone.io/platform/ko/usages/order
+    //
+    // The client passes `paymentAmount` for convenience, but we ignore
+    // it and use the invoice's authoritative final_amount/amount. If we
+    // trusted the body, an attacker could pass a tiny paymentAmount to
+    // settle a large invoice for less than its real value (or the
+    // reverse to claim more partner payout than was actually paid).
+    // Logged when present + mismatched so we have visibility into
+    // misbehaving clients.
+    const authoritativeAmount = invoice.final_amount || invoice.amount;
+    if (typeof paymentAmount === 'number' && paymentAmount !== authoritativeAmount) {
+      console.warn('[Settlement] Client-supplied paymentAmount mismatch — using invoice value:', {
+        invoiceId,
+        clientValue: paymentAmount,
+        authoritative: authoritativeAmount,
+      });
+    }
+
     const settlementPayload = {
       partnerId: partnerId,
       paymentId: paymentId, // This should be the PortOne payment ID from the successful payment
       orderDetail: {
-        orderAmount: paymentAmount || invoice.final_amount || invoice.amount,
+        orderAmount: authoritativeAmount,
       },
       // settlementStartDate will default to payment completion time if not specified
       isForTest: process.env.NODE_ENV === 'development',

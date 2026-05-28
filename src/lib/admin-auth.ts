@@ -1,11 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-// Create admin client for server-side operations
-// Use service role key if available, otherwise fall back to anon key
+// Create admin client for server-side operations.
+//
+// SECURITY: this MUST use the service role key. Previously the code
+// fell back to the anon key when SUPABASE_SERVICE_ROLE_KEY was unset,
+// which silently turned the "admin" client into a regular anon client
+// that respects RLS — meaning admin-route reads/writes would either
+// fail mysteriously (good) or, if the affected table had a permissive
+// RLS policy for anon users, succeed with the wrong privileges (bad).
+//
+// Either failure mode is worse than crashing at startup, so we throw
+// loudly when the env var is missing in any environment where service-
+// role behavior is actually needed.
+if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  // Don't crash during `next build` (where env vars aren't always
+  // present and this file is just being type-checked) but emit a clear
+  // warning. Will throw at first runtime use below if still missing.
+  if (process.env.NODE_ENV === 'production') {
+    console.error('[admin-auth] SUPABASE_SERVICE_ROLE_KEY is not set in production. Admin routes will return 500.')
+  }
+}
+
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  // Intentionally NO anon-key fallback — see comment above.
+  process.env.SUPABASE_SERVICE_ROLE_KEY || '',
   {
     auth: {
       autoRefreshToken: false,
