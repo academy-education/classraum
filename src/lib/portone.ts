@@ -100,7 +100,14 @@ export async function verifyPayment(paymentId: string): Promise<PaymentVerificat
 
       // Validate payment has required fields
       if (!payment.amount || payment.amount.total === undefined) {
-        console.error('[PortOne] ❌ V2 response missing amount data:', payment);
+        // Log only the safe-to-log fields. The full payment object includes
+        // customer.{name,email,phoneNumber} and method.card details — those
+        // belong in the database, not the application logs.
+        console.error('[PortOne] ❌ V2 response missing amount data:', {
+          paymentId: payment.id,
+          status: payment.status,
+          keys: Object.keys(payment),
+        });
         return {
           success: false,
           error: 'Payment verification failed - missing amount data'
@@ -172,7 +179,12 @@ export async function verifyPayment(paymentId: string): Promise<PaymentVerificat
 
     // Validate payment has required fields
     if (!payment.amount || payment.amount.total === undefined) {
-      console.error('[PortOne] ❌ V1 response missing amount data:', payment);
+      // Safe-fields-only — see equivalent V2 comment above.
+      console.error('[PortOne] ❌ V1 response missing amount data:', {
+        paymentId: payment.id,
+        status: payment.status,
+        keys: Object.keys(payment),
+      });
       return {
         success: false,
         error: 'Payment verification failed - missing amount data'

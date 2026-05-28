@@ -5,6 +5,11 @@
 // without an account.
 
 import * as Sentry from '@sentry/nextjs'
+import {
+  scrubPii,
+  scrubConsoleBreadcrumb,
+  scrubNavigationBreadcrumb,
+} from '@/lib/sentry-scrubbing'
 
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
@@ -39,19 +44,24 @@ Sentry.init({
         delete event.request.headers['cookie']
       }
     }
+    // Recursively scrub PII from event.extra and event.contexts — these
+    // are where Sentry.captureException(err, { extra: {...} }) data lives
+    // and frequently include logged user objects.
+    if (event.extra) {
+      event.extra = scrubPii(event.extra) as Record<string, unknown>
+    }
+    if (event.contexts) {
+      event.contexts = scrubPii(event.contexts) as typeof event.contexts
+    }
     return event
   },
   beforeBreadcrumb(breadcrumb) {
-    // Strip query strings from URL breadcrumbs — auth tokens, search
-    // terms, student names can end up here.
-    if (breadcrumb.category === 'navigation' && breadcrumb.data?.to) {
-      const to = String(breadcrumb.data.to)
-      breadcrumb.data.to = to.split('?')[0]
-    }
-    if (breadcrumb.category === 'fetch' && breadcrumb.data?.url) {
-      const url = String(breadcrumb.data.url)
-      breadcrumb.data.url = url.split('?')[0]
-    }
+    scrubNavigationBreadcrumb(breadcrumb)
+    // Console breadcrumbs are the biggest leak vector: every console.error
+    // in the codebase becomes one with the original args attached as
+    // breadcrumb.data.arguments. Pattern-scrub them here so we catch
+    // existing call sites without needing per-file rewrites.
+    scrubConsoleBreadcrumb(breadcrumb)
     return breadcrumb
   },
 

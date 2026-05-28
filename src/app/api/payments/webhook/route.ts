@@ -51,7 +51,9 @@ export async function POST(request: NextRequest) {
     const customData = data.customData;
 
     if (!paymentId) {
-      console.error('[Webhook] Payment ID missing from webhook body:', data);
+      // Log shape, not contents — PortOne webhook bodies include customer
+      // data we don't want surfacing in logs/Sentry on malformed payloads.
+      console.error('[Webhook] Payment ID missing from webhook body. Keys present:', Object.keys(data ?? {}));
       return NextResponse.json(
         { error: 'Payment ID is required' },
         { status: 400 }

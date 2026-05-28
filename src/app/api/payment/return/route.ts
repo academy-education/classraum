@@ -14,9 +14,9 @@ export async function POST(req: NextRequest) {
     const P_AUTH_DT = body.get("P_AUTH_DT")?.toString() // Auth date
     const P_NOTI = body.get("P_NOTI")?.toString()      // Custom data (invoice ID)
 
-    console.log('Mobile payment return data:', {
-      P_STATUS, P_RMESG1, P_TID, P_AMT, P_OID, P_NOTI
-    })
+    // Log just status + transaction ID. Amount + order ID + invoice ID
+     // are sensitive in aggregate (build a customer profile from cron logs).
+    console.log('[Payment Return] status:', P_STATUS, 'tx:', P_TID)
 
     if (P_STATUS === "00") {  // Success code for mobile is "00" not "0000"
       // ============================================
@@ -44,11 +44,12 @@ export async function POST(req: NextRequest) {
             .single()
 
           if (updateError) {
-            console.error('[Payment Return] Failed to update invoice:', updateError)
+            console.error('[Payment Return] Failed to update invoice:', updateError.message)
           } else {
-            console.log('[Payment Return] Invoice updated successfully:', invoice)
+            // Log only invoice id + status — not the full row (which
+            // contains student_id, amount, payment_method, notes).
+            console.log('[Payment Return] Invoice updated:', invoice?.id, invoice?.status)
             // TODO: Implement settlement tracking when settlements table is created
-            // For now, just log the successful payment
           }
         } catch (dbError) {
           console.error('[Payment Return] Database error:', dbError)

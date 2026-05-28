@@ -4,6 +4,7 @@
 // browser var is set (they're the same string for Sentry projects).
 
 import * as Sentry from '@sentry/nextjs'
+import { scrubPii, scrubConsoleBreadcrumb } from '@/lib/sentry-scrubbing'
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN,
@@ -39,7 +40,26 @@ Sentry.init({
       // Keep event.user.id if it's a UUID (not personally identifying on its own)
     }
 
+    // Audit found ~10 places where console.error logs full user / payment
+    // objects. captureException(err, { extra: {...} }) carries that data
+    // in event.extra; recursive scrub catches the named PII fields
+    // wherever they live in the structure.
+    if (event.extra) {
+      event.extra = scrubPii(event.extra) as Record<string, unknown>
+    }
+    if (event.contexts) {
+      event.contexts = scrubPii(event.contexts) as typeof event.contexts
+    }
+
     return event
+  },
+
+  beforeBreadcrumb(breadcrumb) {
+    // Server-side console.error breadcrumbs are the highest-risk leak
+    // path — Vercel Function logs are team-readable, and every
+    // captured exception ships its console history to Sentry.
+    scrubConsoleBreadcrumb(breadcrumb)
+    return breadcrumb
   },
 
   ignoreErrors: [

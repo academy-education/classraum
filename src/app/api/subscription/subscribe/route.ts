@@ -329,9 +329,13 @@ export async function POST(request: NextRequest) {
           currency: 'KRW',
         };
 
+        // Log paymentId + amount only. requestBody includes customer
+        // name/email/phoneNumber which doesn't belong in application logs
+        // (it's already in the DB and PortOne's records).
         console.log('[SUBSCRIBE] Payment request:', {
-          url: `https://api.portone.io/payments/${encodeURIComponent(paymentId)}/billing-key`,
-          body: requestBody,
+          paymentId,
+          amount: amountToCharge,
+          currency: 'KRW',
         });
 
         const paymentResponse = await fetch(
@@ -348,11 +352,16 @@ export async function POST(request: NextRequest) {
 
         console.log('[SUBSCRIBE] Payment response status:', paymentResponse.status);
         const responseText = await paymentResponse.text();
-        console.log('[SUBSCRIBE] Payment response body:', responseText);
+        // Don't log the full response body — PortOne echoes the customer
+        // object back. Log only the parsed metadata we actually need.
 
         if (paymentResponse.ok) {
           const paymentData = JSON.parse(responseText);
-          console.log('[SUBSCRIBE] ✅ Payment successful:', paymentData);
+          console.log('[SUBSCRIBE] ✅ Payment successful:', {
+            paymentId: paymentData?.payment?.id ?? paymentId,
+            status: paymentData?.payment?.status,
+            amount: paymentData?.payment?.amount?.total,
+          });
 
           // Now create the subscription if we were waiting for payment
           if (shouldCreateSubscriptionAfterPayment) {
