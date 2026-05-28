@@ -274,39 +274,18 @@ function permanentlyDeletedTemplate(p: PermanentlyDeletedEmailParams) {
 // Send helpers — best-effort; never throw.
 // ─────────────────────────────────────────────────────────────────────────
 
+// Postmark sender moved to src/lib/postmark.ts so the cron-monitoring
+// digest (and any future transactional email) can reuse the same code
+// path. Local wrapper preserves the existing 3-arg signature without
+// rippling changes through the template senders below.
+import { sendPostmarkEmail as sendPostmarkEmailShared } from './postmark'
+
 async function sendPostmarkEmail(
   to: string,
   subject: string,
   htmlBody: string
 ): Promise<{ sent: boolean; error?: string }> {
-  const postmarkToken = process.env.POSTMARK_SERVER_TOKEN
-  if (!postmarkToken) {
-    return { sent: false, error: 'POSTMARK_SERVER_TOKEN not configured' }
-  }
-  try {
-    const res = await fetch('https://api.postmarkapp.com/email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'X-Postmark-Server-Token': postmarkToken,
-      },
-      body: JSON.stringify({
-        From: FROM_EMAIL,
-        To: to,
-        Subject: subject,
-        HtmlBody: htmlBody,
-        MessageStream: 'outbound',
-      }),
-    })
-    if (!res.ok) {
-      const body = await res.json().catch(() => ({}))
-      return { sent: false, error: (body as { Message?: string })?.Message || `HTTP ${res.status}` }
-    }
-    return { sent: true }
-  } catch (e) {
-    return { sent: false, error: (e as Error).message }
-  }
+  return sendPostmarkEmailShared({ to, subject, htmlBody, from: FROM_EMAIL })
 }
 
 export async function sendAccountScheduledForDeletionEmail(
