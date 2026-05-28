@@ -192,8 +192,16 @@ export async function getAcademyIdFromRequest(request: NextRequest): Promise<str
       return userAcademyId || academyIdHeader || null;
     }
 
-    // No auth header — use x-academy-id for unauthenticated flows (e.g., self-signup limit check)
-    return academyIdHeader || null;
+    // No auth header. Previously we'd fall back to the x-academy-id
+    // header for "unauthenticated flows (e.g. self-signup limit check)",
+    // but that turned the endpoint into an enumeration oracle: anyone
+    // could pass any academy_id and read its subscription limits,
+    // feature flags, and storage usage (audit 2026-05-25, P1).
+    //
+    // The signup flow doesn't actually need limit checks pre-auth — it
+    // creates the user first, then the authenticated user calls the
+    // check. Returning null forces the route to deny.
+    return null;
   } catch (error) {
     console.error('Error getting academy ID from request:', error);
     return null;

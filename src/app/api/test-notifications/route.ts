@@ -13,6 +13,13 @@ import {
 } from '@/lib/notification-triggers'
 
 export async function POST(req: NextRequest) {
+  // DEV-ONLY GUARD. Without this, the endpoint becomes a
+  // "send arbitrary notifications + push + SMS to any user" oracle
+  // in production. Audit (2026-05-25) flagged P0.
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     const body = await req.json()
     const { trigger, testData } = body

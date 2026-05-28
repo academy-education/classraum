@@ -1,7 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { getUserFromRequest } from '@/lib/api-auth'
 
 export async function POST(request: NextRequest) {
+  // Auth gate. Previously this endpoint was fully public — service-role
+  // INSERT into notifications meant anyone could spam any user with
+  // arbitrary notification content (audit 2026-05-25, P0).
+  //
+  // Two accepted credentials:
+  //   1. Bearer <user JWT> — browser callers via src/lib/notifications.ts
+  //   2. x-internal-secret: CRON_SECRET_KEY — server-side loop-back from
+  //      cron / webhook handlers that don't have a user context
+  const internalSecret = request.headers.get('x-internal-secret')
+  const hasInternalAuth =
+    !!process.env.CRON_SECRET_KEY && internalSecret === process.env.CRON_SECRET_KEY
+  if (!hasInternalAuth) {
+    const user = await getUserFromRequest(request)
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+  }
+
   try {
     const { notifications } = await request.json()
 

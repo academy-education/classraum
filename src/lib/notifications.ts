@@ -121,18 +121,22 @@ export async function createNotification(options: CreateNotificationOptions) {
       updated_at: new Date().toISOString()
     }
 
-    // Call API route to create notification (bypasses RLS)
+    // Call API route to create notification (bypasses RLS).
+    // Endpoint requires auth — forward the user's JWT from the current
+    // Supabase session so the server's auth check passes.
+    const { data: { session } } = await supabase.auth.getSession()
     const response = await fetch('/api/notifications/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
       },
       body: JSON.stringify({ notifications: [notification] })
     })
 
     if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.error || 'Failed to create notification')
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error((errorData as { error?: string }).error || 'Failed to create notification')
     }
 
     const result = await response.json()

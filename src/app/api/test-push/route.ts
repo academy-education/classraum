@@ -9,6 +9,12 @@ const supabaseAdmin = createClient(
 )
 
 export async function POST(req: NextRequest) {
+  // DEV-ONLY GUARD. Without this, anyone with the URL could push to
+  // any user's device. Audit (2026-05-25) flagged P0.
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     const body = await req.json()
     const { userId, title, message } = body
@@ -131,6 +137,13 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  // DEV-ONLY GUARD. Returns device token counts including unique user
+  // IDs — without this, anyone could enumerate which users have which
+  // platform's tokens registered. Audit (2026-05-25) flagged P1.
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   // Check device tokens summary
   const { data: tokenStats, error: statsError } = await supabaseAdmin
     .from('device_tokens')

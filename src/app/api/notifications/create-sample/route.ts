@@ -14,6 +14,13 @@ import {
  * This demonstrates how to integrate notification creation throughout the application
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  // DEV-ONLY GUARD. Same risk profile as test-notifications — this
+  // endpoint creates real notification rows for any user_id passed in
+  // the body. Audit (2026-05-25) flagged P0.
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     const { userId, type } = await request.json()
 

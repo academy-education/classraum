@@ -2,9 +2,16 @@ import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
 export async function GET() {
+  // DEV-ONLY GUARD. Anyone calling this in production triggers a real
+  // OpenAI API call (you pay) and the response reveals whether
+  // OPENAI_API_KEY is set. Audit (2026-05-25) flagged P1.
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     console.log('Testing OpenAI API connection...')
-    
+
     // Check if API key is configured
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json({
