@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { escapeHtml } from '@/lib/html-escape'
 
 const EMAIL_TEMPLATES = {
   en: {
@@ -160,6 +161,15 @@ export async function POST(request: Request) {
     const template = EMAIL_TEMPLATES[lang]
     const roleName = ROLE_NAMES[lang][role as keyof typeof ROLE_NAMES.en] || role
 
+    // XSS guard: `name` comes from the signup form and goes raw into
+    // the email's HTML body via template.html(). Without escaping,
+    // `<img src=x onerror="...">` would execute when the recipient
+    // opens the email in webmail. `roleName` is from the ROLE_NAMES
+    // map (controlled) but defaults to the raw `role` if not found,
+    // so escape it too as defence in depth.
+    const safeName = escapeHtml(name)
+    const safeRoleName = escapeHtml(roleName)
+
     const response = await fetch('https://api.postmarkapp.com/email', {
       method: 'POST',
       headers: {
@@ -171,7 +181,7 @@ export async function POST(request: Request) {
         From: process.env.POSTMARK_FROM_EMAIL || 'no-reply@classraum.com',
         To: email,
         Subject: template.subject,
-        HtmlBody: template.html(name, roleName),
+        HtmlBody: template.html(safeName, safeRoleName),
       }),
     })
 

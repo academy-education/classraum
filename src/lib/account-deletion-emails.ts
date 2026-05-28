@@ -39,14 +39,9 @@ function normalizeLanguage(input?: string | null): DeletionEmailLanguage {
  * (the header is set via JSON field, not raw header line), but we
  * escape them anyway for consistency and defense-in-depth.
  */
-function escapeHtml(input: string): string {
-  return String(input)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-}
+// escapeHtml moved to src/lib/html-escape.ts so the welcome-email
+// route (and any future email template) reuses the same helper.
+import { escapeHtml } from './html-escape'
 
 function buttonStyles() {
   return `display:inline-block;background:#2563eb;color:#ffffff !important;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:600;`

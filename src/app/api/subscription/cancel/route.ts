@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { deletePortOneBillingKey } from '@/lib/portone-billing-key';
 
 export async function POST(request: NextRequest) {
   try {
@@ -44,12 +45,41 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Revoke the PortOne billing key BEFORE flipping auto_renew. Without
+    // this, the key stays valid at PortOne indefinitely — meaning a
+    // future bug in the billing cron (e.g. a code path that forgets to
+    // check auto_renew) could silently re-charge a customer who already
+    // cancelled. Belt-and-braces: the customer's intent is captured in
+    // both the DB row (auto_renew=false) AND at the payment provider
+    // (key revoked).
+    //
+    // Idempotency: deletePortOneBillingKey is safe to call against an
+    // already-cancelled key. We also gate on billing_key_cancelled_at
+    // so a retry of the cancel flow doesn't re-issue the DELETE.
+    let billingKeyRevoked = false
+    if (subscription.billing_key && !subscription.billing_key_cancelled_at) {
+      const revokeResult = await deletePortOneBillingKey(subscription.billing_key)
+      if (!revokeResult.cancelled) {
+        // Don't block the cancellation on a PortOne failure — the
+        // customer still gets their auto_renew=false flag set, and the
+        // account-deletion cron sweeps stale keys later. But surface the
+        // error so we can investigate.
+        console.error(
+          '[subscription/cancel] PortOne billing-key revocation failed:',
+          revokeResult.error
+        )
+      } else {
+        billingKeyRevoked = true
+      }
+    }
+
     // Update subscription to disable auto_renew
     // This will prevent future billing but keep current period active
     const { error: updateError } = await supabase
       .from('academy_subscriptions')
       .update({
         auto_renew: false,
+        ...(billingKeyRevoked ? { billing_key_cancelled_at: new Date().toISOString() } : {}),
         updated_at: new Date().toISOString(),
       })
       .eq('academy_id', academyId);
@@ -68,6 +98,7 @@ export async function POST(request: NextRequest) {
       data: {
         currentPeriodEnd: subscription.current_period_end,
         auto_renew: false,
+        billing_key_revoked: billingKeyRevoked,
       },
     });
 
