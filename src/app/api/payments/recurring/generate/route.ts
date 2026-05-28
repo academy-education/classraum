@@ -161,8 +161,45 @@ export async function POST(req: NextRequest) {
 
           console.log(`[RECURRING] Found ${templateStudents.length} active students for template: ${template.name}`)
 
-          // Create invoices for all active students
-          const invoices = templateStudents.map((templateStudent) => {
+          // ── Idempotency guard ────────────────────────────────────────
+          // The cron can be interrupted between invoice INSERT and the
+          // template's next_due_date UPDATE below (Vercel timeout, crash,
+          // overlap with a manual retry). Without this guard, the next
+          // run would re-INSERT invoices for students we already
+          // invoiced for this period.
+          //
+          // Filter the student list down to only those who don't already
+          // have an invoice for this (template_id, due_date). If a
+          // previous run got partway, the next run resumes where it
+          // stopped instead of duplicating.
+          const { data: existingForPeriod } = await supabase
+            .from('invoices')
+            .select('student_id')
+            .eq('template_id', template.id)
+            .eq('due_date', template.next_due_date)
+          const alreadyInvoiced = new Set((existingForPeriod ?? []).map(r => r.student_id))
+          const studentsToInvoice = templateStudents.filter(s => !alreadyInvoiced.has(s.student_id))
+
+          if (alreadyInvoiced.size > 0) {
+            console.log(`[RECURRING] Template ${template.name}: ${alreadyInvoiced.size} students already invoiced for ${template.next_due_date}; processing ${studentsToInvoice.length} remaining`)
+          }
+
+          if (studentsToInvoice.length === 0) {
+            // Everyone already invoiced for this period — just bump
+            // next_due_date so the template doesn't keep matching the
+            // "due today" query forever.
+            const nextDueDate = calculateNextDueDate(template)
+            await supabase
+              .from('recurring_payment_templates')
+              .update({ next_due_date: nextDueDate })
+              .eq('id', template.id)
+            console.log(`[RECURRING] All students already invoiced; rolled forward to ${nextDueDate}`)
+            templatesProcessed++
+            continue
+          }
+
+          // Create invoices for the students who don't have one yet
+          const invoices = studentsToInvoice.map((templateStudent) => {
             const finalAmount = templateStudent.amount_override || template.amount
             return {
               student_id: templateStudent.student_id,
@@ -183,7 +220,7 @@ export async function POST(req: NextRequest) {
             .select('id')
 
           if (invoiceError) {
-            console.error(`[RECURRING] Error creating invoices for template ${template.id}:`, invoiceError)
+            console.error(`[RECURRING] Error creating invoices for template ${template.id}:`, invoiceError.message)
             errors.push(`Template ${template.name}: ${invoiceError.message}`)
             continue
           }

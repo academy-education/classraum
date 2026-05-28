@@ -72,8 +72,34 @@ export async function GET(req: NextRequest) {
             return;
           }
 
-          // Generate payment ID
-          const paymentId = `subscription_${subscription.id}_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+          // ── Idempotency: deterministic paymentId ──────────────────────
+          // Previously: ${id}_${Date.now()}_${random} — every cron run
+          // generated a new ID, defeating PortOne's own idempotency
+          // (PortOne dedups by paymentId). Overlapping cron runs or
+          // retries after a partial timeout would double-charge the
+          // customer with different IDs but for the same billing period.
+          //
+          // Now: ${id}_${YYYY-MM-DD-of-billing-date}. Same period = same
+          // ID = PortOne returns the existing charge result instead of
+          // creating a new one. Combined with the pre-charge check below
+          // (subscription_invoices unique on kg_transaction_id), this
+          // makes the whole flow safely re-runnable.
+          const billingDateKey = subscription.next_billing_date.slice(0, 10);
+          const paymentId = `subscription_${subscription.id}_${billingDateKey}`;
+
+          // Pre-charge guard: if we've already created an invoice for
+          // this exact (subscription, billing period), the previous run
+          // already finished — skip the PortOne call entirely instead
+          // of relying on PortOne's dedup as the only defense.
+          const { data: existingInvoice } = await supabaseAdmin
+            .from('subscription_invoices')
+            .select('id, status')
+            .eq('kg_transaction_id', paymentId)
+            .maybeSingle();
+          if (existingInvoice) {
+            console.log(`[SUBSCRIPTION-BILLING] Skipping ${subscription.id} — invoice ${existingInvoice.id} already exists for this period (${billingDateKey})`);
+            return;
+          }
 
           // Get academy info
           const { data: academy } = await supabaseAdmin
@@ -147,8 +173,18 @@ export async function GET(req: NextRequest) {
               });
 
             if (invoiceError) {
-              console.error(`[SUBSCRIPTION-BILLING] Error creating invoice for subscription ${subscription.id}:`, invoiceError);
-              errors.push(`Subscription ${subscription.id}: Failed to create invoice`);
+              // 23505 = unique_violation on kg_transaction_id. Means a
+              // concurrent cron run beat us to the invoice insert — but
+              // because the paymentId is now deterministic, PortOne also
+              // dedup'd the charge, so the customer wasn't double-billed.
+              // Treat this as success (the invoice exists, the charge
+              // succeeded once) instead of a hard error.
+              if ((invoiceError as { code?: string }).code === '23505') {
+                console.log(`[SUBSCRIPTION-BILLING] Invoice for ${subscription.id} already exists (race-loss) — treating as success`);
+              } else {
+                console.error(`[SUBSCRIPTION-BILLING] Error creating invoice for subscription ${subscription.id}:`, invoiceError.message);
+                errors.push(`Subscription ${subscription.id}: Failed to create invoice`);
+              }
             }
 
             // Check if there's a pending plan change scheduled for this billing cycle
