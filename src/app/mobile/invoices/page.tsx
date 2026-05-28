@@ -10,6 +10,7 @@ import { useMobileStore } from '@/stores/mobileStore'
 import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { MobileBackButton } from '@/components/ui/mobile/MobileBackButton'
@@ -400,6 +401,10 @@ function MobileInvoicesPageContent() {
     return true
   })
   const [isInitialLoad, setIsInitialLoad] = useState(true)
+  // Error state — payment data has to distinguish "no bills due" from
+  // "failed to load." A silent empty list on fetch failure is the worst
+  // possible UX here: parents think they're caught up when they're not.
+  const [fetchError, setFetchError] = useState<Error | null>(null)
 
   const refetchInvoices = useStableCallback(async () => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
@@ -423,9 +428,13 @@ function MobileInvoicesPageContent() {
       }
       const result = await invoicesFetcher()
       setInvoices(result || [])
+      setFetchError(null)
     } catch (error) {
       console.error('❌ [Invoices] Direct fetch error:', error)
-      setInvoices([])
+      // Keep any existing invoices on screen (stale-while-error) so the
+      // user doesn't lose the data they were already looking at, but
+      // surface the error so they know the refresh didn't take.
+      setFetchError(error instanceof Error ? error : new Error(String(error)))
     } finally {
       setLoading(false)
       setIsInitialLoad(false)
@@ -824,6 +833,18 @@ function MobileInvoicesPageContent() {
         </div>
       </div>
 
+      {/* Inline error banner — shown when the fetch failed but we still
+          have stale invoices to display. Replaces the silent-failure
+          pattern where the list just stopped updating. */}
+      {fetchError && invoices.length > 0 && (
+        <Card className="border-rose-200 bg-rose-50/50 mb-3">
+          <ErrorState
+            size="sm"
+            onRetry={() => { refetchInvoices() }}
+          />
+        </Card>
+      )}
+
       {/* Invoices List */}
       {(loading && invoices.length === 0) ? (
         <div className="space-y-3">
@@ -831,6 +852,14 @@ function MobileInvoicesPageContent() {
             <CardSkeleton key={i} />
           ))}
         </div>
+      ) : fetchError && invoices.length === 0 ? (
+        // Full-page error when there's nothing cached to fall back to.
+        // Critical: do NOT show the "all paid up" empty state here — a
+        // network failure on the unpaid filter would otherwise read as
+        // "you're caught up" when the user might actually owe money.
+        <Card>
+          <ErrorState onRetry={() => { refetchInvoices() }} />
+        </Card>
       ) : filteredInvoices.length === 0 ? (
         <Card>
           <EmptyState

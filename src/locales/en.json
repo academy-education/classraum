@@ -147,7 +147,7 @@
     },
     "pullToRefresh": "Pull to refresh",
     "refreshing": "Refreshing...",
-    "selectAll": "Select All",
+    "selectAll": "Select all",
     "deselectAll": "Deselect All",
     "signOut": "Sign out",
     "signingOut": "Signing out...",
@@ -201,7 +201,6 @@
     "viewMode": "View mode",
     "cardView": "Card view",
     "tableView": "Table view",
-    "selectAll": "Select all",
     "selectRow": "Select row",
     "type": "Type",
     "rate": "Rate",
@@ -309,6 +308,11 @@
         "fri": "Fri",
         "sat": "Sat"
       }
+    },
+    "errorState": {
+      "title": "Something went wrong",
+      "description": "We couldn't load this information. Check your connection and try again.",
+      "retry": "Try again"
     }
   },
   "categories": {
@@ -1340,8 +1344,6 @@
     "selectCategory": "Select category",
     "selectSubjectFirst": "Select subject first",
     "selectSessionFirst": "Select session first",
-    "addCategory": "Add Category",
-    "enterCategoryName": "Enter category name",
     "assignmentDescription": "Assignment description...",
     "descriptionLabel": "Description",
     "dueDate": "Due Date",
@@ -6781,7 +6783,6 @@
     "additionalCostPerMonth": "Additional cost: {amount}/month",
     "cancelPendingAddons": "Cancel Pending Changes",
     "newLimit": "New Limit",
-    "canceling": "Canceling...",
     "noDataError": "Unable to load subscription information",
     "retry": "Retry",
     "confirmCancel": "Are you sure you want to cancel your subscription? You can continue using the service until the end of the current billing period.",

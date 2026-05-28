@@ -12,6 +12,7 @@ import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { Button } from '@/components/ui/button'
 import { InvoiceDetailSkeleton } from '@/components/ui/skeleton'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { supabase } from '@/lib/supabase'
 import {
   ArrowLeft,
@@ -173,6 +174,11 @@ export default function MobileInvoiceDetailsPage() {
     }
     return true
   })
+  // Distinguish "couldn't load this invoice" (fetch error → show retry)
+  // from "invoice not found" (legitimate null → show "doesn't exist"
+  // message). Previously both rendered the same "not found" card, which
+  // for a payment-flow page is a bad failure mode.
+  const [fetchError, setFetchError] = useState<Error | null>(null)
 
   const refetchInvoice = useStableCallback(async () => {
     if (!invoiceId || !user?.userId) {
@@ -187,9 +193,12 @@ export default function MobileInvoiceDetailsPage() {
       }
       const result = await invoiceFetcher()
       setInvoice(result)
+      setFetchError(null)
     } catch (error) {
       console.error('❌ [Invoice] Fetch error:', error)
-      setInvoice(null)
+      // Don't wipe out previously-shown invoice — stale-while-error is
+      // better than blank-on-error for payment data.
+      setFetchError(error instanceof Error ? error : new Error(String(error)))
     } finally {
       setLoading(false)
       simpleTabDetection.markAppLoaded()
@@ -301,9 +310,18 @@ export default function MobileInvoiceDetailsPage() {
             <ArrowLeft className="w-4 h-4 text-gray-700" />
           </button>
         </div>
-        <Card className="p-8 text-center">
-          <p className="text-sm text-gray-500">{t('mobile.invoices.notFound')}</p>
-        </Card>
+        {fetchError ? (
+          // Fetch failed — give the user a retry path instead of leaving
+          // them stuck looking at "invoice not found" for what is actually
+          // a network blip.
+          <Card>
+            <ErrorState onRetry={() => { refetchInvoice() }} />
+          </Card>
+        ) : (
+          <Card className="p-8 text-center">
+            <p className="text-sm text-gray-500">{t('mobile.invoices.notFound')}</p>
+          </Card>
+        )}
       </div>
     )
   }

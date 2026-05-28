@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { MobileBackButton } from '@/components/ui/mobile/MobileBackButton'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -94,6 +95,11 @@ function MobileMessagesPageContent() {
   // Map language to locale
   const locale = language === 'korean' ? 'ko-KR' : 'en-US'
   const [conversations, setConversations] = useState<Conversation[]>([])
+  // Conversation-fetch error. We already toast on failure, but a toast
+  // alone disappears in seconds — the user is left looking at an "empty"
+  // list with no way to retry. This state powers the inline ErrorState
+  // card that gives them a button to refetch.
+  const [conversationsError, setConversationsError] = useState<Error | null>(null)
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
   const [loading, setLoading] = useState(true)
@@ -151,9 +157,11 @@ function MobileMessagesPageContent() {
 
       const data = await response.json()
       setConversations(data.conversations || [])
+      setConversationsError(null)
     } catch (error) {
       console.error('Error fetching conversations:', error)
       showErrorToast(String(t('messages.fetchError') || 'Failed to load conversations'))
+      setConversationsError(error instanceof Error ? error : new Error(String(error)))
     } finally {
       setLoading(false)
     }
@@ -768,6 +776,13 @@ function MobileMessagesPageContent() {
         {/* Conversations */}
         {loading ? (
           <StaggeredListSkeleton items={4} variant="message" />
+        ) : conversationsError && conversations.length === 0 ? (
+          // Distinguish "fetch failed" from "no conversations yet" — the
+          // empty state previously rendered for both, leaving users who
+          // hit a network blip thinking nobody had messaged them.
+          <Card>
+            <ErrorState onRetry={() => { fetchConversations() }} />
+          </Card>
         ) : visibleConversations.length === 0 ? (
           <Card>
             <EmptyState
