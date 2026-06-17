@@ -1,11 +1,12 @@
 "use client"
 
-import { Users, Loader2, CheckCircle } from 'lucide-react'
+import { Users, Loader2, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
@@ -96,6 +97,20 @@ export function SubmissionsGradeModal({
   const submittedCount = submissionGrades.filter(
     g => (g.status || '').toLowerCase() === 'submitted'
   ).length
+
+  // Track which rows have their feedback textarea expanded. Default
+  // collapsed (2 visible rows) so the modal stays scannable; managers
+  // can expand a row to write long-form feedback without losing the
+  // dense list structure of every other student.
+  const [expandedFeedback, setExpandedFeedback] = useState<Set<string>>(new Set())
+  const toggleFeedbackExpanded = useCallback((gradeId: string) => {
+    setExpandedFeedback(prev => {
+      const next = new Set(prev)
+      if (next.has(gradeId)) next.delete(gradeId)
+      else next.add(gradeId)
+      return next
+    })
+  }, [])
 
   if (!submissionsAssignment) return null
 
@@ -235,6 +250,10 @@ export function SubmissionsGradeModal({
                     if (isInput) {
                       // Allow row-nav even mid-typing.
                       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        // Skip ↑/↓ inside the feedback textarea — those keys
+                        // belong to multi-line cursor movement, not row nav.
+                        // Tab still moves between rows naturally.
+                        if (target.tagName === 'TEXTAREA') return
                         const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-grading-row]'))
                         const next = rows[rowIndex + (e.key === 'ArrowDown' ? 1 : -1)]
                         if (next) { next.focus(); e.preventDefault() }
@@ -253,73 +272,102 @@ export function SubmissionsGradeModal({
                       if (next) { next.focus(); e.preventDefault() }
                     }
                   }}
-                  className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 px-4 py-3 hover:bg-gray-50 focus:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset"
+                  className="flex flex-col gap-2 px-4 py-3 hover:bg-gray-50 focus:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset"
                 >
-                  {/* Student name + attendance badge.
-                      The badge tells the manager why this row was pre-filled
-                      (the grade status pill is now derived from the absent /
-                      excused attendance below). Late and present don't get
-                      a badge — those are the normal case. */}
-                  <div className="lg:w-44 flex-shrink-0 flex items-center gap-2 min-w-0">
-                    <span className="text-sm font-medium text-gray-900 truncate">{grade.student_name}</span>
-                    {grade.attendance_status === 'absent' && (
-                      <Badge className="bg-rose-50 text-rose-700 hover:bg-red-100 pointer-events-none text-[10px] flex-shrink-0">
-                        {t("attendance.absent")}
-                      </Badge>
-                    )}
-                    {grade.attendance_status === 'excused' && (
-                      <Badge className="bg-sky-50 text-sky-700 hover:bg-sky-100 pointer-events-none text-[10px] flex-shrink-0">
-                        {t("attendance.excused")}
-                      </Badge>
+                  {/* Row 1: name + status pills + score + optional date. The
+                      dense, scannable line that managers fly through with
+                      keyboard shortcuts. Teacher feedback moves to its own
+                      row below so it has space to breathe. */}
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
+                    {/* Student name + attendance badge.
+                        The badge tells the manager why this row was pre-filled
+                        (the grade status pill is now derived from the absent /
+                        excused attendance below). Late and present don't get
+                        a badge — those are the normal case. */}
+                    <div className="lg:w-44 flex-shrink-0 flex items-center gap-2 min-w-0">
+                      <span className="text-sm font-medium text-gray-900 truncate">{grade.student_name}</span>
+                      {grade.attendance_status === 'absent' && (
+                        <Badge className="bg-rose-50 text-rose-700 hover:bg-red-100 pointer-events-none text-[10px] flex-shrink-0">
+                          {t("attendance.absent")}
+                        </Badge>
+                      )}
+                      {grade.attendance_status === 'excused' && (
+                        <Badge className="bg-sky-50 text-sky-700 hover:bg-sky-100 pointer-events-none text-[10px] flex-shrink-0">
+                          {t("attendance.excused")}
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Status pills */}
+                    <SubmissionStatusPills
+                      value={(grade.status as SubmissionStatus) || 'pending'}
+                      onChange={(next) => updateSubmissionGrade(grade.id, 'status', next)}
+                      disabled={isSaving}
+                    />
+
+                    {/* Score (auto-flips status to submitted) */}
+                    <Input
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="0.01"
+                      value={grade.score ?? ''}
+                      onChange={(e) => handleScoreChange(grade, e.target.value)}
+                      placeholder={String(t("assignments.score"))}
+                      className="h-8 text-sm w-24 flex-shrink-0"
+                    />
+
+                    {/* Submitted/Overdue date — only when status is submitted/overdue */}
+                    {(grade.status === 'submitted' || grade.status === 'overdue') && (
+                      <div className="lg:w-40 flex-shrink-0">
+                        <AssignmentsDatePicker
+                          value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
+                          onChange={(value) => {
+                            updateSubmissionGrade(grade.id, 'submitted_date', Array.isArray(value) ? value[0] : value || null)
+                          }}
+                          fieldId={`${grade.status === 'overdue' ? 'overdue' : 'submitted'}-date-${grade.id}`}
+                          height="h-8"
+                          shadow="shadow-sm"
+                          activeDatePicker={activeDatePicker}
+                          setActiveDatePicker={setActiveDatePicker}
+                          t={t}
+                          language={language}
+                        />
+                      </div>
                     )}
                   </div>
 
-                  {/* Status pills */}
-                  <SubmissionStatusPills
-                    value={(grade.status as SubmissionStatus) || 'pending'}
-                    onChange={(next) => updateSubmissionGrade(grade.id, 'status', next)}
-                    disabled={isSaving}
-                  />
-
-                  {/* Score (auto-flips status to submitted) */}
-                  <Input
-                    type="number"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                    value={grade.score ?? ''}
-                    onChange={(e) => handleScoreChange(grade, e.target.value)}
-                    placeholder={String(t("assignments.score"))}
-                    className="h-8 text-sm w-24 flex-shrink-0"
-                  />
-
-                  {/* Submitted/Overdue date — only when status is submitted/overdue */}
-                  {(grade.status === 'submitted' || grade.status === 'overdue') && (
-                    <div className="lg:w-40 flex-shrink-0">
-                      <AssignmentsDatePicker
-                        value={grade.submitted_date ? grade.submitted_date.split('T')[0] : ''}
-                        onChange={(value) => {
-                          updateSubmissionGrade(grade.id, 'submitted_date', Array.isArray(value) ? value[0] : value || null)
-                        }}
-                        fieldId={`${grade.status === 'overdue' ? 'overdue' : 'submitted'}-date-${grade.id}`}
-                        height="h-8"
-                        shadow="shadow-sm"
-                        activeDatePicker={activeDatePicker}
-                        setActiveDatePicker={setActiveDatePicker}
-                        t={t}
-                        language={language}
-                      />
-                    </div>
-                  )}
-
-                  {/* Feedback (single-line by default; grow on focus) */}
-                  <Input
-                    type="text"
-                    value={grade.feedback || ''}
-                    onChange={(e) => updateSubmissionGrade(grade.id, 'feedback', e.target.value)}
-                    placeholder={String(t("assignments.teacherFeedback"))}
-                    className="h-8 text-sm flex-1 min-w-0"
-                  />
+                  {/* Row 2: teacher feedback in its own row. Collapsed by
+                      default (2 visible lines) to keep the list dense;
+                      expand button reveals 8 lines for longer-form feedback.
+                      Full-width so managers have room to type. */}
+                  <div className="flex items-start gap-2">
+                    <Textarea
+                      value={grade.feedback || ''}
+                      onChange={(e) => updateSubmissionGrade(grade.id, 'feedback', e.target.value)}
+                      placeholder={String(t("assignments.teacherFeedback"))}
+                      rows={expandedFeedback.has(grade.id) ? 8 : 2}
+                      className="text-sm flex-1 min-w-0 resize-none transition-[height] duration-150"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => toggleFeedbackExpanded(grade.id)}
+                      className="h-8 px-2 flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 rounded border border-transparent hover:border-gray-200 flex-shrink-0"
+                      aria-expanded={expandedFeedback.has(grade.id)}
+                      aria-label={String(
+                        expandedFeedback.has(grade.id) ? t('common.collapse') : t('common.expand')
+                      )}
+                      title={String(
+                        expandedFeedback.has(grade.id) ? t('common.collapse') : t('common.expand')
+                      )}
+                    >
+                      {expandedFeedback.has(grade.id) ? (
+                        <ChevronUp className="w-4 h-4" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
