@@ -253,10 +253,28 @@ export default function AppLayout({
     setNotificationDropdownOpen(prev => !prev)
   }, [])
 
-  // Memoize help click handler  
+  // Get Help button now lands users on the help center (docs) instead
+  // of opening the chat widget directly. The help center has its own
+  // "Open chat" CTA at the bottom of every article — keeps chat as the
+  // escalation path while making docs the front door.
   const handleHelpClick = useCallback(() => {
-    setShowChatWidget(prev => !prev)
-  }, [])
+    router.push('/dashboard/help')
+  }, [router])
+
+  // Watch for ?chat=open in the URL — the help center pages set it when
+  // a user clicks "Open chat with support". We auto-open the widget and
+  // strip the param so a refresh doesn't keep re-opening.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('chat') === 'open') {
+      setShowChatWidget(true)
+      params.delete('chat')
+      const newSearch = params.toString()
+      const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '')
+      window.history.replaceState({}, '', newUrl)
+    }
+  }, [pathname])
 
   // Memoize notification dropdown close handler
   const handleNotificationClose = useCallback(() => {
