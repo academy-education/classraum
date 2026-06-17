@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { cookies } from 'next/headers'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import {
@@ -31,10 +32,20 @@ export default async function HelpArticlePage({ params }: PageProps) {
   const meta = getArticleMeta(slug)
   if (!meta) notFound()
 
-  // V1: English only. The fallback to English inside readArticleBody
-  // makes adding Korean a drop-in — just write the .md files under
-  // content/help/ko/ and the page picks them up.
-  const body = readArticleBody(slug, 'en')
+  // Read the user's language preference from the cookie that
+  // LanguageProvider sets (see src/lib/cookies.ts LANGUAGE_COOKIE_NAME).
+  // The cookie holds 'korean' or 'english'; readArticleBody falls back
+  // to English when a Korean file is missing, so this is safe even for
+  // articles added before their translation lands.
+  //
+  // Side-note: marking the article page dynamic via cookies() opts it
+  // out of the generateStaticParams pre-render. For ~14 articles × 2
+  // languages that's fine — they're tiny markdown reads. Switch to
+  // route segments if we ever scale to dozens of languages.
+  const cookieStore = await cookies()
+  const langCookie = cookieStore.get('classraum_language')?.value
+  const lang: 'en' | 'ko' = langCookie === 'korean' ? 'ko' : 'en'
+  const body = readArticleBody(slug, lang)
   if (!body) notFound()
 
   return (
@@ -51,7 +62,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
           className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
-          All articles
+          {lang === 'ko' ? '전체 목록' : 'All articles'}
         </Link>
 
         {/* Hand-styled markdown — this app doesn't use the Tailwind

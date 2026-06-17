@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
+import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
 import { HELP_ARTICLES, getArticlesForRole, type HelpArticleMeta } from '@/../content/help/articles'
 import { BookOpen } from 'lucide-react'
@@ -20,6 +21,7 @@ import { BookOpen } from 'lucide-react'
 export function HelpSidebar() {
   const pathname = usePathname()
   const { user } = useAuth()
+  const { t } = useTranslation()
   const [role, setRole] = useState<string | null>(null)
 
   useEffect(() => {
@@ -54,11 +56,11 @@ export function HelpSidebar() {
         }`}
       >
         <BookOpen className="w-4 h-4" />
-        Help center
+        {t('help.center')}
       </Link>
 
       <div className="text-[11px] uppercase tracking-wide text-gray-400 px-3 mt-4 mb-2">
-        Articles
+        {t('help.articles')}
       </div>
 
       <ul className="space-y-0.5">

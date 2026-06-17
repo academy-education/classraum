@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 import { HELP_ARTICLES } from '@/../content/help/articles'
 import { HelpSidebar } from './HelpSidebar'
 import { HelpChatButton } from './HelpChatButton'
@@ -10,8 +11,20 @@ import { ChevronRight } from 'lucide-react'
  * Server component (no client interactivity at the page level — sidebar
  * and chat button handle their own client concerns). The article list
  * is sourced from the same catalog the sidebar uses.
+ *
+ * Localisation: this page is server-rendered before the LanguageContext
+ * mounts, so it can't use the `t()` hook. Reads the same language cookie
+ * the article page reads and uses a small inline strings map. Article
+ * titles + blurbs are pulled from the catalog (English-only for v1 —
+ * see content/help/articles.ts).
  */
-export default function HelpLandingPage() {
+export default async function HelpLandingPage() {
+  const cookieStore = await cookies()
+  const lang = cookieStore.get('classraum_language')?.value === 'korean' ? 'ko' : 'en'
+  const chrome = (lang === 'ko'
+    ? { title: '도움말 센터', subtitle: 'Classraum의 모든 기능에 대한 단계별 가이드.' }
+    : { title: 'Help center', subtitle: 'Step-by-step guides for every part of Classraum.' })
+
   return (
     <div className="flex gap-8 max-w-7xl mx-auto px-6 py-8">
       <aside className="w-64 flex-shrink-0 hidden lg:block">
@@ -23,11 +36,9 @@ export default function HelpLandingPage() {
       <main className="flex-1 min-w-0">
         <div className="mb-8">
           <h1 className="text-3xl font-semibold tracking-tight text-gray-900 mb-2">
-            Help center
+            {chrome.title}
           </h1>
-          <p className="text-gray-600">
-            Step-by-step guides for every part of Classraum.
-          </p>
+          <p className="text-gray-600">{chrome.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

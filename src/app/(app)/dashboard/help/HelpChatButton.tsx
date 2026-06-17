@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/hooks/useTranslation'
 import { MessageSquare } from 'lucide-react'
 
 /**
@@ -15,6 +16,7 @@ import { MessageSquare } from 'lucide-react'
 export function HelpChatButton() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const { t } = useTranslation()
 
   const openChat = () => {
     const sp = new URLSearchParams(searchParams.toString())
@@ -25,11 +27,11 @@ export function HelpChatButton() {
   return (
     <div className="border-t border-gray-200 mt-12 pt-8">
       <p className="text-sm text-gray-600 mb-3">
-        Couldn't find what you were looking for?
+        {t('help.couldnt')}
       </p>
       <Button onClick={openChat} className="gap-2">
         <MessageSquare className="w-4 h-4" />
-        Open chat with support
+        {t('help.openChat')}
       </Button>
     </div>
   )
