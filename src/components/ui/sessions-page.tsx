@@ -6,6 +6,7 @@ import { useDirtyState } from '@/hooks/useDirtyState'
 import { useConfirm } from '@/hooks/useConfirm'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
@@ -5181,13 +5182,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                   <Plus className="w-4 h-4" />
                   {t("sessions.addSession")}
                 </Button>
-                <a
+                <Link
                   href="/dashboard/help/sessions"
                   className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-primary hover:underline underline-offset-4"
                 >
                   <BookOpen className="w-3.5 h-3.5" />
                   {t("common.learnMore")}
-                </a>
+                </Link>
               </div>
             </>
           )}
