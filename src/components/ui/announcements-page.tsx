@@ -839,6 +839,8 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
               onAction={handleOpenAddModal}
               actionVariant="outline"
               actionIcon={<Plus className="w-4 h-4" />}
+              helpSlug="announcements"
+              helpLabel={String(t('common.learnMore'))}
             />
           </div>
         ) : (

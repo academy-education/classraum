@@ -315,7 +315,8 @@
       "retry": "Try again"
     },
     "expand": "Expand",
-    "collapse": "Collapse"
+    "collapse": "Collapse",
+    "learnMore": "Learn more"
   },
   "categories": {
     "selectSubjectFirst": "Please select a session with a subject first",
@@ -3115,7 +3116,10 @@
         "gmt": "London (GMT)",
         "cet": "Paris (CET)",
         "kst": "Korea Standard Time (KST)"
-      }
+      },
+      "welcomeReplay": "Show welcome screen again",
+      "welcomeReplayDescription": "Replays the 3-slide intro you saw on first login.",
+      "welcomeReplayButton": "Show welcome again"
     },
     "privacySecurity": {
       "title": "Privacy & Security",
@@ -6846,6 +6850,32 @@
       "failedDescription": "We couldn't reactivate your account. Check your credentials and try again, or contact support.",
       "helpText": "If you don't remember your password, use the password reset on the sign-in page first.",
       "backToSignIn": "Back to sign in"
+    }
+  },
+  "welcome": {
+    "skip": "Skip",
+    "next": "Next",
+    "back": "Back",
+    "getStarted": "Get started",
+    "slide1": {
+      "title": "Welcome to Classraum",
+      "body": "Everything you need to run your academy lives in the left panel. Here is what each section is for.",
+      "bullet1": "Classrooms, Sessions, Assignments, Attendance — the day-to-day teaching workflow.",
+      "bullet2": "Payments, Reports, Announcements — running the academy.",
+      "bullet3": "Contacts (Teachers, Families, Parents, Students) — your directory."
+    },
+    "slide2": {
+      "title": "Most people start here",
+      "body": "If you are setting up your academy for the first time, this is the fastest path:",
+      "bullet1": "Create a Classroom — name it, pick a teacher, set the weekly schedule.",
+      "bullet2": "Add students and link them to families.",
+      "bullet3": "Sessions auto-generate from the schedule — no extra setup needed.",
+      "cta": "Read the getting-started guide"
+    },
+    "slide3": {
+      "title": "Stuck? Help is one click away",
+      "body": "The Help center has step-by-step guides for every feature. If the docs do not answer your question, the chat support button connects you to a real person.",
+      "cta": "Browse the help center"
     }
   }
 }

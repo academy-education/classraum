@@ -2033,6 +2033,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             actionLabel={String(t("classrooms.createClassroom"))}
             actionIcon={<Plus className="w-4 h-4" />}
             onAction={handleCreateClick}
+            helpSlug="classrooms"
+            helpLabel={String(t("common.learnMore"))}
           />
         </Card>
       ) : filteredClassrooms.length === 0 && classroomSearchQuery ? (

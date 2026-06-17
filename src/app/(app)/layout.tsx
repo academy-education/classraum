@@ -13,6 +13,7 @@ import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { NotificationDropdown } from '@/components/ui/notification-dropdown'
 import { ChatWidget } from '@/components/ui/chat-widget'
+import { WelcomeModal } from '@/components/ui/welcome-modal'
 import {
   Bell,
   MessageSquare,
@@ -476,6 +477,11 @@ export default function AppLayout({
           onClose={handleChatWidgetClose}
         />
       )}
+
+      {/* First-login welcome modal. Reads its own state from localStorage
+          so AppLayout doesn't need to track it. Replay path lives in
+          Settings → "Show welcome screen again". */}
+      <WelcomeModal />
     </div>
     </>
   )

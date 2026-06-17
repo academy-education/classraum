@@ -1,8 +1,9 @@
 "use client"
 
 import React from 'react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { LucideIcon } from 'lucide-react'
+import { LucideIcon, BookOpen } from 'lucide-react'
 
 type Size = 'sm' | 'md' | 'lg'
 type Variant = 'default' | 'subtle'
@@ -26,6 +27,18 @@ interface EmptyStateProps {
   actionIcon?: React.ReactNode
   /** Secondary action shown beside the primary as a ghost link. */
   secondaryAction?: ActionConfig
+  /**
+   * Slug of the help article that explains this page. When set, a
+   * "Learn more →" link is rendered as a tertiary action that opens the
+   * relevant help article — gives users an out when they're new and the
+   * empty state alone doesn't answer "what is this page?"
+   *
+   * Just the slug — not the full URL — so the link can be updated
+   * centrally if we ever move the docs route.
+   */
+  helpSlug?: string
+  /** Override the localised "Learn more" label if you want different copy. */
+  helpLabel?: string
   /**
    * `md` (default) is full-page sized — fits inside a card / table / page body.
    * `sm` is for compact contexts (dropdowns, narrow card bodies).
@@ -87,12 +100,14 @@ export function EmptyState({
   actionVariant = 'default',
   actionIcon,
   secondaryAction,
+  helpSlug,
+  helpLabel,
   size = 'md',
   variant = 'default',
   className = '',
 }: EmptyStateProps) {
   const s = sizeMap[size]
-  const hasAction = (actionLabel && onAction) || secondaryAction
+  const hasAction = (actionLabel && onAction) || secondaryAction || helpSlug
 
   return (
     <div className={`text-center ${s.wrap} ${className}`}>
@@ -132,6 +147,15 @@ export function EmptyState({
             >
               {secondaryAction.label}
             </button>
+          )}
+          {helpSlug && (
+            <Link
+              href={`/dashboard/help/${helpSlug}`}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-primary hover:underline underline-offset-4"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              {helpLabel || 'Learn more'}
+            </Link>
           )}
         </div>
       )}

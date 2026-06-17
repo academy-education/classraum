@@ -2510,6 +2510,8 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               description={String(t('payments.getStartedFirstPaymentPlan'))}
               actionLabel={String(t('payments.addPaymentPlan'))}
               onAction={() => setShowAddPlanModal(true)}
+              helpSlug="payments"
+              helpLabel={String(t('common.learnMore'))}
             />
           )}
         </div>

@@ -2096,6 +2096,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 : classroomFilter !== 'all'
                   ? { actionLabel: language === 'korean' ? '필터 해제' : 'Clear filter', onAction: () => updateClassroomFilter('all'), actionVariant: 'outline' as const, actionIcon: <X className="w-4 h-4" /> }
                   : { actionLabel: String(t("assignments.addAssignment")), onAction: () => setShowModal(true), actionIcon: <Plus className="w-4 h-4" /> })}
+            {...((!showPendingOnly && !assignmentSearchQuery && classroomFilter === 'all')
+              ? { helpSlug: 'assignments', helpLabel: String(t("common.learnMore")) }
+              : {})}
           />
         </Card>
       )}

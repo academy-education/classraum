@@ -47,6 +47,7 @@ import {
   invalidateArchiveCache,
 } from '@/lib/cache'
 import { useToast } from '@/hooks/use-toast'
+import { resetWelcomeSeen } from '@/components/ui/welcome-modal'
 
 interface UserPreferences {
   user_id: string
@@ -1244,6 +1245,33 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                     </Select>
                   </div>
                   )}
+
+                  {/* Show welcome screen again — clears the localStorage
+                      flag so the first-login welcome modal pops on next
+                      mount. Useful when a user wants the orientation
+                      again after dismissing it. */}
+                  <div className="pt-4 border-t border-gray-100">
+                    <Label className="text-sm font-medium text-gray-700">
+                      {t('settings.languageRegion.welcomeReplay')}
+                    </Label>
+                    <p className="text-xs text-gray-500 mt-1 mb-3">
+                      {t('settings.languageRegion.welcomeReplayDescription')}
+                    </p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        if (userId) {
+                          resetWelcomeSeen(userId)
+                          // Reload so the WelcomeModal in AppLayout
+                          // picks up the cleared flag and re-opens.
+                          window.location.reload()
+                        }
+                      }}
+                    >
+                      {t('settings.languageRegion.welcomeReplayButton')}
+                    </Button>
+                  </div>
                 </div>
               </div>
             )}

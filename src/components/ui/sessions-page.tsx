@@ -5168,18 +5168,27 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             <>
               <h3 className="text-lg font-medium text-gray-900">{t("sessions.noSessionsFound")}</h3>
               <p className="text-gray-500 mb-2">{t("sessions.getStartedFirstSession")}</p>
-              <Button
-                className="flex items-center gap-2 mx-auto"
-                onClick={() => {
-                  // Clear original data for new session
-                  setOriginalAssignments([])
-                  setOriginalAttendance([])
-                  setShowModal(true)
-                }}
-              >
-                <Plus className="w-4 h-4" />
-                {t("sessions.addSession")}
-              </Button>
+              <div className="flex items-center justify-center gap-3">
+                <Button
+                  className="flex items-center gap-2"
+                  onClick={() => {
+                    // Clear original data for new session
+                    setOriginalAssignments([])
+                    setOriginalAttendance([])
+                    setShowModal(true)
+                  }}
+                >
+                  <Plus className="w-4 h-4" />
+                  {t("sessions.addSession")}
+                </Button>
+                <a
+                  href="/dashboard/help/sessions"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-primary hover:underline underline-offset-4"
+                >
+                  <BookOpen className="w-3.5 h-3.5" />
+                  {t("common.learnMore")}
+                </a>
+              </div>
             </>
           )}
         </Card>
