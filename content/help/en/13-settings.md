@@ -7,6 +7,10 @@ Two sections in Settings:
 
 ## General Settings
 
+```mockup
+settings-panel
+```
+
 What you can change:
 
 - **Personal information** — name, email, phone

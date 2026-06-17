@@ -4,6 +4,10 @@ Anything you delete — classrooms, sessions, assignments, announcements, report
 
 ## Restoring deleted items
 
+```mockup
+archive-panel
+```
+
 1. Go to **Archive**.
 2. Find the item you want back.
 3. Click **Restore**. It returns to its original location with all its data intact.

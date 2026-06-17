@@ -36,6 +36,8 @@ interface FormData {
 interface ClassroomCreateModalProps {
   isOpen: boolean
   onClose: () => void
+  /** Render inline (no portal/backdrop). Used by the help center demo. */
+  inline?: boolean
   formData: FormData
   setFormData: React.Dispatch<React.SetStateAction<FormData>>
   schedules: Schedule[]
@@ -86,6 +88,7 @@ interface ClassroomCreateModalProps {
 export function ClassroomCreateModal({
   isOpen,
   onClose,
+  inline,
   formData,
   setFormData: _setFormData,
   schedules,
@@ -157,6 +160,7 @@ export function ClassroomCreateModal({
     <ModalShell
       isOpen={isOpen}
       onClose={handleSafeClose}
+      inline={inline}
       size="3xl"
       title={String(t("classrooms.createClassroom"))}
       footer={

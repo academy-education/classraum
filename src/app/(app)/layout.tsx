@@ -16,6 +16,7 @@ import { ChatWidget } from '@/components/ui/chat-widget'
 import { WelcomeModal } from '@/components/ui/welcome-modal'
 import {
   Bell,
+  HelpCircle,
   MessageSquare,
   PanelLeftClose,
   PanelLeftOpen,
@@ -382,6 +383,17 @@ export default function AppLayout({
             </div>
 
             <div className="flex items-center gap-1">
+              {/* Help Center Button */}
+              <Button
+                size="sm"
+                title={t('navigation.getHelp')}
+                aria-label={t('navigation.getHelp')}
+                className="relative p-2 bg-transparent hover:bg-gray-100 border-none shadow-none"
+                onClick={handleHelpClick}
+              >
+                <HelpCircle className="w-4 h-4 text-gray-600" />
+              </Button>
+
               {/* Messages Button */}
               <Button
                 size="sm"

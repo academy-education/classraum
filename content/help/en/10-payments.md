@@ -11,6 +11,10 @@ If your academy's tuition amount varies month to month, we recommend using **One
 
 All payment work happens in the **Payments** tab.
 
+```mockup
+payments-list
+```
+
 ## Payment Plans (for recurring payments)
 
 A "Payment Plan" is a reusable template — e.g. *"Monthly Tuition – ₩400,000."* Set it up once, then assign students to it.

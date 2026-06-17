@@ -2,10 +2,19 @@
 
 A classroom is one of your classes — e.g. "Mars" for 4th-grade English. Sessions, assignments, attendance, and report cards all hang off a classroom.
 
+```mockup
+classrooms-list
+```
+
 ## Creating a classroom
 
 1. On the left panel, click **Classrooms**.
 2. Click **Create a Classroom** at the top-right corner.
+
+```mockup
+create-classroom-form
+```
+
 3. Fill in the form that pops up:
    - **Classroom Name**, **Grade**, **Subject**, **Teacher**
    - **Color** — for your convenience; helps you spot the class at a glance.

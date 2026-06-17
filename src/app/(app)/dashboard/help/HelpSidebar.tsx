@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
-import { HELP_ARTICLES, getArticlesForRole, type HelpArticleMeta } from '@/../content/help/articles'
+import { HELP_ARTICLES, getArticlesForRole, localizeArticle, type HelpArticleMeta } from '@/../content/help/articles'
 import { BookOpen } from 'lucide-react'
 
 /**
@@ -21,7 +21,7 @@ import { BookOpen } from 'lucide-react'
 export function HelpSidebar() {
   const pathname = usePathname()
   const { user } = useAuth()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [role, setRole] = useState<string | null>(null)
 
   useEffect(() => {
@@ -67,6 +67,7 @@ export function HelpSidebar() {
         {articles.map(article => {
           const href = `/dashboard/help/${article.slug}`
           const isActive = pathname === href
+          const { title } = localizeArticle(article, language)
           return (
             <li key={article.slug}>
               <Link
@@ -77,7 +78,7 @@ export function HelpSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                {article.title}
+                {title}
               </Link>
             </li>
           )

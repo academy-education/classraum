@@ -1,10 +1,11 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StatusFilter } from './StatusFilter'
+import { DatePicker } from './DatePicker'
 
 interface ReportFormData {
   report_name: string
@@ -27,6 +28,7 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
   showStatus = true
 }) => {
   const { t } = useTranslation()
+  const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
 
   const handleInputChange = React.useCallback((field: string) => (
     e: React.ChangeEvent<HTMLInputElement>
@@ -64,10 +66,12 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
           <Label className="text-sm font-medium">
             {t('reports.startDate')} <span className="text-rose-500">*</span>
           </Label>
-          <Input
-            type="date"
+          <DatePicker
+            fieldId="report_start_date"
             value={formData.start_date}
-            onChange={(e) => onChange('start_date', e.target.value)}
+            onChange={(value) => onChange('start_date', value)}
+            activeDatePicker={activeDatePicker}
+            setActiveDatePicker={setActiveDatePicker}
           />
           {errors.start_date && (
             <p className="mt-1 text-sm text-rose-600">{errors.start_date}</p>
@@ -79,10 +83,12 @@ export const ReportBasicInfoForm = React.memo<ReportBasicInfoFormProps>(({
           <Label className="text-sm font-medium">
             {t('reports.endDate')} <span className="text-rose-500">*</span>
           </Label>
-          <Input
-            type="date"
+          <DatePicker
+            fieldId="report_end_date"
             value={formData.end_date}
-            onChange={(e) => onChange('end_date', e.target.value)}
+            onChange={(value) => onChange('end_date', value)}
+            activeDatePicker={activeDatePicker}
+            setActiveDatePicker={setActiveDatePicker}
           />
           {errors.end_date && (
             <p className="mt-1 text-sm text-rose-600">{errors.end_date}</p>

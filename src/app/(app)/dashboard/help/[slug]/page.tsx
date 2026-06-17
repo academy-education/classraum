@@ -10,6 +10,7 @@ import {
 import { readArticleBody } from '@/../content/help/server'
 import { HelpSidebar } from '../HelpSidebar'
 import { HelpChatButton } from '../HelpChatButton'
+import { HelpMockup } from '@/components/help/mockups'
 import { ArrowLeft } from 'lucide-react'
 
 interface PageProps {
@@ -97,9 +98,28 @@ export default async function HelpArticlePage({ params }: PageProps) {
                 <strong className="font-semibold text-gray-900">{children}</strong>
               ),
               em: ({ children }) => <em className="italic">{children}</em>,
-              code: ({ children }) => (
-                <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono text-gray-800">{children}</code>
-              ),
+              code: ({ children, className }) => {
+                // Fenced ```mockup blocks render an inline UI mockup. The
+                // body of the block is the mockup id (e.g. "create-classroom-form").
+                // Unknown ids fall back to a visible warning so a typo is
+                // caught in dev rather than silently rendered as code.
+                if (className === 'language-mockup') {
+                  return <HelpMockup id={String(children).trim()} />
+                }
+                return (
+                  <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono text-gray-800">{children}</code>
+                )
+              },
+              // Strip the <pre> wrapper around fenced mockup blocks so the
+              // mockup renders as a full-width card, not inside a scroll box.
+              pre: ({ children }) => {
+                const child = Array.isArray(children) ? children[0] : children
+                if (child && typeof child === 'object' && 'props' in child) {
+                  const cls = (child as { props?: { className?: string } }).props?.className
+                  if (cls === 'language-mockup') return <>{children}</>
+                }
+                return <pre className="bg-gray-50 border border-gray-200 rounded-md p-3 overflow-x-auto text-sm font-mono mb-4">{children}</pre>
+              },
               blockquote: ({ children }) => (
                 <blockquote className="border-l-4 border-amber-300 bg-amber-50 px-4 py-2 my-4 text-gray-700">
                   {children}

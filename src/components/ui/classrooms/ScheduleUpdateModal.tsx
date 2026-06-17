@@ -11,6 +11,8 @@ import { useToast } from '@/hooks/use-toast'
 interface ScheduleUpdateModalProps {
   isOpen: boolean
   onClose: () => void
+  /** Render inline (no portal/backdrop). Used by the help center demo. */
+  inline?: boolean
   oldSchedule: ClassroomSchedule
   newSchedule: Partial<ClassroomSchedule>
   /** All changed schedules (when multiple schedules changed at once) */
@@ -22,6 +24,7 @@ interface ScheduleUpdateModalProps {
 export function ScheduleUpdateModal({
   isOpen,
   onClose,
+  inline,
   oldSchedule,
   newSchedule,
   allOldSchedules,
@@ -86,6 +89,7 @@ export function ScheduleUpdateModal({
     <ModalShell
       isOpen={isOpen}
       onClose={handleClose}
+      inline={inline}
       size="md"
       title={String(t('classrooms.scheduleChangeDetected') || 'Schedule Change Detected')}
       closeDisabled={isLoading}

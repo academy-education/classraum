@@ -25,7 +25,10 @@ import {
   Share,
   Upload,
   Grid3X3,
-  Rows3
+  Rows3,
+  Mail,
+  Phone,
+  GraduationCap,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { DashboardCard, BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
@@ -1273,49 +1276,98 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           </Card>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredFamilies.map((family) => (
-              <DashboardCard
-                key={family.id}
-                accentColor="#8b5cf6"
-                statusLabel={t("families.family")}
-                statusToneClass="text-violet-600"
-                title={family.name || `Family ${family.id.slice(0, 8)}`}
-                metrics={[
-                  {
-                    label: t('families.members') as string,
-                    value: String(family.member_count || 0),
-                  },
-                  {
-                    label: t('families.parents') as string,
-                    value: String(family.parent_count || 0),
-                  },
-                  {
-                    label: t('families.students') as string,
-                    value: String(family.student_count || 0),
-                  },
-                ]}
-                footerActions={
-                  <>
-                    <Button
-                      variant="outline"
-                      className="w-full text-xs sm:text-sm h-9"
-                      onClick={() => handleEditClick(family)}
-                    >
-                      <Edit className="w-3.5 h-3.5 mr-1.5" />
-                      {t("common.edit")}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full text-xs sm:text-sm h-9 text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
-                      onClick={() => handleDeleteClick(family)}
-                    >
-                      <Trash2 className="w-3.5 h-3.5 mr-1.5" />
-                      {t("common.delete")}
-                    </Button>
-                  </>
-                }
-              />
-            ))}
+            {filteredFamilies.map((family) => {
+              // Split members into parents + students so we can show
+              // contact info for parents and class info for students,
+              // matching the card layout the help center uses.
+              const parents = family.members.filter(m => m.user_role === 'parent')
+              const students = family.members.filter(m => m.user_role === 'student')
+              const primaryParent = parents[0]
+              return (
+                <Card
+                  key={family.id}
+                  className="!gap-0 !py-0 overflow-hidden flex flex-col h-full hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-6px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all"
+                >
+                  <div className="h-1 w-full bg-primary" />
+                  <div className="p-4 sm:p-5 flex flex-col flex-1">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-primary mb-1">
+                          {t('families.family')}
+                        </p>
+                        <h3 className="text-base font-semibold text-gray-900 truncate">
+                          {family.name || `${t('families.family')} ${family.id.slice(0, 8)}`}
+                        </h3>
+                      </div>
+                      <Users className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={1.75} />
+                    </div>
+
+                    {primaryParent ? (
+                      <div className="space-y-1 text-xs text-gray-600">
+                        <div className="font-medium text-gray-900 truncate">{primaryParent.name}</div>
+                        {primaryParent.email && (
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <Mail className="w-3 h-3 text-gray-400 flex-shrink-0" strokeWidth={1.75} />
+                            <span className="truncate">{primaryParent.email}</span>
+                          </div>
+                        )}
+                        {primaryParent.phone && (
+                          <div className="flex items-center gap-1.5">
+                            <Phone className="w-3 h-3 text-gray-400 flex-shrink-0" strokeWidth={1.75} />
+                            <span>{primaryParent.phone}</span>
+                          </div>
+                        )}
+                        {parents.length > 1 && (
+                          <div className="text-[11px] text-gray-400 pl-4.5">
+                            +{parents.length - 1} {t('families.parents')}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="text-xs text-gray-400 italic">{t('families.noParentsLinked')}</div>
+                    )}
+
+                    {students.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-gray-100">
+                        <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-1.5">
+                          {t('families.students')} ({students.length})
+                        </p>
+                        <ul className="space-y-1">
+                          {students.slice(0, 3).map(s => (
+                            <li key={s.user_id || s.name} className="text-xs text-gray-700 flex items-center gap-1.5 min-w-0">
+                              <GraduationCap className="w-3 h-3 text-gray-400 flex-shrink-0" strokeWidth={1.75} />
+                              <span className="truncate">{s.name}</span>
+                            </li>
+                          ))}
+                          {students.length > 3 && (
+                            <li className="text-[11px] text-gray-400 pl-4.5">+{students.length - 3} {t('families.students').toString().toLowerCase()}</li>
+                          )}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div className="mt-auto pt-4 grid grid-cols-2 gap-2">
+                      <Button
+                        variant="outline"
+                        className="text-xs sm:text-sm h-9"
+                        onClick={() => handleEditClick(family)}
+                      >
+                        <Edit className="w-3.5 h-3.5 mr-1.5" />
+                        {t('common.edit')}
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="text-xs sm:text-sm h-9 text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+                        onClick={() => handleDeleteClick(family)}
+                      >
+                        <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+                        {t('common.delete')}
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              )
+            })}
           </div>
         )
       ) : (

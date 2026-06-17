@@ -4,6 +4,10 @@ Create AI-generated tests for monthly progress checks, quizzes, midterms, finals
 
 ## Creating a test
 
+```mockup
+exams-builder
+```
+
 1. On the left tab, click **Tests**.
 2. Click **Create Test**.
 3. Fill in:

@@ -2,6 +2,10 @@
 
 Welcome to Classraum. This guide walks through what each part of the app does, then takes you step-by-step through the most common workflows.
 
+```mockup
+dashboard-overview
+```
+
 ## What each tab does
 
 **Dashboard** — Available to managers and owners only. A single overview of your academy's revenue, today's sessions, active users, total classrooms, and more. Customizable: drag, resize, hide cards, or reset to default from the "Customize Dashboard" button.

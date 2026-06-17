@@ -9,6 +9,14 @@ interface ModalProps {
   children: React.ReactNode
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'full'
   fullHeight?: boolean
+  /**
+   * Render the modal card inline (no portal, no backdrop, no fixed
+   * positioning). Used by the help center to show a live, read-only
+   * preview of a real modal next to its instructions. Treat as a render
+   * mode — the modal still appears visually identical, it's just laid
+   * out in document flow instead of overlaid.
+   */
+  inline?: boolean
 }
 
 const sizeClasses = {
@@ -24,8 +32,24 @@ const sizeClasses = {
   full: 'max-w-full',
 }
 
-export function Modal({ isOpen, onClose, children, size = 'md', fullHeight }: ModalProps) {
+export function Modal({ isOpen, onClose, children, size = 'md', fullHeight, inline }: ModalProps) {
   if (!isOpen) return null
+
+  // Inline mode: render the card directly in document flow. No portal,
+  // no backdrop, no fixed positioning. Card chrome (white bg, ring,
+  // shadow, rounded-2xl) is preserved so it still looks like a modal.
+  if (inline) {
+    return (
+      <div
+        className={`my-6 mx-auto bg-white rounded-2xl ring-1 ring-gray-100 w-full ${sizeClasses[size]} shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18),0_4px_8px_-4px_rgba(0,0,0,0.08)] flex flex-col`}
+      >
+        {children}
+      </div>
+    )
+  }
+
+  // Suppress unused-var lint without changing the prop API.
+  void onClose
 
   // Large modals (2xl+) default to full height, small ones fit content
   const largeSizes = ['2xl', '3xl', '4xl', '5xl', '6xl', 'full']

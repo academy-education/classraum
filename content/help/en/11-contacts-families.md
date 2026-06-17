@@ -27,6 +27,10 @@ Teachers can't edit, disable, or delete anything outside their own scope.
 
 ## Families
 
+```mockup
+families-panel
+```
+
 A Family links one or more parents to one or more students — typically one parent + one child, but the system supports siblings and two-parent households.
 
 **When you create a family, the system generates two login links:**

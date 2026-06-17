@@ -17,6 +17,8 @@ interface AddReportModalProps {
   students: Student[]
   fetchStudentClassrooms: (studentId: string) => void
   loading?: boolean
+  /** Render inline (no portal/backdrop). Used by the help center demo. */
+  inline?: boolean
 }
 
 interface FormData {
@@ -36,7 +38,8 @@ const AddReportModal = React.memo<AddReportModalProps>(({
   onSave,
   students,
   fetchStudentClassrooms,
-  loading = false
+  loading = false,
+  inline
 }) => {
   const { t } = useTranslation()
   
@@ -157,6 +160,7 @@ const AddReportModal = React.memo<AddReportModalProps>(({
     <ModalShell
       isOpen={isOpen}
       onClose={onClose}
+      inline={inline}
       size="2xl"
       title={String(t('reports.addNewReport'))}
       bodyClassName="space-y-6"

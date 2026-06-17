@@ -5,6 +5,7 @@ import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { DatePicker } from '@/components/ui/date-picker'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { Clock, MapPin, Monitor, Building } from 'lucide-react'
@@ -41,6 +42,8 @@ interface SessionFormModalProps {
   session?: Session | null
   classrooms: Classroom[]
   teachers: Teacher[]
+  /** Render inline (no portal/backdrop). Used by the help center demo. */
+  inline?: boolean
 }
 
 export function SessionFormModal({
@@ -49,7 +52,8 @@ export function SessionFormModal({
   onSave,
   session,
   classrooms,
-  teachers
+  teachers,
+  inline
 }: SessionFormModalProps) {
   const { t } = useTranslation()
 
@@ -61,7 +65,10 @@ export function SessionFormModal({
   const [endTime, setEndTime] = useState('')
   const [location, setLocation] = useState<'offline' | 'online'>('offline')
   const [notes, setNotes] = useState('')
-  const [substituteTeacher, setSubstituteTeacher] = useState('')
+  // Radix Select forbids empty-string values, so we use a sentinel for
+  // the "no substitute" option and translate it back to undefined on save.
+  const NO_SUBSTITUTE = '__none__'
+  const [substituteTeacher, setSubstituteTeacher] = useState<string>(NO_SUBSTITUTE)
 
   // Loading state
   const [saving, setSaving] = useState(false)
@@ -78,7 +85,7 @@ export function SessionFormModal({
         setEndTime(session.end_time)
         setLocation(session.location)
         setNotes(session.notes || '')
-        setSubstituteTeacher(session.substitute_teacher || '')
+        setSubstituteTeacher(session.substitute_teacher || NO_SUBSTITUTE)
       } else {
         // Create mode - set defaults
         const today = new Date()
@@ -112,7 +119,7 @@ export function SessionFormModal({
         end_time: endTime,
         location,
         notes: notes || undefined,
-        substitute_teacher: substituteTeacher || undefined
+        substitute_teacher: substituteTeacher && substituteTeacher !== NO_SUBSTITUTE ? substituteTeacher : undefined
       }
 
       if (session?.id) {
@@ -146,6 +153,7 @@ export function SessionFormModal({
     <ModalShell
       isOpen={isOpen}
       onClose={onClose}
+      inline={inline}
       size="2xl"
       title={String(session ? t('sessions.editSession') : t('sessions.addSession'))}
       footer={
@@ -193,10 +201,9 @@ export function SessionFormModal({
               <Label className="text-sm font-medium mb-2 block">
                 {t('sessions.date')} *
               </Label>
-              <Input
-                type="date"
+              <DatePicker
                 value={date}
-                onChange={(e) => setDate(e.target.value)}
+                onChange={(v) => setDate(v)}
                 required
               />
             </div>
@@ -209,9 +216,9 @@ export function SessionFormModal({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="scheduled">{t('sessions.status.scheduled')}</SelectItem>
-                  <SelectItem value="completed">{t('sessions.status.completed')}</SelectItem>
-                  <SelectItem value="cancelled">{t('sessions.status.cancelled')}</SelectItem>
+                  <SelectItem value="scheduled">{t('sessions.statusScheduled')}</SelectItem>
+                  <SelectItem value="completed">{t('sessions.statusCompleted')}</SelectItem>
+                  <SelectItem value="cancelled">{t('sessions.statusCancelled')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -301,7 +308,7 @@ export function SessionFormModal({
                 <SelectValue placeholder={String(t('sessions.selectSubstituteTeacher'))} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">{t('sessions.noSubstitute')}</SelectItem>
+                <SelectItem value={NO_SUBSTITUTE}>{t('sessions.noSubstitute')}</SelectItem>
                 {teachers.map(teacher => (
                   <SelectItem key={teacher.id} value={teacher.user_id}>
                     {teacher.name}

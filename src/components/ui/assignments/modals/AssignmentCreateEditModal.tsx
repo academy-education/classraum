@@ -31,6 +31,8 @@ interface CategoryOption {
 interface AssignmentCreateEditModalProps {
   isOpen: boolean
   onClose: () => void
+  /** Render inline (no portal/backdrop). Used by the help center demo. */
+  inline?: boolean
   editingAssignment: Assignment | null
   formData: FormData
   setFormData: React.Dispatch<React.SetStateAction<FormData>>
@@ -58,6 +60,7 @@ interface AssignmentCreateEditModalProps {
 export function AssignmentCreateEditModal({
   isOpen,
   onClose,
+  inline,
   editingAssignment,
   formData,
   setFormData,
@@ -118,6 +121,7 @@ export function AssignmentCreateEditModal({
     <ModalShell
       isOpen={isOpen}
       onClose={handleSafeClose}
+      inline={inline}
       size="md"
       title={String(editingAssignment ? t("assignments.editAssignment") : t("assignments.addNewAssignment"))}
       footer={

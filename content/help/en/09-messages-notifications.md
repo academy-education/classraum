@@ -1,5 +1,9 @@
 # Messages & notifications
 
+```mockup
+messages-notifications
+```
+
 ## Messages
 
 Built-in 1-on-1 messaging between academy staff, teachers, students, and parents. Keeps all academy communication in one place — you don't need to use KakaoTalk or other third-party apps for school-related conversations.

@@ -4,6 +4,10 @@ Generate report cards for students — typically monthly. AI feedback pulls in t
 
 ## Creating a report card
 
+```mockup
+add-report
+```
+
 1. Go to **Reports** and click **Add Report**.
 2. Pick a **student** and enter the **Report Card Title**.
 3. Choose the **time frame** (e.g. the first to last day of the month).

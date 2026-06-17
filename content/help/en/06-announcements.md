@@ -4,6 +4,10 @@ Send academy-wide notices to parents and students at once — schedule changes, 
 
 ## Creating an announcement
 
+```mockup
+new-announcement
+```
+
 1. On the **Announcements** tab, click **New Announcement** in the top-right corner.
 2. Enter the **Title** (e.g. *Summer Break Schedule 2026*).
 3. Enter the **Content**.

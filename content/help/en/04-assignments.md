@@ -6,6 +6,10 @@ Assignments cover homework, projects, quizzes, tests — anything you give stude
 
 **Option 1 — From a session (recommended):**
 
+```mockup
+edit-session-assignments
+```
+
 1. Go to **Sessions**.
 2. Click **Edit Session** on the session you want.
 3. Add or modify assignments inside.

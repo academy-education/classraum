@@ -21,12 +21,12 @@ export const StatusFilter = React.memo<StatusFilterProps>(({
 
   const statusOptions = React.useMemo(() => [
     { value: 'all', label: t('reports.allStatuses') },
-    { value: 'Draft', label: t('reports.status.draft') },
-    { value: 'Finished', label: t('reports.status.finished') },
-    { value: 'Approved', label: t('reports.status.approved') },
-    { value: 'Sent', label: t('reports.status.sent') },
-    { value: 'Viewed', label: t('reports.status.viewed') },
-    { value: 'Error', label: t('reports.status.error') }
+    { value: 'Draft', label: t('reports.statusDraft') },
+    { value: 'Finished', label: t('reports.statusFinished') },
+    { value: 'Approved', label: t('reports.statusApproved') },
+    { value: 'Sent', label: t('reports.statusSent') },
+    { value: 'Viewed', label: t('reports.statusViewed') },
+    { value: 'Error', label: t('reports.statusError') }
   ], [t])
 
   return (

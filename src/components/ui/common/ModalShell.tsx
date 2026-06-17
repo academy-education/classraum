@@ -75,6 +75,8 @@ interface ModalShellProps {
   /** Hide the X close button (rare — confirm flows that must use buttons). */
   hideCloseButton?: boolean
   fullHeight?: boolean
+  /** Render inline (no portal, no backdrop). Forwarded to Modal. */
+  inline?: boolean
   children: React.ReactNode
   /** Optional class on the body div. */
   bodyClassName?: string
@@ -93,13 +95,14 @@ export function ModalShell({
   closeDisabled = false,
   hideCloseButton = false,
   fullHeight,
+  inline,
   children,
   bodyClassName = '',
 }: ModalShellProps) {
   const showFooterDivider = footerDivider ?? !!footer
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size={size} fullHeight={fullHeight}>
+    <Modal isOpen={isOpen} onClose={onClose} size={size} fullHeight={fullHeight} inline={inline}>
       <div className="flex flex-col flex-1 min-h-0">
         {/* Header */}
         {(title || subtitle || headerSlot) && (
