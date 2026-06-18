@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { DatePicker } from '@/components/ui/date-picker'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { Clock, MapPin, Monitor, Building } from 'lucide-react'
+import { MapPin, Monitor, Building } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface Session {
@@ -226,13 +226,12 @@ export function SessionFormModal({
 
           {/* Time */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <Label className="text-sm font-medium mb-2 block">
-                <Clock className="w-4 h-4 inline mr-1" />
-                {t('sessions.startTime')} *
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">
+                {t('sessions.startTime')} <span className="text-rose-500">*</span>
               </Label>
               <Select value={startTime} onValueChange={setStartTime}>
-                <SelectTrigger>
+                <SelectTrigger className="!h-10 w-full rounded-lg">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -244,13 +243,12 @@ export function SessionFormModal({
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label className="text-sm font-medium mb-2 block">
-                <Clock className="w-4 h-4 inline mr-1" />
-                {t('sessions.endTime')} *
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">
+                {t('sessions.endTime')} <span className="text-rose-500">*</span>
               </Label>
               <Select value={endTime} onValueChange={setEndTime}>
-                <SelectTrigger>
+                <SelectTrigger className="!h-10 w-full rounded-lg">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

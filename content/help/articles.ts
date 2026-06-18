@@ -123,9 +123,9 @@ export const HELP_ARTICLES: HelpArticleMeta[] = [
   {
     slug: 'reports',
     title: 'Report cards',
-    titleKo: '성적표',
+    titleKo: '리포트',
     blurb: 'Generating monthly reports with AI feedback',
-    blurbKo: 'AI 피드백을 활용한 월간 성적표 생성',
+    blurbKo: 'AI 피드백을 활용한 월간 리포트 생성',
     order: 70,
     roles: ['owner', 'manager', 'teacher'],
     file: '07-reports.md',

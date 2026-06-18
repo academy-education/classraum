@@ -8,7 +8,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { TableCheckbox } from '@/components/ui/dashboard'
-import { Search, CheckCircle, Upload } from 'lucide-react'
+import { FileUpload } from '@/components/ui/file-upload'
+import { Search, CheckCircle } from 'lucide-react'
 import { NonFunctional } from './NonFunctional'
 
 /**
@@ -150,12 +151,17 @@ export function NewAnnouncementDemo() {
           )}
         </div>
 
-        {/* Attachments */}
+        {/* Attachments — uses the real FileUpload component the live
+            announcement modal uses, so the localized "drop files here"
+            text and the +N file chips match what users see in production. */}
         <div className="space-y-2">
           <Label>{t('announcements.attachments')}</Label>
-          <div className="rounded-lg border border-dashed border-gray-300 p-4 text-sm text-gray-500 flex items-center gap-2 bg-gray-50">
-            <Upload className="w-4 h-4" /> {String(t('common.dropFilesHere', { max: 5 }))}
-          </div>
+          <FileUpload
+            files={[]}
+            onChange={() => undefined}
+            bucket="announcement-attachments"
+            maxFiles={5}
+          />
         </div>
       </ModalShell>
     </NonFunctional>

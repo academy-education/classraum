@@ -64,9 +64,9 @@ export function FamiliesListDemo() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {families.map(f => (
-            <Card key={f.name} className="!gap-0 !py-0 overflow-hidden">
+            <Card key={f.name} className="!gap-0 !py-0 overflow-hidden flex flex-col h-full">
               <div className="h-1 bg-primary w-full" />
-              <div className="p-4 flex flex-col">
+              <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-start justify-between mb-3">
                   <div className="min-w-0">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-primary mb-1">
@@ -99,7 +99,7 @@ export function FamiliesListDemo() {
                     ))}
                   </ul>
                 </div>
-                <div className="mt-4 grid grid-cols-2 gap-2">
+                <div className="mt-auto pt-4 grid grid-cols-2 gap-2">
                   <Button variant="outline" size="sm" className="text-xs h-9">
                     <Edit className="w-3.5 h-3.5 mr-1.5" strokeWidth={1.75} />
                     {t('common.edit')}
