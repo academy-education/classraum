@@ -2,6 +2,16 @@
 
 Generate report cards for students — typically monthly. AI feedback pulls in teacher comments and assignment scores from the period you select.
 
+## The reports list
+
+```mockup
+reports-list
+```
+
+The reports list shows every report card you can see (Managers see all; Teachers see their own). The status pill on the right tells you what's published versus what's still a draft.
+
+The **three-dot menu** on each row opens **Edit**, **Preview**, and **Delete** — that's where you publish a draft, fix a typo, or remove a report after it's been created.
+
 ## Creating a report card
 
 ```mockup
@@ -15,24 +25,27 @@ add-report
    - If you select only one category, only that category will appear on the report.
 5. Choose the **Classroom(s)** the student is enrolled in.
 
+The footer of this modal has three actions you'll use a lot:
+
+- **Preview Report** (left) — opens the styled preview shown below so you can sanity-check the report before saving.
+- **Create Report** — saves as a **draft**. Recommended whenever a manager needs to review before publishing.
+- **Create & Finish** (green) — saves and sends immediately to parents and the student.
+
 ## Preview & AI feedback
 
-Before publishing, click **Preview Report** — a preview pops up.
+```mockup
+report-preview
+```
 
-At the bottom, click **Generate AI Feedback**. The AI gathers teacher comments and scores from the selected period and writes constructive feedback plus study tips for that student.
+The preview shows the exact report card the family will receive: a gradient student header, the report scope (subjects / categories / classrooms), and the AI-generated feedback block.
 
-## Save as draft or send immediately
-
-When ready, close the preview and choose:
-
-- **Create Report** — saves as a draft. Recommended so a manager can review before publishing.
-- **Create & Finish** — sends immediately to the parents and student.
+Click **Generate AI Feedback** to have the AI gather teacher comments and scores from the selected period and write constructive feedback plus study tips. You can edit the AI text inline if you want to add a personal note.
 
 ## Publishing a draft later
 
 1. Find the report in the list.
 2. Click the **three-dot menu** → **Edit** → **Update & Finish**.
-3. Status changes from Draft to **Finished**.
+3. The status pill flips from Draft to **Finished** and the report is sent.
 
 ## Who can see what
 

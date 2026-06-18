@@ -7,6 +7,8 @@ import { DashboardDemo } from '@/components/help/demos/DashboardDemo'
 import { ScheduleUpdateDemo } from '@/components/help/demos/ScheduleUpdateDemo'
 import { SessionFormDemo } from '@/components/help/demos/SessionFormDemo'
 import { AddReportDemo } from '@/components/help/demos/AddReportDemo'
+import { ReportsListDemo } from '@/components/help/demos/ReportsListDemo'
+import { ReportPreviewDemo } from '@/components/help/demos/ReportPreviewDemo'
 import { PendingAttendanceDemo } from '@/components/help/demos/PendingAttendanceDemo'
 import { NewAnnouncementDemo } from '@/components/help/demos/NewAnnouncementDemo'
 import { AssignmentCreateDemo } from '@/components/help/demos/AssignmentCreateDemo'
@@ -989,6 +991,8 @@ const MOCKUPS: Record<string, () => ReactNode> = {
   'pending-attendance': PendingAttendanceDemo,
   'new-announcement': NewAnnouncementDemo,
   'add-report': AddReportDemo,
+  'reports-list': ReportsListDemo,
+  'report-preview': ReportPreviewDemo,
   'messages-notifications': MessagesNotificationsDemo,
   'payments-list': PaymentsListDemo,
   'families-panel': FamiliesListDemo,
