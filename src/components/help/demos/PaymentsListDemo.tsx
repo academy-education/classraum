@@ -44,17 +44,17 @@ const SAMPLE_INVOICES: Invoice[] = [
 ]
 
 // Mirrors InvoiceTable.getStatusDisplay so the demo and real table use
-// the same icons + color tokens for each status.
-function statusDisplay(s: Invoice['status']) {
+// the same icons + color tokens + translation keys for each status.
+function statusDisplay(s: Invoice['status'], tr: (k: string) => string) {
   switch (s) {
     case 'paid':
-      return { icon: CheckCircle, text: 'Paid', className: 'text-green-600 bg-green-50' }
+      return { icon: CheckCircle, text: tr('payments.paid'), className: 'text-green-600 bg-green-50' }
     case 'pending':
-      return { icon: Clock, text: 'Pending', className: 'text-yellow-600 bg-yellow-50' }
+      return { icon: Clock, text: tr('payments.pending'), className: 'text-yellow-600 bg-yellow-50' }
     case 'overdue':
-      return { icon: XCircle, text: 'Overdue', className: 'text-rose-600 bg-red-50' }
+      return { icon: XCircle, text: tr('payments.overdue'), className: 'text-rose-600 bg-red-50' }
     case 'cancelled':
-      return { icon: RotateCcw, text: 'Cancelled', className: 'text-gray-600 bg-gray-50' }
+      return { icon: RotateCcw, text: tr('payments.cancelled'), className: 'text-gray-600 bg-gray-50' }
     default:
       return { icon: Clock, text: s, className: 'text-gray-600 bg-gray-50' }
   }
@@ -110,14 +110,14 @@ export function PaymentsListDemo() {
         {/* Invoice list */}
         <Card className="!gap-0 !py-0 overflow-hidden">
           <div className="grid grid-cols-[1fr_auto_auto_auto_auto] gap-4 px-4 py-3 border-b border-gray-100 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
-            <div>Student</div>
-            <div className="text-right">Amount</div>
-            <div>Status</div>
-            <div>Due</div>
+            <div>{t('common.student')}</div>
+            <div className="text-right">{t('common.amount')}</div>
+            <div>{t('common.status')}</div>
+            <div>{t('common.dueDate')}</div>
             <div className="w-6" />
           </div>
           {SAMPLE_INVOICES.map(inv => {
-            const sd = statusDisplay(inv.status)
+            const sd = statusDisplay(inv.status, k => String(t(k)))
             const Icon = sd.icon
             return (
               <div

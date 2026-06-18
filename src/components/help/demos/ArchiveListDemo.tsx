@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -12,57 +13,38 @@ interface ArchiveItem {
   id: string
   name: string
   typeKey: string
+  deletedAgoDays: number
   deletedAt: string
   icon: typeof School
   iconBg: string
 }
 
-const SAMPLE_ITEMS: ArchiveItem[] = [
-  {
-    id: 'a1',
-    name: 'Grade 6 Science',
-    typeKey: 'navigation.classrooms',
-    deletedAt: '12d',
-    icon: School,
-    iconBg: 'bg-sky-100 text-sky-600',
-  },
-  {
-    id: 'a2',
-    name: 'Worksheet 3B',
-    typeKey: 'navigation.assignments',
-    deletedAt: '1m',
-    icon: ClipboardList,
-    iconBg: 'bg-amber-100 text-amber-600',
-  },
-  {
-    id: 'a3',
-    name: 'Mar 1 holiday notice',
-    typeKey: 'navigation.announcements',
-    deletedAt: '2m',
-    icon: FileText,
-    iconBg: 'bg-purple-100 text-purple-600',
-  },
-  {
-    id: 'a4',
-    name: 'Park family',
-    typeKey: 'families.family',
-    deletedAt: '3m',
-    icon: Users,
-    iconBg: 'bg-emerald-100 text-emerald-600',
-  },
-  {
-    id: 'a5',
-    name: 'March 14 session',
-    typeKey: 'navigation.sessions',
-    deletedAt: '5m',
-    icon: Calendar,
-    iconBg: 'bg-rose-100 text-rose-600',
-  },
-]
+// Anchor relative to which `deletedAgoDays` is subtracted. Fixed (rather
+// than Date.now()) so server + client renders are stable and snapshots
+// are deterministic.
+const ANCHOR = new Date(2026, 5, 18).getTime()
+
+const SAMPLE_ITEMS: Omit<ArchiveItem, 'deletedAt'>[] = [
+  { id: 'a1', name: 'Grade 6 Science', typeKey: 'navigation.classrooms', deletedAgoDays: 12, icon: School, iconBg: 'bg-sky-100 text-sky-600' },
+  { id: 'a2', name: 'Worksheet 3B', typeKey: 'navigation.assignments', deletedAgoDays: 30, icon: ClipboardList, iconBg: 'bg-amber-100 text-amber-600' },
+  { id: 'a3', name: 'Mar 1 holiday notice', typeKey: 'navigation.announcements', deletedAgoDays: 60, icon: FileText, iconBg: 'bg-purple-100 text-purple-600' },
+  { id: 'a4', name: 'Park family', typeKey: 'families.family', deletedAgoDays: 90, icon: Users, iconBg: 'bg-emerald-100 text-emerald-600' },
+  { id: 'a5', name: 'March 14 session', typeKey: 'navigation.sessions', deletedAgoDays: 150, icon: Calendar, iconBg: 'bg-rose-100 text-rose-600' },
+] as const
 
 export function ArchiveListDemo() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [filter, setFilter] = useState('all')
+
+  // Compute the localized "deleted on …" strings client-side so they
+  // follow the user's locale (toLocaleDateString respects language).
+  const items: ArchiveItem[] = useMemo(() => {
+    const locale = getDateLocale(language)
+    return SAMPLE_ITEMS.map(item => ({
+      ...item,
+      deletedAt: new Date(ANCHOR - item.deletedAgoDays * 86400000).toLocaleDateString(locale),
+    }))
+  }, [language])
 
   return (
     <NonFunctional>
@@ -102,7 +84,7 @@ export function ArchiveListDemo() {
         </div>
 
         <div className="space-y-3">
-          {SAMPLE_ITEMS.map(i => {
+          {items.map(i => {
             const Icon = i.icon
             return (
               <div
