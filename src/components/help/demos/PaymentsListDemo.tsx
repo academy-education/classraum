@@ -22,19 +22,27 @@ import { NonFunctional } from './NonFunctional'
  * labels swap with the user's language.
  */
 
-const SAMPLE_TEMPLATES: PaymentTemplate[] = [
-  {
-    id: 't1', name: 'Monthly Tuition', amount: 320000, recurrence_type: 'monthly',
-    is_active: true, academy_id: 'a1', created_at: '2025-09-01', enrolled_students_count: 23,
-  },
-]
-
 export function PaymentsListDemo() {
   const { t, language } = useTranslation()
   const [activeTab, setActiveTab] = useState<'one_time' | 'recurring' | 'plans'>('one_time')
   const [search, setSearch] = useState('')
 
   const invoices = useMemo(() => getInvoices(language), [language])
+
+  // Template name localizes so the Plans tab + PaymentStats labels read
+  // natively in either language.
+  const templates: PaymentTemplate[] = useMemo(() => [
+    {
+      id: 't1',
+      name: language === 'korean' ? '월간 수강료' : 'Monthly Tuition',
+      amount: 320000,
+      recurrence_type: 'monthly',
+      is_active: true,
+      academy_id: 'a1',
+      created_at: '2025-09-01',
+      enrolled_students_count: 23,
+    },
+  ], [language])
 
   return (
     <NonFunctional>
@@ -53,7 +61,7 @@ export function PaymentsListDemo() {
           </Button>
         </div>
 
-        <PaymentStats invoices={invoices} templates={SAMPLE_TEMPLATES} />
+        <PaymentStats invoices={invoices} templates={templates} />
 
         <div className="mt-6">
           <PaymentTabNavigation activeTab={activeTab} onTabChange={setActiveTab} />

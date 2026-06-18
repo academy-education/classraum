@@ -19,7 +19,7 @@ import { NonFunctional } from './NonFunctional'
  * Layout matches attendance-page.tsx around line 1590: header with the
  * classroom color dot + title, body with the flat row-per-student
  * layout, "Mark all present" quick action, keyboard-shortcut legend,
- * and the same footer (Cancel + Save Changes + Save & Next).
+ * and the same footer (Cancel + Save Changes).
  */
 
 interface Row {
@@ -120,7 +120,7 @@ export function PendingAttendanceDemo() {
             </Button>
             <div className="hidden md:flex items-center gap-2 text-[11px] text-gray-500">
               <Clock className="w-3 h-3" />
-              <span>Keyboard:</span>
+              <span>{t('attendance.keyboardHint')}</span>
               <kbd className="px-1.5 py-0.5 rounded border border-gray-200 bg-gray-50 font-mono">P</kbd>
               <kbd className="px-1.5 py-0.5 rounded border border-gray-200 bg-gray-50 font-mono">A</kbd>
               <kbd className="px-1.5 py-0.5 rounded border border-gray-200 bg-gray-50 font-mono">L</kbd>

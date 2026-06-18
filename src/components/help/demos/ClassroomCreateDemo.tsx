@@ -34,25 +34,28 @@ function getSubjects(lang: string): Subject[] {
   ]
 }
 
+// Palette + keys mirror src/components/ui/classrooms-page.tsx (lines
+// 302-330) so the demo's color picker shows the exact same swatches +
+// localized names as the live Create Classroom modal.
 const PRESET_COLORS = [
-  '#3b82f6', '#38bdf8', '#10b981', '#f59e0b',
-  '#f43f5e', '#a855f7', '#6366f1', '#ec4899',
-  '#14b8a6', '#f97316', '#84cc16', '#d946ef',
+  '#3B82F6', '#EF4444', '#10B981', '#F59E0B',
+  '#8B5CF6', '#EC4899', '#06B6D4', '#84CC16',
+  '#F97316', '#6366F1', '#64748B', '#DC2626',
 ]
 
-const COLOR_NAMES: Record<string, string> = {
-  '#3b82f6': 'Blue',
-  '#38bdf8': 'Sky',
-  '#10b981': 'Emerald',
-  '#f59e0b': 'Amber',
-  '#f43f5e': 'Rose',
-  '#a855f7': 'Purple',
-  '#6366f1': 'Indigo',
-  '#ec4899': 'Pink',
-  '#14b8a6': 'Teal',
-  '#f97316': 'Orange',
-  '#84cc16': 'Lime',
-  '#d946ef': 'Fuchsia',
+const COLOR_NAME_KEYS: Record<string, string> = {
+  '#3B82F6': 'classrooms.blue',
+  '#EF4444': 'classrooms.red',
+  '#10B981': 'classrooms.green',
+  '#F59E0B': 'classrooms.yellow',
+  '#8B5CF6': 'classrooms.purple',
+  '#EC4899': 'classrooms.pink',
+  '#06B6D4': 'classrooms.cyan',
+  '#84CC16': 'classrooms.lime',
+  '#F97316': 'classrooms.orange',
+  '#6366F1': 'classrooms.indigo',
+  '#64748B': 'classrooms.slate',
+  '#DC2626': 'classrooms.crimson',
 }
 
 const DAYS_OF_WEEK = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
@@ -88,9 +91,12 @@ function isValidHexDemo(c: string): boolean {
 const noop = () => undefined
 
 export function ClassroomCreateDemo() {
-  const { language } = useTranslation()
+  const { t, language } = useTranslation()
   const teachers = getTeachers(language)
   const students = getStudents(language)
+  const colorNames = Object.fromEntries(
+    Object.entries(COLOR_NAME_KEYS).map(([hex, key]) => [hex, String(t(key))])
+  )
 
   // Pre-populate so the demo looks like a partially-filled form rather
   // than empty placeholders. The seed values come from the localized
@@ -102,7 +108,7 @@ export function ClassroomCreateDemo() {
     subject_id: 'sub1',
     teacher_id: teachers[0].id,
     teacher_name: teachers[0].name,
-    color: '#3b82f6',
+    color: '#3B82F6',
     notes: '',
   })
   const [selectedStudents, setSelectedStudents] = useState<string[]>([students[0].id, students[1].id])
@@ -133,7 +139,7 @@ export function ClassroomCreateDemo() {
         subjects={getSubjects(language)}
         customColors={[]}
         presetColors={PRESET_COLORS}
-        colorNames={COLOR_NAMES}
+        colorNames={colorNames}
         previewColor={previewColor}
         setPreviewColor={setPreviewColor}
         customColorInput={customColorInput}
