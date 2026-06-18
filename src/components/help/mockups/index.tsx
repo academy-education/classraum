@@ -967,7 +967,7 @@ const MOCKUPS: Record<string, () => ReactNode> = {
   'create-session': SessionFormDemo,
   'import-from-text': ImportFromTextModal,
   'add-makeup-session': SessionFormDemo,
-  'edit-session-assignments': AssignmentCreateDemo,
+  'edit-session-assignments': () => <AssignmentCreateDemo />,
   'pending-attendance': PendingAttendanceDemo,
   'new-announcement': NewAnnouncementDemo,
   'add-report': AddReportDemo,

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { useTranslation } from '@/hooks/useTranslation'
 import { PaymentTabNavigation } from '@/components/ui/payments/PaymentTabNavigation'
 import { PaymentStats } from '@/components/ui/payments/PaymentStats'
 import { Button } from '@/components/ui/button'
@@ -67,6 +68,7 @@ const SAMPLE_TEMPLATES: PaymentTemplate[] = [
 ]
 
 export function PaymentsListDemo() {
+  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<'one_time' | 'recurring' | 'plans'>('one_time')
 
   return (
@@ -75,12 +77,12 @@ export function PaymentsListDemo() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">Billing</p>
-            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">Payments</h1>
-            <p className="text-gray-500 text-sm">One-time invoices, recurring plans, and payment templates.</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.payments')}</p>
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">{t('payments.title')}</h1>
+            <p className="text-gray-500 text-sm">{t('payments.description')}</p>
           </div>
           <Button size="sm" className="h-9">
-            <Plus className="w-4 h-4" /> Add Payment
+            <Plus className="w-4 h-4" /> {t('payments.addPayment')}
           </Button>
         </div>
 
@@ -98,10 +100,10 @@ export function PaymentsListDemo() {
         <div className="flex items-center gap-2 mt-4 mb-3">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
-            <Input placeholder="Search invoices" className="h-9 pl-9 text-sm" />
+            <Input placeholder={String(t('payments.searchInvoices'))} className="h-9 pl-9 text-sm" />
           </div>
           <Button variant="outline" size="sm">
-            <Filter className="w-3.5 h-3.5" /> Filter
+            <Filter className="w-3.5 h-3.5" /> {t('common.filter')}
           </Button>
         </div>
 

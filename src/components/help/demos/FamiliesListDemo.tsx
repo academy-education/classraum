@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { useTranslation } from '@/hooks/useTranslation'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -35,6 +36,7 @@ const SAMPLE_FAMILIES = [
 ]
 
 export function FamiliesListDemo() {
+  const { t } = useTranslation()
   const [view, setView] = useState<'table' | 'card'>('card')
 
   return (
@@ -42,16 +44,16 @@ export function FamiliesListDemo() {
       <div className="my-6 p-4 bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">Contacts</p>
-            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">Families</h1>
-            <p className="text-gray-500 text-sm">Link parents and students together into one family group.</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.families')}</p>
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">{t('families.title')}</h1>
+            <p className="text-gray-500 text-sm">{t('families.description')}</p>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" className="h-9">
-              <Upload className="w-4 h-4" /> Import families
+              <Upload className="w-4 h-4" /> {t('families.import')}
             </Button>
             <Button size="sm" className="h-9">
-              <Plus className="w-4 h-4" /> Create family
+              <Plus className="w-4 h-4" /> {t('families.createFamily')}
             </Button>
           </div>
         </div>
@@ -80,7 +82,7 @@ export function FamiliesListDemo() {
         <div className="relative mb-4 max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
-            placeholder="Search by family name, parent, or student"
+            placeholder={String(t('families.searchPlaceholder'))}
             className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white text-sm shadow-sm"
           />
         </div>
@@ -93,7 +95,7 @@ export function FamiliesListDemo() {
                 <div className="flex items-start justify-between mb-3">
                   <div className="min-w-0">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-primary mb-1">
-                      Family
+                      {t('families.family')}
                     </p>
                     <h3 className="text-base font-semibold text-gray-900 truncate">{f.name}</h3>
                   </div>
@@ -110,7 +112,7 @@ export function FamiliesListDemo() {
                 </div>
                 <div className="mt-3 pt-3 border-t border-gray-100">
                   <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-1.5">
-                    Students ({f.students.length})
+                    {t('families.students')} ({f.students.length})
                   </p>
                   <ul className="space-y-1">
                     {f.students.map(s => (
@@ -123,7 +125,7 @@ export function FamiliesListDemo() {
                   </ul>
                 </div>
                 <Button variant="outline" size="sm" className="mt-4 w-full text-xs h-9">
-                  Copy invite link
+                  {t('families.copyLink')}
                 </Button>
               </div>
             </Card>

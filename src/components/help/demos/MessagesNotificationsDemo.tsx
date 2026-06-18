@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslation } from '@/hooks/useTranslation'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -21,6 +22,7 @@ const SAMPLE_NOTIFS = [
 ]
 
 export function MessagesNotificationsDemo() {
+  const { t } = useTranslation()
   return (
     <NonFunctional>
       <div className="my-6 grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -28,18 +30,18 @@ export function MessagesNotificationsDemo() {
         <div className="p-4 bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">Inbox</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">{t('eyebrows.messages')}</p>
               <h2 className="text-base font-semibold text-gray-900 flex items-center gap-1.5">
-                <Mail className="w-4 h-4" /> Messages
+                <Mail className="w-4 h-4" /> {t('messages.title')}
               </h2>
             </div>
             <Button size="sm" className="h-8">
-              <Plus className="w-3.5 h-3.5" /> New
+              <Plus className="w-3.5 h-3.5" /> {t('messages.newMessage')}
             </Button>
           </div>
           <div className="relative mb-3">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 h-3.5 w-3.5 pointer-events-none" />
-            <Input placeholder="Search messages" className="h-9 pl-8 text-sm" />
+            <Input placeholder={String(t('common.search'))} className="h-9 pl-8 text-sm" />
           </div>
           <Card className="!gap-0 !py-0 overflow-hidden">
             {SAMPLE_MESSAGES.map((m, i) => (
@@ -68,13 +70,13 @@ export function MessagesNotificationsDemo() {
         <div className="p-4 bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">Recent</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">{t('eyebrows.notifications')}</p>
               <h2 className="text-base font-semibold text-gray-900 flex items-center gap-1.5">
-                <Bell className="w-4 h-4" /> Notifications
+                <Bell className="w-4 h-4" /> {t('notifications.title')}
               </h2>
             </div>
             <Button variant="ghost" size="sm" className="h-8 text-xs">
-              Mark all read
+              {t('notifications.markAsRead')}
             </Button>
           </div>
           <Card className="!gap-0 !py-0 overflow-hidden">

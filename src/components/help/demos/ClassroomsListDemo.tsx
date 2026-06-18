@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { useTranslation } from '@/hooks/useTranslation'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -62,6 +63,7 @@ const SAMPLE_CLASSROOMS = [
 ]
 
 export function ClassroomsListDemo() {
+  const { t } = useTranslation()
   const [pauseFilter, setPauseFilter] = useState<'active' | 'paused' | 'all'>('active')
   const [view, setView] = useState<'table' | 'card'>('card')
   const [search, setSearch] = useState('')
@@ -73,19 +75,19 @@ export function ClassroomsListDemo() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
-              Manage
+              {t('eyebrows.classrooms')}
             </p>
-            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">Classrooms</h1>
-            <p className="text-gray-500 text-sm">Set up and organize all your classes from here.</p>
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">{t('classrooms.title')}</h1>
+            <p className="text-gray-500 text-sm">{t('classrooms.description')}</p>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" className="h-9">
               <CalendarOff className="w-4 h-4" />
-              Schedule breaks
+              {t('scheduleBreaks.button')}
             </Button>
             <Button size="sm" className="h-9">
               <Plus className="w-4 h-4" />
-              Create a Classroom
+              {t('classrooms.createClassroom')}
             </Button>
           </div>
         </div>
@@ -98,15 +100,15 @@ export function ClassroomsListDemo() {
                 <School className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
               </div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
-                Total active classrooms
+                {t('classrooms.totalActiveClassrooms')}
               </p>
             </div>
             <div className="flex items-baseline gap-2 mb-3">
               <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">3</p>
-              <p className="text-sm text-gray-400">classrooms</p>
+              <p className="text-sm text-gray-400">{t('classrooms.classrooms')}</p>
             </div>
             <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[11px] font-medium">
-              100% of total
+              {t('common.percentOfTotal', { percent: 100 })}
             </div>
           </Card>
         </div>
@@ -140,7 +142,7 @@ export function ClassroomsListDemo() {
             <Input
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Search classrooms"
+              placeholder={String(t('classrooms.searchClassrooms'))}
               className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white text-sm shadow-sm"
             />
           </div>
@@ -149,9 +151,9 @@ export function ClassroomsListDemo() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="active">Active classrooms</SelectItem>
-              <SelectItem value="paused">Paused classrooms</SelectItem>
-              <SelectItem value="all">All classrooms</SelectItem>
+              <SelectItem value="active">{t('classrooms.activeClassrooms')}</SelectItem>
+              <SelectItem value="paused">{t('classrooms.pausedClassrooms')}</SelectItem>
+              <SelectItem value="all">{t('classrooms.allClassrooms')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -168,7 +170,7 @@ export function ClassroomsListDemo() {
                 <div className="flex items-start justify-between mb-3">
                   <div className="min-w-0">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.1em] mb-1 text-emerald-600">
-                      Active
+                      {t('classrooms.active')}
                     </p>
                     <h3 className="text-lg font-semibold text-gray-900 tracking-tight truncate">
                       {c.name}
@@ -195,19 +197,19 @@ export function ClassroomsListDemo() {
                 <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
                   <div>
                     <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-0.5">
-                      Students
+                      {t('classrooms.students')}
                     </p>
                     <p className="text-sm font-semibold text-gray-900">{c.students}</p>
                   </div>
                   <div>
                     <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-0.5">
-                      Grade
+                      {t('classrooms.grade')}
                     </p>
                     <p className="text-sm font-semibold text-gray-900 truncate">{c.grade}</p>
                   </div>
                   <div>
                     <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-0.5">
-                      Subject
+                      {t('classrooms.subject')}
                     </p>
                     <p className="text-sm font-semibold text-gray-900 truncate">{c.subject}</p>
                   </div>
@@ -226,10 +228,10 @@ export function ClassroomsListDemo() {
                 {/* Actions */}
                 <div className="mt-auto pt-3 space-y-1.5">
                   <Button variant="outline" size="sm" className="w-full text-xs h-9">
-                    View details
+                    {t('common.viewDetails')}
                   </Button>
                   <Button size="sm" className="w-full text-xs h-9">
-                    View sessions
+                    {t('classrooms.viewSessions')}
                   </Button>
                 </div>
               </div>

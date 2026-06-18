@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { useTranslation } from '@/hooks/useTranslation'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -26,6 +27,7 @@ const SAMPLE_CLASSROOMS = [
 ]
 
 export function NewAnnouncementDemo() {
+  const { t } = useTranslation()
   const [title, setTitle] = useState('Holiday closure — Mar 1')
   const [content, setContent] = useState(
     'The academy will be closed on March 1 for Independence Movement Day. Sessions resume Mar 2.'
@@ -55,37 +57,37 @@ export function NewAnnouncementDemo() {
         inline
         onClose={() => undefined}
         size="2xl"
-        title="New Announcement"
-        subtitle="Send academy-wide notices to parents and students at once."
+        title={String(t('announcements.newAnnouncement'))}
+        subtitle={String(t('announcements.description'))}
         bodyClassName="space-y-6"
         footer={
           <ModalShell.Footer>
-            <Button variant="outline">Cancel</Button>
-            <Button>Create</Button>
+            <Button variant="outline">{t('common.cancel')}</Button>
+            <Button>{t('common.create')}</Button>
           </ModalShell.Footer>
         }
       >
         {/* Title */}
         <div className="space-y-2">
           <Label htmlFor="demo-ann-title">
-            Title <span className="text-rose-500">*</span>
+            {t('announcements.announcementTitle')} <span className="text-rose-500">*</span>
           </Label>
           <Input
             id="demo-ann-title"
             value={title}
             onChange={e => setTitle(e.target.value)}
-            placeholder="Enter announcement title"
+            placeholder={String(t('announcements.announcementTitlePlaceholder'))}
           />
         </div>
 
         {/* Content */}
         <div className="space-y-2">
-          <Label htmlFor="demo-ann-content">Content</Label>
+          <Label htmlFor="demo-ann-content">{t('announcements.announcementContent')}</Label>
           <textarea
             id="demo-ann-content"
             value={content}
             onChange={e => setContent(e.target.value)}
-            placeholder="Write your announcement..."
+            placeholder={String(t('announcements.announcementContentPlaceholder'))}
             rows={4}
             className="w-full px-3 py-2 border border-input rounded-md bg-transparent text-base md:text-sm placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-0 focus-visible:outline-none resize-none transition-[color,box-shadow]"
           />
@@ -94,7 +96,7 @@ export function NewAnnouncementDemo() {
         {/* Classrooms */}
         <div className="space-y-2">
           <Label>
-            Select classrooms <span className="text-rose-500">*</span>
+            {t('announcements.selectClassrooms')} <span className="text-rose-500">*</span>
           </Label>
           <div className="border border-border rounded-lg bg-gray-50 p-4">
             {/* Search */}
@@ -102,7 +104,7 @@ export function NewAnnouncementDemo() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
               <Input
                 type="text"
-                placeholder="Search classrooms..."
+                placeholder={String(t('announcements.searchClassrooms'))}
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
@@ -119,7 +121,7 @@ export function NewAnnouncementDemo() {
                 className="h-8 px-3 text-xs text-primary border-primary/20 hover:bg-primary/5 hover:text-primary"
               >
                 <CheckCircle className="w-3 h-3 mr-1" />
-                {allSelected ? 'Deselect all' : 'Select all'}
+                {allSelected ? t('announcements.deselectAll') : t('announcements.selectAll')}
               </Button>
             </div>
 
@@ -143,13 +145,13 @@ export function NewAnnouncementDemo() {
             </div>
           </div>
           {selected.length > 0 && (
-            <p className="text-xs text-gray-500">{selected.length} classrooms selected</p>
+            <p className="text-xs text-gray-500">{selected.length} {t('announcements.selectedClassrooms')}</p>
           )}
         </div>
 
         {/* Attachments */}
         <div className="space-y-2">
-          <Label>Attachments</Label>
+          <Label>{t('announcements.attachments')}</Label>
           <div className="rounded-lg border border-dashed border-gray-300 p-4 text-sm text-gray-500 flex items-center gap-2 bg-gray-50">
             <Upload className="w-4 h-4" /> Drop files here · up to 5
           </div>

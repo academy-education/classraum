@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { useTranslation } from '@/hooks/useTranslation'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -37,6 +38,7 @@ const INITIAL_ROWS: Row[] = [
 ]
 
 export function PendingAttendanceDemo() {
+  const { t } = useTranslation()
   const [rows, setRows] = useState<Row[]>(INITIAL_ROWS)
 
   const updateStatus = (id: string, status: AttendanceStatus) =>
@@ -55,19 +57,19 @@ export function PendingAttendanceDemo() {
           <div className="flex items-center gap-3">
             <div className="w-6 h-6 rounded-full flex-shrink-0 bg-sky-400" />
             <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 truncate">
-              Update Attendance - Grade 4 Math
+              {t('attendance.updateAttendance')} - Grade 4 Math
             </h2>
           </div>
         }
         bodyPadding={false}
         footer={
           <ModalShell.Footer justify="between">
-            <div className="text-sm text-gray-500">{rows.length} students</div>
+            <div className="text-sm text-gray-500">{rows.length} {t('common.students')}</div>
             <div className="flex items-center gap-3 flex-wrap justify-end">
-              <Button variant="outline">Cancel</Button>
-              <Button>Save Changes</Button>
-              <Button variant="default" title="Save & Next → SAT Prep">
-                Save & Next
+              <Button variant="outline">{t('common.cancel')}</Button>
+              <Button>{t('common.saveChanges')}</Button>
+              <Button variant="default" title={`${t('attendance.saveAndNext')} → SAT Prep`}>
+                {t('attendance.saveAndNext')}
                 <span className="ml-1.5 text-xs opacity-70">→ SAT Prep</span>
               </Button>
             </div>
@@ -79,13 +81,13 @@ export function PendingAttendanceDemo() {
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <Users className="w-5 h-5 text-amber-600" />
-              <h3 className="font-semibold text-gray-900">Missing students (1)</h3>
+              <h3 className="font-semibold text-gray-900">{t('attendance.missingStudents')} (1)</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               <div className="flex items-center justify-between p-3 bg-amber-50 border border-amber-200 rounded-lg">
                 <span className="font-medium text-gray-900">Fiona Lee</span>
                 <Button size="sm" variant="outline" className="text-amber-600 border-orange-300 hover:bg-orange-100">
-                  Add student
+                  {t('attendance.addStudent')}
                 </Button>
               </div>
             </div>
@@ -100,7 +102,7 @@ export function PendingAttendanceDemo() {
               className="h-8 px-3 text-xs text-emerald-600 ring-emerald-100 hover:bg-emerald-50 hover:text-emerald-700"
             >
               <CheckCircle className="w-3 h-3 mr-1" />
-              Mark all present
+              {t('sessions.markAllPresent')}
             </Button>
             <div className="hidden md:flex items-center gap-2 text-[11px] text-gray-500">
               <Clock className="w-3 h-3" />
@@ -128,7 +130,7 @@ export function PendingAttendanceDemo() {
                 <Input
                   value={r.note}
                   onChange={e => updateNote(r.id, e.target.value)}
-                  placeholder="Teacher note"
+                  placeholder={String(t('attendance.teacherNote'))}
                   className="h-8 text-sm flex-1 min-w-0"
                 />
               </div>
