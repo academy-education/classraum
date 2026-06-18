@@ -50,7 +50,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
   if (!body) notFound()
 
   return (
-    <div className="flex gap-8 max-w-7xl mx-auto px-6 py-8">
+    <div className="flex gap-6 max-w-7xl mx-auto px-4 py-4">
       <aside className="w-64 flex-shrink-0 hidden lg:block">
         <div className="sticky top-8">
           <HelpSidebar />
@@ -60,7 +60,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
       <main className="flex-1 min-w-0">
         <Link
           href="/dashboard/help"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary mb-6"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           {lang === 'ko' ? '전체 목록' : 'All articles'}
@@ -76,22 +76,22 @@ export default async function HelpArticlePage({ params }: PageProps) {
             remarkPlugins={[remarkGfm]}
             components={{
               h1: ({ children }) => (
-                <h1 className="text-3xl font-semibold tracking-tight text-gray-900 mb-3">{children}</h1>
+                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-2">{children}</h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-3">{children}</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mt-5 mb-2">{children}</h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-lg font-semibold text-gray-900 mt-6 mb-2">{children}</h3>
+                <h3 className="text-base font-semibold text-gray-900 mt-4 mb-1.5">{children}</h3>
               ),
               p: ({ children }) => (
-                <p className="leading-relaxed text-gray-700 mb-4">{children}</p>
+                <p className="leading-relaxed text-gray-700 mb-2.5 text-sm">{children}</p>
               ),
               ul: ({ children }) => (
-                <ul className="list-disc pl-6 mb-4 space-y-1.5 text-gray-700">{children}</ul>
+                <ul className="list-disc pl-5 mb-2.5 space-y-1 text-gray-700 text-sm">{children}</ul>
               ),
               ol: ({ children }) => (
-                <ol className="list-decimal pl-6 mb-4 space-y-1.5 text-gray-700">{children}</ol>
+                <ol className="list-decimal pl-5 mb-2.5 space-y-1 text-gray-700 text-sm">{children}</ol>
               ),
               li: ({ children }) => <li className="leading-relaxed">{children}</li>,
               strong: ({ children }) => (

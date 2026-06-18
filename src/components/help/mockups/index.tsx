@@ -1,6 +1,7 @@
 "use client"
 
 import type { ReactNode } from 'react'
+import { useTranslation } from '@/hooks/useTranslation'
 import { ClassroomCreateDemo } from '@/components/help/demos/ClassroomCreateDemo'
 import { DashboardDemo } from '@/components/help/demos/DashboardDemo'
 import { ScheduleUpdateDemo } from '@/components/help/demos/ScheduleUpdateDemo'
@@ -928,29 +929,45 @@ function ExamsBuilder() {
 }
 
 function ImportFromTextModal() {
+  const { t, language } = useTranslation()
+  const ko = language === 'korean'
   return (
     <Shell
-      title="Import from Text"
+      title={ko ? '텍스트에서 가져오기' : 'Import from Text'}
       footer={
         <>
-          <Button variant="ghost" size="sm">Cancel</Button>
+          <Button variant="ghost" size="sm">{t('common.cancel')}</Button>
           <Button size="sm">
-            <Sparkles className="w-3.5 h-3.5" /> Parse with AI
+            <Sparkles className="w-3.5 h-3.5" /> {ko ? 'AI로 분석' : 'Parse with AI'}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="flex items-center gap-2 text-sm text-gray-700 bg-primary/5 rounded-lg p-3">
-          <Sparkles className="w-4 h-4 text-primary" /> Paste a schedule, syllabus, or notes — AI will pull out the session details.
+          <Sparkles className="w-4 h-4 text-primary" />
+          {ko
+            ? '일정, 강의계획서, 메모를 붙여넣으세요 — AI가 수업 정보를 추출합니다.'
+            : 'Paste a schedule, syllabus, or notes — AI will pull out the session details.'}
         </div>
         <div className="rounded-lg border border-gray-200 p-4 text-sm text-gray-700 font-mono leading-relaxed min-h-[120px] bg-gray-50">
-          Week 4 — Mar 14 (Mon)<br />
-          4–5:30pm, Room A<br />
-          Topic: fractions review + Worksheet 4A
+          {ko ? (
+            <>
+              4주차 — 3월 14일 (월)<br />
+              오후 4시–5시 30분, A실<br />
+              주제: 분수 복습 + 워크시트 4A
+            </>
+          ) : (
+            <>
+              Week 4 — Mar 14 (Mon)<br />
+              4–5:30pm, Room A<br />
+              Topic: fractions review + Worksheet 4A
+            </>
+          )}
         </div>
         <div className="rounded-lg border border-dashed border-gray-300 p-4 text-sm text-gray-500 flex items-center gap-2">
-          <Upload className="w-4 h-4" /> …or drop a .txt / .csv file
+          <Upload className="w-4 h-4" />
+          {ko ? '…또는 .txt / .csv 파일을 끌어다 놓으세요' : '…or drop a .txt / .csv file'}
         </div>
       </div>
     </Shell>

@@ -19,8 +19,22 @@ import React from 'react'
  * aren't suppressed.
  */
 export function NonFunctional({ children }: { children: React.ReactNode }) {
+  // Radix Select / Popover / Dialog open on pointer-down (not click), so
+  // we need pointer-down + click-down captures. Also block pointer-down
+  // entirely on roles that open menus (combobox, button) so Radix never
+  // even tries to open the floating UI. Inputs stay usable because their
+  // type is 'text' / 'date' etc., not button/combobox.
+  const blockPointer: React.PointerEventHandler<HTMLDivElement> = (e) => {
+    const target = e.target as HTMLElement
+    const trigger = target.closest('[role="combobox"],[data-radix-collection-item],button[data-slot],button,[role="menuitem"]')
+    if (trigger) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+  }
   return (
     <div
+      onPointerDownCapture={blockPointer}
       onClickCapture={(e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -36,7 +50,8 @@ export function NonFunctional({ children }: { children: React.ReactNode }) {
         const target = e.target as HTMLElement
         const isButton =
           target.tagName === 'BUTTON' ||
-          target.getAttribute('role') === 'button'
+          target.getAttribute('role') === 'button' ||
+          target.getAttribute('role') === 'combobox'
         if (isButton && (e.key === 'Enter' || e.key === ' ')) {
           e.preventDefault()
           e.stopPropagation()

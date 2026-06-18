@@ -83,9 +83,9 @@ export const HELP_ARTICLES: HelpArticleMeta[] = [
   {
     slug: 'sessions',
     title: 'Sessions',
-    titleKo: '세션',
+    titleKo: '수업',
     blurb: 'Individual class meetings, templates, and make-up sessions',
-    blurbKo: '개별 수업, 템플릿, 보강 세션',
+    blurbKo: '개별 수업, 템플릿, 보강 수업',
     order: 30,
     roles: ['owner', 'manager', 'teacher'],
     file: '03-sessions.md',

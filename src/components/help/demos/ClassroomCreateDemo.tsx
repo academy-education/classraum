@@ -25,11 +25,14 @@ const SAMPLE_SCHEDULES: Schedule[] = [
   { id: 'sc1', day: 'monday', start_time: '16:00', end_time: '17:30' },
 ]
 
-const SAMPLE_SUBJECTS: Subject[] = [
-  { id: 'sub1', name: 'Mathematics', academy_id: 'aca1', created_at: null, updated_at: null },
-  { id: 'sub2', name: 'English', academy_id: 'aca1', created_at: null, updated_at: null },
-  { id: 'sub3', name: 'Science', academy_id: 'aca1', created_at: null, updated_at: null },
-]
+function getSubjects(lang: string): Subject[] {
+  const ko = lang === 'korean'
+  return [
+    { id: 'sub1', name: ko ? '수학' : 'Mathematics', academy_id: 'aca1', created_at: null, updated_at: null },
+    { id: 'sub2', name: ko ? '영어' : 'English', academy_id: 'aca1', created_at: null, updated_at: null },
+    { id: 'sub3', name: ko ? '과학' : 'Science', academy_id: 'aca1', created_at: null, updated_at: null },
+  ]
+}
 
 const PRESET_COLORS = [
   '#3b82f6', '#38bdf8', '#10b981', '#f59e0b',
@@ -54,22 +57,28 @@ const COLOR_NAMES: Record<string, string> = {
 
 const DAYS_OF_WEEK = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
-const DAY_LABELS_EN: Record<string, string> = {
-  monday: 'Mon',
-  tuesday: 'Tue',
-  wednesday: 'Wed',
-  thursday: 'Thu',
-  friday: 'Fri',
-  saturday: 'Sat',
-  sunday: 'Sun',
+const DAY_LABELS: Record<string, { en: string; ko: string }> = {
+  monday: { en: 'Monday', ko: '월요일' },
+  tuesday: { en: 'Tuesday', ko: '화요일' },
+  wednesday: { en: 'Wednesday', ko: '수요일' },
+  thursday: { en: 'Thursday', ko: '목요일' },
+  friday: { en: 'Friday', ko: '금요일' },
+  saturday: { en: 'Saturday', ko: '토요일' },
+  sunday: { en: 'Sunday', ko: '일요일' },
 }
 
-function formatTimeDemo(t: string): string {
-  // "16:00" → "4:00 PM"
-  const [h, m] = t.split(':').map(Number)
-  const period = h >= 12 ? 'PM' : 'AM'
-  const hour12 = h % 12 === 0 ? 12 : h % 12
-  return `${hour12}:${m.toString().padStart(2, '0')} ${period}`
+function makeFormatTime(lang: string) {
+  return (t: string): string => {
+    // "16:00" → "4:00 PM" (en) or "오후 4:00" (ko)
+    const [h, m] = t.split(':').map(Number)
+    const hour12 = h % 12 === 0 ? 12 : h % 12
+    const minutes = m.toString().padStart(2, '0')
+    if (lang === 'korean') {
+      const period = h >= 12 ? '오후' : '오전'
+      return `${period} ${hour12}:${minutes}`
+    }
+    return `${hour12}:${minutes} ${h >= 12 ? 'PM' : 'AM'}`
+  }
 }
 
 function isValidHexDemo(c: string): boolean {
@@ -121,7 +130,7 @@ export function ClassroomCreateDemo() {
         filteredTeachers={teachers}
         students={students}
         filteredStudents={students}
-        subjects={SAMPLE_SUBJECTS}
+        subjects={getSubjects(language)}
         customColors={[]}
         presetColors={PRESET_COLORS}
         colorNames={COLOR_NAMES}
@@ -144,8 +153,8 @@ export function ClassroomCreateDemo() {
         activeTimePicker={activeTimePicker}
         setActiveTimePicker={setActiveTimePicker}
         daysOfWeek={DAYS_OF_WEEK}
-        getTranslatedDay={d => DAY_LABELS_EN[d] || d}
-        formatTime={formatTimeDemo}
+        getTranslatedDay={d => (DAY_LABELS[d.toLowerCase()]?.[language === 'korean' ? 'ko' : 'en']) || d}
+        formatTime={makeFormatTime(language)}
         isValidHexColor={isValidHexDemo}
         handleInputChange={(field, value) => setFormData(f => ({ ...f, [field]: value }))}
         handleTeacherChange={tid => {
