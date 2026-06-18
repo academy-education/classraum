@@ -6,12 +6,12 @@ import remarkGfm from 'remark-gfm'
 import {
   HELP_ARTICLES,
   getArticleMeta,
+  localizeArticle,
 } from '@/../content/help/articles'
 import { readArticleBody } from '@/../content/help/server'
-import { HelpSidebar } from '../HelpSidebar'
 import { HelpChatButton } from '../HelpChatButton'
 import { HelpMockup } from '@/components/help/mockups'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -49,21 +49,26 @@ export default async function HelpArticlePage({ params }: PageProps) {
   const body = readArticleBody(slug, lang)
   if (!body) notFound()
 
-  return (
-    <div className="flex gap-6 max-w-7xl mx-auto px-4 py-4">
-      <aside className="w-64 flex-shrink-0 hidden lg:block">
-        <div className="sticky top-8">
-          <HelpSidebar />
-        </div>
-      </aside>
+  // Sequential prev/next within the catalog order so users can read
+  // through the help center end-to-end without bouncing back to the index.
+  const idx = HELP_ARTICLES.findIndex(a => a.slug === slug)
+  const prev = idx > 0 ? localizeArticle(HELP_ARTICLES[idx - 1], lang) : null
+  const next = idx >= 0 && idx < HELP_ARTICLES.length - 1
+    ? localizeArticle(HELP_ARTICLES[idx + 1], lang)
+    : null
+  const labels = lang === 'ko'
+    ? { all: '전체 목록', previous: '이전', next: '다음' }
+    : { all: 'All articles', previous: 'Previous', next: 'Next' }
 
-      <main className="flex-1 min-w-0">
+  return (
+    <div className="p-4">
+      <main className="max-w-3xl">
         <Link
           href="/dashboard/help"
           className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
-          {lang === 'ko' ? '전체 목록' : 'All articles'}
+          {labels.all}
         </Link>
 
         {/* Hand-styled markdown — this app doesn't use the Tailwind
@@ -131,6 +136,49 @@ export default async function HelpArticlePage({ params }: PageProps) {
             {body}
           </ReactMarkdown>
         </article>
+
+        {/* Sequential nav — prev on the left, next on the right. Either
+            slot is empty when the user is at an end of the catalog. */}
+        {(prev || next) && (
+          <div className="mt-10 grid grid-cols-2 gap-4">
+            {prev ? (
+              <Link
+                href={`/dashboard/help/${prev.slug}`}
+                className="group rounded-xl border border-gray-200 bg-white p-4 hover:border-primary/40 hover:bg-primary/[0.02] transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-primary flex-shrink-0 transition-colors" />
+                  <div className="min-w-0">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
+                      {labels.previous}
+                    </div>
+                    <div className="text-sm font-medium text-gray-900 truncate group-hover:text-primary transition-colors">
+                      {prev.title}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ) : <div />}
+            {next ? (
+              <Link
+                href={`/dashboard/help/${next.slug}`}
+                className="group rounded-xl border border-gray-200 bg-white p-4 hover:border-primary/40 hover:bg-primary/[0.02] transition-colors text-right"
+              >
+                <div className="flex items-center justify-end gap-3">
+                  <div className="min-w-0">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
+                      {labels.next}
+                    </div>
+                    <div className="text-sm font-medium text-gray-900 truncate group-hover:text-primary transition-colors">
+                      {next.title}
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-primary flex-shrink-0 transition-colors" />
+                </div>
+              </Link>
+            ) : <div />}
+          </div>
+        )}
 
         <HelpChatButton />
       </main>
