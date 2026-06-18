@@ -17,6 +17,9 @@ import { LevelTestDetailDemo } from '@/components/help/demos/LevelTestDetailDemo
 import { LevelTestShareDemo } from '@/components/help/demos/LevelTestShareDemo'
 import { ClassroomsListDemo } from '@/components/help/demos/ClassroomsListDemo'
 import { PaymentsListDemo } from '@/components/help/demos/PaymentsListDemo'
+import { AddPlanDemo } from '@/components/help/demos/AddPlanDemo'
+import { AddOneTimePaymentDemo } from '@/components/help/demos/AddOneTimePaymentDemo'
+import { AssignRecurringDemo } from '@/components/help/demos/AssignRecurringDemo'
 import { FamiliesListDemo } from '@/components/help/demos/FamiliesListDemo'
 import { ArchiveListDemo } from '@/components/help/demos/ArchiveListDemo'
 import { SettingsListDemo } from '@/components/help/demos/SettingsListDemo'
@@ -997,6 +1000,9 @@ const MOCKUPS: Record<string, () => ReactNode> = {
   'report-preview': ReportPreviewDemo,
   'messages-notifications': MessagesNotificationsDemo,
   'payments-list': PaymentsListDemo,
+  'add-payment-plan': AddPlanDemo,
+  'add-one-time-payment': AddOneTimePaymentDemo,
+  'assign-recurring-payment': AssignRecurringDemo,
   'families-panel': FamiliesListDemo,
   'archive-panel': ArchiveListDemo,
   'settings-panel': SettingsListDemo,

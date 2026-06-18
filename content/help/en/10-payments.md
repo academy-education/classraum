@@ -9,15 +9,21 @@ Two types of payments:
 
 If your academy's tuition amount varies month to month, we recommend using **One-time Payments only** so each invoice can carry the correct amount.
 
-All payment work happens in the **Payments** tab.
+## The Payments dashboard
 
 ```mockup
 payments-list
 ```
 
-## Payment Plans (for recurring payments)
+The Payments tab has stat cards for total revenue, pending amount, active templates, and MRR — plus the invoice table with sorting, filters, and a row-level 3-dots menu (Edit / Delete). The tabs at the top let you switch between **One-time Payments** and **Recurring Payments**.
+
+## Step 1 — Create a Payment Plan (for recurring billing)
 
 A "Payment Plan" is a reusable template — e.g. *"Monthly Tuition – ₩400,000."* Set it up once, then assign students to it.
+
+```mockup
+add-payment-plan
+```
 
 1. Go to **Payment Plans**.
 2. Click **Add Payment Plan** next to the search bar.
@@ -29,20 +35,28 @@ A "Payment Plan" is a reusable template — e.g. *"Monthly Tuition – ₩400,00
 6. Choose a **Start Date** — for record-keeping. **End Date** is optional.
 7. Click **Add Payment Plan**.
 
-## Recurring Payments — assigning students to a plan
+## Step 2 — Assign students to the plan
 
-After you've created at least one Payment Plan:
+```mockup
+assign-recurring-payment
+```
+
+Once you have at least one plan:
 
 1. Go to **Recurring**.
 2. Click **Add Payment** in the top-right corner.
 3. Select **Recurring** as the payment type.
-4. Choose the **Payment Plan** you created.
+4. Choose the **Payment Plan** you created — the amount and next billing date appear in a blue helper card.
 5. Pick which students this applies to — use **Select All** if it's the same tuition for everyone.
 6. Click **Add Payment**.
 
 Every selected student is now on the recurring billing schedule. You can edit, view, or remove individual entries from the Recurring page later.
 
-## One-time Payments
+## Step 3 — Create a One-time Payment
+
+```mockup
+add-one-time-payment
+```
 
 For one-off charges (books, supplies, late fees, etc.):
 
@@ -52,12 +66,10 @@ For one-off charges (books, supplies, late fees, etc.):
 4. Pick the **student** to bill.
 5. Enter the **Amount** and any **Discounts** (with a reason if relevant).
 6. Set the **Payment Due Date** — *required*. Once this date passes, the payment link is automatically cancelled and the student/parent can't pay through it anymore.
-7. Optionally pick a **Payment Method**.
-8. Set the **Payment Status**.
-   - This lets managers record cash or in-person payments accurately — so even payments made at the academy in person get tracked in the same system.
-9. Click **Add Payment**.
+7. Optionally pick a **Payment Method** and set the **Payment Status** (use this to record cash or in-person payments).
+8. Click **Add Payment**.
 
-After creation, you can open the invoice to view or edit details.
+After creation, you can open the invoice from the list to view or edit details.
 
 ## What parents and students see
 
