@@ -29,6 +29,19 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Classraum - Academy Management Platform',
   description: 'A comprehensive academy management platform for teachers, students, and parents.',
+  // Explicit icons so Next.js emits <link rel="icon"> on every page. Without
+  // this, the favicon is fetched implicitly from /favicon.ico — which works
+  // on the apex but tends to get cached as 404 on subdomains until the user
+  // hard-refreshes. The SVG is preferred where supported; the .ico is the
+  // legacy fallback for the rest.
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/logo-icon.png',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default', // 'default' = black text on white background
