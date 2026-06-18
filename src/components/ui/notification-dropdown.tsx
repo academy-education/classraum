@@ -202,22 +202,22 @@ export function NotificationDropdown({
     }
   }
 
-  // Get notification icon based on type
+  // Render a colored icon chip — mirrors the help-center
+  // MessagesNotificationsDemo styling so the two surfaces match.
   const getNotificationIcon = (type: string) => {
-    switch (type) {
-      case 'session':
-        return <Calendar className="w-4 h-4 text-primary" />
-      case 'attendance':
-        return <Users className="w-4 h-4 text-green-600" />
-      case 'billing':
-        return <CreditCard className="w-4 h-4 text-purple-600" />
-      case 'alert':
-        return <AlertCircle className="w-4 h-4 text-primary" />
-      case 'assignment':
-        return <BookOpen className="w-4 h-4 text-orange-600" />
-      default:
-        return <Bell className="w-4 h-4 text-gray-600" />
+    const map: Record<string, { Icon: typeof Bell; color: string }> = {
+      session:    { Icon: Calendar,    color: 'text-primary bg-primary/10' },
+      attendance: { Icon: Users,       color: 'text-amber-600 bg-amber-50' },
+      billing:    { Icon: CreditCard,  color: 'text-emerald-600 bg-emerald-50' },
+      alert:      { Icon: AlertCircle, color: 'text-rose-600 bg-rose-50' },
+      assignment: { Icon: BookOpen,    color: 'text-violet-600 bg-violet-50' },
     }
+    const { Icon, color } = map[type] ?? { Icon: Bell, color: 'text-gray-600 bg-gray-100' }
+    return (
+      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
+        <Icon className="w-4 h-4" strokeWidth={1.75} />
+      </div>
+    )
   }
 
   // Format time ago
@@ -310,7 +310,7 @@ export function NotificationDropdown({
           <div className="p-3 space-y-1">
             {[1, 2, 3].map(i => (
               <div key={i} className="flex items-start gap-3 p-2">
-                <Skeleton className="w-8 h-8 rounded-full flex-shrink-0" />
+                <Skeleton className="w-8 h-8 rounded-lg flex-shrink-0" />
                 <div className="flex-1 space-y-2 pt-1">
                   <Skeleton className="h-3.5 w-3/4 rounded" />
                   <Skeleton className="h-3 w-1/2 rounded" />
@@ -327,53 +327,41 @@ export function NotificationDropdown({
             variant="subtle"
           />
         ) : (
-          <div className="divide-y divide-gray-50">
-            {notifications.map((notification) => (
+          <div>
+            {notifications.map((notification, i) => (
               <div
                 key={notification.id}
-                className={`px-4 py-3 cursor-pointer transition-colors duration-150 ease-in-out ${
-                  !notification.is_read
-                    ? 'bg-primary/5 border-l-2 border-l-primary hover:bg-primary/8'
-                    : 'hover:bg-gray-50'
-                }`}
+                className={`px-3 py-2.5 flex items-start gap-3 cursor-pointer transition-colors ${
+                  i < notifications.length - 1 ? 'border-b border-gray-100' : ''
+                } hover:bg-gray-50 ${notification.is_read ? '' : 'bg-primary/[0.02]'}`}
                 onClick={() => {
-                  // Always mark as read first
                   if (!notification.is_read) {
                     markAsRead(notification.id)
                   }
-                  // Then execute click handler if provided
                   if (onNotificationClick) {
                     onNotificationClick(notification)
                   }
                 }}
               >
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 mt-0.5">
-                    {getNotificationIcon(notification.type)}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2">
-                      <h4 className={`text-sm font-medium truncate ${
-                        !notification.is_read ? 'text-gray-900' : 'text-gray-700'
-                      }`}>
-                        {getNotificationContent(notification).title}
-                      </h4>
-                      <div className="flex items-center gap-1 flex-shrink-0">
-                        <span className="text-xs text-gray-500">
-                          {formatTimeAgo(notification.created_at)}
-                        </span>
-                        {!notification.is_read && (
-                          <div className="w-2 h-2 bg-primary rounded-full ml-1"></div>
-                        )}
-                      </div>
-                    </div>
-                    <p className={`text-sm mt-1 line-clamp-2 ${
-                      !notification.is_read ? 'text-gray-700' : 'text-gray-500'
+                {getNotificationIcon(notification.type)}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <div className={`text-sm truncate ${
+                      !notification.is_read ? 'font-semibold text-gray-900' : 'text-gray-700'
                     }`}>
-                      {getNotificationContent(notification).message}
-                    </p>
+                      {getNotificationContent(notification).title}
+                    </div>
+                    <div className="text-[11px] text-gray-400 flex-shrink-0">
+                      {formatTimeAgo(notification.created_at)}
+                    </div>
+                  </div>
+                  <div className="text-xs text-gray-500 line-clamp-2">
+                    {getNotificationContent(notification).message}
                   </div>
                 </div>
+                {!notification.is_read && (
+                  <div className="w-1.5 h-1.5 mt-2 bg-primary rounded-full flex-shrink-0" />
+                )}
               </div>
             ))}
           </div>
