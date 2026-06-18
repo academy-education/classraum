@@ -9,7 +9,8 @@ import { SessionFormDemo } from '@/components/help/demos/SessionFormDemo'
 import { AddReportDemo } from '@/components/help/demos/AddReportDemo'
 import { PendingAttendanceDemo } from '@/components/help/demos/PendingAttendanceDemo'
 import { NewAnnouncementDemo } from '@/components/help/demos/NewAnnouncementDemo'
-import { AssignmentCreateDemo, ExamCreateDemo } from '@/components/help/demos/AssignmentCreateDemo'
+import { AssignmentCreateDemo } from '@/components/help/demos/AssignmentCreateDemo'
+import { LevelTestCreateDemo } from '@/components/help/demos/LevelTestCreateDemo'
 import { ClassroomsListDemo } from '@/components/help/demos/ClassroomsListDemo'
 import { PaymentsListDemo } from '@/components/help/demos/PaymentsListDemo'
 import { FamiliesListDemo } from '@/components/help/demos/FamiliesListDemo'
@@ -993,7 +994,7 @@ const MOCKUPS: Record<string, () => ReactNode> = {
   'families-panel': FamiliesListDemo,
   'archive-panel': ArchiveListDemo,
   'settings-panel': SettingsListDemo,
-  'exams-builder': ExamCreateDemo,
+  'exams-builder': LevelTestCreateDemo,
 }
 
 export function HelpMockup({ id }: { id: string }) {

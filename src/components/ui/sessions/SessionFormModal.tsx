@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { DatePicker } from '@/components/ui/date-picker'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { MapPin, Monitor, Building } from 'lucide-react'
+import { Monitor, Building } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface Session {
@@ -263,37 +263,29 @@ export function SessionFormModal({
           </div>
 
           {/* Location */}
-          <div>
-            <Label className="text-sm font-medium mb-2 block">
-              <MapPin className="w-4 h-4 inline mr-1" />
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-foreground/80">
               {t('sessions.location')}
             </Label>
-            <div className="flex gap-4">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="location"
-                  value="offline"
-                  checked={location === 'offline'}
-                  onChange={(e) => setLocation(e.target.value as 'offline')}
-                  className="mr-2"
-                />
-                <Building className="w-4 h-4 mr-1" />
-                {t('sessions.offline')}
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="location"
-                  value="online"
-                  checked={location === 'online'}
-                  onChange={(e) => setLocation(e.target.value as 'online')}
-                  className="mr-2"
-                />
-                <Monitor className="w-4 h-4 mr-1" />
-                {t('sessions.online')}
-              </label>
-            </div>
+            <Select value={location} onValueChange={(v) => setLocation(v as 'offline' | 'online')}>
+              <SelectTrigger className="!h-10 w-full rounded-lg">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="offline">
+                  <div className="flex items-center gap-2">
+                    <Building className="w-4 h-4" />
+                    {t('sessions.offline')}
+                  </div>
+                </SelectItem>
+                <SelectItem value="online">
+                  <div className="flex items-center gap-2">
+                    <Monitor className="w-4 h-4" />
+                    {t('sessions.online')}
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Substitute Teacher */}
