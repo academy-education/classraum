@@ -855,8 +855,13 @@ function HomeContent() {
 }
 
 export default function Home() {
+  // Null fallback — the Suspense boundary exists only so client hooks
+  // inside HomeContent (useSearchParams, etc.) have somewhere to suspend.
+  // Showing a bare "Loading…" briefly on first paint looks broken, and the
+  // page renders fast enough that no spinner is preferable to an unstyled
+  // flash.
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={null}>
       <HomeContent />
     </Suspense>
   )
