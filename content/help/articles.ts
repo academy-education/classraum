@@ -73,9 +73,9 @@ export const HELP_ARTICLES: HelpArticleMeta[] = [
   {
     slug: 'classrooms',
     title: 'Classrooms',
-    titleKo: '클래스',
+    titleKo: '클래스룸',
     blurb: 'Creating, editing, and organizing your classes',
-    blurbKo: '클래스 생성, 편집, 정리하기',
+    blurbKo: '클래스룸 생성, 편집, 정리하기',
     order: 20,
     roles: ['owner', 'manager', 'teacher'],
     file: '02-classrooms.md',
@@ -103,9 +103,9 @@ export const HELP_ARTICLES: HelpArticleMeta[] = [
   {
     slug: 'attendance',
     title: 'Attendance',
-    titleKo: '출결',
+    titleKo: '출석',
     blurb: 'Recording daily attendance, status options, and notes',
-    blurbKo: '일일 출결, 상태 옵션, 메모 기록하기',
+    blurbKo: '일일 출석, 상태 옵션, 메모 기록하기',
     order: 50,
     roles: ['owner', 'manager', 'teacher'],
     file: '05-attendance.md',

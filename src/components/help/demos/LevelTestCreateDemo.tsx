@@ -160,6 +160,15 @@ export function LevelTestCreateDemo() {
             </div>
           </div>
 
+          {/* Time Limit */}
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-foreground/80">
+              {String(t('levelTests.form.timeLimit'))}
+            </Label>
+            <Input readOnly type="number" value={30} className={inputStyles} />
+            <p className="text-xs text-gray-500">{String(t('levelTests.form.timeLimitHelp'))}</p>
+          </div>
+
           {/* Extra Comments */}
           <div className="space-y-2">
             <Label className="text-sm font-medium text-foreground/80">

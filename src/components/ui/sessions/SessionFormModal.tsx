@@ -174,7 +174,7 @@ export function SessionFormModal({
               {t('sessions.classroom')} *
             </Label>
             <Select value={classroomId} onValueChange={setClassroomId}>
-              <SelectTrigger>
+              <SelectTrigger className="!h-10 w-full rounded-lg">
                 <SelectValue placeholder={String(t('sessions.selectClassroom'))} />
               </SelectTrigger>
               <SelectContent>
@@ -212,7 +212,7 @@ export function SessionFormModal({
                 {t('sessions.status')}
               </Label>
               <Select value={status} onValueChange={(value: string) => setStatus(value as "cancelled" | "completed" | "scheduled")}>
-                <SelectTrigger>
+                <SelectTrigger className="!h-10 w-full rounded-lg">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -294,7 +294,7 @@ export function SessionFormModal({
               {t('sessions.substituteTeacher')}
             </Label>
             <Select value={substituteTeacher} onValueChange={setSubstituteTeacher}>
-              <SelectTrigger>
+              <SelectTrigger className="!h-10 w-full rounded-lg">
                 <SelectValue placeholder={String(t('sessions.selectSubstituteTeacher'))} />
               </SelectTrigger>
               <SelectContent>
