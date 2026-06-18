@@ -81,27 +81,32 @@ export default async function HelpArticlePage({ params }: PageProps) {
             element its own class so we stay on-brand with the rest of
             the app and don't bloat the bundle with a plugin we'd only
             use here. */}
-        <article className="text-gray-800 max-w-none [&_a]:text-primary [&_a:hover]:underline">
+        {/* Tightened rhythm for density — h2 sits closer to preceding
+            text, paragraphs use mb-2, and mockups are width-capped so a
+            single screen shows both the instructions and the matching
+            screen rather than burying the instructions under a giant
+            mockup card. */}
+        <article className="text-gray-800 max-w-none [&_a]:text-primary [&_a:hover]:underline lg:columns-2 lg:gap-x-10 [&>*]:break-inside-avoid">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
               h1: ({ children }) => (
-                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-2">{children}</h1>
+                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-1.5">{children}</h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-lg font-semibold text-gray-900 mt-5 mb-2">{children}</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mt-4 mb-1.5">{children}</h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-base font-semibold text-gray-900 mt-4 mb-1.5">{children}</h3>
+                <h3 className="text-base font-semibold text-gray-900 mt-3 mb-1">{children}</h3>
               ),
               p: ({ children }) => (
-                <p className="leading-relaxed text-gray-700 mb-2.5 text-sm">{children}</p>
+                <p className="leading-relaxed text-gray-700 mb-2 text-sm">{children}</p>
               ),
               ul: ({ children }) => (
-                <ul className="list-disc pl-5 mb-2.5 space-y-1 text-gray-700 text-sm">{children}</ul>
+                <ul className="list-disc pl-5 mb-2 space-y-0.5 text-gray-700 text-sm">{children}</ul>
               ),
               ol: ({ children }) => (
-                <ol className="list-decimal pl-5 mb-2.5 space-y-1 text-gray-700 text-sm">{children}</ol>
+                <ol className="list-decimal pl-5 mb-2 space-y-0.5 text-gray-700 text-sm">{children}</ol>
               ),
               li: ({ children }) => <li className="leading-relaxed">{children}</li>,
               strong: ({ children }) => (
@@ -109,33 +114,37 @@ export default async function HelpArticlePage({ params }: PageProps) {
               ),
               em: ({ children }) => <em className="italic">{children}</em>,
               code: ({ children, className }) => {
-                // Fenced ```mockup blocks render an inline UI mockup. The
-                // body of the block is the mockup id (e.g. "create-classroom-form").
-                // Unknown ids fall back to a visible warning so a typo is
-                // caught in dev rather than silently rendered as code.
+                // Fenced ```mockup blocks render an inline UI mockup. Wrapped in a
+                // width-capped container so the mockup never dominates the screen —
+                // a full-bleed card pushes the instructions far below the fold,
+                // which the user flagged as the main visibility problem.
                 if (className === 'language-mockup') {
-                  return <HelpMockup id={String(children).trim()} />
+                  return (
+                    <div className="my-3 max-w-2xl">
+                      <HelpMockup id={String(children).trim()} />
+                    </div>
+                  )
                 }
                 return (
                   <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono text-gray-800">{children}</code>
                 )
               },
               // Strip the <pre> wrapper around fenced mockup blocks so the
-              // mockup renders as a full-width card, not inside a scroll box.
+              // mockup renders directly, not inside a scroll box.
               pre: ({ children }) => {
                 const child = Array.isArray(children) ? children[0] : children
                 if (child && typeof child === 'object' && 'props' in child) {
                   const cls = (child as { props?: { className?: string } }).props?.className
                   if (cls === 'language-mockup') return <>{children}</>
                 }
-                return <pre className="bg-gray-50 border border-gray-200 rounded-md p-3 overflow-x-auto text-sm font-mono mb-4">{children}</pre>
+                return <pre className="bg-gray-50 border border-gray-200 rounded-md p-3 overflow-x-auto text-sm font-mono mb-3">{children}</pre>
               },
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-amber-300 bg-amber-50 px-4 py-2 my-4 text-gray-700">
+                <blockquote className="border-l-4 border-amber-300 bg-amber-50 px-4 py-2 my-3 text-gray-700 text-sm">
                   {children}
                 </blockquote>
               ),
-              hr: () => <hr className="my-8 border-gray-200" />,
+              hr: () => <hr className="my-5 border-gray-200" />,
             }}
           >
             {body}
