@@ -52,17 +52,22 @@ export default async function HelpArticlePage({ params }: PageProps) {
   // Sequential prev/next within the catalog order so users can read
   // through the help center end-to-end without bouncing back to the index.
   const idx = HELP_ARTICLES.findIndex(a => a.slug === slug)
-  const prev = idx > 0 ? localizeArticle(HELP_ARTICLES[idx - 1], lang) : null
-  const next = idx >= 0 && idx < HELP_ARTICLES.length - 1
-    ? localizeArticle(HELP_ARTICLES[idx + 1], lang)
+  const prevMeta = idx > 0 ? HELP_ARTICLES[idx - 1] : null
+  const nextMeta = idx >= 0 && idx < HELP_ARTICLES.length - 1
+    ? HELP_ARTICLES[idx + 1]
     : null
+  // localizeArticle returns only { title, blurb }, so keep the raw meta
+  // around for the slug — using the localized title alone dropped slug
+  // and routed Next to /help/undefined.
+  const prev = prevMeta ? { slug: prevMeta.slug, ...localizeArticle(prevMeta, lang) } : null
+  const next = nextMeta ? { slug: nextMeta.slug, ...localizeArticle(nextMeta, lang) } : null
   const labels = lang === 'ko'
     ? { all: '전체 목록', previous: '이전', next: '다음' }
     : { all: 'All articles', previous: 'Previous', next: 'Next' }
 
   return (
     <div className="p-4">
-      <main className="max-w-3xl">
+      <main>
         <Link
           href="/dashboard/help"
           className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary mb-4"
@@ -140,43 +145,39 @@ export default async function HelpArticlePage({ params }: PageProps) {
         {/* Sequential nav — prev on the left, next on the right. Either
             slot is empty when the user is at an end of the catalog. */}
         {(prev || next) && (
-          <div className="mt-10 grid grid-cols-2 gap-4">
+          <div className="mt-10 flex items-center justify-between gap-4">
             {prev ? (
               <Link
                 href={`/dashboard/help/${prev.slug}`}
-                className="group rounded-xl border border-gray-200 bg-white p-4 hover:border-primary/40 hover:bg-primary/[0.02] transition-colors"
+                className="group inline-flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 hover:border-primary/40 hover:bg-primary/[0.02] transition-colors max-w-xs"
               >
-                <div className="flex items-center gap-3">
-                  <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-primary flex-shrink-0 transition-colors" />
-                  <div className="min-w-0">
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
-                      {labels.previous}
-                    </div>
-                    <div className="text-sm font-medium text-gray-900 truncate group-hover:text-primary transition-colors">
-                      {prev.title}
-                    </div>
+                <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-primary flex-shrink-0 transition-colors" />
+                <div className="min-w-0">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
+                    {labels.previous}
+                  </div>
+                  <div className="text-sm font-medium text-gray-900 truncate group-hover:text-primary transition-colors">
+                    {prev.title}
                   </div>
                 </div>
               </Link>
-            ) : <div />}
+            ) : <span />}
             {next ? (
               <Link
                 href={`/dashboard/help/${next.slug}`}
-                className="group rounded-xl border border-gray-200 bg-white p-4 hover:border-primary/40 hover:bg-primary/[0.02] transition-colors text-right"
+                className="group inline-flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 hover:border-primary/40 hover:bg-primary/[0.02] transition-colors max-w-xs ml-auto text-right"
               >
-                <div className="flex items-center justify-end gap-3">
-                  <div className="min-w-0">
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
-                      {labels.next}
-                    </div>
-                    <div className="text-sm font-medium text-gray-900 truncate group-hover:text-primary transition-colors">
-                      {next.title}
-                    </div>
+                <div className="min-w-0">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
+                    {labels.next}
                   </div>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-primary flex-shrink-0 transition-colors" />
+                  <div className="text-sm font-medium text-gray-900 truncate group-hover:text-primary transition-colors">
+                    {next.title}
+                  </div>
                 </div>
+                <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-primary flex-shrink-0 transition-colors" />
               </Link>
-            ) : <div />}
+            ) : <span />}
           </div>
         )}
 
