@@ -20,8 +20,8 @@ import { NonFunctional } from './NonFunctional'
  * "테스트 만들기" (not the assignment modal's "새 과제 추가").
  */
 
-const DIFFICULTIES = ['easy', 'medium', 'hard'] as const
-const QUESTION_TYPES = ['multiple_choice', 'short_answer', 'essay'] as const
+const DIFFICULTIES = ['beginner', 'intermediate', 'advanced', 'expert'] as const
+const QUESTION_TYPES = ['multiple_choice', 'true_false', 'short_answer'] as const
 
 const inputStyles = '!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0'
 const selectStyles = '!h-10 w-full rounded-lg border border-border bg-transparent focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3'
@@ -29,7 +29,7 @@ const selectStyles = '!h-10 w-full rounded-lg border border-border bg-transparen
 export function LevelTestCreateDemo() {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
-  const [difficulty, setDifficulty] = useState<typeof DIFFICULTIES[number]>('medium')
+  const [difficulty, setDifficulty] = useState<typeof DIFFICULTIES[number]>('intermediate')
   const [lang, setLang] = useState<'english' | 'korean'>(ko ? 'korean' : 'english')
   const [types, setTypes] = useState<string[]>(['multiple_choice'])
 

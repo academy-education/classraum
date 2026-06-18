@@ -161,25 +161,25 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
       case 'paid':
         return {
           icon: <CheckCircle className="w-4 h-4 text-green-600" />,
-          text: t('payments.status.paid'),
+          text: t('payments.paid'),
           className: 'text-green-600 bg-green-50'
         }
       case 'pending':
         return {
           icon: <Clock className="w-4 h-4 text-yellow-600" />,
-          text: t('payments.status.pending'),
+          text: t('payments.pending'),
           className: 'text-yellow-600 bg-yellow-50'
         }
       case 'failed':
         return {
           icon: <XCircle className="w-4 h-4 text-rose-600" />,
-          text: t('payments.status.failed'),
+          text: t('payments.failed'),
           className: 'text-rose-600 bg-red-50'
         }
       case 'refunded':
         return {
           icon: <RotateCcw className="w-4 h-4 text-gray-600" />,
-          text: t('payments.status.refunded'),
+          text: t('payments.refunded'),
           className: 'text-gray-600 bg-gray-50'
         }
       default:
@@ -221,10 +221,10 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t('payments.allStatuses')}</SelectItem>
-            <SelectItem value="pending">{t('payments.status.pending')}</SelectItem>
-            <SelectItem value="paid">{t('payments.status.paid')}</SelectItem>
-            <SelectItem value="failed">{t('payments.status.failed')}</SelectItem>
-            <SelectItem value="refunded">{t('payments.status.refunded')}</SelectItem>
+            <SelectItem value="pending">{t('payments.pending')}</SelectItem>
+            <SelectItem value="paid">{t('payments.paid')}</SelectItem>
+            <SelectItem value="failed">{t('payments.failed')}</SelectItem>
+            <SelectItem value="refunded">{t('payments.refunded')}</SelectItem>
           </SelectContent>
         </Select>
       </div>
