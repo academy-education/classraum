@@ -19,6 +19,7 @@ interface Session {
   start_time: string
   end_time: string
   location: 'offline' | 'online'
+  room_number?: string
   notes?: string
   substitute_teacher?: string
 }
@@ -65,6 +66,7 @@ export function SessionFormModal({
   const [endTime, setEndTime] = useState('')
   const [location, setLocation] = useState<'offline' | 'online'>('offline')
   const [notes, setNotes] = useState('')
+  const [roomNumber, setRoomNumber] = useState('')
   // Radix Select forbids empty-string values, so we use a sentinel for
   // the "no substitute" option and translate it back to undefined on save.
   const NO_SUBSTITUTE = '__none__'
@@ -84,6 +86,7 @@ export function SessionFormModal({
         setStartTime(session.start_time)
         setEndTime(session.end_time)
         setLocation(session.location)
+        setRoomNumber(session.room_number || '')
         setNotes(session.notes || '')
         setSubstituteTeacher(session.substitute_teacher || NO_SUBSTITUTE)
       } else {
@@ -95,6 +98,7 @@ export function SessionFormModal({
         setStartTime('09:00')
         setEndTime('10:00')
         setLocation('offline')
+        setRoomNumber('')
         setNotes('')
         setSubstituteTeacher('')
       }
@@ -118,6 +122,7 @@ export function SessionFormModal({
         start_time: startTime,
         end_time: endTime,
         location,
+        room_number: roomNumber || undefined,
         notes: notes || undefined,
         substitute_teacher: substituteTeacher && substituteTeacher !== NO_SUBSTITUTE ? substituteTeacher : undefined
       }
@@ -263,29 +268,46 @@ export function SessionFormModal({
           </div>
 
           {/* Location */}
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground/80">
-              {t('sessions.location')}
-            </Label>
-            <Select value={location} onValueChange={(v) => setLocation(v as 'offline' | 'online')}>
-              <SelectTrigger className="!h-10 w-full rounded-lg">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="offline">
-                  <div className="flex items-center gap-2">
-                    <Building className="w-4 h-4" />
-                    {t('sessions.offline')}
-                  </div>
-                </SelectItem>
-                <SelectItem value="online">
-                  <div className="flex items-center gap-2">
-                    <Monitor className="w-4 h-4" />
-                    {t('sessions.online')}
-                  </div>
-                </SelectItem>
-              </SelectContent>
-            </Select>
+          {/* Location + Room — 2-col grid matches the live sessions-page
+              modal (sessions-page.tsx:5541). */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">
+                {t('sessions.location')}
+              </Label>
+              <Select value={location} onValueChange={(v) => setLocation(v as 'offline' | 'online')}>
+                <SelectTrigger className="!h-10 w-full rounded-lg">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="offline">
+                    <div className="flex items-center gap-2">
+                      <Building className="w-4 h-4" />
+                      {t('sessions.offline')}
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="online">
+                    <div className="flex items-center gap-2">
+                      <Monitor className="w-4 h-4" />
+                      {t('sessions.online')}
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">
+                {t('sessions.roomNumber')}
+              </Label>
+              <Input
+                type="text"
+                value={roomNumber}
+                onChange={(e) => setRoomNumber(e.target.value)}
+                placeholder={String(t('sessions.roomNumberPlaceholder'))}
+                className="!h-10 w-full rounded-lg"
+              />
+            </div>
           </div>
 
           {/* Substitute Teacher */}
