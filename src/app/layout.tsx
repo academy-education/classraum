@@ -34,13 +34,18 @@ export const metadata: Metadata = {
   // on the apex but tends to get cached as 404 on subdomains until the user
   // hard-refreshes. The SVG is preferred where supported; the .ico is the
   // legacy fallback for the rest.
+  // The `?v=N` query bumps any time the icon files change. Browsers cache
+  // favicons very aggressively and skip etag revalidation, so without the
+  // version query an updated favicon can stay stale for weeks (especially
+  // on subdomains, which keep their own cache entry). Bump on every icon
+  // refresh.
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg?v=2', type: 'image/svg+xml' },
+      { url: '/favicon.ico?v=2', sizes: 'any' },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/logo-icon.png',
+    shortcut: '/favicon.ico?v=2',
+    apple: '/logo-icon.png?v=2',
   },
   appleWebApp: {
     capable: true,
