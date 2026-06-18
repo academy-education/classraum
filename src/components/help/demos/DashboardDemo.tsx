@@ -3,6 +3,8 @@
 import { useMemo } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StatsCard, TodaysSessions, RecentActivity } from '@/app/(app)/dashboard/components'
+import { Button } from '@/components/ui/button'
+import { AlertCircle, Settings2 } from 'lucide-react'
 import { getTodaysSessions, getClassrooms } from './sample-data'
 import { NonFunctional } from './NonFunctional'
 
@@ -75,7 +77,28 @@ export function DashboardDemo() {
 
   return (
     <NonFunctional>
-      <div className="my-6 space-y-4">
+      <div className="my-6 p-4 bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] space-y-4">
+        {/* Page Header — mirrors app/(app)/dashboard/page.tsx:406 */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
+              {String(t('eyebrows.dashboard'))}
+            </p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
+              {String(t('dashboard.title'))}
+            </h1>
+            <p className="text-gray-500 mt-1">{String(t('dashboard.description'))}</p>
+            <span className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 ring-1 ring-amber-200">
+              <AlertCircle className="w-3.5 h-3.5" />
+              {String(t('dashboard.assignmentsAwaitingGrades', { count: 29 }))}
+            </span>
+          </div>
+          <Button variant="outline" size="sm" className="h-9">
+            <Settings2 className="w-4 h-4" />
+            {String(t('dashboard.editMode.customize'))}
+          </Button>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <StatsCard
             title={String(t('dashboard.revenueThisMonth'))}
