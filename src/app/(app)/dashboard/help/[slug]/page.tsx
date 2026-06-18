@@ -86,7 +86,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
             single screen shows both the instructions and the matching
             screen rather than burying the instructions under a giant
             mockup card. */}
-        <article className="text-gray-800 max-w-none [&_a]:text-primary [&_a:hover]:underline lg:columns-2 lg:gap-x-10 [&>*]:break-inside-avoid">
+        <article className="text-gray-800 max-w-3xl [&_a]:text-primary [&_a:hover]:underline">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -120,7 +120,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
                 // which the user flagged as the main visibility problem.
                 if (className === 'language-mockup') {
                   return (
-                    <div className="my-3 max-w-2xl">
+                    <div className="my-4">
                       <HelpMockup id={String(children).trim()} />
                     </div>
                   )
