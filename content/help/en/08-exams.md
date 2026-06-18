@@ -2,7 +2,7 @@
 
 Create AI-generated tests for monthly progress checks, quizzes, midterms, finals, or placement tests for prospective students.
 
-## Creating a test
+## Step 1 — Open the create modal
 
 ```mockup
 exams-builder
@@ -14,22 +14,34 @@ exams-builder
    - **Subject**
    - **Grade Level** and **Difficulty**
    - **Language** for the test
-   - **Question Types** — pick one or more (multiple choice, short answer, etc.)
-   - **Number of Questions** for the whole test, plus number of choices for multiple-choice questions
+   - **Question Types** — pick one or more (multiple choice, true/false, short answer)
+   - **Number of Questions**, plus **MC choice count** for multiple-choice questions
    - **Time Limit** — optional
    - **Extra Comments** — *the most important field if you want a targeted test*. Tell the AI what to focus on (e.g. *"focus on English participles"*). The more detail you give, the more relevant the questions.
 4. Click **Generate Test**. Generation takes a moment depending on length.
 
-The AI returns the full test with answers and explanations.
+## Step 2 — Review the generated test
 
-## Sharing the test
+```mockup
+exam-detail
+```
 
-At the top of the generated test, four options:
+After generation, you land on the test detail page. The header shows the title, subject, grade, difficulty, question count, time limit, and visibility status. Below that, the **Questions** card shows every question with the correct answer highlighted in green.
 
-- **Assign to Students** — pick which students should take the test at home.
-- **Take In Person** — for level/placement tests done at the academy. Walks the student through one question at a time on your screen.
-- **Print** — printable version for in-class testing.
-- **Share** — copies a link you can send to staff members for review.
+The four action buttons across the top are where everything happens:
+
+- **Share** — copy a link to send to staff for review (see Step 3).
+- **Print** — opens a menu with three formats: *without answers* (student copy), *with answers* (teacher key), or *answer sheet* (bubble-sheet only).
+- **Assign** — pick which students should take the test at home.
+- **Take In-Person** — walks a student through one question at a time on your screen, for level / placement tests done at the academy.
+
+## Step 3 — Share the test
+
+```mockup
+exam-share
+```
+
+Click **Share** to open the share modal. Flip **Enable shared link** on and a public URL appears with a copy button. Anyone with the link can take the test — turn the toggle off to revoke access at any time.
 
 ## Reusing tests
 
