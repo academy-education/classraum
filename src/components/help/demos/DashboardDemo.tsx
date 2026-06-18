@@ -3,6 +3,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StatsCard, TodaysSessions, RecentActivity } from '@/app/(app)/dashboard/components'
+import { getTodaysSessions, getClassrooms } from './sample-data'
 import { NonFunctional } from './NonFunctional'
 
 /**
@@ -27,55 +28,23 @@ const TREND = Array.from({ length: 14 }, (_, i) => ({
   value: 30 + Math.round(20 * Math.sin(i / 2) + i * 2),
 }))
 
-const SAMPLE_SESSIONS = [
-  {
-    id: 'demo-s1',
-    date: new Date(2026, 5, 18).toISOString().slice(0, 10),
-    start_time: '16:00',
-    end_time: '17:30',
-    classroom_name: 'Grade 4 Math',
-    classroom_color: '#3b82f6',
-    status: 'scheduled',
-    location: 'offline',
-    pending_attendance_count: 0,
-  },
-  {
-    id: 'demo-s2',
-    date: new Date(2026, 5, 18).toISOString().slice(0, 10),
-    start_time: '17:30',
-    end_time: '19:00',
-    classroom_name: 'SAT Prep',
-    classroom_color: '#10b981',
-    status: 'scheduled',
-    location: 'offline',
-    pending_attendance_count: 3,
-  },
-  {
-    id: 'demo-s3',
-    date: new Date(2026, 5, 18).toISOString().slice(0, 10),
-    start_time: '18:30',
-    end_time: '20:00',
-    classroom_name: 'Grade 5 English',
-    classroom_color: '#f59e0b',
-    status: 'scheduled',
-    location: 'online',
-    pending_attendance_count: 0,
-  },
-]
-
 export function DashboardDemo() {
   const { t, language } = useTranslation()
+
+  const sessions = useMemo(() => getTodaysSessions(language), [language])
 
   // Stable demo timestamps relative to the most recent 6/18/2026 anchor
   // (the date the rest of the demo data is fixed to). Computing once
   // keeps server + client renders identical.
   const activities = useMemo(() => {
     const base = new Date(2026, 5, 18, 12, 0, 0).getTime()
+    const c = getClassrooms(language)
+    const studentName = language === 'korean' ? '박앨리스' : 'Alice Park'
     return [
       {
         id: 'demo-a1',
         title: String(t('dashboard.paymentReceived')),
-        description: 'Alice Park — ₩320,000',
+        description: `${studentName} — ₩320,000`,
         timestamp: new Date(base - 1000 * 60 * 12).toISOString(),
         type: 'billing',
         navigationData: null,
@@ -83,7 +52,7 @@ export function DashboardDemo() {
       {
         id: 'demo-a2',
         title: String(t('dashboard.pendingAttendanceCount', { count: 3 })),
-        description: 'Grade 4 Math',
+        description: c[0].name,
         timestamp: new Date(base - 1000 * 60 * 60).toISOString(),
         type: 'attendance',
         navigationData: null,
@@ -91,13 +60,13 @@ export function DashboardDemo() {
       {
         id: 'demo-a3',
         title: String(t('navigation.announcements')),
-        description: 'Holiday closure — Mar 1',
+        description: language === 'korean' ? '3월 1일 휴원 안내' : 'Holiday closure — Mar 1',
         timestamp: new Date(base - 1000 * 60 * 60 * 4).toISOString(),
         type: 'alert',
         navigationData: null,
       },
     ]
-  }, [t])
+  }, [t, language])
 
   // Match the real dashboard's period strings (see app/(app)/dashboard/page.tsx).
   const monthPeriod = language === 'korean' ? '지난달 대비' : 'from last month'
@@ -139,7 +108,7 @@ export function DashboardDemo() {
           />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-          <TodaysSessions sessions={SAMPLE_SESSIONS} />
+          <TodaysSessions sessions={sessions} />
           <RecentActivity activities={activities} />
         </div>
       </div>

@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Card } from '@/components/ui/card'
+import { getClassrooms } from './sample-data'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -32,38 +33,9 @@ import { NonFunctional } from './NonFunctional'
  * visual building blocks so the demo and live page render identically.
  */
 
-const SAMPLE_CLASSROOMS = [
-  {
-    name: 'Grade 4 Math',
-    teacher: 'Ms. Kim',
-    students: 12,
-    grade: 'Grade 4',
-    subject: 'Mathematics',
-    color: '#3b82f6',
-    schedule: ['Mon · 4:00 PM – 5:30 PM', 'Wed · 4:00 PM – 5:30 PM'],
-  },
-  {
-    name: 'Grade 5 English',
-    teacher: 'Mr. Park',
-    students: 8,
-    grade: 'Grade 5',
-    subject: 'English',
-    color: '#f59e0b',
-    schedule: ['Tue · 5:30 PM – 7:00 PM'],
-  },
-  {
-    name: 'SAT Prep',
-    teacher: 'Ms. Lee',
-    students: 15,
-    grade: 'High school',
-    subject: 'Test prep',
-    color: '#10b981',
-    schedule: ['Sat · 9:00 AM – 12:00 PM'],
-  },
-]
-
 export function ClassroomsListDemo() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+  const classrooms = useMemo(() => getClassrooms(language), [language])
   const [pauseFilter, setPauseFilter] = useState<'active' | 'paused' | 'all'>('active')
   const [view, setView] = useState<'table' | 'card'>('card')
   const [search, setSearch] = useState('')
@@ -160,7 +132,7 @@ export function ClassroomsListDemo() {
 
         {/* Card grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
-          {SAMPLE_CLASSROOMS.map(c => (
+          {classrooms.map(c => (
             <Card
               key={c.name}
               className="!gap-0 !py-0 flex flex-col h-full overflow-hidden"

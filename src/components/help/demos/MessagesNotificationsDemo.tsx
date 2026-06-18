@@ -1,28 +1,63 @@
 "use client"
 
+import { useMemo } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Card } from '@/components/ui/card'
+import { getClassrooms } from './sample-data'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Mail, Bell, Plus, Search, MoreHorizontal, Megaphone, CreditCard, Users, AlertCircle } from 'lucide-react'
 import { NonFunctional } from './NonFunctional'
 
-const SAMPLE_MESSAGES = [
-  { id: 'm1', from: 'Ms. Kim', preview: 'Quiz tomorrow — please review chapters 3-5', when: '5m', unread: true },
-  { id: 'm2', from: 'Parent (Alice Park)', preview: 'Late pickup at 6:30 today', when: '2h', unread: true },
-  { id: 'm3', from: 'Brian Cho', preview: 'Question about HW question #7', when: 'Yesterday', unread: false },
-  { id: 'm4', from: 'Ms. Lee', preview: 'Sub for Wednesday SAT Prep?', when: '2 days', unread: false },
-]
-
-const SAMPLE_NOTIFS = [
-  { id: 'n1', icon: CreditCard, color: 'text-emerald-600 bg-emerald-50', title: 'Payment received', desc: 'Alice Park · ₩320,000 (March tuition)', when: '12m', unread: true },
-  { id: 'n2', icon: Users, color: 'text-amber-600 bg-amber-50', title: 'Pending attendance', desc: 'Grade 4 Math — 3 students need a status', when: '1h', unread: true },
-  { id: 'n3', icon: Megaphone, color: 'text-primary bg-primary/10', title: 'New announcement posted', desc: 'Holiday closure — Mar 1', when: 'Yesterday', unread: false },
-  { id: 'n4', icon: AlertCircle, color: 'text-rose-600 bg-rose-50', title: 'Invoice overdue', desc: 'Chloe Lim · ₩350,000 — 4 days overdue', when: '2 days', unread: false },
-]
-
 export function MessagesNotificationsDemo() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+
+  const SAMPLE_MESSAGES = useMemo(() => {
+    const c = getClassrooms(language)
+    const ko = language === 'korean'
+    return ko ? [
+      { id: 'm1', from: '김선생님', preview: '내일 퀴즈 — 3~5장 복습해주세요', when: '5분', unread: true },
+      { id: 'm2', from: '학부모 (박앨리스)', preview: '오늘 6:30에 늦게 픽업합니다', when: '2시간', unread: true },
+      { id: 'm3', from: '조브라이언', preview: '숙제 7번 문제 질문이 있어요', when: '어제', unread: false },
+      { id: 'm4', from: '이선생님', preview: `수요일 ${c[2].name} 대강 가능하신가요?`, when: '2일', unread: false },
+    ] : [
+      { id: 'm1', from: 'Ms. Kim', preview: 'Quiz tomorrow — please review chapters 3-5', when: '5m', unread: true },
+      { id: 'm2', from: 'Parent (Alice Park)', preview: 'Late pickup at 6:30 today', when: '2h', unread: true },
+      { id: 'm3', from: 'Brian Cho', preview: 'Question about HW question #7', when: 'Yesterday', unread: false },
+      { id: 'm4', from: 'Ms. Lee', preview: `Sub for Wednesday ${c[2].name}?`, when: '2 days', unread: false },
+    ]
+  }, [language])
+
+  const SAMPLE_NOTIFS = useMemo(() => {
+    const c = getClassrooms(language)
+    const ko = language === 'korean'
+    return [
+      {
+        id: 'n1', icon: CreditCard, color: 'text-emerald-600 bg-emerald-50',
+        title: ko ? '결제 수신' : 'Payment received',
+        desc: ko ? '박앨리스 · ₩320,000 (3월 수강료)' : 'Alice Park · ₩320,000 (March tuition)',
+        when: ko ? '12분' : '12m', unread: true,
+      },
+      {
+        id: 'n2', icon: Users, color: 'text-amber-600 bg-amber-50',
+        title: ko ? '출석 미확인' : 'Pending attendance',
+        desc: `${c[0].name} — ${ko ? '3명 상태 미확인' : '3 students need a status'}`,
+        when: ko ? '1시간' : '1h', unread: true,
+      },
+      {
+        id: 'n3', icon: Megaphone, color: 'text-primary bg-primary/10',
+        title: ko ? '새 공지사항' : 'New announcement posted',
+        desc: ko ? '3월 1일 휴원 안내' : 'Holiday closure — Mar 1',
+        when: ko ? '어제' : 'Yesterday', unread: false,
+      },
+      {
+        id: 'n4', icon: AlertCircle, color: 'text-rose-600 bg-rose-50',
+        title: ko ? '청구서 연체' : 'Invoice overdue',
+        desc: ko ? '임클로이 · ₩350,000 — 4일 연체' : 'Chloe Lim · ₩350,000 — 4 days overdue',
+        when: ko ? '2일' : '2 days', unread: false,
+      },
+    ]
+  }, [language])
   return (
     <NonFunctional>
       <div className="my-6 grid grid-cols-1 lg:grid-cols-2 gap-4">

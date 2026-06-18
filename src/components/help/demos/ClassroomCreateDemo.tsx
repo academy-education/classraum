@@ -1,9 +1,11 @@
 "use client"
 
 import { useState } from 'react'
+import { useTranslation } from '@/hooks/useTranslation'
 import { ClassroomCreateModal } from '@/components/ui/classrooms/modals/ClassroomCreateModal'
-import type { Teacher, Student, Schedule } from '@/components/ui/classrooms/hooks/useClassroomsData'
+import type { Schedule } from '@/components/ui/classrooms/hooks/useClassroomsData'
 import type { Subject } from '@/hooks/useSubjectData'
+import { getTeachers, getStudents } from './sample-data'
 import { NonFunctional } from './NonFunctional'
 
 /**
@@ -18,19 +20,6 @@ import { NonFunctional } from './NonFunctional'
  * Maintenance: when ClassroomCreateModal grows a new required prop,
  * TypeScript will flag this file. Add a sample value here and move on.
  */
-
-const SAMPLE_TEACHERS: Teacher[] = [
-  { id: 't1', name: 'Ms. Kim', user_id: 'u1' },
-  { id: 't2', name: 'Mr. Park', user_id: 'u2' },
-  { id: 't3', name: 'Ms. Lee', user_id: 'u3' },
-]
-
-const SAMPLE_STUDENTS: Student[] = [
-  { id: 's1', name: 'Alice Park', user_id: 'su1', school_name: 'Daewon Elementary' },
-  { id: 's2', name: 'Brian Cho', user_id: 'su2', school_name: 'Seoul Foreign' },
-  { id: 's3', name: 'Chloe Lim', user_id: 'su3', school_name: 'Daewon Elementary' },
-  { id: 's4', name: 'Daniel Han', user_id: 'su4', school_name: 'KIS Jeju' },
-]
 
 const SAMPLE_SCHEDULES: Schedule[] = [
   { id: 'sc1', day: 'monday', start_time: '16:00', end_time: '17:30' },
@@ -90,19 +79,24 @@ function isValidHexDemo(c: string): boolean {
 const noop = () => undefined
 
 export function ClassroomCreateDemo() {
+  const { language } = useTranslation()
+  const teachers = getTeachers(language)
+  const students = getStudents(language)
+
   // Pre-populate so the demo looks like a partially-filled form rather
-  // than empty placeholders. Users still see the labels, controls, and
-  // brand styling exactly as they will in the live modal.
+  // than empty placeholders. The seed values come from the localized
+  // sample data so the form reads natively in whichever language the
+  // user is on.
   const [formData, setFormData] = useState({
-    name: 'Grade 4 Math',
-    grade: 'Grade 4',
+    name: language === 'korean' ? '4학년 수학' : 'Grade 4 Math',
+    grade: language === 'korean' ? '4학년' : 'Grade 4',
     subject_id: 'sub1',
-    teacher_id: 't1',
-    teacher_name: 'Ms. Kim',
+    teacher_id: teachers[0].id,
+    teacher_name: teachers[0].name,
     color: '#3b82f6',
     notes: '',
   })
-  const [selectedStudents, setSelectedStudents] = useState<string[]>(['s1', 's2'])
+  const [selectedStudents, setSelectedStudents] = useState<string[]>([students[0].id, students[1].id])
   const [previewColor, setPreviewColor] = useState<string | null>(null)
   const [customColorInput, setCustomColorInput] = useState('')
   const [showInlineSubjectCreate, setShowInlineSubjectCreate] = useState(false)
@@ -123,10 +117,10 @@ export function ClassroomCreateDemo() {
         schedules={SAMPLE_SCHEDULES}
         selectedStudents={selectedStudents}
         setSelectedStudents={setSelectedStudents}
-        teachers={SAMPLE_TEACHERS}
-        filteredTeachers={SAMPLE_TEACHERS}
-        students={SAMPLE_STUDENTS}
-        filteredStudents={SAMPLE_STUDENTS}
+        teachers={teachers}
+        filteredTeachers={teachers}
+        students={students}
+        filteredStudents={students}
         subjects={SAMPLE_SUBJECTS}
         customColors={[]}
         presetColors={PRESET_COLORS}
@@ -155,7 +149,7 @@ export function ClassroomCreateDemo() {
         isValidHexColor={isValidHexDemo}
         handleInputChange={(field, value) => setFormData(f => ({ ...f, [field]: value }))}
         handleTeacherChange={tid => {
-          const t = SAMPLE_TEACHERS.find(x => x.id === tid)
+          const t = teachers.find(x => x.id === tid)
           setFormData(f => ({ ...f, teacher_id: tid, teacher_name: t?.name || '' }))
         }}
         handleSubmit={e => e.preventDefault()}

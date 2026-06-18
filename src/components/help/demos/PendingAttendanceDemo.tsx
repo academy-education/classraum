@@ -29,17 +29,35 @@ interface Row {
   note: string
 }
 
-const INITIAL_ROWS: Row[] = [
-  { id: 'r1', student_name: 'Alice Park', status: 'present', note: '' },
-  { id: 'r2', student_name: 'Brian Cho', status: 'late', note: 'Bus delay' },
-  { id: 'r3', student_name: 'Chloe Lim', status: 'pending', note: '' },
-  { id: 'r4', student_name: 'Daniel Han', status: 'absent', note: 'Sick' },
-  { id: 'r5', student_name: 'Ethan Park', status: 'excused', note: 'Family event' },
-]
+function initialRowsFor(lang: string): Row[] {
+  if (lang === 'korean') {
+    return [
+      { id: 'r1', student_name: '박앨리스', status: 'present', note: '' },
+      { id: 'r2', student_name: '조브라이언', status: 'late', note: '버스 지연' },
+      { id: 'r3', student_name: '임클로이', status: 'pending', note: '' },
+      { id: 'r4', student_name: '한다니엘', status: 'absent', note: '병결' },
+      { id: 'r5', student_name: '박에단', status: 'excused', note: '가족 행사' },
+    ]
+  }
+  return [
+    { id: 'r1', student_name: 'Alice Park', status: 'present', note: '' },
+    { id: 'r2', student_name: 'Brian Cho', status: 'late', note: 'Bus delay' },
+    { id: 'r3', student_name: 'Chloe Lim', status: 'pending', note: '' },
+    { id: 'r4', student_name: 'Daniel Han', status: 'absent', note: 'Sick' },
+    { id: 'r5', student_name: 'Ethan Park', status: 'excused', note: 'Family event' },
+  ]
+}
 
 export function PendingAttendanceDemo() {
-  const { t } = useTranslation()
-  const [rows, setRows] = useState<Row[]>(INITIAL_ROWS)
+  const { t, language } = useTranslation()
+  // Reset rows when the language flips so names/notes stay consistent
+  // with the active locale (and stay editable through useState).
+  const [rows, setRows] = useState<Row[]>(() => initialRowsFor(language))
+  const [seededLang, setSeededLang] = useState(language)
+  if (seededLang !== language) {
+    setSeededLang(language)
+    setRows(initialRowsFor(language))
+  }
 
   const updateStatus = (id: string, status: AttendanceStatus) =>
     setRows(prev => prev.map(r => (r.id === id ? { ...r, status } : r)))
@@ -57,7 +75,7 @@ export function PendingAttendanceDemo() {
           <div className="flex items-center gap-3">
             <div className="w-6 h-6 rounded-full flex-shrink-0 bg-sky-400" />
             <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 truncate">
-              {t('attendance.updateAttendance')} - Grade 4 Math
+              {t('attendance.updateAttendance')} - {language === 'korean' ? '4학년 수학' : 'Grade 4 Math'}
             </h2>
           </div>
         }
@@ -68,10 +86,15 @@ export function PendingAttendanceDemo() {
             <div className="flex items-center gap-3 flex-wrap justify-end">
               <Button variant="outline">{t('common.cancel')}</Button>
               <Button>{t('common.saveChanges')}</Button>
-              <Button variant="default" title={`${t('attendance.saveAndNext')} → SAT Prep`}>
-                {t('attendance.saveAndNext')}
-                <span className="ml-1.5 text-xs opacity-70">→ SAT Prep</span>
-              </Button>
+              {(() => {
+                const nextLabel = language === 'korean' ? 'SAT 준비반' : 'SAT Prep'
+                return (
+                  <Button variant="default" title={`${t('attendance.saveAndNext')} → ${nextLabel}`}>
+                    {t('attendance.saveAndNext')}
+                    <span className="ml-1.5 text-xs opacity-70">→ {nextLabel}</span>
+                  </Button>
+                )
+              })()}
             </div>
           </ModalShell.Footer>
         }
@@ -85,7 +108,7 @@ export function PendingAttendanceDemo() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               <div className="flex items-center justify-between p-3 bg-amber-50 border border-amber-200 rounded-lg">
-                <span className="font-medium text-gray-900">Fiona Lee</span>
+                <span className="font-medium text-gray-900">{language === 'korean' ? '이피오나' : 'Fiona Lee'}</span>
                 <Button size="sm" variant="outline" className="text-amber-600 border-orange-300 hover:bg-orange-100">
                   {t('attendance.addStudent')}
                 </Button>

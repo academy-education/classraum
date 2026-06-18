@@ -24,13 +24,16 @@ interface ArchiveItem {
 // are deterministic.
 const ANCHOR = new Date(2026, 5, 18).getTime()
 
-const SAMPLE_ITEMS: Omit<ArchiveItem, 'deletedAt'>[] = [
-  { id: 'a1', name: 'Grade 6 Science', typeKey: 'navigation.classrooms', deletedAgoDays: 12, icon: School, iconBg: 'bg-sky-100 text-sky-600' },
-  { id: 'a2', name: 'Worksheet 3B', typeKey: 'navigation.assignments', deletedAgoDays: 30, icon: ClipboardList, iconBg: 'bg-amber-100 text-amber-600' },
-  { id: 'a3', name: 'Mar 1 holiday notice', typeKey: 'navigation.announcements', deletedAgoDays: 60, icon: FileText, iconBg: 'bg-purple-100 text-purple-600' },
-  { id: 'a4', name: 'Park family', typeKey: 'families.family', deletedAgoDays: 90, icon: Users, iconBg: 'bg-emerald-100 text-emerald-600' },
-  { id: 'a5', name: 'March 14 session', typeKey: 'navigation.sessions', deletedAgoDays: 150, icon: Calendar, iconBg: 'bg-rose-100 text-rose-600' },
-] as const
+function sampleItemsFor(lang: string): Omit<ArchiveItem, 'deletedAt'>[] {
+  const ko = lang === 'korean'
+  return [
+    { id: 'a1', name: ko ? '6학년 과학' : 'Grade 6 Science', typeKey: 'navigation.classrooms', deletedAgoDays: 12, icon: School, iconBg: 'bg-sky-100 text-sky-600' },
+    { id: 'a2', name: ko ? '워크시트 3B' : 'Worksheet 3B', typeKey: 'navigation.assignments', deletedAgoDays: 30, icon: ClipboardList, iconBg: 'bg-amber-100 text-amber-600' },
+    { id: 'a3', name: ko ? '3월 1일 휴원 안내' : 'Mar 1 holiday notice', typeKey: 'navigation.announcements', deletedAgoDays: 60, icon: FileText, iconBg: 'bg-purple-100 text-purple-600' },
+    { id: 'a4', name: ko ? '박씨 가족' : 'Park family', typeKey: 'families.family', deletedAgoDays: 90, icon: Users, iconBg: 'bg-emerald-100 text-emerald-600' },
+    { id: 'a5', name: ko ? '3월 14일 세션' : 'March 14 session', typeKey: 'navigation.sessions', deletedAgoDays: 150, icon: Calendar, iconBg: 'bg-rose-100 text-rose-600' },
+  ]
+}
 
 export function ArchiveListDemo() {
   const { t, language } = useTranslation()
@@ -38,9 +41,10 @@ export function ArchiveListDemo() {
 
   // Compute the localized "deleted on …" strings client-side so they
   // follow the user's locale (toLocaleDateString respects language).
+  // Item names also swap with the active language.
   const items: ArchiveItem[] = useMemo(() => {
     const locale = getDateLocale(language)
-    return SAMPLE_ITEMS.map(item => ({
+    return sampleItemsFor(language).map(item => ({
       ...item,
       deletedAt: new Date(ANCHOR - item.deletedAgoDays * 86400000).toLocaleDateString(locale),
     }))

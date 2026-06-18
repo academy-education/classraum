@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ModalShell } from '@/components/ui/common/ModalShell'
+import { getSimpleClassrooms } from './sample-data'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -19,18 +20,16 @@ import { NonFunctional } from './NonFunctional'
  * a static placeholder for the attachments section.
  */
 
-const SAMPLE_CLASSROOMS = [
-  { id: 'c1', name: 'Grade 4 Math' },
-  { id: 'c2', name: 'Grade 5 English' },
-  { id: 'c3', name: 'SAT Prep' },
-  { id: 'c4', name: 'Grade 6 Science' },
-]
-
 export function NewAnnouncementDemo() {
-  const { t } = useTranslation()
-  const [title, setTitle] = useState('Holiday closure — Mar 1')
+  const { t, language } = useTranslation()
+  const SAMPLE_CLASSROOMS = useMemo(() => getSimpleClassrooms(language), [language])
+  const [title, setTitle] = useState(
+    language === 'korean' ? '3월 1일 휴원 안내' : 'Holiday closure — Mar 1'
+  )
   const [content, setContent] = useState(
-    'The academy will be closed on March 1 for Independence Movement Day. Sessions resume Mar 2.'
+    language === 'korean'
+      ? '3월 1일은 삼일절로 학원이 휴원합니다. 수업은 3월 2일에 재개됩니다.'
+      : 'The academy will be closed on March 1 for Independence Movement Day. Sessions resume Mar 2.'
   )
   const [selected, setSelected] = useState<string[]>(['c1', 'c2'])
   const [search, setSearch] = useState('')

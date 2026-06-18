@@ -1,42 +1,17 @@
 "use client"
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Card } from '@/components/ui/card'
+import { getFamilies } from './sample-data'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Plus, Search, Upload, Users, Rows3, Grid3X3, Mail, Phone, GraduationCap } from 'lucide-react'
 import { NonFunctional } from './NonFunctional'
 
-const SAMPLE_FAMILIES = [
-  {
-    name: 'Park family',
-    parent: 'Mr. & Mrs. Park',
-    parentEmail: 'mrpark@example.com',
-    parentPhone: '+82 10-1111-1111',
-    students: [{ name: 'Alice Park', grade: 'Grade 4' }],
-  },
-  {
-    name: 'Cho family',
-    parent: 'Mrs. Cho',
-    parentEmail: 'mscho@example.com',
-    parentPhone: '+82 10-2222-2222',
-    students: [
-      { name: 'Brian Cho', grade: 'Grade 5' },
-      { name: 'Bella Cho', grade: 'Grade 3' },
-    ],
-  },
-  {
-    name: 'Lim family',
-    parent: 'Mr. Lim',
-    parentEmail: 'mrlim@example.com',
-    parentPhone: '+82 10-3333-3333',
-    students: [{ name: 'Chloe Lim', grade: 'Grade 4' }],
-  },
-]
-
 export function FamiliesListDemo() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+  const families = useMemo(() => getFamilies(language), [language])
   const [view, setView] = useState<'table' | 'card'>('card')
 
   return (
@@ -88,7 +63,7 @@ export function FamiliesListDemo() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {SAMPLE_FAMILIES.map(f => (
+          {families.map(f => (
             <Card key={f.name} className="!gap-0 !py-0 overflow-hidden">
               <div className="h-1 bg-primary w-full" />
               <div className="p-4 flex flex-col">
