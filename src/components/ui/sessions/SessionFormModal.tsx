@@ -56,7 +56,7 @@ export function SessionFormModal({
   teachers,
   inline
 }: SessionFormModalProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
 
   // Form state
   const [classroomId, setClassroomId] = useState('')
@@ -154,6 +154,21 @@ export function SessionFormModal({
 
   const timeOptions = generateTimeOptions()
 
+  // Display a 24-hour "HH:MM" value as "오후 1:30" (Korean) or "1:30 PM"
+  // (English). Keeps the underlying value 24h so the API contract is
+  // unchanged.
+  const formatTime = (time: string): string => {
+    if (!time) return ''
+    const [h, m] = time.split(':').map(Number)
+    const hour12 = h % 12 === 0 ? 12 : h % 12
+    const minute = m.toString().padStart(2, '0')
+    if (language === 'korean') {
+      const period = h >= 12 ? '오후' : '오전'
+      return `${period} ${hour12}:${minute}`
+    }
+    return `${hour12}:${minute} ${h >= 12 ? 'PM' : 'AM'}`
+  }
+
   return (
     <ModalShell
       isOpen={isOpen}
@@ -242,7 +257,7 @@ export function SessionFormModal({
                 <SelectContent>
                   {timeOptions.map(time => (
                     <SelectItem key={time} value={time}>
-                      {time}
+                      {formatTime(time)}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -259,7 +274,7 @@ export function SessionFormModal({
                 <SelectContent>
                   {timeOptions.map(time => (
                     <SelectItem key={time} value={time}>
-                      {time}
+                      {formatTime(time)}
                     </SelectItem>
                   ))}
                 </SelectContent>
