@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card'
 import { getFamilies } from './sample-data'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, Search, Upload, Users, Rows3, Grid3X3, Mail, Phone, GraduationCap } from 'lucide-react'
+import { Plus, Search, Upload, Users, Rows3, Grid3X3, Mail, Phone, GraduationCap, Edit, Trash2 } from 'lucide-react'
 import { NonFunctional } from './NonFunctional'
 
 export function FamiliesListDemo() {
@@ -99,9 +99,20 @@ export function FamiliesListDemo() {
                     ))}
                   </ul>
                 </div>
-                <Button variant="outline" size="sm" className="mt-4 w-full text-xs h-9">
-                  {t('families.copyLink')}
-                </Button>
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  <Button variant="outline" size="sm" className="text-xs h-9">
+                    <Edit className="w-3.5 h-3.5 mr-1.5" strokeWidth={1.75} />
+                    {t('common.edit')}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-xs h-9 text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+                  >
+                    <Trash2 className="w-3.5 h-3.5 mr-1.5" strokeWidth={1.75} />
+                    {t('common.delete')}
+                  </Button>
+                </div>
               </div>
             </Card>
           ))}

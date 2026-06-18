@@ -86,15 +86,6 @@ export function PendingAttendanceDemo() {
             <div className="flex items-center gap-3 flex-wrap justify-end">
               <Button variant="outline">{t('common.cancel')}</Button>
               <Button>{t('common.saveChanges')}</Button>
-              {(() => {
-                const nextLabel = language === 'korean' ? 'SAT 준비반' : 'SAT Prep'
-                return (
-                  <Button variant="default" title={`${t('attendance.saveAndNext')} → ${nextLabel}`}>
-                    {t('attendance.saveAndNext')}
-                    <span className="ml-1.5 text-xs opacity-70">→ {nextLabel}</span>
-                  </Button>
-                )
-              })()}
             </div>
           </ModalShell.Footer>
         }
@@ -151,6 +142,7 @@ export function PendingAttendanceDemo() {
                   onChange={next => updateStatus(r.id, next)}
                 />
                 <Input
+                  readOnly
                   value={r.note}
                   onChange={e => updateNote(r.id, e.target.value)}
                   placeholder={String(t('attendance.teacherNote'))}

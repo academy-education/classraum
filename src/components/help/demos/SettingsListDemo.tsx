@@ -18,7 +18,12 @@ const SECTIONS = [
 ]
 
 export function SettingsListDemo() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+  const ko = language === 'korean'
+  const sampleName = ko ? '김민준' : 'Andy Lee'
+  const sampleEmail = ko ? 'minjun@classraum.com' : 'andy@classraum.com'
+  const samplePhone = '+82 10-0000-0000'
+  const sampleAcademy = ko ? '클래스라움 학원' : 'Classraum Academy'
   return (
     <NonFunctional>
       <div className="my-6 p-4 bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
@@ -66,19 +71,19 @@ export function SettingsListDemo() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label className="text-xs">{t('common.name')}</Label>
-                    <Input readOnly defaultValue="Andy Lee" className="h-10 text-sm" />
+                    <Input readOnly value={sampleName} onChange={() => undefined} className="h-10 text-sm" />
                   </div>
                   <div className="space-y-1.5">
                     <Label className="text-xs">{t('settings.account.emailAddress')}</Label>
-                    <Input readOnly defaultValue="andy@classraum.com" className="h-10 text-sm" />
+                    <Input readOnly value={sampleEmail} onChange={() => undefined} className="h-10 text-sm" />
                   </div>
                   <div className="space-y-1.5">
                     <Label className="text-xs">{t('settings.account.phoneNumber')}</Label>
-                    <Input readOnly defaultValue="+82 10-0000-0000" className="h-10 text-sm" />
+                    <Input readOnly value={samplePhone} onChange={() => undefined} className="h-10 text-sm" />
                   </div>
                   <div className="space-y-1.5">
                     <Label className="text-xs">{t('common.academy')}</Label>
-                    <Input readOnly defaultValue="Classraum Academy" className="h-10 text-sm" />
+                    <Input readOnly value={sampleAcademy} onChange={() => undefined} className="h-10 text-sm" />
                   </div>
                 </div>
 

@@ -73,6 +73,7 @@ export function NewAnnouncementDemo() {
           </Label>
           <Input
             id="demo-ann-title"
+            readOnly
             value={title}
             onChange={e => setTitle(e.target.value)}
             placeholder={String(t('announcements.announcementTitlePlaceholder'))}
@@ -84,6 +85,7 @@ export function NewAnnouncementDemo() {
           <Label htmlFor="demo-ann-content">{t('announcements.announcementContent')}</Label>
           <textarea
             id="demo-ann-content"
+            readOnly
             value={content}
             onChange={e => setContent(e.target.value)}
             placeholder={String(t('announcements.announcementContentPlaceholder'))}
@@ -152,7 +154,7 @@ export function NewAnnouncementDemo() {
         <div className="space-y-2">
           <Label>{t('announcements.attachments')}</Label>
           <div className="rounded-lg border border-dashed border-gray-300 p-4 text-sm text-gray-500 flex items-center gap-2 bg-gray-50">
-            <Upload className="w-4 h-4" /> Drop files here · up to 5
+            <Upload className="w-4 h-4" /> {String(t('common.dropFilesHere', { max: 5 }))}
           </div>
         </div>
       </ModalShell>
