@@ -5,12 +5,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card } from '@/components/ui/card'
-import { 
-  Search, 
+import {
+  Search,
   ChevronUp,
   ChevronDown,
   Edit,
   Trash2,
+  MoreHorizontal,
   CheckCircle,
   Clock,
   XCircle,
@@ -70,6 +71,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc')
   const [statusFilter, setStatusFilter] = useState('all')
   const [selectedInvoices, setSelectedInvoices] = useState<string[]>([])
+  const [openRowMenuId, setOpenRowMenuId] = useState<string | null>(null)
 
   // Sort and filter invoices
   const filteredAndSortedInvoices = useMemo(() => {
@@ -330,7 +332,7 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                   {renderSortIcon('status')}
                 </div>
               </th>
-              <th className="text-left p-3 text-[11px] font-semibold uppercase tracking-wider text-gray-500">{t("common.actions")}</th>
+              <th className="text-left p-3 w-10" aria-label={String(t('common.actions'))}></th>
             </tr>
           </thead>
           <tbody>
@@ -395,22 +397,46 @@ const InvoiceTableComponent = React.memo<InvoiceTableProps>(({
                       </div>
                     </td>
                     <td className="p-3">
-                      <div className="flex items-center gap-2">
+                      <div className="relative">
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => onEditInvoice(invoice)}
+                          onClick={() => setOpenRowMenuId(openRowMenuId === invoice.id ? null : invoice.id)}
+                          className="h-7 w-7 p-0"
+                          aria-label={String(t('common.actions'))}
                         >
-                          <Edit className="w-4 h-4" />
+                          <MoreHorizontal className="w-4 h-4 text-gray-500" />
                         </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => onDeleteInvoice(invoice)}
-                          className="text-rose-600 hover:text-rose-700"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
+                        {openRowMenuId === invoice.id && (
+                          <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[140px] z-50">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setOpenRowMenuId(null)
+                                onEditInvoice(invoice)
+                              }}
+                              className="block w-full text-left px-3 py-2 text-sm hover:bg-gray-50"
+                            >
+                              <div className="flex items-center gap-2 text-gray-700">
+                                <Edit className="w-4 h-4" />
+                                {t('common.edit')}
+                              </div>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setOpenRowMenuId(null)
+                                onDeleteInvoice(invoice)
+                              }}
+                              className="block w-full text-left px-3 py-2 text-sm hover:bg-rose-50"
+                            >
+                              <div className="flex items-center gap-2 text-rose-600">
+                                <Trash2 className="w-4 h-4" />
+                                {t('common.delete')}
+                              </div>
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </td>
                   </tr>
