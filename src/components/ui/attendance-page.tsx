@@ -1607,61 +1607,33 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
               <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 truncate">{t('attendance.updateAttendance')} - {updateAttendanceRecord.classroom_name}</h2>
             </div>
           }
-          footer={(() => {
-            // Find the next session that still needs attendance, excluding
-            // the one we're in. "Pending" = at least one student unmarked.
-            // If none, the Save-and-next button is hidden — there's nowhere
-            // to hop to.
-            const isRecordPending = (r: AttendanceRecord) => {
-              const recorded =
-                (r.present_count || 0) + (r.absent_count || 0) +
-                (r.late_count || 0) + (r.excused_count || 0)
-              return (r.student_count || 0) > recorded
-            }
-            const currentSessionId = updateAttendanceRecord?.session_id
-            const nextPending = attendanceRecords.find(
-              r => r.session_id !== currentSessionId && isRecordPending(r)
-            )
-            return (
-              <ModalShell.Footer justify="between">
-                <div className="text-sm text-gray-500">
-                  {language === 'korean'
-                    ? `${t('common.students')} ${attendanceToUpdate.length}명`
-                    : `${attendanceToUpdate.length} ${t('common.students')}`
-                  }
-                </div>
-                <div className="flex items-center gap-3 flex-wrap justify-end">
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setShowUpdateAttendanceModal(false)
-                      setUpdateAttendanceRecord(null)
-                      setAttendanceToUpdate([])
-                      setMissingStudents([])
-                    }}
-                  >
-                    {t('common.cancel')}
-                  </Button>
-                  <Button onClick={() => saveAttendanceChanges()} disabled={isSaving}>
-                    {isSaving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                    {isSaving ? t("common.saving") : t('common.saveChanges')}
-                  </Button>
-                  {nextPending && (
-                    <Button
-                      variant="default"
-                      onClick={() => saveAttendanceChanges({ thenOpen: nextPending })}
-                      disabled={isSaving}
-                      title={`${t('attendance.saveAndNext')} → ${nextPending.classroom_name}`}
-                    >
-                      {isSaving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                      {t('attendance.saveAndNext')}
-                      <span className="ml-1.5 text-xs opacity-70">→ {nextPending.classroom_name}</span>
-                    </Button>
-                  )}
-                </div>
-              </ModalShell.Footer>
-            )
-          })()}
+          footer={
+            <ModalShell.Footer justify="between">
+              <div className="text-sm text-gray-500">
+                {language === 'korean'
+                  ? `${t('common.students')} ${attendanceToUpdate.length}명`
+                  : `${attendanceToUpdate.length} ${t('common.students')}`
+                }
+              </div>
+              <div className="flex items-center gap-3 flex-wrap justify-end">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowUpdateAttendanceModal(false)
+                    setUpdateAttendanceRecord(null)
+                    setAttendanceToUpdate([])
+                    setMissingStudents([])
+                  }}
+                >
+                  {t('common.cancel')}
+                </Button>
+                <Button onClick={() => saveAttendanceChanges()} disabled={isSaving}>
+                  {isSaving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                  {isSaving ? t("common.saving") : t('common.saveChanges')}
+                </Button>
+              </div>
+            </ModalShell.Footer>
+          }
           bodyPadding={false}
         >
             <div className="p-6">
