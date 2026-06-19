@@ -86,7 +86,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
             single screen shows both the instructions and the matching
             screen rather than burying the instructions under a giant
             mockup card. */}
-        <article className="text-gray-800 max-w-3xl [&_a]:text-primary [&_a:hover]:underline">
+        <article className="text-gray-800 max-w-none [&_a]:text-primary [&_a:hover]:underline">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
