@@ -90,17 +90,14 @@ export default async function HelpArticlePage({ params }: PageProps) {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              // h2/h3 clear floats so each new section starts on a fresh row
-              // below any preceding floated mockup, instead of jumping up
-              // next to it.
               h1: ({ children }) => (
-                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-1.5 lg:clear-both">{children}</h1>
+                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-1.5">{children}</h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-lg font-semibold text-gray-900 mt-4 mb-1.5 lg:clear-both">{children}</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mt-4 mb-1.5">{children}</h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-base font-semibold text-gray-900 mt-3 mb-1 lg:clear-both">{children}</h3>
+                <h3 className="text-base font-semibold text-gray-900 mt-3 mb-1">{children}</h3>
               ),
               p: ({ children }) => (
                 <p className="leading-relaxed text-gray-700 mb-2 text-sm">{children}</p>
@@ -122,12 +119,8 @@ export default async function HelpArticlePage({ params }: PageProps) {
                 // a full-bleed card pushes the instructions far below the fold,
                 // which the user flagged as the main visibility problem.
                 if (className === 'language-mockup') {
-                  // On wide screens, float each mockup to the right so the
-                  // surrounding instructions (numbered list, paragraph) wrap
-                  // on the left and you can see both at once. On narrow
-                  // screens the float collapses and we revert to stacking.
                   return (
-                    <div className="my-4 lg:float-right lg:ml-6 lg:mb-4 lg:w-1/2 lg:max-w-xl">
+                    <div className="my-4">
                       <HelpMockup id={String(children).trim()} />
                     </div>
                   )
