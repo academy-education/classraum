@@ -4,6 +4,7 @@ import { HELP_ARTICLES, localizeArticle } from '@/../content/help/articles'
 import { getSearchIndex } from '@/../content/help/server'
 import { HelpChatButton } from './HelpChatButton'
 import { HelpSearch } from './HelpSearch'
+import { HelpAdminLink } from './HelpAdminLink'
 import { ChevronRight } from 'lucide-react'
 
 /**
@@ -29,6 +30,7 @@ export default async function HelpLandingPage() {
         subtitle: 'Classraum의 모든 기능에 대한 단계별 가이드.',
         searchPlaceholder: '도움말 검색...',
         noResults: '결과가 없습니다.',
+        adminLink: '활용 통계',
       }
     : {
         eyebrow: 'Help & support',
@@ -36,6 +38,7 @@ export default async function HelpLandingPage() {
         subtitle: 'Step-by-step guides for every part of Classraum.',
         searchPlaceholder: 'Search help articles...',
         noResults: 'No matches.',
+        adminLink: 'View activity',
       })
 
   const searchEntries = getSearchIndex(lang)
@@ -52,12 +55,13 @@ export default async function HelpLandingPage() {
         <p className="text-gray-500 mt-1">{chrome.subtitle}</p>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-6 flex items-center gap-3 flex-wrap">
         <HelpSearch
           entries={searchEntries}
           placeholder={chrome.searchPlaceholder}
           noResults={chrome.noResults}
         />
+        <HelpAdminLink label={chrome.adminLink} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
