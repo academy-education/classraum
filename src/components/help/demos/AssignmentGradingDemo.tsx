@@ -129,7 +129,7 @@ export function AssignmentGradingDemo() {
                   <Input
                     readOnly
                     value={row.feedback ?? ''}
-                    placeholder={String(t('assignments.feedbackPlaceholder'))}
+                    placeholder={ko ? '피드백 추가...' : 'Add feedback...'}
                     className="h-8 text-sm"
                   />
                 </div>
