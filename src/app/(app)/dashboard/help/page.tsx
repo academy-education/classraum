@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { HELP_ARTICLES, localizeArticle } from '@/../content/help/articles'
+import { getSearchIndex } from '@/../content/help/server'
 import { HelpChatButton } from './HelpChatButton'
+import { HelpSearch } from './HelpSearch'
 import { ChevronRight } from 'lucide-react'
 
 /**
@@ -21,12 +23,26 @@ export default async function HelpLandingPage() {
   const cookieStore = await cookies()
   const lang = cookieStore.get('classraum_language')?.value === 'korean' ? 'ko' : 'en'
   const chrome = (lang === 'ko'
-    ? { eyebrow: '도움말 및 지원', title: '도움말 센터', subtitle: 'Classraum의 모든 기능에 대한 단계별 가이드.' }
-    : { eyebrow: 'Help & support', title: 'Help center', subtitle: 'Step-by-step guides for every part of Classraum.' })
+    ? {
+        eyebrow: '도움말 및 지원',
+        title: '도움말 센터',
+        subtitle: 'Classraum의 모든 기능에 대한 단계별 가이드.',
+        searchPlaceholder: '도움말 검색...',
+        noResults: '결과가 없습니다.',
+      }
+    : {
+        eyebrow: 'Help & support',
+        title: 'Help center',
+        subtitle: 'Step-by-step guides for every part of Classraum.',
+        searchPlaceholder: 'Search help articles...',
+        noResults: 'No matches.',
+      })
+
+  const searchEntries = getSearchIndex(lang)
 
   return (
     <div className="p-4">
-      <div className="mb-8">
+      <div className="mb-6">
         <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
           {chrome.eyebrow}
         </p>
@@ -34,6 +50,14 @@ export default async function HelpLandingPage() {
           {chrome.title}
         </h1>
         <p className="text-gray-500 mt-1">{chrome.subtitle}</p>
+      </div>
+
+      <div className="mb-6">
+        <HelpSearch
+          entries={searchEntries}
+          placeholder={chrome.searchPlaceholder}
+          noResults={chrome.noResults}
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
