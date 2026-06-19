@@ -1,7 +1,8 @@
 "use client"
 
 import Link from 'next/link'
-import { useMemo, useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+import { useMemo, useState, useEffect, useRef, ReactNode } from 'react'
 import { Search, X } from 'lucide-react'
 
 interface Entry {
@@ -54,6 +55,32 @@ function search(entries: Entry[], q: string): Match[] {
   return out.sort((a, b) => b.score - a.score).slice(0, 6)
 }
 
+/**
+ * Wrap every case-insensitive occurrence of `needle` in the source
+ * string with a <mark>. Skips needles that are empty or longer than the
+ * source — safe to call without pre-checks from the result list.
+ */
+function highlight(source: string, needle: string): ReactNode {
+  if (!needle.trim() || needle.length > source.length) return source
+  const lower = source.toLowerCase()
+  const target = needle.toLowerCase()
+  const parts: ReactNode[] = []
+  let cursor = 0
+  let idx = lower.indexOf(target)
+  while (idx >= 0) {
+    if (idx > cursor) parts.push(source.slice(cursor, idx))
+    parts.push(
+      <mark key={cursor} className="bg-amber-100 text-gray-900 rounded px-0.5">
+        {source.slice(idx, idx + needle.length)}
+      </mark>
+    )
+    cursor = idx + needle.length
+    idx = lower.indexOf(target, cursor)
+  }
+  if (cursor < source.length) parts.push(source.slice(cursor))
+  return parts
+}
+
 interface HelpSearchProps {
   entries: Entry[]
   placeholder: string
@@ -61,10 +88,24 @@ interface HelpSearchProps {
 }
 
 export function HelpSearch({ entries, placeholder, noResults }: HelpSearchProps) {
+  const router = useRouter()
   const [q, setQ] = useState('')
   const [open, setOpen] = useState(false)
+  const [activeIdx, setActiveIdx] = useState(0)
   const rootRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLUListElement>(null)
   const results = useMemo(() => search(entries, q), [entries, q])
+
+  // Snap active row back to 0 whenever the result list changes shape;
+  // otherwise a stale activeIdx can point past the new end and trap
+  // Enter on nothing.
+  useEffect(() => { setActiveIdx(0) }, [q])
+
+  // Keep the focused row in view as the user arrows through results.
+  useEffect(() => {
+    const el = listRef.current?.children?.[activeIdx] as HTMLElement | undefined
+    el?.scrollIntoView({ block: 'nearest' })
+  }, [activeIdx])
 
   // Close the results dropdown when clicking outside or pressing Esc.
   useEffect(() => {
@@ -83,6 +124,24 @@ export function HelpSearch({ entries, placeholder, noResults }: HelpSearchProps)
     }
   }, [open])
 
+  const onInputKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!open || results.length === 0) return
+    if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      setActiveIdx(i => (i + 1) % results.length)
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      setActiveIdx(i => (i - 1 + results.length) % results.length)
+    } else if (e.key === 'Enter') {
+      e.preventDefault()
+      const pick = results[activeIdx]
+      if (pick) {
+        setOpen(false)
+        router.push(`/dashboard/help/${pick.entry.slug}`)
+      }
+    }
+  }
+
   return (
     <div ref={rootRef} className="relative max-w-xl">
       <div className="relative">
@@ -92,7 +151,11 @@ export function HelpSearch({ entries, placeholder, noResults }: HelpSearchProps)
           value={q}
           onChange={(e) => { setQ(e.target.value); setOpen(true) }}
           onFocus={() => setOpen(true)}
+          onKeyDown={onInputKey}
           placeholder={placeholder}
+          aria-label={placeholder}
+          aria-expanded={open && results.length > 0}
+          aria-activedescendant={open && results[activeIdx] ? `help-search-result-${results[activeIdx].entry.slug}` : undefined}
           className="w-full h-10 pl-9 pr-10 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:border-primary focus-visible:ring-0"
         />
         {q && (
@@ -108,23 +171,30 @@ export function HelpSearch({ entries, placeholder, noResults }: HelpSearchProps)
       </div>
 
       {open && q.trim() && (
-        <div className="absolute z-20 left-0 right-0 mt-2 bg-white rounded-xl ring-1 ring-gray-100 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18),0_4px_8px_-4px_rgba(0,0,0,0.08)] overflow-hidden">
+        <div className="absolute z-20 left-0 right-0 mt-2 bg-white rounded-xl ring-1 ring-gray-100 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18),0_4px_8px_-4px_rgba(0,0,0,0.08)] overflow-hidden max-h-96 overflow-y-auto">
           {results.length === 0 ? (
             <div className="px-4 py-3 text-sm text-gray-500">{noResults}</div>
           ) : (
-            <ul>
-              {results.map(({ entry, snippet }) => (
-                <li key={entry.slug} className="border-b border-gray-50 last:border-0">
-                  <Link
-                    href={`/dashboard/help/${entry.slug}`}
-                    onClick={() => setOpen(false)}
-                    className="block px-4 py-3 hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="font-medium text-gray-900 text-sm">{entry.title}</div>
-                    <div className="text-xs text-gray-500 mt-0.5 line-clamp-2">{snippet}</div>
-                  </Link>
-                </li>
-              ))}
+            <ul ref={listRef} role="listbox">
+              {results.map(({ entry, snippet }, i) => {
+                const active = i === activeIdx
+                return (
+                  <li key={entry.slug} className="border-b border-gray-50 last:border-0">
+                    <Link
+                      id={`help-search-result-${entry.slug}`}
+                      href={`/dashboard/help/${entry.slug}`}
+                      onClick={() => setOpen(false)}
+                      onMouseEnter={() => setActiveIdx(i)}
+                      role="option"
+                      aria-selected={active}
+                      className={`block px-4 py-3 transition-colors ${active ? 'bg-primary/5' : 'hover:bg-gray-50'}`}
+                    >
+                      <div className="font-medium text-gray-900 text-sm">{highlight(entry.title, q)}</div>
+                      <div className="text-xs text-gray-500 mt-0.5 line-clamp-2">{highlight(snippet, q)}</div>
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
           )}
         </div>
