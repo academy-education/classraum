@@ -69,7 +69,7 @@ export function PaymentsListDemo() {
                 {t('payments.totalRevenue')}
               </p>
             </div>
-            <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            <p className="text-xl xl:text-2xl font-semibold tracking-tight text-gray-900 tabular-nums truncate">
               {formatCurrency(totalRevenue)}
             </p>
           </Card>
@@ -85,7 +85,7 @@ export function PaymentsListDemo() {
                 {t('payments.pendingAmount')}
               </p>
             </div>
-            <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            <p className="text-xl xl:text-2xl font-semibold tracking-tight text-gray-900 tabular-nums truncate">
               {formatCurrency(pendingAmount)}
             </p>
           </Card>
@@ -101,7 +101,7 @@ export function PaymentsListDemo() {
                 {t('payments.activeTemplates')}
               </p>
             </div>
-            <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            <p className="text-xl xl:text-2xl font-semibold tracking-tight text-gray-900 tabular-nums truncate">
               {activeTemplates}
             </p>
           </Card>
@@ -117,7 +117,7 @@ export function PaymentsListDemo() {
                 {t('payments.monthlyRecurringRevenue')}
               </p>
             </div>
-            <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            <p className="text-xl xl:text-2xl font-semibold tracking-tight text-gray-900 tabular-nums truncate">
               {formatCurrency(monthlyRecurring)}
             </p>
           </Card>
