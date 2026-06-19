@@ -11,6 +11,7 @@ import {
 import { readArticleBody } from '@/../content/help/server'
 import { HelpChatButton } from '../HelpChatButton'
 import { ArticleToc } from '../ArticleToc'
+import { ArticleFeedback } from '../ArticleFeedback'
 import { HelpMockup } from '@/components/help/mockups'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
@@ -93,6 +94,32 @@ export default async function HelpArticlePage({ params }: PageProps) {
   const labels = lang === 'ko'
     ? { all: '전체 목록', previous: '이전', next: '다음', onThisPage: '이 페이지 내용' }
     : { all: 'All articles', previous: 'Previous', next: 'Next', onThisPage: 'On this page' }
+
+  const feedbackLabels = lang === 'ko'
+    ? {
+        question: '이 글이 도움이 되었나요?',
+        yes: '도움됨',
+        no: '아니요',
+        followupUp: '가장 유용했던 부분이 무엇이었나요? (선택사항)',
+        followupDown: '무엇이 빠졌거나 혼란스러웠나요?',
+        placeholder: '의견 남기기...',
+        send: '보내기',
+        sending: '보내는 중...',
+        thanks: '감사합니다 — 의견이 전달되었습니다.',
+        error: '전송 실패. 다시 시도해주세요.',
+      }
+    : {
+        question: 'Was this article helpful?',
+        yes: 'Yes',
+        no: 'No',
+        followupUp: 'What worked well? (optional)',
+        followupDown: 'What was missing or confusing?',
+        placeholder: 'Leave a comment...',
+        send: 'Send',
+        sending: 'Sending...',
+        thanks: 'Thanks — feedback received.',
+        error: 'Could not send. Try again.',
+      }
 
   // Extract `## Heading` lines for the right-rail TOC. Done server-side
   // so the order matches the rendered article exactly and the client
@@ -229,6 +256,8 @@ export default async function HelpArticlePage({ params }: PageProps) {
             ) : <span />}
           </div>
         )}
+
+        <ArticleFeedback slug={slug} lang={lang} labels={feedbackLabels} />
 
         <HelpChatButton />
       </main>
