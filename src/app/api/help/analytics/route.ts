@@ -22,7 +22,10 @@ export async function GET(req: Request) {
     .single()
 
   const role = me?.role
-  if (role !== 'manager' && role !== 'admin' && role !== 'super_admin') {
+  // Classraum platform admins only. Academy managers/teachers don't
+  // see this — they have access to their own academy's help center,
+  // not the platform-wide analytics.
+  if (role !== 'admin' && role !== 'super_admin') {
     return NextResponse.json({ error: 'forbidden' }, { status: 403 })
   }
 

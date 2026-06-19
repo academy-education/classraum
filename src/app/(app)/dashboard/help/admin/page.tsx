@@ -26,6 +26,11 @@ interface Row {
 /**
  * /dashboard/help/admin — aggregated analytics for the help center.
  *
+ * Gated to Classraum platform admins (role admin / super_admin).
+ * Academy managers and teachers see a 403 from the API and get
+ * bounced back to /dashboard/help — they have their own academy's
+ * help center but not the platform-wide analytics.
+ *
  * Client component because server-side cookie-based auth wasn't
  * resolving the session in this route (a Next.js + Supabase SSR quirk
  * we hit elsewhere too). We instead read the bearer token from the
@@ -88,7 +93,7 @@ export default function HelpAdminPage() {
         noActivity: '아직 활동이 없습니다.',
         commentsHeading: '최근 코멘트',
         loading: '불러오는 중...',
-        forbidden: '이 페이지는 매니저와 원장만 사용할 수 있습니다.',
+        forbidden: '이 페이지는 Classraum 관리자만 사용할 수 있습니다.',
         failed: '데이터를 불러오지 못했습니다.',
       }
     : {
@@ -101,7 +106,7 @@ export default function HelpAdminPage() {
         noActivity: 'No activity yet.',
         commentsHeading: 'Recent comments',
         loading: 'Loading...',
-        forbidden: 'This page is for managers and owners only.',
+        forbidden: 'This page is for Classraum platform admins only.',
         failed: 'Could not load analytics.',
       }
   , [lang])

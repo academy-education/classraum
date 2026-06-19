@@ -26,7 +26,9 @@ export function HelpAdminLink({ label }: { label: string }) {
         .single()
       if (cancelled) return
       const role = me?.role
-      if (role === 'manager' || role === 'admin' || role === 'super_admin') {
+      // Classraum platform admins only — academy managers don't see
+      // the link to platform-wide help analytics.
+      if (role === 'admin' || role === 'super_admin') {
         setShow(true)
       }
     })()
