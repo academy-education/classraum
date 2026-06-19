@@ -12,6 +12,7 @@ import { ReportPreviewDemo } from '@/components/help/demos/ReportPreviewDemo'
 import { PendingAttendanceDemo } from '@/components/help/demos/PendingAttendanceDemo'
 import { NewAnnouncementDemo } from '@/components/help/demos/NewAnnouncementDemo'
 import { AssignmentCreateDemo } from '@/components/help/demos/AssignmentCreateDemo'
+import { AssignmentGradingDemo } from '@/components/help/demos/AssignmentGradingDemo'
 import { LevelTestCreateDemo } from '@/components/help/demos/LevelTestCreateDemo'
 import { LevelTestDetailDemo } from '@/components/help/demos/LevelTestDetailDemo'
 import { LevelTestShareDemo } from '@/components/help/demos/LevelTestShareDemo'
@@ -993,6 +994,7 @@ const MOCKUPS: Record<string, () => ReactNode> = {
   'import-from-text': ImportFromTextModal,
   'add-makeup-session': SessionFormDemo,
   'edit-session-assignments': () => <AssignmentCreateDemo />,
+  'assignment-grading': AssignmentGradingDemo,
   'pending-attendance': PendingAttendanceDemo,
   'new-announcement': NewAnnouncementDemo,
   'add-report': AddReportDemo,

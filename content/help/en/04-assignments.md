@@ -29,14 +29,21 @@ This is the faster path because you can create several assignments in the same s
 
 ## Grading submissions
 
-Open the assignment, then **Update Submissions**. Each student gets a row where you can:
+Open the assignment, then click **Update Submissions** — the grading modal opens with every enrolled student on its own row.
 
-- Set status (Pending, Submitted, Not Submitted, Excused, Overdue) — use the S/M/N/E/O keyboard shortcuts to fly through the list
-- Enter a score (auto-flips status to Submitted)
-- Mark a submitted date
-- Leave teacher feedback (click the chevron to expand for longer-form notes)
+```mockup
+assignment-grading
+```
 
-Bulk shortcuts:
+Each row has:
 
-- **Mark all submitted** — one-click set everyone to Submitted (except already-excused/overdue rows)
-- **Score for all submitted** — type a number, hit Apply, every submitted row gets it. Useful for participation/completion grades.
+- A **status pill** — Pending, Submitted, Not Submitted, Excused, Overdue. The kbd letters next to each pill are keyboard shortcuts (`S` / `M` / `E` / `O`); focus a row and tap a letter to set status without reaching for the mouse.
+- A **score input** — type a number 0–100. Entering a score auto-flips the row's status to Submitted.
+- A **feedback input** — short teacher note. Saved with the rest when you click **Save Changes**.
+
+The action row at the top has two bulk shortcuts that save a lot of time on big classes:
+
+- **Mark all submitted** — sets every row to Submitted in one click (except already-excused/overdue rows).
+- **Score for all submitted** — type a number, click **Apply**, and every submitted row gets that score. Useful for participation or completion-based grades.
+
+Average grade shows in the footer as you go, so you can see the class average update in real time.
