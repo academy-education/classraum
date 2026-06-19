@@ -4,11 +4,11 @@ A session is one specific meeting of a class — e.g. "Mars, Monday Oct 6 at 9:0
 
 ## The fast way: add a schedule to a classroom
 
-The easiest way to create sessions is from the classroom itself.
-
 ```mockup
 add-schedule
 ```
+
+The easiest way to create sessions is from the classroom itself.
 
 1. Go to **Classrooms** and click **Add Schedule** on the class you want.
 2. Add the days and times (e.g. *Mon & Wed, 9:00 AM*).
@@ -39,19 +39,19 @@ Categories are shared across the entire academy. Pick a small set early and stic
 
 ## Import from text (AI)
 
-When adding assignments to a session, the **Import from Text** option lets you paste in homework you wrote elsewhere and have the AI auto-categorize it.
-
 ```mockup
 import-from-text
 ```
 
-## Make-up sessions
+When adding assignments to a session, the **Import from Text** option lets you paste in homework you wrote elsewhere and have the AI auto-categorize it. Drop in a block of text, and Classraum splits it into individual assignment titles with type and category guessed for you. You can edit any field before saving.
 
-For a class running outside its normal schedule:
+## Make-up sessions
 
 ```mockup
 add-makeup-session
 ```
+
+For a class running outside its normal schedule:
 
 1. Go to **Sessions** and click **Add Make-up Session** in the top-right corner.
 2. Fill in the same fields as a regular session.

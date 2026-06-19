@@ -11,11 +11,11 @@ You can record attendance two ways:
 
 ## Filtering by what still needs attention
 
-On the **Attendance** tab, click the **Pending Attendance** filter at the top. This shows only sessions where some students still don't have a status set. Useful at the end of the day to catch anything you missed.
-
 ```mockup
 pending-attendance
 ```
+
+On the **Attendance** tab, click the **Pending Attendance** filter at the top. This shows only sessions where some students still don't have a status set. Useful at the end of the day to catch anything you missed before heading home, so no student is left unmarked.
 
 
 ## Status options

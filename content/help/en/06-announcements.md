@@ -8,6 +8,8 @@ Send academy-wide notices to parents and students at once — schedule changes, 
 new-announcement
 ```
 
+Announcements broadcast a single message to many classrooms at once — fast, traceable, and bundled with attachments. The flow below walks through writing one from scratch, choosing which classes receive it, and attaching any supporting files.
+
 1. On the **Announcements** tab, click **New Announcement** in the top-right corner.
 2. Enter the **Title** (e.g. *Summer Break Schedule 2026*).
 3. Enter the **Content**.

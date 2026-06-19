@@ -11,6 +11,8 @@ Two sections in Settings:
 settings-panel
 ```
 
+General Settings is where every user — owner, manager, teacher, parent, or student — tunes their personal experience of the app. Profile details, notification toggles, theme, language, and academy-wide branding all live in one panel, so changes apply the moment you save.
+
 What you can change:
 
 - **Personal information** — name, email, phone
