@@ -12,6 +12,7 @@ import { readArticleBody } from '@/../content/help/server'
 import { HelpChatButton } from '../HelpChatButton'
 import { ArticleToc } from '../ArticleToc'
 import { ArticleFeedback } from '../ArticleFeedback'
+import { ArticleViewTracker } from '../ArticleViewTracker'
 import { HelpMockup } from '@/components/help/mockups'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
@@ -134,6 +135,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
 
   return (
     <div className="p-4 lg:flex lg:gap-10">
+      <ArticleViewTracker slug={slug} lang={lang} />
       <main className="lg:flex-1 min-w-0">
         <Link
           href="/dashboard/help"
