@@ -10,8 +10,37 @@ import {
 } from '@/../content/help/articles'
 import { readArticleBody } from '@/../content/help/server'
 import { HelpChatButton } from '../HelpChatButton'
+import { ArticleToc } from '../ArticleToc'
 import { HelpMockup } from '@/components/help/mockups'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+
+/**
+ * Slugify a heading the same way GitHub does — lowercase, strip
+ * non-word chars (but keep hyphens and Korean letters), spaces to
+ * hyphens. The ReactMarkdown `h2` renderer derives ids the same way so
+ * the TOC anchor links land on the right element.
+ */
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[\s]+/g, '-')
+    // strip ASCII punctuation but keep word chars, hyphens, Korean
+    .replace(/[^\p{L}\p{N}\-]+/gu, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
+/** Walk a ReactMarkdown children tree to recover its plain text. */
+function nodeText(node: unknown): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(nodeText).join('')
+  if (node && typeof node === 'object' && 'props' in node) {
+    const props = (node as { props?: { children?: unknown } }).props
+    return nodeText(props?.children)
+  }
+  return ''
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -62,12 +91,23 @@ export default async function HelpArticlePage({ params }: PageProps) {
   const prev = prevMeta ? { slug: prevMeta.slug, ...localizeArticle(prevMeta, lang) } : null
   const next = nextMeta ? { slug: nextMeta.slug, ...localizeArticle(nextMeta, lang) } : null
   const labels = lang === 'ko'
-    ? { all: '전체 목록', previous: '이전', next: '다음' }
-    : { all: 'All articles', previous: 'Previous', next: 'Next' }
+    ? { all: '전체 목록', previous: '이전', next: '다음', onThisPage: '이 페이지 내용' }
+    : { all: 'All articles', previous: 'Previous', next: 'Next', onThisPage: 'On this page' }
+
+  // Extract `## Heading` lines for the right-rail TOC. Done server-side
+  // so the order matches the rendered article exactly and the client
+  // bundle stays free of markdown-parse logic.
+  const headings = body
+    .split('\n')
+    .filter(line => line.startsWith('## ') && !line.startsWith('### '))
+    .map(line => {
+      const text = line.replace(/^##\s+/, '').trim()
+      return { id: slugify(text), text }
+    })
 
   return (
-    <div className="p-4">
-      <main>
+    <div className="p-4 lg:flex lg:gap-10">
+      <main className="lg:flex-1 min-w-0">
         <Link
           href="/dashboard/help"
           className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary mb-4"
@@ -94,7 +134,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
                 <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-1.5">{children}</h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-lg font-semibold text-gray-900 mt-4 mb-1.5">{children}</h2>
+                <h2 id={slugify(nodeText(children))} className="text-lg font-semibold text-gray-900 mt-4 mb-1.5 scroll-mt-8">{children}</h2>
               ),
               h3: ({ children }) => (
                 <h3 className="text-base font-semibold text-gray-900 mt-3 mb-1">{children}</h3>
@@ -192,6 +232,8 @@ export default async function HelpArticlePage({ params }: PageProps) {
 
         <HelpChatButton />
       </main>
+
+      <ArticleToc headings={headings} label={labels.onThisPage} />
     </div>
   )
 }
