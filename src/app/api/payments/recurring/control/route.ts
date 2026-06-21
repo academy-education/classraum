@@ -1,5 +1,60 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase-admin'
+
+/**
+ * Recurring payment template controller.
+ *
+ * Auth: requires a Bearer token. We then verify the caller is a
+ * manager/owner of the template's academy before allowing any
+ * pause/resume/deactivate action. Previously this endpoint was
+ * unauthenticated — anyone with a templateId could pause or
+ * deactivate any academy's billing.
+ */
+async function authorize(req: NextRequest, templateId: string): Promise<NextResponse | null> {
+  const auth = req.headers.get('authorization')
+  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
+  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+
+  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
+  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+
+  // Look up the template's academy.
+  const { data: template, error: templateError } = await supabaseAdmin
+    .from('recurring_payment_templates')
+    .select('academy_id')
+    .eq('id', templateId)
+    .single()
+  if (templateError || !template) {
+    return NextResponse.json({ error: 'template not found' }, { status: 404 })
+  }
+
+  // The caller must be a manager of that academy. Classraum platform
+  // admins (role admin/super_admin) are also allowed for support
+  // operations.
+  const { data: me } = await supabaseAdmin
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+  const role = me?.role
+  if (role === 'admin' || role === 'super_admin') return null
+
+  if (role !== 'manager') {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 })
+  }
+
+  const { data: manager } = await supabaseAdmin
+    .from('managers')
+    .select('academy_id')
+    .eq('user_id', user.id)
+    .maybeSingle()
+  if (manager?.academy_id !== template.academy_id) {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 })
+  }
+
+  return null
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,25 +75,28 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    const denial = await authorize(req, templateId)
+    if (denial) return denial
+
     // Handle template-level actions (affect entire template)
     if (!studentId) {
       let updateData: { is_active: boolean; updated_at: string } = {
         is_active: false,
         updated_at: new Date().toISOString()
       }
-      
+
       switch (action) {
         case 'pause':
           // For template-level pause, deactivate the entire template
-          updateData = { 
+          updateData = {
             is_active: false,
             updated_at: new Date().toISOString()
           }
           break
-          
+
         case 'resume':
           // For template-level resume, reactivate the template
-          updateData = { 
+          updateData = {
             is_active: true,
             updated_at: new Date().toISOString()
           }
@@ -85,7 +143,7 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({
             error: 'Student-level pause/resume not supported. Use template-level controls instead.'
           }, { status: 400 })
-          
+
         case 'deactivate':
           // Remove student from template
           const { error: studentError } = await supabase
@@ -109,11 +167,11 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Error in recurring payment control:', error)
     return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Internal server error', 
-        message: (error as Error).message 
-      }, 
+      {
+        success: false,
+        error: 'Internal server error',
+        message: (error as Error).message
+      },
       { status: 500 }
     )
   }
@@ -131,6 +189,9 @@ export async function GET(req: NextRequest) {
         { status: 400 }
       )
     }
+
+    const denial = await authorize(req, templateId)
+    if (denial) return denial
 
     // Get template info
     const { data: template, error: templateError } = await supabase

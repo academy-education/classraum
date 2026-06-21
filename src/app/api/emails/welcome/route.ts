@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { escapeHtml } from '@/lib/html-escape'
+import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
 
 const EMAIL_TEMPLATES = {
   en: {
@@ -139,6 +140,20 @@ const ROLE_NAMES = {
 
 export async function POST(request: Request) {
   try {
+    // Rate limit: this endpoint sends real email via Postmark with no
+    // authentication (it's called fire-and-forget from the signup
+    // flow before the user's first sign-in completes). Without limits,
+    // anyone could spam welcome emails to arbitrary addresses from
+    // no-reply@classraum.com, ruining sender reputation + racking up
+    // Postmark cost. Per-IP at 5/min is enough for legitimate signup
+    // bursts; we layer a per-email limit below once we've parsed the
+    // body so a single recipient can't be hammered from a botnet.
+    const ipBlocked = enforceRateLimit(
+      `welcome-email:ip:${getClientIp(request)}`,
+      { windowMs: 60 * 1000, max: 5 }
+    )
+    if (ipBlocked) return ipBlocked
+
     const { email, name, role, language = 'en' } = await request.json()
 
     if (!email || !name || !role) {
@@ -147,6 +162,12 @@ export async function POST(request: Request) {
         { status: 400 }
       )
     }
+
+    const emailBlocked = enforceRateLimit(
+      `welcome-email:to:${email.toLowerCase().trim()}`,
+      { windowMs: 60 * 60 * 1000, max: 3 }
+    )
+    if (emailBlocked) return emailBlocked
 
     const postmarkToken = process.env.POSTMARK_SERVER_TOKEN
     if (!postmarkToken) {

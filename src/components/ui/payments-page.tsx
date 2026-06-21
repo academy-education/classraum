@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { supabase } from '@/lib/supabase'
+import { authHeaders } from '@/lib/auth-headers'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -926,11 +927,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     if (!templateToDelete) return
 
     try {
+      const headers = await authHeaders()
       const response = await fetch('/api/payments/recurring/control', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify({
           action: 'deactivate',
           templateId: templateToDelete.id
