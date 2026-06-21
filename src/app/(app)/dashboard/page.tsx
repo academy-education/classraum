@@ -14,6 +14,7 @@ import { EmptyState } from '@/components/ui/common/EmptyState'
 import { LayoutDashboard, AlertCircle } from 'lucide-react'
 import { StatsCard, TodaysSessions, RecentActivity, ClassroomRankingsCard, TopStudentsCard } from './components'
 import { DashboardEditToggle } from './components/DashboardEditToggle'
+import { GettingStartedChecklist } from './components/GettingStartedChecklist'
 
 // Edit-mode-only — defer the bundle until the user enters edit mode. The
 // panel is mounted via `{isEditMode && <CardVisibilityPanel ... />}` so
@@ -441,6 +442,10 @@ export default function DashboardPage() {
             />
           </div>
         </div>
+
+        {/* Fresh-academy onboarding checklist. Self-hides once any
+            classroom exists, or when the user dismisses it. */}
+        {academyId && <GettingStartedChecklist academyId={academyId} />}
 
         {visibleCards.length > 0 ? (
           dashboardContent
