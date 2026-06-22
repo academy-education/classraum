@@ -11,6 +11,7 @@ import { ChatSession } from './ChatSession'
 import { PracticeSession } from './PracticeSession'
 import { LessonSession } from './LessonSession'
 import { FlashcardsSession } from './FlashcardsSession'
+import { TestSession } from './TestSession'
 
 /**
  * /mobile/study/session/[id] — active study session viewer.
@@ -164,6 +165,14 @@ function SessionInner({ id }: { id: string }) {
       <div className="flex flex-col h-full bg-gray-50">
         {header}
         <FlashcardsSession sessionId={session.id} language={session.language} />
+      </div>
+    )
+  }
+  if (session.mode === 'full_test') {
+    return (
+      <div className="flex flex-col h-full bg-gray-50">
+        {header}
+        <TestSession sessionId={session.id} language={session.language} />
       </div>
     )
   }

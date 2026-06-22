@@ -4027,7 +4027,31 @@
         "title": "Flashcards",
         "body": "Memorise key terms and facts with quick review cards.",
         "comingSoon": "Flashcards — coming soon"
+      },
+      "full_test": {
+        "title": "Full test",
+        "body": "Timed mock test with score and per-question review at the end.",
+        "comingSoon": "Full test — coming soon"
       }
+    },
+    "test": {
+      "generating": "Building your mock test...",
+      "generateFailed": "Couldn't build the test. Try again.",
+      "tryAgain": "Try again",
+      "questionN": "Question {current} of {total}",
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit test",
+      "submitWithUnanswered": "Submit ({count} unanswered)",
+      "resultEyebrow": "Test complete",
+      "resultMessage": {
+        "excellent": "Strong result. The patterns are clicking — keep this pace.",
+        "solid": "Solid run. A few more rounds and you'll be near the top of the range.",
+        "keepGoing": "Halfway there. Review the missed ones — that's where your score comes from.",
+        "startOver": "This was a stretch. Try a lesson first, then come back for another round."
+      },
+      "reviewTitle": "Review",
+      "backToStudy": "Back to Study"
     }
   },
   "mobile": {
