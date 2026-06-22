@@ -455,10 +455,11 @@ export async function listAllSpecTargetsFromDB(): Promise<RefreshTarget[]> {
   for (const leaf of leaves) {
     const parent = leaf.parent_id ? parentById.get(leaf.parent_id) : null
     if (!parent) continue
-    // Only treat rows whose parent is a "test-*" root as section leaves.
-    // The catalog also has "test_prep" categories at the root level
-    // (parent_id non-null but parent isn't a test root) — skip those.
-    if (!parent.slug.startsWith('test-')) continue
+    // Only treat rows whose parent is a real test root (e.g. "test-sat")
+    // as section leaves. Skip the "test-prep" UMBRELLA topic whose
+    // children are themselves test roots (SAT, TOEFL, etc.) — refreshing
+    // "SAT" as if it were a single section would waste API calls.
+    if (!parent.slug.startsWith('test-') || parent.slug === 'test-prep') continue
     const family = parent.slug.replace(/^test-/, '')
     targets.push({
       family,
