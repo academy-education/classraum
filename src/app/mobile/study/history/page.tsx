@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, MessageCircle, ListChecks, BookOpen, Layers, ChevronRight, Loader2 } from 'lucide-react'
+import { ArrowLeft, MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, ChevronRight, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -33,6 +33,7 @@ const MODE_ICONS: Record<StudyMode, typeof MessageCircle> = {
   practice: ListChecks,
   lesson: BookOpen,
   flashcards: Layers,
+  full_test: ClipboardList,
 }
 
 export default function StudyHistoryPage() {

@@ -9,7 +9,7 @@ import {
   renderTestPrepBlock,
   type TestFamily,
 } from '@/lib/study-prompt-context'
-import { renderTestSpec, defaultsForTestSection } from '@/lib/test-specs'
+import { renderTestSpecCached, defaultsForTestSectionCached } from '@/lib/test-spec-cache'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -199,7 +199,7 @@ export async function POST(req: NextRequest) {
       // Prefer the detailed spec; fall back to the generic block when
       // we don't have one for this family (e.g. a test we haven't
       // curated yet).
-      testPrepBlock = renderTestSpec(family, sectionLabel, lang)
+      testPrepBlock = (await renderTestSpecCached(family, sectionLabel, lang))
         || renderTestPrepBlock(ctx, lang)
       if (ctx.category === 'test_prep' && ctx.testSection) {
         topicName = `${prettyTest(family)} — ${ctx.testSection}`
@@ -211,7 +211,7 @@ export async function POST(req: NextRequest) {
   // Test-prep generation prefers the spec library's per-section
   // count/timing (matches the real exam) over the per-family default.
   const { count, minutes } = family
-    ? defaultsForTestSection(family, sectionLabel)
+    ? await defaultsForTestSectionCached(family, sectionLabel)
     : defaultsForFamily(null)
   const prompt = testPrepBlock
     ? (lang === 'ko'
