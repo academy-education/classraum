@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
-  Sparkles, Search, ChevronRight, ArrowRight, Lightbulb,
+  Search, ChevronRight, ArrowRight,
   History, GraduationCap, FileText
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from './SubscriptionGate'
+import { RecommendedShelf } from './RecommendedShelf'
 
 /**
  * /mobile/study — study landing.
@@ -157,19 +158,9 @@ function StudyLandingInner() {
         </Link>
       </header>
 
-      {/* Recommended shelf — Phase 3 hookup. */}
-      <section>
-        <h2 className="text-sm font-semibold text-gray-900 mb-2 inline-flex items-center gap-1.5">
-          <Sparkles className="w-4 h-4 text-primary" />
-          {t('study.landing.recommendedTitle')}
-        </h2>
-        <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-6 text-center">
-          <Lightbulb className="w-6 h-6 text-gray-300 mx-auto mb-2" />
-          <p className="text-sm text-gray-500">
-            {t('study.landing.recommendedEmpty')}
-          </p>
-        </div>
-      </section>
+      {/* Recommended shelf — Phase 3, reads study_mastery + recent
+          sessions via /api/study/recommended. */}
+      <RecommendedShelf />
 
       {/* Subjects — curated K-12 catalog. */}
       <section>
