@@ -3913,6 +3913,38 @@
       "loading": "Loading history...",
       "empty": "No sessions yet. Start one from the Study landing."
     },
+    "practice": {
+      "generating": "Building your practice set...",
+      "generateFailed": "Couldn't generate questions. Try again.",
+      "tryAgain": "Try again",
+      "progress": "Question {current} of {total}",
+      "submit": "Submit answer",
+      "checking": "Checking...",
+      "next": "Next",
+      "finish": "Finish",
+      "correct": "Correct",
+      "incorrect": "Not quite",
+      "correctAnswerLabel": "Correct answer",
+      "shortAnswerPlaceholder": "Type your answer...",
+      "moreQuestions": "More questions",
+      "backToStudy": "Back to Study",
+      "doneEyebrow": "All done",
+      "doneMessage": {
+        "perfect": "Perfect score — nice work.",
+        "good": "Good run. A few more sets and you'll have this dialed in.",
+        "keepGoing": "Stick with it. Each round sharpens the weak spots."
+      },
+      "difficulty": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "type": {
+        "multiple_choice": "Multiple choice",
+        "true_false": "True / False",
+        "short_answer": "Short answer"
+      }
+    },
     "modes": {
       "chat": {
         "title": "Chat tutor",

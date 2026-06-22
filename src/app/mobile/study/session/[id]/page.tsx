@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { ChatSession } from './ChatSession'
+import { PracticeSession } from './PracticeSession'
 
 /**
  * /mobile/study/session/[id] — active study session viewer.
@@ -130,13 +131,21 @@ function SessionInner({ id }: { id: string }) {
     </div>
   )
 
-  // Chat mode gets the real streaming UI. Other modes still show the
-  // Phase 1.5 placeholder until their Phase 2 implementations land.
+  // Chat + Practice modes get real UIs now. Lesson + Flashcards still
+  // show the Phase 1.5 placeholder until their implementations land.
   if (session.mode === 'chat') {
     return (
       <div className="flex flex-col h-full bg-gray-50">
         {header}
         <ChatSession sessionId={session.id} language={session.language} />
+      </div>
+    )
+  }
+  if (session.mode === 'practice') {
+    return (
+      <div className="flex flex-col h-full bg-gray-50">
+        {header}
+        <PracticeSession sessionId={session.id} language={session.language} />
       </div>
     )
   }

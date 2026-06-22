@@ -3970,6 +3970,38 @@
       "loading": "기록 불러오는 중...",
       "empty": "아직 세션이 없습니다. 공부 화면에서 시작해보세요."
     },
+    "practice": {
+      "generating": "연습 문제를 만드는 중...",
+      "generateFailed": "문제를 생성하지 못했습니다. 다시 시도하세요.",
+      "tryAgain": "다시 시도",
+      "progress": "{current} / {total} 문제",
+      "submit": "답안 제출",
+      "checking": "확인 중...",
+      "next": "다음",
+      "finish": "완료",
+      "correct": "정답",
+      "incorrect": "아쉬워요",
+      "correctAnswerLabel": "정답",
+      "shortAnswerPlaceholder": "답을 입력하세요...",
+      "moreQuestions": "문제 더 풀기",
+      "backToStudy": "공부 화면으로",
+      "doneEyebrow": "완료",
+      "doneMessage": {
+        "perfect": "만점! 잘했어요.",
+        "good": "잘했어요. 몇 세트 더 풀면 완벽해질 거예요.",
+        "keepGoing": "계속 도전하세요. 매 라운드마다 약점이 줄어듭니다."
+      },
+      "difficulty": {
+        "easy": "쉬움",
+        "medium": "보통",
+        "hard": "어려움"
+      },
+      "type": {
+        "multiple_choice": "객관식",
+        "true_false": "참/거짓",
+        "short_answer": "단답형"
+      }
+    },
     "modes": {
       "chat": {
         "title": "AI 튜터",
