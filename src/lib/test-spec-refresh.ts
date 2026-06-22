@@ -32,6 +32,16 @@ const SectionSpecSchema = z.object({
   patterns_ko: z.string().min(40),
   distractorPatterns_en: z.string().min(80),
   distractorPatterns_ko: z.string().min(40),
+  /** Real-test difficulty distribution. Fractions ~ sum to 1.0. */
+  difficultyMix: z.object({
+    easy: z.number().min(0).max(1),
+    medium: z.number().min(0).max(1),
+    hard: z.number().min(0).max(1),
+  }).optional(),
+  /** What HARD looks like for THIS section — used as the focused
+   *  prompt for the hard-only generation pass. */
+  hardItemFraming_en: z.string().min(80).optional(),
+  hardItemFraming_ko: z.string().min(40).optional(),
 })
 
 /** Authoritative URLs for the whitelist fallback, per family. The
@@ -87,6 +97,8 @@ Report your findings in plain prose. Include:
 - Number of choices per multiple-choice question (4 or 5)
 - The major question patterns / categories with approximate weights
 - Common distractor (wrong-answer) design patterns
+- The REAL test's difficulty distribution as published by the maker or estimated from released exams (approximate easy/medium/hard fractions summing to 1.0). If the test has signature "killer" items, weight hard accordingly (KSAT Math ~25%, SAT ~20%, TOEIC ~10-15%).
+- A description of what a HARD item LOOKS LIKE for THIS section — concrete enough that a generator can produce one. Not just "harder" — describe the structural features: passage length, reasoning depth, distractor sophistication, what makes a real student stumble.
 
 Sanity check before you submit:
 - Does the total time × questions divided yield a plausible per-question time? (SAT Math = 70 min / 44 Q ≈ 1.6 min — reasonable. If you get 30s/Q or 5min/Q, you probably mixed up units.)

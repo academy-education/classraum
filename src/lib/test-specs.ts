@@ -34,6 +34,25 @@ export interface SectionSpec {
   /** Common student mistakes for distractor design. */
   distractorPatterns_en: string
   distractorPatterns_ko: string
+  /** Real-test difficulty distribution. Fractions sum to ~1.0. Drives
+   *  how many hard vs medium vs easy items the generator targets.
+   *  Stored per-section because tests vary wildly — KSAT Math has
+   *  killer items (high hard%); TOEIC Reading is mostly easy/medium.
+   *  When absent the generator falls back to 30/50/20. */
+  difficultyMix?: { easy: number; medium: number; hard: number }
+  /** Prose describing what a HARD item looks like for THIS section
+   *  specifically. Used as the focused-pass framing so the hard-only
+   *  generation pass has a tight spec rather than the generic
+   *  "multi-step reasoning" hint. Optional — falls back to a generic
+   *  hard-item description when missing. */
+  hardItemFraming_en?: string
+  hardItemFraming_ko?: string
+  /** Worked HARD examples — concrete items the model can pattern-match
+   *  against. Framing alone isn't enough; the model labels easy items
+   *  as "hard" without an exemplar. Each entry should be a full
+   *  problem statement with answer + why-it's-hard reasoning. */
+  hardItemExamples_en?: string[]
+  hardItemExamples_ko?: string[]
 }
 
 export interface TestSpec {
@@ -67,6 +86,9 @@ export const TEST_SPECS: Partial<Record<TestFamily, TestSpec>> = {
         patterns_ko: '전체 영역 = 54문항 / 64분 (27문항·32분 적응형 모듈 2개). 각 문제는 짧은 지문(25-150단어)과 단일 문제로 구성 — 한 지문에 여러 문항 없음. 분류: Information & Ideas (~26%) — 주제, 세부사항, 추론, 근거 명령. Craft & Structure (~28%) — 문맥 어휘, 글의 구조, 글 간 연결, 목적. Expression of Ideas (~20%) — 수사적 종합(불릿 노트로 목표 달성), 전환어. Standard English Conventions (~26%) — 문장 경계, 일치, 구두점, 수식어 위치. 각 모듈 안에서 난이도 상승 — 모듈 2 어려운 문항은 학술적 산문에 미묘한 차이.',
         distractorPatterns_en: 'Wrong answers should be: (1) extreme/absolute restatements of a moderate claim, (2) facts true in the world but unsupported by the passage, (3) plausible but uses a word the passage explicitly rejects, (4) the "trap" choice that summarizes only the first sentence of a passage that pivots later.',
         distractorPatterns_ko: '오답은 다음과 같아야 합니다: (1) 중간 정도의 주장을 극단적·절대적으로 바꾼 표현, (2) 현실에서는 맞지만 지문에는 근거 없음, (3) 그럴듯하지만 지문이 명시적으로 거부한 단어 사용, (4) 지문이 중간에 전환되는데 첫 문장만 요약한 함정 선택지.',
+        difficultyMix: { easy: 0.30, medium: 0.50, hard: 0.20 },
+        hardItemFraming_en: 'A HARD SAT R&W item pairs dense academic prose (often 1850s-1920s literary or historical primary sources, or a recent humanities/science excerpt with technical vocabulary) with a question that turns on a SUBTLE distinction. The trap is usually the choice that matches the passage\'s surface vocabulary but inverts the author\'s actual stance, or that\'s true of one paragraph but contradicted by a later pivot. Hard "words in context" items pick a common word used in an unfamiliar register (e.g. "wanting" = lacking, not desiring). Hard inference items require connecting two distant claims, not just paraphrasing one. AVOID: bare main-idea, simple grammar, vocab a student could solve from a dictionary.',
+        hardItemFraming_ko: '어려운 SAT R&W 문항은 밀도 높은 학술 산문(1850-1920년대 문학·역사 1차 사료, 또는 전문 어휘를 포함한 최근 인문·과학 발췌문)과 미묘한 구분에 답이 갈리는 문제를 짝짓습니다. 함정은 보통 지문의 표면 어휘는 일치하지만 저자의 실제 입장을 뒤집는 선택지, 또는 한 문단은 지지하지만 뒤 문단의 전환이 반박하는 선택지입니다. 어려운 "문맥 어휘" 문항은 흔한 단어를 낯선 의미로(예: "wanting" = 부족함, 욕망 아님) 사용. 어려운 추론 문항은 두 개의 떨어진 진술을 연결해야 함 — 한 문장 패러프레이즈 아님. 피할 것: 단순 주제, 단순 문법, 사전만 봐도 풀 수 있는 어휘.',
       },
       {
         name_en: 'Math',
@@ -78,6 +100,35 @@ export const TEST_SPECS: Partial<Record<TestFamily, TestSpec>> = {
         patterns_ko: '객관식 + 학생 단답형(SPR) 혼합. 객관식 생성에서는 MC만. 분류: 대수 (~35%) — 1차방정식·부등식·연립·절댓값. 고급 수학 (~35%) — 이차·지수·다항식·유리식. 문제 해결·자료 분석 (~15%) — 비율·백분율·확률·산점도·이원 분할표. 기하·삼각법 (~15%) — 직선·각·삼각형·원·넓이·부피·직각삼각형 삼각비. 모든 문제에서 데스모스 계산기 사용 가능.',
         distractorPatterns_en: 'Wrong answers should encode specific arithmetic / sign / order-of-operations mistakes: (1) sign-flip (got x = -3 instead of 3), (2) off-by-one or off-by-coefficient, (3) used the wrong variable from the system, (4) the value of one intermediate step instead of the final answer.',
         distractorPatterns_ko: '오답은 구체적인 산술/부호/연산 순서 실수를 반영: (1) 부호 반전(x = 3 대신 x = -3), (2) 1 또는 계수 차이, (3) 연립에서 다른 변수의 값, (4) 최종 답이 아니라 중간 단계의 값.',
+        difficultyMix: { easy: 0.30, medium: 0.50, hard: 0.20 },
+        hardItemFraming_en: 'A HARD SAT Math item is a CONTEXTUALIZED multi-step problem — almost always a word problem with a real-world setup (linear or nonlinear modeling of revenue/cost/biology/chemistry/motion, geometry with a hidden similar-triangles or unit-circle relationship, data interpretation from a table or scatterplot the student must translate into an equation first). It requires THREE or more reasoning steps: (1) translate the prose into a mathematical statement, (2) recognize WHICH technique applies (factoring? completing the square? system substitution? Pythagoras?), (3) execute the technique, and often (4) sanity-check by plugging back in. Distractors must encode specific common errors at each step. AVOID: "solve 2x+3=11", "what is the area of a circle with radius 5", "evaluate f(2)" — these are easy or medium at best.',
+        hardItemFraming_ko: '어려운 SAT 수학 문항은 맥락화된 다단계 문제 — 거의 항상 실세계 설정의 서술형(수익·비용·생물·화학·운동의 일·이차 모델링, 닮음 삼각형 또는 단위원 관계가 숨겨진 기하, 학생이 먼저 수식으로 번역해야 하는 표·산점도 자료 해석). 세 단계 이상의 추론 필요: (1) 산문을 수학적 진술로 번역, (2) 어떤 기법이 적용되는지 인식(인수분해? 완전제곱? 연립 대입? 피타고라스?), (3) 기법 실행, 종종 (4) 대입해 검산. 함정은 각 단계의 흔한 실수를 정확히 반영. 피할 것: "2x+3=11 풀기", "반지름 5인 원 넓이", "f(2) 계산" — 이건 잘해야 쉬움/보통.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (verified hard):
+Prompt: "A biologist models a bacterial population with the function P(t) = 50 · 2^(t/3), where t is time in hours and P is the number of bacteria. A second model, used for a different strain, satisfies P(t) = 50 · 2^(t/4). After how many whole hours will the second strain's population first equal half the first strain's population at the same time?"
+Choices: ["6", "12", "18", "24"]
+Correct: "12"
+Why hard: requires setting up 50·2^(t/4) = (1/2)(50·2^(t/3)) → 2^(t/4) = 2^(t/3 - 1) → t/4 = t/3 - 1 → solve to t = 12. Three steps + exponent manipulation + must recognize "first whole hour" constrains answer.`,
+
+          `EXAMPLE 2 (verified hard):
+Prompt: "A circle in the xy-plane has equation x² + y² - 6x + 8y = 0. A line passes through the center of the circle and through the point (5, 1). What is the slope of the line?"
+Choices: ["-5/2", "-2/5", "2/5", "5/2"]
+Correct: "5/2"
+Why hard: requires completing the square to find center is (3, -4) — students often skip this and use the equation's leading terms as the center. Then slope = (1 - (-4))/(5 - 3) = 5/2. Distractors encode (a) sign-flip on -4, (b) using y-coord first, (c) using uncompleted form.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (검증된 어려움):
+문제: "한 생물학자가 박테리아 개체군을 P(t) = 50 · 2^(t/3) 함수로 모델링했다(t는 시간, P는 박테리아 수). 다른 균주의 모델은 P(t) = 50 · 2^(t/4)이다. 같은 시점에서 두 번째 균주 개체군이 첫 번째의 절반과 처음으로 같아지는 시간은 몇 시간 후인가?"
+보기: ["6", "12", "18", "24"]
+정답: "12"
+어려운 이유: 50·2^(t/4) = (1/2)(50·2^(t/3)) → 2^(t/4) = 2^(t/3 - 1) → t/4 = t/3 - 1 → t = 12. 3단계 + 지수 조작 + "처음 정수 시간" 제약 인식.`,
+
+          `예시 2 (검증된 어려움):
+문제: "xy평면 위의 원이 x² + y² - 6x + 8y = 0의 방정식을 가진다. 이 원의 중심과 점 (5, 1)을 지나는 직선의 기울기는?"
+보기: ["-5/2", "-2/5", "2/5", "5/2"]
+정답: "5/2"
+어려운 이유: 완전제곱으로 중심이 (3, -4)임을 찾아야 함 — 학생들은 이 단계를 건너뛰고 방정식의 일차항을 중심으로 착각. 그 다음 기울기 = (1 - (-4))/(5 - 3) = 5/2. 함정은 (a) -4 부호 반전, (b) y좌표 먼저 사용, (c) 완전제곱 전 방정식 사용.`,
+        ],
       },
     ],
   },
@@ -97,6 +148,9 @@ export const TEST_SPECS: Partial<Record<TestFamily, TestSpec>> = {
         patterns_ko: '지문 기반 독해. 첫 영역은 화법과 작문 또는 언어와 매체(선택). 이후 독서(인문/사회/과학/기술/예술 비문학 지문 3-4개, 약 17문항), 그리고 문학(현대시·현대소설·고전시가·고전소설 지문 3-4개, 약 17문항). 지문 길이 1000-1500자, 각 4-5문항. 주제 파악, 세부 정보, 추론, 문맥 어휘, 글의 구조를 평가.',
         distractorPatterns_en: 'KSAT distractors are notoriously close — designed to differentiate top performers. Patterns: (1) correct in scope but wrong in degree (지문은 "일부"라고 했는데 보기는 "모두"), (2) supported by one paragraph but contradicted by another, (3) plausible if the reader misses a connective like "그러나" or "다만", (4) lexically near the passage but semantically inverted.',
         distractorPatterns_ko: '수능 오답은 상위권 변별을 위해 매우 정교합니다: (1) 범위는 맞지만 정도가 틀림 ("일부" → "모두"), (2) 한 문단은 지지하지만 다른 문단이 반박, (3) "그러나"·"다만" 등 접속어를 놓치면 그럴듯하게 보임, (4) 어휘는 지문과 가깝지만 의미가 반대.',
+        difficultyMix: { easy: 0.20, medium: 0.55, hard: 0.25 },
+        hardItemFraming_en: 'A HARD KSAT Korean item is one of the 변별 문항 — typically a dense 1500-자 nonfiction passage (humanities, philosophy, science) followed by a question that requires synthesizing claims across multiple paragraphs OR mapping the passage to an unfamiliar 보기 (additional context box). The trap distractors are typically (1) supported by a single paragraph but contradicted by the passage as a whole, (2) inverted by a 그러나/다만/오히려 connective the student missed, (3) lexically near a paragraph but semantically opposite. The hardest items pair the passage with a 보기 box and ask the student to apply the passage\'s framework to a NEW situation — pure paraphrase doesn\'t work.',
+        hardItemFraming_ko: '어려운 수능 국어 문항은 변별 문항 — 보통 1500자 비문학 지문(인문·철학·과학) 뒤에 여러 문단의 주장을 종합하거나, 낯선 보기에 지문을 매핑하는 문제. 함정 오답은 (1) 한 문단은 지지하지만 전체와 모순, (2) 학생이 놓친 그러나/다만/오히려 접속어로 뒤집힘, (3) 어휘는 한 문단과 가깝지만 의미는 반대. 최고난도 문항은 지문 + 보기 박스를 짝지어 지문의 틀을 새로운 상황에 적용하게 함 — 단순 패러프레이즈로는 풀리지 않음.',
       },
       {
         name_en: 'Mathematics (수학)',

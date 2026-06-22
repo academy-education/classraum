@@ -9,7 +9,7 @@ import {
   renderTestPrepBlock,
   type TestFamily,
 } from '@/lib/study-prompt-context'
-import { renderTestSpecCached, defaultsForTestSectionCached } from '@/lib/test-spec-cache'
+import { renderTestSpecCached, defaultsForTestSectionCached, loadSectionSpec } from '@/lib/test-spec-cache'
 import {
   verifyAndCorrect,
   sanitizeQuestion,
@@ -260,58 +260,137 @@ export async function POST(req: NextRequest) {
   const { count, minutes } = family
     ? await defaultsForTestSectionCached(family, sectionLabel)
     : defaultsForFamily(null)
-  // Generate with a buffer so the verify pass can drop bad questions
-  // and we still hit the target count. 25% extra is enough headroom
-  // for typical drop rates (~5-15%).
-  const buffer = Math.max(3, Math.ceil(count * 0.25))
-  const generationCount = Math.min(70, count + buffer)
-  const prompt = testPrepBlock
-    ? (lang === 'ko'
-        ? TEST_PROMPT_KO(topicName, generationCount, minutes, testPrepBlock)
-        : TEST_PROMPT_EN(topicName, generationCount, minutes, testPrepBlock, family, sectionLabel))
-    : (lang === 'ko'
-        ? SUBJECT_PROMPT_KO(topicName, gradeRange, generationCount, minutes)
-        : SUBJECT_PROMPT_EN(topicName, gradeRange, generationCount, minutes))
+  // Look up the structured spec so we can read difficultyMix and the
+  // hard-item framing. Falls back to defaults when missing.
+  const sectionSpec = family ? await loadSectionSpec(family, sectionLabel) : null
+  const mix = sectionSpec?.difficultyMix ?? { easy: 0.30, medium: 0.50, hard: 0.20 }
+  const targetHard = Math.round(count * mix.hard)
+  const targetEasyMed = count - targetHard
 
-  // Model selection: test prep gets the full gpt-4o (better recall
-  // of recent test format changes, follows the spec block more
-  // reliably). Generic subject tests stay on gpt-4o-mini to keep
-  // cost down.
   const apiKey = process.env.OPENAI_API_KEY ?? ''
   const openai = createOpenAI({ apiKey })
   const model = family ? openai('gpt-4o') : openai('gpt-4o-mini')
-  try {
-    const result = await generateObject({
-      model,
-      schema: TestSchema,
-      prompt,
-      temperature: 0.2,
-    })
-    let questions = result.object.questions as Question[]
 
-    // Pipeline: sanitize LaTeX/markdown → dedupe → verify (drop wrong)
-    //         → shuffle choices → slice to exact target count
-    questions = questions.map(sanitizeQuestion)
+  try {
+    // Two-pass generation: the model collapses "hard" into "medium"
+    // when asked for a mixed batch. Splitting gives the hard pass a
+    // dedicated prompt with the section-specific hard framing inline.
+    // For subject (non-family) tests, skip the split — those don't have
+    // hard framing and a single pass is fine.
+    const buffer = Math.max(3, Math.ceil(count * 0.25))
+    // Hard items have a HIGH verifier-drop rate (model tends to write
+    // hard items with subtle math errors). Generate ~2× target so
+    // enough survive — was 1.4× and produced 4/9 hards.
+    const hardBuffer = targetHard > 0 ? Math.max(4, targetHard) : 0
+
+    let allQuestions: Question[] = []
+    let totalIn = 0
+    let totalOut = 0
+
+    if (sectionSpec && targetHard > 0) {
+      // Pass 1: easy + medium pool
+      const easyMedPrompt = buildEasyMediumPrompt({
+        topicName,
+        count: Math.min(70, targetEasyMed + buffer),
+        minutes,
+        formatBlock: testPrepBlock,
+        lang,
+      })
+      const easyMedResult = await generateObject({
+        model,
+        schema: TestSchema,
+        prompt: easyMedPrompt,
+        temperature: 0.2,
+      })
+      allQuestions.push(...(easyMedResult.object.questions as Question[]))
+      totalIn += easyMedResult.usage?.inputTokens ?? 0
+      totalOut += easyMedResult.usage?.outputTokens ?? 0
+
+      // Pass 2: hard-only pool with section-specific framing
+      const hardFraming = (lang === 'ko' ? sectionSpec.hardItemFraming_ko : sectionSpec.hardItemFraming_en)
+        ?? GENERIC_HARD_FRAMING[lang]
+      const hardExamples = (lang === 'ko' ? sectionSpec.hardItemExamples_ko : sectionSpec.hardItemExamples_en) ?? []
+      const hardPrompt = buildHardOnlyPrompt({
+        topicName,
+        count: targetHard + hardBuffer,
+        minutes,
+        formatBlock: testPrepBlock,
+        hardFraming,
+        hardExamples,
+        lang,
+      })
+      const hardResult = await generateObject({
+        model,
+        schema: TestSchema,
+        prompt: hardPrompt,
+        temperature: 0.3, // slightly higher — hard items need creative setups
+      })
+      allQuestions.push(...(hardResult.object.questions as Question[]))
+      totalIn += hardResult.usage?.inputTokens ?? 0
+      totalOut += hardResult.usage?.outputTokens ?? 0
+    } else {
+      // Single-pass fallback for subjects or test sections w/o spec.
+      const singlePrompt = testPrepBlock
+        ? (lang === 'ko'
+            ? TEST_PROMPT_KO(topicName, count + buffer, minutes, testPrepBlock)
+            : TEST_PROMPT_EN(topicName, count + buffer, minutes, testPrepBlock, family, sectionLabel))
+        : (lang === 'ko'
+            ? SUBJECT_PROMPT_KO(topicName, gradeRange, count + buffer, minutes)
+            : SUBJECT_PROMPT_EN(topicName, gradeRange, count + buffer, minutes))
+      const result = await generateObject({
+        model,
+        schema: TestSchema,
+        prompt: singlePrompt,
+        temperature: 0.2,
+      })
+      allQuestions.push(...(result.object.questions as Question[]))
+      totalIn = result.usage?.inputTokens ?? 0
+      totalOut = result.usage?.outputTokens ?? 0
+    }
+
+    // Pipeline: sanitize LaTeX/markdown → dedupe → verify (drop wrong +
+    // re-rate difficulty) → bucket by verified difficulty → fill the
+    // target hard count first, then easy/medium → shuffle choices
+    let questions = allQuestions.map(sanitizeQuestion)
     questions = dedupeByPrompt(questions)
     const mathHeavy = isMathHeavy(family, sectionLabel)
     const verifyResult = await verifyAndCorrect(questions, apiKey, { mathHeavy })
-    questions = verifyResult.kept
-    questions = questions.map((q, i) => shuffleChoices(q, hashSession(sessionId) + i))
-    if (questions.length > count) questions = questions.slice(0, count)
+
+    // Bucket by VERIFIED difficulty (not the generator's claim).
+    const verifiedHard = verifyResult.kept.filter(q => q.difficulty === 'hard')
+    const verifiedEasyMed = verifyResult.kept.filter(q => q.difficulty !== 'hard')
+
+    const hardSlice = verifiedHard.slice(0, targetHard)
+    const easyMedSlice = verifiedEasyMed.slice(0, count - hardSlice.length)
+    // Top up from the other bucket if one is short.
+    const combined = [...easyMedSlice, ...hardSlice]
+    while (combined.length < count && verifiedHard.length > hardSlice.length) {
+      combined.push(verifiedHard[hardSlice.length + (combined.length - easyMedSlice.length - hardSlice.length)])
+    }
+    while (combined.length < count && verifiedEasyMed.length > easyMedSlice.length) {
+      combined.push(verifiedEasyMed[easyMedSlice.length + (combined.length - easyMedSlice.length - hardSlice.length)])
+    }
+
+    questions = combined.map((q, i) => shuffleChoices(q, hashSession(sessionId) + i * 31))
+
     console.log('[test/generate] pipeline', {
       sessionId,
       target: count,
-      generated: result.object.questions.length,
-      afterDedupe: result.object.questions.length - (result.object.questions.length - questions.length - verifyResult.dropped),
+      mix,
+      generated: allQuestions.length,
+      verified: verifyResult.kept.length,
+      verifiedHardCount: verifiedHard.length,
+      finalHardCount: questions.filter(q => q.difficulty === 'hard').length,
       dropped: verifyResult.dropped,
       corrected: verifyResult.corrected,
+      relabeled: verifyResult.relabeled,
       final: questions.length,
     })
 
     const test: TestPayload = {
-      title: result.object.title,
-      timeLimitMinutes: result.object.timeLimitMinutes,
-      section: result.object.section,
+      title: `${prettyTest(family)} — ${sectionLabel ?? topicName}`,
+      timeLimitMinutes: minutes,
+      section: sectionLabel,
       questions,
     }
 
@@ -321,8 +400,8 @@ export async function POST(req: NextRequest) {
         session_id: sessionId,
         role: 'assistant',
         content: CACHED_TEST_MARKER + JSON.stringify(test),
-        tokens_in: result.usage?.inputTokens ?? 0,
-        tokens_out: result.usage?.outputTokens ?? 0,
+        tokens_in: totalIn,
+        tokens_out: totalOut,
         model: family ? 'gpt-4o' : 'gpt-4o-mini',
       })
 
@@ -331,6 +410,130 @@ export async function POST(req: NextRequest) {
     console.error('[test/generate]', err)
     return NextResponse.json({ error: 'generation failed' }, { status: 502 })
   }
+}
+
+/**
+ * Easy + medium pool prompt. Built when the spec has a difficultyMix
+ * so we know how many easy/medium items the section calls for. Forbids
+ * hard items entirely — hard items come from a separate focused pass.
+ */
+function buildEasyMediumPrompt(args: {
+  topicName: string
+  count: number
+  minutes: number
+  formatBlock: string
+  lang: 'en' | 'ko'
+}): string {
+  const { topicName, count, minutes, formatBlock, lang } = args
+  if (lang === 'ko') {
+    return `
+${topicName} 모의고사용 ${count}개의 객관식 문항을 생성하세요.
+
+${formatBlock}
+
+규칙:
+- 난이도: easy 또는 medium만. HARD 금지 — 어려운 문항은 별도 패스에서 생성합니다.
+- 약 40% easy, 60% medium.
+- 시험의 실제 형식을 정확히 따르세요. 보기 개수는 위 블록대로.
+- 오답은 시험의 실제 함정 패턴 반영.
+- 정답을 A/B/C/D에 골고루 배치 — A에 몰지 마세요.
+- 수학 문항은 해설에 풀이를 보여 답을 검증할 수 있게.
+- 일반 텍스트만. LaTeX(\\( \\)), 마크다운, HTML 금지. 유니코드 사용: x², √(2), π, ½, ±, ×, ÷.
+- 각 문제는 독립적.
+- 해설: 1-2문장. 함정 언급.
+- 모든 텍스트 한국어.
+- timeLimitMinutes = ${minutes}; section = 영역 이름.
+`.trim()
+  }
+  return `
+Generate ${count} multiple-choice questions for a ${topicName} mock test.
+
+${formatBlock}
+
+Rules:
+- Difficulty: ONLY easy or medium. NO hard items — hard items are generated in a separate dedicated pass.
+- About 40% easy, 60% medium.
+- Match the test's real format. Choice count per the format block above.
+- Wrong answers must reflect the test's actual trap patterns.
+- Distribute correct answers across A/B/C/D — do NOT cluster on A.
+- For math: SHOW WORK in the explanation. Compute the answer twice.
+- Plain text only. NO LaTeX \\( \\), markdown, or HTML. Use Unicode: x², √(2), π, ½, ±, ×, ÷.
+- Choice text contains ONLY the answer content. Do NOT prefix with "A)", "B.", "(1)" etc. — the UI adds the letter label.
+- Each question independent.
+- Explanations: 1-2 sentences. Mention the trap.
+- timeLimitMinutes = ${minutes}; section = section label.
+`.trim()
+}
+
+/**
+ * Hard-only pool prompt. The whole prompt is about hardness — what it
+ * looks like for THIS section, what to avoid, what the trap should be.
+ * Single-pass prompts collapse hardness to medium because the model
+ * is optimizing for average quality across the batch; isolating the
+ * hard items lets them stay hard.
+ */
+function buildHardOnlyPrompt(args: {
+  topicName: string
+  count: number
+  minutes: number
+  formatBlock: string
+  hardFraming: string
+  hardExamples: string[]
+  lang: 'en' | 'ko'
+}): string {
+  const { topicName, count, minutes, formatBlock, hardFraming, hardExamples, lang } = args
+  const examplesBlock = hardExamples.length > 0
+    ? (lang === 'ko'
+        ? `\n\n다음은 이 영역의 검증된 어려운 문항 예시입니다. 그대로 복사하지 말고 이 깊이와 구조에 맞춰 새 문항을 만드세요:\n\n${hardExamples.join('\n\n')}\n`
+        : `\n\nHere are VERIFIED hard items for this section. Do NOT copy them — but match this depth and structure when you create new items:\n\n${hardExamples.join('\n\n')}\n`)
+    : ''
+  if (lang === 'ko') {
+    return `
+${topicName} 시험에서 가장 어려운 변별 문항 ${count}개만 생성하세요. ALL difficulty = "hard".
+
+${formatBlock}
+
+이 영역에서 "어려운 문항"의 정의:
+${hardFraming}${examplesBlock}
+
+규칙:
+- 모든 문항의 difficulty 필드는 "hard". easy/medium 절대 금지.
+- 각 문항은 위 정의를 충족해야 합니다 — 다단계 추론, 미묘한 구분, 비자명한 설정.
+- "2x+3=11 풀기" 또는 "직사각형 넓이 구하기" 같은 단순 문항 절대 금지.
+- 오답은 실제 학생이 흔히 빠지는 정교한 함정을 반영. 다른 함정이 아니라 이 특정 어려운 문항 유형의 함정.
+- 정답을 A/B/C/D에 골고루 배치.
+- 수학 문항은 풀이를 보여 답 검증 가능하게. 답을 적기 전 머릿속에서 두 번 독립 계산.
+- 일반 텍스트만. LaTeX, 마크다운, HTML 금지. 유니코드 사용: x², √(2), π, ½, ±, ×, ÷.
+- 해설: 1-2문장. 어떤 단계가 어렵게 만드는지 언급.
+- 모든 텍스트 한국어.
+- timeLimitMinutes = ${minutes}; section = 영역 이름.
+`.trim()
+  }
+  return `
+Generate ${count} HARD discriminating items for the ${topicName} test. ALL difficulty = "hard".
+
+${formatBlock}
+
+What a HARD item looks like for THIS section:
+${hardFraming}${examplesBlock}
+
+Rules:
+- Every item's difficulty field is "hard". NO easy or medium — they are generated in a separate pass.
+- Each item must meet the framing above — multi-step reasoning, subtle distinctions, non-obvious setup.
+- ABSOLUTELY NO trivial items like "solve 2x+3=11" or "what is the area of a rectangle".
+- Wrong answers reflect the sophisticated traps real students fall into on items of THIS specific hard type — not generic traps.
+- Distribute correct answers across A/B/C/D.
+- For math: SHOW WORK in explanation. Compute the answer twice independently before committing.
+- Plain text only. NO LaTeX, markdown, or HTML. Use Unicode: x², √(2), π, ½, ±, ×, ÷.
+- Choice text contains ONLY the answer content. Do NOT prefix with "A)", "B.", "(1)" etc.
+- Explanations: 1-2 sentences. Mention what makes this step hard.
+- timeLimitMinutes = ${minutes}; section = section label.
+`.trim()
+}
+
+const GENERIC_HARD_FRAMING: Record<'en' | 'ko', string> = {
+  en: 'A HARD item requires 3+ reasoning steps, OR requires translating prose into a formal statement before solving, OR turns on a subtle distinction the student must spot in the prompt. Distractors should encode plausible-but-wrong setups (chose the wrong technique, mis-translated a constraint, applied a special-case rule too broadly). A student who has only memorized procedures should stumble; a student who understands WHY each technique applies should succeed.',
+  ko: '어려운 문항은 3단계 이상 추론 필요, OR 산문을 풀기 전에 형식 진술로 번역 필요, OR 학생이 문제에서 발견해야 할 미묘한 차이에 답이 갈림. 함정은 그럴듯하지만 틀린 설정 반영(잘못된 기법 선택, 제약을 잘못 번역, 특수 규칙을 너무 넓게 적용). 절차만 외운 학생은 막히고, 각 기법이 왜 적용되는지 이해한 학생은 성공.',
 }
 
 /** Stable per-session hash for deterministic shuffles — same session

@@ -38,6 +38,10 @@ const VerifierItemSchema = z.object({
   work: z.string().describe('Step-by-step solution from scratch, showing every arithmetic step. Do NOT shortcut.'),
   verified_answer: z.string().describe('After completing "work", the answer text — must match one of the choices verbatim, or "NONE" if your work produced a value not in any choice.'),
   confidence: z.enum(['high', 'medium', 'low']),
+  /** Independent re-rating of difficulty. Used to detect mislabeled hard
+   *  items (the model claims a question is hard but the verifier solves
+   *  it in one step). */
+  actual_difficulty: z.enum(['easy', 'medium', 'hard']),
 })
 
 const VerifierBatchSchema = z.object({
@@ -53,7 +57,7 @@ export async function verifyAndCorrect(
   questions: Question[],
   apiKey: string,
   opts: { mathHeavy?: boolean } = {}
-): Promise<{ kept: Question[]; dropped: number; corrected: number }> {
+): Promise<{ kept: Question[]; dropped: number; corrected: number; relabeled: number }> {
   const openai = createOpenAI({ apiKey })
   // gpt-4o-mini's arithmetic is unreliable enough to MISS bad answer keys
   // on SAT-Math-style items. Pay for gpt-4o on math-heavy sections.
@@ -64,6 +68,7 @@ export async function verifyAndCorrect(
   const verified: Question[] = []
   let corrected = 0
   let dropped = 0
+  let relabeled = 0
 
   for (let i = 0; i < questions.length; i += BATCH) {
     const batch = questions.slice(i, i + BATCH)
@@ -99,26 +104,68 @@ export async function verifyAndCorrect(
           continue
         }
 
+        // Re-label difficulty if the verifier disagrees. The generator
+        // tends to over-claim "medium" on items that are actually easy;
+        // we trust the verifier's independent rating here.
+        const finalDifficulty = verdict.actual_difficulty
+        if (finalDifficulty !== q.difficulty) relabeled++
+
         if (matchedChoice !== q.correct_answer) {
           if (verdict.confidence === 'high') {
             // Trust the verifier — original key was wrong.
-            verified.push({ ...q, correct_answer: matchedChoice })
+            verified.push({ ...q, correct_answer: matchedChoice, difficulty: finalDifficulty })
             corrected++
           } else {
-            // Low/medium confidence disagreement — keep original.
-            verified.push(q)
+            // Low/medium confidence disagreement — keep original key,
+            // but use the re-labeled difficulty.
+            verified.push({ ...q, difficulty: finalDifficulty })
           }
         } else {
-          verified.push(q)
+          verified.push({ ...q, difficulty: finalDifficulty })
         }
       }
     } catch (err) {
-      console.error('[test-verify] batch failed; keeping originals', err)
-      verified.push(...batch)
+      console.error(`[test-verify] batch failed at index ${i}; retrying per-item`, (err as Error).message)
+      // Batch failure usually means the model returned the schema
+      // definition instead of data, or timed out. Retry each item in
+      // its own request — slower, but otherwise unverified items would
+      // slip through with bad answer keys.
+      for (let j = 0; j < batch.length; j++) {
+        try {
+          const single = await generateObject({
+            model,
+            schema: VerifierBatchSchema,
+            prompt: buildVerifierPrompt([batch[j]]),
+            temperature: 0.1,
+          })
+          const verdict = single.object.items[0]
+          if (!verdict) { dropped++; continue }
+          if (verdict.verified_answer === 'NONE') { dropped++; continue }
+          const matchedChoice = batch[j].choices.find(c => normalize(c) === normalize(verdict.verified_answer))
+          const finalDifficulty = verdict.actual_difficulty
+          if (finalDifficulty !== batch[j].difficulty) relabeled++
+          if (!matchedChoice) {
+            if (verdict.confidence === 'high') dropped++
+            else verified.push({ ...batch[j], difficulty: finalDifficulty })
+            continue
+          }
+          if (matchedChoice !== batch[j].correct_answer && verdict.confidence === 'high') {
+            verified.push({ ...batch[j], correct_answer: matchedChoice, difficulty: finalDifficulty })
+            corrected++
+          } else {
+            verified.push({ ...batch[j], difficulty: finalDifficulty })
+          }
+        } catch (innerErr) {
+          // Per-item failed too — drop rather than ship unverified.
+          // Better to short the count than ship a bad answer key.
+          console.error(`[test-verify] per-item ${i + j} also failed; dropping`, (innerErr as Error).message)
+          dropped++
+        }
+      }
     }
   }
 
-  return { kept: verified, dropped, corrected }
+  return { kept: verified, dropped, corrected, relabeled }
 }
 
 function buildVerifierPrompt(batch: Question[]): string {
@@ -128,13 +175,17 @@ function buildVerifierPrompt(batch: Question[]): string {
   }).join('\n\n---\n\n')
 
   return `
-You are verifying answer keys for a standardized-test mock exam. For each question, solve it INDEPENDENTLY from scratch — do NOT assume the test-writer was correct. There is no explanation provided; you must do the work yourself.
+You are verifying answer keys AND difficulty labels for a standardized-test mock exam. For each question, solve it INDEPENDENTLY from scratch — do NOT assume the test-writer was correct. There is no explanation provided; you must do the work yourself.
 
 For each question, output:
   - index: 0-based number matching the [N] tag
   - work: STEP-BY-STEP solution. For math, write out every algebra step. For reading, identify what the passage actually says. Do not skip steps. Do not pattern-match — actually compute.
   - verified_answer: the EXACT TEXT of the correct choice (copy it verbatim, no letter prefix). If after your full re-solve you cannot find a choice that is correct, output "NONE".
   - confidence: high (your work is rigorous and matches a choice), medium (you're confident but the problem has some ambiguity), low (you're guessing)
+  - actual_difficulty: how hard was the question ACTUALLY? Independent of any label the writer used.
+    * easy = one step, no genuine challenge — a prepared student gets it in <30s
+    * medium = 2 steps, OR one step with a non-obvious technique choice; needs ~60s
+    * hard = 3+ steps OR a word problem requiring prose-to-math translation OR a question with a substantial trap (test-prep difficulty, not olympiad). Real SAT/ACT/KSAT hard items are NOT "expert insight" — they're well-executed multi-step problems with sophisticated distractors. A multi-step word problem about revenue/cost modeling, a geometry problem requiring completing the square, or a system of equations with a careful sign distinction all qualify as hard.
 
 Critical: many questions you'll see have WRONG answer keys baked in by the original generator. Common errors to catch:
 - Algebra: 2x - 3y = 6, x + y = 5 → solve y = 5 - x, substitute: 2x - 3(5-x) = 6 → 2x - 15 + 3x = 6 → 5x = 21 → x = 4.2 (NOT 3, NOT 5)
@@ -149,9 +200,13 @@ ${items}
 }
 
 /** Strip LaTeX \( \) wrappers and convert common math to Unicode. The
- *  UI renders plain strings; \( \) shows up literally. */
+ *  UI renders plain strings; \( \) shows up literally. Also strips
+ *  leading "A) " / "1. " / "(A) " position labels that the model
+ *  sometimes embeds in choice text — these collide with the shuffle. */
 function sanitize(s: string): string {
   return s
+    .replace(/^\s*\(?[A-Ea-e][\)\.\:]\s+/, '')  // strip leading "A) ", "(A) ", "a. ", etc.
+    .replace(/^\s*[1-9][\)\.\:]\s+/, '')        // strip leading "1) ", "1. "
     .replace(/\\\(\s*/g, '')
     .replace(/\s*\\\)/g, '')
     .replace(/\\\[\s*/g, '')

@@ -32,6 +32,28 @@ function matchSection(sections: SectionSpec[], sectionLabel: string | null): Sec
   ) ?? sections[0]
 }
 
+/**
+ * Public lookup: returns the structured SectionSpec for (family, label),
+ * checking the DB cache first and falling back to hardcoded TEST_SPECS.
+ * Used by the generator to read difficultyMix + hardItemFraming, fields
+ * the rendered-string version doesn't expose.
+ */
+export async function loadSectionSpec(
+  family: TestFamily | null,
+  sectionLabel: string | null
+): Promise<SectionSpec | null> {
+  if (!family) return null
+  try {
+    const cached = await loadCachedSpec(family, sectionLabel)
+    if (cached) return cached
+  } catch (err) {
+    console.error('[test-spec-cache] loadSectionSpec DB lookup failed', err)
+  }
+  const spec = TEST_SPECS[family]
+  if (!spec) return null
+  return matchSection(spec.sections, sectionLabel) ?? null
+}
+
 async function loadCachedSpec(family: TestFamily, sectionLabel: string | null): Promise<SectionSpec | null> {
   // Pull every row for the family — there are at most ~5 per family,
   // and we need to match by label which lives inside the jsonb.
