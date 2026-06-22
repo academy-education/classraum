@@ -2,12 +2,15 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw, XCircle } from 'lucide-react'
+import { Capacitor } from '@capacitor/core'
+import { ArrowLeft, CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw, XCircle, ExternalLink } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { PortOne } from '@/lib/portone-browser'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface Subscription {
-  status: 'trial' | 'active' | 'cancelled' | 'expired'
+  status: 'trial' | 'active' | 'past_due' | 'cancelled' | 'expired'
   plan: string
   price_cents: number
   currency: string
@@ -31,12 +34,19 @@ interface Subscription {
  */
 export default function SubscriptionPage() {
   const { t, language } = useTranslation()
+  const { user } = useAuth()
   const ko = language === 'korean'
   const [sub, setSub] = useState<Subscription | null>(null)
   const [loading, setLoading] = useState(true)
   const [acting, setActing] = useState<'cancel' | 'reactivate' | 'checkout' | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  // Native Capacitor clients (iOS especially) can't show a Subscribe
+  // button or PortOne overlay without violating Apple's anti-steering
+  // rules. The page detects the platform and hides the CTA, replacing
+  // it with a "manage on classraum.com" link.
+  const [isNative, setIsNative] = useState(false)
+  useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
   const load = useCallback(async () => {
     try {
@@ -54,7 +64,7 @@ export default function SubscriptionPage() {
 
   useEffect(() => { void load() }, [load])
 
-  const act = useCallback(async (kind: 'cancel' | 'reactivate' | 'checkout') => {
+  const act = useCallback(async (kind: 'cancel' | 'reactivate') => {
     setActing(kind)
     setError(null)
     setSuccessMessage(null)
@@ -70,6 +80,69 @@ export default function SubscriptionPage() {
       setActing(null)
     }
   }, [load, t])
+
+  /**
+   * Web subscribe flow:
+   *   1. Load PortOne browser SDK.
+   *   2. requestIssueBillingKey → user enters card / picks easy-pay.
+   *   3. POST returned billingKey to /api/study/subscription/billing-key.
+   *   4. Server charges first month + flips row to active.
+   *
+   * Errors bubble up into the toast row at the bottom of the page.
+   */
+  const subscribe = useCallback(async () => {
+    if (acting !== null) return
+    setActing('checkout')
+    setError(null)
+    setSuccessMessage(null)
+    try {
+      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
+      const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
+      if (!storeId || !channelKey) {
+        throw new Error('PortOne not configured')
+      }
+
+      const issueId = `study-issue-${user?.id ?? 'anon'}-${Date.now()}`
+      const issued = await PortOne.requestIssueBillingKey({
+        storeId,
+        channelKey,
+        billingKeyMethod: 'CARD',
+        issueId,
+        issueName: 'Classraum Study subscription',
+        customer: {
+          customerId: user?.id,
+          email: user?.email ?? undefined,
+        },
+        customData: { kind: 'study_subscription' },
+      })
+
+      if (!issued?.billingKey) {
+        // User cancelled the overlay or PortOne returned an error code.
+        if (issued?.code) {
+          setError(issued.message ?? t('study.subscription.checkoutFailed') as string)
+        }
+        // Silent cancel — no message, just bail out.
+        return
+      }
+
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/subscription/billing-key', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ billingKey: issued.billingKey }),
+      })
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(typeof body.message === 'string' ? body.message : 'charge failed')
+      }
+      await load()
+      setSuccessMessage(t('study.subscription.checkoutSuccess') as string)
+    } catch (e) {
+      setError((e instanceof Error && e.message) || (t('study.subscription.checkoutFailed') as string))
+    } finally {
+      setActing(null)
+    }
+  }, [acting, load, t, user])
 
   if (loading) {
     return (
@@ -136,18 +209,32 @@ export default function SubscriptionPage() {
 
       {/* Action buttons */}
       <div className="space-y-2">
-        {(!sub || sub.status === 'expired' || sub.status === 'cancelled') && (
-          <button
-            type="button"
-            onClick={() => void act('checkout')}
-            disabled={acting !== null}
-            className="w-full h-12 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-50"
-          >
-            {acting === 'checkout'
-              ? <Loader2 className="w-4 h-4 animate-spin" />
-              : <CreditCard className="w-4 h-4" />}
-            {t('study.subscription.subscribeNow')}
-          </button>
+        {(!sub || sub.status === 'expired' || sub.status === 'cancelled' || sub.status === 'past_due') && (
+          isNative ? (
+            // Apple anti-steering: no purchase CTA, no PortOne overlay
+            // inside the native shell. Send users to the web instead.
+            <a
+              href="https://app.classraum.com/mobile/study/subscription"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full h-12 rounded-full bg-white border border-gray-200 text-gray-700 text-sm font-medium inline-flex items-center justify-center gap-1.5"
+            >
+              <ExternalLink className="w-4 h-4" />
+              {t('study.subscription.subscribeOnWeb')}
+            </a>
+          ) : (
+            <button
+              type="button"
+              onClick={() => void subscribe()}
+              disabled={acting !== null}
+              className="w-full h-12 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-50"
+            >
+              {acting === 'checkout'
+                ? <Loader2 className="w-4 h-4 animate-spin" />
+                : <CreditCard className="w-4 h-4" />}
+              {t('study.subscription.subscribeNow')}
+            </button>
+          )
         )}
 
         {sub && (sub.status === 'trial' || sub.status === 'active') && !sub.cancel_at_period_end && (
@@ -202,6 +289,7 @@ function StatusPill({ status, cancelling }: { status: Subscription['status']; ca
   const map: Record<Subscription['status'], { cls: string; label: string }> = {
     trial:     { cls: 'bg-primary/10 text-primary ring-primary/30',     label: t('study.subscription.statusTrial') as string },
     active:    { cls: 'bg-emerald-50 text-emerald-700 ring-emerald-200', label: t('study.subscription.statusActive') as string },
+    past_due:  { cls: 'bg-amber-50 text-amber-700 ring-amber-200',       label: t('study.subscription.statusPastDue') as string },
     cancelled: { cls: 'bg-gray-100 text-gray-700 ring-gray-200',         label: t('study.subscription.statusCancelled') as string },
     expired:   { cls: 'bg-rose-50 text-rose-700 ring-rose-200',           label: t('study.subscription.statusExpired') as string },
   }
