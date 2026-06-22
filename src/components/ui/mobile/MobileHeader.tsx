@@ -9,6 +9,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
+import { HubModeToggle } from '@/components/ui/mobile/HubModeToggle'
 
 export function MobileHeader() {
   const router = useRouter()
@@ -211,6 +212,10 @@ export function MobileHeader() {
           </div>
 
           <div className="flex items-center gap-2">
+            {/* Hub mode toggle — flips student between Grades and Study
+                surfaces. Self-hides on the hub and for parents. */}
+            <HubModeToggle />
+
             {/* Messages Button — pill chrome with soft-rose unread badge */}
             <button
               onClick={handleMessagesClick}

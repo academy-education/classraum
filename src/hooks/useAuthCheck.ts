@@ -50,8 +50,11 @@ export function useAuthCheck(options: AuthCheckOptions = { requireAuth: true }) 
         setAuthError(`Unauthorized role: ${role}`)
         options.onAuthFail?.()
         
-        // Smart redirect based on role
-        if (role === 'student' || role === 'parent') {
+        // Smart redirect based on role. Students bounce to the
+        // Grades/Study hub; parents skip the hub.
+        if (role === 'student') {
+          router.replace('/mobile/start')
+        } else if (role === 'parent') {
           router.replace('/mobile')
         } else if (role === 'manager' || role === 'teacher') {
           router.replace('/dashboard')

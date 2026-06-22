@@ -3867,7 +3867,43 @@
     "unknownStudent": "Unknown Student",
     "unknown": "Unknown"
   },
+  "study": {
+    "gate": {
+      "loading": "Loading your study space...",
+      "signInRequired": "Please sign in to access Study.",
+      "expiredTitle": "Your study access has expired",
+      "cancelledTitle": "Your study subscription was cancelled",
+      "renewBody": "Renew to continue your sessions and keep your saved progress.",
+      "renewSoon": "Renewal coming soon."
+    },
+    "landing": {
+      "eyebrow": "Study",
+      "title": "What do you want to learn?",
+      "subtitle": "Pick a topic to start a session — chat, practice, lessons, or flashcards.",
+      "recommendedTitle": "Recommended for you",
+      "recommendedEmpty": "We'll suggest topics here once you've studied for a bit.",
+      "browseTitle": "Browse subjects",
+      "loading": "Loading subjects...",
+      "freeformTitle": "Or type anything",
+      "freeformPlaceholder": "e.g. \"World War 2\" or \"quadratic equations\"",
+      "freeformHint": "AI will figure out the subject and start a session."
+    }
+  },
   "mobile": {
+    "hub": {
+      "eyebrow": "What's next?",
+      "greeting": "Welcome back",
+      "greetingNamed": "Hi, {name}",
+      "subtitle": "Pick where you want to go today.",
+      "gradesTitle": "Grades & schedule",
+      "gradesBody": "Today's sessions, assignments, attendance, reports and invoices.",
+      "studyTitle": "Study",
+      "studyBody": "Practice, get tutoring, and work on weak areas with an AI tutor.",
+      "aiBadge": "AI",
+      "toggleHint": "You can switch between modes any time from the header.",
+      "switchToStudy": "Study",
+      "switchToGrades": "Grades"
+    },
     "header": {
       "viewingAsParent": "Viewing as parent",
       "switchChild": "Switch child"

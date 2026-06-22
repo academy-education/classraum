@@ -40,8 +40,14 @@ export default function AppRootPage() {
 
         const userRole = userInfo.role
 
-        // Redirect based on role (only if not already on target page)
-        if (userRole === 'student' || userRole === 'parent') {
+        // Redirect based on role (only if not already on target page).
+        // Students land on the Grades/Study hub; parents go straight to
+        // the Grades dashboard since Study is a student-only experience.
+        if (userRole === 'student') {
+          if (pathname !== '/mobile/start') {
+            router.replace('/mobile/start')
+          }
+        } else if (userRole === 'parent') {
           if (pathname !== '/mobile') {
             router.replace('/mobile')
           }

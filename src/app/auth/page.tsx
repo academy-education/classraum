@@ -242,9 +242,14 @@ export default function AuthPage() {
         const userRole = userInfo.role
         console.log('[Auth] User role detected:', userRole)
 
-        // Redirect based on role
-        if (userRole === 'student' || userRole === 'parent') {
-          console.log('[Auth] Redirecting student/parent to mobile')
+        // Redirect based on role. Students land on /mobile/start (the
+        // Grades/Study hub); parents skip the hub since Study is a
+        // student-only experience.
+        if (userRole === 'student') {
+          console.log('[Auth] Redirecting student to mobile hub')
+          router.replace('/mobile/start')
+        } else if (userRole === 'parent') {
+          console.log('[Auth] Redirecting parent to mobile dashboard')
           router.replace('/mobile')
         } else if (userRole === 'teacher') {
           console.log('[Auth] Redirecting teacher to classrooms')
