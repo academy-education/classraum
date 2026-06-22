@@ -1,7 +1,8 @@
 "use client"
 
 import { ReactNode, useEffect, useState } from 'react'
-import { Loader2, Lock } from 'lucide-react'
+import Link from 'next/link'
+import { Loader2, Lock, CreditCard } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -106,8 +107,6 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
   }
 
   if (state.kind === 'paywall') {
-    // Phase 0 placeholder. Phase 4 replaces the body with a real
-    // PortOne checkout component and removes the "TODO" comment.
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-6 text-center">
         <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
@@ -118,13 +117,16 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
             ? (t('study.gate.expiredTitle') ?? 'Your study access has expired')
             : (t('study.gate.cancelledTitle') ?? 'Your study subscription was cancelled')}
         </h1>
-        <p className="text-sm text-gray-500 max-w-sm">
+        <p className="text-sm text-gray-500 max-w-sm mb-6">
           {t('study.gate.renewBody') ?? 'Renew to continue your sessions and keep your saved progress.'}
         </p>
-        {/* TODO Phase 4: replace with PortOne checkout CTA. */}
-        <p className="mt-6 text-xs text-gray-400">
-          {t('study.gate.renewSoon') ?? 'Renewal coming soon.'}
-        </p>
+        <Link
+          href="/mobile/study/subscription"
+          className="inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+        >
+          <CreditCard className="w-4 h-4" />
+          {t('study.gate.renewCta') ?? 'Manage subscription'}
+        </Link>
       </div>
     )
   }

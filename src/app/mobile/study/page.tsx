@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
   Search, ChevronRight, ArrowRight,
-  History, GraduationCap, FileText
+  History, GraduationCap, FileText, CreditCard
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -136,7 +136,7 @@ function StudyLandingInner() {
 
   return (
     <div className="px-5 pt-6 pb-12 space-y-7">
-      {/* Header + history link */}
+      {/* Header + history / subscription links */}
       <header className="flex items-start justify-between gap-3">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
@@ -149,13 +149,22 @@ function StudyLandingInner() {
             {t('study.landing.subtitle')}
           </p>
         </div>
-        <Link
-          href="/mobile/study/history"
-          className="flex-shrink-0 inline-flex items-center gap-1.5 px-3 h-9 rounded-full bg-white border border-gray-200 text-xs font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition-colors"
-        >
-          <History className="w-3.5 h-3.5" />
-          {t('study.landing.history')}
-        </Link>
+        <div className="flex-shrink-0 flex items-center gap-1.5">
+          <Link
+            href="/mobile/study/history"
+            className="inline-flex items-center gap-1 px-2.5 h-9 rounded-full bg-white border border-gray-200 text-xs font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition-colors"
+            aria-label={String(t('study.landing.history'))}
+          >
+            <History className="w-3.5 h-3.5" />
+          </Link>
+          <Link
+            href="/mobile/study/subscription"
+            className="inline-flex items-center gap-1 px-2.5 h-9 rounded-full bg-white border border-gray-200 text-xs font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition-colors"
+            aria-label={String(t('study.subscription.title'))}
+          >
+            <CreditCard className="w-3.5 h-3.5" />
+          </Link>
+        </div>
       </header>
 
       {/* Recommended shelf — Phase 3, reads study_mastery + recent
