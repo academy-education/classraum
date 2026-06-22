@@ -4,6 +4,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { loadStudyPromptContext, renderTestPrepBlock } from '@/lib/study-prompt-context'
 
 /**
  * POST /api/study/practice/generate — produce a batch of practice
@@ -38,7 +39,12 @@ const ResponseSchema = z.object({
   questions: z.array(QuestionSchema).min(3).max(10),
 })
 
-const PROMPT_EN = (topic: string, grade: string | null, count: number) => `
+/**
+ * Subject-mode prompt — concept-focused practice with mixed formats.
+ * Test_prep topics get a different (longer) prompt below since their
+ * format constraints differ a lot from generic subject drilling.
+ */
+const SUBJECT_PROMPT_EN = (topic: string, grade: string | null, count: number) => `
 Generate ${count} practice questions for a student studying "${topic}"${grade ? ` at grade level ${grade}` : ''}.
 
 Rules:
@@ -50,7 +56,7 @@ Rules:
 - Stay strictly on the topic. No off-topic, age-inappropriate, or trick questions.
 `.trim()
 
-const PROMPT_KO = (topic: string, grade: string | null, count: number) => `
+const SUBJECT_PROMPT_KO = (topic: string, grade: string | null, count: number) => `
 "${topic}" 주제를 공부하는 학생을 위한 연습 문제 ${count}개를 생성하세요${grade ? ` (학년: ${grade})` : ''}.
 
 규칙:
@@ -60,6 +66,41 @@ const PROMPT_KO = (topic: string, grade: string | null, count: number) => `
 - 단답: 정답은 한두 단어 또는 단일 식. 여러 표현이 정답이 될 수 있는 모호한 문제는 피하세요.
 - 해설은 1-2문장. 일반 텍스트로, LaTeX이나 마크다운 사용 금지.
 - 주제에서 벗어나거나, 연령에 부적절하거나, 트릭 문제는 금지.
+- 모든 질문, 보기, 정답, 해설을 한국어로 작성하세요.
+`.trim()
+
+/**
+ * Test-prep prompt — same shape as subject prompt but with the
+ * test-specific format guidance block injected (passage length,
+ * choice count, section conventions, etc.) so the AI generates
+ * realistic test-shaped items instead of generic subject drills.
+ */
+const TEST_PROMPT_EN = (topic: string, count: number, formatBlock: string) => `
+Generate ${count} practice questions for a student preparing for: ${topic}.
+
+${formatBlock}
+
+Rules:
+- Match the test's actual question format above. Do not invent novel formats.
+- Mix difficulties (some easy, some medium, some hard) but stay within the test's real difficulty distribution.
+- Use exactly the choice count the test uses (5 for KSAT, 4 for SAT/TOEFL/IELTS/ACT-English/Reading/Science, 5 for ACT-Math). All "type" fields should be multiple_choice unless the test explicitly uses true_false or short_answer.
+- For multiple_choice: wrong answers should reflect common mistakes a student of this level would make, not nonsense.
+- Explanations: 1-2 sentences. Plain text, no LaTeX, no markdown. Mention the test-specific trap when relevant ("a common SAT trap is...", "many students miss this because...").
+- Stay strictly on the test's curriculum. No off-topic, age-inappropriate, or trick questions.
+`.trim()
+
+const TEST_PROMPT_KO = (topic: string, count: number, formatBlock: string) => `
+다음 시험을 준비하는 학생을 위한 연습 문제 ${count}개를 생성하세요: ${topic}.
+
+${formatBlock}
+
+규칙:
+- 위에서 설명한 실제 시험 형식을 그대로 따르세요. 새로운 형식을 만들지 마세요.
+- 난이도를 섞으세요(easy / medium / hard). 단, 해당 시험의 실제 난이도 분포 내에서.
+- 시험의 실제 보기 개수를 사용하세요(수능은 5지, SAT/TOEFL/IELTS/ACT-영어·읽기·과학은 4지, ACT-수학은 5지). 시험이 명시적으로 참거짓이나 단답을 쓰지 않으면 모든 "type" 필드는 multiple_choice로 작성하세요.
+- 객관식: 오답은 해당 수준 학생이 흔히 하는 실수여야 합니다.
+- 해설: 1-2문장, 일반 텍스트, LaTeX/마크다운 금지. 시험 특유의 함정을 언급하면 좋습니다("수능의 흔한 함정은...", "이 문제에서 학생들이 자주 틀리는 이유는...").
+- 시험 범위에서 벗어나거나, 연령에 부적절하거나, 트릭 문제는 금지.
 - 모든 질문, 보기, 정답, 해설을 한국어로 작성하세요.
 `.trim()
 
@@ -105,38 +146,68 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session is not in practice mode' }, { status: 400 })
   }
 
-  // Topic context for the prompt.
+  // Topic context. Test-prep topics get a richer prompt with the
+  // test's actual question-format guidance; subject topics keep the
+  // existing concept-focused prompt. Free-form sessions (no topic_id)
+  // fall through to the subject prompt with just the typed query.
+  const lang = session.language as 'en' | 'ko'
   let topicName: string | null = session.topic_freeform ?? null
   let gradeRange: string | null = null
+  let testPrepBlock = ''
   if (session.topic_id) {
-    const { data: topic } = await supabaseAdmin
-      .from('study_topics')
-      .select('name_en, name_ko, grade_min, grade_max')
-      .eq('id', session.topic_id)
-      .maybeSingle()
-    if (topic) {
-      topicName = session.language === 'ko' ? topic.name_ko : topic.name_en
-      if (topic.grade_min && topic.grade_max) gradeRange = `${topic.grade_min}-${topic.grade_max}`
-      else if (topic.grade_min) gradeRange = `${topic.grade_min}+`
+    const ctx = await loadStudyPromptContext(session.topic_id, lang)
+    if (ctx) {
+      topicName = ctx.topicName
+      gradeRange = ctx.gradeRange
+      testPrepBlock = renderTestPrepBlock(ctx, lang)
+      // For test prep, "topic" in the prompt should read like the
+      // human-friendly path ("SAT — Math") so the model has both
+      // the test and the section nailed down.
+      if (ctx.category === 'test_prep' && ctx.testSection) {
+        topicName = lang === 'ko'
+          ? `${capitalizeTestName(ctx.testFamily)} — ${ctx.testSection}`
+          : `${capitalizeTestName(ctx.testFamily)} — ${ctx.testSection}`
+      }
     }
   }
   if (!topicName) {
     return NextResponse.json({ error: 'session has no topic' }, { status: 400 })
   }
 
+  const prompt = testPrepBlock
+    ? (lang === 'ko'
+        ? TEST_PROMPT_KO(topicName, count, testPrepBlock)
+        : TEST_PROMPT_EN(topicName, count, testPrepBlock))
+    : (lang === 'ko'
+        ? SUBJECT_PROMPT_KO(topicName, gradeRange, count)
+        : SUBJECT_PROMPT_EN(topicName, gradeRange, count))
+
   const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
   try {
     const result = await generateObject({
       model: openai('gpt-4o-mini'),
       schema: ResponseSchema,
-      prompt: session.language === 'ko'
-        ? PROMPT_KO(topicName, gradeRange, count)
-        : PROMPT_EN(topicName, gradeRange, count),
+      prompt,
       temperature: 0.7,
     })
     return NextResponse.json({ questions: result.object.questions })
   } catch (err) {
     console.error('[practice/generate]', err)
     return NextResponse.json({ error: 'generation failed' }, { status: 502 })
+  }
+}
+
+/** Pretty test name for the prompt's topic line. */
+function capitalizeTestName(family: import('@/lib/study-prompt-context').TestFamily | null): string {
+  switch (family) {
+    case 'ksat':  return 'KSAT (수능)'
+    case 'sat':   return 'SAT'
+    case 'toefl': return 'TOEFL'
+    case 'toeic': return 'TOEIC'
+    case 'ielts': return 'IELTS'
+    case 'act':   return 'ACT'
+    case 'ap':    return 'AP'
+    case 'gre':   return 'GRE'
+    default:      return 'Test Prep'
   }
 }
