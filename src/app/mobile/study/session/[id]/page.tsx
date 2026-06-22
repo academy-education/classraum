@@ -9,6 +9,7 @@ import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { ChatSession } from './ChatSession'
 import { PracticeSession } from './PracticeSession'
+import { LessonSession } from './LessonSession'
 
 /**
  * /mobile/study/session/[id] — active study session viewer.
@@ -146,6 +147,14 @@ function SessionInner({ id }: { id: string }) {
       <div className="flex flex-col h-full bg-gray-50">
         {header}
         <PracticeSession sessionId={session.id} language={session.language} />
+      </div>
+    )
+  }
+  if (session.mode === 'lesson') {
+    return (
+      <div className="flex flex-col h-full bg-gray-50">
+        {header}
+        <LessonSession sessionId={session.id} language={session.language} />
       </div>
     )
   }
