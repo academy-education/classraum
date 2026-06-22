@@ -9,6 +9,7 @@ import {
   renderTestPrepBlock,
   type TestFamily,
 } from '@/lib/study-prompt-context'
+import { renderTestSpec, defaultsForTestSection } from '@/lib/test-specs'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -178,19 +179,28 @@ export async function POST(req: NextRequest) {
     } catch { /* fall through */ }
   }
 
-  // Build the prompt context.
+  // Build the prompt context. For test-prep we prefer the detailed
+  // hand-curated spec from lib/test-specs.ts over the generic per-
+  // test guidance block — the spec library nails section-specific
+  // counts/timing/distractor patterns the model otherwise gets wrong.
   const lang = session.language as 'en' | 'ko'
   let topicName: string | null = session.topic_freeform ?? null
   let gradeRange: string | null = null
   let testPrepBlock = ''
   let family: TestFamily | null = null
+  let sectionLabel: string | null = null
   if (session.topic_id) {
     const ctx = await loadStudyPromptContext(session.topic_id, lang)
     if (ctx) {
       topicName = ctx.topicName
       gradeRange = ctx.gradeRange
-      testPrepBlock = renderTestPrepBlock(ctx, lang)
       family = ctx.testFamily
+      sectionLabel = ctx.testSection
+      // Prefer the detailed spec; fall back to the generic block when
+      // we don't have one for this family (e.g. a test we haven't
+      // curated yet).
+      testPrepBlock = renderTestSpec(family, sectionLabel, lang)
+        || renderTestPrepBlock(ctx, lang)
       if (ctx.category === 'test_prep' && ctx.testSection) {
         topicName = `${prettyTest(family)} — ${ctx.testSection}`
       }
@@ -198,7 +208,11 @@ export async function POST(req: NextRequest) {
   }
   if (!topicName) return NextResponse.json({ error: 'session has no topic' }, { status: 400 })
 
-  const { count, minutes } = defaultsForFamily(family)
+  // Test-prep generation prefers the spec library's per-section
+  // count/timing (matches the real exam) over the per-family default.
+  const { count, minutes } = family
+    ? defaultsForTestSection(family, sectionLabel)
+    : defaultsForFamily(null)
   const prompt = testPrepBlock
     ? (lang === 'ko'
         ? TEST_PROMPT_KO(topicName, count, minutes, testPrepBlock)
@@ -207,13 +221,18 @@ export async function POST(req: NextRequest) {
         ? SUBJECT_PROMPT_KO(topicName, gradeRange, count, minutes)
         : SUBJECT_PROMPT_EN(topicName, gradeRange, count, minutes))
 
+  // Model selection: test prep gets the full gpt-4o (better recall
+  // of recent test format changes, follows the spec block more
+  // reliably). Generic subject tests stay on gpt-4o-mini to keep
+  // cost down.
   const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  const model = family ? openai('gpt-4o') : openai('gpt-4o-mini')
   try {
     const result = await generateObject({
-      model: openai('gpt-4o-mini'),
+      model,
       schema: TestSchema,
       prompt,
-      temperature: 0.5,
+      temperature: 0.4,
     })
     const test = result.object
 
@@ -225,7 +244,7 @@ export async function POST(req: NextRequest) {
         content: CACHED_TEST_MARKER + JSON.stringify(test),
         tokens_in: result.usage?.inputTokens ?? 0,
         tokens_out: result.usage?.outputTokens ?? 0,
-        model: 'gpt-4o-mini',
+        model: family ? 'gpt-4o' : 'gpt-4o-mini',
       })
 
     return NextResponse.json({ test, cached: false })
