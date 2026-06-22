@@ -36,23 +36,28 @@ export interface RefreshTarget {
   displayNameKo?: string
 }
 
+/** Zod schema is intentionally permissive — strict constraints kept
+ *  failing on edge cases like SAT Math (which has SPR items mixed with
+ *  MC, confusing the model about what choiceCount to report) or on
+ *  Korean fields the model translated tersely. We validate loosely here
+ *  and clamp/coerce in the post-extraction step instead. */
 const SectionSpecSchema = z.object({
   name_en: z.string(),
-  name_ko: z.string(),
+  name_ko: z.string().optional().default(''),
   questionsPerSection: z.number().int().min(1).max(300),
   minutesPerSection: z.number().int().min(5).max(240),
-  choiceCount: z.union([z.literal(4), z.literal(5)]),
-  patterns_en: z.string().min(80),
-  patterns_ko: z.string().min(40),
-  distractorPatterns_en: z.string().min(80),
-  distractorPatterns_ko: z.string().min(40),
+  choiceCount: z.number().int().min(2).max(5), // coerced to 4|5 below
+  patterns_en: z.string(),
+  patterns_ko: z.string().optional().default(''),
+  distractorPatterns_en: z.string(),
+  distractorPatterns_ko: z.string().optional().default(''),
   difficultyMix: z.object({
     easy: z.number().min(0).max(1),
     medium: z.number().min(0).max(1),
     hard: z.number().min(0).max(1),
   }).optional(),
-  hardItemFraming_en: z.string().min(80).optional(),
-  hardItemFraming_ko: z.string().min(40).optional(),
+  hardItemFraming_en: z.string().optional(),
+  hardItemFraming_ko: z.string().optional(),
 })
 
 interface RefreshResult {
@@ -77,9 +82,9 @@ Use web search to find the CURRENT official format. STRONGLY prefer the test mak
 
 Report your findings in plain prose. Include:
 - Exact section name (in English and Korean if commonly known — for non-Korean tests, transliterate or descriptively translate)
-- TOTAL questions in the FULL SECTION. NOT per-module or per-passage. If the test is delivered as multiple modules (Digital SAT) or parts, sum them. e.g. SAT Math = 44 (NOT 22).
-- TOTAL minutes for the FULL SECTION
-- If the section is modular, separately note that structure
+- **CRITICAL — TOTAL questions in the FULL SECTION across ALL modules/parts/components.** The Digital SAT is delivered as 2 adaptive MODULES per section. If the College Board docs say "Module 1: 27 questions in 32 minutes" you MUST sum: full Reading & Writing section = 54 questions in 64 minutes (NOT 27 in 32). Same for Math: full section = 44 questions in 70 minutes (NOT 22 in 35). Do this even if the docs only describe one module at a time. The student takes BOTH modules; we are generating a full section practice test.
+- **CRITICAL — TOTAL minutes for the FULL SECTION** (sum modules)
+- If the section is modular, also note the module structure separately, but the headline numbers are full section sums
 - Number of choices per MCQ (4 or 5; if free-response only, pick 4 as default)
 - Major question patterns / categories with approximate weights
 - Common distractor (wrong-answer) design patterns
@@ -169,10 +174,40 @@ export async function refreshTestSpec(
       prompt: EXTRACT_PROMPT(researchText),
       temperature: 0.1,
     })
-    spec = result.object as SectionSpec
+    spec = coerceSpec(result.object as SectionSpec)
   } catch (err) {
-    await markAttempt(family, sectionKey, `extraction failed: ${(err as Error).message ?? 'unknown'}`)
-    return { family, sectionKey, ok: false, notes: 'extraction failed', sources: citedUrls }
+    // Extraction failures are usually a model dropping a required field
+    // entirely. Retry once on gpt-4o (more capable extractor) before
+    // giving up.
+    console.error(`[test-spec-refresh] extraction failed on mini, retrying on gpt-4o: ${(err as Error).message}`)
+    try {
+      const retry = await generateObject({
+        model: openai('gpt-4o'),
+        schema: SectionSpecSchema,
+        prompt: EXTRACT_PROMPT(researchText),
+        temperature: 0.1,
+      })
+      spec = coerceSpec(retry.object as SectionSpec)
+    } catch (retryErr) {
+      const msg = (retryErr as Error).message ?? 'unknown'
+      console.error(`[test-spec-refresh] extraction failed on retry too`, { family, sectionKey, msg, researchTextLength: researchText.length })
+      await markAttempt(family, sectionKey, `extraction failed: ${msg.slice(0, 200)}`)
+      return { family, sectionKey, ok: false, notes: `extraction failed: ${msg.slice(0, 100)}`, sources: citedUrls }
+    }
+  }
+
+  // Sanity check against hardcoded baseline. If the extraction looks
+  // worse than what we already have (e.g. per-module numbers for a
+  // section we know is multi-module), reject and keep the baseline.
+  const baselineFamilyFromMap = (TEST_SPECS as Record<string, typeof TEST_SPECS[keyof typeof TEST_SPECS]>)[family]
+  const baseline = baselineFamilyFromMap?.sections.find(
+    (sec: SectionSpec) => sec.name_en === sectionKey || sec.name_ko === sectionKey
+  )
+  const sanity = isPlausibleExtraction(spec, family, sectionKey, baseline)
+  if (!sanity.ok) {
+    console.error(`[test-spec-refresh] sanity check failed; keeping baseline`, { family, sectionKey, reason: sanity.reason })
+    await markAttempt(family, sectionKey, `sanity check failed: ${sanity.reason}`)
+    return { family, sectionKey, ok: false, notes: `sanity check failed: ${sanity.reason}`, sources: citedUrls }
   }
 
   // Preserve hardItemExamples from any prior refresh — they're a
@@ -210,7 +245,19 @@ You are gathering representative HARD practice items for a standardized test sec
 Test: ${target.displayName}
 Section: ${target.sectionKey}
 
-Goal: find ${count}-${count + 5} concrete published practice items from authoritative sources, focusing on items the test maker rates as harder difficulty. Prefer the test maker's own released items (College Board's released SAT/AP practice tests, ETS sample questions, KICE 평가원 모의평가 released PDFs, ACT released items, British Council IELTS sample questions, etc.). Skip items that depend on copyrighted figures, audio, or images that can't be reproduced in plain text.
+Goal: find ${count}-${count + 5} concrete published practice items from THE TEST MAKER ITSELF, focusing on items the test maker rates as harder difficulty.
+
+HARD REQUIREMENT — source whitelist. Only use items from the test maker's OWN released materials. Acceptable sources include:
+- SAT: collegeboard.org released Bluebook practice tests, the official Digital SAT practice item PDFs (NOT Khan Academy)
+- AP: collegeboard.org released exams or official Course and Exam Description sample items
+- TOEFL / TOEIC / GRE: ets.org sample questions, official guides, released exam PDFs
+- IELTS: ielts.org, British Council, IDP, Cambridge Assessment sample tests
+- ACT: act.org released practice tests
+- KSAT: 평가원 (KICE) 모의평가 / 수능 PDFs, suneung.re.kr
+
+DO NOT USE: Khan Academy, Princeton Review, Kaplan, Magoosh, PrepScholar, Manhattan Prep, Varsity Tutors, blog posts, Reddit, YouTube transcripts, or any third-party prep site. Their answer keys have errors and their items don't match official difficulty calibration. If you can only find items on third-party sites, return what you have but explicitly mark the shortfall — better to return 2 items from the test maker than 10 from prep sites.
+
+Skip items that depend on copyrighted figures, audio, or images that can't be reproduced cleanly in plain text. Skip free-response / student-produced-response items — only include items with 4 or 5 multiple choice options.
 
 For each item, report:
 - The full problem prompt as plain text (translate any LaTeX to Unicode: x², √(2), π, ½, etc.)
@@ -236,7 +283,10 @@ End with a "Sources:" line listing the URLs you used.
 
 const SampleItemSchema = z.object({
   prompt: z.string(),
-  choices: z.array(z.string()).min(4).max(5),
+  // Permissive: SPR (free-response) items come back with [] — we filter
+  // them out below since our generator only does MC. Validating strictly
+  // here would reject the whole batch when one SPR item slips in.
+  choices: z.array(z.string()),
   correct_answer: z.string(),
   difficulty: z.enum(['easy', 'medium', 'hard']),
   why_hard: z.string(),
@@ -325,15 +375,19 @@ export async function refreshTestSpecExamples(
     return { family, sectionKey, ok: false, notes: 'extraction failed', sources: citedUrls, examplesAdded: 0 }
   }
 
-  if (items.length === 0) {
-    return { family, sectionKey, ok: false, notes: 'no items extracted', sources: citedUrls, examplesAdded: 0 }
+  // Filter out SPR / free-response items (empty choices) and any item
+  // with fewer than 4 choices — our generator only does MC.
+  const mcItems = items.filter(it => it.choices.length >= 4 && it.choices.length <= 5)
+  if (mcItems.length === 0) {
+    await markAttempt(family, sectionKey, `samples: extracted ${items.length} items but none were MC`)
+    return { family, sectionKey, ok: false, notes: `${items.length} items extracted, 0 MC`, sources: citedUrls, examplesAdded: 0 }
   }
 
   // Step 3: verify each item's answer key + actual difficulty via the
   // same verifier the generator uses. We only keep items the verifier
   // rates as hard with high confidence — same bar as we'd hold our own
   // generated items to.
-  const asQuestions: Question[] = items.map(it => ({
+  const asQuestions: Question[] = mcItems.map(it => ({
     prompt: it.prompt,
     type: 'multiple_choice' as const,
     choices: it.choices,
@@ -346,15 +400,14 @@ export async function refreshTestSpecExamples(
   const verifiedHard = verifyResult.kept.filter(q => q.difficulty === 'hard')
 
   if (verifiedHard.length === 0) {
-    // Mark attempt so admin can see "tried but nothing survived"
-    await markAttempt(family, sectionKey, `examples: 0 of ${items.length} extracted items verified as hard`)
+    await markAttempt(family, sectionKey, `examples: 0 of ${mcItems.length} MC items verified as hard`)
     return { family, sectionKey, ok: false, notes: 'no items verified as hard', sources: citedUrls, examplesAdded: 0 }
   }
 
   // Step 4: format as inline exemplars (matches the hand-curated format
   // already in TEST_SPECS so the prompt template doesn't change)
   const exemplarsEn = verifiedHard.map((q, i) => {
-    const item = items.find(it => it.prompt === q.prompt)
+    const item = mcItems.find(it => it.prompt === q.prompt)
     const source = item?.source_url ? ` (source: ${item.source_url})` : ''
     return `EXAMPLE ${i + 1}${source}:
 Prompt: "${q.prompt}"
@@ -411,19 +464,71 @@ Why hard: ${q.explanation}`
   return { family, sectionKey, ok: true, notes: `added ${exemplarsEn.length} hard examples`, sources: citedUrls, examplesAdded: exemplarsEn.length }
 }
 
+/** Post-extraction cleanup: coerce loosely-typed model output into the
+ *  canonical SectionSpec shape (clamp choiceCount, ensure 4 if the
+ *  model returned something weird like 3 for a 25%-SPR section). */
+function coerceSpec(s: SectionSpec): SectionSpec {
+  const cc = s.choiceCount === 5 ? 5 : 4 // default to 4 for anything non-5
+  return { ...s, choiceCount: cc }
+}
+
+/** Sanity-check the extracted spec against the hardcoded baseline.
+ *  If the model returned per-module numbers when we KNOW the section
+ *  is multi-module (Digital SAT), reject the extraction so we don't
+ *  overwrite a correct hardcoded value with worse data. */
+function isPlausibleExtraction(
+  s: SectionSpec,
+  family: string,
+  sectionKey: string,
+  baseline: SectionSpec | undefined
+): { ok: boolean; reason: string } {
+  if (!baseline) return { ok: true, reason: '' }
+  // If extracted questions count is less than half the baseline AND
+  // baseline > 30, assume the model returned per-module numbers.
+  if (baseline.questionsPerSection >= 30 && s.questionsPerSection < baseline.questionsPerSection * 0.7) {
+    return {
+      ok: false,
+      reason: `extracted ${s.questionsPerSection} Q vs baseline ${baseline.questionsPerSection} — likely per-module not full section`,
+    }
+  }
+  return { ok: true, reason: '' }
+}
+
 async function markAttempt(family: string, sectionKey: string, notes: string) {
   const now = new Date().toISOString()
-  await supabaseAdmin
+  // Check if a row already exists — if so, DO NOT overwrite spec or
+  // sources. We're only recording that we tried and failed. The old
+  // upsert was clobbering a successful format refresh whenever the
+  // samples pass failed.
+  const { data: existing } = await supabaseAdmin
     .from('study_test_specs')
-    .upsert({
-      family,
-      section_key: sectionKey,
-      spec: {},
-      sources: [],
-      last_attempted_at: now,
-      verifier_notes: notes,
-      updated_at: now,
-    }, { onConflict: 'family,section_key', ignoreDuplicates: false })
+    .select('family')
+    .eq('family', family)
+    .eq('section_key', sectionKey)
+    .maybeSingle()
+  if (existing) {
+    await supabaseAdmin
+      .from('study_test_specs')
+      .update({
+        last_attempted_at: now,
+        verifier_notes: notes,
+        updated_at: now,
+      })
+      .eq('family', family)
+      .eq('section_key', sectionKey)
+  } else {
+    await supabaseAdmin
+      .from('study_test_specs')
+      .insert({
+        family,
+        section_key: sectionKey,
+        spec: {},
+        sources: [],
+        last_attempted_at: now,
+        verifier_notes: notes,
+        updated_at: now,
+      })
+  }
 }
 
 /**
