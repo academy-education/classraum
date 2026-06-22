@@ -54,27 +54,27 @@ export interface TestSpec {
 export const TEST_SPECS: Partial<Record<TestFamily, TestSpec>> = {
   sat: {
     display: 'Digital SAT',
-    framing_en: 'The College Board\'s Digital SAT (post-March 2024). Adaptive 2-module format; section difficulty varies based on Module 1 performance.',
-    framing_ko: 'College Board의 디지털 SAT (2024년 3월 이후). 2개 모듈 적응형 — 모듈 1 성적에 따라 모듈 2 난이도가 결정됩니다.',
+    framing_en: 'The College Board\'s Digital SAT (post-March 2024). Each section is delivered as TWO adaptive modules (difficulty of module 2 depends on module 1 performance). Full test = 98 questions across 134 minutes: R&W (54 Q / 64 min, two 27-Q / 32-min modules) + Math (44 Q / 70 min, two 22-Q / 35-min modules). For a full-section practice test, generate ALL 54 (R&W) or 44 (Math) questions — that\'s what a real student sees.',
+    framing_ko: 'College Board의 디지털 SAT (2024년 3월 이후). 각 영역은 2개의 적응형 모듈로 구성(모듈 2의 난이도는 모듈 1 성적에 따라 결정). 전체 시험 = 98문항 / 134분: 읽기·쓰기(54문항 / 64분, 27문항·32분짜리 모듈 2개) + 수학(44문항 / 70분, 22문항·35분짜리 모듈 2개). 한 영역 모의고사는 전체 54문항(읽기·쓰기) 또는 44문항(수학) 생성 — 실제 학생이 보는 분량.',
     sections: [
       {
         name_en: 'Reading & Writing',
         name_ko: '읽기와 쓰기',
-        questionsPerSection: 27,
-        minutesPerSection: 32,
+        questionsPerSection: 54,
+        minutesPerSection: 64,
         choiceCount: 4,
-        patterns_en: 'Each question is paired with a SHORT passage (25-150 words) and a single question. Categories: Information & Ideas (~26%) — main idea, supporting details, inference, command of evidence. Craft & Structure (~28%) — words in context, text structure, cross-text connections, purpose. Expression of Ideas (~20%) — rhetorical synthesis (use bullet notes to fulfill a goal), transitions. Standard English Conventions (~26%) — sentence boundaries, agreement, punctuation, modifier placement. Questions are in increasing difficulty within each module.',
-        patterns_ko: '각 문제는 짧은 지문(25-150단어)과 1개 문제로 구성됩니다. 분류: Information & Ideas (~26%) — 주제, 세부사항, 추론, 근거 명령. Craft & Structure (~28%) — 문맥 어휘, 글의 구조, 글 간 연결, 목적. Expression of Ideas (~20%) — 수사적 종합(불릿 노트로 목표 달성), 전환어. Standard English Conventions (~26%) — 문장 경계, 일치, 구두점, 수식어 위치. 각 모듈 안에서 난이도가 상승.',
+        patterns_en: 'Full section = 54 questions across 64 min (two 27-Q / 32-min adaptive modules). Each question pairs a SHORT passage (25-150 words) with a single question — no multi-question passages. Categories: Information & Ideas (~26%) — main idea, supporting details, inference, command of evidence. Craft & Structure (~28%) — words in context, text structure, cross-text connections, purpose. Expression of Ideas (~20%) — rhetorical synthesis (use bullet notes to fulfill a goal), transitions. Standard English Conventions (~26%) — sentence boundaries, agreement, punctuation, modifier placement. Difficulty rises within each module — module 2 hard items pair dense academic prose with subtle distinctions.',
+        patterns_ko: '전체 영역 = 54문항 / 64분 (27문항·32분 적응형 모듈 2개). 각 문제는 짧은 지문(25-150단어)과 단일 문제로 구성 — 한 지문에 여러 문항 없음. 분류: Information & Ideas (~26%) — 주제, 세부사항, 추론, 근거 명령. Craft & Structure (~28%) — 문맥 어휘, 글의 구조, 글 간 연결, 목적. Expression of Ideas (~20%) — 수사적 종합(불릿 노트로 목표 달성), 전환어. Standard English Conventions (~26%) — 문장 경계, 일치, 구두점, 수식어 위치. 각 모듈 안에서 난이도 상승 — 모듈 2 어려운 문항은 학술적 산문에 미묘한 차이.',
         distractorPatterns_en: 'Wrong answers should be: (1) extreme/absolute restatements of a moderate claim, (2) facts true in the world but unsupported by the passage, (3) plausible but uses a word the passage explicitly rejects, (4) the "trap" choice that summarizes only the first sentence of a passage that pivots later.',
         distractorPatterns_ko: '오답은 다음과 같아야 합니다: (1) 중간 정도의 주장을 극단적·절대적으로 바꾼 표현, (2) 현실에서는 맞지만 지문에는 근거 없음, (3) 그럴듯하지만 지문이 명시적으로 거부한 단어 사용, (4) 지문이 중간에 전환되는데 첫 문장만 요약한 함정 선택지.',
       },
       {
         name_en: 'Math',
         name_ko: '수학',
-        questionsPerSection: 22,
-        minutesPerSection: 35,
+        questionsPerSection: 44,
+        minutesPerSection: 70,
         choiceCount: 4,
-        patterns_en: 'Mix of multiple choice and student-produced response (SPR). For multiple-choice generation, stick to MC. Categories: Algebra (~35%) — linear equations, inequalities, systems, absolute value. Advanced Math (~35%) — quadratics, exponentials, polynomials, rational expressions. Problem Solving & Data Analysis (~15%) — ratios, percentages, probability, scatterplots, two-way tables. Geometry & Trigonometry (~15%) — lines/angles, triangles, circles, area/volume, right-triangle trig. Calculator is permitted on every question via the built-in Desmos.',
+        patterns_en: 'Full section = 44 questions across 70 min (two 22-Q / 35-min adaptive modules). Mix of multiple choice and student-produced response (SPR ~25%). For multiple-choice generation, stick to MC. Categories: Algebra (~35%) — linear equations, inequalities, systems, absolute value. Advanced Math (~35%) — quadratics, exponentials, polynomials, rational expressions. Problem Solving & Data Analysis (~15%) — ratios, percentages, probability, scatterplots, two-way tables. Geometry & Trigonometry (~15%) — lines/angles, triangles, circles, area/volume, right-triangle trig. Calculator (built-in Desmos) on every question. Most questions are CONTEXTUALIZED word problems with real-world setups (revenue/cost models, science data, mixture problems), not bare-symbol arithmetic. Difficulty rises within each module — module 2 hard items genuinely require multi-step reasoning + non-obvious setup.',
         patterns_ko: '객관식 + 학생 단답형(SPR) 혼합. 객관식 생성에서는 MC만. 분류: 대수 (~35%) — 1차방정식·부등식·연립·절댓값. 고급 수학 (~35%) — 이차·지수·다항식·유리식. 문제 해결·자료 분석 (~15%) — 비율·백분율·확률·산점도·이원 분할표. 기하·삼각법 (~15%) — 직선·각·삼각형·원·넓이·부피·직각삼각형 삼각비. 모든 문제에서 데스모스 계산기 사용 가능.',
         distractorPatterns_en: 'Wrong answers should encode specific arithmetic / sign / order-of-operations mistakes: (1) sign-flip (got x = -3 instead of 3), (2) off-by-one or off-by-coefficient, (3) used the wrong variable from the system, (4) the value of one intermediate step instead of the final answer.',
         distractorPatterns_ko: '오답은 구체적인 산술/부호/연산 순서 실수를 반영: (1) 부호 반전(x = 3 대신 x = -3), (2) 1 또는 계수 차이, (3) 연립에서 다른 변수의 값, (4) 최종 답이 아니라 중간 단계의 값.',
@@ -404,14 +404,14 @@ export function defaultsForTestSection(
         sectionLabel.includes(s.name_ko)
       ) ?? spec.sections[0]
     : spec.sections[0]
-  // For really long sections (KSAT Korean = 45 Q / 80 min), generate
-  // a half-section to keep AI cost + student attention manageable.
-  // Anything >30 questions gets halved.
-  const count = section.questionsPerSection > 30
-    ? Math.ceil(section.questionsPerSection / 2)
-    : section.questionsPerSection
-  const minutes = section.questionsPerSection > 30
-    ? Math.ceil(section.minutesPerSection / 2)
-    : section.minutesPerSection
+  // Cap really long sections (KSAT Korean = 45 Q / 80 min, TOEIC =
+  // 100 Q / section, IELTS Reading = 40 Q / 60 min) at 40 questions
+  // so generation stays under the model's output limits and the
+  // student stays under an hour. SAT sections (44 R&W / 54 Math)
+  // stay full because that's the real test length.
+  const HARD_CAP = 60
+  const count = Math.min(section.questionsPerSection, HARD_CAP)
+  const ratio = count / section.questionsPerSection
+  const minutes = Math.round(section.minutesPerSection * ratio)
   return { count, minutes, choiceCount: section.choiceCount }
 }

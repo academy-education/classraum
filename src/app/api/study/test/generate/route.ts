@@ -10,6 +10,13 @@ import {
   type TestFamily,
 } from '@/lib/study-prompt-context'
 import { renderTestSpecCached, defaultsForTestSectionCached } from '@/lib/test-spec-cache'
+import {
+  verifyAndCorrect,
+  sanitizeQuestion,
+  shuffleChoices,
+  dedupeByPrompt,
+  type Question,
+} from '@/lib/test-verify'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -41,7 +48,7 @@ const TestSchema = z.object({
   timeLimitMinutes: z.number().int().min(10).max(180),
   /** Optional section label (for KSAT: 국어/수학/영어; SAT: Math; etc.). */
   section: z.string().nullable(),
-  questions: z.array(QuestionSchema).min(10).max(40),
+  questions: z.array(QuestionSchema).min(10).max(70),
 })
 
 export type TestPayload = z.infer<typeof TestSchema>
@@ -96,21 +103,58 @@ const SUBJECT_PROMPT_KO = (topic: string, grade: string | null, count: number, m
 - 모든 텍스트는 한국어.
 `.trim()
 
-const TEST_PROMPT_EN = (topic: string, count: number, minutes: number, formatBlock: string) => `
+/**
+ * Few-shot anchor for SAT-Math-style HARD items. Models trained on
+ * "Khan Academy easy" tend to underweight what a real SAT hard item
+ * looks like — contextualized word problem + multi-step + non-obvious
+ * setup. Showing one example shifts the difficulty distribution.
+ */
+const SAT_MATH_HARD_ANCHOR = `
+Example of a real SAT Math HARD item (do NOT copy verbatim — match the style):
+  Prompt: "A farmer plants apple and pear trees. Each apple tree yields 80 kg of fruit per year and each pear tree yields 60 kg. The farmer needs at least 5,000 kg of total fruit per year and has space for at most 80 trees combined. If pears sell for $3/kg and apples for $2/kg, what is the minimum number of apple trees the farmer can plant while still meeting both constraints AND maximizing revenue?"
+  Choices: ["10", "20", "30", "40"]
+  Correct: "10"
+  Why hard: requires (a) translating two constraints into inequalities, (b) realizing revenue is maximized by ALL pears (60×80×3 = 14,400 > 80×80×2 = 12,800), (c) checking the constraint feasibility, (d) finding the minimum apple count consistent with both.
+
+This is the level of contextualization + reasoning a real SAT hard item demands. NOT "solve 2x+3=11".
+`.trim()
+
+const SAT_RW_HARD_ANCHOR = `
+Example of a real SAT R&W HARD item (do NOT copy verbatim — match the style):
+  Prompt: "The following text is adapted from Octavia Butler's 1979 novel Kindred. The narrator, a Black woman from 1976, has been pulled back in time. 'I had no idea where I was, no idea at all of what year it might be. There was nothing to indicate—' Which choice most logically completes the text?"
+  Choices: ["a sudden shift in the texture of the dirt road under her feet", "any landmark that would tell her she had returned to her own century", "the presence of unfamiliar people just over the rise", "a clear plan for how she might find help"]
+  Correct: "any landmark that would tell her she had returned to her own century"
+  Why hard: the trap "presence of unfamiliar people" matches the surface theme of being lost, but only "landmark... own century" completes the LOGIC of "nothing to indicate WHAT YEAR".
+
+This is the level of close-reading demand. NOT "the passage says X, what does X mean?".
+`.trim()
+
+const TEST_PROMPT_EN = (topic: string, count: number, minutes: number, formatBlock: string, family: TestFamily | null, section: string | null) => {
+  const anchor = (() => {
+    if (family !== 'sat') return ''
+    if (section?.toLowerCase().includes('math')) return `\n\n${SAT_MATH_HARD_ANCHOR}\n`
+    if (section?.toLowerCase().includes('reading') || section?.toLowerCase().includes('writing')) return `\n\n${SAT_RW_HARD_ANCHOR}\n`
+    return ''
+  })()
+  return `
 Build a ${minutes}-minute timed mock test with exactly ${count} questions for: ${topic}.
 
-${formatBlock}
+${formatBlock}${anchor}
 
 Rules:
 - Match the test's REAL format exactly. Choice count per the format block above (5 for KSAT, 4 for SAT/TOEFL/IELTS/ACT-English/Reading/Science, 5 for ACT-Math). Stick to multiple_choice.
 - The mix of question patterns should reflect what the section actually tests (e.g. SAT R&W: ~30% inference, ~25% main idea, ~20% rhetorical synthesis, ~25% grammar/vocab in context).
-- Mix difficulties matching the real test's distribution. Hard SAT questions should genuinely require multi-step reasoning, not just longer arithmetic.
+- Difficulty distribution MUST include roughly 20% HARD items. A "hard" item is NOT just a longer easy item — it requires multi-step reasoning, subtle distinctions, or non-obvious setup. If you cannot tell the difference between an easy and a hard item for this section, look at the anchor example above.
 - Wrong answers must reflect the EXACT trap patterns this test uses (e.g. SAT Math: forgetting a negative sign; TOEFL Reading: factually correct statement that doesn't match the passage).
+- Distribute the correct answer roughly evenly across positions A, B, C, D — do NOT cluster correct answers in position A. (This will be shuffled server-side too, but try.)
+- For math items: SHOW THE WORK in the explanation so the answer can be verified. Compute the answer twice independently in your head before committing.
+- Plain text only. Do NOT use LaTeX (\\( \\)), markdown, or HTML. Use Unicode for math: x², √(2), π, ½, ±, ×, ÷, °.
 - Each question is independent (no passage shared between questions unless the test's actual format does — TOEFL Reading 700-word passages with 10 questions each, IELTS 3 passages with 13-14 questions each).
-- Title should be specific ("SAT Math Module 1 — Practice Test 1").
+- Title should be specific ("Digital SAT Math — Full Section Practice 1").
 - timeLimitMinutes = ${minutes}; section = the section label.
-- Explanations: 1-2 sentences, plain text. Mention the trap when relevant.
+- Explanations: 1-2 sentences. Mention the trap when relevant.
 `.trim()
+}
 
 const TEST_PROMPT_KO = (topic: string, count: number, minutes: number, formatBlock: string) => `
 ${topic} ${minutes}분 모의고사를 정확히 ${count}문제로 만드세요.
@@ -120,12 +164,15 @@ ${formatBlock}
 규칙:
 - 시험의 실제 형식을 정확히 따르세요. 보기 개수는 위 블록대로(수능 5지, SAT/TOEFL/IELTS/ACT 영어·읽기·과학 4지, ACT 수학 5지). 모든 문제는 multiple_choice.
 - 문제 패턴 비율은 영역의 실제 출제 비율을 반영하세요(예: SAT R&W는 추론 ~30%, 주제 ~25%, 수사적 종합 ~20%, 문맥 문법·어휘 ~25%).
-- 난이도 분포는 실제 시험과 일치. 어려운 SAT 문제는 단순 긴 계산이 아니라 다단계 추론을 요구해야 합니다.
+- 난이도 분포에 어려운 문항 약 20%를 반드시 포함. 어려운 문항은 단순히 긴 계산이 아니라 다단계 추론, 미묘한 구분, 비자명한 설정을 요구해야 합니다.
 - 오답은 이 시험의 실제 함정 패턴을 정확히 반영해야 합니다(예: SAT 수학 — 음수 부호 빼먹기; TOEFL 독해 — 사실은 맞지만 지문과 다른 내용).
+- 정답을 A/B/C/D 위치에 골고루 배치하세요 — A에 몰지 마세요. (서버에서 셔플도 합니다.)
+- 수학 문항은 해설에 풀이를 보여서 답을 검증할 수 있게 하세요. 답을 적기 전에 머릿속에서 두 번 독립적으로 계산.
+- 일반 텍스트만. LaTeX(\\( \\)), 마크다운, HTML 금지. 수학은 유니코드 사용: x², √(2), π, ½, ±, ×, ÷, °.
 - 각 문제는 독립적(시험이 실제로 공유 지문을 쓰는 경우 예외 — TOEFL Reading 700단어 지문에 10문항, IELTS 3개 지문에 각 13-14문항).
-- 제목은 구체적("SAT 수학 모듈 1 — 모의고사 1").
+- 제목은 구체적("디지털 SAT 수학 — 전체 영역 모의고사 1").
 - timeLimitMinutes = ${minutes}; section = 영역 이름.
-- 해설: 1-2문장, 일반 텍스트. 함정이 있으면 언급.
+- 해설: 1-2문장. 함정이 있으면 언급.
 - 모든 텍스트는 한국어.
 `.trim()
 
@@ -213,28 +260,60 @@ export async function POST(req: NextRequest) {
   const { count, minutes } = family
     ? await defaultsForTestSectionCached(family, sectionLabel)
     : defaultsForFamily(null)
+  // Generate with a buffer so the verify pass can drop bad questions
+  // and we still hit the target count. 25% extra is enough headroom
+  // for typical drop rates (~5-15%).
+  const buffer = Math.max(3, Math.ceil(count * 0.25))
+  const generationCount = Math.min(70, count + buffer)
   const prompt = testPrepBlock
     ? (lang === 'ko'
-        ? TEST_PROMPT_KO(topicName, count, minutes, testPrepBlock)
-        : TEST_PROMPT_EN(topicName, count, minutes, testPrepBlock))
+        ? TEST_PROMPT_KO(topicName, generationCount, minutes, testPrepBlock)
+        : TEST_PROMPT_EN(topicName, generationCount, minutes, testPrepBlock, family, sectionLabel))
     : (lang === 'ko'
-        ? SUBJECT_PROMPT_KO(topicName, gradeRange, count, minutes)
-        : SUBJECT_PROMPT_EN(topicName, gradeRange, count, minutes))
+        ? SUBJECT_PROMPT_KO(topicName, gradeRange, generationCount, minutes)
+        : SUBJECT_PROMPT_EN(topicName, gradeRange, generationCount, minutes))
 
   // Model selection: test prep gets the full gpt-4o (better recall
   // of recent test format changes, follows the spec block more
   // reliably). Generic subject tests stay on gpt-4o-mini to keep
   // cost down.
-  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  const apiKey = process.env.OPENAI_API_KEY ?? ''
+  const openai = createOpenAI({ apiKey })
   const model = family ? openai('gpt-4o') : openai('gpt-4o-mini')
   try {
     const result = await generateObject({
       model,
       schema: TestSchema,
       prompt,
-      temperature: 0.4,
+      temperature: 0.2,
     })
-    const test = result.object
+    let questions = result.object.questions as Question[]
+
+    // Pipeline: sanitize LaTeX/markdown → dedupe → verify (drop wrong)
+    //         → shuffle choices → slice to exact target count
+    questions = questions.map(sanitizeQuestion)
+    questions = dedupeByPrompt(questions)
+    const mathHeavy = isMathHeavy(family, sectionLabel)
+    const verifyResult = await verifyAndCorrect(questions, apiKey, { mathHeavy })
+    questions = verifyResult.kept
+    questions = questions.map((q, i) => shuffleChoices(q, hashSession(sessionId) + i))
+    if (questions.length > count) questions = questions.slice(0, count)
+    console.log('[test/generate] pipeline', {
+      sessionId,
+      target: count,
+      generated: result.object.questions.length,
+      afterDedupe: result.object.questions.length - (result.object.questions.length - questions.length - verifyResult.dropped),
+      dropped: verifyResult.dropped,
+      corrected: verifyResult.corrected,
+      final: questions.length,
+    })
+
+    const test: TestPayload = {
+      title: result.object.title,
+      timeLimitMinutes: result.object.timeLimitMinutes,
+      section: result.object.section,
+      questions,
+    }
 
     await supabaseAdmin
       .from('study_messages')
@@ -252,6 +331,29 @@ export async function POST(req: NextRequest) {
     console.error('[test/generate]', err)
     return NextResponse.json({ error: 'generation failed' }, { status: 502 })
   }
+}
+
+/** Stable per-session hash for deterministic shuffles — same session
+ *  always yields the same shuffle so refreshes don't reorder choices. */
+function hashSession(id: string): number {
+  let h = 0
+  for (let i = 0; i < id.length; i++) {
+    h = ((h << 5) - h) + id.charCodeAt(i)
+    h |= 0
+  }
+  return h >>> 0
+}
+
+/** SAT Math, ACT Math, GRE Quant, KSAT Math, AP math/science — anything
+ *  where arithmetic correctness matters enough to pay for gpt-4o on
+ *  the verify pass. */
+function isMathHeavy(family: TestFamily | null, section: string | null): boolean {
+  if (!family) return false
+  if (family === 'gre') return section?.toLowerCase().includes('quant') ?? false
+  if (family === 'ap') return true // many APs have math; safer to default on
+  if (!section) return false
+  const s = section.toLowerCase()
+  return s.includes('math') || s.includes('수학') || s.includes('quant')
 }
 
 function prettyTest(family: TestFamily | null): string {

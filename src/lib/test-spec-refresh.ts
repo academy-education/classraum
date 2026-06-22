@@ -81,11 +81,16 @@ You may follow links from these pages to find more detailed format info. Do NOT 
 
 Report your findings in plain prose. Include:
 - Exact section name (in English and Korean if commonly known)
-- Total questions in the section
-- Total minutes for the section
+- TOTAL questions in the FULL SECTION (not per-module or per-passage — if the test is delivered as multiple modules like the Digital SAT, sum them up. e.g. SAT Math = 44, NOT 22.)
+- TOTAL minutes for the FULL SECTION (e.g. SAT Math = 70, NOT 35)
+- If the section is broken into modules or parts, also note that structure separately, but the headline numbers must be the full section
 - Number of choices per multiple-choice question (4 or 5)
 - The major question patterns / categories with approximate weights
 - Common distractor (wrong-answer) design patterns
+
+Sanity check before you submit:
+- Does the total time × questions divided yield a plausible per-question time? (SAT Math = 70 min / 44 Q ≈ 1.6 min — reasonable. If you get 30s/Q or 5min/Q, you probably mixed up units.)
+- Are your numbers per-section, not per-module?
 
 If you cannot find an authoritative current source, say so explicitly — do NOT invent numbers.
 
