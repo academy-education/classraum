@@ -48,36 +48,37 @@ export default function MobileStartPage() {
         {/* Grades tile — links to existing /mobile dashboard. */}
         <Link
           href="/mobile"
-          className="group block rounded-2xl border border-gray-200 bg-white p-5 hover:border-primary/40 transition-colors"
+          className="group block rounded-2xl bg-white p-5 ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-16px_rgba(0,0,0,0.12)] hover:ring-emerald-200 transition-all active:scale-[0.99]"
         >
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100/60 text-emerald-600 flex items-center justify-center mb-3 ring-1 ring-emerald-100">
                 <GraduationCap className="w-5 h-5" />
               </div>
-              <div className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+              <div className="text-base font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors">
                 {t('mobile.hub.gradesTitle')}
               </div>
               <p className="text-sm text-gray-500 mt-1 leading-relaxed">
                 {t('mobile.hub.gradesBody')}
               </p>
             </div>
-            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary mt-1 flex-shrink-0 transition-colors" />
+            <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-emerald-500 group-hover:translate-x-0.5 mt-1 flex-shrink-0 transition-all" />
           </div>
         </Link>
 
-        {/* Study tile — students only. */}
+        {/* Study tile — students only. Stronger gradient + accent ring
+            so the new product gets visual weight on first encounter. */}
         {isStudent && (
           <Link
             href="/mobile/study"
-            className="group block rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 to-blue-50 p-5 hover:border-primary/60 transition-colors"
+            className="group block rounded-2xl p-5 ring-1 ring-primary/20 bg-gradient-to-br from-primary/[0.07] via-blue-50/70 to-violet-50/40 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(40,133,232,0.20)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-16px_rgba(40,133,232,0.28)] hover:ring-primary/40 transition-all active:scale-[0.99]"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-3">
+                <div className="w-11 h-11 rounded-2xl bg-white text-primary flex items-center justify-center mb-3 ring-1 ring-primary/20 shadow-sm">
                   <BookOpen className="w-5 h-5" />
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <div className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
                     {t('mobile.hub.studyTitle')}
                   </div>
@@ -90,7 +91,7 @@ export default function MobileStartPage() {
                   {t('mobile.hub.studyBody')}
                 </p>
               </div>
-              <ArrowRight className="w-5 h-5 text-primary/60 group-hover:text-primary mt-1 flex-shrink-0 transition-colors" />
+              <ArrowRight className="w-5 h-5 text-primary/50 group-hover:text-primary group-hover:translate-x-0.5 mt-1 flex-shrink-0 transition-all" />
             </div>
           </Link>
         )}

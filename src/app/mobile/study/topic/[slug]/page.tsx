@@ -166,9 +166,9 @@ function TopicInner({ slug }: { slug: string }) {
               type="button"
               onClick={() => startSession(mode.key)}
               disabled={creating !== null}
-              className="group flex flex-col items-start gap-3 rounded-2xl border border-gray-200 bg-white p-4 hover:border-primary/40 active:bg-gray-50 transition-colors text-left disabled:opacity-60"
+              className="group flex flex-col items-start gap-3 rounded-2xl bg-white p-4 ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_4px_16px_-6px_rgba(40,133,232,0.18)] active:scale-[0.98] transition-all text-left disabled:opacity-60 disabled:cursor-wait"
             >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${mode.color}`}>
+              <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${mode.color} ring-1 ring-black/[0.03]`}>
                 {creating === mode.key ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
@@ -195,12 +195,12 @@ function TopicInner({ slug }: { slug: string }) {
           <h2 className="text-sm font-semibold text-gray-900 mb-2">
             {t('study.topic.narrowDown')}
           </h2>
-          <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden">
+          <div className="rounded-2xl bg-white overflow-hidden ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
             {children.map((child, i) => (
               <Link
                 key={child.id}
                 href={`/mobile/study/topic/${child.slug}`}
-                className={`flex items-center justify-between gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 ${
+                className={`flex items-center justify-between gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 active:bg-gray-100 transition-colors ${
                   i < children.length - 1 ? 'border-b border-gray-100' : ''
                 }`}
               >

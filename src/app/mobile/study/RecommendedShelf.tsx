@@ -113,9 +113,9 @@ export function RecommendedShelf() {
                 type="button"
                 onClick={() => void startSession(card)}
                 disabled={creating !== null}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-200 bg-white hover:border-primary/40 active:bg-gray-50 transition-colors text-left disabled:opacity-60"
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_4px_12px_-4px_rgba(40,133,232,0.18)] active:scale-[0.99] transition-all text-left disabled:opacity-60 disabled:cursor-wait"
               >
-                <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${accent}`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ring-1 ring-black/[0.03] ${accent}`}>
                   {creating === card.topic.id
                     ? <Loader2 className="w-4 h-4 animate-spin" />
                     : <Icon className="w-4 h-4" />}

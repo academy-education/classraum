@@ -202,12 +202,12 @@ function StudyLandingInner() {
               <Link
                 key={test.id}
                 href={`/mobile/study/topic/${test.slug}`}
-                className="group flex items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white px-3.5 py-3 hover:border-violet-300 active:bg-gray-50 transition-colors"
+                className="group flex items-center justify-between gap-2 rounded-xl bg-white px-3.5 py-3 ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-violet-300 hover:shadow-[0_2px_8px_-4px_rgba(124,58,237,0.18)] active:scale-[0.98] transition-all"
               >
                 <span className="text-sm font-semibold text-gray-900 group-hover:text-violet-700 transition-colors truncate">
                   {name(test)}
                 </span>
-                <ArrowRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-violet-500 flex-shrink-0 transition-colors" />
+                <ArrowRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-violet-500 group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
               </Link>
             ))}
           </div>
@@ -269,15 +269,19 @@ function ExpandableCard({
 }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden">
+    <div className={`rounded-2xl bg-white overflow-hidden ring-1 transition-all ${
+      open
+        ? 'ring-emerald-200 shadow-[0_2px_8px_-4px_rgba(16,185,129,0.18)]'
+        : 'ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
+    }`}>
       <button
         type="button"
         onClick={() => setOpen(v => !v)}
-        className="w-full flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-gray-50"
+        className="w-full flex items-center justify-between gap-3 px-4 py-3.5 hover:bg-gray-50/60 active:bg-gray-50 transition-colors"
       >
         <span className="text-sm font-semibold text-gray-900">{name(item)}</span>
         <ChevronRight
-          className={`w-4 h-4 text-gray-400 transition-transform ${open ? 'rotate-90' : ''}`}
+          className={`w-4 h-4 text-gray-400 transition-transform ${open ? 'rotate-90 text-emerald-500' : ''}`}
         />
       </button>
       {open && (
@@ -286,7 +290,7 @@ function ExpandableCard({
             <Link
               key={branch.id}
               href={`/mobile/study/topic/${branch.slug}`}
-              className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 text-sm text-gray-700"
+              className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg hover:bg-emerald-50/40 active:bg-emerald-50/60 text-sm text-gray-700 transition-colors"
             >
               <span>{name(branch)}</span>
               <ArrowRight className="w-4 h-4 text-gray-300" />
