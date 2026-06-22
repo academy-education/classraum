@@ -16,6 +16,7 @@ interface Card {
   score: number | null
   attempts_count: number
   suggested_mode: StudyMode
+  weakness_hint?: string | null
 }
 
 /**
@@ -126,10 +127,15 @@ export function RecommendedShelf() {
                   </div>
                   <div className="text-xs text-gray-500 mt-0.5">
                     {card.reason === 'weak'
-                      ? t('study.recommended.weakReason', {
-                          score: String(card.score ?? 0),
-                          mode: String(t(`study.modes.${card.suggested_mode}.title`)),
-                        })
+                      ? card.weakness_hint
+                        ? t('study.recommended.weakReasonWithHint', {
+                            hint: card.weakness_hint,
+                            mode: String(t(`study.modes.${card.suggested_mode}.title`)),
+                          })
+                        : t('study.recommended.weakReason', {
+                            score: String(card.score ?? 0),
+                            mode: String(t(`study.modes.${card.suggested_mode}.title`)),
+                          })
                       : t('study.recommended.recentReason', {
                           mode: String(t(`study.modes.${card.suggested_mode}.title`)),
                         })}

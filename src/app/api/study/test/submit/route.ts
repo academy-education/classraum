@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { assessSessionMastery } from '@/lib/study-mastery-assess'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -117,6 +118,12 @@ export async function POST(req: NextRequest) {
     .from('study_sessions')
     .update({ status: 'completed', completed_at: new Date().toISOString() })
     .eq('id', body.sessionId)
+
+  // Fire-and-forget AI mastery assessment. The trigger already
+  // updated the numeric score; this fills the qualitative
+  // strengths/weaknesses jsonb fields for the recommended shelf.
+  // Failure is silent — the test result still ships to the client.
+  void assessSessionMastery(body.sessionId)
 
   const correctCount = verdicts.filter(v => v.correct).length
   return NextResponse.json({

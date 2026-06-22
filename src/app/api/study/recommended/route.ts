@@ -22,8 +22,13 @@ interface RecommendedCard {
   topic: { id: string; slug: string; name_en: string; name_ko: string; category: string }
   score: number | null
   attempts_count: number
-  suggested_mode: 'chat' | 'practice' | 'lesson' | 'flashcards'
+  suggested_mode: 'chat' | 'practice' | 'lesson' | 'flashcards' | 'full_test'
+  /** First weakness label from the AI assessment, if any — gives the
+   *  recommended card a more specific reason than just the score. */
+  weakness_hint?: string | null
 }
+
+interface WeaknessNote { label?: string }
 
 export async function GET(req: NextRequest) {
   const auth = req.headers.get('authorization')
@@ -38,7 +43,7 @@ export async function GET(req: NextRequest) {
     supabaseAdmin
       .from('study_mastery')
       .select(`
-        score, attempts_count,
+        score, attempts_count, weaknesses,
         topic:study_topics ( id, slug, name_en, name_ko, category )
       `)
       .eq('student_id', user.id)
@@ -67,12 +72,15 @@ export async function GET(req: NextRequest) {
     const t = (row as unknown as { topic: RecommendedCard['topic'] | null }).topic
     if (!t || seenTopicIds.has(t.id)) continue
     seenTopicIds.add(t.id)
+    const weaknesses = ((row as unknown as { weaknesses: WeaknessNote[] | null }).weaknesses ?? [])
+    const firstLabel = weaknesses[0]?.label ?? null
     cards.push({
       reason: 'weak',
       topic: t,
       score: row.score,
       attempts_count: row.attempts_count,
       suggested_mode: 'practice',
+      weakness_hint: firstLabel,
     })
   }
 
