@@ -3902,6 +3902,7 @@
       "untitled": "New session",
       "placeholderHint": "Phase 2 will fill this with the real interactive view.",
       "notFound": "We couldn't load this session. It may have been deleted.",
+      "unknownMode": "Unknown session mode.",
       "loadingHistory": "Loading your conversation...",
       "composerPlaceholder": "Ask the tutor anything...",
       "send": "Send",
@@ -3923,6 +3924,23 @@
       "comprehensionTitle": "Quick check",
       "correctShort": "correct",
       "finish": "Done"
+    },
+    "flashcards": {
+      "generating": "Building your card deck...",
+      "generateFailed": "Couldn't build the deck. Try again.",
+      "tryAgain": "Try again",
+      "progress": "Card {current} of {total}",
+      "frontLabel": "Front",
+      "backLabel": "Back",
+      "tapToFlip": "Tap to flip",
+      "flip": "Flip card",
+      "showHint": "Show hint",
+      "got": "Got it",
+      "again": "Review again",
+      "doneEyebrow": "Deck cleared",
+      "doneMessage": "You reviewed {reviews} times. Come back later for spaced repetition.",
+      "newDeck": "New deck",
+      "backToStudy": "Back to Study"
     },
     "practice": {
       "generating": "Building your practice set...",

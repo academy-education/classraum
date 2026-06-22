@@ -10,6 +10,7 @@ import { STUDY_MODES, type StudyMode } from '../../modes'
 import { ChatSession } from './ChatSession'
 import { PracticeSession } from './PracticeSession'
 import { LessonSession } from './LessonSession'
+import { FlashcardsSession } from './FlashcardsSession'
 
 /**
  * /mobile/study/session/[id] — active study session viewer.
@@ -158,7 +159,17 @@ function SessionInner({ id }: { id: string }) {
       </div>
     )
   }
+  if (session.mode === 'flashcards') {
+    return (
+      <div className="flex flex-col h-full bg-gray-50">
+        {header}
+        <FlashcardsSession sessionId={session.id} language={session.language} />
+      </div>
+    )
+  }
 
+  // All four modes are wired; this branch is the safety net if a row
+  // ever lands with an unknown mode value.
   return (
     <div className="flex flex-col h-full bg-gray-50">
       {header}
@@ -166,10 +177,7 @@ function SessionInner({ id }: { id: string }) {
         <div className="rounded-2xl border border-dashed border-gray-200 bg-white p-6 text-center">
           <Sparkles className="w-6 h-6 text-primary mx-auto mb-2" />
           <p className="text-sm font-medium text-gray-900">
-            {t(`study.modes.${session.mode}.comingSoon`)}
-          </p>
-          <p className="text-xs text-gray-500 mt-1">
-            {t('study.session.placeholderHint')}
+            {t('study.session.unknownMode')}
           </p>
         </div>
       </div>

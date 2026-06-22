@@ -3959,6 +3959,7 @@
       "untitled": "새 세션",
       "placeholderHint": "Phase 2에서 실제 화면이 채워집니다.",
       "notFound": "이 세션을 불러올 수 없습니다. 삭제되었을 수도 있습니다.",
+      "unknownMode": "알 수 없는 세션 모드입니다.",
       "loadingHistory": "대화를 불러오는 중...",
       "composerPlaceholder": "튜터에게 무엇이든 물어보세요...",
       "send": "보내기",
@@ -3980,6 +3981,23 @@
       "comprehensionTitle": "이해도 점검",
       "correctShort": "정답",
       "finish": "완료"
+    },
+    "flashcards": {
+      "generating": "카드 덱을 만드는 중...",
+      "generateFailed": "덱을 만들지 못했습니다. 다시 시도하세요.",
+      "tryAgain": "다시 시도",
+      "progress": "{current} / {total} 카드",
+      "frontLabel": "앞면",
+      "backLabel": "뒷면",
+      "tapToFlip": "탭하여 뒤집기",
+      "flip": "카드 뒤집기",
+      "showHint": "힌트 보기",
+      "got": "외움",
+      "again": "다시 보기",
+      "doneEyebrow": "덱 완료",
+      "doneMessage": "총 {reviews}번 복습했습니다. 나중에 다시 와서 반복 학습을 이어가세요.",
+      "newDeck": "새 덱",
+      "backToStudy": "공부 화면으로"
     },
     "practice": {
       "generating": "연습 문제를 만드는 중...",
