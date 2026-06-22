@@ -3,7 +3,7 @@
 import { use, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, ChevronRight, Loader2 } from 'lucide-react'
+import { ArrowLeft, ChevronRight, Loader2, FileText, ArrowRight, Sparkles } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -31,6 +31,7 @@ interface Topic {
   name_en: string
   name_ko: string
   level: number
+  category: 'subject' | 'test_prep'
 }
 
 export default function TopicPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -58,7 +59,7 @@ function TopicInner({ slug }: { slug: string }) {
     void (async () => {
       const { data: row } = await supabase
         .from('study_topics')
-        .select('id, parent_id, slug, name_en, name_ko, level')
+        .select('id, parent_id, slug, name_en, name_ko, level, category')
         .eq('slug', slug)
         .maybeSingle()
 
@@ -74,14 +75,14 @@ function TopicInner({ slug }: { slug: string }) {
         row.parent_id
           ? supabase
               .from('study_topics')
-              .select('id, parent_id, slug, name_en, name_ko, level')
+              .select('id, parent_id, slug, name_en, name_ko, level, category')
               .eq('id', row.parent_id)
               .maybeSingle()
           : Promise.resolve({ data: null }),
         row.level === 1
           ? supabase
               .from('study_topics')
-              .select('id, parent_id, slug, name_en, name_ko, level')
+              .select('id, parent_id, slug, name_en, name_ko, level, category')
               .eq('parent_id', row.id)
               .order('sort_order')
           : Promise.resolve({ data: [] }),
@@ -156,36 +157,51 @@ function TopicInner({ slug }: { slug: string }) {
         </p>
       </header>
 
-      {/* Mode picker — four cards, one per mode. */}
+      {/* Mode picker.
+          - Test-prep topics get a featured full-width "Full test"
+            tile at the top (it's the marquee mode for that surface),
+            then the four learning modes in a 2x2 grid below.
+          - Subject topics omit Full test entirely — taking a "mock
+            test" on Algebra is awkward; practice + lesson fit better.
+       */}
+      {topic.category === 'test_prep' && (
+        <FeaturedFullTestCard
+          startSession={startSession}
+          creating={creating}
+          t={t}
+        />
+      )}
       <section className="grid grid-cols-2 gap-3">
-        {STUDY_MODES.map(mode => {
-          const Icon = mode.icon
-          return (
-            <button
-              key={mode.key}
-              type="button"
-              onClick={() => startSession(mode.key)}
-              disabled={creating !== null}
-              className="group flex flex-col items-start gap-3 rounded-2xl bg-white p-4 ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_4px_16px_-6px_rgba(40,133,232,0.18)] active:scale-[0.98] transition-all text-left disabled:opacity-60 disabled:cursor-wait"
-            >
-              <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${mode.color} ring-1 ring-black/[0.03]`}>
-                {creating === mode.key ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Icon className="w-5 h-5" />
-                )}
-              </div>
-              <div>
-                <div className="text-sm font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                  {t(`study.modes.${mode.key}.title`)}
+        {STUDY_MODES
+          .filter(m => m.key !== 'full_test')
+          .map(mode => {
+            const Icon = mode.icon
+            return (
+              <button
+                key={mode.key}
+                type="button"
+                onClick={() => startSession(mode.key)}
+                disabled={creating !== null}
+                className="group flex flex-col items-start gap-3 rounded-2xl bg-white p-4 ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_4px_16px_-6px_rgba(40,133,232,0.18)] active:scale-[0.98] transition-all text-left disabled:opacity-60 disabled:cursor-wait"
+              >
+                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${mode.color} ring-1 ring-black/[0.03]`}>
+                  {creating === mode.key ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Icon className="w-5 h-5" />
+                  )}
                 </div>
-                <div className="text-xs text-gray-500 mt-1 leading-relaxed">
-                  {t(`study.modes.${mode.key}.body`)}
+                <div>
+                  <div className="text-sm font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                    {t(`study.modes.${mode.key}.title`)}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1 leading-relaxed">
+                    {t(`study.modes.${mode.key}.body`)}
+                  </div>
                 </div>
-              </div>
-            </button>
-          )
-        })}
+              </button>
+            )
+          })}
       </section>
 
       {/* Leaf list — branch pages only. Tapping a leaf navigates into
@@ -212,5 +228,53 @@ function TopicInner({ slug }: { slug: string }) {
         </section>
       )}
     </div>
+  )
+}
+
+/**
+ * Full-width feature card for the Full Test mode on test-prep topic
+ * pages. Lifted out of the inline render so the JSX above stays
+ * readable; ranks the test mode visually above the four learning
+ * modes since it's the marquee surface for SAT/TOEFL/KSAT/etc.
+ */
+function FeaturedFullTestCard({
+  startSession,
+  creating,
+  t,
+}: {
+  startSession: (m: StudyMode) => void
+  creating: StudyMode | null
+  t: (k: string) => unknown
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => startSession('full_test')}
+      disabled={creating !== null}
+      className="group w-full rounded-2xl p-4 ring-1 ring-rose-200/70 bg-gradient-to-br from-rose-50 via-amber-50/40 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(244,63,94,0.15)] hover:ring-rose-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.03),0_12px_28px_-12px_rgba(244,63,94,0.22)] active:scale-[0.99] transition-all text-left disabled:opacity-60 disabled:cursor-wait"
+    >
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 rounded-2xl bg-white text-rose-600 flex items-center justify-center ring-1 ring-rose-200/60 shadow-sm flex-shrink-0">
+          {creating === 'full_test'
+            ? <Loader2 className="w-5 h-5 animate-spin" />
+            : <FileText className="w-5 h-5" />}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="text-base font-semibold text-gray-900 group-hover:text-rose-700 transition-colors">
+              {String(t('study.modes.full_test.title'))}
+            </div>
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-rose-700 bg-white ring-1 ring-rose-200 rounded-full px-2 py-0.5">
+              <Sparkles className="w-2.5 h-2.5" />
+              {String(t('study.topic.testPrepBadge'))}
+            </span>
+          </div>
+          <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+            {String(t('study.modes.full_test.body'))}
+          </p>
+        </div>
+        <ArrowRight className="w-5 h-5 text-rose-500/60 group-hover:text-rose-500 group-hover:translate-x-0.5 mt-1 flex-shrink-0 transition-all" />
+      </div>
+    </button>
   )
 }
