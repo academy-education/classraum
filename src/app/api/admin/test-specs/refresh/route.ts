@@ -1,21 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { refreshTestSpec, listAllSpecTargets } from '@/lib/test-spec-refresh'
-import type { TestFamily } from '@/lib/study-prompt-context'
+import {
+  refreshTestSpec,
+  refreshTestSpecExamples,
+  listAllSpecTargetsFromDB,
+} from '@/lib/test-spec-refresh'
 
 /**
  * POST /api/admin/test-specs/refresh — manually refresh the test
  * spec cache. Platform-admin only (Classraum staff, not academy
- * managers). Each call walks every (family, section) pair from the
- * hardcoded TEST_SPECS, skipping rows verified within 30 days.
+ * managers).
+ *
+ * Targets are derived from study_topics (any test_prep leaf) so a new
+ * test in the catalog is automatically refreshable — no code change.
  *
  * Body (all optional):
- *   { family?: string, sectionKey?: string, force?: boolean }
+ *   {
+ *     family?: string,        // restrict to one family (e.g. "sat")
+ *     sectionKey?: string,    // restrict to one section
+ *     force?: boolean,        // bypass 30-day skip
+ *     withExamples?: boolean, // ALSO run the expensive sample-pull pass
+ *     exampleCount?: number,  // target N examples per section (default 8)
+ *   }
  *
- * - family only: refresh all sections of that family.
- * - family + sectionKey: refresh that single pair.
- * - neither: refresh everything.
- * - force=true: bypass the 30-day skip check.
+ * - family only: refresh all sections of that family
+ * - family + sectionKey: refresh that single pair
+ * - neither: refresh everything in the catalog
  */
 
 export const dynamic = 'force-dynamic'
@@ -38,27 +48,47 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'forbidden' }, { status: 403 })
   }
 
-  let body: { family?: string; sectionKey?: string; force?: boolean } = {}
+  let body: {
+    family?: string
+    sectionKey?: string
+    force?: boolean
+    withExamples?: boolean
+    exampleCount?: number
+  } = {}
   try { body = await req.json() } catch { /* empty body is fine */ }
 
-  const targets = listAllSpecTargets()
+  const allTargets = await listAllSpecTargetsFromDB()
+  const targets = allTargets
     .filter(t => !body.family || t.family === body.family)
     .filter(t => !body.sectionKey || t.sectionKey === body.sectionKey)
 
   if (targets.length === 0) {
-    return NextResponse.json({ error: 'no matching targets' }, { status: 400 })
+    return NextResponse.json({ error: 'no matching targets', allTargetsCount: allTargets.length }, { status: 400 })
   }
 
-  const results = []
+  const formatResults = []
+  const sampleResults = []
   for (const t of targets) {
-    const r = await refreshTestSpec(t.family as TestFamily, t.sectionKey, { force: body.force })
-    results.push(r)
+    const formatResult = await refreshTestSpec(t, { force: body.force })
+    formatResults.push(formatResult)
+
+    if (body.withExamples) {
+      const samplesResult = await refreshTestSpecExamples(t, {
+        force: body.force,
+        targetCount: body.exampleCount ?? 8,
+      })
+      sampleResults.push(samplesResult)
+    }
   }
 
   return NextResponse.json({
-    ran: results.length,
-    ok: results.filter(r => r.ok).length,
-    failed: results.filter(r => !r.ok).length,
-    results,
+    targets: targets.length,
+    formatOk: formatResults.filter(r => r.ok).length,
+    formatFailed: formatResults.filter(r => !r.ok).length,
+    samplesOk: sampleResults.filter(r => r.ok).length,
+    samplesFailed: sampleResults.filter(r => !r.ok).length,
+    examplesAdded: sampleResults.reduce((sum, r) => sum + r.examplesAdded, 0),
+    formatResults,
+    sampleResults,
   })
 }

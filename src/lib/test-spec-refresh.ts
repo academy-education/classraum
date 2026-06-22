@@ -1,18 +1,23 @@
 /**
  * Refresh logic for the study_test_specs cache.
  *
- * Two-tier source strategy:
- *  1. Primary — OpenAI's hosted web_search_preview tool. Lets the
- *     model find the current spec on the test maker's site (College
- *     Board, ETS, KICE, etc.) and cite URLs.
- *  2. Fallback — a whitelist of authoritative URLs we fetch directly
- *     and hand to the model. Used when web_search_preview comes back
- *     empty or the model declines to cite a real source.
+ * The whole pipeline is test-agnostic — it accepts any (family,
+ * sectionKey, displayName) triple, no hardcoded URL whitelist. The
+ * model uses web_search_preview to find the test maker's own
+ * format/sample pages dynamically. Adding a new test = adding a row
+ * to study_topics; no code change required.
  *
- * Output is validated against SectionSpecSchema before being upserted
- * to study_test_specs. A failed refresh writes last_attempted_at + a
- * verifier_notes line so the admin page can show "tried 3 days ago,
- * couldn't find authoritative source."
+ * Two refresh modes:
+ *  - format only (cheap, monthly): pull format spec from the maker's
+ *    docs. Section counts, time, choice count, patterns, distractor
+ *    design, difficulty mix, hard-item framing.
+ *  - samples (expensive, quarterly): additionally pull released
+ *    representative items per section and store the verified-hard
+ *    ones as hardItemExamples on the spec. Used as few-shot anchors
+ *    in the generator's hard-only pass.
+ *
+ * Samples are stored as in-prompt exemplars only — never reach the
+ * student. Each example carries an inline source URL for attribution.
  */
 
 import { generateObject, generateText } from 'ai'
@@ -20,7 +25,16 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { TEST_SPECS, type SectionSpec } from '@/lib/test-specs'
-import type { TestFamily } from '@/lib/study-prompt-context'
+import { verifyAndCorrect, type Question } from '@/lib/test-verify'
+
+/** Refresh target — uses arbitrary strings so any test works, not
+ *  limited to the 8 hardcoded TestFamily values. */
+export interface RefreshTarget {
+  family: string         // slug fragment, e.g. 'sat', 'ksat', 'aleks', 'duolingo'
+  sectionKey: string     // section's name_en — used as PK fragment
+  displayName: string    // human label for prompts, e.g. "SAT Math", "TOEFL Reading"
+  displayNameKo?: string
+}
 
 const SectionSpecSchema = z.object({
   name_en: z.string(),
@@ -32,81 +46,51 @@ const SectionSpecSchema = z.object({
   patterns_ko: z.string().min(40),
   distractorPatterns_en: z.string().min(80),
   distractorPatterns_ko: z.string().min(40),
-  /** Real-test difficulty distribution. Fractions ~ sum to 1.0. */
   difficultyMix: z.object({
     easy: z.number().min(0).max(1),
     medium: z.number().min(0).max(1),
     hard: z.number().min(0).max(1),
   }).optional(),
-  /** What HARD looks like for THIS section — used as the focused
-   *  prompt for the hard-only generation pass. */
   hardItemFraming_en: z.string().min(80).optional(),
   hardItemFraming_ko: z.string().min(40).optional(),
 })
 
-/** Authoritative URLs for the whitelist fallback, per family. The
- *  refresh prompt directs the model to these specifically when it
- *  can't search. Keep narrow — these are pages the test maker
- *  publishes about their own format. */
-const FALLBACK_URLS: Record<TestFamily, string[]> = {
-  sat: [
-    'https://satsuite.collegeboard.org/sat/whats-on-the-test/structure',
-    'https://satsuite.collegeboard.org/sat/whats-on-the-test/reading-writing',
-    'https://satsuite.collegeboard.org/sat/whats-on-the-test/math',
-  ],
-  ksat: [
-    'https://www.suneung.re.kr/',
-    'https://www.kice.re.kr/',
-  ],
-  toefl: [
-    'https://www.ets.org/toefl/test-takers/ibt/about/content.html',
-  ],
-  toeic: [
-    'https://www.ets.org/toeic/test-takers/listening-reading/about/content.html',
-  ],
-  ielts: [
-    'https://ielts.org/take-a-test/test-types/ielts-academic-test/format',
-  ],
-  act: [
-    'https://www.act.org/content/act/en/products-and-services/the-act/test-preparation.html',
-  ],
-  ap: [
-    'https://apstudents.collegeboard.org/exam-policies-guidelines/exam-day-policies',
-  ],
-  gre: [
-    'https://www.ets.org/gre/test-takers/general-test/about/content.html',
-  ],
+interface RefreshResult {
+  family: string
+  sectionKey: string
+  ok: boolean
+  notes: string
+  sources: string[]
 }
 
-const REFRESH_PROMPT_EN = (family: TestFamily, sectionKey: string, urls: string[]) => `
-You are verifying the current official format of a standardized test section so we can keep our study app's spec library accurate.
+interface SamplesResult extends RefreshResult {
+  examplesAdded: number
+}
 
-Test family: ${family.toUpperCase()}
-Section to verify: ${sectionKey}
+const FORMAT_PROMPT = (target: RefreshTarget) => `
+You are verifying the current official format of a standardized test section so a study app can generate accurate mock tests.
 
-Search the web for the CURRENT official format. Prefer these sources (the test maker's own published format pages):
-${urls.map(u => `- ${u}`).join('\n')}
+Test: ${target.displayName}
+Section to verify: ${target.sectionKey}
 
-You may follow links from these pages to find more detailed format info. Do NOT cite test-prep blogs or Wikipedia as primary sources — only the test maker or, if needed, peer-reviewed academic sources about the test.
+Use web search to find the CURRENT official format. STRONGLY prefer the test maker's own published format page (College Board for SAT/AP, ETS for TOEFL/TOEIC/GRE, British Council/IDP/Cambridge for IELTS, ACT Inc. for ACT, KICE/한국교육과정평가원 for KSAT, the relevant national board or accreditation body for newer/regional tests). Do NOT cite test-prep blogs, Kaplan/Princeton Review summaries, or Wikipedia as primary sources unless absolutely no maker source exists.
 
 Report your findings in plain prose. Include:
-- Exact section name (in English and Korean if commonly known)
-- TOTAL questions in the FULL SECTION (not per-module or per-passage — if the test is delivered as multiple modules like the Digital SAT, sum them up. e.g. SAT Math = 44, NOT 22.)
-- TOTAL minutes for the FULL SECTION (e.g. SAT Math = 70, NOT 35)
-- If the section is broken into modules or parts, also note that structure separately, but the headline numbers must be the full section
-- Number of choices per multiple-choice question (4 or 5)
-- The major question patterns / categories with approximate weights
+- Exact section name (in English and Korean if commonly known — for non-Korean tests, transliterate or descriptively translate)
+- TOTAL questions in the FULL SECTION. NOT per-module or per-passage. If the test is delivered as multiple modules (Digital SAT) or parts, sum them. e.g. SAT Math = 44 (NOT 22).
+- TOTAL minutes for the FULL SECTION
+- If the section is modular, separately note that structure
+- Number of choices per MCQ (4 or 5; if free-response only, pick 4 as default)
+- Major question patterns / categories with approximate weights
 - Common distractor (wrong-answer) design patterns
-- The REAL test's difficulty distribution as published by the maker or estimated from released exams (approximate easy/medium/hard fractions summing to 1.0). If the test has signature "killer" items, weight hard accordingly (KSAT Math ~25%, SAT ~20%, TOEIC ~10-15%).
-- A description of what a HARD item LOOKS LIKE for THIS section — concrete enough that a generator can produce one. Not just "harder" — describe the structural features: passage length, reasoning depth, distractor sophistication, what makes a real student stumble.
+- Difficulty distribution as published OR estimated (easy/medium/hard fractions summing to 1.0)
+- What a HARD item LOOKS LIKE for this section, concrete enough that a generator can produce one — passage length, reasoning depth, distractor sophistication, what makes real students stumble
 
-Sanity check before you submit:
-- Does the total time × questions divided yield a plausible per-question time? (SAT Math = 70 min / 44 Q ≈ 1.6 min — reasonable. If you get 30s/Q or 5min/Q, you probably mixed up units.)
-- Are your numbers per-section, not per-module?
+Sanity check: time/questions ratio should yield plausible per-question time (1-3 min usually). If you get 30s/Q or 5min/Q, you probably mixed up units.
 
-If you cannot find an authoritative current source, say so explicitly — do NOT invent numbers.
+If you cannot find an authoritative current source, say so explicitly. Do NOT invent numbers.
 
-End your report with a "Sources:" line followed by the URLs you actually used.
+End with a "Sources:" line listing the URLs you used.
 `.trim()
 
 const EXTRACT_PROMPT = (researchText: string) => `
@@ -114,31 +98,22 @@ The following is a research report on a standardized test section's current form
 
 If the report says authoritative numbers couldn't be found, return the closest you can with a clear note in the patterns field saying "unverified — model could not find authoritative source."
 
-Translate the English fields to Korean too — patterns_ko and distractorPatterns_ko should be natural Korean, not literal translations.
+Translate the English fields to Korean too — patterns_ko, distractorPatterns_ko, hardItemFraming_ko should be natural Korean, not literal translations.
 
 Research report:
 ${researchText}
 `.trim()
 
-interface RefreshResult {
-  family: TestFamily
-  sectionKey: string
-  ok: boolean
-  notes: string
-  sources: string[]
-}
-
 /**
- * Refresh one (family, section_key) entry. Skips if already verified
- * within the last 30 days.
+ * Refresh format spec for one (family, sectionKey) entry. Skips if
+ * already verified within the last 30 days.
  */
 export async function refreshTestSpec(
-  family: TestFamily,
-  sectionKey: string,
+  target: RefreshTarget,
   opts: { force?: boolean } = {}
 ): Promise<RefreshResult> {
-  // Skip if verified recently. The cron will hit every spec monthly;
-  // a manual trigger can pass force=true to bypass.
+  const { family, sectionKey } = target
+
   if (!opts.force) {
     const { data: existing } = await supabaseAdmin
       .from('study_test_specs')
@@ -161,20 +136,15 @@ export async function refreshTestSpec(
   }
 
   const openai = createOpenAI({ apiKey })
-  const urls = FALLBACK_URLS[family] ?? []
-
   let researchText = ''
   let citedUrls: string[] = []
 
-  // Tier 1: hosted web search.
   try {
     const research = await generateText({
       model: openai.responses('gpt-4o'),
-      prompt: REFRESH_PROMPT_EN(family, sectionKey, urls),
+      prompt: FORMAT_PROMPT(target),
       tools: {
-        web_search_preview: openai.tools.webSearchPreview({
-          searchContextSize: 'high',
-        }),
+        web_search_preview: openai.tools.webSearchPreview({ searchContextSize: 'high' }),
       },
       temperature: 0.2,
     })
@@ -183,56 +153,14 @@ export async function refreshTestSpec(
       .map(s => (s as { url?: string }).url)
       .filter((u): u is string => typeof u === 'string')
   } catch (err) {
-    console.error('[test-spec-refresh] web_search_preview failed', { family, sectionKey, err })
-  }
-
-  // Tier 2: whitelist fetch fallback. Used when tier 1 returned nothing
-  // usable. Each URL gets a HEAD-then-GET fetch, content piped into the
-  // model as raw text. Cheap and predictable.
-  if (!researchText && urls.length > 0) {
-    const pages: string[] = []
-    for (const url of urls) {
-      try {
-        const res = await fetch(url, {
-          headers: { 'user-agent': 'Classraum-TestSpecRefresh/1.0' },
-          signal: AbortSignal.timeout(10_000),
-        })
-        if (!res.ok) continue
-        const html = await res.text()
-        // Strip HTML to plain text — crude but adequate for spec pages.
-        const text = html
-          .replace(/<script[\s\S]*?<\/script>/gi, '')
-          .replace(/<style[\s\S]*?<\/style>/gi, '')
-          .replace(/<[^>]+>/g, ' ')
-          .replace(/\s+/g, ' ')
-          .trim()
-          .slice(0, 12_000)
-        pages.push(`Source: ${url}\n${text}\n`)
-      } catch (err) {
-        console.error('[test-spec-refresh] fallback fetch failed', { url, err })
-      }
-    }
-    if (pages.length > 0) {
-      try {
-        const research = await generateText({
-          model: openai('gpt-4o'),
-          prompt: `${REFRESH_PROMPT_EN(family, sectionKey, urls)}\n\nYou do not have web search available. Use only the source content below.\n\n${pages.join('\n---\n')}`,
-          temperature: 0.2,
-        })
-        researchText = research.text
-        citedUrls = urls
-      } catch (err) {
-        console.error('[test-spec-refresh] fallback model call failed', { family, sectionKey, err })
-      }
-    }
+    console.error('[test-spec-refresh] web search failed', { family, sectionKey, err })
   }
 
   if (!researchText) {
-    await markAttempt(family, sectionKey, 'both web search and fallback fetch failed')
+    await markAttempt(family, sectionKey, 'web search returned no usable text')
     return { family, sectionKey, ok: false, notes: 'no research text', sources: [] }
   }
 
-  // Extract structured spec.
   let spec: SectionSpec
   try {
     const result = await generateObject({
@@ -243,10 +171,21 @@ export async function refreshTestSpec(
     })
     spec = result.object as SectionSpec
   } catch (err) {
-    console.error('[test-spec-refresh] extraction failed', { family, sectionKey, err })
     await markAttempt(family, sectionKey, `extraction failed: ${(err as Error).message ?? 'unknown'}`)
     return { family, sectionKey, ok: false, notes: 'extraction failed', sources: citedUrls }
   }
+
+  // Preserve hardItemExamples from any prior refresh — they're a
+  // separate (slower) pass and shouldn't be wiped on format refresh.
+  const { data: priorRow } = await supabaseAdmin
+    .from('study_test_specs')
+    .select('spec')
+    .eq('family', family)
+    .eq('section_key', sectionKey)
+    .maybeSingle()
+  const priorSpec = (priorRow?.spec ?? {}) as Partial<SectionSpec>
+  if (priorSpec.hardItemExamples_en) spec.hardItemExamples_en = priorSpec.hardItemExamples_en
+  if (priorSpec.hardItemExamples_ko) spec.hardItemExamples_ko = priorSpec.hardItemExamples_ko
 
   const now = new Date().toISOString()
   await supabaseAdmin
@@ -258,14 +197,221 @@ export async function refreshTestSpec(
       sources: citedUrls,
       last_verified_at: now,
       last_attempted_at: now,
-      verifier_notes: `verified via ${citedUrls.length} source(s)`,
+      verifier_notes: `format verified via ${citedUrls.length} source(s)`,
       updated_at: now,
     }, { onConflict: 'family,section_key' })
 
-  return { family, sectionKey, ok: true, notes: 'verified', sources: citedUrls }
+  return { family, sectionKey, ok: true, notes: 'format verified', sources: citedUrls }
 }
 
-async function markAttempt(family: TestFamily, sectionKey: string, notes: string) {
+const SAMPLES_PROMPT = (target: RefreshTarget, count: number) => `
+You are gathering representative HARD practice items for a standardized test section. These will be used as in-prompt exemplars (few-shot anchors) for a question generator. They will NOT be shown to students directly.
+
+Test: ${target.displayName}
+Section: ${target.sectionKey}
+
+Goal: find ${count}-${count + 5} concrete published practice items from authoritative sources, focusing on items the test maker rates as harder difficulty. Prefer the test maker's own released items (College Board's released SAT/AP practice tests, ETS sample questions, KICE 평가원 모의평가 released PDFs, ACT released items, British Council IELTS sample questions, etc.). Skip items that depend on copyrighted figures, audio, or images that can't be reproduced in plain text.
+
+For each item, report:
+- The full problem prompt as plain text (translate any LaTeX to Unicode: x², √(2), π, ½, etc.)
+- All multiple-choice options (do NOT include letter prefixes — just the choice content)
+- The correct answer as the exact choice text
+- The test maker's stated difficulty label if available, otherwise your own honest estimate
+- A brief "why hard" explanation pointing to the specific multi-step reasoning, distractor design, or subtle distinction
+- The source URL the item came from
+
+Format each item like this:
+
+ITEM 1 (source: <url>):
+Prompt: <text>
+Choices: ["<a>", "<b>", "<c>", "<d>"]
+Correct: "<exact text>"
+Difficulty: <hard | medium | easy>
+Why hard: <one or two sentences>
+
+Do not invent items. If you cannot find ${count} hard items from authoritative sources, return what you found and explicitly note the shortfall at the end.
+
+End with a "Sources:" line listing the URLs you used.
+`.trim()
+
+const SampleItemSchema = z.object({
+  prompt: z.string(),
+  choices: z.array(z.string()).min(4).max(5),
+  correct_answer: z.string(),
+  difficulty: z.enum(['easy', 'medium', 'hard']),
+  why_hard: z.string(),
+  source_url: z.string(),
+})
+
+const SampleBatchSchema = z.object({
+  items: z.array(SampleItemSchema),
+})
+
+/**
+ * Refresh hardItemExamples for one section. Searches the web for
+ * released items, validates each via the existing answer-key verifier,
+ * keeps the verified-hard ones, formats them as inline exemplars on
+ * the cached spec.
+ *
+ * Cost ~$0.10-0.20 per section (web search + extraction + verifier).
+ * Run quarterly, not monthly — released item sets are stable for years.
+ */
+export async function refreshTestSpecExamples(
+  target: RefreshTarget,
+  opts: { targetCount?: number; force?: boolean } = {}
+): Promise<SamplesResult> {
+  const { family, sectionKey } = target
+  const targetCount = opts.targetCount ?? 8
+
+  if (!opts.force) {
+    const { data: existing } = await supabaseAdmin
+      .from('study_test_specs')
+      .select('spec, last_verified_at')
+      .eq('family', family)
+      .eq('section_key', sectionKey)
+      .maybeSingle()
+    const cachedExamples = ((existing?.spec ?? {}) as Partial<SectionSpec>).hardItemExamples_en ?? []
+    // Quarterly skip — examples don't change as fast as format. If we
+    // already have a healthy set, skip a refresh that happened recently.
+    if (cachedExamples.length >= targetCount && existing?.last_verified_at) {
+      const ageMs = Date.now() - new Date(existing.last_verified_at).getTime()
+      if (ageMs < 90 * 24 * 60 * 60 * 1000) {
+        return { family, sectionKey, ok: true, notes: 'skipped — examples fresh within 90 days', sources: [], examplesAdded: 0 }
+      }
+    }
+  }
+
+  const apiKey = process.env.OPENAI_API_KEY
+  if (!apiKey) return { family, sectionKey, ok: false, notes: 'no OPENAI_API_KEY', sources: [], examplesAdded: 0 }
+  const openai = createOpenAI({ apiKey })
+
+  // Step 1: search for sample items via web search
+  let researchText = ''
+  let citedUrls: string[] = []
+  try {
+    const research = await generateText({
+      model: openai.responses('gpt-4o'),
+      prompt: SAMPLES_PROMPT(target, targetCount),
+      tools: {
+        web_search_preview: openai.tools.webSearchPreview({ searchContextSize: 'high' }),
+      },
+      temperature: 0.2,
+    })
+    researchText = research.text
+    citedUrls = (research.sources ?? [])
+      .map(s => (s as { url?: string }).url)
+      .filter((u): u is string => typeof u === 'string')
+  } catch (err) {
+    console.error('[test-spec-refresh] samples web search failed', { family, sectionKey, err })
+    return { family, sectionKey, ok: false, notes: 'samples search failed', sources: [], examplesAdded: 0 }
+  }
+
+  if (!researchText) {
+    return { family, sectionKey, ok: false, notes: 'no samples returned', sources: citedUrls, examplesAdded: 0 }
+  }
+
+  // Step 2: extract to structured items
+  let items: z.infer<typeof SampleItemSchema>[]
+  try {
+    const result = await generateObject({
+      model: openai('gpt-4o-mini'),
+      schema: SampleBatchSchema,
+      prompt: `Extract the practice items from this research report into the structured schema. Skip items that are incomplete or that depend on figures/audio. If a "difficulty" label was given by the test maker, preserve it; otherwise estimate honestly.\n\nReport:\n${researchText}`,
+      temperature: 0.1,
+    })
+    items = result.object.items
+  } catch (err) {
+    console.error('[test-spec-refresh] sample extraction failed', { family, sectionKey, err })
+    return { family, sectionKey, ok: false, notes: 'extraction failed', sources: citedUrls, examplesAdded: 0 }
+  }
+
+  if (items.length === 0) {
+    return { family, sectionKey, ok: false, notes: 'no items extracted', sources: citedUrls, examplesAdded: 0 }
+  }
+
+  // Step 3: verify each item's answer key + actual difficulty via the
+  // same verifier the generator uses. We only keep items the verifier
+  // rates as hard with high confidence — same bar as we'd hold our own
+  // generated items to.
+  const asQuestions: Question[] = items.map(it => ({
+    prompt: it.prompt,
+    type: 'multiple_choice' as const,
+    choices: it.choices,
+    correct_answer: it.correct_answer,
+    difficulty: it.difficulty,
+    explanation: it.why_hard,
+  }))
+  const mathHeavy = /math|quant|수학/i.test(sectionKey)
+  const verifyResult = await verifyAndCorrect(asQuestions, apiKey, { mathHeavy })
+  const verifiedHard = verifyResult.kept.filter(q => q.difficulty === 'hard')
+
+  if (verifiedHard.length === 0) {
+    // Mark attempt so admin can see "tried but nothing survived"
+    await markAttempt(family, sectionKey, `examples: 0 of ${items.length} extracted items verified as hard`)
+    return { family, sectionKey, ok: false, notes: 'no items verified as hard', sources: citedUrls, examplesAdded: 0 }
+  }
+
+  // Step 4: format as inline exemplars (matches the hand-curated format
+  // already in TEST_SPECS so the prompt template doesn't change)
+  const exemplarsEn = verifiedHard.map((q, i) => {
+    const item = items.find(it => it.prompt === q.prompt)
+    const source = item?.source_url ? ` (source: ${item.source_url})` : ''
+    return `EXAMPLE ${i + 1}${source}:
+Prompt: "${q.prompt}"
+Choices: ${JSON.stringify(q.choices)}
+Correct: "${q.correct_answer}"
+Why hard: ${q.explanation}`
+  })
+
+  // Translate to Korean in a single batch call (cheaper than per-item)
+  let exemplarsKo: string[] = []
+  try {
+    const koResult = await generateText({
+      model: openai('gpt-4o-mini'),
+      prompt: `Translate these few-shot exemplars from English to Korean. Preserve the EXAMPLE N (source: ...) headers and JSON-formatted Choices arrays unchanged. Translate the Prompt, Correct, and Why-hard text content to natural Korean. Output the translated exemplars in the same format, separated by blank lines.\n\n${exemplarsEn.join('\n\n')}`,
+      temperature: 0.1,
+    })
+    exemplarsKo = koResult.text.split(/\n\n+/).filter(s => s.trim().startsWith('EXAMPLE'))
+    if (exemplarsKo.length !== exemplarsEn.length) {
+      // If parsing went sideways, fall back to leaving Korean empty —
+      // the generator will use the English exemplars for both languages
+      // (better than no exemplars at all).
+      exemplarsKo = []
+    }
+  } catch (err) {
+    console.error('[test-spec-refresh] Korean translation failed; English-only', err)
+  }
+
+  // Step 5: merge into the cached spec
+  const { data: priorRow } = await supabaseAdmin
+    .from('study_test_specs')
+    .select('spec')
+    .eq('family', family)
+    .eq('section_key', sectionKey)
+    .maybeSingle()
+  const priorSpec = (priorRow?.spec ?? {}) as Partial<SectionSpec>
+  const mergedSpec: Partial<SectionSpec> = {
+    ...priorSpec,
+    hardItemExamples_en: exemplarsEn,
+    ...(exemplarsKo.length > 0 ? { hardItemExamples_ko: exemplarsKo } : {}),
+  }
+
+  const now = new Date().toISOString()
+  await supabaseAdmin
+    .from('study_test_specs')
+    .update({
+      spec: mergedSpec,
+      last_attempted_at: now,
+      verifier_notes: `${exemplarsEn.length} hard examples refreshed`,
+      updated_at: now,
+    })
+    .eq('family', family)
+    .eq('section_key', sectionKey)
+
+  return { family, sectionKey, ok: true, notes: `added ${exemplarsEn.length} hard examples`, sources: citedUrls, examplesAdded: exemplarsEn.length }
+}
+
+async function markAttempt(family: string, sectionKey: string, notes: string) {
   const now = new Date().toISOString()
   await supabaseAdmin
     .from('study_test_specs')
@@ -281,16 +427,65 @@ async function markAttempt(family: TestFamily, sectionKey: string, notes: string
 }
 
 /**
- * Enumerate every (family, section_key) pair from the hardcoded
- * TEST_SPECS — the cron walks this list to know what to refresh.
- * Section key is the English name (stable enough to use as PK fragment).
+ * Walks the study_topics catalog for every test_prep leaf and returns
+ * a refresh target per (family, section). This means adding a new test
+ * to the catalog auto-enrolls it in the refresh cron — no code change.
+ *
+ * Family is derived from the root test topic's slug ("test-sat" → "sat",
+ * "test-aleks" → "aleks"). Section key is the leaf's English name.
  */
-export function listAllSpecTargets(): Array<{ family: TestFamily; sectionKey: string }> {
-  const out: Array<{ family: TestFamily; sectionKey: string }> = []
+export async function listAllSpecTargetsFromDB(): Promise<RefreshTarget[]> {
+  // Test-prep leaves are topics whose parent is a "test-*" root.
+  const { data: leaves } = await supabaseAdmin
+    .from('study_topics')
+    .select('id, slug, name_en, name_ko, parent_id')
+    .eq('category', 'test_prep')
+    .not('parent_id', 'is', null)
+  if (!leaves || leaves.length === 0) return []
+
+  // Pull parents in one shot to derive family + display name.
+  const parentIds = [...new Set(leaves.map(l => l.parent_id).filter((p): p is string => !!p))]
+  const { data: parents } = await supabaseAdmin
+    .from('study_topics')
+    .select('id, slug, name_en, name_ko')
+    .in('id', parentIds)
+  const parentById = new Map((parents ?? []).map(p => [p.id, p]))
+
+  const targets: RefreshTarget[] = []
+  for (const leaf of leaves) {
+    const parent = leaf.parent_id ? parentById.get(leaf.parent_id) : null
+    if (!parent) continue
+    // Only treat rows whose parent is a "test-*" root as section leaves.
+    // The catalog also has "test_prep" categories at the root level
+    // (parent_id non-null but parent isn't a test root) — skip those.
+    if (!parent.slug.startsWith('test-')) continue
+    const family = parent.slug.replace(/^test-/, '')
+    targets.push({
+      family,
+      sectionKey: leaf.name_en,
+      displayName: `${parent.name_en} — ${leaf.name_en}`,
+      displayNameKo: `${parent.name_ko} — ${leaf.name_ko}`,
+    })
+  }
+  return targets
+}
+
+/**
+ * Legacy enumerator for the hardcoded TEST_SPECS. Kept so callers that
+ * want only the curated 8 (e.g. integration tests) still work.
+ * Prefer listAllSpecTargetsFromDB() for production refresh.
+ */
+export function listAllSpecTargets(): RefreshTarget[] {
+  const out: RefreshTarget[] = []
   for (const [family, spec] of Object.entries(TEST_SPECS)) {
     if (!spec) continue
     for (const section of spec.sections) {
-      out.push({ family: family as TestFamily, sectionKey: section.name_en })
+      out.push({
+        family,
+        sectionKey: section.name_en,
+        displayName: `${spec.display} — ${section.name_en}`,
+        displayNameKo: `${spec.display} — ${section.name_ko}`,
+      })
     }
   }
   return out

@@ -1,18 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { refreshTestSpec, listAllSpecTargets } from '@/lib/test-spec-refresh'
-import type { TestFamily } from '@/lib/study-prompt-context'
+import { refreshTestSpec, listAllSpecTargetsFromDB } from '@/lib/test-spec-refresh'
 
 /**
  * GET /api/cron/refresh-test-specs — monthly walk of every
- * (family, section) pair in the spec library, refreshing any that
- * haven't been verified within 30 days.
+ * (family, section) pair derived from study_topics, refreshing any
+ * format spec that hasn't been verified within 30 days.
+ *
+ * This is FORMAT only — the more expensive samples pass runs
+ * quarterly via /api/cron/refresh-test-spec-examples.
  *
  * Auth: CRON_SECRET_KEY bearer header, matching the other crons.
- *
- * Cost ceiling: ~20 sections × ~$0.04 (gpt-4o + 1 search + extract
- * mini call) ≈ $0.80/month at the high end. With the 30-day skip,
- * actual monthly cost is close to that on the first run, then drops
- * if any rows are still fresh.
  */
 
 export const dynamic = 'force-dynamic'
@@ -25,10 +22,10 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
-  const targets = listAllSpecTargets()
+  const targets = await listAllSpecTargetsFromDB()
   const results = []
   for (const t of targets) {
-    const r = await refreshTestSpec(t.family as TestFamily, t.sectionKey)
+    const r = await refreshTestSpec(t)
     results.push(r)
   }
 
