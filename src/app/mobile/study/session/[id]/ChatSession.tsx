@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Send, Loader2 } from 'lucide-react'
+import { Send, Loader2, Square } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
@@ -41,6 +41,9 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
   const [streamingContent, setStreamingContent] = useState<string | null>(null)
   const [loadingHistory, setLoadingHistory] = useState(true)
   const scrollerRef = useRef<HTMLDivElement>(null)
+  // AbortController lets the user kill the in-flight stream from the
+  // composer (Stop button replaces Send while a response is rolling in).
+  const abortRef = useRef<AbortController | null>(null)
 
   // Load existing transcript on mount.
   useEffect(() => {
@@ -90,12 +93,15 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
     setMessages(prev => [...prev, { id: `local-${Date.now()}`, role: 'user', content: text }])
     setStreamingContent('')
 
+    const controller = new AbortController()
+    abortRef.current = controller
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/chat', {
         method: 'POST',
         headers,
         body: JSON.stringify({ sessionId, userMessage: text }),
+        signal: controller.signal,
       })
 
       if (!res.ok || !res.body) {
@@ -131,20 +137,41 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
         ...prev,
         { id: `local-asst-${Date.now()}`, role: 'assistant', content: accumulated },
       ])
-    } catch {
-      setStreamingContent(null)
-      setMessages(prev => [
-        ...prev,
-        {
-          id: `err-${Date.now()}`,
-          role: 'assistant',
-          content: language === 'ko' ? '네트워크 오류입니다. 다시 시도해보세요.' : 'Network error. Try again.',
-        },
-      ])
+    } catch (err) {
+      // Aborts are user-initiated (Stop button) — finalize whatever we
+      // got so the partial response stays visible instead of vanishing.
+      if (err instanceof Error && err.name === 'AbortError') {
+        // streamingContent already holds the partial; flush it into
+        // history so the bubble stops looking like it's still streaming.
+        setStreamingContent(current => {
+          if (current && current.length > 0) {
+            setMessages(prev => [
+              ...prev,
+              { id: `local-asst-${Date.now()}`, role: 'assistant', content: current },
+            ])
+          }
+          return null
+        })
+      } else {
+        setStreamingContent(null)
+        setMessages(prev => [
+          ...prev,
+          {
+            id: `err-${Date.now()}`,
+            role: 'assistant',
+            content: language === 'ko' ? '네트워크 오류입니다. 다시 시도해보세요.' : 'Network error. Try again.',
+          },
+        ])
+      }
     } finally {
+      abortRef.current = null
       setSending(false)
     }
   }, [input, sending, sessionId, language])
+
+  const stop = useCallback(() => {
+    abortRef.current?.abort()
+  }, [])
 
   if (loadingHistory) {
     return (
@@ -197,18 +224,25 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
             className="flex-1 resize-none rounded-2xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:border-primary max-h-32"
             disabled={sending}
           />
-          <button
-            type="submit"
-            disabled={sending || !input.trim()}
-            className="flex-shrink-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed"
-            aria-label={String(t('study.session.send'))}
-          >
-            {sending ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
+          {sending ? (
+            <button
+              type="button"
+              onClick={stop}
+              className="flex-shrink-0 w-11 h-11 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 active:scale-95 transition-all"
+              aria-label={String(t('study.session.stop'))}
+            >
+              <Square className="w-3.5 h-3.5 fill-current" />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              disabled={!input.trim()}
+              className="flex-shrink-0 w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary/90 active:scale-95 transition-all"
+              aria-label={String(t('study.session.send'))}
+            >
               <Send className="w-4 h-4" />
-            )}
-          </button>
+            </button>
+          )}
         </form>
       </div>
     </div>

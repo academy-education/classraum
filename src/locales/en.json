@@ -3880,13 +3880,16 @@
       "eyebrow": "Study",
       "title": "What do you want to learn?",
       "subtitle": "Pick a topic to start a session — chat, practice, lessons, or flashcards.",
+      "history": "History",
       "recommendedTitle": "Recommended for you",
       "recommendedEmpty": "We'll suggest topics here once you've studied for a bit.",
       "browseTitle": "Browse subjects",
-      "loading": "Loading subjects...",
+      "testsTitle": "Test prep",
+      "loading": "Loading...",
       "freeformTitle": "Or type anything",
       "freeformPlaceholder": "e.g. \"World War 2\" or \"quadratic equations\"",
-      "freeformHint": "AI will figure out the subject and start a session."
+      "freeformGo": "Go",
+      "freeformHint": "AI will figure out the subject and start a chat session."
     },
     "topic": {
       "backToStudy": "Back to Study",
@@ -3901,7 +3904,14 @@
       "notFound": "We couldn't load this session. It may have been deleted.",
       "loadingHistory": "Loading your conversation...",
       "composerPlaceholder": "Ask the tutor anything...",
-      "send": "Send"
+      "send": "Send",
+      "stop": "Stop"
+    },
+    "history": {
+      "title": "Your sessions",
+      "subtitle": "Pick up where you left off.",
+      "loading": "Loading history...",
+      "empty": "No sessions yet. Start one from the Study landing."
     },
     "modes": {
       "chat": {
