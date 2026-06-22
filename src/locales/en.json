@@ -3887,6 +3887,40 @@
       "freeformTitle": "Or type anything",
       "freeformPlaceholder": "e.g. \"World War 2\" or \"quadratic equations\"",
       "freeformHint": "AI will figure out the subject and start a session."
+    },
+    "topic": {
+      "backToStudy": "Back to Study",
+      "pickMode": "Pick how you want to study.",
+      "narrowDown": "Narrow it down",
+      "notFound": "We couldn't find that topic."
+    },
+    "session": {
+      "back": "Back",
+      "untitled": "New session",
+      "placeholderHint": "Phase 2 will fill this with the real interactive view.",
+      "notFound": "We couldn't load this session. It may have been deleted."
+    },
+    "modes": {
+      "chat": {
+        "title": "Chat tutor",
+        "body": "Ask questions and have a tutor explain step-by-step.",
+        "comingSoon": "Chat tutor — coming soon"
+      },
+      "practice": {
+        "title": "Practice questions",
+        "body": "Drill questions tailored to the topic. AI grades each one.",
+        "comingSoon": "Practice questions — coming soon"
+      },
+      "lesson": {
+        "title": "Structured lesson",
+        "body": "A short lesson with examples and a comprehension check.",
+        "comingSoon": "Structured lesson — coming soon"
+      },
+      "flashcards": {
+        "title": "Flashcards",
+        "body": "Memorise key terms and facts with quick review cards.",
+        "comingSoon": "Flashcards — coming soon"
+      }
     }
   },
   "mobile": {
