@@ -1,6 +1,6 @@
 "use client"
 
-import { use, useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, ChevronRight, Loader2, FileText, ArrowRight, Sparkles } from 'lucide-react'
@@ -179,21 +179,30 @@ function TopicInner({ slug }: { slug: string }) {
         <section className="grid grid-cols-2 gap-3">
           {STUDY_MODES
             .filter(m => m.key !== 'full_test')
-            .map(mode => {
+            .map((mode, i) => {
               const Icon = mode.icon
+              // Per-mode ambient decoration — small glyph cluster that
+              // hints at what the mode does. Chat → dots, Practice →
+              // checkmarks, Lesson → reading lines, Flashcards → stacked
+              // card edges. Brilliant-style ambient texture.
+              const decor = MODE_DECOR[mode.key] ?? null
               return (
                 <button
                   key={mode.key}
                   type="button"
                   onClick={() => startSession(mode.key)}
                   disabled={creating !== null}
-                  className={`group relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${mode.hoverRing} ${mode.hoverShadow} hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait`}
+                  style={{ animationDelay: `${i * 60}ms` }}
+                  className={`group relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${mode.hoverRing} ${mode.hoverShadow} hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out text-left disabled:opacity-60 disabled:cursor-wait animate-card-in opacity-0`}
                 >
-                  {/* Top edge highlight + decorative glow blob in corner for visual identity */}
+                  {/* Top edge highlight */}
                   <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
-                  <div aria-hidden className={`pointer-events-none absolute -top-6 -right-6 w-20 h-20 rounded-full ${mode.iconBg} opacity-10 blur-2xl`} />
+                  {/* Decorative glow blob, mode-tinted */}
+                  <div aria-hidden className={`pointer-events-none absolute -top-8 -right-8 w-24 h-24 rounded-full ${mode.iconBg} opacity-[0.12] blur-2xl group-hover:opacity-[0.20] transition-opacity duration-300`} />
+                  {/* Mode-specific decoration */}
+                  {decor}
 
-                  <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04]`}>
+                  <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04] group-hover:scale-105 transition-transform duration-300`}>
                     {creating === mode.key ? (
                       <Loader2 className="w-5 h-5 animate-spin" />
                     ) : (
@@ -239,6 +248,60 @@ function TopicInner({ slug }: { slug: string }) {
       </div>
     </div>
   )
+}
+
+/** Per-mode ambient decoration glyphs. Sits in the bottom-right of
+ *  each mode card as a faded visual hint at what the mode does —
+ *  inspired by Brilliant's decorative math symbols on course cards.
+ *  Each is an SVG block positioned absolutely; pointer-events-none
+ *  so they don't interfere with clicks. */
+const MODE_DECOR: Record<StudyMode, React.ReactElement | null> = {
+  chat: (
+    // Speech bubble cluster — small dots inside a bubble shape
+    <svg aria-hidden viewBox="0 0 80 60" className="pointer-events-none absolute bottom-2 right-2 w-16 h-12 text-sky-500/10 group-hover:text-sky-500/20 transition-colors">
+      <path d="M5 20 Q5 5 20 5 L55 5 Q70 5 70 20 L70 30 Q70 45 55 45 L25 45 L15 55 L17 45 Q5 45 5 30 Z" fill="currentColor" />
+      <circle cx="25" cy="25" r="3" fill="white" />
+      <circle cx="37" cy="25" r="3" fill="white" />
+      <circle cx="49" cy="25" r="3" fill="white" />
+    </svg>
+  ),
+  practice: (
+    // Stacked checklist lines with checkmarks
+    <svg aria-hidden viewBox="0 0 80 60" className="pointer-events-none absolute bottom-2 right-2 w-16 h-12 text-emerald-500/10 group-hover:text-emerald-500/20 transition-colors">
+      <rect x="5" y="10" width="10" height="10" rx="2" fill="currentColor" />
+      <rect x="20" y="12" width="50" height="6" rx="3" fill="currentColor" opacity="0.6" />
+      <rect x="5" y="25" width="10" height="10" rx="2" fill="currentColor" />
+      <rect x="20" y="27" width="40" height="6" rx="3" fill="currentColor" opacity="0.6" />
+      <rect x="5" y="40" width="10" height="10" rx="2" fill="currentColor" />
+      <rect x="20" y="42" width="45" height="6" rx="3" fill="currentColor" opacity="0.6" />
+      <path d="M7 14 L9 16 L13 12" stroke="white" strokeWidth="1.5" fill="none" />
+      <path d="M7 29 L9 31 L13 27" stroke="white" strokeWidth="1.5" fill="none" />
+    </svg>
+  ),
+  lesson: (
+    // Open book — two pages with reading lines
+    <svg aria-hidden viewBox="0 0 80 60" className="pointer-events-none absolute bottom-2 right-2 w-16 h-12 text-amber-500/10 group-hover:text-amber-500/20 transition-colors">
+      <path d="M5 10 L5 50 L40 50 L40 12 Q22 6 5 10 Z" fill="currentColor" />
+      <path d="M75 10 L75 50 L40 50 L40 12 Q58 6 75 10 Z" fill="currentColor" />
+      <line x1="12" y1="22" x2="32" y2="22" stroke="white" strokeWidth="1.2" opacity="0.6" />
+      <line x1="12" y1="30" x2="32" y2="30" stroke="white" strokeWidth="1.2" opacity="0.6" />
+      <line x1="12" y1="38" x2="28" y2="38" stroke="white" strokeWidth="1.2" opacity="0.6" />
+      <line x1="48" y1="22" x2="68" y2="22" stroke="white" strokeWidth="1.2" opacity="0.6" />
+      <line x1="48" y1="30" x2="68" y2="30" stroke="white" strokeWidth="1.2" opacity="0.6" />
+      <line x1="48" y1="38" x2="64" y2="38" stroke="white" strokeWidth="1.2" opacity="0.6" />
+    </svg>
+  ),
+  flashcards: (
+    // Stacked card edges showing depth
+    <svg aria-hidden viewBox="0 0 80 60" className="pointer-events-none absolute bottom-2 right-2 w-16 h-12 text-violet-500/10 group-hover:text-violet-500/20 transition-colors">
+      <rect x="20" y="15" width="50" height="35" rx="4" fill="currentColor" transform="rotate(8 45 32)" />
+      <rect x="15" y="13" width="50" height="35" rx="4" fill="currentColor" transform="rotate(3 40 30)" />
+      <rect x="10" y="10" width="50" height="35" rx="4" fill="currentColor" />
+      <rect x="18" y="20" width="34" height="3" rx="1.5" fill="white" opacity="0.6" />
+      <rect x="18" y="28" width="24" height="3" rx="1.5" fill="white" opacity="0.6" />
+    </svg>
+  ),
+  full_test: null,
 }
 
 /**

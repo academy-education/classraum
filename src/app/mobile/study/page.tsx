@@ -7,7 +7,7 @@ import {
   Search, ChevronRight, ArrowRight,
   History, GraduationCap, FileText, CreditCard,
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
-  Trophy, Award, Target, BookMarked, Building2, LucideIcon,
+  PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, LucideIcon,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -164,67 +164,104 @@ function themeForSubject(slug: string, name: string): Theme {
   return NEUTRAL_THEME
 }
 
-/** Per-test visual identity. Keyed by the slug fragment after "test-". */
-const TEST_THEMES: Record<string, { Icon: LucideIcon; gradient: string; accent: string; ring: string; mono: string }> = {
+/** Per-test visual identity. Keyed by the slug fragment after "test-".
+ *  Each test gets:
+ *   - a semantic small icon (pen for writing-heavy, globe for international,
+ *     briefcase for workplace, etc.) — not a generic award/trophy
+ *   - a brand-aligned gradient
+ *   - a faded watermark monogram (SAT/수능/TOEFL/…) in the background
+ *   - decorative ASCII chars that hint at content (math symbols for
+ *     quant tests, language glyphs for English tests) — Brilliant-app
+ *     style background texture
+ *   - a stat chip ("44 Q · 70 min") so the card carries useful info
+ *     not just brand identity */
+const TEST_THEMES: Record<string, {
+  Icon: LucideIcon
+  gradient: string
+  accent: string
+  ring: string
+  mono: string
+  /** Decorative background characters (math symbols, language glyphs)
+   *  arranged absolutely for Brilliant-style texture. */
+  decorChars: string[]
+  /** Compact structural stat shown as a chip. */
+  stat: string
+}> = {
   sat: {
-    Icon: Award,
+    Icon: PenLine, // College Board's Digital SAT — pen for the writing module
     gradient: 'bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800',
     accent: 'text-blue-50',
     ring: 'ring-blue-900/20',
     mono: 'SAT',
+    decorChars: ['x²', '∑', '∫'],
+    stat: '98 Q · 2h 14m',
   },
   ksat: {
-    Icon: Trophy,
+    Icon: Flag, // 수능 — Korean national exam, flag for national identity
     gradient: 'bg-gradient-to-br from-rose-500 via-rose-600 to-red-700',
     accent: 'text-rose-50',
     ring: 'ring-rose-900/20',
     mono: '수능',
+    decorChars: ['국', '수', '영'],
+    stat: '6 영역',
   },
   toefl: {
-    Icon: Globe2,
+    Icon: Globe2, // ETS TOEFL — international academic English
     gradient: 'bg-gradient-to-br from-teal-500 via-emerald-600 to-emerald-700',
     accent: 'text-teal-50',
     ring: 'ring-emerald-900/20',
     mono: 'TOEFL',
+    decorChars: ['A', 'a', '‹›'],
+    stat: '4 sections · 2h',
   },
   toeic: {
-    Icon: Building2,
+    Icon: Briefcase, // ETS TOEIC — workplace English
     gradient: 'bg-gradient-to-br from-sky-500 via-sky-600 to-blue-700',
     accent: 'text-sky-50',
     ring: 'ring-sky-900/20',
     mono: 'TOEIC',
+    decorChars: ['$', '@', '✉'],
+    stat: '200 Q · 2h',
   },
   ielts: {
-    Icon: Languages,
+    Icon: Languages, // British Council IELTS — international English
     gradient: 'bg-gradient-to-br from-violet-500 via-purple-600 to-purple-800',
     accent: 'text-violet-50',
     ring: 'ring-purple-900/20',
     mono: 'IELTS',
+    decorChars: ['ℹ', '?', '✓'],
+    stat: '4 sections · 2h 45m',
   },
   act: {
-    Icon: Target,
+    Icon: ClipboardCheck, // ACT — comprehensive multiple-choice
     gradient: 'bg-gradient-to-br from-orange-500 via-red-500 to-red-700',
     accent: 'text-orange-50',
     ring: 'ring-red-900/20',
     mono: 'ACT',
+    decorChars: ['ⓐ', 'ⓑ', 'ⓒ'],
+    stat: '5 sections · 3h',
   },
   ap: {
-    Icon: GraduationCap,
+    Icon: GraduationCap, // College Board AP — college-credit exams
     gradient: 'bg-gradient-to-br from-emerald-500 via-green-600 to-emerald-800',
     accent: 'text-emerald-50',
     ring: 'ring-emerald-900/20',
     mono: 'AP',
+    decorChars: ['5', '4', '3'],
+    stat: '9+ subjects',
   },
   gre: {
-    Icon: BookMarked,
+    Icon: Scroll, // ETS GRE — graduate school admission
     gradient: 'bg-gradient-to-br from-indigo-500 via-indigo-600 to-violet-800',
     accent: 'text-indigo-50',
     ring: 'ring-indigo-900/20',
     mono: 'GRE',
+    decorChars: ['Σ', 'π', '½'],
+    stat: '3 sections · 1h 58m',
   },
 }
 
-function themeForTest(slug: string): { Icon: LucideIcon; gradient: string; accent: string; ring: string; mono: string } {
+function themeForTest(slug: string): typeof TEST_THEMES[keyof typeof TEST_THEMES] {
   const key = slug.replace(/^test-/, '').toLowerCase()
   return TEST_THEMES[key] ?? {
     Icon: FileText,
@@ -232,6 +269,8 @@ function themeForTest(slug: string): { Icon: LucideIcon; gradient: string; accen
     accent: 'text-slate-50',
     ring: 'ring-slate-900/20',
     mono: key.toUpperCase().slice(0, 4),
+    decorChars: ['?', '?'],
+    stat: '',
   }
 }
 
@@ -376,11 +415,13 @@ function StudyLandingInner() {
             {t('study.landing.browseTitle')}
           </h2>
           {loading ? (
-            <LoadingCard label={t('study.landing.loading')} />
+            <SkeletonRows count={4} />
           ) : (
             <div className="space-y-2.5">
-              {subjects.map(subj => (
-                <ExpandableCard key={subj.id} item={subj} name={name} />
+              {subjects.map((subj, i) => (
+                <div key={subj.id} style={{ animationDelay: `${i * 50}ms` }} className="animate-card-in opacity-0">
+                  <ExpandableCard item={subj} name={name} />
+                </div>
               ))}
             </div>
           )}
@@ -395,36 +436,60 @@ function StudyLandingInner() {
             {t('study.landing.testsTitle')}
           </h2>
           {loading ? (
-            <LoadingCard label={t('study.landing.loading')} />
+            <SkeletonGrid />
           ) : (
             <div className="grid grid-cols-2 gap-3">
-              {tests.map(test => {
+              {tests.map((test, i) => {
                 const theme = themeForTest(test.slug)
                 const Icon = theme.Icon
                 return (
                   <Link
                     key={test.id}
                     href={`/mobile/study/topic/${test.slug}`}
-                    className={`group relative overflow-hidden rounded-2xl p-4 ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.08),0_16px_32px_-12px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200`}
+                    style={{ animationDelay: `${i * 40}ms` }}
+                    className={`group relative overflow-hidden rounded-2xl p-4 min-h-[120px] ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] hover:shadow-[0_6px_12px_rgba(0,0,0,0.10),0_20px_40px_-12px_rgba(0,0,0,0.30)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out animate-card-in opacity-0`}
                   >
-                    {/* Decorative monogram in background — large, low-opacity */}
-                    <div aria-hidden className="pointer-events-none absolute -top-2 -right-3 text-[56px] font-black tracking-tighter text-white/[0.08] select-none leading-none">
+                    {/* Decorative monogram watermark — large, low-opacity */}
+                    <div aria-hidden className="pointer-events-none absolute -top-1 -right-2 text-[62px] font-black tracking-tighter text-white/[0.10] select-none leading-none group-hover:text-white/[0.15] transition-colors">
                       {theme.mono}
+                    </div>
+                    {/* Brilliant-style ambient decoration: scattered subject glyphs */}
+                    <div aria-hidden className="pointer-events-none absolute inset-0 select-none overflow-hidden">
+                      {theme.decorChars.map((ch, j) => (
+                        <span
+                          key={j}
+                          className="absolute font-semibold text-white/[0.07] group-hover:text-white/[0.10] transition-colors"
+                          style={{
+                            // Pseudo-random but deterministic placement per char index
+                            top: `${20 + j * 28}%`,
+                            left: `${10 + (j * 37) % 70}%`,
+                            fontSize: `${14 + (j * 7) % 12}px`,
+                            transform: `rotate(${-15 + j * 12}deg)`,
+                          }}
+                        >{ch}</span>
+                      ))}
                     </div>
                     {/* Subtle top edge highlight */}
                     <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                     {/* Soft glow blob */}
-                    <div aria-hidden className="pointer-events-none absolute -top-8 -left-8 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
+                    <div aria-hidden className="pointer-events-none absolute -top-8 -left-8 w-24 h-24 rounded-full bg-white/15 blur-2xl group-hover:bg-white/25 transition-colors" />
 
-                    <div className="relative flex flex-col h-full">
-                      <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur ring-1 ring-white/20 mb-3">
-                        <Icon className={`w-4 h-4 ${theme.accent}`} />
+                    <div className="relative flex flex-col h-full justify-between gap-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur-md ring-1 ring-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+                          <Icon className={`w-4 h-4 ${theme.accent}`} />
+                        </div>
+                        {theme.stat && (
+                          <span className={`inline-flex items-center text-[10px] font-semibold tracking-tight ${theme.accent} bg-black/15 backdrop-blur-md ring-1 ring-white/20 rounded-full px-2 py-0.5`}>
+                            {theme.stat}
+                          </span>
+                        )}
                       </div>
                       <div className="flex items-end justify-between gap-2">
-                        <span className={`text-[15px] font-semibold ${theme.accent} leading-tight truncate`}>
+                        <span className={`text-[15px] font-bold ${theme.accent} leading-tight truncate tracking-tight`}>
                           {name(test)}
                         </span>
-                        <ArrowRight className={`w-4 h-4 ${theme.accent} opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 flex-shrink-0 transition-all`} />
+                        <ArrowRight className={`w-4 h-4 ${theme.accent} opacity-60 group-hover:opacity-100 group-hover:translate-x-1 flex-shrink-0 transition-all`} />
                       </div>
                     </div>
                   </Link>
@@ -469,10 +534,45 @@ function StudyLandingInner() {
   )
 }
 
-function LoadingCard({ label }: { label: string }) {
+/** Shimmer skeleton row — matches the ExpandableCard's actual layout
+ *  (icon tile + title + subtitle + chevron) so the load → loaded
+ *  transition doesn't shift content. Much more polished than a
+ *  generic "Loading…" message. */
+function SkeletonRows({ count }: { count: number }) {
   return (
-    <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 px-5 py-7 text-center text-sm text-gray-400 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-      {label}
+    <div className="space-y-2.5">
+      {Array.from({ length: count }).map((_, i) => (
+        <div
+          key={i}
+          style={{ animationDelay: `${i * 80}ms` }}
+          className="relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/60 px-4 py-4 shadow-[0_1px_2px_rgba(0,0,0,0.02)] animate-card-in opacity-0"
+        >
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
+            <div className="flex-1 space-y-1.5">
+              <div className="h-3 w-2/5 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
+              <div className="h-2.5 w-1/4 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Shimmer skeleton grid — matches the test-prep card layout. */
+function SkeletonGrid() {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div
+          key={i}
+          style={{ animationDelay: `${i * 60}ms` }}
+          className="relative overflow-hidden rounded-2xl min-h-[120px] p-4 bg-gradient-to-br from-gray-100 to-gray-200 ring-1 ring-gray-200/60 animate-card-in opacity-0"
+        >
+          <div className="absolute inset-0 animate-shimmer-soft" />
+        </div>
+      ))}
     </div>
   )
 }
