@@ -15,6 +15,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from './SubscriptionGate'
 import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
+import { MistakeBankShelf } from './MistakeBankShelf'
 import { StudyStreakChip } from './StudyStreakChip'
 
 /**
@@ -416,6 +417,13 @@ function StudyLandingInner() {
             surfacing active sessions inline so the student doesn't
             have to navigate elsewhere to pick up where they left off. */}
         <ResumableShelf />
+
+        {/* Mistake bank — recent wrong answers with their wrong vs
+            right answers visible inline. Pedagogically the highest-
+            leverage shelf: targeted review of mistakes outperforms
+            re-studying easy material (well-established in learning
+            research). Auto-hides when there are no recent mistakes. */}
+        <MistakeBankShelf />
 
         {/* Subjects — curated K-12 catalog. */}
         <section>
