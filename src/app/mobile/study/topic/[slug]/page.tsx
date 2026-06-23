@@ -1,9 +1,9 @@
 "use client"
 
-import React, { use, useEffect, useState } from 'react'
+import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -258,9 +258,11 @@ function TopicInner({ slug }: { slug: string }) {
 }
 
 /** Category picker shown above the mode grid when a topic has
- *  children. Horizontal scroll of pill chips with a clear selected
- *  state. iOS / Apple Music genre-picker influence — feels native
- *  on a mobile surface. */
+ *  children. Custom dropdown — opens a popover panel listing all
+ *  options with the current one checkmarked. Better than a horizontal
+ *  chip row when the option count is large (AP has 9, KSAT has 6),
+ *  and gives more affordance for the "this is a selector" intent.
+ *  Apple-style: subtle bg, chevron, soft shadow when open. */
 function CategoryPicker({
   label,
   children: categories,
@@ -274,32 +276,77 @@ function CategoryPicker({
   onSelect: (id: string) => void
   name: (n: { name_en: string; name_ko: string }) => string
 }) {
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const selected = categories.find(c => c.id === selectedId) ?? categories[0]
+
+  // Close the dropdown when the user clicks outside, presses Escape,
+  // or scrolls — same conventions as iOS / macOS popovers.
+  useEffect(() => {
+    if (!open) return
+    const onDown = (e: MouseEvent) => {
+      if (!containerRef.current?.contains(e.target as Node)) setOpen(false)
+    }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    document.addEventListener('mousedown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
   return (
-    <section>
+    <section ref={containerRef}>
       <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-2.5 px-1">
         {label}
       </h2>
-      <div className="-mx-5">
-        <div className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth snap-x px-5 pt-1 pb-2">
-          {categories.map((cat, i) => {
-            const selected = cat.id === selectedId
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => onSelect(cat.id)}
-                style={{ animationDelay: `${i * 30}ms` }}
-                className={`snap-start flex-shrink-0 inline-flex items-center px-4 h-10 rounded-full text-[13.5px] font-semibold tracking-tight transition-all duration-200 animate-card-in opacity-0 ${
-                  selected
-                    ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25),0_8px_20px_-8px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
-                    : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 hover:text-primary shadow-[0_1px_2px_rgba(0,0,0,0.03)] active:scale-[0.97]'
-                }`}
-              >
-                {name(cat)}
-              </button>
-            )
-          })}
-        </div>
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setOpen(o => !o)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          className={`group w-full flex items-center justify-between gap-3 px-4 h-12 rounded-2xl bg-white ring-1 transition-all duration-200 text-left ${
+            open
+              ? 'ring-primary/40 shadow-[0_2px_8px_-2px_rgba(40,133,232,0.18),0_12px_28px_-12px_rgba(40,133,232,0.22)]'
+              : 'ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/25'
+          }`}
+        >
+          <span className="text-[15px] font-semibold text-gray-900 truncate">
+            {selected ? name(selected) : '—'}
+          </span>
+          <ChevronDown
+            className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180 text-primary' : ''}`}
+          />
+        </button>
+        {open && (
+          <div
+            role="listbox"
+            className="absolute left-0 right-0 top-[calc(100%+8px)] z-20 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_4px_8px_-2px_rgba(0,0,0,0.06),0_24px_48px_-12px_rgba(0,0,0,0.18)] py-1.5 max-h-[60vh] overflow-y-auto animate-card-in opacity-0 origin-top"
+          >
+            {categories.map(cat => {
+              const isSelected = cat.id === selectedId
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  role="option"
+                  aria-selected={isSelected}
+                  onClick={() => { onSelect(cat.id); setOpen(false) }}
+                  className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-[14px] text-left transition-colors ${
+                    isSelected
+                      ? 'bg-primary/[0.06] text-primary font-semibold'
+                      : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100 font-medium'
+                  }`}
+                >
+                  <span className="truncate">{name(cat)}</span>
+                  {isSelected && <Check className="w-4 h-4 text-primary flex-shrink-0" />}
+                </button>
+              )
+            })}
+          </div>
+        )}
       </div>
     </section>
   )

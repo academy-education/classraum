@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2, Sparkles } from 'lucide-react'
+import { Lightbulb, AlertTriangle, History, ArrowRight, ChevronLeft, ChevronRight, Loader2, Sparkles } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -39,6 +39,36 @@ export function RecommendedShelf() {
   const [cards, setCards] = useState<Card[]>([])
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+
+  // Track scroll position so we can hide the prev/next buttons when
+  // we're at the start or end of the carousel.
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const update = () => {
+      setCanScrollLeft(el.scrollLeft > 8)
+      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8)
+    }
+    update()
+    el.addEventListener('scroll', update, { passive: true })
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => {
+      el.removeEventListener('scroll', update)
+      ro.disconnect()
+    }
+  }, [cards.length])
+
+  const scrollByOneCard = (dir: 'left' | 'right') => {
+    const el = scrollRef.current
+    if (!el) return
+    // One card width + gap. Card is ~82% viewport up to 320px.
+    const cardWidth = Math.min(el.clientWidth * 0.82, 320) + 12
+    el.scrollBy({ left: dir === 'left' ? -cardWidth : cardWidth, behavior: 'smooth' })
+  }
 
   useEffect(() => {
     let cancelled = false
@@ -84,12 +114,36 @@ export function RecommendedShelf() {
 
   return (
     <section>
-      <h2 className="text-[15px] font-semibold text-gray-900 mb-3 inline-flex items-center gap-2">
-        <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-primary/10 ring-1 ring-primary/15">
-          <Sparkles className="w-3.5 h-3.5 text-primary" />
-        </span>
-        {t('study.landing.recommendedTitle')}
-      </h2>
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-[15px] font-semibold text-gray-900 inline-flex items-center gap-2">
+          <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-primary/10 ring-1 ring-primary/15">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
+          </span>
+          {t('study.landing.recommendedTitle')}
+        </h2>
+        {cards.length > 1 && (
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => scrollByOneCard('left')}
+              disabled={!canScrollLeft}
+              aria-label="Previous"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-600 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.95] transition-all"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollByOneCard('right')}
+              disabled={!canScrollRight}
+              aria-label="Next"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-600 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.95] transition-all"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+      </div>
 
       {loading ? (
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 px-5 py-7 text-center text-sm text-gray-400 inline-flex items-center justify-center gap-2 w-full shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
@@ -111,7 +165,7 @@ export function RecommendedShelf() {
         // Negative margin + matching padding lets the cards bleed
         // into the page edge so they look like a magazine shelf.
         <div className="-mx-5">
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 pt-1 pb-2">
+          <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 pt-1 pb-2">
             {cards.map(card => (
               <div
                 key={`${card.topic.id}-${card.reason}`}

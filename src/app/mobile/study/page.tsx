@@ -380,7 +380,7 @@ function StudyLandingInner() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-72 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.025] to-transparent"
       />
-      <div className="px-5 pt-8 pb-14 space-y-9">
+      <div className="px-5 pt-6 pb-14 space-y-8">
         {/* Header */}
         <header className="flex items-start justify-between gap-3">
           <div>
@@ -425,13 +425,16 @@ function StudyLandingInner() {
             {t('study.landing.browseTitle')}
           </h2>
           {loading ? (
-            <SkeletonRows count={4} />
+            <SkeletonSquareGrid />
           ) : (
-            <div className="space-y-2.5">
+            <div className="grid grid-cols-2 gap-3">
               {subjects.map((subj, i) => (
-                <div key={subj.id} style={{ animationDelay: `${i * 50}ms` }} className="animate-card-in opacity-0">
-                  <ExpandableCard item={subj} name={name} />
-                </div>
+                <SubjectSquareCard
+                  key={subj.id}
+                  item={subj}
+                  name={name}
+                  delay={i * 50}
+                />
               ))}
             </div>
           )}
@@ -544,32 +547,6 @@ function StudyLandingInner() {
   )
 }
 
-/** Shimmer skeleton row — matches the ExpandableCard's actual layout
- *  (icon tile + title + subtitle + chevron) so the load → loaded
- *  transition doesn't shift content. Much more polished than a
- *  generic "Loading…" message. */
-function SkeletonRows({ count }: { count: number }) {
-  return (
-    <div className="space-y-2.5">
-      {Array.from({ length: count }).map((_, i) => (
-        <div
-          key={i}
-          style={{ animationDelay: `${i * 80}ms` }}
-          className="relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/60 px-4 py-4 shadow-[0_1px_2px_rgba(0,0,0,0.02)] animate-card-in opacity-0"
-        >
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
-            <div className="flex-1 space-y-1.5">
-              <div className="h-3 w-2/5 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
-              <div className="h-2.5 w-1/4 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 /** Shimmer skeleton grid — matches the test-prep card layout. */
 function SkeletonGrid() {
   return (
@@ -587,68 +564,74 @@ function SkeletonGrid() {
   )
 }
 
-/**
- * Reusable expandable card — subject cards use this; tests render
- * flat so this only renders the level-1 children inline for subjects.
- */
-function ExpandableCard({
+/** Shimmer skeleton grid for subject squares — taller cards to match
+ *  the actual SubjectSquareCard min-height. */
+function SkeletonSquareGrid() {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div
+          key={i}
+          style={{ animationDelay: `${i * 60}ms` }}
+          className="relative overflow-hidden rounded-2xl min-h-[140px] p-4 bg-white ring-1 ring-gray-200/60 animate-card-in opacity-0 flex flex-col justify-between"
+        >
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
+          <div className="space-y-1.5">
+            <div className="h-3 w-3/5 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
+            <div className="h-2.5 w-1/3 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Square subject card — matches the test prep grid's visual rhythm.
+ *  Tapping navigates to /topic/[slug] where the new dropdown picker
+ *  on the topic page handles the subtopic selection (Algebra, Geometry,
+ *  etc.). Removes the old inline-expand pattern in favor of a
+ *  consistent grid-of-squares layout across both subjects and tests. */
+function SubjectSquareCard({
   item,
   name,
+  delay,
 }: {
   item: BrowseItem
   name: (s: { name_en: string; name_ko: string }) => string
+  delay: number
 }) {
   const { t } = useTranslation()
-  const [open, setOpen] = useState(false)
   const theme = themeForSubject(item.slug, item.name_en)
   const Icon = theme.Icon
   const branchCount = item.branches.length
   return (
-    <div className={`relative rounded-2xl overflow-hidden ring-1 transition-all duration-200 ${theme.cardBg} ${
-      open
-        ? `${theme.ring} shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),0_12px_28px_-12px_rgba(0,0,0,0.12)]`
-        : 'ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
-    }`}>
-      <button
-        type="button"
-        onClick={() => setOpen(v => !v)}
-        className="group w-full flex items-center gap-3.5 px-4 py-4 hover:bg-black/[0.015] active:bg-black/[0.025] transition-colors"
-      >
-        {/* Subject icon tile — gradient with white icon for confident identity */}
-        <div className={`flex-shrink-0 w-11 h-11 rounded-2xl ${theme.iconBg} flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(0,0,0,0.08)] ring-1 ring-black/[0.03]`}>
-          <Icon className={`w-5 h-5 ${theme.iconText}`} />
+    <Link
+      href={`/mobile/study/topic/${item.slug}`}
+      style={{ animationDelay: `${delay}ms` }}
+      className={`group relative overflow-hidden rounded-2xl ${theme.cardBg} p-4 min-h-[140px] ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:${theme.ring.replace('ring-', 'ring-')} ${theme.hoverShadow} hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out animate-card-in opacity-0 flex flex-col justify-between`}
+    >
+      {/* Top edge highlight */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+      {/* Decorative glow blob using the subject's accent */}
+      <div aria-hidden className={`pointer-events-none absolute -top-6 -right-6 w-20 h-20 rounded-full ${theme.iconBg} opacity-[0.10] blur-2xl group-hover:opacity-[0.18] transition-opacity duration-300`} />
+
+      <div className={`relative flex-shrink-0 w-12 h-12 rounded-2xl ${theme.iconBg} flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_4px_8px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04] group-hover:scale-105 transition-transform duration-300`}>
+        <Icon className={`w-5 h-5 ${theme.iconText}`} />
+      </div>
+
+      <div className="relative">
+        <div className={`text-[15px] font-semibold text-gray-900 ${theme.hoverText} transition-colors leading-tight`}>
+          {name(item)}
         </div>
-        <div className="flex-1 min-w-0 text-left">
-          <div className={`text-[15px] font-semibold text-gray-900 ${theme.hoverText} transition-colors`}>
-            {name(item)}
+        {branchCount > 0 && (
+          <div className="text-[12px] text-gray-500 mt-1">
+            {String(t(
+              branchCount === 1 ? 'study.landing.topicCountSingular' : 'study.landing.topicCountPlural',
+              { count: String(branchCount) }
+            ))}
           </div>
-          {branchCount > 0 && (
-            <div className="text-[12px] text-gray-500 mt-0.5">
-              {String(t(
-                branchCount === 1 ? 'study.landing.topicCountSingular' : 'study.landing.topicCountPlural',
-                { count: String(branchCount) }
-              ))}
-            </div>
-          )}
-        </div>
-        <ChevronRight
-          className={`w-4 h-4 text-gray-400 transition-all duration-200 flex-shrink-0 ${open ? 'rotate-90' : ''}`}
-        />
-      </button>
-      {open && (
-        <div className="border-t border-gray-200/60 px-2 py-2 space-y-0.5 bg-white/40 backdrop-blur-sm">
-          {item.branches.map(branch => (
-            <Link
-              key={branch.id}
-              href={`/mobile/study/topic/${branch.slug}`}
-              className="group/branch flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-white active:bg-white/60 text-[13.5px] text-gray-700 transition-colors"
-            >
-              <span className="font-medium">{name(branch)}</span>
-              <ArrowRight className={`w-4 h-4 text-gray-300 ${theme.hoverText.replace('group-hover', 'group-hover/branch')} group-hover/branch:translate-x-0.5 transition-all`} />
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </Link>
   )
 }
