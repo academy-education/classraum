@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
   Search, ArrowRight,
-  GraduationCap, FileText, CreditCard,
+  FileText, CreditCard,
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
-  PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, LucideIcon,
+  PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, LucideIcon,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -419,10 +419,7 @@ function StudyLandingInner() {
 
         {/* Subjects — curated K-12 catalog. */}
         <section>
-          <h2 className="text-[15px] font-semibold text-gray-900 mb-3 inline-flex items-center gap-2">
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-emerald-50 ring-1 ring-emerald-100">
-              <GraduationCap className="w-3.5 h-3.5 text-emerald-600" />
-            </span>
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
             {t('study.landing.browseTitle')}
           </h2>
           {loading ? (
@@ -443,10 +440,7 @@ function StudyLandingInner() {
 
         {/* Test Prep — flat list of standardized tests. */}
         <section>
-          <h2 className="text-[15px] font-semibold text-gray-900 mb-3 inline-flex items-center gap-2">
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-violet-50 ring-1 ring-violet-100">
-              <FileText className="w-3.5 h-3.5 text-violet-600" />
-            </span>
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
             {t('study.landing.testsTitle')}
           </h2>
           {loading ? (
@@ -515,7 +509,7 @@ function StudyLandingInner() {
 
         {/* Free-form — submit creates a chat session with topic_freeform. */}
         <section>
-          <h2 className="text-[15px] font-semibold text-gray-900 mb-3">
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
             {t('study.landing.freeformTitle')}
           </h2>
           <form
