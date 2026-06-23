@@ -106,51 +106,117 @@ export function RecommendedShelf() {
           </p>
         </div>
       ) : (
-        <div className="space-y-2">
-          {cards.map(card => {
-            const Icon = card.reason === 'weak' ? AlertTriangle : History
-            const accent = card.reason === 'weak'
-              ? 'text-amber-700 bg-gradient-to-br from-amber-50 to-amber-100/60'
-              : 'text-primary bg-gradient-to-br from-primary/10 to-primary/15'
-            return (
-              <button
-                key={`${card.topic.id}-${card.reason}`}
-                type="button"
-                onClick={() => void startSession(card)}
-                disabled={creating !== null}
-                className="group w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.12),0_12px_24px_-12px_rgba(40,133,232,0.18)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
-              >
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] ${accent}`}>
-                  {creating === card.topic.id
-                    ? <Loader2 className="w-4 h-4 animate-spin" />
-                    : <Icon className="w-4 h-4" />}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold text-gray-900 truncate">
-                    {name(card.topic)}
-                  </div>
-                  <div className="text-[12.5px] text-gray-500 mt-0.5 leading-relaxed">
-                    {card.reason === 'weak'
-                      ? card.weakness_hint
-                        ? t('study.recommended.weakReasonWithHint', {
-                            hint: card.weakness_hint,
-                            mode: String(t(`study.modes.${card.suggested_mode}.title`)),
-                          })
-                        : t('study.recommended.weakReason', {
-                            score: String(card.score ?? 0),
-                            mode: String(t(`study.modes.${card.suggested_mode}.title`)),
-                          })
-                      : t('study.recommended.recentReason', {
-                          mode: String(t(`study.modes.${card.suggested_mode}.title`)),
-                        })}
-                  </div>
-                </div>
-                <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
-              </button>
-            )
-          })}
+        <div className="space-y-2.5">
+          {cards.map(card => card.reason === 'weak'
+            ? <WeakAreaCard key={`${card.topic.id}-weak`} card={card} name={name} t={t} startSession={startSession} creating={creating} />
+            : <RecentSessionCard key={`${card.topic.id}-recent`} card={card} name={name} t={t} startSession={startSession} creating={creating} />)}
         </div>
       )}
     </section>
+  )
+}
+
+/** Distinctive treatment for weak-area cards: amber gradient, mastery
+ *  score visualized as a horizontal progress bar at the bottom. The
+ *  bar gives the card a concrete data anchor instead of a generic row. */
+function WeakAreaCard({ card, name, t, startSession, creating }: {
+  card: Card
+  name: (s: { name_en: string; name_ko: string }) => string
+  t: ReturnType<typeof useTranslation>['t']
+  startSession: (c: Card) => Promise<void>
+  creating: string | null
+}) {
+  const score = card.score ?? 0
+  const reasonText = card.weakness_hint
+    ? t('study.recommended.weakReasonWithHint', {
+        hint: card.weakness_hint,
+        mode: String(t(`study.modes.${card.suggested_mode}.title`)),
+      })
+    : t('study.recommended.weakReason', {
+        score: String(score),
+        mode: String(t(`study.modes.${card.suggested_mode}.title`)),
+      })
+  return (
+    <button
+      type="button"
+      onClick={() => void startSession(card)}
+      disabled={creating !== null}
+      className="group relative w-full overflow-hidden rounded-2xl p-4 ring-1 ring-amber-200/70 bg-gradient-to-br from-amber-50 via-orange-50/60 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(245,158,11,0.18)] hover:ring-amber-300 hover:shadow-[0_2px_8px_-2px_rgba(245,158,11,0.18),0_16px_32px_-12px_rgba(245,158,11,0.26)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+      <div className="flex items-start gap-3.5">
+        <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(245,158,11,0.25)] ring-1 ring-amber-600/10">
+          {creating === card.topic.id
+            ? <Loader2 className="w-4 h-4 animate-spin" />
+            : <AlertTriangle className="w-5 h-5" />}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-[15px] font-semibold text-gray-900 truncate">
+              {name(card.topic)}
+            </div>
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-white/80 backdrop-blur ring-1 ring-amber-200 rounded-full px-1.5 py-0.5">
+              {score}<span className="text-amber-500">/100</span>
+            </span>
+          </div>
+          <div className="text-[12.5px] text-gray-600 mt-1 leading-relaxed pr-1">
+            {String(reasonText)}
+          </div>
+          {/* Mastery bar — gives the card a concrete data anchor */}
+          <div className="mt-2.5 h-1.5 rounded-full bg-amber-100 overflow-hidden">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-amber-400 to-orange-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] transition-all"
+              style={{ width: `${Math.max(8, Math.min(100, score))}%` }}
+            />
+          </div>
+        </div>
+      </div>
+    </button>
+  )
+}
+
+/** Distinctive treatment for recent-session cards: indigo/cool palette
+ *  with a "Resume" chip and forward arrow. Visually separate from
+ *  weak-area cards so the student can scan the shelf and tell at a
+ *  glance which suggestions are "improve" vs "continue". */
+function RecentSessionCard({ card, name, t, startSession, creating }: {
+  card: Card
+  name: (s: { name_en: string; name_ko: string }) => string
+  t: ReturnType<typeof useTranslation>['t']
+  startSession: (c: Card) => Promise<void>
+  creating: string | null
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => void startSession(card)}
+      disabled={creating !== null}
+      className="group relative w-full overflow-hidden rounded-2xl p-4 ring-1 ring-primary/15 bg-gradient-to-br from-primary/[0.04] via-indigo-50/40 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.14),0_12px_24px_-12px_rgba(40,133,232,0.20)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+      <div className="flex items-center gap-3.5">
+        <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/20">
+          {creating === card.topic.id
+            ? <Loader2 className="w-4 h-4 animate-spin" />
+            : <History className="w-5 h-5" />}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <div className="text-[15px] font-semibold text-gray-900 truncate">
+              {name(card.topic)}
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-white/80 backdrop-blur ring-1 ring-primary/20 rounded-full px-1.5 py-0.5 flex-shrink-0">
+              {String(t('study.modes.' + card.suggested_mode + '.title'))}
+            </span>
+          </div>
+          <div className="text-[12.5px] text-gray-600 mt-1 leading-relaxed">
+            {String(t('study.recommended.recentReason', {
+              mode: String(t(`study.modes.${card.suggested_mode}.title`)),
+            }))}
+          </div>
+        </div>
+        <ArrowRight className="w-4 h-4 text-primary/60 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
+      </div>
+    </button>
   )
 }

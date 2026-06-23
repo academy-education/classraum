@@ -5,7 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
   Search, ChevronRight, ArrowRight,
-  History, GraduationCap, FileText, CreditCard
+  History, GraduationCap, FileText, CreditCard,
+  Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
+  Trophy, Award, Target, BookMarked, Building2, LucideIcon,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -43,6 +45,194 @@ interface BrowseItem {
   name_en: string
   name_ko: string
   branches: Topic[]
+}
+
+/** Per-subject visual identity — icon + gradient + accent. Keyed by
+ *  slug fragment so unknown subjects fall through to a neutral theme. */
+interface Theme {
+  Icon: LucideIcon
+  /** Tailwind class for the icon tile background gradient. */
+  iconBg: string
+  /** Tailwind class for the icon color. */
+  iconText: string
+  /** Subtle card background gradient — sits behind everything. */
+  cardBg: string
+  /** Accent ring/border color when card is in interactive state. */
+  ring: string
+  /** Text color for hover state. */
+  hoverText: string
+  /** Shadow color/glow for hover. */
+  hoverShadow: string
+}
+
+const NEUTRAL_THEME: Theme = {
+  Icon: BookOpen,
+  iconBg: 'bg-gradient-to-br from-slate-50 to-slate-100',
+  iconText: 'text-slate-600',
+  cardBg: 'bg-white',
+  ring: 'ring-gray-200/60',
+  hoverText: 'group-hover:text-primary',
+  hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.14),0_12px_28px_-12px_rgba(40,133,232,0.18)]',
+}
+
+const SUBJECT_THEMES: Record<string, Theme> = {
+  math: {
+    Icon: Calculator,
+    iconBg: 'bg-gradient-to-br from-sky-400 to-blue-600',
+    iconText: 'text-white',
+    cardBg: 'bg-gradient-to-br from-sky-50/40 via-white to-white',
+    ring: 'ring-sky-100',
+    hoverText: 'group-hover:text-sky-700',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(14,165,233,0.18),0_16px_32px_-12px_rgba(14,165,233,0.22)]',
+  },
+  english: {
+    Icon: Languages,
+    iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
+    iconText: 'text-white',
+    cardBg: 'bg-gradient-to-br from-amber-50/40 via-white to-white',
+    ring: 'ring-amber-100',
+    hoverText: 'group-hover:text-amber-700',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(245,158,11,0.18),0_16px_32px_-12px_rgba(245,158,11,0.22)]',
+  },
+  korean: {
+    Icon: BookMarked,
+    iconBg: 'bg-gradient-to-br from-rose-400 to-pink-600',
+    iconText: 'text-white',
+    cardBg: 'bg-gradient-to-br from-rose-50/40 via-white to-white',
+    ring: 'ring-rose-100',
+    hoverText: 'group-hover:text-rose-700',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(244,63,94,0.18),0_16px_32px_-12px_rgba(244,63,94,0.22)]',
+  },
+  science: {
+    Icon: Atom,
+    iconBg: 'bg-gradient-to-br from-emerald-400 to-teal-600',
+    iconText: 'text-white',
+    cardBg: 'bg-gradient-to-br from-emerald-50/40 via-white to-white',
+    ring: 'ring-emerald-100',
+    hoverText: 'group-hover:text-emerald-700',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(16,185,129,0.18),0_16px_32px_-12px_rgba(16,185,129,0.22)]',
+  },
+  social: {
+    Icon: Globe2,
+    iconBg: 'bg-gradient-to-br from-violet-400 to-purple-600',
+    iconText: 'text-white',
+    cardBg: 'bg-gradient-to-br from-violet-50/40 via-white to-white',
+    ring: 'ring-violet-100',
+    hoverText: 'group-hover:text-violet-700',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(139,92,246,0.18),0_16px_32px_-12px_rgba(139,92,246,0.22)]',
+  },
+  art: {
+    Icon: Palette,
+    iconBg: 'bg-gradient-to-br from-fuchsia-400 to-pink-500',
+    iconText: 'text-white',
+    cardBg: 'bg-gradient-to-br from-fuchsia-50/40 via-white to-white',
+    ring: 'ring-fuchsia-100',
+    hoverText: 'group-hover:text-fuchsia-700',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(217,70,239,0.18),0_16px_32px_-12px_rgba(217,70,239,0.22)]',
+  },
+  music: {
+    Icon: Music,
+    iconBg: 'bg-gradient-to-br from-indigo-400 to-blue-500',
+    iconText: 'text-white',
+    cardBg: 'bg-gradient-to-br from-indigo-50/40 via-white to-white',
+    ring: 'ring-indigo-100',
+    hoverText: 'group-hover:text-indigo-700',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(99,102,241,0.18),0_16px_32px_-12px_rgba(99,102,241,0.22)]',
+  },
+  cs: {
+    Icon: Code2,
+    iconBg: 'bg-gradient-to-br from-slate-700 to-slate-900',
+    iconText: 'text-white',
+    cardBg: 'bg-gradient-to-br from-slate-50/40 via-white to-white',
+    ring: 'ring-slate-200',
+    hoverText: 'group-hover:text-slate-900',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(15,23,42,0.14),0_16px_32px_-12px_rgba(15,23,42,0.20)]',
+  },
+}
+
+function themeForSubject(slug: string, name: string): Theme {
+  const key = slug.toLowerCase()
+  const nameKey = name.toLowerCase()
+  if (key.includes('math') || nameKey.includes('수학') || nameKey.includes('산수')) return SUBJECT_THEMES.math
+  if (key.includes('english') || nameKey.includes('영어')) return SUBJECT_THEMES.english
+  if (key.includes('korean') || nameKey.includes('국어') || nameKey.includes('한국어')) return SUBJECT_THEMES.korean
+  if (key.includes('science') || nameKey.includes('과학')) return SUBJECT_THEMES.science
+  if (key.includes('social') || nameKey.includes('사회') || key.includes('history') || nameKey.includes('역사')) return SUBJECT_THEMES.social
+  if (key.includes('art') || nameKey.includes('미술') || nameKey.includes('예술')) return SUBJECT_THEMES.art
+  if (key.includes('music') || nameKey.includes('음악')) return SUBJECT_THEMES.music
+  if (key.includes('computer') || key.includes('coding') || nameKey.includes('컴퓨터') || nameKey.includes('코딩')) return SUBJECT_THEMES.cs
+  return NEUTRAL_THEME
+}
+
+/** Per-test visual identity. Keyed by the slug fragment after "test-". */
+const TEST_THEMES: Record<string, { Icon: LucideIcon; gradient: string; accent: string; ring: string; mono: string }> = {
+  sat: {
+    Icon: Award,
+    gradient: 'bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800',
+    accent: 'text-blue-50',
+    ring: 'ring-blue-900/20',
+    mono: 'SAT',
+  },
+  ksat: {
+    Icon: Trophy,
+    gradient: 'bg-gradient-to-br from-rose-500 via-rose-600 to-red-700',
+    accent: 'text-rose-50',
+    ring: 'ring-rose-900/20',
+    mono: '수능',
+  },
+  toefl: {
+    Icon: Globe2,
+    gradient: 'bg-gradient-to-br from-teal-500 via-emerald-600 to-emerald-700',
+    accent: 'text-teal-50',
+    ring: 'ring-emerald-900/20',
+    mono: 'TOEFL',
+  },
+  toeic: {
+    Icon: Building2,
+    gradient: 'bg-gradient-to-br from-sky-500 via-sky-600 to-blue-700',
+    accent: 'text-sky-50',
+    ring: 'ring-sky-900/20',
+    mono: 'TOEIC',
+  },
+  ielts: {
+    Icon: Languages,
+    gradient: 'bg-gradient-to-br from-violet-500 via-purple-600 to-purple-800',
+    accent: 'text-violet-50',
+    ring: 'ring-purple-900/20',
+    mono: 'IELTS',
+  },
+  act: {
+    Icon: Target,
+    gradient: 'bg-gradient-to-br from-orange-500 via-red-500 to-red-700',
+    accent: 'text-orange-50',
+    ring: 'ring-red-900/20',
+    mono: 'ACT',
+  },
+  ap: {
+    Icon: GraduationCap,
+    gradient: 'bg-gradient-to-br from-emerald-500 via-green-600 to-emerald-800',
+    accent: 'text-emerald-50',
+    ring: 'ring-emerald-900/20',
+    mono: 'AP',
+  },
+  gre: {
+    Icon: BookMarked,
+    gradient: 'bg-gradient-to-br from-indigo-500 via-indigo-600 to-violet-800',
+    accent: 'text-indigo-50',
+    ring: 'ring-indigo-900/20',
+    mono: 'GRE',
+  },
+}
+
+function themeForTest(slug: string): { Icon: LucideIcon; gradient: string; accent: string; ring: string; mono: string } {
+  const key = slug.replace(/^test-/, '').toLowerCase()
+  return TEST_THEMES[key] ?? {
+    Icon: FileText,
+    gradient: 'bg-gradient-to-br from-slate-500 via-slate-600 to-slate-800',
+    accent: 'text-slate-50',
+    ring: 'ring-slate-900/20',
+    mono: key.toUpperCase().slice(0, 4),
+  }
 }
 
 export default function StudyLandingPage() {
@@ -207,19 +397,39 @@ function StudyLandingInner() {
           {loading ? (
             <LoadingCard label={t('study.landing.loading')} />
           ) : (
-            <div className="grid grid-cols-2 gap-2.5">
-              {tests.map(test => (
-                <Link
-                  key={test.id}
-                  href={`/mobile/study/topic/${test.slug}`}
-                  className="group flex items-center justify-between gap-2 rounded-2xl bg-white px-4 py-3.5 ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-violet-300/70 hover:shadow-[0_2px_8px_-2px_rgba(124,58,237,0.16),0_8px_24px_-12px_rgba(124,58,237,0.22)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200"
-                >
-                  <span className="text-sm font-semibold text-gray-900 group-hover:text-violet-700 transition-colors truncate">
-                    {name(test)}
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-violet-500 group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
-                </Link>
-              ))}
+            <div className="grid grid-cols-2 gap-3">
+              {tests.map(test => {
+                const theme = themeForTest(test.slug)
+                const Icon = theme.Icon
+                return (
+                  <Link
+                    key={test.id}
+                    href={`/mobile/study/topic/${test.slug}`}
+                    className={`group relative overflow-hidden rounded-2xl p-4 ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.08),0_16px_32px_-12px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200`}
+                  >
+                    {/* Decorative monogram in background — large, low-opacity */}
+                    <div aria-hidden className="pointer-events-none absolute -top-2 -right-3 text-[56px] font-black tracking-tighter text-white/[0.08] select-none leading-none">
+                      {theme.mono}
+                    </div>
+                    {/* Subtle top edge highlight */}
+                    <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                    {/* Soft glow blob */}
+                    <div aria-hidden className="pointer-events-none absolute -top-8 -left-8 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
+
+                    <div className="relative flex flex-col h-full">
+                      <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur ring-1 ring-white/20 mb-3">
+                        <Icon className={`w-4 h-4 ${theme.accent}`} />
+                      </div>
+                      <div className="flex items-end justify-between gap-2">
+                        <span className={`text-[15px] font-semibold ${theme.accent} leading-tight truncate`}>
+                          {name(test)}
+                        </span>
+                        <ArrowRight className={`w-4 h-4 ${theme.accent} opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 flex-shrink-0 transition-all`} />
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           )}
         </section>
@@ -279,32 +489,48 @@ function ExpandableCard({
   name: (s: { name_en: string; name_ko: string }) => string
 }) {
   const [open, setOpen] = useState(false)
+  const theme = themeForSubject(item.slug, item.name_en)
+  const Icon = theme.Icon
+  const branchCount = item.branches.length
   return (
-    <div className={`rounded-2xl bg-white overflow-hidden ring-1 transition-all duration-200 ${
+    <div className={`relative rounded-2xl overflow-hidden ring-1 transition-all duration-200 ${theme.cardBg} ${
       open
-        ? 'ring-emerald-200/80 shadow-[0_2px_8px_-2px_rgba(16,185,129,0.14),0_8px_24px_-12px_rgba(16,185,129,0.18)]'
+        ? `${theme.ring} shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),0_12px_28px_-12px_rgba(0,0,0,0.12)]`
         : 'ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
     }`}>
       <button
         type="button"
         onClick={() => setOpen(v => !v)}
-        className="w-full flex items-center justify-between gap-3 px-4 py-4 hover:bg-gray-50/50 active:bg-gray-50 transition-colors"
+        className="group w-full flex items-center gap-3.5 px-4 py-4 hover:bg-black/[0.015] active:bg-black/[0.025] transition-colors"
       >
-        <span className="text-sm font-semibold text-gray-900">{name(item)}</span>
+        {/* Subject icon tile — gradient with white icon for confident identity */}
+        <div className={`flex-shrink-0 w-11 h-11 rounded-2xl ${theme.iconBg} flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(0,0,0,0.08)] ring-1 ring-black/[0.03]`}>
+          <Icon className={`w-5 h-5 ${theme.iconText}`} />
+        </div>
+        <div className="flex-1 min-w-0 text-left">
+          <div className={`text-[15px] font-semibold text-gray-900 ${theme.hoverText} transition-colors`}>
+            {name(item)}
+          </div>
+          {branchCount > 0 && (
+            <div className="text-[12px] text-gray-500 mt-0.5">
+              {branchCount} {branchCount === 1 ? 'topic' : 'topics'}
+            </div>
+          )}
+        </div>
         <ChevronRight
-          className={`w-4 h-4 text-gray-400 transition-all duration-200 ${open ? 'rotate-90 text-emerald-500' : ''}`}
+          className={`w-4 h-4 text-gray-400 transition-all duration-200 flex-shrink-0 ${open ? 'rotate-90' : ''}`}
         />
       </button>
       {open && (
-        <div className="border-t border-gray-100/80 px-2 py-2 space-y-0.5 bg-gradient-to-b from-gray-50/30 to-transparent">
+        <div className="border-t border-gray-200/60 px-2 py-2 space-y-0.5 bg-white/40 backdrop-blur-sm">
           {item.branches.map(branch => (
             <Link
               key={branch.id}
               href={`/mobile/study/topic/${branch.slug}`}
-              className="group/branch flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50/50 active:bg-emerald-50/70 text-sm text-gray-700 transition-colors"
+              className="group/branch flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-white active:bg-white/60 text-[13.5px] text-gray-700 transition-colors"
             >
-              <span>{name(branch)}</span>
-              <ArrowRight className="w-4 h-4 text-gray-300 group-hover/branch:text-emerald-500 group-hover/branch:translate-x-0.5 transition-all" />
+              <span className="font-medium">{name(branch)}</span>
+              <ArrowRight className={`w-4 h-4 text-gray-300 ${theme.hoverText.replace('group-hover', 'group-hover/branch')} group-hover/branch:translate-x-0.5 transition-all`} />
             </Link>
           ))}
         </div>

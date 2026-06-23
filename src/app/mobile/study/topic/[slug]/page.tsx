@@ -187,20 +187,24 @@ function TopicInner({ slug }: { slug: string }) {
                   type="button"
                   onClick={() => startSession(mode.key)}
                   disabled={creating !== null}
-                  className="group flex flex-col items-start gap-3.5 rounded-2xl bg-white p-5 ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.12),0_12px_28px_-12px_rgba(40,133,232,0.18)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
+                  className={`group relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${mode.hoverRing} ${mode.hoverShadow} hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait`}
                 >
-                  <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${mode.color} ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]`}>
+                  {/* Top edge highlight + decorative glow blob in corner for visual identity */}
+                  <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                  <div aria-hidden className={`pointer-events-none absolute -top-6 -right-6 w-20 h-20 rounded-full ${mode.iconBg} opacity-10 blur-2xl`} />
+
+                  <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04]`}>
                     {creating === mode.key ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <Loader2 className="w-5 h-5 animate-spin" />
                     ) : (
                       <Icon className="w-5 h-5" />
                     )}
                   </div>
-                  <div>
-                    <div className="text-[15px] font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                  <div className="relative">
+                    <div className={`text-[15px] font-semibold text-gray-900 ${mode.hoverText} transition-colors`}>
                       {t(`study.modes.${mode.key}.title`)}
                     </div>
-                    <div className="text-[13px] text-gray-500 mt-1 leading-relaxed">
+                    <div className="text-[13px] text-gray-600 mt-1 leading-relaxed">
                       {t(`study.modes.${mode.key}.body`)}
                     </div>
                   </div>
