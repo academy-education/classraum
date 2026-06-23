@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
-  Search, ChevronRight, ArrowRight,
-  History, GraduationCap, FileText, CreditCard,
+  Search, ArrowRight,
+  GraduationCap, FileText, CreditCard,
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
   PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, LucideIcon,
 } from 'lucide-react'
@@ -14,6 +14,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from './SubscriptionGate'
 import { RecommendedShelf } from './RecommendedShelf'
+import { ResumableShelf } from './ResumableShelf'
 
 /**
  * /mobile/study — study landing.
@@ -395,13 +396,8 @@ function StudyLandingInner() {
             </p>
           </div>
           <div className="flex-shrink-0 flex items-center gap-1.5 pt-1">
-            <Link
-              href="/mobile/study/history"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
-              aria-label={String(t('study.landing.history'))}
-            >
-              <History className="w-4 h-4" />
-            </Link>
+            {/* History button removed — resumable sessions now surface
+                as a carousel on the landing (see ResumableShelf below). */}
             <Link
               href="/mobile/study/subscription"
               className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
@@ -415,6 +411,11 @@ function StudyLandingInner() {
         {/* Recommended shelf — Phase 3, reads study_mastery + recent
             sessions via /api/study/recommended. */}
         <RecommendedShelf />
+
+        {/* Resumable sessions — replaces the standalone /history page,
+            surfacing active sessions inline so the student doesn't
+            have to navigate elsewhere to pick up where they left off. */}
+        <ResumableShelf />
 
         {/* Subjects — curated K-12 catalog. */}
         <section>

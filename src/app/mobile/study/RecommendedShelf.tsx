@@ -114,36 +114,12 @@ export function RecommendedShelf() {
 
   return (
     <section>
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-[15px] font-semibold text-gray-900 inline-flex items-center gap-2">
-          <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-primary/10 ring-1 ring-primary/15">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-          </span>
-          {t('study.landing.recommendedTitle')}
-        </h2>
-        {cards.length > 1 && (
-          <div className="flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={() => scrollByOneCard('left')}
-              disabled={!canScrollLeft}
-              aria-label="Previous"
-              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-600 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.95] transition-all"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollByOneCard('right')}
-              disabled={!canScrollRight}
-              aria-label="Next"
-              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-600 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.95] transition-all"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        )}
-      </div>
+      <h2 className="text-[15px] font-semibold text-gray-900 mb-3 inline-flex items-center gap-2">
+        <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-primary/10 ring-1 ring-primary/15">
+          <Sparkles className="w-3.5 h-3.5 text-primary" />
+        </span>
+        {t('study.landing.recommendedTitle')}
+      </h2>
 
       {loading ? (
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 px-5 py-7 text-center text-sm text-gray-400 inline-flex items-center justify-center gap-2 w-full shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
@@ -160,12 +136,13 @@ export function RecommendedShelf() {
           </p>
         </div>
       ) : (
-        // Horizontal carousel — swipe through recommendations.
-        // scroll-snap-type ensures cards align to start as you scroll.
-        // Negative margin + matching padding lets the cards bleed
-        // into the page edge so they look like a magazine shelf.
-        <div className="-mx-5">
-          <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 pt-1 pb-2">
+        // Horizontal carousel with side-overlay buttons. The scroll
+        // container bleeds to the screen edge so the next card peeks.
+        // Buttons sit absolutely on the left/right, fade in/out
+        // depending on scroll position so they don't compete when
+        // there's nowhere to go that direction.
+        <div className="relative -mx-5">
+          <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 py-3">
             {cards.map(card => (
               <div
                 key={`${card.topic.id}-${card.reason}`}
@@ -177,9 +154,53 @@ export function RecommendedShelf() {
               </div>
             ))}
           </div>
+          {cards.length > 1 && (
+            <>
+              <CarouselSideButton
+                direction="left"
+                visible={canScrollLeft}
+                onClick={() => scrollByOneCard('left')}
+              />
+              <CarouselSideButton
+                direction="right"
+                visible={canScrollRight}
+                onClick={() => scrollByOneCard('right')}
+              />
+            </>
+          )}
         </div>
       )}
     </section>
+  )
+}
+
+/** Side-overlay button for any horizontal carousel. Sits absolutely
+ *  on the left or right edge, fades in/out based on whether there's
+ *  more to scroll that direction. Backdrop blur + white surface so
+ *  it reads clearly over any card color underneath. Exported so the
+ *  Resumable shelf below uses the same convention. */
+export function CarouselSideButton({
+  direction,
+  visible,
+  onClick,
+}: {
+  direction: 'left' | 'right'
+  visible: boolean
+  onClick: () => void
+}) {
+  const Icon = direction === 'left' ? ChevronLeft : ChevronRight
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      tabIndex={visible ? 0 : -1}
+      aria-label={direction === 'left' ? 'Previous' : 'Next'}
+      className={`absolute top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/85 backdrop-blur-md ring-1 ring-gray-200/80 text-gray-700 shadow-[0_2px_4px_rgba(0,0,0,0.06),0_8px_20px_-8px_rgba(0,0,0,0.18)] hover:bg-white hover:ring-primary/40 hover:text-primary active:scale-[0.94] transition-all duration-200 ${
+        direction === 'left' ? 'left-2.5' : 'right-2.5'
+      } ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+    >
+      <Icon className="w-4 h-4" />
+    </button>
   )
 }
 
