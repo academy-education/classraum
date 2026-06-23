@@ -44,13 +44,19 @@ export function RecommendedShelf() {
   const [canScrollRight, setCanScrollRight] = useState(false)
 
   // Track scroll position so we can hide the prev/next buttons when
-  // we're at the start or end of the carousel.
+  // we're at the start or end of the carousel. The tolerance accounts
+  // for the padding-left we use to keep cards out of the button hit
+  // area — snap-mandatory aligns the first card to scrollLeft = paddingLeft,
+  // so a raw `scrollLeft > 0` would falsely show the left button at
+  // the carousel start.
   useEffect(() => {
     const el = scrollRef.current
     if (!el) return
     const update = () => {
-      setCanScrollLeft(el.scrollLeft > 8)
-      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8)
+      const padLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0
+      const padRight = parseFloat(getComputedStyle(el).paddingRight) || 0
+      setCanScrollLeft(el.scrollLeft > padLeft + 8)
+      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - padRight - 8)
     }
     update()
     el.addEventListener('scroll', update, { passive: true })
@@ -136,13 +142,13 @@ export function RecommendedShelf() {
           </p>
         </div>
       ) : (
-        // Horizontal carousel with side-overlay buttons. The scroll
-        // container bleeds to the screen edge so the next card peeks.
-        // Buttons sit absolutely on the left/right, fade in/out
-        // depending on scroll position so they don't compete when
-        // there's nowhere to go that direction.
+        // Horizontal carousel. Cards bleed past the page padding via
+        // -mx-5 so the next card peeks at the right edge. Edge-fade
+        // overlays (left + right) gradient cards down to the page
+        // background color where the buttons sit — clean visual
+        // separation, no overlap of button + card content.
         <div className="relative -mx-5">
-          <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 py-3">
+          <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-12 py-3">
             {cards.map(card => (
               <div
                 key={`${card.topic.id}-${card.reason}`}
@@ -154,6 +160,16 @@ export function RecommendedShelf() {
               </div>
             ))}
           </div>
+          {/* Edge-fade overlays — bg-gray-50 matches the page surface.
+              Only render when there's content behind the button at
+              that edge, so we don't cover the first/last card content
+              at the carousel boundaries. */}
+          {canScrollLeft && (
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-gray-50 via-gray-50 to-transparent z-[5]" />
+          )}
+          {canScrollRight && (
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-gray-50 via-gray-50 to-transparent z-[5]" />
+          )}
           {cards.length > 1 && (
             <>
               <CarouselSideButton
@@ -195,8 +211,8 @@ export function CarouselSideButton({
       onClick={onClick}
       tabIndex={visible ? 0 : -1}
       aria-label={direction === 'left' ? 'Previous' : 'Next'}
-      className={`absolute top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/85 backdrop-blur-md ring-1 ring-gray-200/80 text-gray-700 shadow-[0_2px_4px_rgba(0,0,0,0.06),0_8px_20px_-8px_rgba(0,0,0,0.18)] hover:bg-white hover:ring-primary/40 hover:text-primary active:scale-[0.94] transition-all duration-200 ${
-        direction === 'left' ? 'left-2.5' : 'right-2.5'
+      className={`absolute top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white ring-1 ring-gray-200/80 text-gray-700 shadow-[0_2px_4px_rgba(0,0,0,0.06),0_8px_20px_-8px_rgba(0,0,0,0.18)] hover:ring-primary/40 hover:text-primary active:scale-[0.94] transition-all duration-200 ${
+        direction === 'left' ? 'left-1.5' : 'right-1.5'
       } ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
       <Icon className="w-4 h-4" />

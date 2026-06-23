@@ -102,8 +102,10 @@ export function ResumableShelf() {
     const el = scrollRef.current
     if (!el) return
     const update = () => {
-      setCanScrollLeft(el.scrollLeft > 8)
-      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8)
+      const padLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0
+      const padRight = parseFloat(getComputedStyle(el).paddingRight) || 0
+      setCanScrollLeft(el.scrollLeft > padLeft + 8)
+      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - padRight - 8)
     }
     update()
     el.addEventListener('scroll', update, { passive: true })
@@ -149,7 +151,7 @@ export function ResumableShelf() {
         {t('study.landing.resumeTitle')}
       </h2>
       <div className="relative -mx-5">
-        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 py-3">
+        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-12 py-3">
           {rows.map(row => {
             const style = MODE_STYLE[row.mode] ?? MODE_STYLE.chat
             const Icon = style.Icon
@@ -190,6 +192,14 @@ export function ResumableShelf() {
             )
           })}
         </div>
+        {/* Edge-fade overlays — only render when there's actual
+            content past the button at that edge. */}
+        {canScrollLeft && (
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-gray-50 via-gray-50 to-transparent z-[5]" />
+        )}
+        {canScrollRight && (
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-gray-50 via-gray-50 to-transparent z-[5]" />
+        )}
         {rows.length > 1 && (
           <>
             <CarouselSideButton direction="left" visible={canScrollLeft} onClick={() => scrollByOneCard('left')} />
