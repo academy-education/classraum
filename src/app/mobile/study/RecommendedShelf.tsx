@@ -84,20 +84,24 @@ export function RecommendedShelf() {
 
   return (
     <section>
-      <h2 className="text-sm font-semibold text-gray-900 mb-2 inline-flex items-center gap-1.5">
-        <Sparkles className="w-4 h-4 text-primary" />
+      <h2 className="text-[15px] font-semibold text-gray-900 mb-3 inline-flex items-center gap-2">
+        <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-primary/10 ring-1 ring-primary/15">
+          <Sparkles className="w-3.5 h-3.5 text-primary" />
+        </span>
         {t('study.landing.recommendedTitle')}
       </h2>
 
       {loading ? (
-        <div className="rounded-2xl border border-gray-200 bg-white px-5 py-6 text-center text-sm text-gray-400 inline-flex items-center justify-center gap-2 w-full">
+        <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 px-5 py-7 text-center text-sm text-gray-400 inline-flex items-center justify-center gap-2 w-full shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
           <Loader2 className="w-4 h-4 animate-spin" />
           {t('study.landing.loading')}
         </div>
       ) : cards.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-6 text-center">
-          <Lightbulb className="w-6 h-6 text-gray-300 mx-auto mb-2" />
-          <p className="text-sm text-gray-500">
+        <div className="rounded-2xl border border-dashed border-gray-200 bg-gradient-to-br from-white to-gray-50/50 px-5 py-8 text-center">
+          <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white ring-1 ring-gray-200/70 mx-auto mb-3">
+            <Lightbulb className="w-5 h-5 text-gray-300" />
+          </div>
+          <p className="text-[13.5px] text-gray-500 leading-relaxed max-w-[24ch] mx-auto">
             {t('study.landing.recommendedEmpty')}
           </p>
         </div>
@@ -106,17 +110,17 @@ export function RecommendedShelf() {
           {cards.map(card => {
             const Icon = card.reason === 'weak' ? AlertTriangle : History
             const accent = card.reason === 'weak'
-              ? 'text-amber-700 bg-amber-50'
-              : 'text-primary bg-primary/10'
+              ? 'text-amber-700 bg-gradient-to-br from-amber-50 to-amber-100/60'
+              : 'text-primary bg-gradient-to-br from-primary/10 to-primary/15'
             return (
               <button
                 key={`${card.topic.id}-${card.reason}`}
                 type="button"
                 onClick={() => void startSession(card)}
                 disabled={creating !== null}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_4px_12px_-4px_rgba(40,133,232,0.18)] active:scale-[0.99] transition-all text-left disabled:opacity-60 disabled:cursor-wait"
+                className="group w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.12),0_12px_24px_-12px_rgba(40,133,232,0.18)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
               >
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ring-1 ring-black/[0.03] ${accent}`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] ${accent}`}>
                   {creating === card.topic.id
                     ? <Loader2 className="w-4 h-4 animate-spin" />
                     : <Icon className="w-4 h-4" />}
@@ -125,7 +129,7 @@ export function RecommendedShelf() {
                   <div className="text-sm font-semibold text-gray-900 truncate">
                     {name(card.topic)}
                   </div>
-                  <div className="text-xs text-gray-500 mt-0.5">
+                  <div className="text-[12.5px] text-gray-500 mt-0.5 leading-relaxed">
                     {card.reason === 'weak'
                       ? card.weakness_hint
                         ? t('study.recommended.weakReasonWithHint', {
@@ -141,7 +145,7 @@ export function RecommendedShelf() {
                         })}
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
+                <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
               </button>
             )
           })}

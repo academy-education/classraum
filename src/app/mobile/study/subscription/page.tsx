@@ -158,125 +158,124 @@ export default function SubscriptionPage() {
     : formatPrice(990000, 'KRW')
 
   return (
-    <div className="px-5 pt-6 pb-12 space-y-6">
-      <Link
-        href="/mobile/study"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        {t('study.topic.backToStudy')}
-      </Link>
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.02] to-transparent"
+      />
+      <div className="px-5 pt-6 pb-14 space-y-7">
+        <Link
+          href="/mobile/study"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          {t('study.topic.backToStudy')}
+        </Link>
 
-      <header>
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-          {t('study.subscription.title')}
-        </h1>
-        <p className="text-gray-500 text-sm mt-1">
-          {t('study.subscription.subtitle')}
-        </p>
-      </header>
+        <header>
+          <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
+            {t('study.subscription.title')}
+          </h1>
+          <p className="text-gray-500 text-[15px] mt-2 leading-relaxed">
+            {t('study.subscription.subtitle')}
+          </p>
+        </header>
 
-      {/* Plan card */}
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 space-y-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">
-              {t('study.subscription.planEyebrow')}
+        {/* Plan card — gradient surface with premium feel */}
+        <div className="relative rounded-2xl bg-gradient-to-br from-white via-white to-primary/[0.025] ring-1 ring-gray-200/60 p-6 space-y-5 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_12px_28px_-16px_rgba(40,133,232,0.18)] overflow-hidden">
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80 mb-1.5">
+                {t('study.subscription.planEyebrow')}
+              </div>
+              <h2 className="text-xl font-semibold tracking-tight text-gray-900">
+                {t('study.subscription.planMonthly')}
+              </h2>
+              <p className="text-[15px] text-gray-600 mt-1">
+                <span className="font-medium text-gray-900">{priceLabel}</span>
+                <span className="text-gray-400"> / {t('study.subscription.month')}</span>
+              </p>
             </div>
-            <h2 className="text-lg font-semibold text-gray-900">
-              {t('study.subscription.planMonthly')}
-            </h2>
-            <p className="text-sm text-gray-500 mt-0.5">
-              {priceLabel} <span className="text-gray-400">/ {t('study.subscription.month')}</span>
-            </p>
+            <StatusPill status={sub?.status ?? 'trial'} cancelling={sub?.cancel_at_period_end ?? false} />
           </div>
-          <StatusPill status={sub?.status ?? 'trial'} cancelling={sub?.cancel_at_period_end ?? false} />
+
+          {sub && (
+            <div className="rounded-xl bg-gray-50/80 ring-1 ring-gray-200/50 px-4 py-3 text-[13.5px] text-gray-700 inline-flex items-start gap-2.5 w-full">
+              <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
+              <div className="leading-relaxed">
+                {sub.cancel_at_period_end
+                  ? t('study.subscription.cancelsOn', { date: formatDate(sub.current_period_end, ko) })
+                  : sub.status === 'trial'
+                    ? t('study.subscription.trialEnds', { date: formatDate(sub.current_period_end, ko) })
+                    : t('study.subscription.renewsOn', { date: formatDate(sub.current_period_end, ko) })}
+              </div>
+            </div>
+          )}
         </div>
 
-        {sub && (
-          <div className="rounded-xl bg-gray-50 px-4 py-3 text-sm text-gray-700 inline-flex items-start gap-2 w-full">
-            <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
-            <div>
-              {sub.cancel_at_period_end
-                ? t('study.subscription.cancelsOn', { date: formatDate(sub.current_period_end, ko) })
-                : sub.status === 'trial'
-                  ? t('study.subscription.trialEnds', { date: formatDate(sub.current_period_end, ko) })
-                  : t('study.subscription.renewsOn', { date: formatDate(sub.current_period_end, ko) })}
-            </div>
-          </div>
-        )}
-      </div>
+        {/* Action buttons */}
+        <div className="space-y-2.5">
+          {(!sub || sub.status === 'expired' || sub.status === 'cancelled' || sub.status === 'past_due') && (
+            isNative ? (
+              <a
+                href="https://app.classraum.com/mobile/study/subscription"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full h-12 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-sm font-medium inline-flex items-center justify-center gap-1.5 hover:ring-primary/40 hover:text-primary shadow-[0_1px_2px_rgba(0,0,0,0.03)] active:scale-[0.98] transition-all"
+              >
+                <ExternalLink className="w-4 h-4" />
+                {t('study.subscription.subscribeOnWeb')}
+              </a>
+            ) : (
+              <button
+                type="button"
+                onClick={() => void subscribe()}
+                disabled={acting !== null}
+                className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-sm font-semibold inline-flex items-center justify-center gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28),0_8px_24px_-8px_rgba(40,133,232,0.4)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_4px_12px_rgba(40,133,232,0.35),0_12px_28px_-8px_rgba(40,133,232,0.5)] active:scale-[0.98] disabled:opacity-60 transition-all"
+              >
+                {acting === 'checkout'
+                  ? <Loader2 className="w-4 h-4 animate-spin" />
+                  : <CreditCard className="w-4 h-4" />}
+                {t('study.subscription.subscribeNow')}
+              </button>
+            )
+          )}
 
-      {/* Action buttons */}
-      <div className="space-y-2">
-        {(!sub || sub.status === 'expired' || sub.status === 'cancelled' || sub.status === 'past_due') && (
-          isNative ? (
-            // Apple anti-steering: no purchase CTA, no PortOne overlay
-            // inside the native shell. Send users to the web instead.
-            <a
-              href="https://app.classraum.com/mobile/study/subscription"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full h-12 rounded-full bg-white border border-gray-200 text-gray-700 text-sm font-medium inline-flex items-center justify-center gap-1.5"
-            >
-              <ExternalLink className="w-4 h-4" />
-              {t('study.subscription.subscribeOnWeb')}
-            </a>
-          ) : (
+          {sub && (sub.status === 'trial' || sub.status === 'active') && !sub.cancel_at_period_end && (
             <button
               type="button"
-              onClick={() => void subscribe()}
+              onClick={() => void act('cancel')}
               disabled={acting !== null}
-              className="w-full h-12 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-50"
+              className="w-full h-12 rounded-full bg-white ring-1 ring-gray-200/70 text-rose-600 text-sm font-medium inline-flex items-center justify-center gap-1.5 hover:ring-rose-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] active:scale-[0.98] disabled:opacity-60 transition-all"
             >
-              {acting === 'checkout'
-                ? <Loader2 className="w-4 h-4 animate-spin" />
-                : <CreditCard className="w-4 h-4" />}
-              {t('study.subscription.subscribeNow')}
+              {acting === 'cancel' ? <Loader2 className="w-4 h-4 animate-spin" /> : <XCircle className="w-4 h-4" />}
+              {t('study.subscription.cancel')}
             </button>
-          )
-        )}
+          )}
 
-        {sub && (sub.status === 'trial' || sub.status === 'active') && !sub.cancel_at_period_end && (
-          <button
-            type="button"
-            onClick={() => void act('cancel')}
-            disabled={acting !== null}
-            className="w-full h-12 rounded-full bg-white border border-gray-200 text-rose-600 text-sm font-medium inline-flex items-center justify-center gap-1.5 disabled:opacity-50"
-          >
-            {acting === 'cancel' ? <Loader2 className="w-4 h-4 animate-spin" /> : <XCircle className="w-4 h-4" />}
-            {t('study.subscription.cancel')}
-          </button>
-        )}
+          {sub?.cancel_at_period_end && (
+            <button
+              type="button"
+              onClick={() => void act('reactivate')}
+              disabled={acting !== null}
+              className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-sm font-semibold inline-flex items-center justify-center gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
+            >
+              {acting === 'reactivate' ? <Loader2 className="w-4 h-4 animate-spin" /> : <RotateCcw className="w-4 h-4" />}
+              {t('study.subscription.reactivate')}
+            </button>
+          )}
+        </div>
 
-        {sub?.cancel_at_period_end && (
-          <button
-            type="button"
-            onClick={() => void act('reactivate')}
-            disabled={acting !== null}
-            className="w-full h-12 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-50"
-          >
-            {acting === 'reactivate' ? <Loader2 className="w-4 h-4 animate-spin" /> : <RotateCcw className="w-4 h-4" />}
-            {t('study.subscription.reactivate')}
-          </button>
+        {(error || successMessage) && (
+          <div className={`rounded-2xl px-4 py-3 text-[13.5px] flex items-start gap-2.5 ring-1 ${
+            error ? 'bg-rose-50/80 ring-rose-200/60 text-rose-700' : 'bg-emerald-50/80 ring-emerald-200/60 text-emerald-700'
+          }`}>
+            {error ? <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" /> : <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />}
+            <span className="leading-relaxed">{error ?? successMessage}</span>
+          </div>
         )}
       </div>
-
-      {/* Toast-ish status row at the bottom — separate from the
-          buttons so a stale message doesn't get hidden behind a
-          newly-loading state. */}
-      {(error || successMessage) && (
-        <div className={`rounded-xl px-4 py-3 text-sm flex items-start gap-2 ${
-          error ? 'bg-rose-50 border border-rose-200 text-rose-700' : 'bg-emerald-50 border border-emerald-200 text-emerald-700'
-        }`}>
-          {error ? <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" /> : <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />}
-          <span>{error ?? successMessage}</span>
-        </div>
-      )}
-
-      {/* TODO Phase 4.5: render PortOne payment-method card + invoice
-          history pulled from study_subscriptions + a future invoice
-          table. Hidden until that lands so we don't fake invoices. */}
     </div>
   )
 }

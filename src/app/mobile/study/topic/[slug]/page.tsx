@@ -135,98 +135,104 @@ function TopicInner({ slug }: { slug: string }) {
   const name = (n: { name_en: string; name_ko: string }) => ko ? n.name_ko : n.name_en
 
   return (
-    <div className="px-5 pt-6 pb-12 space-y-7">
-      {/* Back to landing — small affordance above the heading. */}
-      <Link
-        href="/mobile/study"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        {t('study.topic.backToStudy')}
-      </Link>
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.03] to-transparent"
+      />
+      <div className="px-5 pt-6 pb-14 space-y-8">
+        {/* Back to landing — small affordance above the heading. */}
+        <Link
+          href="/mobile/study"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          {t('study.topic.backToStudy')}
+        </Link>
 
-      <header>
-        {parent && (
-          <p className="text-xs text-gray-500 mb-1">{name(parent)}</p>
+        <header>
+          {parent && (
+            <p className="text-[12px] font-medium text-gray-400 mb-1.5 tracking-tight">{name(parent)}</p>
+          )}
+          <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
+            {name(topic)}
+          </h1>
+          <p className="text-[15px] text-gray-500 mt-2 leading-relaxed">
+            {t('study.topic.pickMode')}
+          </p>
+        </header>
+
+        {/* Mode picker.
+            - Test-prep topics get a featured full-width "Full test"
+              tile at the top (it's the marquee mode for that surface),
+              then the four learning modes in a 2x2 grid below.
+            - Subject topics omit Full test entirely — taking a "mock
+              test" on Algebra is awkward; practice + lesson fit better.
+         */}
+        {topic.category === 'test_prep' && (
+          <FeaturedFullTestCard
+            startSession={startSession}
+            creating={creating}
+            t={t}
+          />
         )}
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-          {name(topic)}
-        </h1>
-        <p className="text-sm text-gray-500 mt-1">
-          {t('study.topic.pickMode')}
-        </p>
-      </header>
-
-      {/* Mode picker.
-          - Test-prep topics get a featured full-width "Full test"
-            tile at the top (it's the marquee mode for that surface),
-            then the four learning modes in a 2x2 grid below.
-          - Subject topics omit Full test entirely — taking a "mock
-            test" on Algebra is awkward; practice + lesson fit better.
-       */}
-      {topic.category === 'test_prep' && (
-        <FeaturedFullTestCard
-          startSession={startSession}
-          creating={creating}
-          t={t}
-        />
-      )}
-      <section className="grid grid-cols-2 gap-3">
-        {STUDY_MODES
-          .filter(m => m.key !== 'full_test')
-          .map(mode => {
-            const Icon = mode.icon
-            return (
-              <button
-                key={mode.key}
-                type="button"
-                onClick={() => startSession(mode.key)}
-                disabled={creating !== null}
-                className="group flex flex-col items-start gap-3 rounded-2xl bg-white p-4 ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_4px_16px_-6px_rgba(40,133,232,0.18)] active:scale-[0.98] transition-all text-left disabled:opacity-60 disabled:cursor-wait"
-              >
-                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${mode.color} ring-1 ring-black/[0.03]`}>
-                  {creating === mode.key ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Icon className="w-5 h-5" />
-                  )}
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                    {t(`study.modes.${mode.key}.title`)}
+        <section className="grid grid-cols-2 gap-3">
+          {STUDY_MODES
+            .filter(m => m.key !== 'full_test')
+            .map(mode => {
+              const Icon = mode.icon
+              return (
+                <button
+                  key={mode.key}
+                  type="button"
+                  onClick={() => startSession(mode.key)}
+                  disabled={creating !== null}
+                  className="group flex flex-col items-start gap-3.5 rounded-2xl bg-white p-5 ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.12),0_12px_28px_-12px_rgba(40,133,232,0.18)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
+                >
+                  <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${mode.color} ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]`}>
+                    {creating === mode.key ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Icon className="w-5 h-5" />
+                    )}
                   </div>
-                  <div className="text-xs text-gray-500 mt-1 leading-relaxed">
-                    {t(`study.modes.${mode.key}.body`)}
+                  <div>
+                    <div className="text-[15px] font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                      {t(`study.modes.${mode.key}.title`)}
+                    </div>
+                    <div className="text-[13px] text-gray-500 mt-1 leading-relaxed">
+                      {t(`study.modes.${mode.key}.body`)}
+                    </div>
                   </div>
-                </div>
-              </button>
-            )
-          })}
-      </section>
-
-      {/* Leaf list — branch pages only. Tapping a leaf navigates into
-          a tighter scoped topic page so mode sessions are sharper. */}
-      {children.length > 0 && (
-        <section>
-          <h2 className="text-sm font-semibold text-gray-900 mb-2">
-            {t('study.topic.narrowDown')}
-          </h2>
-          <div className="rounded-2xl bg-white overflow-hidden ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-            {children.map((child, i) => (
-              <Link
-                key={child.id}
-                href={`/mobile/study/topic/${child.slug}`}
-                className={`flex items-center justify-between gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 active:bg-gray-100 transition-colors ${
-                  i < children.length - 1 ? 'border-b border-gray-100' : ''
-                }`}
-              >
-                <span>{name(child)}</span>
-                <ChevronRight className="w-4 h-4 text-gray-300" />
-              </Link>
-            ))}
-          </div>
+                </button>
+              )
+            })}
         </section>
-      )}
+
+        {/* Leaf list — branch pages only. Tapping a leaf navigates into
+            a tighter scoped topic page so mode sessions are sharper. */}
+        {children.length > 0 && (
+          <section>
+            <h2 className="text-[15px] font-semibold text-gray-900 mb-3">
+              {t('study.topic.narrowDown')}
+            </h2>
+            <div className="rounded-2xl bg-white overflow-hidden ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+              {children.map((child, i) => (
+                <Link
+                  key={child.id}
+                  href={`/mobile/study/topic/${child.slug}`}
+                  className={`group/leaf flex items-center justify-between gap-3 px-4 py-3.5 text-sm text-gray-700 hover:bg-gray-50/70 active:bg-gray-100 transition-colors ${
+                    i < children.length - 1 ? 'border-b border-gray-100/80' : ''
+                  }`}
+                >
+                  <span className="font-medium">{name(child)}</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300 group-hover/leaf:text-primary group-hover/leaf:translate-x-0.5 transition-all" />
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
     </div>
   )
 }
@@ -251,29 +257,31 @@ function FeaturedFullTestCard({
       type="button"
       onClick={() => startSession('full_test')}
       disabled={creating !== null}
-      className="group w-full rounded-2xl p-4 ring-1 ring-rose-200/70 bg-gradient-to-br from-rose-50 via-amber-50/40 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(244,63,94,0.15)] hover:ring-rose-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.03),0_12px_28px_-12px_rgba(244,63,94,0.22)] active:scale-[0.99] transition-all text-left disabled:opacity-60 disabled:cursor-wait"
+      className="group relative w-full rounded-2xl p-5 ring-1 ring-rose-200/60 bg-gradient-to-br from-rose-50/80 via-amber-50/30 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(244,63,94,0.18)] hover:ring-rose-300/70 hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(244,63,94,0.26)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait overflow-hidden"
     >
+      {/* Subtle inner highlight on top edge for premium depth */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-white text-rose-600 flex items-center justify-center ring-1 ring-rose-200/60 shadow-sm flex-shrink-0">
+        <div className="w-12 h-12 rounded-2xl bg-white text-rose-600 flex items-center justify-center ring-1 ring-rose-200/50 shadow-[0_1px_2px_rgba(244,63,94,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] flex-shrink-0">
           {creating === 'full_test'
             ? <Loader2 className="w-5 h-5 animate-spin" />
             : <FileText className="w-5 h-5" />}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <div className="text-base font-semibold text-gray-900 group-hover:text-rose-700 transition-colors">
+            <div className="text-[17px] font-semibold text-gray-900 group-hover:text-rose-700 transition-colors tracking-tight">
               {String(t('study.modes.full_test.title'))}
             </div>
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-rose-700 bg-white ring-1 ring-rose-200 rounded-full px-2 py-0.5">
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-rose-700 bg-white/90 backdrop-blur ring-1 ring-rose-200/80 rounded-full px-2 py-0.5 shadow-[0_1px_2px_rgba(244,63,94,0.06)]">
               <Sparkles className="w-2.5 h-2.5" />
               {String(t('study.topic.testPrepBadge'))}
             </span>
           </div>
-          <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+          <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">
             {String(t('study.modes.full_test.body'))}
           </p>
         </div>
-        <ArrowRight className="w-5 h-5 text-rose-500/60 group-hover:text-rose-500 group-hover:translate-x-0.5 mt-1 flex-shrink-0 transition-all" />
+        <ArrowRight className="w-5 h-5 text-rose-400/70 group-hover:text-rose-500 group-hover:translate-x-0.5 mt-1.5 flex-shrink-0 transition-all" />
       </div>
     </button>
   )

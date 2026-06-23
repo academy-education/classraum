@@ -72,63 +72,69 @@ function HistoryInner() {
   }, [user?.userId])
 
   return (
-    <div className="px-5 pt-6 pb-12 space-y-5">
-      <Link
-        href="/mobile/study"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        {t('study.topic.backToStudy')}
-      </Link>
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-primary/[0.025] to-transparent"
+      />
+      <div className="px-5 pt-6 pb-14 space-y-7">
+        <Link
+          href="/mobile/study"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          {t('study.topic.backToStudy')}
+        </Link>
 
-      <header>
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-          {t('study.history.title')}
-        </h1>
-        <p className="text-gray-500 text-sm mt-1">
-          {t('study.history.subtitle')}
-        </p>
-      </header>
+        <header>
+          <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
+            {t('study.history.title')}
+          </h1>
+          <p className="text-gray-500 text-[15px] mt-2 leading-relaxed">
+            {t('study.history.subtitle')}
+          </p>
+        </header>
 
-      {loading ? (
-        <div className="flex items-center justify-center text-sm text-gray-400 py-10">
-          <Loader2 className="w-5 h-5 animate-spin mr-2" />
-          {t('study.history.loading')}
-        </div>
-      ) : rows.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-10 text-center">
-          <p className="text-sm text-gray-500">{t('study.history.empty')}</p>
-        </div>
-      ) : (
-        <div className="space-y-2">
-          {rows.map(row => {
-            const Icon = MODE_ICONS[row.mode] ?? MessageCircle
-            const title = row.title
-              ?? (row.topic ? (ko ? row.topic.name_ko : row.topic.name_en) : null)
-              ?? row.topic_freeform
-              ?? t('study.session.untitled')
-            const time = formatTimeAgo(row.last_active_at, ko)
-            return (
-              <Link
-                key={row.id}
-                href={`/mobile/study/session/${row.id}`}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-200 bg-white hover:border-primary/40 active:bg-gray-50 transition-colors"
-              >
-                <div className="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4 h-4" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-gray-900 truncate">{title}</div>
-                  <div className="text-xs text-gray-500 mt-0.5">
-                    {t(`study.modes.${row.mode}.title`)} · {time}
+        {loading ? (
+          <div className="flex items-center justify-center text-sm text-gray-400 py-12">
+            <Loader2 className="w-5 h-5 animate-spin mr-2" />
+            {t('study.history.loading')}
+          </div>
+        ) : rows.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-gray-200 bg-gradient-to-br from-white to-gray-50/50 px-5 py-12 text-center">
+            <p className="text-sm text-gray-500">{t('study.history.empty')}</p>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {rows.map(row => {
+              const Icon = MODE_ICONS[row.mode] ?? MessageCircle
+              const title = row.title
+                ?? (row.topic ? (ko ? row.topic.name_ko : row.topic.name_en) : null)
+                ?? row.topic_freeform
+                ?? t('study.session.untitled')
+              const time = formatTimeAgo(row.last_active_at, ko)
+              return (
+                <Link
+                  key={row.id}
+                  href={`/mobile/study/session/${row.id}`}
+                  className="group flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.12)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-primary/15 text-primary flex items-center justify-center flex-shrink-0 ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]">
+                    <Icon className="w-4 h-4" />
                   </div>
-                </div>
-                <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
-              </Link>
-            )
-          })}
-        </div>
-      )}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-semibold text-gray-900 truncate">{title}</div>
+                    <div className="text-[12.5px] text-gray-500 mt-0.5">
+                      {t(`study.modes.${row.mode}.title`)} <span className="text-gray-300 mx-1">·</span> {time}
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
+                </Link>
+              )
+            })}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
