@@ -15,6 +15,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from './SubscriptionGate'
 import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
+import { StudyStreakChip } from './StudyStreakChip'
 
 /**
  * /mobile/study — study landing.
@@ -396,8 +397,7 @@ function StudyLandingInner() {
             </p>
           </div>
           <div className="flex-shrink-0 flex items-center gap-1.5 pt-1">
-            {/* History button removed — resumable sessions now surface
-                as a carousel on the landing (see ResumableShelf below). */}
+            <StudyStreakChip />
             <Link
               href="/mobile/study/subscription"
               className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
