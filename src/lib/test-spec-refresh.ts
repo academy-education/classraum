@@ -539,7 +539,16 @@ async function markAttempt(family: string, sectionKey: string, notes: string) {
  * Family is derived from the root test topic's slug ("test-sat" → "sat",
  * "test-aleks" → "aleks"). Section key is the leaf's English name.
  */
-export async function listAllSpecTargetsFromDB(): Promise<RefreshTarget[]> {
+/** Families to skip during automatic refresh. The hardcoded baselines
+ *  for these are known to be more accurate than what web search
+ *  returns — typically because the test maker's docs describe the
+ *  test per-module rather than per-section (Digital SAT), so the
+ *  refresh's sanity check would reject the extraction anyway and
+ *  just waste API calls. Manual refresh via the admin endpoint still
+ *  works (no filter applied there). */
+const SKIP_FAMILIES_IN_CRON = new Set<string>(['sat'])
+
+export async function listAllSpecTargetsFromDB(opts: { includeSkipped?: boolean } = {}): Promise<RefreshTarget[]> {
   // Test-prep leaves are topics whose parent is a "test-*" root.
   const { data: leaves } = await supabaseAdmin
     .from('study_topics')
@@ -566,6 +575,7 @@ export async function listAllSpecTargetsFromDB(): Promise<RefreshTarget[]> {
     // "SAT" as if it were a single section would waste API calls.
     if (!parent.slug.startsWith('test-') || parent.slug === 'test-prep') continue
     const family = parent.slug.replace(/^test-/, '')
+    if (!opts.includeSkipped && SKIP_FAMILIES_IN_CRON.has(family)) continue
     targets.push({
       family,
       sectionKey: leaf.name_en,

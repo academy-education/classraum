@@ -57,7 +57,10 @@ export async function POST(req: NextRequest) {
   } = {}
   try { body = await req.json() } catch { /* empty body is fine */ }
 
-  const allTargets = await listAllSpecTargetsFromDB()
+  // Admin endpoint bypasses the cron skip list — manual force is the
+  // whole point of having an admin endpoint, even for families like
+  // SAT whose sanity check will likely reject the result.
+  const allTargets = await listAllSpecTargetsFromDB({ includeSkipped: true })
   const targets = allTargets
     .filter(t => !body.family || t.family === body.family)
     .filter(t => !body.sectionKey || t.sectionKey === body.sectionKey)
