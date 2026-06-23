@@ -184,80 +184,89 @@ const TEST_THEMES: Record<string, {
   /** Decorative background characters (math symbols, language glyphs)
    *  arranged absolutely for Brilliant-style texture. */
   decorChars: string[]
-  /** Compact structural stat shown as a chip. */
-  stat: string
+  /** Compact structural stat shown as a chip — bilingual. */
+  stat_en: string
+  stat_ko: string
 }> = {
   sat: {
-    Icon: PenLine, // College Board's Digital SAT — pen for the writing module
+    Icon: PenLine,
     gradient: 'bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800',
     accent: 'text-blue-50',
     ring: 'ring-blue-900/20',
     mono: 'SAT',
     decorChars: ['x²', '∑', '∫'],
-    stat: '98 Q · 2h 14m',
+    stat_en: '98 Q · 2h 14m',
+    stat_ko: '98문항 · 2시간 14분',
   },
   ksat: {
-    Icon: Flag, // 수능 — Korean national exam, flag for national identity
+    Icon: Flag,
     gradient: 'bg-gradient-to-br from-rose-500 via-rose-600 to-red-700',
     accent: 'text-rose-50',
     ring: 'ring-rose-900/20',
     mono: '수능',
     decorChars: ['국', '수', '영'],
-    stat: '6 영역',
+    stat_en: '6 sections',
+    stat_ko: '6 영역',
   },
   toefl: {
-    Icon: Globe2, // ETS TOEFL — international academic English
+    Icon: Globe2,
     gradient: 'bg-gradient-to-br from-teal-500 via-emerald-600 to-emerald-700',
     accent: 'text-teal-50',
     ring: 'ring-emerald-900/20',
     mono: 'TOEFL',
     decorChars: ['A', 'a', '‹›'],
-    stat: '4 sections · 2h',
+    stat_en: '4 sections · 2h',
+    stat_ko: '4영역 · 2시간',
   },
   toeic: {
-    Icon: Briefcase, // ETS TOEIC — workplace English
+    Icon: Briefcase,
     gradient: 'bg-gradient-to-br from-sky-500 via-sky-600 to-blue-700',
     accent: 'text-sky-50',
     ring: 'ring-sky-900/20',
     mono: 'TOEIC',
     decorChars: ['$', '@', '✉'],
-    stat: '200 Q · 2h',
+    stat_en: '200 Q · 2h',
+    stat_ko: '200문항 · 2시간',
   },
   ielts: {
-    Icon: Languages, // British Council IELTS — international English
+    Icon: Languages,
     gradient: 'bg-gradient-to-br from-violet-500 via-purple-600 to-purple-800',
     accent: 'text-violet-50',
     ring: 'ring-purple-900/20',
     mono: 'IELTS',
     decorChars: ['ℹ', '?', '✓'],
-    stat: '4 sections · 2h 45m',
+    stat_en: '4 sections · 2h 45m',
+    stat_ko: '4영역 · 2시간 45분',
   },
   act: {
-    Icon: ClipboardCheck, // ACT — comprehensive multiple-choice
+    Icon: ClipboardCheck,
     gradient: 'bg-gradient-to-br from-orange-500 via-red-500 to-red-700',
     accent: 'text-orange-50',
     ring: 'ring-red-900/20',
     mono: 'ACT',
     decorChars: ['ⓐ', 'ⓑ', 'ⓒ'],
-    stat: '5 sections · 3h',
+    stat_en: '5 sections · 3h',
+    stat_ko: '5영역 · 3시간',
   },
   ap: {
-    Icon: GraduationCap, // College Board AP — college-credit exams
+    Icon: GraduationCap,
     gradient: 'bg-gradient-to-br from-emerald-500 via-green-600 to-emerald-800',
     accent: 'text-emerald-50',
     ring: 'ring-emerald-900/20',
     mono: 'AP',
     decorChars: ['5', '4', '3'],
-    stat: '9+ subjects',
+    stat_en: '9+ subjects',
+    stat_ko: '9+ 과목',
   },
   gre: {
-    Icon: Scroll, // ETS GRE — graduate school admission
+    Icon: Scroll,
     gradient: 'bg-gradient-to-br from-indigo-500 via-indigo-600 to-violet-800',
     accent: 'text-indigo-50',
     ring: 'ring-indigo-900/20',
     mono: 'GRE',
     decorChars: ['Σ', 'π', '½'],
-    stat: '3 sections · 1h 58m',
+    stat_en: '3 sections · 1h 58m',
+    stat_ko: '3영역 · 1시간 58분',
   },
 }
 
@@ -270,7 +279,8 @@ function themeForTest(slug: string): typeof TEST_THEMES[keyof typeof TEST_THEMES
     ring: 'ring-slate-900/20',
     mono: key.toUpperCase().slice(0, 4),
     decorChars: ['?', '?'],
-    stat: '',
+    stat_en: '',
+    stat_ko: '',
   }
 }
 
@@ -479,9 +489,9 @@ function StudyLandingInner() {
                         <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur-md ring-1 ring-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
                           <Icon className={`w-4 h-4 ${theme.accent}`} />
                         </div>
-                        {theme.stat && (
+                        {(ko ? theme.stat_ko : theme.stat_en) && (
                           <span className={`inline-flex items-center text-[10px] font-semibold tracking-tight ${theme.accent} bg-black/15 backdrop-blur-md ring-1 ring-white/20 rounded-full px-2 py-0.5`}>
-                            {theme.stat}
+                            {ko ? theme.stat_ko : theme.stat_en}
                           </span>
                         )}
                       </div>
@@ -588,6 +598,7 @@ function ExpandableCard({
   item: BrowseItem
   name: (s: { name_en: string; name_ko: string }) => string
 }) {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const theme = themeForSubject(item.slug, item.name_en)
   const Icon = theme.Icon
@@ -613,7 +624,10 @@ function ExpandableCard({
           </div>
           {branchCount > 0 && (
             <div className="text-[12px] text-gray-500 mt-0.5">
-              {branchCount} {branchCount === 1 ? 'topic' : 'topics'}
+              {String(t(
+                branchCount === 1 ? 'study.landing.topicCountSingular' : 'study.landing.topicCountPlural',
+                { count: String(branchCount) }
+              ))}
             </div>
           )}
         </div>

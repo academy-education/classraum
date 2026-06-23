@@ -3,7 +3,7 @@
 import React, { use, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, ChevronRight, Loader2, FileText, ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -51,8 +51,17 @@ function TopicInner({ slug }: { slug: string }) {
   const [topic, setTopic] = useState<Topic | null>(null)
   const [parent, setParent] = useState<Topic | null>(null)
   const [children, setChildren] = useState<Topic[]>([])
+  const [selectedChildId, setSelectedChildId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<StudyMode | null>(null)
+
+  // When the topic has children (e.g., AP → AP Biology / AP Calc AB),
+  // the page shows a category picker. The selected category becomes
+  // the actual topic the session is created against. For leaf topics
+  // (no children) we just use the topic itself.
+  const effectiveTopic = selectedChildId
+    ? children.find(c => c.id === selectedChildId) ?? topic
+    : topic
 
   useEffect(() => {
     let cancelled = false
@@ -88,21 +97,26 @@ function TopicInner({ slug }: { slug: string }) {
           : Promise.resolve({ data: [] }),
       ])
       if (cancelled) return
+      const kids = (childRows ?? []) as Topic[]
       setParent(parentRow ?? null)
-      setChildren((childRows ?? []) as Topic[])
+      setChildren(kids)
+      // Default-select the first child so the mode picker has a real
+      // target on first paint (no "you haven't chosen a category" state).
+      if (kids.length > 0) setSelectedChildId(kids[0].id)
       setLoading(false)
     })()
     return () => { cancelled = true }
   }, [slug])
 
   const startSession = async (mode: StudyMode) => {
-    if (!topic || !user?.userId) return
+    const target = effectiveTopic
+    if (!target || !user?.userId) return
     setCreating(mode)
     const { data, error } = await supabase
       .from('study_sessions')
       .insert({
         student_id: user.userId,
-        topic_id: topic.id,
+        topic_id: target.id,
         mode,
         language: ko ? 'ko' : 'en',
       })
@@ -161,6 +175,22 @@ function TopicInner({ slug }: { slug: string }) {
             {t('study.topic.pickMode')}
           </p>
         </header>
+
+        {/* Category picker — only when the topic has children.
+            AP → AP Biology / AP Calc AB, KSAT → 국어 / 수학 / 영어, etc.
+            The student picks a category first, then the mode picker
+            below targets that specific category. For leaves (sat-math,
+            ksat-korean) this section doesn't render and the mode
+            picker targets the leaf itself. */}
+        {children.length > 0 && (
+          <CategoryPicker
+            label={String(t(topic.category === 'test_prep' ? 'study.topic.sectionPickerLabel' : 'study.topic.categoryPickerLabel'))}
+            children={children}
+            selectedId={selectedChildId}
+            onSelect={setSelectedChildId}
+            name={name}
+          />
+        )}
 
         {/* Mode picker.
             - Test-prep topics get a featured full-width "Full test"
@@ -222,31 +252,56 @@ function TopicInner({ slug }: { slug: string }) {
             })}
         </section>
 
-        {/* Leaf list — branch pages only. Tapping a leaf navigates into
-            a tighter scoped topic page so mode sessions are sharper. */}
-        {children.length > 0 && (
-          <section>
-            <h2 className="text-[15px] font-semibold text-gray-900 mb-3">
-              {t('study.topic.narrowDown')}
-            </h2>
-            <div className="rounded-2xl bg-white overflow-hidden ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-              {children.map((child, i) => (
-                <Link
-                  key={child.id}
-                  href={`/mobile/study/topic/${child.slug}`}
-                  className={`group/leaf flex items-center justify-between gap-3 px-4 py-3.5 text-sm text-gray-700 hover:bg-gray-50/70 active:bg-gray-100 transition-colors ${
-                    i < children.length - 1 ? 'border-b border-gray-100/80' : ''
-                  }`}
-                >
-                  <span className="font-medium">{name(child)}</span>
-                  <ChevronRight className="w-4 h-4 text-gray-300 group-hover/leaf:text-primary group-hover/leaf:translate-x-0.5 transition-all" />
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
       </div>
     </div>
+  )
+}
+
+/** Category picker shown above the mode grid when a topic has
+ *  children. Horizontal scroll of pill chips with a clear selected
+ *  state. iOS / Apple Music genre-picker influence — feels native
+ *  on a mobile surface. */
+function CategoryPicker({
+  label,
+  children: categories,
+  selectedId,
+  onSelect,
+  name,
+}: {
+  label: string
+  children: Topic[]
+  selectedId: string | null
+  onSelect: (id: string) => void
+  name: (n: { name_en: string; name_ko: string }) => string
+}) {
+  return (
+    <section>
+      <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-2.5 px-1">
+        {label}
+      </h2>
+      <div className="-mx-5">
+        <div className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth snap-x px-5 pt-1 pb-2">
+          {categories.map((cat, i) => {
+            const selected = cat.id === selectedId
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => onSelect(cat.id)}
+                style={{ animationDelay: `${i * 30}ms` }}
+                className={`snap-start flex-shrink-0 inline-flex items-center px-4 h-10 rounded-full text-[13.5px] font-semibold tracking-tight transition-all duration-200 animate-card-in opacity-0 ${
+                  selected
+                    ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25),0_8px_20px_-8px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                    : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 hover:text-primary shadow-[0_1px_2px_rgba(0,0,0,0.03)] active:scale-[0.97]'
+                }`}
+              >
+                {name(cat)}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    </section>
   )
 }
 

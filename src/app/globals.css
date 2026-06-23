@@ -350,3 +350,15 @@
   background-size: 200% 100%;
   animation: shimmer-soft 1800ms ease-in-out infinite;
 }
+
+/* Horizontal carousel — hides the scrollbar so the snap-scroll
+ * reads as a deliberate carousel rather than a scrolled-too-far
+ * accident. Used by the recommended shelf and the category picker
+ * on test topic pages. */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;             /* Safari/Chrome */
+}

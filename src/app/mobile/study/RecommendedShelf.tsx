@@ -106,10 +106,23 @@ export function RecommendedShelf() {
           </p>
         </div>
       ) : (
-        <div className="space-y-2.5">
-          {cards.map(card => card.reason === 'weak'
-            ? <WeakAreaCard key={`${card.topic.id}-weak`} card={card} name={name} t={t} startSession={startSession} creating={creating} />
-            : <RecentSessionCard key={`${card.topic.id}-recent`} card={card} name={name} t={t} startSession={startSession} creating={creating} />)}
+        // Horizontal carousel — swipe through recommendations.
+        // scroll-snap-type ensures cards align to start as you scroll.
+        // Negative margin + matching padding lets the cards bleed
+        // into the page edge so they look like a magazine shelf.
+        <div className="-mx-5">
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 pt-1 pb-2">
+            {cards.map(card => (
+              <div
+                key={`${card.topic.id}-${card.reason}`}
+                className="snap-start flex-shrink-0 w-[82%] max-w-[320px]"
+              >
+                {card.reason === 'weak'
+                  ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
+                  : <RecentSessionCard card={card} name={name} t={t} startSession={startSession} creating={creating} />}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </section>
