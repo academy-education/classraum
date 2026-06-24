@@ -152,11 +152,11 @@ export function RecommendedShelf() {
               onClick={() => scrollByOneCard('left')}
             />
           )}
-          <div ref={scrollRef} className="flex-1 min-w-0 flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2">
+          <div ref={scrollRef} className="flex-1 min-w-0 flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2 px-0.5">
             {cards.map(card => (
               <div
                 key={`${card.topic.id}-${card.reason}`}
-                className="snap-start flex-shrink-0 w-full max-w-[320px]"
+                className="snap-start flex-shrink-0 w-[88%] max-w-[300px]"
               >
                 {card.reason === 'weak'
                   ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />

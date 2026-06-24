@@ -9,6 +9,9 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
+import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
+import { loadSectionSpec } from '@/lib/test-spec-cache'
+import { loadStudyPromptContext } from '@/lib/study-prompt-context'
 
 /**
  * /mobile/study/topic/[slug] — topic page with mode picker.
@@ -54,6 +57,10 @@ function TopicInner({ slug }: { slug: string }) {
   const [selectedChildId, setSelectedChildId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<StudyMode | null>(null)
+  const [testSheetOpen, setTestSheetOpen] = useState(false)
+  const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number; language: 'en' | 'ko' }>({
+    count: 20, minutes: 30, language: ko ? 'ko' : 'en',
+  })
 
   // When the topic has children (e.g., AP → AP Biology / AP Calc AB),
   // the page shows a category picker. The selected category becomes
@@ -108,17 +115,21 @@ function TopicInner({ slug }: { slug: string }) {
     return () => { cancelled = true }
   }, [slug])
 
-  const startSession = async (mode: StudyMode) => {
+  const startSession = async (mode: StudyMode, config?: TestConfig) => {
     const target = effectiveTopic
     if (!target || !user?.userId) return
     setCreating(mode)
+    // Use the per-session language override from config if provided,
+    // else the UI language at session-start time.
+    const sessionLanguage = config?.language ?? (ko ? 'ko' : 'en')
     const { data, error } = await supabase
       .from('study_sessions')
       .insert({
         student_id: user.userId,
         topic_id: target.id,
         mode,
-        language: ko ? 'ko' : 'en',
+        language: sessionLanguage,
+        config: config ?? {},
       })
       .select('id')
       .single()
@@ -127,6 +138,27 @@ function TopicInner({ slug }: { slug: string }) {
       return
     }
     router.push(`/mobile/study/session/${data.id}`)
+  }
+
+  // Open the customization sheet for a full test. Loads the spec
+  // defaults (question count + time) for the effective topic so the
+  // sheet can show them as the starting values.
+  const openTestSheet = async () => {
+    const target = effectiveTopic
+    if (!target) return
+    try {
+      const ctx = await loadStudyPromptContext(target.id, ko ? 'ko' : 'en')
+      const family = ctx?.testFamily ?? null
+      const section = ctx?.testSection ?? null
+      const spec = family ? await loadSectionSpec(family, section) : null
+      // Fall back to generic 20 Q / 30 min for non-test topics.
+      const count = spec ? Math.min(spec.questionsPerSection, 60) : 20
+      const minutes = spec ? Math.round(spec.minutesPerSection * (count / spec.questionsPerSection)) : 30
+      setTestDefaults({ count, minutes, language: ko ? 'ko' : 'en' })
+    } catch {
+      setTestDefaults({ count: 20, minutes: 30, language: ko ? 'ko' : 'en' })
+    }
+    setTestSheetOpen(true)
   }
 
   if (loading) {
@@ -201,7 +233,7 @@ function TopicInner({ slug }: { slug: string }) {
          */}
         {topic.category === 'test_prep' && (
           <FeaturedFullTestCard
-            startSession={startSession}
+            startSession={() => openTestSheet()}
             creating={creating}
             t={t}
           />
@@ -253,6 +285,16 @@ function TopicInner({ slug }: { slug: string }) {
         </section>
 
       </div>
+
+      {/* Pre-test customization sheet — opens when student taps Full
+          Test. Saves their choices to session.config which the test
+          generator reads to override the spec defaults. */}
+      <TestCustomizationSheet
+        open={testSheetOpen}
+        defaults={testDefaults}
+        onClose={() => setTestSheetOpen(false)}
+        onStart={(config) => { setTestSheetOpen(false); void startSession('full_test', config) }}
+      />
     </div>
   )
 }

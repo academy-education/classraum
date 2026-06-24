@@ -152,7 +152,7 @@ export function ResumableShelf() {
             onClick={() => scrollByOneCard('left')}
           />
         )}
-        <div ref={scrollRef} className="flex-1 min-w-0 flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2">
+        <div ref={scrollRef} className="flex-1 min-w-0 flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2 px-0.5">
           {rows.map(row => {
             const style = MODE_STYLE[row.mode] ?? MODE_STYLE.chat
             const Icon = style.Icon
@@ -165,7 +165,7 @@ export function ResumableShelf() {
               <Link
                 key={row.id}
                 href={`/mobile/study/session/${row.id}`}
-                className={`snap-start flex-shrink-0 w-full max-w-[320px] group relative overflow-hidden rounded-2xl p-4 ${style.cardBg} ring-1 ${style.ring} shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10),0_12px_28px_-12px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200`}
+                className={`snap-start flex-shrink-0 w-[88%] max-w-[300px] group relative overflow-hidden rounded-2xl p-4 ${style.cardBg} ring-1 ${style.ring} shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10),0_12px_28px_-12px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200`}
               >
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
                 <div aria-hidden className={`pointer-events-none absolute -top-6 -right-6 w-20 h-20 rounded-full ${style.iconBg} opacity-[0.10] blur-2xl group-hover:opacity-[0.18] transition-opacity`} />

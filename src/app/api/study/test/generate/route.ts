@@ -198,7 +198,7 @@ export async function POST(req: NextRequest) {
 
   const { data: session } = await supabaseAdmin
     .from('study_sessions')
-    .select('id, student_id, mode, language, topic_id, topic_freeform')
+    .select('id, student_id, mode, language, topic_id, topic_freeform, config')
     .eq('id', sessionId)
     .maybeSingle()
   if (!session || session.student_id !== user.id) {
@@ -257,13 +257,25 @@ export async function POST(req: NextRequest) {
 
   // Test-prep generation prefers the spec library's per-section
   // count/timing (matches the real exam) over the per-family default.
-  const { count, minutes } = family
+  // Per-session config overrides take final precedence — when the
+  // student tweaked the customization sheet, their choices win.
+  const baseDefaults = family
     ? await defaultsForTestSectionCached(family, sectionLabel)
     : defaultsForFamily(null)
+  const config = (session.config ?? {}) as {
+    questionCount?: number
+    timeLimit?: number
+    difficultyBias?: 'balanced' | 'challenge' | 'warmup'
+  }
+  const count = clampInt(config.questionCount ?? baseDefaults.count, 5, 70)
+  const minutes = clampInt(config.timeLimit ?? baseDefaults.minutes, 5, 240)
   // Look up the structured spec so we can read difficultyMix and the
   // hard-item framing. Falls back to defaults when missing.
   const sectionSpec = family ? await loadSectionSpec(family, sectionLabel) : null
-  const mix = sectionSpec?.difficultyMix ?? { easy: 0.30, medium: 0.50, hard: 0.20 }
+  const baseMix = sectionSpec?.difficultyMix ?? { easy: 0.30, medium: 0.50, hard: 0.20 }
+  // Apply difficulty bias: 'challenge' rebalances toward hard items,
+  // 'warmup' toward easy. Total stays at 1.0 (sums normalized).
+  const mix = applyDifficultyBias(baseMix, config.difficultyBias)
   const targetHard = Math.round(count * mix.hard)
   const targetEasyMed = count - targetHard
 
@@ -557,6 +569,27 @@ function isMathHeavy(family: TestFamily | null, section: string | null): boolean
   if (!section) return false
   const s = section.toLowerCase()
   return s.includes('math') || s.includes('수학') || s.includes('quant')
+}
+
+function clampInt(n: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, Math.round(n)))
+}
+
+/** Apply the session's difficulty bias on top of the spec's natural
+ *  difficulty mix. 'challenge' shifts ~half of medium into hard;
+ *  'warmup' shifts ~half of medium into easy. 'balanced' (default)
+ *  is a no-op. Result is renormalized to sum to 1.0. */
+function applyDifficultyBias(
+  base: { easy: number; medium: number; hard: number },
+  bias?: 'balanced' | 'challenge' | 'warmup',
+): { easy: number; medium: number; hard: number } {
+  if (!bias || bias === 'balanced') return base
+  const shift = base.medium * 0.5
+  const out = bias === 'challenge'
+    ? { easy: base.easy, medium: base.medium - shift, hard: base.hard + shift }
+    : { easy: base.easy + shift, medium: base.medium - shift, hard: base.hard }
+  const total = out.easy + out.medium + out.hard
+  return { easy: out.easy / total, medium: out.medium / total, hard: out.hard / total }
 }
 
 function prettyTest(family: TestFamily | null): string {
