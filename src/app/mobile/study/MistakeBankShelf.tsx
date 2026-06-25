@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
-import { CarouselSideButton } from './RecommendedShelf'
+import { useCarouselFocus } from './useCarouselFocus'
 
 interface MistakeQuestion {
   prompt: string
@@ -49,8 +49,7 @@ export function MistakeBankShelf() {
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
+  useCarouselFocus(scrollRef, mistakes.length)
 
   useEffect(() => {
     let cancelled = false
@@ -69,27 +68,6 @@ export function MistakeBankShelf() {
     })()
     return () => { cancelled = true }
   }, [])
-
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-    const update = () => {
-      setCanScrollLeft(el.scrollLeft > 8)
-      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8)
-    }
-    update()
-    el.addEventListener('scroll', update, { passive: true })
-    const ro = new ResizeObserver(update)
-    ro.observe(el)
-    return () => { el.removeEventListener('scroll', update); ro.disconnect() }
-  }, [mistakes.length])
-
-  const scrollByOneCard = (dir: 'left' | 'right') => {
-    const el = scrollRef.current
-    if (!el) return
-    const cardWidth = Math.min(el.clientWidth, 320) + 12
-    el.scrollBy({ left: dir === 'left' ? -cardWidth : cardWidth, behavior: 'smooth' })
-  }
 
   // Practice for the same topic — fresh items in the same area so
   // the student doesn't see the exact same question (memorize-resistant).
@@ -127,19 +105,11 @@ export function MistakeBankShelf() {
 
   return (
     <section>
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
-          {t('study.mistakes.title')}
-        </h2>
-        {mistakes.length > 1 && (
-          <div className="flex items-center gap-1.5">
-            <CarouselSideButton direction="left" enabled={canScrollLeft} onClick={() => scrollByOneCard('left')} />
-            <CarouselSideButton direction="right" enabled={canScrollRight} onClick={() => scrollByOneCard('right')} />
-          </div>
-        )}
-      </div>
+      <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
+        {t('study.mistakes.title')}
+      </h2>
       <div className="-mx-5">
-        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 py-2">
+        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-8 py-3">
           {mistakes.map(m => (
             <MistakeCard
               key={m.attempt_id}
@@ -176,7 +146,7 @@ function MistakeCard({
   creatingDisabled: boolean
 }) {
   return (
-    <div className="snap-start flex-none w-[82%] max-w-[300px] relative overflow-hidden rounded-2xl p-4 bg-gradient-to-br from-rose-50/60 via-white to-white ring-1 ring-rose-200/50 shadow-[0_1px_2px_rgba(0,0,0,0.03)] flex flex-col gap-3">
+    <div data-carousel-card className="snap-center flex-none w-[82%] max-w-[300px] relative overflow-hidden rounded-2xl p-4 bg-gradient-to-br from-rose-50/60 via-white to-white ring-1 ring-rose-200/50 shadow-[0_1px_2px_rgba(0,0,0,0.03)] flex flex-col gap-3">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
       {/* Topic eyebrow */}

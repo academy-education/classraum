@@ -371,3 +371,22 @@
 .animate-slide-up {
   animation: slide-up 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
+/* Carousel focused-card magnification — paired with useCarouselFocus
+ * hook. Cards default to slight scale-down + dimmed opacity; the
+ * focused (most-visible) card scales to 1 + full opacity. Creates the
+ * iOS App Store "Today" carousel feel where the centered card visually
+ * dominates and side cards read as "peek of more". */
+[data-carousel-card] {
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity   220ms ease;
+  transform: scale(0.92);
+  opacity: 0.55;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+[data-carousel-card][data-focused="true"] {
+  transform: scale(1);
+  opacity: 1;
+}

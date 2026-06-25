@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Loader2, type LucideIcon } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
-import { CarouselSideButton } from './RecommendedShelf'
+import { useCarouselFocus } from './useCarouselFocus'
 import type { StudyMode } from './modes'
 
 interface Row {
@@ -73,8 +73,7 @@ export function ResumableShelf() {
   const [rows, setRows] = useState<Row[]>([])
   const [loading, setLoading] = useState(true)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
+  useCarouselFocus(scrollRef, rows.length)
 
   useEffect(() => {
     if (!user?.userId) return
@@ -97,30 +96,6 @@ export function ResumableShelf() {
     return () => { cancelled = true }
   }, [user?.userId])
 
-  // Carousel scroll-position tracking (same pattern as RecommendedShelf).
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-    const update = () => {
-      const padLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0
-      const padRight = parseFloat(getComputedStyle(el).paddingRight) || 0
-      setCanScrollLeft(el.scrollLeft > padLeft + 8)
-      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - padRight - 8)
-    }
-    update()
-    el.addEventListener('scroll', update, { passive: true })
-    const ro = new ResizeObserver(update)
-    ro.observe(el)
-    return () => { el.removeEventListener('scroll', update); ro.disconnect() }
-  }, [rows.length])
-
-  const scrollByOneCard = (dir: 'left' | 'right') => {
-    const el = scrollRef.current
-    if (!el) return
-    const cardWidth = Math.min(el.clientWidth * 0.82, 320) + 12
-    el.scrollBy({ left: dir === 'left' ? -cardWidth : cardWidth, behavior: 'smooth' })
-  }
-
   // Don't render the section if the student has nothing to resume —
   // an empty shelf looks like a bug.
   if (loading) {
@@ -141,19 +116,11 @@ export function ResumableShelf() {
 
   return (
     <section>
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
-          {t('study.landing.resumeTitle')}
-        </h2>
-        {rows.length > 1 && (
-          <div className="flex items-center gap-1.5">
-            <CarouselSideButton direction="left" enabled={canScrollLeft} onClick={() => scrollByOneCard('left')} />
-            <CarouselSideButton direction="right" enabled={canScrollRight} onClick={() => scrollByOneCard('right')} />
-          </div>
-        )}
-      </div>
+      <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
+        {t('study.landing.resumeTitle')}
+      </h2>
       <div className="-mx-5">
-        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 py-2">
+        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-8 py-3">
           {rows.map(row => {
             const style = MODE_STYLE[row.mode] ?? MODE_STYLE.chat
             const Icon = style.Icon
@@ -166,7 +133,8 @@ export function ResumableShelf() {
               <Link
                 key={row.id}
                 href={`/mobile/study/session/${row.id}`}
-                className={`snap-start flex-none w-[82%] max-w-[300px] group relative overflow-hidden rounded-2xl p-4 ${style.cardBg} ring-1 ${style.ring} shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10),0_12px_28px_-12px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200`}
+                data-carousel-card
+                className={`snap-center flex-none w-[82%] max-w-[300px] group relative overflow-hidden rounded-2xl p-4 ${style.cardBg} ring-1 ${style.ring} shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10),0_12px_28px_-12px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200`}
               >
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
                 <div aria-hidden className={`pointer-events-none absolute -top-6 -right-6 w-20 h-20 rounded-full ${style.iconBg} opacity-[0.10] blur-2xl group-hover:opacity-[0.18] transition-opacity`} />

@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { Lightbulb, AlertTriangle, History, ArrowRight, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react'
+import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2 } from 'lucide-react'
+import { useCarouselFocus } from './useCarouselFocus'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -40,41 +41,7 @@ export function RecommendedShelf() {
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
-
-  // Track scroll position so we can hide the prev/next buttons when
-  // we're at the start or end of the carousel. The tolerance accounts
-  // for the padding-left we use to keep cards out of the button hit
-  // area — snap-mandatory aligns the first card to scrollLeft = paddingLeft,
-  // so a raw `scrollLeft > 0` would falsely show the left button at
-  // the carousel start.
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-    const update = () => {
-      const padLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0
-      const padRight = parseFloat(getComputedStyle(el).paddingRight) || 0
-      setCanScrollLeft(el.scrollLeft > padLeft + 8)
-      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - padRight - 8)
-    }
-    update()
-    el.addEventListener('scroll', update, { passive: true })
-    const ro = new ResizeObserver(update)
-    ro.observe(el)
-    return () => {
-      el.removeEventListener('scroll', update)
-      ro.disconnect()
-    }
-  }, [cards.length])
-
-  const scrollByOneCard = (dir: 'left' | 'right') => {
-    const el = scrollRef.current
-    if (!el) return
-    // One card width + gap. Card is ~82% viewport up to 320px.
-    const cardWidth = Math.min(el.clientWidth * 0.82, 320) + 12
-    el.scrollBy({ left: dir === 'left' ? -cardWidth : cardWidth, behavior: 'smooth' })
-  }
+  useCarouselFocus(scrollRef, cards.length)
 
   useEffect(() => {
     let cancelled = false
@@ -120,25 +87,9 @@ export function RecommendedShelf() {
 
   return (
     <section>
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
-          {t('study.landing.recommendedTitle')}
-        </h2>
-        {cards.length > 1 && (
-          <div className="flex items-center gap-1.5">
-            <CarouselSideButton
-              direction="left"
-              enabled={canScrollLeft}
-              onClick={() => scrollByOneCard('left')}
-            />
-            <CarouselSideButton
-              direction="right"
-              enabled={canScrollRight}
-              onClick={() => scrollByOneCard('right')}
-            />
-          </div>
-        )}
-      </div>
+      <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
+        {t('study.landing.recommendedTitle')}
+      </h2>
 
       {loading ? (
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 px-5 py-7 text-center text-sm text-gray-400 inline-flex items-center justify-center gap-2 w-full shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
@@ -155,16 +106,23 @@ export function RecommendedShelf() {
           </p>
         </div>
       ) : (
-        // Header-anchored buttons + edge-bleed carousel. Cards bleed
-        // past the page padding so the next card peeks at the right
-        // edge; nothing overlays card content. Apple App Store / Spotify
-        // carousel convention.
+        // Edge-bleed carousel with focused-card magnification.
+        // The currently-most-visible card scales up to full size and
+        // full opacity; side cards shrink + dim so they read as
+        // "preview of more". useCarouselFocus drives the focus state
+        // via IntersectionObserver. px-8 inner padding gives equal
+        // breathing room on both ends so the first/last card never
+        // touches the screen edge.
         <div className="-mx-5">
-          <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 py-2">
+          <div
+            ref={scrollRef}
+            className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-8 py-3"
+          >
             {cards.map(card => (
               <div
                 key={`${card.topic.id}-${card.reason}`}
-                className="snap-start flex-none w-[82%] max-w-[300px]"
+                data-carousel-card
+                className="snap-center flex-none w-[82%] max-w-[300px]"
               >
                 {card.reason === 'weak'
                   ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
@@ -175,33 +133,6 @@ export function RecommendedShelf() {
         </div>
       )}
     </section>
-  )
-}
-
-/** Side-rail carousel button. Sits in its own column alongside the
- *  scroll area (NOT overlaying it), so cards never sit underneath.
- *  Disabled state keeps layout consistent — buttons are always in
- *  their slot, just dimmed when there's nowhere to scroll that way. */
-export function CarouselSideButton({
-  direction,
-  enabled,
-  onClick,
-}: {
-  direction: 'left' | 'right'
-  enabled: boolean
-  onClick: () => void
-}) {
-  const Icon = direction === 'left' ? ChevronLeft : ChevronRight
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={!enabled}
-      aria-label={direction === 'left' ? 'Previous' : 'Next'}
-      className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white ring-1 ring-gray-200/80 text-gray-700 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.10)] hover:ring-primary/40 hover:text-primary hover:shadow-[0_2px_4px_rgba(0,0,0,0.06),0_8px_16px_-4px_rgba(40,133,232,0.18)] active:scale-[0.94] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:ring-gray-200/80 disabled:hover:text-gray-700 disabled:hover:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.10)] transition-all duration-200"
-    >
-      <Icon className="w-4 h-4" />
-    </button>
   )
 }
 
