@@ -17,6 +17,10 @@ import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
 import { MistakeBankShelf } from './MistakeBankShelf'
 import { StudyStreakChip } from './StudyStreakChip'
+import { TodayProgressRing } from './TodayProgressRing'
+import { ResumeBanner } from './ResumeBanner'
+import { OnboardingWizard } from './OnboardingWizard'
+import { useOnboardingGate } from './useOnboardingGate'
 
 /**
  * /mobile/study — study landing.
@@ -305,6 +309,7 @@ function StudyLandingInner() {
   const [loading, setLoading] = useState(true)
   const [freeFormQuery, setFreeFormQuery] = useState('')
   const [creatingFreeForm, setCreatingFreeForm] = useState(false)
+  const { needsOnboarding, markComplete } = useOnboardingGate()
 
   useEffect(() => {
     let cancelled = false
@@ -398,6 +403,7 @@ function StudyLandingInner() {
             </p>
           </div>
           <div className="flex-shrink-0 flex items-center gap-1.5 pt-1">
+            <TodayProgressRing />
             <StudyStreakChip />
             <Link
               href="/mobile/study/subscription"
@@ -408,6 +414,12 @@ function StudyLandingInner() {
             </Link>
           </div>
         </header>
+
+        {/* Resume banner — single tap to pick up the most recent
+            active session. Sits above the recommended shelf because
+            "continue what I was doing" is the most common revisit
+            intent. Auto-hides when no active session. */}
+        <ResumeBanner />
 
         {/* Recommended shelf — Phase 3, reads study_mastery + recent
             sessions via /api/study/recommended. */}
@@ -546,6 +558,11 @@ function StudyLandingInner() {
           </p>
         </section>
       </div>
+
+      {/* First-visit onboarding wizard — bottom-sheet that gates the
+          landing for new students. Wraps with a check so it never
+          re-appears after the wizard finishes (or is skipped). */}
+      {needsOnboarding && <OnboardingWizard onComplete={markComplete} />}
     </div>
   )
 }
