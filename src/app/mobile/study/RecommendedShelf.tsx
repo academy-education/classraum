@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2 } from 'lucide-react'
 import { useCarouselFocus, CarouselDots, scrollToCarouselIndex } from './useCarouselFocus'
+import { SkeletonCarousel } from './skeletons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -92,10 +93,7 @@ export function RecommendedShelf() {
       </h2>
 
       {loading ? (
-        <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 px-5 py-7 text-center text-sm text-gray-400 inline-flex items-center justify-center gap-2 w-full shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-          <Loader2 className="w-4 h-4 animate-spin" />
-          {t('study.landing.loading')}
-        </div>
+        <SkeletonCarousel count={3} />
       ) : cards.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-gray-200 bg-gradient-to-br from-white to-gray-50/50 px-5 py-8 text-center">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white ring-1 ring-gray-200/70 mx-auto mb-3">

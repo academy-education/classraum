@@ -6,6 +6,7 @@ import { ArrowLeft, Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkle
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
+import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons'
 
 interface Prefs {
   target_test: string | null
@@ -92,10 +93,27 @@ function PreferencesInner() {
   }
 
   if (!prefs) {
+    // Skeleton mirrors the loaded layout: back link, title +
+    // subtitle, stats link card, then 5 setting groups.
     return (
-      <div className="flex items-center justify-center h-full text-sm text-gray-500 px-5 py-10">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.landing.loading')}
+      <div className="px-5 pt-6 pb-14 space-y-6">
+        <SkeletonBlock className="h-4 w-32 rounded-full" />
+        <div className="space-y-2">
+          <SkeletonBlock className="h-8 w-1/2 rounded-lg" />
+          <SkeletonBlock className="h-3 w-4/5 rounded-full" />
+        </div>
+        <SkeletonCard className="p-4 flex items-center gap-3">
+          <SkeletonBlock className="w-10 h-10 rounded-xl" />
+          <div className="flex-1 space-y-1.5">
+            <SkeletonBlock className="h-3.5 w-1/3 rounded-full" />
+            <SkeletonBlock className="h-2.5 w-2/5 rounded-full" />
+          </div>
+        </SkeletonCard>
+        <SkeletonSettingsGroup rows={2} />
+        <SkeletonSettingsGroup rows={2} />
+        <SkeletonSettingsGroup />
+        <SkeletonSettingsGroup />
+        <SkeletonSettingsGroup />
       </div>
     )
   }

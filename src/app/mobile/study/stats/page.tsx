@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Loader2, Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks } from 'lucide-react'
+import { ArrowLeft, Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
+import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader } from '../skeletons'
 
 interface Stats {
   sessionCount: number
@@ -54,10 +55,25 @@ function StatsInner() {
   }, [])
 
   if (!stats) {
+    // Skeleton mirrors the loaded layout: back link → header →
+    // 2x2 metric grid → sparkline card → two row lists. No content
+    // shift when stats arrive.
     return (
-      <div className="flex items-center justify-center h-full text-sm text-gray-500 px-5 py-10">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.landing.loading')}
+      <div className="px-5 pt-6 pb-14 space-y-6">
+        <SkeletonBlock className="h-4 w-32 rounded-full" />
+        <div className="space-y-2">
+          <SkeletonBlock className="h-8 w-2/3 rounded-lg" />
+          <SkeletonBlock className="h-3 w-4/5 rounded-full" />
+        </div>
+        <SkeletonMetricGrid />
+        <div>
+          <SkeletonHeader widthClass="w-1/4" />
+          <SkeletonBlock className="h-20 w-full rounded-2xl" />
+        </div>
+        <div>
+          <SkeletonHeader widthClass="w-1/3" />
+          <SkeletonRowList count={2} />
+        </div>
       </div>
     )
   }

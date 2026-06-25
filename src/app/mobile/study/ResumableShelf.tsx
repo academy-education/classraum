@@ -7,6 +7,7 @@ import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Loader2, ty
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useCarouselFocus, CarouselDots, scrollToCarouselIndex } from './useCarouselFocus'
+import { SkeletonCarousel } from './skeletons'
 import type { StudyMode } from './modes'
 
 interface Row {
@@ -104,10 +105,7 @@ export function ResumableShelf() {
         <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
           {t('study.landing.resumeTitle')}
         </h2>
-        <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 px-5 py-7 text-center text-sm text-gray-400 inline-flex items-center justify-center gap-2 w-full shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-          <Loader2 className="w-4 h-4 animate-spin" />
-          {t('study.landing.loading')}
-        </div>
+        <SkeletonCarousel count={3} />
       </section>
     )
   }
