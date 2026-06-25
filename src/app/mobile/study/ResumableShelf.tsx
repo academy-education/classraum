@@ -141,18 +141,19 @@ export function ResumableShelf() {
 
   return (
     <section>
-      <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
-        {t('study.landing.resumeTitle')}
-      </h2>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+          {t('study.landing.resumeTitle')}
+        </h2>
         {rows.length > 1 && (
-          <CarouselSideButton
-            direction="left"
-            enabled={canScrollLeft}
-            onClick={() => scrollByOneCard('left')}
-          />
+          <div className="flex items-center gap-1.5">
+            <CarouselSideButton direction="left" enabled={canScrollLeft} onClick={() => scrollByOneCard('left')} />
+            <CarouselSideButton direction="right" enabled={canScrollRight} onClick={() => scrollByOneCard('right')} />
+          </div>
         )}
-        <div ref={scrollRef} className="flex-1 min-w-0 flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2 px-0.5">
+      </div>
+      <div className="-mx-5">
+        <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 py-2">
           {rows.map(row => {
             const style = MODE_STYLE[row.mode] ?? MODE_STYLE.chat
             const Icon = style.Icon
@@ -165,7 +166,7 @@ export function ResumableShelf() {
               <Link
                 key={row.id}
                 href={`/mobile/study/session/${row.id}`}
-                className={`snap-start flex-none w-[calc(100%-40px)] max-w-[280px] group relative overflow-hidden rounded-2xl p-4 ${style.cardBg} ring-1 ${style.ring} shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10),0_12px_28px_-12px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200`}
+                className={`snap-start flex-none w-[82%] max-w-[300px] group relative overflow-hidden rounded-2xl p-4 ${style.cardBg} ring-1 ${style.ring} shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10),0_12px_28px_-12px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200`}
               >
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
                 <div aria-hidden className={`pointer-events-none absolute -top-6 -right-6 w-20 h-20 rounded-full ${style.iconBg} opacity-[0.10] blur-2xl group-hover:opacity-[0.18] transition-opacity`} />
@@ -193,13 +194,6 @@ export function ResumableShelf() {
             )
           })}
         </div>
-        {rows.length > 1 && (
-          <CarouselSideButton
-            direction="right"
-            enabled={canScrollRight}
-            onClick={() => scrollByOneCard('right')}
-          />
-        )}
       </div>
     </section>
   )

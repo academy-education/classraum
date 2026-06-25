@@ -120,9 +120,25 @@ export function RecommendedShelf() {
 
   return (
     <section>
-      <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
-        {t('study.landing.recommendedTitle')}
-      </h2>
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+          {t('study.landing.recommendedTitle')}
+        </h2>
+        {cards.length > 1 && (
+          <div className="flex items-center gap-1.5">
+            <CarouselSideButton
+              direction="left"
+              enabled={canScrollLeft}
+              onClick={() => scrollByOneCard('left')}
+            />
+            <CarouselSideButton
+              direction="right"
+              enabled={canScrollRight}
+              onClick={() => scrollByOneCard('right')}
+            />
+          </div>
+        )}
+      </div>
 
       {loading ? (
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 px-5 py-7 text-center text-sm text-gray-400 inline-flex items-center justify-center gap-2 w-full shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
@@ -139,24 +155,16 @@ export function RecommendedShelf() {
           </p>
         </div>
       ) : (
-        // Side-rail layout: [<] [scroll] [>]. Buttons sit in their
-        // own columns, never overlay cards. Scroll area is the middle
-        // flex-1 column. Cards still snap-scroll; the next card peeks
-        // at the right edge of the scroll area without sliding under
-        // the right-side button column.
-        <div className="flex items-center gap-2">
-          {cards.length > 1 && (
-            <CarouselSideButton
-              direction="left"
-              enabled={canScrollLeft}
-              onClick={() => scrollByOneCard('left')}
-            />
-          )}
-          <div ref={scrollRef} className="flex-1 min-w-0 flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2 px-0.5">
+        // Header-anchored buttons + edge-bleed carousel. Cards bleed
+        // past the page padding so the next card peeks at the right
+        // edge; nothing overlays card content. Apple App Store / Spotify
+        // carousel convention.
+        <div className="-mx-5">
+          <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 py-2">
             {cards.map(card => (
               <div
                 key={`${card.topic.id}-${card.reason}`}
-                className="snap-start flex-none w-[calc(100%-40px)] max-w-[280px]"
+                className="snap-start flex-none w-[82%] max-w-[300px]"
               >
                 {card.reason === 'weak'
                   ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
@@ -164,13 +172,6 @@ export function RecommendedShelf() {
               </div>
             ))}
           </div>
-          {cards.length > 1 && (
-            <CarouselSideButton
-              direction="right"
-              enabled={canScrollRight}
-              onClick={() => scrollByOneCard('right')}
-            />
-          )}
         </div>
       )}
     </section>
