@@ -182,7 +182,7 @@ function MistakeCard({
   creatingDisabled: boolean
 }) {
   return (
-    <div className="snap-start flex-shrink-0 w-[88%] max-w-[300px] relative overflow-hidden rounded-2xl p-4 bg-gradient-to-br from-rose-50/60 via-white to-white ring-1 ring-rose-200/50 shadow-[0_1px_2px_rgba(0,0,0,0.03)] flex flex-col gap-3">
+    <div className="snap-start flex-none w-[calc(100%-40px)] max-w-[280px] relative overflow-hidden rounded-2xl p-4 bg-gradient-to-br from-rose-50/60 via-white to-white ring-1 ring-rose-200/50 shadow-[0_1px_2px_rgba(0,0,0,0.03)] flex flex-col gap-3">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
       {/* Topic eyebrow */}

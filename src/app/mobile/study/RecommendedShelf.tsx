@@ -156,7 +156,7 @@ export function RecommendedShelf() {
             {cards.map(card => (
               <div
                 key={`${card.topic.id}-${card.reason}`}
-                className="snap-start flex-shrink-0 w-[88%] max-w-[300px]"
+                className="snap-start flex-none w-[calc(100%-40px)] max-w-[280px]"
               >
                 {card.reason === 'weak'
                   ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
