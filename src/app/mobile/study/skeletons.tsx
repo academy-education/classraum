@@ -153,6 +153,46 @@ export function SkeletonRowList({ count = 3 }: { count?: number }) {
   )
 }
 
+/** Test-prep grid skeleton — 2-col grid of taller gradient cards
+ *  matching the test prep grid layout on the landing page. */
+export function SkeletonTestGrid({ count = 6 }: { count?: number }) {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {Array.from({ length: count }).map((_, i) => (
+        <div
+          key={i}
+          style={{ animationDelay: `${i * 60}ms` }}
+          className="relative overflow-hidden rounded-2xl min-h-[120px] p-4 bg-gradient-to-br from-gray-100 to-gray-200 ring-1 ring-gray-200/60 animate-card-in opacity-0"
+        >
+          <div className="absolute inset-0 animate-shimmer-soft" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Subject-square grid skeleton — 2-col grid matching SubjectSquareCard
+ *  with icon tile + title + subtitle. Used on the landing subjects section. */
+export function SkeletonSquareGrid({ count = 4 }: { count?: number }) {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {Array.from({ length: count }).map((_, i) => (
+        <div
+          key={i}
+          style={{ animationDelay: `${i * 60}ms` }}
+          className="relative overflow-hidden rounded-2xl min-h-[140px] p-4 bg-white ring-1 ring-gray-200/60 animate-card-in opacity-0 flex flex-col justify-between"
+        >
+          <SkeletonIconTile size="w-12 h-12" />
+          <div className="space-y-1.5">
+            <SkeletonText widthClass="w-3/5" />
+            <SkeletonText widthClass="w-1/3" height="h-2.5" />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 /** Settings-group skeleton — for prefs page. Mimics the layout of
  *  a SettingGroup (label row + option grid/segmented). */
 export function SkeletonSettingsGroup({ rows = 1 }: { rows?: number }) {

@@ -3985,6 +3985,17 @@
       "skip": "Skip",
       "finish": "Start studying"
     },
+    "builder": {
+      "eyebrow": "Custom test",
+      "title": "Build your own test",
+      "subtitle": "Pick exactly what you want to drill — topic, length, difficulty.",
+      "topicLabel": "Topic",
+      "topicPlaceholder": "Pick a topic",
+      "countLabel": "Questions",
+      "timeLabel": "Time limit",
+      "difficultyLabel": "Difficulty",
+      "start": "Start custom test"
+    },
     "prefs": {
       "title": "Study preferences",
       "subtitle": "Tweak your goals and defaults. Changes save automatically.",
@@ -4005,7 +4016,20 @@
       "sessions": "Sessions",
       "last14days": "Last 14 days",
       "topMastered": "Mastered topics",
-      "topWeak": "Topics to work on"
+      "topWeak": "Topics to work on",
+      "achievementsTitle": "Achievements"
+    },
+    "achievements": {
+      "firstSteps":     { "title": "First steps",       "unlocked": "Answered your first question",       "locked": "Answer 1 question" },
+      "centurion":      { "title": "Centurion",         "unlocked": "100 questions answered",            "locked": "{value}/100 questions" },
+      "marathoner":     { "title": "Marathoner",        "unlocked": "1,000 questions answered",          "locked": "{value}/1,000 questions" },
+      "sharpshooter":   { "title": "Sharpshooter",      "unlocked": "90%+ accuracy across 20+ items",    "locked": "Hit 90% across 20+ items" },
+      "dedicated":      { "title": "Dedicated",         "unlocked": "1 hour studied total",              "locked": "{value}/1 hour" },
+      "devoted":        { "title": "Devoted",           "unlocked": "10 hours studied total",            "locked": "{value}/10 hours" },
+      "firstMastery":   { "title": "Mastery unlocked",  "unlocked": "Mastered your first topic",         "locked": "Master 1 topic (80+ score)" },
+      "polyglot":       { "title": "Polymath",          "unlocked": "Mastered 5 topics",                 "locked": "{value}/5 mastered" },
+      "sessionStarter": { "title": "Getting started",   "unlocked": "10 study sessions completed",       "locked": "{value}/10 sessions" },
+      "sessionMaster":  { "title": "Session master",    "unlocked": "50 study sessions completed",       "locked": "{value}/50 sessions" }
     },
     "summary": {
       "eyebrow": "Session complete",
@@ -4055,7 +4079,9 @@
       "flip": "Flip card",
       "showHint": "Show hint",
       "got": "Got it",
-      "again": "Review again",
+      "again": "Again",
+      "hard": "Hard",
+      "easy": "Easy",
       "doneEyebrow": "Deck cleared",
       "doneMessage": "You reviewed {reviews} times. Come back later for spaced repetition.",
       "newDeck": "New deck",

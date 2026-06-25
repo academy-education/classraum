@@ -78,6 +78,23 @@ export async function GET(req: NextRequest) {
   const topMastered = masteryRows.filter(r => r.score >= 80).slice(0, 3)
   const topWeak = [...masteryRows].filter(r => r.score < 70).sort((a, b) => a.score - b.score).slice(0, 3)
 
+  // Achievements — pure derivations from the data we already have.
+  // No new schema; just compute and tag in the response. Each entry
+  // is an i18n key that the client renders + an unlocked flag.
+  const masteredCount = masteryRows.filter(r => r.score >= 80).length
+  const achievements = [
+    { key: 'firstSteps',     unlocked: totalAttempts >= 1,    threshold: 1,    value: totalAttempts },
+    { key: 'centurion',      unlocked: totalAttempts >= 100,  threshold: 100,  value: totalAttempts },
+    { key: 'marathoner',     unlocked: totalAttempts >= 1000, threshold: 1000, value: totalAttempts },
+    { key: 'sharpshooter',   unlocked: totalAttempts >= 20 && accuracy >= 90, threshold: 90, value: accuracy },
+    { key: 'dedicated',      unlocked: totalHours >= 1,       threshold: 1,    value: totalHours },
+    { key: 'devoted',        unlocked: totalHours >= 10,      threshold: 10,   value: totalHours },
+    { key: 'firstMastery',   unlocked: masteredCount >= 1,    threshold: 1,    value: masteredCount },
+    { key: 'polyglot',       unlocked: masteredCount >= 5,    threshold: 5,    value: masteredCount },
+    { key: 'sessionStarter', unlocked: (sessionCount ?? 0) >= 10,  threshold: 10,  value: sessionCount ?? 0 },
+    { key: 'sessionMaster',  unlocked: (sessionCount ?? 0) >= 50,  threshold: 50,  value: sessionCount ?? 0 },
+  ]
+
   return NextResponse.json({
     sessionCount: sessionCount ?? 0,
     totalAttempts,
@@ -87,5 +104,6 @@ export async function GET(req: NextRequest) {
     last14,
     topMastered,
     topWeak,
+    achievements,
   })
 }

@@ -4042,6 +4042,17 @@
       "skip": "건너뛰기",
       "finish": "공부 시작"
     },
+    "builder": {
+      "eyebrow": "맞춤 시험",
+      "title": "맞춤 시험 만들기",
+      "subtitle": "정확히 원하는 주제·문항 수·난이도로 직접 구성하세요.",
+      "topicLabel": "주제",
+      "topicPlaceholder": "주제 선택",
+      "countLabel": "문항 수",
+      "timeLabel": "제한 시간",
+      "difficultyLabel": "난이도",
+      "start": "맞춤 시험 시작"
+    },
     "prefs": {
       "title": "학습 설정",
       "subtitle": "목표와 기본값을 조정하세요. 변경 사항은 자동 저장됩니다.",
@@ -4062,7 +4073,20 @@
       "sessions": "세션 수",
       "last14days": "최근 14일",
       "topMastered": "마스터한 주제",
-      "topWeak": "더 공부할 주제"
+      "topWeak": "더 공부할 주제",
+      "achievementsTitle": "업적"
+    },
+    "achievements": {
+      "firstSteps":     { "title": "첫 걸음",         "unlocked": "첫 문제 해결",                  "locked": "1문제 풀기" },
+      "centurion":      { "title": "100문제 달성",    "unlocked": "100문제 해결",                  "locked": "{value}/100문제" },
+      "marathoner":     { "title": "마라토너",        "unlocked": "1,000문제 해결",                "locked": "{value}/1,000문제" },
+      "sharpshooter":   { "title": "명사수",          "unlocked": "20문제 이상에서 정답률 90%+",    "locked": "20문제 이상에서 정답률 90%" },
+      "dedicated":      { "title": "헌신",            "unlocked": "총 1시간 학습",                 "locked": "{value}/1시간" },
+      "devoted":        { "title": "전념",            "unlocked": "총 10시간 학습",                "locked": "{value}/10시간" },
+      "firstMastery":   { "title": "첫 마스터",       "unlocked": "첫 주제 마스터",                "locked": "주제 1개 마스터 (80점+)" },
+      "polyglot":       { "title": "다재다능",        "unlocked": "5개 주제 마스터",               "locked": "{value}/5 마스터" },
+      "sessionStarter": { "title": "시작이 반",       "unlocked": "10개 세션 완료",                "locked": "{value}/10 세션" },
+      "sessionMaster":  { "title": "세션 마스터",     "unlocked": "50개 세션 완료",                "locked": "{value}/50 세션" }
     },
     "summary": {
       "eyebrow": "세션 완료",
@@ -4112,7 +4136,9 @@
       "flip": "카드 뒤집기",
       "showHint": "힌트 보기",
       "got": "외움",
-      "again": "다시 보기",
+      "again": "다시",
+      "hard": "어려움",
+      "easy": "쉬움",
       "doneEyebrow": "덱 완료",
       "doneMessage": "총 {reviews}번 복습했습니다. 나중에 다시 와서 반복 학습을 이어가세요.",
       "newDeck": "새 덱",

@@ -21,6 +21,7 @@ import { TodayProgressRing } from './TodayProgressRing'
 import { ResumeBanner } from './ResumeBanner'
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
+import { SkeletonTestGrid, SkeletonSquareGrid } from './skeletons'
 
 /**
  * /mobile/study — study landing.
@@ -471,7 +472,7 @@ function StudyLandingInner() {
             {t('study.landing.testsTitle')}
           </h2>
           {loading ? (
-            <SkeletonGrid />
+            <SkeletonTestGrid />
           ) : (
             <div className="grid grid-cols-2 gap-3">
               {tests.map((test, i) => {
@@ -574,44 +575,7 @@ function StudyLandingInner() {
   )
 }
 
-/** Shimmer skeleton grid — matches the test-prep card layout. */
-function SkeletonGrid() {
-  return (
-    <div className="grid grid-cols-2 gap-3">
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div
-          key={i}
-          style={{ animationDelay: `${i * 60}ms` }}
-          className="relative overflow-hidden rounded-2xl min-h-[120px] p-4 bg-gradient-to-br from-gray-100 to-gray-200 ring-1 ring-gray-200/60 animate-card-in opacity-0"
-        >
-          <div className="absolute inset-0 animate-shimmer-soft" />
-        </div>
-      ))}
-    </div>
-  )
-}
-
-/** Shimmer skeleton grid for subject squares — taller cards to match
- *  the actual SubjectSquareCard min-height. */
-function SkeletonSquareGrid() {
-  return (
-    <div className="grid grid-cols-2 gap-3">
-      {Array.from({ length: 4 }).map((_, i) => (
-        <div
-          key={i}
-          style={{ animationDelay: `${i * 60}ms` }}
-          className="relative overflow-hidden rounded-2xl min-h-[140px] p-4 bg-white ring-1 ring-gray-200/60 animate-card-in opacity-0 flex flex-col justify-between"
-        >
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
-          <div className="space-y-1.5">
-            <div className="h-3 w-3/5 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
-            <div className="h-2.5 w-1/3 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 animate-shimmer-soft" />
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
+// Skeleton grids moved to ./skeletons.tsx for shared use across surfaces.
 
 /** Square subject card — matches the test prep grid's visual rhythm.
  *  Tapping navigates to /topic/[slug] where the new dropdown picker

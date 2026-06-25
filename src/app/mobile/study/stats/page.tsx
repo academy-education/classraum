@@ -2,11 +2,18 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks } from 'lucide-react'
+import { ArrowLeft, Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader } from '../skeletons'
+
+interface Achievement {
+  key: string
+  unlocked: boolean
+  threshold: number
+  value: number
+}
 
 interface Stats {
   sessionCount: number
@@ -17,6 +24,7 @@ interface Stats {
   last14: Array<{ date: string; count: number }>
   topMastered: Array<{ score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }>
   topWeak: Array<{ score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }>
+  achievements: Achievement[]
 }
 
 /**
@@ -117,6 +125,21 @@ function StatsInner() {
         </div>
       </section>
 
+      {/* Achievements — unlock badges from existing stats data, no
+          new schema. Sorted by unlocked first, then locked greyed-out
+          so the student can see what's next to chase. */}
+      <section>
+        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3 inline-flex items-center gap-2">
+          <Award className="w-4 h-4 text-amber-500" />
+          {String(t('study.stats.achievementsTitle'))}
+        </h2>
+        <div className="grid grid-cols-2 gap-2.5">
+          {[...stats.achievements].sort((a, b) => Number(b.unlocked) - Number(a.unlocked)).map(a => (
+            <AchievementBadge key={a.key} achievement={a} t={t} />
+          ))}
+        </div>
+      </section>
+
       {/* Top mastered */}
       {stats.topMastered.length > 0 && (
         <section>
@@ -178,6 +201,43 @@ function MetricCard({ icon: Icon, value, label, accent, tint }: {
       </div>
       <div className="text-[24px] font-bold tracking-tight text-gray-900 leading-none">{value}</div>
       <div className="text-[11.5px] font-medium uppercase tracking-[0.10em] text-gray-500 mt-1">{label}</div>
+    </div>
+  )
+}
+
+/** Single achievement badge — gradient gold when unlocked, gray + lock
+ *  icon when locked. Always shows the threshold so the student sees
+ *  what's needed to unlock. */
+function AchievementBadge({ achievement, t }: { achievement: Achievement; t: ReturnType<typeof useTranslation>['t'] }) {
+  const { key, unlocked, threshold, value } = achievement
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl p-3 flex items-start gap-2.5 transition-all ${
+        unlocked
+          ? 'bg-gradient-to-br from-amber-50 via-orange-50/60 to-white ring-1 ring-amber-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_4px_12px_-4px_rgba(245,158,11,0.18)]'
+          : 'bg-white ring-1 ring-gray-200/60'
+      }`}
+    >
+      {unlocked && (
+        <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-16 h-16 rounded-full bg-amber-200/30 blur-2xl" />
+      )}
+      <div className={`relative flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ring-1 ${
+        unlocked
+          ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white ring-amber-600/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_2px_4px_rgba(245,158,11,0.25)]'
+          : 'bg-gray-100 text-gray-300 ring-gray-200'
+      }`}>
+        {unlocked ? <Award className="w-4 h-4" fill="currentColor" /> : <Lock className="w-3.5 h-3.5" />}
+      </div>
+      <div className="relative flex-1 min-w-0">
+        <div className={`text-[12.5px] font-semibold leading-tight ${unlocked ? 'text-gray-900' : 'text-gray-500'}`}>
+          {String(t(`study.achievements.${key}.title`))}
+        </div>
+        <div className={`text-[10.5px] mt-0.5 leading-snug ${unlocked ? 'text-amber-700/90 font-medium' : 'text-gray-400'}`}>
+          {unlocked
+            ? String(t(`study.achievements.${key}.unlocked`))
+            : String(t(`study.achievements.${key}.locked`, { value: String(value), threshold: String(threshold) }))}
+        </div>
+      </div>
     </div>
   )
 }

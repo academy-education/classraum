@@ -53,6 +53,16 @@ export function BottomNavigation() {
     return pathname.startsWith(href)
   }
 
+  // Focus mode — hide the bottom nav while the student is inside a
+  // study session (test, practice, lesson, flashcards, chat). The
+  // session UI is full-screen interactive — the tab bar is a
+  // distraction. They can still get out via the in-session back
+  // button.
+  const inSession = pathname.startsWith('/mobile/study/session/') &&
+    !pathname.endsWith('/summary')
+
+  if (inSession) return null
+
   return (
     <nav
       className="flex-shrink-0 bg-white shadow-[0_-1px_0_rgba(0,0,0,0.04)] z-50"

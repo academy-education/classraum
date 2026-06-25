@@ -152,6 +152,21 @@ function PreferencesInner() {
         <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
       </Link>
 
+      {/* Custom test builder link */}
+      <Link
+        href="/mobile/study/builder"
+        className="flex items-center gap-3 rounded-2xl bg-gradient-to-br from-amber-50/60 via-orange-50/30 to-white ring-1 ring-amber-200/60 p-4 hover:shadow-[0_2px_8px_-2px_rgba(245,158,11,0.18)] active:scale-[0.99] transition-all"
+      >
+        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-b from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_2px_4px_rgba(245,158,11,0.25)] ring-1 ring-orange-600/20">
+          <Sparkles className="w-4 h-4" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-[15px] font-semibold text-gray-900">{String(t('study.builder.title'))}</div>
+          <div className="text-[12.5px] text-gray-500 mt-0.5">{String(t('study.builder.subtitle'))}</div>
+        </div>
+        <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+      </Link>
+
       {/* Target test */}
       <SettingGroup icon={Target} label={String(t('study.prefs.targetTest'))} saving={saving === 'target_test'}>
         <div className="grid grid-cols-2 gap-2">
