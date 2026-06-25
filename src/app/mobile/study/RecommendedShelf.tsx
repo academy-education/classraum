@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2 } from 'lucide-react'
-import { useCarouselFocus } from './useCarouselFocus'
+import { useCarouselFocus, CarouselDots, scrollToCarouselIndex } from './useCarouselFocus'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -41,7 +41,7 @@ export function RecommendedShelf() {
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  useCarouselFocus(scrollRef, cards.length)
+  const focusedIndex = useCarouselFocus(scrollRef, cards.length)
 
   useEffect(() => {
     let cancelled = false
@@ -106,23 +106,21 @@ export function RecommendedShelf() {
           </p>
         </div>
       ) : (
-        // Edge-bleed carousel with focused-card magnification.
-        // The currently-most-visible card scales up to full size and
-        // full opacity; side cards shrink + dim so they read as
-        // "preview of more". useCarouselFocus drives the focus state
-        // via IntersectionObserver. px-8 inner padding gives equal
-        // breathing room on both ends so the first/last card never
-        // touches the screen edge.
+        // Coverflow carousel: focused card centered + magnified, side
+        // cards shrunk + dimmed (CSS in globals.css via the
+        // data-focused attribute). Dynamic side padding using calc
+        // centers the first card in the viewport at scroll position 0.
         <div className="-mx-5">
           <div
             ref={scrollRef}
-            className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-8 py-3"
+            style={{ paddingInline: 'max(40px, calc((100vw - 260px) / 2))' }}
+            className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-3"
           >
             {cards.map(card => (
               <div
                 key={`${card.topic.id}-${card.reason}`}
                 data-carousel-card
-                className="snap-center flex-none w-[82%] max-w-[300px]"
+                className="snap-center flex-none w-[260px] max-w-[calc(100vw-80px)]"
               >
                 {card.reason === 'weak'
                   ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
@@ -130,6 +128,11 @@ export function RecommendedShelf() {
               </div>
             ))}
           </div>
+          <CarouselDots
+            count={cards.length}
+            activeIndex={focusedIndex}
+            onSelect={(i) => scrollToCarouselIndex(scrollRef, i)}
+          />
         </div>
       )}
     </section>
