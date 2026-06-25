@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
   Search, ArrowRight,
-  FileText, CreditCard,
+  FileText, CreditCard, Settings,
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
   PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, LucideIcon,
 } from 'lucide-react'
@@ -405,6 +405,13 @@ function StudyLandingInner() {
           <div className="flex-shrink-0 flex items-center gap-1.5 pt-1">
             <TodayProgressRing />
             <StudyStreakChip />
+            <Link
+              href="/mobile/study/preferences"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
+              aria-label={String(t('study.prefs.title'))}
+            >
+              <Settings className="w-4 h-4" />
+            </Link>
             <Link
               href="/mobile/study/subscription"
               className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"

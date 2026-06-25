@@ -4042,6 +4042,28 @@
       "skip": "건너뛰기",
       "finish": "공부 시작"
     },
+    "prefs": {
+      "title": "학습 설정",
+      "subtitle": "목표와 기본값을 조정하세요. 변경 사항은 자동 저장됩니다.",
+      "targetTest": "목표 시험",
+      "gradeLevel": "학년/수준",
+      "dailyGoal": "일일 목표",
+      "defaultLanguage": "기본 언어",
+      "defaultDifficulty": "기본 난이도",
+      "statsTitle": "통계 보기",
+      "statsSubtitle": "누적 합계 + 최근 추이"
+    },
+    "stats": {
+      "title": "학습 통계",
+      "subtitle": "누적 합계와 최근 2주간의 추이를 한눈에.",
+      "totalQuestions": "문항 수",
+      "accuracy": "정답률",
+      "totalHours": "총 학습 시간",
+      "sessions": "세션 수",
+      "last14days": "최근 14일",
+      "topMastered": "마스터한 주제",
+      "topWeak": "더 공부할 주제"
+    },
     "summary": {
       "eyebrow": "세션 완료",
       "accuracyLine": "{total}문제 중 {correct}개 정답",
@@ -4156,6 +4178,8 @@
       }
     },
     "test": {
+      "viewSummaryTitle": "자세한 요약 보기",
+      "viewSummarySubtitle": "정답률, 틀린 문제, 다음 단계 확인",
       "generating": "모의고사를 만드는 중...",
       "generateFailed": "모의고사를 만들지 못했습니다. 다시 시도하세요.",
       "tryAgain": "다시 시도",

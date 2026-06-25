@@ -3985,6 +3985,28 @@
       "skip": "Skip",
       "finish": "Start studying"
     },
+    "prefs": {
+      "title": "Study preferences",
+      "subtitle": "Tweak your goals and defaults. Changes save automatically.",
+      "targetTest": "Target test",
+      "gradeLevel": "Grade level",
+      "dailyGoal": "Daily goal",
+      "defaultLanguage": "Default language",
+      "defaultDifficulty": "Default difficulty",
+      "statsTitle": "View your stats",
+      "statsSubtitle": "Lifetime totals + recent trends"
+    },
+    "stats": {
+      "title": "Your stats",
+      "subtitle": "Lifetime totals + the last two weeks at a glance.",
+      "totalQuestions": "Questions",
+      "accuracy": "Accuracy",
+      "totalHours": "Total hours",
+      "sessions": "Sessions",
+      "last14days": "Last 14 days",
+      "topMastered": "Mastered topics",
+      "topWeak": "Topics to work on"
+    },
     "summary": {
       "eyebrow": "Session complete",
       "accuracyLine": "{correct} of {total} correct",
@@ -4099,6 +4121,8 @@
       }
     },
     "test": {
+      "viewSummaryTitle": "View detailed summary",
+      "viewSummarySubtitle": "See your accuracy, mistakes, and next steps",
       "generating": "Building your mock test...",
       "generateFailed": "Couldn't build the test. Try again.",
       "tryAgain": "Try again",

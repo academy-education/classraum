@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
   Loader2, RefreshCw, ArrowRight, ArrowLeft, Clock, CheckCircle2,
-  XCircle, AlertTriangle, ChevronDown, ChevronUp,
+  XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
@@ -174,7 +174,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   }
 
   if (phase === 'reviewing' && result) {
-    return <ReviewView test={test} answers={answers} result={result} ko={ko} />
+    return <ReviewView test={test} answers={answers} result={result} ko={ko} sessionId={sessionId} />
   }
 
   // phase === 'taking' or 'submitting'
@@ -313,14 +313,36 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
  * whole test.
  */
 function ReviewView({
-  test, answers, result, ko,
-}: { test: TestPayload; answers: (string | null)[]; result: SubmitResult; ko: boolean }) {
+  test, answers, result, ko, sessionId,
+}: { test: TestPayload; answers: (string | null)[]; result: SubmitResult; ko: boolean; sessionId: string }) {
   const { t } = useTranslation()
   const [expanded, setExpanded] = useState<number | null>(null)
 
   return (
     <div className="flex-1 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
       <div className="px-5 py-6 space-y-5">
+        {/* Summary CTA — links to the dedicated summary page with
+            mistake review, streak update, and "try again" surface. */}
+        <Link
+          href={`/mobile/study/session/${sessionId}/summary`}
+          className="block rounded-2xl bg-gradient-to-br from-primary/[0.08] via-indigo-50/40 to-white ring-1 ring-primary/25 p-4 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.18)] active:scale-[0.99] transition-all"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] ring-1 ring-primary/30">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[14.5px] font-semibold text-gray-900 leading-tight">
+                {String(t('study.test.viewSummaryTitle'))}
+              </div>
+              <div className="text-[12px] text-gray-500 mt-0.5">
+                {String(t('study.test.viewSummarySubtitle'))}
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-gray-400" />
+          </div>
+        </Link>
+
         {/* Score summary */}
         <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">

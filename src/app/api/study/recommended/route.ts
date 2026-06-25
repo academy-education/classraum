@@ -38,6 +38,15 @@ export async function GET(req: NextRequest) {
   const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
   if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
+  // Pull target test from prefs so we can up-rank topics in the
+  // student's target family before slicing the top 5.
+  const { data: prefsRow } = await supabaseAdmin
+    .from('study_user_prefs')
+    .select('target_test')
+    .eq('student_id', user.id)
+    .maybeSingle()
+  const targetTest = (prefsRow?.target_test as string | null) ?? null
+
   // Pull weak areas + recent sessions in parallel, then merge below.
   const [{ data: weak }, { data: recent }] = await Promise.all([
     supabaseAdmin
@@ -50,7 +59,7 @@ export async function GET(req: NextRequest) {
       .lt('score', 80)
       .gte('attempts_count', 2)
       .order('score', { ascending: true })
-      .limit(3),
+      .limit(8),  // pull extra so the target-test rerank below has runway
     supabaseAdmin
       .from('study_sessions')
       .select(`
@@ -66,9 +75,24 @@ export async function GET(req: NextRequest) {
   const cards: RecommendedCard[] = []
   const seenTopicIds = new Set<string>()
 
+  // If a target test is set, partition + reorder weak rows so target-
+  // family topics come first within the weak section. Slug pattern
+  // for test_prep children is e.g. "sat-math", "ksat-korean" — we
+  // match prefix "{family}-" to identify membership.
+  const inTarget = (slug: string) => targetTest ? slug.startsWith(targetTest + '-') : false
+  const weakSorted = targetTest
+    ? [...(weak ?? [])].sort((a, b) => {
+        const ta = (a as unknown as { topic: { slug: string } | null }).topic?.slug ?? ''
+        const tb = (b as unknown as { topic: { slug: string } | null }).topic?.slug ?? ''
+        const ai = inTarget(ta) ? 0 : 1
+        const bi = inTarget(tb) ? 0 : 1
+        return ai - bi  // target-family first, original order within each
+      }).slice(0, 3)
+    : (weak ?? []).slice(0, 3)
+
   // Weak areas first — practice is the right mode for these (drills
   // the gap with immediate feedback).
-  for (const row of weak ?? []) {
+  for (const row of weakSorted) {
     const t = (row as unknown as { topic: RecommendedCard['topic'] | null }).topic
     if (!t || seenTopicIds.has(t.id)) continue
     seenTopicIds.add(t.id)
@@ -88,12 +112,22 @@ export async function GET(req: NextRequest) {
   // any topic the student has 90+ on (don't recommend what they've
   // already mastered).
   const masteryByTopic = new Map<string, number>()
-  for (const m of weak ?? []) {
+  for (const m of weak ?? []) {  // use full weak list so we know all mastery scores, not just the sliced top 3
     const t = (m as unknown as { topic: { id: string } | null }).topic
     if (t) masteryByTopic.set(t.id, m.score)
   }
 
-  for (const row of recent ?? []) {
+  const recentSorted = targetTest
+    ? [...(recent ?? [])].sort((a, b) => {
+        const ta = (a as unknown as { topic: { slug: string } | null }).topic?.slug ?? ''
+        const tb = (b as unknown as { topic: { slug: string } | null }).topic?.slug ?? ''
+        const ai = inTarget(ta) ? 0 : 1
+        const bi = inTarget(tb) ? 0 : 1
+        return ai - bi
+      })
+    : (recent ?? [])
+
+  for (const row of recentSorted) {
     if (cards.length >= 5) break
     const t = (row as unknown as { topic: RecommendedCard['topic'] | null }).topic
     if (!t || seenTopicIds.has(t.id)) continue
