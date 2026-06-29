@@ -1,4 +1,4 @@
-import { MessageCircle, ListChecks, BookOpen, Layers, FileText } from 'lucide-react'
+import { MessageCircle, ListChecks, BookOpen, Layers, FileText, Mic } from 'lucide-react'
 
 /**
  * Study modes — single source of truth used by topic picker, session
@@ -54,6 +54,16 @@ export const STUDY_MODES = [
     hoverRing: 'hover:ring-violet-200',
     hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(139,92,246,0.18),0_16px_32px_-12px_rgba(139,92,246,0.25)]',
     hoverText: 'group-hover:text-violet-700',
+  },
+  {
+    key: 'response',
+    icon: Mic,
+    color: 'text-indigo-600 bg-indigo-50',
+    cardBg: 'bg-gradient-to-br from-indigo-50/70 via-white to-white',
+    iconBg: 'bg-gradient-to-br from-indigo-400 to-blue-600',
+    hoverRing: 'hover:ring-indigo-200',
+    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(99,102,241,0.20),0_16px_32px_-12px_rgba(99,102,241,0.26)]',
+    hoverText: 'group-hover:text-indigo-700',
   },
   {
     key: 'full_test',

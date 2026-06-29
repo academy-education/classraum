@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
-  Search, ArrowRight,
-  FileText, CreditCard, Settings,
+  Search as SearchIcon, ArrowRight,
+  FileText, CreditCard, Settings, Camera, Sparkles,
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
   PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, LucideIcon,
+  MoreHorizontal, Lock,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -16,9 +17,14 @@ import { StudySubscriptionGate } from './SubscriptionGate'
 import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
 import { MistakeBankShelf } from './MistakeBankShelf'
+import { GeneratingTestsChip } from './GeneratingTestsChip'
 import { StudyStreakChip } from './StudyStreakChip'
 import { TodayProgressRing } from './TodayProgressRing'
 import { ResumeBanner } from './ResumeBanner'
+import { DailyReviewCTA } from './DailyReviewCTA'
+import { StreakAtRiskBanner } from './_shared/StreakAtRiskBanner'
+import { DailyChallengeCard } from './_shared/DailyChallengeCard'
+import { SearchSheet } from './_shared/SearchSheet'
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
 import { SkeletonTestGrid, SkeletonSquareGrid } from './skeletons'
@@ -310,6 +316,7 @@ function StudyLandingInner() {
   const [loading, setLoading] = useState(true)
   const [freeFormQuery, setFreeFormQuery] = useState('')
   const [creatingFreeForm, setCreatingFreeForm] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const { needsOnboarding, markComplete } = useOnboardingGate()
 
   useEffect(() => {
@@ -390,62 +397,72 @@ function StudyLandingInner() {
         className="pointer-events-none absolute inset-x-0 top-0 h-72 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.025] to-transparent"
       />
       <div className="px-5 pt-6 pb-14 space-y-8">
-        {/* Header */}
-        <header className="flex items-start justify-between gap-3">
+        {/* Header — chips row first so the greeting gets full width.
+            On narrow viewports the chips would otherwise compress the
+            title into 3 lines of choppy wrap. */}
+        <header className="space-y-3">
+          <div className="flex items-center justify-end gap-1.5">
+            <TodayProgressRing />
+            <StudyStreakChip />
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              aria-label={ko ? '검색' : 'Search'}
+              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
+            >
+              <SearchIcon className="w-4 h-4" />
+            </button>
+            {/* Preferences + subscription collapsed into a single
+                overflow menu. Was 3 separate buttons; the header was
+                visually heavy with 5 chips squeezed together. */}
+            <HeaderOverflowMenu />
+          </div>
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80 mb-2">
               {t('study.landing.eyebrow')}
             </p>
-            <h1 className="text-[28px] leading-[1.1] font-semibold tracking-tight text-gray-900">
+            <h1 className="text-[26px] leading-[1.15] font-semibold tracking-tight text-gray-900">
               {t('study.landing.title')}
             </h1>
-            <p className="text-gray-500 text-[15px] leading-relaxed mt-2 max-w-md">
+            <p className="text-gray-500 text-[14.5px] leading-relaxed mt-2 max-w-md">
               {t('study.landing.subtitle')}
             </p>
           </div>
-          <div className="flex-shrink-0 flex items-center gap-1.5 pt-1">
-            <TodayProgressRing />
-            <StudyStreakChip />
-            <Link
-              href="/mobile/study/preferences"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
-              aria-label={String(t('study.prefs.title'))}
-            >
-              <Settings className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/mobile/study/subscription"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
-              aria-label={String(t('study.subscription.title'))}
-            >
-              <CreditCard className="w-4 h-4" />
-            </Link>
-          </div>
         </header>
 
-        {/* Resume banner — single tap to pick up the most recent
-            active session. Sits above the recommended shelf because
-            "continue what I was doing" is the most common revisit
-            intent. Auto-hides when no active session. */}
-        <ResumeBanner />
+        {/* Each band below is wrapped in its own <SectionGroup> so
+            its label sits tight to its cards (internal space-y-2)
+            while the parent's space-y-8 only fires BETWEEN bands.
+            Without the wrapper the parent's 32px gap applied
+            uniformly between label↔card and card↔card, defeating the
+            visual grouping. */}
 
-        {/* Recommended shelf — Phase 3, reads study_mastery + recent
-            sessions via /api/study/recommended. */}
+        {/* Today — time-sensitive, all self-hide when empty. */}
+        <SectionGroup label={String(t('study.landing.todayBand'))}>
+          <ResumeBanner />
+          <GeneratingTestsChip />
+          <StreakAtRiskBanner />
+          <DailyReviewCTA />
+          <DailyChallengeCard />
+        </SectionGroup>
+
+        {/* Snap-to-solve CTA removed from the landing — discoverable
+            via the bottom-nav "사진 풀이" tab. Removing the orange hero
+            here keeps the landing focused on time-sensitive items
+            (Today) and learning history. */}
+
+        {/* Shelves below render their own h2 headers (study.landing.
+            recommendedTitle / resumeTitle / mistakes.title), so we
+            don't wrap them in SectionGroup — that would double-label
+            them. They sit as direct space-y-8 children of the parent
+            stack, treating each shelf as its own band. */}
         <RecommendedShelf />
-
-        {/* Resumable sessions — replaces the standalone /history page,
-            surfacing active sessions inline so the student doesn't
-            have to navigate elsewhere to pick up where they left off. */}
         <ResumableShelf />
-
-        {/* Mistake bank — recent wrong answers with their wrong vs
-            right answers visible inline. Pedagogically the highest-
-            leverage shelf: targeted review of mistakes outperforms
-            re-studying easy material (well-established in learning
-            research). Auto-hides when there are no recent mistakes. */}
         <MistakeBankShelf />
 
-        {/* Subjects — curated K-12 catalog. */}
+        {/* Subjects — curated K-12 catalog. The h2 already labels
+            this band on its own; no extra SectionGroup needed (would
+            double-label). */}
         <section>
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
             {t('study.landing.browseTitle')}
@@ -453,15 +470,34 @@ function StudyLandingInner() {
           {loading ? (
             <SkeletonSquareGrid />
           ) : (
-            <div className="grid grid-cols-2 gap-3">
-              {subjects.map((subj, i) => (
-                <SubjectSquareCard
-                  key={subj.id}
-                  item={subj}
-                  name={name}
-                  delay={i * 50}
-                />
-              ))}
+            <div className="relative">
+              {/* Locked-feature overlay: subjects (K-12 catalog) is
+                  not yet available to students. Grid is rendered
+                  underneath at reduced opacity so users can see what
+                  will be unlocked. Pointer-events-none on the grid
+                  + a top-level absolute lock chip explain the state.
+                  When subjects ship, drop this wrapper entirely. */}
+              <div
+                aria-hidden
+                className="grid grid-cols-2 gap-3 pointer-events-none opacity-40 blur-[1px] select-none"
+              >
+                {subjects.map((subj, i) => (
+                  <SubjectSquareCard
+                    key={subj.id}
+                    item={subj}
+                    name={name}
+                    delay={i * 50}
+                  />
+                ))}
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/90 backdrop-blur-md ring-1 ring-gray-200 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.08)]">
+                  <Lock className="w-4 h-4 text-gray-500" />
+                  <span className="text-[13px] font-semibold text-gray-700">
+                    {String(t('study.landing.browseLocked'))}
+                  </span>
+                </div>
+              </div>
             </div>
           )}
         </section>
@@ -478,12 +514,26 @@ function StudyLandingInner() {
               {tests.map((test, i) => {
                 const theme = themeForTest(test.slug)
                 const Icon = theme.Icon
+                // Only SAT + TOEFL are open; everything else (KSAT,
+                // TOEIC, IELTS, ACT, AP, GRE) shows a locked overlay
+                // until we expand coverage. We still render the card
+                // so users see what's coming, but disable navigation
+                // and dim the visuals.
+                const unlocked = test.slug === 'test-sat' || test.slug === 'test-toefl'
+                const CardTag = unlocked ? Link : 'div'
+                const cardProps = unlocked
+                  ? { href: `/mobile/study/topic/${test.slug}` }
+                  : { 'aria-disabled': true as const }
                 return (
-                  <Link
+                  <CardTag
                     key={test.id}
-                    href={`/mobile/study/topic/${test.slug}`}
+                    {...cardProps}
                     style={{ animationDelay: `${i * 40}ms` }}
-                    className={`group relative overflow-hidden rounded-2xl p-4 min-h-[120px] ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] hover:shadow-[0_6px_12px_rgba(0,0,0,0.10),0_20px_40px_-12px_rgba(0,0,0,0.30)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out animate-card-in opacity-0`}
+                    className={`group relative overflow-hidden rounded-2xl p-4 min-h-[120px] ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out animate-card-in opacity-0 ${
+                      unlocked
+                        ? 'hover:shadow-[0_6px_12px_rgba(0,0,0,0.10),0_20px_40px_-12px_rgba(0,0,0,0.30)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.97]'
+                        : 'cursor-not-allowed'
+                    }`}
                   >
                     {/* Decorative monogram watermark — large, low-opacity */}
                     <div aria-hidden className="pointer-events-none absolute -top-1 -right-2 text-[62px] font-black tracking-tighter text-white/[0.10] select-none leading-none group-hover:text-white/[0.15] transition-colors">
@@ -510,7 +560,7 @@ function StudyLandingInner() {
                     {/* Soft glow blob */}
                     <div aria-hidden className="pointer-events-none absolute -top-8 -left-8 w-24 h-24 rounded-full bg-white/15 blur-2xl group-hover:bg-white/25 transition-colors" />
 
-                    <div className="relative flex flex-col h-full justify-between gap-3">
+                    <div className={`relative flex flex-col h-full justify-between gap-3 ${unlocked ? '' : 'opacity-45'}`}>
                       <div className="flex items-start justify-between gap-2">
                         <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur-md ring-1 ring-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
                           <Icon className={`w-4 h-4 ${theme.accent}`} />
@@ -525,10 +575,26 @@ function StudyLandingInner() {
                         <span className={`text-[15px] font-bold ${theme.accent} leading-tight truncate tracking-tight`}>
                           {name(test)}
                         </span>
-                        <ArrowRight className={`w-4 h-4 ${theme.accent} opacity-60 group-hover:opacity-100 group-hover:translate-x-1 flex-shrink-0 transition-all`} />
+                        {unlocked && (
+                          <ArrowRight className={`w-4 h-4 ${theme.accent} opacity-60 group-hover:opacity-100 group-hover:translate-x-1 flex-shrink-0 transition-all`} />
+                        )}
                       </div>
                     </div>
-                  </Link>
+                    {/* Locked overlay: small lock chip in the corner
+                        for tests not yet open (everything but SAT +
+                        TOEFL). Keeps the visual identity of the card
+                        so users see what's coming, but blocks tap. */}
+                    {!unlocked && (
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md ring-1 ring-gray-200 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10)]">
+                          <Lock className="w-3.5 h-3.5 text-gray-500" />
+                          <span className="text-[11px] font-semibold text-gray-700">
+                            {String(t('study.landing.browseLocked'))}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </CardTag>
                 )
               })}
             </div>
@@ -544,7 +610,7 @@ function StudyLandingInner() {
             onSubmit={(e) => { e.preventDefault(); void startFreeFormSession() }}
             className="relative group"
           >
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none group-focus-within:text-primary transition-colors" />
+            <SearchIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none group-focus-within:text-primary transition-colors" />
             <input
               type="text"
               value={freeFormQuery}
@@ -571,11 +637,112 @@ function StudyLandingInner() {
           landing for new students. Wraps with a check so it never
           re-appears after the wizard finishes (or is skipped). */}
       {needsOnboarding && <OnboardingWizard onComplete={markComplete} />}
+
+      {/* Universal search — opens from the header search icon. */}
+      <SearchSheet open={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   )
 }
 
 // Skeleton grids moved to ./skeletons.tsx for shared use across surfaces.
+
+/** Snap-to-solve hero CTA. Single tap into the camera/upload flow.
+ *  Visually loud (amber-orange gradient + camera icon) because this
+ *  is the highest-intent action when a student has homework open. */
+/** Labelled band on the landing page. Wraps its children in a
+ *  <section> with internal space-y-2 so the label sits tight to its
+ *  cards, while the parent space-y-8 only fires BETWEEN bands. If
+ *  every child auto-hides (e.g. first-time user with no resumable
+ *  session, no streak, no due reviews), we still render an empty
+ *  section node — but space-y-8 collapses it cleanly. */
+function SectionGroup({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <section className="space-y-2">
+      <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400">
+        {label}
+      </h2>
+      {children}
+    </section>
+  )
+}
+
+/** Collapses settings + subscription behind a single "more" button.
+ *  Keeps the streak / progress chips and search prominent while
+ *  hiding less-frequent navigation behind a tap-to-expand menu. */
+function HeaderOverflowMenu() {
+  const { t, language } = useTranslation()
+  const ko = language === 'korean'
+  const [open, setOpen] = useState(false)
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        aria-label={ko ? '더 보기' : 'More'}
+        aria-expanded={open}
+        className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
+      >
+        <MoreHorizontal className="w-4 h-4" />
+      </button>
+      {open && (
+        <>
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setOpen(false)}
+            aria-hidden
+          />
+          <div className="absolute right-0 top-full mt-1.5 z-50 w-48 rounded-xl bg-white shadow-[0_10px_30px_-8px_rgba(0,0,0,0.15)] ring-1 ring-gray-200/70 overflow-hidden animate-fade-in">
+            <Link
+              href="/mobile/study/preferences"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 text-[13.5px] text-gray-800 hover:bg-gray-50 active:bg-gray-100"
+            >
+              <Settings className="w-4 h-4 text-gray-500" />
+              {String(t('study.prefs.title'))}
+            </Link>
+            <Link
+              href="/mobile/study/subscription"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 text-[13.5px] text-gray-800 hover:bg-gray-50 active:bg-gray-100 border-t border-gray-100"
+            >
+              <CreditCard className="w-4 h-4 text-gray-500" />
+              {String(t('study.subscription.title'))}
+            </Link>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
+function SnapToSolveCTA() {
+  const { t } = useTranslation()
+  return (
+    <Link href="/mobile/study/snap"
+      className="group relative block overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white p-4 shadow-[0_8px_24px_-8px_rgba(251,146,60,0.40)] hover:shadow-[0_12px_32px_-8px_rgba(251,146,60,0.55)] hover:-translate-y-0.5 transition-all">
+      <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/20 blur-2xl" />
+      <div className="relative flex items-center gap-3">
+        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm ring-1 ring-white/20 flex items-center justify-center">
+          <Camera className="w-5 h-5" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="inline-flex items-center gap-1 text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+            <Sparkles className="w-3 h-3" />{t('study.snap.eyebrow')}
+          </div>
+          <div className="text-[15px] font-semibold leading-snug mt-0.5">{t('study.snap.ctaTitle')}</div>
+          <div className="text-[12px] opacity-90 mt-0.5">{t('study.snap.ctaSubtitle')}</div>
+        </div>
+        <ArrowRight className="w-4 h-4 opacity-90 group-hover:translate-x-1 transition-transform" />
+      </div>
+    </Link>
+  )
+}
 
 /** Square subject card — matches the test prep grid's visual rhythm.
  *  Tapping navigates to /topic/[slug] where the new dropdown picker

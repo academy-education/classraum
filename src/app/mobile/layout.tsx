@@ -3,6 +3,9 @@
 import { ReactNode, useCallback } from 'react'
 import { BottomNavigation } from '@/components/ui/mobile/BottomNavigation'
 import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
+import { XpToast } from '@/app/mobile/study/_shared/XpToast'
+import { DailyGoalCelebration } from '@/app/mobile/study/_shared/DailyGoalCelebration'
+import { NavTour } from '@/app/mobile/study/_shared/NavTour'
 import { PersistentMobileAuthProvider, usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { ParentAuthWrapper } from '@/components/ui/parent-auth-wrapper'
@@ -75,6 +78,18 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
 
       {/* Bottom Navigation - non-scrollable */}
       <BottomNavigation />
+
+      {/* Global XP toast — listens for window 'study:xp' events.
+          Mounted at the layout level so any study page can fire and
+          the chip survives navigation. */}
+      <XpToast />
+      {/* Daily-goal celebration — pops when the student crosses their
+          daily minutes goal. Polls every 30s while mounted. */}
+      <DailyGoalCelebration />
+      {/* First-visit bottom-nav tour — 4 steps introducing Snap,
+          Review, League, Wrong-Answer Notebook. Auto-shows on first
+          visit to /mobile/study; localStorage-gated thereafter. */}
+      <NavTour />
     </>
   )
 }

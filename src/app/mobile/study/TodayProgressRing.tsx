@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -58,8 +59,9 @@ export function TodayProgressRing() {
     : `${progress.minutesToday} of ${progress.goalMinutes} min today`
 
   return (
-    <div
-      className="relative inline-flex items-center justify-center"
+    <Link
+      href="/mobile/study/stats"
+      className="relative inline-flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
       title={tooltip}
       aria-label={tooltip}
     >
@@ -92,6 +94,6 @@ export function TodayProgressRing() {
         {met ? '✓' : progress.minutesToday}
       </span>
       <span className="sr-only">{String(t('study.progress.todayLabel') ?? 'Today\'s progress')}</span>
-    </div>
+    </Link>
   )
 }

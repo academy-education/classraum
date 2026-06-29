@@ -326,6 +326,27 @@
  * Used by mobile/study/* surfaces. Keep keyframes here so multiple
  * components share them and the Tailwind JIT can purge unused classes.
  * ───────────────────────────────────────────────────────────────── */
+/* Study design tokens — Phase 6q.A2.
+ * Motion: one easing curve, three durations. Replace per-component
+ * `transition-all duration-X` overrides with these tokens so every
+ * surface feels like part of the same app.
+ * Color: one base hex per "domain" (study/snap/league/etc.) so
+ * gradients across pages stay tonally aligned. */
+:root {
+  --study-ease:          cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-card-in:      360ms var(--study-ease);
+  --motion-press:        150ms ease-out;
+  --motion-stagger-step: 40ms;
+
+  --study-primary:       #2885E8;
+  --study-snap:          #F97316;
+  --study-league:        #D97706;
+  --study-test:          #E11D48;
+  --study-response:      #6366F1;
+  --study-flashcards:    #8B5CF6;
+  --study-review:        #8B5CF6;
+}
+
 @keyframes card-in {
   0%   { opacity: 0; transform: translateY(8px) scale(0.985); }
   100% { opacity: 1; transform: translateY(0)   scale(1); }
@@ -337,7 +358,48 @@
 }
 
 .animate-card-in {
-  animation: card-in 360ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: card-in var(--motion-card-in) forwards;
+}
+
+/* Unified card hover effect — applied to every interactive card on
+ * study surfaces (carousels, recommendation tiles, subject grid).
+ * Before this util, each card defined its own hover shadow + lift +
+ * scale, leading to subtly different motion across the app. Now all
+ * cards share the same press feedback: 2px lift, soft shadow, small
+ * active-state shrink. Use `.study-card-hover` on the card element. */
+.study-card-hover {
+  transition: transform var(--motion-press), box-shadow var(--motion-press);
+  will-change: transform;
+}
+.study-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 12px 32px -12px rgba(0, 0, 0, 0.18);
+}
+.study-card-hover:active {
+  transform: translateY(0) scale(0.99);
+}
+
+@keyframes xp-pop {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.7); }
+  15%  { opacity: 1; transform: translateY(-4px) scale(1.06); }
+  25%  { transform: translateY(0) scale(1); }
+  80%  { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-12px) scale(0.96); }
+}
+
+.animate-xp-pop {
+  animation: xp-pop 2400ms var(--study-ease) forwards;
+}
+
+@keyframes confetti-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+.animate-confetti-fall {
+  animation-name: confetti-fall;
+  animation-timing-function: cubic-bezier(0.3, 0.1, 0.5, 1);
+  animation-fill-mode: forwards;
 }
 
 .animate-shimmer-soft {

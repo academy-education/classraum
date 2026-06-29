@@ -18,14 +18,22 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 export const dynamic = 'force-dynamic'
 
 interface RecommendedCard {
-  reason: 'weak' | 'recent'
-  topic: { id: string; slug: string; name_en: string; name_ko: string; category: string }
+  reason: 'weak' | 'recent' | 'snap_followup'
+  topic: { id: string; slug: string; name_en: string; name_ko: string; category: string } | null
   score: number | null
   attempts_count: number
   suggested_mode: 'chat' | 'practice' | 'lesson' | 'flashcards' | 'full_test'
   /** First weakness label from the AI assessment, if any — gives the
    *  recommended card a more specific reason than just the score. */
   weakness_hint?: string | null
+  /** For snap_followup cards: the OCR'd problem snippet + image URL +
+   *  subject label for thumbnail display. */
+  snap?: {
+    capture_id: string
+    image_url: string | null
+    ocr_text: string
+    subject_guess: string
+  }
 }
 
 interface WeaknessNote { label?: string }
@@ -154,5 +162,47 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  return NextResponse.json({ cards })
+  // Snap follow-ups — surface recent (last 7 days) snap captures that
+  // haven't been followed up with a practice session yet. Closes the
+  // loop: student snapped a problem → reminds them to drill it.
+  // Capped at 2 to keep the carousel mixed.
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+  const { data: snaps } = await supabaseAdmin
+    .from('study_snap_captures')
+    .select('id, image_path, ocr_text, subject_guess, created_at')
+    .eq('student_id', user.id)
+    .gte('created_at', sevenDaysAgo)
+    .order('created_at', { ascending: false })
+    .limit(6)
+
+  if (snaps && snaps.length > 0) {
+    const paths = snaps.map(s => s.image_path as string)
+    const { data: signed } = await supabaseAdmin.storage
+      .from('study-snap-images')
+      .createSignedUrls(paths, 3600)
+    const urlByPath = new Map<string, string>()
+    for (const s of (signed ?? [])) {
+      if (s.path && s.signedUrl) urlByPath.set(s.path, s.signedUrl)
+    }
+    // Interleave into the carousel — insert up to 2 snap cards, one
+    // after the first weak card if any, then near the end.
+    const snapCards: RecommendedCard[] = snaps.slice(0, 2).map(s => ({
+      reason: 'snap_followup',
+      topic: null,
+      score: null,
+      attempts_count: 0,
+      suggested_mode: 'practice',
+      snap: {
+        capture_id: s.id as string,
+        image_url: urlByPath.get(s.image_path as string) ?? null,
+        ocr_text: (s.ocr_text as string | null) ?? '',
+        subject_guess: (s.subject_guess as string | null) ?? 'other',
+      },
+    }))
+    // Insert first snap after the first weak card, second snap at end.
+    if (snapCards[0]) cards.splice(Math.min(1, cards.length), 0, snapCards[0])
+    if (snapCards[1]) cards.push(snapCards[1])
+  }
+
+  return NextResponse.json({ cards: cards.slice(0, 7) })
 }

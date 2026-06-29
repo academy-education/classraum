@@ -22,13 +22,69 @@ import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 
+export type QuestionType = 'multiple_choice' | 'numeric_entry' | 'multi_select' | 'three_choice' | 'quant_comparison'
+
+/** Post-sanitize Question — all fields are concrete. Downstream code
+ *  (verifier, choice filter, UI) reads these directly. */
 export interface Question {
+  passage: string | null
+  passageGroupId: string | null
   prompt: string
-  type: 'multiple_choice'
+  type: QuestionType
   choices: string[]
   correct_answer: string
+  correct_answers: string[] | null
+  acceptable_answers: string[] | null
   difficulty: 'easy' | 'medium' | 'hard'
   explanation: string
+  /** Why each wrong choice is wrong, paired by choice text. Empty
+   *  array for non-MC types or older items the model didn't produce
+   *  rationales for. UI uses these to show trap explanations. */
+  distractor_rationales: { choice: string; reason: string }[]
+  /** Optional visual asset. Permissive shape — UI dispatches on
+   *  `type` and falls back gracefully on unknown shapes. */
+  graphic: QuestionGraphic | null
+}
+
+/** Discriminated by `type`. All sub-payloads are intentionally loose
+ *  (typed as `unknown`/optional) — model output is best-effort and
+ *  the UI renderer tolerates missing pieces. `rawSvg` is the escape
+ *  hatch for irregular shapes. */
+export interface QuestionGraphic {
+  type?: string | null
+  xLabel?: string | null
+  yLabel?: string | null
+  points?: unknown[] | null
+  series?: unknown[] | null
+  bestFit?: unknown
+  bars?: unknown[] | null
+  values?: unknown[] | null
+  rowLabels?: string[] | null
+  colLabels?: string[] | null
+  cells?: unknown[][] | null
+  shape?: string | null
+  spec?: unknown
+  labels?: unknown
+  svg?: string | null
+  caption?: string | null
+}
+
+/** Pre-sanitize shape — what the model emits, with optional/nullable
+ *  fields. sanitizeQuestion normalizes this into the concrete Question
+ *  shape above. Used by the AI SDK output cast in the route. */
+export interface RawQuestion {
+  passage?: string | null
+  passageGroupId?: string | null
+  prompt: string
+  type?: QuestionType | null
+  choices?: string[]
+  correct_answer?: string
+  correct_answers?: string[] | null
+  acceptable_answers?: string[] | null
+  difficulty: 'easy' | 'medium' | 'hard'
+  explanation: string
+  distractor_rationales?: Array<{ choice?: string | null; reason?: string | null }> | null
+  graphic?: QuestionGraphic | null
 }
 
 const VerifierItemSchema = z.object({
@@ -56,113 +112,143 @@ const VerifierBatchSchema = z.object({
 export async function verifyAndCorrect(
   questions: Question[],
   apiKey: string,
-  opts: { mathHeavy?: boolean } = {}
+  opts: { mathHeavy?: boolean; verbalHeavy?: boolean } = {}
 ): Promise<{ kept: Question[]; dropped: number; corrected: number; relabeled: number }> {
   const openai = createOpenAI({ apiKey })
-  // gpt-4o-mini's arithmetic is unreliable enough to MISS bad answer keys
-  // on SAT-Math-style items. Pay for gpt-4o on math-heavy sections.
-  const model = opts.mathHeavy ? openai('gpt-4o') : openai('gpt-4o-mini')
-  // Smaller batch when using gpt-4o — gives each item more attention
-  // and avoids hitting output-token caps with the chain-of-thought field.
-  const BATCH = opts.mathHeavy ? 6 : 10
+  // gpt-4o-mini's arithmetic is unreliable on SAT-Math-style items, and
+  // its close-reading is unreliable on SAT R&W / KSAT 국어 / TOEFL
+  // Reading style items (it "corrects" inference items by picking the
+  // surface-vocabulary match, the very trap the real distractor uses).
+  // Pay for gpt-4o on either kind of accuracy-critical section.
+  const usePrecise = opts.mathHeavy || opts.verbalHeavy
+  const model = usePrecise ? openai('gpt-4o') : openai('gpt-4o-mini')
+  // Bumped batch sizes — fewer total API calls means lower wall-clock
+  // even with the same parallelism. gpt-4o handles 10 items per batch
+  // without hitting the 16k output cap (chain-of-thought work field
+  // ≈ 150 tokens per item × 10 ≈ 1500 tokens, plus passages where
+  // present, well under the cap).
+  const BATCH = usePrecise ? 10 : 12
   const verified: Question[] = []
   let corrected = 0
   let dropped = 0
   let relabeled = 0
 
-  for (let i = 0; i < questions.length; i += BATCH) {
-    const batch = questions.slice(i, i + BATCH)
-    const prompt = buildVerifierPrompt(batch)
+  // Split: only single-correct-answer choice-based types go through
+  // the re-solve verifier. numeric_entry + multi_select require open-
+  // ended grading the verifier prompt can't easily express; trust the
+  // generator for those (acceptable — generation prompt already asks
+  // the model to show work). Easy-labeled items also pass through
+  // unchanged: the generator is highly reliable for easy MCs, and
+  // verifying them is the slowest part of the pipeline. The verifier
+  // earns its keep on medium + hard where the generator's answer keys
+  // and difficulty labels are noisier.
+  const verifiable: Question[] = []
+  const passthrough: Question[] = []
+  for (const q of questions) {
+    const skipVerify = q.type === 'numeric_entry' || q.type === 'multi_select' || q.difficulty === 'easy'
+    if (skipVerify) passthrough.push(q)
+    else verifiable.push(q)
+  }
+  verified.push(...passthrough)
 
+  // Process all batches IN PARALLEL — the verifier dominates wall-
+  // clock for any test >30 items, and OpenAI's RPM limit (Tier 4+ =
+  // 5000/min for gpt-4o) easily handles ~15 concurrent batches.
+  // Sequential was 12 × 5-8s = 60-100s for SAT R&W; parallel is
+  // max(batch latencies) = ~5-8s.
+  const batches: Question[][] = []
+  for (let i = 0; i < verifiable.length; i += BATCH) {
+    batches.push(verifiable.slice(i, i + BATCH))
+  }
+
+  type BatchResult = { kept: Question[]; corrected: number; dropped: number; relabeled: number }
+
+  const processBatch = async (batch: Question[], batchIdx: number): Promise<BatchResult> => {
+    const local: BatchResult = { kept: [], corrected: 0, dropped: 0, relabeled: 0 }
     try {
       const result = await generateObject({
         model,
         schema: VerifierBatchSchema,
-        prompt,
+        prompt: buildVerifierPrompt(batch),
         temperature: 0.1,
       })
       const verdictByIndex = new Map(result.object.items.map(it => [it.index, it]))
-
       for (let j = 0; j < batch.length; j++) {
         const q = batch[j]
         const verdict = verdictByIndex.get(j)
-        if (!verdict) { verified.push(q); continue }
-
-        if (verdict.verified_answer === 'NONE') {
-          // Verifier says no choice is correct → drop the question.
-          dropped++
-          continue
-        }
-
+        if (!verdict) { local.kept.push(q); continue }
+        if (verdict.verified_answer === 'NONE') { local.dropped++; continue }
         const matchedChoice = q.choices.find(c => normalize(c) === normalize(verdict.verified_answer))
         if (!matchedChoice) {
-          // Verifier returned an answer not literally in the choices.
-          // Low-confidence → keep original. High-confidence + no match
-          // means the question itself is broken — drop it.
-          if (verdict.confidence === 'high') dropped++
-          else verified.push(q)
+          if (verdict.confidence === 'high') local.dropped++
+          else local.kept.push(q)
           continue
         }
-
-        // Re-label difficulty if the verifier disagrees. The generator
-        // tends to over-claim "medium" on items that are actually easy;
-        // we trust the verifier's independent rating here.
         const finalDifficulty = verdict.actual_difficulty
-        if (finalDifficulty !== q.difficulty) relabeled++
-
+        if (finalDifficulty !== q.difficulty) local.relabeled++
         if (matchedChoice !== q.correct_answer) {
           if (verdict.confidence === 'high') {
-            // Trust the verifier — original key was wrong.
-            verified.push({ ...q, correct_answer: matchedChoice, difficulty: finalDifficulty })
-            corrected++
+            local.kept.push({ ...q, correct_answer: matchedChoice, difficulty: finalDifficulty })
+            local.corrected++
           } else {
-            // Low/medium confidence disagreement — keep original key,
-            // but use the re-labeled difficulty.
-            verified.push({ ...q, difficulty: finalDifficulty })
+            local.kept.push({ ...q, difficulty: finalDifficulty })
           }
         } else {
-          verified.push({ ...q, difficulty: finalDifficulty })
+          local.kept.push({ ...q, difficulty: finalDifficulty })
         }
       }
     } catch (err) {
-      console.error(`[test-verify] batch failed at index ${i}; retrying per-item`, (err as Error).message)
-      // Batch failure usually means the model returned the schema
-      // definition instead of data, or timed out. Retry each item in
-      // its own request — slower, but otherwise unverified items would
-      // slip through with bad answer keys.
-      for (let j = 0; j < batch.length; j++) {
+      console.error(`[test-verify] batch ${batchIdx} failed; retrying per-item in parallel`, (err as Error).message)
+      // Fall back to per-item retries — also in parallel — so a single
+      // bad batch doesn't stall the whole verification phase.
+      const perItemResults = await Promise.all(batch.map(async (q): Promise<BatchResult> => {
+        const sub: BatchResult = { kept: [], corrected: 0, dropped: 0, relabeled: 0 }
         try {
           const single = await generateObject({
             model,
             schema: VerifierBatchSchema,
-            prompt: buildVerifierPrompt([batch[j]]),
+            prompt: buildVerifierPrompt([q]),
             temperature: 0.1,
           })
           const verdict = single.object.items[0]
-          if (!verdict) { dropped++; continue }
-          if (verdict.verified_answer === 'NONE') { dropped++; continue }
-          const matchedChoice = batch[j].choices.find(c => normalize(c) === normalize(verdict.verified_answer))
+          if (!verdict) { sub.dropped++; return sub }
+          if (verdict.verified_answer === 'NONE') { sub.dropped++; return sub }
+          const matchedChoice = q.choices.find(c => normalize(c) === normalize(verdict.verified_answer))
           const finalDifficulty = verdict.actual_difficulty
-          if (finalDifficulty !== batch[j].difficulty) relabeled++
+          if (finalDifficulty !== q.difficulty) sub.relabeled++
           if (!matchedChoice) {
-            if (verdict.confidence === 'high') dropped++
-            else verified.push({ ...batch[j], difficulty: finalDifficulty })
-            continue
+            if (verdict.confidence === 'high') sub.dropped++
+            else sub.kept.push({ ...q, difficulty: finalDifficulty })
+            return sub
           }
-          if (matchedChoice !== batch[j].correct_answer && verdict.confidence === 'high') {
-            verified.push({ ...batch[j], correct_answer: matchedChoice, difficulty: finalDifficulty })
-            corrected++
+          if (matchedChoice !== q.correct_answer && verdict.confidence === 'high') {
+            sub.kept.push({ ...q, correct_answer: matchedChoice, difficulty: finalDifficulty })
+            sub.corrected++
           } else {
-            verified.push({ ...batch[j], difficulty: finalDifficulty })
+            sub.kept.push({ ...q, difficulty: finalDifficulty })
           }
         } catch (innerErr) {
-          // Per-item failed too — drop rather than ship unverified.
-          // Better to short the count than ship a bad answer key.
-          console.error(`[test-verify] per-item ${i + j} also failed; dropping`, (innerErr as Error).message)
-          dropped++
+          console.error('[test-verify] per-item retry also failed; dropping', (innerErr as Error).message)
+          sub.dropped++
         }
+        return sub
+      }))
+      for (const r of perItemResults) {
+        local.kept.push(...r.kept)
+        local.corrected += r.corrected
+        local.dropped += r.dropped
+        local.relabeled += r.relabeled
       }
     }
+    return local
+  }
+
+  const allResults = await Promise.all(batches.map(processBatch))
+  for (const r of allResults) {
+    verified.push(...r.kept)
+    corrected += r.corrected
+    dropped += r.dropped
+    relabeled += r.relabeled
   }
 
   return { kept: verified, dropped, corrected, relabeled }
@@ -171,7 +257,8 @@ export async function verifyAndCorrect(
 function buildVerifierPrompt(batch: Question[]): string {
   const items = batch.map((q, i) => {
     const choices = q.choices.map((c, j) => `${String.fromCharCode(65 + j)}. ${c}`).join('\n')
-    return `[${i}] ${q.prompt}\n${choices}`
+    const passageBlock = q.passage ? `PASSAGE:\n${q.passage}\n\n` : ''
+    return `[${i}] ${passageBlock}${q.prompt}\n${choices}`
   }).join('\n\n---\n\n')
 
   return `
@@ -225,13 +312,43 @@ function sanitize(s: string): string {
     .trim()
 }
 
-export function sanitizeQuestion(q: Question): Question {
+export function sanitizeQuestion(q: RawQuestion): Question {
+  // Normalize all model-omitted fields to concrete defaults — the
+  // schema accepts both `null` and missing-field, but the rest of
+  // the pipeline expects concrete values. Fixes Zod-parsed items
+  // arriving with undefined choices/correct_answer/type/etc.
+  // Dedupe choices: occasionally the model emits two identical
+  // strings (e.g. "5" and "5") which would make the question
+  // unanswerable. Compare on trimmed-lowercase form; keep first.
+  const rawChoices = (q.choices ?? []).map(sanitize)
+  const seenChoiceKeys = new Set<string>()
+  const choices = rawChoices.filter(c => {
+    const key = c.trim().toLowerCase()
+    if (!key || seenChoiceKeys.has(key)) return false
+    seenChoiceKeys.add(key)
+    return true
+  })
   return {
     ...q,
+    passage: q.passage ? sanitize(q.passage) : null,
+    passageGroupId: q.passageGroupId ?? null,
     prompt: sanitize(q.prompt),
-    choices: q.choices.map(sanitize),
-    correct_answer: sanitize(q.correct_answer),
+    type: q.type ?? 'multiple_choice',
+    choices,
+    correct_answer: sanitize(q.correct_answer ?? ''),
+    correct_answers: q.correct_answers ?? null,
+    acceptable_answers: q.acceptable_answers ?? null,
     explanation: sanitize(q.explanation),
+    // Filter out malformed rationale entries (model occasionally
+    // emits {choice: null, reason: "..."} or vice versa). Salvage
+    // the well-formed ones, drop the rest — better than failing the
+    // whole batch over a single bad entry.
+    distractor_rationales: (q.distractor_rationales ?? [])
+      .filter(d => d && typeof d.choice === 'string' && typeof d.reason === 'string' && d.choice && d.reason)
+      .map(d => ({ choice: sanitize(d.choice as string), reason: sanitize(d.reason as string) })),
+    // Pass graphic through unchanged — UI renderer handles shape
+    // validation and falls back to nothing on malformed data.
+    graphic: q.graphic ?? null,
   }
 }
 
@@ -262,7 +379,12 @@ export function dedupeByPrompt(questions: Question[]): Question[] {
   const seen = new Set<string>()
   const out: Question[] = []
   for (const q of questions) {
-    const key = q.prompt.toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 100)
+    // Include passage in the dedupe key so SAT R&W items aren't
+    // collapsed when many questions share the same boilerplate stem
+    // ("Which choice most logically completes the text?") but pair
+    // with different passages.
+    const passageKey = q.passage ? q.passage.toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 60) : ''
+    const key = `${passageKey}::${q.prompt.toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 100)}`
     if (seen.has(key)) continue
     seen.add(key)
     out.push(q)

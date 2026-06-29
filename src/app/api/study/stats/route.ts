@@ -22,8 +22,22 @@ export async function GET(req: NextRequest) {
 
   const twoWeeksAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
 
+  // Current ISO-week (Mon-Sun) start in UTC. Matches award_study_xp.
+  const now = new Date()
+  const utcDay = now.getUTCDay()
+  const diffFromMon = (utcDay + 6) % 7
+  const weekStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - diffFromMon))
+  const weekStartIso = weekStart.toISOString()
+  const weekStartDate = weekStartIso.slice(0, 10)
+
   // Counts.
-  const [{ count: sessionCount }, { data: attempts }, { data: mastery }] = await Promise.all([
+  const [
+    { count: sessionCount },
+    { data: attempts },
+    { data: mastery },
+    { count: snapCount },
+    { count: responseCount },
+  ] = await Promise.all([
     supabaseAdmin
       .from('study_sessions')
       .select('id', { count: 'exact', head: true })
@@ -43,6 +57,14 @@ export async function GET(req: NextRequest) {
       `)
       .eq('student_id', user.id)
       .order('score', { ascending: false }),
+    supabaseAdmin
+      .from('study_snap_captures')
+      .select('id', { count: 'exact', head: true })
+      .eq('student_id', user.id),
+    supabaseAdmin
+      .from('study_response_submissions')
+      .select('id', { count: 'exact', head: true })
+      .eq('student_id', user.id),
   ])
 
   const totalAttempts = attempts?.length ?? 0
@@ -51,21 +73,27 @@ export async function GET(req: NextRequest) {
   const totalSeconds = (attempts ?? []).reduce((s, a) => s + ((a.time_spent_seconds as number | null) ?? 0), 0)
   const totalHours = Math.round((totalSeconds / 3600) * 10) / 10  // 1 decimal
 
-  // Last 14 days — bucketed per local-day question count.
-  const recent = (attempts ?? []).filter(a => (a.created_at as string) >= twoWeeksAgo)
+  // Bucket every attempt per local-day so we can build BOTH the 14d
+  // sparkline AND the 90d heatmap from the same pass.
   const dayBuckets: Record<string, number> = {}
-  for (const a of recent) {
+  for (const a of attempts ?? []) {
     const d = new Date(a.created_at as string)
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
     dayBuckets[key] = (dayBuckets[key] ?? 0) + 1
   }
-  // Build full 14-day series even for empty days (sparkline shape).
   const last14: Array<{ date: string; count: number }> = []
   for (let i = 13; i >= 0; i--) {
     const d = new Date()
     d.setDate(d.getDate() - i)
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
     last14.push({ date: key, count: dayBuckets[key] ?? 0 })
+  }
+  const last90: Array<{ date: string; count: number }> = []
+  for (let i = 89; i >= 0; i--) {
+    const d = new Date()
+    d.setDate(d.getDate() - i)
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+    last90.push({ date: key, count: dayBuckets[key] ?? 0 })
   }
 
   // Top mastered + weakest topics (score-based, attempts >= 2).
@@ -95,6 +123,47 @@ export async function GET(req: NextRequest) {
     { key: 'sessionMaster',  unlocked: (sessionCount ?? 0) >= 50,  threshold: 50,  value: sessionCount ?? 0 },
   ]
 
+  // Weekly XP, active days, and league rank — for the "This week" panel.
+  const [{ data: weekXpEvents }, { data: membership }] = await Promise.all([
+    supabaseAdmin
+      .from('study_xp_events')
+      .select('xp, created_at')
+      .eq('student_id', user.id)
+      .gte('created_at', weekStartIso),
+    supabaseAdmin
+      .from('study_league_memberships')
+      .select(`
+        xp_this_week, league_id,
+        league:study_leagues!inner ( tier, week_start )
+      `)
+      .eq('student_id', user.id)
+      .eq('study_leagues.week_start', weekStartDate)
+      .maybeSingle(),
+  ])
+
+  const weekXp = (weekXpEvents ?? []).reduce((s, e) => s + ((e.xp as number) ?? 0), 0)
+  const activeDaySet = new Set<string>()
+  for (const e of (weekXpEvents ?? [])) {
+    activeDaySet.add((e.created_at as string).slice(0, 10))
+  }
+  // Also count attempt days as active (older attempts pre-XP, or chat-only).
+  const weekAttempts = (attempts ?? []).filter(a => (a.created_at as string) >= weekStartIso)
+  for (const a of weekAttempts) activeDaySet.add((a.created_at as string).slice(0, 10))
+  const activeDays = activeDaySet.size
+
+  const league = membership?.league as { tier: string; week_start: string } | { tier: string; week_start: string }[] | null
+  const leagueTier = (Array.isArray(league) ? league[0]?.tier : league?.tier) ?? null
+
+  let leagueRank: number | null = null
+  if (membership?.league_id) {
+    const { count: ahead } = await supabaseAdmin
+      .from('study_league_memberships')
+      .select('id', { count: 'exact', head: true })
+      .eq('league_id', membership.league_id)
+      .gt('xp_this_week', membership.xp_this_week as number)
+    leagueRank = (ahead ?? 0) + 1
+  }
+
   return NextResponse.json({
     sessionCount: sessionCount ?? 0,
     totalAttempts,
@@ -102,8 +171,17 @@ export async function GET(req: NextRequest) {
     accuracy,
     totalHours,
     last14,
+    last90,
     topMastered,
     topWeak,
     achievements,
+    snapCount: snapCount ?? 0,
+    responseCount: responseCount ?? 0,
+    week: {
+      xp: weekXp,
+      activeDays,
+      tier: leagueTier,
+      rank: leagueRank,
+    },
   })
 }

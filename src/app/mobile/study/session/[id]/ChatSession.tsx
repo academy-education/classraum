@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Send, Loader2, Square } from 'lucide-react'
+import { Send, Loader2, Square, Mic, MicOff } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
@@ -38,6 +38,66 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
   const [messages, setMessages] = useState<UiMessage[]>([])
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
+  // Voice input — MediaRecorder → /api/study/response/transcribe →
+  // append to input. Reuses the existing transcribe route (which
+  // accepts any sessionId for ownership check).
+  const [recording, setRecording] = useState(false)
+  const [transcribing, setTranscribing] = useState(false)
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
+  const audioChunksRef = useRef<Blob[]>([])
+  const streamRef = useRef<MediaStream | null>(null)
+
+  const startVoice = async () => {
+    if (recording || transcribing) return
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      streamRef.current = stream
+      const mime = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+        ? 'audio/webm;codecs=opus'
+        : MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : ''
+      const rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream)
+      audioChunksRef.current = []
+      rec.ondataavailable = e => { if (e.data.size > 0) audioChunksRef.current.push(e.data) }
+      rec.onstop = async () => {
+        setTranscribing(true)
+        try {
+          const blob = new Blob(audioChunksRef.current, { type: audioChunksRef.current[0]?.type || 'audio/webm' })
+          const headers = await authHeaders()
+          const form = new FormData()
+          form.append('audio', blob, 'voice.webm')
+          form.append('sessionId', sessionId)
+          form.append('language', language)
+          const { Authorization } = headers as { Authorization?: string }
+          const res = await fetch('/api/study/response/transcribe', {
+            method: 'POST',
+            headers: Authorization ? { Authorization } : {},
+            body: form,
+          })
+          const json = await res.json()
+          if (res.ok && typeof json.text === 'string' && json.text.trim()) {
+            setInput(prev => (prev ? prev.trim() + ' ' : '') + json.text.trim())
+          }
+        } catch {
+          // Silent fail — user can retry.
+        } finally {
+          setTranscribing(false)
+        }
+      }
+      mediaRecorderRef.current = rec
+      rec.start()
+      setRecording(true)
+    } catch {
+      // Permission denied / no mic.
+    }
+  }
+
+  const stopVoice = () => {
+    const rec = mediaRecorderRef.current
+    if (!rec || rec.state === 'inactive') return
+    rec.stop()
+    streamRef.current?.getTracks().forEach(t => t.stop())
+    setRecording(false)
+  }
   const [streamingContent, setStreamingContent] = useState<string | null>(null)
   const [loadingHistory, setLoadingHistory] = useState(true)
   const scrollerRef = useRef<HTMLDivElement>(null)
@@ -224,6 +284,28 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
             className="flex-1 resize-none rounded-2xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:border-primary max-h-32"
             disabled={sending}
           />
+          {/* Mic — record voice → transcribe → append to input. Reuses
+              the existing /api/study/response/transcribe route. Hidden
+              while a response is streaming so the composer stays clean. */}
+          {!sending && (
+            <button
+              type="button"
+              onClick={recording ? stopVoice : () => void startVoice()}
+              disabled={transcribing}
+              className={`flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center transition-all ${
+                recording
+                  ? 'bg-rose-500 text-white hover:bg-rose-600 active:scale-95 animate-pulse'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 active:scale-95 disabled:opacity-50'
+              }`}
+              aria-label={recording ? 'Stop recording' : 'Voice input'}
+            >
+              {transcribing
+                ? <Loader2 className="w-4 h-4 animate-spin" />
+                : recording
+                  ? <MicOff className="w-4 h-4" />
+                  : <Mic className="w-4 h-4" />}
+            </button>
+          )}
           {sending ? (
             <button
               type="button"

@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, ChevronRight, Loader2 } from 'lucide-react'
+import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, ChevronRight, History as HistoryIcon } from 'lucide-react'
+import { StudySubPageHeader } from '../_shared/primitives'
+import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -34,6 +36,7 @@ const MODE_ICONS: Record<StudyMode, typeof MessageCircle> = {
   lesson: BookOpen,
   flashcards: Layers,
   full_test: ClipboardList,
+  response: Mic,
 }
 
 export default function StudyHistoryPage() {
@@ -78,28 +81,17 @@ function HistoryInner() {
         className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-primary/[0.025] to-transparent"
       />
       <div className="px-5 pt-6 pb-14 space-y-7">
-        <Link
-          href="/mobile/study"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {t('study.topic.backToStudy')}
-        </Link>
-
-        <header>
-          <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
-            {t('study.history.title')}
-          </h1>
-          <p className="text-gray-500 text-[15px] mt-2 leading-relaxed">
-            {t('study.history.subtitle')}
-          </p>
-        </header>
+        <StudySubPageHeader
+          backHref="/mobile/study"
+          backLabel={String(t('study.topic.backToStudy'))}
+          icon={HistoryIcon}
+          eyebrow={ko ? '학습' : 'Study'}
+          title={String(t('study.history.title'))}
+          subtitle={String(t('study.history.subtitle'))}
+        />
 
         {loading ? (
-          <div className="flex items-center justify-center text-sm text-gray-400 py-12">
-            <Loader2 className="w-5 h-5 animate-spin mr-2" />
-            {t('study.history.loading')}
-          </div>
+          <SkeletonRowList count={5} />
         ) : rows.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-gray-200 bg-gradient-to-br from-white to-gray-50/50 px-5 py-12 text-center">
             <p className="text-sm text-gray-500">{t('study.history.empty')}</p>

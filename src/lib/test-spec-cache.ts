@@ -11,7 +11,6 @@
  * calls — they prefer DB and degrade cleanly.
  */
 
-import { supabaseAdmin } from '@/lib/supabase-admin'
 import {
   TEST_SPECS,
   renderTestSpec as renderTestSpecSync,
@@ -55,6 +54,11 @@ export async function loadSectionSpec(
 }
 
 async function loadCachedSpec(family: TestFamily, sectionLabel: string | null): Promise<SectionSpec | null> {
+  // Lazy-import the admin client so this module is safe to pull into a
+  // client component's import graph (the topic page does this via
+  // loadStudyPromptContext → loadSectionSpec). The admin client throws
+  // at import-time on missing service-role key in browser bundles.
+  const { supabaseAdmin } = await import('@/lib/supabase-admin')
   // Pull every row for the family — there are at most ~5 per family,
   // and we need to match by label which lives inside the jsonb.
   const { data: rows } = await supabaseAdmin

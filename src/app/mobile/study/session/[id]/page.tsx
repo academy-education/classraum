@@ -1,17 +1,18 @@
 "use client"
 
 import { use, useEffect, useState } from 'react'
-import Link from 'next/link'
-import { ArrowLeft, Loader2, Sparkles } from 'lucide-react'
+import { Loader2, Sparkles, HelpCircle } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
+import { StudyPageHeader } from '../../_shared/primitives'
 import { ChatSession } from './ChatSession'
 import { PracticeSession } from './PracticeSession'
 import { LessonSession } from './LessonSession'
 import { FlashcardsSession } from './FlashcardsSession'
 import { TestSession } from './TestSession'
+import { ResponseSession } from './ResponseSession'
 
 /**
  * /mobile/study/session/[id] — active study session viewer.
@@ -105,33 +106,17 @@ function SessionInner({ id }: { id: string }) {
   }
 
   const mode = STUDY_MODES.find(m => m.key === session.mode)
-  const ModeIcon = mode?.icon
+  const ModeIcon = mode?.icon ?? HelpCircle
 
   const header = (
-    <div className="flex-shrink-0 px-5 pt-5 pb-3 bg-gray-50 border-b border-gray-100">
-      <Link
-        href={topic ? `/mobile/study/topic/${topic.slug}` : '/mobile/study'}
-        className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary mb-3"
-      >
-        <ArrowLeft className="w-3.5 h-3.5" />
-        {t('study.session.back')}
-      </Link>
-      <div className="flex items-center gap-3">
-        {ModeIcon && mode && (
-          <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${mode.color}`}>
-            <ModeIcon className="w-4 h-4" />
-          </div>
-        )}
-        <div className="min-w-0 flex-1">
-          <p className="text-[11px] text-gray-500">
-            {t(`study.modes.${session.mode}.title`)}
-          </p>
-          <h1 className="text-base font-semibold tracking-tight text-gray-900 truncate">
-            {topic ? (ko ? topic.name_ko : topic.name_en) : t('study.session.untitled')}
-          </h1>
-        </div>
-      </div>
-    </div>
+    <StudyPageHeader
+      backHref={topic ? `/mobile/study/topic/${topic.slug}` : '/mobile/study'}
+      backLabel={String(t('study.session.back'))}
+      icon={ModeIcon}
+      iconColorClass={mode?.color ?? 'text-primary bg-primary/10'}
+      eyebrow={String(t(`study.modes.${session.mode}.title`))}
+      title={topic ? (ko ? topic.name_ko : topic.name_en) : String(t('study.session.untitled'))}
+    />
   )
 
   // Chat + Practice modes get real UIs now. Lesson + Flashcards still
@@ -173,6 +158,14 @@ function SessionInner({ id }: { id: string }) {
       <div className="flex flex-col h-full bg-gray-50">
         {header}
         <TestSession sessionId={session.id} language={session.language} />
+      </div>
+    )
+  }
+  if (session.mode === 'response') {
+    return (
+      <div className="flex flex-col h-full bg-gray-50">
+        {header}
+        <ResponseSession sessionId={session.id} language={session.language} />
       </div>
     )
   }

@@ -3,15 +3,15 @@
 import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
-import { loadSectionSpec } from '@/lib/test-spec-cache'
-import { loadStudyPromptContext } from '@/lib/study-prompt-context'
+import { defaultsForTestSection } from '@/lib/test-specs'
+import type { TestFamily } from '@/lib/study-prompt-context'
 
 /**
  * /mobile/study/topic/[slug] — topic page with mode picker.
@@ -58,9 +58,10 @@ function TopicInner({ slug }: { slug: string }) {
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<StudyMode | null>(null)
   const [testSheetOpen, setTestSheetOpen] = useState(false)
-  const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number; language: 'en' | 'ko' }>({
-    count: 20, minutes: 30, language: ko ? 'ko' : 'en',
+  const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
+    count: 20, minutes: 30,
   })
+  const [testLanguage, setTestLanguage] = useState<'en' | 'ko'>('en')
 
   // When the topic has children (e.g., AP → AP Biology / AP Calc AB),
   // the page shows a category picker. The selected category becomes
@@ -115,13 +116,14 @@ function TopicInner({ slug }: { slug: string }) {
     return () => { cancelled = true }
   }, [slug])
 
-  const startSession = async (mode: StudyMode, config?: TestConfig) => {
+  const startSession = async (mode: StudyMode, config?: TestConfig, overrideLanguage?: 'en' | 'ko') => {
     const target = effectiveTopic
     if (!target || !user?.userId) return
     setCreating(mode)
-    // Use the per-session language override from config if provided,
-    // else the UI language at session-start time.
-    const sessionLanguage = config?.language ?? (ko ? 'ko' : 'en')
+    // Full-test sessions lock language to the test's native language
+    // (KSAT → ko, everything else → en) via overrideLanguage. Other
+    // modes default to the UI language at session-start time.
+    const sessionLanguage = overrideLanguage ?? (ko ? 'ko' : 'en')
     const { data, error } = await supabase
       .from('study_sessions')
       .insert({
@@ -143,21 +145,20 @@ function TopicInner({ slug }: { slug: string }) {
   // Open the customization sheet for a full test. Loads the spec
   // defaults (question count + time) for the effective topic so the
   // sheet can show them as the starting values.
-  const openTestSheet = async () => {
+  const openTestSheet = () => {
     const target = effectiveTopic
     if (!target) return
-    try {
-      const ctx = await loadStudyPromptContext(target.id, ko ? 'ko' : 'en')
-      const family = ctx?.testFamily ?? null
-      const section = ctx?.testSection ?? null
-      const spec = family ? await loadSectionSpec(family, section) : null
-      // Fall back to generic 20 Q / 30 min for non-test topics.
-      const count = spec ? Math.min(spec.questionsPerSection, 60) : 20
-      const minutes = spec ? Math.round(spec.minutesPerSection * (count / spec.questionsPerSection)) : 30
-      setTestDefaults({ count, minutes, language: ko ? 'ko' : 'en' })
-    } catch {
-      setTestDefaults({ count: 20, minutes: 30, language: ko ? 'ko' : 'en' })
-    }
+    // Derive family + section directly from the slug — pure client
+    // code, no DB / supabase-admin call. Topic slugs follow the
+    // convention "<family>-<section>" (e.g., toefl-reading, sat-math)
+    // for leaves; the parent test root is "test-<family>".
+    const { family, section } = parseTestSlug(target.slug)
+    const { count, minutes } = defaultsForTestSection(family, section)
+    setTestDefaults({ count, minutes })
+    // Language is locked to the test's native language: KSAT in
+    // Korean (passages, prompts, answers all 한국어), all other
+    // standardized tests in English.
+    setTestLanguage(family === 'ksat' ? 'ko' : 'en')
     setTestSheetOpen(true)
   }
 
@@ -217,7 +218,7 @@ function TopicInner({ slug }: { slug: string }) {
         {children.length > 0 && (
           <CategoryPicker
             label={String(t(topic.category === 'test_prep' ? 'study.topic.sectionPickerLabel' : 'study.topic.categoryPickerLabel'))}
-            children={children}
+            items={children}
             selectedId={selectedChildId}
             onSelect={setSelectedChildId}
             name={name}
@@ -238,9 +239,17 @@ function TopicInner({ slug }: { slug: string }) {
             t={t}
           />
         )}
+        {isResponseEligible(effectiveTopic?.slug) && (
+          <FeaturedResponseCard
+            startSession={() => startSession('response')}
+            creating={creating}
+            t={t}
+          />
+        )}
         <section className="grid grid-cols-2 gap-3">
           {STUDY_MODES
             .filter(m => m.key !== 'full_test')
+            .filter(m => m.key !== 'response')
             .map((mode, i) => {
               const Icon = mode.icon
               // Per-mode ambient decoration — small glyph cluster that
@@ -292,11 +301,53 @@ function TopicInner({ slug }: { slug: string }) {
       <TestCustomizationSheet
         open={testSheetOpen}
         defaults={testDefaults}
+        topicId={effectiveTopic?.id ?? null}
+        family={effectiveTopic ? parseTestSlug(effectiveTopic.slug).family : null}
         onClose={() => setTestSheetOpen(false)}
-        onStart={(config) => { setTestSheetOpen(false); void startSession('full_test', config) }}
+        onStart={(config) => { setTestSheetOpen(false); void startSession('full_test', config, testLanguage) }}
       />
     </div>
   )
+}
+
+/** Pure-client slug → (family, section) parser. The DB topic catalog
+ *  uses "test-<family>" for the test root (e.g., test-toefl) and
+ *  "<family>-<section>" for leaves (e.g., toefl-reading, sat-math).
+ *  Section name returned in English to match TEST_SPECS' name_en. */
+function parseTestSlug(slug: string): { family: TestFamily | null; section: string | null } {
+  const FAMILIES: TestFamily[] = ['ksat', 'sat', 'toefl', 'toeic', 'ielts', 'act', 'ap', 'gre']
+  // Parent: test-<family> → all sections; defaultsForTestSection returns sections[0].
+  const rootMatch = slug.match(/^test-(.+)$/)
+  if (rootMatch) {
+    const f = rootMatch[1] as TestFamily
+    return { family: FAMILIES.includes(f) ? f : null, section: null }
+  }
+  // Leaf: <family>-<section-slug> — capitalize the section slug to match
+  // TEST_SPECS section name_en (e.g. "reading" → "Reading").
+  for (const f of FAMILIES) {
+    if (slug.startsWith(`${f}-`)) {
+      const sectionSlug = slug.slice(f.length + 1)
+      // KSAT uses Korean sections; for others, title-case the slug.
+      const section = sectionSlug
+        .split('-')
+        .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+        .join(' ')
+      return { family: f, section }
+    }
+  }
+  return { family: null, section: null }
+}
+
+/** Response (AI Speaking + Writing grader) is only meaningful on
+ *  TOEFL/IELTS speaking + writing leaf topics. Other test_prep and
+ *  subject topics don't have a rubric to grade against, so the mode
+ *  is hidden. KSAT 영어 서답형 will be added in v2. */
+const RESPONSE_ELIGIBLE_SLUGS = new Set([
+  'toefl-speaking', 'toefl-writing',
+  'ielts-speaking', 'ielts-writing',
+])
+function isResponseEligible(slug: string | undefined): boolean {
+  return !!slug && RESPONSE_ELIGIBLE_SLUGS.has(slug)
 }
 
 /** Category picker shown above the mode grid when a topic has
@@ -307,13 +358,13 @@ function TopicInner({ slug }: { slug: string }) {
  *  Apple-style: subtle bg, chevron, soft shadow when open. */
 function CategoryPicker({
   label,
-  children: categories,
+  items: categories,
   selectedId,
   onSelect,
   name,
 }: {
   label: string
-  children: Topic[]
+  items: Topic[]
   selectedId: string | null
   onSelect: (id: string) => void
   name: (n: { name_en: string; name_ko: string }) => string
@@ -446,6 +497,7 @@ const MODE_DECOR: Record<StudyMode, React.ReactElement | null> = {
     </svg>
   ),
   full_test: null,
+  response: null,
 }
 
 /**
@@ -454,6 +506,48 @@ const MODE_DECOR: Record<StudyMode, React.ReactElement | null> = {
  * readable; ranks the test mode visually above the four learning
  * modes since it's the marquee surface for SAT/TOEFL/KSAT/etc.
  */
+function FeaturedResponseCard({
+  startSession,
+  creating,
+  t,
+}: {
+  startSession: (m: StudyMode) => void
+  creating: StudyMode | null
+  t: (k: string) => unknown
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => startSession('response')}
+      disabled={creating !== null}
+      className="group relative w-full rounded-2xl p-5 ring-1 ring-indigo-200/60 bg-gradient-to-br from-indigo-50/80 via-blue-50/30 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(99,102,241,0.18)] hover:ring-indigo-300/70 hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(99,102,241,0.26)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait overflow-hidden"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 rounded-2xl bg-white text-indigo-600 flex items-center justify-center ring-1 ring-indigo-200/50 shadow-[0_1px_2px_rgba(99,102,241,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] flex-shrink-0">
+          {creating === 'response'
+            ? <Loader2 className="w-5 h-5 animate-spin" />
+            : <Mic className="w-5 h-5" />}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="text-[17px] font-semibold text-gray-900 group-hover:text-indigo-700 transition-colors tracking-tight">
+              {String(t('study.modes.response.title'))}
+            </div>
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.10em] text-indigo-700 bg-white/90 backdrop-blur ring-1 ring-indigo-200/80 rounded-full px-2 py-0.5 shadow-[0_1px_2px_rgba(99,102,241,0.06)]">
+              <Sparkles className="w-2.5 h-2.5" />Beta
+            </span>
+          </div>
+          <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">
+            {String(t('study.modes.response.body'))}
+          </p>
+        </div>
+        <ArrowRight className="w-5 h-5 text-indigo-400/70 group-hover:text-indigo-500 group-hover:translate-x-0.5 mt-1.5 flex-shrink-0 transition-all" />
+      </div>
+    </button>
+  )
+}
+
 function FeaturedFullTestCard({
   startSession,
   creating,

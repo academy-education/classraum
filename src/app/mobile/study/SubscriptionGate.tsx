@@ -66,7 +66,14 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
             current_period_end: trialEnds,
           })
         if (!cancelled) {
-          setState({ kind: insertError ? 'paywall' : 'allowed', status: 'expired' as const })
+          // On insert success → allow through (the trial row is now valid
+          // for the next 7 days). On insert failure → paywall as a safe
+          // fallback so we don't ship study access without a record.
+          if (insertError) {
+            setState({ kind: 'paywall', status: 'expired' })
+          } else {
+            setState({ kind: 'allowed' })
+          }
         }
         return
       }

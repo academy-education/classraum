@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Loader2, type LucideIcon } from 'lucide-react'
+import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, Loader2, type LucideIcon } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useCarouselFocus, CarouselDots, scrollToCarouselIndex } from './useCarouselFocus'
@@ -53,6 +53,12 @@ const MODE_STYLE: Record<StudyMode, { Icon: LucideIcon; iconBg: string; cardBg: 
     iconBg: 'bg-gradient-to-br from-rose-500 to-red-600',
     cardBg: 'bg-gradient-to-br from-rose-50/70 via-white to-white',
     ring: 'ring-rose-100',
+  },
+  response: {
+    Icon: Mic,
+    iconBg: 'bg-gradient-to-br from-indigo-400 to-blue-600',
+    cardBg: 'bg-gradient-to-br from-indigo-50/70 via-white to-white',
+    ring: 'ring-indigo-100',
   },
 }
 
@@ -120,8 +126,8 @@ export function ResumableShelf() {
       <div className="-mx-5">
         <div
           ref={scrollRef}
-          style={{ paddingInline: 'max(40px, calc((100vw - 260px) / 2))' }}
-          className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-3"
+          style={{ paddingInline: 'max(40px, calc((100vw - 300px) / 2))' }}
+          className="flex items-center gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-6"
         >
           {rows.map(row => {
             const style = MODE_STYLE[row.mode] ?? MODE_STYLE.chat
@@ -136,7 +142,7 @@ export function ResumableShelf() {
                 key={row.id}
                 href={`/mobile/study/session/${row.id}`}
                 data-carousel-card
-                className={`snap-center flex-none w-[260px] max-w-[calc(100vw-80px)] group relative overflow-hidden rounded-2xl p-4 ${style.cardBg} ring-1 ${style.ring} shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10),0_12px_28px_-12px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200`}
+                className={`snap-center flex-none w-[300px] max-w-[calc(100vw-72px)] group relative overflow-hidden rounded-2xl p-4 ${style.cardBg} ring-1 ${style.ring} shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10),0_12px_28px_-12px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200`}
               >
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
                 <div aria-hidden className={`pointer-events-none absolute -top-6 -right-6 w-20 h-20 rounded-full ${style.iconBg} opacity-[0.10] blur-2xl group-hover:opacity-[0.18] transition-opacity`} />

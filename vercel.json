@@ -51,6 +51,14 @@
     {
       "path": "/api/cron/study-weekly-recap",
       "schedule": "0 0 * * 1"
+    },
+    {
+      "path": "/api/cron/study-league-roll",
+      "schedule": "5 0 * * 1"
+    },
+    {
+      "path": "/api/cron/study-push-reminders",
+      "schedule": "0 9 * * *"
     }
   ],
   "framework": "nextjs",

@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, BarChart3, ArrowRight } from 'lucide-react'
+import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, BarChart3, ArrowRight, Settings } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons'
+import { StudySubPageHeader } from '../_shared/primitives'
 
 interface Prefs {
   target_test: string | null
@@ -120,22 +121,14 @@ function PreferencesInner() {
 
   return (
     <div className="px-5 pt-6 pb-14 space-y-6">
-      <Link
-        href="/mobile/study"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        {t('study.topic.backToStudy')}
-      </Link>
-
-      <header>
-        <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
-          {String(t('study.prefs.title'))}
-        </h1>
-        <p className="text-[14px] text-gray-500 mt-2 leading-relaxed">
-          {String(t('study.prefs.subtitle'))}
-        </p>
-      </header>
+      <StudySubPageHeader
+        backHref="/mobile/study"
+        backLabel={String(t('study.topic.backToStudy'))}
+        icon={Settings}
+        eyebrow={ko ? '학습' : 'Study'}
+        title={String(t('study.prefs.title'))}
+        subtitle={String(t('study.prefs.subtitle'))}
+      />
 
       {/* Stats link card */}
       <Link

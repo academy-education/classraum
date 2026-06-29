@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Capacitor } from '@capacitor/core'
-import { ArrowLeft, CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw, XCircle, ExternalLink } from 'lucide-react'
+import { CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw, XCircle, ExternalLink } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { StudySubPageHeader } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
@@ -164,22 +165,14 @@ export default function SubscriptionPage() {
         className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.02] to-transparent"
       />
       <div className="px-5 pt-6 pb-14 space-y-7">
-        <Link
-          href="/mobile/study"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {t('study.topic.backToStudy')}
-        </Link>
-
-        <header>
-          <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
-            {t('study.subscription.title')}
-          </h1>
-          <p className="text-gray-500 text-[15px] mt-2 leading-relaxed">
-            {t('study.subscription.subtitle')}
-          </p>
-        </header>
+        <StudySubPageHeader
+          backHref="/mobile/study"
+          backLabel={String(t('study.topic.backToStudy'))}
+          icon={CreditCard}
+          eyebrow={ko ? '학습' : 'Study'}
+          title={String(t('study.subscription.title'))}
+          subtitle={String(t('study.subscription.subtitle'))}
+        />
 
         {/* Plan card — gradient surface with premium feel */}
         <div className="relative rounded-2xl bg-gradient-to-br from-white via-white to-primary/[0.025] ring-1 ring-gray-200/60 p-6 space-y-5 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_12px_28px_-16px_rgba(40,133,232,0.18)] overflow-hidden">

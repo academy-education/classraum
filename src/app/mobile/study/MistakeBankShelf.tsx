@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { XCircle, CheckCircle2, RotateCcw, Loader2 } from 'lucide-react'
+import { XCircle, CheckCircle2, RotateCcw, Loader2, BookOpen } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -105,14 +106,20 @@ export function MistakeBankShelf() {
 
   return (
     <section>
-      <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
-        {t('study.mistakes.title')}
-      </h2>
+      <div className="flex items-baseline justify-between mb-3">
+        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+          {t('study.mistakes.title')}
+        </h2>
+        <Link href="/mobile/study/wrong-notebook"
+          className="inline-flex items-center gap-1 text-[12px] font-medium text-rose-700 hover:text-rose-900 transition">
+          <BookOpen className="w-3.5 h-3.5" />{t('study.mistakes.viewNotebook')}
+        </Link>
+      </div>
       <div className="-mx-5">
         <div
           ref={scrollRef}
-          style={{ paddingInline: 'max(40px, calc((100vw - 260px) / 2))' }}
-          className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-3"
+          style={{ paddingInline: 'max(40px, calc((100vw - 300px) / 2))' }}
+          className="flex items-center gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-6"
         >
           {mistakes.map(m => (
             <MistakeCard

@@ -19,20 +19,39 @@ import { assessSessionMastery } from '@/lib/study-mastery-assess'
 
 export const dynamic = 'force-dynamic'
 
+// Permissive — the cached test payload comes from sanitizeQuestion
+// which normalizes optional fields to `null`. Zod's `.optional()` only
+// accepts undefined, so without .nullable() Zod rejects every submit
+// with "expected array, received null" — client swallows the 400 and
+// the user sees the Submit button do nothing.
 const QuestionSchema = z.object({
+  passage: z.string().nullable().optional(),
+  passageGroupId: z.string().nullable().optional(),
   prompt: z.string(),
-  type: z.literal('multiple_choice'),
-  choices: z.array(z.string()),
-  correct_answer: z.string(),
+  type: z.enum(['multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison']).nullable().optional(),
+  choices: z.array(z.string()).nullable().optional(),
+  correct_answer: z.string().nullable().optional(),
+  correct_answers: z.array(z.string()).nullable().optional(),
+  acceptable_answers: z.array(z.string()).nullable().optional(),
   difficulty: z.enum(['easy', 'medium', 'hard']),
   explanation: z.string(),
+  distractor_rationales: z
+    .array(z.object({ choice: z.string(), reason: z.string() }))
+    .nullable()
+    .optional(),
+  // graphic is passthrough — we don't need to validate its shape for
+  // grading (it's UI-only), but we need to accept it so submit
+  // doesn't reject the questions array.
+  graphic: z.unknown().nullable().optional(),
 })
 
 const SubmitSchema = z.object({
   sessionId: z.string(),
   /** Question payloads as originally generated — passed back from
-   *  the client so we don't have to re-deserialise the cache row. */
-  questions: z.array(QuestionSchema).min(1).max(40),
+   *  the client so we don't have to re-deserialise the cache row.
+   *  Cap matches the generator schema (200) so full-section tests
+   *  (SAT R&W 54, TOEIC 100, ACT English 50) submit successfully. */
+  questions: z.array(QuestionSchema).min(1).max(200),
   /** Indexed by question position; null = unanswered. */
   answers: z.array(z.string().nullable()),
   /** Total seconds the student actually spent. */
@@ -90,9 +109,9 @@ export async function POST(req: NextRequest) {
 
   const rows = body.questions.map((q, i) => {
     const studentAnswer = body.answers[i] ?? null
-    const isCorrect = studentAnswer != null
-      && studentAnswer.trim().toLowerCase() === q.correct_answer.trim().toLowerCase()
-    verdicts.push({ index: i, correct: isCorrect, correctAnswer: q.correct_answer })
+    const isCorrect = gradeAnswer(q, studentAnswer)
+    const displayCorrect = displayCorrectAnswer(q)
+    verdicts.push({ index: i, correct: isCorrect, correctAnswer: displayCorrect })
     return {
       session_id: body.sessionId,
       topic_id: session.topic_id,
@@ -133,4 +152,54 @@ export async function POST(req: NextRequest) {
     scorePercent: Math.round(100 * correctCount / body.questions.length),
     verdicts,
   })
+}
+
+/** Type-aware grader. Each question variant has its own correctness
+ *  rule: MC = exact choice match (case-insensitive trim), numeric_entry
+ *  = student input matches any acceptable_answer (after normalization),
+ *  multi_select = parsed JSON array equals correct_answers (order-
+ *  insensitive set match). */
+function gradeAnswer(q: z.infer<typeof QuestionSchema>, studentAnswer: string | null): boolean {
+  if (studentAnswer == null || studentAnswer.trim() === '') return false
+  const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ')
+
+  if (q.type === 'numeric_entry') {
+    const accepted = q.acceptable_answers ?? []
+    if (accepted.length === 0) return false
+    // Normalize both sides — strip whitespace, accept "12", "12.0",
+    // "12/1" as equivalent if they appear in acceptable_answers.
+    const studentNum = normalizeNumeric(studentAnswer)
+    return accepted.some(a => normalizeNumeric(a) === studentNum)
+  }
+
+  if (q.type === 'multi_select') {
+    const expected = q.correct_answers ?? []
+    if (expected.length === 0) return false
+    let picked: string[]
+    try { picked = JSON.parse(studentAnswer) } catch { return false }
+    if (!Array.isArray(picked) || picked.length !== expected.length) return false
+    const expectedSet = new Set(expected.map(norm))
+    return picked.every(p => expectedSet.has(norm(p))) && picked.length === expectedSet.size
+  }
+
+  // multiple_choice / three_choice / quant_comparison — exact match.
+  return norm(studentAnswer) === norm(q.correct_answer ?? '')
+}
+
+/** Human-readable correct answer for the UI verdict display. */
+function displayCorrectAnswer(q: z.infer<typeof QuestionSchema>): string {
+  if (q.type === 'numeric_entry') return q.acceptable_answers?.[0] ?? ''
+  if (q.type === 'multi_select') return (q.correct_answers ?? []).join(' + ')
+  return q.correct_answer ?? ''
+}
+
+/** Normalize numeric input so "12", "12.0", "12.00", " 12 " all match.
+ *  Fractions like "5/8" stay as-is for string compare. */
+function normalizeNumeric(s: string): string {
+  const t = s.trim().replace(/\s+/g, '')
+  if (/^-?\d+\.?\d*$/.test(t)) {
+    const n = parseFloat(t)
+    if (Number.isFinite(n)) return n.toString()
+  }
+  return t
 }

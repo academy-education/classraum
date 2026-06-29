@@ -137,6 +137,26 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
       }, { onConflict: 'student_id,topic_id,card_front' })
     })()
 
+    // Toast first (instant) — server award follows in background.
+    import('../../_shared/XpToast').then(m => m.emitXp(
+      quality === 5 ? 5 : quality === 3 ? 8 : 2,
+    ))
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        await fetch('/api/study/xp', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            eventType: quality === 5 ? 'flashcard_easy' : quality === 3 ? 'flashcard_hard' : 'flashcard_again',
+            sourceId: sessionId,
+          }),
+        })
+      } catch {
+        // Non-fatal — XP is best-effort.
+      }
+    })()
+
     setReviewed(r => r + 1)
     setMarked(m => isCorrect ? { ...m, got: m.got + 1 } : { ...m, again: m.again + 1 })
 

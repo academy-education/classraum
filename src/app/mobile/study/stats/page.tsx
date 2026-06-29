@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock } from 'lucide-react'
+import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock, Sparkles, Flame, ArrowRight, BarChart3 } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader } from '../skeletons'
+import { StudyMetric, NumberRoll, StudySubPageHeader } from '../_shared/primitives'
 
 interface Achievement {
   key: string
@@ -22,9 +23,18 @@ interface Stats {
   accuracy: number
   totalHours: number
   last14: Array<{ date: string; count: number }>
+  last90?: Array<{ date: string; count: number }>
   topMastered: Array<{ score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }>
   topWeak: Array<{ score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }>
   achievements: Achievement[]
+  snapCount?: number
+  responseCount?: number
+  week?: {
+    xp: number
+    activeDays: number
+    tier: string | null
+    rank: number | null
+  }
 }
 
 /**
@@ -90,30 +100,37 @@ function StatsInner() {
 
   return (
     <div className="px-5 pt-6 pb-14 space-y-6">
-      <Link
-        href="/mobile/study/preferences"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        {t('study.prefs.title')}
-      </Link>
+      <StudySubPageHeader
+        backHref="/mobile/study"
+        backLabel={String(t('study.topic.backToStudy'))}
+        icon={BarChart3}
+        eyebrow={ko ? '학습' : 'Study'}
+        title={String(t('study.stats.title'))}
+        subtitle={String(t('study.stats.subtitle'))}
+      />
 
-      <header>
-        <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
-          {String(t('study.stats.title'))}
-        </h1>
-        <p className="text-[14px] text-gray-500 mt-2 leading-relaxed">
-          {String(t('study.stats.subtitle'))}
-        </p>
-      </header>
+      {/* This week — XP + active days + league rank. Visible only
+          when the student has done something this week. */}
+      {stats.week && (stats.week.xp > 0 || stats.week.activeDays > 0) && (
+        <WeekCard week={stats.week} ko={ko} t={t} />
+      )}
 
-      {/* Hero stats — 2x2 grid */}
+      {/* Hero stats — 2x2 grid (lifetime) — using shared StudyMetric */}
       <div className="grid grid-cols-2 gap-3">
-        <MetricCard icon={ListChecks} value={String(stats.totalAttempts)} label={String(t('study.stats.totalQuestions'))} accent="from-primary to-indigo-600" tint="from-primary/[0.06]" />
-        <MetricCard icon={CheckCircle2} value={`${stats.accuracy}%`} label={String(t('study.stats.accuracy'))} accent="from-emerald-500 to-teal-600" tint="from-emerald-50/60" />
-        <MetricCard icon={Clock} value={`${stats.totalHours}h`} label={String(t('study.stats.totalHours'))} accent="from-amber-400 to-orange-500" tint="from-amber-50/60" />
-        <MetricCard icon={Target} value={String(stats.sessionCount)} label={String(t('study.stats.sessions'))} accent="from-violet-400 to-purple-600" tint="from-violet-50/60" />
+        <StudyMetric icon={ListChecks} value={stats.totalAttempts} label={String(t('study.stats.totalQuestions'))} accent="primary" />
+        <StudyMetric icon={CheckCircle2} value={stats.accuracy} suffix="%" label={String(t('study.stats.accuracy'))} accent="emerald" />
+        <StudyMetric icon={Clock} value={stats.totalHours} suffix="h" label={String(t('study.stats.totalHours'))} accent="amber" />
+        <StudyMetric icon={Target} value={stats.sessionCount} label={String(t('study.stats.sessions'))} accent="violet" />
       </div>
+
+      {/* Secondary lifetime counters — snap solves + response submissions.
+          Self-hide when both are 0 so brand-new users don't see empty rows. */}
+      {((stats.snapCount ?? 0) + (stats.responseCount ?? 0)) > 0 && (
+        <div className="grid grid-cols-2 gap-3 -mt-1">
+          <MiniMetric label={ko ? '사진 풀이' : 'Snap solves'} value={stats.snapCount ?? 0} />
+          <MiniMetric label={ko ? '말하기·작문 제출' : 'Responses graded'} value={stats.responseCount ?? 0} />
+        </div>
+      )}
 
       {/* 14-day sparkline */}
       <section>
@@ -125,6 +142,18 @@ function StatsInner() {
         </div>
       </section>
 
+      {/* 90-day activity heatmap — GitHub-style consistency view. */}
+      {stats.last90 && stats.last90.length > 0 && (
+        <section>
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
+            {ko ? '최근 90일' : 'Last 90 days'}
+          </h2>
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+            <ActivityHeatmap data={stats.last90} ko={ko} />
+          </div>
+        </section>
+      )}
+
       {/* Achievements — unlock badges from existing stats data, no
           new schema. Sorted by unlocked first, then locked greyed-out
           so the student can see what's next to chase. */}
@@ -134,8 +163,10 @@ function StatsInner() {
           {String(t('study.stats.achievementsTitle'))}
         </h2>
         <div className="grid grid-cols-2 gap-2.5">
-          {[...stats.achievements].sort((a, b) => Number(b.unlocked) - Number(a.unlocked)).map(a => (
-            <AchievementBadge key={a.key} achievement={a} t={t} />
+          {[...stats.achievements].sort((a, b) => Number(b.unlocked) - Number(a.unlocked)).map((a, i) => (
+            <div key={a.key} style={{ animationDelay: `${Math.min(i, 10) * 35}ms` }} className="animate-card-in opacity-0">
+              <AchievementBadge achievement={a} t={t} />
+            </div>
           ))}
         </div>
       </section>
@@ -191,17 +222,79 @@ function StatsInner() {
   )
 }
 
-function MetricCard({ icon: Icon, value, label, accent, tint }: {
-  icon: typeof CheckCircle2; value: string; label: string; accent: string; tint: string
-}) {
+function MiniMetric({ label, value }: { label: string; value: number }) {
   return (
-    <div className={`rounded-2xl bg-gradient-to-br ${tint} via-white to-white ring-1 ring-gray-200/60 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]`}>
-      <div className={`w-9 h-9 rounded-xl bg-gradient-to-b ${accent} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(0,0,0,0.08)] mb-2`}>
-        <Icon className="w-4 h-4" />
-      </div>
-      <div className="text-[24px] font-bold tracking-tight text-gray-900 leading-none">{value}</div>
-      <div className="text-[11.5px] font-medium uppercase tracking-[0.10em] text-gray-500 mt-1">{label}</div>
+    <div className="rounded-xl bg-white ring-1 ring-gray-200/60 px-3.5 py-2.5 flex items-center justify-between">
+      <span className="text-[12px] text-gray-600">{label}</span>
+      <span className="text-[15px] font-bold tabular-nums text-gray-900">
+        <NumberRoll target={value} />
+      </span>
     </div>
+  )
+}
+
+// MetricCard + NumberRoll were inlined here originally; both moved to
+// _shared/primitives.tsx as StudyMetric + NumberRoll. Local copies
+// removed — imports added at top of file.
+
+const TIER_LABEL_KO: Record<string, string> = {
+  bronze: '브론즈', silver: '실버', gold: '골드', sapphire: '사파이어', ruby: '루비',
+  emerald: '에메랄드', amethyst: '자수정', pearl: '진주', obsidian: '흑요석', diamond: '다이아몬드',
+}
+const TIER_LABEL_EN: Record<string, string> = {
+  bronze: 'Bronze', silver: 'Silver', gold: 'Gold', sapphire: 'Sapphire', ruby: 'Ruby',
+  emerald: 'Emerald', amethyst: 'Amethyst', pearl: 'Pearl', obsidian: 'Obsidian', diamond: 'Diamond',
+}
+
+function WeekCard({ week, ko, t }: {
+  week: { xp: number; activeDays: number; tier: string | null; rank: number | null }
+  ko: boolean
+  t: ReturnType<typeof useTranslation>['t']
+}) {
+  const tierLabel = week.tier ? (ko ? TIER_LABEL_KO[week.tier] : TIER_LABEL_EN[week.tier]) : null
+  return (
+    <Link href="/mobile/study/league"
+      className="group block rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white p-4 shadow-[0_8px_24px_-8px_rgba(251,146,60,0.40)] hover:shadow-[0_12px_32px_-8px_rgba(251,146,60,0.55)] hover:-translate-y-0.5 transition-all overflow-hidden relative">
+      <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/20 blur-2xl" />
+      <div className="relative flex items-center justify-between mb-3">
+        <div className="text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+          {ko ? '이번 주' : 'This week'}
+        </div>
+        <ArrowRight className="w-4 h-4 opacity-90 group-hover:translate-x-1 transition-transform" />
+      </div>
+      <div className="relative grid grid-cols-3 gap-3">
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
+            <Sparkles className="w-3 h-3" />XP
+          </div>
+          <div className="text-2xl font-bold tabular-nums leading-none mt-1">
+            <NumberRoll target={week.xp} />
+          </div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
+            <Flame className="w-3 h-3" />{ko ? '활동일' : 'Active'}
+          </div>
+          <div className="text-2xl font-bold tabular-nums leading-none mt-1">
+            <NumberRoll target={week.activeDays} />
+            <span className="text-[14px] font-medium opacity-80 ml-0.5">/7</span>
+          </div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
+            <Trophy className="w-3 h-3" />{ko ? '리그' : 'League'}
+          </div>
+          {tierLabel && week.rank ? (
+            <div className="leading-tight mt-1">
+              <div className="text-[15px] font-semibold">{tierLabel}</div>
+              <div className="text-[11px] opacity-90 tabular-nums">#{week.rank}</div>
+            </div>
+          ) : (
+            <div className="text-[13px] opacity-85 mt-1">{ko ? '미참가' : 'Not joined'}</div>
+          )}
+        </div>
+      </div>
+    </Link>
   )
 }
 
@@ -243,6 +336,92 @@ function AchievementBadge({ achievement, t }: { achievement: Achievement; t: Ret
 }
 
 /** Minimal SVG sparkline — 14 vertical bars, height scaled by count. */
+/** ActivityHeatmap — GitHub-style 13-week × 7-day grid. Tap a cell to
+ *  see that day's date + attempt count in a small inline detail strip
+ *  below the grid. */
+function ActivityHeatmap({ data, ko }: { data: Array<{ date: string; count: number }>; ko: boolean }) {
+  const today = new Date()
+  const todayDow = today.getDay()
+  const totalCells = 13 * 7
+  const firstCellOffset = totalCells - 1 - todayDow
+  const byDate = new Map<string, number>()
+  for (const d of data) byDate.set(d.date, d.count)
+  const peak = Math.max(1, ...data.map(d => d.count))
+
+  const cells: Array<{ date: string; count: number; inRange: boolean }> = []
+  for (let i = 0; i < totalCells; i++) {
+    const offset = firstCellOffset - i
+    const d = new Date(today)
+    d.setDate(d.getDate() - offset)
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+    const inRange = offset >= 0 && offset < 90
+    cells.push({ date: key, count: byDate.get(key) ?? 0, inRange })
+  }
+
+  const intensityClass = (count: number, inRange: boolean) => {
+    if (!inRange) return 'bg-gray-50'
+    if (count === 0) return 'bg-gray-100'
+    const r = count / peak
+    if (r < 0.25) return 'bg-primary/20'
+    if (r < 0.50) return 'bg-primary/40'
+    if (r < 0.75) return 'bg-primary/65'
+    return 'bg-primary'
+  }
+
+  // Selected cell — defaults to today (the most-recent in-range cell).
+  const todayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
+  const [selectedDate, setSelectedDate] = useState<string>(todayKey)
+  const selected = cells.find(c => c.date === selectedDate) ?? cells[cells.length - 1]
+  const selectedCount = selected.count
+  // Friendly date formatter for the detail strip.
+  const dateLabel = (key: string): string => {
+    const [y, m, d] = key.split('-').map(Number)
+    const dt = new Date(y, m - 1, d)
+    if (key === todayKey) return ko ? '오늘' : 'Today'
+    return dt.toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric', weekday: 'short' })
+  }
+
+  return (
+    <div>
+      <div className="grid grid-cols-13 grid-rows-7 gap-[3px]" style={{ gridTemplateColumns: 'repeat(13, minmax(0, 1fr))', gridAutoFlow: 'column' }}>
+        {cells.map((cell, i) => {
+          const isSelected = cell.date === selectedDate && cell.inRange
+          return (
+            <button
+              type="button"
+              key={i}
+              onClick={() => cell.inRange && setSelectedDate(cell.date)}
+              disabled={!cell.inRange}
+              title={`${cell.date} — ${cell.count} ${ko ? '문항' : 'attempts'}`}
+              aria-label={`${cell.date}, ${cell.count}`}
+              className={`aspect-square rounded-[3px] ${intensityClass(cell.count, cell.inRange)} ${
+                isSelected ? 'ring-2 ring-primary ring-offset-1' : ''
+              } ${cell.inRange ? 'hover:opacity-80 cursor-pointer' : 'cursor-default'} transition-opacity`}
+            />
+          )
+        })}
+      </div>
+      {/* Detail strip — date + count of the selected cell. */}
+      <div className="mt-3 flex items-center justify-between gap-3 text-[12px]">
+        <div className="text-gray-700">
+          <span className="font-semibold">{dateLabel(selected.date)}</span>
+          <span className="text-gray-500 mx-1.5">·</span>
+          <span className="tabular-nums">{selectedCount}</span> <span className="text-gray-500">{ko ? '문항' : selectedCount === 1 ? 'attempt' : 'attempts'}</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-[10px] text-gray-500">
+          <span>{ko ? '적게' : 'Less'}</span>
+          <div className="w-2.5 h-2.5 rounded-[3px] bg-gray-100" />
+          <div className="w-2.5 h-2.5 rounded-[3px] bg-primary/20" />
+          <div className="w-2.5 h-2.5 rounded-[3px] bg-primary/40" />
+          <div className="w-2.5 h-2.5 rounded-[3px] bg-primary/65" />
+          <div className="w-2.5 h-2.5 rounded-[3px] bg-primary" />
+          <span>{ko ? '많이' : 'More'}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function Sparkline({ data }: { data: Array<{ date: string; count: number }> }) {
   const max = Math.max(1, ...data.map(d => d.count))
   const BAR_W = 14

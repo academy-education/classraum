@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2 } from 'lucide-react'
+import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2, Camera, Image as ImageIcon } from 'lucide-react'
 import { useCarouselFocus, CarouselDots, scrollToCarouselIndex } from './useCarouselFocus'
 import { SkeletonCarousel } from './skeletons'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -13,12 +13,18 @@ import { authHeaders } from '@/lib/auth-headers'
 import type { StudyMode } from './modes'
 
 interface Card {
-  reason: 'weak' | 'recent'
-  topic: { id: string; slug: string; name_en: string; name_ko: string; category: string }
+  reason: 'weak' | 'recent' | 'snap_followup'
+  topic: { id: string; slug: string; name_en: string; name_ko: string; category: string } | null
   score: number | null
   attempts_count: number
   suggested_mode: StudyMode
   weakness_hint?: string | null
+  snap?: {
+    capture_id: string
+    image_url: string | null
+    ocr_text: string
+    subject_guess: string
+  }
 }
 
 /**
@@ -66,15 +72,32 @@ export function RecommendedShelf() {
 
   const startSession = async (card: Card) => {
     if (!user?.userId || creating) return
-    setCreating(card.topic.id)
+    const key = card.reason === 'snap_followup' ? (card.snap?.capture_id ?? 'snap') : card.topic?.id
+    if (!key) return
+    setCreating(key)
+    // Snap follow-up cards create a freeform practice session seeded
+    // from the OCR'd problem; topic cards create a normal session.
+    const insertBody = card.reason === 'snap_followup' && card.snap
+      ? {
+          student_id: user.userId,
+          topic_id: null,
+          topic_freeform: `${card.snap.subject_guess} snap follow-up: ${card.snap.ocr_text.slice(0, 90)}`,
+          mode: 'practice' as const,
+          language: ko ? 'ko' : 'en',
+          config: { questionCount: 5, difficultyBias: 'similar' },
+        }
+      : card.topic
+        ? {
+            student_id: user.userId,
+            topic_id: card.topic.id,
+            mode: card.suggested_mode,
+            language: ko ? 'ko' : 'en',
+          }
+        : null
+    if (!insertBody) { setCreating(null); return }
     const { data, error } = await supabase
       .from('study_sessions')
-      .insert({
-        student_id: user.userId,
-        topic_id: card.topic.id,
-        mode: card.suggested_mode,
-        language: ko ? 'ko' : 'en',
-      })
+      .insert(insertBody)
       .select('id')
       .single()
     if (error || !data) {
@@ -111,18 +134,25 @@ export function RecommendedShelf() {
         <div className="-mx-5">
           <div
             ref={scrollRef}
-            style={{ paddingInline: 'max(40px, calc((100vw - 260px) / 2))' }}
-            className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-3"
+            // py-6 = 24px vertical, large enough that hover/drop shadows
+            // (up to ~16px offset + 32px blur) fit inside the scroll-clip
+            // box. overflow-x-auto forces overflow-y to behave non-visible
+            // per CSS spec, so we can't just let shadows escape — the only
+            // way to show them is to give the scroll container room.
+            style={{ paddingInline: 'max(40px, calc((100vw - 300px) / 2))' }}
+            className="flex items-center gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-6"
           >
-            {cards.map(card => (
+            {cards.map((card, idx) => (
               <div
-                key={`${card.topic.id}-${card.reason}`}
+                key={card.reason === 'snap_followup' ? `snap-${card.snap?.capture_id ?? idx}` : `${card.topic?.id}-${card.reason}`}
                 data-carousel-card
-                className="snap-center flex-none w-[260px] max-w-[calc(100vw-80px)]"
+                className="snap-center flex-none w-[300px] max-w-[calc(100vw-72px)]"
               >
-                {card.reason === 'weak'
-                  ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
-                  : <RecentSessionCard card={card} name={name} t={t} startSession={startSession} creating={creating} />}
+                {card.reason === 'snap_followup'
+                  ? <SnapFollowupCard card={card} ko={ko} startSession={startSession} creating={creating} />
+                  : card.reason === 'weak'
+                    ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
+                    : <RecentSessionCard card={card} name={name} t={t} startSession={startSession} creating={creating} />}
               </div>
             ))}
           </div>
@@ -134,6 +164,59 @@ export function RecommendedShelf() {
         </div>
       )}
     </section>
+  )
+}
+
+/** Snap-followup card: shows the captured image as background with a
+ *  "practice 5 similar" CTA overlay. Closes the loop from snap-solve
+ *  to actual drill practice. */
+function SnapFollowupCard({ card, ko, startSession, creating }: {
+  card: Card
+  ko: boolean
+  startSession: (c: Card) => Promise<void>
+  creating: string | null
+}) {
+  const isCreating = creating === card.snap?.capture_id
+  const SUBJECT_LABEL_KO: Record<string, string> = {
+    math: '수학', physics: '물리', chemistry: '화학', biology: '생물',
+    english: '영어', korean: '국어', social_studies: '사회', history: '역사', other: '기타',
+  }
+  const SUBJECT_LABEL_EN: Record<string, string> = {
+    math: 'Math', physics: 'Physics', chemistry: 'Chemistry', biology: 'Biology',
+    english: 'English', korean: 'Korean', social_studies: 'Social', history: 'History', other: 'Other',
+  }
+  const subj = card.snap?.subject_guess ?? 'other'
+  const subjLabel = ko ? SUBJECT_LABEL_KO[subj] : SUBJECT_LABEL_EN[subj]
+  return (
+    <button type="button"
+      onClick={() => void startSession(card)}
+      disabled={creating !== null}
+      className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white p-4 min-h-[148px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(251,146,60,0.30)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(251,146,60,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60">
+      {/* Optional background image — semi-transparent so the gradient + text stay legible. */}
+      {card.snap?.image_url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={card.snap.image_url} alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.22] mix-blend-luminosity" />
+      )}
+      <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/30 blur-2xl" />
+      <div className="relative flex flex-col h-full">
+        <div className="flex items-center justify-between mb-2">
+          <div className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.14em] uppercase opacity-95">
+            <Camera className="w-3 h-3" />{ko ? '사진 후속' : 'Snap follow-up'}
+          </div>
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-white/20 text-[10px] font-bold uppercase tracking-wider">
+            {subjLabel}
+          </span>
+        </div>
+        <p className="text-[12.5px] leading-relaxed line-clamp-2 opacity-95 mb-3">
+          {card.snap?.ocr_text || (ko ? '이전에 찍은 문제' : 'A problem you snapped')}
+        </p>
+        <div className="mt-auto inline-flex items-center gap-1.5 text-[12.5px] font-semibold">
+          {isCreating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ArrowRight className="w-3.5 h-3.5" />}
+          {ko ? '유사 문제 5개 풀기' : 'Practice 5 similar'}
+        </div>
+      </div>
+    </button>
   )
 }
 
@@ -167,14 +250,14 @@ function WeakAreaCard({ card, name, t, startSession, creating }: {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
       <div className="flex items-start gap-3.5">
         <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(245,158,11,0.25)] ring-1 ring-amber-600/10">
-          {creating === card.topic.id
+          {creating === card.topic?.id
             ? <Loader2 className="w-4 h-4 animate-spin" />
             : <AlertTriangle className="w-5 h-5" />}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
             <div className="text-[15px] font-semibold text-gray-900 truncate">
-              {name(card.topic)}
+              {card.topic ? name(card.topic) : ''}
             </div>
             <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-white/80 backdrop-blur ring-1 ring-amber-200 rounded-full px-1.5 py-0.5">
               {score}<span className="text-amber-500">/100</span>
@@ -217,14 +300,14 @@ function RecentSessionCard({ card, name, t, startSession, creating }: {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
       <div className="flex items-center gap-3.5">
         <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/20">
-          {creating === card.topic.id
+          {creating === card.topic?.id
             ? <Loader2 className="w-4 h-4 animate-spin" />
             : <History className="w-5 h-5" />}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <div className="text-[15px] font-semibold text-gray-900 truncate">
-              {name(card.topic)}
+              {card.topic ? name(card.topic) : ''}
             </div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-white/80 backdrop-blur ring-1 ring-primary/20 rounded-full px-1.5 py-0.5 flex-shrink-0">
               {String(t('study.modes.' + card.suggested_mode + '.title'))}

@@ -65,8 +65,11 @@ export function SkeletonHeader({ widthClass = 'w-1/3' }: { widthClass?: string }
  *  Recommended / Resumable / MistakeBank card so the carousel's
  *  loading state matches its loaded state. */
 export function SkeletonCarouselCard() {
+  // Width / max-width / min-height / py must mirror the live carousel
+  // card sizing in Recommended/Resumable/MistakeBank so load→loaded
+  // has no layout shift.
   return (
-    <SkeletonCard className="snap-center flex-none w-[260px] max-w-[calc(100vw-80px)] p-4 min-h-[120px]">
+    <SkeletonCard className="snap-center flex-none w-[300px] max-w-[calc(100vw-72px)] p-4 min-h-[148px]">
       <div className="flex items-start gap-3.5">
         <SkeletonIconTile />
         <div className="flex-1 space-y-2 pt-1">
@@ -85,8 +88,8 @@ export function SkeletonCarousel({ count = 3 }: { count?: number }) {
   return (
     <div className="-mx-5">
       <div
-        style={{ paddingInline: 'max(40px, calc((100vw - 260px) / 2))' }}
-        className="flex gap-3 overflow-x-hidden py-3"
+        style={{ paddingInline: 'max(40px, calc((100vw - 300px) / 2))' }}
+        className="flex gap-3 overflow-x-hidden py-6"
       >
         {Array.from({ length: count }).map((_, i) => (
           <div

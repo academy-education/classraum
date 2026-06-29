@@ -3909,6 +3909,9 @@
       "eyebrow": "Study",
       "title": "What do you want to learn?",
       "subtitle": "Pick a topic and choose how you want to study.",
+      "todayBand": "Today",
+      "historyBand": "History",
+      "browseLocked": "Coming soon",
       "history": "History",
       "recommendedTitle": "Recommended for you",
       "recommendedEmpty": "We'll suggest topics here once you've studied for a bit.",
@@ -3921,7 +3924,7 @@
       "freeformHint": "AI will figure out the subject and start a chat session.",
       "topicCountSingular": "{count} topic",
       "topicCountPlural": "{count} topics",
-      "resumeTitle": "Pick up where you left off",
+      "resumeTitle": "Recent sessions",
       "resumeCta": "Resume"
     },
     "topic": {
@@ -3963,7 +3966,60 @@
     "mistakes": {
       "title": "Review your misses",
       "retry": "Try again",
-      "unknownTopic": "Past mistake"
+      "unknownTopic": "Past mistake",
+      "viewNotebook": "View all"
+    },
+    "league": {
+      "back": "Back to Study",
+      "eyebrow": "Weekly league",
+      "title": "Leaderboard",
+      "iconLabel": "Open weekly league",
+      "loading": "Loading your league…"
+    },
+    "review": {
+      "back": "Back to Study",
+      "eyebrow": "Daily review",
+      "title": "Interleaved review",
+      "loading": "Loading your due cards…",
+      "ctaTitle": "{{count}} cards due — review now",
+      "ctaSubtitle": "Across {{count}} topics, interleaved for better retention",
+      "interleavedBadge": "Interleaved across {{count}} topics",
+      "whyBack": "Why this card is back",
+      "whyBackBody": "Spacing + variable retrieval is the most evidence-backed memory pattern there is: cards re-appear when you're about to forget them, and mixing topics outperforms blocked practice. It can feel harder in the moment — that's the point.",
+      "tapToFlip": "Tap to flip",
+      "doneEyebrow": "All caught up",
+      "emptyEyebrow": "Daily review",
+      "reviewedSuffix": "reviewed",
+      "allCaughtUp": "All caught up",
+      "noneDueYet": "Nothing due right now",
+      "doneBody": "Come back tomorrow — your next batch will be ready when the spacing schedule says so.",
+      "backToStudy": "Back to Study"
+    },
+    "snap": {
+      "back": "Back to Study",
+      "eyebrow": "Snap to solve",
+      "title": "Photo problem solver",
+      "ctaTitle": "Stuck on a problem? Snap it.",
+      "ctaSubtitle": "Get a step-by-step solution in seconds."
+    },
+    "wrongNotebook": {
+      "back": "Back to Study",
+      "eyebrow": "Wrong-answer notebook",
+      "title": "Wrong-Answer Notebook",
+      "print": "Print / PDF",
+      "totalSuffix": "wrong",
+      "annotatedSuffix": "annotated",
+      "allTopics": "All",
+      "loading": "Loading your notebook…",
+      "emptyTitle": "Nothing here yet",
+      "emptyBody": "Wrong answers will show up here as you practice. Add notes to remember what tripped you up.",
+      "showMore": "More",
+      "showLess": "Less",
+      "explanationLabel": "Explanation",
+      "myNoteLabel": "My note",
+      "notePlaceholder": "Why did you get this wrong? What should the approach have been?",
+      "saving": "Saving…",
+      "saved": "Saved"
     },
     "resumeBanner": {
       "eyebrow": "Pick up where you left off"
@@ -4144,6 +4200,11 @@
         "title": "Full test",
         "body": "Timed mock test with score and per-question review at the end.",
         "comingSoon": "Full test — coming soon"
+      },
+      "response": {
+        "title": "Speaking & writing",
+        "body": "AI examiner grades your response against the official rubric.",
+        "comingSoon": "Speaking & writing — coming soon"
       }
     },
     "test": {
@@ -4157,6 +4218,18 @@
       "next": "Next",
       "submit": "Submit test",
       "submitWithUnanswered": "Submit ({count} unanswered)",
+      "submitConfirm": {
+        "titleSubmit": "Submit your test?",
+        "bodyAllAnswered": "You've answered all {total} questions. Once submitted, your score is locked and you can't retake this test.",
+        "bodyUnansweredOne": "You have 1 unanswered question. Blank answers count as wrong. Submit anyway?",
+        "bodyUnansweredMany": "You have {count} unanswered questions. Blank answers count as wrong. Submit anyway?",
+        "cancel": "Keep working",
+        "confirm": "Submit"
+      },
+      "submitError": {
+        "title": "Submit failed",
+        "dismiss": "Dismiss"
+      },
       "resultEyebrow": "Test complete",
       "resultMessage": {
         "excellent": "Strong result. The patterns are clicking — keep this pace.",
@@ -4165,7 +4238,22 @@
         "startOver": "This was a stretch. Try a lesson first, then come back for another round."
       },
       "reviewTitle": "Review",
-      "backToStudy": "Back to Study"
+      "backToStudy": "Back to Study",
+      "loadingTest": "Loading your test…",
+      "buildingTest": "Building your test…",
+      "progress": {
+        "title": "Building your test",
+        "subtitle": "This takes 20-40 seconds.",
+        "starting": "Starting…",
+        "format": "Loading the test format",
+        "draftingQuestions": "Writing your questions",
+        "draftingHard": "Writing more questions",
+        "verifying": "Double-checking answer keys",
+        "assembling": "Assembling your test",
+        "done": "Ready",
+        "cached": "Resuming saved test",
+        "resuming": "Picking up where the server left off…"
+      }
     }
   },
   "mobile": {
@@ -4209,7 +4297,18 @@
       "home": "Home",
       "assignments": "Assignments",
       "reports": "Reports",
-      "profile": "Profile"
+      "profile": "Profile",
+      "study": "Study",
+      "snap": "Snap",
+      "review": "Review",
+      "league": "League"
+    },
+    "mode": {
+      "sheetTitle": "Switch mode",
+      "gradesLabel": "Grades",
+      "gradesBlurb": "Sessions, assignments, attendance, reports.",
+      "studyLabel": "Study",
+      "studyBlurb": "AI practice, photo solver, daily review, league."
     },
     "shelf": {
       "dashboard": "Dashboard",

@@ -4,6 +4,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { awardXp } from '@/lib/study/xp'
 
 /**
  * POST /api/study/practice/grade — verdict + explanation on one
@@ -133,6 +134,11 @@ export async function POST(req: NextRequest) {
       ai_explanation: aiExplanation,
       time_spent_seconds: typeof timeSpentSeconds === 'number' ? timeSpentSeconds : null,
     })
+
+  // Fire-and-forget XP award for the weekly league (Phase 6e). Only
+  // correct answers award XP — wrong attempts don't penalise but don't
+  // earn either.
+  if (isCorrect) void awardXp(user.id, 'attempt_correct', sessionId)
 
   return NextResponse.json({ isCorrect, aiExplanation })
 }

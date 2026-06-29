@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { sendPostmarkEmail } from '@/lib/postmark'
+import { notifyStudent } from '@/lib/study/notify'
 
 /**
  * GET /api/cron/study-weekly-recap — sends a personalized last-week
@@ -139,6 +140,16 @@ export async function GET(req: NextRequest) {
     })
     if (result.sent) sent++
     else failed++
+
+    // In-app inbox row alongside the email — students who don't open
+    // email still see the recap when they tap the bell.
+    void notifyStudent({
+      studentId,
+      kind: 'study_weekly_recap',
+      title: `이번 주 학습 요약 — ${hours}h, 정답률 ${accuracy}%`,
+      message: `${total}문항 학습 완료${topTopicName ? ` · 최다 학습: ${topTopicName}` : ''}`,
+      link: '/mobile/study/stats',
+    })
   }
 
   return NextResponse.json({

@@ -89,6 +89,36 @@ export const TEST_SPECS: Partial<Record<TestFamily, TestSpec>> = {
         difficultyMix: { easy: 0.30, medium: 0.50, hard: 0.20 },
         hardItemFraming_en: 'A HARD SAT R&W item pairs dense academic prose (often 1850s-1920s literary or historical primary sources, or a recent humanities/science excerpt with technical vocabulary) with a question that turns on a SUBTLE distinction. The trap is usually the choice that matches the passage\'s surface vocabulary but inverts the author\'s actual stance, or that\'s true of one paragraph but contradicted by a later pivot. Hard "words in context" items pick a common word used in an unfamiliar register (e.g. "wanting" = lacking, not desiring). Hard inference items require connecting two distant claims, not just paraphrasing one. AVOID: bare main-idea, simple grammar, vocab a student could solve from a dictionary.',
         hardItemFraming_ko: '어려운 SAT R&W 문항은 밀도 높은 학술 산문(1850-1920년대 문학·역사 1차 사료, 또는 전문 어휘를 포함한 최근 인문·과학 발췌문)과 미묘한 구분에 답이 갈리는 문제를 짝짓습니다. 함정은 보통 지문의 표면 어휘는 일치하지만 저자의 실제 입장을 뒤집는 선택지, 또는 한 문단은 지지하지만 뒤 문단의 전환이 반박하는 선택지입니다. 어려운 "문맥 어휘" 문항은 흔한 단어를 낯선 의미로(예: "wanting" = 부족함, 욕망 아님) 사용. 어려운 추론 문항은 두 개의 떨어진 진술을 연결해야 함 — 한 문장 패러프레이즈 아님. 피할 것: 단순 주제, 단순 문법, 사전만 봐도 풀 수 있는 어휘.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (verified hard, "logically completes the text"):
+Passage: "The following text is adapted from Octavia Butler's 1979 novel Kindred. The narrator, a Black woman from 1976, has been pulled back in time. 'I had no idea where I was, no idea at all of what year it might be. There was nothing to indicate—'"
+Prompt: "Which choice most logically completes the text?"
+Choices: ["a sudden shift in the texture of the dirt road under her feet", "any landmark that would tell her she had returned to her own century", "the presence of unfamiliar people just over the rise", "a clear plan for how she might find help"]
+Correct: "any landmark that would tell her she had returned to her own century"
+Why hard: the trap "presence of unfamiliar people" matches the surface theme of being lost, but only "landmark... own century" completes the LOGIC of "nothing to indicate WHAT YEAR".`,
+
+          `EXAMPLE 2 (verified hard, "words in context"):
+Passage: "Charlotte Brontë's Villette (1853) presents Lucy Snowe, a heroine wanting in the social advantages that lubricate Victorian life. Without family, wealth, or beauty, she observes the brilliant Polly Home from a distance, knowing that doors open easily for Polly that remain closed to her."
+Prompt: "As used in the text, what does the word \"wanting\" most nearly mean?"
+Choices: ["desiring", "expecting", "lacking", "requesting"]
+Correct: "lacking"
+Why hard: "wanting" most commonly means "desiring" — students reflexively pick that. The construction "wanting in [advantages]" reverses to "without advantages" = lacking. The trap is the dominant modern sense.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (검증된 어려움, "글을 가장 논리적으로 완성"):
+지문: "다음은 옥타비아 버틀러의 1979년 소설 Kindred에서 발췌. 화자는 1976년의 흑인 여성으로, 과거로 끌려갔다. '내가 어디에 있는지 전혀 몰랐고, 지금이 몇 년인지도 전혀 몰랐다. 아무것도 알려주지 않았다—'"
+문제: "글을 가장 논리적으로 완성하는 선택지는?"
+보기: ["발 아래 흙길의 질감의 갑작스러운 변화", "그녀가 자신의 세기로 돌아왔음을 알려줄 어떤 지표", "언덕 너머의 낯선 사람들의 존재", "도움을 받는 방법에 대한 명확한 계획"]
+정답: "그녀가 자신의 세기로 돌아왔음을 알려줄 어떤 지표"
+어려운 이유: 함정 "낯선 사람들의 존재"는 길을 잃은 표면적 주제와 일치하지만, "지표... 자신의 세기"만이 "몇 년인지 알려주는 게 없었다"의 논리를 완성.`,
+
+          `예시 2 (검증된 어려움, "문맥 어휘"):
+지문: "샬럿 브론테의 Villette(1853)은 빅토리아 시대 삶을 윤활하는 사회적 이점이 wanting한 주인공 루시 스노우를 그린다. 가족도, 부도, 미모도 없는 그녀는 멀리서 빛나는 폴리 홈을 지켜보며, 폴리에게는 쉽게 열리는 문들이 자신에게는 닫혀 있음을 안다."
+문제: "글에서 사용된 "wanting"의 의미와 가장 가까운 것은?"
+보기: ["desiring (원하는)", "expecting (기대하는)", "lacking (결여된)", "requesting (요청하는)"]
+정답: "lacking (결여된)"
+어려운 이유: "wanting"의 가장 흔한 의미는 "원하다" — 학생들은 반사적으로 그것을 고름. "wanting in [이점]" 구문은 "이점이 없는" = 결여된으로 뒤집힘. 함정은 지배적인 현대 의미.`,
+        ],
       },
       {
         name_en: 'Math',
@@ -146,8 +176,38 @@ Why hard: requires completing the square to find center is (3, -4) — students 
         choiceCount: 5,
         patterns_en: 'Mixed passage-based comprehension. 화법과 작문 OR 언어와 매체 (선택 과목) opening section. Then 독서 (3-4 nonfiction passages, ~17 questions): 인문/사회/과학/기술/예술. Then 문학 (3-4 literary passages, ~17 questions): 현대시, 현대소설, 고전시가, 고전소설. Passages run 1000-1500자 with 4-5 questions each. Questions test 주제 파악, 세부 정보, 추론, 어휘 in context, and 글의 구조.',
         patterns_ko: '지문 기반 독해. 첫 영역은 화법과 작문 또는 언어와 매체(선택). 이후 독서(인문/사회/과학/기술/예술 비문학 지문 3-4개, 약 17문항), 그리고 문학(현대시·현대소설·고전시가·고전소설 지문 3-4개, 약 17문항). 지문 길이 1000-1500자, 각 4-5문항. 주제 파악, 세부 정보, 추론, 문맥 어휘, 글의 구조를 평가.',
-        distractorPatterns_en: 'KSAT distractors are notoriously close — designed to differentiate top performers. Patterns: (1) correct in scope but wrong in degree (지문은 "일부"라고 했는데 보기는 "모두"), (2) supported by one paragraph but contradicted by another, (3) plausible if the reader misses a connective like "그러나" or "다만", (4) lexically near the passage but semantically inverted.',
-        distractorPatterns_ko: '수능 오답은 상위권 변별을 위해 매우 정교합니다: (1) 범위는 맞지만 정도가 틀림 ("일부" → "모두"), (2) 한 문단은 지지하지만 다른 문단이 반박, (3) "그러나"·"다만" 등 접속어를 놓치면 그럴듯하게 보임, (4) 어휘는 지문과 가깝지만 의미가 반대.',
+        distractorPatterns_en: 'KSAT distractors are notoriously close — designed to differentiate top performers. Patterns: (1) correct in scope but wrong in degree (지문은 "일부"라고 했는데 보기는 "모두"), (2) supported by one paragraph but contradicted by another, (3) plausible if the reader misses a connective like "그러나" or "다만", (4) lexically near the passage but semantically inverted, (5) keyword-copy traps (uses passage word verbatim but the proposition is different).',
+        distractorPatterns_ko: '수능 오답은 상위권 변별을 위해 매우 정교합니다: (1) 범위는 맞지만 정도가 틀림 ("일부" → "모두"), (2) 한 문단은 지지하지만 다른 문단이 반박, (3) "그러나"·"다만" 등 접속어를 놓치면 그럴듯하게 보임, (4) 어휘는 지문과 가깝지만 의미가 반대, (5) 키워드 베끼기 — 지문 단어 그대로 쓰지만 명제가 다름.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (변별 비문학 — Hegel dialectic-style item, representative pattern from 2022 KSAT 국어):
+Passage: ~2000자 인문 지문 — 헤겔의 변증법(정-반-합, 즉자/대자/즉자대자)을 미술사 양식 변화에 적용. 추상 개념 정의 후 미술 사례로 전개.
+<보기>: 추가 자료 — 19세기 후반 한 화가의 비평. 지문의 변증법 틀로 분석해야 함.
+Prompt: "<보기>를 바탕으로 윗글을 이해한 내용으로 가장 적절하지 않은 것은?"
+Choices: 5개, 모두 변증법 개념(즉자/대자/지양/모순)을 사용하지만 1개만 <보기>의 화가 사례와 지문의 헤겔 입장을 모두 정확히 매핑.
+Why hard: 헤겔 철학의 핵심 개념 정확 이해 + <보기> 미술사 사례에 역방향 매핑. 정답률 ~33%. 함정 보기는 (a) 변증법 단계 순서 오류, (b) 즉자/대자 혼동, (c) <보기>의 화가가 지문의 어떤 단계에 해당하는지 잘못 식별.`,
+
+          `EXAMPLE 2 (변별 문학 — <보기> 외재적 비평 형식):
+Passage: 정지용 「유리창 1」 (현대시) — "유리에 차고 슬픈 것이 어른거린다 / 열없이 붙어 서서 입김을 흐리우니 / 길들은 양 언 날개를 파다거린다…"
+<보기>: "정지용의 「유리창 1」은 어린 자식을 잃은 아버지의 슬픔을 절제된 어조로 형상화한 작품이다. 화자는 유리창 너머의 풍경에서 죽은 자식의 환영을 본다."
+Prompt: "<보기>를 참고하여 윗글을 감상한 내용으로 가장 적절하지 않은 것은?"
+Choices: 5개, "차고 슬픈 것" / "언 날개" / "유리" / "입김" 등 시어를 <보기>의 슬픔·자식·환영 코드로 해석. 1개만 시어를 잘못 매핑.
+Why hard: <보기>의 비평 관점을 시 전체에 일관되게 적용해야 함. 함정은 (a) 화자와 시적 자아 혼동, (b) "유리" 상징을 단절 vs 매개로 잘못 해석, (c) 절제된 어조를 강한 감정 분출로 잘못 봄.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (변별 비문학 — 헤겔 변증법 형식, 2022학년도 수능 패턴):
+지문: ~2000자 인문 지문 — 헤겔의 변증법(정-반-합, 즉자/대자/즉자대자)을 미술사 양식 변화에 적용. 추상 개념 정의 후 미술 사례로 전개.
+<보기>: 추가 자료 — 19세기 후반 한 화가의 비평. 지문의 변증법 틀로 분석해야 함.
+문제: "<보기>를 바탕으로 윗글을 이해한 내용으로 가장 적절하지 않은 것은?"
+보기: 5개, 모두 변증법 개념(즉자/대자/지양/모순)을 사용하지만 1개만 <보기>의 화가 사례와 지문의 헤겔 입장을 모두 정확히 매핑.
+어려운 이유: 헤겔 철학의 핵심 개념 정확 이해 + <보기> 미술사 사례에 역방향 매핑. 정답률 ~33%. 함정 보기는 (a) 변증법 단계 순서 오류, (b) 즉자/대자 혼동, (c) <보기>의 화가가 지문의 어떤 단계에 해당하는지 잘못 식별.`,
+
+          `예시 2 (변별 문학 — <보기> 외재적 비평 형식):
+지문: 정지용 「유리창 1」 (현대시) — "유리에 차고 슬픈 것이 어른거린다 / 열없이 붙어 서서 입김을 흐리우니 / 길들은 양 언 날개를 파다거린다…"
+<보기>: "정지용의 「유리창 1」은 어린 자식을 잃은 아버지의 슬픔을 절제된 어조로 형상화한 작품이다. 화자는 유리창 너머의 풍경에서 죽은 자식의 환영을 본다."
+문제: "<보기>를 참고하여 윗글을 감상한 내용으로 가장 적절하지 않은 것은?"
+보기: 5개, "차고 슬픈 것" / "언 날개" / "유리" / "입김" 등 시어를 <보기>의 슬픔·자식·환영 코드로 해석. 1개만 시어를 잘못 매핑.
+어려운 이유: <보기>의 비평 관점을 시 전체에 일관되게 적용해야 함. 함정은 (a) 화자와 시적 자아 혼동, (b) "유리" 상징을 단절 vs 매개로 잘못 해석, (c) 절제된 어조를 강한 감정 분출로 잘못 봄.`,
+        ],
         difficultyMix: { easy: 0.20, medium: 0.55, hard: 0.25 },
         hardItemFraming_en: 'A HARD KSAT Korean item is one of the 변별 문항 — typically a dense 1500-자 nonfiction passage (humanities, philosophy, science) followed by a question that requires synthesizing claims across multiple paragraphs OR mapping the passage to an unfamiliar 보기 (additional context box). The trap distractors are typically (1) supported by a single paragraph but contradicted by the passage as a whole, (2) inverted by a 그러나/다만/오히려 connective the student missed, (3) lexically near a paragraph but semantically opposite. The hardest items pair the passage with a 보기 box and ask the student to apply the passage\'s framework to a NEW situation — pure paraphrase doesn\'t work.',
         hardItemFraming_ko: '어려운 수능 국어 문항은 변별 문항 — 보통 1500자 비문학 지문(인문·철학·과학) 뒤에 여러 문단의 주장을 종합하거나, 낯선 보기에 지문을 매핑하는 문제. 함정 오답은 (1) 한 문단은 지지하지만 전체와 모순, (2) 학생이 놓친 그러나/다만/오히려 접속어로 뒤집힘, (3) 어휘는 한 문단과 가깝지만 의미는 반대. 최고난도 문항은 지문 + 보기 박스를 짝지어 지문의 틀을 새로운 상황에 적용하게 함 — 단순 패러프레이즈로는 풀리지 않음.',
@@ -162,6 +222,22 @@ Why hard: requires completing the square to find center is (3, -4) — students 
         patterns_ko: '공통 22문항 + 선택과목 8문항(미적분 / 확률과 통계 / 기하). 1-21번은 객관식, 22-30번은 단답형(1-999 정수). 난이도가 가파르게 상승 — 28-30번(특히 21·29·30번)은 1등급/2등급 변별용 킬러 문항. 영역: 함수, 수열, 지수·로그, 삼각함수, 미분, 적분, 확률, 벡터, 이차곡선.',
         distractorPatterns_en: 'Wrong answers reflect: (1) sign / domain errors in trig and log questions, (2) confusing 정의역 (domain) with 치역 (range), (3) forgetting to check 등호 (equality) in inequality systems, (4) using a special-case value (e.g. 0 or 1) for what should be general, (5) for killer items: an answer that\'s correct for a similar problem in the past 6 months\' 모의고사 but not THIS problem.',
         distractorPatterns_ko: '오답 패턴: (1) 삼각·로그 문제의 부호/정의역 오류, (2) 정의역과 치역 혼동, (3) 부등식에서 등호 확인 누락, (4) 일반화해야 하는데 특수값(0 또는 1) 대입, (5) 킬러 문항: 최근 6개월 모의고사에서 비슷한 문제의 정답이지만 이 문제의 정답은 아님.',
+        hardItemFraming_en: 'A HARD KSAT 수학 item is one of the killer items: 22번 (common-section 단답형 finale), 29-30번 (selected-subject 단답형 finale), or 14/15/20/21번 (객관식 high-difficulty). Typical structure: multi-piecewise function with unknown coefficients determined by multiple simultaneous conditions (continuity + differentiability + extrema + intersections). Solving requires drawing the graph shape, case-splitting on absolute values into 4-8 cases, then verifying each case against all conditions. Solution time: 15-25 min per item. Pass rate: 5-15%.',
+        hardItemFraming_ko: '어려운 KSAT 수학 = 킬러 문항: 22번(공통 단답형 마지막), 29-30번(선택 단답형 마지막), 14/15/20/21번(객관식 고난도). 전형 구조: 다항·삼각함수의 미정계수를 여러 동시 조건(연속·미분가능·극값·교점)으로 결정. 풀이: 그래프 개형 그리기 + 절댓값 케이스 분할 4-8개 + 각 케이스 모든 조건 검증. 풀이 시간 15-25분. 정답률 5-15%.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (단답형 KILLER style, 2024 KSAT 수학 22번 pattern):
+Prompt: "삼차함수 f(x)와 실수 t에 대하여 함수 g(t) = ∫₀ᵗ f(x)|f(x) − k|dx 가 t = α에서 극값을 가지고, f(α) = 0을 만족시킨다. f(x) = x³ + ax² + bx (a, b는 상수)일 때, 조건을 만족시키는 모든 k의 값의 합을 구하시오."
+Format: 단답형 (numeric answer 1-999), no multiple choice.
+Correct: (varies by specific f and conditions; example answer would be a specific integer like 36)
+Why hard: |f(x) − k| absolute value splits k-cases into 4-6 sub-cases for g(t) shape. Each sub-case requires: (a) finding where f(x) − k = 0 inside [0,t], (b) splitting the integral accordingly, (c) computing g'(t) for the extremum condition, (d) verifying f(α) = 0 constraint. Differentiability + extremum + integration combined.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (단답형 킬러 형식, 2024학년도 수능 수학 22번 패턴):
+문제: "삼차함수 f(x)와 실수 t에 대하여 함수 g(t) = ∫₀ᵗ f(x)|f(x) − k|dx 가 t = α에서 극값을 가지고, f(α) = 0을 만족시킨다. f(x) = x³ + ax² + bx (a, b는 상수)일 때, 조건을 만족시키는 모든 k의 값의 합을 구하시오."
+형식: 단답형 (자연수 1-999), 객관식 없음.
+정답: (특정 f와 조건에 따라 다름; 예시 답은 36 같은 특정 정수)
+어려운 이유: |f(x) − k| 절댓값으로 k 값에 따라 g(t) 개형이 4-6 케이스. 각 케이스마다 (a) [0,t]에서 f(x) − k = 0인 점 찾기, (b) 적분 분할, (c) 극값 조건으로 g'(t) 계산, (d) f(α) = 0 검증. 미분가능성+극값+적분 결합.`,
+        ],
       },
       {
         name_en: 'English (영어)',
@@ -173,6 +249,73 @@ Why hard: requires completing the square to find center is (3, -4) — students 
         patterns_ko: '듣기(17문항, 약 25분) + 읽기(28문항, 약 45분). 읽기는 절대평가 — raw score 90+ = 1등급. 문항 유형: 목적, 심경, 주제, 제목, 어법, 어휘, 빈칸 추론(최고난도), 흐름과 관계없는 문장, 글의 순서, 문장 삽입, 요약문 완성, 장문 독해(1지문 3문항).',
         distractorPatterns_en: 'For 빈칸 추론 specifically (the section\'s hardest item type): wrong answers should be (1) lexically related but logically opposed to the passage\'s argument, (2) restate a counter-argument the passage rejects, (3) match the topic word but miss the passage\'s specific stance, (4) match the immediately-preceding sentence but contradict the passage as a whole.',
         distractorPatterns_ko: '특히 빈칸 추론(영어 영역 최고난도): 오답은 (1) 어휘는 관련 있으나 논지에 반대, (2) 지문이 반박하는 반대 논거의 재진술, (3) 주제어는 일치하나 지문의 특정 입장과 다름, (4) 직전 문장과는 일치하나 전체 글과 모순.',
+        hardItemFraming_en: 'A HARD KSAT 영어 item is a 빈칸 추론 (blank-inference) question, items 31-34. Format: ~150-180 word academic passage (cognitive psychology, sociology, philosophy of science) with the blank in the position of the passage\'s core thesis. All 5 choices are plausible abstract noun phrases that cannot be eliminated by keyword matching. The correct answer is a PARAPHRASE of the passage\'s overall argument; wrong answers reuse passage keywords verbatim but invert or narrow the claim.',
+        hardItemFraming_ko: '어려운 KSAT 영어 문항 = 빈칸 추론 31-34번. 형식: ~150-180단어 학술 지문(인지심리·사회학·과학철학) + 글의 핵심 명제 자리에 빈칸. 5개 보기 모두 그럴듯한 추상 명사구로 키워드 매칭 불가. 정답은 지문 전체 논지의 패러프레이즈; 오답은 지문 키워드를 그대로 쓰지만 주장을 뒤집거나 좁힘.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (빈칸 추론 style):
+Passage: "Behavioral economists have long observed that people facing complex decisions rarely engage in the exhaustive cost-benefit analysis that classical theory predicts. Instead, individuals ____. This tendency, far from being irrational, reflects a sophisticated adaptation to limited cognitive resources and time pressure that characterizes most real-world choices."
+Prompt: "다음 빈칸에 들어갈 말로 가장 적절한 것은?"
+Choices: ["become aware of the cognitive biases inherent in their judgments", "rely on mental shortcuts rather than exhaustive analysis", "seek consensus from a diverse range of experts", "replace intuition with statistical reasoning", "memorize patterns from past experiences"]
+Correct: "rely on mental shortcuts rather than exhaustive analysis"
+Why hard: All 5 choices are plausible cognitive-psychology phrases. Choice 1 uses "cognitive biases" — a passage-adjacent term — as a trap. The correct answer "mental shortcuts" never appears verbatim in the passage but is the precise paraphrase of "sophisticated adaptation to limited cognitive resources." Tests whole-passage synthesis vs. keyword matching.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (빈칸 추론 형식):
+지문: "행동경제학자들은 오랫동안 복잡한 결정에 직면한 사람들이 고전 이론이 예측하는 철저한 비용-편익 분석에 거의 참여하지 않음을 관찰해왔다. 대신 개인들은 ____. 이러한 경향은 비합리적이라기보다는 대부분의 실제 선택을 특징짓는 제한된 인지 자원과 시간 압박에 대한 정교한 적응을 반영한다."
+문제: "다음 빈칸에 들어갈 말로 가장 적절한 것은?"
+보기: ["판단에 내재한 인지 편향을 인식한다", "철저한 분석보다 정신적 지름길에 의존한다", "다양한 전문가들의 합의를 구한다", "직관을 통계적 추론으로 대체한다", "과거 경험의 패턴을 기억한다"]
+정답: "철저한 분석보다 정신적 지름길에 의존한다"
+어려운 이유: 5개 보기 모두 그럴듯한 인지심리 표현. 보기 1은 "인지 편향" — 지문 인접 용어 — 함정. 정답 "정신적 지름길"은 지문에 그대로 나오지 않지만 "제한된 인지 자원에 대한 정교한 적응"의 정확한 패러프레이즈. 전체 지문 종합 능력 평가 (키워드 매칭 아님).`,
+        ],
+      },
+      {
+        name_en: 'Korean History (한국사)',
+        name_ko: '한국사',
+        questionsPerSection: 20,
+        minutesPerSection: 30,
+        choiceCount: 5,
+        patterns_en: 'MANDATORY for all KSAT takers. Missing it invalidates the entire KSAT score. 5-choice MC. Absolute grading (9등급, 50점 만점): 40+ raw = 1등급, then 5-point intervals (35→2, 30→3, 25→4, 20→5, 15→6, 10→7, 5→8, <5→9). Distribution: ~10 questions 전근대사 (선사 to 조선후기), ~10 questions 근현대사 (개항기 to 현대). Designed for basic literacy — most students 1등급 with prep.',
+        patterns_ko: '필수 응시 영역. 미응시 시 수능 전체 무효. 5지선다. 절대평가 9등급(50점 만점): 40점 이상 1등급, 이후 5점 간격(35→2, 30→3, 25→4, 20→5, 15→6, 10→7, 5→8, 5점 미만→9). 분포: 전근대사 10문항(선사~조선후기) + 근현대사 10문항(개항기~현대). 기본 소양 확인 목적 — 대부분 학습으로 1등급.',
+        distractorPatterns_en: 'Wrong answers: (1) confuse adjacent kings/eras (태종 vs 세종 vs 세조 achievements), (2) misorder closely-spaced events (1920s independence movements), (3) attribute a policy to the wrong government era (이승만/박정희/전두환), (4) artifact-era misidentification (빗살무늬토기 vs 민무늬토기).',
+        distractorPatterns_ko: '오답: (1) 인접 왕대(태종/세종/세조) 업적 혼동, (2) 가까운 시기 사건 순서 오류(1920년대 독립운동), (3) 정책을 잘못된 정부 시기에 귀속(이승만/박정희/전두환), (4) 유물 시대 식별 오류(빗살무늬토기 vs 민무늬토기).',
+        hardItemFraming_en: 'Hardest items present an unfamiliar primary-source 사료 quote and require identifying the era, ruler, or related event. Most are stem + 5-choice. Some use 연표 활용 (timeline placement) or 순서 배열 (chronological ordering) of 4 events.',
+        hardItemFraming_ko: '최고난도 문항은 낯선 1차 사료 인용을 제시하고 시대·왕·관련 사건을 식별하게 함. 대부분 발문+5지. 일부는 연표 위치 또는 4개 사건 순서 배열.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (representative pattern, 사건 순서 배열):
+Prompt: "다음 (가)~(라)를 일어난 순서대로 옳게 나열한 것은?  (가) 6·10 만세운동  (나) 광주학생항일운동  (다) 신간회 창립  (라) 물산장려운동"
+Choices: ["① (가)-(나)-(다)-(라)", "② (라)-(가)-(다)-(나)", "③ (다)-(라)-(가)-(나)", "④ (라)-(다)-(가)-(나)", "⑤ (가)-(다)-(라)-(나)"]
+Correct: "② (라)-(가)-(다)-(나)"
+Why hard: 4 events all in 1920s within 2-3 years of each other. 물산장려운동(1920) → 6·10 만세(1926) → 신간회(1927) → 광주학생(1929). Order of 6·10 and 신간회 commonly confused.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (사건 순서 배열):
+문제: "다음 (가)~(라)를 일어난 순서대로 옳게 나열한 것은?  (가) 6·10 만세운동  (나) 광주학생항일운동  (다) 신간회 창립  (라) 물산장려운동"
+보기: ["① (가)-(나)-(다)-(라)", "② (라)-(가)-(다)-(나)", "③ (다)-(라)-(가)-(나)", "④ (라)-(다)-(가)-(나)", "⑤ (가)-(다)-(라)-(나)"]
+정답: "② (라)-(가)-(다)-(나)"
+어려운 이유: 1920년대 4개 사건이 2-3년 간격. 물산장려운동(1920) → 6·10 만세(1926) → 신간회(1927) → 광주학생(1929). 6·10과 신간회 순서 자주 혼동.`,
+        ],
+      },
+      {
+        name_en: 'Social Studies (사회탐구)',
+        name_ko: '사회탐구',
+        questionsPerSection: 20,
+        minutesPerSection: 30,
+        choiceCount: 5,
+        patterns_en: 'One subject per session from 9 social-studies subjects (생활과 윤리, 윤리와 사상, 한국지리, 세계지리, 동아시아사, 세계사, 경제, 정치와 법, 사회·문화). Most popular: 생활과 윤리, 사회·문화. 20q / 30min / 5-choice. Relative grading 9등급, 50점 만점. <보기> 박스 ㄱㄴㄷ 합답형 빈출. Question types: 사상가 입장 비교(갑·을·병), 표·그래프 분석, 지도(지리), 법조문 사례 적용.',
+        patterns_ko: '9개 사회탐구 과목(생활과 윤리, 윤리와 사상, 한국지리, 세계지리, 동아시아사, 세계사, 경제, 정치와 법, 사회·문화) 중 한 과목. 응시자 최다: 생활과 윤리, 사회·문화. 20문항/30분/5지. 상대평가 9등급, 50점 만점. <보기> 박스 ㄱㄴㄷ 합답형 빈출. 문항 유형: 사상가 입장 비교(갑·을·병), 표·그래프 분석, 지도(지리), 법조문 사례 적용.',
+        distractorPatterns_en: 'For 사상가 비교: 3 philosophers presented; distractors mix up which view belongs to which (Kant vs. utilitarianism vs. virtue ethics; Singer vs. Regan vs. Taylor vs. Leopold for environmental ethics). For 사회·문화 표: distractors confuse relative vs. absolute frequency, intra- vs. inter-generational mobility, vertical vs. horizontal.',
+        distractorPatterns_ko: '사상가 비교: 3명의 사상가 제시; 함정은 어느 입장이 누구의 것인지 혼동(칸트 vs 공리주의 vs 덕윤리; 환경윤리 — 싱어 vs 레건 vs 테일러 vs 레오폴드). 사회·문화 표: 함정은 상대/절대 빈도 혼동, 세대 간/내 이동성, 수직/수평 혼동.',
+      },
+      {
+        name_en: 'Science Subjects (과학탐구)',
+        name_ko: '과학탐구',
+        questionsPerSection: 20,
+        minutesPerSection: 30,
+        choiceCount: 5,
+        patterns_en: 'One subject per session from 8 science subjects (물리학I, 화학I, 생명과학I, 지구과학I + the II-level versions). Most popular: 생명과학I, 지구과학I. 20q / 30min / 5-choice. Relative grading 9등급, 50점 만점. ㄱㄴㄷ 합답형 standard format. Distinctive killer items: 생명과학I 가계도 (genetics pedigree), 화학I 양적관계 (stoichiometric mass tracking), 물리학I 역학 (mechanics with friction/pulleys), 지구과학I 천체 자료.',
+        patterns_ko: '8개 과학탐구 과목(물리학I, 화학I, 생명과학I, 지구과학I + II 수준) 중 한 과목. 응시자 최다: 생명과학I, 지구과학I. 20문항/30분/5지. 상대평가 9등급, 50점 만점. ㄱㄴㄷ 합답형 표준. 변별 킬러: 생명과학I 가계도, 화학I 양적관계, 물리학I 역학(마찰·도르래), 지구과학I 천체 자료.',
+        distractorPatterns_en: 'For 생명과학I 유전: incomplete pedigree → infer unstated genotype → calculate offspring probability. Each step error invalidates ㄱㄴㄷ判定. For 화학I 양적관계: changing limiting reagent across multi-step reaction. For 물리학I 역학: sign of velocity/acceleration in graph analysis.',
+        distractorPatterns_ko: '생명과학I 유전: 불완전 가계도 → 미지 유전자형 추론 → 자손 확률 계산. 각 단계 오류 시 ㄱㄴㄷ 판정 동시 흔들림. 화학I 양적관계: 다단계 반응의 한계반응물 변경. 물리학I 역학: 그래프에서 속도/가속도 부호.',
       },
     ],
   },
@@ -190,8 +333,26 @@ Why hard: requires completing the square to find center is (3, -4) — students 
         choiceCount: 4,
         patterns_en: 'Two academic passages (~700 words each), 10 questions each. Question types: factual information, negative factual (NOT/EXCEPT), vocabulary in context, reference (what does "this" refer to), sentence simplification (a longer sentence in [] — pick the shortest equivalent), inference, rhetorical purpose, insert sentence (where does this sentence best fit, marked by [A] [B] [C] [D]), and a final 2-point summary question.',
         patterns_ko: '학술 지문 2개(각 약 700단어), 각 10문항. 문항 유형: 사실 정보, 부정 사실(NOT/EXCEPT), 문맥 어휘, 지시어(this가 가리키는 것), 문장 단순화([] 안 긴 문장의 최단 동의문 선택), 추론, 수사적 목적, 문장 삽입([A][B][C][D] 표시 위치), 마지막 2점 요약 문항.',
-        distractorPatterns_en: 'Wrong answers: (1) information from a different paragraph, (2) restated using a synonym but with a key qualifier omitted, (3) plausibly true but never stated in the passage, (4) for sentence simplification: leaves out an essential clause or changes the relationship between ideas.',
-        distractorPatterns_ko: '오답: (1) 다른 문단의 정보, (2) 동의어로 바꿨지만 핵심 한정사가 빠짐, (3) 그럴듯하지만 지문에 명시되지 않음, (4) 문장 단순화의 경우: 핵심 절을 빠뜨리거나 아이디어 간 관계를 바꿈.',
+        distractorPatterns_en: 'Wrong answers: (1) information from a different paragraph, (2) restated using a synonym but with a key qualifier omitted, (3) plausibly true but never stated in the passage, (4) for sentence simplification: leaves out an essential clause or changes the relationship between ideas, (5) for prose summary: minor details from a single paragraph instead of major themes.',
+        distractorPatterns_ko: '오답: (1) 다른 문단의 정보, (2) 동의어로 바꿨지만 핵심 한정사가 빠짐, (3) 그럴듯하지만 지문에 명시되지 않음, (4) 문장 단순화의 경우: 핵심 절을 빠뜨리거나 아이디어 간 관계를 바꿈, (5) 산문 요약의 경우: 주제가 아니라 한 문단의 부수 정보.',
+        hardItemFraming_en: 'A HARD TOEFL Reading item is: (a) an INFERENCE question where the correct answer requires connecting two distant sentences AND none of the choices is a direct restatement; (b) a NEGATIVE FACTUAL (NOT/EXCEPT) item where 3 choices are paraphrases of separate passage statements and the wrong choice is the never-mentioned one; (c) a SENTENCE SIMPLIFICATION where a wrong choice drops a critical qualifier ("some," "in part," "in certain conditions"); (d) a PROSE SUMMARY where two of the six choices are tempting true-but-minor details. AVOID: bare factual questions that can be solved by keyword matching.',
+        hardItemFraming_ko: '어려운 TOEFL Reading 문항: (a) 추론 — 정답이 두 개의 떨어진 문장을 연결해야 하고, 보기 중 어느 것도 직접 재진술이 아님; (b) 부정 사실(NOT/EXCEPT) — 3개 보기는 별개 문장의 패러프레이즈, 오답이 언급되지 않은 것; (c) 문장 단순화 — 오답이 핵심 한정사("일부", "부분적으로")를 빠뜨림; (d) 산문 요약 — 6개 보기 중 2개가 그럴듯한 부수 정보. 피할 것: 키워드 매칭으로 풀리는 단순 사실 문항.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (verified hard, ETS official meteorite passage):
+Passage: "By 1990 geologists had located the impact site of a meteorite that struck Earth approximately 65 million years ago — a 200-km crater in Mexico's Yucatán region. The first evidence had come a decade earlier from a worldwide sediment layer enriched in iridium and other rare elements, deposited when dust from the impact settled globally."
+Prompt: "According to the paragraph, how did scientists determine that a large meteorite had impacted Earth?"
+Choices: ["They discovered a large crater in the Yucatán region of Mexico.", "They found a unique layer of sediment worldwide.", "They were alerted by archaeologists who had been excavating in the Yucatán region.", "They located a meteorite with a mass of over a trillion tons."]
+Correct: "They found a unique layer of sediment worldwide."
+Why hard: Choice 1 is the textbook trap — the crater discovery did happen, but later (1990). The question asks how scientists INITIALLY determined an impact — that was the 1980 iridium-sediment layer. Tests reading-for-sequence, not keyword matching.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (검증된 어려움, ETS 공식 운석 지문):
+지문: "1990년까지 지질학자들은 약 6500만 년 전 지구에 충돌한 운석의 충돌 지점을 찾아냈다 — 멕시코 유카탄 반도의 200km 크레이터. 첫 증거는 10년 전 전 세계 퇴적층에서 이리듐과 기타 희유 원소가 풍부한 것으로 나타났는데, 이는 충돌의 먼지가 전 지구에 침전된 결과였다."
+문제: "단락에 따르면, 과학자들은 어떻게 큰 운석이 지구에 충돌했음을 판단했는가?"
+보기: ["유카탄 반도의 큰 크레이터를 발견했다.", "전 세계적으로 독특한 퇴적층을 발견했다.", "유카탄에서 발굴 중이던 고고학자들의 알림을 받았다.", "1조 톤 이상의 운석을 찾았다."]
+정답: "전 세계적으로 독특한 퇴적층을 발견했다."
+어려운 이유: 보기 1은 교과서적 함정 — 크레이터 발견은 실제로 있었지만 더 나중(1990). 문제는 과학자들이 처음에 어떻게 충돌을 판단했는지 — 1980년대 이리듐 퇴적층. 키워드 매칭이 아니라 시간 순서 독해를 평가.`,
+        ],
       },
       {
         name_en: 'Listening',
@@ -240,10 +401,42 @@ Why hard: requires completing the square to find center is (3, -4) — students 
         questionsPerSection: 40,
         minutesPerSection: 60,
         choiceCount: 4,
-        patterns_en: 'Three long academic passages (700-1000 words), 13-14 questions each. Question types: multiple choice, True/False/Not Given, Yes/No/Not Given, matching headings to paragraphs, matching information, sentence completion, summary completion, short answer (no more than three words). Difficulty escalates passage 1 → 3.',
-        patterns_ko: '학술 지문 3개(700-1000단어), 각 13-14문항. 문항 유형: 객관식, True/False/Not Given, Yes/No/Not Given, 단락에 제목 매칭, 정보 매칭, 문장 완성, 요약 완성, 단답(3단어 이하). 지문 1→3으로 난이도 상승.',
-        distractorPatterns_en: 'For T/F/NG specifically: "Not Given" is the most-missed — students confuse "the passage doesn\'t mention this" with "the passage implies the opposite." Wrong answers should test this confusion. For matching headings: distractor headings should overlap with one of the paragraph\'s sub-ideas but miss the main point.',
-        distractorPatterns_ko: 'T/F/NG에서 특히 "Not Given"이 가장 많이 틀림 — 학생들은 "지문에 언급 없음"과 "지문이 반대를 암시"를 혼동. 오답은 이 혼동을 시험해야 함. 제목 매칭의 경우: 함정 제목은 단락의 부분 아이디어와 겹치지만 주제는 놓침.',
+        patterns_en: 'Three academic passages (~700-900 words each; ielts.org confirms total = 2150-2750 words across all 3), 13-14 questions each (40 total). 11 official question types: MC, True/False/Not Given, Yes/No/Not Given, matching headings to paragraphs, matching information, matching features, matching sentence endings, sentence completion, summary/note/table/flow-chart completion, diagram label completion, short-answer (NO MORE THAN TWO/THREE WORDS from the passage). Difficulty escalates passage 1 → 3. Typical (not official) distribution: Passage 1 = T/F/NG + sentence completion + short answer; Passage 2 = matching info/features + summary completion + MC; Passage 3 = matching headings + Y/N/NG + MC.',
+        patterns_ko: '학술 지문 3개(각 약 700-900단어; ielts.org 공식 총합 2150-2750단어), 각 13-14문항(총 40). 공식 11개 문항 유형: 객관식, True/False/Not Given, Yes/No/Not Given, 단락에 제목 매칭, 정보 매칭, 특징 매칭, 문장 끝 매칭, 문장 완성, 요약/노트/표/순서도 완성, 도해 라벨, 단답(지문에서 2/3단어 이하). 지문 1→3 난이도 상승. 통상적(공식 아님) 분포: 지문 1 = T/F/NG + 문장 완성 + 단답; 지문 2 = 정보·특징 매칭 + 요약 완성 + 객관식; 지문 3 = 제목 매칭 + Y/N/NG + 객관식.',
+        distractorPatterns_en: 'For T/F/NG specifically: "Not Given" is the most-missed — Not Given = passage simply DOESN\'T ADDRESS the claim (may use overlapping vocabulary, may discuss the topic). False = passage EXPLICITLY CONTRADICTS the statement. Most common trap: test-taker sees related vocabulary and assumes True, or assumes Not Given when passage actually contradicts via paraphrase. For Y/N/NG: tests opinion vs. fact — passage may cite an opposing view the writer disagrees with (statement about that view = NO, not YES). For matching headings: distractor headings overlap with one of the paragraph\'s sub-ideas but miss the main point.',
+        distractorPatterns_ko: 'T/F/NG에서 "Not Given" = 지문이 해당 주장을 다루지 않음(겹치는 어휘를 쓰거나 주제는 다룰 수 있음). False = 지문이 명시적으로 모순. 가장 흔한 함정: 관련 어휘를 보고 True로 착각, 또는 지문이 패러프레이즈로 모순하는데 Not Given으로 착각. Y/N/NG: 의견과 사실 구분 — 지문이 작가가 반대하는 입장을 인용할 때 그 입장에 대한 진술 = NO(YES 아님). 제목 매칭: 함정 제목은 부수 아이디어와 겹치지만 주제는 놓침.',
+        hardItemFraming_en: 'A HARD IELTS Reading item is: (a) a Y/N/NG item where the writer cites another viewpoint and the test-taker must distinguish the writer\'s view from the quoted view; (b) a Matching Headings item where two headings closely paraphrase the same paragraph but only one captures the full scope; (c) a T/F/NG item where the passage discusses the topic at length with overlapping vocabulary but never states the specific claim (answer: Not Given); (d) Summary completion where the required word is a paraphrase of a passage idea but the answer must come from passage VERBATIM (word-limit violations score zero).',
+        hardItemFraming_ko: '어려운 IELTS Reading 문항: (a) Y/N/NG — 작가가 다른 입장을 인용한 경우 작가의 견해와 인용된 견해 구분; (b) 제목 매칭 — 두 제목이 같은 단락을 비슷하게 패러프레이즈하지만 한 개만 전체 범위 포착; (c) T/F/NG — 지문이 주제를 길게 다루고 겹치는 어휘 사용하지만 특정 주장을 명시 안 함(답: Not Given); (d) 요약 완성 — 답이 지문 아이디어의 패러프레이즈여야 하지만 지문 단어 그대로 사용(단어 제한 위반 시 0점).',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (verified hard, Cambridge IELTS 16, Reading Test 2, "The White Horse of Uffington"):
+Passage excerpt: "The figures include giants, horses, crosses and regimental badges. The Uffington White Horse, the oldest of these chalk figures, has been recut several times over the centuries to maintain its outline."
+Statement (Q2): "There are more geoglyphs in the shape of a horse than any other shape."
+Choices: ["TRUE", "FALSE", "NOT GIVEN"]
+Correct: "NOT GIVEN"
+Why hard: The passage lists horses AS ONE OF the geoglyph shapes but never states whether horses are the most common shape. Tempting to mark FALSE (because other shapes are listed) or TRUE (because horses are mentioned and discussed in detail later). Correct: passage simply doesn't address relative frequency.`,
+
+          `EXAMPLE 2 (verified hard, Cambridge IELTS 16, Reading, Wolbachia passage):
+Passage excerpt: "Researchers in Australia have released mosquitoes infected with the Wolbachia bacterium in an attempt to halt the spread of dengue fever. The bacterium shortens the mosquitoes' lifespan and blocks viral replication..."
+Statement (Q25): "The release of mosquitoes infected with Wolbachia has successfully stopped the spread of dengue fever."
+Choices: ["TRUE", "FALSE", "NOT GIVEN"]
+Correct: "NOT GIVEN"
+Why hard: The passage describes the attempt and the mechanism but never states the OUTCOME. Test-takers see Wolbachia + dengue + lifespan-shortening and infer success. Classic "passage discusses the topic at length but doesn't state the specific claim" trap.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (검증된 어려움, Cambridge IELTS 16 Reading Test 2, 우핑턴 백마):
+지문 발췌: "이 도형들에는 거인, 말, 십자가, 연대 휘장이 포함된다. 가장 오래된 분필 도형인 우핑턴 백마는 윤곽을 유지하기 위해 수세기에 걸쳐 여러 번 다시 새겨졌다."
+진술(Q2): "말 모양의 지오글리프가 다른 모양보다 더 많다."
+보기: ["TRUE", "FALSE", "NOT GIVEN"]
+정답: "NOT GIVEN"
+어려운 이유: 지문은 말을 지오글리프 모양 중 하나로 나열하지만, 말이 가장 흔한지 명시하지 않음. FALSE(다른 모양도 나열되어서) 또는 TRUE(말이 언급되고 상세히 다뤄져서)로 착각. 실제로는 상대 빈도를 다루지 않음.`,
+
+          `예시 2 (검증된 어려움, Cambridge IELTS 16 Reading, 볼바키아 지문):
+지문 발췌: "호주 연구자들은 뎅기열 확산을 막기 위해 볼바키아 박테리아에 감염된 모기를 방류했다. 이 박테리아는 모기의 수명을 단축시키고 바이러스 복제를 차단한다..."
+진술(Q25): "볼바키아 감염 모기 방류가 뎅기열 확산을 성공적으로 막았다."
+보기: ["TRUE", "FALSE", "NOT GIVEN"]
+정답: "NOT GIVEN"
+어려운 이유: 지문은 시도와 메커니즘을 설명하지만 결과는 명시 안 함. 볼바키아 + 뎅기 + 수명 단축을 보고 성공으로 추론. "지문이 주제를 길게 다루지만 특정 주장을 명시 안 함" 전형 함정.`,
+        ],
       },
       {
         name_en: 'Listening',
@@ -290,53 +483,105 @@ Why hard: requires completing the square to find center is (3, -4) — students 
   },
 
   act: {
-    display: 'ACT',
-    framing_en: 'ACT, Inc.\'s alternative to the SAT for US college admissions. Four required sections + optional Writing essay. Score 1-36 (composite is average of four section scores).',
-    framing_ko: 'ACT, Inc.의 미국 대학입학시험 — SAT의 대안. 필수 4영역 + 선택 작문. 점수 1-36(종합은 4개 영역 평균).',
+    display: 'Enhanced ACT',
+    framing_en: 'ACT, Inc.\'s alternative to the SAT. The "Enhanced ACT" (rolled out nationally Sept 2025, all forms by spring 2026) replaces the legacy ACT: shorter sections, Math drops to 4 choices (was 5), Science is now OPTIONAL and excluded from the 1-36 composite (composite = average of English + Math + Reading only).',
+    framing_ko: 'ACT, Inc.의 미국 대학입학시험 — SAT의 대안. "Enhanced ACT" (2025년 9월 전국 도입, 2026년 봄 모든 시험지 적용)가 기존 ACT를 대체: 더 짧은 영역, 수학은 5지에서 4지로 변경, 과학은 선택 영역이 되고 종합 점수(1-36)에서 제외(종합 = 영어 + 수학 + 읽기 평균).',
     sections: [
       {
         name_en: 'English',
         name_ko: '영어',
-        questionsPerSection: 75,
-        minutesPerSection: 45,
+        questionsPerSection: 50,
+        minutesPerSection: 35,
         choiceCount: 4,
-        patterns_en: 'Five passages with underlined portions; pick the best revision or "NO CHANGE." Tests usage/mechanics (punctuation, grammar, sentence structure — ~52%) and rhetorical skills (strategy, organization, style — ~48%).',
-        patterns_ko: '5개 지문에 밑줄 친 부분 — 가장 나은 수정 또는 "NO CHANGE" 선택. 어법·구조(구두점·문법·문장 구조 — ~52%)와 수사 기술(전략·구성·문체 — ~48%) 평가.',
-        distractorPatterns_en: 'Three wrong revisions per question — typically (1) over-corrects with formality/length that doesn\'t fit context, (2) introduces a new error while fixing the original one, (3) "NO CHANGE" when something is actually wrong.',
-        distractorPatterns_ko: '문항당 3개 함정 수정 — 보통 (1) 맥락에 맞지 않게 과도하게 격식화/길게 수정, (2) 원 오류를 고치며 새 오류 도입, (3) 실제로는 오류가 있는데 "NO CHANGE".',
+        patterns_en: 'Enhanced ACT: 50 questions / 35 min (legacy was 75/45). Five passages with underlined portions; pick the best revision or "NO CHANGE" (first option, A or F). Reporting categories: Conventions of Standard English ~52-55% (~27 of 50), Production of Writing ~29-32% (~16), Knowledge of Language ~15-17% (~7). Stem convention: edit-in-place items have implicit "[underlined portion]" — choices are alternative wordings. Some numbered rhetorical items use explicit stems ("Which choice provides the most effective transition?", "The writer wants to add the following sentence... Should the writer make this addition?").',
+        patterns_ko: 'Enhanced ACT: 50문항 / 35분 (기존 75/45). 5개 지문에 밑줄 친 부분 — 가장 나은 수정 또는 "NO CHANGE"(첫 보기 A 또는 F). 보고 분류: Conventions of Standard English ~52-55%(약 27/50), Production of Writing ~29-32%(약 16), Knowledge of Language ~15-17%(약 7). 출제 형식: 밑줄형 — 보기는 대안 표현. 수사적 문항은 명시적 발문("어떤 선택지가 가장 효과적인 전환인가?", "작가가 다음 문장을 추가하려 한다. 추가해야 하는가?").',
+        distractorPatterns_en: 'Three wrong revisions per question — typically (1) over-corrects with formality/length that doesn\'t fit context, (2) introduces a new error while fixing the original one, (3) "NO CHANGE" when something is actually wrong, (4) ACT consistently prefers the most concise grammatically-correct option — verbose-but-fine choices are usually wrong.',
+        distractorPatterns_ko: '문항당 3개 함정 수정 — 보통 (1) 맥락에 맞지 않게 과도하게 격식화/길게 수정, (2) 원 오류를 고치며 새 오류 도입, (3) 실제로는 오류가 있는데 "NO CHANGE", (4) ACT는 문법적으로 옳은 가장 간결한 선택지를 선호 — 장황한 표현은 보통 오답.',
+        hardItemFraming_en: 'Hard ACT English items: (a) "Which is LEAST acceptable" / "NOT acceptable" — student must verify 3 correct options instead of 1. (b) Comma placement where multiple options are grammatical but only one matches the intended meaning (restrictive vs. non-restrictive clause). (c) Whole-essay goal questions at the end of each passage — require remembering passage purpose, not just the last paragraph.',
+        hardItemFraming_ko: '어려운 ACT 영어: (a) "LEAST acceptable"/"NOT acceptable" — 1개 오답 대신 3개 정답 확인 필요. (b) 쉼표 위치 — 여러 보기가 문법적이지만 의도된 의미에 맞는 것은 하나(제한적 vs 비제한적 절). (c) 전체 글 목표 문항 — 마지막 단락이 아닌 글 전체 목적 기억 필요.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (verified hard, subject-verb agreement with long prepositional phrase):
+Passage: "The committee, after considering proposals from three architectural firms over the course of six months, [were unable] to reach a consensus."
+Prompt: "Best alternative to the underlined portion:"
+Choices: ["NO CHANGE", "have been unable", "was unable", "are unable"]
+Correct: "was unable"
+Why hard: Long intervening prepositional phrase obscures that "committee" is singular collective. Three of four options use plural verbs. Students default to NO CHANGE when sentence sounds fine.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (검증된 어려움, 긴 전치사구로 가려진 주어-동사 일치):
+지문: "The committee, after considering proposals from three architectural firms over the course of six months, [were unable] to reach a consensus."
+문제: "밑줄 친 부분에 가장 적절한 대안은?"
+보기: ["NO CHANGE", "have been unable", "was unable", "are unable"]
+정답: "was unable"
+어려운 이유: 긴 전치사구가 "committee"가 단수 집합명사임을 가림. 4개 중 3개가 복수 동사. 문장이 자연스러우면 NO CHANGE를 선택하는 경향.`,
+        ],
       },
       {
         name_en: 'Math',
         name_ko: '수학',
-        questionsPerSection: 60,
-        minutesPerSection: 60,
-        choiceCount: 5,
-        patterns_en: '5-choice MC (the only ACT section with 5 choices). Coverage: pre-algebra (~23%), elementary algebra (~17%), intermediate algebra (~15%), coordinate geometry (~15%), plane geometry (~23%), trigonometry (~7%). Calculator permitted but most are doable without one.',
-        patterns_ko: '5지선다(ACT에서 유일하게 5지). 범위: pre-algebra (~23%), elementary algebra (~17%), intermediate algebra (~15%), 좌표기하 (~15%), 평면기하 (~23%), 삼각법 (~7%). 계산기 허용이지만 대부분 없이도 풀 수 있음.',
-        distractorPatterns_en: 'Like SAT Math distractors but with one extra slot — make the 5th choice an "I forgot the formula entirely" value to catch the bottom half. Otherwise (1) sign-flip, (2) used wrong formula from same topic, (3) computed an intermediate step, (4) off-by-one.',
-        distractorPatterns_ko: 'SAT 수학 함정과 비슷하지만 한 슬롯 추가 — 5번째 보기는 하위권을 잡기 위한 "공식 완전히 잊음" 값. 나머지 (1) 부호 반전, (2) 같은 주제의 잘못된 공식 사용, (3) 중간 단계 값 계산, (4) 1 차이.',
+        questionsPerSection: 45,
+        minutesPerSection: 50,
+        choiceCount: 4,
+        patterns_en: 'Enhanced ACT: 45 questions / 50 min / 4-choice (legacy was 60/60/5-choice). Math now aligned with SAT/general MC convention. Calculator allowed throughout (approved scientific or graphing). No reference sheet — students must know formulas. Coverage groupings: Preparing for Higher Math (~57-60%) split into Number & Quantity (10-12%), Algebra (17-20%), Functions (17-20%), Geometry (17-20%), Statistics & Probability (12-15%); plus Integrating Essential Skills (~40-43%, overlapping items measuring grade 8+ applied reasoning); plus Modeling reporting overlay (27-34%).',
+        patterns_ko: 'Enhanced ACT: 45문항 / 50분 / 4지선다 (기존 60/60/5지). 수학도 이제 SAT/일반 MC 규약과 일치. 계산기 사용 가능. 공식 시트 없음 — 학생이 모두 외워야 함. 출제 영역: Preparing for Higher Math(~57-60%) = 수와 양(10-12%) + 대수(17-20%) + 함수(17-20%) + 기하(17-20%) + 통계·확률(12-15%); Integrating Essential Skills(~40-43%, 응용 추론); Modeling 보고용 중첩 분류(27-34%).',
+        distractorPatterns_en: 'Distractors encode: (1) sign-flip, (2) wrong formula from same topic, (3) computed an intermediate step instead of the final answer, (4) off-by-one. With 4 choices (not 5), trap-density is higher per slot — each distractor must be deliberate.',
+        distractorPatterns_ko: '함정 패턴: (1) 부호 반전, (2) 같은 주제의 잘못된 공식 사용, (3) 중간 단계 값 계산, (4) 1 차이. 4지(5지 아님)이므로 함정 밀도가 높음 — 각 보기 모두 의도적이어야 함.',
+        hardItemFraming_en: 'Hard ACT Math items concentrate in the back of the section. Patterns: (a) Multi-concept items chaining 2-3 topics (trig + similar triangles, logs + exponential growth). (b) Coordinate-geometry items requiring distance formula + slope condition. (c) Items testing logarithms or matrices that most students never review. (d) Word problems with extraneous information that must be ignored.',
+        hardItemFraming_ko: '어려운 ACT 수학은 영역 후반에 집중. 패턴: (a) 다개념 결합(삼각+닮음, 로그+지수 성장), (b) 좌표기하 — 거리 공식+기울기 조건, (c) 로그·행렬 등 학생들이 잘 복습 안 하는 주제, (d) 무관 정보 포함된 서술형.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (verified hard, circle equation with tangent line — 2-step):
+Prompt: "A circle in the standard (x,y) coordinate plane has center (−3, 4) and is tangent to the x-axis. What is the equation of the circle?"
+Choices: ["(x − 3)² + (y + 4)² = 16", "(x + 3)² + (y − 4)² = 9", "(x + 3)² + (y − 4)² = 16", "(x − 3)² + (y + 4)² = 9"]
+Correct: "(x + 3)² + (y − 4)² = 16"
+Why hard: Two conceptual steps: (1) tangent to x-axis means radius = |y-coordinate of center| = 4, so r² = 16 (students often pick r = 3, the |x|). (2) Sign flip in (x − h)² with h = −3 gives (x + 3)². 4 choices test BOTH errors.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (검증된 어려움, 원의 방정식 + 접선):
+문제: "표준 (x,y) 좌표평면에서 중심이 (−3, 4)이고 x축에 접하는 원의 방정식은?"
+보기: ["(x − 3)² + (y + 4)² = 16", "(x + 3)² + (y − 4)² = 9", "(x + 3)² + (y − 4)² = 16", "(x − 3)² + (y + 4)² = 9"]
+정답: "(x + 3)² + (y − 4)² = 16"
+어려운 이유: 2단계 개념: (1) x축에 접 = 반지름 = |y좌표| = 4, 즉 r² = 16 (학생은 r = 3 (|x|) 선택). (2) (x − h)²에서 h = −3은 (x + 3)². 4지가 두 오류 모두 시험.`,
+        ],
       },
       {
         name_en: 'Reading',
         name_ko: '읽기',
-        questionsPerSection: 40,
-        minutesPerSection: 35,
+        questionsPerSection: 36,
+        minutesPerSection: 40,
         choiceCount: 4,
-        patterns_en: 'Four passages (one per genre: prose fiction/literary narrative, social studies, humanities, natural sciences), 10 questions each. Fast pace — 8 min/passage. Questions test main idea, detail, inference, vocabulary in context, comparative reading (for paired passages).',
-        patterns_ko: '4개 지문(장르당 1개: 소설/문학 서사, 사회, 인문, 자연과학), 각 10문항. 빠른 속도 — 지문당 8분. 주제, 세부, 추론, 문맥 어휘, 비교 독해(짝지문) 평가.',
-        distractorPatterns_en: 'ACT Reading distractors: (1) factually correct in the world but unsupported by the passage, (2) supported by an earlier paragraph but contradicted by a later one, (3) restates a character\'s opinion as the author\'s, (4) uses the right detail but to answer the wrong part of a two-part question.',
-        distractorPatterns_ko: 'ACT 읽기 함정: (1) 현실에서는 맞지만 지문 근거 없음, (2) 앞 단락은 지지하나 뒷 단락이 반박, (3) 등장인물의 의견을 작가의 의견으로 진술, (4) 옳은 세부지만 2부 문제의 잘못된 부분에 답.',
+        patterns_en: 'Enhanced ACT: 36 questions / 40 min (legacy was 40/35). Four passages, fixed genre rotation: (1) Literary Narrative/Prose Fiction, (2) Social Science, (3) Humanities, (4) Natural Science. One of the four is a PAIRED set (Passage A + Passage B with cross-passage questions). Reporting categories: Key Ideas & Details ~52-60%, Craft & Structure ~25-30%, Integration of Knowledge & Ideas ~13-18%.',
+        patterns_ko: 'Enhanced ACT: 36문항 / 40분 (기존 40/35). 4개 지문, 고정 장르 순환: (1) 문학·소설, (2) 사회과학, (3) 인문, (4) 자연과학. 4개 중 1개는 짝지문(Passage A + B 교차 문항). 분류: Key Ideas & Details ~52-60%, Craft & Structure ~25-30%, Integration of Knowledge & Ideas ~13-18%.',
+        distractorPatterns_en: 'ACT Reading distractors: (1) factually correct in the world but unsupported by the passage, (2) supported by an earlier paragraph but contradicted by a later pivot, (3) restates a character\'s opinion as the author\'s, (4) for paired-passage cross-text: flips which author holds which view, (5) inference distractors use absolute language ("always," "never") that overstates a hedged claim.',
+        distractorPatterns_ko: 'ACT 읽기 함정: (1) 현실에서는 맞지만 지문 근거 없음, (2) 앞 단락은 지지하나 뒷 단락이 반박, (3) 등장인물의 의견을 작가의 의견으로 진술, (4) 짝지문 교차: 두 작가의 입장을 뒤집음, (5) 추론 함정: "항상", "절대" 같은 절대 표현으로 약한 주장을 과장.',
+        hardItemFraming_en: 'Hard ACT Reading items: (a) Prose fiction passage with subtle INDIRECT characterization — narrator never states feelings, students must infer from action choices. (b) Natural Science paired passage where two scientists agree on facts but disagree on interpretation. (c) "Main purpose of paragraph X" where the paragraph contains the literal answer to multiple choices, but only one captures the paragraph\'s function within the larger argument. (d) Vocabulary items where the word\'s common meaning works but the passage uses a domain-specific sense.',
+        hardItemFraming_ko: '어려운 ACT 읽기: (a) 소설 — 화자가 감정을 명시하지 않고 행동 선택으로 간접 인물 묘사, (b) 자연과학 짝지문에서 두 과학자가 사실에는 동의하나 해석은 다름, (c) "단락 X의 주요 목적" — 단락에 여러 보기의 직접 근거가 있지만 더 큰 논지 내 단락의 기능을 포착하는 것은 하나, (d) 어휘 — 흔한 의미도 통하지만 지문은 분야 특화 의미 사용.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (verified hard, Social Science excerpt — historian-vs-contemporary distinction):
+Passage: "Critics of urban renewal in the 1960s often argued that the policy displaced more low-income families than it housed, but proponents countered that displacement was a transitional cost. More recent historians, working with municipal records the original analysts lacked, have shown the transitional period in many cities lasted not five years, as projected, but closer to two decades."
+Prompt: "The passage indicates that recent historians' assessment of 1960s urban renewal differs from contemporaneous proponents' assessment primarily in:"
+Choices: ["whether displacement occurred at all.", "the duration of the transitional period.", "the number of families housed by the policy.", "the moral justification for the policy."]
+Correct: "the duration of the transitional period."
+Why hard: (A) wrong — both sides agree displacement occurred. (C) is the CRITICS' claim, not the historians'. (D) plausible but not addressed. Only (B) is the precise difference the text identifies ("not five years…but closer to two decades").`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (검증된 어려움, 사회과학 발췌 — 역사가와 동시대 입장 구분):
+지문: "1960년대 도시 재개발 비평가들은 정책이 수용한 저소득 가구보다 더 많이 이주시켰다고 주장했지만, 지지자들은 이주가 과도기적 비용이라고 반박했다. 최근 역사가들은 원래 분석가들이 갖지 못했던 시 기록을 사용해, 많은 도시의 과도기가 예상된 5년이 아니라 거의 20년에 가까웠음을 보였다."
+문제: "글에 따르면, 1960년대 도시 재개발에 대한 최근 역사가들의 평가가 동시대 지지자들과 주로 다른 점은?"
+보기: ["이주가 일어났는지 여부", "과도기의 기간", "정책으로 수용된 가구 수", "정책의 도덕적 정당성"]
+정답: "과도기의 기간"
+어려운 이유: (A) 양쪽 모두 이주 발생에 동의. (C)는 비평가의 주장이지 역사가의 주장 아님. (D) 그럴듯하지만 미언급. (B)만 텍스트가 명시한 정확한 차이("5년이 아니라 20년").`,
+        ],
       },
       {
         name_en: 'Science',
         name_ko: '과학',
         questionsPerSection: 40,
-        minutesPerSection: 35,
+        minutesPerSection: 40,
         choiceCount: 4,
-        patterns_en: 'Seven passages, ~5-7 questions each. Formats: Data Representation (charts, graphs, tables — interpret), Research Summaries (description of experiments — analyze design + results), Conflicting Viewpoints (2-3 hypotheses on the same phenomenon — compare). Tests reasoning, not science knowledge — outside content rarely required.',
-        patterns_ko: '7개 지문, 각 약 5-7문항. 형식: Data Representation(차트·그래프·표 해석), Research Summaries(실험 설명 — 설계·결과 분석), Conflicting Viewpoints(같은 현상에 대한 2-3개 가설 비교). 추론을 평가하지 과학 지식이 아님 — 외부 지식 거의 불필요.',
-        distractorPatterns_en: 'Wrong answers: (1) misreads the chart axis (units, scale), (2) confuses correlation with causation, (3) attributes a finding to the wrong experiment in a multi-experiment passage, (4) for Conflicting Viewpoints: states a position that no scientist in the passage holds.',
-        distractorPatterns_ko: '오답: (1) 차트 축 잘못 읽음(단위·척도), (2) 상관과 인과 혼동, (3) 다중 실험 지문에서 발견을 잘못된 실험에 귀속, (4) Conflicting Viewpoints: 지문의 어떤 과학자도 가지지 않은 입장 진술.',
+        patterns_en: 'Enhanced ACT: 40 questions / 40 min (legacy was 40/35). NOTE: Science is now OPTIONAL and EXCLUDED FROM THE COMPOSITE (1-36 = English + Math + Reading only). No calculator. Passage formats: Data Representation (~25-35% — charts/graphs/tables only), Research Summaries (~45-60% — experiment descriptions), Conflicting Viewpoints (~15-20% — 2-3 scientists with competing hypotheses). Tests reasoning, not memorized science.',
+        patterns_ko: 'Enhanced ACT: 40문항 / 40분 (기존 40/35). 참고: 과학은 이제 선택이고 종합 점수(1-36 = 영어+수학+읽기)에서 제외. 계산기 불가. 지문 형식: Data Representation(~25-35% — 차트·그래프·표), Research Summaries(~45-60% — 실험 설명), Conflicting Viewpoints(~15-20% — 2-3명 과학자의 가설 대립). 추론 평가지 과학 지식 아님.',
+        distractorPatterns_en: 'Wrong answers: (1) axis-flip distractors (says "increased" when data shows decrease), (2) extrapolation distractors pick a value INSIDE the data range when the question asks for extrapolation beyond it, (3) attributes a finding to the wrong experiment in a multi-experiment passage, (4) for Conflicting Viewpoints: states a position that no scientist in the passage actually holds, (5) confuses correlation with causation, (6) for Research Summaries: control-variable vs. independent-variable confusion.',
+        distractorPatterns_ko: '오답: (1) 축 반전 함정("증가"라고 했는데 데이터는 감소), (2) 외삽 함정: 데이터 범위 안의 값으로 외삽, (3) 다중 실험 지문에서 발견을 잘못된 실험에 귀속, (4) Conflicting Viewpoints: 지문의 어떤 과학자도 가지지 않은 입장, (5) 상관과 인과 혼동, (6) Research Summaries: 통제 변인과 독립 변인 혼동.',
       },
     ],
   },
@@ -361,9 +606,9 @@ Why hard: requires completing the square to find center is (3, -4) — students 
   },
 
   gre: {
-    display: 'GRE General Test',
-    framing_en: 'ETS\'s Graduate Record Examination General Test. Required for many US grad school programs. Score: Verbal 130-170, Quant 130-170 (1-pt increments), Analytical Writing 0-6 (half-pt).',
-    framing_ko: 'ETS의 GRE General Test. 미국 대학원 입학에 사용. 점수: Verbal 130-170, Quant 130-170(1점 단위), Analytical Writing 0-6(0.5점 단위).',
+    display: 'GRE General Test (post-Sept 2023)',
+    framing_en: 'ETS\'s Graduate Record Examination General Test, shortened format active since September 22, 2023 (~1h 58min total). Structure: 1 Analytical Writing essay (Analyze an Issue, 30 min) + 2 Verbal Reasoning sections (Section 1: 12 Q / 18 min; Section 2: 15 Q / 23 min; TOTAL 27 Q / 41 min) + 2 Quantitative Reasoning sections (Section 1: 12 Q / 21 min; Section 2: 15 Q / 26 min; TOTAL 27 Q / 47 min). Section-level adaptive: Section 2 difficulty depends on Section 1 performance. The questionsPerSection/minutesPerSection below are the TOTALS across both Verbal or both Quant sections — what a "full Verbal practice" mock should produce. Score: Verbal 130-170, Quant 130-170 (1-pt increments), Analytical Writing 0-6 (half-pt).',
+    framing_ko: 'ETS의 GRE General Test, 2023년 9월 22일 단축 형식(총 ~1시간 58분). 구성: 분석적 작문 1개(Analyze an Issue, 30분) + 언어 추론 2개 영역(1: 12문항/18분; 2: 15문항/23분; 총 27/41분) + 수리 추론 2개 영역(1: 12문항/21분; 2: 15문항/26분; 총 27/47분). 영역별 적응형: 영역 2 난이도는 영역 1 성적에 따라 결정. 아래 questionsPerSection/minutesPerSection는 언어/수리 각각 두 영역의 합계 — "Verbal 전체 모의" 한 회분이 생성해야 할 분량. 점수: Verbal 130-170, Quant 130-170(1점 단위), Analytical Writing 0-6(0.5점 단위).',
     sections: [
       {
         name_en: 'Verbal Reasoning',
@@ -375,6 +620,40 @@ Why hard: requires completing the square to find center is (3, -4) — students 
         patterns_ko: '3가지 형식: (1) 독해 — 1-4문단 지문에 1-6문항; 단일 MC, 다중 선택("해당하는 것 모두"), 지문 내 문장 선택. (2) Text Completion — 짧은 지문에 1-3개 빈칸; 빈칸당 3개 보기(빈칸 1개일 때 5지). (3) Sentence Equivalence — 한 문장에 빈칸 하나; 보기 6개 중 동등한 문장을 만드는 2개 선택. 어휘는 학술 고급 수준.',
         distractorPatterns_en: 'For Text Completion: distractors are correct register but wrong tone (e.g. positive when context demands negative), or correct meaning but mismatched register. For Sentence Equivalence: the trap pair is two synonyms that DON\'T fit the sentence, mixed with one near-synonym pair that does — students who match synonyms without reading the sentence pick the trap.',
         distractorPatterns_ko: 'Text Completion: 함정은 격식은 맞지만 톤이 틀림(문맥은 부정인데 긍정), 또는 의미는 맞지만 격식 불일치. Sentence Equivalence: 함정 쌍은 문장에 맞지 않는 두 동의어 + 맞는 한 쌍의 근사 동의어 혼합 — 문장을 읽지 않고 동의어만 짝지으면 함정에 빠짐.',
+        hardItemFraming_en: 'Hard GRE Verbal items: high-level vocabulary (perfunctory, sanguine, mendacious, limpidity, recondite); logically dense RC passages on humanities/science with paragraph-function questions; multi-blank TC where blanks are causally linked.',
+        hardItemFraming_ko: '어려운 GRE Verbal: 학술 고급 어휘(perfunctory, sanguine, mendacious, limpidity, recondite); 인문·과학의 논리적으로 밀도 높은 RC 단락-기능 문항; 빈칸들이 인과적으로 연결된 다중 빈칸 TC.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (Sentence Equivalence — pick exactly 2 of 6):
+Prompt: "Although her colleagues had expected her acceptance speech to be ______, she delivered remarks that were unexpectedly substantive and probing."
+Choices: ["(A) perfunctory", "(B) magnanimous", "(C) cursory", "(D) trenchant", "(E) eloquent", "(F) incisive"]
+Correct: ["A", "C"]
+Why hard: Must pick EXACTLY 2. "Unexpectedly substantive" signals contrast — expected speech was shallow. "Perfunctory" and "cursory" both mean superficial. (D) "trenchant" and (F) "incisive" are synonyms but mean OPPOSITE of what fits — trap for synonym-matchers. (B) and (E) are positive but unrelated.`,
+
+          `EXAMPLE 2 (Text Completion — 2-blank):
+Prompt: "Despite the apparent ______ of his prose, the author's arguments are in fact ______, relying on careful distinctions that reward close reading."
+Choices: [
+  "Blank (i): (A) limpidity   (B) opacity     (C) prolixity",
+  "Blank (ii): (D) facile     (E) recondite   (F) jejune"
+]
+Correct: "(A) limpidity; (E) recondite"
+Why hard: "Despite" signals contrast — surface clarity vs. underlying complexity. "Limpidity" (clarity) contrasts with "recondite" (obscure/deep). All distractors are GRE-level vocabulary; "opacity" + "facile" also forms a sentence but contradicts the "reward close reading" clue.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (Sentence Equivalence — 6개 중 정확히 2개 선택):
+문제: "동료들은 그녀의 수락 연설이 ______일 것으로 예상했지만, 그녀는 의외로 실질적이고 깊이 있는 발언을 했다."
+보기: ["(A) perfunctory", "(B) magnanimous", "(C) cursory", "(D) trenchant", "(E) eloquent", "(F) incisive"]
+정답: ["A", "C"]
+어려운 이유: 정확히 2개 선택 필수. "의외로 실질적" = 예상 연설은 피상적이었음. "Perfunctory"와 "cursory" 모두 피상적 의미. (D), (F)는 동의어지만 반대 의미 — 동의어 매칭자 함정. (B), (E)는 긍정이지만 무관.`,
+
+          `예시 2 (Text Completion — 2-빈칸):
+문제: "그의 산문이 표면적으로는 ______로 보이지만, 작가의 주장은 실제로 ______여서, 정밀한 구분이 면밀한 독서를 보상한다."
+보기: [
+  "빈칸 (i): (A) limpidity   (B) opacity     (C) prolixity",
+  "빈칸 (ii): (D) facile     (E) recondite   (F) jejune"
+]
+정답: "(A) limpidity; (E) recondite"
+어려운 이유: "Despite"가 대조 신호 — 표면 명료 vs 내면 복잡. "Limpidity"(명료)와 "recondite"(난해) 대조. 모든 함정이 GRE 수준 어휘.`,
+        ],
       },
       {
         name_en: 'Quantitative Reasoning',
@@ -392,6 +671,34 @@ Why hard: requires completing the square to find center is (3, -4) — students 
 }
 
 /**
+ * Tolerant section matcher. Topic slugs produce short labels ("English",
+ * "Verbal", "Math") that don't always equal the canonical spec name
+ * ("English (영어)", "Verbal Reasoning", "Mathematics (수학)"). This
+ * helper accepts label vs spec mismatch in any direction (label
+ * contains name, name contains label) and first-word match (ignoring
+ * punctuation / parenthetical suffixes). Returns the matched section
+ * or sections[0] as a fallback so renderTestSpec never returns empty.
+ */
+function matchSection(spec: TestSpec, sectionLabel: string | null): SectionSpec | undefined {
+  if (!sectionLabel || !spec.sections.length) return spec.sections[0]
+  const norm = (s: string) => s.toLowerCase().trim()
+  const firstWord = (s: string) => norm(s).split(/[\s&()/]+/).filter(Boolean)[0] ?? ''
+  const label = norm(sectionLabel)
+  const labelFirst = firstWord(sectionLabel)
+  return spec.sections.find(s => {
+    const en = norm(s.name_en)
+    const ko = norm(s.name_ko)
+    if (en === label || ko === label) return true
+    if (label.includes(en) || label.includes(ko)) return true
+    if (en.includes(label) || ko.includes(label)) return true
+    const enFirst = firstWord(s.name_en)
+    const koFirst = firstWord(s.name_ko)
+    if (labelFirst && (labelFirst === enFirst || labelFirst === koFirst)) return true
+    return false
+  }) ?? spec.sections[0]
+}
+
+/**
  * Render the full spec block for one section as the prompt expects.
  * Returns empty string when we don't have a spec — falls back to the
  * generic test-prep guidance from study-prompt-context.ts.
@@ -405,17 +712,7 @@ export function renderTestSpec(
   const spec = TEST_SPECS[family]
   if (!spec) return ''
 
-  // Match by name. For tests like AP where each subject is a separate
-  // catalog entry but they all share one spec, the section lookup
-  // falls back to the first spec section.
-  const section = sectionLabel
-    ? spec.sections.find(s =>
-        s.name_en === sectionLabel ||
-        s.name_ko === sectionLabel ||
-        sectionLabel.includes(s.name_en) ||
-        sectionLabel.includes(s.name_ko)
-      ) ?? spec.sections[0]
-    : spec.sections[0]
+  const section = matchSection(spec, sectionLabel)
   if (!section) return ''
 
   if (language === 'ko') {
@@ -450,22 +747,15 @@ export function defaultsForTestSection(
   const spec = TEST_SPECS[family]
   if (!spec) return { count: 20, minutes: 30, choiceCount: 4 }
 
-  const section = sectionLabel
-    ? spec.sections.find(s =>
-        s.name_en === sectionLabel ||
-        s.name_ko === sectionLabel ||
-        sectionLabel.includes(s.name_en) ||
-        sectionLabel.includes(s.name_ko)
-      ) ?? spec.sections[0]
-    : spec.sections[0]
-  // Cap really long sections (KSAT Korean = 45 Q / 80 min, TOEIC =
-  // 100 Q / section, IELTS Reading = 40 Q / 60 min) at 40 questions
-  // so generation stays under the model's output limits and the
-  // student stays under an hour. SAT sections (44 R&W / 54 Math)
-  // stay full because that's the real test length.
-  const HARD_CAP = 60
-  const count = Math.min(section.questionsPerSection, HARD_CAP)
-  const ratio = count / section.questionsPerSection
-  const minutes = Math.round(section.minutesPerSection * ratio)
-  return { count, minutes, choiceCount: section.choiceCount }
+  const section = matchSection(spec, sectionLabel)
+  if (!section) return { count: 20, minutes: 30, choiceCount: 4 }
+  // Return the researched values verbatim — a mock test exists to
+  // mimic the real test. The generator may still chunk very long
+  // sections internally for token-limit reasons, but the customization
+  // sheet always shows the student the official format.
+  return {
+    count: section.questionsPerSection,
+    minutes: section.minutesPerSection,
+    choiceCount: section.choiceCount,
+  }
 }

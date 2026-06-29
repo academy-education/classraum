@@ -3966,6 +3966,9 @@
       "eyebrow": "공부",
       "title": "오늘은 무엇을 배워볼까요?",
       "subtitle": "주제를 골라 공부 방식을 선택하세요.",
+      "todayBand": "오늘",
+      "historyBand": "복습",
+      "browseLocked": "곧 출시",
       "history": "기록",
       "recommendedTitle": "추천 학습",
       "recommendedEmpty": "조금 공부하면 여기에 추천 주제가 표시됩니다.",
@@ -3978,7 +3981,7 @@
       "freeformHint": "AI가 과목을 파악해 채팅 세션을 시작합니다.",
       "topicCountSingular": "주제 {count}개",
       "topicCountPlural": "주제 {count}개",
-      "resumeTitle": "이어서 공부하기",
+      "resumeTitle": "최근 세션",
       "resumeCta": "이어하기"
     },
     "topic": {
@@ -4020,7 +4023,60 @@
     "mistakes": {
       "title": "틀린 문제 복습",
       "retry": "다시 풀기",
-      "unknownTopic": "지난 오답"
+      "unknownTopic": "지난 오답",
+      "viewNotebook": "전체 보기"
+    },
+    "league": {
+      "back": "공부 화면으로",
+      "eyebrow": "주간 리그",
+      "title": "리더보드",
+      "iconLabel": "주간 리그 열기",
+      "loading": "리그를 불러오는 중…"
+    },
+    "review": {
+      "back": "공부 화면으로",
+      "eyebrow": "오늘의 복습",
+      "title": "교차 복습",
+      "loading": "복습할 카드를 불러오는 중…",
+      "ctaTitle": "{{count}}개 복습할 카드가 있어요",
+      "ctaSubtitle": "{{count}}개 주제를 섞어 더 효과적으로 학습합니다",
+      "interleavedBadge": "{{count}}개 주제 교차 출제",
+      "whyBack": "왜 다시 나왔나요?",
+      "whyBackBody": "간격 반복 + 가변 단서는 가장 입증된 기억 전략입니다. 잊을 만할 때 카드가 다시 나오고, 주제를 섞으면 한 주제만 연달아 푸는 것보다 장기 기억에 좋아요. 지금은 어렵게 느껴질 수 있지만 그게 핵심입니다.",
+      "tapToFlip": "탭하여 뒤집기",
+      "doneEyebrow": "오늘 복습 완료",
+      "emptyEyebrow": "오늘의 복습",
+      "reviewedSuffix": "장 복습함",
+      "allCaughtUp": "오늘 복습 완료",
+      "noneDueYet": "오늘은 복습할 카드가 없어요",
+      "doneBody": "내일 또 만나요 — 간격 일정에 따라 다음 카드가 자동으로 준비됩니다.",
+      "backToStudy": "공부 화면으로"
+    },
+    "snap": {
+      "back": "공부 화면으로",
+      "eyebrow": "사진으로 풀기",
+      "title": "사진 풀이",
+      "ctaTitle": "막힌 문제, 사진 찍어보세요",
+      "ctaSubtitle": "단계별 풀이가 몇 초 만에 나옵니다."
+    },
+    "wrongNotebook": {
+      "back": "공부 화면으로",
+      "eyebrow": "오답노트",
+      "title": "오답노트",
+      "print": "인쇄 / PDF",
+      "totalSuffix": "문항",
+      "annotatedSuffix": "메모됨",
+      "allTopics": "전체",
+      "loading": "오답노트를 불러오는 중…",
+      "emptyTitle": "아직 비어 있어요",
+      "emptyBody": "문제를 풀면서 틀린 항목이 여기에 모입니다. 메모를 남기면 다음에 같은 실수를 피할 수 있어요.",
+      "showMore": "더보기",
+      "showLess": "접기",
+      "explanationLabel": "해설",
+      "myNoteLabel": "내 메모",
+      "notePlaceholder": "이 문제를 왜 틀렸는지, 어떻게 풀어야 했는지 적어보세요…",
+      "saving": "저장 중…",
+      "saved": "저장됨"
     },
     "resumeBanner": {
       "eyebrow": "이어서 공부하기"
@@ -4201,6 +4257,11 @@
         "title": "모의고사",
         "body": "시간 제한 모의고사 — 끝나면 점수와 문항별 해설을 확인하세요.",
         "comingSoon": "모의고사 — 곧 제공"
+      },
+      "response": {
+        "title": "말하기·작문",
+        "body": "AI 시험관이 공식 채점 기준에 따라 응답을 평가합니다.",
+        "comingSoon": "말하기·작문 — 곧 제공"
       }
     },
     "test": {
@@ -4214,6 +4275,18 @@
       "next": "다음",
       "submit": "제출하기",
       "submitWithUnanswered": "제출 ({count}개 미답)",
+      "submitConfirm": {
+        "titleSubmit": "시험을 제출하시겠습니까?",
+        "bodyAllAnswered": "모든 {total}문항에 답했습니다. 제출하면 점수가 확정되고 다시 풀 수 없습니다.",
+        "bodyUnansweredOne": "1개 문항을 아직 답하지 않았습니다. 빈 답은 오답으로 채점됩니다. 그대로 제출하시겠습니까?",
+        "bodyUnansweredMany": "{count}개 문항을 아직 답하지 않았습니다. 빈 답은 오답으로 채점됩니다. 그대로 제출하시겠습니까?",
+        "cancel": "계속 풀기",
+        "confirm": "제출"
+      },
+      "submitError": {
+        "title": "제출 실패",
+        "dismiss": "닫기"
+      },
       "resultEyebrow": "시험 완료",
       "resultMessage": {
         "excellent": "훌륭한 결과입니다. 패턴이 보이기 시작했네요 — 이 페이스를 유지하세요.",
@@ -4222,7 +4295,22 @@
         "startOver": "조금 어려웠던 것 같네요. 강의를 먼저 듣고 다시 도전해보세요."
       },
       "reviewTitle": "풀이 보기",
-      "backToStudy": "공부 화면으로"
+      "backToStudy": "공부 화면으로",
+      "loadingTest": "시험 불러오는 중…",
+      "buildingTest": "시험을 만드는 중…",
+      "progress": {
+        "title": "시험을 만들고 있어요",
+        "subtitle": "보통 20-40초 정도 걸려요.",
+        "starting": "시작 중…",
+        "format": "시험 형식 불러오는 중",
+        "draftingQuestions": "문항을 작성하는 중",
+        "draftingHard": "추가 문항을 작성하는 중",
+        "verifying": "정답을 다시 확인하는 중",
+        "assembling": "시험을 조립하는 중",
+        "done": "준비 완료",
+        "cached": "저장된 시험 이어보는 중",
+        "resuming": "서버에서 진행 중인 작업을 이어받고 있어요…"
+      }
     }
   },
   "mobile": {
@@ -4266,7 +4354,18 @@
       "home": "홈",
       "assignments": "과제",
       "reports": "리포트",
-      "profile": "프로필"
+      "profile": "프로필",
+      "study": "공부",
+      "snap": "사진 풀이",
+      "review": "복습",
+      "league": "리그"
+    },
+    "mode": {
+      "sheetTitle": "모드 전환",
+      "gradesLabel": "성적",
+      "gradesBlurb": "출석·과제·리포트·청구서를 확인하세요.",
+      "studyLabel": "공부",
+      "studyBlurb": "AI 학습·사진 풀이·매일 복습·주간 리그."
     },
     "shelf": {
       "dashboard": "대시보드",
