@@ -1889,7 +1889,7 @@ function applyDifficultyBias(
   // no warm-up items diluting the test. Force pure-hard mix; the
   // SAT R&W prompt already calibrates "hard" to top-decile Digital
   // SAT items + adds "above-college" language below.
-  if (family === 'sat' && bias === 'challenge') {
+  if ((family === 'sat' || family === 'toefl') && bias === 'challenge') {
     return { easy: 0, medium: 0, hard: 1 }
   }
   if (!bias || bias === 'balanced') return base

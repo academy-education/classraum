@@ -105,10 +105,13 @@ export function TestCustomizationSheet({
 
   if (!open || !mounted) return null
 
-  // SAT is uniformly hard on the real Digital SAT — there's no warm-up
-  // or balanced setting that corresponds to anything in the actual exam.
-  // For SAT we hide the difficulty picker entirely and lock to 'challenge'.
-  const hideDifficulty = family === 'sat'
+  // SAT + TOEFL both hide the difficulty picker and lock to 'challenge'.
+  // SAT: uniformly hard on Digital SAT — no warm-up tier exists in the
+  // real exam. TOEFL Jan-2026: the new task types skew easy by default
+  // (campus notice details, single-line response matching, simple chip
+  // arrangement) — locking to challenge pushes the prompts to the upper
+  // bound of each task's band so practice sessions actually discriminate.
+  const hideDifficulty = family === 'sat' || family === 'toefl'
   const effectiveBias: DifficultyBias = hideDifficulty ? 'challenge' : difficultyBias
 
   const submit = () => {
@@ -187,9 +190,13 @@ export function TestCustomizationSheet({
           )}
           {hideDifficulty && (
             <p className="text-[12px] text-gray-500 leading-relaxed">
-              {ko
-                ? '실제 디지털 SAT는 모듈 전체가 변별 수준으로 출제됩니다 — 가장 어려운 난이도로 고정됩니다.'
-                : 'The real Digital SAT runs at discriminating difficulty across the module — this practice is locked to the hardest setting.'}
+              {family === 'toefl'
+                ? (ko
+                  ? '실제 TOEFL은 모듈 전체가 변별 수준으로 출제됩니다 — 가장 어려운 난이도로 고정됩니다.'
+                  : 'The real TOEFL runs at discriminating difficulty across each section — this practice is locked to the hardest setting.')
+                : (ko
+                  ? '실제 디지털 SAT는 모듈 전체가 변별 수준으로 출제됩니다 — 가장 어려운 난이도로 고정됩니다.'
+                  : 'The real Digital SAT runs at discriminating difficulty across the module — this practice is locked to the hardest setting.')}
             </p>
           )}
         </div>
