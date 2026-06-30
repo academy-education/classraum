@@ -925,6 +925,40 @@ function ReviewView({
               result.scorePercent >= 40 ? 'keepGoing' : 'startOver'
             }`)}
           </p>
+          {/* TOEFL Jan 2026: surface the new 1-6 band score (avg of 4
+              sections, 0.5 increments) AND the transitional 0-30 per-
+              section score that ETS still publishes during the 2-year
+              transition. Practice covers ONE section, so we show
+              that section's band + 0-30, not the overall 0-120. */}
+          {test.family === 'toefl' && (() => {
+            const band = percentToToeflBand(result.scorePercent)
+            const score030 = Math.round((result.scorePercent / 100) * 30)
+            return (
+              <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3 text-left">
+                <div>
+                  <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
+                    {ko ? '밴드 점수 (1-6)' : 'Band score (1–6)'}
+                  </div>
+                  <div className="text-2xl font-semibold text-gray-900 tabular-nums mt-0.5">
+                    {band.toFixed(1)}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
+                    {ko ? '섹션 점수 (0-30)' : 'Section (0–30)'}
+                  </div>
+                  <div className="text-2xl font-semibold text-gray-900 tabular-nums mt-0.5">
+                    {score030}
+                  </div>
+                </div>
+                <p className="col-span-2 text-[11px] text-gray-400 mt-1 leading-relaxed">
+                  {ko
+                    ? 'ETS는 1-6 밴드 점수와 0-120 환산 점수를 2년 전환 기간 동안 모두 제공합니다.'
+                    : 'ETS issues both the 1–6 band and the 0–120 score during the 2-year transition.'}
+                </p>
+              </div>
+            )
+          })()}
         </div>
 
         {/* Per-question review accordion */}
@@ -1706,6 +1740,29 @@ function choiceLabel(family: string | null | undefined, index: number): string {
   }
   const letters = ['A', 'B', 'C', 'D', 'E', 'F']
   return letters[index] ?? `${index + 1}.`
+}
+
+/**
+ * Convert a per-section percent (0-100) into the TOEFL Jan 2026
+ * 1-6 band score (0.5 increments). ETS aligns the band to CEFR;
+ * the mapping below is calibrated against the pre-2026 0-30 band
+ * descriptors (Advanced ≥24, High-Int 18-23, Low-Int 4-17, Below 0-3)
+ * extrapolated into the new scale. ETS hasn't published an exact
+ * crosswalk yet, so this is best-effort and worth re-tuning when
+ * official descriptors land.
+ */
+function percentToToeflBand(percent: number): number {
+  if (percent >= 95) return 6.0
+  if (percent >= 88) return 5.5
+  if (percent >= 80) return 5.0
+  if (percent >= 70) return 4.5
+  if (percent >= 60) return 4.0
+  if (percent >= 50) return 3.5
+  if (percent >= 38) return 3.0
+  if (percent >= 25) return 2.5
+  if (percent >= 15) return 2.0
+  if (percent >= 5) return 1.5
+  return 1.0
 }
 
 function formatTime(ms: number): string {
