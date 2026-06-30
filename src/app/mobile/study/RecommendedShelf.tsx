@@ -146,7 +146,11 @@ export function RecommendedShelf() {
               <div
                 key={card.reason === 'snap_followup' ? `snap-${card.snap?.capture_id ?? idx}` : `${card.topic?.id}-${card.reason}`}
                 data-carousel-card
-                className="snap-center flex-none w-[300px] max-w-[calc(100vw-72px)]"
+                // min-h + flex makes every card in the carousel
+                // the same height regardless of which inner variant
+                // (WeakArea / SnapFollowup / Recent) it renders.
+                // Inner cards stretch via h-full to fill the slot.
+                className="snap-center flex-none w-[300px] max-w-[calc(100vw-72px)] min-h-[164px] flex"
               >
                 {card.reason === 'snap_followup'
                   ? <SnapFollowupCard card={card} ko={ko} startSession={startSession} creating={creating} />
@@ -191,7 +195,7 @@ function SnapFollowupCard({ card, ko, startSession, creating }: {
     <button type="button"
       onClick={() => void startSession(card)}
       disabled={creating !== null}
-      className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white p-4 min-h-[148px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(251,146,60,0.30)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(251,146,60,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60">
+      className="group relative w-full h-full overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(251,146,60,0.30)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(251,146,60,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60">
       {/* Optional background image — semi-transparent so the gradient + text stay legible. */}
       {card.snap?.image_url && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -245,7 +249,7 @@ function WeakAreaCard({ card, name, t, startSession, creating }: {
       type="button"
       onClick={() => void startSession(card)}
       disabled={creating !== null}
-      className="group relative w-full overflow-hidden rounded-2xl p-4 ring-1 ring-amber-200/70 bg-gradient-to-br from-amber-50 via-orange-50/60 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(245,158,11,0.18)] hover:ring-amber-300 hover:shadow-[0_2px_8px_-2px_rgba(245,158,11,0.18),0_16px_32px_-12px_rgba(245,158,11,0.26)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
+      className="group relative w-full h-full overflow-hidden rounded-2xl p-4 ring-1 ring-amber-200/70 bg-gradient-to-br from-amber-50 via-orange-50/60 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(245,158,11,0.18)] hover:ring-amber-300 hover:shadow-[0_2px_8px_-2px_rgba(245,158,11,0.18),0_16px_32px_-12px_rgba(245,158,11,0.26)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
     >
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
       <div className="flex items-start gap-3.5">
@@ -295,7 +299,7 @@ function RecentSessionCard({ card, name, t, startSession, creating }: {
       type="button"
       onClick={() => void startSession(card)}
       disabled={creating !== null}
-      className="group relative w-full overflow-hidden rounded-2xl p-4 ring-1 ring-primary/15 bg-gradient-to-br from-primary/[0.04] via-indigo-50/40 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.14),0_12px_24px_-12px_rgba(40,133,232,0.20)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
+      className="group relative w-full h-full overflow-hidden rounded-2xl p-4 ring-1 ring-primary/15 bg-gradient-to-br from-primary/[0.04] via-indigo-50/40 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.14),0_12px_24px_-12px_rgba(40,133,232,0.20)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
     >
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
       <div className="flex items-center gap-3.5">

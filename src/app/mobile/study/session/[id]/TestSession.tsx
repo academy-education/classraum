@@ -5,6 +5,7 @@ import Link from 'next/link'
 import {
   Loader2, RefreshCw, ArrowRight, ArrowLeft, Clock, CheckCircle2,
   XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles,
+  Volume2, Mic, MicOff,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
@@ -16,10 +17,13 @@ interface Question {
   prompt: string
   /** See generator route schema for full type docs. */
   type: 'multiple_choice' | 'numeric_entry' | 'multi_select' | 'three_choice' | 'quant_comparison'
+    | 'fill_in_blanks' | 'arrange_words' | 'speaking_repeat' | 'speaking_interview'
   choices: string[]
   correct_answer: string
   correct_answers?: string[]
   acceptable_answers?: string[]
+  /** TOEFL Complete-the-Words: per-blank correct fragment, ordered by id. */
+  blanks?: { id: number; answer: string; alternates?: string[] }[]
   difficulty: 'easy' | 'medium' | 'hard'
   explanation: string
   distractor_rationales?: { choice: string; reason: string }[]
@@ -492,6 +496,203 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               </>
             )
           })()
+        ) : q.type === 'fill_in_blanks' ? (
+          // TOEFL Complete-the-Words (Jan 2026): passage contains
+          // [1] [2] [3]… placeholders. Render each placeholder as a
+          // narrow inline text input. Student's answer is stored as
+          // JSON {"1":"s","2":"to",…} in answers[currentIdx].
+          (() => {
+            const blanks = q.blanks ?? []
+            const parsed = (() => {
+              const raw = answers[currentIdx]
+              if (!raw) return {} as Record<string, string>
+              try {
+                const obj = JSON.parse(raw)
+                return (obj && typeof obj === 'object') ? obj as Record<string, string> : {}
+              } catch { return {} }
+            })()
+            const setBlank = (id: number, val: string) => {
+              const next = { ...parsed, [String(id)]: val }
+              setAnswers(prev => {
+                const out = [...prev]
+                out[currentIdx] = JSON.stringify(next)
+                return out
+              })
+            }
+            // Split passage on [N] tokens and render inputs inline.
+            const passageText = q.passage ?? ''
+            const segments = passageText.split(/(\[\d+\])/g)
+            return (
+              <div className="space-y-3">
+                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                  {ko ? '빈칸에 알맞은 글자를 입력하세요' : 'Type the missing letters'}
+                </p>
+                <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[15px] text-gray-900 leading-[1.9]">
+                  {segments.map((seg, i) => {
+                    const match = seg.match(/^\[(\d+)\]$/)
+                    if (!match) return <span key={i}>{seg}</span>
+                    const id = parseInt(match[1], 10)
+                    return (
+                      <input
+                        key={i}
+                        type="text"
+                        value={parsed[String(id)] ?? ''}
+                        onChange={(e) => setBlank(id, e.target.value)}
+                        className="inline-block min-w-[40px] mx-0.5 px-1.5 py-0.5 align-baseline border-b-2 border-primary/40 bg-white text-primary font-semibold focus:outline-none focus:border-primary"
+                        style={{ width: `${Math.max(40, ((parsed[String(id)] ?? '').length + 2) * 9)}px` }}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        aria-label={`Blank ${id}`}
+                      />
+                    )
+                  })}
+                </div>
+                <p className="text-[11px] text-gray-500">
+                  {ko ? `총 ${blanks.length}개의 빈칸` : `${blanks.length} blanks total`}
+                </p>
+              </div>
+            )
+          })()
+        ) : q.type === 'arrange_words' ? (
+          // TOEFL Build-a-Sentence (Jan 2026): choices are word/phrase
+          // chips. Student clicks them in order to build a sentence.
+          // Answer stored as chips joined by " | " in answers[currentIdx].
+          (() => {
+            const current = (answers[currentIdx] ?? '').split(' | ').filter(Boolean)
+            const remaining = q.choices.filter(c => !current.includes(c))
+            const setOrder = (next: string[]) => {
+              setAnswers(prev => {
+                const out = [...prev]
+                out[currentIdx] = next.join(' | ')
+                return out
+              })
+            }
+            return (
+              <div className="space-y-4">
+                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                  {ko ? '단어를 순서대로 눌러 문장을 만드세요' : 'Tap the words in order to build the sentence'}
+                </p>
+                {/* Slot row — assembled sentence so far */}
+                <div className="rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 px-3 py-3 min-h-[60px] flex flex-wrap gap-2">
+                  {current.length === 0
+                    ? <span className="text-[13px] text-gray-400 italic">{ko ? '비어 있음' : 'empty'}</span>
+                    : current.map((chip, i) => (
+                        <button
+                          key={`${chip}-${i}`}
+                          type="button"
+                          onClick={() => setOrder(current.filter((_, j) => j !== i))}
+                          className="px-3 py-1.5 rounded-lg bg-primary text-white text-[13px] font-medium hover:opacity-90"
+                        >
+                          {chip}
+                        </button>
+                      ))}
+                </div>
+                {/* Chip pool — unused words */}
+                <div className="flex flex-wrap gap-2">
+                  {remaining.map(chip => (
+                    <button
+                      key={chip}
+                      type="button"
+                      onClick={() => setOrder([...current, chip])}
+                      className="px-3 py-1.5 rounded-lg border border-gray-300 bg-white text-[13px] text-gray-800 hover:border-primary hover:text-primary"
+                    >
+                      {chip}
+                    </button>
+                  ))}
+                </div>
+                {current.length > 0 && (
+                  <button type="button" onClick={() => setOrder([])}
+                    className="text-[11px] text-gray-500 underline">
+                    {ko ? '다시 시작' : 'Start over'}
+                  </button>
+                )}
+              </div>
+            )
+          })()
+        ) : q.type === 'speaking_repeat' ? (
+          // TOEFL Listen-and-Repeat (Jan 2026): audio script shown as
+          // text + optional TTS playback. Student can type the sentence
+          // back OR record their voice and let Whisper transcribe.
+          // Either way the answer text is compared verbatim by the grader.
+          <div className="space-y-3">
+            <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+              {ko ? '들은 문장을 그대로 입력하세요' : 'Type back the sentence exactly'}
+            </p>
+            <AudioPracticeBar
+              // Strip 'Transcript: ' prefix + surrounding quotes for TTS.
+              sourceText={(q.passage ?? '').replace(/^transcript:\s*/i, '').replace(/^"|"$/g, '').trim() || q.correct_answer}
+              sessionId={sessionId}
+              language={language}
+              ko={ko}
+              onTranscript={(text) => {
+                setAnswers(prev => {
+                  const next = [...prev]
+                  next[currentIdx] = (next[currentIdx] ? next[currentIdx] + ' ' : '') + text
+                  return next
+                })
+              }}
+            />
+            <textarea
+              value={answers[currentIdx] ?? ''}
+              onChange={(e) => {
+                const val = e.target.value
+                setAnswers(prev => {
+                  const next = [...prev]
+                  next[currentIdx] = val
+                  return next
+                })
+              }}
+              rows={3}
+              placeholder={ko ? '예: I can\'t believe how heavy this box is...' : 'e.g. I can\'t believe how heavy this box is...'}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+            />
+            <p className="text-[11px] text-gray-500">
+              {ko ? '대소문자·구두점은 평가에 영향 없음.' : 'Case and punctuation are not graded.'}
+            </p>
+          </div>
+        ) : q.type === 'speaking_interview' ? (
+          // TOEFL Take-an-Interview (Jan 2026): open response to an
+          // interviewer prompt + optional TTS playback of the question
+          // and voice-recorded answer. Auto-grader checks for a
+          // substantive (>20 char) answer; rubric grading routes
+          // through /api/study/response/grade separately.
+          <div className="space-y-3">
+            <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+              {ko ? '면접관의 질문에 자유롭게 답변하세요' : 'Answer the interviewer as fully as you can'}
+            </p>
+            <AudioPracticeBar
+              // Strip "[Interview]" prefix for cleaner TTS.
+              sourceText={q.prompt.replace(/^\s*\[[^\]]+\]\s*/, '')}
+              sessionId={sessionId}
+              language={language}
+              ko={ko}
+              onTranscript={(text) => {
+                setAnswers(prev => {
+                  const next = [...prev]
+                  next[currentIdx] = (next[currentIdx] ? next[currentIdx] + ' ' : '') + text
+                  return next
+                })
+              }}
+            />
+            <textarea
+              value={answers[currentIdx] ?? ''}
+              onChange={(e) => {
+                const val = e.target.value
+                setAnswers(prev => {
+                  const next = [...prev]
+                  next[currentIdx] = val
+                  return next
+                })
+              }}
+              rows={6}
+              placeholder={ko ? '여러 문장으로 답변하세요...' : 'Respond in several sentences...'}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+            />
+            <p className="text-[11px] text-gray-500">
+              {ko ? '근거·예시를 포함한 풍부한 답변을 권장합니다.' : 'Strong answers include reasons or examples.'}
+            </p>
+          </div>
         ) : (
           // multiple_choice / three_choice / quant_comparison — all
           // render the same way: vertical list of choice buttons with
@@ -772,6 +973,33 @@ function ReviewView({
                       )}
                       <p className="text-gray-900 whitespace-pre-wrap">{q.prompt}</p>
                       {q.graphic && <QuestionGraphicView graphic={q.graphic} />}
+                      {/* Type-aware verdict rendering. MC/three_choice/quant
+                          render per-choice rows; the four Jan-2026 TOEFL
+                          item types each have their own answer/correct
+                          comparison shape. */}
+                      {(q.type === 'fill_in_blanks' || q.type === 'arrange_words'
+                        || q.type === 'speaking_repeat' || q.type === 'speaking_interview') ? (
+                        <div className="space-y-2 mt-2">
+                          <div className="px-3 py-2 rounded-lg bg-emerald-50 text-emerald-900 text-xs border border-emerald-200">
+                            <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
+                            <div className="whitespace-pre-wrap">{verdict.correctAnswer}</div>
+                          </div>
+                          {studentAnswer != null ? (
+                            <div className={`px-3 py-2 rounded-lg text-xs border ${
+                              verdict.correct
+                                ? 'bg-gray-50 text-gray-700 border-gray-200'
+                                : 'bg-rose-50 text-rose-900 border-rose-200'
+                            }`}>
+                              <div className="font-semibold mb-0.5">{ko ? '내 답' : 'Your answer'}</div>
+                              <div className="whitespace-pre-wrap">{studentAnswer}</div>
+                            </div>
+                          ) : (
+                            <div className="px-3 py-2 rounded-lg bg-amber-50 text-amber-900 text-xs border border-amber-200">
+                              {ko ? '답하지 않음' : 'Not answered'}
+                            </div>
+                          )}
+                        </div>
+                      ) : (
                       <div className="space-y-1.5 mt-2">
                         {q.choices.map(choice => {
                           const isCorrect = choice === q.correct_answer
@@ -816,6 +1044,7 @@ function ReviewView({
                           </div>
                         )}
                       </div>
+                      )}
                       <p className="text-xs text-gray-600 leading-relaxed mt-2">
                         {q.explanation}
                       </p>
@@ -889,7 +1118,7 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
             ))}
           </tbody>
         </table>
-        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-1.5">{graphic.caption}</figcaption>}
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
       </figure>
     )
   }
@@ -944,7 +1173,7 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
             <text x={10} y={padT + innerH / 2} fontSize="10" textAnchor="middle" fill="black" fontStyle="italic" transform={`rotate(-90 10 ${padT + innerH / 2})`}>{graphic.yLabel}</text>
           )}
         </svg>
-        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-1">{graphic.caption}</figcaption>}
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
       </figure>
     )
   }
@@ -1024,7 +1253,7 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
           {graphic.xLabel && <text x={padL + innerW / 2} y={H - 2} fontSize="10" textAnchor="middle" fill="black" fontStyle="italic">{graphic.xLabel}</text>}
           {graphic.yLabel && <text x={10} y={padT + innerH / 2} fontSize="10" textAnchor="middle" fill="black" fontStyle="italic" transform={`rotate(-90 10 ${padT + innerH / 2})`}>{graphic.yLabel}</text>}
         </svg>
-        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-1">{graphic.caption}</figcaption>}
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
       </figure>
     )
   }
@@ -1060,7 +1289,7 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
           <line x1={padL - 6} y1={H - padB} x2={W - padR + 6} y2={H - padB} stroke="black" strokeWidth={1} />
           {graphic.xLabel && <text x={padL + innerW / 2} y={H - 2} fontSize="10" textAnchor="middle" fill="black" fontStyle="italic">{graphic.xLabel}</text>}
         </svg>
-        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-1">{graphic.caption}</figcaption>}
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
       </figure>
     )
   }
@@ -1085,7 +1314,7 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
     const xOrigin = sx(0), yOrigin = sy(0)
     return (
       <figure className="my-3">
-        <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-sm mx-auto bg-white">
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-md mx-auto bg-white">
           {/* grid */}
           {Array.from({ length: Math.floor(xR) + 1 }).map((_, i) => {
             const v = Math.ceil(xMin) + i
@@ -1117,7 +1346,146 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
             </g>
           ))}
         </svg>
-        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-1">{graphic.caption}</figcaption>}
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
+      </figure>
+    )
+  }
+
+  // ─ Inscribed triangle in circle ────────────────────────────────
+  // The model emits {type:"inscribedTriangle", r, vertexAngles:[a1,a2,a3], vertexLabels?, sideLabels?}.
+  // We compute vertex positions exactly via cos/sin so they're
+  // GUARANTEED to lie on the circle — eliminates "vertex floating
+  // inside circle" errors from raw SVG attempts.
+  if (t === 'inscribedtriangle' || (graphic.shape ?? '').toLowerCase() === 'inscribedtriangle') {
+    const spec = (graphic.spec ?? {}) as { r?: number; vertexAngles?: number[] }
+    const labels = (graphic.labels ?? {}) as { vertices?: string[]; sides?: string[] }
+    const r = typeof spec.r === 'number' ? spec.r : 70
+    const angles = (spec.vertexAngles ?? [0, 120, 240]).slice(0, 3)
+    const cx = 100, cy = 100
+    const toRad = (deg: number) => (deg - 90) * Math.PI / 180 // 0° = top
+    const pts = angles.map(a => [cx + r * Math.cos(toRad(a)), cy + r * Math.sin(toRad(a))] as [number, number])
+    const path = `M ${pts[0][0]},${pts[0][1]} L ${pts[1][0]},${pts[1][1]} L ${pts[2][0]},${pts[2][1]} Z`
+    const vL = labels.vertices ?? []
+    const sL = labels.sides ?? []
+    return (
+      <figure className="my-3 flex flex-col items-center">
+        <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
+          <svg viewBox="0 0 200 200" className="w-full h-auto max-h-[300px] overflow-visible">
+            <circle cx={cx} cy={cy} r={r} stroke="black" strokeWidth={1.5} fill="none" />
+            <path d={path} stroke="black" strokeWidth={1.5} fill="none" />
+            {pts.map((p, i) => {
+              // Push label away from center along the vertex radius
+              const dx = p[0] - cx, dy = p[1] - cy
+              const len = Math.hypot(dx, dy) || 1
+              const lx = p[0] + (dx / len) * 10
+              const ly = p[1] + (dy / len) * 10
+              return vL[i] ? (
+                <text key={i} x={lx} y={ly} fontSize={11} fill="black" textAnchor="middle" dominantBaseline="middle">{vL[i]}</text>
+              ) : null
+            })}
+            {[0, 1, 2].map(i => {
+              if (!sL[i]) return null
+              const a = pts[i], b = pts[(i + 1) % 3]
+              const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2
+              // Push label outward from centroid
+              const dx = mx - cx, dy = my - cy
+              const len = Math.hypot(dx, dy) || 1
+              const lx = mx + (dx / len) * 10
+              const ly = my + (dy / len) * 10
+              return <text key={`s${i}`} x={lx} y={ly} fontSize={11} fill="black" textAnchor="middle" dominantBaseline="middle">{sL[i]}</text>
+            })}
+          </svg>
+        </div>
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
+      </figure>
+    )
+  }
+
+  // ─ Right triangle (with optional inscribed circle) ─────────────
+  // Model emits {type:"rightTriangle", legA, legB, labels?:{a,b,c,vertices?:[A,B,C]}, incircle?:true}.
+  // We compute incircle radius via the correct formula r = (a+b-c)/2.
+  if (t === 'righttriangle' || (graphic.shape ?? '').toLowerCase() === 'righttriangle') {
+    const spec = (graphic.spec ?? {}) as { legA?: number; legB?: number; incircle?: boolean }
+    const labels = (graphic.labels ?? {}) as { a?: string; b?: string; c?: string; vertices?: string[] }
+    const a = typeof spec.legA === 'number' ? spec.legA : 6
+    const b = typeof spec.legB === 'number' ? spec.legB : 8
+    const c = Math.hypot(a, b)
+    // Scale to fit in 160×160 drawing area (20-unit margin).
+    const scale = 140 / Math.max(a, b)
+    const pxA = a * scale, pxB = b * scale
+    // Right angle at bottom-left (30, 170); legs run +x and -y.
+    const blX = 30, blY = 170
+    const brX = blX + pxA, brY = blY
+    const tlX = blX, tlY = blY - pxB
+    return (
+      <figure className="my-3 flex flex-col items-center">
+        <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
+          <svg viewBox="0 0 200 200" className="w-full h-auto max-h-[300px] overflow-visible">
+            <polygon points={`${blX},${blY} ${brX},${brY} ${tlX},${tlY}`} stroke="black" strokeWidth={1.5} fill="none" />
+            {/* Right-angle square mark at the right-angle vertex */}
+            <polyline points={`${blX + 8},${blY} ${blX + 8},${blY - 8} ${blX},${blY - 8}`} stroke="black" strokeWidth={1} fill="none" />
+            {/* Optional inscribed circle (correct radius) */}
+            {spec.incircle && (() => {
+              const rScaled = ((a + b - c) / 2) * scale
+              return <circle cx={blX + rScaled} cy={blY - rScaled} r={rScaled} stroke="black" strokeWidth={1.5} fill="none" />
+            })()}
+            {/* Leg labels at midpoints, offset outward */}
+            {labels.a && <text x={(blX + brX) / 2} y={blY + 14} fontSize={11} fill="black" textAnchor="middle">{labels.a}</text>}
+            {labels.b && <text x={blX - 6} y={(blY + tlY) / 2} fontSize={11} fill="black" textAnchor="end" dominantBaseline="middle">{labels.b}</text>}
+            {labels.c && <text x={(brX + tlX) / 2 + 6} y={(brY + tlY) / 2 - 6} fontSize={11} fill="black" textAnchor="start">{labels.c}</text>}
+            {labels.vertices && labels.vertices[0] && <text x={tlX - 6} y={tlY - 4} fontSize={11} fill="black" textAnchor="end" fontWeight="600">{labels.vertices[0]}</text>}
+            {labels.vertices && labels.vertices[1] && <text x={blX - 6} y={blY + 12} fontSize={11} fill="black" textAnchor="end" fontWeight="600">{labels.vertices[1]}</text>}
+            {labels.vertices && labels.vertices[2] && <text x={brX + 6} y={brY + 12} fontSize={11} fill="black" textAnchor="start" fontWeight="600">{labels.vertices[2]}</text>}
+          </svg>
+        </div>
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
+      </figure>
+    )
+  }
+
+  // ─ Circle with chord / diameter / tangent / inscribed angle ────
+  // Model emits {type:"circleWithChord", r, chords:[{angle1, angle2, label?}], showCenter?, points?:[{angle, label?}]}.
+  if (t === 'circlewithchord' || (graphic.shape ?? '').toLowerCase() === 'circlewithchord') {
+    const spec = (graphic.spec ?? {}) as { r?: number; chords?: Array<{ angle1: number; angle2: number; label?: string }>; showCenter?: boolean; points?: Array<{ angle: number; label?: string }> }
+    const r = typeof spec.r === 'number' ? spec.r : 70
+    const cx = 100, cy = 100
+    const toRad = (deg: number) => (deg - 90) * Math.PI / 180
+    const pt = (deg: number) => [cx + r * Math.cos(toRad(deg)), cy + r * Math.sin(toRad(deg))] as [number, number]
+    const chords = spec.chords ?? []
+    const points = spec.points ?? []
+    return (
+      <figure className="my-3 flex flex-col items-center">
+        <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
+          <svg viewBox="0 0 200 200" className="w-full h-auto max-h-[300px] overflow-visible">
+            <circle cx={cx} cy={cy} r={r} stroke="black" strokeWidth={1.5} fill="none" />
+            {spec.showCenter && <circle cx={cx} cy={cy} r={2} fill="black" />}
+            {chords.map((ch, i) => {
+              const p1 = pt(ch.angle1), p2 = pt(ch.angle2)
+              return (
+                <g key={i}>
+                  <line x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]} stroke="black" strokeWidth={1.5} />
+                  {ch.label && (
+                    <text x={(p1[0] + p2[0]) / 2 + 6} y={(p1[1] + p2[1]) / 2 - 6} fontSize={11} fill="black">{ch.label}</text>
+                  )}
+                </g>
+              )
+            })}
+            {points.map((p, i) => {
+              const [x, y] = pt(p.angle)
+              const dx = x - cx, dy = y - cy
+              const len = Math.hypot(dx, dy) || 1
+              const lx = x + (dx / len) * 10
+              const ly = y + (dy / len) * 10
+              return (
+                <g key={i}>
+                  <circle cx={x} cy={y} r={2} fill="black" />
+                  {p.label && <text x={lx} y={ly} fontSize={11} fill="black" textAnchor="middle" dominantBaseline="middle" fontWeight="600">{p.label}</text>}
+                </g>
+              )
+            })}
+          </svg>
+        </div>
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
       </figure>
     )
   }
@@ -1139,11 +1507,20 @@ function RawSvgFigure({ svg, caption }: { svg: string; caption?: string }) {
   if (!svg) return null
   return (
     <figure className="my-3 flex flex-col items-center">
-      <div
-        className="max-w-xs w-full bg-white [&_svg]:w-full [&_svg]:h-auto [&_svg]:max-h-[280px]"
-        dangerouslySetInnerHTML={{ __html: svg }}
-      />
-      {caption && <figcaption className="text-[11px] text-black text-center italic mt-1">{caption}</figcaption>}
+      {/* Wrap the SVG in a padded white card with a light gray
+       *  ring. Models frequently draw shapes flush against the
+       *  viewBox edges (polygon vertices at (0,200), circles with
+       *  r=95 in a 200x200 viewBox); without the padding the
+       *  figure cuts at the card boundary and labels touch the
+       *  surrounding prose. overflow-visible on the svg lets text
+       *  labels positioned just outside the viewBox still render. */}
+      <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
+        <div
+          className="w-full [&_svg]:w-full [&_svg]:h-auto [&_svg]:max-h-[300px] [&_svg]:overflow-visible"
+          dangerouslySetInnerHTML={{ __html: svg }}
+        />
+      </div>
+      {caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{caption}</figcaption>}
     </figure>
   )
 }
@@ -1151,6 +1528,144 @@ function RawSvgFigure({ svg, caption }: { svg: string; caption?: string }) {
 function fmtTick(v: number): string {
   if (Number.isInteger(v)) return String(v)
   return v.toFixed(Math.abs(v) < 1 ? 2 : 1)
+}
+
+/**
+ * TOEFL Speaking audio practice control bar — used for both
+ * speaking_repeat ("Listen and Repeat") and speaking_interview
+ * ("Take an Interview") item types.
+ *
+ *  • Speak button — browser SpeechSynthesisUtterance reads `sourceText`
+ *    aloud (no API call). Always present where TTS is supported.
+ *  • Record button — MediaRecorder captures the student's voice, POSTs
+ *    to /api/study/response/transcribe, then appends the returned
+ *    transcript to whatever they've already typed via `onTranscript`.
+ *
+ * Both controls are additive: the student can also just type in the
+ * existing textarea, so this works on platforms without mic or TTS.
+ */
+function AudioPracticeBar({ sourceText, sessionId, language, onTranscript, ko }: {
+  sourceText: string
+  sessionId: string
+  language: 'en' | 'ko'
+  onTranscript: (text: string) => void
+  ko: boolean
+}) {
+  const [speaking, setSpeaking] = useState(false)
+  const [recording, setRecording] = useState(false)
+  const [transcribing, setTranscribing] = useState(false)
+  const recRef = useRef<MediaRecorder | null>(null)
+  const chunksRef = useRef<Blob[]>([])
+  const streamRef = useRef<MediaStream | null>(null)
+
+  const ttsSupported = typeof window !== 'undefined' && 'speechSynthesis' in window
+  const micSupported = typeof window !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && typeof MediaRecorder !== 'undefined'
+
+  const play = () => {
+    if (!ttsSupported || speaking) return
+    const u = new SpeechSynthesisUtterance(sourceText)
+    u.lang = language === 'ko' ? 'ko-KR' : 'en-US'
+    u.rate = 0.95
+    u.onend = () => setSpeaking(false)
+    u.onerror = () => setSpeaking(false)
+    setSpeaking(true)
+    window.speechSynthesis.cancel()
+    window.speechSynthesis.speak(u)
+  }
+
+  const startRec = async () => {
+    if (!micSupported || recording || transcribing) return
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      streamRef.current = stream
+      const mime = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+        ? 'audio/webm;codecs=opus'
+        : MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : ''
+      const rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream)
+      chunksRef.current = []
+      rec.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data) }
+      rec.onstop = async () => {
+        setTranscribing(true)
+        try {
+          const blob = new Blob(chunksRef.current, { type: chunksRef.current[0]?.type || 'audio/webm' })
+          const headers = await authHeaders()
+          const form = new FormData()
+          form.append('audio', blob, 'voice.webm')
+          form.append('sessionId', sessionId)
+          form.append('language', language)
+          const { Authorization } = headers as { Authorization?: string }
+          const res = await fetch('/api/study/response/transcribe', {
+            method: 'POST',
+            headers: Authorization ? { Authorization } : {},
+            body: form,
+          })
+          const json = await res.json()
+          if (res.ok && typeof json.text === 'string' && json.text.trim()) {
+            onTranscript(json.text.trim())
+          }
+        } catch {
+          // Silent fail — student can retry or type.
+        } finally {
+          setTranscribing(false)
+        }
+      }
+      recRef.current = rec
+      rec.start()
+      setRecording(true)
+    } catch {
+      // Permission denied / no mic.
+    }
+  }
+
+  const stopRec = () => {
+    const rec = recRef.current
+    if (!rec || rec.state === 'inactive') return
+    rec.stop()
+    streamRef.current?.getTracks().forEach(t => t.stop())
+    setRecording(false)
+  }
+
+  // Stop TTS / release mic on unmount.
+  useEffect(() => () => {
+    if (ttsSupported) window.speechSynthesis.cancel()
+    streamRef.current?.getTracks().forEach(t => t.stop())
+  }, [ttsSupported])
+
+  if (!ttsSupported && !micSupported) return null
+
+  return (
+    <div className="flex flex-wrap items-center gap-2 mb-3">
+      {ttsSupported && (
+        <button type="button" onClick={play} disabled={speaking}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-[12.5px] text-gray-800 hover:border-primary hover:text-primary disabled:opacity-60"
+        >
+          <Volume2 className={`w-3.5 h-3.5 ${speaking ? 'text-primary' : ''}`} />
+          {speaking
+            ? (ko ? '재생 중…' : 'Playing…')
+            : (ko ? '듣기' : 'Play')}
+        </button>
+      )}
+      {micSupported && (
+        recording ? (
+          <button type="button" onClick={stopRec}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 text-white text-[12.5px] hover:bg-rose-700"
+          >
+            <MicOff className="w-3.5 h-3.5" />
+            {ko ? '녹음 중지' : 'Stop'}
+          </button>
+        ) : (
+          <button type="button" onClick={startRec} disabled={transcribing}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-[12.5px] text-gray-800 hover:border-primary hover:text-primary disabled:opacity-60"
+          >
+            {transcribing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Mic className="w-3.5 h-3.5" />}
+            {transcribing
+              ? (ko ? '받아쓰는 중…' : 'Transcribing…')
+              : (ko ? '녹음' : 'Record')}
+          </button>
+        )
+      )}
+    </div>
+  )
 }
 
 function PassageParagraphs({ text }: { text: string }) {

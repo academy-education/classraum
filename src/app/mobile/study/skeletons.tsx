@@ -69,7 +69,7 @@ export function SkeletonCarouselCard() {
   // card sizing in Recommended/Resumable/MistakeBank so load→loaded
   // has no layout shift.
   return (
-    <SkeletonCard className="snap-center flex-none w-[300px] max-w-[calc(100vw-72px)] p-4 min-h-[148px]">
+    <SkeletonCard className="snap-center flex-none w-[300px] max-w-[calc(100vw-72px)] p-4 min-h-[164px]">
       <div className="flex items-start gap-3.5">
         <SkeletonIconTile />
         <div className="flex-1 space-y-2 pt-1">

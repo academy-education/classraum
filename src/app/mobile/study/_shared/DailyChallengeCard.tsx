@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Target, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react'
+import { SkeletonCard, SkeletonBlock } from '../skeletons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -70,7 +71,18 @@ export function DailyChallengeCard() {
   }
 
   if (loading) {
-    return <div className="h-[88px] rounded-2xl bg-white ring-1 ring-gray-200/60 animate-pulse" />
+    // Match the loaded card's height so there's no layout shift on
+    // transition. Uses the shared shimmer atom so the animation
+    // matches every other study skeleton.
+    return (
+      <SkeletonCard className="h-[72px] p-4 flex items-center gap-3">
+        <SkeletonBlock className="w-10 h-10 rounded-xl flex-shrink-0" />
+        <div className="flex-1 space-y-2">
+          <SkeletonBlock className="h-2.5 w-1/4 rounded-full" />
+          <SkeletonBlock className="h-3 w-3/5 rounded-full" />
+        </div>
+      </SkeletonCard>
+    )
   }
   if (!state || !state.topic) return null
 

@@ -3,7 +3,7 @@
 import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -37,12 +37,47 @@ interface Topic {
   category: 'subject' | 'test_prep'
 }
 
+// Slugs that have been hidden behind a "Coming soon" lock on the
+// landing grid — must also block deep-link access here so users
+// can't bypass the lock with a direct URL or back-button.
+const LOCKED_TOPIC_SLUGS = new Set([
+  'test-ksat', 'test-toeic', 'test-ielts', 'test-act', 'test-ap', 'test-gre',
+])
+
 export default function TopicPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params)
+  if (LOCKED_TOPIC_SLUGS.has(slug)) {
+    // Mirror the landing-page lock UI rather than 404 — students
+    // landing here from an old bookmark see "Coming soon" with a
+    // way back to study, not a broken page.
+    return <LockedTopicView />
+  }
   return (
     <StudySubscriptionGate>
       <TopicInner slug={slug} />
     </StudySubscriptionGate>
+  )
+}
+
+function LockedTopicView() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center gap-4">
+      <div className="w-14 h-14 rounded-full bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
+        <Lock className="w-6 h-6 text-gray-500" />
+      </div>
+      <div>
+        <h1 className="text-[18px] font-semibold text-gray-900">Coming soon</h1>
+        <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs leading-relaxed">
+          This test isn&apos;t available yet. Currently only SAT and TOEFL are open.
+        </p>
+      </div>
+      <Link
+        href="/mobile/study"
+        className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(40,133,232,0.30)] active:scale-[0.97] transition-transform"
+      >
+        Back to study
+      </Link>
+    </div>
   )
 }
 
@@ -105,7 +140,15 @@ function TopicInner({ slug }: { slug: string }) {
           : Promise.resolve({ data: [] }),
       ])
       if (cancelled) return
-      const kids = (childRows ?? []) as Topic[]
+      // Hide subtopics that aren't ready for users yet. Currently
+      // sat-essay — the Digital SAT discontinued the essay in March
+      // 2023 so there's no active demand, and we haven't built the
+      // rhetorical-analysis rubric / prompts. Keeping the row in the
+      // DB so it's easy to re-enable later, just filtering it out of
+      // the category picker.
+      const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay'])
+      const kids = ((childRows ?? []) as Topic[])
+        .filter(c => !HIDDEN_SUBTOPIC_SLUGS.has(c.slug))
       setParent(parentRow ?? null)
       setChildren(kids)
       // Default-select the first child so the mode picker has a real

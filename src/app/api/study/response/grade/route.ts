@@ -12,6 +12,7 @@ import {
   getRubric,
   type ResponseSkill,
   type ResponseTestFamily,
+  type ResponseTaskType,
 } from '@/lib/study/responseRubrics'
 
 /**
@@ -31,6 +32,10 @@ const BodySchema = z.object({
   sessionId: z.string().uuid(),
   testFamily: z.enum(['toefl', 'ielts']),
   skill: z.enum(['speaking', 'writing']),
+  /** Optional task-type discriminator. TOEFL Writing has two distinct
+   *  tasks (email vs academic_discussion) that score on different
+   *  criteria. When omitted, the base (family, skill) rubric applies. */
+  taskType: z.enum(['email', 'academic_discussion']).nullable().optional(),
   promptText: z.string().min(10).max(2000),
   responseText: z.string().min(20).max(8000),
   audioPath: z.string().nullable().optional(),
@@ -69,7 +74,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session is not in response mode' }, { status: 400 })
   }
 
-  const rubric = getRubric(body.testFamily as ResponseTestFamily, body.skill as ResponseSkill)
+  const taskType = (body.taskType ?? undefined) as ResponseTaskType | undefined
+  const rubric = getRubric(body.testFamily as ResponseTestFamily, body.skill as ResponseSkill, taskType)
 
   const wordCount = body.responseText.trim().split(/\s+/).filter(Boolean).length
   const language = (session.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en'
@@ -77,6 +83,7 @@ export async function POST(req: NextRequest) {
   const prompt = buildGraderPrompt({
     family: body.testFamily,
     skill: body.skill,
+    taskType,
     promptText: body.promptText,
     responseText: body.responseText,
     durationSeconds: body.durationSeconds ?? null,

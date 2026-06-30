@@ -54,13 +54,34 @@ const QuestionSchema = z.object({
   passageGroupId: z.string().nullable().optional(),
   prompt: z.string(),
   /** Question type / variant. Defaults to 'multiple_choice' when the
-   *  model omits it (which it often does for the standard case). */
-  type: z.enum(['multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison'])
-    .nullable().optional(),
+   *  model omits it (which it often does for the standard case).
+   *  'fill_in_blanks' — TOEFL Reading Complete-the-Words (Jan 2026):
+   *  passage contains [1] [2] [3] placeholders, `blanks` holds the
+   *  correct fragment per placeholder.
+   *  'arrange_words' — TOEFL Writing Build-a-Sentence: `choices`
+   *  holds word/phrase chips, `correct_answer` is the chips joined
+   *  in correct order by " | ".
+   *  'speaking_repeat' — TOEFL Speaking Listen-and-Repeat: prompt
+   *  is the audio script; `correct_answer` is the exact sentence.
+   *  'speaking_interview' — TOEFL Speaking Take-an-Interview: prompt
+   *  is the interviewer question; open response, rubric-graded. */
+  type: z.enum([
+    'multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison',
+    'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
+  ]).nullable().optional(),
+  /** Fill-in-blanks payload — one entry per [N] placeholder in passage. */
+  blanks: z.array(z.object({
+    id: z.number().int(),
+    answer: z.string(),
+    alternates: z.array(z.string()).nullish(),
+  })).nullish(),
   /** Choice options. Length depends on type/section. */
-  choices: z.array(z.string()).max(6).optional(),
-  /** Correct answer for single-answer types. */
-  correct_answer: z.string().optional(),
+  choices: z.array(z.string()).max(6).nullable().optional(),
+  /** Correct answer for single-answer types. The model correctly
+   *  emits `null` on numeric_entry items (which use
+   *  acceptable_answers instead). Must accept both string and null
+   *  or Zod rejects the whole batch and the test fails to build. */
+  correct_answer: z.string().nullable().optional(),
   /** For multi_select (GRE SE = exactly 2 of 6). */
   correct_answers: z.array(z.string()).nullable().optional(),
   /** For numeric_entry: list of accepted answer strings. */
@@ -213,7 +234,7 @@ Example of a real SAT R&W HARD item (do NOT copy verbatim — match the style + 
   Correct: "any landmark that would tell her she had returned to her own century"
   Why hard: the trap "presence of unfamiliar people" matches the surface theme of being lost, but only "landmark... own century" completes the LOGIC of "nothing to indicate WHAT YEAR".
 
-CRITICAL STRUCTURE: real Digital SAT R&W ALWAYS pairs a passage (TARGET 100-180 words, default ≥120; minimum 70; maximum 200 — bias to the longer end of the spec, students consistently report short passages feel underweight) with a SINGLE question. Put the passage in the dedicated "passage" field — NOT in the prompt. The prompt is JUST the question stem ("Which choice most logically completes the text?", "As used in the text, what does the word 'wanting' most nearly mean?", "Which choice best states the main purpose of the text?"). NEVER put the passage inside the prompt. NEVER write a question without a passage. Literary items may include a one-line context preamble (e.g. "The following text is from the 1913 story 'X' by Y. The narrator, a young Z, …") that sets up the excerpt — count toward the 130 max.
+CRITICAL STRUCTURE: real Digital SAT R&W (verified against released College Board Practice Test #5, 2024) pairs a SHORT passage (TARGET 40-90 words, with words-in-context items as short as 30 and the longest literary excerpts up to ~130) with a SINGLE question. Put the passage in the dedicated "passage" field — NOT in the prompt. The prompt is JUST the question stem ("Which choice most logically completes the text?", "As used in the text, what does the word 'wanting' most nearly mean?", "Which choice best states the main purpose of the text?"). NEVER put the passage inside the prompt. NEVER write a question without a passage. Literary items may include a one-line context preamble ("The following text is from the 1913 story 'The King\'s Coin' by Emily Pauline Johnson…") that sets up the excerpt. Non-literary items (Information & Ideas, History, Science, Humanities) MAY ALSO use the "adapted from" preamble when sourcing a real work — observed on Practice Test 5 items 6 (Webster novel) and others.
 `.trim()
 
 const TEST_PROMPT_EN = (topic: string, count: number, minutes: number, formatBlock: string, family: TestFamily | null, section: string | null) => {
@@ -447,18 +468,26 @@ export async function POST(req: NextRequest) {
       // → Zod parse throws → status=failed. Split into chunks small
       // enough that each call lands well under the cap.
       phase('drafting_questions', 'study.test.progress.draftingQuestions', 15)
-      const easyMedCount = Math.min(200, targetEasyMed + buffer)
+      // Full-hard mode (SAT challenge): skip the easy/med pool
+      // entirely — that chunk was leaking 7-10 easy/medium items
+      // into the final test even when targetEasyMed=0, because the
+      // buffer was being fed to buildEasyMediumPrompt and the model
+      // emits a mix. Hard pool alone has enough buffer to cover.
+      const fullHardMode = targetEasyMed === 0
+      const easyMedCount = fullHardMode ? 0 : Math.min(200, targetEasyMed + buffer)
       // Per-chunk cap by section type:
-      //   passage-heavy (SAT R&W, TOEFL/IELTS Reading): 12 — items
-      //     run ~900-1100 tok with passage + 4 choices + rationales
-      //   graphics-heavy (SAT Math with rawSvg geometry up to ~1100
-      //     tok per figure): 10 — chunks of ~12k output stay safely
-      //     under the 16k cap. Was 60 → JSON truncated mid-response
-      //     → AI_JSONParseError → status=failed.
+      //   passage-heavy (SAT R&W, TOEFL/IELTS Reading): 18 — SAT R&W
+      //     passages recalibrated to 40-90 words (was 100-180),
+      //     dropping per-item budget to ~550-700 tok. 18 × 700 =
+      //     12.6k leaves ~3k headroom under the 16k cap, faster
+      //     than the previous chunk=12 and more reliable too.
+      //   graphics-heavy (SAT Math): 3 — top-difficulty prompt
+      //     causes long worked solutions + 3 distractor rationales
+      //     + optional inline SVG. 3 × ~4500 = 13.5k leaves ~2.5k.
       //   short-item: 60 — bare arithmetic / grammar items
       const heavyPassage = hasPassages(family, sectionLabel)
       const heavyGraphics = family === 'sat' && sectionLabel != null && /math/i.test(sectionLabel)
-      const perChunkCap = heavyPassage ? 12 : heavyGraphics ? 10 : 60
+      const perChunkCap = heavyPassage ? 18 : heavyGraphics ? 3 : 60
       const chunkCount = Math.ceil(easyMedCount / perChunkCap)
       const chunkSizes: number[] = []
       let remaining = easyMedCount
@@ -486,33 +515,51 @@ export async function POST(req: NextRequest) {
         ?? GENERIC_HARD_FRAMING[lang]
       const hardExamples = (lang === 'ko' ? sectionSpec.hardItemExamples_ko : sectionSpec.hardItemExamples_en) ?? []
       const hardCount = targetHard + hardBuffer
-      const hardPrompt = buildHardOnlyPrompt({
-        topicName,
-        count: hardCount,
-        minutes,
-        formatBlock: testPrepBlock,
-        extraGuidance: extraGuidanceFor(family, sectionLabel, hardCount, lang),
-        hardFraming,
-        hardExamples,
-        lang,
-      })
-      const hardPromise = generateObject({
-        model: hardModel,
-        schema: TestSchema,
-        prompt: hardPrompt,
-        temperature: 0.3, // slightly higher — hard items need creative setups
-      })
-      // Fire all chunks + hard call concurrently. Wall-clock = max of
-      // any single call ≈ 20-30s, not sum.
-      const allResults = await Promise.all([...easyMedPromises, hardPromise])
+      // ── Chunk the hard pool too ─────────────────────────────────────
+      // Previously a single call for ALL hard items. For SAT Math
+      // with targetHard=44 + hardBuffer=44 = 88 items × ~3500 tok
+      // per item = 308k tokens output — vastly over the 16k cap,
+      // so the model truncated and we lost most items. Splitting
+      // into the same per-chunk-cap as easy/med lets each call
+      // stay under the cap and run in parallel.
+      const hardChunkCount = Math.max(1, Math.ceil(hardCount / perChunkCap))
+      const hardChunkSizes: number[] = []
+      let hardRemaining = hardCount
+      for (let i = 0; i < hardChunkCount; i++) {
+        const size = Math.ceil(hardRemaining / (hardChunkCount - i))
+        hardChunkSizes.push(size)
+        hardRemaining -= size
+      }
+      const hardPromises = hardChunkSizes.map(size =>
+        generateObject({
+          model: hardModel,
+          schema: TestSchema,
+          prompt: buildHardOnlyPrompt({
+            topicName,
+            count: size,
+            minutes,
+            formatBlock: testPrepBlock,
+            extraGuidance: extraGuidanceFor(family, sectionLabel, size, lang),
+            hardFraming,
+            hardExamples,
+            lang,
+          }),
+          temperature: 0.3,
+        }),
+      )
+      // Fire all chunks (easy/med + hard) concurrently. Wall-clock =
+      // max of any single call ≈ 20-30s, not sum.
+      const allResults = await Promise.all([...easyMedPromises, ...hardPromises])
       phase('drafting_hard', 'study.test.progress.draftingHard', 40)
       for (const r of allResults) {
         allQuestions.push(...(r.object.questions as RawQuestion[]))
         totalIn += r.usage?.inputTokens ?? 0
         totalOut += r.usage?.outputTokens ?? 0
       }
-      console.log('[test/generate] chunked easyMed', {
-        easyMedCount, chunkSizes, hardCount,
+      console.log('[test/generate] chunked pools', {
+        easyMedCount, easyMedChunks: chunkSizes,
+        hardCount, hardChunks: hardChunkSizes,
+        perChunkCap, fullHardMode,
       })
     } else {
       phase('drafting_questions', 'study.test.progress.draftingQuestions', 15)
@@ -541,6 +588,57 @@ export async function POST(req: NextRequest) {
     phase('verifying', 'study.test.progress.verifying', 60)
     let questions = allQuestions.map(sanitizeQuestion)
     questions = dedupeByPrompt(questions)
+
+    // ── Trivial-item filter (SAT Math) ──────────────────────────────
+    // Models occasionally fill the count with degenerate "find
+    // vertex/domain/range of f(x) = simple quadratic" items, all
+    // labeled hard. Observed in a 38-item run: items 20-37 were 18
+    // consecutive one-step quadratic facts. Drop them here so the
+    // top-up retry can refill from the hard prompt instead of
+    // shipping placeholders.
+    if (family === 'sat' && sectionLabel && /math/i.test(sectionLabel)) {
+      const beforeTrivial = questions.length
+      // Pattern: "what is the vertex/domain/range/y-intercept/x-
+      // intercept/axis of symmetry/min/max value of f(x) = …" with
+      // no second concept layered on. These are 1-step lookups, not
+      // SAT-hard items.
+      const trivialPromptPattern =
+        /what is the (?:vertex|domain|range|y[-‑ ]?intercept|x[-‑ ]?intercept|axis of symmetry|minimum value|maximum value|min(?:imum)?|max(?:imum)?) (?:of|for) (?:the (?:graph|function|parabola)|f\(x\)|the function f\(x\))/i
+      // Also detect the meta-pattern: prompt starts with "A function
+      // f(x) is defined as f(x) = …" — a model crutch for filler.
+      const fillerStartPattern = /^a function f\(x\) is defined as f\(x\) ?= ?/i
+      // Track f(x) definitions used; flag the 3rd+ reuse as a
+      // duplicate even if the question stem differs.
+      const fxUseCount = new Map<string, number>()
+      const fxFromPrompt = (p: string): string | null => {
+        const m = p.match(/f\(x\) ?= ?([^.,?]+)/i)
+        return m ? m[1].trim().toLowerCase().replace(/\s+/g, '') : null
+      }
+      questions = questions.filter(q => {
+        const p = q.prompt
+        // Always allow non-math sections through.
+        if (!p) return false
+        // Length floor: hard SAT Math items are ~150-400 chars; an
+        // 80-char prompt is structurally too thin for the
+        // multi-step difficulty we asked for.
+        if (q.difficulty === 'hard' && p.length < 100) return false
+        if (trivialPromptPattern.test(p) && p.length < 220) return false
+        if (fillerStartPattern.test(p) && p.length < 200) return false
+        const fx = fxFromPrompt(p)
+        if (fx) {
+          const n = (fxUseCount.get(fx) ?? 0) + 1
+          fxUseCount.set(fx, n)
+          if (n > 2) return false
+        }
+        return true
+      })
+      if (questions.length < beforeTrivial) {
+        console.log('[test/generate] trivial-item filter', {
+          dropped: beforeTrivial - questions.length,
+          remaining: questions.length,
+        })
+      }
+    }
     // Choice-count enforcement (type-aware): standard MC questions
     // must match the section's spec choice count. Other variants have
     // their own fixed counts:
@@ -556,6 +654,25 @@ export async function POST(req: NextRequest) {
         case 'three_choice': return q.choices.length === 3
         case 'quant_comparison': return q.choices.length === 4
         case 'multi_select': return q.choices.length >= 3 && q.choices.length <= 6
+        // TOEFL Jan-2026 task-type variants — validate the discriminating
+        // field is well-formed instead of choice count.
+        case 'fill_in_blanks':
+          // Must have a passage with [N] placeholders AND a non-empty
+          // blanks array. Reject items the model produced without the
+          // payload — they'd render as a passage with no inputs.
+          return !!q.passage && /\[\d+\]/.test(q.passage)
+            && Array.isArray(q.blanks) && q.blanks.length > 0
+        case 'arrange_words':
+          // choices ARE the word/phrase chips (6-10), correct_answer is
+          // the chips joined in correct order with " | ".
+          return q.choices.length >= 4 && q.choices.length <= 12
+            && !!q.correct_answer && q.correct_answer.includes(' | ')
+        case 'speaking_repeat':
+          // correct_answer is the verbatim sentence to type back.
+          return !!q.correct_answer && q.correct_answer.trim().length >= 6
+        case 'speaking_interview':
+          // No correctness check — just needs a prompt.
+          return !!q.prompt && q.prompt.length >= 10
         case 'multiple_choice':
         default:
           return q.choices.length === expectedChoiceCount
@@ -598,39 +715,86 @@ export async function POST(req: NextRequest) {
       combined.push(...extra.slice(0, count - combined.length))
     }
 
-    // ── Top-up retry on shortfall ───────────────────────────────────
-    // If the pipeline still landed short (e.g. user asked for 44 SAT
-    // Math items and we have 43), fire ONE small retry to fill the
-    // gap. Bounded to 1 retry + a max of 6 items so a runaway model
-    // can't loop forever. Uses gpt-4o for quality on small batches.
-    if (sectionSpec && combined.length < count && combined.length >= count - 6) {
-      const missing = count - combined.length
-      try {
-        const topupResult = await generateObject({
-          model: openai('gpt-4o'),
-          schema: TestSchema,
-          temperature: 0.5,
-          prompt: buildHardOnlyPrompt({
-            topicName,
-            count: missing,
-            minutes,
-            testPrepBlock,
-            family,
-            sectionLabel,
-            lang,
-            extraGuidance: extraGuidanceFor(family, sectionLabel, missing, lang)
-              + `\n\nThis is a TOP-UP request. Produce exactly ${missing} item(s) to round out a near-complete test. All items should be discriminating-difficulty.`,
-          }),
+    // ── Top-up loop: GUARANTEE exact count ─────────────────────────
+    // Loop up to 4 iterations, each time fanning out parallel chunks
+    // and shrinking the chunk size if items aren't being produced
+    // (large chunks → truncation → 0 items returned). Cap iterations
+    // to bound cost; cap missing at 15 so a catastrophic main-pool
+    // failure doesn't trigger 44 retry calls. If we still come up
+    // short after the loop, we log loudly but ship what we have —
+    // partial > nothing.
+    if (sectionSpec && combined.length < count) {
+      const maxIterations = 4
+      // Recompute perChunkCap — the one inside the chunked-gen block
+      // is out of scope here. Same logic as the main pool.
+      const heavyPassageRetry = hasPassages(family, sectionLabel)
+      const heavyGraphicsRetry = family === 'sat' && sectionLabel != null && /math/i.test(sectionLabel)
+      const baseChunkCap = heavyPassageRetry ? 18 : heavyGraphicsRetry ? 3 : 60
+      // Each iteration shrinks chunk size: chunks of N → N/2 → 1 → 1.
+      // Smaller chunks dramatically increase the model's success
+      // rate (fewer tokens per call = no truncation, harder to
+      // ignore the count requirement).
+      const iterationChunkSizes = [baseChunkCap, Math.max(2, Math.floor(baseChunkCap / 2)), 1, 1]
+      for (let iter = 0; iter < maxIterations; iter++) {
+        const need = count - combined.length
+        if (need <= 0) break
+        const cap = iterationChunkSizes[iter] ?? 1
+        const missing = Math.min(need, 15)
+        const chunkCount = Math.ceil(missing / cap)
+        const sizes: number[] = []
+        let rem = missing
+        for (let i = 0; i < chunkCount; i++) {
+          const size = Math.ceil(rem / (chunkCount - i))
+          sizes.push(size)
+          rem -= size
+        }
+        const results = await Promise.all(
+          sizes.map(size =>
+            generateObject({
+              model: openai('gpt-4o'),
+              schema: TestSchema,
+              temperature: 0.5,
+              prompt: buildHardOnlyPrompt({
+                topicName,
+                count: size,
+                minutes,
+                formatBlock: testPrepBlock,
+                extraGuidance: extraGuidanceFor(family, sectionLabel, size, lang)
+                  + `\n\nTOP-UP iteration ${iter + 1}. Produce EXACTLY ${size} item(s) at top-decile SAT difficulty. Keep the explanation concise (~50 words) so the response stays under the token budget.`,
+                hardFraming: (lang === 'ko' ? sectionSpec.hardItemFraming_ko : sectionSpec.hardItemFraming_en)
+                  ?? GENERIC_HARD_FRAMING[lang],
+                hardExamples: (lang === 'ko' ? sectionSpec.hardItemExamples_ko : sectionSpec.hardItemExamples_en) ?? [],
+                lang,
+              }),
+            }).catch(err => {
+              console.warn(`[test/generate] top-up iter ${iter + 1} chunk failed`, err)
+              return null
+            }),
+          ),
+        )
+        let addedThisIter = 0
+        for (const r of results) {
+          if (!r) continue
+          const topupRaw = (r.object.questions ?? []) as RawQuestion[]
+          const topupClean = topupRaw
+            .map(sanitizeQuestion)
+            .filter(q => q.prompt && (q.choices.length === expectedChoiceCount || q.type === 'numeric_entry'))
+          const remNow = count - combined.length
+          if (remNow <= 0) break
+          const toAdd = topupClean.slice(0, remNow)
+          combined.push(...toAdd)
+          addedThisIter += toAdd.length
+        }
+        console.log(`[test/generate] top-up iter ${iter + 1}`, {
+          missing, chunkCap: cap, added: addedThisIter,
+          remainingAfter: count - combined.length,
         })
-        const topupRaw = (topupResult.object.questions ?? []) as RawQuestion[]
-        const topupClean = topupRaw
-          .map(sanitizeQuestion)
-          .filter(q => q.prompt && (q.choices.length === expectedChoiceCount || q.type === 'numeric_entry'))
-          .slice(0, missing)
-        combined.push(...topupClean)
-      } catch (err) {
-        // Non-blocking — ship the short test rather than fail.
-        console.warn('[test/generate] top-up retry failed', err)
+        if (addedThisIter === 0) break // no progress — stop burning budget
+      }
+      if (combined.length < count) {
+        console.error('[test/generate] FAILED to hit exact count', {
+          target: count, shipped: combined.length, shortfall: count - combined.length,
+        })
       }
     }
 
@@ -716,67 +880,14 @@ export async function POST(req: NextRequest) {
       })
     }
 
-    // ── Short-passage expansion pass (Option 2 guarantee) ───────────
-    // The prompt asks for 100-180 word passages but gpt-4o-mini
-    // sometimes ships 50-70 word passages anyway. Collect every
-    // SAT R&W passage under 80 words, batch-expand them via one
-    // gpt-4o-mini call, and replace in place. Preserves the
-    // question's validity by carrying the prompt + correct answer
-    // into the expansion call as context. ~$0.002 per test;
-    // guaranteed deterministic minimum length.
-    if (family === 'sat' && sectionLabel && /reading|writing/i.test(sectionLabel)) {
-      const shortIdxs = questions
-        .map((q, i) => ({ q, i }))
-        .filter(({ q }) => {
-          if (!q.passage) return false
-          const words = q.passage.trim().split(/\s+/).length
-          return words < 80
-        })
-      if (shortIdxs.length > 0) {
-        phase('expanding', 'study.test.progress.assembling', 90)
-        try {
-          const ExpansionSchema = z.object({
-            expansions: z.array(z.object({
-              index: z.number().int(),
-              expanded_passage: z.string(),
-            })),
-          })
-          const items = shortIdxs.map(({ q, i }) => ({
-            index: i,
-            current_passage: q.passage,
-            question_prompt: q.prompt,
-            correct_answer: q.correct_answer,
-          }))
-          const expandPrompt = [
-            'Each passage below is too short for a Digital SAT Reading & Writing item (under 80 words). Expand each to 120-180 words while preserving:',
-            '1. The original idea + any factual claims the question tests',
-            '2. The answer\'s validity — after expansion, the correct_answer must still be the right answer to question_prompt',
-            '3. Genre + tone of the original',
-            '',
-            'Add context, supporting evidence, or a second paragraph that develops the claim — but do NOT introduce facts that would invalidate the existing question. Encode paragraph breaks as literal "\\n\\n". Return EACH passage by its original index.',
-            '',
-            'Items to expand:',
-            JSON.stringify(items, null, 2),
-          ].join('\n')
-          const { object: expansion } = await generateObject({
-            model: openai('gpt-4o-mini'),
-            schema: ExpansionSchema,
-            prompt: expandPrompt,
-            temperature: 0.4,
-          })
-          const byIdx = new Map(expansion.expansions.map(e => [e.index, e.expanded_passage]))
-          questions = questions.map((q, i) => {
-            const expanded = byIdx.get(i)
-            return expanded ? { ...q, passage: expanded } : q
-          })
-        } catch (err) {
-          // Non-blocking — if expansion fails, ship the short
-          // passages rather than aborting the whole test. Better
-          // short than failed.
-          console.warn('[test/generate] passage expansion pass failed', err)
-        }
-      }
-    }
+    // ── Short-passage expansion pass: DISABLED ──────────────────────
+    // Previously fired when SAT R&W passages came in under 80 words
+    // (the old prompt asked for 100-180). The recalibrated prompt
+    // now ASKS for 40-90 word passages to match released Practice
+    // Test #5, so this pass would actively make passages WORSE by
+    // inflating them past real SAT length. Kept the dead code
+    // location as a marker in case we ever want a length-shrinking
+    // pass for the opposite problem.
 
     // Empty-test guard: if the pipeline dropped everything (model
     // emitted wrong choice-count for the whole batch, verifier killed
@@ -1034,7 +1145,7 @@ Rules:
 - Choice text contains ONLY the answer content. Do NOT prefix with "A)", "B.", "(1)" etc. — the UI adds the letter label.
 - Each question independent.
 - Explanations: 1-2 sentences. Mention the trap.
-- PASSAGE FIELD: if the test format pairs a passage with each question (Digital SAT R&W: TARGET 100-180 words per question, default ≥120, minimum 70, maximum 200, ALWAYS include one, 70%+ as 2-3 paragraphs separated by "\\n\\n"; KSAT 영어 빈칸 추론 / 요약; TOEFL/IELTS Reading: shared 700-900 word academic passages — repeat the same passage on each linked question), put it in the dedicated "passage" field and keep "prompt" to JUST the question stem. Do NOT put the passage inside the prompt. For math, grammar gap-fills, listening transcripts already given, or anything without a passage, set passage to null.
+- PASSAGE FIELD: if the test format pairs a passage with each question (Digital SAT R&W: 40-90 words per question, single-block default — multi-paragraph ONLY for literary excerpts with a preamble; KSAT 영어 빈칸 추론 / 요약; **TOEFL Reading (Jan 2026 format): short 150-180 word academic passages shared by 5 linked questions, OR 40-90 word Daily Life texts (notice / email / flyer / post) shared by 2-3 linked questions — repeat the same passage verbatim on each linked question**; IELTS Reading: shared 700-900 word academic passages — repeat the same passage on each linked question), put it in the dedicated "passage" field and keep "prompt" to JUST the question stem (including any task-type tag like "[Academic — Biology]"). Do NOT put the passage inside the prompt. For math, grammar gap-fills, listening transcripts already given, or anything without a passage, set passage to null.
 - timeLimitMinutes = ${minutes}; section = section label.
 `.trim()
 }
@@ -1101,7 +1212,7 @@ Rules:
 - Plain text only. NO LaTeX, markdown, or HTML. Use Unicode: x², √(2), π, ½, ±, ×, ÷.
 - Choice text contains ONLY the answer content. Do NOT prefix with "A)", "B.", "(1)" etc.
 - Explanations: 1-2 sentences. Mention what makes this step hard.
-- PASSAGE FIELD: same rule as the easy/medium pass — if the test pairs a passage with each question (SAT R&W: target 100-180 words, default ≥120, max 200, ALWAYS, 70%+ as 2-3 paragraphs split by "\\n\\n"; KSAT 영어 빈칸; TOEFL/IELTS Reading shared passage), put it in the "passage" field, keep "prompt" to JUST the question stem. Hard SAT R&W items benefit from dense prose with internal logic the student must trace — pack 2-3 genuine claims or a subtle pivot across paragraphs. Null when no passage applies.
+- PASSAGE FIELD: same rule as the easy/medium pass — if the test pairs a passage with each question (SAT R&W: 40-90 words per question, ALWAYS include one, single-block default; KSAT 영어 빈칸; **TOEFL Reading Jan-2026: 150-180w shared academic OR 40-90w shared Daily Life text**; IELTS Reading shared 700-900w passage), put it in the "passage" field, keep "prompt" to JUST the question stem (including any "[Academic — X]" / "[Daily Life — X]" tag). Hard SAT R&W items achieve difficulty through subtle logical operators (hedges, scope quantifiers, causal-vs-correlational, modal strength) packed into ~70-90 words — NOT through length. Null when no passage applies.
 - timeLimitMinutes = ${minutes}; section = section label.
 `.trim()
 }
@@ -1172,10 +1283,11 @@ function extraGuidanceFor(
         `- 인문 (Humanities): ${hum}문항 — 철학, 예술 비평, 언어학, 미학.`,
         `- 과학 (Science): ${sci}문항 — 생명/물리/지구과학 학술 발췌 (전문 용어 포함).`,
         '',
-        '지문 구조: 70-200단어, 2-3 단락 (학생들이 짧은 지문에 대해 반복적으로 불만을 표하므로 디지털 SAT R&W 범위의 더 긴 쪽을 기본값으로). 복수 단락 의무 — 이 배치의 최소 70% 이상이 "\\n\\n"으로 구분된 2-3 단락이어야 함. 70단어 미만 지문 절대 금지. 단어 분포: 문맥 어휘·전환 70-100단어(1-2단락); 주제·추론·근거 110-160단어(2단락); 문학 주제·목적 140-200단어(2-3단락). JSON에서 단락 구분은 반드시 "\\n\\n" (개행 두 개).',
+        '지문 구조 — College Board 공개 Practice Test #5 (2024) 기준으로 보정. 짧은 지문이 표준: 대부분 40-90단어, 단일 단락. 항목 유형별: 문맥 어휘 30-60단어; 논리 완성 50-90; 주제·기능·구조 60-100; 글 간 연결(cross-text)은 두 개의 ~50-70단어 지문 ("\\n\\n"으로 구분 — 이 형식만이 multi-paragraph, 전체의 ~5-10%만); 문학 주제·목적 80-130단어 (서두 포함). 130단어 초과 절대 금지. 실제 SAT는 길이가 아니라 논리 연산자 (헷지, 한정사, 인과 vs 상관, 모달 강도)로 변별. 단일 단락이 기본, 다단락은 cross-text 또는 문학 서두+발췌 케이스에만.',
         '예시 2단락 지문 (문학, 약 115단어, passage 필드 유효 형식):\n"다음 글은 샬럿 브론테의 1853년 소설 Villette에서 발췌. 화자 루시 스노우가 낯선 도시에 혼자 도착한 직후의 장면.\\n\\nThe street was narrow, dim, deserted: not a step echoed; the shutters were closed, the lamps unlit. A great loneliness fell on me as I stood still, listening; but loneliness, as I had begun to discover, was the first condition of my new life. I had told myself I must learn to bear it without flinching."\n맥락 서문과 인용 본문 사이의 \\n\\n에 주의 — JSON에서 단락 구분을 인코딩하는 방식.',
-        '난이도: 대학 이상 수준 (ABOVE COLLEGE LEVEL) — 실제 디지털 SAT의 최고난도 문항보다 더 어렵게. 상위 5-10% 수험생 기준. 대학 고학년/GRE Verbal 수준의 추론, 단 문체는 SAT R&W처럼 학술 산문 유지. 어휘는 99%ile 고등학생도 멈칫할 단어 (예: ostensibly, circumscribe, tendentious, evince, supervene, perspicuous, salutary; 한국어 시험이면 "회의적", "이율배반적", "함의", "외연", "통시적" 수준). 지문은 Lexile 1300-1500 (대학 후반~대학원 초기). 요구되는 추론: 두 단계 추론 연쇄 (A→B→C), 모순처럼 보이는 두 주장을 명시되지 않은 구분으로 화해, 한정사 범위 정밀 파악 (some vs most vs all), 인과 vs 상관 구분, 결론의 모달 강도가 전제를 초과하는지 ("반드시" vs "할 수 있다"). 함정 보기는 모두 첫 읽기에 그럴듯해야 하고, 재독에서만 드러나는 차이 (주어 바뀜, 한정사 누락, 헷지 무시, 함의 다른 근접 동의어, 범위 확대). 금지: 표면 어휘 정의, 첫 문장에서 답이 나오는 주제 문항, 지문 한 문장을 직접 풀어쓴 답, 명백히 주제 외이거나 사실 오류인 함정. 모든 오답은 특정 함정 패턴을 인코딩 — distractor_rationales에 명시.',
-        '지문 도입부 형식: 문학 (Literature) 장르 문항만 "다음 글은 [작가]의 [연도] [소설/시/단편] [제목]에서 발췌…"로 시작 가능. Information & Ideas, History, Science, Humanities 문항은 그런 출처 서문 금지 — 본론으로 곧장 진입 (주장, 관찰, 가설 자체로 시작). 사용자가 "다음 글은 …에서 발췌"가 모든 문항에 반복됨을 지적함; 이 도입부는 최대 25% (문학 비중)에만 등장해야 함.',
+        '난이도 — 실제 공개 디지털 SAT (Practice Test #5, 2024)의 최고난도 수준으로 보정. 그보다 더 어렵게 만들면 모델이 품질을 유지 못 하고 가짜 어려운 필러 문항을 생산함. 실제 SAT 최고난도 변별: (a) 헷지 무시 ("일부" vs "모두", "할 수 있다" vs "반드시"), (b) 범위 확대 ("화자" vs "분야 전체"), (c) 상관 vs 인과 혼동, (d) 문장 기능 오독 (예시 vs 반례), (e) 함의가 다른 근접 동의어. 함정 보기는 첫 읽기에 그럴듯해야 하고 재독에서만 드러나야 함. 금지: 첫 문장에서 답이 나오는 주제 문항, 지문 한 문장을 직접 풀어쓴 답, 명백히 주제 외이거나 사실 오류인 함정. 모든 오답은 특정 함정 패턴 — distractor_rationales에 명시.',
+        '어휘 등급 — 실제 SAT Practice Test #5 기준. 상위 고등학교 / 대학 1학년 수준. GRE-tier 난해어 사용 금지 (adumbrate, contumacious 등). 실제 시험에서 사용되는 어휘 예시: postulate, ameliorate, antecedent, impending, innocuous, perpetual, hypothesized, sanction, rationalize. 한국어 시험이면 "회의적", "함의", "전제", "보완하다", "역설하다", "공준" 수준. 이 대역에서 선택; 더 어려운 단어로 인위적으로 끌어올리지 말 것.',
+        '지문 도입부 형식: 문학 ("다음 글은 [작가]의 [연도] [작품]에서 발췌…") 및 비문학 모두 출처 서문 사용 가능 — Practice Test #5 항목 3, 5, 8, 24 등 비문학도 "K.D. Leka 연구진이…", "1949년 Frank Zamboni가 개발한…" 같은 출처/배경 도입을 자유롭게 사용. 형식을 다양화: 때로는 출처로 시작, 때로는 주장 자체로 시작. 모든 문항이 같은 도입부 패턴이면 안 됨.',
         '한 지문에 한 문항. 카테고리와 장르를 섹션 전체에 분산 (연속해서 같은 카테고리·장르 금지).',
         '',
         universalRules,
@@ -1196,11 +1308,11 @@ function extraGuidanceFor(
       `- Humanities (${hum}): philosophy, arts criticism, linguistics, aesthetics.`,
       `- Science (${sci}): life/physical/earth-science academic excerpts with technical vocabulary.`,
       '',
-      'PASSAGE STRUCTURE: 70 to 200 words, 2 to 3 paragraphs (matches the substantive end of the Digital SAT R&W range — students consistently complain that shorter passages feel underweight, so default to the longer end of the spec). MULTI-PARAGRAPH QUOTA — at least 70% of items in this batch MUST be 2 or 3 paragraphs separated by a real "\\n\\n" break. Single-paragraph items are reserved for the shortest words-in-context / transition items only. Multi-paragraph items typically come from: (a) literary excerpts with a context preamble + the quoted text as separate paragraphs, (b) Information & Ideas items where the passage sets up a claim in paragraph 1 and then pivots / qualifies it in paragraph 2, (c) cross-text-connections items where Passage 1 and Passage 2 are two distinct paragraphs, (d) Craft & Structure items where a claim and its supporting evidence sit in separate paragraphs. Word distribution by item type: logical-completion / words-in-context 70-100 words (1-2 paragraphs); main-idea / inference / command-of-evidence 110-160 words (2 paragraphs); literary main-purpose 140-200 words (2-3 paragraphs). NEVER produce passages under 70 words. Encode paragraph breaks as literal "\\n\\n" inside the passage string — two newline characters, not a single newline, not a space.',
+      'PASSAGE STRUCTURE — calibrated to released College Board Practice Test #5 (2024): SHORT passages, 40-90 words for most items, single-block (no paragraph breaks). Specific ranges by item type: words-in-context 30-60 words; logical completion 50-90; main-idea / function / structure 60-100; cross-text connections two passages of ~50-70 words each (these get the only multi-paragraph format, separated by "\\n\\n" — at most ~5-10% of items); literary main-purpose 80-130 words when including the "adapted from" preamble. NEVER inflate passages past ~130 words; real SAT items keep prose tight and force difficulty through logical operators (hedges, scope quantifiers, causal vs correlational, modal strength) rather than length. Single paragraph is the DEFAULT, not the exception. The only multi-paragraph format is cross-text-connections (Passage 1 / Passage 2) or literary items where a context preamble precedes a quoted excerpt.',
       'EXAMPLE of a 2-paragraph passage (literary, ~115 words, valid format for the passage field):\n"The following text is adapted from Charlotte Brontë\'s 1853 novel Villette. The narrator, Lucy Snowe, has just arrived alone in a foreign city.\\n\\nThe street was narrow, dim, deserted: not a step echoed; the shutters were closed, the lamps unlit. A great loneliness fell on me as I stood still, listening; but loneliness, as I had begun to discover, was the first condition of my new life. I had told myself I must learn to bear it without flinching."\nNote the literal \\n\\n between the preamble and the excerpt — that\'s how to encode the paragraph break in the JSON.',
-      'DIFFICULTY: ABOVE COLLEGE LEVEL — calibrate every item HARDER than the hardest items on a real Digital SAT. Target the top 5-10% of test-takers (students aiming 1500+ SAT, or adults already studying for GRE/LSAT). Reasoning required: chain TWO inferences (A→B→C), reconcile two apparently-contradictory claims by introducing an unstated distinction, identify the EXACT scope of a quantifier ("some" vs "most" vs "all"), distinguish causal claims from correlational ones, or detect when the conclusion uses a stronger modal ("must") than the premises support ("might"). Distractors should all sound right on first read; the discriminating cut is something a careful re-read reveals (a swapped subject, a missing qualifier, a hedge ignored, a near-synonym with the wrong connotation, scope creep from "the speaker" to "the field"). FORBID: bare main-idea questions answerable from the first sentence, questions whose answer is a direct paraphrase of any single passage sentence, distractors that are clearly off-topic or contain a literally false statement. Every wrong choice must encode a SPECIFIC trap pattern — name it in distractor_rationales.',
-      'VOCABULARY REGISTER — UPPER GRE / LSAT TIER. Passages and "words in context" targets should reach this band: adumbrate, anodyne, apocryphal, apodictic, captious, chimerical, contumacious, desultory, dilatory, ebullient, equivocate, etiolated, fulsome, gainsay, gnomic, hortatory, inchoate, ineluctable, inveterate, jejune, lugubrious, mendacious, mendicant, obstreperous, paean, pellucid, perfidious, pertinacious, pusillanimous, querulous, recondite, refractory, redoubtable, sedulous, supererogatory, sui generis, truculent, unctuous, vituperative, abnegate, evince, supervene, perspicuous, tendentious. Use these as ANCHORS, not a closed list — choose words from the same band or harder. FORBID as words-in-context targets (too easy): "elaborate", "characterize", "establish", "emphasize", "demonstrate", "illustrate", "challenge", "criticize", "implicit", "explicit", "subtle", "significant", "ambiguous", "controversial", "consistent", "compelling", "nuanced". Those belong in the lower 50% of items the user has explicitly rejected. For 70%+ of items the correct interpretation should hinge on a word the average college freshman would need a dictionary to define confidently. Passages may also use harder register words in supporting sentences (not just as the question target) to keep the prose at Lexile 1300-1500.',
-      'PASSAGE PREAMBLE FORMAT: only literary items (Literature genre) may begin with "The following text is adapted from [author]\'s [year] [novel/poem/story] [title]…". Information & Ideas, History, Science, and Humanities items must NOT use that boilerplate — instead, open IN MEDIAS RES with the substantive content. The user has flagged that "The following text is adapted from…" is appearing on every item; it must appear on AT MOST 25% of items (literary slice only). Non-literary passages should read like a published essay, journal abstract, or primary-source excerpt — begin with the claim, observation, or hypothesis itself, not with sourcing prose.',
+      'DIFFICULTY — calibrated to the hardest items on a real released Digital SAT (Practice Test #5, 2024). NOT harder than that. Pushing past real SAT difficulty toward GRE/AMC tier produces filler items the model can\'t sustain at quality. The discriminating cuts on real hard SAT items: (a) hedge-word ignored ("some" vs "all", "may" vs "must"), (b) scope creep ("the speaker" vs "the field"), (c) causal claim mistaken for correlation, (d) function-of-sentence misread (an example vs a counterexample), (e) near-synonym with wrong connotation in context. Distractors should sound plausible on a first read and require a careful re-read to eliminate. FORBID: bare main-idea questions answerable from the first sentence, questions whose answer is a direct paraphrase of any single passage sentence, distractors that are clearly off-topic or contain a literally false statement. Every wrong choice must encode a SPECIFIC trap pattern — name it in distractor_rationales.',
+      'VOCABULARY REGISTER — calibrated to released Digital SAT Practice Test #5. Real test "words in context" targets use upper-high-school / early-college register, NOT GRE-tier obscure words. Reference set FROM the actual test: trace, fragile, recognizable, sophisticated, antecedent, impending, innocuous, perpetual, hypothesized, discounted, redefined, exploited, sanction, ameliorate, rationalize, postulate, irreducibly, contextual. Acceptable harder anchors (also SAT-tier): assuage, capricious, conciliatory, deride, disparate, ephemeral, equivocal, fortuitous, garrulous, idiosyncratic, magnanimous, meticulous, obfuscate, ostensible, pedantic, perfunctory, prescient, prudent, qualify (verb sense), repudiate, sanguine, ubiquitous. Use these as the calibration band — choose words at this level. AVOID as anchor (too hard for SAT, GRE-only): adumbrate, contumacious, etiolated, gnomic, hortatory, jejune, mendicant, pellucid, pusillanimous, supererogatory, sui generis, vituperative. Also AVOID as words-in-context targets (too easy / overused by generators): "elaborate", "characterize", "demonstrate", "illustrate", "subtle", "significant", "ambiguous", "consistent", "compelling", "nuanced". Aim for the middle: real SAT vocabulary.',
+      'PASSAGE PREAMBLE FORMAT: literary items use "The following text is from [author]\'s [year] [work] [title]…" with a one-line context sentence ("The narrator, a young Z, has just arrived in…"). Non-literary items MAY ALSO use a brief sourcing line when grounded in a real work or study ("K.D. Leka and colleagues found that…", "In her 1983 book…"), as observed on Practice Test #5 items 3, 5, 8, 24, etc. The preamble should feel natural and informational, not formulaic — vary the opening: sometimes start with the source ("In 1949, Frank Zamboni developed…"), sometimes with the claim itself ("Many ancient sculptures of people\'s heads are missing their noses…"). Do NOT make every non-literary item start with "The following text is adapted from"; the actual test mixes openings.',
       'One question per passage. Spread categories AND genres across the section — do NOT cluster.',
       '',
       universalRules,
@@ -1229,7 +1341,12 @@ function extraGuidanceFor(
         `- 객관식(type="multiple_choice"): ${mc}문항. 4지선다.`,
         `- 학생 단답형 SPR(type="numeric_entry"): ${spr}문항. choices는 빈 배열, acceptable_answers에 정답을 나열(정수/소수/분수). 예: "3.44" → acceptable_answers: ["3.44", "3.4400", "172/50"]. SPR은 4개 주제(대수/고급/PSD/기하)에 골고루 분산.`,
         '',
-        '난이도: 상위 Module 2 / 상위 10% — 실제 디지털 SAT의 최고난도 문항 (상위 모듈 응시자 중 25-35%만 정답) 수준으로 보정. 빈출 추론 패턴: (a) "묻는 양 바꾸기" — x를 구하지만 질문은 2x+5를 묻고, 오답 보기는 지문의 숫자로 구성; (b) 비선형 연립 (원+직선, 포물선+직선)의 접선 조건 (판별식=0); (c) 함수 합성·변환 연쇄 (g(x) = f(2x−3)+4 같은 형태를 특정 입력에서 평가); (d) 산점도/이원 분할표의 조건부 확률 — 계산은 단순하지만 셀 추출이 변별; (e) 나머지 정리·다항식 항등식 트릭; (f) a, b를 따로 구하지 않고 식 (a+b, ab, a²+b²) 자체를 구해야 하는 연립. 금지: 단순 산술, 1단계 대입, 암산 추정으로 풀리는 문항, 첫 식으로 답이 바로 나오는 문항. 천장은 Algebra 2 + 기초 통계 + 직각삼각형·단위원 삼각비. 미적분, 로그 항등식 (곱·몫 이상), 행렬, 복소수, 형식 증명, 코사인·사인 법칙 사용 금지.',
+        '난이도: 상위 1-3% (Module 2 최상위보다 더 어렵게) — College Board가 공개한 최고난도 문항보다 더 어렵게 보정. 만점 800 목표 / AMC 10·SAT Subject Math II 준비생 기준. "상위 모듈 응시자 중위권"이 아니라 "30명 중 1명만 풀이를 찾는" 수준. 모든 문항이 3-5분의 신중한 작업과 최소 2단계 이상의 비자명한 조작을 요구. 빈출 추론 패턴: (a) "묻는 양 바꾸기" — x가 아니라 2x+5 / x²+1/x² / (a−b)/(a+b)를 구함; (b) 비선형 연립 접선 조건 (판별식=0)에서 미지수가 직선 매개변수; (c) g(x) = af(bx+c)+d 형태에서 f의 한두 점만 주고 나머지를 조건으로 추론; (d) 산점도/이원 분할표의 비자명한 조건부 확률 (예: 주변확률만 주고 P(A|B∪C) 요구); (e) 비에타 + 대칭함수 — 근에 대한 관계로 파생식 계산; (f) a, b를 따로 구하지 않고 식 (a+b, ab, a²+b², a/b+b/a) 자체를 대수 조작으로; (g) 복잡한 도형 안의 닮은 삼각형 (내접삼각형 원, 교차현, 접선-할선); (h) 비자명한 모델 선택 (복리 vs 단리, 등비 vs 등차). 금지: 단순 산술, 1단계 대입, 암산 추정, 보기 대입으로 풀리는 문항, 첫 식으로 답이 바로 나오는 문항, 난이도가 단위·부호 추적뿐인 문항. 천장은 Algebra 2 + 기초 통계 + 직각삼각형·단위원 삼각비. 미적분, 로그 항등식 (곱·몫·밑변환 이상), 행렬, 복소수, 형식 증명, 코사인·사인 법칙 사용 금지.',
+        '최고난도 예시 앵커 (생성 문항은 이 수준 이상으로):',
+        '1) f(x) = (x²+ax+b)(x²+cx+d)의 그래프가 (−1,0), (2,0), (5,0)을 지나고 x절편이 정확히 하나 더 있다. a+c=7일 때 bd의 값은? (비에타 + 인수 매칭 + a+c로 4번째 근 추론)',
+        '2) xy평면에서 y=kx+3이 원 x²+y²−6x+8y+9=0에 접한다. k의 모든 가능한 값의 곱은? (완전제곱 후 접선 조건; k에 대한 이차식; 비에타로 곱)',
+        '3) 정수 계수 다항식 p(x)를 (x−2)로 나누면 나머지 5, (x−3)으로 나누면 나머지 7. (x−2)(x−3)으로 나눈 나머지는? (나머지 정리 + 선형 나머지 r(x)=ax+b 가정)',
+        '4) 이항변수 X, Y의 결합분포 표. P(X=1|Y=1)=0.6, P(Y=1|X=0)=0.4, P(X=1)=0.5일 때 P(X=1 AND Y=0)? (조건부 확률 식 두 개로 연립)',
         '',
         '그래픽: 실제 SAT 수학 문항 약 40%에 시각 자료. 비율 가중치: 기하/삼각 ≈ 90% (도형 거의 필수), PSD ≈ 70% (산점도/막대/이원 분할표/도트·박스·히스토그램), 고급 수학 ≈ 30% (포물선/지수곡선/함수표), 대수 ≈ 20% (좌표평면 직선/값 표). 필요 없으면 graphic 필드 생략(또는 null).',
         '',
@@ -1258,7 +1375,12 @@ function extraGuidanceFor(
       `- type="multiple_choice": ${mc} items. 4 choices each. Standard format.`,
       `- type="numeric_entry": ${spr} items. Leave "choices" empty. Set acceptable_answers to all forms that count as correct (integer, decimal, equivalent fraction). EXAMPLE: for the answer 3.44, set acceptable_answers: ["3.44", "3.4400", "172/50"]. For 12, set ["12"]. SPR items are SPREAD across all 4 topic strands — not clustered in one strand.`,
       '',
-      'DIFFICULTY: UPPER MODULE 2 / TOP-DECILE — every item should match the hardest items on a real Digital SAT, the ones only 25-35% of the top-module population solve. Reasoning archetypes to use heavily: (a) "asked-for-quantity flip" — solve for x but the question asks for 2x+5 (wrong choices built from the stem\'s own numbers); (b) non-linear systems at tangency (circle+line, parabola+line) requiring discriminant=0; (c) function composition / transformation chains like g(x) = f(2x−3)+4 evaluated at a specific input; (d) dense scatterplot or two-way-table CONDITIONAL probability where the math is trivial but extracting the right cell is the discriminator; (e) remainder theorem and polynomial identity tricks; (f) systems where you must solve for an EXPRESSION (a+b, ab, a²+b²) without isolating a or b individually. FORBID: bare arithmetic, one-step plug-and-chug, items solvable by quick mental estimation, items where the answer falls out of the first equation written. Ceiling stays at Algebra 2 + intro stats + right-triangle & unit-circle trig — do NOT use calculus, log identities beyond product/quotient, matrices, complex numbers, formal proofs, or law of sines/cosines.',
+      'DIFFICULTY: TOP 1-3% (ABOVE upper Module 2) — calibrate every item HARDER than the hardest items released by College Board. Target students aiming for a perfect 800 / who are also prepping for AMC 10, USAMO qualifying, or SAT Subject Math II. The reference is NOT "the median upper-Module-2 student" but "the 1-in-30 student who blinks at the item before finding the trick." Every item should require 3-5 minutes of careful work and at least TWO non-obvious moves (not one). Reasoning archetypes to use heavily: (a) "asked-for-quantity flip" — solve for x but the question asks for 2x+5 / x²+1/x² / (a−b)/(a+b); (b) non-linear systems at tangency (circle+line, parabola+line) requiring discriminant=0, AND the unknown is the line\'s parameter not the contact point; (c) function composition + transformation chains: g(x) = af(bx+c)+d evaluated when you only know f at one or two anchor points — must deduce the rest from given conditions; (d) dense scatterplot or two-way-table CONDITIONAL probability where the conditional partition is non-obvious (e.g. P(A|B∪C) given a marginal); (e) Vieta\'s + symmetric functions: given a polynomial\'s roots satisfy a relation, find a derived expression; (f) systems where you must solve for an EXPRESSION (a+b, ab, a²+b², a/b+b/a) without isolating a or b — by algebraic manipulation; (g) similar triangles inside a more complex figure (circle with inscribed triangle, intersecting chords, tangent-secant); (h) exponential / quadratic word problems where the right model is non-obvious (compound vs. simple, geometric vs. arithmetic). FORBID: bare arithmetic, one-step plug-and-chug, items solvable by quick mental estimation, items solvable by trying each multiple-choice answer, items where the answer falls out of the first equation written, items where the only difficulty is keeping track of units or signs. Ceiling stays at Algebra 2 + intro stats + right-triangle & unit-circle trig — do NOT use calculus, log identities beyond product/quotient/change-of-base, matrices, complex numbers, formal proofs, or law of sines/cosines. Stay within SAT topical scope but push the DIFFICULTY past the ceiling of released SAT items.',
+      'HARDEST-ITEM EXAMPLE ANCHORS (use these as the calibration floor — generated items should be AT LEAST this hard, not easier):',
+      '1) "The function f is defined by f(x) = (x²+ax+b)(x²+cx+d). The graph of y=f(x) in the xy-plane passes through (−1, 0), (2, 0), (5, 0), and exactly one more x-intercept. If a+c = 7, what is the value of b·d?" (Trap: Vieta + factor matching + recognizing the 4th root from a+c. Wrong answers built from the visible numbers −1, 2, 5.)',
+      '2) "In the xy-plane, the line y=kx+3 is tangent to the circle x²+y²−6x+8y+9=0. What is the product of all possible values of k?" (Two-step: complete the square to (x−3)²+(y+4)²=16 then use tangency / distance-from-center = radius. Yields a quadratic in k; ask for the PRODUCT, not the values themselves — Vieta.)',
+      '3) "p(x) is a polynomial with integer coefficients. When p(x) is divided by (x−2), the remainder is 5. When p(x) is divided by (x−3), the remainder is 7. What is the remainder when p(x) is divided by (x−2)(x−3)?" (Remainder theorem + linear-remainder ansatz r(x)=ax+b; set up 2-eq system. Answer is a linear polynomial, not a constant.)',
+      '4) "The table shows the joint distribution of two binary variables X and Y. If P(X=1 | Y=1)=0.6 and P(Y=1 | X=0)=0.4 and P(X=1)=0.5, find P(X=1 AND Y=0)." (Pure conditional manipulation; the trick is recognizing which cells to set as variables and which two equations close the system.)',
       '',
       'GRAPHICS — REAL SAT MATH HAS VISUALS ON ~40% OF ITEMS. Include a "graphic" field on roughly that fraction, weighted by topic: Geometry/Trig ≈ 90% (figures are nearly always required), Problem Solving & Data Analysis ≈ 70% (scatterplots, bar charts, two-way tables, dot/box/histogram plots), Advanced Math ≈ 30% (parabolas, exponential curves, function tables on coordinate plane), Algebra ≈ 20% (lines on coordinate plane, tables of values). Omit `graphic` (or set null) on items that don\'t need one.',
       '',
@@ -1270,7 +1392,22 @@ function extraGuidanceFor(
       '- "histogram": xLabel, yLabel, bars: [{label: "0-10", value: count}, ...]',
       '- "lineGraph": xLabel, yLabel, series: [{label, points: [[x,y], ...]}]',
       '- "coordinatePlane": points: [{x, y, label?}], lines: [{m, b}] — for parabolas / curves use "rawSvg" instead.',
-      '- "rawSvg": svg: "<svg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'>...</svg>" — **REQUIRED for ALL geometry/trig figures** (triangles, circles, polygons, 3D solids, inscribed figures, angle diagrams). Do NOT emit triangle/circle/polygon/solid as a `type` — the renderer does not handle them; the figure will be invisible. Keep SVG under 900 chars. Style: stroke="black" stroke-width="1.5" fill="none". Label vertices/angles/lengths with <text x=".." y=".." font-size="11" fill="black"> elements. Use a viewBox of 0 0 200 200. Add a `caption: "Figure not drawn to scale."` when relevant — the SAT convention.',
+      '',
+      'STRUCTURED GEOMETRY (PREFER THESE — the renderer computes exact coordinates from your parameters, so vertices are GUARANTEED on the circle, inscribed-circle radii are GUARANTEED correct, etc.):',
+      '- "inscribedTriangle": for any triangle inscribed in a circle. spec: { r: 70, vertexAngles: [0, 120, 240] }. Angles in degrees clockwise from top (0° = top, 90° = right, 180° = bottom, 270° = left). For a right triangle inscribed with hypotenuse as diameter use angles [270, 90, X] where X is the third vertex anywhere except 90° or 270°. labels: { vertices?: ["A","B","C"], sides?: ["x","x","20"] } — side labels are in order opposite to vertex 0, 1, 2.',
+      '- "rightTriangle": legs of a right triangle with optional inscribed circle. spec: { legA: 6, legB: 8, incircle?: true }. labels: { a?: "6", b?: "8", c?: "10", vertices?: ["A","B","C"] } — A top-left, B right-angle, C bottom-right.',
+      '- "circleWithChord": circle with one or more chords, points, or a tangent. spec: { r: 70, chords?: [{ angle1: 0, angle2: 180, label?: "AB" }], showCenter?: true, points?: [{ angle: 0, label?: "A" }, { angle: 180, label?: "B" }] }. Use angle 0 = top, 90 = right, etc. To draw a diameter use angles separated by 180°.',
+      '- "rawSvg" (FALLBACK ONLY): svg: "<svg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'>...</svg>" — use ONLY when none of the structured types above can express the figure (e.g., 3D solids, complex compound figures, custom shaded regions). Keep under 900 chars. Style: stroke="black" stroke-width="1.5" fill="none". Label with <text font-size="11" fill="black">. Always viewBox="0 0 200 200" with shapes inside x:[20,180] y:[20,180]. Models routinely mis-compute coordinates here — use a structured type whenever possible.',
+      'GEOMETRY ACCURACY RULES (a real SAT figure is drawn TO scale unless captioned "not drawn to scale"):',
+      '- DRAWING AREA: keep all shapes inside x:[20, 180], y:[20, 180]. Leave a 20-unit margin on all sides. Vertices and circle edges must not touch x=0, y=0, x=200, or y=200.',
+      '- INSCRIBED VERTICES: when a triangle/polygon is "inscribed in a circle", every vertex MUST lie exactly on the circle. For circle (cx, cy, r), a vertex at angle θ is (cx + r·cos(θ), cy + r·sin(θ)). Use simple angles: 0°, 90°, 180°, 270° for axis-aligned; 30°/60°/120°/150° for equilateral and 30-60-90. Sample equilateral inscribed in circle r=70 at (100, 100): vertices at (100, 30), (39, 135), (161, 135) — each EXACTLY 70 from center.',
+      '- INSCRIBED CIRCLE in a right triangle with legs a, b and hypotenuse c: radius r = (a + b − c) / 2; center is r units from each leg. Example: legs 6 and 8, c=10 → r=2; if the right angle is at origin and legs run along +x and +y, the incircle center is (r, r).',
+      '- CIRCLE INSCRIBED IN POLYGON: center at the polygon\'s centroid; for a square of side s the inscribed circle has r = s/2.',
+      '- INSCRIBED SQUARE in a circle r: vertices at angles 45°, 135°, 225°, 315° — for r=70 at center (100,100): (149,149), (51,149), (51,51), (149,51).',
+      '- LABEL PLACEMENT: position <text> outside the shape\'s perimeter — offset 8-12 units from the vertex/edge. Never place a label on top of the shape\'s stroke. For vertex labels (A, B, C), offset away from the centroid; for length labels, place at the midpoint of the segment then push perpendicular by 8 units.',
+      '- DO NOT use fill="black" on solid regions you want labels readable on; default to fill="none". For shaded regions use fill="#e5e7eb" (light gray).',
+      '- ARC / ANGLE MARKERS: use <path d="M…A…"> for arcs. Small 90° square at right angles is a 8x8 unit square notched into the corner.',
+      'VERIFY BEFORE EMITTING: mentally re-check that (a) every "inscribed" point is on its circle (compute distance to center), (b) the figure fits in [20,180]², (c) no label overlaps a stroke. If you can\'t verify, omit the graphic and set graphic to null instead — a missing figure is better than a wrong one.',
       'Optional caption: string for an axis label or figure note. The graphic must contain the data the QUESTION requires — do NOT describe the visual in prose and leave graphic null. Conversely, if you set a graphic, the question stem should genuinely require reading it.',
       '',
       `COUNT REQUIREMENT — produce EXACTLY ${count} items, not ${count - 1}, not ${count + 1}. If you find yourself running out of token budget, prefer shorter explanations over fewer items.`,
@@ -1360,27 +1497,143 @@ function extraGuidanceFor(
     ].join('\n')
   }
 
-  // ── TOEFL Reading ────────────────────────────────────────────
+  // ── TOEFL Reading (January 2026 format) ──────────────────────
   if (family === 'toefl' && section && /reading/i.test(section)) {
-    // 2 passages × 10 questions each. Each passage: ~3-4 factual,
-    // 0-2 negative factual, 2-4 inference, 1-2 rhetorical purpose,
-    // 2-4 vocab, 0-1 reference, 0-1 sentence simplification,
-    // exactly 1 insert text, exactly 1 prose summary (always last).
+    // Jan 2026 redesign: mixes Daily Life short texts (40% of items)
+    // + short Academic passages (60%). Legacy 700-word passages with
+    // insert-sentence and prose-summary are REMOVED. The third task
+    // type — "Complete the Words" fill-in-letters — is generated by
+    // a separate pipeline (different schema, no MC choices).
+    const dailyLifeQ = Math.round(count * 0.4)   // ~8 of 20
+    const academicQ = count - dailyLifeQ          // ~12 of 20
+    const dailyLifeTexts = Math.max(3, Math.round(dailyLifeQ / 2.5))   // ~3 texts, 2-3 Q each
+    const academicPassages = Math.max(2, Math.round(academicQ / 5))    // ~2-3 passages, 5 Q each
     return [
-      `TOEFL Reading 구조 — 2개 지문 × 10문항 = ${count}문항 (총 35분):`,
+      `TOEFL Reading (January 2026 format) — ${count} questions.`,
+      `Mix: ~${dailyLifeQ} Daily Life questions across ${dailyLifeTexts} short texts, ${academicQ} Academic questions across ${academicPassages} short academic passages.`,
       '',
-      '지문당 10문항 분포 (Q1-Q9는 지문 단락 순서를 따름, Q10은 항상 prose summary):',
-      `- Factual Information: 3-4 ("According to paragraph X, ...")`,
-      `- Negative Factual Information: 0-2 ("According to paragraph X, all of the following are true EXCEPT")`,
-      `- Inference: 2-4 ("Paragraph X suggests which of the following about...")`,
-      `- Rhetorical Purpose: 1-2 ("Why does the author mention X?")`,
-      `- Vocabulary in Context: 2-4 ('The word "X" in the passage is closest in meaning to')`,
-      `- Reference: 0-1 ('The word "X" in the passage refers to')`,
-      `- Sentence Simplification: 0-1 (highlighted sentence, pick the choice that captures essential info)`,
-      `- Insert Text: exactly 1 per passage (mark insertion point with [■] in passage)`,
-      `- Prose Summary: exactly 1 per passage, ALWAYS Q10 (2 pts — pick 3 of 6 choices that express major themes; minor details are distractors)`,
+      'TASK A — "Read in Daily Life" (40% of items):',
+      `- ${dailyLifeTexts} short, non-academic visual texts (campus notice / club flyer / email / social media post / job ad / course-registration page).`,
+      '- Each text is 40-90 words, plain everyday register. Render the text plainly in the passage field (no markdown, no emojis). Begin the prompt with a task tag like "[Daily Life — Campus notice]" then the question stem.',
+      '- 2-3 MC questions per text: literal detail, purpose ("Why was this posted?"), writer-situation inference, what a recipient should do next.',
       '',
-      'SHARED-PASSAGE GROUPING (CRITICAL): each passage is ~700 words and SHARED across all 10 of its questions. On every one of the 10 questions, copy the SAME full passage text into the "passage" field AND set passageGroupId to a stable id ("passage-1" for the first passage\'s 10 questions, "passage-2" for the second). The UI uses passageGroupId to render the passage ONCE at the top of the group.',
+      'TASK B — "Read an Academic Passage" (60% of items):',
+      `- ${academicPassages} SHORT academic passages, EACH 150-180 words. NOT 700 words. Count the words and stay in range — passages under 130 words or over 200 words will be rejected.`,
+      '- Topics: intro-level biology, art history, psychology, geology, business, linguistics — accessible to a first-year undergraduate.',
+      '- 5 questions per passage: (1) main idea, (2) vocabulary in context, (3) factual detail, (4) negative factual (EXCEPT / NOT), (5) rhetorical purpose OR inference. Tag prompts like "[Academic — Biology]".',
+      '',
+      'TASK C — "Complete the Words" (optional, 2 items, type="fill_in_blanks"):',
+      '- A short paragraph (60-100 words) with 5-8 letter-blanks marked as [1] [2] [3] in the passage field.',
+      '- For each blank, provide the missing letter(s) in the "blanks" array: [{ "id": 1, "answer": "s" }, { "id": 2, "answer": "tion" }, …]. Blanks are typically 1-4 letters (a word ending, prefix, or short fragment).',
+      '- "prompt" should just say "[Complete the Words] Read the paragraph and type the missing letters into each blank." (no further question stem).',
+      '- "choices" must be an empty array, "correct_answer" must be null. Set passageGroupId to null (each Complete-the-Words item stands alone).',
+      '',
+      'DO NOT generate:',
+      '- "Insert Text" items (legacy iBT, REMOVED in 2026 redesign — no [■] markers anywhere)',
+      '- "Prose Summary" items (legacy iBT, REMOVED)',
+      '- 600-900 word passages (legacy iBT length — wrong for 2026)',
+      '',
+      `SHARED-PASSAGE GROUPING (CRITICAL): each Daily Life text is SHARED across its 2-3 linked questions; each Academic passage is SHARED across its 5 linked questions. On every linked question, copy the SAME full text into the "passage" field AND set passageGroupId to a stable id ("daily-1", "daily-2", … for Daily Life texts; "academic-1", "academic-2", … for Academic passages). The UI uses passageGroupId to render the passage ONCE at the top of the group.`,
+      '',
+      universalRules,
+    ].join('\n')
+  }
+
+  // ── TOEFL Listening (January 2026 format) ────────────────────
+  if (family === 'toefl' && section && /listening/i.test(section)) {
+    // Jan 2026: 3 task types — Listen-and-Choose-a-Response (~50%),
+    // Conversation (~25%), Lecture/Announcement (~25%). All audio
+    // IRL; we ship a text fallback that inlines the transcript in
+    // the passage field so the student reads what they would hear.
+    const chooseN = Math.max(6, Math.round(count * 0.5))
+    const convoN = Math.max(2, Math.round(count * 0.25))
+    const lectureN = Math.max(2, count - chooseN - convoN)
+    return [
+      `TOEFL Listening (January 2026 format) — ${count} questions.`,
+      `Mix: ${chooseN} Listen-and-Choose-a-Response items + ${convoN} Conversation questions across ~2 conversations + ${lectureN} Lecture/Announcement questions across ~2 talks.`,
+      'Without audio playback in our app, render every transcript inline. Begin the passage field with "Transcript: " followed by the spoken text. Begin the prompt with a task tag.',
+      '',
+      `TASK A — "Listen and Choose a Response" (${chooseN} items, type="multiple_choice"):`,
+      '- A single utterance (a question, statement, or short request) by ONE speaker. 8-25 words. Topics: everyday campus / work / travel / social.',
+      '- "passage" = "Transcript: \\"<the utterance>\\"". passageGroupId = null (each item stands alone).',
+      '- "prompt" = "[Choose a Response] Which is the most natural reply?"',
+      '- 4 choices = plausible spoken replies. Correct = best register/function match. Distractors: (1) keyword echo but wrong function, (2) wrong register (too formal/casual for the cue), (3) ignores a key qualifier.',
+      '',
+      `TASK B — "Listen to a Conversation" (${convoN} items, type="multiple_choice"):`,
+      '- A short 8-12 turn dialogue (~150-220 words total) between 2 speakers. Settings: student↔advisor, student↔librarian, roommates, professor↔student office hours.',
+      '- "passage" = "Transcript:\\nA: ...\\nB: ...\\nA: ..." (full dialogue). SHARED across the 2-3 linked questions per conversation — set passageGroupId to "convo-1", "convo-2".',
+      '- "prompt" = "[Conversation — <setting>] " + question stem (gist, detail, function "Why does the man say X?", attitude).',
+      '',
+      `TASK C — "Listen to announcements and academic talks" (${lectureN} items, type="multiple_choice"):`,
+      '- A short announcement (~120-180 words: campus PA / transit / museum / library) OR a short academic mini-lecture (~180-260 words) on intro-level biology / history / psychology / business / geology / linguistics.',
+      '- "passage" = "Transcript: " + full text. SHARED across 2-3 linked questions — passageGroupId "lecture-1", "lecture-2".',
+      '- "prompt" = "[Lecture — <topic>]" or "[Announcement — <venue>]" + question stem (main idea, key detail, speaker purpose, inference).',
+      '',
+      universalRules,
+    ].join('\n')
+  }
+
+  // ── TOEFL Writing (January 2026 format) ──────────────────────
+  if (family === 'toefl' && section && /writing/i.test(section)) {
+    // Jan 2026: 3 task types — Build-a-Sentence (10), Email (1),
+    // Academic Discussion (1). Email + Discussion are graded by
+    // the response/grade pipeline (rubric); Build-a-Sentence is
+    // auto-graded by exact-order match here.
+    const buildN = Math.max(8, Math.round(count * 0.6))
+    const emailN = Math.max(1, Math.round(count * 0.2))
+    const discussionN = Math.max(1, count - buildN - emailN)
+    return [
+      `TOEFL Writing (January 2026 format) — ${count} questions.`,
+      `Mix: ${buildN} Build-a-Sentence items + ${emailN} Email task + ${discussionN} Academic Discussion task.`,
+      '',
+      `TASK A — "Build a Sentence" (${buildN} items, type="arrange_words"):`,
+      '- A jumbled set of 6-10 word/phrase chips that, when arranged in the correct order, form a single grammatical English sentence.',
+      '- "choices" array = the chips in RANDOM order (NOT the correct order — the model must shuffle).',
+      '- "correct_answer" = the chips joined in correct order with " | " as the separator (e.g., "The | tour guides | who | showed us around | the old city | were fantastic.").',
+      '- "prompt" = "[Build a Sentence] Tap the words in order to make a grammatical sentence." (no further stem).',
+      '- Set passage to null, blanks to null.',
+      '- Target everyday or campus register sentences. Include 1-2 chips that are short connectors (who/that/and) or short phrases — not just single words — to match the PT1 PDF style.',
+      '',
+      `TASK B — "Write an Email" (${emailN} item, type="multiple_choice", 4 sample-response choices):`,
+      '- "passage" = the email scenario in plain text: who sent the email, what they said, and 3 bullet points the student must address. ~50-90 words.',
+      '- "prompt" = "[Email] Read the email and choose the strongest reply." (the MC variant is a fallback — real practice routes through the response-grader).',
+      '- 4 choices = sample replies of varying quality: (1) the strongest (addresses all 3 bullets, right register), (2) addresses 2/3, (3) right register but wrong scenario, (4) right scenario but wrong register.',
+      '- correct_answer = the strongest reply.',
+      '',
+      `TASK C — "Write for an Academic Discussion" (${discussionN} item, type="multiple_choice", 4 sample-response choices):`,
+      '- "passage" = professor question + 2 short student replies (~40-70 words each). ~150-200 words total.',
+      '- "prompt" = "[Academic Discussion] Choose the strongest contribution to the discussion."',
+      '- 4 choices = sample contributions of varying quality: (1) strongest (clear position, engages a classmate by name, specific example), (2) just summarizes both classmates, (3) takes a position but no example, (4) off-topic.',
+      '- correct_answer = the strongest contribution.',
+      '',
+      universalRules,
+    ].join('\n')
+  }
+
+  // ── TOEFL Speaking (January 2026 format) ─────────────────────
+  if (family === 'toefl' && section && /speaking/i.test(section)) {
+    // Jan 2026: 2 task types — Listen-and-Repeat (~6) +
+    // Take-an-Interview (~5). Both audio-required IRL; we ship
+    // text-based fallbacks (repeat = type the script verbatim;
+    // interview = open response auto-graded only for substance).
+    const repeatN = Math.max(4, Math.round(count * 0.55))
+    const interviewN = Math.max(3, count - repeatN)
+    return [
+      `TOEFL Speaking (January 2026 format) — ${count} questions.`,
+      `Mix: ${repeatN} Listen-and-Repeat items + ${interviewN} Take-an-Interview items.`,
+      '',
+      `TASK A — "Listen and Repeat" (${repeatN} items, type="speaking_repeat"):`,
+      '- A short 12-25 word utterance in casual or campus register. The student listens (or in our text-only fallback, reads) then types it back exactly.',
+      '- "passage" = "Audio script: \\"<the exact sentence>\\""',
+      '- "prompt" = "[Listen and Repeat] Type the sentence exactly as you hear it."',
+      '- "correct_answer" = the exact sentence (matching the audio script verbatim, no quotes).',
+      '- "choices" must be an empty array.',
+      '',
+      `TASK B — "Take an Interview" (${interviewN} items, type="speaking_interview"):`,
+      '- An open interviewer question (familiar topic). The student responds in 2-5 sentences.',
+      '- "prompt" = "[Interview] " + the interviewer question (e.g., "[Interview] Tell me about a time you helped a classmate.")',
+      '- "passage" must be null, "choices" must be an empty array, "correct_answer" must be null.',
+      '- The grader only checks for substantive (>20 char) response — rubric scoring routes through /api/study/response/grade.',
       '',
       universalRules,
     ].join('\n')
