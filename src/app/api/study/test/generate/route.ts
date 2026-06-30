@@ -148,8 +148,9 @@ const QuestionSchema = z.object({
 
 const TestSchema = z.object({
   title: z.string(),
-  /** Minutes — drives the on-screen countdown. */
-  timeLimitMinutes: z.number().int().min(10).max(180),
+  /** Minutes — drives the on-screen countdown. TOEFL Speaking (Jan 2026)
+   *  is 8 minutes — set the floor below that. */
+  timeLimitMinutes: z.number().int().min(5).max(180),
   /** Optional section label (for KSAT: 국어/수학/영어; SAT: Math; etc.). */
   section: z.string().nullable(),
   /** Test family (sat/ksat/toefl/etc.) — drives format-specific UI
