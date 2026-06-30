@@ -75,8 +75,11 @@ const QuestionSchema = z.object({
     answer: z.string(),
     alternates: z.array(z.string()).nullish(),
   })).nullish(),
-  /** Choice options. Length depends on type/section. */
-  choices: z.array(z.string()).max(6).nullable().optional(),
+  /** Choice options. Length depends on type/section:
+   *  - MC: 3-5 typically
+   *  - GRE multi_select: up to 6
+   *  - TOEFL arrange_words (Build-a-Sentence): 6-12 word/phrase chips */
+  choices: z.array(z.string()).max(12).nullable().optional(),
   /** Correct answer for single-answer types. The model correctly
    *  emits `null` on numeric_entry items (which use
    *  acceptable_answers instead). Must accept both string and null
@@ -86,8 +89,12 @@ const QuestionSchema = z.object({
   correct_answers: z.array(z.string()).nullable().optional(),
   /** For numeric_entry: list of accepted answer strings. */
   acceptable_answers: z.array(z.string()).nullable().optional(),
-  difficulty: z.enum(['easy', 'medium', 'hard']),
-  explanation: z.string(),
+  // Made nullish — the model occasionally omits difficulty under
+  // heavy prompts (Jan-2026 TOEFL: many task types, large spec block,
+  // long anchor examples). sanitizeQuestion defaults to 'medium'.
+  difficulty: z.enum(['easy', 'medium', 'hard']).nullish(),
+  // Same rationale — explanation occasionally omitted on long batches.
+  explanation: z.string().nullish(),
   /** Per-distractor rationales: why each WRONG choice is wrong.
    *  Maximally permissive — the model occasionally emits malformed
    *  entries (null reason, extra fields, wrong types) and we'd

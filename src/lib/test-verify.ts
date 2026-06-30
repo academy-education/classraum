@@ -99,8 +99,11 @@ export interface RawQuestion {
   correct_answer?: string
   correct_answers?: string[] | null
   acceptable_answers?: string[] | null
-  difficulty: 'easy' | 'medium' | 'hard'
-  explanation: string
+  /** Both fields are tolerated as nullish — the model occasionally
+   *  omits them on heavy prompts. sanitizeQuestion defaults missing
+   *  difficulty to 'medium' and missing explanation to ''. */
+  difficulty?: 'easy' | 'medium' | 'hard' | null
+  explanation?: string | null
   distractor_rationales?: Array<{ choice?: string | null; reason?: string | null }> | null
   /** TOEFL Complete-the-Words (fill_in_blanks): per-blank answers. */
   blanks?: Array<{ id: number; answer: string; alternates?: string[] | null }> | null
@@ -362,7 +365,8 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     correct_answer: sanitize(q.correct_answer ?? ''),
     correct_answers: q.correct_answers ?? null,
     acceptable_answers: q.acceptable_answers ?? null,
-    explanation: sanitize(q.explanation),
+    difficulty: q.difficulty ?? 'medium',
+    explanation: sanitize(q.explanation ?? ''),
     // Filter out malformed rationale entries (model occasionally
     // emits {choice: null, reason: "..."} or vice versa). Salvage
     // the well-formed ones, drop the rest — better than failing the
