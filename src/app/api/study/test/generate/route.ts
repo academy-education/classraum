@@ -543,11 +543,42 @@ export async function POST(req: NextRequest) {
         .map(q => ({ ...q, difficulty: 'hard' as const, passageGroupId: null }))
       // Daily Life + Academic: legit shared-passage groups — trust
       // the passageGroupId the model emitted (or leave as-is if null).
+      // ALSO enforce minimum passage length here — model consistently
+      // under-shoots the target, and 90-word "academic" passages don't
+      // give 5 questions room to discriminate. Reject items whose
+      // passage is under the harder-than-standard floor.
+      const wordCount = (s: string | null | undefined) => (s ?? '').trim().split(/\s+/).filter(Boolean).length
+      // CW length floor — model sometimes emits 49-word CW passages
+      // which are too short for 10 blanks worth of substrate.
+      const cwItemsFiltered = cwItems.filter(q => wordCount(q.passage) >= 80)
       const dailyItems = (dailyResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
-      const academicItems = (academicResult.object.questions as RawQuestion[])
+        .filter(q => wordCount(q.passage) >= 60)  // spec 80-140, floor 60
+      // Academic: model occasionally piles ALL academic questions onto
+      // a SINGLE passage (17+ items sharing one passage). Trim any
+      // group to at most 5 items so students see multiple distinct
+      // passages instead of one repetitive block. Uses passageGroupId
+      // as the group key AT THIS STAGE (before the content-based
+      // re-key runs later).
+      const rawAcademic = (academicResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
-      allQuestions.push(...cwItems, ...dailyItems, ...academicItems)
+        .filter(q => wordCount(q.passage) >= 160)  // spec 200-260, floor 160
+      const groupCounts = new Map<string, number>()
+      const academicItems: RawQuestion[] = []
+      for (const q of rawAcademic) {
+        const key = q.passageGroupId ?? '_ungrouped'
+        const n = (groupCounts.get(key) ?? 0) + 1
+        if (n > 5) continue  // cap per group at 5
+        groupCounts.set(key, n)
+        academicItems.push(q)
+      }
+      console.log('[test/generate] TOEFL Reading length + group filter', {
+        cwDropped: cwItems.length - cwItemsFiltered.length,
+        dailyDropped: dailyResult.object.questions.length - dailyItems.length,
+        academicLengthDropped: (academicResult.object.questions as RawQuestion[]).length - rawAcademic.length,
+        academicGroupDropped: rawAcademic.length - academicItems.length,
+      })
+      allQuestions.push(...cwItemsFiltered, ...dailyItems, ...academicItems)
       for (const r of [cwResult, dailyResult, academicResult]) {
         totalIn += r.usage?.inputTokens ?? 0
         totalOut += r.usage?.outputTokens ?? 0
@@ -1399,10 +1430,10 @@ function buildToeflReadingTaskPrompt(args: {
 
   if (task === 'complete_words') {
     return [
-      `Generate ${n} TOEFL Reading "Complete the Words" items (Jan 2026 format, HARD tier).`,
+      `Generate ${n} TOEFL Reading "Complete the Words" items (Jan 2026 format, HARDER-than-standard tier).`,
       '',
       'FORMAT (READ CAREFULLY — this is the most common failure mode):',
-      'Each item is a SHORT academic paragraph (60-120 words). The FIRST sentence is COMPLETE — no blanks. The SECOND and THIRD sentences EACH contain multiple words where the second half of the word is missing, marked as [N] tokens INLINE.',
+      'Each item is a SHORT academic paragraph, 100-150 words (longer than standard so students see more context). The FIRST sentence is COMPLETE — no blanks. The SECOND and THIRD sentences EACH contain multiple words where the second half of the word is missing, marked as [N] tokens INLINE. Blanks should target ACADEMIC vocabulary or morphologically-tricky endings (-tion, -ment, -ology, -itive, -ceive, -pheric) — not trivial short words.',
       'The [N] tokens MUST be INTERSPERSED WITHIN WORDS in sentences 2 and 3 — NOT clustered at the end of the passage.',
       '',
       'CONCRETE EXAMPLE of the correct format for the passage field:',
@@ -1428,46 +1459,63 @@ function buildToeflReadingTaskPrompt(args: {
 
   if (task === 'daily_life') {
     return [
-      `Generate ${n} TOEFL Reading "Read in Daily Life" questions (Jan 2026 format, HARD tier).`,
+      `Generate ${n} TOEFL Reading "Read in Daily Life" questions (Jan 2026 format, HARDER-than-standard tier).`,
       '',
       'Group questions into shared-passage sets: ~2-3 questions per short non-academic text. Aim for ~' + Math.max(3, Math.round(n / 2.5)) + ' distinct texts total.',
       '',
       'For each text:',
       '- Genre: campus notice / club flyer / email (to / from student, professor, service dept) / social-media post / job ad / course-registration page. Rotate genres.',
-      '- Length: 40-90 words. Plain everyday register — no academic vocabulary.',
+      '- Length: 80-140 words (longer than standard 40-90 so texts contain enough implicit information for inference questions to work). Include a hedge, a conditional ("if you can"), a polite refusal, an implicit deadline, OR a subtle qualifier ("space permitting", "assuming enrollment") in EVERY text — these are the substrate for inference questions.',
+      '- Plain everyday register — no academic vocabulary.',
       '- Set passageGroupId to a shared id ("daily-1", "daily-2", …) on ALL questions from that text. Copy the SAME passage text verbatim into each linked question\'s passage field.',
       '',
       'For each question:',
       '- type = "multiple_choice"',
-      '- prompt = "[Daily Life — <genre>] " + question stem (e.g., "[Daily Life — Campus notice] What should students do if they need to visit the library on Friday?")',
+      '- prompt = "[Daily Life — <genre>] " + question stem',
       '- 4 choices, correct_answer = one of them verbatim',
-      '- distractor_rationales: 1 sentence per wrong choice',
+      '- distractor_rationales: 1 sentence per wrong choice explaining why it\'s wrong',
       '',
-      'HARD hallmarks (at least ONE per question): (a) inference from a register cue (irony, polite refusal, hedge) — not literal detail; (b) inference about the writer\'s underlying situation; (c) what a recipient should do next when the notice only implies it. AVOID: bare "what time is the event" detail questions.',
+      'HARDER-than-standard requirement: AT MOST 1 question per text may be a literal-detail question. The rest MUST be inference or pragmatic:',
+      '- Inference from register cue (irony, polite refusal, hedge)',
+      '- Inference about writer\'s underlying situation or constraint',
+      '- What a recipient should do next when only implied (not stated)',
+      '- Why a specific word/phrase was chosen (rhetorical purpose)',
+      'BANNED question stems (too easy, will be rejected): "What time…", "Where is…", "What is the reason for…", "What is the main purpose of this notice?" (unless the purpose requires reading between lines).',
       universal,
     ].join('\n')
   }
 
   // academic
   return [
-    `Generate ${n} TOEFL Reading "Read an Academic Passage" questions (Jan 2026 format, HARD tier).`,
+    `Generate ${n} TOEFL Reading "Read an Academic Passage" questions (Jan 2026 format, HARDER-than-standard tier).`,
     '',
     'Group questions into shared-passage sets: EXACTLY 5 questions per passage. Aim for ' + Math.round(n / 5) + ' distinct passages.',
     '',
     'For each passage:',
-    '- Length: 150-180 words. NOT 700 words. Count and stay in range — passages outside 130-200w will be filtered out.',
+    '- Length: 200-260 words (LONGER than the standard 150-180 so students see harder practice than the real test). Count and stay in range — passages under 180 words are TOO SHORT for 5 discriminating questions and will be REJECTED.',
     '- Topic: intro-level biology / art history / psychology / geology / business / linguistics / astronomy / economics. Rotate topics across passages.',
+    '- Content requirements: pack at least ONE contrastive move (however / on the other hand / paradoxically), at least ONE qualified claim (some / many / in most cases), and at least ONE cause-effect chain that spans 2+ sentences. These are the substrate hard questions test.',
     '- Set passageGroupId to a shared id ("academic-1", "academic-2", …) on ALL 5 questions. Copy the SAME passage verbatim into each linked question\'s passage field.',
     '',
-    'For each set of 5 questions on a passage, cover: (1) main idea, (2) vocabulary in context, (3) factual detail, (4) negative factual (EXCEPT / NOT), (5) rhetorical purpose OR inference.',
+    'For each set of 5 questions on a passage, MANDATORY distribution:',
+    '- EXACTLY 1 main-idea question (must go beyond "what is the passage about?" — ask what the author\'s CENTRAL claim or argument is)',
+    '- EXACTLY 1 vocabulary-in-context (the tested word MUST have a common everyday meaning that is WRONG in this academic context — that\'s the trap)',
+    '- EXACTLY 1 negative-factual (EXCEPT / NOT — 3 choices paraphrase separate passage statements, the wrong choice is plausible-but-never-mentioned)',
+    '- EXACTLY 1 inference question (answer requires connecting 2 non-adjacent sentences — NO direct-restatement distractor allowed)',
+    '- EXACTLY 1 rhetorical-purpose OR paragraph-function ("Why does the author mention X?" — tests reader\'s grasp of the argumentative move, not the content of X)',
+    'AT MOST 0 (zero) simple literal-detail questions. "According to the passage, which of the following is a function of X?" and similar bare-lookup stems are BANNED — they don\'t discriminate.',
     '',
     'Question schema:',
     '- type = "multiple_choice"',
-    '- prompt = "[Academic — <topic>] " + question stem (e.g., "[Academic — Biology] According to the passage, all of the following are true of coral reefs EXCEPT:")',
+    '- prompt = "[Academic — <topic>] " + question stem',
     '- 4 choices, correct_answer = one of them verbatim',
-    '- distractor_rationales: 1 sentence per wrong choice',
+    '- distractor_rationales: 1 sentence per wrong choice explaining why it\'s wrong',
     '',
-    'HARD hallmarks: (a) inference combining two distant sentences with no direct-restatement distractor available; (b) negative-factual where 3 choices paraphrase separate passage statements and the wrong choice is a plausible-but-never-mentioned; (c) vocabulary where the tested word has a common everyday meaning that is WRONG in this academic context.',
+    'HARDER-than-standard hallmarks (each question must have at least ONE):',
+    '(a) Inference combining two distant sentences with no direct-restatement distractor available',
+    '(b) Negative-factual where 3 choices paraphrase separate passage statements and the wrong choice is a plausible-but-never-mentioned',
+    '(c) Vocabulary where the tested word has a common everyday meaning that is WRONG in this academic context',
+    '(d) Rhetorical purpose where the correct answer names the argumentative FUNCTION (contrast / concession / illustration) rather than restating the content',
     universal,
   ].join('\n')
 }
