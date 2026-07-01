@@ -532,16 +532,30 @@ export async function POST(req: NextRequest) {
         generateObject({ model: hardModel, schema: TestSchema, prompt: academicPrompt, temperature: 0.3 }),
       ])
       phase('drafting_hard', 'study.test.progress.draftingHard', 40)
+      // Complete-the-Words: each item stands alone (its own paragraph,
+      // its own 10 blanks). Model occasionally reuses the same
+      // passageGroupId across all 10 CW items despite the prompt
+      // saying null — that causes the UI to render "Question X of 10
+      // in this passage" while each item actually shows a DIFFERENT
+      // passage. Force null here so the grouper treats each CW item
+      // as ungrouped.
+      const cwItems = (cwResult.object.questions as RawQuestion[])
+        .map(q => ({ ...q, difficulty: 'hard' as const, passageGroupId: null }))
+      // Daily Life + Academic: legit shared-passage groups — trust
+      // the passageGroupId the model emitted (or leave as-is if null).
+      const dailyItems = (dailyResult.object.questions as RawQuestion[])
+        .map(q => ({ ...q, difficulty: 'hard' as const }))
+      const academicItems = (academicResult.object.questions as RawQuestion[])
+        .map(q => ({ ...q, difficulty: 'hard' as const }))
+      allQuestions.push(...cwItems, ...dailyItems, ...academicItems)
       for (const r of [cwResult, dailyResult, academicResult]) {
-        const items = (r.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
-        allQuestions.push(...items)
         totalIn += r.usage?.inputTokens ?? 0
         totalOut += r.usage?.outputTokens ?? 0
       }
       console.log('[test/generate] TOEFL Reading per-task split', {
-        cw: cwResult.object.questions.length,
-        daily: dailyResult.object.questions.length,
-        academic: academicResult.object.questions.length,
+        cw: cwItems.length,
+        daily: dailyItems.length,
+        academic: academicItems.length,
       })
     } else if (sectionSpec && targetHard > 0) {
       // CHUNKED easy/medium pool + single hard call, all in parallel.

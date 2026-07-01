@@ -1817,8 +1817,15 @@ function passageGroupInfo(questions: Question[], currentIdx: number): {
   indexInGroup: number
   totalInGroup: number
 } | null {
-  const currentGroupId = questions[currentIdx]?.passageGroupId
+  const currentQuestion = questions[currentIdx]
+  const currentGroupId = currentQuestion?.passageGroupId
   if (!currentGroupId) return null
+  // Complete-the-Words items stand alone by design (one paragraph =
+  // one item with 10 blanks). If the model erroneously emits a
+  // passageGroupId on a fill_in_blanks item, the grouper would
+  // display "Question X of Y in this passage" but each item has a
+  // different passage — confusing. Force-treat as ungrouped.
+  if (currentQuestion?.type === 'fill_in_blanks') return null
   // Walk the list in order. Each new groupId increments groupIndex.
   // Within a group, count items to find this question's position.
   const groupOrder: string[] = []
