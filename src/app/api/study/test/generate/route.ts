@@ -468,7 +468,45 @@ export async function POST(req: NextRequest) {
     let totalIn = 0
     let totalOut = 0
 
-    if (sectionSpec && targetHard > 0) {
+    // TOEFL Writing (Jan 2026) — per-task split. The generic pipeline
+    // under challenge-lock (targetEasyMed=0, targetHard=count) fires a
+    // hard-pool prompt that says "make every item hard", which lets the
+    // model drift into producing 12 Build-a-Sentence items and skipping
+    // Email + Academic Discussion entirely. Bypassing the generic path
+    // for TOEFL Writing lets each task type get its own tightly-scoped
+    // call — the model can't drift when the prompt scopes it to one
+    // task. Fires 3 parallel calls: N-2 Build + 1 Email + 1 Discussion.
+    const isToeflWriting = family === 'toefl' && sectionLabel != null && /writing/i.test(sectionLabel)
+    if (isToeflWriting && count >= 3) {
+      phase('drafting_questions', 'study.test.progress.draftingQuestions', 15)
+      const buildN = count - 2
+      const buildPrompt = buildToeflWritingTaskPrompt({ task: 'build', n: buildN, minutes, lang })
+      const emailPrompt = buildToeflWritingTaskPrompt({ task: 'email', n: 1, minutes, lang })
+      const discussionPrompt = buildToeflWritingTaskPrompt({ task: 'discussion', n: 1, minutes, lang })
+      const [buildResult, emailResult, discussionResult] = await Promise.all([
+        generateObject({ model: hardModel, schema: TestSchema, prompt: buildPrompt, temperature: 0.3 }),
+        generateObject({ model: hardModel, schema: TestSchema, prompt: emailPrompt, temperature: 0.3 }),
+        generateObject({ model: hardModel, schema: TestSchema, prompt: discussionPrompt, temperature: 0.3 }),
+      ])
+      phase('drafting_hard', 'study.test.progress.draftingHard', 40)
+      for (const r of [buildResult, emailResult, discussionResult]) {
+        // These 3 calls all use the HARD-tier per-task prompts. gpt-4o
+        // still occasionally emits difficulty="medium" on the Build
+        // items (the individual chip sentences don't LOOK hard to it,
+        // even though the aggregate — 8+ chips w/ relative clause +
+        // passive — is challenging). Force all items to hard since
+        // they came from a hard-only pipeline.
+        const items = (r.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
+        allQuestions.push(...items)
+        totalIn += r.usage?.inputTokens ?? 0
+        totalOut += r.usage?.outputTokens ?? 0
+      }
+      console.log('[test/generate] TOEFL Writing per-task split', {
+        build: buildResult.object.questions.length,
+        email: emailResult.object.questions.length,
+        discussion: discussionResult.object.questions.length,
+      })
+    } else if (sectionSpec && targetHard > 0) {
       // CHUNKED easy/medium pool + single hard call, all in parallel.
       // gpt-4o and gpt-4o-mini cap output at 16k tokens. SAT R&W
       // wanting 65 items × ~300 tokens (passage + Q + 4 choices +
@@ -1223,6 +1261,99 @@ Rules:
 - PASSAGE FIELD: same rule as the easy/medium pass — if the test pairs a passage with each question (SAT R&W: 40-90 words per question, ALWAYS include one, single-block default; KSAT 영어 빈칸; **TOEFL Reading Jan-2026: 150-180w shared academic OR 40-90w shared Daily Life text**; IELTS Reading shared 700-900w passage), put it in the "passage" field, keep "prompt" to JUST the question stem (including any "[Academic — X]" / "[Daily Life — X]" tag). Hard SAT R&W items achieve difficulty through subtle logical operators (hedges, scope quantifiers, causal-vs-correlational, modal strength) packed into ~70-90 words — NOT through length. Null when no passage applies.
 - timeLimitMinutes = ${minutes}; section = section label.
 `.trim()
+}
+
+/**
+ * TOEFL Writing (Jan 2026) — build a per-task-scoped prompt for one of
+ * the three task types. Each call is tightly scoped so the model can't
+ * drift into producing the wrong task type (a persistent issue on the
+ * generic hard-pool prompt, which under challenge-lock lets the model
+ * pick the easiest task type to make hard — Build-a-Sentence — and
+ * repeat it 12 times, skipping Email + Academic Discussion entirely).
+ * Fired from a per-task-parallel intercept in the main route dispatch.
+ */
+function buildToeflWritingTaskPrompt(args: {
+  task: 'build' | 'email' | 'discussion'
+  n: number
+  minutes: number
+  lang: 'en' | 'ko'
+}): string {
+  const { task, n, minutes, lang } = args
+  const universal = lang === 'ko'
+    ? [
+      '',
+      '전역 규칙:',
+      '- 발문은 순수 텍스트만. LaTeX, 마크다운, HTML 금지. 유니코드 수학 기호는 허용.',
+      '- 선택지에는 "A)", "B." 같은 접두사 넣지 말 것 — UI가 라벨을 붙임.',
+      '- explanation은 1-2문장, 함정 언급.',
+      '- 오답 근거(distractor_rationales)는 각 오답별로 왜 오답인지 1문장.',
+      `- timeLimitMinutes = ${minutes}; section = "Writing"; family = "toefl"; difficulty = "hard".`,
+    ].join('\n')
+    : [
+      '',
+      'Universal rules:',
+      '- Plain text only in prompts. No LaTeX, markdown, or HTML. Unicode math symbols are fine.',
+      '- Choice text contains ONLY the answer content — do NOT prefix with "A)", "B.". The UI adds labels.',
+      '- explanation: 1-2 sentences, mention the trap.',
+      '- distractor_rationales: one sentence per WRONG choice explaining why it\'s wrong.',
+      `- timeLimitMinutes = ${minutes}; section = "Writing"; family = "toefl"; difficulty = "hard".`,
+    ].join('\n')
+
+  if (task === 'build') {
+    return [
+      `Generate ${n} TOEFL Writing "Build a Sentence" items (Jan 2026 format, HARD tier).`,
+      '',
+      'Each item is a jumbled set of 6-12 word/phrase chips that when arranged in the correct order form a single grammatical English sentence. HARD items MUST include at least one of: relative clause (who/that/which/where), passive voice (was + past participle + by), participial phrase, or reduced clause — chip arrangement should require real syntactic parsing not surface-level word order.',
+      '',
+      'For EACH item:',
+      '- type = "arrange_words"',
+      '- prompt = "[Build a Sentence] Tap the words in order to make a grammatical sentence."',
+      '- choices = the chips in RANDOM order (NOT correct order — the model must shuffle)',
+      '- correct_answer = the chips joined in correct order with " | " separator (example: "The research paper | that | Maria | submitted | last semester | was praised | by | the professor")',
+      '- passage = null, blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
+      '- Include 1-2 multi-word chips (short phrases or connectors) — not just single words',
+      '',
+      'AVOID: sentences under 8 chips, or plain SVO structures with no relative/passive/participial complexity.',
+      universal,
+    ].join('\n')
+  }
+
+  if (task === 'email') {
+    return [
+      'Generate 1 TOEFL Writing "Write an Email" item (Jan 2026 format, HARD tier).',
+      '',
+      'The item asks the student to pick the STRONGEST reply to an email scenario. The scenario should involve a HARD social/register challenge — e.g., politely declining a request from a professor without damaging rapport, asking for a favor while acknowledging the recipient\'s constraints, correcting a mistake without seeming rude. NOT a straightforward "thank you for the invitation, unfortunately I can\'t attend".',
+      '',
+      'Schema:',
+      '- type = "multiple_choice"',
+      '- passage = the email scenario: who sent it, what they said, and 3 bullet points the student must address in the reply (~60-100 words total)',
+      '- prompt = "[Email] Read the email and choose the strongest reply."',
+      '- choices = 4 sample replies of varying quality. Correct = addresses all 3 bullets with appropriate register. Distractors: (1) addresses 2/3 bullets, (2) right register but wrong scenario, (3) right scenario but wrong register (too casual or too stiff), (4) declines/agrees without addressing the ask',
+      '- correct_answer = the full text of the strongest reply (matches one of the choices verbatim)',
+      '- blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
+      '',
+      'HARD hallmark: at least one of the 3 bullets should require hedging or a face-saving phrasing (not a simple "yes" / "thanks").',
+      universal,
+    ].join('\n')
+  }
+
+  // discussion
+  return [
+    'Generate 1 TOEFL Writing "Write for an Academic Discussion" item (Jan 2026 format, HARD tier).',
+    '',
+    'The item asks the student to pick the STRONGEST contribution to a professor-led class discussion. The topic should be a CONTESTED issue (universal basic income, online vs in-person education, AI ethics, climate policy, remote work) where both student replies stake non-trivial positions with specific claims — not soft "both sides have merit" filler.',
+    '',
+    'Schema:',
+    '- type = "multiple_choice"',
+    '- passage = the professor\'s question + 2 short student replies (~40-70 words each). Total ~150-220 words. Give each student a name (e.g., "Aisha", "Marco") so the strongest contribution can engage them by name.',
+    '- prompt = "[Academic Discussion] Choose the strongest contribution to the discussion."',
+    '- choices = 4 sample contributions. Correct = engages BOTH classmates by name with a SPECIFIC claim from each + adds a non-trivial synthesis or qualification. Distractors: (1) agrees with one classmate without engaging the other, (2) summarizes both without staking a position, (3) takes a position but with no specific claim from either classmate, (4) slogan-level opinion with no engagement',
+    '- correct_answer = the full text of the strongest contribution (matches one of the choices verbatim)',
+    '- blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
+    '',
+    'HARD hallmark: the strongest choice adds a synthesis or qualification (e.g., "your point about X is well taken, but I\'d qualify it via Y") — not just agreement or disagreement.',
+    universal,
+  ].join('\n')
 }
 
 /**
