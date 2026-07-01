@@ -506,6 +506,43 @@ export async function POST(req: NextRequest) {
         email: emailResult.object.questions.length,
         discussion: discussionResult.object.questions.length,
       })
+    } else if (
+      family === 'toefl' && sectionLabel != null && /reading/i.test(sectionLabel) && count >= 20
+    ) {
+      // TOEFL Reading (Jan 2026) — per-task split, mirroring the Writing
+      // intercept. Under challenge-lock the generic hard pool dumps [N]
+      // tokens at the END of Complete-the-Words passages instead of
+      // inserting them mid-word in sentences 2-3 (the model treats
+      // "put [1]-[10] in the passage" as a trailing cluster since
+      // that's the ambiguous interpretation). Firing a dedicated CW
+      // call with a concrete inline example eliminates the drift.
+      // 3 parallel calls: N Complete-the-Words + M Daily Life shared
+      // passages + K Academic shared passages.
+      phase('drafting_questions', 'study.test.progress.draftingQuestions', 15)
+      const cwCount = Math.max(5, Math.round(count * 0.20))
+      const remaining = count - cwCount
+      const dailyN = Math.round(remaining * 0.5)
+      const academicN = remaining - dailyN
+      const cwPrompt = buildToeflReadingTaskPrompt({ task: 'complete_words', n: cwCount, minutes, lang })
+      const dailyPrompt = buildToeflReadingTaskPrompt({ task: 'daily_life', n: dailyN, minutes, lang })
+      const academicPrompt = buildToeflReadingTaskPrompt({ task: 'academic', n: academicN, minutes, lang })
+      const [cwResult, dailyResult, academicResult] = await Promise.all([
+        generateObject({ model: hardModel, schema: TestSchema, prompt: cwPrompt, temperature: 0.3 }),
+        generateObject({ model: hardModel, schema: TestSchema, prompt: dailyPrompt, temperature: 0.3 }),
+        generateObject({ model: hardModel, schema: TestSchema, prompt: academicPrompt, temperature: 0.3 }),
+      ])
+      phase('drafting_hard', 'study.test.progress.draftingHard', 40)
+      for (const r of [cwResult, dailyResult, academicResult]) {
+        const items = (r.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
+        allQuestions.push(...items)
+        totalIn += r.usage?.inputTokens ?? 0
+        totalOut += r.usage?.outputTokens ?? 0
+      }
+      console.log('[test/generate] TOEFL Reading per-task split', {
+        cw: cwResult.object.questions.length,
+        daily: dailyResult.object.questions.length,
+        academic: academicResult.object.questions.length,
+      })
     } else if (sectionSpec && targetHard > 0) {
       // CHUNKED easy/medium pool + single hard call, all in parallel.
       // gpt-4o and gpt-4o-mini cap output at 16k tokens. SAT R&W
@@ -702,12 +739,24 @@ export async function POST(req: NextRequest) {
         case 'multi_select': return q.choices.length >= 3 && q.choices.length <= 6
         // TOEFL Jan-2026 task-type variants — validate the discriminating
         // field is well-formed instead of choice count.
-        case 'fill_in_blanks':
+        case 'fill_in_blanks': {
           // Must have a passage with [N] placeholders AND a non-empty
           // blanks array. Reject items the model produced without the
           // payload — they'd render as a passage with no inputs.
-          return !!q.passage && /\[\d+\]/.test(q.passage)
-            && Array.isArray(q.blanks) && q.blanks.length > 0
+          if (!q.passage || !Array.isArray(q.blanks) || q.blanks.length === 0) return false
+          const allPlaceholders = q.passage.match(/\[\d+\]/g) ?? []
+          if (allPlaceholders.length === 0) return false
+          // Reject "trailing cluster" format where the model dumps
+          // [1] [2] … [10] at the END separated by spaces instead of
+          // interspersing them mid-word in sentences 2-3. Detect by
+          // counting inline placeholders (letter/digit directly before
+          // "[") vs total. If fewer than half are inline, the item
+          // is malformed — student would just see a paragraph with a
+          // trailing list of number brackets and no fill-in inputs
+          // where words should be.
+          const inlinePlaceholders = q.passage.match(/\w\[\d+\]/g) ?? []
+          return inlinePlaceholders.length >= Math.ceil(allPlaceholders.length / 2)
+        }
         case 'arrange_words':
           // choices ARE the word/phrase chips (6-10), correct_answer is
           // the chips joined in correct order with " | ".
@@ -1272,6 +1321,113 @@ Rules:
  * repeat it 12 times, skipping Email + Academic Discussion entirely).
  * Fired from a per-task-parallel intercept in the main route dispatch.
  */
+/**
+ * TOEFL Reading (Jan 2026) — per-task-scoped prompt. Same rationale as
+ * the Writing per-task intercept: under challenge-lock the generic
+ * hard-pool prompt lets the model drift on Complete-the-Words (dumps
+ * [1]-[10] at the end of the passage instead of interspersing them
+ * mid-word in sentences 2-3). Firing 3 parallel task-scoped calls
+ * eliminates drift and lets each task type use its own concrete
+ * anchor example.
+ */
+function buildToeflReadingTaskPrompt(args: {
+  task: 'complete_words' | 'daily_life' | 'academic'
+  n: number
+  minutes: number
+  lang: 'en' | 'ko'
+}): string {
+  const { task, n, minutes, lang } = args
+  const universal = lang === 'ko'
+    ? [
+      '',
+      '전역 규칙:',
+      '- 순수 텍스트만. LaTeX, 마크다운, HTML 금지.',
+      '- explanation은 1-2문장.',
+      `- timeLimitMinutes = ${minutes}; section = "Reading"; family = "toefl"; difficulty = "hard".`,
+    ].join('\n')
+    : [
+      '',
+      'Universal rules:',
+      '- Plain text only. No LaTeX, markdown, or HTML.',
+      '- explanation: 1-2 sentences.',
+      `- timeLimitMinutes = ${minutes}; section = "Reading"; family = "toefl"; difficulty = "hard".`,
+    ].join('\n')
+
+  if (task === 'complete_words') {
+    return [
+      `Generate ${n} TOEFL Reading "Complete the Words" items (Jan 2026 format, HARD tier).`,
+      '',
+      'FORMAT (READ CAREFULLY — this is the most common failure mode):',
+      'Each item is a SHORT academic paragraph (60-120 words). The FIRST sentence is COMPLETE — no blanks. The SECOND and THIRD sentences EACH contain multiple words where the second half of the word is missing, marked as [N] tokens INLINE.',
+      'The [N] tokens MUST be INTERSPERSED WITHIN WORDS in sentences 2 and 3 — NOT clustered at the end of the passage.',
+      '',
+      'CONCRETE EXAMPLE of the correct format for the passage field:',
+      '',
+      'Linguistics is the scientific study of language, encompassing a range of topics from phonetics to syntax. Phoneti[1] deals with the sound[2] of speech, while syn[3] examines how words combine into sen[4]nces. Morpho[5] and pragma[6] focus on word forms and contex[7]al meaning respectively, providing insi[8] into how lang[9] convey mea[10].',
+      '',
+      'Notice each [N] appears IMMEDIATELY after some initial letters of a real word, replacing its ending. NEVER emit "sentence. [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]" as a trailing cluster — that is WRONG and the item will be rejected.',
+      '',
+      'For each blank, provide the missing letters in the "blanks" array in ORDER:',
+      '[{ "id": 1, "answer": "cs" }, { "id": 2, "answer": "s" }, { "id": 3, "answer": "tax" }, { "id": 4, "answer": "te" }, { "id": 5, "answer": "logy" }, { "id": 6, "answer": "tics" }, { "id": 7, "answer": "tu" }, { "id": 8, "answer": "ght" }, { "id": 9, "answer": "uages" }, { "id": 10, "answer": "ning" }]',
+      '',
+      'Schema for EACH of the ' + n + ' items:',
+      '- type = "fill_in_blanks"',
+      '- passage = the paragraph with EXACTLY 10 inline [N] tokens interspersed in sentences 2 and 3 (see example above)',
+      '- prompt = "[Complete the Words] Fill in the missing letters in each word."',
+      '- blanks = array of exactly 10 entries with numeric id 1-10 and non-empty answer string (1-5 letters typically)',
+      '- choices = [] (empty array), correct_answer = null, passageGroupId = null (each CW item stands alone)',
+      '',
+      'Vary the paragraph topics across the ' + n + ' items — biology, art history, psychology, geology, business, linguistics, astronomy, economics, etc. Each paragraph should be self-contained and coherent when the missing letters are filled in.',
+      universal,
+    ].join('\n')
+  }
+
+  if (task === 'daily_life') {
+    return [
+      `Generate ${n} TOEFL Reading "Read in Daily Life" questions (Jan 2026 format, HARD tier).`,
+      '',
+      'Group questions into shared-passage sets: ~2-3 questions per short non-academic text. Aim for ~' + Math.max(3, Math.round(n / 2.5)) + ' distinct texts total.',
+      '',
+      'For each text:',
+      '- Genre: campus notice / club flyer / email (to / from student, professor, service dept) / social-media post / job ad / course-registration page. Rotate genres.',
+      '- Length: 40-90 words. Plain everyday register — no academic vocabulary.',
+      '- Set passageGroupId to a shared id ("daily-1", "daily-2", …) on ALL questions from that text. Copy the SAME passage text verbatim into each linked question\'s passage field.',
+      '',
+      'For each question:',
+      '- type = "multiple_choice"',
+      '- prompt = "[Daily Life — <genre>] " + question stem (e.g., "[Daily Life — Campus notice] What should students do if they need to visit the library on Friday?")',
+      '- 4 choices, correct_answer = one of them verbatim',
+      '- distractor_rationales: 1 sentence per wrong choice',
+      '',
+      'HARD hallmarks (at least ONE per question): (a) inference from a register cue (irony, polite refusal, hedge) — not literal detail; (b) inference about the writer\'s underlying situation; (c) what a recipient should do next when the notice only implies it. AVOID: bare "what time is the event" detail questions.',
+      universal,
+    ].join('\n')
+  }
+
+  // academic
+  return [
+    `Generate ${n} TOEFL Reading "Read an Academic Passage" questions (Jan 2026 format, HARD tier).`,
+    '',
+    'Group questions into shared-passage sets: EXACTLY 5 questions per passage. Aim for ' + Math.round(n / 5) + ' distinct passages.',
+    '',
+    'For each passage:',
+    '- Length: 150-180 words. NOT 700 words. Count and stay in range — passages outside 130-200w will be filtered out.',
+    '- Topic: intro-level biology / art history / psychology / geology / business / linguistics / astronomy / economics. Rotate topics across passages.',
+    '- Set passageGroupId to a shared id ("academic-1", "academic-2", …) on ALL 5 questions. Copy the SAME passage verbatim into each linked question\'s passage field.',
+    '',
+    'For each set of 5 questions on a passage, cover: (1) main idea, (2) vocabulary in context, (3) factual detail, (4) negative factual (EXCEPT / NOT), (5) rhetorical purpose OR inference.',
+    '',
+    'Question schema:',
+    '- type = "multiple_choice"',
+    '- prompt = "[Academic — <topic>] " + question stem (e.g., "[Academic — Biology] According to the passage, all of the following are true of coral reefs EXCEPT:")',
+    '- 4 choices, correct_answer = one of them verbatim',
+    '- distractor_rationales: 1 sentence per wrong choice',
+    '',
+    'HARD hallmarks: (a) inference combining two distant sentences with no direct-restatement distractor available; (b) negative-factual where 3 choices paraphrase separate passage statements and the wrong choice is a plausible-but-never-mentioned; (c) vocabulary where the tested word has a common everyday meaning that is WRONG in this academic context.',
+    universal,
+  ].join('\n')
+}
+
 function buildToeflWritingTaskPrompt(args: {
   task: 'build' | 'email' | 'discussion'
   n: number
