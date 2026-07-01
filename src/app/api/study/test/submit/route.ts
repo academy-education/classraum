@@ -31,6 +31,7 @@ const QuestionSchema = z.object({
   type: z.enum([
     'multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison',
     'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
+    'writing_email', 'writing_discussion',
   ]).nullable().optional(),
   choices: z.array(z.string()).nullable().optional(),
   correct_answer: z.string().nullable().optional(),
@@ -230,6 +231,18 @@ function gradeAnswer(q: z.infer<typeof QuestionSchema>, studentAnswer: string | 
     return studentAnswer.trim().length > 20
   }
 
+  // TOEFL Writing Email / Academic Discussion: open response, rubric-graded
+  // via /api/study/response/grade. In the auto-grader we mark as attempted
+  // if the student wrote a substantive response (>=50 chars for email,
+  // >=80 chars for discussion — well below the 100+ word target but enough
+  // to distinguish "tried" from "skipped").
+  if (q.type === 'writing_email') {
+    return studentAnswer.trim().length >= 50
+  }
+  if (q.type === 'writing_discussion') {
+    return studentAnswer.trim().length >= 80
+  }
+
   // multiple_choice / three_choice / quant_comparison — exact match.
   return norm(studentAnswer) === norm(q.correct_answer ?? '')
 }
@@ -242,6 +255,7 @@ function displayCorrectAnswer(q: z.infer<typeof QuestionSchema>): string {
     return (q.blanks ?? []).map(b => `[${b.id}] ${b.answer}`).join(', ')
   }
   if (q.type === 'speaking_interview') return '—'  // open-ended
+  if (q.type === 'writing_email' || q.type === 'writing_discussion') return '—'  // rubric-graded
   return q.correct_answer ?? ''
 }
 

@@ -68,6 +68,10 @@ const QuestionSchema = z.object({
   type: z.enum([
     'multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison',
     'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
+    // TOEFL Writing Jan 2026 open-response tasks. Students actually
+    // write the reply / discussion contribution (100+ words) — NOT MC.
+    // Rubric-graded via /api/study/response/grade.
+    'writing_email', 'writing_discussion',
   ]).nullable().optional(),
   /** Fill-in-blanks payload — one entry per [N] placeholder in passage. */
   blanks: z.array(z.object({
@@ -825,6 +829,10 @@ export async function POST(req: NextRequest) {
         case 'speaking_interview':
           // No correctness check — just needs a prompt.
           return !!q.prompt && q.prompt.length >= 10
+        case 'writing_email':
+        case 'writing_discussion':
+          // Open-response writing — needs a passage (scenario / discussion) + prompt.
+          return !!q.passage && q.passage.length >= 40 && !!q.prompt && q.prompt.length >= 10
         case 'multiple_choice':
         default:
           return q.choices.length === expectedChoiceCount
@@ -1575,17 +1583,17 @@ function buildToeflWritingTaskPrompt(args: {
 
   if (task === 'email') {
     return [
-      'Generate 1 TOEFL Writing "Write an Email" item (Jan 2026 format, HARD tier).',
+      'Generate 1 TOEFL Writing "Write an Email" item (Jan 2026 format, HARDER-than-standard tier).',
       '',
-      'The item asks the student to pick the STRONGEST reply to an email scenario. The scenario should involve a HARD social/register challenge — e.g., politely declining a request from a professor without damaging rapport, asking for a favor while acknowledging the recipient\'s constraints, correcting a mistake without seeming rude. NOT a straightforward "thank you for the invitation, unfortunately I can\'t attend".',
+      'This is an OPEN-RESPONSE task — the student will write their OWN reply. Do NOT produce sample replies. Do NOT produce choices. The student sees the scenario and types a 100+ word email reply in a textarea.',
+      '',
+      'The scenario should involve a HARD social/register challenge — e.g., politely declining a request from a professor without damaging rapport, asking for a favor while acknowledging the recipient\'s constraints, correcting a mistake without seeming rude. NOT a straightforward "thank you for the invitation".',
       '',
       'Schema:',
-      '- type = "multiple_choice"',
-      '- passage = the email scenario: who sent it, what they said, and 3 bullet points the student must address in the reply (~60-100 words total)',
-      '- prompt = "[Email] Read the email and choose the strongest reply."',
-      '- choices = 4 sample replies of varying quality. Correct = addresses all 3 bullets with appropriate register. Distractors: (1) addresses 2/3 bullets, (2) right register but wrong scenario, (3) right scenario but wrong register (too casual or too stiff), (4) declines/agrees without addressing the ask',
-      '- correct_answer = the full text of the strongest reply (matches one of the choices verbatim)',
-      '- blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
+      '- type = "writing_email"',
+      '- passage = the email scenario: who sent it, what they said, and EXACTLY 3 bullet points the student must address in the reply (~80-140 words total). Format the passage clearly, e.g., "From: Professor Chen\\nTo: You\\nSubject: Extension request\\n\\n<body>\\n\\nWrite a reply that:\\n(1) thanks the professor for considering the request\\n(2) explains the specific conflict\\n(3) proposes a concrete alternative deadline"',
+      '- prompt = "[Email] Read the email above and write your reply (target 100+ words)."',
+      '- choices = [] (empty array), correct_answer = null, blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
       '',
       'HARD hallmark: at least one of the 3 bullets should require hedging or a face-saving phrasing (not a simple "yes" / "thanks").',
       universal,
@@ -1594,19 +1602,20 @@ function buildToeflWritingTaskPrompt(args: {
 
   // discussion
   return [
-    'Generate 1 TOEFL Writing "Write for an Academic Discussion" item (Jan 2026 format, HARD tier).',
+    'Generate 1 TOEFL Writing "Write for an Academic Discussion" item (Jan 2026 format, HARDER-than-standard tier).',
     '',
-    'The item asks the student to pick the STRONGEST contribution to a professor-led class discussion. The topic should be a CONTESTED issue (universal basic income, online vs in-person education, AI ethics, climate policy, remote work) where both student replies stake non-trivial positions with specific claims — not soft "both sides have merit" filler.',
+    'This is an OPEN-RESPONSE task — the student will write their OWN contribution. Do NOT produce sample contributions. Do NOT produce choices. The student sees the discussion and types a 150+ word contribution in a textarea.',
+    '',
+    'The topic should be a CONTESTED issue (universal basic income, online vs in-person education, AI ethics, climate policy, remote work, cancel culture, standardized testing) where both student replies stake non-trivial positions with specific claims — not soft "both sides have merit" filler.',
     '',
     'Schema:',
-    '- type = "multiple_choice"',
-    '- passage = the professor\'s question + 2 short student replies (~40-70 words each). Total ~150-220 words. Give each student a name (e.g., "Aisha", "Marco") so the strongest contribution can engage them by name.',
-    '- prompt = "[Academic Discussion] Choose the strongest contribution to the discussion."',
-    '- choices = 4 sample contributions. Correct = engages BOTH classmates by name with a SPECIFIC claim from each + adds a non-trivial synthesis or qualification. Distractors: (1) agrees with one classmate without engaging the other, (2) summarizes both without staking a position, (3) takes a position but with no specific claim from either classmate, (4) slogan-level opinion with no engagement',
-    '- correct_answer = the full text of the strongest contribution (matches one of the choices verbatim)',
-    '- blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
+    '- type = "writing_discussion"',
+    '- passage = the professor\'s question + 2 short student replies (~50-80 words each). Total ~180-260 words. Give each student a name (e.g., "Aisha", "Marco", "Priya") so the student can engage them by name.',
+    '  Format: "Professor <Name>:\\n<question>\\n\\n<Student Name 1>:\\n<reply>\\n\\n<Student Name 2>:\\n<reply>"',
+    '- prompt = "[Academic Discussion] Read the discussion above and write your own contribution (target 150+ words). Engage at least one classmate by name."',
+    '- choices = [] (empty array), correct_answer = null, blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
     '',
-    'HARD hallmark: the strongest choice adds a synthesis or qualification (e.g., "your point about X is well taken, but I\'d qualify it via Y") — not just agreement or disagreement.',
+    'HARD hallmark: the professor\'s question should require the student to take a stand on a CONTESTED trade-off, and each student reply should offer a distinct angle so the strongest contribution needs synthesis + qualification.',
     universal,
   ].join('\n')
 }

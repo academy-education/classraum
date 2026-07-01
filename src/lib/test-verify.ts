@@ -29,6 +29,7 @@ export type QuestionType =
   // sanitizeQuestion + verifyAndCorrect + dedupeByPrompt for the
   // type-aware handling.
   | 'fill_in_blanks' | 'arrange_words' | 'speaking_repeat' | 'speaking_interview'
+  | 'writing_email' | 'writing_discussion'
 
 /** Set of types whose grading + rendering bypass the standard MC
  *  pipeline. Verifier skips them (no comparable choices), choice-count
@@ -37,6 +38,7 @@ export type QuestionType =
 export const NON_MC_TYPES: ReadonlySet<QuestionType> = new Set<QuestionType>([
   'numeric_entry', 'multi_select',
   'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
+  'writing_email', 'writing_discussion',
 ])
 
 /** Post-sanitize Question — all fields are concrete. Downstream code

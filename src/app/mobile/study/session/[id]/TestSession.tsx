@@ -18,6 +18,7 @@ interface Question {
   /** See generator route schema for full type docs. */
   type: 'multiple_choice' | 'numeric_entry' | 'multi_select' | 'three_choice' | 'quant_comparison'
     | 'fill_in_blanks' | 'arrange_words' | 'speaking_repeat' | 'speaking_interview'
+    | 'writing_email' | 'writing_discussion'
   choices: string[]
   correct_answer: string
   correct_answers?: string[]
@@ -654,6 +655,52 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               {ko ? '대소문자·구두점은 평가에 영향 없음.' : 'Case and punctuation are not graded.'}
             </p>
           </div>
+        ) : (q.type === 'writing_email' || q.type === 'writing_discussion') ? (
+          // TOEFL Writing Email / Academic Discussion (Jan 2026): open
+          // free-response. Student reads the scenario in the passage
+          // box above and writes a real reply (target 100+ words).
+          // Rubric-scored post-submit via /api/study/response/grade.
+          (() => {
+            const target = q.type === 'writing_email' ? 100 : 150
+            const student = answers[currentIdx] ?? ''
+            const wordCount = student.trim().split(/\s+/).filter(Boolean).length
+            return (
+              <div className="space-y-3">
+                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                  {q.type === 'writing_email'
+                    ? (ko ? '이메일 답장을 작성하세요' : 'Write your email reply')
+                    : (ko ? '토론에 기여할 글을 작성하세요' : 'Write your contribution to the discussion')}
+                </p>
+                <textarea
+                  value={student}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setAnswers(prev => {
+                      const next = [...prev]
+                      next[currentIdx] = val
+                      return next
+                    })
+                  }}
+                  rows={12}
+                  placeholder={q.type === 'writing_email'
+                    ? (ko ? '수신자에게 어울리는 어조로 답장하세요. 3개 항목을 모두 다루세요.' : 'Reply in the register appropriate to the recipient. Address all 3 bullets.')
+                    : (ko ? '입장을 명확히 하고, 최소 한 명의 동료를 이름으로 언급하며, 구체적 근거나 예시를 제시하세요.' : 'Stake a clear position, engage at least one classmate by name, and give a specific reason or example.')}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                />
+                <div className="flex items-center justify-between text-[11px] text-gray-500">
+                  <span>
+                    {ko ? '목표' : 'Target'}: {target}+ {ko ? '단어' : 'words'}
+                  </span>
+                  <span className={wordCount >= target ? 'text-emerald-600 font-semibold' : ''}>
+                    {wordCount} {ko ? '단어' : 'words'}
+                  </span>
+                </div>
+                <p className="text-[11px] text-gray-400 leading-relaxed">
+                  {ko ? '자동 채점: 최소 길이 확인. 세부 밴드 점수는 시험 후 리뷰에서 확인 가능합니다.' : 'Auto-grading: length check only. Full rubric band is available in the post-test review.'}
+                </p>
+              </div>
+            )
+          })()
         ) : q.type === 'speaking_interview' ? (
           // TOEFL Take-an-Interview (Jan 2026): open response to an
           // interviewer prompt + optional TTS playback of the question
@@ -1015,7 +1062,8 @@ function ReviewView({
                           item types each have their own answer/correct
                           comparison shape. */}
                       {(q.type === 'fill_in_blanks' || q.type === 'arrange_words'
-                        || q.type === 'speaking_repeat' || q.type === 'speaking_interview') ? (
+                        || q.type === 'speaking_repeat' || q.type === 'speaking_interview'
+                        || q.type === 'writing_email' || q.type === 'writing_discussion') ? (
                         <div className="space-y-2 mt-2">
                           <div className="px-3 py-2 rounded-lg bg-emerald-50 text-emerald-900 text-xs border border-emerald-200">
                             <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
