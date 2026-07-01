@@ -80,11 +80,16 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
 
   return (
     <>
-      <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm animate-fade-in" aria-hidden />
+      <div className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm animate-fade-in" aria-hidden />
       <div
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-0 bottom-0 z-50 max-h-[92vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
+        // z-[61] to sit above BottomNavigation (z-50) — otherwise the
+        // tab bar covers the wizard's Skip/Next action bar and users
+        // can't advance past step 1. Safe-area padding keeps the
+        // action bar clear of the iOS home indicator too.
+        className="fixed inset-x-0 bottom-0 z-[61] max-h-[92vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         <div className="pt-2.5 pb-1.5 flex justify-center">
           <div className="w-10 h-1 rounded-full bg-gray-200" />
