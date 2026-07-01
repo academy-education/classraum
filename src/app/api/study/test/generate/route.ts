@@ -556,7 +556,7 @@ export async function POST(req: NextRequest) {
       const cwItemsFiltered = cwItems.filter(q => wordCount(q.passage) >= 55)
       const dailyItems = (dailyResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
-        .filter(q => wordCount(q.passage) >= 60)  // spec 80-140, floor 60
+        .filter(q => wordCount(q.passage) >= 40)  // spec 80-140, floor 40 — model consistently produces 40-70w, higher floor killed too many
       // Academic: model occasionally piles ALL academic questions onto
       // a SINGLE passage (17+ items sharing one passage). Trim any
       // group to at most 5 items so students see multiple distinct
@@ -565,7 +565,7 @@ export async function POST(req: NextRequest) {
       // re-key runs later).
       const rawAcademic = (academicResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
-        .filter(q => wordCount(q.passage) >= 160)  // spec 200-260, floor 160
+        .filter(q => wordCount(q.passage) >= 90)  // spec 200-260, floor 90 — model consistently under-shoots, prior 120 floor killed too many. 90w is enough for 5 discriminating questions.
       const groupCounts = new Map<string, number>()
       const academicItems: RawQuestion[] = []
       for (const q of rawAcademic) {
@@ -866,6 +866,7 @@ export async function POST(req: NextRequest) {
     // failure doesn't trigger 44 retry calls. If we still come up
     // short after the loop, we log loudly but ship what we have —
     // partial > nothing.
+    //
     if (sectionSpec && combined.length < count) {
       const maxIterations = 4
       // Recompute perChunkCap — the one inside the chunked-gen block
