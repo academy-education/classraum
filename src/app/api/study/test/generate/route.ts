@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateObject } from 'ai'
+import { generateObject, generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
@@ -502,22 +502,72 @@ export async function POST(req: NextRequest) {
         generateObject({ model: hardModel, schema: TestSchema, prompt: discussionPrompt, temperature: 0.3 }),
       ])
       phase('drafting_hard', 'study.test.progress.draftingHard', 40)
+      const wordCount = (s: string | null | undefined) => (s ?? '').trim().split(/\s+/).filter(Boolean).length
+
+      // Expansion pass: model consistently under-shoots writing scenario
+      // length (Email got 59w when target is 100-160w, Discussion got
+      // 173w when target is 220-320w). Send too-short scenarios back to
+      // the model with an explicit "expand this to N words" prompt.
+      // Only runs on writing_email and writing_discussion items.
+      // Preserves the exact FORMAT (From:/To:/bullets or Professor:/
+      // Student:) — just adds substance and specificity.
+      const expandPassage = async (currentPassage: string, targetMin: number, taskKind: 'email' | 'discussion'): Promise<string> => {
+        if (wordCount(currentPassage) >= targetMin) return currentPassage
+        const kindDesc = taskKind === 'email'
+          ? 'a TOEFL Email writing scenario. Preserve the "From: / To: / Subject:" header. Preserve the 3-bullet "Write a reply that:" list at the end EXACTLY. Only expand the email BODY (the middle part) with more context, specific details, constraints, or register-signaling language.'
+          : 'a TOEFL Academic Discussion writing prompt. Preserve the "Professor <Name>:" prefix and the two "Student <Name>:" replies structure EXACTLY. Only expand the substance within each speaker\'s turn — add specific claims, examples, evidence, or nuanced positioning.'
+        const expandPrompt = `Below is ${kindDesc}\n\nCURRENT VERSION (${wordCount(currentPassage)} words — too short):\n"""\n${currentPassage}\n"""\n\nRewrite it to be EXACTLY ${targetMin}-${targetMin + 60} words while preserving the structural format described above verbatim. Return ONLY the expanded scenario text, no preamble or commentary.`
+        try {
+          const result = await generateText({
+            model: hardModel,
+            prompt: expandPrompt,
+            temperature: 0.4,
+          })
+          const expanded = result.text.trim().replace(/^"""|"""$/g, '').trim()
+          totalIn += result.usage?.inputTokens ?? 0
+          totalOut += result.usage?.outputTokens ?? 0
+          return wordCount(expanded) > wordCount(currentPassage) ? expanded : currentPassage
+        } catch {
+          return currentPassage
+        }
+      }
+
+      const buildItems = (buildResult.object.questions as RawQuestion[])
+        .map(q => ({ ...q, difficulty: 'hard' as const }))
+      const rawEmail = (emailResult.object.questions as RawQuestion[])
+        .map(q => ({ ...q, difficulty: 'hard' as const }))
+      const rawDiscussion = (discussionResult.object.questions as RawQuestion[])
+        .map(q => ({ ...q, difficulty: 'hard' as const }))
+
+      // Fire expansions in parallel — only for items that need it.
+      const [expandedEmail, expandedDiscussion] = await Promise.all([
+        Promise.all(rawEmail.map(async q => {
+          const passage = await expandPassage(q.passage ?? '', 100, 'email')
+          return { ...q, passage }
+        })),
+        Promise.all(rawDiscussion.map(async q => {
+          const passage = await expandPassage(q.passage ?? '', 200, 'discussion')
+          return { ...q, passage }
+        })),
+      ])
+
+      // Filter after expansion — if still too short, drop.
+      const emailFinal = expandedEmail.filter(q => wordCount(q.passage) >= 80)
+      const discussionFinal = expandedDiscussion.filter(q => wordCount(q.passage) >= 160)
+
+      allQuestions.push(...buildItems, ...emailFinal, ...discussionFinal)
       for (const r of [buildResult, emailResult, discussionResult]) {
-        // These 3 calls all use the HARD-tier per-task prompts. gpt-4o
-        // still occasionally emits difficulty="medium" on the Build
-        // items (the individual chip sentences don't LOOK hard to it,
-        // even though the aggregate — 8+ chips w/ relative clause +
-        // passive — is challenging). Force all items to hard since
-        // they came from a hard-only pipeline.
-        const items = (r.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
-        allQuestions.push(...items)
         totalIn += r.usage?.inputTokens ?? 0
         totalOut += r.usage?.outputTokens ?? 0
       }
-      console.log('[test/generate] TOEFL Writing per-task split', {
-        build: buildResult.object.questions.length,
-        email: emailResult.object.questions.length,
-        discussion: discussionResult.object.questions.length,
+      console.log('[test/generate] TOEFL Writing per-task split + expansion', {
+        build: buildItems.length,
+        emailIn: rawEmail.length,
+        emailOut: emailFinal.length,
+        emailWords: emailFinal.map(q => wordCount(q.passage)),
+        discussionIn: rawDiscussion.length,
+        discussionOut: discussionFinal.length,
+        discussionWords: discussionFinal.map(q => wordCount(q.passage)),
       })
     } else if (
       family === 'toefl' && sectionLabel != null && /reading/i.test(sectionLabel) && count >= 20
@@ -603,6 +653,111 @@ export async function POST(req: NextRequest) {
         cw: cwItems.length,
         daily: dailyItems.length,
         academic: academicItems.length,
+      })
+    } else if (
+      family === 'toefl' && sectionLabel != null && /listening/i.test(sectionLabel) && count >= 10
+    ) {
+      // TOEFL Listening (Jan 2026) — per-task split mirroring Reading/
+      // Writing. One big generation call under-shoots length targets
+      // consistently (Conversations 122-207w vs 240-360w target,
+      // Announcements 86-100w vs 200-300w target, Academic Talks
+      // 140-164w vs 320-450w target). Splitting into 4 parallel calls
+      // + running an expansion pass on short passages fixes this.
+      phase('drafting_questions', 'study.test.progress.draftingQuestions', 15)
+      const chooseN = Math.max(8, Math.round(count * 0.45))
+      const convoGroups = Math.max(1, Math.round(count * 0.21 / 2.5))
+      const convoN = convoGroups * 2  // ~2 questions per group
+      const announcementGroups = Math.max(1, Math.round(count * 0.17 / 2.5))
+      const announcementN = announcementGroups * 2
+      const talkGroups = Math.max(1, Math.round(count * 0.17 / 2.5))
+      const talkN = talkGroups * 2
+      const [chooseResult, convoResult, announceResult, talkResult] = await Promise.all([
+        generateObject({ model: hardModel, schema: TestSchema, prompt: buildToeflListeningTaskPrompt({ task: 'choose', n: chooseN, minutes, lang }), temperature: 0.3 }),
+        generateObject({ model: hardModel, schema: TestSchema, prompt: buildToeflListeningTaskPrompt({ task: 'conversation', n: convoN, groups: convoGroups, minutes, lang }), temperature: 0.3 }),
+        generateObject({ model: hardModel, schema: TestSchema, prompt: buildToeflListeningTaskPrompt({ task: 'announcement', n: announcementN, groups: announcementGroups, minutes, lang }), temperature: 0.3 }),
+        generateObject({ model: hardModel, schema: TestSchema, prompt: buildToeflListeningTaskPrompt({ task: 'talk', n: talkN, groups: talkGroups, minutes, lang }), temperature: 0.3 }),
+      ])
+      phase('drafting_hard', 'study.test.progress.draftingHard', 40)
+      const wordCount = (s: string | null | undefined) => (s ?? '').trim().replace(/^\s*transcript:\s*/i, '').split(/\s+/).filter(Boolean).length
+
+      // Expansion pass — mirrors the Writing pattern. Keeps "Transcript:"
+      // prefix + speaker labels intact while adding substance.
+      const expandListening = async (currentPassage: string, targetMin: number, taskKind: 'conversation' | 'announcement' | 'talk'): Promise<string> => {
+        if (wordCount(currentPassage) >= targetMin) return currentPassage
+        const kindDesc = taskKind === 'conversation'
+          ? 'a TOEFL Listening CONVERSATION transcript. Preserve the "Transcript:\\n" prefix AND every "A:" / "B:" speaker label EXACTLY. Only expand the words spoken within each turn — add specific details, follow-up questions, clarifications, or additional exchanges.'
+          : taskKind === 'announcement'
+          ? 'a TOEFL Listening ANNOUNCEMENT transcript. Preserve the "Transcript: " prefix. Expand the announcement body with specific dates/times/room numbers/procedures, an opening greeting/context, and a clear call-to-action.'
+          : 'a TOEFL Listening ACADEMIC LECTURE transcript. Preserve the "Transcript: " prefix. Expand the lecture with more sub-points, concrete examples, natural hedging ("what researchers have found is…", "the interesting thing here is…"), a self-correction or aside, and a synthesizing conclusion.'
+        const expandPrompt = `Below is ${kindDesc}\n\nCURRENT VERSION (${wordCount(currentPassage)} words — too short):\n"""\n${currentPassage}\n"""\n\nRewrite it to be EXACTLY ${targetMin}-${targetMin + 80} words while preserving the structural format described above verbatim. Return ONLY the expanded transcript text (including the "Transcript:" prefix), no preamble or commentary.`
+        try {
+          const result = await generateText({
+            model: hardModel,
+            prompt: expandPrompt,
+            temperature: 0.4,
+          })
+          const expanded = result.text.trim().replace(/^"""|"""$/g, '').trim()
+          totalIn += result.usage?.inputTokens ?? 0
+          totalOut += result.usage?.outputTokens ?? 0
+          return wordCount(expanded) > wordCount(currentPassage) ? expanded : currentPassage
+        } catch {
+          return currentPassage
+        }
+      }
+
+      // Expand per group (not per item) — each conversation/announcement/
+      // talk has 2-3 questions sharing the same passage. Canonicalize
+      // to a single expanded passage keyed by passageGroupId, then
+      // apply back to every item in the group.
+      const expandGroup = async (items: RawQuestion[], targetMin: number, kind: 'conversation' | 'announcement' | 'talk') => {
+        const byGroup = new Map<string, RawQuestion[]>()
+        for (const q of items) {
+          const key = q.passageGroupId ?? Math.random().toString(36)
+          if (!byGroup.has(key)) byGroup.set(key, [])
+          byGroup.get(key)!.push(q)
+        }
+        const expandedByGroup = new Map<string, string>()
+        await Promise.all([...byGroup.entries()].map(async ([key, group]) => {
+          const passage = group[0].passage ?? ''
+          const expanded = await expandListening(passage, targetMin, kind)
+          expandedByGroup.set(key, expanded)
+        }))
+        return items.map(q => ({ ...q, passage: expandedByGroup.get(q.passageGroupId ?? '') ?? q.passage }))
+      }
+
+      const chooseItems = (chooseResult.object.questions as RawQuestion[])
+        .map(q => ({ ...q, difficulty: 'hard' as const, passageGroupId: null }))
+      const rawConvo = (convoResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
+      const rawAnnounce = (announceResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
+      const rawTalk = (talkResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
+      const [convoExpanded, announceExpanded, talkExpanded] = await Promise.all([
+        expandGroup(rawConvo, 240, 'conversation'),
+        expandGroup(rawAnnounce, 200, 'announcement'),
+        expandGroup(rawTalk, 320, 'talk'),
+      ])
+      // Post-expansion floor — drop items whose passage is still under
+      // the minimum after the expansion attempt (in case the expansion
+      // API call errored or the model refused).
+      const convoFinal = convoExpanded.filter(q => wordCount(q.passage) >= 200)
+      const announceFinal = announceExpanded.filter(q => wordCount(q.passage) >= 160)
+      const talkFinal = talkExpanded.filter(q => wordCount(q.passage) >= 260)
+
+      allQuestions.push(...chooseItems, ...convoFinal, ...announceFinal, ...talkFinal)
+      for (const r of [chooseResult, convoResult, announceResult, talkResult]) {
+        totalIn += r.usage?.inputTokens ?? 0
+        totalOut += r.usage?.outputTokens ?? 0
+      }
+      console.log('[test/generate] TOEFL Listening per-task split + expansion', {
+        choose: chooseItems.length,
+        convoIn: rawConvo.length,
+        convoOut: convoFinal.length,
+        convoWords: convoFinal.map(q => wordCount(q.passage)),
+        announceIn: rawAnnounce.length,
+        announceOut: announceFinal.length,
+        announceWords: announceFinal.map(q => wordCount(q.passage)),
+        talkIn: rawTalk.length,
+        talkOut: talkFinal.length,
+        talkWords: talkFinal.map(q => wordCount(q.passage)),
       })
     } else if (sectionSpec && targetHard > 0) {
       // CHUNKED easy/medium pool + single hard call, all in parallel.
@@ -1535,6 +1690,92 @@ function buildToeflReadingTaskPrompt(args: {
   ].join('\n')
 }
 
+function buildToeflListeningTaskPrompt(args: {
+  task: 'choose' | 'conversation' | 'announcement' | 'talk'
+  n: number
+  groups?: number
+  minutes: number
+  lang: 'en' | 'ko'
+}): string {
+  const { task, n, groups, minutes } = args
+  const universal = [
+    '',
+    'Universal rules:',
+    '- Plain text only. No LaTeX, markdown, or HTML.',
+    '- explanation: 1-2 sentences.',
+    `- timeLimitMinutes = ${minutes}; section = "Listening"; family = "toefl"; difficulty = "hard".`,
+    '- Every question type must be "multiple_choice" with exactly 4 choices.',
+    '- The passage field will be spoken via browser TTS in the app. Keep it clean prose without stage directions like "(pause)" — use punctuation for pacing instead.',
+  ].join('\n')
+
+  if (task === 'choose') {
+    return [
+      `Generate ${n} TOEFL "Listen and Choose a Response" items (Jan 2026 format, HARDER-than-standard tier).`,
+      '',
+      '- Each item is a single utterance (question / statement / request) by ONE speaker.',
+      '- Utterance length: 15-25 words (HARD tier — include a subordinate clause, an idiom, or a hedged register).',
+      '- Topics: everyday campus / work / travel / social.',
+      '- "passage" = "Transcript: \\"<the utterance>\\"". passageGroupId = null.',
+      '- "prompt" = "[Choose a Response] Which is the most natural reply?"',
+      '- 4 choices = plausible spoken replies. Correct = best register/function match. Distractors: (1) keyword echo but wrong function, (2) wrong register (too formal/casual), (3) ignores a key qualifier.',
+      universal,
+    ].join('\n')
+  }
+
+  if (task === 'conversation') {
+    return [
+      `Generate ${n} TOEFL "Listen to a Conversation" items (Jan 2026 format, HARDER-than-standard tier), grouped into exactly ${groups} conversation${groups === 1 ? '' : 's'} of ~${Math.round(n / (groups ?? 1))} questions each.`,
+      '',
+      'PASSAGE REQUIREMENTS (STRICT — items under 220 words will be REJECTED):',
+      '- Each conversation transcript: 260-360 words REQUIRED.',
+      '- 12-16 turns between 2 speakers.',
+      '- Structure MUST include: (a) context-setting opening turn where one speaker names the situation, (b) substantive middle where a problem or trade-off is explored with specific details, (c) resolution or explicit next-step turn.',
+      '- Include: at least one clarifying follow-up ("What do you mean by…?"), at least one hedged phrase ("I suppose", "in that case", "the thing is"), and 2-3 concrete details (course numbers, deadlines, room numbers, dollar amounts).',
+      '- Settings: student↔advisor, student↔librarian, roommates, professor↔student office hours.',
+      '',
+      'Schema:',
+      '- "passage" = "Transcript:\\nA: <turn>\\nB: <turn>\\nA: <turn>…" — MUST include the "Transcript:\\n" header exactly once, and every turn MUST start with "A:" or "B:".',
+      '- SHARED across all Q in the same conversation. passageGroupId "convo-1", "convo-2", … (assign the SAME id to every question in one conversation).',
+      '- "prompt" = "[Conversation — <setting>] " + question stem (gist / detail / function / attitude).',
+      universal,
+    ].join('\n')
+  }
+
+  if (task === 'announcement') {
+    return [
+      `Generate ${n} TOEFL "Listen to an Announcement" items (Jan 2026 format, HARDER-than-standard tier), grouped into exactly ${groups} announcement${groups === 1 ? '' : 's'} of ~${Math.round(n / (groups ?? 1))} questions each.`,
+      '',
+      'PASSAGE REQUIREMENTS (STRICT — items under 180 words will be REJECTED):',
+      '- Each announcement transcript: 220-300 words REQUIRED.',
+      '- Structure MUST include: (a) opening greeting/context (who is speaking + why), (b) main information with 3-4 specific details (dates, times, room numbers, procedural steps, dollar amounts, contact info), (c) 1-2 anticipated FAQs or exception cases, (d) explicit call-to-action or follow-up instruction.',
+      '- Venues: campus PA / transit / museum / library / residence hall / dining hall.',
+      '',
+      'Schema:',
+      '- "passage" = "Transcript: " + full spoken text (one flowing monologue).',
+      '- SHARED across all Q in the same announcement. passageGroupId "announcement-1", "announcement-2", … (assign the SAME id to every question in one announcement).',
+      '- "prompt" = "[Announcement — <venue>] " + question stem (purpose / key detail / what listeners should do next / inference about announcer\'s situation).',
+      universal,
+    ].join('\n')
+  }
+
+  // talk
+  return [
+    `Generate ${n} TOEFL "Listen to an Academic Talk" items (Jan 2026 format, HARDER-than-standard tier), grouped into exactly ${groups} lecture${groups === 1 ? '' : 's'} of ~${Math.round(n / (groups ?? 1))} questions each.`,
+    '',
+    'PASSAGE REQUIREMENTS (STRICT — items under 300 words will be REJECTED):',
+    '- Each lecture transcript: 360-450 words REQUIRED.',
+    '- Structure MUST include: (a) topic introduction with WHY-IT-MATTERS framing (2-3 sentences), (b) TWO or THREE developed sub-points, each with a concrete example / study / statistic, (c) at least one self-correction or aside ("actually — let me back up a moment", "well, that\'s not quite right either"), (d) natural hedging throughout ("what researchers have found is…", "the interesting thing here is…", "it turns out"), (e) a synthesizing conclusion linking back to the opening frame.',
+    '- Fields: intro-level biology / history / psychology / business / geology / linguistics / anthropology / astronomy.',
+    '- The lecturer voice should be recognizably a PROFESSOR — occasional filler ("um", "so", "right"), rhetorical questions, and small tangents that connect back.',
+    '',
+    'Schema:',
+    '- "passage" = "Transcript: " + full lecture (one flowing monologue).',
+    '- SHARED across all Q in the same lecture. passageGroupId "talk-1", "talk-2", … (assign the SAME id to every question in one lecture).',
+    '- "prompt" = "[Academic Talk — <topic>] " + question stem (main idea / key detail / speaker purpose / inference connecting two distant points).',
+    universal,
+  ].join('\n')
+}
+
 function buildToeflWritingTaskPrompt(args: {
   task: 'build' | 'email' | 'discussion'
   n: number
@@ -1587,15 +1828,29 @@ function buildToeflWritingTaskPrompt(args: {
       '',
       'This is an OPEN-RESPONSE task — the student will write their OWN reply. Do NOT produce sample replies. Do NOT produce choices. The student sees the scenario and types a 100+ word email reply in a textarea.',
       '',
-      'The scenario should involve a HARD social/register challenge — e.g., politely declining a request from a professor without damaging rapport, asking for a favor while acknowledging the recipient\'s constraints, correcting a mistake without seeming rude. NOT a straightforward "thank you for the invitation".',
+      'The scenario should involve a HARD social/register challenge — e.g., politely declining a request from a professor without damaging rapport, asking for a favor while acknowledging the recipient\'s constraints, correcting a mistake without seeming rude, negotiating a group-project conflict where you must both preserve relationships and get your point across. NOT a straightforward "thank you for the invitation".',
+      '',
+      'PASSAGE REQUIREMENTS (STRICT):',
+      '- Length: 100-160 words. Items under 100 words will be REJECTED. Count and verify.',
+      '- Format:',
+      '  Line 1: "From: <sender role + name>"',
+      '  Line 2: "To: You"',
+      '  Line 3: "Subject: <descriptive subject>"',
+      '  Line 4: blank',
+      '  Lines 5-N: The email BODY (60-100 words) — must include: (a) explicit ask or news, (b) context or constraint that complicates the response, (c) a phrase that signals register (formal/casual/authoritative).',
+      '  Blank line',
+      '  Line: "Write a reply that:"',
+      '  Line: "(1) <bullet 1 — typically an acknowledgment or thanks>"',
+      '  Line: "(2) <bullet 2 — typically an explanation or perspective the writer needs to share>"',
+      '  Line: "(3) <bullet 3 — typically a request, proposal, or forward-looking ask>"',
+      '- The 3 bullets MUST all be present. Items with fewer bullets will be REJECTED.',
+      '- At LEAST one bullet should require hedging or a face-saving phrasing (not a simple "yes" / "thanks").',
       '',
       'Schema:',
       '- type = "writing_email"',
-      '- passage = the email scenario: who sent it, what they said, and EXACTLY 3 bullet points the student must address in the reply (~80-140 words total). Format the passage clearly, e.g., "From: Professor Chen\\nTo: You\\nSubject: Extension request\\n\\n<body>\\n\\nWrite a reply that:\\n(1) thanks the professor for considering the request\\n(2) explains the specific conflict\\n(3) proposes a concrete alternative deadline"',
+      '- passage = the full formatted scenario as described above',
       '- prompt = "[Email] Read the email above and write your reply (target 100+ words)."',
       '- choices = [] (empty array), correct_answer = null, blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
-      '',
-      'HARD hallmark: at least one of the 3 bullets should require hedging or a face-saving phrasing (not a simple "yes" / "thanks").',
       universal,
     ].join('\n')
   }
@@ -1606,16 +1861,29 @@ function buildToeflWritingTaskPrompt(args: {
     '',
     'This is an OPEN-RESPONSE task — the student will write their OWN contribution. Do NOT produce sample contributions. Do NOT produce choices. The student sees the discussion and types a 150+ word contribution in a textarea.',
     '',
-    'The topic should be a CONTESTED issue (universal basic income, online vs in-person education, AI ethics, climate policy, remote work, cancel culture, standardized testing) where both student replies stake non-trivial positions with specific claims — not soft "both sides have merit" filler.',
+    'The topic should be a CONTESTED issue (universal basic income, online vs in-person education, AI ethics, climate policy, remote work, cancel culture, standardized testing, tuition-free public university, four-day work week, mandatory military/civil service) where both student replies stake non-trivial positions with specific claims — not soft "both sides have merit" filler.',
+    '',
+    'PASSAGE REQUIREMENTS (STRICT):',
+    '- Length: 220-320 words. Items under 200 words will be REJECTED. Count and verify.',
+    '- Format:',
+    '  Line 1: "Professor <Name>:"',
+    '  Lines 2-N: Professor\'s question (60-100 words). Must: (a) frame the contested trade-off explicitly, (b) hint at why it matters (real-world stakes), (c) end with an explicit "why or why not?" or "which do you find more convincing?" prompt.',
+    '  Blank line',
+    '  Line: "<Student Name 1>:"',
+    '  Lines: Student 1\'s reply (70-110 words). MUST take a clear position + provide a specific claim / example / statistic.',
+    '  Blank line',
+    '  Line: "<Student Name 2>:"',
+    '  Lines: Student 2\'s reply (70-110 words). MUST take a DIFFERENT angle from Student 1 (not just disagreement — a distinct value or evidence base) + a specific claim.',
+    '- Use realistic names (Aisha, Marco, Priya, Kenji, Elena, Amir, Léa, Diego) so the writer can engage classmates by name.',
+    '- Both student replies MUST be substantive (>= 60 words each). Short replies (~20-30 words each) will be REJECTED.',
     '',
     'Schema:',
     '- type = "writing_discussion"',
-    '- passage = the professor\'s question + 2 short student replies (~50-80 words each). Total ~180-260 words. Give each student a name (e.g., "Aisha", "Marco", "Priya") so the student can engage them by name.',
-    '  Format: "Professor <Name>:\\n<question>\\n\\n<Student Name 1>:\\n<reply>\\n\\n<Student Name 2>:\\n<reply>"',
+    '- passage = the full formatted discussion as described above',
     '- prompt = "[Academic Discussion] Read the discussion above and write your own contribution (target 150+ words). Engage at least one classmate by name."',
     '- choices = [] (empty array), correct_answer = null, blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
     '',
-    'HARD hallmark: the professor\'s question should require the student to take a stand on a CONTESTED trade-off, and each student reply should offer a distinct angle so the strongest contribution needs synthesis + qualification.',
+    'HARD hallmark: the professor\'s question must require the writer to take a stand on a CONTESTED trade-off, and each student reply must offer a DISTINCT angle so the strongest contribution needs synthesis + qualification.',
     universal,
   ].join('\n')
 }
@@ -1961,26 +2229,26 @@ function extraGuidanceFor(
     return [
       `TOEFL Listening (January 2026 format) — ${count} questions.`,
       `Mix: ${chooseN} Choose-a-Response + ${convoN} Conversation Q across ~${Math.max(1, Math.round(convoN / 2.5))} conversations + ${announcementN} Announcement Q across ~${Math.max(1, Math.round(announcementN / 2.5))} announcements + ${talkN} Academic Talk Q across ~${Math.max(1, Math.round(talkN / 2.5))} talks.`,
-      'Without audio playback in our app, render every transcript inline. Begin the passage field with "Transcript: " followed by the spoken text. Begin the prompt with a task tag.',
+      'The app plays each transcript via browser TTS. Begin the passage field with "Transcript: " followed by the spoken text — the client strips this prefix before speaking. Begin the prompt with a task tag.',
       '',
       `TASK A — "Listen and Choose a Response" (${chooseN} items, type="multiple_choice"):`,
-      '- A single utterance (question / statement / request) by ONE speaker. 8-25 words. Topics: everyday campus / work / travel / social.',
+      '- A single utterance (question / statement / request) by ONE speaker. 12-25 words. Topics: everyday campus / work / travel / social.',
       '- "passage" = "Transcript: \\"<the utterance>\\"". passageGroupId = null (each item stands alone).',
       '- "prompt" = "[Choose a Response] Which is the most natural reply?"',
       '- 4 choices = plausible spoken replies. Correct = best register/function match. Distractors: (1) keyword echo but wrong function, (2) wrong register (too formal/casual), (3) ignores a key qualifier.',
       '',
       `TASK B — "Listen to a Conversation" (${convoN} items, type="multiple_choice"):`,
-      '- 8-12 turn dialogue (~150-220 words) between 2 speakers. Settings: student↔advisor, student↔librarian, roommates, professor↔student office hours.',
+      '- 12-16 turn dialogue (240-360 words REQUIRED — items under 220 words will be REJECTED) between 2 speakers. Settings: student↔advisor, student↔librarian, roommates, professor↔student office hours. The dialogue should include: (a) an initial context-setting turn, (b) a substantive middle where a problem is explored, (c) a resolution or next-step turn.',
       '- "passage" = "Transcript:\\nA: ...\\nB: ...\\nA: ..." (full dialogue). SHARED across 2-3 linked Q per conversation — passageGroupId "convo-1", "convo-2", …',
       '- "prompt" = "[Conversation — <setting>] " + question stem (gist, detail, function, attitude).',
       '',
       `TASK C — "Listen to an Announcement" (${announcementN} items, type="multiple_choice"):`,
-      '- Short announcement (~120-180 words): campus PA / transit / museum / library / residence hall / dining hall.',
+      '- Announcement (200-300 words REQUIRED — items under 180 words will be REJECTED): campus PA / transit / museum / library / residence hall / dining hall. Must include: (a) opening greeting/context, (b) the main information with 2-3 specific details (dates, times, room numbers, procedures), (c) a call-to-action or follow-up instruction.',
       '- "passage" = "Transcript: " + full text. SHARED across 2-3 linked Q per announcement — passageGroupId "announcement-1", "announcement-2", …',
       '- "prompt" = "[Announcement — <venue>] " + question stem (purpose, key detail, what listeners should do next, inference about announcer\'s situation).',
       '',
       `TASK D — "Listen to an Academic Talk" (${talkN} items, type="multiple_choice"):`,
-      '- Short academic mini-lecture (~180-260 words) on intro-level biology / history / psychology / business / geology / linguistics.',
+      '- Academic mini-lecture (320-450 words REQUIRED — items under 300 words will be REJECTED) on intro-level biology / history / psychology / business / geology / linguistics. Must include: (a) topic introduction with why-it-matters framing, (b) two or three developed sub-points with concrete examples, (c) a synthesizing conclusion. The lecturer should use natural hedging ("what researchers have found is…", "the interesting thing is…") and at least one aside or self-correction to sound authentic.',
       '- "passage" = "Transcript: " + full text. SHARED across 2-3 linked Q per talk — passageGroupId "talk-1", "talk-2", …',
       '- "prompt" = "[Academic Talk — <topic>] " + question stem (main idea, key detail, speaker purpose, inference connecting two distant points).',
       '',

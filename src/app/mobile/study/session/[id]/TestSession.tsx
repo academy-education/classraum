@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {
   Loader2, RefreshCw, ArrowRight, ArrowLeft, Clock, CheckCircle2,
   XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles,
-  Volume2, Mic, MicOff,
+  Volume2, Mic, MicOff, Play, Eye, EyeOff,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
@@ -105,6 +105,27 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const [currentIdx, setCurrentIdx] = useState(0)
   const [gridOpen, setGridOpen] = useState(false)
   const [result, setResult] = useState<SubmitResult | null>(null)
+  // TOEFL Listening audio is playing — locks Prev/Next/Grid so students
+  // can't skim ahead while a recording is speaking (ETS-faithful:
+  // question navigation is disabled while audio plays).
+  const [audioPlaying, setAudioPlaying] = useState(false)
+  // TOEFL Speaking Take-an-Interview timer state, keyed per-question.
+  // 'idle' before the audio finishes, 'started' during prep+response,
+  // 'expired' after the response window closes. Locks the textarea +
+  // recorder when expired.
+  const [interviewTimerState, setInterviewTimerState] = useState<Record<string, 'idle' | 'started' | 'expired'>>({})
+  // Storage paths + speech signals for the student's voice recordings,
+  // keyed by question index. Persist so the review pane can play the
+  // recording back + so the rubric grader has real delivery metrics
+  // (WPM, pause count, transcription clarity) for the speaking rubric.
+  // Reset per session; not persisted across page reload.
+  const [answerAudioPaths, setAnswerAudioPaths] = useState<Record<number, string>>({})
+  const [answerSpeechSignals, setAnswerSpeechSignals] = useState<Record<number, SpeechSignals>>({})
+  // TOEFL Speaking grade mode picked at test start — routes the
+  // rubric feedback request to either the text-only endpoint or the
+  // gpt-4o-audio-preview endpoint. Fetched from the session row on
+  // mount; defaults to 'text' if unset or non-Speaking test.
+  const [speakingGradeMode, setSpeakingGradeMode] = useState<'text' | 'audio'>('text')
   /** Generation progress — populated by the NDJSON event stream from
    *  /api/study/test/generate. Each phase event carries an i18n key
    *  and an integer percent. Null until the first event arrives. */
@@ -134,7 +155,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     try {
       const { data: pre } = await supabase
         .from('study_sessions')
-        .select('generation_status')
+        .select('generation_status, speaking_grade_mode')
         .eq('id', sessionId)
         .maybeSingle()
       // 'ready' = built; null = freshly created session that hasn't
@@ -142,6 +163,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // another tab (we'll join that stream and show progress).
       // 'failed' = treat as fresh attempt so the user can retry.
       isResume = pre?.generation_status === 'ready'
+      if (pre?.speaking_grade_mode === 'audio') setSpeakingGradeMode('audio')
     } catch { /* fall through to 'generating' */ }
     setPhase(isResume ? 'resuming' : 'generating')
     setProgress({ name: 'starting', labelKey: 'study.test.progress.starting', percent: 0 })
@@ -320,7 +342,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   }
 
   if (phase === 'reviewing' && result) {
-    return <ReviewView test={test} answers={answers} result={result} ko={ko} sessionId={sessionId} />
+    return <ReviewView test={test} answers={answers} answerAudioPaths={answerAudioPaths} answerSpeechSignals={answerSpeechSignals} speakingGradeMode={speakingGradeMode} result={result} ko={ko} sessionId={sessionId} />
   }
 
   // phase === 'taking' or 'submitting'
@@ -335,7 +357,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         <button
           type="button"
           onClick={() => setGridOpen(v => !v)}
-          className="text-xs text-gray-600 inline-flex items-center gap-1"
+          disabled={audioPlaying}
+          className="text-xs text-gray-600 inline-flex items-center gap-1 disabled:opacity-40"
         >
           {t('study.test.questionN', { current: String(currentIdx + 1), total: String(test.questions.length) })}
           {gridOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -398,25 +421,56 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // the paragraph on screen and let students think the header
           // "Question X of Y" applies to unrelated passages.
           const groupInfo = passageGroupInfo(test.questions, currentIdx)
+          // TOEFL Listening items ship the spoken script inside the
+          // passage field prefixed with "Transcript:". Detect and route
+          // to the audio player so students actually LISTEN instead of
+          // reading. Falls back to the transcript view on browsers
+          // without SpeechSynthesis.
+          const isListeningItem = test.family === 'toefl'
+            && test.section != null
+            && /listening/i.test(test.section)
+            && /^\s*transcript:/i.test(q.passage ?? '')
           return (
             <>
               {groupInfo && (
                 <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.10em] text-primary">
                   <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/10">
-                    {ko
-                      ? `지문 ${groupInfo.groupIndex} / ${groupInfo.totalGroups}`
-                      : `Passage ${groupInfo.groupIndex} of ${groupInfo.totalGroups}`}
+                    {isListeningItem
+                      ? (ko
+                          ? `녹음 ${groupInfo.groupIndex} / ${groupInfo.totalGroups}`
+                          : `Recording ${groupInfo.groupIndex} of ${groupInfo.totalGroups}`)
+                      : (ko
+                          ? `지문 ${groupInfo.groupIndex} / ${groupInfo.totalGroups}`
+                          : `Passage ${groupInfo.groupIndex} of ${groupInfo.totalGroups}`)}
                   </span>
                   <span className="text-gray-500 font-normal normal-case tracking-normal">
-                    {ko
-                      ? `이 지문의 ${groupInfo.indexInGroup} / ${groupInfo.totalInGroup}번 문항`
-                      : `Question ${groupInfo.indexInGroup} of ${groupInfo.totalInGroup} in this passage`}
+                    {isListeningItem
+                      ? (ko
+                          ? `이 녹음의 ${groupInfo.indexInGroup} / ${groupInfo.totalInGroup}번 문항`
+                          : `Question ${groupInfo.indexInGroup} of ${groupInfo.totalInGroup} for this recording`)
+                      : (ko
+                          ? `이 지문의 ${groupInfo.indexInGroup} / ${groupInfo.totalInGroup}번 문항`
+                          : `Question ${groupInfo.indexInGroup} of ${groupInfo.totalInGroup} in this passage`)}
                   </span>
                 </div>
               )}
-              <div className="mb-4 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[14px] text-gray-800 leading-relaxed">
-                <PassageParagraphs text={q.passage} />
-              </div>
+              {isListeningItem ? (
+                <ListeningAudioPlayer
+                  // Remount when the passage group changes; play count
+                  // persists in a module-level store keyed by group so
+                  // the counter survives remount when the student
+                  // navigates back to the same recording.
+                  key={q.passageGroupId ?? `standalone-${currentIdx}`}
+                  groupKey={`${sessionId}:${q.passageGroupId ?? `standalone-${currentIdx}`}`}
+                  transcript={q.passage!}
+                  language={language}
+                  onSpeakingChange={setAudioPlaying}
+                />
+              ) : (
+                <div className="mb-4 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[14px] text-gray-800 leading-relaxed">
+                  <PassageParagraphs text={q.passage} />
+                </div>
+              )}
             </>
           )
         })()}
@@ -615,46 +669,49 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             )
           })()
         ) : q.type === 'speaking_repeat' ? (
-          // TOEFL Listen-and-Repeat (Jan 2026): audio script shown as
-          // text + optional TTS playback. Student can type the sentence
-          // back OR record their voice and let Whisper transcribe.
-          // Either way the answer text is compared verbatim by the grader.
-          <div className="space-y-3">
-            <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
-              {ko ? '들은 문장을 그대로 입력하세요' : 'Type back the sentence exactly'}
-            </p>
-            <AudioPracticeBar
-              // Strip 'Transcript: ' prefix + surrounding quotes for TTS.
-              sourceText={(q.passage ?? '').replace(/^transcript:\s*/i, '').replace(/^"|"$/g, '').trim() || q.correct_answer}
-              sessionId={sessionId}
-              language={language}
-              ko={ko}
-              onTranscript={(text) => {
-                setAnswers(prev => {
-                  const next = [...prev]
-                  next[currentIdx] = (next[currentIdx] ? next[currentIdx] + ' ' : '') + text
-                  return next
-                })
-              }}
-            />
-            <textarea
-              value={answers[currentIdx] ?? ''}
-              onChange={(e) => {
-                const val = e.target.value
-                setAnswers(prev => {
-                  const next = [...prev]
-                  next[currentIdx] = val
-                  return next
-                })
-              }}
-              rows={3}
-              placeholder={ko ? '예: I can\'t believe how heavy this box is...' : 'e.g. I can\'t believe how heavy this box is...'}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-            />
-            <p className="text-[11px] text-gray-500">
-              {ko ? '대소문자·구두점은 평가에 영향 없음.' : 'Case and punctuation are not graded.'}
-            </p>
-          </div>
+          // TOEFL Listen-and-Repeat (Jan 2026, ETS-faithful): 1 play,
+          // no transcript, must actually listen. Voice-record or type.
+          (() => {
+            const src = (q.passage ?? '').replace(/^transcript:\s*/i, '').replace(/^"|"$/g, '').trim() || q.correct_answer
+            const appendTranscript = (text: string, signals?: SpeechSignals) => {
+              setAnswers(prev => {
+                const next = [...prev]
+                next[currentIdx] = (next[currentIdx] ? next[currentIdx] + ' ' : '') + text
+                return next
+              })
+              if (signals?.audioPath) setAnswerAudioPaths(prev => ({ ...prev, [currentIdx]: signals.audioPath! }))
+              if (signals) setAnswerSpeechSignals(prev => ({ ...prev, [currentIdx]: signals }))
+            }
+            return (
+              <div className="space-y-3">
+                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                  {ko ? '한 번만 재생됩니다. 들은 문장을 그대로 말하거나 입력하세요.' : 'You hear it ONCE. Speak or type it back exactly.'}
+                </p>
+                <ListeningAudioPlayer
+                  key={`repeat-${currentIdx}`}
+                  groupKey={`${sessionId}:repeat-${currentIdx}`}
+                  transcript={src}
+                  language={language}
+                  maxPlays={1}
+                  onSpeakingChange={setAudioPlaying}
+                />
+                <VoiceRecorderButton sessionId={sessionId} language={language} ko={ko} onTranscript={appendTranscript} />
+                <textarea
+                  value={answers[currentIdx] ?? ''}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setAnswers(prev => { const next = [...prev]; next[currentIdx] = val; return next })
+                  }}
+                  rows={3}
+                  placeholder={ko ? '들은 문장을 그대로 입력…' : 'Type back the sentence exactly…'}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                />
+                <p className="text-[11px] text-gray-500">
+                  {ko ? '대소문자·구두점은 평가에 영향 없음.' : 'Case and punctuation are not graded.'}
+                </p>
+              </div>
+            )
+          })()
         ) : (q.type === 'writing_email' || q.type === 'writing_discussion') ? (
           // TOEFL Writing Email / Academic Discussion (Jan 2026): open
           // free-response. Student reads the scenario in the passage
@@ -702,47 +759,79 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             )
           })()
         ) : q.type === 'speaking_interview' ? (
-          // TOEFL Take-an-Interview (Jan 2026): open response to an
-          // interviewer prompt + optional TTS playback of the question
-          // and voice-recorded answer. Auto-grader checks for a
-          // substantive (>20 char) answer; rubric grading routes
-          // through /api/study/response/grade separately.
-          <div className="space-y-3">
-            <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
-              {ko ? '면접관의 질문에 자유롭게 답변하세요' : 'Answer the interviewer as fully as you can'}
-            </p>
-            <AudioPracticeBar
-              // Strip "[Interview]" prefix for cleaner TTS.
-              sourceText={q.prompt.replace(/^\s*\[[^\]]+\]\s*/, '')}
-              sessionId={sessionId}
-              language={language}
-              ko={ko}
-              onTranscript={(text) => {
-                setAnswers(prev => {
-                  const next = [...prev]
-                  next[currentIdx] = (next[currentIdx] ? next[currentIdx] + ' ' : '') + text
-                  return next
-                })
-              }}
-            />
-            <textarea
-              value={answers[currentIdx] ?? ''}
-              onChange={(e) => {
-                const val = e.target.value
-                setAnswers(prev => {
-                  const next = [...prev]
-                  next[currentIdx] = val
-                  return next
-                })
-              }}
-              rows={6}
-              placeholder={ko ? '여러 문장으로 답변하세요...' : 'Respond in several sentences...'}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-            />
-            <p className="text-[11px] text-gray-500">
-              {ko ? '근거·예시를 포함한 풍부한 답변을 권장합니다.' : 'Strong answers include reasons or examples.'}
-            </p>
-          </div>
+          // TOEFL Take-an-Interview (Jan 2026, ETS-faithful): the
+          // interviewer question is SPOKEN via TTS (real ETS is
+          // audio-only for the prompt), then a 15-sec prep countdown
+          // fires, then a 45-sec response window. Textarea locks when
+          // the response window expires so students can't spend 5
+          // minutes crafting a written answer.
+          (() => {
+            const questionText = q.prompt.replace(/^\s*\[[^\]]+\]\s*/, '')
+            const appendTranscript = (text: string, signals?: SpeechSignals) => {
+              setAnswers(prev => {
+                const next = [...prev]
+                next[currentIdx] = (next[currentIdx] ? next[currentIdx] + ' ' : '') + text
+                return next
+              })
+              if (signals?.audioPath) setAnswerAudioPaths(prev => ({ ...prev, [currentIdx]: signals.audioPath! }))
+              if (signals) setAnswerSpeechSignals(prev => ({ ...prev, [currentIdx]: signals }))
+            }
+            const timerKey = `interview-${currentIdx}`
+            const phase = interviewTimerState[timerKey] ?? 'idle'
+            const timerActive = phase === 'started'
+            const timerExpired = phase === 'expired'
+            return (
+              <div className="space-y-3">
+                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                  {ko ? '면접관의 질문을 듣고, 준비 시간 후 답변하세요' : 'Listen to the interviewer, then respond after the prep window'}
+                </p>
+                <ListeningAudioPlayer
+                  key={`interview-${currentIdx}`}
+                  groupKey={`${sessionId}:interview-${currentIdx}`}
+                  transcript={questionText}
+                  language={language}
+                  maxPlays={1}
+                  onSpeakingChange={setAudioPlaying}
+                  onFirstPlayEnd={() => setInterviewTimerState(s => ({ ...s, [timerKey]: 'started' }))}
+                />
+                <SpeakingTimer
+                  active={timerActive}
+                  prepSec={15}
+                  responseSec={45}
+                  ko={ko}
+                  t={t}
+                  onExpire={() => setInterviewTimerState(s => ({ ...s, [timerKey]: 'expired' }))}
+                />
+                {(phase === 'idle' || timerExpired) && (
+                  <div className="text-[11px] text-gray-500 text-center">
+                    {phase === 'idle'
+                      ? t('study.test.speakingWaitForAudio')
+                      : t('study.test.speakingTimeUp')}
+                  </div>
+                )}
+                <VoiceRecorderButton
+                  sessionId={sessionId} language={language} ko={ko}
+                  disabled={phase === 'idle' || timerExpired}
+                  onTranscript={appendTranscript}
+                />
+                <textarea
+                  value={answers[currentIdx] ?? ''}
+                  onChange={(e) => {
+                    if (timerExpired) return
+                    const val = e.target.value
+                    setAnswers(prev => { const next = [...prev]; next[currentIdx] = val; return next })
+                  }}
+                  disabled={timerExpired}
+                  rows={6}
+                  placeholder={ko ? '여러 문장으로 답변하세요...' : 'Respond in several sentences...'}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:bg-gray-50 disabled:text-gray-500"
+                />
+                <p className="text-[11px] text-gray-500">
+                  {ko ? '근거·예시를 포함한 풍부한 답변을 권장합니다.' : 'Strong answers include reasons or examples.'}
+                </p>
+              </div>
+            )
+          })()
         ) : (
           // multiple_choice / three_choice / quant_comparison — all
           // render the same way: vertical list of choice buttons with
@@ -786,7 +875,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         <button
           type="button"
           onClick={() => setCurrentIdx(i => Math.max(0, i - 1))}
-          disabled={currentIdx === 0}
+          disabled={currentIdx === 0 || audioPlaying}
           className="h-11 w-11 rounded-full bg-white border border-gray-200 text-gray-700 inline-flex items-center justify-center disabled:opacity-40"
           aria-label={String(t('study.test.previous'))}
         >
@@ -796,7 +885,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           <button
             type="button"
             onClick={() => setConfirmOpen(true)}
-            disabled={phase === 'submitting'}
+            disabled={phase === 'submitting' || audioPlaying}
             className="flex-1 h-11 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
           >
             {phase === 'submitting'
@@ -810,13 +899,19 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           <button
             type="button"
             onClick={() => setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))}
-            className="flex-1 h-11 rounded-full bg-gray-900 text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5"
+            disabled={audioPlaying}
+            className="flex-1 h-11 rounded-full bg-gray-900 text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
           >
             {t('study.test.next')}
             <ArrowRight className="w-4 h-4" />
           </button>
         )}
       </div>
+      {audioPlaying && (
+        <div className="absolute bottom-16 left-4 right-4 rounded-lg bg-primary/95 text-white text-[12px] px-3 py-2 shadow-lg pointer-events-none text-center">
+          {t('study.test.audioLockedNav')}
+        </div>
+      )}
 
       {/* Submit-failed banner — surfaces the actual error instead of
           silently reverting to the test view. Auto-clears when the
@@ -928,9 +1023,242 @@ function SubmitConfirmModal({
  * the student can revisit what they missed without re-running the
  * whole test.
  */
+type RubricGrade = {
+  overallBand: number
+  summary: string
+  modelRewrite: string
+  criteria: Array<{ key: string; score: number; evidence: string }>
+}
+type GradeResponse = { grade: RubricGrade; scaleMax: number }
+
+function WritingFeedbackPanel({
+  sessionId, prompt, response, skill, taskType, audioPath, speechSignals, speakingGradeMode, ko,
+}: {
+  sessionId: string
+  prompt: string
+  response: string
+  /** Which rubric to apply. writing = email/discussion; speaking =
+   *  interview response scored on delivery + language + topic dev. */
+  skill: 'writing' | 'speaking'
+  taskType?: 'email' | 'academic_discussion'
+  /** Speaking only — path in the study-response-audio bucket. When
+   *  present, the panel offers a playback button so the student can
+   *  hear their own recording next to the rubric grade. Also sent to
+   *  the grade endpoint so the submission row links to the audio. */
+  audioPath?: string
+  /** Speaking only — WPM / pause / clarity metrics extracted from
+   *  the audio by Whisper's verbose_json output. Rendered as a
+   *  "delivery snapshot" and sent to the grader so the delivery
+   *  criterion reflects real audio signals. */
+  speechSignals?: SpeechSignals
+  /** Speaking only — 'audio' routes to gpt-4o-audio-preview grading
+   *  (requires audioPath). Otherwise text-only via /response/grade. */
+  speakingGradeMode?: 'text' | 'audio'
+  ko: boolean
+}) {
+  const [audioUrl, setAudioUrl] = useState<string | null>(null)
+  const [gradeNotice, setGradeNotice] = useState<string | null>(null)
+  // Fetch a signed URL for the private audio file on demand so the
+  // student can play it back. We defer the fetch until they open the
+  // review section — nothing to fetch if audioPath is empty.
+  useEffect(() => {
+    if (!audioPath) { setAudioUrl(null); return }
+    let cancelled = false
+    ;(async () => {
+      const { data } = await supabase.storage.from('study-response-audio').createSignedUrl(audioPath, 60 * 60)
+      if (!cancelled) setAudioUrl(data?.signedUrl ?? null)
+    })()
+    return () => { cancelled = true }
+  }, [audioPath])
+  const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
+  const [grade, setGrade] = useState<RubricGrade | null>(null)
+  const [scaleMax, setScaleMax] = useState<number>(30)
+  const [errMsg, setErrMsg] = useState('')
+
+  const requestGrade = async () => {
+    if (response.trim().length < 20) {
+      setErrMsg(ko ? '답변이 너무 짧아 채점할 수 없습니다.' : 'Response too short to grade.')
+      setState('error')
+      return
+    }
+    setState('loading')
+    try {
+      // Route to audio-native grading when the session was started in
+      // 'audio' mode AND we actually have a recording to grade. Fall
+      // back to text-only if the student typed their answer or if the
+      // mode is 'text'.
+      const useAudio = skill === 'speaking' && speakingGradeMode === 'audio' && !!audioPath
+      const commonBody = {
+        sessionId,
+        taskType,
+        promptText: prompt,
+        responseText: response,
+        audioPath,
+        durationSeconds: speechSignals?.durationSec ?? undefined,
+        wpm: speechSignals?.wpm ?? undefined,
+        pauseCount: speechSignals?.pauseCount ?? undefined,
+        clarity: speechSignals?.clarity ?? undefined,
+      }
+      const textBody = { ...commonBody, testFamily: 'toefl', skill }
+      const authH = { 'Content-Type': 'application/json', ...(await authHeaders()) }
+
+      const callText = () => fetch('/api/study/response/grade', {
+        method: 'POST', headers: authH, body: JSON.stringify(textBody),
+      })
+
+      let res: Response
+      let fellBack = false
+      if (useAudio) {
+        res = await fetch('/api/study/speaking/grade-audio', {
+          method: 'POST', headers: authH, body: JSON.stringify(commonBody),
+        })
+        // If the audio route fails on the server (transcode error,
+        // OpenAI 5xx, model 404, etc.), auto-retry with text-mode so
+        // the student still gets *some* grade instead of a dead-end.
+        // 4xx errors (too short, wrong mode) are legitimate user-
+        // facing failures — don't retry those.
+        if (!res.ok && res.status >= 500) {
+          console.warn('[WritingFeedbackPanel] audio grade failed, falling back to text', res.status)
+          res = await callText()
+          fellBack = true
+        }
+      } else {
+        res = await callText()
+      }
+      if (!res.ok) {
+        const errJson = await res.json().catch(() => null)
+        setErrMsg(errJson?.error ?? 'grading failed')
+        setState('error')
+        return
+      }
+      const data = await res.json() as GradeResponse
+      setGrade(data.grade)
+      setScaleMax(data.scaleMax)
+      if (fellBack) setGradeNotice(ko
+        ? '오디오 채점에 실패해 텍스트 채점 결과를 표시합니다.'
+        : 'Audio grading failed — showing text-based grade instead.')
+      setState('done')
+    } catch (e) {
+      setErrMsg((e as Error).message)
+      setState('error')
+    }
+  }
+
+  if (state === 'done' && grade) {
+    return (
+      <div className="mt-2 rounded-lg border border-primary/20 bg-primary/[0.03] px-3 py-3 space-y-2">
+        <div className="flex items-baseline justify-between">
+          <div className="text-xs font-semibold text-primary">{ko ? 'AI 루브릭 채점' : 'AI rubric grade'}</div>
+          <div className="text-sm font-semibold text-gray-900 tabular-nums">
+            {grade.overallBand.toFixed(1)} <span className="text-xs text-gray-500">/ {scaleMax}</span>
+          </div>
+        </div>
+        {gradeNotice && (
+          <div className="text-[11px] text-amber-700 bg-amber-50 rounded px-2 py-1 border border-amber-200">
+            {gradeNotice}
+          </div>
+        )}
+        <div className="text-[12px] text-gray-700 leading-relaxed">{grade.summary}</div>
+        <div className="space-y-1 pt-1">
+          {grade.criteria.map(c => (
+            <div key={c.key} className="text-[11px] leading-relaxed">
+              <span className="font-semibold text-gray-800 capitalize">{c.key}: {c.score.toFixed(1)}</span>
+              <span className="text-gray-600"> — {c.evidence}</span>
+            </div>
+          ))}
+        </div>
+        {grade.modelRewrite && (
+          <div className="pt-2 border-t border-primary/15">
+            <div className="text-[11px] font-semibold text-primary mb-1">{ko ? '한 단계 위 표현 예시' : 'One-band-up rewrite'}</div>
+            <div className="text-[11px] text-gray-700 leading-relaxed italic">{grade.modelRewrite}</div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  const paceLabel = (wpm: number) => {
+    // TOEFL Speaking natural pace: 130-170 WPM. Under 100 reads as
+    // halting; over 190 reads as rushed / uncomfortable.
+    if (wpm < 100) return { text: ko ? '느림' : 'Slow', color: 'text-amber-700' }
+    if (wpm > 190) return { text: ko ? '빠름' : 'Fast', color: 'text-amber-700' }
+    return { text: ko ? '자연스러움' : 'Natural', color: 'text-emerald-700' }
+  }
+  const clarityLabel = (c: number) => {
+    // Rough thresholds on Whisper's clarity proxy (0-1).
+    if (c < 0.5) return { text: ko ? '불명확' : 'Unclear', color: 'text-rose-700' }
+    if (c < 0.75) return { text: ko ? '보통' : 'Fair', color: 'text-amber-700' }
+    return { text: ko ? '뚜렷함' : 'Clear', color: 'text-emerald-700' }
+  }
+
+  return (
+    <div className="mt-2 space-y-2">
+      {audioUrl && (
+        // eslint-disable-next-line jsx-a11y/media-has-caption
+        <audio controls src={audioUrl} className="w-full h-8 rounded">
+          {ko ? '이 브라우저에서 오디오 재생이 지원되지 않습니다.' : 'Audio playback not supported.'}
+        </audio>
+      )}
+      {skill === 'speaking' && speechSignals && (speechSignals.wpm != null || speechSignals.clarity != null || speechSignals.pauseCount != null) && (
+        <div className="rounded-lg border border-gray-200 bg-white/70 px-3 py-2 space-y-1">
+          <div className="text-[11px] font-semibold text-gray-600 uppercase tracking-wide">
+            {ko ? '발화 분석' : 'Delivery snapshot'}
+          </div>
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
+            {speechSignals.durationSec != null && (
+              <span className="text-gray-700">{ko ? '길이' : 'Length'} · <span className="tabular-nums">{speechSignals.durationSec.toFixed(1)}s</span></span>
+            )}
+            {speechSignals.wpm != null && (
+              <span className="text-gray-700">
+                {ko ? '속도' : 'Pace'} · <span className="tabular-nums">{speechSignals.wpm} wpm</span>
+                <span className={`ml-1 ${paceLabel(speechSignals.wpm).color}`}>· {paceLabel(speechSignals.wpm).text}</span>
+              </span>
+            )}
+            {speechSignals.pauseCount != null && (
+              <span className="text-gray-700">{ko ? '멈춤' : 'Pauses'} · <span className="tabular-nums">{speechSignals.pauseCount}</span></span>
+            )}
+            {speechSignals.clarity != null && (
+              <span className="text-gray-700">
+                {ko ? '발음 명확도' : 'Clarity'}
+                <span className={`ml-1 ${clarityLabel(speechSignals.clarity).color}`}>· {clarityLabel(speechSignals.clarity).text}</span>
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+      <button
+        type="button"
+        onClick={requestGrade}
+        disabled={state === 'loading'}
+        className="text-xs font-medium text-primary hover:underline disabled:opacity-60 disabled:cursor-wait"
+      >
+        {state === 'loading'
+          ? (ko ? 'AI가 채점 중...' : 'AI grading…')
+          : (ko ? 'AI 피드백 받기' : 'Get AI feedback')}
+      </button>
+      {state === 'error' && (
+        <div className="mt-1 text-[11px] text-rose-600">{errMsg}</div>
+      )}
+    </div>
+  )
+}
+
 function ReviewView({
-  test, answers, result, ko, sessionId,
-}: { test: TestPayload; answers: (string | null)[]; result: SubmitResult; ko: boolean; sessionId: string }) {
+  test, answers, answerAudioPaths, answerSpeechSignals, speakingGradeMode, result, ko, sessionId,
+}: {
+  test: TestPayload
+  answers: (string | null)[]
+  /** Per-question audio storage paths captured during Speaking.
+   *  Used to offer playback next to the rubric grade. */
+  answerAudioPaths: Record<number, string>
+  /** Per-question WPM / pause / clarity metrics from Whisper. */
+  answerSpeechSignals: Record<number, SpeechSignals>
+  /** Grade mode picked at test start. Routes rubric calls. */
+  speakingGradeMode: 'text' | 'audio'
+  result: SubmitResult
+  ko: boolean
+  sessionId: string
+}) {
   const { t } = useTranslation()
   const [expanded, setExpanded] = useState<number | null>(null)
 
@@ -1082,6 +1410,36 @@ function ReviewView({
                             <div className="px-3 py-2 rounded-lg bg-amber-50 text-amber-900 text-xs border border-amber-200">
                               {ko ? '답하지 않음' : 'Not answered'}
                             </div>
+                          )}
+                          {(q.type === 'writing_email' || q.type === 'writing_discussion') && studentAnswer != null && (
+                            <WritingFeedbackPanel
+                              sessionId={sessionId}
+                              prompt={q.prompt}
+                              response={studentAnswer}
+                              skill="writing"
+                              taskType={q.type === 'writing_email' ? 'email' : 'academic_discussion'}
+                              ko={ko}
+                            />
+                          )}
+                          {q.type === 'speaking_interview' && studentAnswer != null && (
+                            // Rubric grading for Take-an-Interview. The response
+                            // is either the voice transcript (Whisper) or typed
+                            // text — either way we grade what got captured.
+                            // audioPath is available when the student recorded
+                            // instead of typing; the panel shows a playback UI.
+                            // speechSignals feed the grader real delivery
+                            // metrics (WPM / pauses / clarity) so the delivery
+                            // criterion reflects the actual audio.
+                            <WritingFeedbackPanel
+                              sessionId={sessionId}
+                              prompt={q.prompt}
+                              response={studentAnswer}
+                              skill="speaking"
+                              audioPath={answerAudioPaths[i]}
+                              speechSignals={answerSpeechSignals[i]}
+                              speakingGradeMode={speakingGradeMode}
+                              ko={ko}
+                            />
                           )}
                         </div>
                       ) : (
@@ -1615,51 +1973,47 @@ function fmtTick(v: number): string {
   return v.toFixed(Math.abs(v) < 1 ? 2 : 1)
 }
 
-/**
- * TOEFL Speaking audio practice control bar — used for both
- * speaking_repeat ("Listen and Repeat") and speaking_interview
- * ("Take an Interview") item types.
- *
- *  • Speak button — browser SpeechSynthesisUtterance reads `sourceText`
- *    aloud (no API call). Always present where TTS is supported.
- *  • Record button — MediaRecorder captures the student's voice, POSTs
- *    to /api/study/response/transcribe, then appends the returned
- *    transcript to whatever they've already typed via `onTranscript`.
- *
- * Both controls are additive: the student can also just type in the
- * existing textarea, so this works on platforms without mic or TTS.
- */
-function AudioPracticeBar({ sourceText, sessionId, language, onTranscript, ko }: {
-  sourceText: string
+/** Mic-only recorder for Speaking answers. Captures audio via
+ *  MediaRecorder, uploads to /api/study/response/transcribe (Whisper),
+ *  and hands both the transcribed text AND the storage path back via
+ *  onTranscript so the parent can persist them together. Storage path
+ *  lets the review pane play back the recording + lets future audio-
+ *  native grading models score the recording itself. */
+/** Speech signals extracted from the audio by Whisper's verbose_json
+ *  output. Used to inform the "delivery" criterion in the speaking
+ *  rubric grade — a fluent 45-sec response with normal WPM and low
+ *  pause count scores higher than a halting one, without needing an
+ *  audio-native LLM. */
+type SpeechSignals = {
+  audioPath?: string
+  durationSec?: number | null
+  wpm?: number | null
+  pauseCount?: number | null
+  clarity?: number | null
+}
+
+function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript }: {
   sessionId: string
   language: 'en' | 'ko'
-  onTranscript: (text: string) => void
   ko: boolean
+  disabled?: boolean
+  onTranscript: (text: string, signals?: SpeechSignals) => void
 }) {
-  const [speaking, setSpeaking] = useState(false)
   const [recording, setRecording] = useState(false)
   const [transcribing, setTranscribing] = useState(false)
+  const [elapsedSec, setElapsedSec] = useState(0)
+  const [micError, setMicError] = useState<'permission' | 'unavailable' | 'unknown' | null>(null)
   const recRef = useRef<MediaRecorder | null>(null)
   const chunksRef = useRef<Blob[]>([])
   const streamRef = useRef<MediaStream | null>(null)
+  const startTimeRef = useRef<number>(0)
+  const tickRef = useRef<number | null>(null)
 
-  const ttsSupported = typeof window !== 'undefined' && 'speechSynthesis' in window
   const micSupported = typeof window !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && typeof MediaRecorder !== 'undefined'
 
-  const play = () => {
-    if (!ttsSupported || speaking) return
-    const u = new SpeechSynthesisUtterance(sourceText)
-    u.lang = language === 'ko' ? 'ko-KR' : 'en-US'
-    u.rate = 0.95
-    u.onend = () => setSpeaking(false)
-    u.onerror = () => setSpeaking(false)
-    setSpeaking(true)
-    window.speechSynthesis.cancel()
-    window.speechSynthesis.speak(u)
-  }
-
   const startRec = async () => {
-    if (!micSupported || recording || transcribing) return
+    if (!micSupported || recording || transcribing || disabled) return
+    setMicError(null)
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       streamRef.current = stream
@@ -1686,69 +2040,215 @@ function AudioPracticeBar({ sourceText, sessionId, language, onTranscript, ko }:
           })
           const json = await res.json()
           if (res.ok && typeof json.text === 'string' && json.text.trim()) {
-            onTranscript(json.text.trim())
+            onTranscript(json.text.trim(), {
+              audioPath: typeof json.audioPath === 'string' ? json.audioPath : undefined,
+              durationSec: typeof json.durationSec === 'number' ? json.durationSec : null,
+              wpm: typeof json.wpm === 'number' ? json.wpm : null,
+              pauseCount: typeof json.pauseCount === 'number' ? json.pauseCount : null,
+              clarity: typeof json.clarity === 'number' ? json.clarity : null,
+            })
           }
-        } catch {
-          // Silent fail — student can retry or type.
-        } finally {
+        } catch { /* silent */ } finally {
           setTranscribing(false)
+          setElapsedSec(0)
         }
       }
       recRef.current = rec
       rec.start()
       setRecording(true)
-    } catch {
-      // Permission denied / no mic.
+      startTimeRef.current = Date.now()
+      setElapsedSec(0)
+      tickRef.current = window.setInterval(() => {
+        setElapsedSec(Math.round((Date.now() - startTimeRef.current) / 1000))
+      }, 250)
+      // Haptic feedback on start — consistency with rest of the app's
+      // primary-CTA tactile pattern.
+      if ('vibrate' in navigator) navigator.vibrate(15)
+    } catch (err) {
+      // Real permission handling — distinguish "user said no" from
+      // "no mic device" from other failure so the message is useful.
+      const e = err as DOMException
+      if (e?.name === 'NotAllowedError' || e?.name === 'PermissionDeniedError') {
+        setMicError('permission')
+      } else if (e?.name === 'NotFoundError' || e?.name === 'DevicesNotFoundError') {
+        setMicError('unavailable')
+      } else {
+        setMicError('unknown')
+      }
     }
   }
-
   const stopRec = () => {
     const rec = recRef.current
     if (!rec || rec.state === 'inactive') return
     rec.stop()
     streamRef.current?.getTracks().forEach(t => t.stop())
     setRecording(false)
+    if (tickRef.current) { window.clearInterval(tickRef.current); tickRef.current = null }
+    if ('vibrate' in navigator) navigator.vibrate(15)
+  }
+  useEffect(() => () => {
+    streamRef.current?.getTracks().forEach(t => t.stop())
+    if (tickRef.current) window.clearInterval(tickRef.current)
+  }, [])
+
+  // Mic entirely unsupported (older browser / WebView) — show a
+  // fallback so students know voice-answer isn't available AT ALL,
+  // not just that the button is missing.
+  if (!micSupported) {
+    return (
+      <div className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-[12px] text-gray-600 text-center">
+        {ko ? '이 브라우저는 음성 녹음을 지원하지 않습니다. 아래에 답변을 입력하세요.' : 'Voice recording is unavailable in this browser. Type your answer below.'}
+      </div>
+    )
   }
 
-  // Stop TTS / release mic on unmount.
-  useEffect(() => () => {
-    if (ttsSupported) window.speechSynthesis.cancel()
-    streamRef.current?.getTracks().forEach(t => t.stop())
-  }, [ttsSupported])
+  const errorText = micError == null ? null
+    : micError === 'permission' ? (ko ? '마이크 접근이 차단되어 있습니다. 브라우저 설정에서 허용해 주세요.' : 'Mic access is blocked. Enable it in your browser settings, then tap again.')
+    : micError === 'unavailable' ? (ko ? '마이크를 찾을 수 없습니다. 기기를 연결하고 다시 시도해 주세요.' : 'No microphone detected. Plug one in and try again.')
+    : (ko ? '녹음을 시작할 수 없습니다. 다시 시도해 주세요.' : "Couldn't start recording. Try again.")
 
-  if (!ttsSupported && !micSupported) return null
+  const mmss = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
 
   return (
-    <div className="flex flex-wrap items-center gap-2 mb-3">
-      {ttsSupported && (
-        <button type="button" onClick={play} disabled={speaking}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-[12.5px] text-gray-800 hover:border-primary hover:text-primary disabled:opacity-60"
+    <div className="w-full space-y-2">
+      {recording ? (
+        <button
+          type="button"
+          onClick={stopRec}
+          className="w-full h-14 rounded-2xl bg-rose-600 text-white inline-flex items-center justify-center gap-3 shadow-[0_2px_6px_-2px_rgba(220,38,38,0.35)] active:scale-[0.99] transition"
+          aria-label={ko ? '녹음 중지' : 'Stop recording'}
         >
-          <Volume2 className={`w-3.5 h-3.5 ${speaking ? 'text-primary' : ''}`} />
-          {speaking
-            ? (ko ? '재생 중…' : 'Playing…')
-            : (ko ? '듣기' : 'Play')}
+          <span className="relative inline-flex w-3 h-3">
+            <span className="absolute inset-0 rounded-full bg-white/70 animate-ping" />
+            <span className="relative inline-flex w-3 h-3 rounded-full bg-white" />
+          </span>
+          <span className="text-[15px] font-semibold">
+            {ko ? '녹음 중지' : 'Stop recording'}
+          </span>
+          <span className="text-[14px] font-mono tabular-nums opacity-90 min-w-[3.2ch] text-right">
+            {mmss(elapsedSec)}
+          </span>
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={startRec}
+          disabled={transcribing || disabled}
+          className="w-full h-14 rounded-2xl bg-primary text-white inline-flex items-center justify-center gap-3 shadow-[0_2px_6px_-2px_rgba(40,133,232,0.35)] active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed"
+          aria-label={ko ? '음성으로 답변 녹음' : 'Record voice answer'}
+        >
+          {transcribing ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              <span className="text-[15px] font-semibold">
+                {ko ? '음성을 텍스트로 변환 중…' : 'Transcribing your answer…'}
+              </span>
+            </>
+          ) : (
+            <>
+              <Mic className="w-5 h-5" />
+              <span className="text-[15px] font-semibold">
+                {ko ? '음성으로 답변하기' : 'Answer with your voice'}
+              </span>
+            </>
+          )}
         </button>
       )}
-      {micSupported && (
-        recording ? (
-          <button type="button" onClick={stopRec}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 text-white text-[12.5px] hover:bg-rose-700"
-          >
-            <MicOff className="w-3.5 h-3.5" />
-            {ko ? '녹음 중지' : 'Stop'}
-          </button>
-        ) : (
-          <button type="button" onClick={startRec} disabled={transcribing}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-[12.5px] text-gray-800 hover:border-primary hover:text-primary disabled:opacity-60"
-          >
-            {transcribing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Mic className="w-3.5 h-3.5" />}
-            {transcribing
-              ? (ko ? '받아쓰는 중…' : 'Transcribing…')
-              : (ko ? '녹음' : 'Record')}
-          </button>
-        )
+      {errorText && (
+        <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-[12px] text-rose-800">
+          {errorText}
+        </div>
       )}
+      {recording && (
+        <div className="text-[11px] text-gray-500 text-center">
+          {ko ? '말하세요. 끝나면 위 버튼을 눌러 정지.' : 'Speak clearly. Tap the button above to stop.'}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/** Prep-then-response timer for TOEFL Speaking. Fires onExpire once
+ *  the response window ends so the parent can lock the textarea +
+ *  stop the recorder. Matches ETS timing: 15 s prep → 45 s response
+ *  for Take-an-Interview, or a single 15 s response for Listen-and-
+ *  Repeat (pass prepSec=0). */
+function SpeakingTimer({ active, prepSec, responseSec, onPhaseChange, onExpire, ko, t }: {
+  active: boolean
+  prepSec: number
+  responseSec: number
+  onPhaseChange?: (phase: 'prep' | 'response' | 'expired') => void
+  onExpire: () => void
+  ko: boolean
+  t: (key: string, params?: Record<string, string>) => string | React.ReactNode
+}) {
+  const [phase, setPhase] = useState<'idle' | 'prep' | 'response' | 'expired'>('idle')
+  const [remaining, setRemaining] = useState(0)
+  const tickRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (!active || phase !== 'idle') return
+    if (prepSec > 0) {
+      setPhase('prep'); setRemaining(prepSec); onPhaseChange?.('prep')
+    } else {
+      setPhase('response'); setRemaining(responseSec); onPhaseChange?.('response')
+    }
+  }, [active, phase, prepSec, responseSec, onPhaseChange])
+
+  useEffect(() => {
+    if (phase === 'idle' || phase === 'expired') return
+    tickRef.current = window.setInterval(() => {
+      setRemaining(r => {
+        if (r <= 1) {
+          window.clearInterval(tickRef.current!)
+          if (phase === 'prep') {
+            setPhase('response'); onPhaseChange?.('response')
+            return responseSec
+          }
+          setPhase('expired'); onPhaseChange?.('expired'); onExpire()
+          return 0
+        }
+        return r - 1
+      })
+    }, 1000)
+    return () => { if (tickRef.current) window.clearInterval(tickRef.current) }
+  }, [phase, responseSec, onExpire, onPhaseChange])
+
+  if (phase === 'idle') return null
+
+  const total = phase === 'prep' ? prepSec : phase === 'response' ? responseSec : 1
+  const pct = phase === 'expired' ? 100 : Math.round(100 * (total - remaining) / total)
+  const label = phase === 'prep'
+    ? String(t('study.test.speakingPrep'))
+    : phase === 'response'
+      ? String(t('study.test.speakingRespond'))
+      : String(t('study.test.speakingTimeUp'))
+
+  return (
+    <div className={`mt-2 rounded-lg px-3 py-2 border ${
+      phase === 'expired' ? 'bg-rose-50 border-rose-200' :
+      phase === 'response' ? 'bg-emerald-50 border-emerald-200' :
+      'bg-amber-50 border-amber-200'
+    }`}>
+      <div className="flex items-baseline justify-between">
+        <span className={`text-[12px] font-semibold ${
+          phase === 'expired' ? 'text-rose-800' :
+          phase === 'response' ? 'text-emerald-800' :
+          'text-amber-800'
+        }`}>{label}</span>
+        {phase !== 'expired' && (
+          <span className="text-[13px] font-mono tabular-nums text-gray-900">
+            {ko ? `${remaining}초` : `${remaining}s`}
+          </span>
+        )}
+      </div>
+      <div className="mt-1 h-1 rounded-full bg-black/5 overflow-hidden">
+        <div className={`h-full transition-all duration-500 ${
+          phase === 'expired' ? 'bg-rose-500' :
+          phase === 'response' ? 'bg-emerald-500' :
+          'bg-amber-500'
+        }`} style={{ width: `${pct}%` }} />
+      </div>
     </div>
   )
 }
@@ -1784,6 +2284,264 @@ function normalizeDisplayText(text: string | null | undefined): string {
   // Heading markers at line start.
   s = s.replace(/^#{1,4}\s+/gm, '')
   return s
+}
+
+/** TOEFL Listening audio player. Plays the transcript via browser TTS
+ *  and hides the text until the student opts to reveal it. Enforces the
+ *  ETS "up to 2 plays" convention with a hidden replay counter. When
+ *  the passage contains "A: ..." / "B: ..." speaker turns, splits into
+ *  alternating utterances and swaps between a lower and higher voice
+ *  for a poor-man's dual-speaker feel. */
+// Module-level play-count store — survives ListeningAudioPlayer remount
+// when the student navigates away and back to the same passage group.
+// Keyed by "<sessionId>:<groupKey>" so multiple tests don't collide.
+// Cleared when the browser tab closes; that's fine, mid-test resume
+// already loses playback state.
+const LISTENING_PLAY_COUNTS: Record<string, number> = {}
+
+// Per-URL cache so we only fetch each MP3 once per browser session even
+// if the student replays. Keyed by (voice + text) hash — matches what
+// the server computes.
+const AUDIO_URL_CACHE: Record<string, string> = {}
+
+// OpenAI TTS voices. We rotate speakers through these for dialogues;
+// non-dialogue passages use the first voice.
+//   - "nova" = warm female, natural cadence — default announcement/lecture
+//   - "onyx" = deep male — good second speaker in office-hours convos
+//   - "shimmer" = brighter female — third-speaker rotate
+//   - "echo" = neutral male — fourth-speaker rotate
+type OpenAiVoice = 'alloy' | 'echo' | 'fable' | 'nova' | 'onyx' | 'shimmer'
+const DIALOGUE_VOICE_ROTATION: OpenAiVoice[] = ['nova', 'onyx', 'shimmer', 'echo']
+const MONOLOGUE_VOICE: OpenAiVoice = 'nova'
+
+/** Parse a TOEFL Listening transcript into speaker turns. Robust to
+ *  two encoding styles the model uses interchangeably:
+ *    (a) newline-separated: "A: hi\nB: hello"
+ *    (b) inline: "A: hi B: hello"
+ *  Returns [] for non-dialogue (monologue: announcement / lecture). */
+function parseTurns(cleaned: string): Array<{ speaker: string; text: string }> {
+  const turnRegex = /(?:^|\s)([A-Z]):\s+([\s\S]*?)(?=(?:\s[A-Z]:\s+)|$)/g
+  const turns: Array<{ speaker: string; text: string }> = []
+  let match: RegExpExecArray | null
+  while ((match = turnRegex.exec(cleaned)) != null) {
+    turns.push({ speaker: match[1], text: match[2].trim().replace(/^"|"$/g, '') })
+  }
+  const uniqueSpeakers = new Set(turns.map(t => t.speaker)).size
+  return turns.length >= 2 && uniqueSpeakers >= 2 ? turns : []
+}
+
+/** Server call — returns cached URL if the (voice, text) hash already
+ *  exists in storage; otherwise generates + uploads a new MP3. */
+async function fetchAudioUrl(text: string, voice: OpenAiVoice): Promise<string | null> {
+  const cacheKey = `${voice}\n${text}`
+  if (AUDIO_URL_CACHE[cacheKey]) return AUDIO_URL_CACHE[cacheKey]
+  try {
+    const res = await fetch('/api/study/listening/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
+      body: JSON.stringify({ text, voice, model: 'tts-1' }),
+    })
+    if (!res.ok) return null
+    const { url } = await res.json() as { url: string }
+    AUDIO_URL_CACHE[cacheKey] = url
+    return url
+  } catch {
+    return null
+  }
+}
+
+function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange, allowTranscriptReveal = false, maxPlays = 2, onFirstPlayEnd }: {
+  /** Stable per-passage key (e.g., "sessionId:convo-1"). Play count
+   *  is stored against this key so it persists across navigation. */
+  groupKey: string
+  transcript: string
+  language: 'en' | 'ko'
+  /** Fires when playback starts/stops so the parent can lock navigation. */
+  onSpeakingChange?: (speaking: boolean) => void
+  /** ETS TOEFL is audio-only during the test — the transcript is not
+   *  shown. Left as false during test-taking; the review pane already
+   *  shows the transcript in text form so we don't lose access to it. */
+  allowTranscriptReveal?: boolean
+  /** ETS caps replays: Listening = 2, Speaking = 1. Default 2. */
+  maxPlays?: number
+  /** Fires exactly once after the FIRST playthrough completes. Used
+   *  by Speaking to kick off the prep-then-response timer. */
+  onFirstPlayEnd?: () => void
+}) {
+  const { t } = useTranslation()
+  const [state, setState] = useState<'idle' | 'loading' | 'playing' | 'error'>('idle')
+  const [playCount, setPlayCount] = useState(() => LISTENING_PLAY_COUNTS[groupKey] ?? 0)
+  const [showTranscript, setShowTranscript] = useState(false)
+  const [progress, setProgress] = useState<{ current: number; total: number; charsDone: number; charsTotal: number }>({ current: 0, total: 0, charsDone: 0, charsTotal: 0 })
+  const speakingRef = useRef(false)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const cancelledRef = useRef(false)
+
+  const cleaned = transcript.replace(/^\s*transcript:\s*/i, '').trim()
+
+  // Build the ordered list of (text, voice) segments. Dialogue turns
+  // rotate through distinct OpenAI voices per speaker; monologues use
+  // a single voice.
+  const segments = useMemo(() => {
+    const turns = parseTurns(cleaned)
+    if (turns.length === 0) {
+      return [{ text: cleaned.replace(/^"|"$/g, ''), voice: MONOLOGUE_VOICE }]
+    }
+    const speakerVoice = new Map<string, OpenAiVoice>()
+    return turns.map(({ speaker, text }) => {
+      if (!speakerVoice.has(speaker)) {
+        speakerVoice.set(speaker, DIALOGUE_VOICE_ROTATION[speakerVoice.size % DIALOGUE_VOICE_ROTATION.length])
+      }
+      return { text, voice: speakerVoice.get(speaker)! }
+    })
+  }, [cleaned])
+
+  const setSpeaking = useCallback((v: boolean) => {
+    speakingRef.current = v
+    setState(prev => v ? 'playing' : (prev === 'error' ? 'error' : 'idle'))
+    onSpeakingChange?.(v)
+  }, [onSpeakingChange])
+
+  const play = async () => {
+    if (state === 'playing' || state === 'loading' || playCount >= maxPlays) return
+    const nextCount = playCount + 1
+    setPlayCount(nextCount)
+    LISTENING_PLAY_COUNTS[groupKey] = nextCount
+    cancelledRef.current = false
+    setState('loading')
+
+    // Fetch all segment URLs up front. Cached hits are instant; misses
+    // trigger OpenAI TTS on the server (~1-3 s per segment). Fetching
+    // in parallel minimises perceived latency for dialogues.
+    const urls = await Promise.all(segments.map(s => fetchAudioUrl(s.text, s.voice)))
+    if (cancelledRef.current) { setSpeaking(false); return }
+    if (urls.some(u => !u)) {
+      console.error('[ListeningAudioPlayer] one or more TTS fetches failed')
+      setState('error')
+      // Refund the play — the student didn't actually hear anything.
+      setPlayCount(nextCount - 1)
+      LISTENING_PLAY_COUNTS[groupKey] = nextCount - 1
+      return
+    }
+
+    const charsPerTurn = segments.map(s => s.text.length)
+    const charsTotal = charsPerTurn.reduce((a, b) => a + b, 0)
+    setProgress({ current: 0, total: segments.length, charsDone: 0, charsTotal })
+    setSpeaking(true)
+
+    let i = 0
+    let charsDone = 0
+    const playNext = () => {
+      if (cancelledRef.current || i >= urls.length) {
+        setSpeaking(false)
+        setProgress(p => ({ ...p, current: p.total, charsDone: p.charsTotal }))
+        audioRef.current = null
+        // Fire once, after the first successful playthrough. Used by
+        // Speaking to auto-start prep+response timers.
+        if (nextCount === 1 && !cancelledRef.current) onFirstPlayEnd?.()
+        return
+      }
+      setProgress({ current: i + 1, total: segments.length, charsDone, charsTotal })
+      const audio = new Audio(urls[i]!)
+      audioRef.current = audio
+      audio.playbackRate = 1.0
+      audio.onended = () => {
+        charsDone += charsPerTurn[i]
+        i++
+        if (i < urls.length) {
+          // 350 ms breath between dialogue turns.
+          window.setTimeout(playNext, segments.length > 1 ? 350 : 0)
+        } else {
+          playNext()
+        }
+      }
+      audio.onerror = () => { charsDone += charsPerTurn[i]; i++; playNext() }
+      void audio.play().catch(() => { i++; playNext() })
+    }
+    playNext()
+  }
+
+  // Cleanup: stop any playing audio + release the nav lock on unmount.
+  useEffect(() => () => {
+    cancelledRef.current = true
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current = null
+    }
+    if (speakingRef.current) onSpeakingChange?.(false)
+  }, [onSpeakingChange])
+
+  const replaysLeft = Math.max(0, maxPlays - playCount)
+  // Audio always "supported" for the UI — we drive playback via
+  // HTML5 <audio>, which is universal. Preserved as a flag in case
+  // /api/study/listening/tts is unreachable (see error state below).
+  const ttsSupported = true
+
+  return (
+    <div className="mb-4 rounded-xl border border-primary/20 bg-gradient-to-br from-primary/[0.04] to-white px-4 py-4">
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={play}
+          disabled={state === 'playing' || state === 'loading' || playCount >= maxPlays}
+          className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+          aria-label={String(t('study.test.audioPlaying'))}
+        >
+          {state === 'loading'
+            ? <Loader2 className="w-5 h-5 animate-spin" />
+            : state === 'playing'
+              ? <Volume2 className="w-5 h-5 animate-pulse" />
+              : <Play className="w-5 h-5 ml-0.5" />}
+        </button>
+        <div className="flex-1 min-w-0">
+          <div className="text-[13px] font-medium text-gray-900">
+            {state === 'loading'
+              ? t('study.test.audioLoading')
+              : state === 'playing'
+                ? t('study.test.audioPlaying')
+                : state === 'error'
+                  ? t('study.test.audioError')
+                  : playCount === 0
+                    ? t('study.test.audioPlayCta')
+                    : t('study.test.audioReplayCta')}
+          </div>
+          <div className="text-[11px] text-gray-500 mt-0.5 flex items-center gap-2 flex-wrap">
+            <span>
+              {t(replaysLeft === 1 ? 'study.test.audioPlaysLeft' : 'study.test.audioPlaysLeftPlural', { count: String(replaysLeft) })}
+            </span>
+            {state === 'playing' && progress.total > 1 && (
+              <span className="text-primary font-semibold tabular-nums">
+                {t('study.test.audioTurnProgress', { current: String(progress.current), total: String(progress.total) })}
+              </span>
+            )}
+          </div>
+          {state === 'playing' && progress.charsTotal > 0 && (
+            <div className="mt-1.5 h-1 rounded-full bg-primary/10 overflow-hidden">
+              <div
+                className="h-full bg-primary transition-all duration-200"
+                style={{ width: `${Math.min(100, Math.round(100 * progress.charsDone / progress.charsTotal))}%` }}
+              />
+            </div>
+          )}
+        </div>
+        {allowTranscriptReveal && (
+          <button
+            type="button"
+            onClick={() => setShowTranscript(v => !v)}
+            className="text-[11px] font-medium text-primary hover:underline flex items-center gap-1"
+          >
+            {showTranscript ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+            {showTranscript ? t('study.test.audioHideTranscript') : t('study.test.audioShowTranscript')}
+          </button>
+        )}
+      </div>
+      {(showTranscript || !ttsSupported) && (
+        <div className="mt-3 rounded-lg border border-gray-200 bg-white/70 px-3 py-2 text-[13px] text-gray-800 leading-relaxed">
+          <PassageParagraphs text={cleaned} />
+        </div>
+      )}
+    </div>
+  )
 }
 
 function PassageParagraphs({ text }: { text: string }) {

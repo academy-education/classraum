@@ -175,6 +175,9 @@ function TopicInner({ slug }: { slug: string }) {
         mode,
         language: sessionLanguage,
         config: config ?? {},
+        // TOEFL Speaking grade mode toggle. 'text' is the default set
+        // by the DB column; only insert 'audio' when explicitly picked.
+        speaking_grade_mode: config?.speakingGradeMode === 'audio' ? 'audio' : 'text',
       })
       .select('id')
       .single()
@@ -346,6 +349,7 @@ function TopicInner({ slug }: { slug: string }) {
         defaults={testDefaults}
         topicId={effectiveTopic?.id ?? null}
         family={effectiveTopic ? parseTestSlug(effectiveTopic.slug).family : null}
+        section={effectiveTopic ? parseTestSlug(effectiveTopic.slug).section : null}
         onClose={() => setTestSheetOpen(false)}
         onStart={(config) => { setTestSheetOpen(false); void startSession('full_test', config, testLanguage) }}
       />

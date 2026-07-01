@@ -100,14 +100,31 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session is not in full_test mode' }, { status: 400 })
   }
 
-  // Idempotency: if we've already graded this session, refuse the
-  // second submission so a double-tap doesn't re-write attempts.
-  const { count: existingAttempts } = await supabaseAdmin
+  // Idempotency: if this session already has attempts, don't
+  // re-insert (that would double-count in mastery + inflate the
+  // history row). Instead reconstruct the SubmitResult from the
+  // stored attempts and return it — the UI sees the exact same
+  // shape as a fresh grade and drops into the review screen.
+  const { data: prior } = await supabaseAdmin
     .from('study_attempts')
-    .select('id', { count: 'exact', head: true })
+    .select('id, is_correct, student_answer, question')
     .eq('session_id', body.sessionId)
-  if ((existingAttempts ?? 0) > 0) {
-    return NextResponse.json({ error: 'test already submitted' }, { status: 409 })
+    .order('id', { ascending: true })
+  if (prior && prior.length > 0) {
+    const verdicts = prior.map((row, i) => ({
+      index: i,
+      correct: !!row.is_correct,
+      correctAnswer: displayCorrectAnswer(row.question as z.infer<typeof QuestionSchema>),
+    }))
+    const correctCount = verdicts.filter(v => v.correct).length
+    return NextResponse.json({
+      success: true,
+      idempotent: true,
+      totalQuestions: prior.length,
+      correctCount,
+      scorePercent: Math.round(100 * correctCount / prior.length),
+      verdicts,
+    })
   }
 
   const verdicts: { index: number; correct: boolean; correctAnswer: string }[] = []

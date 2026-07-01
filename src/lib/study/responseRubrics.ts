@@ -193,14 +193,52 @@ interface PromptInput {
   durationSeconds?: number | null
   wordCount?: number | null
   language: 'en' | 'ko'
+  /** Speaking-only real audio signals — used to inform the "delivery"
+   *  criterion. Whisper-derived so we don't need an audio-native LLM. */
+  speechSignals?: {
+    wpm?: number | null
+    pauseCount?: number | null
+    /** 0-1 confidence proxy for pronunciation clarity (higher = clearer). */
+    clarity?: number | null
+  } | null
 }
 
 export function buildGraderPrompt(input: PromptInput): string {
   const rubric = getRubric(input.family, input.skill, input.taskType)
-  const meta =
+  let meta =
     input.skill === 'writing'
       ? `Words written: ${input.wordCount ?? 'unknown'}. Time limit: ${rubric.timeLimit.value} minutes. Target: ${rubric.target}.`
       : `Spoken duration: ${input.durationSeconds ?? 'unknown'}s. Time limit: ${rubric.timeLimit.value}s. Target: ${rubric.target}.`
+
+  // For speaking: append real delivery signals extracted from the
+  // student's actual audio by Whisper's verbose_json output. These
+  // are the ONLY genuine audio-derived signals the grader has —
+  // without them the delivery criterion has to be inferred from text
+  // alone, which underweights pace and hesitation. Include specific
+  // guidance so the grader knows how to interpret each metric.
+  if (input.skill === 'speaking' && input.speechSignals) {
+    const s = input.speechSignals
+    const paceInterpretation = s.wpm == null ? '' :
+      s.wpm < 100 ? 'Slow / halting.' :
+      s.wpm > 190 ? 'Rushed — may sacrifice clarity.' :
+      'Natural pace.'
+    const clarityInterpretation = s.clarity == null ? '' :
+      s.clarity < 0.5 ? 'Weak transcription confidence — pronunciation is likely unclear.' :
+      s.clarity < 0.75 ? 'Fair clarity.' :
+      'Clear articulation.'
+    meta += `
+
+DELIVERY SIGNALS (from student's actual audio recording):
+- Speaking rate: ${s.wpm ?? 'unknown'} words per minute. ${paceInterpretation}
+- Pause count (≥700 ms gaps): ${s.pauseCount ?? 'unknown'}. High counts indicate hesitation.
+- Recognition clarity: ${s.clarity != null ? s.clarity.toFixed(2) : 'unknown'} on a 0-1 scale. ${clarityInterpretation}
+
+USE THESE SIGNALS TO INFORM THE "delivery" CRITERION SPECIFICALLY:
+- A response with natural pace, few pauses, and high clarity should score at the upper end of delivery.
+- Halting delivery (very low WPM, many pauses) caps delivery in the middle of the scale even if the language is otherwise strong.
+- Low clarity (< 0.5) indicates pronunciation issues that a real TOEFL rater would penalise — reflect that in the delivery band.
+- Do NOT let these signals inflate the "language" or "topic development" bands — grade those from the transcript.`
+  }
 
   const criteriaList = rubric.criteria
     .map(c => `  - "${c.key}" (${c.label}, 0–${c.max})`)
