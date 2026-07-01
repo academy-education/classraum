@@ -548,9 +548,12 @@ export async function POST(req: NextRequest) {
       // give 5 questions room to discriminate. Reject items whose
       // passage is under the harder-than-standard floor.
       const wordCount = (s: string | null | undefined) => (s ?? '').trim().split(/\s+/).filter(Boolean).length
-      // CW length floor — model sometimes emits 49-word CW passages
-      // which are too short for 10 blanks worth of substrate.
-      const cwItemsFiltered = cwItems.filter(q => wordCount(q.passage) >= 80)
+      // CW length floor — dropped from 80 → 55 because prior floor
+      // killed ALL 10 CW items in one test (model consistently emits
+      // 50-80w CW passages even though the prompt asks for 100-150w).
+      // 55w is enough for ~15 words × 3 sentences = plausible 10-blank
+      // paragraph.
+      const cwItemsFiltered = cwItems.filter(q => wordCount(q.passage) >= 55)
       const dailyItems = (dailyResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
         .filter(q => wordCount(q.passage) >= 60)  // spec 80-140, floor 60
@@ -946,35 +949,29 @@ export async function POST(req: NextRequest) {
     // group, sort by difficulty. Order groups by their first item's
     // difficulty rank so easier passages come first.
     const difficultyRank: Record<'easy' | 'medium' | 'hard', number> = { easy: 0, medium: 1, hard: 2 }
-    // Normalize passageGroupId by ACTUAL passage content. The model
-    // occasionally gives two items the same passageGroupId even when
-    // they have DIFFERENT passages (e.g. daily-1 assigned to both a
-    // library notice and a club fair email). If we trust the model's
-    // id, the UI would render "Question 3 of 3 in this passage" for
-    // an item whose passage doesn't match the other two. Group by
-    // normalized passage text instead — items with identical passage
-    // text get one canonical id; items with unique passages get their
-    // own single-item id (which then falls under totalGroups<2 → no
-    // group header anyway).
-    const passageKey = (p: string | null): string => {
-      if (!p) return ''
-      return p.toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 120)
-    }
-    const contentToCanonicalId = new Map<string, string>()
-    let nextCanonicalIdx = 0
+    // Canonicalize shared-passage groups. Two failure modes to handle:
+    //  (a) Model gives items the same passageGroupId but their passage
+    //      text diverges (Q1/Q2 have library notice, Q3 has club fair) —
+    //      previously caused "Question 3 of 3 in this passage" pointing
+    //      at a different passage. Fix: force ALL items in a model-
+    //      emitted group to share the FIRST item's passage text.
+    //  (b) Content-based re-keying (previous fix) over-fragmented
+    //      groups when the model produced slightly-different phrasings
+    //      per question (e.g. 8 Daily Life groups became 21 groups
+    //      because each question's passage had minor wording drift).
+    //  New approach: TRUST the model's passageGroupId, then canonicalize
+    //  passage text within each group using the first item's text.
+    const passageByGroupId = new Map<string, string>()
     for (const q of combined) {
       if (!q.passageGroupId || !q.passage) continue
-      const key = passageKey(q.passage)
-      if (!key) continue
-      if (!contentToCanonicalId.has(key)) {
-        contentToCanonicalId.set(key, `group-${++nextCanonicalIdx}`)
+      if (!passageByGroupId.has(q.passageGroupId)) {
+        passageByGroupId.set(q.passageGroupId, q.passage)
       }
     }
     for (const q of combined) {
-      if (!q.passageGroupId || !q.passage) continue
-      const key = passageKey(q.passage)
-      const canonical = contentToCanonicalId.get(key)
-      if (canonical) q.passageGroupId = canonical
+      if (!q.passageGroupId) continue
+      const canonical = passageByGroupId.get(q.passageGroupId)
+      if (canonical) q.passage = canonical
     }
     const hasPassageGroups = combined.some(q => q.passageGroupId)
     if (hasPassageGroups) {
