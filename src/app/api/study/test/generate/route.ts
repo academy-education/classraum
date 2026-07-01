@@ -915,6 +915,36 @@ export async function POST(req: NextRequest) {
     // group, sort by difficulty. Order groups by their first item's
     // difficulty rank so easier passages come first.
     const difficultyRank: Record<'easy' | 'medium' | 'hard', number> = { easy: 0, medium: 1, hard: 2 }
+    // Normalize passageGroupId by ACTUAL passage content. The model
+    // occasionally gives two items the same passageGroupId even when
+    // they have DIFFERENT passages (e.g. daily-1 assigned to both a
+    // library notice and a club fair email). If we trust the model's
+    // id, the UI would render "Question 3 of 3 in this passage" for
+    // an item whose passage doesn't match the other two. Group by
+    // normalized passage text instead — items with identical passage
+    // text get one canonical id; items with unique passages get their
+    // own single-item id (which then falls under totalGroups<2 → no
+    // group header anyway).
+    const passageKey = (p: string | null): string => {
+      if (!p) return ''
+      return p.toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 120)
+    }
+    const contentToCanonicalId = new Map<string, string>()
+    let nextCanonicalIdx = 0
+    for (const q of combined) {
+      if (!q.passageGroupId || !q.passage) continue
+      const key = passageKey(q.passage)
+      if (!key) continue
+      if (!contentToCanonicalId.has(key)) {
+        contentToCanonicalId.set(key, `group-${++nextCanonicalIdx}`)
+      }
+    }
+    for (const q of combined) {
+      if (!q.passageGroupId || !q.passage) continue
+      const key = passageKey(q.passage)
+      const canonical = contentToCanonicalId.get(key)
+      if (canonical) q.passageGroupId = canonical
+    }
     const hasPassageGroups = combined.some(q => q.passageGroupId)
     if (hasPassageGroups) {
       const groups = new Map<string, Question[]>()
