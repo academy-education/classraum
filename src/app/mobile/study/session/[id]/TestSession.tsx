@@ -131,12 +131,28 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
    *  and an integer percent. Null until the first event arrives. */
   const [progress, setProgress] = useState<{ name: string; labelKey: string; percent: number } | null>(null)
 
-  // Timer plumbing. startedAt lives in localStorage so a refresh
-  // doesn't reset elapsed; expiresAt is derived from
-  // startedAt + timeLimitMinutes. We tick a re-render every second
-  // to update the countdown display.
-  const startedAtRef = useRef<number | null>(null)
+  // Timer plumbing (active-time model):
+  //   - activeElapsedMsRef = total ms accumulated while the tab was
+  //     visible AND the student hadn't paused. Persisted to
+  //     localStorage so a refresh mid-test doesn't lose time.
+  //   - resumedAtRef = Date.now() of the last "became active"
+  //     transition. When null, the timer is FROZEN (either paused
+  //     manually or the tab is hidden). Effective elapsed at any
+  //     moment = activeElapsedMs + (resumedAt ? now - resumedAt : 0).
+  //   - `now` state exists solely to trigger re-renders every second.
+  //   - `paused` = manual pause. Distinguished from tab-hidden pause
+  //     so the paused overlay only shows for manual pauses (the tab
+  //     being hidden means the user can't see the overlay anyway).
+  const activeElapsedMsRef = useRef<number>(0)
+  const resumedAtRef = useRef<number | null>(null)
+  const [paused, setPaused] = useState(false)
   const [now, setNow] = useState(Date.now())
+  // Helper to compute the total elapsed at any moment. Cheap, no
+  // state — called wherever we need the current elapsed value.
+  const currentElapsedMs = useCallback(() => {
+    const base = activeElapsedMsRef.current
+    return resumedAtRef.current ? base + (Date.now() - resumedAtRef.current) : base
+  }, [])
 
   // ── Phase 1: load (or resume) ───────────────────────────────────
   // Streams NDJSON events from the generator route: phase events
@@ -211,13 +227,31 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       setTest(payload)
       setAnswers(new Array(payload.questions.length).fill(null))
 
-      const storageKey = `study:test:${sessionId}:startedAt`
-      const stored = typeof window !== 'undefined' ? localStorage.getItem(storageKey) : null
-      const startedAt = stored ? parseInt(stored, 10) : Date.now()
-      if (!stored && typeof window !== 'undefined') {
-        localStorage.setItem(storageKey, String(startedAt))
+      // Restore or initialise the active-time accumulator. Old
+      // sessions used `:startedAt` (wall-clock); those are read and
+      // migrated to the new elapsed-based key so students who're
+      // mid-test on the day of deploy don't lose their progress.
+      const elapsedKey = `study:test:${sessionId}:elapsedMs`
+      const legacyStartedAtKey = `study:test:${sessionId}:startedAt`
+      let restored = 0
+      if (typeof window !== 'undefined') {
+        const storedElapsed = localStorage.getItem(elapsedKey)
+        if (storedElapsed) {
+          restored = parseInt(storedElapsed, 10) || 0
+        } else {
+          const legacyStartedAt = localStorage.getItem(legacyStartedAtKey)
+          if (legacyStartedAt) {
+            // Legacy migration: treat legacy startedAt as if it were
+            // all active time (approximation — undercharges by any
+            // hidden-tab time, which is fine for the transition).
+            restored = Math.max(0, Date.now() - parseInt(legacyStartedAt, 10))
+            localStorage.setItem(elapsedKey, String(restored))
+            localStorage.removeItem(legacyStartedAtKey)
+          }
+        }
       }
-      startedAtRef.current = startedAt
+      activeElapsedMsRef.current = restored
+      resumedAtRef.current = Date.now()  // start the clock immediately on taking
       setPhase('taking')
     } catch {
       setPhase('error')
@@ -227,11 +261,68 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   useEffect(() => { void load() }, [load])
 
   // Re-render every second while taking so the timer ticks down.
+  // Also persist the current elapsed to localStorage so an accidental
+  // refresh doesn't lose progress.
   useEffect(() => {
     if (phase !== 'taking') return
-    const id = setInterval(() => setNow(Date.now()), 1000)
+    const id = setInterval(() => {
+      setNow(Date.now())
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(`study:test:${sessionId}:elapsedMs`, String(currentElapsedMs()))
+      }
+    }, 1000)
     return () => clearInterval(id)
-  }, [phase])
+  }, [phase, sessionId, currentElapsedMs])
+
+  // Freeze the timer when the tab is hidden, resume when visible.
+  // This makes practice tests non-hostile: a student who takes a call
+  // mid-test doesn't lose time. Real ETS behaviour differs but that's
+  // not this app's job.
+  useEffect(() => {
+    if (phase !== 'taking') return
+    const onVis = () => {
+      if (document.visibilityState === 'hidden') {
+        // Freeze: flush the currently-accumulating span into the
+        // ref and null out resumedAt so ticks stop advancing.
+        if (resumedAtRef.current != null) {
+          activeElapsedMsRef.current += Date.now() - resumedAtRef.current
+          resumedAtRef.current = null
+        }
+      } else {
+        // Resume: only restart the clock if the student hasn't
+        // ALSO manually paused. If they paused before switching
+        // away, coming back keeps them paused.
+        if (!paused && resumedAtRef.current == null) {
+          resumedAtRef.current = Date.now()
+        }
+      }
+    }
+    document.addEventListener('visibilitychange', onVis)
+    return () => document.removeEventListener('visibilitychange', onVis)
+  }, [phase, paused])
+
+  // Manual pause / resume toggle.
+  const togglePause = useCallback(() => {
+    setPaused(p => {
+      const nextPaused = !p
+      if (nextPaused) {
+        // Pausing: flush accumulated time + freeze.
+        if (resumedAtRef.current != null) {
+          activeElapsedMsRef.current += Date.now() - resumedAtRef.current
+          resumedAtRef.current = null
+        }
+      } else {
+        // Resuming: only if tab is currently visible. If the tab is
+        // hidden right now (rare edge — student toggled from a
+        // different context) the visibility handler will kick in on
+        // the next 'visible' transition.
+        if (typeof document === 'undefined' || document.visibilityState === 'visible') {
+          resumedAtRef.current = Date.now()
+        }
+      }
+      return nextPaused
+    })
+  }, [])
 
   /** Surfaces the actual submit error so the student knows what went
    *  wrong instead of seeing the Submit button silently do nothing. */
@@ -246,9 +337,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     setSubmitError(null)
     setPhase('submitting')
     try {
-      const elapsedSeconds = startedAtRef.current
-        ? Math.max(0, Math.round((Date.now() - startedAtRef.current) / 1000))
-        : test.timeLimitMinutes * 60
+      const elapsedSeconds = Math.max(0, Math.round(currentElapsedMs() / 1000))
       const headers = await authHeaders()
       const res = await fetch('/api/study/test/submit', {
         method: 'POST',
@@ -275,6 +364,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       const json = await res.json() as SubmitResult
       setResult(json)
       if (typeof window !== 'undefined') {
+        localStorage.removeItem(`study:test:${sessionId}:elapsedMs`)
         localStorage.removeItem(`study:test:${sessionId}:startedAt`)
       }
       setPhase('reviewing')
@@ -288,14 +378,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   }, [test, phase, answers, sessionId])
 
   // Auto-submit when the timer hits zero.
-  const expiresAt = useMemo(() => {
-    if (!test || !startedAtRef.current) return null
-    return startedAtRef.current + test.timeLimitMinutes * 60_000
-  }, [test])
+  // Total time budget in ms. `now` is here so the effect re-runs
+  // every tick to check whether we've exceeded the budget.
+  const timeLimitMs = test ? test.timeLimitMinutes * 60_000 : 0
   useEffect(() => {
-    if (phase !== 'taking' || !expiresAt) return
-    if (now >= expiresAt) void submit()
-  }, [now, expiresAt, phase, submit])
+    if (phase !== 'taking' || !timeLimitMs) return
+    if (currentElapsedMs() >= timeLimitMs) void submit()
+  }, [now, timeLimitMs, phase, submit, currentElapsedMs])
 
   // ── Render branches ─────────────────────────────────────────────
   // 'detecting' — DB ping in flight. Minimal neutral spinner so we
@@ -347,11 +436,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
 
   // phase === 'taking' or 'submitting'
   const q = test.questions[currentIdx]
-  const remainingMs = expiresAt ? Math.max(0, expiresAt - now) : 0
+  // `now` in deps forces this to re-derive every tick.
+  const remainingMs = Math.max(0, timeLimitMs - currentElapsedMs())
+  void now
   const answered = answers.filter(a => a != null).length
 
   return (
-    <div className="flex-1 flex flex-col min-h-0">
+    <div className="flex-1 flex flex-col min-h-0 relative">
       {/* Sticky timer + progress strip */}
       <div className="flex-shrink-0 px-5 py-2.5 border-b border-gray-100 bg-white flex items-center justify-between">
         <button
@@ -363,11 +454,28 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           {t('study.test.questionN', { current: String(currentIdx + 1), total: String(test.questions.length) })}
           {gridOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
         </button>
-        <div className={`inline-flex items-center gap-1 text-xs font-mono tabular-nums ${
-          remainingMs < 60_000 ? 'text-rose-600 font-bold' : remainingMs < 5 * 60_000 ? 'text-amber-700' : 'text-gray-600'
-        }`}>
-          <Clock className="w-3.5 h-3.5" />
-          {formatTime(remainingMs)}
+        <div className="inline-flex items-center gap-2">
+          <div className={`inline-flex items-center gap-1 text-xs font-mono tabular-nums ${
+            paused ? 'text-primary font-semibold'
+              : remainingMs < 60_000 ? 'text-rose-600 font-bold'
+              : remainingMs < 5 * 60_000 ? 'text-amber-700'
+              : 'text-gray-600'
+          }`}>
+            <Clock className="w-3.5 h-3.5" />
+            {formatTime(remainingMs)}
+          </div>
+          <button
+            type="button"
+            onClick={togglePause}
+            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold border transition-colors ${
+              paused
+                ? 'bg-primary text-white border-primary hover:bg-primary/90'
+                : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:text-primary'
+            }`}
+            aria-label={paused ? (ko ? '재개' : 'Resume') : (ko ? '일시정지' : 'Pause')}
+          >
+            {paused ? (ko ? '재개' : 'Resume') : (ko ? '일시정지' : 'Pause')}
+          </button>
         </div>
       </div>
 
@@ -910,6 +1018,40 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       {audioPlaying && (
         <div className="absolute bottom-16 left-4 right-4 rounded-lg bg-primary/95 text-white text-[12px] px-3 py-2 shadow-lg pointer-events-none text-center">
           {t('study.test.audioLockedNav')}
+        </div>
+      )}
+      {paused && (
+        // Fullscreen paused overlay — blocks all input while paused
+        // (no answering, no navigating, no scrolling). Timer chip
+        // stays visible in the header behind the overlay so students
+        // can see remaining time. Resume via Pause button (still
+        // clickable since the header sits above the overlay).
+        <div
+          className="absolute inset-0 z-30 bg-white/85 backdrop-blur-sm flex items-center justify-center px-6"
+          role="dialog"
+          aria-modal="true"
+          aria-label={ko ? '시험 일시정지' : 'Test paused'}
+        >
+          <div className="text-center max-w-xs">
+            <div className="mx-auto w-14 h-14 rounded-full bg-primary/10 ring-1 ring-primary/25 flex items-center justify-center mb-3">
+              <Clock className="w-6 h-6 text-primary" />
+            </div>
+            <div className="text-[17px] font-semibold text-gray-900">
+              {ko ? '시험 일시정지됨' : 'Test paused'}
+            </div>
+            <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
+              {ko
+                ? '타이머가 멈추고 답변할 수 없습니다. 상단의 재개 버튼을 눌러 계속하세요.'
+                : 'The timer is stopped and answers are locked. Tap Resume in the header to continue.'}
+            </p>
+            <button
+              type="button"
+              onClick={togglePause}
+              className="mt-5 inline-flex items-center justify-center gap-1.5 h-11 px-5 rounded-full bg-primary text-white text-[14px] font-semibold shadow-[0_2px_6px_-2px_rgba(40,133,232,0.35)] active:scale-[0.99] transition"
+            >
+              {ko ? '재개' : 'Resume test'}
+            </button>
+          </div>
         </div>
       )}
 
