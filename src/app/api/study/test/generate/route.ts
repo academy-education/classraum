@@ -425,13 +425,22 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.OPENAI_API_KEY ?? ''
   const openai = createOpenAI({ apiKey })
-  // Hard-pool generation needs gpt-4o for the discriminating-item
-  // quality; easy/medium pool runs fine on gpt-4o-mini at ~3× the
-  // speed and a fraction of the cost. Math sections stay on gpt-4o
-  // throughout (arithmetic precision matters even for easy items).
-  const hardModel = family ? openai('gpt-4o') : openai('gpt-4o-mini')
+  // Hard-pool generation needs the top tier for discriminating-item
+  // quality. TOEFL Reading also uses this for its per-task intercept
+  // (Complete-the-Words + Daily Life + Academic). Everything else on
+  // gpt-4o-mini at ~3× the speed and a fraction of the cost. Math
+  // sections stay on the top tier throughout (arithmetic precision
+  // matters even for easy items).
+  //
+  // gpt-4.1 replaces gpt-4o as the recommended production model as of
+  // early 2026: $2/M input + $8/M output vs gpt-4o's $2.50/M + $10/M
+  // (~20% cheaper) AND better at long-passage generation + prompt
+  // following — directly addresses the TOEFL Academic passage
+  // under-shoot (model kept producing 90-190w when prompt asked
+  // for 200-260w).
+  const hardModel = family ? openai('gpt-4.1') : openai('gpt-4o-mini')
   const easyMedModel = (family && isMathHeavy(family, sectionLabel))
-    ? openai('gpt-4o')
+    ? openai('gpt-4.1')
     : openai('gpt-4o-mini')
   // Legacy single-pass fallback uses the hard model.
   const model = hardModel
@@ -895,7 +904,7 @@ export async function POST(req: NextRequest) {
         const results = await Promise.all(
           sizes.map(size =>
             generateObject({
-              model: openai('gpt-4o'),
+              model: hardModel,
               schema: TestSchema,
               temperature: 0.5,
               prompt: buildHardOnlyPrompt({
