@@ -417,7 +417,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           )
         })()}
         <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap mb-4">
-          {q.prompt}
+          {normalizeDisplayText(q.prompt)}
         </p>
         {q.graphic && <QuestionGraphicView graphic={q.graphic} />}
         {q.type === 'numeric_entry' ? (
@@ -530,7 +530,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[15px] text-gray-900 leading-[1.9]">
                   {segments.map((seg, i) => {
                     const match = seg.match(/^\[(\d+)\]$/)
-                    if (!match) return <span key={i}>{seg}</span>
+                    if (!match) return <span key={i}>{normalizeDisplayText(seg)}</span>
                     const id = parseInt(match[1], 10)
                     return (
                       <input
@@ -584,7 +584,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                           onClick={() => setOrder(current.filter((_, j) => j !== i))}
                           className="px-3 py-1.5 rounded-lg bg-primary text-white text-[13px] font-medium hover:opacity-90"
                         >
-                          {chip}
+                          {normalizeDisplayText(chip)}
                         </button>
                       ))}
                 </div>
@@ -597,7 +597,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                       onClick={() => setOrder([...current, chip])}
                       className="px-3 py-1.5 rounded-lg border border-gray-300 bg-white text-[13px] text-gray-800 hover:border-primary hover:text-primary"
                     >
-                      {chip}
+                      {normalizeDisplayText(chip)}
                     </button>
                   ))}
                 </div>
@@ -723,7 +723,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   }`}>
                     {label}
                   </span>
-                  <span className="flex-1">{choice}</span>
+                  <span className="flex-1">{normalizeDisplayText(choice)}</span>
                 </button>
               )
             })}
@@ -993,7 +993,7 @@ function ReviewView({
                         {t('study.test.questionN', { current: String(i + 1), total: String(test.questions.length) })}
                       </div>
                       <div className="text-sm text-gray-900 line-clamp-2 mt-0.5">
-                        {q.prompt}
+                        {normalizeDisplayText(q.prompt)}
                       </div>
                     </div>
                     {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" /> : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />}
@@ -1005,7 +1005,7 @@ function ReviewView({
                           <PassageParagraphs text={q.passage} />
                         </div>
                       )}
-                      <p className="text-gray-900 whitespace-pre-wrap">{q.prompt}</p>
+                      <p className="text-gray-900 whitespace-pre-wrap">{normalizeDisplayText(q.prompt)}</p>
                       {q.graphic && <QuestionGraphicView graphic={q.graphic} />}
                       {/* Type-aware verdict rendering. MC/three_choice/quant
                           render per-choice rows; the four Jan-2026 TOEFL
@@ -1016,7 +1016,7 @@ function ReviewView({
                         <div className="space-y-2 mt-2">
                           <div className="px-3 py-2 rounded-lg bg-emerald-50 text-emerald-900 text-xs border border-emerald-200">
                             <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
-                            <div className="whitespace-pre-wrap">{verdict.correctAnswer}</div>
+                            <div className="whitespace-pre-wrap">{normalizeDisplayText(verdict.correctAnswer)}</div>
                           </div>
                           {studentAnswer != null ? (
                             <div className={`px-3 py-2 rounded-lg text-xs border ${
@@ -1025,7 +1025,7 @@ function ReviewView({
                                 : 'bg-rose-50 text-rose-900 border-rose-200'
                             }`}>
                               <div className="font-semibold mb-0.5">{ko ? '내 답' : 'Your answer'}</div>
-                              <div className="whitespace-pre-wrap">{studentAnswer}</div>
+                              <div className="whitespace-pre-wrap">{normalizeDisplayText(studentAnswer)}</div>
                             </div>
                           ) : (
                             <div className="px-3 py-2 rounded-lg bg-amber-50 text-amber-900 text-xs border border-amber-200">
@@ -1057,7 +1057,7 @@ function ReviewView({
                               }`}
                             >
                               <div>
-                                {choice}
+                                {normalizeDisplayText(choice)}
                                 {isCorrect && <span className="ml-2 font-semibold">{ko ? '정답' : 'Correct'}</span>}
                                 {isStudentPick && !isCorrect && <span className="ml-2 font-semibold">{ko ? '내 답' : 'Your answer'}</span>}
                               </div>
@@ -1066,7 +1066,7 @@ function ReviewView({
                                   isStudentPick ? 'text-rose-800' : 'text-gray-600'
                                 }`}>
                                   <span className="font-semibold">{ko ? '오답 이유: ' : 'Why wrong: '}</span>
-                                  {distractorReason}
+                                  {normalizeDisplayText(distractorReason)}
                                 </div>
                               )}
                             </div>
@@ -1080,7 +1080,7 @@ function ReviewView({
                       </div>
                       )}
                       <p className="text-xs text-gray-600 leading-relaxed mt-2">
-                        {q.explanation}
+                        {normalizeDisplayText(q.explanation)}
                       </p>
                     </div>
                   )}
@@ -1702,14 +1702,48 @@ function AudioPracticeBar({ sourceText, sessionId, language, onTranscript, ko }:
   )
 }
 
+/**
+ * Normalize display text so students don't see raw \n or **bold**
+ * markers when the model leaks JSON-escapes or markdown into passage /
+ * prompt / choice fields:
+ *   - Literal "\n" (backslash + n as two chars, from double-encoded
+ *     JSON strings the model occasionally emits) → real newline
+ *   - Literal "\t" → real tab
+ *   - "**bold**" → bold
+ *   - "*italic*" → italic (single-star pairs only; won't touch a lone
+ *     "*" or math like "2*3")
+ *   - Leading "# " / "## " / "### " heading markers stripped
+ *   - Escaped quotes \" → "
+ *
+ * Applied at every user-facing render site (passage, prompt, choice,
+ * correct-answer display).
+ */
+function normalizeDisplayText(text: string | null | undefined): string {
+  if (!text) return ''
+  let s = String(text)
+  // Escaped whitespace + quote fixes first — order matters so later
+  // regexes see real newlines.
+  s = s.replace(/\\n/g, '\n')
+       .replace(/\\t/g, '\t')
+       .replace(/\\"/g, '"')
+       .replace(/\\'/g, "'")
+  // Markdown bold/italic — only inline pairs, not standalone stars.
+  s = s.replace(/\*\*([^*\n]+?)\*\*/g, '$1')
+       .replace(/(?<![*\w])\*([^*\n]+?)\*(?![*\w])/g, '$1')
+  // Heading markers at line start.
+  s = s.replace(/^#{1,4}\s+/gm, '')
+  return s
+}
+
 function PassageParagraphs({ text }: { text: string }) {
+  const normalized = normalizeDisplayText(text)
   // Split on one-or-more blank lines. Trim each paragraph so leading
   // whitespace from the model doesn't fight the indent we're adding.
-  const paragraphs = text.split(/\n\s*\n+/).map(p => p.trim()).filter(Boolean)
+  const paragraphs = normalized.split(/\n\s*\n+/).map(p => p.trim()).filter(Boolean)
   if (paragraphs.length <= 1) {
     // No paragraph breaks — render with whitespace-pre-wrap so any
     // intra-paragraph line breaks the model emits still show.
-    return <p className="whitespace-pre-wrap">{text}</p>
+    return <p className="whitespace-pre-wrap">{normalized}</p>
   }
   return (
     <div className="space-y-3">
