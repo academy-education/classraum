@@ -389,10 +389,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             </span>
           </div>
         )}
-        {q.passage && (() => {
-          // Passage-group header: when the test has shared passages
-          // (TOEFL/IELTS/ACT Reading), show "Passage X — Question Y
-          // of Z" so the student knows where they are in the section.
+        {q.passage && q.type !== 'fill_in_blanks' && (() => {
+          // Passage-group header + read-only passage box. Skipped for
+          // fill_in_blanks (TOEFL Complete-the-Words) because the
+          // interactive fill-in renderer below shows the SAME passage
+          // with inline inputs — rendering it twice would duplicate
+          // the paragraph on screen and let students think the header
+          // "Question X of Y" applies to unrelated passages.
           const groupInfo = passageGroupInfo(test.questions, currentIdx)
           return (
             <>
