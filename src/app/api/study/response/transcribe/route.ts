@@ -75,11 +75,22 @@ export async function POST(req: NextRequest) {
   openaiForm.append('response_format', 'verbose_json')
   if (language === 'ko' || language === 'en') openaiForm.append('language', language)
 
-  const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+  // Transcription retry: single-attempt whispers can transiently 5xx
+  // during OpenAI incidents. Retry once with the same audio — if it
+  // still fails, surface the error to the client, which will just
+  // fall back to typed input. The audio is already persisted, so a
+  // future manual retry against the stored file is still possible.
+  const callWhisper = () => fetch('https://api.openai.com/v1/audio/transcriptions', {
     method: 'POST',
     headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
     body: openaiForm,
   })
+  let res = await callWhisper()
+  if (!res.ok && res.status >= 500) {
+    console.warn('[response/transcribe] whisper 5xx, retrying once', res.status)
+    await new Promise(r => setTimeout(r, 500))
+    res = await callWhisper()
+  }
   if (!res.ok) {
     const errBody = await res.text().catch(() => '')
     console.error('[response/transcribe] openai', res.status, errBody)

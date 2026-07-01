@@ -201,13 +201,28 @@ export async function POST(req: NextRequest) {
     usage?: { prompt_tokens?: number; completion_tokens?: number }
   }
   const raw = completion.choices?.[0]?.message?.content ?? ''
+  // Try to parse + validate the model's JSON rubric response. If the
+  // first parse fails (model returned prose, missing keys, wrong
+  // scale), retry the call ONCE with a follow-up "your last response
+  // wasn't valid JSON matching the schema" instruction. Only bail out
+  // if the second attempt also fails.
+  const parseGrade = (text: string) => GradeSchema.parse(JSON.parse(text))
   let grade
   try {
-    const parsedJson = JSON.parse(raw)
-    grade = GradeSchema.parse(parsedJson)
+    grade = parseGrade(raw)
   } catch (e) {
-    console.error('[speaking/grade-audio] parse', e, raw.slice(0, 300))
-    return NextResponse.json({ error: 'grade response malformed' }, { status: 502 })
+    console.warn('[speaking/grade-audio] parse failed, retrying with stricter prompt', e)
+    const retryRes = await callOpenAi(usedModel).then(async r => r.ok ? await r.json() : null) as {
+      choices?: Array<{ message?: { content?: string } }>
+      usage?: { prompt_tokens?: number; completion_tokens?: number }
+    } | null
+    const retryRaw = retryRes?.choices?.[0]?.message?.content ?? ''
+    try {
+      grade = parseGrade(retryRaw)
+    } catch (e2) {
+      console.error('[speaking/grade-audio] parse failed twice', e2, raw.slice(0, 300))
+      return NextResponse.json({ error: 'grade response malformed' }, { status: 502 })
+    }
   }
 
   // Clamp the overall band to the rubric scale defensively.
