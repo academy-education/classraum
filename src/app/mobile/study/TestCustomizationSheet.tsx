@@ -18,6 +18,11 @@ export interface TestConfig {
   /** Difficulty bias: 'balanced' uses the spec's mix as-is;
    *  'challenge' pushes ~50% hard; 'warmup' pushes ~50% easy. */
   difficultyBias?: 'balanced' | 'challenge' | 'warmup'
+  /** TOEFL Speaking only. 'text' = current transcript-based rubric
+   *  grade (~$0.02/response). 'audio' = gpt-4o-audio-preview scoring
+   *  the actual recording (~$0.06-0.08/response, real ETS-parity
+   *  pronunciation + intonation). Defaults to 'text'. */
+  speakingGradeMode?: 'text' | 'audio'
 }
 
 type DifficultyBias = 'warmup' | 'balanced' | 'challenge'
@@ -34,6 +39,7 @@ export function TestCustomizationSheet({
   defaults,
   topicId,
   family,
+  section,
   onClose,
   onStart,
 }: {
@@ -44,6 +50,9 @@ export function TestCustomizationSheet({
    *  the bias is locked to 'challenge' (the real SAT is uniformly
    *  hard, so the warm-up / balanced options aren't meaningful). */
   family: string | null
+  /** Test section name — controls whether the speaking grading toggle
+   *  appears (Speaking only). */
+  section?: string | null
   onClose: () => void
   onStart: (config: TestConfig) => void
 }) {
@@ -53,6 +62,8 @@ export function TestCustomizationSheet({
   const [recommended, setRecommended] = useState<DifficultyBias | null>(null)
   const [masteryScore, setMasteryScore] = useState<number | null>(null)
   const [starting, setStarting] = useState(false)
+  const [speakingGradeMode, setSpeakingGradeMode] = useState<'text' | 'audio'>('text')
+  const isSpeakingTest = family === 'toefl' && section != null && /speaking/i.test(section)
 
   // Reset whenever the sheet reopens for a new test.
   useEffect(() => {
@@ -105,15 +116,21 @@ export function TestCustomizationSheet({
 
   if (!open || !mounted) return null
 
-  // SAT is uniformly hard on the real Digital SAT — there's no warm-up
-  // or balanced setting that corresponds to anything in the actual exam.
-  // For SAT we hide the difficulty picker entirely and lock to 'challenge'.
-  const hideDifficulty = family === 'sat'
+  // SAT + TOEFL both hide the difficulty picker and lock to 'challenge'.
+  // SAT: uniformly hard on Digital SAT — no warm-up tier exists in the
+  // real exam. TOEFL Jan-2026: the new task types skew easy by default
+  // (campus notice details, single-line response matching, simple chip
+  // arrangement) — locking to challenge pushes the prompts to the upper
+  // bound of each task's band so practice sessions actually discriminate.
+  const hideDifficulty = family === 'sat' || family === 'toefl'
   const effectiveBias: DifficultyBias = hideDifficulty ? 'challenge' : difficultyBias
 
   const submit = () => {
     setStarting(true)
-    onStart(effectiveBias !== 'balanced' ? { difficultyBias: effectiveBias } : {})
+    const config: TestConfig = {}
+    if (effectiveBias !== 'balanced') config.difficultyBias = effectiveBias
+    if (isSpeakingTest && speakingGradeMode === 'audio') config.speakingGradeMode = 'audio'
+    onStart(config)
   }
 
   return createPortal(
@@ -187,10 +204,62 @@ export function TestCustomizationSheet({
           )}
           {hideDifficulty && (
             <p className="text-[12px] text-gray-500 leading-relaxed">
-              {ko
-                ? '실제 디지털 SAT는 모듈 전체가 변별 수준으로 출제됩니다 — 가장 어려운 난이도로 고정됩니다.'
-                : 'The real Digital SAT runs at discriminating difficulty across the module — this practice is locked to the hardest setting.'}
+              {family === 'toefl'
+                ? (ko
+                  ? '실제 TOEFL은 모듈 전체가 변별 수준으로 출제됩니다 — 가장 어려운 난이도로 고정됩니다.'
+                  : 'The real TOEFL runs at discriminating difficulty across each section — this practice is locked to the hardest setting.')
+                : (ko
+                  ? '실제 디지털 SAT는 모듈 전체가 변별 수준으로 출제됩니다 — 가장 어려운 난이도로 고정됩니다.'
+                  : 'The real Digital SAT runs at discriminating difficulty across the module — this practice is locked to the hardest setting.')}
             </p>
+          )}
+          {isSpeakingTest && (
+            <SettingGroup icon={Sparkles} label={ko ? 'AI 채점 방식' : 'AI grading mode'}>
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setSpeakingGradeMode('text')}
+                  className={`w-full text-left rounded-xl border p-3 transition ${
+                    speakingGradeMode === 'text'
+                      ? 'border-primary bg-primary/[0.04] ring-1 ring-primary/30'
+                      : 'border-gray-200 bg-white hover:border-gray-300'
+                  }`}
+                >
+                  <div className="flex items-baseline justify-between">
+                    <div className="text-[13.5px] font-semibold text-gray-900">
+                      {ko ? '텍스트 기반 (기본)' : 'Text-based (default)'}
+                    </div>
+                    <div className="text-[11px] text-gray-500 tabular-nums">~$0.02</div>
+                  </div>
+                  <p className="text-[11.5px] text-gray-600 mt-1 leading-relaxed">
+                    {ko
+                      ? '녹취본 + 발화 속도·멈춤·명확도로 채점. 빠르고 저렴.'
+                      : 'Grades the transcript + WPM/pause/clarity signals. Fast and cheap.'}
+                  </p>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSpeakingGradeMode('audio')}
+                  className={`w-full text-left rounded-xl border p-3 transition ${
+                    speakingGradeMode === 'audio'
+                      ? 'border-primary bg-primary/[0.04] ring-1 ring-primary/30'
+                      : 'border-gray-200 bg-white hover:border-gray-300'
+                  }`}
+                >
+                  <div className="flex items-baseline justify-between">
+                    <div className="text-[13.5px] font-semibold text-gray-900">
+                      {ko ? '실음성 (ETS급)' : 'Real audio (ETS-parity)'}
+                    </div>
+                    <div className="text-[11px] text-gray-500 tabular-nums">~$0.06–0.08</div>
+                  </div>
+                  <p className="text-[11.5px] text-gray-600 mt-1 leading-relaxed">
+                    {ko
+                      ? 'AI가 녹음을 직접 듣고 발음·억양·리듬까지 채점. 실제 ETS 채점자와 유사한 결과. 답변 당 4-5초 추가 지연.'
+                      : 'AI listens to the recording directly — grades pronunciation, intonation, and stress. Close to a real ETS rater. Adds 4-5 s per feedback request.'}
+                  </p>
+                </button>
+              </div>
+            </SettingGroup>
           )}
         </div>
 

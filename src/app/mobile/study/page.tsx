@@ -479,7 +479,7 @@ function StudyLandingInner() {
                   When subjects ship, drop this wrapper entirely. */}
               <div
                 aria-hidden
-                className="grid grid-cols-2 gap-3 pointer-events-none opacity-40 blur-[1px] select-none"
+                className="grid grid-cols-2 gap-3 pointer-events-none opacity-35 blur-[2px] grayscale select-none"
               >
                 {subjects.map((subj, i) => (
                   <SubjectSquareCard
@@ -490,9 +490,22 @@ function StudyLandingInner() {
                   />
                 ))}
               </div>
+              {/* Diagonal stripe overlay reinforces "this is not
+                  available" without going so heavy it hides the
+                  preview underneath. */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-2xl opacity-[0.10]"
+                style={{
+                  backgroundImage:
+                    'repeating-linear-gradient(45deg, transparent 0 8px, #6b7280 8px 9px)',
+                }}
+              />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/90 backdrop-blur-md ring-1 ring-gray-200 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.08)]">
-                  <Lock className="w-4 h-4 text-gray-500" />
+                <div className="flex flex-col items-center gap-2 px-5 py-3.5 rounded-2xl bg-white/95 backdrop-blur-md ring-1 ring-gray-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.15)]">
+                  <div className="w-9 h-9 rounded-full bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
+                    <Lock className="w-4 h-4 text-gray-500" />
+                  </div>
                   <span className="text-[13px] font-semibold text-gray-700">
                     {String(t('study.landing.browseLocked'))}
                   </span>
@@ -532,7 +545,7 @@ function StudyLandingInner() {
                     className={`group relative overflow-hidden rounded-2xl p-4 min-h-[120px] ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out animate-card-in opacity-0 ${
                       unlocked
                         ? 'hover:shadow-[0_6px_12px_rgba(0,0,0,0.10),0_20px_40px_-12px_rgba(0,0,0,0.30)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.97]'
-                        : 'cursor-not-allowed'
+                        : 'cursor-not-allowed grayscale-[0.7] saturate-50'
                     }`}
                   >
                     {/* Decorative monogram watermark — large, low-opacity */}
@@ -580,19 +593,30 @@ function StudyLandingInner() {
                         )}
                       </div>
                     </div>
-                    {/* Locked overlay: small lock chip in the corner
-                        for tests not yet open (everything but SAT +
-                        TOEFL). Keeps the visual identity of the card
-                        so users see what's coming, but blocks tap. */}
+                    {/* Locked overlay: stripe pattern + centered
+                        chip on tests not yet open (everything but
+                        SAT + TOEFL). Keeps the visual identity of
+                        the card so users see what's coming, but
+                        blocks tap. */}
                     {!unlocked && (
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md ring-1 ring-gray-200 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.10)]">
-                          <Lock className="w-3.5 h-3.5 text-gray-500" />
-                          <span className="text-[11px] font-semibold text-gray-700">
-                            {String(t('study.landing.browseLocked'))}
-                          </span>
+                      <>
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 opacity-[0.12]"
+                          style={{
+                            backgroundImage:
+                              'repeating-linear-gradient(45deg, transparent 0 6px, white 6px 7px)',
+                          }}
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md ring-1 ring-gray-300 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.15)]">
+                            <Lock className="w-3.5 h-3.5 text-gray-600" />
+                            <span className="text-[11px] font-semibold text-gray-700">
+                              {String(t('study.landing.browseLocked'))}
+                            </span>
+                          </div>
                         </div>
-                      </div>
+                      </>
                     )}
                   </CardTag>
                 )

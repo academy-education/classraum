@@ -5,18 +5,30 @@ import { z } from 'zod'
  * AI Speaking + Writing grader (Phase 6a).
  *
  * Covered:
- *   - TOEFL Independent Writing (0-5 holistic, mapped to 0-30 scaled)
- *   - TOEFL Independent Speaking (0-4 holistic, mapped to 0-30 scaled)
+ *   - TOEFL Writing for an Academic Discussion (0-5 holistic, scaled 0-30) —
+ *     replaced the discontinued Independent Writing in July 2023.
+ *     Integrated Writing remains; we'll add it as a separate task later.
+ *   - TOEFL Speaking (0-4 holistic, scaled 0-30) — generic across the
+ *     4 task types (Independent + 3 Integrated). Per-task prompts are
+ *     constructed at session-creation time; the rubric criteria are
+ *     identical across tasks per ETS.
  *   - IELTS Writing Task 2 (band 0-9, four criteria)
  *   - IELTS Speaking Part 2 (band 0-9, four criteria)
  *
- * v1 is intentionally tight — multi-turn Speaking Part 3 and integrated
- * TOEFL tasks come later. Each rubric is anchored with one strong + one
- * weak example so the grader has band-level reference points.
+ * Each rubric is anchored with one strong + one weak example so the
+ * grader has band-level reference points. Anchor language for TOEFL
+ * Writing follows the official ETS Writing for an Academic Discussion
+ * rubric (ets.org/pdfs/toefl/...).
  */
 
 export type ResponseTestFamily = 'toefl' | 'ielts'
 export type ResponseSkill = 'speaking' | 'writing'
+/** Optional task-type discriminator for rubric variants under one
+ *  (family, skill) pair. TOEFL Writing has two distinct tasks in the
+ *  Jan-2026 format: 'email' (7 min, 100+ words, register-sensitive)
+ *  and 'academic_discussion' (10 min, 100+ words, position-staking).
+ *  Undefined falls back to the base rubric for that (family, skill). */
+export type ResponseTaskType = 'email' | 'academic_discussion'
 
 export interface RubricCriterion {
   key: string
@@ -38,16 +50,26 @@ export interface RubricSpec {
 
 export const RUBRICS: Record<`${ResponseTestFamily}_${ResponseSkill}`, RubricSpec> = {
   toefl_writing: {
+    // TOEFL Writing for an Academic Discussion (Task 2, post-July 2023).
+    // Format: professor poses a question, 2 student replies are shown,
+    // learner contributes their own opinion + reasoning in 10 minutes.
+    // ETS rubric scores on three dimensions:
+    //   - "contribution": how relevant, well-elaborated, and credible
+    //     the response is in the context of the discussion
+    //   - "language_facility": variety, accuracy, and idiomaticity of
+    //     sentence structure and vocabulary
+    //   - "grammar_vocabulary": mechanical correctness (errors at the
+    //     word + phrase level — agreement, articles, word forms)
     testFamily: 'toefl',
     skill: 'writing',
     scaleMax: 5,
     criteria: [
-      { key: 'development', label: 'Development & support', max: 5 },
-      { key: 'organization', label: 'Organisation & coherence', max: 5 },
-      { key: 'language', label: 'Language use', max: 5 },
+      { key: 'contribution', label: 'Relevance & elaboration of contribution', max: 5 },
+      { key: 'language_facility', label: 'Language facility (variety & accuracy)', max: 5 },
+      { key: 'grammar_vocabulary', label: 'Grammar & vocabulary precision', max: 5 },
     ],
-    timeLimit: { kind: 'minutes', value: 30 },
-    target: '300+ words',
+    timeLimit: { kind: 'minutes', value: 10 },
+    target: '100+ words (typical strong responses: 150-200 words)',
   },
   toefl_speaking: {
     testFamily: 'toefl',
@@ -89,7 +111,41 @@ export const RUBRICS: Record<`${ResponseTestFamily}_${ResponseSkill}`, RubricSpe
   },
 }
 
-export function getRubric(family: ResponseTestFamily, skill: ResponseSkill): RubricSpec {
+/** Task-type variants under a base (family, skill) pair. Use the
+ *  three-segment key `${family}_${skill}_${taskType}`. */
+export const RUBRIC_VARIANTS: Record<string, RubricSpec> = {
+  // TOEFL Writing — Email task (Jan 2026). 7 minutes, ~100+ words.
+  // ETS scores email tasks on three dimensions distinct from the
+  // Academic Discussion rubric:
+  //   - "task_fulfillment": did the response address all the points
+  //     the scenario asked for, and respond to the right scenario?
+  //   - "register": is the tone appropriate for the relationship
+  //     (formal to professor, polite-friendly to classmate, transactional
+  //     to a service desk)?
+  //   - "language_facility": variety + accuracy of structure + lexis.
+  toefl_writing_email: {
+    testFamily: 'toefl',
+    skill: 'writing',
+    scaleMax: 5,
+    criteria: [
+      { key: 'task_fulfillment', label: 'Bullet-point coverage & scenario fit', max: 5 },
+      { key: 'register', label: 'Tone & register appropriate to the recipient', max: 5 },
+      { key: 'language_facility', label: 'Language facility (variety & accuracy)', max: 5 },
+    ],
+    timeLimit: { kind: 'minutes', value: 7 },
+    target: '100+ words (typical strong: 120-180 words)',
+  },
+}
+
+export function getRubric(
+  family: ResponseTestFamily,
+  skill: ResponseSkill,
+  taskType?: ResponseTaskType,
+): RubricSpec {
+  if (taskType) {
+    const variant = RUBRIC_VARIANTS[`${family}_${skill}_${taskType}`]
+    if (variant) return variant
+  }
   return RUBRICS[`${family}_${skill}`]
 }
 
@@ -131,25 +187,66 @@ export type Grade = z.infer<typeof GradeSchema>
 interface PromptInput {
   family: ResponseTestFamily
   skill: ResponseSkill
+  taskType?: ResponseTaskType
   promptText: string
   responseText: string
   durationSeconds?: number | null
   wordCount?: number | null
   language: 'en' | 'ko'
+  /** Speaking-only real audio signals — used to inform the "delivery"
+   *  criterion. Whisper-derived so we don't need an audio-native LLM. */
+  speechSignals?: {
+    wpm?: number | null
+    pauseCount?: number | null
+    /** 0-1 confidence proxy for pronunciation clarity (higher = clearer). */
+    clarity?: number | null
+  } | null
 }
 
 export function buildGraderPrompt(input: PromptInput): string {
-  const rubric = getRubric(input.family, input.skill)
-  const meta =
+  const rubric = getRubric(input.family, input.skill, input.taskType)
+  let meta =
     input.skill === 'writing'
       ? `Words written: ${input.wordCount ?? 'unknown'}. Time limit: ${rubric.timeLimit.value} minutes. Target: ${rubric.target}.`
       : `Spoken duration: ${input.durationSeconds ?? 'unknown'}s. Time limit: ${rubric.timeLimit.value}s. Target: ${rubric.target}.`
+
+  // For speaking: append real delivery signals extracted from the
+  // student's actual audio by Whisper's verbose_json output. These
+  // are the ONLY genuine audio-derived signals the grader has —
+  // without them the delivery criterion has to be inferred from text
+  // alone, which underweights pace and hesitation. Include specific
+  // guidance so the grader knows how to interpret each metric.
+  if (input.skill === 'speaking' && input.speechSignals) {
+    const s = input.speechSignals
+    const paceInterpretation = s.wpm == null ? '' :
+      s.wpm < 100 ? 'Slow / halting.' :
+      s.wpm > 190 ? 'Rushed — may sacrifice clarity.' :
+      'Natural pace.'
+    const clarityInterpretation = s.clarity == null ? '' :
+      s.clarity < 0.5 ? 'Weak transcription confidence — pronunciation is likely unclear.' :
+      s.clarity < 0.75 ? 'Fair clarity.' :
+      'Clear articulation.'
+    meta += `
+
+DELIVERY SIGNALS (from student's actual audio recording):
+- Speaking rate: ${s.wpm ?? 'unknown'} words per minute. ${paceInterpretation}
+- Pause count (≥700 ms gaps): ${s.pauseCount ?? 'unknown'}. High counts indicate hesitation.
+- Recognition clarity: ${s.clarity != null ? s.clarity.toFixed(2) : 'unknown'} on a 0-1 scale. ${clarityInterpretation}
+
+USE THESE SIGNALS TO INFORM THE "delivery" CRITERION SPECIFICALLY:
+- A response with natural pace, few pauses, and high clarity should score at the upper end of delivery.
+- Halting delivery (very low WPM, many pauses) caps delivery in the middle of the scale even if the language is otherwise strong.
+- Low clarity (< 0.5) indicates pronunciation issues that a real TOEFL rater would penalise — reflect that in the delivery band.
+- Do NOT let these signals inflate the "language" or "topic development" bands — grade those from the transcript.`
+  }
 
   const criteriaList = rubric.criteria
     .map(c => `  - "${c.key}" (${c.label}, 0–${c.max})`)
     .join('\n')
 
-  const anchor = ANCHORS[`${input.family}_${input.skill}`]
+  // Variant anchor wins over the base anchor when a taskType is set.
+  const anchorKey = input.taskType ? `${input.family}_${input.skill}_${input.taskType}` : `${input.family}_${input.skill}`
+  const anchor = ANCHORS[anchorKey] ?? ANCHORS[`${input.family}_${input.skill}`]
 
   const head = `You are an expert ${input.family.toUpperCase()} ${input.skill} examiner with 10+ years of calibrated scoring experience.
 
@@ -190,15 +287,74 @@ ${meta}
 // sample validation study before removing the BETA badge.
 // ---------------------------------------------------------------------------
 
-const ANCHORS: Record<`${ResponseTestFamily}_${ResponseSkill}`, string> = {
-  toefl_writing: `
-[Strong — score 5 / scaled 28]
-"While remote learning offers undeniable flexibility, its long-term effects on student motivation remain mixed. Studies from Stanford in 2023 demonstrate that students who attended hybrid classes scored, on average, 12% lower on retention tests than their in-person peers — a finding that complicates the convenience argument..."
-Hallmarks: precise vocabulary, varied sentence types, concrete evidence, clear thesis.
+const ANCHORS: Record<string, string> = {
+  toefl_writing_email: `
+TOEFL Writing — Email task (Jan 2026). 7 minutes, ~100+ words. The
+prompt gives a scenario (email or notice received) + 3 bullets to
+address. Score on bullet coverage + register + language facility.
 
-[Weak — score 2 / scaled 14]
-"I think remote class is good because we can learn from home. Many student like it. But some student don't like because they don't have computer. So it have good and bad side. My opinion is good because of flexible."
-Hallmarks: limited vocabulary, repeated structure, no evidence, agreement errors.
+[Strong — score 5]
+Scenario: Professor invites student to a guest lecture next Friday at
+3pm, which conflicts with part-time job. Bullets to address:
+(1) thank the professor, (2) explain the conflict, (3) ask if a
+recording will be available.
+Response: "Dear Professor Chen, Thank you so much for thinking of me
+for Friday's guest lecture — I'm genuinely excited about the topic
+and would love to be there. Unfortunately, my part-time shift at the
+campus library runs from 2-6pm on Fridays, and I can't swap it on
+such short notice. Would it be possible to access a recording of the
+session afterward? I'd hate to miss the discussion entirely. Thanks
+again for the invitation, and I'll definitely come if there's any
+chance you offer something similar later this term. Best, Jamie"
+Hallmarks: all 3 bullets addressed in order; formal-but-warm register
+appropriate to a professor; specific reason for conflict; closes with
+a forward-looking note. Word count ~115.
+
+[Weak — score 2]
+Same scenario. Response: "Hi prof, thanks for the invite. I cant come
+because I have work that day. Can you send me the recording? Bye."
+Hallmarks: bullets addressed but barely; register way too casual for
+a professor ("Hi prof", "Bye", no salutation); no specific reason;
+contractions + apostrophe errors. Word count 24 — also under target.
+`.trim(),
+
+  toefl_writing: `
+TOEFL Writing for an Academic Discussion — anchor responses.
+Context: Professor poses a question to a class. Two students reply
+with short positions. Learner contributes their own opinion + reasoning
+in 10 minutes, ≥100 words.
+
+[Strong — score 5 / scaled 28-30]
+Discussion context: "Professor: Should governments invest more in
+public transit or in highway expansion? Sarah: Highway expansion —
+people need flexibility. Marco: Transit — better for cities long-term."
+Response: "I lean toward Marco's position on transit, but with a
+qualification Sarah's argument actually surfaces. Highway expansion
+encourages dispersed development that locks cities into car-dependence
+for decades — a phenomenon urban economists call 'induced demand,'
+where new road capacity fills up within a few years. That said,
+Sarah's flexibility point is valid for rural and exurban communities
+where transit density can't reach efficient scale. So my answer is
+context-dependent: dense metros should prioritize transit (the case
+in Seoul, where subway investment cut commute times by 18% over a
+decade), while regional networks need both."
+Hallmarks: directly engages another poster's argument by name + with
+nuance ("with a qualification Sarah's argument actually surfaces");
+precise vocabulary ("induced demand", "exurban", "dispersed
+development"); concrete evidence (Seoul subway data); a defensible
+context-dependent thesis rather than blanket agreement.
+
+[Weak — score 2 / scaled 14-17]
+Same context. Response: "I think transit is better. Many people use
+the bus and subway every day in big city. Sarah say highway is good
+but I don't agree. Highway make traffic problem and pollution. Transit
+is more friendly to environment. Also it is cheaper for student.
+That is why I think government should invest in transit more."
+Hallmarks: repeats the prompt rather than extending it; doesn't engage
+specifically with Marco even though it agrees with him; no evidence
+beyond "many people use"; agreement errors ("Sarah say", "Highway
+make"); narrow vocabulary; relies on slogans ("friendly to
+environment", "make traffic problem").
 `.trim(),
 
   toefl_speaking: `

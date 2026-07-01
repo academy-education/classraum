@@ -108,6 +108,17 @@ export function ResponseSession({
     setStage('grading')
     try {
       const headers = await authHeaders()
+      // TOEFL Writing task-type detection — sniff the prompt's leading
+      // tag so the grader picks the right rubric variant.
+      //   "[Email — ...]" / "[이메일 — ...]"  → 'email'
+      //   "[Academic Discussion]" / "[학술 토론]" → 'academic_discussion'
+      // Anything else falls through to the base rubric (Academic Discussion).
+      const taskType: 'email' | 'academic_discussion' | null =
+        family === 'toefl' && skill === 'writing'
+          ? /^\s*\[\s*(email|이메일)\b/i.test(prompt) ? 'email'
+          : /^\s*\[\s*(academic\s*discussion|학술\s*토론)\b/i.test(prompt) ? 'academic_discussion'
+          : null
+        : null
       const res = await fetch('/api/study/response/grade', {
         method: 'POST',
         headers,
@@ -115,6 +126,7 @@ export function ResponseSession({
           sessionId,
           testFamily: family,
           skill,
+          taskType,
           promptText: prompt,
           responseText: text,
           audioPath: opts?.audioPath ?? audioPath ?? null,

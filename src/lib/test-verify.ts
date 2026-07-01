@@ -22,7 +22,24 @@ import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 
-export type QuestionType = 'multiple_choice' | 'numeric_entry' | 'multi_select' | 'three_choice' | 'quant_comparison'
+export type QuestionType =
+  | 'multiple_choice' | 'numeric_entry' | 'multi_select' | 'three_choice' | 'quant_comparison'
+  // TOEFL Jan-2026 task-type variants. None of these go through the
+  // re-solve verifier or the standard MC choice-count filter — see
+  // sanitizeQuestion + verifyAndCorrect + dedupeByPrompt for the
+  // type-aware handling.
+  | 'fill_in_blanks' | 'arrange_words' | 'speaking_repeat' | 'speaking_interview'
+  | 'writing_email' | 'writing_discussion'
+
+/** Set of types whose grading + rendering bypass the standard MC
+ *  pipeline. Verifier skips them (no comparable choices), choice-count
+ *  filter skips them, and dedupe uses a richer key (prompt is often
+ *  identical across items of the same type). */
+export const NON_MC_TYPES: ReadonlySet<QuestionType> = new Set<QuestionType>([
+  'numeric_entry', 'multi_select',
+  'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
+  'writing_email', 'writing_discussion',
+])
 
 /** Post-sanitize Question — all fields are concrete. Downstream code
  *  (verifier, choice filter, UI) reads these directly. */
@@ -41,6 +58,9 @@ export interface Question {
    *  array for non-MC types or older items the model didn't produce
    *  rationales for. UI uses these to show trap explanations. */
   distractor_rationales: { choice: string; reason: string }[]
+  /** TOEFL Complete-the-Words (fill_in_blanks): per-blank correct
+   *  fragment keyed by [N] placeholder id. Null for all other types. */
+  blanks: { id: number; answer: string; alternates?: string[] | null }[] | null
   /** Optional visual asset. Permissive shape — UI dispatches on
    *  `type` and falls back gracefully on unknown shapes. */
   graphic: QuestionGraphic | null
@@ -81,9 +101,14 @@ export interface RawQuestion {
   correct_answer?: string
   correct_answers?: string[] | null
   acceptable_answers?: string[] | null
-  difficulty: 'easy' | 'medium' | 'hard'
-  explanation: string
+  /** Both fields are tolerated as nullish — the model occasionally
+   *  omits them on heavy prompts. sanitizeQuestion defaults missing
+   *  difficulty to 'medium' and missing explanation to ''. */
+  difficulty?: 'easy' | 'medium' | 'hard' | null
+  explanation?: string | null
   distractor_rationales?: Array<{ choice?: string | null; reason?: string | null }> | null
+  /** TOEFL Complete-the-Words (fill_in_blanks): per-blank answers. */
+  blanks?: Array<{ id: number; answer: string; alternates?: string[] | null }> | null
   graphic?: QuestionGraphic | null
 }
 
@@ -145,7 +170,11 @@ export async function verifyAndCorrect(
   const verifiable: Question[] = []
   const passthrough: Question[] = []
   for (const q of questions) {
-    const skipVerify = q.type === 'numeric_entry' || q.type === 'multi_select' || q.difficulty === 'easy'
+    // NON_MC_TYPES (numeric_entry + multi_select + the 4 TOEFL Jan-2026
+    // task-type variants) all bypass the re-solve verifier — they
+    // either grade open-endedly or don't have a comparable single
+    // "verified_answer" the verifier prompt can output.
+    const skipVerify = NON_MC_TYPES.has(q.type) || q.difficulty === 'easy'
     if (skipVerify) passthrough.push(q)
     else verifiable.push(q)
   }
@@ -338,7 +367,8 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     correct_answer: sanitize(q.correct_answer ?? ''),
     correct_answers: q.correct_answers ?? null,
     acceptable_answers: q.acceptable_answers ?? null,
-    explanation: sanitize(q.explanation),
+    difficulty: q.difficulty ?? 'medium',
+    explanation: sanitize(q.explanation ?? ''),
     // Filter out malformed rationale entries (model occasionally
     // emits {choice: null, reason: "..."} or vice versa). Salvage
     // the well-formed ones, drop the rest — better than failing the
@@ -346,6 +376,13 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     distractor_rationales: (q.distractor_rationales ?? [])
       .filter(d => d && typeof d.choice === 'string' && typeof d.reason === 'string' && d.choice && d.reason)
       .map(d => ({ choice: sanitize(d.choice as string), reason: sanitize(d.reason as string) })),
+    // TOEFL fill_in_blanks payload — preserve verbatim. Filter out
+    // malformed entries (model occasionally emits null answers).
+    blanks: (q.blanks ?? null) && Array.isArray(q.blanks)
+      ? q.blanks!
+          .filter(b => b && typeof b.id === 'number' && typeof b.answer === 'string' && b.answer.length > 0)
+          .map(b => ({ id: b.id, answer: sanitize(b.answer), alternates: b.alternates ?? null }))
+      : null,
     // Pass graphic through unchanged — UI renderer handles shape
     // validation and falls back to nothing on malformed data.
     graphic: q.graphic ?? null,
@@ -378,13 +415,26 @@ export function shuffleChoices(q: Question, seed: number): Question {
 export function dedupeByPrompt(questions: Question[]): Question[] {
   const seen = new Set<string>()
   const out: Question[] = []
+  const compact = (s: string) => s.toLowerCase().replace(/\s+/g, ' ').trim()
   for (const q of questions) {
     // Include passage in the dedupe key so SAT R&W items aren't
     // collapsed when many questions share the same boilerplate stem
     // ("Which choice most logically completes the text?") but pair
     // with different passages.
-    const passageKey = q.passage ? q.passage.toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 60) : ''
-    const key = `${passageKey}::${q.prompt.toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 100)}`
+    const passageKey = q.passage ? compact(q.passage).slice(0, 60) : ''
+    const promptKey = compact(q.prompt).slice(0, 100)
+    // Type-aware tail: TOEFL Jan-2026 task-type variants share the
+    // SAME prompt across every item ("[Complete the Words] Read…",
+    // "[Build a Sentence] Tap…"), so deduping on (passage, prompt)
+    // alone would collapse the whole batch to one item. For these
+    // types the discriminating field lives elsewhere:
+    //   - fill_in_blanks: the paragraph (passage) — already keyed
+    //   - arrange_words / speaking_repeat: correct_answer is unique
+    //   - speaking_interview: the prompt IS unique (each Q stem differs)
+    const tail = q.type === 'arrange_words' || q.type === 'speaking_repeat'
+      ? compact(q.correct_answer).slice(0, 100)
+      : ''
+    const key = `${q.type ?? 'mc'}::${passageKey}::${promptKey}::${tail}`
     if (seen.has(key)) continue
     seen.add(key)
     out.push(q)

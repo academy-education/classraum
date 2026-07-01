@@ -64,12 +64,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'upload failed' }, { status: 502 })
   }
 
-  // Forward to OpenAI transcription. Using direct fetch — the AI SDK
-  // transcription helper is still experimental in v5 and direct call
-  // is simpler for a single one-shot.
+  // Forward to OpenAI transcription. Using whisper-1 (not gpt-4o-
+  // transcribe) because whisper-1 supports verbose_json which returns
+  // segment-level timing + confidence. We need those for the audio-
+  // derived Speaking rubric (WPM, pause count, recognition confidence
+  // as a proxy for pronunciation clarity).
   const openaiForm = new FormData()
   openaiForm.append('file', audio, `response.${ext}`)
-  openaiForm.append('model', 'gpt-4o-transcribe')
+  openaiForm.append('model', 'whisper-1')
+  openaiForm.append('response_format', 'verbose_json')
   if (language === 'ko' || language === 'en') openaiForm.append('language', language)
 
   const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
@@ -82,8 +85,40 @@ export async function POST(req: NextRequest) {
     console.error('[response/transcribe] openai', res.status, errBody)
     return NextResponse.json({ error: 'transcription failed', audioPath: path }, { status: 502 })
   }
-  const json = (await res.json()) as { text?: string }
+  type WhisperSegment = { start: number; end: number; text: string; avg_logprob: number; no_speech_prob: number }
+  const json = (await res.json()) as {
+    text?: string
+    duration?: number
+    segments?: WhisperSegment[]
+  }
   const text = (json.text ?? '').trim()
+  const durationSec = typeof json.duration === 'number' ? json.duration : null
+  const segments = json.segments ?? []
+  const wordCount = text.split(/\s+/).filter(Boolean).length
+  const wpm = durationSec && durationSec > 0 ? Math.round(60 * wordCount / durationSec) : null
+  // Pause = gap ≥ 700 ms between consecutive segments. Rough proxy for
+  // hesitation/prep pauses that raters penalise for pace disruption.
+  let pauseCount = 0
+  for (let i = 1; i < segments.length; i++) {
+    if (segments[i].start - segments[i - 1].end >= 0.7) pauseCount++
+  }
+  // Average per-segment logprob → normalised 0-1 confidence proxy.
+  // avg_logprob is typically -0.1 (very clear) to -1.5 (unclear). Map
+  // linearly into [0,1] and clamp.
+  const meanLogprob = segments.length > 0
+    ? segments.reduce((s, x) => s + x.avg_logprob, 0) / segments.length
+    : null
+  const clarity = meanLogprob != null
+    ? Math.max(0, Math.min(1, 1 + meanLogprob / 1.5))
+    : null
 
-  return NextResponse.json({ text, audioPath: path })
+  return NextResponse.json({
+    text,
+    audioPath: path,
+    durationSec,
+    wordCount,
+    wpm,
+    pauseCount,
+    clarity,  // 0-1, higher = clearer articulation (Whisper's confidence proxy)
+  })
 }

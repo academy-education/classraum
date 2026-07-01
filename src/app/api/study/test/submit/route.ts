@@ -28,11 +28,20 @@ const QuestionSchema = z.object({
   passage: z.string().nullable().optional(),
   passageGroupId: z.string().nullable().optional(),
   prompt: z.string(),
-  type: z.enum(['multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison']).nullable().optional(),
+  type: z.enum([
+    'multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison',
+    'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
+    'writing_email', 'writing_discussion',
+  ]).nullable().optional(),
   choices: z.array(z.string()).nullable().optional(),
   correct_answer: z.string().nullable().optional(),
   correct_answers: z.array(z.string()).nullable().optional(),
   acceptable_answers: z.array(z.string()).nullable().optional(),
+  blanks: z.array(z.object({
+    id: z.number().int(),
+    answer: z.string(),
+    alternates: z.array(z.string()).nullable().optional(),
+  })).nullable().optional(),
   difficulty: z.enum(['easy', 'medium', 'hard']),
   explanation: z.string(),
   distractor_rationales: z
@@ -91,14 +100,31 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session is not in full_test mode' }, { status: 400 })
   }
 
-  // Idempotency: if we've already graded this session, refuse the
-  // second submission so a double-tap doesn't re-write attempts.
-  const { count: existingAttempts } = await supabaseAdmin
+  // Idempotency: if this session already has attempts, don't
+  // re-insert (that would double-count in mastery + inflate the
+  // history row). Instead reconstruct the SubmitResult from the
+  // stored attempts and return it — the UI sees the exact same
+  // shape as a fresh grade and drops into the review screen.
+  const { data: prior } = await supabaseAdmin
     .from('study_attempts')
-    .select('id', { count: 'exact', head: true })
+    .select('id, is_correct, student_answer, question')
     .eq('session_id', body.sessionId)
-  if ((existingAttempts ?? 0) > 0) {
-    return NextResponse.json({ error: 'test already submitted' }, { status: 409 })
+    .order('id', { ascending: true })
+  if (prior && prior.length > 0) {
+    const verdicts = prior.map((row, i) => ({
+      index: i,
+      correct: !!row.is_correct,
+      correctAnswer: displayCorrectAnswer(row.question as z.infer<typeof QuestionSchema>),
+    }))
+    const correctCount = verdicts.filter(v => v.correct).length
+    return NextResponse.json({
+      success: true,
+      idempotent: true,
+      totalQuestions: prior.length,
+      correctCount,
+      scorePercent: Math.round(100 * correctCount / prior.length),
+      verdicts,
+    })
   }
 
   const verdicts: { index: number; correct: boolean; correctAnswer: string }[] = []
@@ -182,6 +208,58 @@ function gradeAnswer(q: z.infer<typeof QuestionSchema>, studentAnswer: string | 
     return picked.every(p => expectedSet.has(norm(p))) && picked.length === expectedSet.size
   }
 
+  // TOEFL Complete-the-Words: passage has [1] [2] [3] placeholders; student
+  // submits JSON {"1":"s","2":"to",...}. All blanks must match (each blank
+  // accepts answer or any alternate, case-insensitive trim).
+  if (q.type === 'fill_in_blanks') {
+    const blanks = q.blanks ?? []
+    if (blanks.length === 0) return false
+    let picked: Record<string, string>
+    try { picked = JSON.parse(studentAnswer) } catch { return false }
+    if (!picked || typeof picked !== 'object') return false
+    for (const b of blanks) {
+      const studentVal = norm(picked[String(b.id)] ?? '')
+      if (!studentVal) return false
+      const accepted = [b.answer, ...(b.alternates ?? [])].map(norm)
+      if (!accepted.includes(studentVal)) return false
+    }
+    return true
+  }
+
+  // TOEFL Build-a-Sentence: choices are the word/phrase chips; student
+  // submits the chips joined in chosen order with " | ". Compare to
+  // correct_answer (same delimiter).
+  if (q.type === 'arrange_words') {
+    return norm(studentAnswer) === norm(q.correct_answer ?? '')
+  }
+
+  // TOEFL Listen-and-Repeat: student types back what they heard. Exact
+  // match against correct_answer (case-insensitive trim — punctuation
+  // tolerated by the norm function via whitespace collapse).
+  if (q.type === 'speaking_repeat') {
+    const stripPunct = (s: string) => s.toLowerCase().replace(/[.,!?;:'"\-—]/g, '').replace(/\s+/g, ' ').trim()
+    return stripPunct(studentAnswer) === stripPunct(q.correct_answer ?? '')
+  }
+
+  // TOEFL Take-an-Interview: open response — no auto-grading. Counted as
+  // attempted (returns true if non-empty) since rubric-grading is handled
+  // separately via /api/study/response/grade.
+  if (q.type === 'speaking_interview') {
+    return studentAnswer.trim().length > 20
+  }
+
+  // TOEFL Writing Email / Academic Discussion: open response, rubric-graded
+  // via /api/study/response/grade. In the auto-grader we mark as attempted
+  // if the student wrote a substantive response (>=50 chars for email,
+  // >=80 chars for discussion — well below the 100+ word target but enough
+  // to distinguish "tried" from "skipped").
+  if (q.type === 'writing_email') {
+    return studentAnswer.trim().length >= 50
+  }
+  if (q.type === 'writing_discussion') {
+    return studentAnswer.trim().length >= 80
+  }
+
   // multiple_choice / three_choice / quant_comparison — exact match.
   return norm(studentAnswer) === norm(q.correct_answer ?? '')
 }
@@ -190,6 +268,11 @@ function gradeAnswer(q: z.infer<typeof QuestionSchema>, studentAnswer: string | 
 function displayCorrectAnswer(q: z.infer<typeof QuestionSchema>): string {
   if (q.type === 'numeric_entry') return q.acceptable_answers?.[0] ?? ''
   if (q.type === 'multi_select') return (q.correct_answers ?? []).join(' + ')
+  if (q.type === 'fill_in_blanks') {
+    return (q.blanks ?? []).map(b => `[${b.id}] ${b.answer}`).join(', ')
+  }
+  if (q.type === 'speaking_interview') return '—'  // open-ended
+  if (q.type === 'writing_email' || q.type === 'writing_discussion') return '—'  // rubric-graded
   return q.correct_answer ?? ''
 }
 

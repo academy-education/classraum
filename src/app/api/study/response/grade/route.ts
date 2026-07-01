@@ -12,6 +12,7 @@ import {
   getRubric,
   type ResponseSkill,
   type ResponseTestFamily,
+  type ResponseTaskType,
 } from '@/lib/study/responseRubrics'
 
 /**
@@ -31,10 +32,20 @@ const BodySchema = z.object({
   sessionId: z.string().uuid(),
   testFamily: z.enum(['toefl', 'ielts']),
   skill: z.enum(['speaking', 'writing']),
+  /** Optional task-type discriminator. TOEFL Writing has two distinct
+   *  tasks (email vs academic_discussion) that score on different
+   *  criteria. When omitted, the base (family, skill) rubric applies. */
+  taskType: z.enum(['email', 'academic_discussion']).nullable().optional(),
   promptText: z.string().min(10).max(2000),
   responseText: z.string().min(20).max(8000),
   audioPath: z.string().nullable().optional(),
-  durationSeconds: z.number().int().nullable().optional(),
+  durationSeconds: z.number().nullable().optional(),
+  /** Speaking only — real delivery signals extracted from the audio
+   *  by Whisper. Included in the grader prompt so the delivery
+   *  criterion reflects pace + hesitation + articulation. */
+  wpm: z.number().nullable().optional(),
+  pauseCount: z.number().int().nullable().optional(),
+  clarity: z.number().min(0).max(1).nullable().optional(),
 })
 
 export async function POST(req: NextRequest) {
@@ -65,11 +76,15 @@ export async function POST(req: NextRequest) {
   if (!session || session.student_id !== user.id) {
     return NextResponse.json({ error: 'session not found' }, { status: 404 })
   }
-  if (session.mode !== 'response') {
-    return NextResponse.json({ error: 'session is not in response mode' }, { status: 400 })
+  // Allow both 'response' mode (dedicated speaking/writing practice) and
+  // 'full_test' mode (TOEFL Writing Email + Academic Discussion items
+  // request rubric feedback from the post-test review pane).
+  if (session.mode !== 'response' && session.mode !== 'full_test') {
+    return NextResponse.json({ error: 'session mode does not support rubric grading' }, { status: 400 })
   }
 
-  const rubric = getRubric(body.testFamily as ResponseTestFamily, body.skill as ResponseSkill)
+  const taskType = (body.taskType ?? undefined) as ResponseTaskType | undefined
+  const rubric = getRubric(body.testFamily as ResponseTestFamily, body.skill as ResponseSkill, taskType)
 
   const wordCount = body.responseText.trim().split(/\s+/).filter(Boolean).length
   const language = (session.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en'
@@ -77,11 +92,17 @@ export async function POST(req: NextRequest) {
   const prompt = buildGraderPrompt({
     family: body.testFamily,
     skill: body.skill,
+    taskType,
     promptText: body.promptText,
     responseText: body.responseText,
     durationSeconds: body.durationSeconds ?? null,
     wordCount,
     language,
+    speechSignals: body.skill === 'speaking' ? {
+      wpm: body.wpm ?? null,
+      pauseCount: body.pauseCount ?? null,
+      clarity: body.clarity ?? null,
+    } : null,
   })
 
   const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })

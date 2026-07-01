@@ -50,6 +50,10 @@ const TOPIC_SLUGS: Record<string, string> = {
   'sat-reading-writing': 'fc784bfb-e3bd-48ea-a794-7da1fe219ba4',
   'ksat-math': '46779dba-3523-454b-8496-a5a0cd8f6389',
   'ksat-english': '7ad110c9-9bbd-451b-bbef-a29a57ae33e8',
+  'toefl-reading': '33af1b61-bd97-4bd3-9cbf-843f9bb8a2a9',
+  'toefl-listening': '1ac8d73b-1e16-4a18-9e79-7fe2f012a202',
+  'toefl-writing': 'b6712354-2de8-4b7d-8b74-64cc7a520bba',
+  'toefl-speaking': '0c729add-5617-4fbe-8a35-2af9f521757d',
 }
 
 async function main() {
