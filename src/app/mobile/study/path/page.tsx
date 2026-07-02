@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   Sparkles, CheckCircle2, Lock, Play, Trophy, Target,
-  BookOpen, Zap, ChevronRight,
+  BookOpen, Zap, ChevronRight, Repeat, X,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
@@ -64,6 +64,7 @@ function StudyPathInner() {
   const [template, setTemplate] = useState<StudyPathTemplate | null>(null)
   const [masteryBySlug, setMasteryBySlug] = useState<Record<string, number>>({})
   const [completedSlugs, setCompletedSlugs] = useState<Set<string>>(new Set())
+  const [pickerOpen, setPickerOpen] = useState(false)
 
   useEffect(() => {
     if (!user?.userId) return
@@ -153,6 +154,17 @@ function StudyPathInner() {
       iconColorClass="text-primary bg-primary/10"
       eyebrow={String(t('study.path.eyebrow'))}
       title={template ? (ko ? template.titleKo : template.titleEn) : String(t('study.path.title'))}
+      rightSlot={template ? (
+        <button
+          type="button"
+          onClick={() => setPickerOpen(true)}
+          className="inline-flex items-center gap-1 h-8 px-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11.5px] font-semibold transition"
+          aria-label={ko ? '목표 시험 변경' : 'Change target test'}
+        >
+          <Repeat className="w-3 h-3" />
+          {ko ? '변경' : 'Change'}
+        </button>
+      ) : undefined}
     />
   )
 
@@ -171,19 +183,24 @@ function StudyPathInner() {
     )
   }
 
+  const handlePicked = (picked: string) => {
+    // Optimistically resolve locally so the path renders instantly on
+    // selection; a full refetch would round-trip through the prefs
+    // endpoint for no user-visible benefit.
+    setPrefs({ target_test: picked })
+    setTemplate(getPathTemplate(picked))
+    // Reset per-target progress state — mastery/completed slugs for
+    // the old target don't apply. Fresh values load on the next
+    // useEffect trigger when we track per-target data; for now leave
+    // them as-is so a repick within-session keeps recent numbers.
+    setPickerOpen(false)
+  }
+
   if (!template) {
     return (
       <div className="flex flex-col h-full bg-gray-50">
         {header}
-        <TargetTestPicker
-          onPicked={(picked) => {
-            // Optimistically resolve locally so the path renders
-            // instantly on selection; a full refetch would round-trip
-            // through the prefs endpoint for no user-visible benefit.
-            setPrefs({ target_test: picked })
-            setTemplate(getPathTemplate(picked))
-          }}
-        />
+        <TargetTestPicker onPicked={handlePicked} currentTarget={null} />
       </div>
     )
   }
@@ -194,6 +211,27 @@ function StudyPathInner() {
       <StudyPageTransition>
         <PathList nodes={annotated} testSlug={template.testSlug} />
       </StudyPageTransition>
+      {pickerOpen && (
+        <div className="fixed inset-0 z-[60] flex flex-col bg-gray-50 overflow-y-auto">
+          {/* Floating close button — z-70 so it clears the mobile
+              layout's top bar (which sits above the standard z-40
+              overlay layer). Positioned inside safe-area padding so
+              it stays reachable on notched devices. */}
+          <button
+            type="button"
+            onClick={() => setPickerOpen(false)}
+            aria-label={ko ? '닫기' : 'Close'}
+            className="fixed top-4 right-4 z-[70] inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 shadow-[0_4px_12px_-4px_rgba(0,0,0,0.20)] text-gray-700 text-[12px] font-semibold hover:ring-primary/40 transition"
+          >
+            <X className="w-3.5 h-3.5" />
+            {ko ? '취소' : 'Cancel'}
+          </button>
+          <TargetTestPicker
+            onPicked={handlePicked}
+            currentTarget={prefs?.target_test ?? null}
+          />
+        </div>
+      )}
     </div>
   )
 }
@@ -408,7 +446,12 @@ function ActiveBubble({
  * (SAT + TOEFL). When more test templates ship (KSAT, TOEIC, …) add
  * them here.
  */
-function TargetTestPicker({ onPicked }: { onPicked: (target: string) => void }) {
+function TargetTestPicker({
+  onPicked, currentTarget,
+}: {
+  onPicked: (target: string) => void
+  currentTarget: string | null
+}) {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
   const [saving, setSaving] = useState<string | null>(null)
@@ -490,21 +533,30 @@ function TargetTestPicker({ onPicked }: { onPicked: (target: string) => void }) 
         <div className="space-y-2.5">
           {OPTIONS.map(opt => {
             const isSaving = saving === opt.key
+            const isCurrent = currentTarget === opt.key
             return (
               <button
                 key={opt.key}
                 type="button"
                 onClick={() => pick(opt)}
-                disabled={!!saving}
-                className={`w-full relative overflow-hidden rounded-2xl bg-gradient-to-br ${opt.accent} text-white p-4 flex items-center gap-3 shadow-[0_8px_20px_-8px_rgba(0,0,0,0.32)] active:scale-[0.99] disabled:opacity-70 transition-all`}
+                disabled={!!saving || isCurrent}
+                className={`w-full relative overflow-hidden rounded-2xl bg-gradient-to-br ${opt.accent} text-white p-4 flex items-center gap-3 shadow-[0_8px_20px_-8px_rgba(0,0,0,0.32)] active:scale-[0.99] disabled:opacity-70 transition-all ${
+                  isCurrent ? 'ring-2 ring-white/70' : ''
+                }`}
               >
                 <div aria-hidden className="pointer-events-none absolute -top-4 -right-4 w-24 h-24 rounded-full bg-white/15 blur-2xl" />
                 <div className="relative flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/20 ring-1 ring-white/25 text-[20px] font-black tracking-tight">
                   {opt.initial}
                 </div>
                 <div className="relative flex-1 min-w-0 text-left">
-                  <div className="text-[16px] font-bold leading-tight">
+                  <div className="text-[16px] font-bold leading-tight flex items-center gap-2">
                     {ko ? opt.labelKo : opt.labelEn}
+                    {isCurrent && (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[9.5px] font-bold tracking-[0.1em] uppercase">
+                        <CheckCircle2 className="w-2.5 h-2.5" />
+                        {ko ? '현재' : 'Current'}
+                      </span>
+                    )}
                   </div>
                   <div className="text-[11.5px] text-white/85 mt-0.5 leading-snug">
                     {ko ? opt.subKo : opt.subEn}
