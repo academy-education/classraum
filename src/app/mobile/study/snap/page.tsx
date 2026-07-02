@@ -122,7 +122,7 @@ function SnapInner() {
           eyebrow={String(t('study.snap.eyebrow'))}
           title={String(t('study.snap.title'))}
         />
-        <div className="max-w-3xl mx-auto px-5 py-5">
+        <div className="max-w-3xl mx-auto px-5 pt-6 pb-14">
         <StudyPageTransition>
         {stage === 'pick' && (
           <PickerStage
