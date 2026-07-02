@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, ChevronRight, ChevronLeft, History as HistoryIcon, Search, X } from 'lucide-react'
 import { StudySubPageHeader } from '../_shared/primitives'
+import { groupByDate } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -141,33 +142,42 @@ function HistoryInner() {
           </div>
         ) : (
           <>
-            <div className="space-y-2">
-              {paged.map(row => {
-                const Icon = MODE_ICONS[row.mode] ?? MessageCircle
-                const title = row.title
-                  ?? (row.topic ? (ko ? row.topic.name_ko : row.topic.name_en) : null)
-                  ?? row.topic_freeform
-                  ?? t('study.session.untitled')
-                const time = formatTimeAgo(row.last_active_at, ko)
-                return (
-                  <Link
-                    key={row.id}
-                    href={`/mobile/study/session/${row.id}`}
-                    className="group flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-gray-900 truncate">{title}</div>
-                      <div className="text-[12.5px] text-gray-500 mt-0.5">
-                        {t(`study.modes.${row.mode}.title`)} <span className="text-gray-300 mx-1">·</span> {time}
-                      </div>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
-                  </Link>
-                )
-              })}
+            <div className="space-y-6">
+              {groupByDate(paged, r => r.last_active_at).map(group => (
+                <section key={group.bucket.key === 'earlier' ? `e:${group.bucket.monthKey}` : group.bucket.key}>
+                  <h3 className="text-[11px] font-bold uppercase tracking-[0.10em] text-gray-500 mb-2 px-1">
+                    {group.bucket.label(ko)}
+                  </h3>
+                  <div className="space-y-2">
+                    {group.rows.map(row => {
+                      const Icon = MODE_ICONS[row.mode] ?? MessageCircle
+                      const title = row.title
+                        ?? (row.topic ? (ko ? row.topic.name_ko : row.topic.name_en) : null)
+                        ?? row.topic_freeform
+                        ?? t('study.session.untitled')
+                      const time = formatTimeAgo(row.last_active_at, ko)
+                      return (
+                        <Link
+                          key={row.id}
+                          href={`/mobile/study/session/${row.id}`}
+                          className="group flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
+                        >
+                          <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-semibold text-gray-900 truncate">{title}</div>
+                            <div className="text-[12.5px] text-gray-500 mt-0.5">
+                              {t(`study.modes.${row.mode}.title`)} <span className="text-gray-300 mx-1">·</span> {time}
+                            </div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
+                        </Link>
+                      )
+                    })}
+                  </div>
+                </section>
+              ))}
             </div>
 
             {totalPages > 1 && (

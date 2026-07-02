@@ -39,6 +39,8 @@ interface NotebookEntry {
   topic_freeform: string | null
   note: string
   note_updated_at: string | null
+  reviewed_at: string | null
+  difficulty: string | null
 }
 
 export async function GET(req: NextRequest) {
@@ -75,13 +77,17 @@ export async function GET(req: NextRequest) {
   const { data: notes } = attemptIds.length > 0
     ? await supabaseAdmin
         .from('study_attempt_notes')
-        .select('attempt_id, note, updated_at')
+        .select('attempt_id, note, updated_at, reviewed_at')
         .eq('student_id', user.id)
         .in('attempt_id', attemptIds)
     : { data: [] }
-  const noteMap = new Map<string, { note: string; updated_at: string }>()
+  const noteMap = new Map<string, { note: string; updated_at: string; reviewed_at: string | null }>()
   for (const n of (notes ?? [])) {
-    noteMap.set(n.attempt_id as string, { note: n.note as string, updated_at: n.updated_at as string })
+    noteMap.set(n.attempt_id as string, {
+      note: n.note as string,
+      updated_at: n.updated_at as string,
+      reviewed_at: (n.reviewed_at as string | null) ?? null,
+    })
   }
 
   const seen = new Set<string>()
@@ -115,6 +121,8 @@ export async function GET(req: NextRequest) {
       topic_freeform: session?.topic_freeform ?? null,
       note: noteRow?.note ?? '',
       note_updated_at: noteRow?.updated_at ?? null,
+      reviewed_at: noteRow?.reviewed_at ?? null,
+      difficulty: (q.difficulty as string | undefined) ?? null,
     })
   }
 

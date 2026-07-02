@@ -7,6 +7,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudySubPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
+import { groupByDate } from '../_shared/dateGroups'
 import { SkeletonCard, SkeletonIconTile, SkeletonBlock } from '../skeletons'
 
 /**
@@ -42,6 +43,8 @@ interface Entry {
   topic_freeform: string | null
   note: string
   note_updated_at: string | null
+  reviewed_at: string | null
+  difficulty: string | null
 }
 
 interface TopicSummary {
@@ -69,6 +72,9 @@ export default function WrongNotebookPage() {
   )
 }
 
+type SortKey = 'newest' | 'oldest' | 'hardest'
+type DifficultyKey = 'all' | 'easy' | 'medium' | 'hard'
+
 function WrongNotebookInner() {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
@@ -76,6 +82,9 @@ function WrongNotebookInner() {
   const [topics, setTopics] = useState<TopicSummary[]>([])
   const [bookmarkedSnaps, setBookmarkedSnaps] = useState<BookmarkedSnap[]>([])
   const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null)
+  const [difficultyFilter, setDifficultyFilter] = useState<DifficultyKey>('all')
+  const [sortKey, setSortKey] = useState<SortKey>('newest')
+  const [showReviewed, setShowReviewed] = useState(false)
   const [loading, setLoading] = useState(true)
 
   const load = useCallback(async () => {
@@ -103,6 +112,58 @@ function WrongNotebookInner() {
   useEffect(() => { void load() }, [load])
 
   const annotated = entries.filter(e => e.note.length > 0).length
+
+  // Optimistic reviewed toggle — persist to server in the background.
+  const toggleReviewed = useCallback(async (attemptId: string, next: boolean) => {
+    setEntries(prev => prev.map(e =>
+      e.attempt_id === attemptId
+        ? { ...e, reviewed_at: next ? new Date().toISOString() : null }
+        : e
+    ))
+    try {
+      const headers = await authHeaders()
+      await fetch('/api/study/wrong-notebook/reviewed', {
+        method: 'POST', headers,
+        body: JSON.stringify({ attemptId, reviewed: next }),
+      })
+    } catch { /* server will resync on next load; UI stays optimistic */ }
+  }, [])
+
+  const activeEntries = entries.filter(e => e.reviewed_at === null)
+  const reviewedEntries = entries.filter(e => e.reviewed_at !== null)
+
+  const filterByDifficulty = (list: Entry[]) => difficultyFilter === 'all'
+    ? list
+    : list.filter(e => (e.difficulty ?? '').toLowerCase() === difficultyFilter)
+
+  const difficultyRank = (d: string | null): number => {
+    switch ((d ?? '').toLowerCase()) {
+      case 'hard': return 3
+      case 'medium': return 2
+      case 'easy': return 1
+      default: return 0
+    }
+  }
+  const sortEntries = (list: Entry[]): Entry[] => {
+    const copy = [...list]
+    if (sortKey === 'oldest') {
+      copy.sort((a, b) => new Date(a.attempted_at).getTime() - new Date(b.attempted_at).getTime())
+    } else if (sortKey === 'hardest') {
+      copy.sort((a, b) => difficultyRank(b.difficulty) - difficultyRank(a.difficulty)
+        || new Date(b.attempted_at).getTime() - new Date(a.attempted_at).getTime())
+    }
+    return copy
+  }
+
+  const visibleActive = sortEntries(filterByDifficulty(activeEntries))
+  const visibleReviewed = sortEntries(filterByDifficulty(reviewedEntries))
+
+  const difficultyCounts: Record<DifficultyKey, number> = {
+    all: activeEntries.length,
+    easy: activeEntries.filter(e => (e.difficulty ?? '').toLowerCase() === 'easy').length,
+    medium: activeEntries.filter(e => (e.difficulty ?? '').toLowerCase() === 'medium').length,
+    hard: activeEntries.filter(e => (e.difficulty ?? '').toLowerCase() === 'hard').length,
+  }
 
   return (
     <div className="relative">
@@ -189,13 +250,101 @@ function WrongNotebookInner() {
                 <BookmarkedSnapsSection snaps={bookmarkedSnaps} ko={ko} />
               )}
               {entries.length > 0 && (
-                <ol className="space-y-3">
-                  {entries.map((e, i) => (
-                    <div key={e.attempt_id} style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }} className="animate-card-in opacity-0">
-                      <NotebookEntryCard entry={e} index={i + 1} ko={ko} />
+                <>
+                  {/* Difficulty filter chips + sort dropdown row. */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex gap-1.5">
+                      {([
+                        { key: 'all', label: ko ? '전체' : 'All' },
+                        { key: 'easy', label: ko ? '쉬움' : 'Easy' },
+                        { key: 'medium', label: ko ? '보통' : 'Medium' },
+                        { key: 'hard', label: ko ? '어려움' : 'Hard' },
+                      ] as Array<{ key: DifficultyKey; label: string }>).map(item => {
+                        const active = difficultyFilter === item.key
+                        return (
+                          <button
+                            key={item.key}
+                            type="button"
+                            onClick={() => setDifficultyFilter(item.key)}
+                            className={`whitespace-nowrap inline-flex items-center gap-1 px-2.5 h-7 rounded-full text-[11.5px] font-medium transition ${
+                              active
+                                ? 'bg-gray-900 text-white'
+                                : 'bg-white ring-1 ring-gray-200 text-gray-700 hover:bg-gray-50'
+                            }`}
+                          >
+                            {item.label}
+                            <span className="opacity-60 tabular-nums">{difficultyCounts[item.key]}</span>
+                          </button>
+                        )
+                      })}
                     </div>
-                  ))}
-                </ol>
+                    <select
+                      value={sortKey}
+                      onChange={e => setSortKey(e.target.value as SortKey)}
+                      className="h-7 rounded-full bg-white ring-1 ring-gray-200 text-[11.5px] font-medium text-gray-700 pl-2.5 pr-2 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    >
+                      <option value="newest">{ko ? '최신순' : 'Newest'}</option>
+                      <option value="oldest">{ko ? '오래된순' : 'Oldest'}</option>
+                      <option value="hardest">{ko ? '어려운순' : 'Hardest'}</option>
+                    </select>
+                  </div>
+
+                  {visibleActive.length > 0 && (
+                    <div className="space-y-6">
+                      {(() => {
+                        let indexOffset = 0
+                        return groupByDate(visibleActive, e => e.attempted_at).map(group => {
+                          const startIdx = indexOffset
+                          indexOffset += group.rows.length
+                          return (
+                            <section key={group.bucket.key === 'earlier' ? `e:${group.bucket.monthKey}` : group.bucket.key}>
+                              <h3 className="text-[11px] font-bold uppercase tracking-[0.10em] text-gray-500 mb-2 px-1">
+                                {group.bucket.label(ko)}
+                              </h3>
+                              <ol className="space-y-3">
+                                {group.rows.map((e, i) => (
+                                  <div key={e.attempt_id} style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }} className="animate-card-in opacity-0">
+                                    <NotebookEntryCard entry={e} index={startIdx + i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
+                                  </div>
+                                ))}
+                              </ol>
+                            </section>
+                          )
+                        })
+                      })()}
+                    </div>
+                  )}
+
+                  {visibleActive.length === 0 && (
+                    <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-10 text-center">
+                      <p className="text-[13.5px] text-gray-500">
+                        {ko ? '해당 조건의 문제가 없어요' : 'No entries match this filter'}
+                      </p>
+                    </div>
+                  )}
+
+                  {visibleReviewed.length > 0 && (
+                    <details className="rounded-2xl bg-white ring-1 ring-gray-200 open:ring-primary/40 transition-all">
+                      <summary
+                        onClick={() => setShowReviewed(v => !v)}
+                        className="cursor-pointer flex items-center justify-between px-4 py-3 select-none"
+                      >
+                        <span className="inline-flex items-center gap-2 text-[13px] font-semibold text-gray-800">
+                          <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                          {ko ? `복습 완료 ${visibleReviewed.length}개` : `Reviewed · ${visibleReviewed.length}`}
+                        </span>
+                        <span className="text-[11px] text-gray-500">
+                          {showReviewed ? (ko ? '숨기기' : 'Hide') : (ko ? '보기' : 'Show')}
+                        </span>
+                      </summary>
+                      <ol className="px-4 pb-4 space-y-3">
+                        {visibleReviewed.map((e, i) => (
+                          <NotebookEntryCard key={e.attempt_id} entry={e} index={i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
+                        ))}
+                      </ol>
+                    </details>
+                  )}
+                </>
               )}
             </>
           )}
@@ -279,11 +428,17 @@ function FilterChip({ children, active, onClick }: { children: React.ReactNode; 
   )
 }
 
-function NotebookEntryCard({ entry, index, ko }: { entry: Entry; index: number; ko: boolean }) {
+function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
+  entry: Entry
+  index: number
+  ko: boolean
+  onToggleReviewed?: (attemptId: string, next: boolean) => void
+}) {
   const { t } = useTranslation()
   const [note, setNote] = useState(entry.note)
   const [saving, setSaving] = useState<'idle' | 'saving' | 'saved'>('idle')
   const [expanded, setExpanded] = useState(false)
+  const reviewed = entry.reviewed_at !== null
   const topicName = entry.topic
     ? (ko ? entry.topic.name_ko : entry.topic.name_en)
     : entry.topic_freeform
@@ -317,12 +472,45 @@ function NotebookEntryCard({ entry, index, ko }: { entry: Entry; index: number; 
     <li className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
       <div className="p-4">
         <div className="flex items-start gap-3">
-          <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-lg bg-rose-50 ring-1 ring-rose-100 text-rose-700 text-[11px] font-bold tabular-nums">
+          <span className={`flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-lg text-[11px] font-bold tabular-nums ring-1 ${
+            reviewed
+              ? 'bg-emerald-50 ring-emerald-100 text-emerald-700'
+              : 'bg-rose-50 ring-rose-100 text-rose-700'
+          }`}>
             {index}
           </span>
           <div className="min-w-0 flex-1">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500 mb-1">
-              {topicName}
+            <div className="flex items-center gap-2 mb-1">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500 flex-1 truncate">
+                {topicName}
+              </div>
+              {entry.difficulty && (
+                <span className={`text-[9.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${
+                  entry.difficulty.toLowerCase() === 'hard'
+                    ? 'bg-rose-50 text-rose-700 ring-1 ring-rose-200'
+                    : entry.difficulty.toLowerCase() === 'medium'
+                      ? 'bg-amber-50 text-amber-700 ring-1 ring-amber-200'
+                      : 'bg-gray-50 text-gray-600 ring-1 ring-gray-200'
+                }`}>
+                  {entry.difficulty}
+                </span>
+              )}
+              {onToggleReviewed && (
+                <button
+                  type="button"
+                  onClick={() => onToggleReviewed(entry.attempt_id, !reviewed)}
+                  aria-pressed={reviewed}
+                  aria-label={reviewed ? (ko ? '복습 완료 취소' : 'Mark as not reviewed') : (ko ? '복습 완료로 표시' : 'Mark as reviewed')}
+                  className={`inline-flex items-center gap-1 h-6 px-2 rounded-full text-[10px] font-semibold transition-all ${
+                    reviewed
+                      ? 'bg-emerald-50 ring-1 ring-emerald-200 text-emerald-700 hover:bg-emerald-100'
+                      : 'bg-white ring-1 ring-gray-200 text-gray-500 hover:ring-emerald-300 hover:text-emerald-700'
+                  }`}
+                >
+                  <CheckCircle2 className="w-3 h-3" />
+                  {reviewed ? (ko ? '완료' : 'Reviewed') : (ko ? '완료로 표시' : 'Mark reviewed')}
+                </button>
+              )}
             </div>
             <p className={`text-[13.5px] text-gray-900 leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}>
               {entry.question.prompt}

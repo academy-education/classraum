@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ClipboardList, CheckCircle2, Loader2, AlertTriangle, Play, ChevronRight, ChevronLeft, Trophy, Search, X } from 'lucide-react'
 import { StudySubPageHeader } from '../_shared/primitives'
+import { groupByDate } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -163,8 +164,17 @@ function TestsInner() {
           </div>
         ) : (
           <>
-            <div className="space-y-2">
-              {paged.map(row => <TestRow key={row.id} row={row} ko={ko} />)}
+            <div className="space-y-6">
+              {groupByDate(paged, r => r.last_active_at).map(group => (
+                <section key={group.bucket.key === 'earlier' ? `e:${group.bucket.monthKey}` : group.bucket.key}>
+                  <h3 className="text-[11px] font-bold uppercase tracking-[0.10em] text-gray-500 mb-2 px-1">
+                    {group.bucket.label(ko)}
+                  </h3>
+                  <div className="space-y-2">
+                    {group.rows.map(row => <TestRow key={row.id} row={row} ko={ko} />)}
+                  </div>
+                </section>
+              ))}
             </div>
 
             {totalPages > 1 && (
