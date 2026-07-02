@@ -28,6 +28,7 @@ import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
 import { LandingDataProvider, useLandingData } from './LandingDataProvider'
 import { StudyPathPromo } from './StudyPathPromo'
+import { SocialPresenceCard } from './SocialPresenceCard'
 import { SkeletonTestGrid } from './skeletons'
 
 /**
@@ -420,6 +421,7 @@ function StudyLandingInner() {
         <SectionGroup label={String(t('study.landing.todayBand'))}>
           <StudyPathPromo />
           <ResumeBanner />
+          <SocialPresenceCard />
           <GeneratingTestsChip />
           <StreakAtRiskBanner />
           <DailyReviewCTA />
