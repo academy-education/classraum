@@ -7,6 +7,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition } from '../_shared/primitives'
+import { SkeletonCard, SkeletonBlock, SkeletonRowList } from '../skeletons'
 
 /**
  * /mobile/study/league — weekly cohort leaderboard.
@@ -99,21 +100,33 @@ function LeagueInner() {
           eyebrow={String(t('study.league.eyebrow'))}
           title={String(t('study.league.title'))}
         />
-        <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+        <div className="max-w-3xl mx-auto px-5 pt-6 pb-14">
         <StudyPageTransition>
         {loading ? (
-          <div className="space-y-4">
-            <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-5 h-40 animate-pulse" />
-            <div className="space-y-1.5">
-              {[0,1,2,3].map(i => (
-                <div key={i} className="h-12 rounded-xl bg-white ring-1 ring-gray-200/60 animate-pulse" style={{ animationDelay: `${i * 80}ms` }} />
-              ))}
-            </div>
+          <div className="space-y-6">
+            <SkeletonCard className="p-5 min-h-[160px]">
+              <div className="flex items-start justify-between">
+                <div className="space-y-2">
+                  <SkeletonBlock className="h-2.5 w-20 rounded-full" />
+                  <SkeletonBlock className="h-6 w-24 rounded-full" />
+                </div>
+                <SkeletonBlock className="w-8 h-8 rounded-lg" />
+              </div>
+              <div className="mt-6 grid grid-cols-3 gap-3">
+                {[0,1,2].map(i => (
+                  <div key={i} className="space-y-2">
+                    <SkeletonBlock className="h-2 w-3/5 rounded-full" />
+                    <SkeletonBlock className="h-6 w-4/5 rounded-full" />
+                  </div>
+                ))}
+              </div>
+            </SkeletonCard>
+            <SkeletonRowList count={5} />
           </div>
         ) : !data?.joined ? (
           <NotJoinedState ko={ko} />
         ) : (
-          <>
+          <div className="space-y-6">
             {data.promotionNotice && (
               <PromotionBanner notice={data.promotionNotice} ko={ko} />
             )}
@@ -121,7 +134,7 @@ function LeagueInner() {
             <Leaderboard rows={data.leaderboard} ko={ko} />
             <TierLadder activeKey={data.tier ?? 'bronze'} ko={ko} />
             <EarnXpPanel ko={ko} />
-          </>
+          </div>
         )}
         </StudyPageTransition>
         </div>
@@ -165,7 +178,7 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds }: {
 function Leaderboard({ rows, ko }: { rows: LeaderboardRow[]; ko: boolean }) {
   return (
     <section>
-      <h3 className="text-[13px] font-semibold text-gray-900 mb-2 px-1">{ko ? '리더보드' : 'Leaderboard'}</h3>
+      <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? '리더보드' : 'Leaderboard'}</h3>
       <ol className="space-y-1.5">
         {rows.map((r, i) => (
           <li key={r.student_id}
@@ -195,20 +208,22 @@ function TierLadder({ activeKey, ko }: { activeKey: string; ko: boolean }) {
   const activeIdx = TIERS.findIndex(t => t.key === activeKey)
   return (
     <section>
-      <h3 className="text-[13px] font-semibold text-gray-900 mb-2 px-1">{ko ? '리그 단계' : 'Tier ladder'}</h3>
-      <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
-        {TIERS.map((tier, i) => (
-          <div key={tier.key}
-            className={`flex-shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition ${
-              i === activeIdx
-                ? `bg-gradient-to-br ${tier.color} text-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.2)]`
-                : i < activeIdx
-                  ? 'bg-gray-100 text-gray-500'
-                  : 'bg-white ring-1 ring-gray-200 text-gray-400'
-            }`}>
-            {ko ? tier.label_ko : tier.label_en}
-          </div>
-        ))}
+      <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? '리그 단계' : 'Tier ladder'}</h3>
+      <div className="-mx-5 px-5">
+        <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-hide">
+          {TIERS.map((tier, i) => (
+            <div key={tier.key}
+              className={`flex-shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition ${
+                i === activeIdx
+                  ? `bg-gradient-to-br ${tier.color} text-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.2)]`
+                  : i < activeIdx
+                    ? 'bg-gray-100 text-gray-500'
+                    : 'bg-white ring-1 ring-gray-200 text-gray-400'
+              }`}>
+              {ko ? tier.label_ko : tier.label_en}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -267,7 +282,7 @@ function EarnXpPanel({ ko }: { ko: boolean }) {
   ]
   return (
     <section>
-      <h3 className="text-[13px] font-semibold text-gray-900 mb-2 px-1">{ko ? 'XP 얻는 방법' : 'How to earn XP'}</h3>
+      <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? 'XP 얻는 방법' : 'How to earn XP'}</h3>
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 overflow-hidden divide-y divide-gray-100">
         {rows.map((r, i) => {
           const Icon = r.Icon

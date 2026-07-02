@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
+import { SkeletonCard, SkeletonBlock } from './skeletons'
 
 interface Progress {
   questionsToday: number
@@ -16,14 +17,14 @@ interface Progress {
 }
 
 /**
- * Study landing hero — a considered header block, not a marketing
- * banner. Left-aligned typography, one accent colour (streak flame),
- * no gradient chrome. The information does the work: greeting +
- * streak + concrete progress against a specific goal.
+ * Study landing hero — greeting row + a single "Today" summary card
+ * that anchors the page: today's minutes vs goal shown as the big
+ * number + progress bar, with a row of three mini stats (streak,
+ * sessions today, questions today) at the bottom.
  *
- * Web-first: on wide viewports the streak sits inline with the
- * greeting; on mobile it stacks. No decorative flourishes — the
- * page below carries plenty of colour via the shelves.
+ * Layout modeled on the Nowon-fit reference: hero has one dominant
+ * metric, one progress bar, and a row of three secondary stats —
+ * no competing gradient chrome.
  */
 export function StudyHero() {
   const { language } = useTranslation()
@@ -31,6 +32,7 @@ export function StudyHero() {
   const ko = language === 'korean'
   const [streak, setStreak] = useState<number | null>(null)
   const [progress, setProgress] = useState<Progress | null>(null)
+  const [loadingProgress, setLoadingProgress] = useState(true)
 
   useEffect(() => {
     if (!user?.userId) return
@@ -76,6 +78,7 @@ export function StudyHero() {
         const json = await res.json() as Progress
         if (!cancelled) setProgress(json)
       } catch { /* silent */ }
+      finally { if (!cancelled) setLoadingProgress(false) }
     })()
     return () => { cancelled = true }
   }, [])
@@ -112,25 +115,44 @@ export function StudyHero() {
           >
             <Flame className="w-4 h-4 self-center text-orange-500" fill="currentColor" />
             <span className="text-[14px] font-semibold tabular-nums text-gray-900">{streak}</span>
-            <span className="text-[12px] text-gray-500">{ko ? '일 연속' : streak === 1 ? 'day streak' : 'day streak'}</span>
+            <span className="text-[12px] text-gray-500">{ko ? '일 연속' : 'day streak'}</span>
           </Link>
         )}
       </div>
 
-      {progress && progress.goalMinutes > 0 && (
-        <div className="rounded-2xl bg-white ring-1 ring-gray-200 px-4 py-3">
-          <div className="flex items-baseline justify-between">
-            <span className="text-[12px] font-medium text-gray-500">
-              {ko ? '오늘의 목표' : "Today's goal"}
-            </span>
-            <span className="text-[12px] tabular-nums">
-              <span className={`font-semibold ${goalMet ? 'text-emerald-600' : 'text-gray-900'}`}>
-                {progress.minutesToday}
-              </span>
-              <span className="text-gray-500"> / {progress.goalMinutes} {ko ? '분' : 'min'}</span>
+      {loadingProgress ? (
+        <SkeletonCard className="p-4 min-h-[124px]">
+          <div className="space-y-2">
+            <SkeletonBlock className="h-2.5 w-24 rounded-full" />
+            <SkeletonBlock className="h-8 w-32 rounded-full" />
+            <SkeletonBlock className="h-1.5 w-full rounded-full" />
+          </div>
+        </SkeletonCard>
+      ) : progress && progress.goalMinutes > 0 ? (
+        <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4">
+          <div className="flex items-end justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-500">
+                {ko ? '오늘의 학습' : "Today's study"}
+              </p>
+              <div className="mt-1 flex items-baseline gap-1.5">
+                <span className={`text-[28px] font-bold leading-none tabular-nums ${goalMet ? 'text-emerald-600' : 'text-gray-900'}`}>
+                  {progress.minutesToday}
+                </span>
+                <span className="text-[13px] text-gray-500 tabular-nums">
+                  / {progress.goalMinutes} {ko ? '분' : 'min'}
+                </span>
+              </div>
+            </div>
+            <span className={`text-[11px] font-bold tabular-nums px-2 py-1 rounded-full ${
+              goalMet
+                ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200'
+                : 'bg-primary/10 text-primary'
+            }`}>
+              {Math.round(fraction * 100)}%
             </span>
           </div>
-          <div className="mt-2 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+          <div className="mt-3 h-1.5 rounded-full bg-gray-100 overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-700 ease-out ${
                 goalMet ? 'bg-emerald-500' : 'bg-primary'
@@ -138,8 +160,37 @@ export function StudyHero() {
               style={{ width: `${Math.max(4, Math.round(fraction * 100))}%` }}
             />
           </div>
+          <div className="mt-3 pt-3 border-t border-gray-100 grid grid-cols-3 gap-2">
+            <MiniStat
+              label={ko ? '연속' : 'Streak'}
+              value={streak ?? 0}
+              unit={ko ? '일' : 'd'}
+            />
+            <MiniStat
+              label={ko ? '세션' : 'Sessions'}
+              value={progress.sessionsToday}
+            />
+            <MiniStat
+              label={ko ? '문제' : 'Questions'}
+              value={progress.questionsToday}
+            />
+          </div>
         </div>
-      )}
+      ) : null}
     </section>
+  )
+}
+
+function MiniStat({ label, value, unit }: { label: string; value: number; unit?: string }) {
+  return (
+    <div className="text-center">
+      <div className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500">
+        {label}
+      </div>
+      <div className="mt-0.5 text-[16px] font-bold tabular-nums text-gray-900 leading-tight">
+        {value}
+        {unit && <span className="ml-0.5 text-[11px] font-medium text-gray-400">{unit}</span>}
+      </div>
+    </div>
   )
 }

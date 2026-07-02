@@ -7,6 +7,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
+import { SkeletonCard, SkeletonIconTile, SkeletonBlock } from '../skeletons'
 
 /**
  * /mobile/study/wrong-notebook — full 오답노트 page.
@@ -155,7 +156,18 @@ function WrongNotebookInner() {
           {loading ? (
             <div className="space-y-3">
               {[0,1,2].map(i => (
-                <div key={i} className="h-40 rounded-2xl bg-white ring-1 ring-gray-200/60 animate-pulse" style={{ animationDelay: `${i * 80}ms` }} />
+                <div key={i} style={{ animationDelay: `${i * 60}ms` }} className="animate-card-in opacity-0">
+                  <SkeletonCard className="p-4 min-h-[140px]">
+                    <div className="flex items-start gap-3">
+                      <SkeletonIconTile size="w-9 h-9" />
+                      <div className="flex-1 space-y-2">
+                        <SkeletonBlock className="h-2.5 w-1/4 rounded-full" />
+                        <SkeletonBlock className="h-3 w-4/5 rounded-full" />
+                        <SkeletonBlock className="h-3 w-3/5 rounded-full" />
+                      </div>
+                    </div>
+                  </SkeletonCard>
+                </div>
               ))}
             </div>
           ) : entries.length === 0 && bookmarkedSnaps.length === 0 ? (
