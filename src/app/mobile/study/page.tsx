@@ -396,24 +396,13 @@ function StudyLandingInner() {
         className="pointer-events-none absolute inset-x-0 top-0 h-72 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.025] to-transparent"
       />
       <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-8">
-        {/* Header — compact utility row + bold hero card. The hero
-            (streak + progress + greeting) replaces the previous
-            text-only title, giving the landing a Duolingo-style
-            central "you're doing this" moment. */}
-        <header className="space-y-4">
-          <div className="flex items-center justify-end gap-1.5">
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              aria-label={ko ? '검색' : 'Search'}
-              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
-            >
-              <SearchIcon className="w-4 h-4" />
-            </button>
-            <HeaderOverflowMenu />
-          </div>
-          <StudyHero />
-        </header>
+        {/* Dark hero band renders its own top-right action row
+            (search + overflow) on a light-on-dark treatment so both
+            elements share one visual layer. */}
+        <StudyHero
+          onOpenSearch={() => setSearchOpen(true)}
+          overflowMenu={<HeaderOverflowMenu variant="dark" />}
+        />
 
         {/* Each band below is wrapped in its own <SectionGroup> so
             its label sits tight to its cards (internal space-y-2)
@@ -678,7 +667,7 @@ function SectionGroup({ label, children }: { label: string; children: React.Reac
 /** Collapses settings + subscription behind a single "more" button.
  *  Keeps the streak / progress chips and search prominent while
  *  hiding less-frequent navigation behind a tap-to-expand menu. */
-function HeaderOverflowMenu() {
+function HeaderOverflowMenu({ variant = 'light' }: { variant?: 'light' | 'dark' } = {}) {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
   const [open, setOpen] = useState(false)
@@ -688,6 +677,9 @@ function HeaderOverflowMenu() {
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [open])
+  const btnClass = variant === 'dark'
+    ? 'inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm ring-1 ring-white/20 text-white hover:bg-white/25 transition'
+    : 'inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all'
   return (
     <div className="relative">
       <button
@@ -695,7 +687,7 @@ function HeaderOverflowMenu() {
         onClick={() => setOpen(o => !o)}
         aria-label={ko ? '더 보기' : 'More'}
         aria-expanded={open}
-        className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/80 backdrop-blur ring-1 ring-gray-200/70 text-gray-600 hover:ring-primary/40 hover:text-primary hover:bg-white transition-all"
+        className={btnClass}
       >
         <MoreHorizontal className="w-4 h-4" />
       </button>
