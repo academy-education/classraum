@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../../../SubscriptionGate'
 import { SkeletonCard, SkeletonBlock } from '../../../skeletons'
+import { PathMascot, type MascotState } from '../../../_shared/PathMascot'
 
 interface SessionRow {
   id: string
@@ -166,10 +167,20 @@ function SummaryInner({ id }: { id: string }) {
         {t('study.topic.backToStudy')}
       </Link>
 
-      {/* Hero — score in a big gradient card */}
+      {/* Hero — score in a big gradient card, with the mascot in the
+          top-right giving the numbers a face. Emotional state follows
+          accuracy so a hard session doesn't get a cheerful celebrate. */}
       <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${hero.gradient} p-6 text-white shadow-[0_2px_8px_rgba(0,0,0,0.10),0_24px_48px_-16px_rgba(0,0,0,0.32)]`}>
         <div aria-hidden className="pointer-events-none absolute -top-12 -right-10 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+        {attempted && (
+          <div className="absolute top-4 right-4 opacity-95 pointer-events-none">
+            <PathMascot
+              size={72}
+              state={(accuracy >= 80 ? 'celebrate' : accuracy >= 60 ? 'idle' : 'sad') as MascotState}
+            />
+          </div>
+        )}
         <div className="relative">
           <div className={`inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] ${hero.accent} mb-2`}>
             <Sparkles className="w-3.5 h-3.5" />

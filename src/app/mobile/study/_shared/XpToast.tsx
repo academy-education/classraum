@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Sparkles, Trophy, Flame } from 'lucide-react'
+import { Sparkles, Trophy } from 'lucide-react'
 import { hapticImpact, hapticNotification, hapticTap } from '@/lib/nativeHaptics'
+import { PathMascot } from './PathMascot'
 
 /**
  * XpToast — global floating chip that pops up whenever the user
@@ -150,8 +151,8 @@ function BigBanner({ evt }: { evt: XpEvent }) {
       <div className="animate-big-banner rounded-2xl bg-gradient-to-br from-amber-400 via-orange-500 to-rose-500 text-white shadow-[0_18px_38px_-10px_rgba(0,0,0,0.35)] ring-1 ring-white/20 overflow-hidden">
         <div className="relative px-4 py-3 flex items-center gap-3">
           <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/25 blur-2xl" />
-          <div className="relative inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white/25 ring-1 ring-white/30">
-            <Flame className="w-5 h-5" />
+          <div className="relative flex-shrink-0">
+            <PathMascot state="celebrate" size={48} />
           </div>
           <div className="relative flex-1 min-w-0">
             <div className="text-[11px] font-bold tracking-[0.14em] uppercase opacity-90">

@@ -10,6 +10,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { supabase } from '@/lib/supabase'
+import { PathMascot } from '../../_shared/PathMascot'
 
 interface Question {
   passage?: string | null
@@ -2851,8 +2852,10 @@ function GenerationProgress({
     <div className="flex-1 flex flex-col items-center justify-center px-6 py-10">
       <div className="w-full max-w-sm">
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-3">
-            <Loader2 className="w-6 h-6 text-primary animate-spin" />
+          {/* Mascot in thinking state — turns the 90s test-gen wait
+              from a sterile spinner into a small character moment. */}
+          <div className="inline-flex items-center justify-center mb-3">
+            <PathMascot state="thinking" size={72} />
           </div>
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
             {String(t('study.test.progress.title'))}
