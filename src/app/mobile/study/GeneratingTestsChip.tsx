@@ -83,60 +83,106 @@ export function GeneratingTestsChip() {
 
   if (rows.length === 0) return null
 
+  // Split by state. Pending + failed need per-row visibility because
+  // each carries live progress; multiple "ready" rows all share the
+  // same action ("open test"), so they collapse into a single row.
+  const pending = rows.filter(r => r.generation_status === 'pending')
+  const failed = rows.filter(r => r.generation_status === 'failed')
+  const ready = rows.filter(r => r.generation_status === 'ready')
+
+  const topicNameOf = (row: Row) => row.topic
+    ? (ko ? row.topic.name_ko : row.topic.name_en)
+    : (row.topic_freeform ?? '')
+
   return (
     <section className="space-y-2">
-      {rows.map(row => {
-        const isPending = row.generation_status === 'pending'
-        const isReady = row.generation_status === 'ready'
-        const isFailed = row.generation_status === 'failed'
-        const topicName = row.topic
-          ? (ko ? row.topic.name_ko : row.topic.name_en)
-          : (row.topic_freeform ?? '')
-        const titleText = isReady
-          ? (ko ? '시험 준비 완료' : 'Test ready')
-          : isFailed
-            ? (ko ? '생성 실패' : 'Generation failed')
-            : (ko ? '시험 생성 중…' : 'Building your test…')
-        const subtitleText = topicName
-        return (
-          <Link
-            key={row.id}
-            href={`/mobile/study/session/${row.id}`}
-            className={`group flex items-center gap-3 px-4 py-3 rounded-2xl ring-1 transition-all active:scale-[0.99] ${
-              isReady
-                ? 'bg-emerald-50 ring-emerald-200 hover:bg-emerald-100/60'
-                : isFailed
-                  ? 'bg-rose-50 ring-rose-200 hover:bg-rose-100/60'
-                  : 'bg-primary/5 ring-primary/20 hover:bg-primary/10'
-            }`}
-          >
-            <div className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${
-              isReady ? 'bg-emerald-500 text-white' : isFailed ? 'bg-rose-500 text-white' : 'bg-primary/15 text-primary'
-            }`}>
-              {isReady
-                ? <CheckCircle2 className="w-5 h-5" />
-                : isFailed
-                  ? <AlertTriangle className="w-5 h-5" />
-                  : <Loader2 className="w-5 h-5 animate-spin" />}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className={`text-[13.5px] font-semibold leading-tight ${
-                isReady ? 'text-emerald-900' : isFailed ? 'text-rose-900' : 'text-gray-900'
-              }`}>
-                {titleText}
-              </div>
-              {subtitleText && (
-                <div className="text-[12px] text-gray-600 truncate mt-0.5">
-                  {subtitleText}
-                </div>
-              )}
-            </div>
-            <ArrowRight className={`w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5 ${
-              isReady ? 'text-emerald-700' : isFailed ? 'text-rose-700' : 'text-primary'
-            }`} />
-          </Link>
-        )
-      })}
+      {pending.map(row => (
+        <StatusRow
+          key={row.id}
+          href={`/mobile/study/session/${row.id}`}
+          state="pending"
+          title={ko ? '시험 생성 중…' : 'Building your test…'}
+          subtitle={topicNameOf(row)}
+        />
+      ))}
+      {failed.map(row => (
+        <StatusRow
+          key={row.id}
+          href={`/mobile/study/session/${row.id}`}
+          state="failed"
+          title={ko ? '생성 실패' : 'Generation failed'}
+          subtitle={topicNameOf(row)}
+        />
+      ))}
+      {ready.length === 1 && (
+        <StatusRow
+          href={`/mobile/study/session/${ready[0].id}`}
+          state="ready"
+          title={ko ? '시험 준비 완료' : 'Test ready'}
+          subtitle={topicNameOf(ready[0])}
+        />
+      )}
+      {ready.length > 1 && (
+        <StatusRow
+          // Tap opens the most-recent ready test. Subtitle lists all
+          // topics so the student can see what's queued at a glance.
+          href={`/mobile/study/session/${ready[0].id}`}
+          state="ready"
+          title={ko
+            ? `시험 ${ready.length}개 준비 완료`
+            : `${ready.length} tests ready`}
+          subtitle={ready.map(topicNameOf).filter(Boolean).join(' · ')}
+        />
+      )}
     </section>
+  )
+}
+
+function StatusRow({
+  href, state, title, subtitle,
+}: {
+  href: string
+  state: 'pending' | 'ready' | 'failed'
+  title: string
+  subtitle: string
+}) {
+  const ready = state === 'ready'
+  const failed = state === 'failed'
+  return (
+    <Link
+      href={href}
+      className={`group flex items-center gap-3 px-4 py-3 rounded-2xl ring-1 transition-all active:scale-[0.99] ${
+        ready
+          ? 'bg-emerald-50 ring-emerald-200 hover:bg-emerald-100/60'
+          : failed
+            ? 'bg-rose-50 ring-rose-200 hover:bg-rose-100/60'
+            : 'bg-primary/5 ring-primary/20 hover:bg-primary/10'
+      }`}
+    >
+      <div className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${
+        ready ? 'bg-emerald-500 text-white' : failed ? 'bg-rose-500 text-white' : 'bg-primary/15 text-primary'
+      }`}>
+        {ready
+          ? <CheckCircle2 className="w-5 h-5" />
+          : failed
+            ? <AlertTriangle className="w-5 h-5" />
+            : <Loader2 className="w-5 h-5 animate-spin" />}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className={`text-[13.5px] font-semibold leading-tight ${
+          ready ? 'text-emerald-900' : failed ? 'text-rose-900' : 'text-gray-900'
+        }`}>
+          {title}
+        </div>
+        {subtitle && (
+          <div className="text-[12px] text-gray-600 truncate mt-0.5">
+            {subtitle}
+          </div>
+        )}
+      </div>
+      <ArrowRight className={`w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5 ${
+        ready ? 'text-emerald-700' : failed ? 'text-rose-700' : 'text-primary'
+      }`} />
+    </Link>
   )
 }
