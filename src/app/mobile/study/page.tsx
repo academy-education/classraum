@@ -27,7 +27,7 @@ import { SearchSheet } from './_shared/SearchSheet'
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
 import { LandingDataProvider, useLandingData } from './LandingDataProvider'
-import { SkeletonTestGrid, SkeletonSquareGrid } from './skeletons'
+import { SkeletonTestGrid } from './skeletons'
 
 /**
  * /mobile/study — study landing.
@@ -313,7 +313,6 @@ function StudyLandingInner() {
   const { t, language } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const ko = language === 'korean'
-  const [subjects, setSubjects] = useState<BrowseItem[]>([])
   const [tests, setTests] = useState<BrowseItem[]>([])
   const [loading, setLoading] = useState(true)
   const [freeFormQuery, setFreeFormQuery] = useState('')
@@ -335,19 +334,6 @@ function StudyLandingInner() {
       if (cancelled) return
       const rows = (data ?? []) as Topic[]
 
-      // Subjects: each level-0 with category='subject' is a card; its
-      // children (level-1 same category) populate the expanded list.
-      const subjectTops = rows.filter(r => r.level === 0 && r.category === 'subject')
-      const subjectBranches = rows.filter(r => r.level === 1 && r.category === 'subject')
-
-      const subjItems: BrowseItem[] = subjectTops.map(s => ({
-        id: s.id,
-        slug: s.slug,
-        name_en: s.name_en,
-        name_ko: s.name_ko,
-        branches: subjectBranches.filter(b => b.parent_id === s.id),
-      }))
-
       // Test prep: skip the level-0 'test-prep' wrapper. Each level-1
       // test (TOEFL, SAT, ...) becomes a top-level card whose branches
       // load lazily on the dedicated topic page. We surface them as
@@ -362,7 +348,6 @@ function StudyLandingInner() {
         branches: [],
       }))
 
-      setSubjects(subjItems)
       setTests(testItems)
       setLoading(false)
     })()
@@ -453,60 +438,11 @@ function StudyLandingInner() {
         <ResumableShelf />
         <MistakeBankShelf />
 
-        {/* Subjects — curated K-12 catalog. The h2 already labels
-            this band on its own; no extra SectionGroup needed (would
-            double-label). */}
-        <section>
-          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
-            {t('study.landing.browseTitle')}
-          </h2>
-          {loading ? (
-            <SkeletonSquareGrid />
-          ) : (
-            <div className="relative">
-              {/* Locked-feature overlay: subjects (K-12 catalog) is
-                  not yet available to students. Grid is rendered
-                  underneath at reduced opacity so users can see what
-                  will be unlocked. Pointer-events-none on the grid
-                  + a top-level absolute lock chip explain the state.
-                  When subjects ship, drop this wrapper entirely. */}
-              <div
-                aria-hidden
-                className="grid grid-cols-2 gap-3 pointer-events-none opacity-35 blur-[2px] grayscale select-none"
-              >
-                {subjects.map((subj, i) => (
-                  <SubjectSquareCard
-                    key={subj.id}
-                    item={subj}
-                    name={name}
-                    delay={i * 50}
-                  />
-                ))}
-              </div>
-              {/* Diagonal stripe overlay reinforces "this is not
-                  available" without going so heavy it hides the
-                  preview underneath. */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-2xl opacity-[0.10]"
-                style={{
-                  backgroundImage:
-                    'repeating-linear-gradient(45deg, transparent 0 8px, #6b7280 8px 9px)',
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex flex-col items-center gap-2 px-5 py-3.5 rounded-2xl bg-white/95 backdrop-blur-md ring-1 ring-gray-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.15)]">
-                  <div className="w-9 h-9 rounded-full bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
-                    <Lock className="w-4 h-4 text-gray-500" />
-                  </div>
-                  <span className="text-[13px] font-semibold text-gray-700">
-                    {String(t('study.landing.browseLocked'))}
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
+        {/* Subjects (K-12 catalog) removed from landing while locked
+            — a full section of blurred non-clickable cards was pure
+            vertical noise for a feature students can't use. When
+            subjects ship, restore a real grid; until then the tests
+            grid below IS the browse surface. */}
 
         {/* Test Prep — flat list of standardized tests. */}
         <section>
@@ -771,52 +707,3 @@ function SnapToSolveCTA() {
   )
 }
 
-/** Square subject card — matches the test prep grid's visual rhythm.
- *  Tapping navigates to /topic/[slug] where the new dropdown picker
- *  on the topic page handles the subtopic selection (Algebra, Geometry,
- *  etc.). Removes the old inline-expand pattern in favor of a
- *  consistent grid-of-squares layout across both subjects and tests. */
-function SubjectSquareCard({
-  item,
-  name,
-  delay,
-}: {
-  item: BrowseItem
-  name: (s: { name_en: string; name_ko: string }) => string
-  delay: number
-}) {
-  const { t } = useTranslation()
-  const theme = themeForSubject(item.slug, item.name_en)
-  const Icon = theme.Icon
-  const branchCount = item.branches.length
-  return (
-    <Link
-      href={`/mobile/study/topic/${item.slug}`}
-      style={{ animationDelay: `${delay}ms` }}
-      className={`group relative overflow-hidden rounded-2xl ${theme.cardBg} p-4 min-h-[140px] ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:${theme.ring.replace('ring-', 'ring-')} ${theme.hoverShadow} hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out animate-card-in opacity-0 flex flex-col justify-between`}
-    >
-      {/* Top edge highlight */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
-      {/* Decorative glow blob using the subject's accent */}
-      <div aria-hidden className={`pointer-events-none absolute -top-6 -right-6 w-20 h-20 rounded-full ${theme.iconBg} opacity-[0.10] blur-2xl group-hover:opacity-[0.18] transition-opacity duration-300`} />
-
-      <div className={`relative flex-shrink-0 w-12 h-12 rounded-2xl ${theme.iconBg} flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_4px_8px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04] group-hover:scale-105 transition-transform duration-300`}>
-        <Icon className={`w-5 h-5 ${theme.iconText}`} />
-      </div>
-
-      <div className="relative">
-        <div className={`text-[15px] font-semibold text-gray-900 ${theme.hoverText} transition-colors leading-tight`}>
-          {name(item)}
-        </div>
-        {branchCount > 0 && (
-          <div className="text-[12px] text-gray-500 mt-1">
-            {String(t(
-              branchCount === 1 ? 'study.landing.topicCountSingular' : 'study.landing.topicCountPlural',
-              { count: String(branchCount) }
-            ))}
-          </div>
-        )}
-      </div>
-    </Link>
-  )
-}
