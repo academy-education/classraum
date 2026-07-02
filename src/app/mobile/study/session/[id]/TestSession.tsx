@@ -2024,6 +2024,216 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
     )
   }
 
+  // ─ Inscribed triangle by INTERIOR ANGLES ────────────────────────
+  // Semantic-constraint variant of inscribedTriangle. Model provides
+  // the INTERIOR angles from the item text (A + B + C = 180°); the
+  // renderer applies the inscribed-angle theorem to place vertices so
+  // the figure is guaranteed to actually SHOW those angles at those
+  // vertices — impossible to render an item where "angle A = 60°" is
+  // claimed in the prompt but the drawing shows something else.
+  //
+  // Model emits {type:"inscribedTriangleByAngles",
+  //   spec:{ interiorAngles:[A,B,C] },
+  //   labels?:{ vertices?:["A","B","C"], sides?:["a","b","c"] } }
+  //
+  // Geometry: by the inscribed-angle theorem, the arc opposite each
+  // vertex has measure 2·(interior angle at that vertex). Walking the
+  // circle counterclockwise, if we start vertex A at angle θ_A:
+  //   θ_B = θ_A + 2·C (arc AB opposite C)
+  //   θ_C = θ_B + 2·A (arc BC opposite A)
+  // Sum check: 2A + 2B + 2C = 360°, always closes.
+  if (t === 'inscribedtrianglebyangles' || (graphic.shape ?? '').toLowerCase() === 'inscribedtrianglebyangles') {
+    const spec = (graphic.spec ?? {}) as { interiorAngles?: [number, number, number] }
+    const labels = (graphic.labels ?? {}) as { vertices?: string[]; sides?: string[] }
+    const angles = spec.interiorAngles ?? [60, 60, 60]
+    const [A, B, C] = angles
+    const angleSum = A + B + C
+    // Sanity check: refuse to render obviously-broken input (won't
+    // close a triangle). Show caption-only fallback instead of a
+    // wrong figure.
+    if (Math.abs(angleSum - 180) > 1 || A <= 0 || B <= 0 || C <= 0) {
+      return graphic.caption ? (
+        <figure className="my-3 flex flex-col items-center">
+          <figcaption className="text-[11px] text-gray-500 text-center italic">{graphic.caption}</figcaption>
+        </figure>
+      ) : null
+    }
+    const DRAW_R = 72
+    const cx = 100, cy = 100
+    const toRad = (deg: number) => (deg - 90) * Math.PI / 180
+    // Rotate so the triangle sits with vertex A near the top. Start
+    // vertex A at position that puts the triangle centroid roughly
+    // at the visual centre — angle -90° would put A at the top.
+    const thA = -90 - C  // shift so triangle looks balanced
+    const thB = thA + 2 * C
+    const thC = thB + 2 * A
+    const positions = [thA, thB, thC]
+    const pts = positions.map(a => [cx + DRAW_R * Math.cos(toRad(a)), cy + DRAW_R * Math.sin(toRad(a))] as [number, number])
+    const path = `M ${pts[0][0]},${pts[0][1]} L ${pts[1][0]},${pts[1][1]} L ${pts[2][0]},${pts[2][1]} Z`
+    const vL = labels.vertices ?? ['A', 'B', 'C']
+    const sL = labels.sides ?? []
+    return (
+      <figure className="my-3 flex flex-col items-center">
+        <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
+          <svg viewBox="0 0 200 200" className="w-full h-auto max-h-[300px] overflow-visible">
+            <circle cx={cx} cy={cy} r={DRAW_R} stroke="black" strokeWidth={1.5} fill="none" />
+            <path d={path} stroke="black" strokeWidth={1.5} fill="none" />
+            {pts.map((p, i) => {
+              const dx = p[0] - cx, dy = p[1] - cy
+              const len = Math.hypot(dx, dy) || 1
+              const lx = p[0] + (dx / len) * 14
+              const ly = p[1] + (dy / len) * 14
+              return vL[i] ? (
+                <text key={i} x={lx} y={ly} fontSize={13} fontWeight={600} fill="black" textAnchor="middle" dominantBaseline="middle">{vL[i]}</text>
+              ) : null
+            })}
+            {[0, 1, 2].map(i => {
+              if (!sL[i]) return null
+              const a = pts[i], b = pts[(i + 1) % 3]
+              const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2
+              // Side labels: push toward center (inward) so they sit
+              // clearly inside the triangle rather than overlapping
+              // the circle stroke outside.
+              const dx = cx - mx, dy = cy - my
+              const len = Math.hypot(dx, dy) || 1
+              const lx = mx + (dx / len) * 10
+              const ly = my + (dy / len) * 10
+              return <text key={`s${i}`} x={lx} y={ly} fontSize={12} fill="black" textAnchor="middle" dominantBaseline="middle">{sL[i]}</text>
+            })}
+          </svg>
+        </div>
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
+      </figure>
+    )
+  }
+
+  // ─ Inscribed triangle by SIDE LENGTHS ────────────────────────────
+  // Model provides three side lengths (a, b, c opposite vertices A,
+  // B, C); renderer applies the law of cosines to derive interior
+  // angles, then uses the inscribed-angle theorem for placement.
+  // Same guarantee as inscribedTriangleByAngles: the figure is
+  // derived from the numerical claims in the prompt, so it cannot
+  // disagree with them.
+  //
+  // Model emits {type:"inscribedTriangleBySides",
+  //   spec:{ sides:[a,b,c] },
+  //   labels?:{ vertices?:["A","B","C"], sides?:["a","b","c"] } }
+  if (t === 'inscribedtrianglebysides' || (graphic.shape ?? '').toLowerCase() === 'inscribedtrianglebysides') {
+    const spec = (graphic.spec ?? {}) as { sides?: [number, number, number] }
+    const labels = (graphic.labels ?? {}) as { vertices?: string[]; sides?: string[] }
+    const sides = spec.sides ?? [5, 5, 5]
+    const [a, b, c] = sides
+    // Triangle-inequality sanity — refuse impossible side triples.
+    if (a + b <= c || b + c <= a || a + c <= b || a <= 0 || b <= 0 || c <= 0) {
+      return graphic.caption ? (
+        <figure className="my-3 flex flex-col items-center">
+          <figcaption className="text-[11px] text-gray-500 text-center italic">{graphic.caption}</figcaption>
+        </figure>
+      ) : null
+    }
+    // Law of cosines → interior angles (degrees).
+    const A = Math.acos((b * b + c * c - a * a) / (2 * b * c)) * 180 / Math.PI
+    const B = Math.acos((a * a + c * c - b * b) / (2 * a * c)) * 180 / Math.PI
+    const C = 180 - A - B
+    const DRAW_R = 72
+    const cx = 100, cy = 100
+    const toRad = (deg: number) => (deg - 90) * Math.PI / 180
+    const thA = -90 - C
+    const thB = thA + 2 * C
+    const thC = thB + 2 * A
+    const pts = [thA, thB, thC].map(t => [cx + DRAW_R * Math.cos(toRad(t)), cy + DRAW_R * Math.sin(toRad(t))] as [number, number])
+    const path = `M ${pts[0][0]},${pts[0][1]} L ${pts[1][0]},${pts[1][1]} L ${pts[2][0]},${pts[2][1]} Z`
+    const vL = labels.vertices ?? ['A', 'B', 'C']
+    const sL = labels.sides ?? [String(a), String(b), String(c)]
+    return (
+      <figure className="my-3 flex flex-col items-center">
+        <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
+          <svg viewBox="0 0 200 200" className="w-full h-auto max-h-[300px] overflow-visible">
+            <circle cx={cx} cy={cy} r={DRAW_R} stroke="black" strokeWidth={1.5} fill="none" />
+            <path d={path} stroke="black" strokeWidth={1.5} fill="none" />
+            {pts.map((p, i) => {
+              const dx = p[0] - cx, dy = p[1] - cy
+              const len = Math.hypot(dx, dy) || 1
+              const lx = p[0] + (dx / len) * 14
+              const ly = p[1] + (dy / len) * 14
+              return vL[i] ? (
+                <text key={i} x={lx} y={ly} fontSize={13} fontWeight={600} fill="black" textAnchor="middle" dominantBaseline="middle">{vL[i]}</text>
+              ) : null
+            })}
+            {[0, 1, 2].map(i => {
+              // Side i sits opposite vertex i (SAT convention: side a
+              // opposite vertex A). The side runs between vertices
+              // (i+1)%3 and (i+2)%3.
+              if (!sL[i]) return null
+              const p1 = pts[(i + 1) % 3], p2 = pts[(i + 2) % 3]
+              const mx = (p1[0] + p2[0]) / 2, my = (p1[1] + p2[1]) / 2
+              const dx = cx - mx, dy = cy - my
+              const len = Math.hypot(dx, dy) || 1
+              const lx = mx + (dx / len) * 10
+              const ly = my + (dy / len) * 10
+              return <text key={`s${i}`} x={lx} y={ly} fontSize={12} fill="black" textAnchor="middle" dominantBaseline="middle">{sL[i]}</text>
+            })}
+          </svg>
+        </div>
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
+      </figure>
+    )
+  }
+
+  // ─ Chord at perpendicular distance from center ─────────────────
+  // Model emits {type:"chordAtDistance",
+  //   spec:{ distanceFromCenter:d }, // r fixed by renderer; d ≤ r
+  //   labels?:{ chord?:string, center?:string, endpoints?:["A","B"] } }
+  //
+  // Renderer places a horizontal chord d units below the center. If
+  // d ≥ DRAW_R the spec is impossible; fall back to caption-only.
+  if (t === 'chordatdistance' || (graphic.shape ?? '').toLowerCase() === 'chordatdistance') {
+    const spec = (graphic.spec ?? {}) as { r?: number; distanceFromCenter?: number }
+    const labels = (graphic.labels ?? {}) as { chord?: string; center?: string; endpoints?: string[] }
+    const DRAW_R = 72
+    // Interpret d as a fraction of the math radius if the model
+    // provided one — otherwise assume d/r ratio matches the drawing.
+    const mathR = spec.r ?? 1
+    const mathD = spec.distanceFromCenter ?? 0
+    if (mathD < 0 || mathD >= mathR || mathR <= 0) {
+      return graphic.caption ? (
+        <figure className="my-3 flex flex-col items-center">
+          <figcaption className="text-[11px] text-gray-500 text-center italic">{graphic.caption}</figcaption>
+        </figure>
+      ) : null
+    }
+    const cx = 100, cy = 100
+    const d = (mathD / mathR) * DRAW_R
+    // Chord horizontal, offset d below the center. Half-length by
+    // Pythagoras: sqrt(R² - d²) in drawing units.
+    const half = Math.sqrt(DRAW_R * DRAW_R - d * d)
+    const chordY = cy + d
+    const x1 = cx - half, x2 = cx + half
+    const [labA, labB] = labels.endpoints ?? ['A', 'B']
+    return (
+      <figure className="my-3 flex flex-col items-center">
+        <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
+          <svg viewBox="0 0 200 200" className="w-full h-auto max-h-[300px] overflow-visible">
+            <circle cx={cx} cy={cy} r={DRAW_R} stroke="black" strokeWidth={1.5} fill="none" />
+            <line x1={x1} y1={chordY} x2={x2} y2={chordY} stroke="black" strokeWidth={1.5} />
+            {/* Perpendicular from center to chord midpoint */}
+            <line x1={cx} y1={cy} x2={cx} y2={chordY} stroke="black" strokeWidth={1} strokeDasharray="3,3" />
+            {/* Center dot */}
+            <circle cx={cx} cy={cy} r={2.5} fill="black" />
+            {labels.center && <text x={cx + 6} y={cy - 4} fontSize={12} fill="black">{labels.center}</text>}
+            {/* Endpoint dots + labels */}
+            <circle cx={x1} cy={chordY} r={2.5} fill="black" />
+            <circle cx={x2} cy={chordY} r={2.5} fill="black" />
+            {labA && <text x={x1 - 10} y={chordY + 4} fontSize={13} fontWeight={600} fill="black" textAnchor="end">{labA}</text>}
+            {labB && <text x={x2 + 10} y={chordY + 4} fontSize={13} fontWeight={600} fill="black" textAnchor="start">{labB}</text>}
+            {labels.chord && <text x={cx} y={chordY + 14} fontSize={12} fill="black" textAnchor="middle">{labels.chord}</text>}
+          </svg>
+        </div>
+        {graphic.caption && <figcaption className="text-[11px] text-black text-center italic mt-2">{graphic.caption}</figcaption>}
+      </figure>
+    )
+  }
+
   // ─ Right triangle (with optional inscribed circle) ─────────────
   // Model emits {type:"rightTriangle", legA, legB, labels?:{a,b,c,vertices?:[A,B,C]}, incircle?:true}.
   // We compute incircle radius via the correct formula r = (a+b-c)/2.

@@ -2201,14 +2201,19 @@ function extraGuidanceFor(
       '- "coordinatePlane": points: [{x, y, label?}], lines: [{m, b}] — for parabolas / curves use "rawSvg" instead.',
       '',
       'STRUCTURED GEOMETRY (PREFER THESE — the renderer computes exact coordinates from your parameters, so vertices are GUARANTEED on the circle, inscribed-circle radii are GUARANTEED correct, etc.):',
-      // CRITICAL: schema examples MUST use placeholder tokens, not literal
-      // numeric values. Prior versions had `r: 70` here and the model
-      // treated it as a template — one production 44-item SAT Math test
-      // opened 12 items with "triangle ABC inscribed in a circle of
-      // radius 70 units", most with the same vertex angles [0, 120, 240].
-      // Use <R>, <THETA_A>, <THETA_B> style placeholders so the model
-      // sees "shape of the input" not "the answer".
-      '- "inscribedTriangle": for any triangle inscribed in a circle. spec: { r: <RADIUS>, vertexAngles: [<THETA_A>, <THETA_B>, <THETA_C>] }. Angles in degrees clockwise from top (0° = top, 90° = right, 180° = bottom, 270° = left). PICK A FRESH RADIUS PER ITEM — do NOT reuse the same number across items in a test. Vary the angles too. For a right triangle inscribed with hypotenuse as diameter use angles [270, 90, X] where X is the third vertex anywhere except 90° or 270°. labels: { vertices?: ["A","B","C"], sides?: ["<LEN_A>","<LEN_B>","<LEN_C>"] } — side labels are in order opposite to vertex 0, 1, 2.',
+      // SEMANTIC-CONSTRAINT TYPES — the renderer derives the drawing
+      // from the SAME numerical claims the item text makes. Impossible
+      // for the figure to disagree with the prompt because both come
+      // from the same input. Prefer these over the raw-parameter
+      // variants below whenever the item names specific angles or
+      // side lengths.
+      '- "inscribedTriangleByAngles" (PREFER when item names INTERIOR angles): spec: { interiorAngles: [<ANGLE_A>, <ANGLE_B>, <ANGLE_C>] }. Angles in degrees, MUST sum to 180. Renderer places vertices via the inscribed-angle theorem so each drawn interior angle exactly matches your spec. Use this for items like "triangle ABC inscribed in a circle, angle A = 60°, angle B = 90°, angle C = 30° — find x" — pass interiorAngles: [60, 90, 30]. labels: { vertices?: ["A","B","C"], sides?: ["a","b","c"] }.',
+      '- "inscribedTriangleBySides" (PREFER when item names SIDE lengths): spec: { sides: [<A>, <B>, <C>] }. Sides opposite vertices A, B, C. Renderer applies law of cosines + inscribed-angle theorem so proportions are correct. Refuses to render triangle-inequality-violating triples. labels: same as above.',
+      '- "chordAtDistance" (PREFER when item names perpendicular distance from center): spec: { r: <RADIUS>, distanceFromCenter: <D> }. Both in the item\'s units; renderer scales. Draws a horizontal chord with a perpendicular from center. labels: { chord?: "<len>", center?: "O", endpoints?: ["A","B"] }.',
+      // Raw-parameter variants — use ONLY for figures that don\'t have
+      // specific angle/side constraints in the item text (e.g. showing
+      // a schematic without numerical claims).
+      '- "inscribedTriangle" (RAW — use only when NO specific angles/sides are stated in the prompt): spec: { r: <RADIUS>, vertexAngles: [<THETA_A>, <THETA_B>, <THETA_C>] }. Angles in degrees clockwise from top. Prefer inscribedTriangleByAngles / inscribedTriangleBySides for any item that names specific measurements — the raw variant makes it easy for the drawing to disagree with the text. labels: same shape.',
       '- "rightTriangle": legs of a right triangle with optional inscribed circle. spec: { legA: <LEG_A>, legB: <LEG_B>, incircle?: true }. labels: { a?: "<LEG_A>", b?: "<LEG_B>", c?: "<HYP>", vertices?: ["A","B","C"] } — A top-left, B right-angle, C bottom-right. Vary the leg lengths across items.',
       '- "circleWithChord": circle with one or more chords, points, or a tangent. spec: { r: <RADIUS>, chords?: [{ angle1: <THETA_1>, angle2: <THETA_2>, label?: "AB" }], showCenter?: true, points?: [{ angle: <THETA>, label?: "A" }, { angle: <THETA>, label?: "B" }] }. Use angle 0 = top, 90 = right, etc. To draw a diameter use angles separated by 180°. PICK A FRESH RADIUS PER ITEM.',
       '- "rawSvg" (FALLBACK ONLY): svg: "<svg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'>...</svg>" — use ONLY when none of the structured types above can express the figure (e.g., 3D solids, complex compound figures, custom shaded regions). Keep under 900 chars. Style: stroke="black" stroke-width="1.5" fill="none". Label with <text font-size="11" fill="black">. Always viewBox="0 0 200 200" with shapes inside x:[20,180] y:[20,180]. Models routinely mis-compute coordinates here — use a structured type whenever possible.',
