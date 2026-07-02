@@ -18,8 +18,7 @@ import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
 import { MistakeBankShelf } from './MistakeBankShelf'
 import { GeneratingTestsChip } from './GeneratingTestsChip'
-import { StudyStreakChip } from './StudyStreakChip'
-import { TodayProgressRing } from './TodayProgressRing'
+import { StudyHero } from './StudyHero'
 import { ResumeBanner } from './ResumeBanner'
 import { DailyReviewCTA } from './DailyReviewCTA'
 import { StreakAtRiskBanner } from './_shared/StreakAtRiskBanner'
@@ -397,13 +396,12 @@ function StudyLandingInner() {
         className="pointer-events-none absolute inset-x-0 top-0 h-72 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.025] to-transparent"
       />
       <div className="px-5 pt-6 pb-14 space-y-8">
-        {/* Header — chips row first so the greeting gets full width.
-            On narrow viewports the chips would otherwise compress the
-            title into 3 lines of choppy wrap. */}
-        <header className="space-y-3">
+        {/* Header — compact utility row + bold hero card. The hero
+            (streak + progress + greeting) replaces the previous
+            text-only title, giving the landing a Duolingo-style
+            central "you're doing this" moment. */}
+        <header className="space-y-4">
           <div className="flex items-center justify-end gap-1.5">
-            <TodayProgressRing />
-            <StudyStreakChip />
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
@@ -412,22 +410,9 @@ function StudyLandingInner() {
             >
               <SearchIcon className="w-4 h-4" />
             </button>
-            {/* Preferences + subscription collapsed into a single
-                overflow menu. Was 3 separate buttons; the header was
-                visually heavy with 5 chips squeezed together. */}
             <HeaderOverflowMenu />
           </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80 mb-2">
-              {t('study.landing.eyebrow')}
-            </p>
-            <h1 className="text-[26px] leading-[1.15] font-semibold tracking-tight text-gray-900">
-              {t('study.landing.title')}
-            </h1>
-            <p className="text-gray-500 text-[14.5px] leading-relaxed mt-2 max-w-md">
-              {t('study.landing.subtitle')}
-            </p>
-          </div>
+          <StudyHero />
         </header>
 
         {/* Each band below is wrapped in its own <SectionGroup> so
