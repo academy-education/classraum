@@ -303,7 +303,10 @@ export function StudyTodayCard({
   href, onClick, loading, icon: Icon, iconColorClass = 'bg-primary/10 text-primary',
   eyebrow, title, subtitle, rightSlot, onDismiss, dismissLabel,
 }: StudyTodayCardProps) {
-  const commonClassName = "group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 px-4 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all text-left disabled:opacity-70 disabled:cursor-wait"
+  // When onDismiss is present, the outer X sits at right-2, so the
+  // inner content needs extra right padding to keep the arrow /
+  // rightSlot from overlapping it. Without dismiss: standard px-4.
+  const commonClassName = `group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 pl-4 ${onDismiss ? 'pr-11' : 'pr-4'} hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all text-left disabled:opacity-70 disabled:cursor-wait`
   const body = (
     <>
       <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${iconColorClass}`}>
@@ -323,9 +326,13 @@ export function StudyTodayCard({
         )}
       </div>
       {rightSlot ? (
-        <div className={`flex-shrink-0 ${onDismiss ? 'pr-6' : ''}`}>{rightSlot}</div>
+        <div className="flex-shrink-0">{rightSlot}</div>
       ) : (
-        <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+        // Hide the arrow entirely when a dismiss X is already visible
+        // — two right-side affordances make the card feel cluttered.
+        !onDismiss && (
+          <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+        )
       )}
     </>
   )
@@ -337,9 +344,9 @@ export function StudyTodayCard({
       {onDismiss && (
         <button
           type="button"
-          onClick={onDismiss}
+          onClick={(e) => { e.stopPropagation(); e.preventDefault(); onDismiss() }}
           aria-label={dismissLabel ?? 'Dismiss'}
-          className="absolute top-1/2 -translate-y-1/2 right-2 w-7 h-7 rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600 active:scale-[0.94] transition-all inline-flex items-center justify-center"
+          className="absolute top-1/2 -translate-y-1/2 right-2 w-7 h-7 rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600 active:scale-[0.94] transition-all inline-flex items-center justify-center z-10"
         >
           <span className="text-lg leading-none">×</span>
         </button>

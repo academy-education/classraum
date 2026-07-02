@@ -6,7 +6,7 @@ import { ArrowLeft, Loader2, BookOpen, Printer, CheckCircle2, XCircle, Pencil, S
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { StudyPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
+import { StudySubPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
 import { SkeletonCard, SkeletonIconTile, SkeletonBlock } from '../skeletons'
 
 /**
@@ -105,42 +105,44 @@ function WrongNotebookInner() {
   const annotated = entries.filter(e => e.note.length > 0).length
 
   return (
-    <div className="flex flex-col h-full bg-gray-50">
-      <div className="flex-1 overflow-y-auto">
-      <StudyPageHeader
-        backHref="/mobile/study"
-        backLabel={String(t('study.wrongNotebook.back'))}
-        icon={BookOpen}
-        iconColorClass="text-rose-600 bg-rose-50"
-        eyebrow={String(t('study.wrongNotebook.eyebrow'))}
-        title={String(t('study.wrongNotebook.title'))}
-        rightSlot={
-          <Link
-            href={selectedTopicId
-              ? `/mobile/study/wrong-notebook/print?topic_id=${encodeURIComponent(selectedTopicId)}`
-              : '/mobile/study/wrong-notebook/print'}
-            target="_blank"
-            className="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg bg-white ring-1 ring-gray-200 text-[12.5px] font-medium text-gray-800 hover:bg-gray-50 transition"
-          >
-            <Printer className="w-3.5 h-3.5" />{t('study.wrongNotebook.print')}
-          </Link>
-        }
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-rose-500/[0.03] to-transparent"
       />
-
       <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
-          <StudyPageTransition>
+        <StudySubPageHeader
+          backHref="/mobile/study"
+          backLabel={String(t('study.wrongNotebook.back'))}
+          icon={BookOpen}
+          iconColorClass="text-rose-600 bg-rose-50"
+          eyebrow={String(t('study.wrongNotebook.eyebrow'))}
+          title={String(t('study.wrongNotebook.title'))}
+          rightSlot={
+            <Link
+              href={selectedTopicId
+                ? `/mobile/study/wrong-notebook/print?topic_id=${encodeURIComponent(selectedTopicId)}`
+                : '/mobile/study/wrong-notebook/print'}
+              target="_blank"
+              className="inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[12.5px] font-medium text-gray-800 hover:ring-primary/40 hover:text-primary transition"
+            >
+              <Printer className="w-3.5 h-3.5" />{t('study.wrongNotebook.print')}
+            </Link>
+          }
+        />
 
-          {/* Summary chips */}
-          <div className="flex items-center gap-3 text-[12px] text-gray-700">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 ring-1 ring-rose-100">
-              <XCircle className="w-3.5 h-3.5 text-rose-500" />
-              <span className="font-semibold tabular-nums">{entries.length}</span> {t('study.wrongNotebook.totalSuffix')}
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-100">
-              <Pencil className="w-3.5 h-3.5 text-indigo-500" />
-              <span className="font-semibold tabular-nums">{annotated}</span> {t('study.wrongNotebook.annotatedSuffix')}
-            </span>
-          </div>
+        <StudyPageTransition>
+          {/* Summary + filter row — 문항 count sits inside the "전체"
+              chip below (filter row), so we only surface the annotated
+              count here to avoid duplicating info. */}
+          {annotated > 0 && (
+            <div className="flex items-center gap-2 text-[12px] text-gray-700">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-100">
+                <Pencil className="w-3.5 h-3.5 text-indigo-500" />
+                <span className="font-semibold tabular-nums">{annotated}</span> {t('study.wrongNotebook.annotatedSuffix')}
+              </span>
+            </div>
+          )}
 
           {/* Topic filter — horizontal chip row */}
           {topics.length > 0 && (
@@ -193,8 +195,7 @@ function WrongNotebookInner() {
               )}
             </>
           )}
-          </StudyPageTransition>
-        </div>
+        </StudyPageTransition>
       </div>
     </div>
   )
@@ -242,8 +243,8 @@ function TopicFilter({
 }) {
   const totalCount = topics.reduce((s, t) => s + t.count, 0)
   return (
-    <div className="-mx-5 px-5 overflow-x-auto scrollbar-hide">
-      <div className="flex gap-2 pb-1">
+    <div className="-mx-5 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-2 pl-5 pr-5 pb-1">
         <FilterChip active={selectedId === null} onClick={() => onSelect(null)}>
           {allLabel} <span className="opacity-60 tabular-nums">{totalCount}</span>
         </FilterChip>
