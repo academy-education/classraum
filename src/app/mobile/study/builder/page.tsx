@@ -103,7 +103,7 @@ function BuilderInner() {
 
   if (loadingTopics) {
     return (
-      <div className="px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <SkeletonBlock className="h-4 w-32 rounded-full" />
         <div className="space-y-2">
           <SkeletonBlock className="h-8 w-1/2 rounded-lg" />
@@ -118,7 +118,7 @@ function BuilderInner() {
   }
 
   return (
-    <div className="px-5 pt-6 pb-14 space-y-6">
+    <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
       <Link
         href="/mobile/study"
         className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"

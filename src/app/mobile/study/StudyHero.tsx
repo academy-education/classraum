@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Flame, Sparkles } from 'lucide-react'
+import Link from 'next/link'
+import { Flame } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -15,29 +16,22 @@ interface Progress {
 }
 
 /**
- * Study landing hero card — Duolingo-flavoured centrepiece.
+ * Study landing hero — a considered header block, not a marketing
+ * banner. Left-aligned typography, one accent colour (streak flame),
+ * no gradient chrome. The information does the work: greeting +
+ * streak + concrete progress against a specific goal.
  *
- * Combines three previously-scattered signals (greeting, streak, daily
- * progress) into one bold gradient card that sets the tone for the
- * whole page. Copy shifts by state so students feel progression:
- *   - New: "Let's start your streak"
- *   - On-streak, not at goal: "N days in a row — keep going"
- *   - Streak + goal met: "N days — goal crushed"
- *   - Streak + halfway: encouraging middle state
- *
- * Replaces the tiny StudyStreakChip + TodayProgressRing header row.
- * They're still importable for other surfaces (stats page) but the
- * landing now leads with this hero.
+ * Web-first: on wide viewports the streak sits inline with the
+ * greeting; on mobile it stacks. No decorative flourishes — the
+ * page below carries plenty of colour via the shelves.
  */
 export function StudyHero() {
-  const { t, language } = useTranslation()
+  const { language } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const ko = language === 'korean'
   const [streak, setStreak] = useState<number | null>(null)
   const [progress, setProgress] = useState<Progress | null>(null)
 
-  // Load streak: same logic as StudyStreakChip, inlined here so this
-  // component is standalone.
   useEffect(() => {
     if (!user?.userId) return
     let cancelled = false
@@ -60,7 +54,6 @@ export function StudyHero() {
       const dayKey = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
       let count = 0
       const cursor = new Date(today)
-      // Grace period: if no activity today but yesterday exists, count from yesterday.
       if (!days.has(dayKey(cursor)) && days.has(dayKey(new Date(cursor.getTime() - 86400000)))) {
         cursor.setDate(cursor.getDate() - 1)
       }
@@ -73,7 +66,6 @@ export function StudyHero() {
     return () => { cancelled = true }
   }, [user?.userId])
 
-  // Load progress ring data.
   useEffect(() => {
     let cancelled = false
     void (async () => {
@@ -88,109 +80,66 @@ export function StudyHero() {
     return () => { cancelled = true }
   }, [])
 
-  // Time-of-day greeting — different across morning/afternoon/evening.
   const hour = new Date().getHours()
   const greeting = hour < 5
-    ? (ko ? '늦은 밤이에요' : 'Burning the midnight oil')
+    ? (ko ? '늦은 밤이에요' : 'Late night')
     : hour < 12
       ? (ko ? '좋은 아침이에요' : 'Good morning')
       : hour < 18
         ? (ko ? '좋은 오후예요' : 'Good afternoon')
         : (ko ? '좋은 저녁이에요' : 'Good evening')
-
   const firstName = user?.userName?.split(' ')[0] ?? user?.userName ?? ''
-
+  const streakActive = (streak ?? 0) > 0
   const fraction = progress ? Math.min(1, progress.minutesToday / Math.max(1, progress.goalMinutes)) : 0
   const goalMet = fraction >= 1
-  const halfDone = fraction >= 0.5 && !goalMet
-  const streakActive = (streak ?? 0) > 0
-
-  // Copy shifts by state — makes the hero feel alive rather than static.
-  const encouragement = !streakActive
-    ? (ko ? '오늘 첫 학습으로 스트릭을 시작해 보세요' : "Start today — build your first streak")
-    : goalMet
-      ? (ko ? '오늘 목표 달성! 대단해요 🎉' : "Today's goal crushed 🎉")
-      : halfDone
-        ? (ko ? '거의 다 왔어요, 조금만 더!' : "Almost there — keep pushing")
-        : (ko ? '오늘도 힘내세요' : "Let's keep it going")
-
-  const minutesTodayText = progress
-    ? (ko
-      ? `오늘 ${progress.minutesToday}분 / 목표 ${progress.goalMinutes}분`
-      : `${progress.minutesToday} of ${progress.goalMinutes} min today`)
-    : ''
 
   return (
-    <section
-      className="relative overflow-hidden rounded-3xl p-5 text-white"
-      style={{
-        background: 'linear-gradient(135deg, #2885E8 0%, #6E5CF6 100%)',
-        boxShadow: '0 8px 24px -8px rgba(40,133,232,0.4), inset 0 1px 0 rgba(255,255,255,0.2)',
-      }}
-    >
-      {/* Decorative background sparkles — very subtle. */}
-      <div aria-hidden className="absolute inset-0 opacity-[0.08] pointer-events-none">
-        <Sparkles className="absolute top-3 right-4 w-16 h-16" />
-        <Sparkles className="absolute bottom-2 left-2 w-10 h-10 rotate-12" />
-      </div>
-
-      <div className="relative">
-        <p className="text-[13px] font-medium text-white/85">
-          {greeting}{firstName ? `, ${firstName}` : ''}
-        </p>
-        <h2 className="text-[22px] font-bold leading-tight mt-0.5 tracking-tight">
-          {encouragement}
-        </h2>
-
-        <div className="mt-4 flex items-center gap-3">
-          {/* Streak pill — big flame + number. Falls back to a "start
-              your streak" prompt when count is 0. */}
-          <div
-            className={`flex items-center gap-1.5 rounded-full px-3.5 py-1.5 ring-1 ring-inset ${
-              streakActive
-                ? 'bg-white/15 backdrop-blur ring-white/25'
-                : 'bg-white/10 ring-white/20'
-            }`}
-          >
-            <Flame
-              className={`w-4 h-4 ${streakActive ? 'text-orange-300' : 'text-white/60'}`}
-              fill={streakActive ? 'currentColor' : 'none'}
-            />
-            <span className="text-[15px] font-bold tabular-nums">
-              {streak ?? 0}
-            </span>
-            <span className="text-[12px] font-medium opacity-90">
-              {ko ? '일' : streak === 1 ? 'day' : 'days'}
-            </span>
-          </div>
-
-          {progress && (
-            <div className="text-[12px] text-white/90">
-              {minutesTodayText}
-            </div>
-          )}
+    <section className="space-y-3">
+      <div className="flex items-baseline justify-between gap-3 flex-wrap">
+        <div>
+          <p className="text-[12px] font-medium text-gray-500">
+            {greeting}{firstName ? `, ${firstName}` : ''}
+          </p>
+          <h1 className="text-[24px] leading-tight font-semibold tracking-tight text-gray-900 mt-0.5">
+            {ko ? '오늘은 어떤 걸 공부할까요?' : "What'll you work on today?"}
+          </h1>
         </div>
 
-        {/* Progress toward daily goal — full-width bar under the
-            streak pill. Only shows when we have progress data + a
-            goal to work toward. */}
-        {progress && progress.goalMinutes > 0 && (
-          <div className="mt-3">
-            <div className="h-2 rounded-full bg-white/15 overflow-hidden">
-              <div
-                className={`h-full rounded-full transition-all duration-700 ease-out ${
-                  goalMet ? 'bg-gradient-to-r from-emerald-300 to-emerald-400' : 'bg-white'
-                }`}
-                style={{ width: `${Math.max(4, Math.round(fraction * 100))}%` }}
-              />
-            </div>
-          </div>
+        {streakActive && (
+          <Link
+            href="/mobile/study/stats"
+            className="inline-flex items-baseline gap-1.5 rounded-full bg-white ring-1 ring-gray-200 px-3 py-1.5 hover:ring-primary/40 transition-colors"
+          >
+            <Flame className="w-4 h-4 self-center text-orange-500" fill="currentColor" />
+            <span className="text-[14px] font-semibold tabular-nums text-gray-900">{streak}</span>
+            <span className="text-[12px] text-gray-500">{ko ? '일 연속' : streak === 1 ? 'day streak' : 'day streak'}</span>
+          </Link>
         )}
       </div>
-      {/* Suppress unused imports lint — t is used indirectly if we
-          add translated strings later, keep it here for consistency
-          with sibling components. */}
-      <span className="sr-only">{t('study.landing.eyebrow')}</span>
+
+      {progress && progress.goalMinutes > 0 && (
+        <div className="rounded-2xl bg-white ring-1 ring-gray-200 px-4 py-3">
+          <div className="flex items-baseline justify-between">
+            <span className="text-[12px] font-medium text-gray-500">
+              {ko ? '오늘의 목표' : "Today's goal"}
+            </span>
+            <span className="text-[12px] tabular-nums">
+              <span className={`font-semibold ${goalMet ? 'text-emerald-600' : 'text-gray-900'}`}>
+                {progress.minutesToday}
+              </span>
+              <span className="text-gray-500"> / {progress.goalMinutes} {ko ? '분' : 'min'}</span>
+            </span>
+          </div>
+          <div className="mt-2 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+            <div
+              className={`h-full rounded-full transition-all duration-700 ease-out ${
+                goalMet ? 'bg-emerald-500' : 'bg-primary'
+              }`}
+              style={{ width: `${Math.max(4, Math.round(fraction * 100))}%` }}
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }

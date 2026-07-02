@@ -68,34 +68,39 @@ export function StudyPageHeader({
     <header
       ref={setEl}
       className={`sticky top-0 z-30 bg-gray-50/95 backdrop-blur-sm transition-all duration-200 ${
-        collapsed ? 'border-b border-gray-200 px-5 py-2' : 'border-b border-gray-100 px-5 pt-5 pb-3'
+        collapsed ? 'border-b border-gray-200 py-2' : 'border-b border-gray-100 pt-5 pb-3'
       }`}
     >
-      {!collapsed && hasBack && (
-        <Link href={backHref!}
-          className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary mb-3 transition-colors">
-          <ArrowLeft className="w-3.5 h-3.5" />{backLabel}
-        </Link>
-      )}
-      <div className="flex items-center gap-3">
-        {collapsed && hasBack ? (
+      {/* Inner wrapper — bg + border go edge-to-edge for the sticky
+          effect, but content is width-constrained so it aligns with
+          the page body on desktop viewports. */}
+      <div className="max-w-3xl mx-auto px-5">
+        {!collapsed && hasBack && (
           <Link href={backHref!}
-            aria-label={backLabel}
-            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors -ml-1">
-            <ArrowLeft className="w-4 h-4" />
+            className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary mb-3 transition-colors">
+            <ArrowLeft className="w-3.5 h-3.5" />{backLabel}
           </Link>
-        ) : (
-          <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${iconColorClass}`}>
-            <Icon className="w-4 h-4" />
-          </div>
         )}
-        <div className="min-w-0 flex-1">
-          {!collapsed && <p className="text-[11px] text-gray-500">{eyebrow}</p>}
-          <h1 className={`font-semibold tracking-tight text-gray-900 truncate transition-all ${
-            collapsed ? 'text-[14px]' : 'text-base'
-          }`}>{title}</h1>
+        <div className="flex items-center gap-3">
+          {collapsed && hasBack ? (
+            <Link href={backHref!}
+              aria-label={backLabel}
+              className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors -ml-1">
+              <ArrowLeft className="w-4 h-4" />
+            </Link>
+          ) : (
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${iconColorClass}`}>
+              <Icon className="w-4 h-4" />
+            </div>
+          )}
+          <div className="min-w-0 flex-1">
+            {!collapsed && <p className="text-[11px] text-gray-500">{eyebrow}</p>}
+            <h1 className={`font-semibold tracking-tight text-gray-900 truncate transition-all ${
+              collapsed ? 'text-[14px]' : 'text-base'
+            }`}>{title}</h1>
+          </div>
+          {rightSlot}
         </div>
-        {rightSlot}
       </div>
     </header>
   )

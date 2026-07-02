@@ -99,7 +99,7 @@ function LeagueInner() {
           eyebrow={String(t('study.league.eyebrow'))}
           title={String(t('study.league.title'))}
         />
-        <div className="px-5 pt-6 pb-14 space-y-6">
+        <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <StudyPageTransition>
         {loading ? (
           <div className="space-y-4">

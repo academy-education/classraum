@@ -395,7 +395,7 @@ function StudyLandingInner() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-72 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.025] to-transparent"
       />
-      <div className="px-5 pt-6 pb-14 space-y-8">
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-8">
         {/* Header — compact utility row + bold hero card. The hero
             (streak + progress + greeting) replaces the previous
             text-only title, giving the landing a Duolingo-style

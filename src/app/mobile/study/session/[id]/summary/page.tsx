@@ -119,7 +119,7 @@ function SummaryInner({ id }: { id: string }) {
   const mistakes = attempts.filter(a => !a.is_correct)
 
   return (
-    <div className="px-5 pt-6 pb-14 space-y-6">
+    <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
       <Link
         href="/mobile/study"
         className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"

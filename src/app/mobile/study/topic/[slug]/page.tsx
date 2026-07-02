@@ -233,7 +233,7 @@ function TopicInner({ slug }: { slug: string }) {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.03] to-transparent"
       />
-      <div className="px-5 pt-6 pb-14 space-y-8">
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-8">
         {/* Back to landing — small affordance above the heading. */}
         <Link
           href="/mobile/study"

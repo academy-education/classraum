@@ -97,7 +97,7 @@ function PreferencesInner() {
     // Skeleton mirrors the loaded layout: back link, title +
     // subtitle, stats link card, then 5 setting groups.
     return (
-      <div className="px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <SkeletonBlock className="h-4 w-32 rounded-full" />
         <div className="space-y-2">
           <SkeletonBlock className="h-8 w-1/2 rounded-lg" />
@@ -120,7 +120,7 @@ function PreferencesInner() {
   }
 
   return (
-    <div className="px-5 pt-6 pb-14 space-y-6">
+    <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
       <StudySubPageHeader
         backHref="/mobile/study"
         backLabel={String(t('study.topic.backToStudy'))}

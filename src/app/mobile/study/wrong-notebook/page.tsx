@@ -126,7 +126,7 @@ function WrongNotebookInner() {
         }
       />
 
-      <div className="px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
           <StudyPageTransition>
 
           {/* Summary chips */}

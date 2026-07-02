@@ -77,7 +77,7 @@ function StatsInner() {
     // 2x2 metric grid → sparkline card → two row lists. No content
     // shift when stats arrive.
     return (
-      <div className="px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <SkeletonBlock className="h-4 w-32 rounded-full" />
         <div className="space-y-2">
           <SkeletonBlock className="h-8 w-2/3 rounded-lg" />
@@ -99,7 +99,7 @@ function StatsInner() {
   const name = (n: { name_en: string; name_ko: string }) => ko ? n.name_ko : n.name_en
 
   return (
-    <div className="px-5 pt-6 pb-14 space-y-6">
+    <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
       <StudySubPageHeader
         backHref="/mobile/study"
         backLabel={String(t('study.topic.backToStudy'))}
