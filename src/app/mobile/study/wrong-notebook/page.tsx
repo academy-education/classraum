@@ -118,6 +118,9 @@ function WrongNotebookInner() {
           iconColorClass="text-rose-600 bg-rose-50"
           eyebrow={String(t('study.wrongNotebook.eyebrow'))}
           title={String(t('study.wrongNotebook.title'))}
+          subtitle={ko
+            ? `틀린 문제 ${entries.length}개를 다시 풀어보고 메모를 남겨보세요.`
+            : `Revisit ${entries.length} wrong answers and jot down what tripped you up.`}
           rightSlot={
             <Link
               href={selectedTopicId
@@ -131,28 +134,29 @@ function WrongNotebookInner() {
           }
         />
 
+        {/* Topic filter — horizontal chip row. No StudyPageTransition
+            wrapper: it collapses space-y-6 into one child, so all
+            sub-sections would stack tightly. Direct children of the
+            outer container keep proper 24px gaps between them. */}
+        {topics.length > 0 && (
+          <TopicFilter
+            topics={topics}
+            selectedId={selectedTopicId}
+            onSelect={setSelectedTopicId}
+            ko={ko}
+            allLabel={String(t('study.wrongNotebook.allTopics'))}
+          />
+        )}
+
         <StudyPageTransition>
-          {/* Summary + filter row — 문항 count sits inside the "전체"
-              chip below (filter row), so we only surface the annotated
-              count here to avoid duplicating info. */}
+          {/* Annotated count chip (only when > 0). */}
           {annotated > 0 && (
-            <div className="flex items-center gap-2 text-[12px] text-gray-700">
+            <div className="flex items-center gap-2 text-[12px] text-gray-700 mb-6">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-100">
                 <Pencil className="w-3.5 h-3.5 text-indigo-500" />
                 <span className="font-semibold tabular-nums">{annotated}</span> {t('study.wrongNotebook.annotatedSuffix')}
               </span>
             </div>
-          )}
-
-          {/* Topic filter — horizontal chip row */}
-          {topics.length > 0 && (
-            <TopicFilter
-              topics={topics}
-              selectedId={selectedTopicId}
-              onSelect={setSelectedTopicId}
-              ko={ko}
-              allLabel={String(t('study.wrongNotebook.allTopics'))}
-            />
           )}
 
           {loading ? (
@@ -203,17 +207,21 @@ function WrongNotebookInner() {
 
 function BookmarkedSnapsSection({ snaps, ko }: { snaps: BookmarkedSnap[]; ko: boolean }) {
   return (
-    <section>
-      <h2 className="text-[13px] font-semibold text-gray-900 mb-2 px-1 inline-flex items-center gap-1.5">
-        <Bookmark className="w-3.5 h-3.5 text-amber-600 fill-amber-600" />
-        {ko ? '북마크한 사진' : 'Bookmarked snaps'}
-        <span className="text-[11px] text-gray-500 font-normal tabular-nums">({snaps.length})</span>
-      </h2>
-      <div className="grid grid-cols-3 gap-2 mb-5">
+    <section className="mb-6">
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-[13px] font-semibold text-gray-900 inline-flex items-center gap-1.5">
+          <Bookmark className="w-3.5 h-3.5 text-amber-600 fill-amber-600" />
+          {ko ? '북마크한 사진' : 'Bookmarked snaps'}
+        </h2>
+        <span className="text-[11px] text-gray-500 font-normal tabular-nums">
+          {snaps.length}{ko ? '개' : ''}
+        </span>
+      </div>
+      <div className="grid grid-cols-3 gap-2">
         {snaps.map((s, i) => (
           <div key={s.id}
             style={{ animationDelay: `${i * 40}ms` }}
-            className="relative rounded-xl overflow-hidden ring-1 ring-amber-200/70 bg-white aspect-square animate-card-in opacity-0">
+            className="relative rounded-2xl overflow-hidden ring-1 ring-gray-200 bg-white aspect-square animate-card-in opacity-0">
             {s.image_url ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={s.image_url} alt="" className="w-full h-full object-cover" />
@@ -222,7 +230,7 @@ function BookmarkedSnapsSection({ snaps, ko }: { snaps: BookmarkedSnap[]; ko: bo
                 <ImageIcon className="w-5 h-5 text-gray-300" />
               </div>
             )}
-            <div className="absolute top-1 right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500 text-white shadow">
+            <div className="absolute top-1.5 right-1.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500 text-white shadow-sm">
               <Bookmark className="w-2.5 h-2.5 fill-current" />
             </div>
           </div>
