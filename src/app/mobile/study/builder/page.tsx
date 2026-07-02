@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, ArrowRight, Loader2, Sparkles, ChevronDown, Check } from 'lucide-react'
+import { ArrowRight, Loader2, Sparkles, ChevronDown, Check } from 'lucide-react'
+import { StudySubPageHeader } from '../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -119,26 +119,15 @@ function BuilderInner() {
 
   return (
     <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
-      <Link
-        href="/mobile/study"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        {t('study.topic.backToStudy')}
-      </Link>
-
-      <header>
-        <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-2">
-          <Sparkles className="w-3.5 h-3.5" />
-          {String(t('study.builder.eyebrow'))}
-        </div>
-        <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
-          {String(t('study.builder.title'))}
-        </h1>
-        <p className="text-[14px] text-gray-500 mt-2 leading-relaxed">
-          {String(t('study.builder.subtitle'))}
-        </p>
-      </header>
+      <StudySubPageHeader
+        backHref="/mobile/study"
+        backLabel={String(t('study.topic.backToStudy'))}
+        icon={Sparkles}
+        iconColorClass="text-orange-600 bg-orange-50"
+        eyebrow={String(t('study.builder.eyebrow'))}
+        title={String(t('study.builder.title'))}
+        subtitle={String(t('study.builder.subtitle'))}
+      />
 
       {/* Topic picker — dropdown opens a full topic list. */}
       <section>
