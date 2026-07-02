@@ -235,6 +235,34 @@ function StudyPathInner() {
     } catch { /* silent */ }
   }
 
+  /** Drop a target from the strip. The endpoint reconciles target_test
+   *  to a valid remaining entry (or null when the list empties). Never
+   *  invoked on the currently-focused target — the UI hides the × on
+   *  the current chip since removing what you're looking at right now
+   *  would need a swap-then-remove and complicates the flow. */
+  const removeTarget = async (test: string) => {
+    if (!prefs) return
+    const nextList = prefs.target_tests.filter(t => t !== test)
+    // If the current target is being removed (only possible if the
+    // caller doesn't respect the "not current" precondition), fall
+    // back to the first remaining or null.
+    const nextCurrent = prefs.target_test === test
+      ? (nextList[0] ?? null)
+      : prefs.target_test
+    setPrefs({ target_test: nextCurrent, target_tests: nextList })
+    if (nextCurrent !== prefs.target_test) {
+      setTemplate(getPathTemplate(nextCurrent))
+    }
+    try {
+      const headers = await authHeaders()
+      await fetch('/api/study/prefs', {
+        method: 'PUT',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ target_tests: nextList }),
+      })
+    } catch { /* silent */ }
+  }
+
   if (!template) {
     return (
       <div className="flex flex-col h-full bg-gray-50">
@@ -252,6 +280,7 @@ function StudyPathInner() {
           targets={activeTargets}
           currentTarget={currentTarget}
           onSwitch={switchTarget}
+          onRemove={removeTarget}
         />
       )}
       <StudyPageTransition>
@@ -290,33 +319,121 @@ function StudyPathInner() {
  *  one is filled. Tap to swap focus — no confirm dialog since it's
  *  a preference toggle, not a destructive action. */
 function TargetChipStrip({
-  targets, currentTarget, onSwitch,
+  targets, currentTarget, onSwitch, onRemove,
 }: {
   targets: string[]
   currentTarget: string | null
   onSwitch: (next: string) => void
+  onRemove: (test: string) => void
 }) {
+  const { language } = useTranslation()
+  const ko = language === 'korean'
+  const [confirmRemove, setConfirmRemove] = useState<string | null>(null)
   return (
-    <div className="flex-shrink-0 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 px-5 py-2">
-      <div className="max-w-3xl mx-auto flex items-center gap-1.5 overflow-x-auto scrollbar-none">
-        {targets.map(test => {
-          const isCurrent = test === currentTarget
-          return (
-            <button
-              key={test}
-              type="button"
-              onClick={() => onSwitch(test)}
-              className={`flex-shrink-0 inline-flex items-center gap-1 h-7 px-2.5 rounded-full text-[11.5px] font-bold tracking-tight transition-all ${
-                isCurrent
-                  ? 'bg-primary text-white shadow-[0_2px_6px_-2px_rgba(40,133,232,0.45)]'
-                  : 'bg-white ring-1 ring-gray-200 text-gray-700 hover:ring-primary/30 hover:text-primary'
-              }`}
-              aria-pressed={isCurrent}
-            >
-              {test}
-            </button>
-          )
-        })}
+    <>
+      <div className="flex-shrink-0 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 px-5 py-2">
+        <div className="max-w-3xl mx-auto flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+          {targets.map(test => {
+            const isCurrent = test === currentTarget
+            return (
+              <div
+                key={test}
+                className={`group flex-shrink-0 inline-flex items-center h-7 rounded-full text-[11.5px] font-bold tracking-tight transition-all ${
+                  isCurrent
+                    ? 'bg-primary text-white shadow-[0_2px_6px_-2px_rgba(40,133,232,0.45)]'
+                    : 'bg-white ring-1 ring-gray-200 text-gray-700'
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => onSwitch(test)}
+                  className={`pl-2.5 h-full inline-flex items-center ${
+                    isCurrent ? '' : 'hover:text-primary'
+                  } ${targets.length > 1 && !isCurrent ? 'pr-1' : 'pr-2.5'}`}
+                  aria-pressed={isCurrent}
+                >
+                  {test}
+                </button>
+                {/* Remove × — only on non-current chips, only when
+                    there's more than one target. Prevents the empty-
+                    state edge case where a student drops their last
+                    active path with a stray tap. */}
+                {!isCurrent && targets.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setConfirmRemove(test)
+                    }}
+                    aria-label={ko ? `${test} 제거` : `Remove ${test}`}
+                    className="pr-1.5 pl-0.5 h-full inline-flex items-center opacity-60 hover:opacity-100 hover:text-rose-500 transition"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+      {confirmRemove && (
+        <RemoveConfirmSheet
+          test={confirmRemove}
+          onCancel={() => setConfirmRemove(null)}
+          onConfirm={() => {
+            onRemove(confirmRemove)
+            setConfirmRemove(null)
+          }}
+        />
+      )}
+    </>
+  )
+}
+
+/** Small centered confirm dialog. Not a full-screen sheet — removing
+ *  a target is reversible (just re-add it), so we don't need a heavy
+ *  interstitial. */
+function RemoveConfirmSheet({
+  test, onCancel, onConfirm,
+}: {
+  test: string
+  onCancel: () => void
+  onConfirm: () => void
+}) {
+  const { language } = useTranslation()
+  const ko = language === 'korean'
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center px-6" role="dialog" aria-modal="true">
+      <div
+        aria-hidden
+        onClick={onCancel}
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+      />
+      <div className="relative w-full max-w-sm rounded-2xl bg-white shadow-[0_24px_48px_-16px_rgba(0,0,0,0.30)] p-5">
+        <h3 className="text-[15px] font-bold text-gray-900 leading-tight">
+          {ko ? `${test} 경로를 제거할까요?` : `Remove your ${test} path?`}
+        </h3>
+        <p className="text-[12.5px] text-gray-600 mt-1.5 leading-relaxed">
+          {ko
+            ? '이미 푼 문제 기록은 그대로 남아있어요. 언제든지 다시 추가할 수 있어요.'
+            : 'Your past attempts stay saved. You can add it back anytime.'}
+        </p>
+        <div className="mt-4 flex gap-2">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="flex-1 h-10 rounded-xl bg-gray-100 text-gray-700 text-[13px] font-semibold hover:bg-gray-200 transition"
+          >
+            {ko ? '취소' : 'Cancel'}
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            className="flex-1 h-10 rounded-xl bg-rose-500 text-white text-[13px] font-semibold hover:bg-rose-600 transition"
+          >
+            {ko ? '제거' : 'Remove'}
+          </button>
+        </div>
       </div>
     </div>
   )
@@ -659,6 +776,15 @@ function TargetTestPicker({
   const ko = language === 'korean'
   const [saving, setSaving] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  // Multi-pick tracking — when the picker opens from the empty state,
+  // students can tap several tests before closing. Each tap still
+  // persists immediately (progressive save), but the UI reflects
+  // "you've added N so far" rather than snapping shut on the first pick.
+  const [sessionAdded, setSessionAdded] = useState<string[]>([])
+  // Fresh-start mode is when there's no current target AND nothing
+  // pre-disabled. In that case we don't auto-close on pick; the
+  // student clicks Done when they're satisfied.
+  const freshStart = currentTarget === null && disabledTargets.length === 0
 
   const OPTIONS: Array<{
     key: string
@@ -705,7 +831,16 @@ function TargetTestPicker({
         setSaving(null)
         return
       }
-      onPicked(opt.key)
+      if (freshStart) {
+        // Progressive multi-pick — track locally, keep picker open so
+        // the student can add more before hitting Done.
+        setSessionAdded(prev => prev.includes(opt.key) ? prev : [...prev, opt.key])
+        setSaving(null)
+      } else {
+        // Add-target flow from an existing chip strip — a single tap
+        // finishes and closes.
+        onPicked(opt.key)
+      }
     } catch {
       setError(ko ? '네트워크 오류가 발생했어요.' : 'Network error.')
       setSaving(null)
@@ -737,7 +872,8 @@ function TargetTestPicker({
           {OPTIONS.map(opt => {
             const isSaving = saving === opt.key
             const isCurrent = currentTarget === opt.key
-            const isAlreadyAdded = disabledTargets.includes(opt.key)
+            const isAlreadyAdded =
+              disabledTargets.includes(opt.key) || sessionAdded.includes(opt.key)
             const disabled = isCurrent || isAlreadyAdded
             return (
               <button
@@ -783,10 +919,30 @@ function TargetTestPicker({
           })}
         </div>
 
-        <p className="text-center text-[11px] text-gray-500 mt-5">
-          {ko
-            ? '언제든지 설정에서 바꿀 수 있어요.'
-            : 'You can change this anytime in preferences.'}
+        {/* Fresh-start Done CTA — enabled once at least one target is
+            picked. Progressive save means every pick has already
+            persisted, so tapping Done just hands control back to the
+            parent with the most-recent pick as the current focus. */}
+        {freshStart && sessionAdded.length > 0 && (
+          <button
+            type="button"
+            onClick={() => onPicked(sessionAdded[sessionAdded.length - 1])}
+            className="mt-5 w-full h-12 rounded-2xl bg-primary text-white text-[14px] font-bold hover:bg-primary/90 transition"
+          >
+            {ko
+              ? `${sessionAdded.length}개 경로로 시작하기`
+              : `Start with ${sessionAdded.length} ${sessionAdded.length === 1 ? 'path' : 'paths'}`}
+          </button>
+        )}
+
+        <p className="text-center text-[11px] text-gray-500 mt-4">
+          {freshStart
+            ? (ko
+                ? '여러 개를 골라도 돼요. 아무 때나 추가하거나 삭제할 수 있어요.'
+                : 'Pick as many as you like. Add or remove anytime.')
+            : (ko
+                ? '언제든지 설정에서 바꿀 수 있어요.'
+                : 'You can change this anytime in preferences.')}
         </p>
       </div>
     </div>
