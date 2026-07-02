@@ -177,6 +177,15 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
             <RefreshCw className="w-4 h-4" />
             {t('study.practice.moreQuestions')}
           </button>
+          {results.some(r => r === false) && (
+            <Link
+              href={`/mobile/study/session/${sessionId}/summary`}
+              className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
+            >
+              {language === 'ko' ? '틀린 문제 보기' : 'Review mistakes'}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          )}
           <Link
             href="/mobile/study"
             className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
