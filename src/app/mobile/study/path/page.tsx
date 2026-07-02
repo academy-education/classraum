@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   Sparkles, CheckCircle2, Lock, Play, Trophy, Target,
-  BookOpen, Zap, ChevronRight, Repeat, X,
+  BookOpen, Zap, ChevronRight, Repeat, X, Plus,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
@@ -43,7 +43,11 @@ import {
  */
 
 interface Prefs {
+  /** The currently-focused target — the Path is scoped to this test. */
   target_test: string | null
+  /** All targets the student is prepping for. Superset of target_test.
+   *  The header target-chip strip lets them swap focus between these. */
+  target_tests: string[]
 }
 
 interface MasteryRow {
@@ -148,6 +152,13 @@ function StudyPathInner() {
     return annotatePath(template, masteryBySlug, completedSlugs)
   }, [template, masteryBySlug, completedSlugs])
 
+  const activeTargets = prefs?.target_tests ?? []
+  const currentTarget = prefs?.target_test ?? null
+  // Duolingo-style header: no more single "Change" button. When the
+  // student has 2+ targets, they get a compact chip strip to swap
+  // focus; a "+" button always lets them add another test template.
+  const showChipStrip = activeTargets.length >= 2
+
   const header = (
     <StudyPageHeader
       backHref="/mobile/study"
@@ -161,10 +172,14 @@ function StudyPathInner() {
           type="button"
           onClick={() => setPickerOpen(true)}
           className="inline-flex items-center gap-1 h-8 px-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11.5px] font-semibold transition"
-          aria-label={ko ? '목표 시험 변경' : 'Change target test'}
+          aria-label={showChipStrip
+            ? (ko ? '목표 시험 추가' : 'Add target test')
+            : (ko ? '목표 시험 변경' : 'Change target test')}
         >
-          <Repeat className="w-3 h-3" />
-          {ko ? '변경' : 'Change'}
+          {showChipStrip ? <Plus className="w-3 h-3" /> : <Repeat className="w-3 h-3" />}
+          {showChipStrip
+            ? (ko ? '추가' : 'Add')
+            : (ko ? '변경' : 'Change')}
         </button>
       ) : undefined}
     />
@@ -186,16 +201,38 @@ function StudyPathInner() {
   }
 
   const handlePicked = (picked: string) => {
-    // Optimistically resolve locally so the path renders instantly on
-    // selection; a full refetch would round-trip through the prefs
-    // endpoint for no user-visible benefit.
-    setPrefs({ target_test: picked })
+    // The picker acts as both an "add target" and "swap current
+    // target" flow — the endpoint knows how to merge picked into the
+    // full target_tests array (see prefs PUT), so all we do here is
+    // optimistically reflect that same merge locally.
+    setPrefs(prev => {
+      const existingList = prev?.target_tests ?? []
+      const nextList = existingList.includes(picked)
+        ? existingList
+        : [...existingList, picked]
+      return { target_test: picked, target_tests: nextList }
+    })
     setTemplate(getPathTemplate(picked))
-    // Reset per-target progress state — mastery/completed slugs for
-    // the old target don't apply. Fresh values load on the next
-    // useEffect trigger when we track per-target data; for now leave
-    // them as-is so a repick within-session keeps recent numbers.
     setPickerOpen(false)
+  }
+
+  /** Swap the currently-focused target without adding/removing any.
+   *  Used by the chip strip when the student already has 2+ targets. */
+  const switchTarget = async (next: string) => {
+    if (!prefs || next === prefs.target_test) return
+    setPrefs({ ...prefs, target_test: next })
+    setTemplate(getPathTemplate(next))
+    // Fire-and-forget PUT — the local optimistic swap is what the
+    // student sees; the DB catches up asynchronously. If it fails
+    // the next reload restores the last-known-good state.
+    try {
+      const headers = await authHeaders()
+      await fetch('/api/study/prefs', {
+        method: 'PUT',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ target_test: next }),
+      })
+    } catch { /* silent */ }
   }
 
   if (!template) {
@@ -210,15 +247,18 @@ function StudyPathInner() {
   return (
     <div className="flex flex-col h-full bg-gray-50">
       {header}
+      {showChipStrip && (
+        <TargetChipStrip
+          targets={activeTargets}
+          currentTarget={currentTarget}
+          onSwitch={switchTarget}
+        />
+      )}
       <StudyPageTransition>
         <PathList nodes={annotated} testSlug={template.testSlug} />
       </StudyPageTransition>
       {pickerOpen && (
         <div className="fixed inset-0 z-[60] flex flex-col bg-gray-50 overflow-y-auto">
-          {/* Floating close button — z-70 so it clears the mobile
-              layout's top bar (which sits above the standard z-40
-              overlay layer). Positioned inside safe-area padding so
-              it stays reachable on notched devices. */}
           <button
             type="button"
             onClick={() => setPickerOpen(false)}
@@ -228,12 +268,56 @@ function StudyPathInner() {
             <X className="w-3.5 h-3.5" />
             {ko ? '취소' : 'Cancel'}
           </button>
+          {/* In add-mode we treat the currently-focused target as
+              "already picked" so the picker greys it out AND greys
+              out every other target the student has already added.
+              When the student has only one target it's a swap-flow
+              and only the current target is disabled. */}
           <TargetTestPicker
             onPicked={handlePicked}
-            currentTarget={prefs?.target_test ?? null}
+            currentTarget={currentTarget}
+            disabledTargets={showChipStrip ? activeTargets : []}
           />
         </div>
       )}
+    </div>
+  )
+}
+
+/** Duolingo-style target-switcher chip strip. Compact, horizontally
+ *  scrollable if it ever grows past viewport width, sits right below
+ *  the sticky header. Each chip carries the test name; the current
+ *  one is filled. Tap to swap focus — no confirm dialog since it's
+ *  a preference toggle, not a destructive action. */
+function TargetChipStrip({
+  targets, currentTarget, onSwitch,
+}: {
+  targets: string[]
+  currentTarget: string | null
+  onSwitch: (next: string) => void
+}) {
+  return (
+    <div className="flex-shrink-0 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 px-5 py-2">
+      <div className="max-w-3xl mx-auto flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+        {targets.map(test => {
+          const isCurrent = test === currentTarget
+          return (
+            <button
+              key={test}
+              type="button"
+              onClick={() => onSwitch(test)}
+              className={`flex-shrink-0 inline-flex items-center gap-1 h-7 px-2.5 rounded-full text-[11.5px] font-bold tracking-tight transition-all ${
+                isCurrent
+                  ? 'bg-primary text-white shadow-[0_2px_6px_-2px_rgba(40,133,232,0.45)]'
+                  : 'bg-white ring-1 ring-gray-200 text-gray-700 hover:ring-primary/30 hover:text-primary'
+              }`}
+              aria-pressed={isCurrent}
+            >
+              {test}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -562,10 +646,14 @@ function ActiveCallout({
  * them here.
  */
 function TargetTestPicker({
-  onPicked, currentTarget,
+  onPicked, currentTarget, disabledTargets = [],
 }: {
   onPicked: (target: string) => void
   currentTarget: string | null
+  /** Extra keys to disable (in addition to currentTarget). Used in
+   *  add-target mode so the student can't double-add SAT when SAT is
+   *  already in their list. */
+  disabledTargets?: string[]
 }) {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
@@ -649,15 +737,17 @@ function TargetTestPicker({
           {OPTIONS.map(opt => {
             const isSaving = saving === opt.key
             const isCurrent = currentTarget === opt.key
+            const isAlreadyAdded = disabledTargets.includes(opt.key)
+            const disabled = isCurrent || isAlreadyAdded
             return (
               <button
                 key={opt.key}
                 type="button"
                 onClick={() => pick(opt)}
-                disabled={!!saving || isCurrent}
+                disabled={!!saving || disabled}
                 className={`w-full relative overflow-hidden rounded-2xl bg-gradient-to-br ${opt.accent} text-white p-4 flex items-center gap-3 shadow-[0_8px_20px_-8px_rgba(0,0,0,0.32)] active:scale-[0.99] disabled:opacity-70 transition-all ${
                   isCurrent ? 'ring-2 ring-white/70' : ''
-                }`}
+                } ${isAlreadyAdded && !isCurrent ? 'opacity-60' : ''}`}
               >
                 <div aria-hidden className="pointer-events-none absolute -top-4 -right-4 w-24 h-24 rounded-full bg-white/15 blur-2xl" />
                 <div className="relative flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/20 ring-1 ring-white/25 text-[20px] font-black tracking-tight">
@@ -670,6 +760,12 @@ function TargetTestPicker({
                       <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[9.5px] font-bold tracking-[0.1em] uppercase">
                         <CheckCircle2 className="w-2.5 h-2.5" />
                         {ko ? '현재' : 'Current'}
+                      </span>
+                    )}
+                    {!isCurrent && isAlreadyAdded && (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[9.5px] font-bold tracking-[0.1em] uppercase">
+                        <CheckCircle2 className="w-2.5 h-2.5" />
+                        {ko ? '추가됨' : 'Added'}
                       </span>
                     )}
                   </div>

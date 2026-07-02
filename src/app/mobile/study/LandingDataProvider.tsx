@@ -30,6 +30,7 @@ interface Progress {
 
 interface Prefs {
   target_test: string | null
+  target_tests: string[]
   onboarded_at: string | null
   daily_goal_minutes: number
   default_language: 'en' | 'ko'
