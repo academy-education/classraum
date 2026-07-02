@@ -3,7 +3,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { Flame, TrendingUp, Search as SearchIcon } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -43,35 +42,15 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
   const [loadingProgress, setLoadingProgress] = useState(true)
 
   useEffect(() => {
-    if (!user?.userId) return
     let cancelled = false
     void (async () => {
-      const cutoff = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString()
-      const { data } = await supabase
-        .from('study_sessions')
-        .select('last_active_at')
-        .eq('student_id', user.userId)
-        .gte('last_active_at', cutoff)
-        .order('last_active_at', { ascending: false })
-      if (cancelled) return
-      const days = new Set<string>()
-      ;(data ?? []).forEach(row => {
-        if (!row.last_active_at) return
-        const d = new Date(row.last_active_at)
-        days.add(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`)
-      })
-      const today = new Date()
-      const dayKey = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
-      let count = 0
-      const cursor = new Date(today)
-      if (!days.has(dayKey(cursor)) && days.has(dayKey(new Date(cursor.getTime() - 86400000)))) {
-        cursor.setDate(cursor.getDate() - 1)
-      }
-      while (days.has(dayKey(cursor)) && count < 400) {
-        count++
-        cursor.setDate(cursor.getDate() - 1)
-      }
-      setStreak(count)
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/streak', { headers })
+        if (!res.ok) return
+        const json = await res.json() as { streak: number }
+        if (!cancelled) setStreak(json.streak)
+      } catch { /* silent */ }
     })()
     return () => { cancelled = true }
   }, [user?.userId])
@@ -203,6 +182,29 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
                 style={{ width: `${Math.max(4, pct)}%` }}
               />
             </div>
+
+            {/* Next-milestone nudge. Turns the passive number into a
+                targeted goal. Uses the smallest still-useful hint:
+                minutes remaining today, or a streak/celebration line
+                once the daily goal is met. */}
+            <p className="mt-2 text-[11.5px] text-gray-500">
+              {goalMet ? (
+                <span className="text-emerald-700 font-medium">
+                  {ko ? '🎉 오늘의 목표 달성!' : "🎉 Daily goal met!"}
+                  {streak !== null && streak > 0 && (
+                    <span className="text-gray-500 font-normal">
+                      {ko ? ` · ${streak}일 연속 유지 중` : ` · ${streak}-day streak going`}
+                    </span>
+                  )}
+                </span>
+              ) : (
+                <>
+                  {ko
+                    ? `${progress.goalMinutes - progress.minutesToday}분 남았어요 → 오늘의 목표`
+                    : `${progress.goalMinutes - progress.minutesToday} min to today's goal`}
+                </>
+              )}
+            </p>
 
             <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-3 gap-2">
               <MiniStat

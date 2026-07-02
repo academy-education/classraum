@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudyTodayCard } from './_shared/primitives'
+import { emitUndoable } from './_shared/UndoToast'
 import type { StudyMode } from './modes'
 
 interface ActiveSession {
@@ -85,6 +86,13 @@ export function ResumeBanner() {
       onDismiss={() => {
         sessionStorage.setItem(DISMISS_KEY, '1')
         setDismissed(true)
+        emitUndoable(
+          ko ? '이어서 공부하기 숨김' : 'Resume card dismissed',
+          () => {
+            sessionStorage.removeItem(DISMISS_KEY)
+            setDismissed(false)
+          },
+        )
       }}
     />
   )

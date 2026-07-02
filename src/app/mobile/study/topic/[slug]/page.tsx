@@ -97,6 +97,9 @@ function TopicInner({ slug }: { slug: string }) {
   const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
     count: 20, minutes: 30,
   })
+  const [progress, setProgress] = useState<{ mastery: number | null; sessions: number; lastActive: string | null }>({
+    mastery: null, sessions: 0, lastActive: null,
+  })
   const [testLanguage, setTestLanguage] = useState<'en' | 'ko'>('en')
 
   // When the topic has children (e.g., AP → AP Biology / AP Calc AB),
@@ -159,6 +162,39 @@ function TopicInner({ slug }: { slug: string }) {
     })()
     return () => { cancelled = true }
   }, [slug])
+
+  // Per-topic progress: mastery score + session count + last activity.
+  // Refetches whenever effectiveTopic changes (category picker moves).
+  useEffect(() => {
+    if (!user?.userId || !effectiveTopic) return
+    let cancelled = false
+    void (async () => {
+      const [{ data: mastery }, { data: sessions }] = await Promise.all([
+        supabase
+          .from('study_mastery')
+          .select('score')
+          .eq('student_id', user.userId)
+          .eq('topic_id', effectiveTopic.id)
+          .maybeSingle(),
+        supabase
+          .from('study_sessions')
+          .select('last_active_at', { count: 'exact' })
+          .eq('student_id', user.userId)
+          .eq('topic_id', effectiveTopic.id)
+          .order('last_active_at', { ascending: false })
+          .limit(1),
+      ])
+      if (cancelled) return
+      const sessionCount = (sessions as { last_active_at: string }[] | null)?.length ?? 0
+      const lastRow = (sessions as { last_active_at: string }[] | null)?.[0] ?? null
+      setProgress({
+        mastery: (mastery?.score as number | undefined) ?? null,
+        sessions: sessionCount,
+        lastActive: lastRow?.last_active_at ?? null,
+      })
+    })()
+    return () => { cancelled = true }
+  }, [user?.userId, effectiveTopic])
 
   const startSession = async (mode: StudyMode, config?: TestConfig, overrideLanguage?: 'en' | 'ko') => {
     const target = effectiveTopic
@@ -244,9 +280,36 @@ function TopicInner({ slug }: { slug: string }) {
           title={name(topic)}
           subtitle={String(t('study.topic.pickMode'))}
         />
-        {/* Spacer removed — StudySubPageHeader now carries the back
-            link, eyebrow, icon, title, subtitle. Down-stream sections
-            inherit the outer space-y-6 rhythm. */}
+        {/* Per-topic progress mini-card — only when the student has
+            done at least one session on this topic. Gives quick context
+            before they pick a mode. */}
+        {progress.sessions > 0 && (
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4 flex items-center gap-4">
+            <div className="flex-1 grid grid-cols-3 gap-3">
+              <MiniStat
+                label={ko ? '숙련도' : 'Mastery'}
+                value={progress.mastery !== null ? `${progress.mastery}` : '—'}
+                suffix={progress.mastery !== null ? '/100' : undefined}
+                accent={
+                  progress.mastery === null ? 'gray'
+                  : progress.mastery >= 80 ? 'emerald'
+                  : progress.mastery >= 50 ? 'amber'
+                  : 'rose'
+                }
+              />
+              <MiniStat
+                label={ko ? '세션' : 'Sessions'}
+                value={String(progress.sessions)}
+                accent="primary"
+              />
+              <MiniStat
+                label={ko ? '최근' : 'Last'}
+                value={progress.lastActive ? formatShortTimeAgo(progress.lastActive, ko) : '—'}
+                accent="gray"
+              />
+            </div>
+          </div>
+        )}
 
         {/* Category picker — only when the topic has children.
             AP → AP Biology / AP Calc AB, KSAT → 국어 / 수학 / 영어, etc.
@@ -630,4 +693,41 @@ function FeaturedFullTestCard({
       </div>
     </button>
   )
+}
+
+function MiniStat({ label, value, suffix, accent }: {
+  label: string
+  value: string
+  suffix?: string
+  accent: 'primary' | 'emerald' | 'amber' | 'rose' | 'gray'
+}) {
+  const valueClass =
+    accent === 'primary' ? 'text-primary' :
+    accent === 'emerald' ? 'text-emerald-600' :
+    accent === 'amber' ? 'text-amber-600' :
+    accent === 'rose' ? 'text-rose-600' :
+    'text-gray-700'
+  return (
+    <div className="text-center">
+      <div className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500">
+        {label}
+      </div>
+      <div className={`mt-0.5 text-[15px] font-bold tabular-nums leading-tight ${valueClass}`}>
+        {value}
+        {suffix && <span className="ml-0.5 text-[10px] font-medium text-gray-400">{suffix}</span>}
+      </div>
+    </div>
+  )
+}
+
+function formatShortTimeAgo(iso: string, ko: boolean): string {
+  const diff = Math.max(0, Date.now() - new Date(iso).getTime())
+  const min = Math.floor(diff / 60_000)
+  const hr = Math.floor(diff / 3_600_000)
+  const day = Math.floor(diff / 86_400_000)
+  if (day >= 7) return new Date(iso).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
+  if (day >= 1) return ko ? `${day}일 전` : `${day}d`
+  if (hr >= 1) return ko ? `${hr}시간 전` : `${hr}h`
+  if (min >= 1) return ko ? `${min}분 전` : `${min}m`
+  return ko ? '방금' : 'now'
 }

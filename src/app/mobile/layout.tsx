@@ -4,6 +4,7 @@ import { ReactNode, useCallback } from 'react'
 import { BottomNavigation } from '@/components/ui/mobile/BottomNavigation'
 import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
 import { XpToast } from '@/app/mobile/study/_shared/XpToast'
+import { UndoToast } from '@/app/mobile/study/_shared/UndoToast'
 import { DailyGoalCelebration } from '@/app/mobile/study/_shared/DailyGoalCelebration'
 import { NavTour } from '@/app/mobile/study/_shared/NavTour'
 import { PersistentMobileAuthProvider, usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -83,6 +84,8 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
           Mounted at the layout level so any study page can fire and
           the chip survives navigation. */}
       <XpToast />
+      {/* Global undo toast — 5s window to reverse dismissals. */}
+      <UndoToast />
       {/* Daily-goal celebration — pops when the student crosses their
           daily minutes goal. Polls every 30s while mounted. */}
       <DailyGoalCelebration />

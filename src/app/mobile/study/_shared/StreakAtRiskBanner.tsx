@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudyTodayCard } from './primitives'
+import { emitUndoable } from './UndoToast'
 
 /**
  * StreakAtRiskBanner — shown on the study landing when a previously-
@@ -78,6 +79,13 @@ export function StreakAtRiskBanner() {
   const dismiss = () => {
     sessionStorage.setItem(DISMISS_KEY, '1')
     setDismissed(true)
+    emitUndoable(
+      ko ? '연속 학습 안내 숨김' : 'Streak notice dismissed',
+      () => {
+        sessionStorage.removeItem(DISMISS_KEY)
+        setDismissed(false)
+      },
+    )
   }
 
   return (
