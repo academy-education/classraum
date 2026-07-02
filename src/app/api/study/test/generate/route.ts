@@ -2172,12 +2172,22 @@ function extraGuidanceFor(
       // treating schema-doc example values (r: 70) and hard-example
       // archetypes as reusable templates. Explicit banned-cliche list:
       'CLICHÉ / REPETITION BAN — every item in this test must have a DISTINCT setup. Specifically:',
-      '- Do NOT reuse "triangle ABC inscribed in a circle of radius 70" or ANY specific radius from the schema documentation above. Pick fresh values per item (e.g. r=8, 13, 22, 45, whatever your item requires). Use varied vertex labels (PQR, XYZ, MNO) too — not always ABC.',
+      // Observed pattern: even after removing the literal "r: 70"
+      // from schema docs, models still gravitate to "triangle inscribed
+      // in circle" for ~25% of geometry items. Cap it explicitly.
+      '- HARD CAP: at most 2 items total across the entire test may be "triangle inscribed in a circle". If you need more geometry items, use OTHER geometry types: right triangles with legs given, similar triangles inside a compound figure, coordinate-plane distance/midpoint, arc/sector area, tangent-secant angle, intersecting chords power-of-a-point, quadrilateral in a circle. The prior version of this generator shipped 12 nearly-identical inscribed-triangle items — that is unacceptable variety.',
+      '- Do NOT reuse the same radius, side length, or vertex-angle set across items — pick fresh values per geometry item (e.g. r=8, 13, 22, 45, whatever your item requires). Use varied vertex labels (PQR, XYZ, MNO) too — not always ABC.',
       '- Do NOT use "r + s = 8 and r² + s² = 40" (or any single Vieta symmetric pair) more than ONCE across all items. Rotate symmetric relations: r·s=k, 1/r + 1/s, r³+s³, (r-s)² etc.',
       '- Do NOT reuse "two plans — flat fee $X plus $Y per unit" more than ONCE. Rotate real-world setups: manufacturing yield, chemistry mixture, motion at two speeds, revenue+cost break-even, etc.',
       '- Do NOT reuse "f(x) = ax² + bx + c passes through 3 points, find k" more than ONCE. Rotate function setups: piecewise definitions, function transformations, roots-of-derived-polynomial, table-of-values.',
       '- If you find yourself starting an item with the same phrase as a previous item in the batch, STOP and pick a different setup. Every stem should be individually memorable.',
       '- Numerical values (radii, coefficients, prices, quantities) should be freshly chosen per item — do not reuse the same number in different items unless the mathematical relationship genuinely requires it.',
+      '',
+      // Observed pattern: model set graphic.type="coordinatePlane"
+      // with two dots + a line on an item asking about a PARABOLA's
+      // vertex — the visualization had nothing to do with the item's
+      // actual mathematical content. Enforce graphic-question fit.
+      'GRAPHIC-QUESTION MATCH — if you set a graphic on an item, the graphic MUST show what the item is actually about. Do NOT emit a coordinatePlane with two points when the question is about a parabola\'s vertex — either use rawSvg to draw the actual parabola, or set graphic to null and let the algebra stand alone. Do NOT emit an inscribedTriangle just because the question mentions "triangle" — if the item is about a general triangle (not one inscribed in a circle), use rightTriangle or rawSvg instead. Wrong graphic > no graphic > right graphic on a self-evident item.',
       '',
       'GRAPHICS — REAL SAT MATH HAS VISUALS ON ~40% OF ITEMS. Include a "graphic" field on roughly that fraction, weighted by topic: Geometry/Trig ≈ 90% (figures are nearly always required), Problem Solving & Data Analysis ≈ 70% (scatterplots, bar charts, two-way tables, dot/box/histogram plots), Advanced Math ≈ 30% (parabolas, exponential curves, function tables on coordinate plane), Algebra ≈ 20% (lines on coordinate plane, tables of values). Omit `graphic` (or set null) on items that don\'t need one.',
       '',

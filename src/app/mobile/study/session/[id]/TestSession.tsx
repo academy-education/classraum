@@ -1971,11 +1971,18 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
   if (t === 'inscribedtriangle' || (graphic.shape ?? '').toLowerCase() === 'inscribedtriangle') {
     const spec = (graphic.spec ?? {}) as { r?: number; vertexAngles?: number[] }
     const labels = (graphic.labels ?? {}) as { vertices?: string[]; sides?: string[] }
-    const r = typeof spec.r === 'number' ? spec.r : 70
+    // IMPORTANT: spec.r is the MATH radius (e.g. "13 units" in the
+    // problem text) — do NOT use it as the SVG drawing size. Prior
+    // version drew radius=13 pixels inside a 200×200 viewBox, making
+    // a 6%-of-canvas circle with all three vertex labels clustered
+    // unreadably on top of each other. The renderer always draws at
+    // a fixed comfortable size; the numeric radius reaches the
+    // student via the question text + caption.
+    const DRAW_R = 72
     const angles = (spec.vertexAngles ?? [0, 120, 240]).slice(0, 3)
     const cx = 100, cy = 100
     const toRad = (deg: number) => (deg - 90) * Math.PI / 180 // 0° = top
-    const pts = angles.map(a => [cx + r * Math.cos(toRad(a)), cy + r * Math.sin(toRad(a))] as [number, number])
+    const pts = angles.map(a => [cx + DRAW_R * Math.cos(toRad(a)), cy + DRAW_R * Math.sin(toRad(a))] as [number, number])
     const path = `M ${pts[0][0]},${pts[0][1]} L ${pts[1][0]},${pts[1][1]} L ${pts[2][0]},${pts[2][1]} Z`
     const vL = labels.vertices ?? []
     const sL = labels.sides ?? []
@@ -1983,28 +1990,32 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
       <figure className="my-3 flex flex-col items-center">
         <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
           <svg viewBox="0 0 200 200" className="w-full h-auto max-h-[300px] overflow-visible">
-            <circle cx={cx} cy={cy} r={r} stroke="black" strokeWidth={1.5} fill="none" />
+            <circle cx={cx} cy={cy} r={DRAW_R} stroke="black" strokeWidth={1.5} fill="none" />
             <path d={path} stroke="black" strokeWidth={1.5} fill="none" />
             {pts.map((p, i) => {
-              // Push label away from center along the vertex radius
+              // Push vertex label OUTWARD from center by 14px so it
+              // sits clearly outside the circle stroke. Prior 10px
+              // offset put labels on top of the circle stroke on
+              // small draws.
               const dx = p[0] - cx, dy = p[1] - cy
               const len = Math.hypot(dx, dy) || 1
-              const lx = p[0] + (dx / len) * 10
-              const ly = p[1] + (dy / len) * 10
+              const lx = p[0] + (dx / len) * 14
+              const ly = p[1] + (dy / len) * 14
               return vL[i] ? (
-                <text key={i} x={lx} y={ly} fontSize={11} fill="black" textAnchor="middle" dominantBaseline="middle">{vL[i]}</text>
+                <text key={i} x={lx} y={ly} fontSize={13} fontWeight={600} fill="black" textAnchor="middle" dominantBaseline="middle">{vL[i]}</text>
               ) : null
             })}
             {[0, 1, 2].map(i => {
               if (!sL[i]) return null
               const a = pts[i], b = pts[(i + 1) % 3]
               const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2
-              // Push label outward from centroid
+              // Side label pushed 12px outward from centroid, larger
+              // font so the value is legible on phones.
               const dx = mx - cx, dy = my - cy
               const len = Math.hypot(dx, dy) || 1
-              const lx = mx + (dx / len) * 10
-              const ly = my + (dy / len) * 10
-              return <text key={`s${i}`} x={lx} y={ly} fontSize={11} fill="black" textAnchor="middle" dominantBaseline="middle">{sL[i]}</text>
+              const lx = mx + (dx / len) * 12
+              const ly = my + (dy / len) * 12
+              return <text key={`s${i}`} x={lx} y={ly} fontSize={12} fill="black" textAnchor="middle" dominantBaseline="middle">{sL[i]}</text>
             })}
           </svg>
         </div>
@@ -2059,25 +2070,29 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
   // Model emits {type:"circleWithChord", r, chords:[{angle1, angle2, label?}], showCenter?, points?:[{angle, label?}]}.
   if (t === 'circlewithchord' || (graphic.shape ?? '').toLowerCase() === 'circlewithchord') {
     const spec = (graphic.spec ?? {}) as { r?: number; chords?: Array<{ angle1: number; angle2: number; label?: string }>; showCenter?: boolean; points?: Array<{ angle: number; label?: string }> }
-    const r = typeof spec.r === 'number' ? spec.r : 70
+    // Same fix as inscribedTriangle: spec.r is the MATH radius, not
+    // the drawing size. Draw at a fixed comfortable pixel radius so
+    // the figure is legible regardless of the problem's stated
+    // radius value.
+    const DRAW_R = 72
     const cx = 100, cy = 100
     const toRad = (deg: number) => (deg - 90) * Math.PI / 180
-    const pt = (deg: number) => [cx + r * Math.cos(toRad(deg)), cy + r * Math.sin(toRad(deg))] as [number, number]
+    const pt = (deg: number) => [cx + DRAW_R * Math.cos(toRad(deg)), cy + DRAW_R * Math.sin(toRad(deg))] as [number, number]
     const chords = spec.chords ?? []
     const points = spec.points ?? []
     return (
       <figure className="my-3 flex flex-col items-center">
         <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
           <svg viewBox="0 0 200 200" className="w-full h-auto max-h-[300px] overflow-visible">
-            <circle cx={cx} cy={cy} r={r} stroke="black" strokeWidth={1.5} fill="none" />
-            {spec.showCenter && <circle cx={cx} cy={cy} r={2} fill="black" />}
+            <circle cx={cx} cy={cy} r={DRAW_R} stroke="black" strokeWidth={1.5} fill="none" />
+            {spec.showCenter && <circle cx={cx} cy={cy} r={2.5} fill="black" />}
             {chords.map((ch, i) => {
               const p1 = pt(ch.angle1), p2 = pt(ch.angle2)
               return (
                 <g key={i}>
                   <line x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]} stroke="black" strokeWidth={1.5} />
                   {ch.label && (
-                    <text x={(p1[0] + p2[0]) / 2 + 6} y={(p1[1] + p2[1]) / 2 - 6} fontSize={11} fill="black">{ch.label}</text>
+                    <text x={(p1[0] + p2[0]) / 2 + 6} y={(p1[1] + p2[1]) / 2 - 6} fontSize={12} fill="black">{ch.label}</text>
                   )}
                 </g>
               )
@@ -2086,12 +2101,13 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
               const [x, y] = pt(p.angle)
               const dx = x - cx, dy = y - cy
               const len = Math.hypot(dx, dy) || 1
-              const lx = x + (dx / len) * 10
-              const ly = y + (dy / len) * 10
+              // Push point labels 14px outward (matches inscribedTriangle)
+              const lx = x + (dx / len) * 14
+              const ly = y + (dy / len) * 14
               return (
                 <g key={i}>
-                  <circle cx={x} cy={y} r={2} fill="black" />
-                  {p.label && <text x={lx} y={ly} fontSize={11} fill="black" textAnchor="middle" dominantBaseline="middle" fontWeight="600">{p.label}</text>}
+                  <circle cx={x} cy={y} r={2.5} fill="black" />
+                  {p.label && <text x={lx} y={ly} fontSize={13} fontWeight={600} fill="black" textAnchor="middle" dominantBaseline="middle">{p.label}</text>}
                 </g>
               )
             })}
