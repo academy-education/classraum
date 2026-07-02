@@ -29,6 +29,9 @@ interface Row {
   created_at: string
   last_active_at: string
   topic: { name_en: string; name_ko: string; slug: string } | null
+  score: number | null
+  correct_count: number | null
+  total_count: number | null
 }
 
 const PAGE_SIZE = 20
@@ -59,6 +62,7 @@ function TestsInner() {
         .from('study_sessions')
         .select(`
           id, status, generation_status, topic_freeform, created_at, last_active_at,
+          score, correct_count, total_count,
           topic:study_topics ( name_en, name_ko, slug )
         `)
         .eq('student_id', user.userId)
@@ -253,9 +257,18 @@ function StateFilter({ value, onSelect, counts, ko }: {
   )
 }
 
+const STUCK_PENDING_MS = 8 * 60 * 1000
+
 function classify(row: Row): TestState {
   if (row.generation_status === 'failed') return 'failed'
-  if (row.generation_status === 'pending') return 'generating'
+  if (row.generation_status === 'pending') {
+    // Generator's Vercel maxDuration is ~300s. Anything still pending
+    // after 8 minutes is genuinely stuck (cold-start crash, timeout,
+    // orphan). Surface it as failed so the student sees a Retry
+    // affordance via TestSession's existing fresh-attempt path.
+    const age = Date.now() - new Date(row.created_at).getTime()
+    return age > STUCK_PENDING_MS ? 'failed' : 'generating'
+  }
   if (row.status === 'completed') return 'completed'
   if (row.generation_status === 'ready' && row.status === 'active') return 'ready'
   return 'in_progress'
@@ -287,6 +300,17 @@ function TestRow({ row, ko }: { row: Row; ko: boolean }) {
           <span className={meta.labelClass}>{meta.label(ko)}</span>
           <span className="text-gray-300">·</span>
           <span>{relativeTime}</span>
+          {state === 'completed' && typeof row.score === 'number' && (
+            <>
+              <span className="text-gray-300">·</span>
+              <span className="text-gray-700 font-semibold tabular-nums">
+                {Math.round(row.score)}%
+                {row.correct_count !== null && row.total_count !== null && (
+                  <span className="text-gray-400 font-normal ml-1">({row.correct_count}/{row.total_count})</span>
+                )}
+              </span>
+            </>
+          )}
         </div>
       </div>
       <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />

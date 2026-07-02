@@ -83,11 +83,20 @@ export function GeneratingTestsChip() {
 
   if (rows.length === 0) return null
 
+  // Auto-fail stuck pending rows (>8 min old). Vercel's generator
+  // maxDuration is ~300s, so pending past that is orphaned. Bucket
+  // these into failed so the student sees a Retry affordance instead
+  // of an eternal "Building your test…" spinner.
+  const STUCK_PENDING_MS = 8 * 60 * 1000
+  const now = Date.now()
+  const isStuck = (r: Row) => r.generation_status === 'pending'
+    && now - new Date(r.created_at).getTime() > STUCK_PENDING_MS
+
   // Split by state. Pending + failed need per-row visibility because
   // each carries live progress; multiple "ready" rows all share the
   // same action ("open test"), so they collapse into a single row.
-  const pending = rows.filter(r => r.generation_status === 'pending')
-  const failed = rows.filter(r => r.generation_status === 'failed')
+  const pending = rows.filter(r => r.generation_status === 'pending' && !isStuck(r))
+  const failed = rows.filter(r => r.generation_status === 'failed' || isStuck(r))
   const ready = rows.filter(r => r.generation_status === 'ready')
 
   const topicNameOf = (row: Row) => row.topic

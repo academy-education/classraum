@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { authHeaders } from '@/lib/auth-headers'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
@@ -312,6 +313,7 @@ function StudyLandingInner() {
   const ko = language === 'korean'
   const [subjects, setSubjects] = useState<BrowseItem[]>([])
   const [tests, setTests] = useState<BrowseItem[]>([])
+  const [targetTest, setTargetTest] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [freeFormQuery, setFreeFormQuery] = useState('')
   const [creatingFreeForm, setCreatingFreeForm] = useState(false)
@@ -363,6 +365,34 @@ function StudyLandingInner() {
     })()
     return () => { cancelled = true }
   }, [])
+
+  // Pull the onboarding-declared target test so we can hoist that tile
+  // to the front of the grid. Silently no-op on failure — the tile just
+  // ends up wherever sort_order put it.
+  useEffect(() => {
+    if (!user?.userId) return
+    let cancelled = false
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/prefs', { headers })
+        if (!res.ok) return
+        const json = await res.json() as { target_test?: string | null }
+        if (!cancelled && json.target_test) setTargetTest(json.target_test)
+      } catch { /* silent */ }
+    })()
+    return () => { cancelled = true }
+  }, [user?.userId])
+
+  // Sort test-prep grid so the student's target sits first + gets a badge.
+  const sortedTests = useMemo(() => {
+    if (!targetTest) return tests
+    const targetSlug = `test-${targetTest.toLowerCase()}`
+    const idx = tests.findIndex(t => t.slug === targetSlug)
+    if (idx < 0) return tests
+    return [tests[idx], ...tests.slice(0, idx), ...tests.slice(idx + 1)]
+  }, [tests, targetTest])
+
 
   const name = (s: { name_en: string; name_ko: string }) => ko ? s.name_ko : s.name_en
 
@@ -498,9 +528,10 @@ function StudyLandingInner() {
             <SkeletonTestGrid />
           ) : (
             <div className="grid grid-cols-2 gap-3">
-              {tests.map((test, i) => {
+              {sortedTests.map((test, i) => {
                 const theme = themeForTest(test.slug)
                 const Icon = theme.Icon
+                const isTarget = targetTest !== null && test.slug === `test-${targetTest.toLowerCase()}`
                 // Only SAT + TOEFL are open; everything else (KSAT,
                 // TOEIC, IELTS, ACT, AP, GRE) shows a locked overlay
                 // until we expand coverage. We still render the card
@@ -546,6 +577,12 @@ function StudyLandingInner() {
                     <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                     {/* Soft glow blob */}
                     <div aria-hidden className="pointer-events-none absolute -top-8 -left-8 w-24 h-24 rounded-full bg-white/15 blur-2xl group-hover:bg-white/25 transition-colors" />
+                    {isTarget && unlocked && (
+                      <span className="absolute top-2 right-2 z-[1] inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white text-[9px] font-bold uppercase tracking-[0.10em] text-gray-900 shadow-[0_2px_6px_-2px_rgba(0,0,0,0.30)] ring-1 ring-white/60">
+                        <span className="w-1 h-1 rounded-full bg-emerald-500" />
+                        {ko ? '내 목표' : 'My target'}
+                      </span>
+                    )}
 
                     <div className={`relative flex flex-col h-full justify-between gap-3 ${unlocked ? '' : 'opacity-45'}`}>
                       <div className="flex items-start justify-between gap-2">

@@ -18,6 +18,9 @@ interface SessionRow {
   status: string
   created_at: string
   last_active_at: string
+  score: number | null
+  correct_count: number | null
+  total_count: number | null
   topic: { id: string; slug: string; name_en: string; name_ko: string } | null
 }
 
@@ -63,6 +66,7 @@ function SummaryInner({ id }: { id: string }) {
         .from('study_sessions')
         .select(`
           id, mode, language, topic_id, topic_freeform, status, created_at, last_active_at,
+          score, correct_count, total_count,
           topic:study_topics ( id, slug, name_en, name_ko )
         `)
         .eq('id', id)
@@ -117,10 +121,21 @@ function SummaryInner({ id }: { id: string }) {
     )
   }
 
-  const correct = attempts.filter(a => a.is_correct).length
-  const incorrect = attempts.length - correct
-  const attempted = attempts.length > 0
-  const accuracy = !attempted ? 0 : Math.round((correct / attempts.length) * 100)
+  // Prefer server-persisted score when it exists (test-mode sessions
+  // write score + correct_count + total_count on submit). Fall back to
+  // recomputing from attempts for legacy sessions and non-test modes
+  // that don't write a score column.
+  const storedTotal = session.total_count ?? null
+  const storedCorrect = session.correct_count ?? null
+  const correct = storedCorrect !== null ? storedCorrect : attempts.filter(a => a.is_correct).length
+  const totalItems = storedTotal !== null ? storedTotal : attempts.length
+  const attempted = totalItems > 0
+  const accuracy = !attempted
+    ? 0
+    : session.score !== null
+      ? Math.round(session.score)
+      : Math.round((correct / totalItems) * 100)
+  const incorrect = totalItems - correct
   const totalSeconds = attempts.reduce((sum, a) => sum + (a.time_spent_seconds ?? 0), 0)
   const totalMinutes = Math.round(totalSeconds / 60)
   const topicName = session.topic
@@ -168,7 +183,7 @@ function SummaryInner({ id }: { id: string }) {
               <p className={`text-[14px] ${hero.accent} mt-1.5 opacity-90`}>
                 {String(t('study.summary.accuracyLine', {
                   correct: String(correct),
-                  total: String(attempts.length),
+                  total: String(totalItems),
                 }))}
               </p>
               <div className={`mt-5 grid grid-cols-3 gap-3 ${hero.accent}`}>

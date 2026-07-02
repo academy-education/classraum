@@ -158,10 +158,23 @@ export async function POST(req: NextRequest) {
   }
 
   // Mark the session completed so it sorts correctly in history and
-  // the UI knows it's no longer resumable.
+  // the UI knows it's no longer resumable. Persist the score alongside
+  // — the tests overview and stats "recent tests" panel read from
+  // these columns rather than recomputing from attempts on every load.
+  const totalCount = body.questions.length
+  const persistedCorrect = verdicts.filter(v => v.correct).length
+  const persistedScore = totalCount > 0
+    ? Math.round((10000 * persistedCorrect) / totalCount) / 100
+    : 0
   await supabaseAdmin
     .from('study_sessions')
-    .update({ status: 'completed', completed_at: new Date().toISOString() })
+    .update({
+      status: 'completed',
+      completed_at: new Date().toISOString(),
+      score: persistedScore,
+      correct_count: persistedCorrect,
+      total_count: totalCount,
+    })
     .eq('id', body.sessionId)
 
   // Fire-and-forget AI mastery assessment. The trigger already
