@@ -205,6 +205,39 @@ Prompt: "A circle in the xy-plane has equation x² + y² - 6x + 8y = 0. A line p
 Choices: ["-5/2", "-2/5", "2/5", "5/2"]
 Correct: "5/2"
 Why hard: requires completing the square to find center is (3, -4) — students often skip this and use the equation's leading terms as the center. Then slope = (1 - (-4))/(5 - 3) = 5/2. Distractors encode (a) sign-flip on -4, (b) using y-coord first, (c) using uncompleted form.`,
+
+          `EXAMPLE 3 (verified hard — quadratic discriminant condition, SPR):
+Prompt: "In the equation 9x² + 8 = nx, n is a constant. The equation has exactly one solution. What is the value of n²/8?"
+Answer: 36 (student-produced response — no choices)
+Why hard: three abstractions required. (1) recognize "exactly one solution" means discriminant = 0. (2) rearrange 9x² + 8 = nx into standard form 9x² - nx + 8 = 0 (students frequently drop the sign flip on n). (3) apply discriminant: n² - 4(9)(8) = 0 → n² = 288 → n²/8 = 36. The final trap is returning n or n² instead of n²/8. SPR format eliminates guess-and-check via choices.`,
+
+          `EXAMPLE 4 (verified hard — percentage chain, SPR):
+Prompt: "The mass of object A is 444% of the mass of object B, and the mass of object A is 0.740% of the mass of object C. If the mass of object C is p% of the mass of object B, what is the value of p?"
+Answer: 60000 (SPR)
+Why hard: chained percentage translation with a decimal-percent detail. A = 4.44B and A = 0.00740C, so C = A/0.00740 = 4.44B/0.00740 = 600B. C is 600 TIMES B, therefore C is 60000% of B, so p = 60000. Common traps: (a) answering 600 (confusing "600 times" with "600 percent"), (b) answering 60 (dropping a factor of 10 in the decimal), (c) inverting B and C. Testing the p% = p/100 conversion is the whole point of the item.`,
+
+          `EXAMPLE 5 (verified hard — polynomial factoring with substitution):
+Prompt: "Which expression is a factor of y²(x - 3) - 25(x - 3)³?"
+Choices: ["y(x - 3)", "(x - 5)(x - 3)", "y + x - 3", "y + 5x - 15"]
+Correct: "y + 5x - 15"
+Why hard: two-step factoring. (1) pull out common (x - 3) → (x - 3)[y² - 25(x - 3)²]. (2) recognize [y² - 25(x - 3)²] as a difference of squares with 5(x - 3) as the second term → (y - 5(x - 3))(y + 5(x - 3)) = (y - 5x + 15)(y + 5x - 15). Trap B "(x - 5)(x - 3)" is designed to catch students who see "25 = 5²" and force a false difference-of-squares on x. C and A are structural half-factorings that never distributed correctly. Distractors must encode step-1 or step-2 stopping errors, not random algebra.`,
+
+          `EXAMPLE 6 (verified hard — circle + line system with sign constraint):
+Prompt: "In the given system of equations, m and b are negative constants. In the xy-plane, the graphs of the equations intersect at the point (-5, y), where y < 0. Which expression represents the value of b?
+   x² + y² = 36
+   y = mx + b/4"
+Choices: ["-5m/4 + √11/4", "5m/4 - √11/4", "-20m + 4√11", "20m - 4√11"]
+Correct: "20m - 4√11"
+Why hard: four steps + one sign-choice trap. (1) sub x = -5 into circle: 25 + y² = 36 → y² = 11 → y = ±√11. (2) the constraint y < 0 forces y = -√11 — students who default to the positive root fail here. (3) sub into line: -√11 = -5m + b/4. (4) solve for b (NOT m): b = 4(-√11 + 5m) = 20m - 4√11. Distractor A solves for m instead of b. Distractor C sign-flips step 4. Distractor B uses y = +√11. The item tests parameter-in-a-conic-system + sign-branch-selection simultaneously — the exact Module 2 hard-shape for Advanced Math.`,
+
+          `EXAMPLE 7 (verified hard — similar figures, area/perimeter ratio):
+Prompt: "The table gives the areas and perimeters of two similar rectangles, where n is a constant.
+   Rectangle A: Area = 630 sq in, Perimeter = 210 in
+   Rectangle B: Area = 2520 sq in, Perimeter = n in
+What is the value of n?"
+Choices: ["2100", "1680", "840", "420"]
+Correct: "420"
+Why hard: the signature similar-figures trap. Area ratio B:A = 2520/630 = 4, so linear scale factor = √4 = 2 (NOT 4). Perimeter scales with the linear factor, so n = 2 × 210 = 420. Distractor C "840" is EXACTLY the trap answer for students who apply the area ratio (4) directly to the perimeter (4 × 210 = 840). Distractor A "2100" = perimeter × area-ratio-times-fudge. Only one distractor pair separates correct from careless — that's the diagnostic power. Every DSAT similar-figures hard item pivots on this "linear factor = √(area ratio)" step.`,
         ],
         hardItemExamples_ko: [
           `예시 1 (검증된 어려움):
@@ -218,6 +251,39 @@ Why hard: requires completing the square to find center is (3, -4) — students 
 보기: ["-5/2", "-2/5", "2/5", "5/2"]
 정답: "5/2"
 어려운 이유: 완전제곱으로 중심이 (3, -4)임을 찾아야 함 — 학생들은 이 단계를 건너뛰고 방정식의 일차항을 중심으로 착각. 그 다음 기울기 = (1 - (-4))/(5 - 3) = 5/2. 함정은 (a) -4 부호 반전, (b) y좌표 먼저 사용, (c) 완전제곱 전 방정식 사용.`,
+
+          `예시 3 (검증된 어려움 — 이차방정식 판별식 조건, SPR):
+문제: "방정식 9x² + 8 = nx에서 n은 상수이다. 이 방정식이 해를 정확히 하나 가진다면, n²/8의 값은?"
+정답: 36 (학생 단답형)
+어려운 이유: 세 단계의 추상화 필요. (1) "해가 정확히 하나"는 판별식 = 0. (2) 9x² + 8 = nx를 표준형 9x² - nx + 8 = 0으로 정리(학생들은 n의 부호 반전을 자주 놓침). (3) 판별식: n² - 4(9)(8) = 0 → n² = 288 → n²/8 = 36. 최종 함정은 n 또는 n²을 답하는 것 — 문제는 n²/8을 물음. SPR 형식이라 선택지로 역산하는 것도 불가.`,
+
+          `예시 4 (검증된 어려움 — 백분율 연쇄, SPR):
+문제: "물체 A의 질량은 물체 B 질량의 444%이고, 물체 A의 질량은 물체 C 질량의 0.740%이다. 물체 C의 질량이 물체 B 질량의 p%라면, p의 값은?"
+정답: 60000 (SPR)
+어려운 이유: 소수 백분율 세부까지 포함된 백분율 번역 연쇄. A = 4.44B, A = 0.00740C → C = A/0.00740 = 4.44B/0.00740 = 600B. C는 B의 600배이므로 60000%. 따라서 p = 60000. 흔한 함정: (a) 600으로 답(600배 = 600%로 착각), (b) 60으로 답(소수 자리에서 10 누락), (c) B와 C를 뒤바꿈. p%의 p/100 변환을 시험하는 것이 문항의 핵심.`,
+
+          `예시 5 (검증된 어려움 — 치환을 이용한 다항식 인수분해):
+문제: "y²(x - 3) - 25(x - 3)³의 인수는?"
+보기: ["y(x - 3)", "(x - 5)(x - 3)", "y + x - 3", "y + 5x - 15"]
+정답: "y + 5x - 15"
+어려운 이유: 2단계 인수분해. (1) 공통 인수 (x - 3)을 뽑아내 (x - 3)[y² - 25(x - 3)²]. (2) [y² - 25(x - 3)²]을 5(x - 3)을 둘째 항으로 하는 제곱의 차로 인식 → (y - 5(x - 3))(y + 5(x - 3)) = (y - 5x + 15)(y + 5x - 15). 함정 B "(x - 5)(x - 3)"은 "25 = 5²"을 보고 x에 대한 가짜 제곱의 차를 강행하는 학생을 잡음. C와 A는 분배가 잘못된 중간 단계 형태. 함정은 1단계나 2단계에서 멈추는 오류를 반영해야 함.`,
+
+          `예시 6 (검증된 어려움 — 원 + 직선 연립, 부호 제약):
+문제: "주어진 연립방정식에서 m과 b는 음수 상수. xy평면에서 두 방정식의 그래프가 (-5, y)에서 만나며 y < 0. b의 값을 나타내는 식은?
+   x² + y² = 36
+   y = mx + b/4"
+보기: ["-5m/4 + √11/4", "5m/4 - √11/4", "-20m + 4√11", "20m - 4√11"]
+정답: "20m - 4√11"
+어려운 이유: 4단계 + 부호 선택 함정. (1) 원에 x = -5 대입: 25 + y² = 36 → y² = 11 → y = ±√11. (2) 제약 y < 0이 y = -√11로 강제 — 양의 근을 반사적으로 택하는 학생이 여기서 실패. (3) 직선에 대입: -√11 = -5m + b/4. (4) b(m이 아님)에 대해 풀기: b = 4(-√11 + 5m) = 20m - 4√11. 함정 A는 b가 아닌 m에 대해 풀이. C는 4단계 부호 반전. B는 y = +√11 사용. 이차곡선 연립의 매개변수 + 부호 분기 선택을 동시에 시험 — Advanced Math 모듈 2 어려운 문항의 정확한 형태.`,
+
+          `예시 7 (검증된 어려움 — 닮은 도형, 넓이/둘레 비):
+문제: "표는 두 닮은 직사각형의 넓이와 둘레를 나타내며, n은 상수.
+   직사각형 A: 넓이 = 630 제곱인치, 둘레 = 210인치
+   직사각형 B: 넓이 = 2520 제곱인치, 둘레 = n인치
+n의 값은?"
+보기: ["2100", "1680", "840", "420"]
+정답: "420"
+어려운 이유: 닮은 도형의 시그니처 함정. 넓이 비 B:A = 2520/630 = 4이므로 길이 비 = √4 = 2 (4가 아님). 둘레는 길이 비로 스케일되므로 n = 2 × 210 = 420. 함정 C "840"은 넓이 비(4)를 둘레에 그대로 적용한 부주의한 학생의 정확한 답(4 × 210 = 840). A "2100"은 둘레 × 넓이 비 계열의 착각. 오답이 정답과 한 걸음 차이라 판별력이 큼. 모든 DSAT 닮은 도형 어려운 문항은 "길이 비 = √(넓이 비)" 단계에서 갈림.`,
         ],
       },
     ],
