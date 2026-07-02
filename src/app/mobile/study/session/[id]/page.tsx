@@ -1,12 +1,14 @@
 "use client"
 
 import { use, useEffect, useState } from 'react'
-import { Loader2, Sparkles, HelpCircle } from 'lucide-react'
+import Link from 'next/link'
+import { Sparkles, HelpCircle, ArrowLeft } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { StudyPageHeader } from '../../_shared/primitives'
+import { SkeletonCard, SkeletonBlock } from '../../skeletons'
 import { ChatSession } from './ChatSession'
 import { PracticeSession } from './PracticeSession'
 import { LessonSession } from './LessonSession'
@@ -89,18 +91,38 @@ function SessionInner({ id }: { id: string }) {
   }, [id])
 
   if (loading) {
+    // Skeleton mirrors the loaded session shell: sticky header +
+    // one big card body — so the mode-specific component slots in
+    // cleanly when data arrives.
     return (
-      <div className="flex items-center justify-center h-full text-sm text-gray-500 px-5 py-10">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.landing.loading')}
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+        <SkeletonBlock className="h-4 w-24 rounded-full" />
+        <div className="flex items-start gap-3">
+          <SkeletonBlock className="w-9 h-9 rounded-xl flex-shrink-0" />
+          <div className="flex-1 space-y-2">
+            <SkeletonBlock className="h-2.5 w-16 rounded-full" />
+            <SkeletonBlock className="h-4 w-2/5 rounded-full" />
+          </div>
+        </div>
+        <SkeletonCard className="p-5 min-h-[240px] space-y-3">
+          <SkeletonBlock className="h-3 w-1/4 rounded-full" />
+          <SkeletonBlock className="h-4 w-4/5 rounded-full" />
+          <SkeletonBlock className="h-4 w-3/5 rounded-full" />
+        </SkeletonCard>
       </div>
     )
   }
 
   if (!session) {
     return (
-      <div className="px-5 py-10 text-center text-sm text-gray-500">
-        {t('study.session.notFound')}
+      <div className="max-w-3xl mx-auto px-5 py-14 text-center">
+        <p className="text-sm text-gray-500">{t('study.session.notFound')}</p>
+        <Link
+          href="/mobile/study"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80"
+        >
+          <ArrowLeft className="w-4 h-4" />{t('study.topic.backToStudy')}
+        </Link>
       </div>
     )
   }

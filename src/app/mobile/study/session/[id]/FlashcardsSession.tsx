@@ -222,6 +222,14 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
             <RefreshCw className="w-4 h-4" />
             {t('study.flashcards.newDeck')}
           </button>
+          {marked.again > 0 && (
+            <Link
+              href={`/mobile/study/session/${sessionId}/summary`}
+              className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
+            >
+              {language === 'ko' ? '어려웠던 카드 보기' : 'Review tough cards'}
+            </Link>
+          )}
           <Link
             href="/mobile/study"
             className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"

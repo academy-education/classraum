@@ -265,13 +265,24 @@ export function LessonSession({ sessionId, language }: { sessionId: string; lang
           </div>
 
           {answeredCount === lesson.comprehension.length && (
-            <Link
-              href="/mobile/study"
-              className="mt-4 w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-gray-900 text-white text-sm font-medium"
-            >
-              {t('study.lesson.finish')}
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="mt-4 flex flex-col gap-2">
+              {correctCount < answeredCount && (
+                <Link
+                  href={`/mobile/study/session/${sessionId}/summary`}
+                  className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
+                >
+                  {ko ? '틀린 문제 보기' : 'Review mistakes'}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              )}
+              <Link
+                href="/mobile/study"
+                className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-gray-900 text-white text-sm font-medium"
+              >
+                {t('study.lesson.finish')}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           )}
         </section>
       </div>
