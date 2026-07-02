@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useLandingData } from './LandingDataProvider'
 
 interface Progress {
   questionsToday: number
@@ -25,9 +26,12 @@ interface Progress {
 export function TodayProgressRing() {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
-  const [progress, setProgress] = useState<Progress | null>(null)
+  const landingData = useLandingData()
+  const [fallbackProgress, setFallbackProgress] = useState<Progress | null>(null)
+  const progress = landingData ? landingData.progress : fallbackProgress
 
   useEffect(() => {
+    if (landingData) return
     let cancelled = false
     void (async () => {
       try {
@@ -35,13 +39,13 @@ export function TodayProgressRing() {
         const res = await fetch('/api/study/progress', { headers })
         if (!res.ok) return
         const json = await res.json()
-        if (!cancelled) setProgress(json)
+        if (!cancelled) setFallbackProgress(json)
       } catch {
         // Soft-fail; ring just won't appear.
       }
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [landingData])
 
   if (!progress) return null
 

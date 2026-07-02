@@ -7,6 +7,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { SkeletonBlock } from './skeletons'
+import { useLandingData } from './LandingDataProvider'
 
 interface Progress {
   questionsToday: number
@@ -37,11 +38,19 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
   const { language } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const ko = language === 'korean'
-  const [streak, setStreak] = useState<number | null>(null)
-  const [progress, setProgress] = useState<Progress | null>(null)
-  const [loadingProgress, setLoadingProgress] = useState(true)
+  const landingData = useLandingData()
+  const [fallbackStreak, setFallbackStreak] = useState<number | null>(null)
+  const [fallbackProgress, setFallbackProgress] = useState<Progress | null>(null)
+  const [fallbackLoading, setFallbackLoading] = useState(true)
+
+  // Prefer bundled landing payload; only fetch standalone if the
+  // provider isn't mounted (component reused outside the landing).
+  const streak = landingData ? landingData.streak : fallbackStreak
+  const progress = landingData ? landingData.progress : fallbackProgress
+  const loadingProgress = landingData ? landingData.loading : fallbackLoading
 
   useEffect(() => {
+    if (landingData) return
     let cancelled = false
     void (async () => {
       try {
@@ -49,13 +58,14 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
         const res = await fetch('/api/study/streak', { headers })
         if (!res.ok) return
         const json = await res.json() as { streak: number }
-        if (!cancelled) setStreak(json.streak)
+        if (!cancelled) setFallbackStreak(json.streak)
       } catch { /* silent */ }
     })()
     return () => { cancelled = true }
-  }, [user?.userId])
+  }, [landingData, user?.userId])
 
   useEffect(() => {
+    if (landingData) return
     let cancelled = false
     void (async () => {
       try {
@@ -63,12 +73,12 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
         const res = await fetch('/api/study/progress', { headers })
         if (!res.ok) return
         const json = await res.json() as Progress
-        if (!cancelled) setProgress(json)
+        if (!cancelled) setFallbackProgress(json)
       } catch { /* silent */ }
-      finally { if (!cancelled) setLoadingProgress(false) }
+      finally { if (!cancelled) setFallbackLoading(false) }
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [landingData])
 
   const now = new Date()
   const hour = now.getHours()

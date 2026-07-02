@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Sparkles, X, Trophy } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useLandingData } from '../LandingDataProvider'
 
 /**
  * Full-screen overlay that fires once when the student crosses their
@@ -31,13 +32,39 @@ function todayKey(): string {
 export function DailyGoalCelebration() {
   const { language } = useTranslation()
   const ko = language === 'korean'
+  const landingData = useLandingData()
   const [show, setShow] = useState(false)
-  const [progress, setProgress] = useState<Progress | null>(null)
+  const [fallbackProgress, setFallbackProgress] = useState<Progress | null>(null)
+  const progress = landingData ? landingData.progress : fallbackProgress
+
+  // Session-scoped ratchet: only fire when the student crosses 0→met
+  // within this browser session, not on every re-render or refetch.
+  const prevMetRef = useRef(false)
+
+  // Provider path: watch the shared payload + drive the 30s refetch
+  // off the provider so we don't double the /api/study/landing call.
+  useEffect(() => {
+    if (!landingData) return
+    const id = setInterval(() => { void landingData.refetch() }, 30 * 1000)
+    return () => { clearInterval(id) }
+  }, [landingData])
 
   useEffect(() => {
-    let cancelled = false
-    let prevMet = false  // ratchet — only fire when crossing 0→met within session
+    if (!progress) return
+    const met = progress.minutesToday >= progress.goalMinutes && progress.goalMinutes > 0
+    const dismissKey = `study-goal-celebration-shown:${todayKey()}`
+    const alreadyShown = sessionStorage.getItem(dismissKey) === '1'
+    if (met && !prevMetRef.current && !alreadyShown) {
+      setShow(true)
+      sessionStorage.setItem(dismissKey, '1')
+    }
+    prevMetRef.current = met
+  }, [progress])
 
+  // Fallback path: no provider mounted, run the old polling loop.
+  useEffect(() => {
+    if (landingData) return
+    let cancelled = false
     const fetchOnce = async () => {
       try {
         const headers = await authHeaders()
@@ -45,24 +72,15 @@ export function DailyGoalCelebration() {
         if (!res.ok) return
         const json = await res.json() as Progress
         if (cancelled) return
-        setProgress(json)
-        const met = json.minutesToday >= json.goalMinutes && json.goalMinutes > 0
-        const dismissKey = `study-goal-celebration-shown:${todayKey()}`
-        const alreadyShown = sessionStorage.getItem(dismissKey) === '1'
-        if (met && !prevMet && !alreadyShown) {
-          setShow(true)
-          sessionStorage.setItem(dismissKey, '1')
-        }
-        prevMet = met
+        setFallbackProgress(json)
       } catch {
         // Soft-fail.
       }
     }
-
     void fetchOnce()
     const id = setInterval(fetchOnce, 30 * 1000)
     return () => { cancelled = true; clearInterval(id) }
-  }, [])
+  }, [landingData])
 
   if (!show || !progress) return null
 

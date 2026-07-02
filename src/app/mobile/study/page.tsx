@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useMemo, useState } from 'react'
-import { authHeaders } from '@/lib/auth-headers'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
@@ -27,6 +26,7 @@ import { DailyChallengeCard } from './_shared/DailyChallengeCard'
 import { SearchSheet } from './_shared/SearchSheet'
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
+import { LandingDataProvider, useLandingData } from './LandingDataProvider'
 import { SkeletonTestGrid, SkeletonSquareGrid } from './skeletons'
 
 /**
@@ -301,7 +301,9 @@ function themeForTest(slug: string): typeof TEST_THEMES[keyof typeof TEST_THEMES
 export default function StudyLandingPage() {
   return (
     <StudySubscriptionGate>
-      <StudyLandingInner />
+      <LandingDataProvider>
+        <StudyLandingInner />
+      </LandingDataProvider>
     </StudySubscriptionGate>
   )
 }
@@ -313,12 +315,13 @@ function StudyLandingInner() {
   const ko = language === 'korean'
   const [subjects, setSubjects] = useState<BrowseItem[]>([])
   const [tests, setTests] = useState<BrowseItem[]>([])
-  const [targetTest, setTargetTest] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [freeFormQuery, setFreeFormQuery] = useState('')
   const [creatingFreeForm, setCreatingFreeForm] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const { needsOnboarding, markComplete } = useOnboardingGate()
+  const landingData = useLandingData()
+  const targetTest = landingData?.prefs?.target_test ?? null
 
   useEffect(() => {
     let cancelled = false
@@ -366,23 +369,9 @@ function StudyLandingInner() {
     return () => { cancelled = true }
   }, [])
 
-  // Pull the onboarding-declared target test so we can hoist that tile
-  // to the front of the grid. Silently no-op on failure — the tile just
-  // ends up wherever sort_order put it.
-  useEffect(() => {
-    if (!user?.userId) return
-    let cancelled = false
-    void (async () => {
-      try {
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/prefs', { headers })
-        if (!res.ok) return
-        const json = await res.json() as { target_test?: string | null }
-        if (!cancelled && json.target_test) setTargetTest(json.target_test)
-      } catch { /* silent */ }
-    })()
-    return () => { cancelled = true }
-  }, [user?.userId])
+  // target_test now flows in via LandingDataProvider — one bundled
+  // /api/study/landing call replaces the 3 separate prefs/progress/
+  // streak fetches this page used to fire.
 
   // Sort test-prep grid so the student's target sits first + gets a badge.
   const sortedTests = useMemo(() => {

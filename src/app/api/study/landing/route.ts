@@ -22,6 +22,14 @@ import { enforceRateLimit } from '@/lib/rate-limit'
  *   priorLostStreak   — days that lapsed when the student missed
  *                       both today AND yesterday; drives the streak-
  *                       at-risk banner. Zero if streak is still safe.
+ *   progress          — today's minutes / questions / sessions +
+ *                       goal, mirrors /api/study/progress. Consumed
+ *                       by StudyHero, TodayProgressRing, and the
+ *                       DailyGoalCelebration overlay.
+ *   prefs             — the student's stored study prefs row (auto-
+ *                       created if missing), mirrors /api/study/prefs.
+ *                       Consumed by useOnboardingGate and the target-
+ *                       test hoist on the landing.
  *
  * Individual sub-features (RecommendedShelf, MistakeBankShelf,
  * DailyChallenge, DailyReview) keep their existing endpoints because
@@ -56,11 +64,16 @@ export async function GET(req: NextRequest) {
   if (blocked) return blocked
 
   const cutoff60 = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString()
+  const todayStart = new Date()
+  todayStart.setHours(0, 0, 0, 0)
+  const todayIso = todayStart.toISOString()
 
   const [
     { data: streakRows },
     { data: activeRow },
     { count: readyCount },
+    { data: attempts },
+    { data: prefsRow },
   ] = await Promise.all([
     supabaseAdmin
       .from('study_sessions')
@@ -87,6 +100,19 @@ export async function GET(req: NextRequest) {
       .eq('mode', 'full_test')
       .eq('status', 'active')
       .eq('generation_status', 'ready'),
+    supabaseAdmin
+      .from('study_attempts')
+      .select(`
+        time_spent_seconds, created_at,
+        session:study_sessions!inner ( student_id, id )
+      `)
+      .eq('session.student_id', user.id)
+      .gte('created_at', todayIso),
+    supabaseAdmin
+      .from('study_user_prefs')
+      .select('*')
+      .eq('student_id', user.id)
+      .maybeSingle(),
   ])
 
   // Streak computation — same logic as /api/study/streak.
@@ -119,10 +145,44 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  // Progress block — mirrors /api/study/progress logic. Goal minutes
+  // are read off the prefs row we already fetched above rather than
+  // making a second call.
+  const sessionIds = new Set<string>()
+  let totalSeconds = 0
+  for (const a of attempts ?? []) {
+    totalSeconds += (a.time_spent_seconds as number | null) ?? 0
+    const s = a.session as { id: string } | { id: string }[] | null
+    const id = Array.isArray(s) ? s[0]?.id : s?.id
+    if (id) sessionIds.add(id)
+  }
+  const goalMinutes = (prefsRow?.daily_goal_minutes as number | undefined) ?? 30
+  const progress = {
+    questionsToday: attempts?.length ?? 0,
+    minutesToday: Math.round(totalSeconds / 60),
+    sessionsToday: sessionIds.size,
+    goalMinutes,
+  }
+
+  // Prefs block — auto-create default row on first visit so
+  // useOnboardingGate can flip the wizard on for new users. Matches
+  // /api/study/prefs's insert-on-miss behavior.
+  let prefs = prefsRow
+  if (!prefs) {
+    const { data: created } = await supabaseAdmin
+      .from('study_user_prefs')
+      .insert({ student_id: user.id })
+      .select()
+      .single()
+    prefs = created
+  }
+
   return NextResponse.json({
     streak,
     priorLostStreak,
     readyTests: readyCount ?? 0,
     activeSession: (activeRow as unknown as ActiveSession | null) ?? null,
+    progress,
+    prefs,
   })
 }
