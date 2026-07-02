@@ -15,6 +15,7 @@ import {
   sanitizeQuestion,
   shuffleChoices,
   dedupeByPrompt,
+  dedupeBySemantic,
   type Question,
   type RawQuestion,
 } from '@/lib/test-verify'
@@ -969,7 +970,20 @@ export async function POST(req: NextRequest) {
     // target hard count first, then easy/medium → shuffle choices
     phase('verifying', 'study.test.progress.verifying', 60)
     let questions = allQuestions.map(sanitizeQuestion)
+    const beforeInitialDedupe = questions.length
     questions = dedupeByPrompt(questions)
+    // Semantic-signature dedupe catches "same archetype, tweaked
+    // numbers" clones that string-prefix matching misses. Especially
+    // important for SAT Math where parallel chunks independently
+    // regenerate the same "triangle ABC inscribed in circle" pattern
+    // with only the radius changed.
+    questions = dedupeBySemantic(questions)
+    if (questions.length !== beforeInitialDedupe) {
+      console.log('[test/generate] initial dedupe', {
+        before: beforeInitialDedupe, after: questions.length,
+        dropped: beforeInitialDedupe - questions.length,
+      })
+    }
 
     // ── Trivial-item filter (SAT Math) ──────────────────────────────
     // Models occasionally fill the count with degenerate "find
@@ -1104,7 +1118,7 @@ export async function POST(req: NextRequest) {
     // target (in which case we use everything we have).
     const hardSlice = verifiedHard.slice(0, targetHard)
     const easyMedSlice = verifiedEasyMed.slice(0, count - hardSlice.length)
-    const combined = [...easyMedSlice, ...hardSlice]
+    let combined = [...easyMedSlice, ...hardSlice]
     if (combined.length < count) {
       const extra = [
         ...verifiedEasyMed.slice(easyMedSlice.length),
@@ -1193,6 +1207,21 @@ export async function POST(req: NextRequest) {
       if (combined.length < count) {
         console.error('[test/generate] FAILED to hit exact count', {
           target: count, shipped: combined.length, shortfall: count - combined.length,
+        })
+      }
+      // Top-up chunks reuse the same hard prompt as the main pool, so
+      // they gravitate to the same "safe" archetypes and produce
+      // clones. Run BOTH dedupes again on the combined pool so those
+      // don't ship. If dedupe drops the pool back below count, we
+      // still ship what remains — a shorter distinct-question test is
+      // strictly better than a full test full of near-dupes.
+      const beforeFinalDedupe = combined.length
+      combined = dedupeByPrompt(combined)
+      combined = dedupeBySemantic(combined)
+      if (combined.length !== beforeFinalDedupe) {
+        console.log('[test/generate] post-topup dedupe', {
+          before: beforeFinalDedupe, after: combined.length,
+          dropped: beforeFinalDedupe - combined.length,
         })
       }
     }
@@ -2136,6 +2165,20 @@ function extraGuidanceFor(
       '3) "p(x) is a polynomial with integer coefficients. When p(x) is divided by (x−2), the remainder is 5. When p(x) is divided by (x−3), the remainder is 7. What is the remainder when p(x) is divided by (x−2)(x−3)?" (Remainder theorem + linear-remainder ansatz r(x)=ax+b; set up 2-eq system. Answer is a linear polynomial, not a constant.)',
       '4) "The table shows the joint distribution of two binary variables X and Y. If P(X=1 | Y=1)=0.6 and P(Y=1 | X=0)=0.4 and P(X=1)=0.5, find P(X=1 AND Y=0)." (Pure conditional manipulation; the trick is recognizing which cells to set as variables and which two equations close the system.)',
       '',
+      // Real production observation from a 44-item SAT Math run: 12 of 44
+      // items began "Triangle ABC inscribed in a circle of radius 70",
+      // 3 items were verbatim "r+s=8 and r²+s²=40 → find c", 5 items
+      // were "two subscription/phone plans equal at n". The model was
+      // treating schema-doc example values (r: 70) and hard-example
+      // archetypes as reusable templates. Explicit banned-cliche list:
+      'CLICHÉ / REPETITION BAN — every item in this test must have a DISTINCT setup. Specifically:',
+      '- Do NOT reuse "triangle ABC inscribed in a circle of radius 70" or ANY specific radius from the schema documentation above. Pick fresh values per item (e.g. r=8, 13, 22, 45, whatever your item requires). Use varied vertex labels (PQR, XYZ, MNO) too — not always ABC.',
+      '- Do NOT use "r + s = 8 and r² + s² = 40" (or any single Vieta symmetric pair) more than ONCE across all items. Rotate symmetric relations: r·s=k, 1/r + 1/s, r³+s³, (r-s)² etc.',
+      '- Do NOT reuse "two plans — flat fee $X plus $Y per unit" more than ONCE. Rotate real-world setups: manufacturing yield, chemistry mixture, motion at two speeds, revenue+cost break-even, etc.',
+      '- Do NOT reuse "f(x) = ax² + bx + c passes through 3 points, find k" more than ONCE. Rotate function setups: piecewise definitions, function transformations, roots-of-derived-polynomial, table-of-values.',
+      '- If you find yourself starting an item with the same phrase as a previous item in the batch, STOP and pick a different setup. Every stem should be individually memorable.',
+      '- Numerical values (radii, coefficients, prices, quantities) should be freshly chosen per item — do not reuse the same number in different items unless the mathematical relationship genuinely requires it.',
+      '',
       'GRAPHICS — REAL SAT MATH HAS VISUALS ON ~40% OF ITEMS. Include a "graphic" field on roughly that fraction, weighted by topic: Geometry/Trig ≈ 90% (figures are nearly always required), Problem Solving & Data Analysis ≈ 70% (scatterplots, bar charts, two-way tables, dot/box/histogram plots), Advanced Math ≈ 30% (parabolas, exponential curves, function tables on coordinate plane), Algebra ≈ 20% (lines on coordinate plane, tables of values). Omit `graphic` (or set null) on items that don\'t need one.',
       '',
       'GRAPHIC SHAPE — set `graphic.type` to ONE of these, plus the matching payload fields:',
@@ -2148,16 +2191,23 @@ function extraGuidanceFor(
       '- "coordinatePlane": points: [{x, y, label?}], lines: [{m, b}] — for parabolas / curves use "rawSvg" instead.',
       '',
       'STRUCTURED GEOMETRY (PREFER THESE — the renderer computes exact coordinates from your parameters, so vertices are GUARANTEED on the circle, inscribed-circle radii are GUARANTEED correct, etc.):',
-      '- "inscribedTriangle": for any triangle inscribed in a circle. spec: { r: 70, vertexAngles: [0, 120, 240] }. Angles in degrees clockwise from top (0° = top, 90° = right, 180° = bottom, 270° = left). For a right triangle inscribed with hypotenuse as diameter use angles [270, 90, X] where X is the third vertex anywhere except 90° or 270°. labels: { vertices?: ["A","B","C"], sides?: ["x","x","20"] } — side labels are in order opposite to vertex 0, 1, 2.',
-      '- "rightTriangle": legs of a right triangle with optional inscribed circle. spec: { legA: 6, legB: 8, incircle?: true }. labels: { a?: "6", b?: "8", c?: "10", vertices?: ["A","B","C"] } — A top-left, B right-angle, C bottom-right.',
-      '- "circleWithChord": circle with one or more chords, points, or a tangent. spec: { r: 70, chords?: [{ angle1: 0, angle2: 180, label?: "AB" }], showCenter?: true, points?: [{ angle: 0, label?: "A" }, { angle: 180, label?: "B" }] }. Use angle 0 = top, 90 = right, etc. To draw a diameter use angles separated by 180°.',
+      // CRITICAL: schema examples MUST use placeholder tokens, not literal
+      // numeric values. Prior versions had `r: 70` here and the model
+      // treated it as a template — one production 44-item SAT Math test
+      // opened 12 items with "triangle ABC inscribed in a circle of
+      // radius 70 units", most with the same vertex angles [0, 120, 240].
+      // Use <R>, <THETA_A>, <THETA_B> style placeholders so the model
+      // sees "shape of the input" not "the answer".
+      '- "inscribedTriangle": for any triangle inscribed in a circle. spec: { r: <RADIUS>, vertexAngles: [<THETA_A>, <THETA_B>, <THETA_C>] }. Angles in degrees clockwise from top (0° = top, 90° = right, 180° = bottom, 270° = left). PICK A FRESH RADIUS PER ITEM — do NOT reuse the same number across items in a test. Vary the angles too. For a right triangle inscribed with hypotenuse as diameter use angles [270, 90, X] where X is the third vertex anywhere except 90° or 270°. labels: { vertices?: ["A","B","C"], sides?: ["<LEN_A>","<LEN_B>","<LEN_C>"] } — side labels are in order opposite to vertex 0, 1, 2.',
+      '- "rightTriangle": legs of a right triangle with optional inscribed circle. spec: { legA: <LEG_A>, legB: <LEG_B>, incircle?: true }. labels: { a?: "<LEG_A>", b?: "<LEG_B>", c?: "<HYP>", vertices?: ["A","B","C"] } — A top-left, B right-angle, C bottom-right. Vary the leg lengths across items.',
+      '- "circleWithChord": circle with one or more chords, points, or a tangent. spec: { r: <RADIUS>, chords?: [{ angle1: <THETA_1>, angle2: <THETA_2>, label?: "AB" }], showCenter?: true, points?: [{ angle: <THETA>, label?: "A" }, { angle: <THETA>, label?: "B" }] }. Use angle 0 = top, 90 = right, etc. To draw a diameter use angles separated by 180°. PICK A FRESH RADIUS PER ITEM.',
       '- "rawSvg" (FALLBACK ONLY): svg: "<svg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'>...</svg>" — use ONLY when none of the structured types above can express the figure (e.g., 3D solids, complex compound figures, custom shaded regions). Keep under 900 chars. Style: stroke="black" stroke-width="1.5" fill="none". Label with <text font-size="11" fill="black">. Always viewBox="0 0 200 200" with shapes inside x:[20,180] y:[20,180]. Models routinely mis-compute coordinates here — use a structured type whenever possible.',
       'GEOMETRY ACCURACY RULES (a real SAT figure is drawn TO scale unless captioned "not drawn to scale"):',
       '- DRAWING AREA: keep all shapes inside x:[20, 180], y:[20, 180]. Leave a 20-unit margin on all sides. Vertices and circle edges must not touch x=0, y=0, x=200, or y=200.',
-      '- INSCRIBED VERTICES: when a triangle/polygon is "inscribed in a circle", every vertex MUST lie exactly on the circle. For circle (cx, cy, r), a vertex at angle θ is (cx + r·cos(θ), cy + r·sin(θ)). Use simple angles: 0°, 90°, 180°, 270° for axis-aligned; 30°/60°/120°/150° for equilateral and 30-60-90. Sample equilateral inscribed in circle r=70 at (100, 100): vertices at (100, 30), (39, 135), (161, 135) — each EXACTLY 70 from center.',
+      '- INSCRIBED VERTICES: when a triangle/polygon is "inscribed in a circle", every vertex MUST lie exactly on the circle. For circle (cx, cy, r), a vertex at angle θ is (cx + r·cos(θ), cy + r·sin(θ)). Use simple angles: 0°, 90°, 180°, 270° for axis-aligned; 30°/60°/120°/150° for equilateral and 30-60-90. (Reminder: these formulas describe COMPUTATION — do not copy specific numbers from this documentation into item prompts. Choose your own varied radii.)',
       '- INSCRIBED CIRCLE in a right triangle with legs a, b and hypotenuse c: radius r = (a + b − c) / 2; center is r units from each leg. Example: legs 6 and 8, c=10 → r=2; if the right angle is at origin and legs run along +x and +y, the incircle center is (r, r).',
       '- CIRCLE INSCRIBED IN POLYGON: center at the polygon\'s centroid; for a square of side s the inscribed circle has r = s/2.',
-      '- INSCRIBED SQUARE in a circle r: vertices at angles 45°, 135°, 225°, 315° — for r=70 at center (100,100): (149,149), (51,149), (51,51), (149,51).',
+      '- INSCRIBED SQUARE in a circle r: vertices at angles 45°, 135°, 225°, 315° — for any radius r at center (cx, cy), a vertex is at (cx + r·cos(45°), cy + r·sin(45°)) etc. Pick a fresh radius per item.',
       '- LABEL PLACEMENT: position <text> outside the shape\'s perimeter — offset 8-12 units from the vertex/edge. Never place a label on top of the shape\'s stroke. For vertex labels (A, B, C), offset away from the centroid; for length labels, place at the midpoint of the segment then push perpendicular by 8 units.',
       '- DO NOT use fill="black" on solid regions you want labels readable on; default to fill="none". For shaded regions use fill="#e5e7eb" (light gray).',
       '- ARC / ANGLE MARKERS: use <path d="M…A…"> for arcs. Small 90° square at right angles is a 8x8 unit square notched into the corner.',
