@@ -124,9 +124,10 @@ export function GeneratingTestsChip() {
       )}
       {ready.length > 1 && (
         <StatusRow
-          // Tap opens the most-recent ready test. Subtitle lists all
-          // topics so the student can see what's queued at a glance.
-          href={`/mobile/study/session/${ready[0].id}`}
+          // Tap opens the tests overview so the student can pick
+          // which ready test to start (opening the newest one would
+          // be a guess that fights the intent).
+          href="/mobile/study/tests"
           state="ready"
           title={ko
             ? `시험 ${ready.length}개 준비 완료`
