@@ -27,6 +27,7 @@ import { SearchSheet } from './_shared/SearchSheet'
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
 import { LandingDataProvider, useLandingData } from './LandingDataProvider'
+import { StudyPathPromo } from './StudyPathPromo'
 import { SkeletonTestGrid } from './skeletons'
 
 /**
@@ -417,6 +418,7 @@ function StudyLandingInner() {
 
         {/* Today — time-sensitive, all self-hide when empty. */}
         <SectionGroup label={String(t('study.landing.todayBand'))}>
+          <StudyPathPromo />
           <ResumeBanner />
           <GeneratingTestsChip />
           <StreakAtRiskBanner />
