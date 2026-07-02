@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ClipboardList, CheckCircle2, Loader2, AlertTriangle, Play, ChevronRight, Trophy } from 'lucide-react'
+import { ClipboardList, CheckCircle2, Loader2, AlertTriangle, Play, ChevronRight, ChevronLeft, Trophy, Search, X } from 'lucide-react'
 import { StudySubPageHeader } from '../_shared/primitives'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
@@ -11,16 +11,14 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 
 /**
- * /mobile/study/tests — overview of every full_test session the
- * student has queued, ready, in-progress, or completed. Reached
- * from the collapsed "N tests ready" row on the landing.
+ * /mobile/study/tests — overview of every full_test session.
  *
- * Grouped by state so the eye can scan: Ready first (actionable),
- * then Generating, then In progress, then Completed. Failed sits
- * at the bottom.
+ * Same shape as /mobile/study/history: search + state filter chip
+ * row + prev/next pagination. Keeps the app-wide sub-page rhythm.
  */
 
 type TestState = 'ready' | 'generating' | 'in_progress' | 'completed' | 'failed'
+type FilterKey = 'all' | TestState
 
 interface Row {
   id: string
@@ -31,6 +29,8 @@ interface Row {
   last_active_at: string
   topic: { name_en: string; name_ko: string; slug: string } | null
 }
+
+const PAGE_SIZE = 20
 
 export default function StudyTestsPage() {
   return (
@@ -46,6 +46,9 @@ function TestsInner() {
   const ko = language === 'korean'
   const [rows, setRows] = useState<Row[]>([])
   const [loading, setLoading] = useState(true)
+  const [query, setQuery] = useState('')
+  const [filter, setFilter] = useState<FilterKey>('all')
+  const [page, setPage] = useState(0)
 
   useEffect(() => {
     if (!user?.userId) return
@@ -60,7 +63,7 @@ function TestsInner() {
         .eq('student_id', user.userId)
         .eq('mode', 'full_test')
         .order('last_active_at', { ascending: false })
-        .limit(100)
+        .limit(200)
       if (cancelled) return
       setRows((data ?? []) as unknown as Row[])
       setLoading(false)
@@ -68,19 +71,30 @@ function TestsInner() {
     return () => { cancelled = true }
   }, [user?.userId])
 
-  const grouped = useMemo(() => {
-    const bucket: Record<TestState, Row[]> = {
-      ready: [], generating: [], in_progress: [], completed: [], failed: [],
-    }
-    for (const row of rows) {
-      const state = classify(row)
-      bucket[state].push(row)
-    }
-    return bucket
+  // Counts by state — powers the filter chip badges.
+  const counts = useMemo(() => {
+    const c: Record<FilterKey, number> = { all: rows.length, ready: 0, generating: 0, in_progress: 0, completed: 0, failed: 0 }
+    for (const r of rows) c[classify(r)]++
+    return c
   }, [rows])
 
-  const totalCount = rows.length
-  const hasAny = totalCount > 0
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    return rows.filter(row => {
+      const state = classify(row)
+      if (filter !== 'all' && state !== filter) return false
+      if (!q) return true
+      const topicText = row.topic ? `${row.topic.name_en} ${row.topic.name_ko}` : ''
+      const freeform = row.topic_freeform ?? ''
+      return `${topicText} ${freeform}`.toLowerCase().includes(q)
+    })
+  }, [rows, query, filter])
+
+  useEffect(() => { setPage(0) }, [query, filter])
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const clampedPage = Math.min(page, totalPages - 1)
+  const paged = filtered.slice(clampedPage * PAGE_SIZE, (clampedPage + 1) * PAGE_SIZE)
 
   return (
     <div className="relative">
@@ -97,53 +111,133 @@ function TestsInner() {
           eyebrow={ko ? '모의고사' : 'Mock tests'}
           title={ko ? '내 시험' : 'My tests'}
           subtitle={ko
-            ? `전체 ${totalCount}개의 모의고사 세션을 관리하세요.`
-            : `Manage your ${totalCount} mock-test sessions.`}
+            ? `전체 ${rows.length}개의 모의고사 세션을 관리하세요.`
+            : `Manage your ${rows.length} mock-test sessions.`}
+        />
+
+        <label className="relative block">
+          <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder={ko ? '주제로 검색' : 'Search by topic'}
+            className="w-full h-11 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={() => setQuery('')}
+              aria-label={ko ? '검색 지우기' : 'Clear search'}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 inline-flex items-center justify-center rounded-full hover:bg-gray-100 transition"
+            >
+              <X className="w-3.5 h-3.5 text-gray-500" />
+            </button>
+          )}
+        </label>
+
+        <StateFilter
+          value={filter}
+          onSelect={setFilter}
+          counts={counts}
+          ko={ko}
         />
 
         {loading ? (
-          <SkeletonRowList count={5} />
-        ) : !hasAny ? (
+          <SkeletonRowList count={6} />
+        ) : filtered.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-12 text-center">
             <p className="text-[13.5px] text-gray-500">
-              {ko ? '아직 시작한 모의고사가 없어요.' : "You haven't started a mock test yet."}
+              {query || filter !== 'all'
+                ? (ko ? '일치하는 시험이 없어요' : 'No tests match')
+                : (ko ? '아직 시작한 모의고사가 없어요.' : "You haven't started a mock test yet.")}
             </p>
-            <Link
-              href="/mobile/study"
-              className="mt-4 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-primary text-white text-[12.5px] font-medium hover:bg-primary/90 transition"
-            >
-              {ko ? '시험 시작' : 'Start a test'}
-            </Link>
+            {!query && filter === 'all' && (
+              <Link
+                href="/mobile/study"
+                className="mt-4 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-primary text-white text-[12.5px] font-medium hover:bg-primary/90 transition"
+              >
+                {ko ? '시험 시작' : 'Start a test'}
+              </Link>
+            )}
           </div>
         ) : (
-          <div className="space-y-6">
-            <Group
-              title={ko ? '시작 가능' : 'Ready to start'}
-              rows={grouped.ready}
-              ko={ko}
-            />
-            <Group
-              title={ko ? '생성 중' : 'Generating'}
-              rows={grouped.generating}
-              ko={ko}
-            />
-            <Group
-              title={ko ? '진행 중' : 'In progress'}
-              rows={grouped.in_progress}
-              ko={ko}
-            />
-            <Group
-              title={ko ? '완료' : 'Completed'}
-              rows={grouped.completed}
-              ko={ko}
-            />
-            <Group
-              title={ko ? '실패' : 'Failed'}
-              rows={grouped.failed}
-              ko={ko}
-            />
-          </div>
+          <>
+            <div className="space-y-2">
+              {paged.map(row => <TestRow key={row.id} row={row} ko={ko} />)}
+            </div>
+
+            {totalPages > 1 && (
+              <div className="flex items-center justify-between pt-2">
+                <button
+                  type="button"
+                  onClick={() => setPage(p => Math.max(0, p - 1))}
+                  disabled={clampedPage === 0}
+                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  {ko ? '이전' : 'Previous'}
+                </button>
+                <div className="text-[12.5px] text-gray-500 tabular-nums">
+                  {ko
+                    ? `${clampedPage + 1} / ${totalPages} 페이지 · 총 ${filtered.length}개`
+                    : `Page ${clampedPage + 1} of ${totalPages} · ${filtered.length} total`}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+                  disabled={clampedPage >= totalPages - 1}
+                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                >
+                  {ko ? '다음' : 'Next'}
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+          </>
         )}
+      </div>
+    </div>
+  )
+}
+
+function StateFilter({ value, onSelect, counts, ko }: {
+  value: FilterKey
+  onSelect: (k: FilterKey) => void
+  counts: Record<FilterKey, number>
+  ko: boolean
+}) {
+  const items: Array<{ key: FilterKey; label: string }> = [
+    { key: 'all', label: ko ? '전체' : 'All' },
+    { key: 'ready', label: ko ? '시작 가능' : 'Ready' },
+    { key: 'generating', label: ko ? '생성 중' : 'Generating' },
+    { key: 'in_progress', label: ko ? '진행 중' : 'In progress' },
+    { key: 'completed', label: ko ? '완료' : 'Completed' },
+    { key: 'failed', label: ko ? '실패' : 'Failed' },
+  ]
+  return (
+    <div className="-mx-5 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-2 pl-5 pr-5 pb-1">
+        {items.map(item => {
+          const active = value === item.key
+          const count = counts[item.key]
+          if (count === 0 && item.key !== 'all') return null
+          return (
+            <button
+              key={item.key}
+              type="button"
+              onClick={() => onSelect(item.key)}
+              className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
+                active
+                  ? 'bg-gray-900 text-white'
+                  : 'bg-white ring-1 ring-gray-200 text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {item.label}
+              <span className="opacity-60 tabular-nums">{count}</span>
+            </button>
+          )
+        })}
       </div>
     </div>
   )
@@ -153,31 +247,8 @@ function classify(row: Row): TestState {
   if (row.generation_status === 'failed') return 'failed'
   if (row.generation_status === 'pending') return 'generating'
   if (row.status === 'completed') return 'completed'
-  // ready = generation done, session still active, not started yet.
   if (row.generation_status === 'ready' && row.status === 'active') return 'ready'
-  // Active + started but not completed → in progress.
   return 'in_progress'
-}
-
-function Group({ title, rows, ko }: { title: string; rows: Row[]; ko: boolean }) {
-  if (rows.length === 0) return null
-  return (
-    <section>
-      <div className="flex items-baseline justify-between mb-3">
-        <h2 className="text-[13px] font-semibold text-gray-900">
-          {title}
-        </h2>
-        <span className="text-[11.5px] text-gray-500 tabular-nums">
-          {rows.length}{ko ? '개' : ''}
-        </span>
-      </div>
-      <div className="space-y-2">
-        {rows.map(row => (
-          <TestRow key={row.id} row={row} ko={ko} />
-        ))}
-      </div>
-    </section>
-  )
 }
 
 function TestRow({ row, ko }: { row: Row; ko: boolean }) {
@@ -206,8 +277,6 @@ function TestRow({ row, ko }: { row: Row; ko: boolean }) {
           <span className={meta.labelClass}>{meta.label(ko)}</span>
           <span className="text-gray-300">·</span>
           <span>{relativeTime}</span>
-          {/* Score shown on the summary page — not stored on
-              study_sessions, so skip inline here. */}
         </div>
       </div>
       <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
