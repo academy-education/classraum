@@ -388,24 +388,25 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   }, [now, timeLimitMs, phase, submit, currentElapsedMs])
 
   // ── Render branches ─────────────────────────────────────────────
-  // 'detecting' — DB ping in flight. Minimal neutral spinner so we
-  // never flash a misleading "we're building your test" UI before
-  // we know what's actually happening.
-  if (phase === 'detecting') {
-    return (
-      <div className="flex-1 flex items-center justify-center px-6">
-        <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
-      </div>
-    )
-  }
-  // 'resuming' — server has a cached test; we're just fetching it.
-  // Show a friendly "Loading your test" message, NOT the multi-step
-  // build checklist (which implies fresh generation).
-  if (phase === 'resuming') {
+  // Both pre-'generating' phases share the same shell so the test-
+  // making flow feels consistent — mascot in thinking state + short
+  // copy — instead of one path getting a bare spinner and another
+  // getting a friendly message.
+  //
+  // 'detecting' — DB ping in flight. Neutral copy: don't imply we're
+  //               building a test until we know we are.
+  // 'resuming'  — server has a cached test; we're just fetching it.
+  //               Explicit "loading" copy so students who bounced
+  //               back in mid-generation know they'll join the
+  //               existing run.
+  if (phase === 'detecting' || phase === 'resuming') {
+    const label = phase === 'resuming'
+      ? String(t('study.test.loadingTest'))
+      : undefined
     return (
       <div className="flex-1 flex flex-col items-center justify-center gap-3 px-6 text-center">
-        <Loader2 className="w-7 h-7 animate-spin text-primary" />
-        <p className="text-sm text-gray-600">{String(t('study.test.loadingTest'))}</p>
+        <PathMascot state="thinking" size={72} />
+        {label && <p className="text-[13px] text-gray-600">{label}</p>}
       </div>
     )
   }

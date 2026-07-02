@@ -10,6 +10,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../../../SubscriptionGate'
 import { SkeletonCard, SkeletonBlock } from '../../../skeletons'
 import { PathMascot, type MascotState } from '../../../_shared/PathMascot'
+import { StudySubPageHeader } from '../../../_shared/primitives'
 
 interface SessionRow {
   id: string
@@ -169,13 +170,14 @@ function SummaryInner({ id }: { id: string }) {
 
   return (
     <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
-      <Link
-        href="/mobile/study"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        {t('study.topic.backToStudy')}
-      </Link>
+      <StudySubPageHeader
+        backHref="/mobile/study"
+        backLabel={String(t('study.topic.backToStudy'))}
+        icon={Sparkles}
+        iconColorClass="text-primary bg-primary/10"
+        eyebrow={String(t('study.summary.eyebrow'))}
+        title={modeLabel}
+      />
 
       {/* Hero — score in a big gradient card, with the mascot in the
           top-right giving the numbers a face. Emotional state follows

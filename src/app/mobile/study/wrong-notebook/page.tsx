@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Loader2, BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, Bookmark, Image as ImageIcon } from 'lucide-react'
+import { ArrowLeft, Loader2, BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, Bookmark, Image as ImageIcon, Search, X } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -75,6 +75,8 @@ export default function WrongNotebookPage() {
 type SortKey = 'newest' | 'oldest' | 'hardest'
 type DifficultyKey = 'all' | 'easy' | 'medium' | 'hard'
 
+const PAGE_SIZE = 20
+
 function WrongNotebookInner() {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
@@ -86,6 +88,12 @@ function WrongNotebookInner() {
   const [sortKey, setSortKey] = useState<SortKey>('newest')
   const [showReviewed, setShowReviewed] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [query, setQuery] = useState('')
+  const [page, setPage] = useState(0)
+
+  // Reset paginator when filters change so students never land on a
+  // now-empty page after tightening a filter.
+  useEffect(() => { setPage(0) }, [query, difficultyFilter, sortKey, selectedTopicId])
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -136,6 +144,23 @@ function WrongNotebookInner() {
     ? list
     : list.filter(e => (e.difficulty ?? '').toLowerCase() === difficultyFilter)
 
+  // Client-side search across the question prompt, student answer,
+  // correct answer, and the student's own note — matches the "find
+  // that one question" mental model.
+  const filterByQuery = (list: Entry[]) => {
+    const q = query.trim().toLowerCase()
+    if (!q) return list
+    return list.filter(e => {
+      const parts = [
+        e.question.prompt,
+        e.question.correct_answer,
+        e.student_answer,
+        e.note,
+      ]
+      return parts.some(p => p && p.toLowerCase().includes(q))
+    })
+  }
+
   const difficultyRank = (d: string | null): number => {
     switch ((d ?? '').toLowerCase()) {
       case 'hard': return 3
@@ -155,8 +180,15 @@ function WrongNotebookInner() {
     return copy
   }
 
-  const visibleActive = sortEntries(filterByDifficulty(activeEntries))
-  const visibleReviewed = sortEntries(filterByDifficulty(reviewedEntries))
+  const filteredActive = sortEntries(filterByQuery(filterByDifficulty(activeEntries)))
+  const filteredReviewed = sortEntries(filterByQuery(filterByDifficulty(reviewedEntries)))
+
+  // Pagination on the active list only — reviewed sits under a
+  // <details> and stays fully expanded when opened.
+  const totalPages = Math.max(1, Math.ceil(filteredActive.length / PAGE_SIZE))
+  const clampedPage = Math.min(page, totalPages - 1)
+  const visibleActive = filteredActive.slice(clampedPage * PAGE_SIZE, (clampedPage + 1) * PAGE_SIZE)
+  const visibleReviewed = filteredReviewed
 
   const difficultyCounts: Record<DifficultyKey, number> = {
     all: activeEntries.length,
@@ -195,6 +227,30 @@ function WrongNotebookInner() {
           }
         />
 
+        {/* Search — mirrors the history page pattern so the two list
+            surfaces feel like siblings. Client-side across prompt,
+            answers, and the student's own note. */}
+        <label className="relative block">
+          <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder={ko ? '문제·정답·메모로 검색' : 'Search question, answer, or note'}
+            className="w-full h-11 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={() => setQuery('')}
+              aria-label={ko ? '검색 지우기' : 'Clear search'}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 inline-flex items-center justify-center rounded-full hover:bg-gray-100 transition"
+            >
+              <X className="w-3.5 h-3.5 text-gray-500" />
+            </button>
+          )}
+        </label>
+
         {/* Topic filter — horizontal chip row. No StudyPageTransition
             wrapper: it collapses space-y-6 into one child, so all
             sub-sections would stack tightly. Direct children of the
@@ -212,7 +268,7 @@ function WrongNotebookInner() {
         <StudyPageTransition>
           {/* Annotated count chip (only when > 0). */}
           {annotated > 0 && (
-            <div className="flex items-center gap-2 text-[12px] text-gray-700 mb-6">
+            <div className="flex items-center gap-2 text-[12px] text-gray-700">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-100">
                 <Pencil className="w-3.5 h-3.5 text-indigo-500" />
                 <span className="font-semibold tabular-nums">{annotated}</span> {t('study.wrongNotebook.annotatedSuffix')}
@@ -318,8 +374,38 @@ function WrongNotebookInner() {
                   {visibleActive.length === 0 && (
                     <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-10 text-center">
                       <p className="text-[13.5px] text-gray-500">
-                        {ko ? '해당 조건의 문제가 없어요' : 'No entries match this filter'}
+                        {query
+                          ? (ko ? '검색 결과가 없어요' : 'No entries match your search')
+                          : (ko ? '해당 조건의 문제가 없어요' : 'No entries match this filter')}
                       </p>
+                    </div>
+                  )}
+
+                  {totalPages > 1 && (
+                    <div className="flex items-center justify-between pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setPage(p => Math.max(0, p - 1))}
+                        disabled={clampedPage === 0}
+                        className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                        {ko ? '이전' : 'Previous'}
+                      </button>
+                      <div className="text-[12.5px] text-gray-500 tabular-nums">
+                        {ko
+                          ? `${clampedPage + 1} / ${totalPages} 페이지 · 총 ${filteredActive.length}개`
+                          : `Page ${clampedPage + 1} of ${totalPages} · ${filteredActive.length} total`}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+                        disabled={clampedPage >= totalPages - 1}
+                        className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                      >
+                        {ko ? '다음' : 'Next'}
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
                     </div>
                   )}
 

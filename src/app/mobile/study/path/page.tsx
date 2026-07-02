@@ -304,16 +304,18 @@ function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: s
       {/* Serpentine path — SVG-drawn curved connectors + centered
           alternating nodes. The connectors color-shift based on the
           FROM-node's completion state, giving the path a visual
-          "you-have-been-here" trail. */}
-      <div className="relative px-5 pt-4 pb-20">
+          "you-have-been-here" trail. overflow-x-hidden clips any
+          transform overshoot on narrow phones (nodes are shifted ±32px
+          off-center, callouts constrained to viewport-safe widths). */}
+      <div className="relative px-5 pt-4 pb-20 overflow-x-hidden">
         {nodes.map((node, i) => {
           const isActive = node.state.status === 'active'
           const isLocked = node.state.status === 'locked'
           const isLastActive = isActive && i === activeIdx
-          // Horizontal offset alternates so the path snakes. Even nodes
-          // sit left of center, odd nodes right of center — subtle
-          // enough to read as one path, not two columns.
-          const offset = i % 2 === 0 ? '-translate-x-16' : 'translate-x-16'
+          // Horizontal offset alternates so the path snakes. Kept small
+          // (±32px) so nodes + their under-node callouts stay within a
+          // narrow-phone viewport without overflowing horizontally.
+          const offset = i % 2 === 0 ? '-translate-x-8' : 'translate-x-8'
           const prevCompleted = i > 0 && nodes[i - 1].state.status === 'completed'
           const curDir = i % 2 === 0 ? 'left' : 'right'
           const prevDir = (i - 1) % 2 === 0 ? 'left' : 'right'
@@ -519,7 +521,7 @@ function ActiveCallout({
   const { t, language } = useTranslation()
   const ko = language === 'korean'
   return (
-    <div className="relative mt-3 w-[280px] max-w-full rounded-2xl bg-white ring-1 ring-primary/20 shadow-[0_10px_28px_-8px_rgba(40,133,232,0.40)] px-4 py-3">
+    <div className="relative mt-3 w-[240px] max-w-[min(240px,calc(100vw-40px))] rounded-2xl bg-white ring-1 ring-primary/20 shadow-[0_10px_28px_-8px_rgba(40,133,232,0.40)] px-4 py-3">
       {/* Speech-bubble tail pointing up at the node */}
       <div
         aria-hidden
