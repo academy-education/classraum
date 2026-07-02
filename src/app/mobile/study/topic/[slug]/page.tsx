@@ -3,7 +3,8 @@
 import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, Layers as LayersIcon } from 'lucide-react'
+import { StudySubPageHeader } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -233,27 +234,19 @@ function TopicInner({ slug }: { slug: string }) {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.03] to-transparent"
       />
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-8">
-        {/* Back to landing — small affordance above the heading. */}
-        <Link
-          href="/mobile/study"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors -ml-1 px-1 py-1"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {t('study.topic.backToStudy')}
-        </Link>
-
-        <header>
-          {parent && (
-            <p className="text-[12px] font-medium text-gray-400 mb-1.5 tracking-tight">{name(parent)}</p>
-          )}
-          <h1 className="text-[28px] leading-[1.15] font-semibold tracking-tight text-gray-900">
-            {name(topic)}
-          </h1>
-          <p className="text-[15px] text-gray-500 mt-2 leading-relaxed">
-            {t('study.topic.pickMode')}
-          </p>
-        </header>
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+        <StudySubPageHeader
+          backHref="/mobile/study"
+          backLabel={String(t('study.topic.backToStudy'))}
+          icon={topic.category === 'test_prep' ? FileText : GraduationCap}
+          iconColorClass={topic.category === 'test_prep' ? 'text-rose-600 bg-rose-50' : 'text-primary bg-primary/10'}
+          eyebrow={parent ? name(parent) : (topic.category === 'test_prep' ? String(t('study.landing.testPrepTitle')) : String(t('study.landing.browseTitle')))}
+          title={name(topic)}
+          subtitle={String(t('study.topic.pickMode'))}
+        />
+        {/* Spacer removed — StudySubPageHeader now carries the back
+            link, eyebrow, icon, title, subtitle. Down-stream sections
+            inherit the outer space-y-6 rhythm. */}
 
         {/* Category picker — only when the topic has children.
             AP → AP Biology / AP Calc AB, KSAT → 국어 / 수학 / 영어, etc.
