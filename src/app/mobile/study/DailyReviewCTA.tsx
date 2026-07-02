@@ -42,7 +42,7 @@ export function DailyReviewCTA() {
     <StudyTodayCard
       href="/mobile/study/review"
       icon={Shuffle}
-      iconColorClass="bg-violet-50 text-violet-600"
+      iconColorClass="bg-gradient-to-br from-violet-500 to-purple-700 text-white shadow-[0_4px_10px_-2px_rgba(139,92,246,0.30)]"
       eyebrow={String(t('study.review.eyebrow'))}
       title={t('study.review.ctaTitle', { count: String(count) })}
       subtitle={topicCount > 1 ? t('study.review.ctaSubtitle', { count: String(topicCount) }) : undefined}

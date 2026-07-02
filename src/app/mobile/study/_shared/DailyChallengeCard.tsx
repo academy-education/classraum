@@ -93,7 +93,7 @@ export function DailyChallengeCard() {
       <StudyTodayCard
         href={state.sessionId ? `/mobile/study/session/${state.sessionId}/summary` : '#'}
         icon={CheckCircle2}
-        iconColorClass="bg-emerald-50 text-emerald-600"
+        iconColorClass="bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-[0_4px_10px_-2px_rgba(16,185,129,0.30)]"
         eyebrow={ko ? '오늘의 도전' : "Today's challenge"}
         title={ko ? '완료! 내일 또 만나요' : 'Done for today!'}
         subtitle={ko ? '결과 확인' : 'View summary'}
@@ -106,7 +106,7 @@ export function DailyChallengeCard() {
       onClick={() => void start()}
       loading={starting}
       icon={Target}
-      iconColorClass="bg-primary/10 text-primary"
+      iconColorClass="bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_4px_10px_-2px_rgba(245,158,11,0.30)]"
       eyebrow={ko ? '오늘의 도전' : "Today's challenge"}
       title={state.sessionId
         ? (ko ? `${topicName} — 이어서 풀기` : `${topicName} — continue`)

@@ -309,8 +309,8 @@ export function StudyTodayCard({
   const commonClassName = `group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 pl-4 ${onDismiss ? 'pr-11' : 'pr-4'} hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all text-left disabled:opacity-70 disabled:cursor-wait`
   const body = (
     <>
-      <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${iconColorClass}`}>
-        {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
+      <div className={`flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] ${iconColorClass}`}>
+        {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Icon className="w-5 h-5" strokeWidth={2.25} />}
       </div>
       <div className="flex-1 min-w-0">
         <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
@@ -397,7 +397,7 @@ const ACCENT_TILE: Record<StudyMetricAccent, string> = {
   primary: 'from-primary to-indigo-600',
   emerald: 'from-emerald-500 to-teal-600',
   amber:   'from-amber-400 to-orange-500',
-  violet:  'from-violet-400 to-purple-600',
+  violet:  'from-violet-500 to-purple-700',
   rose:    'from-rose-500 to-red-600',
   indigo:  'from-indigo-400 to-blue-600',
 }
@@ -411,6 +411,15 @@ const ACCENT_TINT: Record<StudyMetricAccent, string> = {
   indigo:  'from-indigo-50/60',
 }
 
+const ACCENT_GLOW: Record<StudyMetricAccent, string> = {
+  primary: 'shadow-[0_4px_10px_-2px_rgba(40,133,232,0.30)]',
+  emerald: 'shadow-[0_4px_10px_-2px_rgba(16,185,129,0.28)]',
+  amber:   'shadow-[0_4px_10px_-2px_rgba(245,158,11,0.28)]',
+  violet:  'shadow-[0_4px_10px_-2px_rgba(139,92,246,0.28)]',
+  rose:    'shadow-[0_4px_10px_-2px_rgba(244,63,94,0.28)]',
+  indigo:  'shadow-[0_4px_10px_-2px_rgba(99,102,241,0.28)]',
+}
+
 export function StudyMetric({
   icon: Icon, value, suffix, label, accent = 'primary',
 }: {
@@ -421,14 +430,14 @@ export function StudyMetric({
   accent?: StudyMetricAccent
 }) {
   return (
-    <div className={`rounded-2xl bg-gradient-to-br ${ACCENT_TINT[accent]} via-white to-white ring-1 ring-gray-200/60 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]`}>
-      <div className={`w-9 h-9 rounded-xl bg-gradient-to-b ${ACCENT_TILE[accent]} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(0,0,0,0.08)] mb-2`}>
-        <Icon className="w-4 h-4" />
+    <div className={`rounded-2xl bg-gradient-to-br ${ACCENT_TINT[accent]} via-white to-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_4px_16px_-8px_rgba(15,23,42,0.08)]`}>
+      <div className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${ACCENT_TILE[accent]} text-white flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.28)] ${ACCENT_GLOW[accent]} mb-2.5`}>
+        <Icon className="w-5 h-5" strokeWidth={2.25} />
       </div>
-      <div className="text-[24px] font-bold tracking-tight text-gray-900 leading-none tabular-nums">
+      <div className="text-[26px] font-bold tracking-tight text-gray-900 leading-none tabular-nums">
         <NumberRoll target={value} />{suffix ?? ''}
       </div>
-      <div className="text-[11.5px] font-medium uppercase tracking-[0.10em] text-gray-500 mt-1">{label}</div>
+      <div className="text-[11.5px] font-medium uppercase tracking-[0.10em] text-gray-500 mt-1.5">{label}</div>
     </div>
   )
 }

@@ -84,7 +84,7 @@ export function StreakAtRiskBanner() {
     <StudyTodayCard
       href="/mobile/study/review"
       icon={Flame}
-      iconColorClass="bg-rose-50 text-rose-600"
+      iconColorClass="bg-gradient-to-br from-rose-500 to-red-600 text-white shadow-[0_4px_10px_-2px_rgba(244,63,94,0.30)]"
       eyebrow={ko ? '연속 학습 끊김' : 'Streak lost'}
       title={ko
         ? `${priorStreak}일 연속 학습이 끝났어요`
