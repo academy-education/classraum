@@ -2,7 +2,8 @@
 
 import { use, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Clock, RotateCcw, Sparkles, BookOpen } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Clock, RotateCcw, Sparkles, BookOpen, RefreshCw } from 'lucide-react'
+import { hapticImpact, hapticNotification } from '@/lib/nativeHaptics'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -29,7 +30,16 @@ interface AttemptRow {
   id: string
   is_correct: boolean
   time_spent_seconds: number | null
-  question: { prompt: string; correct_answer: string } | null
+  question: {
+    prompt: string
+    correct_answer: string
+    /** Full choice list for MC re-attempt. Present on most attempts
+     *  but tolerated missing so we can gracefully hide the re-attempt
+     *  affordance on non-MC types. */
+    choices?: string[] | null
+    type?: string | null
+    explanation?: string | null
+  } | null
   student_answer: string
 }
 
@@ -249,23 +259,7 @@ function SummaryInner({ id }: { id: string }) {
           </div>
           <div className="space-y-2">
             {mistakes.slice(0, 3).map((m) => (
-              <div key={m.id} className="rounded-2xl bg-white ring-1 ring-gray-200 p-4">
-                <div className="text-[13px] text-gray-900 font-medium leading-relaxed line-clamp-2 mb-2">
-                  {m.question?.prompt}
-                </div>
-                <div className="flex items-start gap-2 text-[12px] mb-1">
-                  <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-rose-700 line-through flex-1 truncate" title={m.student_answer}>
-                    {m.student_answer || '—'}
-                  </span>
-                </div>
-                <div className="flex items-start gap-2 text-[12px]">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-emerald-700 font-semibold flex-1 truncate" title={m.question?.correct_answer}>
-                    {m.question?.correct_answer}
-                  </span>
-                </div>
-              </div>
+              <MistakeRow key={m.id} attempt={m} ko={ko} />
             ))}
             {mistakes.length > 3 && (
               <Link
@@ -312,6 +306,137 @@ function Stat({ icon: Icon, value, label }: {
       </div>
       <div className="text-[20px] font-bold tracking-tight leading-none">{value}</div>
       <div className="text-[10.5px] font-medium uppercase tracking-[0.10em] opacity-80 mt-0.5">{label}</div>
+    </div>
+  )
+}
+
+/**
+ * MistakeRow — Brilliant/Photomath-style interactive review.
+ *
+ * Prior behavior: static row showing student_answer (strikethrough)
+ * + correct_answer. The deep-research pass flagged this as a "static
+ * text explanation" gap — students absorb more from re-attempting an
+ * item than from reading the correct answer.
+ *
+ * New behavior: keeps the static answers visible (nothing lost), but
+ * adds a "Try again" button that expands the row with a fresh choice
+ * picker. Tapping a choice reveals correct/incorrect inline with a
+ * mascot reaction and haptic. The original attempt's is_correct on
+ * the server stays unchanged — this is a learning affordance, not a
+ * grade reversal.
+ *
+ * Hides the re-attempt button gracefully when the question doesn't
+ * carry a choice list (non-MC types, or legacy attempts stored
+ * without full question JSON).
+ */
+function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
+  const [expanded, setExpanded] = useState(false)
+  const [picked, setPicked] = useState<string | null>(null)
+  const choices = attempt.question?.choices ?? []
+  const correct = attempt.question?.correct_answer ?? ''
+  const canReattempt = choices.length >= 2 && !!correct
+
+  const isCorrectPick = picked !== null && picked === correct
+  const isWrongPick = picked !== null && picked !== correct
+
+  const handlePick = (choice: string) => {
+    if (picked !== null) return  // one attempt per row for now
+    setPicked(choice)
+    if (choice === correct) {
+      hapticNotification('success')
+    } else {
+      hapticImpact('medium')
+    }
+  }
+
+  return (
+    <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4">
+      <div className="text-[13px] text-gray-900 font-medium leading-relaxed line-clamp-2 mb-2">
+        {attempt.question?.prompt}
+      </div>
+      <div className="flex items-start gap-2 text-[12px] mb-1">
+        <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
+        <span className="text-rose-700 line-through flex-1 truncate" title={attempt.student_answer}>
+          {attempt.student_answer || '—'}
+        </span>
+      </div>
+      <div className="flex items-start gap-2 text-[12px]">
+        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+        <span className="text-emerald-700 font-semibold flex-1 truncate" title={correct}>
+          {correct}
+        </span>
+      </div>
+
+      {canReattempt && !expanded && (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className="mt-3 inline-flex items-center gap-1 h-7 px-2.5 rounded-full bg-primary/10 hover:bg-primary/15 text-primary text-[11.5px] font-semibold transition"
+        >
+          <RefreshCw className="w-3 h-3" />
+          {ko ? '다시 풀어보기' : 'Try again'}
+        </button>
+      )}
+
+      {expanded && (
+        <div className="mt-3 pt-3 border-t border-gray-100">
+          <div className="flex items-start gap-3 mb-3">
+            <PathMascot
+              size={40}
+              state={
+                isCorrectPick ? 'celebrate' :
+                isWrongPick ? 'sad' :
+                'thinking'
+              }
+            />
+            <div className="flex-1 text-[12px] text-gray-600 leading-snug pt-1">
+              {picked === null
+                ? (ko ? '이번엔 답을 골라볼까요?' : 'Give it another shot — pick the right choice.')
+                : isCorrectPick
+                  ? (ko ? '정답이에요! 이제 확실해졌어요.' : 'You got it — that\'s the one.')
+                  : (ko ? '다시 한번 정답을 확인해 봐요.' : 'Not quite — the correct answer is highlighted above.')}
+            </div>
+          </div>
+          <div className="space-y-1.5">
+            {choices.map((choice, i) => {
+              const isThisPick = picked === choice
+              const isCorrectChoice = choice === correct
+              const showCorrect = picked !== null && isCorrectChoice
+              const showWrongPick = isThisPick && !isCorrectChoice
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => handlePick(choice)}
+                  disabled={picked !== null}
+                  className={`w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-xl text-[12.5px] font-medium ring-1 transition-all ${
+                    showCorrect
+                      ? 'bg-emerald-50 ring-emerald-300 text-emerald-800'
+                      : showWrongPick
+                        ? 'bg-rose-50 ring-rose-200 text-rose-700'
+                        : picked !== null
+                          ? 'bg-white ring-gray-200 text-gray-500'
+                          : 'bg-white ring-gray-200 text-gray-800 hover:ring-primary/40 hover:bg-primary/[0.02] active:scale-[0.99]'
+                  }`}
+                >
+                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10.5px] font-bold flex-shrink-0 ${
+                    showCorrect
+                      ? 'bg-emerald-500 text-white'
+                      : showWrongPick
+                        ? 'bg-rose-500 text-white'
+                        : 'bg-gray-100 text-gray-500'
+                  }`}>
+                    {String.fromCharCode(65 + i)}
+                  </span>
+                  <span className="flex-1 truncate">{choice}</span>
+                  {showCorrect && <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />}
+                  {showWrongPick && <XCircle className="w-4 h-4 text-rose-500 flex-shrink-0" />}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
