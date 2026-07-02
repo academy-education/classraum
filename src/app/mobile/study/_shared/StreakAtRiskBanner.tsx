@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { Flame, ArrowRight } from 'lucide-react'
+import { Flame } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useTranslation } from '@/hooks/useTranslation'
+import { StudyTodayCard } from './primitives'
 
 /**
  * StreakAtRiskBanner — shown on the study landing when a previously-
@@ -81,29 +81,16 @@ export function StreakAtRiskBanner() {
   }
 
   return (
-    <Link href="/mobile/study/review"
-      onClick={dismiss}
-      className="group relative block overflow-hidden rounded-2xl bg-gradient-to-br from-rose-500 via-orange-500 to-amber-500 text-white p-4 shadow-[0_8px_24px_-8px_rgba(244,63,94,0.40)] hover:-translate-y-0.5 transition-all">
-      <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/20 blur-2xl" />
-      <div className="relative flex items-center gap-3">
-        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/20 ring-1 ring-white/25 flex items-center justify-center">
-          <Flame className="w-5 h-5" fill="currentColor" />
-        </div>
-        <div className="min-w-0 flex-1">
-          <div className="text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
-            {ko ? '연속 학습 끊김' : 'Streak lost'}
-          </div>
-          <div className="text-[15px] font-semibold leading-snug mt-0.5">
-            {ko
-              ? `${priorStreak}일 연속 학습이 끝났어요`
-              : `Your ${priorStreak}-day streak ended`}
-          </div>
-          <div className="text-[12px] opacity-95 mt-0.5">
-            {ko ? '오늘부터 새 연속 기록을 시작해볼까요?' : 'Start a fresh one today — one card is enough.'}
-          </div>
-        </div>
-        <ArrowRight className="w-4 h-4 opacity-90 group-hover:translate-x-1 transition-transform" />
-      </div>
-    </Link>
+    <StudyTodayCard
+      href="/mobile/study/review"
+      icon={Flame}
+      iconColorClass="bg-rose-50 text-rose-600"
+      eyebrow={ko ? '연속 학습 끊김' : 'Streak lost'}
+      title={ko
+        ? `${priorStreak}일 연속 학습이 끝났어요`
+        : `Your ${priorStreak}-day streak ended`}
+      subtitle={ko ? '오늘부터 새 연속 기록을 시작해볼까요?' : 'Start a fresh one today — one card is enough.'}
+      onDismiss={dismiss}
+    />
   )
 }

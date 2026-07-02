@@ -1,12 +1,10 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2, Camera, Image as ImageIcon } from 'lucide-react'
-import { useCarouselFocus, CarouselDots, scrollToCarouselIndex } from './useCarouselFocus'
-import { SkeletonCarousel } from './skeletons'
+import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2, Camera } from 'lucide-react'
+import { SkeletonCard, SkeletonBlock } from './skeletons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -47,8 +45,6 @@ export function RecommendedShelf() {
   const [cards, setCards] = useState<Card[]>([])
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const focusedIndex = useCarouselFocus(scrollRef, cards.length)
 
   useEffect(() => {
     let cancelled = false
@@ -116,9 +112,16 @@ export function RecommendedShelf() {
       </h2>
 
       {loading ? (
-        <SkeletonCarousel count={3} />
+        <SkeletonCard className="h-[104px] p-4 flex items-start gap-3">
+          <SkeletonBlock className="w-11 h-11 rounded-2xl flex-shrink-0" />
+          <div className="flex-1 space-y-2">
+            <SkeletonBlock className="h-3 w-2/5 rounded-full" />
+            <SkeletonBlock className="h-2.5 w-4/5 rounded-full" />
+            <SkeletonBlock className="h-2.5 w-3/5 rounded-full" />
+          </div>
+        </SkeletonCard>
       ) : cards.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-gray-200 bg-gradient-to-br from-white to-gray-50/50 px-5 py-8 text-center">
+        <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-8 text-center">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white ring-1 ring-gray-200/70 mx-auto mb-3">
             <Lightbulb className="w-5 h-5 text-gray-300" />
           </div>
@@ -127,44 +130,18 @@ export function RecommendedShelf() {
           </p>
         </div>
       ) : (
-        // Coverflow carousel: focused card centered + magnified, side
-        // cards shrunk + dimmed (CSS in globals.css via the
-        // data-focused attribute). Dynamic side padding using calc
-        // centers the first card in the viewport at scroll position 0.
-        <div className="-mx-5">
-          <div
-            ref={scrollRef}
-            // py-6 = 24px vertical, large enough that hover/drop shadows
-            // (up to ~16px offset + 32px blur) fit inside the scroll-clip
-            // box. overflow-x-auto forces overflow-y to behave non-visible
-            // per CSS spec, so we can't just let shadows escape — the only
-            // way to show them is to give the scroll container room.
-            style={{ paddingInline: 'max(40px, calc((100vw - 300px) / 2))' }}
-            className="flex items-center gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-6"
-          >
-            {cards.map((card, idx) => (
-              <div
-                key={card.reason === 'snap_followup' ? `snap-${card.snap?.capture_id ?? idx}` : `${card.topic?.id}-${card.reason}`}
-                data-carousel-card
-                // min-h + flex makes every card in the carousel
-                // the same height regardless of which inner variant
-                // (WeakArea / SnapFollowup / Recent) it renders.
-                // Inner cards stretch via h-full to fill the slot.
-                className="snap-center flex-none w-[300px] max-w-[calc(100vw-72px)] min-h-[164px] flex"
-              >
-                {card.reason === 'snap_followup'
-                  ? <SnapFollowupCard card={card} ko={ko} startSession={startSession} creating={creating} />
-                  : card.reason === 'weak'
-                    ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
-                    : <RecentSessionCard card={card} name={name} t={t} startSession={startSession} creating={creating} />}
-              </div>
-            ))}
-          </div>
-          <CarouselDots
-            count={cards.length}
-            activeIndex={focusedIndex}
-            onSelect={(i) => scrollToCarouselIndex(scrollRef, i)}
-          />
+        <div className="space-y-2">
+          {cards.slice(0, 2).map((card, idx) => (
+            <div
+              key={card.reason === 'snap_followup' ? `snap-${card.snap?.capture_id ?? idx}` : `${card.topic?.id}-${card.reason}`}
+            >
+              {card.reason === 'snap_followup'
+                ? <SnapFollowupCard card={card} ko={ko} startSession={startSession} creating={creating} />
+                : card.reason === 'weak'
+                  ? <WeakAreaCard card={card} name={name} t={t} startSession={startSession} creating={creating} />
+                  : <RecentSessionCard card={card} name={name} t={t} startSession={startSession} creating={creating} />}
+            </div>
+          ))}
         </div>
       )}
     </section>

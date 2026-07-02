@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { Play, X } from 'lucide-react'
+import { Play } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
+import { StudyTodayCard } from './_shared/primitives'
 import type { StudyMode } from './modes'
 
 interface ActiveSession {
@@ -75,38 +75,18 @@ export function ResumeBanner() {
   const modeLabel = String(t(`study.modes.${session.mode}.title`))
 
   return (
-    <div className="relative">
-      <Link
-        href={`/mobile/study/session/${session.id}`}
-        className="group flex items-center gap-3 rounded-2xl bg-gradient-to-b from-primary/[0.08] via-primary/[0.05] to-white ring-1 ring-primary/20 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(40,133,232,0.22)] p-3.5 pr-12 hover:shadow-[0_2px_4px_rgba(40,133,232,0.08),0_12px_32px_-12px_rgba(40,133,232,0.32)] active:scale-[0.99] transition-all"
-      >
-        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-b from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/30">
-          <Play className="w-4 h-4 fill-current" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary leading-none mb-1">
-            {String(t('study.resumeBanner.eyebrow'))}
-          </div>
-          <div className="text-[14.5px] font-semibold text-gray-900 truncate leading-tight">
-            {title}
-          </div>
-          <div className="text-[11.5px] text-gray-500 mt-0.5 truncate">
-            {modeLabel} · {timeAgo}
-          </div>
-        </div>
-      </Link>
-      <button
-        type="button"
-        onClick={() => {
-          sessionStorage.setItem(DISMISS_KEY, '1')
-          setDismissed(true)
-        }}
-        aria-label="Dismiss"
-        className="absolute top-1/2 -translate-y-1/2 right-2 w-8 h-8 rounded-full text-gray-400 hover:bg-white/80 hover:text-gray-600 active:scale-[0.94] transition-all inline-flex items-center justify-center"
-      >
-        <X className="w-3.5 h-3.5" />
-      </button>
-    </div>
+    <StudyTodayCard
+      href={`/mobile/study/session/${session.id}`}
+      icon={Play}
+      iconColorClass="bg-primary/10 text-primary"
+      eyebrow={String(t('study.resumeBanner.eyebrow'))}
+      title={title}
+      subtitle={`${modeLabel} · ${timeAgo}`}
+      onDismiss={() => {
+        sessionStorage.setItem(DISMISS_KEY, '1')
+        setDismissed(true)
+      }}
+    />
   )
 }
 

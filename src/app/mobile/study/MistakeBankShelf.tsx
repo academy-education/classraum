@@ -1,14 +1,13 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { XCircle, CheckCircle2, RotateCcw, Loader2, BookOpen } from 'lucide-react'
+import { XCircle, CheckCircle2, RotateCcw, Loader2, ArrowRight } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
-import { useCarouselFocus, CarouselDots, scrollToCarouselIndex } from './useCarouselFocus'
 
 interface MistakeQuestion {
   prompt: string
@@ -49,8 +48,6 @@ export function MistakeBankShelf() {
   const [mistakes, setMistakes] = useState<Mistake[]>([])
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const focusedIndex = useCarouselFocus(scrollRef, mistakes.length)
 
   useEffect(() => {
     let cancelled = false
@@ -104,6 +101,7 @@ export function MistakeBankShelf() {
     return String(t('study.mistakes.unknownTopic'))
   }
 
+  const rest = mistakes.length - 1
   return (
     <section>
       <div className="flex items-baseline justify-between mb-3">
@@ -111,34 +109,22 @@ export function MistakeBankShelf() {
           {t('study.mistakes.title')}
         </h2>
         <Link href="/mobile/study/wrong-notebook"
-          className="inline-flex items-center gap-1 text-[12px] font-medium text-rose-700 hover:text-rose-900 transition">
-          <BookOpen className="w-3.5 h-3.5" />{t('study.mistakes.viewNotebook')}
+          className="inline-flex items-center gap-0.5 text-[12px] font-medium text-primary hover:text-primary/80 transition">
+          {rest > 0 ? (ko ? `전체 ${mistakes.length}개` : `See all ${mistakes.length}`) : String(t('study.mistakes.viewNotebook'))}
+          <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
-      <div className="-mx-5">
-        <div
-          ref={scrollRef}
-          style={{ paddingInline: 'max(40px, calc((100vw - 300px) / 2))' }}
-          className="flex items-center gap-3 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-6"
-        >
-          {mistakes.map(m => (
-            <MistakeCard
-              key={m.attempt_id}
-              mistake={m}
-              topicName={topicName(m)}
-              t={t}
-              onRetry={() => void retryTopic(m)}
-              isCreating={creating === m.attempt_id}
-              creatingDisabled={creating !== null}
-            />
-          ))}
-        </div>
-        <CarouselDots
-          count={mistakes.length}
-          activeIndex={focusedIndex}
-          onSelect={(i) => scrollToCarouselIndex(scrollRef, i)}
+      {mistakes.slice(0, 1).map(m => (
+        <MistakeCard
+          key={m.attempt_id}
+          mistake={m}
+          topicName={topicName(m)}
+          t={t}
+          onRetry={() => void retryTopic(m)}
+          isCreating={creating === m.attempt_id}
+          creatingDisabled={creating !== null}
         />
-      </div>
+      ))}
     </section>
   )
 }
@@ -162,7 +148,7 @@ function MistakeCard({
   creatingDisabled: boolean
 }) {
   return (
-    <div data-carousel-card className="snap-center flex-none w-[300px] max-w-[calc(100vw-72px)] min-h-[164px] relative overflow-hidden rounded-2xl p-4 bg-gradient-to-br from-rose-50/60 via-white to-white ring-1 ring-rose-200/50 shadow-[0_1px_2px_rgba(0,0,0,0.03)] flex flex-col gap-3">
+    <div className="relative overflow-hidden rounded-2xl p-4 bg-white ring-1 ring-gray-200 flex flex-col gap-3">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
       {/* Topic eyebrow */}

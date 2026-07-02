@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect, useState, type ComponentType } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, type LucideProps } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Loader2, type LucideProps } from 'lucide-react'
 
 /**
  * Shared study-mode primitives. Every new study surface should use
@@ -265,6 +265,84 @@ export function StudySectionHeader({
           {RightIcon && <RightIcon className="w-3.5 h-3.5" />}
           {rightText}
         </Link>
+      )}
+    </div>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// StudyTodayCard — the single shape used for every "Today" band card.
+// Fixed height, white background, one ring color, one hover behaviour.
+// Landing feels calmer + more organised when every card in the band
+// reads the same, differentiated only by the coloured icon.
+// ─────────────────────────────────────────────────────────────────────
+export interface StudyTodayCardProps {
+  /** href for Link — or omit + provide onClick to render a button. */
+  href?: string
+  /** Click handler — pass instead of href when the card needs to
+   *  fire an action before navigating (e.g., POST a session then
+   *  route). Cannot be combined with href. */
+  onClick?: () => void
+  /** Loading state — disables the button + swaps the icon for a
+   *  spinner. Only meaningful when using onClick. */
+  loading?: boolean
+  icon: LucideIcon
+  /** Icon container background + text colour, e.g. "bg-primary/10 text-primary". */
+  iconColorClass?: string
+  eyebrow: string
+  title: ReactNode
+  subtitle?: ReactNode
+  /** Optional right-side slot — a number badge, count, or arrow. */
+  rightSlot?: ReactNode
+  /** Optional dismiss handler — shows an X button on the right. */
+  onDismiss?: () => void
+  dismissLabel?: string
+}
+
+export function StudyTodayCard({
+  href, onClick, loading, icon: Icon, iconColorClass = 'bg-primary/10 text-primary',
+  eyebrow, title, subtitle, rightSlot, onDismiss, dismissLabel,
+}: StudyTodayCardProps) {
+  const commonClassName = "group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 px-4 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all text-left disabled:opacity-70 disabled:cursor-wait"
+  const body = (
+    <>
+      <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${iconColorClass}`}>
+        {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
+          {eyebrow}
+        </div>
+        <div className="text-[14px] font-semibold text-gray-900 leading-tight truncate">
+          {title}
+        </div>
+        {subtitle && (
+          <div className="text-[12px] text-gray-500 mt-0.5 truncate">
+            {subtitle}
+          </div>
+        )}
+      </div>
+      {rightSlot ? (
+        <div className={`flex-shrink-0 ${onDismiss ? 'pr-6' : ''}`}>{rightSlot}</div>
+      ) : (
+        <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+      )}
+    </>
+  )
+  return (
+    <div className="relative">
+      {href
+        ? <Link href={href} className={commonClassName}>{body}</Link>
+        : <button type="button" onClick={onClick} disabled={loading} className={commonClassName}>{body}</button>}
+      {onDismiss && (
+        <button
+          type="button"
+          onClick={onDismiss}
+          aria-label={dismissLabel ?? 'Dismiss'}
+          className="absolute top-1/2 -translate-y-1/2 right-2 w-7 h-7 rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600 active:scale-[0.94] transition-all inline-flex items-center justify-center"
+        >
+          <span className="text-lg leading-none">×</span>
+        </button>
       )}
     </div>
   )
