@@ -11,7 +11,7 @@ import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
-import { StudyPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
+import { StudyPageHeader, StudyPageTransition } from '../_shared/primitives'
 import { SkeletonBlock } from '../skeletons'
 import { PathMascot, type MascotState } from '../_shared/PathMascot'
 import {
@@ -175,19 +175,14 @@ function StudyPathInner() {
     return (
       <div className="flex flex-col h-full bg-gray-50">
         {header}
-        <StudyEmptyState
-          icon={Target}
-          title={String(t('study.path.noTargetTitle'))}
-          description={String(t('study.path.noTargetDesc'))}
-          action={
-            <Link
-              href="/mobile/study/preferences"
-              className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-primary text-white text-[14px] font-semibold hover:bg-primary/90 transition"
-            >
-              {String(t('study.path.pickTarget'))}
-              <ChevronRight className="w-4 h-4" />
-            </Link>
-          }
+        <TargetTestPicker
+          onPicked={(picked) => {
+            // Optimistically resolve locally so the path renders
+            // instantly on selection; a full refetch would round-trip
+            // through the prefs endpoint for no user-visible benefit.
+            setPrefs({ target_test: picked })
+            setTemplate(getPathTemplate(picked))
+          }}
         />
       </div>
     )
@@ -398,6 +393,139 @@ function ActiveBubble({
         <Sparkles className="w-3.5 h-3.5" />
         {String(t('study.path.start'))}
       </button>
+    </div>
+  )
+}
+
+/**
+ * Inline picker rendered on the empty Path state — lets a student
+ * with no target_test choose SAT or TOEFL right here instead of
+ * being punted to /mobile/study/preferences. Persists via the
+ * standard /api/study/prefs PUT then hands control back to the
+ * parent via onPicked so the path renders instantly.
+ *
+ * Kept scoped to the two tests that actually have templates today
+ * (SAT + TOEFL). When more test templates ship (KSAT, TOEIC, …) add
+ * them here.
+ */
+function TargetTestPicker({ onPicked }: { onPicked: (target: string) => void }) {
+  const { t, language } = useTranslation()
+  const ko = language === 'korean'
+  const [saving, setSaving] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  const OPTIONS: Array<{
+    key: string
+    labelEn: string
+    labelKo: string
+    subEn: string
+    subKo: string
+    accent: string
+    initial: string
+  }> = [
+    {
+      key: 'SAT',
+      labelEn: 'SAT',
+      labelKo: 'SAT',
+      subEn: 'Reading & Writing · Math',
+      subKo: '읽기·쓰기 · 수학',
+      accent: 'from-sky-500 via-blue-600 to-indigo-700',
+      initial: 'S',
+    },
+    {
+      key: 'TOEFL',
+      labelEn: 'TOEFL',
+      labelKo: 'TOEFL',
+      subEn: 'Reading · Listening · Speaking · Writing',
+      subKo: '읽기 · 듣기 · 말하기 · 쓰기',
+      accent: 'from-emerald-500 via-teal-600 to-cyan-700',
+      initial: 'T',
+    },
+  ]
+
+  const pick = async (opt: typeof OPTIONS[number]) => {
+    if (saving) return
+    setSaving(opt.key)
+    setError(null)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/prefs', {
+        method: 'PUT',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ target_test: opt.key }),
+      })
+      if (!res.ok) {
+        setError(ko ? '저장에 실패했어요. 다시 시도해 주세요.' : 'Save failed. Try again.')
+        setSaving(null)
+        return
+      }
+      onPicked(opt.key)
+    } catch {
+      setError(ko ? '네트워크 오류가 발생했어요.' : 'Network error.')
+      setSaving(null)
+    }
+  }
+
+  return (
+    <div className="flex-1 overflow-y-auto px-5 pt-6 pb-14">
+      <div className="max-w-md mx-auto">
+        <div className="text-center mb-5">
+          <div className="inline-flex items-center justify-center mb-3">
+            <PathMascot state="thinking" size={72} />
+          </div>
+          <h2 className="text-[19px] font-bold tracking-tight text-gray-900">
+            {String(t('study.path.noTargetTitle'))}
+          </h2>
+          <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
+            {String(t('study.path.noTargetDesc'))}
+          </p>
+        </div>
+
+        {error && (
+          <div className="mb-3 rounded-xl bg-rose-50 ring-1 ring-rose-200 px-3 py-2 text-[12.5px] text-rose-800">
+            {error}
+          </div>
+        )}
+
+        <div className="space-y-2.5">
+          {OPTIONS.map(opt => {
+            const isSaving = saving === opt.key
+            return (
+              <button
+                key={opt.key}
+                type="button"
+                onClick={() => pick(opt)}
+                disabled={!!saving}
+                className={`w-full relative overflow-hidden rounded-2xl bg-gradient-to-br ${opt.accent} text-white p-4 flex items-center gap-3 shadow-[0_8px_20px_-8px_rgba(0,0,0,0.32)] active:scale-[0.99] disabled:opacity-70 transition-all`}
+              >
+                <div aria-hidden className="pointer-events-none absolute -top-4 -right-4 w-24 h-24 rounded-full bg-white/15 blur-2xl" />
+                <div className="relative flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/20 ring-1 ring-white/25 text-[20px] font-black tracking-tight">
+                  {opt.initial}
+                </div>
+                <div className="relative flex-1 min-w-0 text-left">
+                  <div className="text-[16px] font-bold leading-tight">
+                    {ko ? opt.labelKo : opt.labelEn}
+                  </div>
+                  <div className="text-[11.5px] text-white/85 mt-0.5 leading-snug">
+                    {ko ? opt.subKo : opt.subEn}
+                  </div>
+                </div>
+                <div className="relative flex-shrink-0">
+                  {isSaving
+                    ? <div className="w-5 h-5 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+                    : <ChevronRight className="w-5 h-5 opacity-80" />}
+                </div>
+              </button>
+            )
+          })}
+        </div>
+
+        <p className="text-center text-[11px] text-gray-500 mt-5">
+          {ko
+            ? '언제든지 설정에서 바꿀 수 있어요.'
+            : 'You can change this anytime in preferences.'}
+        </p>
+      </div>
     </div>
   )
 }
