@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -150,6 +150,8 @@ function StudyPathInner() {
 
   const header = (
     <StudyPageHeader
+      backHref="/mobile/study"
+      backLabel={ko ? '공부 화면으로' : 'Back to Study'}
       icon={Target}
       iconColorClass="text-primary bg-primary/10"
       eyebrow={String(t('study.path.eyebrow'))}
@@ -241,88 +243,112 @@ function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: s
   const ko = language === 'korean'
   const router = useRouter()
   const activeIdx = nodes.findIndex(n => n.state.status === 'active')
+  const activeRef = useRef<HTMLDivElement | null>(null)
 
-  const overallPct = useMemo(() => {
-    if (nodes.length === 0) return 0
-    const done = nodes.filter(n => n.state.status === 'completed').length
-    return Math.round((done / nodes.length) * 100)
-  }, [nodes])
+  const completedCount = useMemo(
+    () => nodes.filter(n => n.state.status === 'completed').length,
+    [nodes],
+  )
+  const overallPct = nodes.length === 0 ? 0 : Math.round((completedCount / nodes.length) * 100)
+
+  // Scroll the active node into view on mount so returning students
+  // see their next task without having to hunt for it.
+  useEffect(() => {
+    if (activeRef.current) {
+      activeRef.current.scrollIntoView({ behavior: 'auto', block: 'center' })
+    }
+  }, [])
 
   const handleLaunch = (node: PathNodeWithState) => {
-    // Route to the topic page for this subtopic. Topic page handles
-    // mode selection (practice / full_test) via its existing UI. This
-    // keeps session-creation logic in one place instead of forking a
-    // second path here.
     router.push(`/mobile/study/topic/${node.subtopicSlug}?from=path&mode=${node.launchMode}`)
   }
 
   return (
     <div className="flex-1 overflow-y-auto">
-      {/* Path-wide progress banner */}
-      <div className="px-5 pt-5 pb-3">
-        <div className="rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-4">
-          <div className="flex items-center justify-between mb-2">
-            <div className="text-[13px] font-semibold text-gray-800">
-              {ko ? '전체 진행률' : 'Overall progress'}
+      {/* Hero-style progress banner — gradient card with mascot inline,
+          big % display, sub-metric. Replaces the plain white card. */}
+      <div className="px-5 pt-4 pb-2">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-indigo-700 text-white p-5 shadow-[0_10px_28px_-12px_rgba(40,133,232,0.55)]">
+          <div aria-hidden className="pointer-events-none absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
+          <div aria-hidden className="pointer-events-none absolute -bottom-8 -left-6 w-32 h-32 rounded-full bg-indigo-300/25 blur-2xl" />
+          <div className="relative flex items-center gap-3">
+            <div className="flex-shrink-0">
+              <PathMascot
+                state={overallPct >= 100 ? 'celebrate' : 'idle'}
+                size={64}
+              />
             </div>
-            <div className="text-[13px] font-bold tabular-nums text-primary">{overallPct}%</div>
-          </div>
-          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-primary via-primary to-emerald-500 transition-[width] duration-700 ease-out"
-              style={{ width: `${overallPct}%` }}
-            />
-          </div>
-          <div className="mt-2 text-[11px] text-gray-500">
-            {ko
-              ? `${nodes.filter(n => n.state.status === 'completed').length} / ${nodes.length} 완료`
-              : `${nodes.filter(n => n.state.status === 'completed').length} of ${nodes.length} completed`}
+            <div className="flex-1 min-w-0">
+              <div className="text-[10px] font-bold tracking-[0.14em] uppercase text-white/75 mb-0.5">
+                {ko ? '전체 진행률' : 'Overall progress'}
+              </div>
+              <div className="flex items-baseline gap-2">
+                <div className="text-[32px] font-bold tabular-nums leading-none">{overallPct}<span className="text-[18px] opacity-80">%</span></div>
+                <div className="text-[12px] text-white/85 tabular-nums">
+                  {ko
+                    ? `${completedCount} / ${nodes.length} 완료`
+                    : `${completedCount} / ${nodes.length} done`}
+                </div>
+              </div>
+              <div className="mt-2.5 h-1.5 bg-white/20 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-white transition-[width] duration-700 ease-out rounded-full shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+                  style={{ width: `${overallPct}%` }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Node list — alternating left/right positions to create the
-          serpentine path visual (Duolingo pattern). The active node
-          gets the mascot + call-to-action bubble. */}
-      <div className="px-5 pb-24 pt-2">
+      {/* Serpentine path — SVG-drawn curved connectors + centered
+          alternating nodes. The connectors color-shift based on the
+          FROM-node's completion state, giving the path a visual
+          "you-have-been-here" trail. */}
+      <div className="relative px-5 pt-4 pb-20">
         {nodes.map((node, i) => {
-          const side = i % 2 === 0 ? 'left' : 'right'
           const isActive = node.state.status === 'active'
-          const isCompleted = node.state.status === 'completed'
           const isLocked = node.state.status === 'locked'
           const isLastActive = isActive && i === activeIdx
+          // Horizontal offset alternates so the path snakes. Even nodes
+          // sit left of center, odd nodes right of center — subtle
+          // enough to read as one path, not two columns.
+          const offset = i % 2 === 0 ? '-translate-x-16' : 'translate-x-16'
+          const prevCompleted = i > 0 && nodes[i - 1].state.status === 'completed'
+          const curDir = i % 2 === 0 ? 'left' : 'right'
+          const prevDir = (i - 1) % 2 === 0 ? 'left' : 'right'
+          const showConnector = i > 0
           return (
             <div key={node.id} className="relative">
-              {/* Vertical connector segment above every node except the first */}
-              {i > 0 && (
-                <div
-                  aria-hidden
-                  className={`mx-auto w-1 h-8 -mt-1 ${
-                    nodes[i - 1].state.status === 'completed' ? 'bg-emerald-300' : 'bg-gray-200'
-                  }`}
-                  style={{ maskImage: 'linear-gradient(to bottom, transparent 0, black 30%, black 70%, transparent 100%)' }}
+              {showConnector && (
+                <SerpentineConnector
+                  prevSide={prevDir as 'left' | 'right'}
+                  currSide={curDir as 'left' | 'right'}
+                  active={prevCompleted}
                 />
               )}
-              <div className={`flex ${side === 'left' ? 'justify-start pl-4' : 'justify-end pr-4'}`}>
-                <div className="flex items-center gap-3">
-                  {side === 'right' && isLastActive && (
-                    <ActiveBubble node={node} onLaunch={() => handleLaunch(node)} align="left" />
-                  )}
-                  {side === 'right' && isLastActive && <PathMascot state="idle" size={64} />}
-                  <PathNode node={node} onClick={() => !isLocked && handleLaunch(node)} />
-                  {side === 'left' && isLastActive && <PathMascot state="idle" size={64} />}
-                  {side === 'left' && isLastActive && (
-                    <ActiveBubble node={node} onLaunch={() => handleLaunch(node)} align="right" />
-                  )}
-                </div>
+              <div
+                ref={isLastActive ? activeRef : undefined}
+                className={`relative flex flex-col items-center transition-transform ${offset}`}
+              >
+                {/* Mascot floats above the active node */}
+                {isLastActive && (
+                  <div className="mb-1 -mt-2">
+                    <PathMascot state="idle" size={72} />
+                  </div>
+                )}
+                <PathNode node={node} onClick={() => !isLocked && handleLaunch(node)} pulsing={isLastActive} />
+                {/* Active node's callout sits BELOW, full-width. Better
+                    readability than the prior cramped side-by-side layout. */}
+                {isLastActive && (
+                  <ActiveCallout node={node} onLaunch={() => handleLaunch(node)} />
+                )}
               </div>
             </div>
           )
         })}
 
-        {/* Footer chip pointing back to the classic landing so students
-            can still get to shelves + browse while the path is opt-in. */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-10 flex justify-center">
           <Link
             href="/mobile/study"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white ring-1 ring-gray-200 text-[12px] text-gray-600 hover:text-primary hover:ring-primary/40 transition"
@@ -331,106 +357,193 @@ function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: s
             {String(t('study.path.backToLanding'))}
           </Link>
         </div>
-        {/* testSlug is unused directly (subtopicSlug drives launches)
-            but referenced here to keep it in the signature so callers
-            can extend to test-scoped analytics without refactor. */}
         <span data-test-slug={testSlug} className="hidden" aria-hidden />
       </div>
     </div>
   )
 }
 
-/** Circle node — completed / active / locked visual variants. Milestone
- *  nodes get a bigger circle and a gold ring so they stand out along
- *  the path. */
-function PathNode({ node, onClick }: { node: PathNodeWithState; onClick: () => void }) {
+/** SVG curved connector between two path nodes. The curve direction
+ *  flips based on which side each node sits on; active (completed
+ *  prior node) segments render solid emerald, others render a subtle
+ *  dashed gray so the "you have not been here" state reads clearly. */
+function SerpentineConnector({
+  prevSide, currSide, active,
+}: {
+  prevSide: 'left' | 'right'
+  currSide: 'left' | 'right'
+  active: boolean
+}) {
+  // Both nodes same side → straight vertical. Different side → S-curve.
+  const isCurve = prevSide !== currSide
+  const stroke = active ? '#10B981' : '#D1D5DB'
+  const dash = active ? undefined : '4 6'
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 240 56"
+      className="w-full h-12 -mt-1 -mb-1"
+      preserveAspectRatio="none"
+    >
+      {isCurve
+        ? <path
+            d={prevSide === 'left'
+              ? 'M 56 0 C 56 28, 184 28, 184 56'
+              : 'M 184 0 C 184 28, 56 28, 56 56'}
+            stroke={stroke}
+            strokeWidth="4"
+            fill="none"
+            strokeLinecap="round"
+            strokeDasharray={dash}
+          />
+        : <line
+            x1={prevSide === 'left' ? 56 : 184}
+            y1="0"
+            x2={prevSide === 'left' ? 56 : 184}
+            y2="56"
+            stroke={stroke}
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeDasharray={dash}
+          />}
+    </svg>
+  )
+}
+
+/** Circle node — completed / active / locked visual variants.
+ *  Milestone nodes get a bigger circle + gold gradient to stand out
+ *  along the path. Active node adds a subtle pulse ring behind. */
+function PathNode({
+  node, onClick, pulsing,
+}: {
+  node: PathNodeWithState
+  onClick: () => void
+  pulsing?: boolean
+}) {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
   const status = node.state.status
   const label = ko ? node.labelKo : node.labelEn
 
-  const size = node.milestone ? 'w-24 h-24' : 'w-20 h-20'
-  const ring =
-    status === 'completed' ? 'ring-emerald-300' :
-    status === 'active' ? (node.milestone ? 'ring-amber-300' : 'ring-primary/40') :
-    'ring-gray-200'
+  const size = node.milestone ? 'w-28 h-28' : 'w-24 h-24'
 
-  const bg =
-    status === 'completed' ? 'bg-emerald-500 text-white' :
-    status === 'active' ? (node.milestone
-        ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white'
-        : 'bg-primary text-white')
-      : 'bg-white text-gray-400'
+  // Two-layer visual: outer ring uses a gradient for depth, inner
+  // circle carries the actual bg fill. Completed nodes read glossy
+  // green, active reads primary-with-shadow, milestones swap in gold.
+  const outerRing =
+    status === 'completed'
+      ? 'from-emerald-300 to-emerald-500'
+      : status === 'active'
+        ? (node.milestone ? 'from-amber-300 to-orange-500' : 'from-primary/60 to-indigo-500')
+        : 'from-gray-200 to-gray-300'
+
+  const innerBg =
+    status === 'completed'
+      ? 'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white'
+      : status === 'active'
+        ? (node.milestone
+            ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white'
+            : 'bg-gradient-to-br from-primary to-indigo-600 text-white')
+        : 'bg-white text-gray-400'
 
   const shadow =
-    status === 'active' ? 'shadow-[0_8px_22px_-6px_rgba(40,133,232,0.45)]' :
-    status === 'completed' ? 'shadow-[0_4px_12px_-4px_rgba(16,185,129,0.45)]' :
-    'shadow-none'
+    status === 'active'
+      ? 'shadow-[0_14px_32px_-8px_rgba(40,133,232,0.55)]'
+      : status === 'completed'
+        ? 'shadow-[0_8px_20px_-6px_rgba(16,185,129,0.55)]'
+        : 'shadow-none'
 
   const disabled = status === 'locked'
+  const iconSize = node.milestone ? 'w-10 h-10' : 'w-8 h-8'
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className={`${size} rounded-full ${bg} ${shadow} ring-4 ${ring} flex flex-col items-center justify-center transition-all disabled:cursor-not-allowed ${
-        !disabled ? 'hover:scale-105 active:scale-95' : ''
-      }`}
-      aria-label={label}
-      aria-disabled={disabled}
-    >
-      {status === 'completed' ? (
-        <CheckCircle2 className={node.milestone ? 'w-9 h-9' : 'w-7 h-7'} />
-      ) : status === 'locked' ? (
-        <Lock className="w-6 h-6" />
-      ) : node.kind === 'full_test' ? (
-        <Trophy className={node.milestone ? 'w-9 h-9' : 'w-7 h-7'} />
-      ) : node.kind === 'section_test' ? (
-        <Zap className={node.milestone ? 'w-9 h-9' : 'w-7 h-7'} />
-      ) : node.kind === 'diagnostic' ? (
-        <Target className="w-7 h-7" />
-      ) : (
-        <Play className="w-6 h-6 ml-0.5" />
+    <div className="relative">
+      {/* Ambient pulse — sits behind the active node so the eye lands
+          here on scroll-in. Purely decorative. */}
+      {pulsing && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-full bg-primary/25 animate-ping"
+        />
       )}
-      <span className={`mt-1 text-[10px] font-semibold tracking-tight leading-none px-1 text-center ${
-        status === 'locked' ? 'text-gray-400' : ''
-      }`}>
-        {String(t(`study.path.kind.${node.kind}`))}
-      </span>
-    </button>
+      <button
+        type="button"
+        onClick={onClick}
+        disabled={disabled}
+        className={`relative ${size} rounded-full p-1 bg-gradient-to-br ${outerRing} ${shadow} flex items-center justify-center transition-all disabled:cursor-not-allowed ${
+          !disabled ? 'hover:scale-105 active:scale-95' : ''
+        }`}
+        aria-label={label}
+        aria-disabled={disabled}
+      >
+        <div className={`w-full h-full rounded-full ${innerBg} flex flex-col items-center justify-center relative overflow-hidden`}>
+          {/* Glossy top highlight — subtle inner light on the top
+              third of the circle, adds three-dimensionality. */}
+          {status !== 'locked' && (
+            <span aria-hidden className="pointer-events-none absolute inset-x-1 top-1 h-1/3 rounded-full bg-white/25 blur-sm" />
+          )}
+          {status === 'completed' ? (
+            <CheckCircle2 className={iconSize} strokeWidth={2.5} />
+          ) : status === 'locked' ? (
+            <Lock className="w-7 h-7" />
+          ) : node.kind === 'full_test' ? (
+            <Trophy className={iconSize} strokeWidth={2.5} />
+          ) : node.kind === 'section_test' ? (
+            <Zap className={iconSize} strokeWidth={2.5} />
+          ) : node.kind === 'diagnostic' ? (
+            <Target className={iconSize} strokeWidth={2.5} />
+          ) : (
+            <Play className={iconSize} strokeWidth={2.5} />
+          )}
+          <span className={`mt-1 text-[10px] font-bold tracking-tight leading-none px-1 text-center ${
+            status === 'locked' ? 'text-gray-400' : ''
+          }`}>
+            {String(t(`study.path.kind.${node.kind}`))}
+          </span>
+        </div>
+      </button>
+    </div>
   )
 }
 
-/** Callout bubble shown next to the active node — carries the label,
- *  a one-line detail, and a primary start button. Placement (left vs
- *  right of the node) flips based on which side of the serpentine the
- *  node itself sits on, so the mascot always faces the content. */
-function ActiveBubble({
-  node, onLaunch, align,
+/** Full-width callout that sits BELOW the active node. Carries the
+ *  label, one-line detail, and Start CTA. Full-width reads better on
+ *  narrow phones than the prior side-hugging bubble which forced text
+ *  wrapping and cramped the horizontal layout. */
+function ActiveCallout({
+  node, onLaunch,
 }: {
   node: PathNodeWithState
   onLaunch: () => void
-  align: 'left' | 'right'
 }) {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
   return (
-    <div className={`max-w-[180px] rounded-2xl bg-white ring-1 ring-primary/20 shadow-[0_8px_20px_-8px_rgba(40,133,232,0.35)] p-3 ${align === 'right' ? 'text-right' : ''}`}>
-      <div className="text-[13px] font-bold text-gray-900 leading-tight">
-        {ko ? node.labelKo : node.labelEn}
+    <div className="relative mt-3 w-[280px] max-w-full rounded-2xl bg-white ring-1 ring-primary/20 shadow-[0_10px_28px_-8px_rgba(40,133,232,0.40)] px-4 py-3">
+      {/* Speech-bubble tail pointing up at the node */}
+      <div
+        aria-hidden
+        className="absolute -top-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45 bg-white ring-1 ring-primary/20"
+        style={{
+          clipPath: 'polygon(0 0, 100% 0, 0 100%)',
+        }}
+      />
+      <div className="relative text-center">
+        <div className="text-[14px] font-bold text-gray-900 leading-tight">
+          {ko ? node.labelKo : node.labelEn}
+        </div>
+        <div className="text-[11.5px] text-gray-500 mt-1 leading-snug">
+          {ko ? node.detailKo : node.detailEn}
+        </div>
+        <button
+          type="button"
+          onClick={onLaunch}
+          className="mt-2.5 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-bold shadow-[0_6px_14px_-4px_rgba(40,133,232,0.55)] hover:brightness-110 active:scale-95 transition-all"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          {String(t('study.path.start'))}
+        </button>
       </div>
-      <div className="text-[11px] text-gray-500 mt-1 leading-snug">
-        {ko ? node.detailKo : node.detailEn}
-      </div>
-      <button
-        type="button"
-        onClick={onLaunch}
-        className="mt-2 inline-flex items-center gap-1 h-8 px-3 rounded-full bg-primary text-white text-[12px] font-semibold hover:bg-primary/90 transition"
-      >
-        <Sparkles className="w-3.5 h-3.5" />
-        {String(t('study.path.start'))}
-      </button>
     </div>
   )
 }
