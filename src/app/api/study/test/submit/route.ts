@@ -87,6 +87,9 @@ export async function POST(req: NextRequest) {
   } catch (e) {
     return NextResponse.json({ error: 'bad payload', details: (e as Error).message }, { status: 400 })
   }
+  if (body.answers.length !== body.questions.length) {
+    return NextResponse.json({ error: 'answers/questions length mismatch' }, { status: 400 })
+  }
 
   const { data: session } = await supabaseAdmin
     .from('study_sessions')
@@ -100,47 +103,114 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session is not in full_test mode' }, { status: 400 })
   }
 
+  // ── Anti-forgery: grade against the SERVER's cached test payload ──
+  // The client passes its questions array for convenience, but its
+  // correct_answer/blanks fields must never be trusted — a doctored
+  // POST could otherwise buy a perfect score (persisted to session
+  // score + mastery + XP). The generator caches the exact payload the
+  // client displays (shuffling happens before caching), so grading by
+  // index against the cache is faithful. Client-supplied questions
+  // remain the fallback for legacy sessions with no cache row.
+  let gradingQuestions = body.questions
+  try {
+    const { data: cachedMsg } = await supabaseAdmin
+      .from('study_messages')
+      .select('content')
+      .eq('session_id', body.sessionId)
+      .like('content', '[full-test-v1]%')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    if (cachedMsg?.content) {
+      const cached = JSON.parse(cachedMsg.content.slice('[full-test-v1]'.length)) as {
+        questions?: unknown[]
+      }
+      if (Array.isArray(cached.questions) && cached.questions.length === body.questions.length) {
+        const parsed = z.array(QuestionSchema).safeParse(cached.questions)
+        if (parsed.success) gradingQuestions = parsed.data
+      }
+    }
+  } catch (e) {
+    console.warn('[test/submit] cached payload unreadable — falling back to client questions', e)
+  }
+
   // Idempotency: if this session already has attempts, don't
   // re-insert (that would double-count in mastery + inflate the
   // history row). Instead reconstruct the SubmitResult from the
   // stored attempts and return it — the UI sees the exact same
   // shape as a fresh grade and drops into the review screen.
+  // Order by position (written since the double-submit guard landed);
+  // ids are gen_random_uuid() so ordering by id scrambled the verdict
+  // order on replay. nullsFirst:false keeps legacy NULL-position rows
+  // in a stable (if arbitrary) tail order via the id tiebreak.
   const { data: prior } = await supabaseAdmin
     .from('study_attempts')
-    .select('id, is_correct, student_answer, question')
+    .select('id, is_correct, student_answer, question, position')
     .eq('session_id', body.sessionId)
+    .order('position', { ascending: true, nullsFirst: false })
     .order('id', { ascending: true })
   if (prior && prior.length > 0) {
-    const verdicts = prior.map((row, i) => ({
-      index: i,
-      correct: !!row.is_correct,
-      correctAnswer: displayCorrectAnswer(row.question as z.infer<typeof QuestionSchema>),
-    }))
-    const correctCount = verdicts.filter(v => v.correct).length
+    // Recompute WEIGHTED totals from the stored rows so the idempotent
+    // replay matches a fresh grade (each Complete-the-Words blank
+    // counts as one scored question, mirroring the in-test "of 50"
+    // display).
+    let wTotal = 0
+    let wCorrect = 0
+    const verdicts = prior.map((row, i) => {
+      const q = row.question as z.infer<typeof QuestionSchema>
+      const w = weightedScore(q, row.student_answer as string | null)
+      wTotal += w.total
+      wCorrect += w.correct
+      return {
+        index: i,
+        correct: !!row.is_correct,
+        correctAnswer: displayCorrectAnswer(q),
+        ...(isOpenResponse(q) ? { ungraded: true } : {}),
+      }
+    })
     return NextResponse.json({
       success: true,
       idempotent: true,
-      totalQuestions: prior.length,
-      correctCount,
-      scorePercent: Math.round(100 * correctCount / prior.length),
+      totalQuestions: wTotal,
+      correctCount: wCorrect,
+      scorePercent: wTotal > 0 ? Math.round(100 * wCorrect / wTotal) : 0,
       verdicts,
     })
   }
 
-  const verdicts: { index: number; correct: boolean; correctAnswer: string }[] = []
+  const verdicts: { index: number; correct: boolean; correctAnswer: string; ungraded?: boolean }[] = []
   // Distribute the elapsed time across attempts evenly — we don't
   // capture per-question timing in the client (it would be a real
   // anti-cheating signal but adds complexity we don't need yet).
-  const perQuestionTime = Math.max(1, Math.round(body.elapsedSeconds / body.questions.length))
+  const perQuestionTime = Math.max(1, Math.round(body.elapsedSeconds / gradingQuestions.length))
 
-  const rows = body.questions.map((q, i) => {
+  // Weighted totals: each Complete-the-Words BLANK counts as one
+  // scored question (matching the client's "Question X of 50"
+  // display), with per-blank partial credit. All other types are
+  // weight 1. Verdict rows stay one-per-item for the review screen.
+  let weightedTotal = 0
+  let weightedCorrect = 0
+
+  const rows = gradingQuestions.map((q, i) => {
     const studentAnswer = body.answers[i] ?? null
     const isCorrect = gradeAnswer(q, studentAnswer)
+    const w = weightedScore(q, studentAnswer)
+    weightedTotal += w.total
+    weightedCorrect += w.correct
     const displayCorrect = displayCorrectAnswer(q)
-    verdicts.push({ index: i, correct: isCorrect, correctAnswer: displayCorrect })
+    verdicts.push({
+      index: i,
+      correct: isCorrect,
+      correctAnswer: displayCorrect,
+      ...(isOpenResponse(q) ? { ungraded: true } : {}),
+    })
     return {
       session_id: body.sessionId,
       topic_id: session.topic_id,
+      // Question index within the test — the partial unique index on
+      // (session_id, position) turns a double-submit race into a
+      // clean insert failure handled below.
+      position: i,
       question: q,
       student_answer: studentAnswer,
       is_correct: isCorrect,
@@ -153,18 +223,53 @@ export async function POST(req: NextRequest) {
     .from('study_attempts')
     .insert(rows)
   if (insertError) {
+    // 23505 = unique violation on (session_id, position): a concurrent
+    // submit won the race after our "prior attempts?" check ran. The
+    // whole bulk insert rolled back (single statement), so the stored
+    // rows are entirely the winner's — replay them as the idempotent
+    // result instead of erroring.
+    if (insertError.code === '23505') {
+      const { data: raced } = await supabaseAdmin
+        .from('study_attempts')
+        .select('is_correct, student_answer, question')
+        .eq('session_id', body.sessionId)
+        .order('position', { ascending: true, nullsFirst: false })
+        .order('id', { ascending: true })
+      if (raced && raced.length > 0) {
+        let rTotal = 0
+        let rCorrect = 0
+        const racedVerdicts = raced.map((row, i) => {
+          const q = row.question as z.infer<typeof QuestionSchema>
+          const w = weightedScore(q, row.student_answer as string | null)
+          rTotal += w.total
+          rCorrect += w.correct
+          return {
+            index: i,
+            correct: !!row.is_correct,
+            correctAnswer: displayCorrectAnswer(q),
+            ...(isOpenResponse(q) ? { ungraded: true } : {}),
+          }
+        })
+        return NextResponse.json({
+          success: true,
+          idempotent: true,
+          totalQuestions: rTotal,
+          correctCount: rCorrect,
+          scorePercent: rTotal > 0 ? Math.round(100 * rCorrect / rTotal) : 0,
+          verdicts: racedVerdicts,
+        })
+      }
+    }
     console.error('[test/submit] insert failed', insertError)
     return NextResponse.json({ error: 'persist failed' }, { status: 500 })
   }
 
   // Mark the session completed so it sorts correctly in history and
-  // the UI knows it's no longer resumable. Persist the score alongside
+  // the UI knows it's no longer resumable. Persist the WEIGHTED score
   // — the tests overview and stats "recent tests" panel read from
   // these columns rather than recomputing from attempts on every load.
-  const totalCount = body.questions.length
-  const persistedCorrect = verdicts.filter(v => v.correct).length
-  const persistedScore = totalCount > 0
-    ? Math.round((10000 * persistedCorrect) / totalCount) / 100
+  const persistedScore = weightedTotal > 0
+    ? Math.round((10000 * weightedCorrect) / weightedTotal) / 100
     : 0
   await supabaseAdmin
     .from('study_sessions')
@@ -172,8 +277,8 @@ export async function POST(req: NextRequest) {
       status: 'completed',
       completed_at: new Date().toISOString(),
       score: persistedScore,
-      correct_count: persistedCorrect,
-      total_count: totalCount,
+      correct_count: weightedCorrect,
+      total_count: weightedTotal,
     })
     .eq('id', body.sessionId)
 
@@ -183,14 +288,58 @@ export async function POST(req: NextRequest) {
   // Failure is silent — the test result still ships to the client.
   void assessSessionMastery(body.sessionId)
 
-  const correctCount = verdicts.filter(v => v.correct).length
   return NextResponse.json({
     success: true,
-    totalQuestions: body.questions.length,
-    correctCount,
-    scorePercent: Math.round(100 * correctCount / body.questions.length),
+    totalQuestions: weightedTotal,
+    correctCount: weightedCorrect,
+    scorePercent: weightedTotal > 0 ? Math.round(100 * weightedCorrect / weightedTotal) : 0,
     verdicts,
   })
+}
+
+/** Open-response types have no objective answer key — they're scored
+ *  by the gpt-4o rubric grader in the review pane, not here. Counting
+ *  them as "correct" on a length check inflated the auto-score (a
+ *  long-enough gibberish paste scored 100% on Writing), so they're
+ *  excluded from the score denominator entirely. */
+function isOpenResponse(q: z.infer<typeof QuestionSchema>): boolean {
+  return q.type === 'speaking_interview'
+    || q.type === 'writing_email'
+    || q.type === 'writing_discussion'
+}
+
+/** Weighted (per-blank) contribution of one question to the score.
+ *  fill_in_blanks: total = number of blanks, correct = number of
+ *  blanks whose typed letters match (answer or any alternate).
+ *  Open-response (interview / email / discussion): total = 0 — rubric-
+ *  graded separately, see isOpenResponse. Every other type: total = 1,
+ *  correct = gradeAnswer verdict. */
+function weightedScore(
+  q: z.infer<typeof QuestionSchema>,
+  studentAnswer: string | null,
+): { total: number; correct: number } {
+  if (isOpenResponse(q)) return { total: 0, correct: 0 }
+  if (q.type === 'fill_in_blanks') {
+    const blanks = q.blanks ?? []
+    if (blanks.length === 0) return { total: 1, correct: 0 }
+    const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ')
+    let picked: Record<string, string> = {}
+    if (studentAnswer) {
+      try {
+        const parsed = JSON.parse(studentAnswer)
+        if (parsed && typeof parsed === 'object') picked = parsed as Record<string, string>
+      } catch { /* unparseable → all blanks wrong */ }
+    }
+    let correct = 0
+    for (const b of blanks) {
+      const val = norm(picked[String(b.id)] ?? '')
+      if (!val) continue
+      const accepted = [b.answer, ...(b.alternates ?? [])].map(norm)
+      if (accepted.includes(val)) correct++
+    }
+    return { total: blanks.length, correct }
+  }
+  return { total: 1, correct: gradeAnswer(q, studentAnswer) ? 1 : 0 }
 }
 
 /** Type-aware grader. Each question variant has its own correctness
@@ -216,9 +365,14 @@ function gradeAnswer(q: z.infer<typeof QuestionSchema>, studentAnswer: string | 
     if (expected.length === 0) return false
     let picked: string[]
     try { picked = JSON.parse(studentAnswer) } catch { return false }
-    if (!Array.isArray(picked) || picked.length !== expected.length) return false
+    if (!Array.isArray(picked)) return false
+    // Strict SET equality — dedupes the picks first so ["A","A"]
+    // can't masquerade as two distinct correct selections.
+    const pickedSet = new Set(picked.map(p => norm(String(p))))
     const expectedSet = new Set(expected.map(norm))
-    return picked.every(p => expectedSet.has(norm(p))) && picked.length === expectedSet.size
+    if (pickedSet.size !== expectedSet.size) return false
+    for (const p of pickedSet) if (!expectedSet.has(p)) return false
+    return true
   }
 
   // TOEFL Complete-the-Words: passage has [1] [2] [3] placeholders; student
@@ -246,12 +400,38 @@ function gradeAnswer(q: z.infer<typeof QuestionSchema>, studentAnswer: string | 
     return norm(studentAnswer) === norm(q.correct_answer ?? '')
   }
 
-  // TOEFL Listen-and-Repeat: student types back what they heard. Exact
-  // match against correct_answer (case-insensitive trim — punctuation
-  // tolerated by the norm function via whitespace collapse).
+  // TOEFL Listen-and-Repeat: the answer is a Whisper TRANSCRIPT of
+  // the student's speech, which routinely differs from the target in
+  // punctuation style (curly quotes, ellipses), casing, and small
+  // lexical drift. Grade with Unicode-wide punctuation stripping +
+  // a token-overlap threshold instead of brittle exact equality —
+  // saying the sentence correctly should pass even if Whisper writes
+  // "twenty" for "20" in one spot.
   if (q.type === 'speaking_repeat') {
-    const stripPunct = (s: string) => s.toLowerCase().replace(/[.,!?;:'"\-—]/g, '').replace(/\s+/g, ' ').trim()
-    return stripPunct(studentAnswer) === stripPunct(q.correct_answer ?? '')
+    const stripPunct = (s: string) => s
+      .toLowerCase()
+      // ASCII + Unicode punctuation Whisper emits: curly quotes,
+      // ellipsis, en/em dashes, guillemets.
+      .replace(/[.,!?;:'"\-—–…‘’“”«»()]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+    const a = stripPunct(studentAnswer)
+    const b = stripPunct(q.correct_answer ?? '')
+    if (!b) return false
+    if (a === b) return true
+    // Token-overlap similarity: fraction of target tokens present in
+    // the transcript (multiset). ≥85% counts as a correct repetition.
+    const tokensA = a.split(' ').filter(Boolean)
+    const tokensB = b.split(' ').filter(Boolean)
+    if (tokensB.length === 0) return false
+    const pool = new Map<string, number>()
+    for (const t of tokensA) pool.set(t, (pool.get(t) ?? 0) + 1)
+    let matched = 0
+    for (const t of tokensB) {
+      const n = pool.get(t) ?? 0
+      if (n > 0) { matched++; pool.set(t, n - 1) }
+    }
+    return matched / tokensB.length >= 0.85
   }
 
   // TOEFL Take-an-Interview: open response — no auto-grading. Counted as

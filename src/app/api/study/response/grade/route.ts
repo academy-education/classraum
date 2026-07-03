@@ -1,3 +1,4 @@
+import { createHash } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
@@ -86,6 +87,53 @@ export async function POST(req: NextRequest) {
   const taskType = (body.taskType ?? undefined) as ResponseTaskType | undefined
   const rubric = getRubric(body.testFamily as ResponseTestFamily, body.skill as ResponseSkill, taskType)
 
+  // ── Re-grade dedupe ────────────────────────────────────────────
+  // Deterministic XP key: md5(session + prompt) folded into a UUID.
+  // Grading the same task in the same session always produces the
+  // same key, so award_study_xp can only ever land ONE
+  // 'response_graded' event per task (unique index on
+  // study_xp_events enforces it — re-grades collide and roll back
+  // the award, closing the "re-grade the same answer for +20 XP
+  // each time" farming loop). Revised responses still get fresh
+  // FEEDBACK below; they just don't re-earn XP.
+  const promptHash = createHash('md5').update(`${body.sessionId}:${body.promptText}`).digest('hex')
+  const xpSourceId = [
+    promptHash.slice(0, 8), promptHash.slice(8, 12), promptHash.slice(12, 16),
+    promptHash.slice(16, 20), promptHash.slice(20, 32),
+  ].join('-')
+
+  // Identical prompt + response already graded in this session →
+  // return the stored grade instead of paying for a fresh gpt-4o
+  // call that would land on the same band anyway.
+  const { data: prior } = await supabaseAdmin
+    .from('study_response_submissions')
+    .select('id, response_text, study_response_grades(overall_band, rubric_scores, annotations, model_rewrite, summary)')
+    .eq('session_id', body.sessionId)
+    .eq('student_id', user.id)
+    .eq('prompt_text', body.promptText)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  if (prior && prior.response_text === body.responseText) {
+    const priorGrade = Array.isArray(prior.study_response_grades)
+      ? prior.study_response_grades[0]
+      : prior.study_response_grades
+    if (priorGrade) {
+      return NextResponse.json({
+        submissionId: prior.id,
+        grade: {
+          overallBand: Number(priorGrade.overall_band),
+          criteria: priorGrade.rubric_scores,
+          annotations: priorGrade.annotations,
+          modelRewrite: priorGrade.model_rewrite,
+          summary: priorGrade.summary,
+        },
+        scaleMax: rubric.scaleMax,
+        cached: true,
+      })
+    }
+  }
+
   const wordCount = body.responseText.trim().split(/\s+/).filter(Boolean).length
   const language = (session.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en'
 
@@ -166,7 +214,11 @@ export async function POST(req: NextRequest) {
     console.error('[response/grade] insert grade', gradeErr)
   }
 
-  void awardXp(user.id, 'response_graded', submission.id)
+  // Deterministic source key (NOT submission.id): re-grades of the
+  // same task hit the partial unique index on study_xp_events and
+  // the award rolls back — first grade per task is the only one
+  // that pays out.
+  void awardXp(user.id, 'response_graded', xpSourceId)
   // Inbox row — useful for the student to revisit their graded
   // response later from the bell icon without scrolling history.
   const skillLabel = body.skill === 'speaking' ? '말하기' : '작문'

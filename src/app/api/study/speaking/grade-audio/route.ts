@@ -1,7 +1,9 @@
+import { createHash } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { awardXp } from '@/lib/study/xp'
 import { assessSessionMastery as _keepAlive } from '@/lib/study-mastery-assess'
 import { getRubric, GradeSchema, type ResponseTestFamily, type ResponseSkill, type ResponseTaskType } from '@/lib/study/responseRubrics'
 
@@ -101,6 +103,42 @@ export async function POST(req: NextRequest) {
     }, { status: 400 })
   }
 
+  const rubric = getRubric('toefl' as ResponseTestFamily, 'speaking' as ResponseSkill, body.taskType as ResponseTaskType | undefined)
+
+  // ── Step 0.5: re-grade dedupe ─────────────────────────────────────
+  // Same session + prompt + recording already AUDIO-graded → return
+  // the stored grade instead of paying for another gpt-4o-audio call.
+  // Filters on grader_model containing "audio" so a text-mode grade
+  // for the same prompt (e.g. the 5xx fallback path) never masks a
+  // real audio grade. Mirrors the dedupe in /api/study/response/grade.
+  const { data: priorSubs } = await supabaseAdmin
+    .from('study_response_submissions')
+    .select('id, audio_path, study_response_grades(overall_band, rubric_scores, annotations, model_rewrite, summary, grader_model)')
+    .eq('session_id', body.sessionId)
+    .eq('student_id', user.id)
+    .eq('skill', 'speaking')
+    .eq('prompt_text', body.promptText)
+    .order('created_at', { ascending: false })
+    .limit(5)
+  for (const sub of priorSubs ?? []) {
+    if (sub.audio_path !== body.audioPath) continue
+    const g = Array.isArray(sub.study_response_grades) ? sub.study_response_grades[0] : sub.study_response_grades
+    if (!g || typeof g.grader_model !== 'string' || !g.grader_model.includes('audio')) continue
+    return NextResponse.json({
+      submissionId: sub.id,
+      grade: {
+        overallBand: Number(g.overall_band),
+        criteria: g.rubric_scores,
+        annotations: g.annotations,
+        modelRewrite: g.model_rewrite,
+        summary: g.summary,
+      },
+      scaleMax: rubric.scaleMax,
+      graderModel: g.grader_model,
+      cached: true,
+    })
+  }
+
   // ── Step 1: download the audio ────────────────────────────────────
   const { data: audioBlob, error: dlErr } = await supabaseAdmin.storage
     .from(BUCKET)
@@ -131,7 +169,7 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Step 3: build the rubric prompt (with all delivery signals) ──
-  const rubric = getRubric('toefl' as ResponseTestFamily, 'speaking' as ResponseSkill, body.taskType as ResponseTaskType | undefined)
+  // (rubric computed above, before the dedupe short-circuit)
   const promptText = buildAudioGraderPrompt({
     taskType: body.taskType ?? null,
     promptText: body.promptText,
@@ -265,6 +303,16 @@ export async function POST(req: NextRequest) {
       tokens_out: completion.usage?.completion_tokens ?? 0,
     })
   if (gradeErr) console.error('[speaking/grade-audio] insert grade', gradeErr)
+
+  // XP parity with the text route: same deterministic md5(session +
+  // prompt) source key, so a task graded via EITHER route pays out at
+  // most once (partial unique index on study_xp_events enforces it).
+  const promptHash = createHash('md5').update(`${body.sessionId}:${body.promptText}`).digest('hex')
+  const xpSourceId = [
+    promptHash.slice(0, 8), promptHash.slice(8, 12), promptHash.slice(12, 16),
+    promptHash.slice(16, 20), promptHash.slice(20, 32),
+  ].join('-')
+  void awardXp(user.id, 'response_graded', xpSourceId)
 
   return NextResponse.json({
     submissionId: submission.id,
