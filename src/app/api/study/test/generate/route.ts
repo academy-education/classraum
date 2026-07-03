@@ -169,9 +169,33 @@ const TestSchema = z.object({
   // assembly stage refill missing items via the chunked retry pool
   // or fall back to a smaller test rather than aborting completely.
   questions: z.array(QuestionSchema).min(1).max(200),
-})
+  /** TOEFL adaptive-module boundary. Index of the FIRST question in
+   *  Module 2. Undefined for non-modular sections. The UI uses this
+   *  to render the module chip + "Module 2 begins" banner.
+   *
+   *  IMPORTANT: this field is SERVER-COMPUTED after the per-task
+   *  interleave runs. We keep it permissive in the schema (accept
+   *  any int or nullish) so that when the model unexpectedly emits
+   *  a value here (it started emitting -1 as a placeholder, blocking
+   *  the whole generation), Zod doesn't reject the whole batch. The
+   *  server assembler overwrites it either way. */
+  moduleBreakIdx: z.number().int().nullish(),
+}).passthrough()
 
-export type TestPayload = z.infer<typeof TestSchema>
+// The payload we ASSEMBLE and cache uses the post-sanitize Question
+// shape (every field concrete), not the permissive model-output schema
+// — by assembly time every question has passed sanitizeQuestion. Typed
+// explicitly rather than derived: Omit<> over the .passthrough() infer
+// type collapses every named field into the string index signature
+// (title becomes unknown), so keep this in sync with TestSchema above.
+export type TestPayload = {
+  title: string
+  timeLimitMinutes: number
+  section: string | null
+  family?: string | null
+  questions: Question[]
+  moduleBreakIdx?: number | null
+}
 
 const CACHED_TEST_MARKER = '[full-test-v1]'
 
@@ -537,7 +561,15 @@ export async function POST(req: NextRequest) {
     if (isToeflWriting && count >= 3) {
       phase('drafting_questions', 'study.test.progress.draftingQuestions', 15)
       const buildN = count - 2
-      const buildPrompt = buildToeflWritingTaskPrompt({ task: 'build', n: buildN, minutes, lang })
+      // Over-request Build-a-Sentence items — the arrange_words schema
+      // is strict (needs " | " joined answer, 4-12 chips), and a single-
+      // call generateObject asking for N reliably under-shoots when N
+      // is large. A 30% surplus + slicing to buildN after the validity
+      // filter reliably hits the 10-item target since the filter-
+      // before-slice fix (1.5× was sized for the era when junk items
+      // could displace valid ones; now it just wastes tokens).
+      const buildRequestN = Math.ceil(buildN * 1.3) + 1
+      const buildPrompt = buildToeflWritingTaskPrompt({ task: 'build', n: buildRequestN, minutes, lang })
       const emailPrompt = buildToeflWritingTaskPrompt({ task: 'email', n: 1, minutes, lang })
       const discussionPrompt = buildToeflWritingTaskPrompt({ task: 'discussion', n: 1, minutes, lang })
       const [buildResult, emailResult, discussionResult] = await Promise.all([
@@ -565,12 +597,13 @@ export async function POST(req: NextRequest) {
       // 173w when target is 220-320w). Send too-short scenarios back to
       // the model with an explicit "expand this to N words" prompt.
       // Only runs on writing_email and writing_discussion items.
-      // Preserves the exact FORMAT (From:/To:/bullets or Professor:/
-      // Student:) — just adds substance and specificity.
+      // MUST match the current spec format: Email = situation + intro
+      // + 3 bullets (NO From:/To:/Subject: headers — legacy pre-2026
+      // format). Discussion = Professor: / Student N: block structure.
       const expandPassage = async (currentPassage: string, targetMin: number, taskKind: 'email' | 'discussion'): Promise<string> => {
         if (wordCount(currentPassage) >= targetMin) return currentPassage
         const kindDesc = taskKind === 'email'
-          ? 'a TOEFL Email writing scenario. Preserve the "From: / To: / Subject:" header. Preserve the 3-bullet "Write a reply that:" list at the end EXACTLY. Only expand the email BODY (the middle part) with more context, specific details, constraints, or register-signaling language.'
+          ? 'a TOEFL Writing "Write an Email" scenario (Jan-2026 format). The structure is: (1) a SITUATION PARAGRAPH written in second person ("You have just…", "Your professor asked…") that describes what happened and who the student is supposed to email, THEN (2) a line reading exactly "In your email to <recipient>, be sure to:" THEN (3) three "•"-marker bullet points naming what the student\'s email must accomplish. Preserve EVERY element of this structure verbatim: keep the "In your email to X, be sure to:" line, keep the three "•" bullets EXACTLY, do NOT add From: / To: / Subject: headers. Only expand the SITUATION paragraph with more context, specific details, constraints, or register-signaling language. Do not touch the bullets.'
           : 'a TOEFL Academic Discussion writing prompt. Preserve the "Professor <Name>:" prefix and the two "Student <Name>:" replies structure EXACTLY. Only expand the substance within each speaker\'s turn — add specific claims, examples, evidence, or nuanced positioning.'
         const expandPrompt = `Below is ${kindDesc}\n\nCURRENT VERSION (${wordCount(currentPassage)} words — too short):\n"""\n${currentPassage}\n"""\n\nRewrite it to be EXACTLY ${targetMin}-${targetMin + 60} words while preserving the structural format described above verbatim. Return ONLY the expanded scenario text, no preamble or commentary.`
         try {
@@ -588,18 +621,127 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      const buildItems = (buildResult.object.questions as RawQuestion[])
+      // Post-expansion FIXER — the model reliably produces the
+      // situation paragraph but frequently truncates before writing
+      // the "In your email to X, be sure to:" intro + 3 bullets
+      // (structured-output edge case with gpt-4.1). We guarantee the
+      // structure DETERMINISTICALLY here instead of asking the model
+      // to "please add bullets" — the model prompt is fine as a
+      // hint, but structure has to be enforced post-hoc.
+      const detectBulletCount = (passage: string): number => {
+        const lines = passage.split(/\n/).map(l => l.trim()).filter(Boolean)
+        return lines.filter(l => /^(?:[•●◦▪□■\-*·]|\(?\d+\)|\d+\.)\s+/.test(l)).length
+      }
+      // First-pass MODEL fixer — prefer model-generated bullets that
+      // are contextually specific to the situation. Falls through to
+      // the deterministic append if the model can't produce them.
+      const modelBulletFixer = async (currentPassage: string): Promise<string> => {
+        if (detectBulletCount(currentPassage) >= 3) return currentPassage
+        const fixPrompt = [
+          'The text below is meant to be a TOEFL Jan-2026 "Write an Email" scenario. The situation paragraph is present but the 3 required bullet points are missing or incomplete.',
+          '',
+          'REQUIRED FINAL STRUCTURE:',
+          '1. Keep the situation paragraph verbatim (do not shorten it).',
+          '2. On a new line after the situation, add exactly: "In your email to <recipient>, be sure to:" (fill in the recipient inferred from the situation — e.g., "Dr. Lee", "your professor", "your coworker Kevin").',
+          '3. On the next lines, add exactly 3 bullet points, each starting with "• " (bullet dot + space). Each bullet must name a distinct communicative action tailored to the situation (e.g., "Explain the conflict with your existing commitments", "Thank the professor for the opportunity", "Propose an alternative way you could help later").',
+          '',
+          'Do NOT add From:/To:/Subject: headers. Do NOT add any preamble or commentary. Return the full rewritten scenario text only.',
+          '',
+          'ORIGINAL TEXT:',
+          '"""',
+          currentPassage,
+          '"""',
+        ].join('\n')
+        try {
+          const result = await generateText({
+            model: hardModel,
+            prompt: fixPrompt,
+            temperature: 0.3,
+          })
+          const fixed = result.text.trim().replace(/^"""|"""$/g, '').trim()
+          totalIn += result.usage?.inputTokens ?? 0
+          totalOut += result.usage?.outputTokens ?? 0
+          return detectBulletCount(fixed) >= 3 ? fixed : currentPassage
+        } catch {
+          return currentPassage
+        }
+      }
+      // FINAL guarantor — pure string manipulation, cannot fail. If
+      // bullets STILL aren't detected after the model fixer, we snap
+      // the passage into the required shape ourselves using generic
+      // fallback bullets. This guarantees the UI's amber "Include in
+      // your email" card ALWAYS renders 3 numbered bullets, even in
+      // the worst case of model refusal / truncation.
+      const forceBulletStructure = (passage: string): string => {
+        if (detectBulletCount(passage) >= 3) return passage
+        // Strip any incomplete trailing intro line so we don't double-
+        // print it (model often leaves "In your email to Dr." dangling).
+        const trimmed = passage
+          .replace(/\n?\s*In your (?:email|reply|response|message)\b[^\n]*$/i, '')
+          .trim()
+        // Extract a recipient candidate from the situation, in this
+        // order of preference:
+        //   1. "your <role> (Dr.|Professor|Mr|Ms|Mrs) <Name>"
+        //   2. "Dr./Professor/Mr./Ms./Mrs. <Name>"
+        //   3. named person ("your coworker, Kevin")
+        //   4. generic role phrase ("your professor" / "your coworker")
+        //   5. fallback: "the recipient"
+        const findRecipient = (): string => {
+          const namePatterns = [
+            /(?:Dr\.?|Professor|Prof\.?)\s+([A-Z][A-Za-zÀ-ÿ'’-]+)/,
+            /(?:Mr\.?|Ms\.?|Mrs\.?)\s+([A-Z][A-Za-zÀ-ÿ'’-]+)/,
+            /coworker,?\s+([A-Z][A-Za-zÀ-ÿ'’-]+)/i,
+            /classmate,?\s+([A-Z][A-Za-zÀ-ÿ'’-]+)/i,
+            /friend,?\s+([A-Z][A-Za-zÀ-ÿ'’-]+)/i,
+          ]
+          for (const p of namePatterns) {
+            const m = trimmed.match(p)
+            if (m) return m[0].replace(/,$/, '').trim()
+          }
+          const roleMatch = trimmed.match(/\byour\s+(professor|advisor|coworker|manager|coach|instructor|classmate|roommate|landlord|neighbor)\b/i)
+          if (roleMatch) return `your ${roleMatch[1]!.toLowerCase()}`
+          return 'the recipient'
+        }
+        const recipient = findRecipient()
+        return `${trimmed}\n\nIn your email to ${recipient}, be sure to:\n• Explain your situation and why you are writing\n• Describe the specific challenge or constraint you are facing\n• Propose a next step, request, or resolution you are hoping for`
+      }
+      // Combined runner — try the model fixer first (for context-
+      // specific bullets), then fall through to the deterministic
+      // template if the model still can't produce well-formed output.
+      const emailFormatFixer = async (currentPassage: string): Promise<string> => {
+        const modelFixed = await modelBulletFixer(currentPassage)
+        return forceBulletStructure(modelFixed)
+      }
+
+      const buildItemsAll = (buildResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
+      // VALIDITY-FILTER BEFORE SLICING — the shared pipeline's type
+      // filter (arrange_words needs a " | "-joined correct_answer and
+      // 4-12 chips) runs AFTER this slice, and generic top-up is
+      // disabled for TOEFL. If we sliced first, any invalid item in
+      // the kept slice became an unrecoverable shortfall while valid
+      // surplus items were discarded. Filter first so the slice keeps
+      // only shippable items.
+      const buildValid = buildItemsAll.filter(q =>
+        (q.choices?.length ?? 0) >= 4 && (q.choices?.length ?? 0) <= 12
+        && !!q.correct_answer && q.correct_answer.includes(' | '),
+      )
+      const buildItems = buildValid.slice(0, buildN)
       const rawEmail = (emailResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
       const rawDiscussion = (discussionResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
 
       // Fire expansions in parallel — only for items that need it.
+      // Email target is 90-160w (spec allows down to 90); Discussion
+      // target 200-320w. AFTER expansion, run the emailFormatFixer to
+      // guarantee 3 bullets survive — expansion sometimes strips them
+      // when it prioritizes word count.
       const [expandedEmail, expandedDiscussion] = await Promise.all([
         Promise.all(rawEmail.map(async q => {
-          const passage = await expandPassage(q.passage ?? '', 100, 'email')
-          return { ...q, passage }
+          const expanded = await expandPassage(q.passage ?? '', 90, 'email')
+          const fixed = await emailFormatFixer(expanded)
+          return { ...q, passage: fixed }
         })),
         Promise.all(rawDiscussion.map(async q => {
           const passage = await expandPassage(q.passage ?? '', 200, 'discussion')
@@ -607,9 +749,12 @@ export async function POST(req: NextRequest) {
         })),
       ])
 
-      // Filter after expansion — if still too short, drop.
-      const emailFinal = expandedEmail.filter(q => wordCount(q.passage) >= 80)
-      const discussionFinal = expandedDiscussion.filter(q => wordCount(q.passage) >= 160)
+      // Filter after expansion. Loosened word floors (email 50, disc
+      // 100) so we don't drop the SOLE item when the model comes up a
+      // bit short — a slightly-terse email with proper bullets is
+      // still better than shipping the section with 0 email items.
+      const emailFinal = expandedEmail.filter(q => wordCount(q.passage) >= 50)
+      const discussionFinal = expandedDiscussion.filter(q => wordCount(q.passage) >= 100)
 
       allQuestions.push(...buildItems, ...emailFinal, ...discussionFinal)
       for (const r of [buildResult, emailResult, discussionResult]) {
@@ -638,18 +783,46 @@ export async function POST(req: NextRequest) {
       // 3 parallel calls: N Complete-the-Words + M Daily Life shared
       // passages + K Academic shared passages.
       phase('drafting_questions', 'study.test.progress.draftingQuestions', 15)
-      const cwCount = Math.max(5, Math.round(count * 0.20))
-      const remaining = count - cwCount
-      const dailyN = Math.round(remaining * 0.5)
-      const academicN = remaining - dailyN
-      const cwPrompt = buildToeflReadingTaskPrompt({ task: 'complete_words', n: cwCount, minutes, lang })
-      const dailyPrompt = buildToeflReadingTaskPrompt({ task: 'daily_life', n: dailyN, minutes, lang })
-      const academicPrompt = buildToeflReadingTaskPrompt({ task: 'academic', n: academicN, minutes, lang })
+      // ETS Jan-2026 spec (verified 2026-07 against ets.org):
+      // Reading = 50 SCORED items in ~30 minutes, delivered as two
+      // adaptive modules. Each module has its own Complete-the-Words
+      // paragraph (10 blanks per paragraph, each blank a scored item).
+      //
+      // Two CtW paragraphs contribute 20 scored items; the remaining
+      // 30 scored items are Daily Life + Academic MC (~15 per module).
+      //
+      // Count arithmetic:
+      //   count            = user-picked SCORED-item target (default 50)
+      //   cwTargetKept     = 2 CtW paragraphs kept
+      //   cwContribution   = 20 scored items (2 × 10 blanks)
+      //   otherScored      = scored items still needed as MC
+      //   cwCount          = 5 candidates to over-generate (ranker picks top 2)
+      const cwTargetKept = 2
+      const cwContribution = cwTargetKept * 10
+      const cwCount = 5
+      const otherScored = Math.max(2, count - cwContribution)
+      const dailyTarget = Math.round(otherScored * 0.5)
+      const academicTarget = otherScored - dailyTarget
+      // Over-request 1.5× — single-shot generateObject consistently
+      // under-shoots by 20-30% for N ≥ 10 items, and length filters
+      // (≥40w daily, ≥90w academic) drop a few more. Requesting 1.5×
+      // gives the ranker + filter margin so the final slice hits
+      // exactly the target count.
+      const dailyN = Math.max(4, Math.ceil(dailyTarget * 1.5))
+      const academicN = Math.max(4, Math.ceil(academicTarget * 1.5))
+      const sessionSeed = hashSession(sessionId)
+      const cwPrompt = buildToeflReadingTaskPrompt({ task: 'complete_words', n: cwCount, minutes, lang, seed: sessionSeed })
+      const dailyPrompt = buildToeflReadingTaskPrompt({ task: 'daily_life', n: dailyN, minutes, lang, seed: sessionSeed })
+      const academicPrompt = buildToeflReadingTaskPrompt({ task: 'academic', n: academicN, minutes, lang, seed: sessionSeed })
       const [cwResult, dailyResult, academicResult] = await Promise.all([
         settledGen(
           'toefl-reading-cw',
-          generateObject({ model: hardModel, schema: TestSchema, prompt: cwPrompt, temperature: 0.3 }) as unknown as Promise<SettledResult>,
-          () => generateObject({ model: fallbackHardModel, schema: TestSchema, prompt: cwPrompt, temperature: 0.3 }) as unknown as Promise<SettledResult>,
+          // Higher temperature (0.7) on the CtW pool because low-temp
+          // single-shot generation was regurgitating the linguistics
+          // prompt example across successive tests — students saw the
+          // same paragraph twice in a row.
+          generateObject({ model: hardModel, schema: TestSchema, prompt: cwPrompt, temperature: 0.7 }) as unknown as Promise<SettledResult>,
+          () => generateObject({ model: fallbackHardModel, schema: TestSchema, prompt: cwPrompt, temperature: 0.7 }) as unknown as Promise<SettledResult>,
         ),
         settledGen(
           'toefl-reading-daily',
@@ -684,10 +857,44 @@ export async function POST(req: NextRequest) {
       // 50-80w CW passages even though the prompt asks for 100-150w).
       // 55w is enough for ~15 words × 3 sentences = plausible 10-blank
       // paragraph.
-      const cwItemsFiltered = cwItems.filter(q => wordCount(q.passage) >= 55)
+      // Keep cwTargetKept CW items (2 per ETS Jan-2026 — one per
+      // module). Ranking prefers well-formed items but the fallback
+      // now GUARANTEES we ship 2 items whenever the model returned
+      // that many candidates — even if some are short/malformed. A
+      // slightly-imperfect CtW paragraph in module 2 is better than
+      // no CtW paragraph in module 2 at all.
+      const cwRank = (q: RawQuestion) => {
+        const p = q.passage ?? ''
+        const inline = (p.match(/\w\[\d+\]/g) ?? []).length
+        const total = (p.match(/\[\d+\]/g) ?? []).length
+        const wc = wordCount(p)
+        // Prefer items with the most inline placeholders + close to
+        // 10 blanks + adequate length. Length only breaks ties, so
+        // short items still rank above zero if there are no long ones.
+        return inline * 100 - Math.abs(total - 10) + Math.min(20, wc / 5)
+      }
+      const cwSortedAll = cwItems.slice().sort((a, b) => cwRank(b) - cwRank(a))
+      const cwLenOk = cwSortedAll.filter(q => wordCount(q.passage) >= 55)
+      // Prefer length-OK items but backfill from the full ranked pool
+      // if we don't have cwTargetKept of them.
+      const cwItemsFiltered: RawQuestion[] = []
+      for (const q of cwLenOk) {
+        if (cwItemsFiltered.length >= cwTargetKept) break
+        cwItemsFiltered.push(q)
+      }
+      for (const q of cwSortedAll) {
+        if (cwItemsFiltered.length >= cwTargetKept) break
+        if (!cwItemsFiltered.includes(q)) cwItemsFiltered.push(q)
+      }
       const dailyItems = (dailyResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
         .filter(q => wordCount(q.passage) >= 40)  // spec 80-140, floor 40 — model consistently produces 40-70w, higher floor killed too many
+        // MC validity BEFORE the slice — the shared pipeline's 4-choice
+        // filter runs after slicing and TOEFL has no top-up backfill,
+        // so an invalid item inside the kept slice would be a
+        // permanent shortfall while valid surplus got thrown away.
+        .filter(q => !!q.prompt && (q.choices?.length ?? 0) === 4)
+        .slice(0, dailyTarget)  // Cap to target after over-request; keeps first N (highest quality by generation order).
       // Academic: model occasionally piles ALL academic questions onto
       // a SINGLE passage (17+ items sharing one passage). Trim any
       // group to at most 5 items so students see multiple distinct
@@ -697,22 +904,51 @@ export async function POST(req: NextRequest) {
       const rawAcademic = (academicResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const }))
         .filter(q => wordCount(q.passage) >= 90)  // spec 200-260, floor 90 — model consistently under-shoots, prior 120 floor killed too many. 90w is enough for 5 discriminating questions.
+        .filter(q => !!q.prompt && (q.choices?.length ?? 0) === 4)  // MC validity before slice (see dailyItems note)
       const groupCounts = new Map<string, number>()
-      const academicItems: RawQuestion[] = []
+      const academicItemsUncapped: RawQuestion[] = []
       for (const q of rawAcademic) {
         const key = q.passageGroupId ?? '_ungrouped'
         const n = (groupCounts.get(key) ?? 0) + 1
         if (n > 5) continue  // cap per group at 5
         groupCounts.set(key, n)
-        academicItems.push(q)
+        academicItemsUncapped.push(q)
       }
+      // Cap to target after over-request. Passages are already
+      // grouped, so slicing to N may cut mid-passage — that's ok
+      // because the UI just shows however many questions we shipped
+      // for each academic passage.
+      const academicItems = academicItemsUncapped.slice(0, academicTarget)
       console.log('[test/generate] TOEFL Reading length + group filter', {
         cwDropped: cwItems.length - cwItemsFiltered.length,
         dailyDropped: dailyResult.object.questions.length - dailyItems.length,
         academicLengthDropped: (academicResult.object.questions as RawQuestion[]).length - rawAcademic.length,
         academicGroupDropped: rawAcademic.length - academicItems.length,
       })
-      allQuestions.push(...cwItemsFiltered, ...dailyItems, ...academicItems)
+      // Interleave so each ADAPTIVE MODULE gets one CtW paragraph +
+      // roughly half of the Daily Life + Academic pools. Order:
+      //   Module 1: CtW[0] → half of Daily → half of Academic
+      //   Module 2: CtW[1] → other half of Daily → other half of Academic
+      // The UI splits at the midpoint, so this guarantees the second
+      // CtW appears in Module 2. Falls back to legacy ordering when
+      // fewer than 2 CtW items shipped.
+      if (cwItemsFiltered.length >= 2) {
+        const dHalf = Math.ceil(dailyItems.length / 2)
+        const aHalf = Math.ceil(academicItems.length / 2)
+        const mod1 = [
+          cwItemsFiltered[0]!,
+          ...dailyItems.slice(0, dHalf),
+          ...academicItems.slice(0, aHalf),
+        ]
+        const mod2 = [
+          cwItemsFiltered[1]!,
+          ...dailyItems.slice(dHalf),
+          ...academicItems.slice(aHalf),
+        ]
+        allQuestions.push(...mod1, ...mod2)
+      } else {
+        allQuestions.push(...cwItemsFiltered, ...dailyItems, ...academicItems)
+      }
       for (const r of [cwResult, dailyResult, academicResult]) {
         totalIn += r.usage?.inputTokens ?? 0
         totalOut += r.usage?.outputTokens ?? 0
@@ -725,24 +961,65 @@ export async function POST(req: NextRequest) {
     } else if (
       family === 'toefl' && sectionLabel != null && /listening/i.test(sectionLabel) && count >= 10
     ) {
-      // TOEFL Listening (Jan 2026) — per-task split mirroring Reading/
-      // Writing. One big generation call under-shoots length targets
-      // consistently (Conversations 122-207w vs 240-360w target,
-      // Announcements 86-100w vs 200-300w target, Academic Talks
-      // 140-164w vs 320-450w target). Splitting into 4 parallel calls
-      // + running an expansion pass on short passages fixes this.
+      // TOEFL Listening (Jan 2026, ETS = 47 items, 29 min, two adaptive
+      // modules). Task mix (verified 2026-07):
+      //   Choose-a-Response  = 11 items  (Module 1: 8, Module 2: 3)
+      //   Conversation       ≈ 21% of remainder, groups of ~2
+      //   Announcement       ≈ 17% of remainder, groups of ~2
+      //   Academic Talk      ≈ 17% of remainder, groups of ~2
+      // Scales proportionally when the student picks a shorter test.
+      //
+      // One big generation call under-shoots length targets, so we
+      // split into 4 parallel calls + an expansion pass on short items.
       phase('drafting_questions', 'study.test.progress.draftingQuestions', 15)
-      const chooseN = Math.max(8, Math.round(count * 0.45))
-      const convoGroups = Math.max(1, Math.round(count * 0.21 / 2.5))
-      const convoN = convoGroups * 2  // ~2 questions per group
-      const announcementGroups = Math.max(1, Math.round(count * 0.17 / 2.5))
-      const announcementN = announcementGroups * 2
-      const talkGroups = Math.max(1, Math.round(count * 0.17 / 2.5))
-      const talkN = talkGroups * 2
-      const chooseP = buildToeflListeningTaskPrompt({ task: 'choose', n: chooseN, minutes, lang })
-      const convoP = buildToeflListeningTaskPrompt({ task: 'conversation', n: convoN, groups: convoGroups, minutes, lang })
-      const announceP = buildToeflListeningTaskPrompt({ task: 'announcement', n: announcementN, groups: announcementGroups, minutes, lang })
-      const talkP = buildToeflListeningTaskPrompt({ task: 'talk', n: talkN, groups: talkGroups, minutes, lang })
+      // CaR scales with count using the 11/47 ETS ratio; split 8:3
+      // between modules to match the user-visible spec.
+      const chooseN = Math.max(4, Math.round(count * 11 / 47))
+      const chooseM1 = Math.round(chooseN * 8 / 11)
+      const chooseM2 = chooseN - chooseM1
+      // Remaining items divide across Conversation / Announcement /
+      // Academic Talk using the ETS ratios (21 / 17 / 17 → normalized
+      // to 0.382 / 0.309 / 0.309).
+      const nonChoose = Math.max(6, count - chooseN)
+      let convoTarget = Math.max(4, Math.round(nonChoose * 0.382 / 2) * 2)  // even = clean 50/50 module split
+      let announcementTarget = Math.max(2, Math.round(nonChoose * 0.309 / 2) * 2)
+      let talkTarget = Math.max(2, nonChoose - convoTarget - announcementTarget)
+      // At small counts the per-task minimums can overshoot the total
+      // (count=10 → 4+4+2+2=12); the shared pipeline would then
+      // silently truncate the tail of Module 2, skewing the task mix.
+      // Shave the overshoot off the biggest pools instead, preserving
+      // even sizes for the 50/50 group split.
+      let listenOvershoot = chooseN + convoTarget + announcementTarget + talkTarget - count
+      while (listenOvershoot > 0) {
+        if (convoTarget >= announcementTarget && convoTarget >= talkTarget && convoTarget > 2) {
+          convoTarget -= 2; listenOvershoot -= 2
+        } else if (announcementTarget >= talkTarget && announcementTarget > 2) {
+          announcementTarget -= 2; listenOvershoot -= 2
+        } else if (talkTarget > 2) {
+          talkTarget -= 2; listenOvershoot -= 2
+        } else {
+          break // all pools at minimum — accept the small overshoot
+        }
+      }
+      const convoGroups = Math.max(1, Math.round(convoTarget / 2))
+      const announcementGroups = Math.max(1, Math.round(announcementTarget / 2))
+      const talkGroups = Math.max(1, Math.round(talkTarget / 2))
+      // Over-request 1.5× on each task pool because single-shot
+      // generateObject reliably under-shoots N≥8 and the strict
+      // per-passage word-count filters drop a few more. Prompts still
+      // say the target count, but we ask for surplus items so the
+      // ranker + filter has margin; sliced back to the module target
+      // during interleave. This is the same pattern that got Writing
+      // and Reading to their spec counts.
+      const convoN = Math.ceil(convoTarget * 1.5)
+      const announcementN = Math.ceil(announcementTarget * 1.5)
+      const talkN = Math.ceil(talkTarget * 1.5)
+      const chooseGenN = Math.ceil(chooseN * 1.5)
+      const listenSeed = hashSession(sessionId)
+      const chooseP = buildToeflListeningTaskPrompt({ task: 'choose', n: chooseGenN, minutes, lang, seed: listenSeed })
+      const convoP = buildToeflListeningTaskPrompt({ task: 'conversation', n: convoN, groups: Math.ceil(convoGroups * 1.5), minutes, lang, seed: listenSeed })
+      const announceP = buildToeflListeningTaskPrompt({ task: 'announcement', n: announcementN, groups: Math.ceil(announcementGroups * 1.5), minutes, lang, seed: listenSeed })
+      const talkP = buildToeflListeningTaskPrompt({ task: 'talk', n: talkN, groups: Math.ceil(talkGroups * 1.5), minutes, lang, seed: listenSeed })
       const [chooseResult, convoResult, announceResult, talkResult] = await Promise.all([
         settledGen('toefl-listening-choose',
           generateObject({ model: hardModel, schema: TestSchema, prompt: chooseP, temperature: 0.3 }) as unknown as Promise<SettledResult>,
@@ -809,24 +1086,106 @@ export async function POST(req: NextRequest) {
         return items.map(q => ({ ...q, passage: expandedByGroup.get(q.passageGroupId ?? '') ?? q.passage }))
       }
 
+      // MC validity BEFORE any slicing — the shared pipeline's 4-choice
+      // filter runs after our slices and TOEFL has no top-up backfill,
+      // so invalid items inside a kept slice would be permanent
+      // shortfalls while valid surplus got discarded.
+      const mcValid = (q: RawQuestion) => !!q.prompt && (q.choices?.length ?? 0) === 4
       const chooseItems = (chooseResult.object.questions as RawQuestion[])
         .map(q => ({ ...q, difficulty: 'hard' as const, passageGroupId: null }))
-      const rawConvo = (convoResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
-      const rawAnnounce = (announceResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
-      const rawTalk = (talkResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const }))
+        .filter(mcValid)
+      const rawConvo = (convoResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const })).filter(mcValid)
+      const rawAnnounce = (announceResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const })).filter(mcValid)
+      const rawTalk = (talkResult.object.questions as RawQuestion[]).map(q => ({ ...q, difficulty: 'hard' as const })).filter(mcValid)
+
+      // Group-preserving slice: never cuts a shared-passage set in
+      // half. Used both for the cost-saving pre-slice below and the
+      // final trim after the length floor.
+      const sliceGroupedToTarget = (items: RawQuestion[], target: number) => {
+        const byGroup = new Map<string, RawQuestion[]>()
+        const order: string[] = []
+        for (const q of items) {
+          const key = q.passageGroupId ?? `__solo_${order.length}`
+          if (!byGroup.has(key)) { byGroup.set(key, []); order.push(key) }
+          byGroup.get(key)!.push(q)
+        }
+        const out: RawQuestion[] = []
+        for (const key of order) {
+          const group = byGroup.get(key)!
+          if (out.length + group.length > target && out.length > 0) break
+          out.push(...group)
+          if (out.length >= target) break
+        }
+        return out
+      }
+
+      // PRE-SLICE before expansion — expansion fires one generateText
+      // call per passage group, and we over-requested 1.5×. Expanding
+      // groups we're about to throw away wasted ~a third of those
+      // calls. Keep a +3-item (~1 group) buffer beyond target so the
+      // post-expansion length floor still has a spare group to fall
+      // back on if it drops one.
+      const rawConvoKept = sliceGroupedToTarget(rawConvo, convoTarget + 3)
+      const rawAnnounceKept = sliceGroupedToTarget(rawAnnounce, announcementTarget + 3)
+      const rawTalkKept = sliceGroupedToTarget(rawTalk, talkTarget + 3)
       const [convoExpanded, announceExpanded, talkExpanded] = await Promise.all([
-        expandGroup(rawConvo, 240, 'conversation'),
-        expandGroup(rawAnnounce, 200, 'announcement'),
-        expandGroup(rawTalk, 320, 'talk'),
+        expandGroup(rawConvoKept, 240, 'conversation'),
+        expandGroup(rawAnnounceKept, 200, 'announcement'),
+        expandGroup(rawTalkKept, 320, 'talk'),
       ])
       // Post-expansion floor — drop items whose passage is still under
       // the minimum after the expansion attempt (in case the expansion
-      // API call errored or the model refused).
-      const convoFinal = convoExpanded.filter(q => wordCount(q.passage) >= 200)
-      const announceFinal = announceExpanded.filter(q => wordCount(q.passage) >= 160)
-      const talkFinal = talkExpanded.filter(q => wordCount(q.passage) >= 260)
+      // API call errored or the model refused) — then final-trim to
+      // the exact target.
+      const convoFinal = sliceGroupedToTarget(
+        convoExpanded.filter(q => wordCount(q.passage) >= 200),
+        convoTarget,
+      )
+      const announceFinal = sliceGroupedToTarget(
+        announceExpanded.filter(q => wordCount(q.passage) >= 160),
+        announcementTarget,
+      )
+      const talkFinal = sliceGroupedToTarget(
+        talkExpanded.filter(q => wordCount(q.passage) >= 260),
+        talkTarget,
+      )
+      const chooseItemsFinal = chooseItems.slice(0, chooseN)
+      console.log('[test/generate] TOEFL Listening pool sizes', {
+        target: { choose: chooseN, convo: convoTarget, announce: announcementTarget, talk: talkTarget },
+        raw: { choose: chooseItems.length, convo: convoExpanded.length, announce: announceExpanded.length, talk: talkExpanded.length },
+        final: { choose: chooseItemsFinal.length, convo: convoFinal.length, announce: announceFinal.length, talk: talkFinal.length },
+      })
 
-      allQuestions.push(...chooseItems, ...convoFinal, ...announceFinal, ...talkFinal)
+      // Two-module interleave — ETS Jan-2026 Listening delivers as two
+      // adaptive modules. Split per user's spec:
+      //   CaR: 8 in Module 1, 3 in Module 2 (proportional 8:3 for
+      //        smaller test counts)
+      //   Conversation / Announcement / Talk: split by GROUP (not by
+      //        item) so a shared-passage set stays intact within one
+      //        module. First half of groups → M1, second half → M2.
+      const splitByGroups = (items: RawQuestion[], groupsInM1: number) => {
+        // Preserve model-emitted order, then bucket by passageGroupId.
+        const seen = new Map<string, RawQuestion[]>()
+        const order: string[] = []
+        for (const q of items) {
+          const key = q.passageGroupId ?? `__solo_${order.length}`
+          if (!seen.has(key)) { seen.set(key, []); order.push(key) }
+          seen.get(key)!.push(q)
+        }
+        const groupsList = order.map(k => seen.get(k)!)
+        return {
+          m1: groupsList.slice(0, groupsInM1).flat(),
+          m2: groupsList.slice(groupsInM1).flat(),
+        }
+      }
+      const convoSplit = splitByGroups(convoFinal, Math.ceil(convoGroups / 2))
+      const announceSplit = splitByGroups(announceFinal, Math.ceil(announcementGroups / 2))
+      const talkSplit = splitByGroups(talkFinal, Math.ceil(talkGroups / 2))
+      const chooseSlice1 = chooseItemsFinal.slice(0, chooseM1)
+      const chooseSlice2 = chooseItemsFinal.slice(chooseM1)
+      const module1 = [...chooseSlice1, ...convoSplit.m1, ...announceSplit.m1, ...talkSplit.m1]
+      const module2 = [...chooseSlice2, ...convoSplit.m2, ...announceSplit.m2, ...talkSplit.m2]
+      allQuestions.push(...module1, ...module2)
       for (const r of [chooseResult, convoResult, announceResult, talkResult]) {
         totalIn += r.usage?.inputTokens ?? 0
         totalOut += r.usage?.outputTokens ?? 0
@@ -1059,16 +1418,17 @@ export async function POST(req: NextRequest) {
           if (!q.passage || !Array.isArray(q.blanks) || q.blanks.length === 0) return false
           const allPlaceholders = q.passage.match(/\[\d+\]/g) ?? []
           if (allPlaceholders.length === 0) return false
-          // Reject "trailing cluster" format where the model dumps
-          // [1] [2] … [10] at the END separated by spaces instead of
-          // interspersing them mid-word in sentences 2-3. Detect by
-          // counting inline placeholders (letter/digit directly before
-          // "[") vs total. If fewer than half are inline, the item
-          // is malformed — student would just see a paragraph with a
-          // trailing list of number brackets and no fill-in inputs
-          // where words should be.
-          const inlinePlaceholders = q.passage.match(/\w\[\d+\]/g) ?? []
-          return inlinePlaceholders.length >= Math.ceil(allPlaceholders.length / 2)
+          // Accept the item as long as it has enough placeholders to
+          // be scored. We used to require ≥50% inline placeholders
+          // (mid-word) to reject "trailing cluster" format where the
+          // model dumps [1] [2] … [10] at the end. That check was
+          // over-strict: when the whole CW pool was trailing-cluster
+          // the entire Task C dropped and students saw no fill-in
+          // items at all. Now the per-task builder ranks candidates
+          // by inline-placeholder count and keeps only the best 1,
+          // so any well-formed item that survives to here is worth
+          // shipping even if a few placeholders are trailing.
+          return allPlaceholders.length >= 5
         }
         case 'arrange_words':
           // choices ARE the word/phrase chips (6-10), correct_answer is
@@ -1136,7 +1496,19 @@ export async function POST(req: NextRequest) {
     // short after the loop, we log loudly but ship what we have —
     // partial > nothing.
     //
-    if (sectionSpec && combined.length < count) {
+    // Skip generic top-up for TOEFL sections that use a per-task
+    // intercept pipeline — the generic hard-pool prompt produces MC
+    // items, which is WRONG for these sections:
+    //   - TOEFL Writing = 10 Build-a-Sentence + 1 Email + 1 Discussion
+    //   - TOEFL Reading = 1 Complete-the-Words + Daily Life + Academic
+    //   - TOEFL Listening = Choose-a-Response + Conversation/Talk MC
+    // Backfilling shortfall with generic MC contaminates the section
+    // with the wrong item type. Better to ship a slightly-short test
+    // than one with off-spec MC items mixed in.
+    const skipGenericTopup = family === 'toefl'
+      && sectionLabel != null
+      && /(writing|reading|listening|speaking)/i.test(sectionLabel)
+    if (sectionSpec && combined.length < count && !skipGenericTopup) {
       const maxIterations = 4
       // Recompute perChunkCap — the one inside the chunked-gen block
       // is out of scope here. Same logic as the main pool.
@@ -1287,6 +1659,85 @@ export async function POST(req: NextRequest) {
       combined.sort((a, b) => difficultyRank[a.difficulty] - difficultyRank[b.difficulty])
     }
 
+    // TOEFL Reading module re-interleave — MUST run after the passage-
+    // group reorder above, otherwise CtW items (no passageGroupId) get
+    // shuffled to the FRONT as "ungrouped warm-ups" and both land in
+    // Module 1. Place CtW[0] at position 0 and CtW[1] at the midpoint
+    // of the surviving pool so the UI's split lands one CtW in each
+    // adaptive module.
+    let moduleBreakIdx: number | undefined
+    if (family === 'toefl' && sectionLabel != null && /reading/i.test(sectionLabel)) {
+      const cwSurvivors = combined.filter(q => q.type === 'fill_in_blanks')
+      const nonCw = combined.filter(q => q.type !== 'fill_in_blanks')
+      if (cwSurvivors.length >= 2) {
+        const half = Math.ceil(nonCw.length / 2)
+        const reordered = [
+          cwSurvivors[0]!,
+          ...nonCw.slice(0, half),
+          cwSurvivors[1]!,
+          ...nonCw.slice(half),
+        ]
+        combined.length = 0
+        combined.push(...reordered)
+        moduleBreakIdx = 1 + half  // position of CtW[1]
+      } else if (cwSurvivors.length === 1) {
+        const reordered = [cwSurvivors[0]!, ...nonCw]
+        combined.length = 0
+        combined.push(...reordered)
+        moduleBreakIdx = Math.ceil(combined.length / 2)
+      }
+    }
+
+    // TOEFL Listening module re-interleave — mirrors Reading but with
+    // an unequal CaR split (8 in Module 1, 3 in Module 2 for a full
+    // test) so the module boundary is NOT the midpoint. Use an explicit
+    // moduleBreakIdx metadata so the UI knows exactly where M2 starts.
+    if (family === 'toefl' && sectionLabel != null && /listening/i.test(sectionLabel)) {
+      // Detect CaR items by shape: type === 'multiple_choice' + no
+      // passageGroupId + [Choose a Response] tag OR very short passage.
+      // CaR detection: prefer the "[Choose a Response]" prompt tag,
+      // but fall back to shape — an UNGROUPED multiple_choice whose
+      // transcript is a single short utterance (≤ 30 words) can only
+      // be a Choose-a-Response item; conversations/announcements/
+      // talks are grouped and 200+ words. Without the fallback,
+      // untagged CaR items all landed in Module 1 as "other
+      // ungrouped" and shifted the module boundary.
+      const carWordCount = (s: string | null | undefined) =>
+        (s ?? '').replace(/^\s*transcript:\s*/i, '').split(/\s+/).filter(Boolean).length
+      const isCaR = (q: Question) => q.type === 'multiple_choice' && !q.passageGroupId
+        && (/\[choose a response\]/i.test(q.prompt ?? '') || carWordCount(q.passage) <= 30)
+      const carItems = combined.filter(isCaR)
+      const grouped = combined.filter(q => !isCaR(q) && q.passageGroupId)
+      // Any other ungrouped items (e.g. filtered singletons) — treat as
+      // module-1 warm-ups so they don't get lost.
+      const otherUngrouped = combined.filter(q => !isCaR(q) && !q.passageGroupId)
+
+      // CaR split: proportional 8:11.
+      const carM1Count = Math.round(carItems.length * 8 / 11)
+      const carM1 = carItems.slice(0, carM1Count)
+      const carM2 = carItems.slice(carM1Count)
+
+      // Group grouped items by passageGroupId, then split by group.
+      // First half of the groups (rounded up) → M1, rest → M2.
+      const groupMap = new Map<string, Question[]>()
+      const groupOrder: string[] = []
+      for (const q of grouped) {
+        const gid = q.passageGroupId!
+        if (!groupMap.has(gid)) { groupMap.set(gid, []); groupOrder.push(gid) }
+        groupMap.get(gid)!.push(q)
+      }
+      const groupsList = groupOrder.map(gid => groupMap.get(gid)!)
+      const m1GroupCount = Math.ceil(groupsList.length / 2)
+      const groupedM1 = groupsList.slice(0, m1GroupCount).flat()
+      const groupedM2 = groupsList.slice(m1GroupCount).flat()
+
+      const m1 = [...carM1, ...otherUngrouped, ...groupedM1]
+      const m2 = [...carM2, ...groupedM2]
+      combined.length = 0
+      combined.push(...m1, ...m2)
+      moduleBreakIdx = m1.length
+    }
+
     questions = combined.map((q, i) => shuffleChoices(q, hashSession(sessionId) + i * 31))
 
     // Server-side passage paragraph autofix — the REAL guarantee.
@@ -1382,6 +1833,9 @@ export async function POST(req: NextRequest) {
       section: sectionLabel,
       family,
       questions,
+      ...(moduleBreakIdx != null && moduleBreakIdx > 0 && moduleBreakIdx < questions.length
+        ? { moduleBreakIdx }
+        : {}),
     }
 
     await supabaseAdmin
@@ -1392,7 +1846,9 @@ export async function POST(req: NextRequest) {
         content: CACHED_TEST_MARKER + JSON.stringify(test),
         tokens_in: totalIn,
         tokens_out: totalOut,
-        model: family ? 'gpt-4o' : 'gpt-4o-mini',
+        // Metadata only (analytics reads this) — keep in sync with
+        // the actual hardModel/easyModel ids defined near the top.
+        model: family ? 'gpt-4.1' : 'gpt-4o-mini',
       })
 
     // Mark generation complete + fire notification. Both fire whether
@@ -1692,8 +2148,24 @@ function buildToeflReadingTaskPrompt(args: {
   n: number
   minutes: number
   lang: 'en' | 'ko'
+  seed?: number
 }): string {
-  const { task, n, minutes, lang } = args
+  const { task, n, minutes, lang, seed = 0 } = args
+  // Session-seeded rotation so successive tests draw from different
+  // topic sets — otherwise the model regurgitates the same "Linguistics
+  // paragraph" every run at temperature 0.3.
+  const TOPIC_POOL = [
+    'marine biology', 'astrophysics', 'behavioral economics', 'volcanology',
+    'urban planning', 'medieval history', 'cognitive neuroscience',
+    'renewable energy', 'archaeology', 'developmental psychology',
+    'game theory', 'immunology', 'sociolinguistics', 'atmospheric science',
+    'art conservation', 'anthropology', 'evolutionary biology',
+    'renaissance art', 'ecology', 'materials science',
+  ]
+  const rotate = <T,>(arr: T[], offset: number) =>
+    arr.slice(offset % arr.length).concat(arr.slice(0, offset % arr.length))
+  const rotatedTopics = rotate(TOPIC_POOL, Math.abs(seed))
+  const primaryTopics = rotatedTopics.slice(0, Math.max(3, n)).join(', ')
   const universal = lang === 'ko'
     ? [
       '',
@@ -1734,7 +2206,10 @@ function buildToeflReadingTaskPrompt(args: {
       '- blanks = array of exactly 10 entries with numeric id 1-10 and non-empty answer string (1-5 letters typically)',
       '- choices = [] (empty array), correct_answer = null, passageGroupId = null (each CW item stands alone)',
       '',
-      'Vary the paragraph topics across the ' + n + ' items — biology, art history, psychology, geology, business, linguistics, astronomy, economics, etc. Each paragraph should be self-contained and coherent when the missing letters are filled in.',
+      `Vary the paragraph topics across the ${n} items. For THIS batch, use these topics in order: ${primaryTopics}. Each paragraph must be about a DIFFERENT one of these listed topics — do NOT reuse a topic and do NOT default to "linguistics" or any topic already covered in a recent test. Each paragraph should be self-contained and coherent when the missing letters are filled in.`,
+      // Anti-clone directive — model tends to regurgitate the example
+      // above verbatim under low-temperature single-shot generation.
+      'CRITICAL: Do NOT copy the linguistics example above. Do NOT write about phonetics, syntax, morphology, or pragmatics. Pick a fresh topic from the list I just gave you.',
       universal,
     ].join('\n')
   }
@@ -1808,8 +2283,63 @@ function buildToeflListeningTaskPrompt(args: {
   groups?: number
   minutes: number
   lang: 'en' | 'ko'
+  seed?: number
 }): string {
-  const { task, n, groups, minutes } = args
+  const { task, n, groups, minutes, seed = 0 } = args
+  // Session-seeded rotation so successive tests draw different topics
+  // and settings — prior versions regurgitated "office hours meeting
+  // with an advisor about a chemistry course" nearly every test at
+  // temperature 0.3.
+  const rotate = <T,>(arr: T[], offset: number) =>
+    arr.slice(offset % arr.length).concat(arr.slice(0, offset % arr.length))
+  const CHOOSE_SETTINGS = [
+    'inviting a coworker to a farewell lunch',
+    'asking a librarian for research help under a deadline',
+    'declining a friend\'s road trip invitation politely',
+    'requesting a rescheduled office-hours slot',
+    'complimenting a professor on a lecture',
+    'asking a roommate to lower the volume',
+    'apologizing for a late assignment',
+    'confirming a group-project meeting time',
+    'expressing surprise at a friend\'s news',
+    'checking on a classmate who missed lecture',
+  ]
+  const CONVO_SETTINGS = [
+    'student↔ librarian about interlibrary loan procedure',
+    'student↔ TA about lab safety training',
+    'student↔ financial-aid officer about a scholarship deadline',
+    'student↔ registrar about course-substitution rules',
+    'student↔ residence-hall coordinator about a maintenance request',
+    'student↔ writing-center tutor about a thesis draft',
+    'student↔ dean about an internship-conflict override',
+    'student↔ campus IT about a printing quota issue',
+  ]
+  const TALK_TOPICS = [
+    'marine biology — bioluminescence in deep-sea fish',
+    'art history — Renaissance perspective techniques',
+    'psychology — the working-memory model',
+    'geology — plate tectonics and Wilson cycles',
+    'business — asymmetric information in labor markets',
+    'astronomy — stellar nucleosynthesis',
+    'linguistics — code-switching in bilinguals',
+    'anthropology — kinship terminology systems',
+    'urban planning — transit-oriented development',
+    'environmental science — carbon sinks in wetlands',
+  ]
+  const ANNOUNCE_VENUES = [
+    'campus PA about a fire-drill schedule',
+    'transit announcement about a subway service change',
+    'museum guided-tour desk about a temporary exhibit',
+    'residence-hall staff about summer-storage procedures',
+    'library about extended finals-week hours',
+    'dining-hall manager about a new dietary program',
+    'campus recreation center about pool maintenance',
+    'career-services office about a résumé workshop',
+  ]
+  const chooseSample = rotate(CHOOSE_SETTINGS, Math.abs(seed)).slice(0, Math.max(3, n)).join('; ')
+  const convoSample = rotate(CONVO_SETTINGS, Math.abs(seed)).slice(0, Math.max(2, groups ?? 2)).join('; ')
+  const talkSample = rotate(TALK_TOPICS, Math.abs(seed)).slice(0, Math.max(2, groups ?? 2)).join('; ')
+  const announceSample = rotate(ANNOUNCE_VENUES, Math.abs(seed)).slice(0, Math.max(2, groups ?? 2)).join('; ')
   const universal = [
     '',
     'Universal rules:',
@@ -1826,7 +2356,7 @@ function buildToeflListeningTaskPrompt(args: {
       '',
       '- Each item is a single utterance (question / statement / request) by ONE speaker.',
       '- Utterance length: 15-25 words (HARD tier — include a subordinate clause, an idiom, or a hedged register).',
-      '- Topics: everyday campus / work / travel / social.',
+      `- Draw each item from a DIFFERENT scenario in this rotation for THIS batch: ${chooseSample}. Do NOT repeat scenarios and do NOT default to the "someone asking about an assignment" archetype the model tends toward.`,
       '- "passage" = "Transcript: \\"<the utterance>\\"". passageGroupId = null.',
       '- "prompt" = "[Choose a Response] Which is the most natural reply?"',
       '- 4 choices = plausible spoken replies. Correct = best register/function match. Distractors: (1) keyword echo but wrong function, (2) wrong register (too formal/casual), (3) ignores a key qualifier.',
@@ -1843,7 +2373,7 @@ function buildToeflListeningTaskPrompt(args: {
       '- 12-16 turns between 2 speakers.',
       '- Structure MUST include: (a) context-setting opening turn where one speaker names the situation, (b) substantive middle where a problem or trade-off is explored with specific details, (c) resolution or explicit next-step turn.',
       '- Include: at least one clarifying follow-up ("What do you mean by…?"), at least one hedged phrase ("I suppose", "in that case", "the thing is"), and 2-3 concrete details (course numbers, deadlines, room numbers, dollar amounts).',
-      '- Settings: student↔advisor, student↔librarian, roommates, professor↔student office hours.',
+      `- Settings for THIS batch (use a DIFFERENT one per conversation): ${convoSample}. Do NOT default to the "advisor + chemistry course" scenario the model tends toward.`,
       '',
       'Schema:',
       '- "passage" = "Transcript:\\nA: <turn>\\nB: <turn>\\nA: <turn>…" — MUST include the "Transcript:\\n" header exactly once, and every turn MUST start with "A:" or "B:".',
@@ -1860,7 +2390,7 @@ function buildToeflListeningTaskPrompt(args: {
       'PASSAGE REQUIREMENTS (STRICT — items under 180 words will be REJECTED):',
       '- Each announcement transcript: 220-300 words REQUIRED.',
       '- Structure MUST include: (a) opening greeting/context (who is speaking + why), (b) main information with 3-4 specific details (dates, times, room numbers, procedural steps, dollar amounts, contact info), (c) 1-2 anticipated FAQs or exception cases, (d) explicit call-to-action or follow-up instruction.',
-      '- Venues: campus PA / transit / museum / library / residence hall / dining hall.',
+      `- Venues for THIS batch (use a DIFFERENT one per announcement): ${announceSample}.`,
       '',
       'Schema:',
       '- "passage" = "Transcript: " + full spoken text (one flowing monologue).',
@@ -1877,7 +2407,7 @@ function buildToeflListeningTaskPrompt(args: {
     'PASSAGE REQUIREMENTS (STRICT — items under 300 words will be REJECTED):',
     '- Each lecture transcript: 360-450 words REQUIRED.',
     '- Structure MUST include: (a) topic introduction with WHY-IT-MATTERS framing (2-3 sentences), (b) TWO or THREE developed sub-points, each with a concrete example / study / statistic, (c) at least one self-correction or aside ("actually — let me back up a moment", "well, that\'s not quite right either"), (d) natural hedging throughout ("what researchers have found is…", "the interesting thing here is…", "it turns out"), (e) a synthesizing conclusion linking back to the opening frame.',
-    '- Fields: intro-level biology / history / psychology / business / geology / linguistics / anthropology / astronomy.',
+    `- Topics for THIS batch (use a DIFFERENT one per lecture): ${talkSample}.`,
     '- The lecturer voice should be recognizably a PROFESSOR — occasional filler ("um", "so", "right"), rhetorical questions, and small tangents that connect back.',
     '',
     'Schema:',
@@ -1938,30 +2468,34 @@ function buildToeflWritingTaskPrompt(args: {
     return [
       'Generate 1 TOEFL Writing "Write an Email" item (Jan 2026 format, HARDER-than-standard tier).',
       '',
-      'This is an OPEN-RESPONSE task — the student will write their OWN reply. Do NOT produce sample replies. Do NOT produce choices. The student sees the scenario and types a 100+ word email reply in a textarea.',
+      'CRITICAL FORMAT NOTE — ETS Jan-2026 spec (verified 2026-07 via ets.org/toefl/…/writing.html + rubric PDF):',
+      'The student does NOT respond to an inbound email. There is NO From:/To:/Subject: block. Instead the student is given a SITUATION PARAGRAPH describing something that has happened / needs to happen, followed by a "In your email to <recipient>, be sure to:" instruction and 3 bullet points naming what the student\'s fresh email must accomplish. The student then writes a 100-150 word original email from scratch — a request, information, or proposed solution — matching the register of the situation.',
       '',
-      'The scenario should involve a HARD social/register challenge — e.g., politely declining a request from a professor without damaging rapport, asking for a favor while acknowledging the recipient\'s constraints, correcting a mistake without seeming rude, negotiating a group-project conflict where you must both preserve relationships and get your point across. NOT a straightforward "thank you for the invitation".',
+      'This is an OPEN-RESPONSE task — student writes their OWN email. Do NOT produce sample emails, sample replies, or choices.',
+      '',
+      'The situation should involve a HARD social/register challenge — e.g., politely declining a request from a professor without damaging rapport, asking a coworker for a favor while acknowledging their constraints, informing a service provider of a problem without accusing them, proposing a compromise on a group-project conflict. NOT a bland "thank you for the invitation".',
       '',
       'PASSAGE REQUIREMENTS (STRICT):',
-      '- Length: 100-160 words. Items under 100 words will be REJECTED. Count and verify.',
-      '- Format:',
-      '  Line 1: "From: <sender role + name>"',
-      '  Line 2: "To: You"',
-      '  Line 3: "Subject: <descriptive subject>"',
-      '  Line 4: blank',
-      '  Lines 5-N: The email BODY (60-100 words) — must include: (a) explicit ask or news, (b) context or constraint that complicates the response, (c) a phrase that signals register (formal/casual/authoritative).',
+      '- Length: 90-160 words TOTAL (situation paragraph + intro line + 3 bullets combined). Items under 80 words will be REJECTED. Count and verify.',
+      '- Format (EXACTLY this structure, plain text):',
+      '  Lines 1-N: The SITUATION PARAGRAPH (50-100 words). Written in second person addressing the student ("You have just…", "Your professor has asked…", "Your team recently…"). Must include: (a) who the recipient is and what the student\'s relationship to them is, (b) an explicit event / trigger that requires an email, (c) a specific complication or constraint that makes the email non-trivial to write.',
       '  Blank line',
-      '  Line: "Write a reply that:"',
-      '  Line: "(1) <bullet 1 — typically an acknowledgment or thanks>"',
-      '  Line: "(2) <bullet 2 — typically an explanation or perspective the writer needs to share>"',
-      '  Line: "(3) <bullet 3 — typically a request, proposal, or forward-looking ask>"',
-      '- The 3 bullets MUST all be present. Items with fewer bullets will be REJECTED.',
-      '- At LEAST one bullet should require hedging or a face-saving phrasing (not a simple "yes" / "thanks").',
+      '  Line: "In your email to <recipient description>, be sure to:"',
+      '  Line: "• <bullet 1 — a communicative action, e.g., \'Explain why…\' or \'Describe what…\'>"',
+      '  Line: "• <bullet 2 — a second distinct action>"',
+      '  Line: "• <bullet 3 — a third action, typically forward-looking (a request, proposal, or ask)>"',
+      '- Use "•" bullet markers (not "(1) (2) (3)" — ETS format uses bullet dots).',
+      '- The 3 bullets MUST all be present. Items with fewer than 3 bullets will be REJECTED.',
+      '- Bullets should be DISTINCT actions; do NOT repeat the same task in different wording.',
+      '- At LEAST one bullet should require hedging, face-saving, or careful register choices (not a simple "yes"/"thanks").',
+      '',
+      'EXAMPLE (correct format — do NOT copy verbatim, generate a NEW hard scenario):',
+      '"You took your team to a new restaurant recommended by your coworker, Kevin. The food was disappointing and the service was slow, and several team members told you afterward that they were unhappy. Kevin is expecting your feedback and has asked whether you\'d like him to make lunch arrangements again next month.\\n\\nIn your email to Kevin, be sure to:\\n• Explain what went wrong at the restaurant\\n• Describe how the team reacted without embarrassing Kevin\\n• Suggest an alternative arrangement for the next team lunch"',
       '',
       'Schema:',
       '- type = "writing_email"',
-      '- passage = the full formatted scenario as described above',
-      '- prompt = "[Email] Read the email above and write your reply (target 100+ words)."',
+      '- passage = the full formatted situation + intro + 3 bullets as described above (NO From:/To:/Subject: headers)',
+      '- prompt = "[Email] Read the situation above and write your email (target 100-150 words, 7 minutes)."',
       '- choices = [] (empty array), correct_answer = null, blanks = null, correct_answers = null, acceptable_answers = null, graphic = null',
       universal,
     ].join('\n')
@@ -2338,23 +2872,38 @@ function extraGuidanceFor(
   // ── TOEFL Reading (January 2026 format) ──────────────────────
   if (family === 'toefl' && section && /reading/i.test(section)) {
     // Jan 2026 redesign (ETS): 3 task types per module, ~50 questions.
-    // ETS spec: each Complete-the-Words paragraph has EXACTLY 10
-    // incomplete words (one paragraph = one schema item with 10 blanks).
-    // Each linked Daily Life or Academic question counts as 1 item.
-    // Indicative distribution (50 Q): 10 Complete-the-Words items (each
-    // a paragraph w/ 10 blanks) + ~20 Daily Life Q across ~7-8 texts
-    // (2-3 Q each) + ~20 Academic Q across ~4 passages (5 Q each).
+    //
+    // CORRECTED SPEC (verified via ETS + Korean prep-market research
+    // 2026-07): the ~50-item Reading section contains exactly ONE
+    // Complete-the-Words paragraph (one internal schema item with 10
+    // blanks). The 10 blanks are individually scored, so they count
+    // as 10 items of the ~50. Not 30 items across 2-5 tasks — that
+    // was misread from conflicting sources. The remaining ~40 items
+    // split between Daily Life and Academic (~20 each).
+    //
+    // Prior version generated 10 Complete-the-Words paragraphs = 100
+    // total blanks — 10× too many. This corrects the mix.
+    //
     // Legacy 700-word passages with insert-sentence + prose-summary
-    // are REMOVED.
-    const completeWordsN = count >= 30 ? Math.max(5, Math.round(count * 0.20)) : Math.max(2, Math.round(count * 0.10))
-    const remaining = count - completeWordsN
-    const dailyLifeQ = Math.round(remaining * 0.5)
-    const academicQ = remaining - dailyLifeQ
+    // are REMOVED in the 2026 redesign.
+    // Exactly ONE Complete-the-Words paragraph per Reading section
+    // (contains 10 blanks; each blank counts as 1 scored question, so
+    // this ONE JSON item represents 10 of the section's ~50 questions).
+    // The generator emits `count` JSON items — we reserve 1 slot for
+    // the CtW paragraph and split the remaining `count - 1` between
+    // Daily Life and Academic. The section-progress UI treats a
+    // fill_in_blanks item as `blanks.length` questions when computing
+    // the "N of M" display so the student still sees the full 50-item
+    // count they expect.
+    const completeWordsN = 1
+    const otherItems = Math.max(2, count - completeWordsN)
+    const dailyLifeQ = Math.round(otherItems * 0.5)
+    const academicQ = otherItems - dailyLifeQ
     const dailyLifeTexts = Math.max(3, Math.round(dailyLifeQ / 2.5))
     const academicPassages = Math.max(2, Math.round(academicQ / 5))
     return [
-      `TOEFL Reading (January 2026 format) — ${count} questions.`,
-      `Mix: ${completeWordsN} Complete-the-Words items (each a paragraph w/ 10 blanks) + ${dailyLifeQ} Daily Life questions across ${dailyLifeTexts} short texts + ${academicQ} Academic questions across ${academicPassages} short academic passages.`,
+      `TOEFL Reading (January 2026 format) — ${count} JSON items to emit (Reading section is ~50 scored questions total; the 1 Complete-the-Words item counts as 10 of those).`,
+      `Mix: EXACTLY 1 Complete-the-Words item (one short academic paragraph with 10 blanks) + ${dailyLifeQ} Daily Life questions across ${dailyLifeTexts} short texts + ${academicQ} Academic questions across ${academicPassages} short academic passages.`,
       '',
       'TASK A — "Read in Daily Life":',
       `- ${dailyLifeTexts} short, non-academic visual texts (campus notice / club flyer / email / social media post / job ad / course-registration page).`,
@@ -2366,8 +2915,8 @@ function extraGuidanceFor(
       '- Topics: intro-level biology, art history, psychology, geology, business, linguistics — accessible to a first-year undergraduate.',
       '- 5 questions per passage: (1) main idea, (2) vocabulary in context, (3) factual detail, (4) negative factual (EXCEPT / NOT), (5) rhetorical purpose OR inference. Tag prompts like "[Academic — Biology]".',
       '',
-      `TASK C — "Complete the Words" (${completeWordsN} REQUIRED items per ETS Jan-2026 spec, type="fill_in_blanks"):`,
-      '- A short academic paragraph (60-120 words) where the SECOND AND THIRD SENTENCES contain EXACTLY 10 incomplete words — typically the second half of each word is missing. Mark each blank as [1] [2] … [10] in the passage field.',
+      `TASK C — "Complete the Words" (EXACTLY 1 item per ETS Jan-2026 spec, type="fill_in_blanks"):`,
+      '- ONE short academic paragraph (60-120 words) where the SECOND AND THIRD SENTENCES contain EXACTLY 10 incomplete words — typically the second half of each word is missing. Mark each blank as [1] [2] … [10] in the passage field. Do NOT generate multiple Complete-the-Words items; the real ETS section has just one such paragraph.',
       '- For each blank, provide the missing letter(s) in the "blanks" array: [{ "id": 1, "answer": "s" }, { "id": 2, "answer": "tion" }, …]. Blanks are typically 1-5 letters (a word ending, suffix, or short fragment).',
       '- "prompt" should just say "[Complete the Words] Fill in the missing letters in each word." (no further question stem).',
       '- "choices" must be an empty array, "correct_answer" must be null. Set passageGroupId to null (each Complete-the-Words item stands alone — one paragraph = one item with 10 blanks).',
@@ -2424,37 +2973,25 @@ function extraGuidanceFor(
   }
 
   // ── TOEFL Writing (January 2026 format) ──────────────────────
+  // NOTE: this generic block only runs for tiny custom tests
+  // (count < 3). Standard TOEFL Writing (count >= 3) is intercepted
+  // earlier by the per-task pipeline (buildToeflWritingTaskPrompt:
+  // Build-a-Sentence + free-response writing_email + writing_
+  // discussion). At count < 3 the section is Build-a-Sentence only —
+  // the legacy MC email/discussion guidance that used to live here
+  // was unreachable and contradicted the real free-response format.
   if (family === 'toefl' && section && /writing/i.test(section)) {
-    // Jan 2026 ETS spec: 12 total = exactly 10 Build-a-Sentence +
-    // exactly 1 Email + exactly 1 Academic Discussion. Email +
-    // Discussion are graded by the response/grade pipeline (rubric);
-    // Build-a-Sentence is auto-graded by exact-order match here.
-    const emailN = count >= 3 ? 1 : 0
-    const discussionN = count >= 3 ? 1 : 0
-    const buildN = count - emailN - discussionN
     return [
       `TOEFL Writing (January 2026 format) — ${count} questions.`,
-      `Mix: ${buildN} Build-a-Sentence items + ${emailN} Email task + ${discussionN} Academic Discussion task.`,
+      `Mix: ${count} Build-a-Sentence items.`,
       '',
-      `TASK A — "Build a Sentence" (${buildN} items, type="arrange_words"):`,
+      `TASK — "Build a Sentence" (${count} items, type="arrange_words"):`,
       '- A jumbled set of 6-10 word/phrase chips that, when arranged in the correct order, form a single grammatical English sentence.',
       '- "choices" array = the chips in RANDOM order (NOT the correct order — the model must shuffle).',
       '- "correct_answer" = the chips joined in correct order with " | " as the separator (e.g., "The | tour guides | who | showed us around | the old city | were fantastic.").',
       '- "prompt" = "[Build a Sentence] Tap the words in order to make a grammatical sentence." (no further stem).',
       '- Set passage to null, blanks to null.',
       '- Target everyday or campus register sentences. Include 1-2 chips that are short connectors (who/that/and) or short phrases — not just single words — to match the PT1 PDF style.',
-      '',
-      `TASK B — "Write an Email" (${emailN} item, type="multiple_choice", 4 sample-response choices):`,
-      '- "passage" = the email scenario in plain text: who sent the email, what they said, and 3 bullet points the student must address. ~50-90 words.',
-      '- "prompt" = "[Email] Read the email and choose the strongest reply." (the MC variant is a fallback — real practice routes through the response-grader).',
-      '- 4 choices = sample replies of varying quality: (1) the strongest (addresses all 3 bullets, right register), (2) addresses 2/3, (3) right register but wrong scenario, (4) right scenario but wrong register.',
-      '- correct_answer = the strongest reply.',
-      '',
-      `TASK C — "Write for an Academic Discussion" (${discussionN} item, type="multiple_choice", 4 sample-response choices):`,
-      '- "passage" = professor question + 2 short student replies (~40-70 words each). ~150-200 words total.',
-      '- "prompt" = "[Academic Discussion] Choose the strongest contribution to the discussion."',
-      '- 4 choices = sample contributions of varying quality: (1) strongest (clear position, engages a classmate by name, specific example), (2) just summarizes both classmates, (3) takes a position but no example, (4) off-topic.',
-      '- correct_answer = the strongest contribution.',
       '',
       universalRules,
     ].join('\n')
@@ -2473,10 +3010,11 @@ function extraGuidanceFor(
       `Mix: ${repeatN} Listen-and-Repeat items + ${interviewN} Take-an-Interview items.`,
       '',
       `TASK A — "Listen and Repeat" (${repeatN} items, type="speaking_repeat"):`,
-      '- A short 12-25 word utterance in casual or campus register. The student listens (or in our text-only fallback, reads) then types it back exactly.',
-      '- "passage" = "Audio script: \\"<the exact sentence>\\""',
-      '- "prompt" = "[Listen and Repeat] Type the sentence exactly as you hear it."',
-      '- "correct_answer" = the exact sentence (matching the audio script verbatim, no quotes).',
+      '- A SHORT 8-12 word everyday sentence a student can hold in memory after ONE careful hearing. Use common English vocabulary (roughly the 2000 most frequent words). ONE sentence only — a single main clause, optionally with ONE simple extension: a time/place phrase, a short "because/so/when" tail, or a two-item list. NO idioms, NO nested clauses, NO numbers over one hundred, NO proper nouns except common first names. Present or simple past tense. Example targets: "I left my umbrella on the bus this morning."; "She missed the lecture because her train was late."; "Can you print two copies of the schedule for me?"; "We usually study at the library on Friday afternoons."',
+      '- HARD LIMITS: reject any sentence under 8 or over 12 words. Count the words before emitting.',
+      '- "passage" = the exact sentence, plain text, NO prefix like "Audio script:" or "Transcript:", NO wrapping quotes. The client TTS speaks the passage verbatim.',
+      '- "prompt" = "[Listen and Repeat] Repeat the sentence you hear."',
+      '- "correct_answer" = the exact sentence, byte-identical to the passage.',
       '- "choices" must be an empty array.',
       '',
       `TASK B — "Take an Interview" (${interviewN} items, type="speaking_interview"):`,
@@ -2659,17 +3197,6 @@ function isMathHeavy(family: TestFamily | null, section: string | null): boolean
   if (!section) return false
   const s = section.toLowerCase()
   return s.includes('math') || s.includes('수학') || s.includes('quant')
-}
-
-/** SAT R&W, KSAT 국어/영어, TOEFL/IELTS/ACT Reading, GRE Verbal —
- *  sections where the verifier must do real close reading. gpt-4o-mini
- *  "corrects" inference items by picking the surface-vocabulary match
- *  (exactly the distractor the test is designed around). */
-function isVerbalHeavy(family: TestFamily | null, section: string | null): boolean {
-  if (!family || !section) return false
-  if (family === 'gre' && /verbal/i.test(section)) return true
-  const s = section.toLowerCase()
-  return /reading|writing|국어|영어|verbal/.test(s)
 }
 
 /** True for sections whose items carry a passage (per-question or

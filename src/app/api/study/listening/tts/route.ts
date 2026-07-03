@@ -55,18 +55,27 @@ export async function POST(req: NextRequest) {
   const hash = createHash('sha256').update(`${voice}\n${model}\n${text}`).digest('hex').slice(0, 40)
   const objectPath = `${hash}.mp3`
 
-  // Cache hit — return existing URL without hitting OpenAI.
-  const { data: existing } = await supabaseAdmin.storage.from(BUCKET).list('', { search: objectPath, limit: 1 })
-  if (existing && existing.some(f => f.name === objectPath)) {
-    const { data: pub } = supabaseAdmin.storage.from(BUCKET).getPublicUrl(objectPath)
-    return NextResponse.json({ url: pub.publicUrl, cached: true })
+  // Cache hit probe — try a HEAD on the deterministic public URL. This
+  // avoids the ~300-500 ms Storage `list({search})` call, which turned
+  // out to be a real bottleneck on warm-cache plays (student clicks Play
+  // and still waits ~1 s before audio starts). HEAD to the public CDN
+  // is typically ~40-80 ms.
+  const { data: pub } = supabaseAdmin.storage.from(BUCKET).getPublicUrl(objectPath)
+  try {
+    const head = await fetch(pub.publicUrl, { method: 'HEAD' })
+    if (head.ok) return NextResponse.json({ url: pub.publicUrl, cached: true })
+  } catch {
+    // Fall through to generation on network error.
   }
 
   // Cache miss — call OpenAI TTS, upload MP3.
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) return NextResponse.json({ error: 'server misconfigured' }, { status: 500 })
 
-  const ttsRes = await fetch('https://api.openai.com/v1/audio/speech', {
+  // OpenAI TTS sometimes returns transient 429 (rate limit) or 5xx
+  // under load. Retry once with a 800 ms backoff — enough to clear
+  // most burst spikes without meaningfully delaying the student.
+  const callOpenAi = () => fetch('https://api.openai.com/v1/audio/speech', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${apiKey}`,
@@ -74,6 +83,11 @@ export async function POST(req: NextRequest) {
     },
     body: JSON.stringify({ model, voice, input: text, response_format: 'mp3' }),
   })
+  let ttsRes = await callOpenAi()
+  if (!ttsRes.ok && (ttsRes.status === 429 || ttsRes.status >= 500)) {
+    await new Promise(r => setTimeout(r, 800))
+    ttsRes = await callOpenAi()
+  }
   if (!ttsRes.ok) {
     const errText = await ttsRes.text().catch(() => '')
     console.error('[listening/tts] openai failed', ttsRes.status, errText.slice(0, 200))
@@ -88,6 +102,5 @@ export async function POST(req: NextRequest) {
     console.error('[listening/tts] upload failed', uploadErr)
     return NextResponse.json({ error: 'upload failed' }, { status: 500 })
   }
-  const { data: pub } = supabaseAdmin.storage.from(BUCKET).getPublicUrl(objectPath)
   return NextResponse.json({ url: pub.publicUrl, cached: false })
 }

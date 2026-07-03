@@ -341,6 +341,24 @@ function sanitize(s: string): string {
     .trim()
 }
 
+/** Newline-preserving sanitize — same as `sanitize()` but keeps real
+ *  `\n` line breaks intact. Used for passages of item types where
+ *  structural line breaks matter (writing_email, writing_discussion).
+ *  The base sanitize collapses ALL whitespace to a single space, which
+ *  destroys the "situation paragraph\n\nIn your email to X, be sure to:\n
+ *  • bullet 1\n• bullet 2" structure we depend on for the rendered UI. */
+function sanitizePreservingNewlines(s: string): string {
+  // Strategy: swap real newlines to a private-use Unicode code point
+  // BEFORE the base sanitize runs so its `\s+` collapse cannot touch
+  // them, then swap them back afterward. Consecutive newlines stay as
+  // consecutive markers so paragraph breaks (`\n\n`) survive. Using
+  // U+E000 (private-use area) means real text will never contain it.
+  const NL_MARKER = String.fromCharCode(0xE000)
+  const preserved = s.replace(/\r?\n/g, NL_MARKER)
+  const cleaned = sanitize(preserved)
+  return cleaned.split(NL_MARKER).join('\n')
+}
+
 export function sanitizeQuestion(q: RawQuestion): Question {
   // Normalize all model-omitted fields to concrete defaults — the
   // schema accepts both `null` and missing-field, but the rest of
@@ -357,9 +375,12 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     seenChoiceKeys.add(key)
     return true
   })
+  const preservesNewlines = q.type === 'writing_email' || q.type === 'writing_discussion'
   return {
     ...q,
-    passage: q.passage ? sanitize(q.passage) : null,
+    passage: q.passage
+      ? (preservesNewlines ? sanitizePreservingNewlines(q.passage) : sanitize(q.passage))
+      : null,
     passageGroupId: q.passageGroupId ?? null,
     prompt: sanitize(q.prompt),
     type: q.type ?? 'multiple_choice',
@@ -395,6 +416,12 @@ export function sanitizeQuestion(q: RawQuestion): Question {
  * the same way (deterministic for caching).
  */
 export function shuffleChoices(q: Question, seed: number): Question {
+  // GRE Quantitative Comparison choices are four CANONICAL statements
+  // ("Quantity A is greater." / "Quantity B is greater." / equal /
+  // cannot be determined) that must keep their fixed conventional
+  // order — shuffling them reads as broken to anyone who's seen a
+  // real GRE.
+  if (q.type === 'quant_comparison') return q
   const choices = [...q.choices]
   let s = seed
   const rand = () => {
@@ -469,14 +496,29 @@ export function dedupeByPrompt(questions: Question[]): Question[] {
 export function dedupeBySemantic(questions: Question[]): Question[] {
   const seen = new Set<string>()
   const out: Question[] = []
+  const compact = (s: string) => s.toLowerCase().replace(/\s+/g, ' ').trim()
   for (const q of questions) {
     const sig = semanticSignature(q.prompt)
     // Passage-keyed variants (SAT R&W) stay distinct — same-signature
     // stems paired with different passages are legitimately different
     // items ("Which choice most logically completes the text?" ×
-    // N passages).
-    const passageKey = q.passage ? q.passage.slice(0, 40) : ''
-    const key = `${q.type ?? 'mc'}::${passageKey}::${sig}`
+    // N passages). 80 chars, not 40: TOEFL Choose-a-Response passages
+    // all open with the same 'Transcript: "' boilerplate, so a short
+    // prefix let two different utterances with similar openings
+    // false-collapse. True clones share the whole passage, so a longer
+    // key never weakens real dedupe.
+    const passageKey = q.passage ? q.passage.slice(0, 80) : ''
+    // Type-aware tail — mirrors dedupeByPrompt. TOEFL Build-a-Sentence
+    // (arrange_words) items all share the SAME prompt
+    // ("[Build a Sentence] Tap the words in order…"); without the
+    // correct_answer tail the semantic dedupe collapses 10 items → 1
+    // and the Writing section ships mostly empty. Same failure mode
+    // for speaking_repeat where the prompt boilerplate is identical
+    // across items but the target sentence differs.
+    const tail = q.type === 'arrange_words' || q.type === 'speaking_repeat'
+      ? compact(q.correct_answer).slice(0, 100)
+      : ''
+    const key = `${q.type ?? 'mc'}::${passageKey}::${sig}::${tail}`
     if (seen.has(key)) continue
     seen.add(key)
     out.push(q)
