@@ -59,13 +59,21 @@ interface TestPayload {
    *  KSAT renders ①②③④⑤; everything else renders A B C D (E). */
   family?: string | null
   questions: Question[]
+  /** TOEFL adaptive-module boundary. Index of the FIRST question in
+   *  Module 2. Undefined for non-modular sections; server computes this
+   *  post-pipeline so the UI knows exactly where M2 starts (Module 1
+   *  and Module 2 may be different sizes — e.g. Listening ships 8 CaR
+   *  in M1 and 3 in M2, so the boundary is NOT the midpoint). */
+  moduleBreakIdx?: number
 }
 
 interface SubmitResult {
   totalQuestions: number
   correctCount: number
   scorePercent: number
-  verdicts: { index: number; correct: boolean; correctAnswer: string }[]
+  /** ungraded = open-response item (interview / email / discussion):
+   *  rubric-graded in review, excluded from the auto-score. */
+  verdicts: { index: number; correct: boolean; correctAnswer: string; ungraded?: boolean }[]
 }
 
 /**
@@ -115,6 +123,41 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // 'expired' after the response window closes. Locks the textarea +
   // recorder when expired.
   const [interviewTimerState, setInterviewTimerState] = useState<Record<string, 'idle' | 'started' | 'expired'>>({})
+  // Increments once per (timerKey) when the prep phase ends. The
+  // VoiceRecorderButton starts recording on token change.
+  const [interviewAutoRecToken, setInterviewAutoRecToken] = useState<Record<string, number>>({})
+  // Currently-recording flag per timerKey. Used to lock prev/next
+  // navigation while the student is speaking so they can't skip mid-
+  // answer.
+  const [interviewRecordingActive, setInterviewRecordingActive] = useState<Record<string, boolean>>({})
+  // Marks per speaking key when the Next button should be revealed —
+  // either because Whisper transcription completed, or because the
+  // auto-record safety window expired without a recording ever
+  // starting (mic denied, permission blocked, etc.).
+  const [interviewNextReady, setInterviewNextReady] = useState<Record<string, boolean>>({})
+  // True per speaking key from "recording stopped" until Whisper
+  // returns (onDone). Blocks Submit so the LAST question's answer
+  // can't be lost to a submit racing the in-flight transcription.
+  const [interviewProcessing, setInterviewProcessing] = useState<Record<string, boolean>>({})
+  // Mirror of interviewRecordingActive as a ref so async timeout
+  // callbacks can read the CURRENT recording state without capturing
+  // a stale closure. Used by the safety-net timeout to skip flipping
+  // Next-ready when a recording is genuinely in progress.
+  const interviewRecordingActiveRef = useRef<Record<string, boolean>>({})
+  useEffect(() => {
+    interviewRecordingActiveRef.current = interviewRecordingActive
+  }, [interviewRecordingActive])
+  // Whether the shared mic stream has been granted this session. Used
+  // to gate the "Start Speaking" one-tap prime button (fires only on
+  // the FIRST speaking question when mic hasn't been primed yet).
+  const [micPrimed, setMicPrimed] = useState<boolean>(() => PRIMED_MIC_STREAM != null)
+  // True when the student tapped the Start Speaking gate but the
+  // browser denied mic access — shows a visible notice instead of
+  // silently proceeding without recording.
+  const [micDenied, setMicDenied] = useState(false)
+  // Monotonic high-water mark for the top progress bar — navigating
+  // BACK to an earlier question must not shrink the bar.
+  const furthestProgressRef = useRef(0)
   // Storage paths + speech signals for the student's voice recordings,
   // keyed by question index. Persist so the review pane can play the
   // recording back + so the rubric grader has real delivery metrics
@@ -226,7 +269,70 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       if (streamError || !payload) throw new Error()
 
       setTest(payload)
-      setAnswers(new Array(payload.questions.length).fill(null))
+      // Restore answers + question position from a previous visit so
+      // a refresh / exit-and-return drops the student exactly where
+      // they left off instead of back at question 1 with blank answers.
+      let restoredAnswers: (string | null)[] | null = null
+      let restoredIdx = 0
+      if (typeof window !== 'undefined') {
+        try {
+          const rawAnswers = localStorage.getItem(`study:test:${sessionId}:answers`)
+          if (rawAnswers) {
+            const parsed = JSON.parse(rawAnswers)
+            if (Array.isArray(parsed) && parsed.length === payload.questions.length) {
+              restoredAnswers = parsed as (string | null)[]
+            }
+          }
+          const rawIdx = localStorage.getItem(`study:test:${sessionId}:currentIdx`)
+          if (rawIdx != null) {
+            const n = parseInt(rawIdx, 10)
+            if (Number.isFinite(n)) restoredIdx = Math.min(Math.max(0, n), payload.questions.length - 1)
+          }
+          // Speaking metadata (storage path of the recorded answer +
+          // Whisper delivery signals). Without this a refresh dropped
+          // the audio link, so the review pane's rubric grade lost
+          // playback + real delivery metrics.
+          const rawSpeech = localStorage.getItem(`study:test:${sessionId}:speech`)
+          if (rawSpeech) {
+            const parsed = JSON.parse(rawSpeech) as {
+              audioPaths?: Record<number, string>
+              signals?: Record<number, SpeechSignals>
+            }
+            if (parsed.audioPaths) setAnswerAudioPaths(parsed.audioPaths)
+            if (parsed.signals) setAnswerSpeechSignals(parsed.signals)
+          }
+        } catch { /* corrupted storage — start fresh */ }
+      }
+      setAnswers(restoredAnswers ?? new Array(payload.questions.length).fill(null))
+      if (restoredIdx > 0) setCurrentIdx(restoredIdx)
+
+      // Speaking resume semantics. The play-count store is module-
+      // level, so it survives navigating away and back WITHOUT a
+      // refresh — a question the student left mid-flow would show
+      // "Playback complete" but never fire onFirstPlayEnd again:
+      // frozen timer, no recording, no Next. Stuck.
+      //   - UNANSWERED speaking question → wipe its play count so the
+      //     audio replays from the top when they land on it.
+      //   - ANSWERED speaking question → pre-seed timer state + Next-
+      //     ready so it renders as completed (no forced replay).
+      const timerStateInit: Record<string, 'started'> = {}
+      const nextReadyInit: Record<string, boolean> = {}
+      payload.questions.forEach((qq, i) => {
+        if (qq.type !== 'speaking_repeat' && qq.type !== 'speaking_interview') return
+        const shortKey = qq.type === 'speaking_repeat' ? `repeat-${i}` : `interview-${i}`
+        const playKey = `${sessionId}:${shortKey}`
+        const answered = !!(restoredAnswers?.[i] ?? '').trim()
+        if (answered) {
+          timerStateInit[shortKey] = 'started'
+          nextReadyInit[shortKey] = true
+        } else {
+          delete LISTENING_PLAY_COUNTS[playKey]
+        }
+      })
+      if (Object.keys(timerStateInit).length > 0) {
+        setInterviewTimerState(s => ({ ...timerStateInit, ...s }))
+        setInterviewNextReady(s => ({ ...nextReadyInit, ...s }))
+      }
 
       // Restore or initialise the active-time accumulator. Old
       // sessions used `:startedAt` (wall-clock); those are read and
@@ -275,10 +381,38 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     return () => clearInterval(id)
   }, [phase, sessionId, currentElapsedMs])
 
+  // Persist position + answers on every change so a refresh or
+  // exit-and-return resumes exactly where the student left off.
+  // (Cleared on submit alongside elapsedMs.)
+  useEffect(() => {
+    if (phase !== 'taking' || typeof window === 'undefined') return
+    localStorage.setItem(`study:test:${sessionId}:currentIdx`, String(currentIdx))
+  }, [phase, sessionId, currentIdx])
+  useEffect(() => {
+    if (phase !== 'taking' || typeof window === 'undefined') return
+    try {
+      localStorage.setItem(`study:test:${sessionId}:answers`, JSON.stringify(answers))
+    } catch { /* quota exceeded — non-fatal, resume just loses answers */ }
+  }, [phase, sessionId, answers])
+  useEffect(() => {
+    if (phase !== 'taking' || typeof window === 'undefined') return
+    if (Object.keys(answerAudioPaths).length === 0 && Object.keys(answerSpeechSignals).length === 0) return
+    try {
+      localStorage.setItem(`study:test:${sessionId}:speech`, JSON.stringify({
+        audioPaths: answerAudioPaths,
+        signals: answerSpeechSignals,
+      }))
+    } catch { /* quota exceeded — resume loses audio links only */ }
+  }, [phase, sessionId, answerAudioPaths, answerSpeechSignals])
+
   // Freeze the timer when the tab is hidden, resume when visible.
   // This makes practice tests non-hostile: a student who takes a call
   // mid-test doesn't lose time. Real ETS behaviour differs but that's
   // not this app's job.
+  // (Declared here, ABOVE the visibility effect that reads it — the
+  // value is assigned each render further down once the speaking
+  // freeze condition is derivable.)
+  const speakingFreezeRef = useRef(false)
   useEffect(() => {
     if (phase !== 'taking') return
     const onVis = () => {
@@ -290,10 +424,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           resumedAtRef.current = null
         }
       } else {
-        // Resume: only restart the clock if the student hasn't
-        // ALSO manually paused. If they paused before switching
-        // away, coming back keeps them paused.
-        if (!paused && resumedAtRef.current == null) {
+        // Resume: only restart the clock if the student hasn't ALSO
+        // manually paused AND the Speaking flow isn't holding its own
+        // freeze (audio preparing/playing). Otherwise tab-away during
+        // Speaking audio + tab-back would restart the clock while the
+        // question audio was still running.
+        if (!paused && !speakingFreezeRef.current && resumedAtRef.current == null) {
           resumedAtRef.current = Date.now()
         }
       }
@@ -301,6 +437,46 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     document.addEventListener('visibilitychange', onVis)
     return () => document.removeEventListener('visibilitychange', onVis)
   }, [phase, paused])
+
+  // TOEFL Speaking: freeze the test countdown from the moment a
+  // speaking question mounts until its audio has finished playing.
+  // This covers BOTH the TTS-preparation window (loading spinner)
+  // and the playback itself — neither is the student's answering
+  // time, so neither should eat into the 7 minutes. Mirrors the
+  // manual-pause freeze/flush logic. Only Speaking gets this
+  // treatment: Listening audio IS part of the timed experience.
+  const isSpeakingSection = test?.family === 'toefl'
+    && test?.section != null && /speaking/i.test(test.section)
+  const currentSpeakingAudioPending = (() => {
+    if (!isSpeakingSection || !test) return false
+    const item = test.questions[currentIdx]
+    if (!item || (item.type !== 'speaking_repeat' && item.type !== 'speaking_interview')) return false
+    const key = item.type === 'speaking_repeat' ? `repeat-${currentIdx}` : `interview-${currentIdx}`
+    // Pending until onFirstPlayEnd flips the state to started/expired.
+    return interviewTimerState[key] === undefined || interviewTimerState[key] === 'idle'
+  })()
+  // Ref mirror so the visibilitychange handler (whose effect deps
+  // deliberately exclude these fast-changing values) can check the
+  // speaking freeze before resuming the clock. Without it, tab-away
+  // during Speaking audio → tab-back would restart the clock while
+  // audio was still playing.
+  speakingFreezeRef.current = isSpeakingSection && (audioPlaying || currentSpeakingAudioPending)
+  useEffect(() => {
+    if (!isSpeakingSection || phase !== 'taking') return
+    if (audioPlaying || currentSpeakingAudioPending) {
+      // Freeze: flush accumulated time.
+      if (resumedAtRef.current != null) {
+        activeElapsedMsRef.current += Date.now() - resumedAtRef.current
+        resumedAtRef.current = null
+      }
+    } else if (!paused && (typeof document === 'undefined' || document.visibilityState === 'visible')) {
+      // Resume — unless a manual pause or hidden tab is also holding
+      // the timer frozen.
+      if (resumedAtRef.current == null) {
+        resumedAtRef.current = Date.now()
+      }
+    }
+  }, [audioPlaying, currentSpeakingAudioPending, isSpeakingSection, phase, paused])
 
   // Manual pause / resume toggle.
   const togglePause = useCallback(() => {
@@ -323,6 +499,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }
       return nextPaused
     })
+  }, [])
+
+  // Release the primed mic stream when the student leaves the test
+  // page entirely — otherwise the browser's recording indicator stays
+  // lit until the tab is closed.
+  useEffect(() => {
+    return () => { releaseMicStream() }
   }, [])
 
   /** Surfaces the actual submit error so the student knows what went
@@ -367,6 +550,57 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       if (typeof window !== 'undefined') {
         localStorage.removeItem(`study:test:${sessionId}:elapsedMs`)
         localStorage.removeItem(`study:test:${sessionId}:startedAt`)
+        localStorage.removeItem(`study:test:${sessionId}:currentIdx`)
+        localStorage.removeItem(`study:test:${sessionId}:answers`)
+        localStorage.removeItem(`study:test:${sessionId}:speech`)
+      }
+      // Test is over — stop holding the mic open (browser tab keeps
+      // showing the red recording dot while the primed stream lives).
+      releaseMicStream()
+      // Pre-grade every open-response answer now (fire-and-forget) so
+      // the rubric submission + grade rows exist without the student
+      // having to expand each review panel — the panels then load
+      // instantly from the grade route's dedupe cache. Server-side
+      // idempotency (same session+prompt) makes duplicates harmless,
+      // and XP pays out at most once per task regardless.
+      if (test.family === 'toefl' || test.family === 'ielts') {
+        test.questions.forEach((q, i) => {
+          const isOpen = q.type === 'speaking_interview'
+            || q.type === 'writing_email' || q.type === 'writing_discussion'
+          const response = (answers[i] ?? '').trim()
+          // Grade route requires ≥20-char responses; shorter ones have
+          // nothing gradeable anyway.
+          if (!isOpen || response.length < 20 || q.prompt.trim().length < 10) return
+          const signals = answerSpeechSignals[i]
+          // Speaking interviews on an audio-mode session pre-grade via
+          // the audio-native route — the SAME route the review panel
+          // calls — so the panel's request hits that route's dedupe
+          // cache instead of triggering a second gpt-4o-audio call.
+          const useAudio = q.type === 'speaking_interview'
+            && speakingGradeMode === 'audio'
+            && !!answerAudioPaths[i]
+          const common = {
+            sessionId,
+            taskType: q.type === 'writing_email' ? 'email'
+              : q.type === 'writing_discussion' ? 'academic_discussion' : null,
+            promptText: q.prompt.slice(0, 2000),
+            responseText: response.slice(0, 8000),
+            audioPath: answerAudioPaths[i] ?? null,
+            durationSeconds: signals?.durationSec ?? null,
+            wpm: signals?.wpm ?? null,
+            pauseCount: signals?.pauseCount ?? null,
+            clarity: signals?.clarity ?? null,
+          }
+          void fetch(useAudio ? '/api/study/speaking/grade-audio' : '/api/study/response/grade', {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(useAudio ? common : {
+              ...common,
+              testFamily: test.family,
+              skill: q.type === 'speaking_interview' ? 'speaking' : 'writing',
+            }),
+          }).catch(() => { /* review panel re-requests on demand */ })
+        })
       }
       setPhase('reviewing')
     } catch (err) {
@@ -376,7 +610,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // losing the test to a transient error.
       setPhase('taking')
     }
-  }, [test, phase, answers, sessionId])
+  }, [test, phase, answers, sessionId, answerAudioPaths, answerSpeechSignals, speakingGradeMode, currentElapsedMs])
 
   // Auto-submit when the timer hits zero.
   // Total time budget in ms. `now` is here so the effect re-runs
@@ -441,13 +675,85 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // `now` in deps forces this to re-derive every tick.
   const remainingMs = Math.max(0, timeLimitMs - currentElapsedMs())
   void now
-  const answered = answers.filter(a => a != null).length
-  const totalQuestions = test.questions.length
+  // Answered detection — type-aware so partially-typed items don't
+  // read as complete: fill_in_blanks needs EVERY blank filled; other
+  // types need a non-empty answer string (a cleared arrange_words
+  // leaves "" which must not count).
+  const isItemAnswered = (idx: number): boolean => {
+    const raw = answers[idx]
+    if (raw == null || raw.trim() === '') return false
+    const item = test.questions[idx]
+    if (item?.type === 'fill_in_blanks') {
+      const blanksArr = item.blanks ?? []
+      if (blanksArr.length === 0) return true
+      try {
+        const parsed = JSON.parse(raw) as Record<string, string>
+        return blanksArr.every(b => (parsed[String(b.id)] ?? '').trim().length > 0)
+      } catch { return false }
+    }
+    return true
+  }
+  const answered = test.questions.reduce((n, _, i) => n + (isItemAnswered(i) ? 1 : 0), 0)
+  // Weighted totals: TOEFL Complete-the-Words is ONE screen with 10
+  // blanks — ETS scores it as 10 of the ~50 Reading questions. The
+  // student expects to see a 50-item total, not 41. We treat every
+  // fill_in_blanks item as `blanks.length` for the counter and
+  // progress bar, but keep it as a single navigable card so the UI
+  // stays coherent.
+  const questionWeight = (idx: number): number => {
+    const item = test.questions[idx]
+    if (item?.type === 'fill_in_blanks') return item.blanks?.length ?? 1
+    return 1
+  }
+  // Weighted answered/unanswered — matches the weighted "of 50"
+  // header so the submit-confirm dialog speaks the same units. A
+  // partially-filled CtW contributes its FILLED blank count.
+  const weightedAnsweredFor = (idx: number): number => {
+    const raw = answers[idx]
+    const item = test.questions[idx]
+    if (item?.type === 'fill_in_blanks') {
+      const blanksArr = item.blanks ?? []
+      if (!raw) return 0
+      try {
+        const parsed = JSON.parse(raw) as Record<string, string>
+        return blanksArr.filter(b => (parsed[String(b.id)] ?? '').trim().length > 0).length
+      } catch { return 0 }
+    }
+    return isItemAnswered(idx) ? 1 : 0
+  }
+  const weightedAnswered = test.questions.reduce((n, _, i) => n + weightedAnsweredFor(i), 0)
+  // Effective 1-indexed range each question occupies within the
+  // weighted total: startAt[i] = position of first sub-question,
+  // endAt[i] = position of last sub-question.
+  const questionRanges: { startAt: number; endAt: number }[] = []
+  {
+    let acc = 0
+    for (let i = 0; i < test.questions.length; i++) {
+      const w = questionWeight(i)
+      questionRanges.push({ startAt: acc + 1, endAt: acc + w })
+      acc += w
+    }
+  }
+  const totalQuestions = questionRanges.length > 0
+    ? questionRanges[questionRanges.length - 1]!.endAt
+    : 0
   // Progress reflects the FURTHEST question the student has landed on,
   // not just the count answered. Duolingo-style: the bar fills as the
   // student advances through the test, even if they skip and come back.
-  const furthest = Math.max(currentIdx + 1, answered)
+  const furthestIdx = Math.max(currentIdx, answered - 1)
+  const furthestNow = questionRanges[Math.min(furthestIdx, questionRanges.length - 1)]?.endAt
+    ?? Math.max(currentIdx + 1, answered)
+  // High-water mark: going back to review an earlier question keeps
+  // the bar where it was.
+  if (furthestNow > furthestProgressRef.current) furthestProgressRef.current = furthestNow
+  const furthest = furthestProgressRef.current
   const progressPct = totalQuestions > 0 ? Math.min(100, (furthest / totalQuestions) * 100) : 0
+  const currentRange = questionRanges[currentIdx]
+  const currentLabel = currentRange
+    ? (currentRange.startAt === currentRange.endAt
+        ? String(currentRange.startAt)
+        : `${currentRange.startAt}–${currentRange.endAt}`)
+    : String(currentIdx + 1)
   const timeCritical = remainingMs < 60_000
   const timeWarning = !timeCritical && remainingMs < 5 * 60_000
 
@@ -477,7 +783,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             disabled={audioPlaying}
             className="text-[11px] text-gray-500 tabular-nums inline-flex items-center gap-1 disabled:opacity-40"
           >
-            {t('study.test.questionN', { current: String(currentIdx + 1), total: String(totalQuestions) })}
+            {t('study.test.questionN', { current: currentLabel, total: String(totalQuestions) })}
             {gridOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
           </button>
           <div className="inline-flex items-center gap-1.5">
@@ -506,19 +812,31 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         </div>
       </div>
 
-      {/* Question grid sheet — slide-down picker for quick jumps */}
+      {/* Question grid sheet — slide-down picker for quick jumps.
+          Cells use the same WEIGHTED numbering as the header ("11-20"
+          for a 10-blank CtW item) and the same type-aware answered
+          detection, so all surfaces speak identical units. Jumping is
+          locked while a Speaking recording is in progress — leaving
+          mid-recording would upload the audio against the wrong
+          question. */}
       {gridOpen && (
         <div className="flex-shrink-0 border-b border-gray-100 bg-gray-50/60 px-3 py-3">
           <div className="grid grid-cols-8 gap-1.5">
             {test.questions.map((_, i) => {
               const isCurrent = i === currentIdx
-              const isAnswered = answers[i] != null
+              const isAnswered = isItemAnswered(i)
+              const range = questionRanges[i]
+              const cellLabel = range
+                ? (range.startAt === range.endAt ? String(range.startAt) : `${range.startAt}–${range.endAt}`)
+                : String(i + 1)
+              const anyRecording = Object.values(interviewRecordingActive).some(Boolean)
               return (
                 <button
                   key={i}
                   type="button"
+                  disabled={anyRecording}
                   onClick={() => { setCurrentIdx(i); setGridOpen(false) }}
-                  className={`h-8 rounded-md text-xs font-medium transition-colors ${
+                  className={`h-8 rounded-md text-xs font-medium transition-colors tabular-nums disabled:opacity-40 ${
                     isCurrent
                       ? 'bg-primary text-white'
                       : isAnswered
@@ -526,7 +844,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                         : 'bg-white text-gray-700 ring-1 ring-gray-200'
                   }`}
                 >
-                  {i + 1}
+                  {cellLabel}
                 </button>
               )
             })}
@@ -546,9 +864,115 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
               {t(`study.practice.difficulty.${q.difficulty}`)}
             </span>
+            {/* TOEFL adaptive-module chip (Reading + Listening).
+                Prefers the server-computed `moduleBreakIdx`; falls
+                back to a midpoint split for older cached tests. */}
+            {test.family === 'toefl' && test.section != null
+              && /(reading|listening)/i.test(test.section)
+              && test.questions.length >= 4 && (() => {
+              const breakIdx = test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2)
+              const isModule2 = currentIdx >= breakIdx
+              return (
+                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
+                  isModule2
+                    ? 'bg-amber-50 text-amber-800 ring-amber-200'
+                    : 'bg-primary/10 text-primary ring-primary/20'
+                }`}>
+                  {isModule2 ? 'Module 2' : 'Module 1'}
+                </span>
+              )
+            })()}
           </div>
         )}
-        {q.passage && q.type !== 'fill_in_blanks' && (() => {
+        {/* "Module 2 begins" banner — shown on the FIRST question of
+            module 2 so the student registers the transition. */}
+        {test.family === 'toefl' && test.section != null
+          && /(reading|listening)/i.test(test.section)
+          && test.questions.length >= 4 && (() => {
+          const breakIdx = test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2)
+          if (currentIdx !== breakIdx) return null
+          const isReading = /reading/i.test(test.section ?? '')
+          return (
+            <div className="mb-4 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-amber-50/40 px-4 py-3">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider">
+                  Module 2
+                </span>
+                <span className="text-[13px] font-bold text-amber-900">
+                  {ko ? '모듈 2 시작' : 'Module 2 begins'}
+                </span>
+              </div>
+              <p className="text-[12px] text-amber-800 leading-relaxed">
+                {ko
+                  ? (isReading
+                      ? '나머지 문제는 모듈 2에 속합니다. 두 번째 Complete-the-Words 지문이 포함됩니다.'
+                      : '나머지 문제는 모듈 2에 속합니다. Choose-a-Response 3문항과 나머지 대화·강의가 포함됩니다.')
+                  : (isReading
+                      ? 'The remaining questions are in Module 2, including a second Complete-the-Words paragraph.'
+                      : 'The remaining questions are in Module 2, including 3 Choose-a-Response items and the second half of the conversations, announcements, and talks.')}
+              </p>
+            </div>
+          )
+        })()}
+        {/* Speaking start screen — shown INSTEAD of the question until
+            the student taps Start. Nothing plays and nothing records
+            before this tap: the audio player, timers, and recorder are
+            all gated behind micPrimed (the speaking question body
+            below renders null while unprimed). The tap is a direct
+            user gesture, guaranteeing getUserMedia is allowed by
+            browser policy; after grant, every speaking item auto-plays
+            and auto-records off the cached PRIMED_MIC_STREAM. */}
+        {(q.type === 'speaking_repeat' || q.type === 'speaking_interview') && !micPrimed && (
+          <div className="mb-4 rounded-2xl border border-primary/25 bg-gradient-to-b from-primary/[0.06] via-white to-white px-6 py-10 text-center">
+            <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 ring-1 ring-primary/25 flex items-center justify-center mb-4">
+              <Mic className="w-7 h-7 text-primary" />
+            </div>
+            <div className="text-[17px] font-semibold text-gray-900 mb-1.5">
+              {ko ? '스피킹 테스트 준비' : 'Ready for the Speaking test'}
+            </div>
+            <p className="text-[12.5px] text-gray-600 mb-6 leading-relaxed max-w-[280px] mx-auto">
+              {ko
+                ? '시작을 누르면 마이크가 설정되고 첫 문제의 오디오가 재생됩니다. 각 문항은 자동으로 재생되고 자동으로 녹음됩니다.'
+                : 'Tap start to set up your microphone. The first question’s audio will then play — every item auto-plays and auto-records.'}
+            </p>
+            <button
+              type="button"
+              onClick={async () => {
+                // force: this tap is a fresh user gesture, so retry
+                // even if an earlier silent attempt was denied.
+                const stream = await primeMicStream({ force: true })
+                if (!stream) setMicDenied(true)
+                // Unblock the flow either way so the student isn't
+                // stuck on this gate forever; without a mic the
+                // safety net still reveals Next, and the notice
+                // below tells them recording is off.
+                setMicPrimed(true)
+              }}
+              className="inline-flex items-center gap-2 px-7 h-12 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_8px_-2px_rgba(40,133,232,0.40)] active:scale-[0.99] transition"
+            >
+              <Mic className="w-4 h-4" />
+              {ko ? '테스트 시작' : 'Start Test'}
+            </button>
+          </div>
+        )}
+        {(q.type === 'speaking_repeat' || q.type === 'speaking_interview') && micDenied && (
+          <div role="alert" className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[12px] text-amber-800 leading-relaxed">
+            {ko
+              ? '마이크 권한이 거부되어 답변이 녹음되지 않습니다. 브라우저 설정에서 마이크를 허용한 뒤 새로고침하면 녹음이 다시 활성화됩니다.'
+              : 'Microphone access was denied, so your answers will not be recorded. Allow the microphone in your browser settings and refresh to re-enable recording.'}
+          </div>
+        )}
+        {q.passage
+          && q.type !== 'fill_in_blanks'
+          // Speaking items handle their OWN audio + no-transcript
+          // reveal in the branch below. If we let the top passage box
+          // render, the student sees the sentence text they're
+          // supposed to REPEAT — defeating the whole listen-and-
+          // repeat task. speaking_interview shouldn't show its
+          // interviewer question as prose either; the audio does that.
+          && q.type !== 'speaking_repeat'
+          && q.type !== 'speaking_interview'
+          && (() => {
           // Passage-group header + read-only passage box. Skipped for
           // fill_in_blanks (TOEFL Complete-the-Words) because the
           // interactive fill-in renderer below shows the SAME passage
@@ -599,8 +1023,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   groupKey={`${sessionId}:${q.passageGroupId ?? `standalone-${currentIdx}`}`}
                   transcript={q.passage!}
                   language={language}
+                  // ETS Jan-2026: Listening plays ONCE per item on the
+                  // real test. No replays allowed.
+                  maxPlays={1}
                   onSpeakingChange={setAudioPlaying}
                 />
+              ) : (q.type === 'writing_email' || q.type === 'writing_discussion') ? (
+                <div className="mb-4 rounded-xl border border-primary/25 bg-white px-4 py-4 text-[14px] text-gray-800 leading-relaxed shadow-[0_1px_2px_-1px_rgba(15,23,42,0.06)]">
+                  <WritingScenario text={q.passage} kind={q.type === 'writing_email' ? 'email' : 'discussion'} />
+                </div>
               ) : (
                 <div className="mb-4 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[14px] text-gray-800 leading-relaxed">
                   <PassageParagraphs text={q.passage} />
@@ -609,9 +1040,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             </>
           )
         })()}
-        <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap mb-4">
-          {normalizeDisplayText(q.prompt)}
-        </p>
+        {q.type !== 'speaking_repeat' && q.type !== 'speaking_interview' && (
+          // Skip the prompt text for Speaking — the interview question
+          // and repeat sentence are audio-only. Showing the text
+          // defeats the whole listening task. The inner branch below
+          // renders task-specific instructions instead.
+          <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap mb-4">
+            {normalizeDisplayText(q.prompt)}
+          </p>
+        )}
         {q.graphic && <QuestionGraphicView graphic={q.graphic} />}
         {q.type === 'numeric_entry' ? (
           // SAT Math SPR / GRE NE / KSAT 단답형: free-text numeric input.
@@ -715,34 +1152,55 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             // Split passage on [N] tokens and render inputs inline.
             const passageText = q.passage ?? ''
             const segments = passageText.split(/(\[\d+\])/g)
+            // Filled-count for the progress chip at the top.
+            const filledCount = blanks.filter(b =>
+              (parsed[String(b.id)] ?? '').trim().length > 0,
+            ).length
+            const allFilled = blanks.length > 0 && filledCount === blanks.length
             return (
               <div className="space-y-3">
-                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
-                  {ko ? '빈칸에 알맞은 글자를 입력하세요' : 'Type the missing letters'}
-                </p>
-                <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[15px] text-gray-900 leading-[1.9]">
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                    {ko ? '빈칸에 알맞은 글자를 입력하세요' : 'Type the missing letters'}
+                  </p>
+                  <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold tabular-nums transition ${
+                    allFilled
+                      ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200'
+                      : 'bg-gray-100 text-gray-700'
+                  }`}>
+                    {filledCount} / {blanks.length}
+                  </span>
+                </div>
+                <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 text-[15px] text-gray-900 leading-[2.4]">
                   {segments.map((seg, i) => {
                     const match = seg.match(/^\[(\d+)\]$/)
                     if (!match) return <span key={i}>{normalizeDisplayText(seg)}</span>
                     const id = parseInt(match[1], 10)
+                    // Expected length from the blanks answer key —
+                    // used to size the input and hint how many letters
+                    // are missing. Falls back to a reasonable minimum
+                    // if the answer key is missing.
+                    const blank = blanks.find(b => b.id === id)
+                    const expectedLen = Math.max(1, (blank?.answer ?? '').length)
+                    const currentVal = parsed[String(id)] ?? ''
+                    const isFilled = currentVal.trim().length > 0
                     return (
-                      <input
+                      <BlankLetterInput
                         key={i}
-                        type="text"
-                        value={parsed[String(id)] ?? ''}
-                        onChange={(e) => setBlank(id, e.target.value)}
-                        className="inline-block min-w-[40px] mx-0.5 px-1.5 py-0.5 align-baseline border-b-2 border-primary/40 bg-white text-primary font-semibold focus:outline-none focus:border-primary"
-                        style={{ width: `${Math.max(40, ((parsed[String(id)] ?? '').length + 2) * 9)}px` }}
-                        autoCapitalize="none"
-                        autoCorrect="off"
-                        spellCheck={false}
-                        aria-label={`Blank ${id}`}
+                        id={id}
+                        expectedLen={expectedLen}
+                        value={currentVal}
+                        onChange={(v) => setBlank(id, v)}
+                        isFilled={isFilled}
+                        ko={ko}
                       />
                     )
                   })}
                 </div>
-                <p className="text-[11px] text-gray-500">
-                  {ko ? `총 ${blanks.length}개의 빈칸` : `${blanks.length} blanks total`}
+                <p className="text-[11px] text-gray-500 leading-relaxed">
+                  {ko
+                    ? `총 ${blanks.length}개의 빈칸. 각 빈칸 위 숫자는 문항 번호입니다. 회색 밑줄 = 미입력, 초록 밑줄 = 입력 완료.`
+                    : `${blanks.length} blanks total. The number above each blank is the question number. Gray underline = empty, green = filled.`}
                 </p>
               </div>
             )
@@ -751,6 +1209,19 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // TOEFL Build-a-Sentence (Jan 2026): choices are word/phrase
           // chips. Student clicks them in order to build a sentence.
           // Answer stored as chips joined by " | " in answers[currentIdx].
+          //
+          // Display rules (don't touch stored data — answer must match
+          // correct_answer verbatim):
+          //   - Pool: force first letter LOWERCASE on every chip so the
+          //     capitalization of "The" / "Maria" doesn't telegraph
+          //     which chip is the first word.
+          //   - Slot row: capitalize first letter of the chip in slot 0
+          //     so the sentence reads naturally. Later chips keep their
+          //     underlying case (proper nouns like "Maria" stay
+          //     capitalized).
+          //   - When every chip is placed, append a period/question
+          //     mark as a static visible token (inferred from the
+          //     correct_answer's ending, default ".").
           (() => {
             const current = (answers[currentIdx] ?? '').split(' | ').filter(Boolean)
             const remaining = q.choices.filter(c => !current.includes(c))
@@ -761,13 +1232,22 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 return out
               })
             }
+            const lcFirst = (s: string) => s ? s.charAt(0).toLowerCase() + s.slice(1) : s
+            const ucFirst = (s: string) => s ? s.charAt(0).toUpperCase() + s.slice(1) : s
+            const complete = current.length === q.choices.length && q.choices.length > 0
+            // Infer ending punctuation from the correct answer. If the
+            // model didn't emit one, default to a period.
+            const endPunct = (() => {
+              const last = (q.correct_answer ?? '').trim().slice(-1)
+              return /[.?!]/.test(last) ? last : '.'
+            })()
             return (
               <div className="space-y-4">
                 <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
                   {ko ? '단어를 순서대로 눌러 문장을 만드세요' : 'Tap the words in order to build the sentence'}
                 </p>
                 {/* Slot row — assembled sentence so far */}
-                <div className="rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 px-3 py-3 min-h-[60px] flex flex-wrap gap-2">
+                <div className="rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 px-3 py-3 min-h-[60px] flex flex-wrap items-center gap-2">
                   {current.length === 0
                     ? <span className="text-[13px] text-gray-400 italic">{ko ? '비어 있음' : 'empty'}</span>
                     : current.map((chip, i) => (
@@ -777,11 +1257,22 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                           onClick={() => setOrder(current.filter((_, j) => j !== i))}
                           className="px-3 py-1.5 rounded-lg bg-primary text-white text-[13px] font-medium hover:opacity-90"
                         >
-                          {normalizeDisplayText(chip)}
+                          {i === 0
+                            ? ucFirst(normalizeDisplayText(chip))
+                            : normalizeDisplayText(chip)}
                         </button>
                       ))}
+                  {complete && (
+                    <span
+                      aria-hidden
+                      className="text-[16px] font-semibold text-gray-800 leading-none pl-0.5"
+                    >
+                      {endPunct}
+                    </span>
+                  )}
                 </div>
-                {/* Chip pool — unused words */}
+                {/* Chip pool — unused words. First letter forced lowercase
+                    so the "obviously-first" chip doesn't stand out. */}
                 <div className="flex flex-wrap gap-2">
                   {remaining.map(chip => (
                     <button
@@ -790,7 +1281,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                       onClick={() => setOrder([...current, chip])}
                       className="px-3 py-1.5 rounded-lg border border-gray-300 bg-white text-[13px] text-gray-800 hover:border-primary hover:text-primary"
                     >
-                      {normalizeDisplayText(chip)}
+                      {lcFirst(normalizeDisplayText(chip))}
                     </button>
                   ))}
                 </div>
@@ -804,10 +1295,24 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             )
           })()
         ) : q.type === 'speaking_repeat' ? (
-          // TOEFL Listen-and-Repeat (Jan 2026, ETS-faithful): 1 play,
-          // no transcript, must actually listen. Voice-record or type.
+          // TOEFL Listen-and-Repeat (Jan 2026, hands-off): audio auto-
+          // plays on mount → recording auto-starts when the audio ends
+          // → auto-stops at 15 sec → auto-advances to the next question.
+          // No manual buttons, no transcript display.
           (() => {
-            const src = (q.passage ?? '').replace(/^transcript:\s*/i, '').replace(/^"|"$/g, '').trim() || q.correct_answer
+            // Behind the Start screen: render nothing until the mic
+            // is primed — no player card, no timers, no track.
+            if (!micPrimed) return null
+            // Strip BOTH the "audio script:" and "transcript:" prefixes
+            // (model uses them interchangeably) plus wrapping quotes,
+            // so ListeningAudioPlayer speaks just the sentence.
+            const src = (q.passage ?? '')
+              .replace(/^\s*(?:audio\s*script|transcript)\s*:\s*/i, '')
+              .replace(/^"|"$/g, '')
+              .trim() || q.correct_answer
+            const timerKey = `repeat-${currentIdx}`
+            const autoRecToken = interviewAutoRecToken[timerKey]
+            const isRecording = !!interviewRecordingActive[timerKey]
             const appendTranscript = (text: string, signals?: SpeechSignals) => {
               setAnswers(prev => {
                 const next = [...prev]
@@ -820,7 +1325,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             return (
               <div className="space-y-3">
                 <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
-                  {ko ? '한 번만 재생됩니다. 들은 문장을 그대로 말하거나 입력하세요.' : 'You hear it ONCE. Speak or type it back exactly.'}
+                  {ko ? '문장을 들은 뒤 그대로 따라 말하세요' : 'Listen, then repeat the sentence exactly'}
                 </p>
                 <ListeningAudioPlayer
                   key={`repeat-${currentIdx}`}
@@ -828,22 +1333,102 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   transcript={src}
                   language={language}
                   maxPlays={1}
+                  // Don't autoplay until mic has been primed — otherwise
+                  // the audio starts behind the "Start Speaking" gate.
+                  autoPlay={micPrimed}
                   onSpeakingChange={setAudioPlaying}
-                />
-                <VoiceRecorderButton sessionId={sessionId} language={language} ko={ko} onTranscript={appendTranscript} />
-                <textarea
-                  value={answers[currentIdx] ?? ''}
-                  onChange={(e) => {
-                    const val = e.target.value
-                    setAnswers(prev => { const next = [...prev]; next[currentIdx] = val; return next })
+                  onFirstPlayEnd={() => {
+                    // Mark audio as finished. Auto-record is triggered
+                    // IMMEDIATELY (no setTimeout) so we stay inside the
+                    // same user-activation window that audio.onended
+                    // fires under — needed for getUserMedia to succeed
+                    // without a fresh tap.
+                    setInterviewTimerState(s => ({ ...s, [timerKey]: 'started' }))
+                    setInterviewAutoRecToken(s => {
+                      const next = (typeof s[timerKey] === 'number' ? (s[timerKey] as number) : 0) + 1
+                      return { ...s, [timerKey]: next }
+                    })
+                    // Safety net: check at 3 s whether recording has
+                    // actually begun. If not, auto-record silently
+                    // failed → reveal Next so the student isn't stuck.
+                    // If recording IS in progress, we do nothing here
+                    // — `onDone` (fired after Whisper transcription
+                    // completes) is the sole thing that flips Next
+                    // ready, so students see "Processing…" between
+                    // stop and Next appearing.
+                    window.setTimeout(() => {
+                      const isCurrentlyRecording = !!interviewRecordingActiveRef.current[timerKey]
+                      if (!isCurrentlyRecording) {
+                        setInterviewNextReady(s => s[timerKey] ? s : { ...s, [timerKey]: true })
+                      }
+                    }, 3000)
                   }}
-                  rows={3}
-                  placeholder={ko ? '들은 문장을 그대로 입력…' : 'Type back the sentence exactly…'}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
-                <p className="text-[11px] text-gray-500">
-                  {ko ? '대소문자·구두점은 평가에 영향 없음.' : 'Case and punctuation are not graded.'}
-                </p>
+                {isRecording && (
+                  <div role="status" aria-live="assertive" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
+                    <span className="relative inline-flex w-2.5 h-2.5">
+                      <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping" />
+                      <span className="relative inline-flex w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                    </span>
+                    <span className="font-semibold">
+                      {ko ? '녹음 중 (최대 15초, 다른 문제로 이동 불가)' : 'Recording (max 15 sec — navigation is locked)'}
+                    </span>
+                  </div>
+                )}
+                {/* Post-recording status: amber "processing" while the
+                    upload + Whisper transcription is in flight, then a
+                    green "recording complete" confirmation once the
+                    answer has landed. */}
+                {!isRecording && interviewProcessing[timerKey] && (
+                  <div role="status" aria-live="polite" className="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2 text-[12px] text-amber-800 flex items-center gap-2">
+                    <Loader2 className="w-3.5 h-3.5 animate-spin flex-shrink-0" />
+                    <span className="font-semibold">
+                      {ko ? '답변 처리 중…' : 'Processing your answer…'}
+                    </span>
+                  </div>
+                )}
+                {!isRecording && !interviewProcessing[timerKey]
+                  && !!interviewNextReady[timerKey]
+                  && !!(answers[currentIdx] ?? '').trim() && (
+                  <div role="status" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-semibold">
+                      {ko ? '녹음 완료 — 답변이 저장되었습니다' : 'Recording complete — your answer was captured'}
+                    </span>
+                  </div>
+                )}
+                <VoiceRecorderButton
+                  // Keyed per question — without this the SAME component
+                  // instance survives across questions and its internal
+                  // lastTokenRef still holds the previous question's
+                  // token value. Since each question's token also starts
+                  // at 1, the "token changed?" check false-negatives and
+                  // auto-record never fires on question 2+.
+                  // NOTE the "rec-" prefix: the sibling ListeningAudio-
+                  // Player uses `repeat-${currentIdx}` as ITS key, and
+                  // two siblings with the same key makes React duplicate
+                  // children (the "stacked audio players" bug).
+                  key={`rec-${timerKey}`}
+                  sessionId={sessionId} language={language} ko={ko}
+                  onTranscript={appendTranscript}
+                  autoStartToken={typeof autoRecToken === 'number' ? autoRecToken : undefined}
+                  maxDurationSec={15}
+                  hideManualButton
+                  onRecordingChange={(rec) => {
+                    // Track recording flag only. Next-ready stays
+                    // false until `onDone` fires, so students see the
+                    // "Processing your answer…" pill between stop and
+                    // Next appearing. A stop transition also flips
+                    // "processing" on — Submit stays disabled until
+                    // the transcription lands (onDone).
+                    setInterviewRecordingActive(s => ({ ...s, [timerKey]: rec }))
+                    if (!rec) setInterviewProcessing(s => ({ ...s, [timerKey]: true }))
+                  }}
+                  onDone={() => {
+                    setInterviewNextReady(s => ({ ...s, [timerKey]: true }))
+                    setInterviewProcessing(s => ({ ...s, [timerKey]: false }))
+                  }}
+                />
               </div>
             )
           })()
@@ -875,8 +1460,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   }}
                   rows={12}
                   placeholder={q.type === 'writing_email'
-                    ? (ko ? '수신자에게 어울리는 어조로 답장하세요. 3개 항목을 모두 다루세요.' : 'Reply in the register appropriate to the recipient. Address all 3 bullets.')
-                    : (ko ? '입장을 명확히 하고, 최소 한 명의 동료를 이름으로 언급하며, 구체적 근거나 예시를 제시하세요.' : 'Stake a clear position, engage at least one classmate by name, and give a specific reason or example.')}
+                    ? (ko ? '여기에 이메일을 작성하세요…' : 'Type your email here…')
+                    : (ko ? '여기에 토론 기여글을 작성하세요…' : 'Type your contribution here…')}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
                 <div className="flex items-center justify-between text-[11px] text-gray-500">
@@ -894,13 +1479,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             )
           })()
         ) : q.type === 'speaking_interview' ? (
-          // TOEFL Take-an-Interview (Jan 2026, ETS-faithful): the
-          // interviewer question is SPOKEN via TTS (real ETS is
-          // audio-only for the prompt), then a 15-sec prep countdown
-          // fires, then a 45-sec response window. Textarea locks when
-          // the response window expires so students can't spend 5
-          // minutes crafting a written answer.
+          // TOEFL Take-an-Interview (Jan 2026, ETS-faithful, hands-off
+          // flow): audio auto-plays on mount → 15-sec prep countdown
+          // fires when audio ends → recording auto-starts when prep
+          // hits 0 → recording auto-stops at 45 sec (ETS response
+          // window). Textarea + navigation locked while recording is
+          // in progress so students can't skip out mid-answer.
           (() => {
+            // Behind the Start screen — same gating as speaking_repeat.
+            if (!micPrimed) return null
             const questionText = q.prompt.replace(/^\s*\[[^\]]+\]\s*/, '')
             const appendTranscript = (text: string, signals?: SpeechSignals) => {
               setAnswers(prev => {
@@ -915,6 +1502,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             const phase = interviewTimerState[timerKey] ?? 'idle'
             const timerActive = phase === 'started'
             const timerExpired = phase === 'expired'
+            // autoRecTokens tracks the "response phase reached" moment
+            // — when it flips to `${timerKey}:response`, VoiceRecorder-
+            // Button reacts and starts the mic.
+            const autoRecToken = interviewAutoRecToken[timerKey]
+            const isRecording = !!interviewRecordingActive[timerKey]
             return (
               <div className="space-y-3">
                 <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
@@ -926,18 +1518,55 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   transcript={questionText}
                   language={language}
                   maxPlays={1}
+                  autoPlay={micPrimed}
                   onSpeakingChange={setAudioPlaying}
                   onFirstPlayEnd={() => setInterviewTimerState(s => ({ ...s, [timerKey]: 'started' }))}
                 />
                 <SpeakingTimer
+                  // Keyed per question — SpeakingTimer keeps its phase
+                  // ('idle'→'prep'→'response'→'expired') in INTERNAL
+                  // state. Without a key the same instance survives to
+                  // the next question stuck at 'expired' and the
+                  // countdown never restarts. This was the "interview
+                  // countdown not working" bug.
+                  key={`timer-${timerKey}`}
                   active={timerActive}
+                  paused={paused}
                   prepSec={15}
                   responseSec={45}
                   ko={ko}
                   t={t}
-                  onExpire={() => setInterviewTimerState(s => ({ ...s, [timerKey]: 'expired' }))}
+                  onPhaseChange={(p) => {
+                    // Prep just ended → response phase → trigger the
+                    // recorder imperatively. Skip when this question
+                    // was already completed on a previous visit (its
+                    // Next-ready flag is pre-seeded on resume) — we
+                    // must not re-record over an existing answer.
+                    if (p === 'response' && !interviewNextReady[timerKey]) {
+                      setInterviewAutoRecToken(s => ({ ...s, [timerKey]: (typeof s[timerKey] === 'number' ? s[timerKey] as number : 0) + 1 }))
+                    }
+                  }}
+                  onExpire={() => {
+                    setInterviewTimerState(s => ({ ...s, [timerKey]: 'expired' }))
+                    // Fallback: if recording never fired (mic blocked),
+                    // transcription will never set Next-ready — reveal
+                    // it here so the student isn't stuck. No-op when
+                    // onDone already flipped it.
+                    setInterviewNextReady(s => s[timerKey] ? s : { ...s, [timerKey]: true })
+                  }}
                 />
-                {(phase === 'idle' || timerExpired) && (
+                {isRecording && (
+                  <div role="status" aria-live="assertive" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
+                    <span className="relative inline-flex w-2.5 h-2.5">
+                      <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping" />
+                      <span className="relative inline-flex w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                    </span>
+                    <span className="font-semibold">
+                      {ko ? '녹음 중 (최대 45초, 다른 문제로 이동 불가)' : 'Recording (max 45 sec — navigation is locked)'}
+                    </span>
+                  </div>
+                )}
+                {(phase === 'idle' || timerExpired) && !isRecording && (
                   <div className="text-[11px] text-gray-500 text-center">
                     {phase === 'idle'
                       ? t('study.test.speakingWaitForAudio')
@@ -945,25 +1574,59 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   </div>
                 )}
                 <VoiceRecorderButton
+                  // Keyed per question — same stale-lastTokenRef fix as
+                  // speaking_repeat. "rec-" prefix avoids colliding with
+                  // the sibling ListeningAudioPlayer's key (duplicate
+                  // sibling keys make React duplicate/stack children).
+                  key={`rec-${timerKey}`}
                   sessionId={sessionId} language={language} ko={ko}
                   disabled={phase === 'idle' || timerExpired}
                   onTranscript={appendTranscript}
-                />
-                <textarea
-                  value={answers[currentIdx] ?? ''}
-                  onChange={(e) => {
-                    if (timerExpired) return
-                    const val = e.target.value
-                    setAnswers(prev => { const next = [...prev]; next[currentIdx] = val; return next })
+                  autoStartToken={typeof autoRecToken === 'number' ? autoRecToken : undefined}
+                  maxDurationSec={45}
+                  hideManualButton
+                  onRecordingChange={(rec) => {
+                    // Only flip the recording flag here. Next-ready
+                    // stays false until `onDone` fires — that way the
+                    // student sees a "Processing your answer…" state
+                    // between recording stop and Next appearing. A
+                    // stop transition also flips "processing" on so
+                    // Submit waits for the in-flight transcription.
+                    setInterviewRecordingActive(s => ({ ...s, [timerKey]: rec }))
+                    if (!rec) setInterviewProcessing(s => ({ ...s, [timerKey]: true }))
                   }}
-                  disabled={timerExpired}
-                  rows={6}
-                  placeholder={ko ? '여러 문장으로 답변하세요...' : 'Respond in several sentences...'}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:bg-gray-50 disabled:text-gray-500"
+                  onDone={() => {
+                    // Reveal Next after transcription finishes — the
+                    // student clicks it to advance manually.
+                    setInterviewNextReady(s => ({ ...s, [timerKey]: true }))
+                    setInterviewProcessing(s => ({ ...s, [timerKey]: false }))
+                  }}
                 />
-                <p className="text-[11px] text-gray-500">
-                  {ko ? '근거·예시를 포함한 풍부한 답변을 권장합니다.' : 'Strong answers include reasons or examples.'}
-                </p>
+                {/* Post-recording status: amber "processing" while the
+                    upload + Whisper transcription is in flight… */}
+                {!isRecording && interviewProcessing[timerKey] && (
+                  <div role="status" aria-live="polite" className="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2 text-[12px] text-amber-800 flex items-center gap-2">
+                    <Loader2 className="w-3.5 h-3.5 animate-spin flex-shrink-0" />
+                    <span className="font-semibold">
+                      {ko ? '답변 처리 중…' : 'Processing your answer…'}
+                    </span>
+                  </div>
+                )}
+                {/* …then a green confirmation. Voice-only flow — no
+                    textarea and no transcript preview. The Whisper
+                    transcript still lands in answers[currentIdx] via
+                    appendTranscript for grading; showing it mid-test
+                    invites students to fixate on transcription
+                    glitches instead of moving on (real ETS never
+                    shows a transcript either). */}
+                {(answers[currentIdx] ?? '').trim() && !isRecording && !interviewProcessing[timerKey] && (
+                  <div role="status" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-semibold">
+                      {ko ? '녹음 완료 — 답변이 저장되었습니다' : 'Recording complete — your answer was captured'}
+                    </span>
+                  </div>
+                )}
               </div>
             )
           })()
@@ -1005,43 +1668,73 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         )}
       </div>
 
-      {/* Footer — prev / next / submit */}
-      <div className="flex-shrink-0 px-5 py-3 border-t border-gray-100 bg-white flex items-center gap-2">
-        <button
-          type="button"
-          onClick={() => setCurrentIdx(i => Math.max(0, i - 1))}
-          disabled={currentIdx === 0 || audioPlaying}
-          className="h-11 w-11 rounded-full bg-white border border-gray-200 text-gray-700 inline-flex items-center justify-center disabled:opacity-40"
-          aria-label={String(t('study.test.previous'))}
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </button>
-        {currentIdx === test.questions.length - 1 ? (
-          <button
-            type="button"
-            onClick={() => setConfirmOpen(true)}
-            disabled={phase === 'submitting' || audioPlaying}
-            className="flex-1 h-11 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
-          >
-            {phase === 'submitting'
-              ? <Loader2 className="w-4 h-4 animate-spin" />
-              : null}
-            {answered < test.questions.length
-              ? t('study.test.submitWithUnanswered', { count: String(test.questions.length - answered) })
-              : t('study.test.submit')}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))}
-            disabled={audioPlaying}
-            className="flex-1 h-11 rounded-full bg-gray-900 text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
-          >
-            {t('study.test.next')}
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        )}
-      </div>
+      {/* Footer — prev / next / submit. Speaking items: Next appears
+          ONLY after both the audio finished AND the recording is done.
+          audioFinished flips true from `onFirstPlayEnd`. recordingDone
+          is derived from `interviewRecordingActive` — true when the
+          recorder either hasn't started yet after the auto-record
+          safety window OR has stopped after starting. */}
+      {(() => {
+        const isSpeakingItem = q.type === 'speaking_repeat' || q.type === 'speaking_interview'
+        const isLast = currentIdx === test.questions.length - 1
+        const speakingKey = q.type === 'speaking_repeat' ? `repeat-${currentIdx}` : `interview-${currentIdx}`
+        // Next button appears after the student's audio has been
+        // PROCESSED — i.e., Whisper transcription completed. Set by
+        // VoiceRecorderButton's `onDone` callback and by the safety
+        // timeout scheduled from `onFirstPlayEnd` (so the student
+        // isn't stuck if auto-record silently fails).
+        if (isSpeakingItem && !isLast && !interviewNextReady[speakingKey]) return null
+        return (
+          <div className="flex-shrink-0 px-5 py-3 border-t border-gray-100 bg-white flex items-center gap-2">
+            {!isSpeakingItem && (
+              <button
+                type="button"
+                onClick={() => setCurrentIdx(i => Math.max(0, i - 1))}
+                disabled={currentIdx === 0 || audioPlaying}
+                className="h-11 w-11 rounded-full bg-white border border-gray-200 text-gray-700 inline-flex items-center justify-center disabled:opacity-40"
+                aria-label={String(t('study.test.previous'))}
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+            )}
+            {isLast ? (() => {
+              // Submit waits for any in-flight recording OR Whisper
+              // transcription — otherwise a fast Submit on the last
+              // speaking question races the transcription and the
+              // final answer submits as blank.
+              const speechBusy = Object.values(interviewRecordingActive).some(Boolean)
+                || Object.values(interviewProcessing).some(Boolean)
+              return (
+                <button
+                  type="button"
+                  onClick={() => setConfirmOpen(true)}
+                  disabled={phase === 'submitting' || audioPlaying || speechBusy}
+                  className="flex-1 h-11 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                >
+                  {(phase === 'submitting' || speechBusy)
+                    ? <Loader2 className="w-4 h-4 animate-spin" />
+                    : null}
+                  {speechBusy
+                    ? (ko ? '답변 처리 중…' : 'Processing answer…')
+                    : weightedAnswered < totalQuestions
+                      ? t('study.test.submitWithUnanswered', { count: String(totalQuestions - weightedAnswered) })
+                      : t('study.test.submit')}
+                </button>
+              )
+            })() : (
+              <button
+                type="button"
+                onClick={() => setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))}
+                disabled={audioPlaying}
+                className="flex-1 h-11 rounded-full bg-gray-900 text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+              >
+                {t('study.test.next')}
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+        )
+      })()}
       {audioPlaying && (
         <div className="absolute bottom-16 left-4 right-4 rounded-lg bg-primary/95 text-white text-[12px] px-3 py-2 shadow-lg pointer-events-none text-center">
           {t('study.test.audioLockedNav')}
@@ -1112,8 +1805,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           answers grade as incorrect, so this is a real choice point. */}
       {confirmOpen && (
         <SubmitConfirmModal
-          unanswered={test.questions.length - answered}
-          totalQuestions={test.questions.length}
+          unanswered={totalQuestions - weightedAnswered}
+          totalQuestions={totalQuestions}
           t={t}
           onCancel={() => setConfirmOpen(false)}
           onConfirm={() => { setConfirmOpen(false); void submit() }}
@@ -1313,6 +2006,15 @@ function WritingFeedbackPanel({
     }
   }
 
+  // Auto-request on mount (the panel only mounts when the review item
+  // is expanded). Since submit pre-grades every open response, this
+  // usually returns the STORED grade from the dedupe cache instantly —
+  // no extra model call and no extra tap.
+  useEffect(() => {
+    if (response.trim().length >= 20) void requestGrade()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   if (state === 'done' && grade) {
     return (
       <div className="mt-2 rounded-lg border border-primary/20 bg-primary/[0.03] px-3 py-3 space-y-2">
@@ -1431,6 +2133,21 @@ function ReviewView({
   const { t } = useTranslation()
   const [expanded, setExpanded] = useState<number | null>(null)
 
+  // Weighted question numbering — mirrors the taking view: a CtW item
+  // with 10 blanks occupies positions N..N+9 of the weighted total, so
+  // review labels match the "Question 12–21 of 50" numbering the
+  // student saw during the test.
+  const reviewRanges: { startAt: number; endAt: number }[] = []
+  {
+    let acc = 0
+    for (const q of test.questions) {
+      const w = q.type === 'fill_in_blanks' ? Math.max(1, q.blanks?.length ?? 1) : 1
+      reviewRanges.push({ startAt: acc + 1, endAt: acc + w })
+      acc += w
+    }
+  }
+  const reviewTotal = reviewRanges.length > 0 ? reviewRanges[reviewRanges.length - 1]!.endAt : 0
+
   return (
     <div className="flex-1 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
       <div className="px-5 py-6 space-y-5">
@@ -1522,7 +2239,7 @@ function ReviewView({
                 <div
                   key={i}
                   className={`rounded-xl border bg-white overflow-hidden ${
-                    verdict.correct ? 'border-gray-200' : 'border-rose-200'
+                    verdict.ungraded || verdict.correct ? 'border-gray-200' : 'border-rose-200'
                   }`}
                 >
                   <button
@@ -1530,14 +2247,30 @@ function ReviewView({
                     onClick={() => setExpanded(prev => prev === i ? null : i)}
                     className="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-gray-50"
                   >
-                    {verdict.correct
-                      ? <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      : studentAnswer == null
-                        ? <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
-                        : <XCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />}
+                    {verdict.ungraded
+                      // Open-response: no ✓/✗ — scored by the rubric
+                      // panel inside, not the answer key, and excluded
+                      // from the auto-score.
+                      ? <Sparkles className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      : verdict.correct
+                        ? <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        : studentAnswer == null
+                          ? <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                          : <XCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />}
                     <div className="flex-1 min-w-0">
                       <div className="text-xs text-gray-500">
-                        {t('study.test.questionN', { current: String(i + 1), total: String(test.questions.length) })}
+                        {(() => {
+                          const r = reviewRanges[i]
+                          const cur = r
+                            ? (r.startAt === r.endAt ? String(r.startAt) : `${r.startAt}–${r.endAt}`)
+                            : String(i + 1)
+                          return t('study.test.questionN', { current: cur, total: String(reviewTotal) })
+                        })()}
+                        {verdict.ungraded && (
+                          <span className="ml-1.5 text-primary font-medium">
+                            · {ko ? '루브릭 채점 (점수 미포함)' : 'rubric-graded (not in score)'}
+                          </span>
+                        )}
                       </div>
                       <div className="text-sm text-gray-900 line-clamp-2 mt-0.5">
                         {normalizeDisplayText(q.prompt)}
@@ -1558,7 +2291,43 @@ function ReviewView({
                           render per-choice rows; the four Jan-2026 TOEFL
                           item types each have their own answer/correct
                           comparison shape. */}
-                      {(q.type === 'fill_in_blanks' || q.type === 'arrange_words'
+                      {q.type === 'fill_in_blanks' && (q.blanks?.length ?? 0) > 0 ? (
+                        // Complete-the-Words: per-blank rows with the
+                        // student's letters vs the expected word — the
+                        // stored answer is a JSON map of blankId→text,
+                        // which would otherwise render as a raw blob.
+                        <div className="space-y-1.5 mt-2">
+                          {(() => {
+                            let parsed: Record<string, string> = {}
+                            try {
+                              if (studentAnswer) parsed = JSON.parse(studentAnswer) as Record<string, string>
+                            } catch { /* unanswered or legacy format */ }
+                            const baseNum = reviewRanges[i]?.startAt ?? 1
+                            return q.blanks!.map((b, bi) => {
+                              const student = (parsed[String(b.id)] ?? '').trim()
+                              const accepted = [b.answer, ...(b.alternates ?? [])]
+                              const ok = !!student && accepted.some(a => a.trim().toLowerCase() === student.toLowerCase())
+                              return (
+                                <div key={b.id} className={`px-3 py-2 rounded-lg text-xs border flex items-center gap-2 ${
+                                  ok ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
+                                     : 'bg-rose-50 border-rose-200 text-rose-900'
+                                }`}>
+                                  <span className="font-semibold tabular-nums flex-shrink-0">{baseNum + bi}.</span>
+                                  <span className="flex-1 min-w-0">
+                                    {student || (ko ? '무응답' : 'not answered')}
+                                    {!ok && (
+                                      <span className="ml-2 font-semibold text-emerald-700">→ {b.answer}</span>
+                                    )}
+                                  </span>
+                                  {ok
+                                    ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                                    : <XCircle className="w-3.5 h-3.5 text-rose-600 flex-shrink-0" />}
+                                </div>
+                              )
+                            })
+                          })()}
+                        </div>
+                      ) : (q.type === 'fill_in_blanks' || q.type === 'arrange_words'
                         || q.type === 'speaking_repeat' || q.type === 'speaking_interview'
                         || q.type === 'writing_email' || q.type === 'writing_discussion') ? (
                         <div className="space-y-2 mt-2">
@@ -1801,7 +2570,10 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
       const pts: Array<[number, number]> = []
       ;(graphic.points ?? []).forEach(p => {
         if (Array.isArray(p) && p.length >= 2) pts.push([Number(p[0]), Number(p[1])])
-        else if (p && typeof p === 'object' && 'x' in p) pts.push([Number((p as { x: number }).x), Number((p as { y: number }).y)])
+        else if (p && typeof p === 'object' && 'x' in p && 'y' in p) {
+          const o = p as Record<string, unknown>
+          pts.push([Number(o.x), Number(o.y)])
+        }
       })
       seriesList.push({ points: pts })
     } else {
@@ -2387,12 +3159,32 @@ type SpeechSignals = {
   clarity?: number | null
 }
 
-function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript }: {
+function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript, autoStartToken, maxDurationSec, onRecordingChange, hideManualButton, onDone }: {
   sessionId: string
   language: 'en' | 'ko'
   ko: boolean
   disabled?: boolean
   onTranscript: (text: string, signals?: SpeechSignals) => void
+  /** When this token value CHANGES (increment / new key), the recorder
+   *  is triggered imperatively. Used by TOEFL Speaking to auto-start
+   *  recording the moment the prep timer expires or the audio ends —
+   *  no manual tap required. Pass undefined for manual-only use. */
+  autoStartToken?: number | string
+  /** Auto-stop the recording after this many seconds. Trims the final
+   *  blob so the Whisper upload only includes audio inside the window. */
+  maxDurationSec?: number
+  /** Fires whenever `recording` state flips, so a parent can gate
+   *  navigation (e.g., lock prev/next while recording). */
+  onRecordingChange?: (recording: boolean) => void
+  /** When true, the manual "Answer with your voice" button is hidden —
+   *  only the live recording indicator is shown. Used by TOEFL Speaking
+   *  where the entire flow is hands-off (autoplay → prep → auto-record
+   *  → auto-advance) and a mic button would be confusing. */
+  hideManualButton?: boolean
+  /** Fires ONCE after the audio has finished uploading + Whisper has
+   *  returned a transcript. Used by TOEFL Speaking to auto-advance to
+   *  the next question without a manual "Next" tap. */
+  onDone?: () => void
 }) {
   const [recording, setRecording] = useState(false)
   const [transcribing, setTranscribing] = useState(false)
@@ -2410,7 +3202,23 @@ function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript }
     if (!micSupported || recording || transcribing || disabled) return
     setMicError(null)
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      // Prefer the mic stream primed earlier by the audio player's
+      // autoplay effect — that request happened during the still-
+      // valid user-activation window from the Start Test click, so we
+      // dodge browser policy that would reject a fresh getUserMedia
+      // call from this deferred timer callback. Falls back to a live
+      // request only if priming didn't happen (e.g., Speaking item was
+      // reached without ever playing an autoplay audio, unlikely).
+      let stream = PRIMED_MIC_STREAM
+      if (stream && stream.getTracks().some(t => t.readyState === 'ended')) {
+        // Cached stream went stale — release and re-request.
+        stream.getTracks().forEach(t => t.stop())
+        PRIMED_MIC_STREAM = null
+        stream = null
+      }
+      if (!stream) {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      }
       streamRef.current = stream
       const mime = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
         ? 'audio/webm;codecs=opus'
@@ -2446,6 +3254,10 @@ function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript }
         } catch { /* silent */ } finally {
           setTranscribing(false)
           setElapsedSec(0)
+          // Fire onDone regardless of transcription success so the
+          // parent's auto-advance flow doesn't get stuck if Whisper
+          // errors out. Empty answer beats stuck screen.
+          onDone?.()
         }
       }
       recRef.current = rec
@@ -2476,15 +3288,62 @@ function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript }
     const rec = recRef.current
     if (!rec || rec.state === 'inactive') return
     rec.stop()
-    streamRef.current?.getTracks().forEach(t => t.stop())
+    // Only stop the tracks if this is NOT the shared primed stream —
+    // otherwise the next Speaking question's recording can't reuse it.
+    if (streamRef.current && streamRef.current !== PRIMED_MIC_STREAM) {
+      streamRef.current.getTracks().forEach(t => t.stop())
+    }
     setRecording(false)
     if (tickRef.current) { window.clearInterval(tickRef.current); tickRef.current = null }
     if ('vibrate' in navigator) navigator.vibrate(15)
   }
   useEffect(() => () => {
-    streamRef.current?.getTracks().forEach(t => t.stop())
+    // Discard any in-flight recording on unmount: detach onstop FIRST
+    // so the stop doesn't trigger an upload — the component instance
+    // is per-question (keyed), so a late transcript would otherwise
+    // land in the NEXT question's answer via a stale closure.
+    const rec = recRef.current
+    if (rec && rec.state !== 'inactive') {
+      rec.onstop = null
+      rec.ondataavailable = null
+      try { rec.stop() } catch { /* already stopping */ }
+    }
+    // Same guard as stopRec — don't kill the shared primed stream
+    // when the current speaking item unmounts.
+    if (streamRef.current && streamRef.current !== PRIMED_MIC_STREAM) {
+      streamRef.current.getTracks().forEach(t => t.stop())
+    }
     if (tickRef.current) window.clearInterval(tickRef.current)
   }, [])
+
+  // Auto-start on token change — used by Speaking Interview to fire
+  // the mic the moment the prep countdown hits zero. Guarded against
+  // firing on initial mount when token is undefined; only reacts to
+  // token TRANSITIONS.
+  const lastTokenRef = useRef<number | string | undefined>(autoStartToken)
+  useEffect(() => {
+    if (autoStartToken === undefined) return
+    if (lastTokenRef.current === autoStartToken) return
+    lastTokenRef.current = autoStartToken
+    void startRec()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoStartToken])
+
+  // Auto-stop at maxDurationSec — used by Speaking Interview (45s cap).
+  useEffect(() => {
+    if (!recording || !maxDurationSec) return
+    if (elapsedSec >= maxDurationSec) stopRec()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [elapsedSec, recording, maxDurationSec])
+
+  // Bubble recording state up so parent can lock navigation.
+  const lastRecRef = useRef<boolean>(false)
+  useEffect(() => {
+    if (lastRecRef.current !== recording) {
+      lastRecRef.current = recording
+      onRecordingChange?.(recording)
+    }
+  }, [recording, onRecordingChange])
 
   // Mic entirely unsupported (older browser / WebView) — show a
   // fallback so students know voice-answer isn't available AT ALL,
@@ -2503,6 +3362,30 @@ function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript }
     : (ko ? '녹음을 시작할 수 없습니다. 다시 시도해 주세요.' : "Couldn't start recording. Try again.")
 
   const mmss = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+
+  // Speaking test "hands-off" mode — hide the manual mic button and
+  // show only the recording indicator. The recorder is started by
+  // `autoStartToken` (from the prep-timer expire) and stopped
+  // automatically at `maxDurationSec`.
+  if (hideManualButton) {
+    return (
+      <div className="w-full">
+        {transcribing && (
+          <div className="rounded-lg bg-primary/10 border border-primary/20 px-3 py-2 text-[12px] text-primary flex items-center gap-2">
+            <Loader2 className="w-4 h-4 animate-spin" />
+            <span className="font-semibold">
+              {ko ? '답변 처리 중…' : 'Processing your answer…'}
+            </span>
+          </div>
+        )}
+        {errorText && (
+          <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-[12px] text-rose-800">
+            {errorText}
+          </div>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div className="w-full space-y-2">
@@ -2568,8 +3451,9 @@ function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript }
  *  stop the recorder. Matches ETS timing: 15 s prep → 45 s response
  *  for Take-an-Interview, or a single 15 s response for Listen-and-
  *  Repeat (pass prepSec=0). */
-function SpeakingTimer({ active, prepSec, responseSec, onPhaseChange, onExpire, ko, t }: {
+function SpeakingTimer({ active, paused, prepSec, responseSec, onPhaseChange, onExpire, ko, t }: {
   active: boolean
+  paused?: boolean
   prepSec: number
   responseSec: number
   onPhaseChange?: (phase: 'prep' | 'response' | 'expired') => void
@@ -2579,35 +3463,53 @@ function SpeakingTimer({ active, prepSec, responseSec, onPhaseChange, onExpire, 
 }) {
   const [phase, setPhase] = useState<'idle' | 'prep' | 'response' | 'expired'>('idle')
   const [remaining, setRemaining] = useState(0)
-  const tickRef = useRef<number | null>(null)
+  // Latest-callback refs — the parent recreates onPhaseChange/onExpire
+  // inline on EVERY render (and the test clock re-renders it every
+  // second), so putting them in effect deps used to tear down and
+  // recreate the countdown interval ~every second, racing its own
+  // 1-second tick. That was the "prep timer is buggy" bug: the
+  // countdown stuttered or froze because the interval rarely survived
+  // long enough to fire. Refs keep the interval stable while still
+  // calling the freshest callbacks.
+  const onPhaseChangeRef = useRef(onPhaseChange)
+  const onExpireRef = useRef(onExpire)
+  useEffect(() => { onPhaseChangeRef.current = onPhaseChange }, [onPhaseChange])
+  useEffect(() => { onExpireRef.current = onExpire }, [onExpire])
 
   useEffect(() => {
     if (!active || phase !== 'idle') return
     if (prepSec > 0) {
-      setPhase('prep'); setRemaining(prepSec); onPhaseChange?.('prep')
+      setPhase('prep'); setRemaining(prepSec); onPhaseChangeRef.current?.('prep')
     } else {
-      setPhase('response'); setRemaining(responseSec); onPhaseChange?.('response')
+      setPhase('response'); setRemaining(responseSec); onPhaseChangeRef.current?.('response')
     }
-  }, [active, phase, prepSec, responseSec, onPhaseChange])
+  }, [active, phase, prepSec, responseSec])
 
+  // Stable 1-second countdown — deps are ONLY [phase], so the
+  // interval survives parent re-renders. Pure decrement; phase
+  // transitions happen in the boundary effect below (never inside
+  // the setState updater, which StrictMode double-invokes).
   useEffect(() => {
-    if (phase === 'idle' || phase === 'expired') return
-    tickRef.current = window.setInterval(() => {
-      setRemaining(r => {
-        if (r <= 1) {
-          window.clearInterval(tickRef.current!)
-          if (phase === 'prep') {
-            setPhase('response'); onPhaseChange?.('response')
-            return responseSec
-          }
-          setPhase('expired'); onPhaseChange?.('expired'); onExpire()
-          return 0
-        }
-        return r - 1
-      })
+    if (phase === 'idle' || phase === 'expired' || paused) return
+    const id = window.setInterval(() => {
+      setRemaining(r => Math.max(0, r - 1))
     }, 1000)
-    return () => { if (tickRef.current) window.clearInterval(tickRef.current) }
-  }, [phase, responseSec, onExpire, onPhaseChange])
+    return () => window.clearInterval(id)
+  }, [phase, paused])
+
+  // Phase-boundary transitions when the countdown hits zero.
+  useEffect(() => {
+    if (remaining > 0) return
+    if (phase === 'prep') {
+      setPhase('response')
+      setRemaining(responseSec)
+      onPhaseChangeRef.current?.('response')
+    } else if (phase === 'response') {
+      setPhase('expired')
+      onPhaseChangeRef.current?.('expired')
+      onExpireRef.current()
+    }
+  }, [remaining, phase, responseSec])
 
   if (phase === 'idle') return null
 
@@ -2681,6 +3583,109 @@ function normalizeDisplayText(text: string | null | undefined): string {
   return s
 }
 
+/** TOEFL Complete-the-Words letter grid — renders one small input per
+ *  missing letter (OTP-style) so students can't type more than the
+ *  expected count. Auto-advances focus on entry and backs up on
+ *  Backspace. The parent stores the concatenated string as the blank's
+ *  answer; this component just presents it as N single-char cells. */
+function BlankLetterInput({ id, expectedLen, value, onChange, isFilled, ko }: {
+  id: number
+  expectedLen: number
+  value: string
+  onChange: (val: string) => void
+  isFilled: boolean
+  ko: boolean
+}) {
+  const refs = useRef<Array<HTMLInputElement | null>>([])
+  const chars: string[] = Array.from({ length: expectedLen }, (_, i) => value[i] ?? '')
+
+  const setCharAt = (i: number, ch: string) => {
+    const next = chars.slice()
+    next[i] = ch
+    // Trim trailing empties for a clean stored value ("do", not "do  ").
+    let end = next.length
+    while (end > 0 && next[end - 1] === '') end--
+    onChange(next.slice(0, end).join(''))
+  }
+
+  const focusAt = (i: number) => {
+    const el = refs.current[i]
+    if (el) { el.focus(); el.select() }
+  }
+
+  return (
+    <span
+      className="relative inline-flex items-end gap-[3px] align-baseline mx-1"
+      style={{ paddingTop: 16 }}
+      role="group"
+      aria-label={ko ? `${id}번 빈칸 (${expectedLen}글자)` : `Blank ${id} (${expectedLen} letters)`}
+    >
+      {/* Blank-number badge above the row */}
+      <span
+        aria-hidden
+        className={`absolute -top-0 left-1/2 -translate-x-1/2 inline-flex items-center justify-center text-[9.5px] font-bold h-3.5 min-w-3.5 px-1 rounded-full tabular-nums leading-none ${
+          isFilled ? 'bg-emerald-500 text-white' : 'bg-primary text-white'
+        }`}
+      >
+        {id}
+      </span>
+      {chars.map((ch, i) => (
+        <input
+          key={i}
+          ref={(el) => { refs.current[i] = el }}
+          type="text"
+          inputMode="text"
+          value={ch}
+          onChange={(e) => {
+            const raw = e.target.value
+            // Handle paste: user might paste "hello" into cell 0.
+            if (raw.length > 1) {
+              const chunk = raw.slice(0, expectedLen - i)
+              const next = chars.slice()
+              for (let k = 0; k < chunk.length; k++) next[i + k] = chunk[k]!
+              let end = next.length
+              while (end > 0 && next[end - 1] === '') end--
+              onChange(next.slice(0, end).join(''))
+              const target = Math.min(i + chunk.length, expectedLen - 1)
+              setTimeout(() => focusAt(target), 0)
+              return
+            }
+            const last = raw.slice(-1)
+            setCharAt(i, last)
+            if (last && i < expectedLen - 1) setTimeout(() => focusAt(i + 1), 0)
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Backspace') {
+              if (!chars[i] && i > 0) {
+                e.preventDefault()
+                setCharAt(i - 1, '')
+                setTimeout(() => focusAt(i - 1), 0)
+              }
+            } else if (e.key === 'ArrowLeft' && i > 0) {
+              e.preventDefault()
+              focusAt(i - 1)
+            } else if (e.key === 'ArrowRight' && i < expectedLen - 1) {
+              e.preventDefault()
+              focusAt(i + 1)
+            }
+          }}
+          onFocus={(e) => e.currentTarget.select()}
+          maxLength={1}
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+          className={`w-[22px] h-[26px] text-center text-[15px] font-semibold rounded-md border-b-2 bg-white focus:outline-none tabular-nums ${
+            ch
+              ? 'border-emerald-500 text-emerald-700'
+              : 'border-primary/40 text-primary focus:border-primary'
+          }`}
+          aria-label={ko ? `${id}번 빈칸 ${i + 1}번째 글자` : `Blank ${id} letter ${i + 1}`}
+        />
+      ))}
+    </span>
+  )
+}
+
 /** TOEFL Listening audio player. Plays the transcript via browser TTS
  *  and hides the text until the student opts to reveal it. Enforces the
  *  ETS "up to 2 plays" convention with a hidden replay counter. When
@@ -2698,6 +3703,43 @@ const LISTENING_PLAY_COUNTS: Record<string, number> = {}
 // if the student replays. Keyed by (voice + text) hash — matches what
 // the server computes.
 const AUDIO_URL_CACHE: Record<string, string> = {}
+
+// Global mic stream cache — Speaking auto-record works around browser
+// "must be a user gesture" policy by requesting getUserMedia the FIRST
+// time an autoplay-enabled audio player mounts. That mount happens
+// during the propagated user-activation window from the "Start Test"
+// tap, so permission grants without an extra prompt on the second and
+// later Speaking items. Once granted, the stream is held open here
+// and reused by every VoiceRecorderButton on the page.
+let PRIMED_MIC_STREAM: MediaStream | null = null
+let PRIMED_MIC_ATTEMPTED = false
+async function primeMicStream(opts?: { force?: boolean }): Promise<MediaStream | null> {
+  if (PRIMED_MIC_STREAM) return PRIMED_MIC_STREAM
+  // `force` (a fresh user gesture, e.g. the Start Speaking gate tap)
+  // retries even after an earlier silent denial — some browsers only
+  // show the permission prompt inside a gesture.
+  if (PRIMED_MIC_ATTEMPTED && !opts?.force) return null
+  PRIMED_MIC_ATTEMPTED = true
+  if (typeof window === 'undefined' || !navigator.mediaDevices?.getUserMedia) return null
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    PRIMED_MIC_STREAM = stream
+    return stream
+  } catch (err) {
+    console.warn('[primeMicStream] denied or unavailable', err)
+    return null
+  }
+}
+// Stop the cached mic tracks (the browser's red recording indicator
+// stays lit while the stream is open) and reset the attempt flag so a
+// later test on the same page load can re-prompt.
+function releaseMicStream() {
+  if (PRIMED_MIC_STREAM) {
+    for (const track of PRIMED_MIC_STREAM.getTracks()) track.stop()
+    PRIMED_MIC_STREAM = null
+  }
+  PRIMED_MIC_ATTEMPTED = false
+}
 
 // OpenAI TTS voices. We rotate speakers through these for dialogues;
 // non-dialogue passages use the first voice.
@@ -2726,26 +3768,54 @@ function parseTurns(cleaned: string): Array<{ speaker: string; text: string }> {
 }
 
 /** Server call — returns cached URL if the (voice, text) hash already
- *  exists in storage; otherwise generates + uploads a new MP3. */
+ *  exists in storage; otherwise generates + uploads a new MP3. Retries
+ *  transient failures (network error, 429, 5xx) once before giving up
+ *  — OpenAI TTS occasionally returns 502 on heavy load and Supabase
+ *  Storage sometimes 5xx on upload; a single retry catches most of
+ *  these without perceptibly delaying the student. */
 async function fetchAudioUrl(text: string, voice: OpenAiVoice): Promise<string | null> {
   const cacheKey = `${voice}\n${text}`
   if (AUDIO_URL_CACHE[cacheKey]) return AUDIO_URL_CACHE[cacheKey]
-  try {
-    const res = await fetch('/api/study/listening/tts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
-      body: JSON.stringify({ text, voice, model: 'tts-1' }),
+  const headers = { 'Content-Type': 'application/json', ...(await authHeaders()) }
+  const body = JSON.stringify({ text, voice, model: 'tts-1' })
+  const attempt = async (): Promise<{ ok: boolean; url?: string; status?: number; err?: string }> => {
+    try {
+      const res = await fetch('/api/study/listening/tts', { method: 'POST', headers, body })
+      if (!res.ok) {
+        // Read the body so we can log WHY the server failed. Fall back
+        // gracefully if the body isn't JSON.
+        const errBody = await res.text().catch(() => '')
+        return { ok: false, status: res.status, err: errBody.slice(0, 200) }
+      }
+      const { url } = await res.json() as { url: string }
+      return { ok: true, url }
+    } catch (e) {
+      return { ok: false, err: e instanceof Error ? e.message : String(e) }
+    }
+  }
+  let result = await attempt()
+  // Retry once on transient failures. 4xx other than 429 = don't retry
+  // (bad request / auth won't fix itself). 429 + 5xx + network = retry.
+  const shouldRetry = !result.ok
+    && (result.status == null || result.status === 429 || result.status >= 500)
+  if (shouldRetry) {
+    await new Promise(r => setTimeout(r, 600))
+    result = await attempt()
+  }
+  if (!result.ok) {
+    console.warn('[fetchAudioUrl] TTS failed', {
+      voice,
+      textPreview: text.slice(0, 60),
+      status: result.status,
+      err: result.err,
     })
-    if (!res.ok) return null
-    const { url } = await res.json() as { url: string }
-    AUDIO_URL_CACHE[cacheKey] = url
-    return url
-  } catch {
     return null
   }
+  AUDIO_URL_CACHE[cacheKey] = result.url!
+  return result.url!
 }
 
-function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange, allowTranscriptReveal = false, maxPlays = 2, onFirstPlayEnd }: {
+function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange, allowTranscriptReveal = false, maxPlays = 2, onFirstPlayEnd, autoPlay = false }: {
   /** Stable per-passage key (e.g., "sessionId:convo-1"). Play count
    *  is stored against this key so it persists across navigation. */
   groupKey: string
@@ -2762,6 +3832,11 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
   /** Fires exactly once after the FIRST playthrough completes. Used
    *  by Speaking to kick off the prep-then-response timer. */
   onFirstPlayEnd?: () => void
+  /** Auto-play as soon as the URLs are ready. Used by TOEFL Speaking
+   *  where the student lands on the question and audio must start
+   *  immediately — no tap. Waits for the prefetch effect to resolve
+   *  URLs before firing so we don't try to play() with an empty src. */
+  autoPlay?: boolean
 }) {
   const { t } = useTranslation()
   const [state, setState] = useState<'idle' | 'loading' | 'playing' | 'error'>('idle')
@@ -2771,6 +3846,16 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
   const speakingRef = useRef(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const cancelledRef = useRef(false)
+  // Set when autoplay could not start (blocked by browser policy or
+  // TTS prefetch failure). Re-enables the manual Play button so the
+  // student can start/retry with a real tap instead of being stuck
+  // on "Getting audio ready…" forever.
+  const [autoPlayStalled, setAutoPlayStalled] = useState(false)
+  // True once playback has EVER started for this player. The 4s
+  // autoplay stall check tests this instead of speakingRef — a short
+  // clip that starts and FINISHES within 4s would otherwise read as
+  // "not speaking" and wrongly resurface the manual Play button.
+  const hasStartedRef = useRef(false)
 
   const cleaned = transcript.replace(/^\s*transcript:\s*/i, '').trim()
 
@@ -2792,10 +3877,76 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
   }, [cleaned])
 
   const setSpeaking = useCallback((v: boolean) => {
+    if (v) hasStartedRef.current = true
     speakingRef.current = v
     setState(prev => v ? 'playing' : (prev === 'error' ? 'error' : 'idle'))
     onSpeakingChange?.(v)
   }, [onSpeakingChange])
+
+  // Prefetched URLs (and warmed MP3 bytes) live here so `play()` can
+  // reuse them instead of round-tripping the API again. Keyed by
+  // segment index. Populated by the prefetch effect below.
+  const prefetchedUrlsRef = useRef<Array<string | null>>([])
+
+  // Prefetch on mount: kick off /api/study/listening/tts for every
+  // segment as soon as the player mounts. This overlaps the ~1-3 s
+  // per-segment TTS generation with the student reading the prompt,
+  // so hitting Play is instant on warm cache and much faster on cold.
+  //
+  // We also warm the browser cache by firing a HEAD to each MP3 URL
+  // once it resolves — this makes `<audio>.src = url` inside playNext
+  // near-instantaneous instead of waiting on a fresh first-byte round
+  // trip. Guarded so the second play (which reuses the same URLs)
+  // doesn't re-warm.
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      const urls = await Promise.all(
+        segments.map((s, i) =>
+          prefetchedUrlsRef.current[i] ?? fetchAudioUrl(s.text, s.voice),
+        ),
+      )
+      if (cancelled) return
+      prefetchedUrlsRef.current = urls
+      // Warm the CDN edge for the first segment so the audio element
+      // can start playing without waiting on first-byte. Fire-and-
+      // forget; ignore errors.
+      const firstUrl = urls.find(u => !!u)
+      if (firstUrl) {
+        void fetch(firstUrl, { method: 'GET', cache: 'force-cache' }).catch(() => {})
+      }
+      // TOEFL Speaking auto-play — kick off playback as soon as the
+      // URLs resolve and the browser cache is warm. If any URL failed
+      // to prefetch, or the browser blocks programmatic play(), we DO
+      // NOT silently skip the audio — instead we flip autoPlayStalled,
+      // which re-enables the Play button so the student can start
+      // playback with a real tap (a user gesture the browser always
+      // honours). The audio is part of the task; skipping it would
+      // leave the student answering a question they never heard.
+      if (autoPlay && playCount === 0) {
+        if (urls.every(u => !!u)) {
+          void primeMicStream()
+          void play()
+          // 4s stall check: if playback has never STARTED by then,
+          // surface the manual Play button instead of skipping. Uses
+          // hasStartedRef, not speakingRef — a short clip can start
+          // AND finish inside 4s and must not count as stalled.
+          window.setTimeout(() => {
+            if (!cancelled && !hasStartedRef.current) {
+              console.warn('[ListeningAudioPlayer] autoplay stalled — enabling manual Play as fallback')
+              setAutoPlayStalled(true)
+            }
+          }, 4000)
+        } else {
+          console.warn('[ListeningAudioPlayer] prefetch incomplete — enabling manual Play (tap retries TTS)')
+          setAutoPlayStalled(true)
+          setState('error')
+        }
+      }
+    })()
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [segments, autoPlay])
 
   const play = async () => {
     if (state === 'playing' || state === 'loading' || playCount >= maxPlays) return
@@ -2807,8 +3958,16 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
 
     // Fetch all segment URLs up front. Cached hits are instant; misses
     // trigger OpenAI TTS on the server (~1-3 s per segment). Fetching
-    // in parallel minimises perceived latency for dialogues.
-    const urls = await Promise.all(segments.map(s => fetchAudioUrl(s.text, s.voice)))
+    // in parallel minimises perceived latency for dialogues. If the
+    // prefetch effect already resolved the URLs, we skip the network
+    // hop entirely.
+    const urls = prefetchedUrlsRef.current.length === segments.length
+      && prefetchedUrlsRef.current.every(u => u != null)
+      ? prefetchedUrlsRef.current
+      : await Promise.all(segments.map((s, i) =>
+          prefetchedUrlsRef.current[i] ?? fetchAudioUrl(s.text, s.voice),
+        ))
+    prefetchedUrlsRef.current = urls
     if (cancelledRef.current) { setSpeaking(false); return }
     if (urls.some(u => !u)) {
       console.error('[ListeningAudioPlayer] one or more TTS fetches failed')
@@ -2816,6 +3975,13 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
       // Refund the play — the student didn't actually hear anything.
       setPlayCount(nextCount - 1)
       LISTENING_PLAY_COUNTS[groupKey] = nextCount - 1
+      // Surface the manual Play button (error state enables it) so
+      // the student can retry — a tap re-runs this function and the
+      // per-URL fetch retries the failed segments. Do NOT fire
+      // onFirstPlayEnd here: skipping the audio would let the flow
+      // continue on a question the student never heard, and a later
+      // successful retry would then double-fire the flow.
+      setAutoPlayStalled(true)
       return
     }
 
@@ -2878,7 +4044,16 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
         <button
           type="button"
           onClick={play}
-          disabled={state === 'playing' || state === 'loading' || playCount >= maxPlays}
+          // When autoPlay is on and healthy, the button is a status
+          // indicator — disabled. But if autoplay STALLS (browser
+          // blocked play(), or TTS prefetch failed), we re-enable it
+          // so the student can start/retry playback with a real tap.
+          // A permanently-dead button was the "stuck at Getting audio
+          // ready" bug.
+          disabled={
+            state === 'playing' || state === 'loading' || playCount >= maxPlays
+            || (autoPlay && !autoPlayStalled && state !== 'error')
+          }
           className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
           aria-label={String(t('study.test.audioPlaying'))}
         >
@@ -2896,14 +4071,25 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
                 ? t('study.test.audioPlaying')
                 : state === 'error'
                   ? t('study.test.audioError')
-                  : playCount === 0
-                    ? t('study.test.audioPlayCta')
-                    : t('study.test.audioReplayCta')}
+                  : autoPlay
+                    // Speaking auto-flow labels. When stalled, tell
+                    // the student to tap Play (the button is enabled
+                    // in that state); otherwise show pure status.
+                    ? (playCount === 0
+                        ? (autoPlayStalled
+                            ? String(t('study.test.audioPlayCta'))
+                            : (language === 'ko' ? '오디오 준비 중…' : 'Getting audio ready…'))
+                        : (language === 'ko' ? '재생 완료' : 'Playback complete'))
+                    : playCount === 0
+                      ? t('study.test.audioPlayCta')
+                      : t('study.test.audioReplayCta')}
           </div>
           <div className="text-[11px] text-gray-500 mt-0.5 flex items-center gap-2 flex-wrap">
-            <span>
-              {t(replaysLeft === 1 ? 'study.test.audioPlaysLeft' : 'study.test.audioPlaysLeftPlural', { count: String(replaysLeft) })}
-            </span>
+            {!autoPlay && (
+              <span>
+                {t(replaysLeft === 1 ? 'study.test.audioPlaysLeft' : 'study.test.audioPlaysLeftPlural', { count: String(replaysLeft) })}
+              </span>
+            )}
             {state === 'playing' && progress.total > 1 && (
               <span className="text-primary font-semibold tabular-nums">
                 {t('study.test.audioTurnProgress', { current: String(progress.current), total: String(progress.total) })}
@@ -2935,6 +4121,276 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
           <PassageParagraphs text={cleaned} />
         </div>
       )}
+    </div>
+  )
+}
+
+/** TOEFL Writing scenario renderer — makes Email + Academic Discussion
+ *  passages easier to scan than a wall of prose. Email: bold the
+ *  From: / To: / Subject: headers, underline the numbered bullets in
+ *  the "Write a reply that:" block. Discussion: split into per-speaker
+ *  cards so the professor's prompt and each student's opinion are
+ *  visually distinct instead of running together as one paragraph. */
+function WritingScenario({ text, kind }: { text: string; kind: 'email' | 'discussion' }) {
+  const normalized = normalizeDisplayText(text)
+
+  if (kind === 'discussion') {
+    return <DiscussionScenario normalized={normalized} />
+  }
+
+  // ETS Jan-2026 Email format: SITUATION PARAGRAPH + "In your email
+  // to X, be sure to:" intro + 3 bullets. NO From:/To:/Subject:
+  // headers. We do our best to split the passage into
+  //   [situation, intro, bullet1, bullet2, bullet3]
+  // even when the model doesn't use `•` markers, doesn't put the
+  // intro on its own line, or emits the whole thing as one paragraph.
+  //
+  // Legacy From:/To:/Subject: format (pre-format-fix cached tests)
+  // gets its own fallback further down so in-flight sessions still
+  // render.
+  const legacyHeader = /^\s*(From|To|Subject|CC|BCC|Date)\s*:\s*/i
+  const bulletLead = /^\s*(?:[•●◦▪□■\-*·]|\(?\d+\)|\d+\.)\s+/
+  // Broad intro detector — any line signalling "here comes the task
+  // list". Matches "In your email …:", "In your response …:", "Your
+  // email should …:", "Include the following …:", "Be sure to …:",
+  // "Address the following:", etc.
+  const introBroad = /(?:^|\n)\s*((?:in\s+your\s+(?:email|reply|response|message)|your\s+email\s+should|be\s+sure\s+to|include\s+the\s+following|address\s+the\s+following|make\s+sure\s+to|remember\s+to|the\s+email\s+should|write\s+(?:an?\s+email|a\s+reply|your\s+email)|please\s+(?:include|address)|your\s+email\s+must)\b[^\n:]{0,120}?:)\s*(?:\n|$)/i
+
+  const introMatch = normalized.match(introBroad)
+  let situationText = ''
+  let introLine: string | null = null
+  let taskBlock = ''
+  if (introMatch && introMatch.index != null) {
+    const introStart = introMatch.index + introMatch[0].indexOf(introMatch[1]!)
+    const introEnd = introStart + introMatch[1]!.length
+    situationText = normalized.slice(0, introStart).trim()
+    introLine = introMatch[1]!.trim()
+    taskBlock = normalized.slice(introEnd).trim()
+  }
+
+  // Extract bullets from taskBlock. Preference order:
+  //   1. Lines that start with a bullet marker (•, -, *, 1., (1))
+  //   2. Every non-empty line (model forgot bullet markers)
+  //   3. Sentence split (model emitted "Do X. Do Y. Do Z." on one line)
+  const extractBullets = (block: string): string[] => {
+    const lines = block.split(/\n/).map(l => l.trim()).filter(Boolean)
+    const markered = lines.filter(l => bulletLead.test(l))
+    if (markered.length >= 2) {
+      return markered.map(l => l.replace(bulletLead, '').trim())
+    }
+    if (lines.length >= 2) {
+      return lines.map(l => l.replace(bulletLead, '').trim())
+    }
+    if (lines.length === 1) {
+      // Split "Do X. Do Y. Do Z." into three items when each half
+      // starts with an imperative-style capital letter.
+      const parts = lines[0]!
+        .split(/(?<=[.!?])\s+(?=[A-Z])/)
+        .map(s => s.trim())
+        .filter(Boolean)
+      if (parts.length >= 2) return parts
+    }
+    return []
+  }
+  const bullets = extractBullets(taskBlock)
+
+  // Modern format detected — render situation card + task list.
+  if (introLine && bullets.length >= 2) {
+    return (
+      <div className="space-y-3">
+        <div className="rounded-lg bg-primary/[0.04] border border-primary/15 px-3.5 py-3">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-primary mb-1.5">
+            {'Situation'}
+          </div>
+          <p className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">
+            {situationText}
+          </p>
+        </div>
+        <div className="rounded-lg bg-amber-50 border border-amber-200 px-3.5 py-3">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-amber-800 mb-2 flex items-center gap-1.5">
+            <span>Include in your email</span>
+            <span className="inline-flex items-center px-1.5 py-0.5 rounded-full bg-amber-200 text-amber-900 text-[9px] font-bold">
+              {bullets.length}
+            </span>
+          </div>
+          <ul className="space-y-2">
+            {bullets.map((body, i) => (
+              <li key={i} className="flex gap-2 text-[13.5px]">
+                <span className="flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500 text-white text-[11px] font-bold tabular-nums mt-0.5">
+                  {i + 1}
+                </span>
+                <span className="text-gray-900 leading-relaxed">{body}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+
+  // Legacy fallback — From:/To:/Subject: headers + numbered bullets.
+  // Kept for compatibility with tests generated under the prior spec.
+  const lines = normalized.split(/\n/)
+  return (
+    <div className="space-y-2">
+      {lines.map((raw, i) => {
+        const line = raw
+        if (!line.trim()) return <div key={i} className="h-2" aria-hidden />
+
+        const hm = line.match(legacyHeader)
+        if (hm) {
+          const label = hm[1]
+          const rest = line.slice(hm[0].length)
+          return (
+            <div key={i} className="flex gap-2 text-[13.5px]">
+              <span className="font-bold text-gray-900 min-w-[68px]">{label}:</span>
+              <span className="text-gray-800">{rest}</span>
+            </div>
+          )
+        }
+        if (/^\s*(?:write|please write|reply|in your email|be sure to)\b.*:\s*$/i.test(line)) {
+          return (
+            <p key={i} className="mt-2 text-[13.5px] font-semibold text-primary underline underline-offset-4">
+              {line.trim()}
+            </p>
+          )
+        }
+        if (bulletLead.test(line)) {
+          const m = line.match(bulletLead)!
+          const marker = m[0].trim()
+          const body = line.slice(m[0].length)
+          return (
+            <div key={i} className="flex gap-2 text-[13.5px] pl-1">
+              <span className="font-bold text-primary tabular-nums">{marker}</span>
+              <span className="text-gray-800">{body}</span>
+            </div>
+          )
+        }
+
+        return (
+          <p key={i} className="text-[13.5px] text-gray-800 whitespace-pre-wrap">
+            {line}
+          </p>
+        )
+      })}
+    </div>
+  )
+}
+
+/** Splits an Academic Discussion passage into speaker blocks
+ *  [Professor's prompt, Student 1, Student 2, …] and renders each as
+ *  a distinct card with a role tag + name header so opinions don't
+ *  run together as one paragraph.
+ *
+ *  The parser handles three ways the model formats speakers:
+ *    (a) newline-separated:  "Professor Chen:\n<text>\n\nAisha:\n<text>"
+ *    (b) inline on the same line:  "Professor Chen: <question> Aisha: <reply>"
+ *    (c) mixed (some newlines, some inline).
+ *
+ *  Speaker detection uses a global regex that matches a Title-Cased
+ *  word (optionally prefixed with Professor/Dr/Prof/Student) followed
+ *  by "<optional last name>: ". We deliberately require the first
+ *  letter to be uppercase so we don't accidentally match "e.g.:" or
+ *  "note:" inside prose. */
+function DiscussionScenario({ normalized }: { normalized: string }) {
+  // Match: optional role prefix + capitalized name (up to two words)
+  // + colon. Requires at least 2-char first-word and a space or
+  // newline (or start-of-string) beforehand so we don't cut prose in
+  // the middle of a sentence like "the goal: X".
+  const speakerRegex =
+    /(?:^|(?<=[\s\n]))((?:Professor|Prof\.?|Dr\.?|Student|Mr\.?|Ms\.?|Mrs\.?)\s+[A-Z][A-Za-zÀ-ÿ'’.-]{1,30}(?:\s+[A-Z][A-Za-zÀ-ÿ'’.-]{1,30})?|[A-Z][a-zÀ-ÿ'’.-]{1,20}(?:\s+[A-Z][a-zÀ-ÿ'’.-]{1,20})?)\s*:\s*/g
+
+  interface Block { role: 'professor' | 'student'; name: string; body: string }
+  interface Match { start: number; end: number; header: string }
+
+  const matches: Match[] = []
+  let m: RegExpExecArray | null
+  while ((m = speakerRegex.exec(normalized)) != null) {
+    matches.push({
+      start: m.index + (m[0].length - m[0].trimStart().length),
+      end: m.index + m[0].length,
+      header: m[1]!.trim(),
+    })
+  }
+
+  // Drop false positives — a "match" whose body is only a few chars
+  // is almost certainly a bad hit (e.g., "Aisha: yes" mid-sentence).
+  // We keep it only if the following body is >= 15 chars OR it's the
+  // first/last match (they define the structural bounds).
+  const trimmed: Match[] = []
+  for (let i = 0; i < matches.length; i++) {
+    const cur = matches[i]!
+    const next = matches[i + 1]
+    const bodyLen = (next ? next.start : normalized.length) - cur.end
+    if (i === 0 || i === matches.length - 1 || bodyLen >= 15) trimmed.push(cur)
+  }
+
+  if (trimmed.length < 2) {
+    // Structure not detected — fall back to plain text so the student
+    // still sees the passage instead of an empty card.
+    return (
+      <div className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">
+        {normalized}
+      </div>
+    )
+  }
+
+  const blocks: Block[] = []
+  for (let i = 0; i < trimmed.length; i++) {
+    const h = trimmed[i]!
+    const next = trimmed[i + 1]
+    const body = normalized
+      .slice(h.end, next ? next.start : undefined)
+      .replace(/^\s+|\s+$/g, '')
+    // First speaker whose header starts with Professor/Prof/Dr is the
+    // professor. Any speaker AFTER a professor is a student unless
+    // their name is also role-prefixed with Professor/Prof/Dr.
+    const isProf =
+      /^(Professor|Prof\.?|Dr\.?)\b/i.test(h.header) ||
+      (i === 0 && !blocks.some(b => b.role === 'professor') && /\?/.test(body))
+    const cleanName = h.header
+      .replace(/^(?:Professor|Prof\.?|Dr\.?|Student|Mr\.?|Ms\.?|Mrs\.?)\s+/i, '')
+      .trim() || h.header
+    blocks.push({ role: isProf ? 'professor' : 'student', name: cleanName, body })
+  }
+
+  // Number the students 1, 2, 3… so the "which classmate" reference
+  // is unambiguous when the model reuses similar first names.
+  let studentIndex = 0
+  return (
+    <div className="space-y-3">
+      {blocks.map((b, i) => {
+        const isProf = b.role === 'professor'
+        if (!isProf) studentIndex++
+        return (
+          <div
+            key={i}
+            className={`rounded-xl px-4 py-3.5 shadow-[0_1px_2px_-1px_rgba(15,23,42,0.06)] ${
+              isProf
+                ? 'bg-gradient-to-br from-primary/[0.08] to-primary/[0.03] border border-primary/30'
+                : 'bg-white border border-emerald-200'
+            }`}
+          >
+            <div className="flex items-center gap-2 mb-2 pb-2 border-b border-current/10">
+              <span
+                className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                  isProf
+                    ? 'bg-primary text-white'
+                    : 'bg-emerald-500 text-white'
+                }`}
+              >
+                {isProf ? 'Professor' : `Student ${studentIndex}`}
+              </span>
+              <span className={`text-[13.5px] font-bold ${isProf ? 'text-primary' : 'text-emerald-800'}`}>
+                {b.name}
+              </span>
+            </div>
+            <p className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">
+              {b.body}
+            </p>
+          </div>
+        )
+      })}
     </div>
   )
 }
