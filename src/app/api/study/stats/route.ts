@@ -96,6 +96,44 @@ export async function GET(req: NextRequest) {
     last90.push({ date: key, count: dayBuckets[key] ?? 0 })
   }
 
+  // Score trajectory — completed full-test scores per topic (topic =
+  // section identity, e.g. toefl-reading), oldest→newest so the client
+  // can draw "42% → 61% over 3 attempts" trend lines. Only topics with
+  // 2+ completed tests are returned (one point isn't a trend).
+  const { data: testSessions } = await supabaseAdmin
+    .from('study_sessions')
+    .select(`
+      score, completed_at,
+      topic:study_topics ( name_en, name_ko, slug )
+    `)
+    .eq('student_id', user.id)
+    .eq('mode', 'full_test')
+    .eq('status', 'completed')
+    .not('score', 'is', null)
+    .not('completed_at', 'is', null)
+    .order('completed_at', { ascending: true })
+
+  type TrendTopic = { name_en: string; name_ko: string; slug: string }
+  const trendMap = new Map<string, { topic: TrendTopic; attempts: Array<{ score: number; date: string }> }>()
+  for (const row of testSessions ?? []) {
+    const topicRaw = row.topic as unknown
+    const topic = (Array.isArray(topicRaw) ? topicRaw[0] : topicRaw) as TrendTopic | null
+    if (!topic?.slug) continue
+    const entry = trendMap.get(topic.slug) ?? { topic, attempts: [] }
+    entry.attempts.push({
+      score: Math.round(Number(row.score)),
+      date: (row.completed_at as string).slice(0, 10),
+    })
+    trendMap.set(topic.slug, entry)
+  }
+  const scoreTrend = [...trendMap.values()]
+    .filter(e => e.attempts.length >= 2)
+    // Cap to the last 10 attempts per topic so the payload + chart
+    // stay bounded for heavy users.
+    .map(e => ({ ...e.topic, attempts: e.attempts.slice(-10) }))
+    // Most recently active topic first.
+    .sort((a, b) => (b.attempts[b.attempts.length - 1]!.date).localeCompare(a.attempts[a.attempts.length - 1]!.date))
+
   // Top mastered + weakest topics (score-based, attempts >= 2).
   type MasteryRow = { score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }
   const masteryRows = (mastery ?? []).map(m => {
@@ -172,6 +210,7 @@ export async function GET(req: NextRequest) {
     totalHours,
     last14,
     last90,
+    scoreTrend,
     topMastered,
     topWeak,
     achievements,

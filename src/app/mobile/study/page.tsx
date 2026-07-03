@@ -467,21 +467,17 @@ function StudyLandingInner() {
                 // so users see what's coming, but disable navigation
                 // and dim the visuals.
                 const unlocked = test.slug === 'test-sat' || test.slug === 'test-toefl'
-                const CardTag = unlocked ? Link : 'div'
-                const cardProps = unlocked
-                  ? { href: `/mobile/study/topic/${test.slug}` }
-                  : { 'aria-disabled': true as const }
-                return (
-                  <CardTag
-                    key={test.id}
-                    {...cardProps}
-                    style={{ animationDelay: `${i * 40}ms` }}
-                    className={`group relative overflow-hidden rounded-2xl p-4 min-h-[120px] ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out animate-card-in opacity-0 ${
-                      unlocked
-                        ? 'hover:shadow-[0_6px_12px_rgba(0,0,0,0.10),0_20px_40px_-12px_rgba(0,0,0,0.30)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.97]'
-                        : 'cursor-not-allowed grayscale-[0.7] saturate-50'
-                    }`}
-                  >
+                // Rendered via an explicit Link/div branch below — a
+                // polymorphic `CardTag` union can't be typed cleanly
+                // (Link demands href; div rejects it).
+                const cardStyle = { animationDelay: `${i * 40}ms` }
+                const cardClassName = `group relative overflow-hidden rounded-2xl p-4 min-h-[120px] ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out animate-card-in opacity-0 ${
+                  unlocked
+                    ? 'hover:shadow-[0_6px_12px_rgba(0,0,0,0.10),0_20px_40px_-12px_rgba(0,0,0,0.30)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.97]'
+                    : 'cursor-not-allowed grayscale-[0.7] saturate-50'
+                }`
+                const cardBody = (
+                  <>
                     {/* Decorative monogram watermark — large, low-opacity */}
                     <div aria-hidden className="pointer-events-none absolute -top-1 -right-2 text-[62px] font-black tracking-tighter text-white/[0.10] select-none leading-none group-hover:text-white/[0.15] transition-colors">
                       {theme.mono}
@@ -558,7 +554,26 @@ function StudyLandingInner() {
                         </div>
                       </>
                     )}
-                  </CardTag>
+                  </>
+                )
+                return unlocked ? (
+                  <Link
+                    key={test.id}
+                    href={`/mobile/study/topic/${test.slug}`}
+                    style={cardStyle}
+                    className={cardClassName}
+                  >
+                    {cardBody}
+                  </Link>
+                ) : (
+                  <div
+                    key={test.id}
+                    aria-disabled
+                    style={cardStyle}
+                    className={cardClassName}
+                  >
+                    {cardBody}
+                  </div>
                 )
               })}
             </div>

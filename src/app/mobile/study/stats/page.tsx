@@ -24,6 +24,14 @@ interface Stats {
   totalHours: number
   last14: Array<{ date: string; count: number }>
   last90?: Array<{ date: string; count: number }>
+  /** Full-test score trajectory per section topic — attempts are
+   *  oldest→newest, only topics with 2+ completed tests. */
+  scoreTrend?: Array<{
+    name_en: string
+    name_ko: string
+    slug: string
+    attempts: Array<{ score: number; date: string }>
+  }>
   topMastered: Array<{ score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }>
   topWeak: Array<{ score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }>
   achievements: Achievement[]
@@ -132,6 +140,21 @@ function StatsInner() {
         </div>
       )}
 
+      {/* Score trajectory — per-section test scores over time.
+          Only shows once a section has 2+ completed tests. */}
+      {stats.scoreTrend && stats.scoreTrend.length > 0 && (
+        <section>
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
+            {ko ? '점수 추이' : 'Score trend'}
+          </h2>
+          <div className="space-y-2">
+            {stats.scoreTrend.map((row) => (
+              <ScoreTrendRow key={row.slug} row={row} ko={ko} />
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* 14-day sparkline */}
       <section>
         <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
@@ -219,6 +242,66 @@ function StatsInner() {
         </section>
       )}
     </div>
+  )
+}
+
+/** One section's score-over-time row: name + first→latest delta badge
+ *  on the left, a compact SVG line chart of the last ≤10 test scores
+ *  on the right. Taps through to the section's topic page. */
+function ScoreTrendRow({ row, ko }: {
+  row: { name_en: string; name_ko: string; slug: string; attempts: Array<{ score: number; date: string }> }
+  ko: boolean
+}) {
+  const scores = row.attempts.map(a => a.score)
+  const first = scores[0]!
+  const latest = scores[scores.length - 1]!
+  const delta = latest - first
+  const up = delta > 0
+  const flat = delta === 0
+
+  // Line chart: fixed 0-100 y-domain so the line's absolute height is
+  // meaningful across sections (a 90% line sits visibly higher than a
+  // 40% one), x spread evenly across attempts.
+  const W = 120, H = 40, PAD = 4
+  const stepX = scores.length > 1 ? (W - PAD * 2) / (scores.length - 1) : 0
+  const pointAt = (s: number, i: number): [number, number] => [
+    PAD + i * stepX,
+    PAD + (1 - s / 100) * (H - PAD * 2),
+  ]
+  const points = scores.map((s, i) => pointAt(s, i))
+  const path = points.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ')
+  const [lastX, lastY] = points[points.length - 1]!
+
+  return (
+    <Link
+      href={`/mobile/study/topic/${row.slug}`}
+      className="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-white ring-1 ring-gray-200/60 hover:ring-gray-300 transition-all"
+    >
+      <div className="min-w-0">
+        <div className="text-[14px] font-semibold text-gray-900 truncate">
+          {ko ? row.name_ko : row.name_en}
+        </div>
+        <div className="mt-1 flex items-center gap-1.5 text-[12px] tabular-nums">
+          <span className="text-gray-500">{first}%</span>
+          <ArrowRight className="w-3 h-3 text-gray-400" />
+          <span className="font-semibold text-gray-900">{latest}%</span>
+          <span className={`ml-1 font-semibold ${
+            up ? 'text-emerald-600' : flat ? 'text-gray-400' : 'text-rose-500'
+          }`}>
+            {up ? '+' : ''}{delta}
+          </span>
+          <span className="text-gray-400">
+            · {ko ? `${scores.length}회` : `${scores.length} tests`}
+          </span>
+        </div>
+      </div>
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-[120px] h-10 flex-shrink-0" aria-hidden>
+        <path d={path} fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+          className={up ? 'stroke-emerald-500' : flat ? 'stroke-gray-300' : 'stroke-rose-400'} />
+        <circle cx={lastX} cy={lastY} r="3"
+          className={up ? 'fill-emerald-500' : flat ? 'fill-gray-400' : 'fill-rose-400'} />
+      </svg>
+    </Link>
   )
 }
 
