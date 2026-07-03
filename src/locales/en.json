@@ -2619,7 +2619,6 @@
     "totalInvoices": "total invoices",
     "oneTimePayment": "One-time Payment",
     "recurringPayment": "Recurring Payment",
-    "invoiceName": "Invoice Name",
     "invoiceNamePlaceholder": "e.g., Monthly Tuition - January",
     "enterInvoiceName": "Please enter an invoice name",
     "selectStudents": "Please select at least one student",
@@ -2647,7 +2646,6 @@
     "selectPlanAndStudentError": "Please select a payment plan and at least one student",
     "selectedPlanNotFound": "Selected payment plan not found",
     "amountOverride": "Amount Override",
-    "finalAmount": "Final Amount",
     "createdAt": "Created At",
     "pagination": {
       "showing": "Showing",
@@ -3243,8 +3241,8 @@
         "name": "Individual",
         "description": "For tutors & private teachers",
         "features": {
-          "users": "Up to 15 total users",
-          "storage": "2GB cloud storage",
+          "users": "Up to 50 total users",
+          "storage": "5GB cloud storage",
           "access": "Web-only access",
           "contacts": "Contacts & classrooms",
           "sessions": "Sessions & assignments",
@@ -3917,6 +3915,7 @@
       "recommendedEmpty": "We'll suggest topics here once you've studied for a bit.",
       "browseTitle": "Browse subjects",
       "testsTitle": "Test prep",
+      "testPrepTitle": "Test prep",
       "loading": "Loading...",
       "freeformTitle": "Or type anything",
       "freeformPlaceholder": "e.g. \"World War 2\" or \"quadratic equations\"",
@@ -4092,16 +4091,56 @@
       "achievementsTitle": "Achievements"
     },
     "achievements": {
-      "firstSteps":     { "title": "First steps",       "unlocked": "Answered your first question",       "locked": "Answer 1 question" },
-      "centurion":      { "title": "Centurion",         "unlocked": "100 questions answered",            "locked": "{value}/100 questions" },
-      "marathoner":     { "title": "Marathoner",        "unlocked": "1,000 questions answered",          "locked": "{value}/1,000 questions" },
-      "sharpshooter":   { "title": "Sharpshooter",      "unlocked": "90%+ accuracy across 20+ items",    "locked": "Hit 90% across 20+ items" },
-      "dedicated":      { "title": "Dedicated",         "unlocked": "1 hour studied total",              "locked": "{value}/1 hour" },
-      "devoted":        { "title": "Devoted",           "unlocked": "10 hours studied total",            "locked": "{value}/10 hours" },
-      "firstMastery":   { "title": "Mastery unlocked",  "unlocked": "Mastered your first topic",         "locked": "Master 1 topic (80+ score)" },
-      "polyglot":       { "title": "Polymath",          "unlocked": "Mastered 5 topics",                 "locked": "{value}/5 mastered" },
-      "sessionStarter": { "title": "Getting started",   "unlocked": "10 study sessions completed",       "locked": "{value}/10 sessions" },
-      "sessionMaster":  { "title": "Session master",    "unlocked": "50 study sessions completed",       "locked": "{value}/50 sessions" }
+      "firstSteps": {
+        "title": "First steps",
+        "unlocked": "Answered your first question",
+        "locked": "Answer 1 question"
+      },
+      "centurion": {
+        "title": "Centurion",
+        "unlocked": "100 questions answered",
+        "locked": "{value}/100 questions"
+      },
+      "marathoner": {
+        "title": "Marathoner",
+        "unlocked": "1,000 questions answered",
+        "locked": "{value}/1,000 questions"
+      },
+      "sharpshooter": {
+        "title": "Sharpshooter",
+        "unlocked": "90%+ accuracy across 20+ items",
+        "locked": "Hit 90% across 20+ items"
+      },
+      "dedicated": {
+        "title": "Dedicated",
+        "unlocked": "1 hour studied total",
+        "locked": "{value}/1 hour"
+      },
+      "devoted": {
+        "title": "Devoted",
+        "unlocked": "10 hours studied total",
+        "locked": "{value}/10 hours"
+      },
+      "firstMastery": {
+        "title": "Mastery unlocked",
+        "unlocked": "Mastered your first topic",
+        "locked": "Master 1 topic (80+ score)"
+      },
+      "polyglot": {
+        "title": "Polymath",
+        "unlocked": "Mastered 5 topics",
+        "locked": "{value}/5 mastered"
+      },
+      "sessionStarter": {
+        "title": "Getting started",
+        "unlocked": "10 study sessions completed",
+        "locked": "{value}/10 sessions"
+      },
+      "sessionMaster": {
+        "title": "Session master",
+        "unlocked": "50 study sessions completed",
+        "locked": "{value}/50 sessions"
+      }
     },
     "summary": {
       "eyebrow": "Session complete",
@@ -4242,8 +4281,8 @@
       "speakingWaitForAudio": "Listen to the question first",
       "audioPlaying": "Playing…",
       "audioReplayCta": "Listen again?",
-      "audioPlaysLeft": "{count} play left · max 2 per ETS spec",
-      "audioPlaysLeftPlural": "{count} plays left · max 2 per ETS spec",
+      "audioPlaysLeft": "{count} play left",
+      "audioPlaysLeftPlural": "{count} plays left",
       "audioTurnProgress": "Turn {current}/{total}",
       "audioNotSupported": "Your browser does not support audio playback — falling back to transcript.",
       "audioShowTranscript": "Show transcript",
@@ -6007,8 +6046,8 @@
         "period": "/month",
         "description": "For tutors & private teachers",
         "features": [
-          "Up to 15 total users",
-          "2GB cloud storage",
+          "Up to 50 total users",
+          "5GB cloud storage",
           "Web-only access",
           "Contacts & classrooms",
           "Sessions & assignments",
@@ -6138,7 +6177,7 @@
       "title": "About CLASSRAUM"
     },
     "mission": {
-      "description": "CLASSRAUM is an all-in-one, AI-powered academy management platform built to serve educators, directors, and academic institutions. Unlike typical EdTech tools focused on student learning or parent engagement, CLASSRAUM solves the real operational pain points of teachers and directors—those responsible for running schools and delivering education."
+      "description": "CLASSRAUM is an all-in-one, AI-powered platform for academies. For directors and teachers, it takes over the operational work — attendance, report cards, billing, and parent communication. And for every student in the academy, Classraum Study provides an AI study partner. One system, from the front desk to the student's phone."
     },
     "problemSolution": {
       "problem": {
@@ -6222,7 +6261,7 @@
     },
     "cta": {
       "title": "Ready to Transform Your Institution?",
-      "description": "Join hundreds of educational institutions already saving time and improving operations with CLASSRAUM.",
+      "description": "Set up in an afternoon and feel the difference in your first week — free for 10 days, no card required.",
       "startTrial": "Start Free Trial →",
       "demo": "Watch Demo"
     }
@@ -6266,7 +6305,7 @@
       {
         "id": 7,
         "question": "Is there a mobile app available?",
-        "answer": "Yes, we offer mobile apps for both iOS and Android devices (available with Medium Academy plan and above). The mobile app provides full functionality including grade entry, attendance tracking, communication tools, and report viewing. Students and parents can also access their information through the mobile app."
+        "answer": "Yes — Classraum has iOS and Android apps for students and parents, alongside the full web app for directors and teachers. Students and parents can check schedules, assignments, report cards, and invoices, and use Classraum Study on the go."
       },
       {
         "id": 8,
@@ -6276,12 +6315,17 @@
       {
         "id": 9,
         "question": "Is my child's data safe and private?",
-        "answer": "Data security and privacy are our top priorities. We use enterprise-grade encryption, secure servers, and comply with all major privacy regulations including GDPR and COPPA. Student data is never shared with third parties, and we implement strict access controls to ensure only authorized individuals can view sensitive information."
+        "answer": "Data security and privacy are core to how Classraum is built. Traffic is encrypted in transit, access is role-based, and each academy's records are isolated with row-level security. Student data is used only to operate the service for your academy."
       },
       {
         "id": 10,
         "question": "Do you offer support if I have technical issues?",
         "answer": "Yes! We provide comprehensive support through multiple channels including email, live chat, and phone support. Our support team is available during business hours, and we also offer extensive documentation, video tutorials, and a knowledge base. Premium plans include priority support with faster response times."
+      },
+      {
+        "id": 11,
+        "question": "What is Classraum Study?",
+        "answer": "Classraum Study is our AI study app for students. It generates full mock tests for SAT, TOEFL, TOEIC, IELTS, and KSAT, solves photographed problems step by step (Snap), and turns every missed question into an automatic review plan. It has its own free trial — see the Study page for details."
       }
     ],
     "support": {
@@ -6327,7 +6371,8 @@
           "title": "Privacy by Design",
           "description": "Built for trust, engineered for safety"
         }
-      }
+      },
+      "forStudents": "For Students"
     },
     "hero": {
       "badge": "AI-Powered Academy Management",
@@ -6486,7 +6531,7 @@
     },
     "ctaSection": {
       "title": "Ready to Transform Your Institution?",
-      "description": "Join hundreds of educational institutions already saving time and improving operations with CLASSRAUM.",
+      "description": "Set up in an afternoon and feel the difference in your first week — free for 10 days, no card required.",
       "primaryButton": "Start Free Trial →",
       "secondaryButton": "Watch Demo"
     },
@@ -6510,6 +6555,480 @@
         "address": "Address: 1521, 1250 Gyeongui-ro, Paju-si, Gyeonggi-do",
         "phone": "Phone: 010-2299-7460",
         "businessRegistration": "Business Registration No.: 484-86-03572"
+      }
+    },
+    "studySection": {
+      "eyebrow": "New — Classraum Study",
+      "title": "Their academy runs on Classraum.",
+      "titleHighlight": "Now their studying does too.",
+      "description": "Classraum Study is the AI study app for your students — full mock tests for SAT, TOEFL, TOEIC, IELTS, and KSAT, a photo problem solver, and a mistake notebook that plans their review automatically.",
+      "bullets": {
+        "snap": "Snap a photo of any problem and get a step-by-step solution",
+        "tests": "AI-generated mock tests with real timing, sections, and scoring",
+        "review": "Wrong-answer notebook and spaced review built from their mistakes"
+      },
+      "cta": "Explore Classraum Study →",
+      "note": "Available to students on their own, or included with your academy."
+    },
+    "studyPage": {
+      "hero": {
+        "badge": "Classraum Study",
+        "title": "Your AI study partner for",
+        "titleHighlight": "every test that matters",
+        "subtitle": "Practice SAT, TOEFL, TOEIC, IELTS, and KSAT with AI-generated mock tests. Stuck on homework? Snap a photo and see it solved step by step. Every mistake you make becomes part of your review plan.",
+        "ctaPrimary": "Start studying free →",
+        "features": {
+          "freeTrial": "Free trial",
+          "anyDevice": "Works on phone, tablet, and web",
+          "cancelAnytime": "Cancel anytime"
+        }
+      },
+      "snap": {
+        "eyebrow": "Snap",
+        "title": "Stuck? Take a picture.",
+        "description": "Point your camera at any problem — math, English, science — and Snap reads it, solves it, and walks you through every step.",
+        "steps": {
+          "capture": {
+            "title": "Snap it",
+            "description": "Take a photo of the problem, straight from your homework or textbook"
+          },
+          "solve": {
+            "title": "See it solved",
+            "description": "AI reads the problem and explains the solution step by step"
+          },
+          "keep": {
+            "title": "Keep it",
+            "description": "Save it to your notebook and review it before the next test"
+          }
+        }
+      },
+      "testPrep": {
+        "eyebrow": "Test Prep",
+        "title": "Real mock tests, generated fresh every time",
+        "description": "Full-length practice tests with real sections, real timing, and real scoring — never the same test twice.",
+        "items": {
+          "fullTests": {
+            "title": "Full mock tests",
+            "description": "Complete timed tests for SAT, TOEFL, TOEIC, IELTS, and KSAT"
+          },
+          "listening": {
+            "title": "Listening with real audio",
+            "description": "TOEFL-style listening passages with natural spoken audio"
+          },
+          "speaking": {
+            "title": "Speaking, graded",
+            "description": "Record your answer and get instant AI feedback on your response"
+          },
+          "adaptive": {
+            "title": "Matched to you",
+            "description": "Difficulty adapts to your level as you practice"
+          }
+        }
+      },
+      "review": {
+        "eyebrow": "Review",
+        "title": "Your mistakes become your study plan",
+        "description": "Classraum Study keeps track of every question you miss and turns it into what you study next.",
+        "items": {
+          "notebook": {
+            "title": "Wrong-answer notebook",
+            "description": "Every missed question saved, organized by topic, ready to print"
+          },
+          "srs": {
+            "title": "Spaced review",
+            "description": "Questions come back right before you'd forget them"
+          },
+          "daily": {
+            "title": "Daily challenge",
+            "description": "A 5-question quiz on your weakest topics, every day"
+          }
+        }
+      },
+      "motivation": {
+        "eyebrow": "Stay on Track",
+        "title": "Studying that keeps you coming back",
+        "items": {
+          "streaks": {
+            "title": "Streaks",
+            "description": "Build a daily habit one day at a time"
+          },
+          "xp": {
+            "title": "XP and levels",
+            "description": "Every session earns points toward your rank"
+          },
+          "league": {
+            "title": "Weekly league",
+            "description": "Climb from Bronze to Diamond against students like you"
+          }
+        }
+      },
+      "bridge": {
+        "title": "Run an academy?",
+        "description": "Classraum Study is part of Classraum, the all-in-one academy management platform. Give every student in your academy an AI study partner.",
+        "cta": "See Classraum for academies →"
+      },
+      "cta": {
+        "title": "Start studying smarter today",
+        "description": "Free to try. Works on your phone, tablet, or computer.",
+        "button": "Start studying free →"
+      }
+    },
+    "pricingExtras": {
+      "freeTitle": "Start free — no card required",
+      "freeDesc": "Up to 10 users and 2 classrooms, free forever. Upgrade when your academy grows.",
+      "freeCta": "Create a free account",
+      "anchor": "10-day trial on every paid plan · cancel anytime"
+    },
+    "featuresPage": {
+      "hero": {
+        "eyebrow": "Product",
+        "title1": "Everything an academy runs on,",
+        "title2": "in one login.",
+        "sub": "Every screen below is the real product — the same interface your team will use from day one."
+      },
+      "dashboard": {
+        "title": "The whole academy on one screen",
+        "sub": "Revenue, attendance, classrooms, and today's sessions — live, at a glance, for directors and teachers alike."
+      },
+      "sessions": {
+        "title": "Scheduling without spreadsheets",
+        "sub": "Recurring timetables, exceptions, and per-session records that feed attendance, reports, and billing automatically."
+      },
+      "attendance": {
+        "title": "One-tap attendance, instant parent alerts",
+        "sub": "Check in a whole class in seconds — parents get the arrival push the same minute, automatically."
+      },
+      "reports": {
+        "title": "AI report cards in your academy's voice",
+        "sub": "Drafts written from real grades and attendance, in Korean or English. Teachers review, adjust, and send."
+      },
+      "payments": {
+        "title": "Billing that collects itself",
+        "sub": "Recurring invoices, in-app card payments, automatic reminders, and a live collection dashboard."
+      },
+      "communication": {
+        "title": "Every parent in the loop",
+        "sub": "Push, SMS, and in-app messages from one composer — announcements, reminders, and report deliveries included."
+      },
+      "exams": {
+        "title": "Placement tests with shareable links",
+        "sub": "AI-generated level tests that prospective students can take before they enroll — graded automatically."
+      },
+      "study": {
+        "title": "Classraum Study, included",
+        "sub": "The AI study app for every student in your academy — mock tests for five exam families, the Snap photo solver, and a mistake notebook that plans review."
+      },
+      "privacy": {
+        "title": "Private by design",
+        "sub": "Access control and data isolation are built into the foundation, not bolted on.",
+        "p1t": "Role-based access",
+        "p1b": "Directors, teachers, students, and parents each see only what's theirs.",
+        "p2t": "Isolated academy data",
+        "p2b": "Row-level security keeps every academy's records strictly separated.",
+        "p3t": "Encrypted in transit",
+        "p3b": "All traffic between the app and our servers runs over TLS."
+      },
+      "assignments": {
+        "title": "Assignments, handed out to graded",
+        "sub": "Distribute per class, track submissions, and grade with comments — AI can even extract the questions from an uploaded PDF or photo."
+      },
+      "asgMock": {
+        "title": "Assignments",
+        "a1n": "Quadratic equations practice set",
+        "a1m": "Due Jul 10",
+        "a1b": "14/16 submitted",
+        "a2n": "English reading worksheet",
+        "a2m": "Due Jul 8",
+        "a2b": "Graded",
+        "a3n": "Science lab report",
+        "a3m": "PDF upload",
+        "a3b": "AI-extracted questions"
+      },
+      "more": {
+        "title": "…and the rest an academy runs on",
+        "m1t": "Direct messages",
+        "m1b": "One-to-one conversations between teachers, students, and parents.",
+        "m2t": "Announcements",
+        "m2b": "Publish notices per classroom, with attachments.",
+        "m3t": "Students & families",
+        "m3b": "A directory that links students, parents, and siblings.",
+        "m4t": "Archive",
+        "m4b": "Past classrooms and sessions, kept and searchable.",
+        "m5t": "Help center",
+        "m5b": "Searchable guides for staff, right inside the app.",
+        "m6t": "한국어 · English",
+        "m6b": "Fully bilingual across the app, reports, and notifications."
+      },
+      "examsMock": {
+        "title": "Level Tests",
+        "newBtn": "+ New test",
+        "r1n": "Middle school math placement",
+        "r1m": "20 questions · 45 min",
+        "r1b": "Link shared",
+        "r2n": "High school English placement",
+        "r2m": "25 questions · 60 min",
+        "r2b": "Avg. 82",
+        "r3n": "New student diagnostic",
+        "r3m": "15 questions · 30 min",
+        "r3b": "AI graded"
+      }
+    },
+    "home": {
+      "hero": {
+        "title1": "Your academy's whole day,",
+        "title2": "on one system.",
+        "tagline": "From the first attendance check to month-end close.",
+        "sub": "Attendance, AI report cards, billing, and parent communication — directors, teachers, parents, and students share one system through the day.",
+        "ctaStart": "Start for free",
+        "ctaInquiry": "Talk to sales",
+        "ctaKakao": "Ask on KakaoTalk",
+        "anchor": "From ₩24,900/mo · 10-day free trial · no card required"
+      },
+      "ruler": {
+        "attendance": "Attendance",
+        "study": "Self-study",
+        "billing": "Payment",
+        "report": "Reports",
+        "close": "Month-end",
+        "friday": "Fri 15:00",
+        "monthEnd": "EOM"
+      },
+      "mock": {
+        "navDashboard": "Dashboard",
+        "navClassrooms": "Classrooms",
+        "navSessions": "Sessions",
+        "navAttendance": "Attendance",
+        "navReports": "Reports",
+        "navPayments": "Payments",
+        "navMessages": "Messages",
+        "overview": "Overview",
+        "dashTitle": "Dashboard",
+        "customize": "Customize",
+        "kRevenue": "Revenue this month",
+        "kRevenueDelta": "+8.2% from last month",
+        "kUsers": "Active users",
+        "kClassrooms": "Classrooms",
+        "kSessions": "Sessions this week",
+        "todayTitle": "Today's sessions",
+        "viewAll": "View all",
+        "cls1": "Advanced Math A",
+        "cls2": "English Reading",
+        "cls3": "Science Lab",
+        "tch1": "Minji Kim",
+        "tch2": "Junyoung Park",
+        "tch3": "Suhyun Lee",
+        "stDone": "Attendance done",
+        "stLive": "In session",
+        "stWait": "Starts in 40 min",
+        "payTitle": "Payments",
+        "kTotal": "Total revenue",
+        "kPending": "Pending amount",
+        "kMrr": "Monthly recurring",
+        "thStudent": "Student",
+        "thInvoice": "Invoice",
+        "thAmount": "Amount",
+        "thStatus": "Status",
+        "inv1": "March tuition",
+        "inv2": "Materials",
+        "inv3": "Special class",
+        "paid": "Paid",
+        "pendingBadge": "Pending",
+        "greeting": "Good afternoon, Seoyeon",
+        "date": "Fri, Jul 3",
+        "tab1": "Study",
+        "tab2": "Snap",
+        "tab3": "Review",
+        "tab4": "League",
+        "tab5": "Profile",
+        "total": "Total",
+        "rpt2": "Lee** · March report",
+        "finished": "Finished",
+        "msg2": "The March report card has arrived.",
+        "month": "July",
+        "navAssignments": "Assignments",
+        "navAnnouncements": "Announcements",
+        "navNotifications": "Notifications",
+        "navExams": "Exams & Scores",
+        "contacts": "Contacts",
+        "navTeachers": "Teachers",
+        "navFamilies": "Families",
+        "upgrade": "Upgrade Now",
+        "dashSub": "At-a-glance overview of your academy",
+        "customizeFull": "Customize Dashboard",
+        "sessionToday": "Session Today",
+        "recentActivity": "Recent Activity",
+        "viewAllSessions": "View All Sessions",
+        "activity1": "Sessions auto-completed",
+        "activity2": "AI drafts ready · March reports",
+        "billingEyebrow": "Billing & Payments",
+        "paySub": "Manage your payments",
+        "addPayment": "+ Add Payment",
+        "kTemplates": "Active templates",
+        "tabOne": "One-time",
+        "tabRecurring": "Recurring",
+        "tabPlans": "Payment Plans",
+        "searchPh": "Search by status, email, or amount...",
+        "thDue": "Due date",
+        "remaining": "12 min left → today's goal",
+        "statStreak": "Streak",
+        "statSessions": "Sessions",
+        "statProblems": "Problems",
+        "todayLabel": "Today",
+        "resumeTitle": "Continue studying",
+        "resumeSub": "TOEFL Listening · mock test · 1d ago",
+        "readyTitle": "Test ready",
+        "readySub": "Speaking",
+        "challengeTitle": "Daily challenge",
+        "challengeSub": "5 weak-spot questions",
+        "xp": "+50 XP",
+        "payTitleM": "Payment",
+        "payAcademy": "Classraum Demo Academy",
+        "summary": "Invoice summary",
+        "billTo": "Billed to: Choi**",
+        "dueChip": "Due May 27",
+        "subtotal": "Subtotal",
+        "discount": "Discount",
+        "totalAmt": "Total",
+        "methodTitle": "Payment method",
+        "cardBtn": "Card",
+        "mtab1": "Home",
+        "mtab2": "Tasks",
+        "mtab3": "Reports",
+        "mtab4": "Profile",
+        "due1": "Mar 10",
+        "due2": "Jan 2",
+        "due3": "Dec 4"
+      },
+      "shots": {
+        "dashboard": "Classraum manager dashboard showing monthly revenue, active users, classrooms, and weekly sessions",
+        "study": "Classraum Study app home with daily goal, streak, and study queue",
+        "payments": "Parent app invoice screen with tuition items and payment button",
+        "paymentsAdmin": "Payments dashboard with total revenue, pending amount, and invoice list",
+        "reports": "Reports page listing AI-generated monthly student reports",
+        "sessions": "Sessions page with calendar view and session statistics"
+      },
+      "stats": {
+        "tag": "all time, and counting",
+        "s1l": "attendance checks recorded",
+        "s2l": "assignments graded and recorded",
+        "s3l": "alerts and notices delivered"
+      },
+      "m1": {
+        "when": "10 min before class",
+        "title1": "One tap for attendance.",
+        "title2": "Parents know a minute later.",
+        "sub": "The moment a teacher checks attendance, the parent's phone gets an arrival alert. The 'did my kid get there?' calls stop coming.",
+        "uiTitle": "Advanced Math A · Attendance",
+        "st1n": "Lee**",
+        "st2n": "Park**",
+        "st3n": "Choi**",
+        "present": "Present",
+        "late": "Late · alert sent",
+        "notifTitle": "Choi** arrived at the academy.",
+        "notifBody": "Advanced Math A · 5 min late",
+        "caption": "The actual push notification parents receive — automatic, no setup."
+      },
+      "m2": {
+        "when": "At home, studying",
+        "title1": "Class ends.",
+        "title2": "The studying doesn't.",
+        "sub": "Classraum Study is the AI study app included for every student in your academy. Photograph a problem for a step-by-step solution, practice with AI mock tests — and every mistake becomes a review plan.",
+        "uiTitle": "Study · Today",
+        "streak": "🔥 12-day streak",
+        "goalLabel": "Today's study",
+        "goalValue": "18 / 30 min",
+        "item1": "Resume · TOEFL Listening mock test",
+        "item1cta": "Resume",
+        "item2": "Daily challenge · 5 weak spots",
+        "item2cta": "+50 XP",
+        "snapTitle": "Snap · solve by photo",
+        "snap1": "Photographed a quadratic equation problem",
+        "snap2": "AI recognized it — quadratic formula type",
+        "snap3": "3-step solution arrived · saved to mistake notebook"
+      },
+      "m3": {
+        "when": "Same evening",
+        "title1": "Tuition paid in the app,",
+        "title2": "no awkward calls.",
+        "sub": "Invoicing, card payments, and overdue reminders run themselves. Directors never have to bring up money again.",
+        "uiTitle": "March tuition",
+        "uiApp": "Parent app",
+        "row1": "Advanced Math A",
+        "row2": "Materials",
+        "payBtn": "Pay ₩404,000",
+        "caption": "PortOne integration — the payment lands on the director's collection dashboard instantly."
+      },
+      "m4": {
+        "when": "Report card day",
+        "title1": "24 report cards.",
+        "title2": "Coffee, not a lost weekend.",
+        "sub": "Grades and attendance are already in the system, so AI drafts each student's feedback. Teachers read, adjust, and send. Below is the real thing, in action.",
+        "uiTitle": "Choi** · March report",
+        "typed": "Seoyeon kept 100% attendance through March and showed clear progress in quadratic equations. She has become noticeably better at explaining her reasoning on applied problems. Ahead of the functions unit, we recommend reviewing the graph problems saved in her Snap mistake notebook.",
+        "stateWriting": "AI drafting…",
+        "stateDone": "Draft done · 0.8s",
+        "btnSend": "Send to parent",
+        "btnTone": "Adjust tone",
+        "btnRewrite": "Rewrite"
+      },
+      "m5": {
+        "when": "Closing day",
+        "title1": "Run the academy on numbers,",
+        "title2": "not gut feel.",
+        "sub": "Collection rate, attendance, and class health on one screen. See which classes thrive and where attention is needed — before it shows up in enrollment.",
+        "uiTitle": "March close",
+        "kpi1": "Collection rate",
+        "kpi2": "Avg. attendance",
+        "kpi3": "Reports sent"
+      },
+      "unify": {
+        "eyebrow": "AI-powered unified platform",
+        "title1": "The whole day you just scrolled through?",
+        "title2": "One system.",
+        "sub": "Six separate tools become one data layer. Enter something once — AI carries it everywhere it's needed.",
+        "chip1": "Attendance",
+        "chip2": "Messages",
+        "chip3": "Billing",
+        "chip4": "Exams · Grades",
+        "chip5": "AI reports",
+        "chip6": "Study · student app",
+        "mod1": "Attendance",
+        "mod2": "Messages",
+        "mod3": "Billing",
+        "mod4": "Grades",
+        "mod5": "AI reports",
+        "mod6": "Study",
+        "cap1": "Connected by AI",
+        "cap2": "6 modules · one data layer",
+        "flow1t": "Attendance → parent alert → monthly report",
+        "flow1b": "One tap becomes a notification, then the attendance line in the month-end report.",
+        "flow2t": "Exam score → AI feedback → Study review",
+        "flow2b": "A score is entered, AI writes the feedback, and the student's app queues weak-spot review.",
+        "flow3t": "Invoice → in-app payment → collection dashboard",
+        "flow3b": "The moment a parent pays, the director's collection rate updates.",
+        "replay": "↻ Replay",
+        "aria": "Diagram of six modules — attendance, messages, billing, grades, AI reports, Study — merging into one Classraum system"
+      },
+      "calc": {
+        "title1": "How many hours does your academy",
+        "title2": "get back each month?",
+        "sub": "An estimate of the manual work behind attendance alerts, billing follow-ups, and report writing.",
+        "students": "Students",
+        "teachers": "Teachers",
+        "unit": "",
+        "outLabel": "Hours back every month (est.)",
+        "hoursSuffix": " hours",
+        "wonPrefix": "≈ ",
+        "wonSuffix": " in staff time each month",
+        "note": "Estimation model: 18 min/month per student (attendance, billing, notices) + 4 hrs/month per teacher (reports, admin). Actual savings vary by how your academy operates."
+      },
+      "cta": {
+        "title1": "Starting tomorrow,",
+        "title2": "a different day begins.",
+        "sub": "Ten minutes from signup to your first attendance check. 10 days free, no card required.",
+        "ctaStart": "Start for free",
+        "ctaInquiry": "Talk to sales",
+        "ctaKakao": "Ask on KakaoTalk"
       }
     }
   },

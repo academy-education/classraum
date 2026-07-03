@@ -109,38 +109,6 @@ export const LazyMobilePage = withLazy(
 )
 
 // ==============================================
-// Feature Detail Pages
-// ==============================================
-
-export const LazyAIReportCardsPage = withLazy(
-  () => import('@/app/features/ai-report-cards/page')
-)
-
-export const LazyAttendanceRecordingPage = withLazy(
-  () => import('@/app/features/attendance-recording/page')
-)
-
-export const LazyCustomizedDashboardPage = withLazy(
-  () => import('@/app/features/customized-dashboard/page')
-)
-
-export const LazyLessonAssignmentPlannerPage = withLazy(
-  () => import('@/app/features/lesson-assignment-planner/page')
-)
-
-export const LazyPrivacyByDesignPage = withLazy(
-  () => import('@/app/features/privacy-by-design/page')
-)
-
-export const LazyRealTimeNotificationsPage = withLazy(
-  () => import('@/app/features/real-time-notifications/page')
-)
-
-export const LazySmartLinkingSystemPage = withLazy(
-  () => import('@/app/features/smart-linking-system/page')
-)
-
-// ==============================================
 // Advanced Dashboard Components
 // ==============================================
 

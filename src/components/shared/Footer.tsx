@@ -19,7 +19,7 @@ export default function Footer() {
   }, [])
 
   return (
-    <footer className="bg-gray-900 text-white py-12 sm:py-16">
+    <footer className="bg-[#0b2138] text-white py-12 sm:py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
           {/* Company Info */}
@@ -48,6 +48,12 @@ export default function Footer() {
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-base sm:text-lg font-semibold">{t('landing.footer.quickLinks')}</h3>
             <div className="space-y-2">
+              <Link href="/features" className="block text-gray-400 hover:text-white transition-colors text-sm">
+                {t('landing.header.features')}
+              </Link>
+              <Link href="/study" className="block text-gray-400 hover:text-white transition-colors text-sm">
+                {t('landing.header.forStudents')}
+              </Link>
               <Link href="/about" className="block text-gray-400 hover:text-white transition-colors text-sm">
                 {t('landing.footer.about')}
               </Link>

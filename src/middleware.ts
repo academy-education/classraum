@@ -30,6 +30,22 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(redirectUrl, 308)
   }
 
+  // The seven legacy feature pages were consolidated into /features (the
+  // smart-linking concept lives on as the homepage's unified-platform
+  // section). 308 keeps old links and indexed URLs working.
+  const FEATURE_REDIRECTS: Record<string, string> = {
+    '/features/ai-report-cards': '/features#reports',
+    '/features/customized-dashboard': '/features#dashboard',
+    '/features/lesson-assignment-planner': '/features#sessions',
+    '/features/attendance-recording': '/features#attendance',
+    '/features/real-time-notifications': '/features#communication',
+    '/features/smart-linking-system': '/#platform',
+    '/features/privacy-by-design': '/features#privacy',
+  }
+  if (FEATURE_REDIRECTS[url.pathname]) {
+    return NextResponse.redirect(new URL(FEATURE_REDIRECTS[url.pathname], url), 308)
+  }
+
   // Public test-taker pages (no auth required; shareable link)
   // Match /test/{shareToken} but NOT /test-payment (which is protected)
   const isPublicTestRoute = url.pathname.startsWith('/test/') && !url.pathname.startsWith('/test-payment')
@@ -48,8 +64,8 @@ export function middleware(request: NextRequest) {
 
   // Define marketing routes that should only be accessible on main domain
   const marketingRoutes = [
-    '/', '/about', '/pricing', '/faqs', '/features', '/performance',
-    '/terms', '/privacy-policy', '/refund-policy'
+    '/', '/about', '/pricing', '/faqs', '/features',
+    '/study', '/terms', '/privacy-policy', '/refund-policy'
   ]
 
   const isProtectedRoute = protectedRoutes.some(route => url.pathname.startsWith(route))

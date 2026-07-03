@@ -3,13 +3,11 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Globe, ChevronUp, Check } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
-import { useRouter } from "next/navigation"
-import FeaturesDropdown from "@/components/FeaturesDropdown"
+import { useState, useEffect } from "react"
 import { useTranslation } from "@/hooks/useTranslation"
 
 interface HeaderProps {
-  currentPage?: 'home' | 'about' | 'pricing' | 'faqs' | 'features'
+  currentPage?: 'home' | 'about' | 'pricing' | 'faqs' | 'features' | 'study'
 }
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {
@@ -17,11 +15,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
-  const [showFeatures, setShowFeatures] = useState(false)
-  const [hoveredFeature, setHoveredFeature] = useState<string | null>(null)
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
-  const featuresRef = useRef<HTMLDivElement>(null)
-  const router = useRouter()
 
   // Set the correct app URL based on environment
   useEffect(() => {
@@ -30,22 +24,6 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
       setAppUrl(`${protocol}//app.localhost${port ? ':' + port : ''}`)
     }
   }, [])
-
-  // Close features dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (featuresRef.current && !featuresRef.current.contains(event.target as Node)) {
-        setShowFeatures(false)
-        setHoveredFeature(null)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
-
 
   const isCurrentPage = (page: string) => currentPage === page
 
@@ -71,13 +49,14 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
               </Link>
               
               <div className="hidden md:flex items-center space-x-8">
-                <FeaturesDropdown
-                  showFeatures={showFeatures}
-                  setShowFeatures={setShowFeatures}
-                  hoveredFeature={hoveredFeature}
-                  setHoveredFeature={setHoveredFeature}
-                  featuresRef={featuresRef}
-                />
+                <Link
+                  href="/features"
+                  className={`text-base font-medium transition-colors ${
+                    isCurrentPage('features') ? 'text-primary' : 'hover:text-primary'
+                  }`}
+                >
+                  {t('landing.header.features')}
+                </Link>
                 
                 <Link 
                   href="/pricing" 
@@ -95,13 +74,21 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
                 >
                   {t('landing.header.about')}
                 </Link>
-                <Link 
-                  href="/faqs" 
+                <Link
+                  href="/faqs"
                   className={`text-base font-medium transition-colors ${
                     isCurrentPage('faqs') ? 'text-primary' : 'hover:text-primary'
                   }`}
                 >
                   {t('landing.header.faqs')}
+                </Link>
+                <Link
+                  href="/study"
+                  className={`text-base font-medium transition-colors ${
+                    isCurrentPage('study') ? 'text-primary' : 'hover:text-primary'
+                  }`}
+                >
+                  {t('landing.header.forStudents')}
                 </Link>
               </div>
             </div>
@@ -131,171 +118,13 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t">
               <div className="flex flex-col space-y-4 pt-4">
-                {/* Features Dropdown */}
-                <div>
-                  <button 
-                    className="flex items-center justify-between w-full text-base font-medium text-left"
-                    onClick={() => setShowFeatures(!showFeatures)}
-                  >
-                    <span>{t('landing.header.features')}</span>
-                    <svg className={`h-4 w-4 transition-transform ${showFeatures ? '-rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  
-                  {showFeatures && (
-                    <div className="mt-3 ml-4 space-y-3 border-l-2 border-gray-100 pl-4" style={{ pointerEvents: 'auto', position: 'relative', zIndex: 100 }}>
-                      <Link 
-                        href="/features/ai-report-cards" 
-                        className="block text-sm text-gray-600 hover:text-primary transition-colors" 
-                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
-                        onTouchStart={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/ai-report-cards');
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/ai-report-cards');
-                        }}
-                      >
-                        {t('landing.header.featuresDropdown.aiReportCards.title')}
-                      </Link>
-                      <Link 
-                        href="/features/customized-dashboard" 
-                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
-                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
-                        onTouchStart={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/customized-dashboard');
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/customized-dashboard');
-                        }}
-                      >
-                        {t('landing.header.featuresDropdown.customizedDashboard.title')}
-                      </Link>
-                      <Link 
-                        href="/features/lesson-assignment-planner" 
-                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
-                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
-                        onTouchStart={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/lesson-assignment-planner');
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/lesson-assignment-planner');
-                        }}
-                      >
-                        {t('landing.header.featuresDropdown.lessonAssignmentPlanner.title')}
-                      </Link>
-                      <Link 
-                        href="/features/attendance-recording" 
-                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
-                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
-                        onTouchStart={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/attendance-recording');
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/attendance-recording');
-                        }}
-                      >
-                        {t('landing.header.featuresDropdown.attendanceRecording.title')}
-                      </Link>
-                      <Link 
-                        href="/features/real-time-notifications" 
-                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
-                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
-                        onTouchStart={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/real-time-notifications');
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/real-time-notifications');
-                        }}
-                      >
-                        {t('landing.header.featuresDropdown.realTimeNotifications.title')}
-                      </Link>
-                      <Link 
-                        href="/features/smart-linking-system" 
-                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
-                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
-                        onTouchStart={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/smart-linking-system');
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/smart-linking-system');
-                        }}
-                      >
-                        {t('landing.header.featuresDropdown.smartLinkingSystem.title')}
-                      </Link>
-                      <Link 
-                        href="/features/privacy-by-design" 
-                        className="block text-sm text-gray-600 hover:text-primary transition-colors"
-                        style={{ pointerEvents: 'auto', cursor: 'pointer', position: 'relative', zIndex: 101 }}
-                        onTouchStart={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/privacy-by-design');
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileMenuOpen(false);
-                          setShowFeatures(false);
-                          router.push('/features/privacy-by-design');
-                        }}
-                      >
-                        {t('landing.header.featuresDropdown.privacyByDesign.title')}
-                      </Link>
-                    </div>
-                  )}
-                </div>
-                
+                <Link
+                  href="/features"
+                  className={`text-base font-medium ${isCurrentPage('features') ? 'text-primary' : ''}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t('landing.header.features')}
+                </Link>
                 <Link 
                   href="/pricing" 
                   className={`text-base font-medium ${isCurrentPage('pricing') ? 'text-primary' : ''}`}
@@ -310,12 +139,19 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
                 >
                   {t('landing.header.about')}
                 </Link>
-                <Link 
-                  href="/faqs" 
+                <Link
+                  href="/faqs"
                   className={`text-base font-medium ${isCurrentPage('faqs') ? 'text-primary' : ''}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {t('landing.header.faqs')}
+                </Link>
+                <Link
+                  href="/study"
+                  className={`text-base font-medium ${isCurrentPage('study') ? 'text-primary' : ''}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t('landing.header.forStudents')}
                 </Link>
                 <div className="flex flex-col space-y-4 mt-4">
                   <a href={`${appUrl}/auth?lang=${language}`} className="text-base font-medium hover:text-primary transition-colors text-center py-2">

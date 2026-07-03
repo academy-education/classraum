@@ -2600,7 +2600,6 @@
     "totalInvoices": "총 송장",
     "oneTimePayment": "일회성 결제",
     "recurringPayment": "정기 결제",
-    "invoiceName": "청구서 이름",
     "invoiceNamePlaceholder": "예: 월 수업료 - 1월",
     "enterInvoiceName": "청구서 이름을 입력하세요",
     "selectStudents": "최소 한 명의 수강생을 선택하세요",
@@ -2631,7 +2630,6 @@
     "selectPlanAndStudentError": "결제 계획과 최소 한 명의 수강생을 선택해주세요",
     "selectedPlanNotFound": "선택한 결제 계획을 찾을 수 없습니다",
     "amountOverride": "금액 변경",
-    "finalAmount": "최종 금액",
     "createdAt": "생성일",
     "errorLoadingStudents": "수강생 로딩 중 오류가 발생했습니다. 콘솔에서 자세한 내용을 확인하세요.",
     "paymentDeletedSuccessfully": "결제가 성공적으로 삭제되었습니다!",
@@ -3292,8 +3290,8 @@
         "name": "개인",
         "description": "튜터 및 개인 강사용",
         "features": {
-          "users": "최대 15명의 사용자",
-          "storage": "2GB 클라우드 저장공간",
+          "users": "최대 50명의 사용자",
+          "storage": "5GB 클라우드 저장공간",
           "access": "웹 전용 접근",
           "contacts": "연락처 및 클래스룸",
           "sessions": "수업 및 과제",
@@ -3974,6 +3972,7 @@
       "recommendedEmpty": "조금 공부하면 여기에 추천 주제가 표시됩니다.",
       "browseTitle": "과목 둘러보기",
       "testsTitle": "시험 대비",
+      "testPrepTitle": "시험 대비",
       "loading": "불러오는 중...",
       "freeformTitle": "또는 직접 입력",
       "freeformPlaceholder": "예: \"제2차 세계대전\" 또는 \"이차방정식\"",
@@ -4149,16 +4148,56 @@
       "achievementsTitle": "업적"
     },
     "achievements": {
-      "firstSteps":     { "title": "첫 걸음",         "unlocked": "첫 문제 해결",                  "locked": "1문제 풀기" },
-      "centurion":      { "title": "100문제 달성",    "unlocked": "100문제 해결",                  "locked": "{value}/100문제" },
-      "marathoner":     { "title": "마라토너",        "unlocked": "1,000문제 해결",                "locked": "{value}/1,000문제" },
-      "sharpshooter":   { "title": "명사수",          "unlocked": "20문제 이상에서 정답률 90%+",    "locked": "20문제 이상에서 정답률 90%" },
-      "dedicated":      { "title": "헌신",            "unlocked": "총 1시간 학습",                 "locked": "{value}/1시간" },
-      "devoted":        { "title": "전념",            "unlocked": "총 10시간 학습",                "locked": "{value}/10시간" },
-      "firstMastery":   { "title": "첫 마스터",       "unlocked": "첫 주제 마스터",                "locked": "주제 1개 마스터 (80점+)" },
-      "polyglot":       { "title": "다재다능",        "unlocked": "5개 주제 마스터",               "locked": "{value}/5 마스터" },
-      "sessionStarter": { "title": "시작이 반",       "unlocked": "10개 세션 완료",                "locked": "{value}/10 세션" },
-      "sessionMaster":  { "title": "세션 마스터",     "unlocked": "50개 세션 완료",                "locked": "{value}/50 세션" }
+      "firstSteps": {
+        "title": "첫 걸음",
+        "unlocked": "첫 문제 해결",
+        "locked": "1문제 풀기"
+      },
+      "centurion": {
+        "title": "100문제 달성",
+        "unlocked": "100문제 해결",
+        "locked": "{value}/100문제"
+      },
+      "marathoner": {
+        "title": "마라토너",
+        "unlocked": "1,000문제 해결",
+        "locked": "{value}/1,000문제"
+      },
+      "sharpshooter": {
+        "title": "명사수",
+        "unlocked": "20문제 이상에서 정답률 90%+",
+        "locked": "20문제 이상에서 정답률 90%"
+      },
+      "dedicated": {
+        "title": "헌신",
+        "unlocked": "총 1시간 학습",
+        "locked": "{value}/1시간"
+      },
+      "devoted": {
+        "title": "전념",
+        "unlocked": "총 10시간 학습",
+        "locked": "{value}/10시간"
+      },
+      "firstMastery": {
+        "title": "첫 마스터",
+        "unlocked": "첫 주제 마스터",
+        "locked": "주제 1개 마스터 (80점+)"
+      },
+      "polyglot": {
+        "title": "다재다능",
+        "unlocked": "5개 주제 마스터",
+        "locked": "{value}/5 마스터"
+      },
+      "sessionStarter": {
+        "title": "시작이 반",
+        "unlocked": "10개 세션 완료",
+        "locked": "{value}/10 세션"
+      },
+      "sessionMaster": {
+        "title": "세션 마스터",
+        "unlocked": "50개 세션 완료",
+        "locked": "{value}/50 세션"
+      }
     },
     "summary": {
       "eyebrow": "세션 완료",
@@ -4299,8 +4338,8 @@
       "speakingWaitForAudio": "먼저 질문을 들으세요",
       "audioPlaying": "재생 중…",
       "audioReplayCta": "다시 들으시겠어요?",
-      "audioPlaysLeft": "남은 재생 {count}회 · ETS 기준 최대 2회",
-      "audioPlaysLeftPlural": "남은 재생 {count}회 · ETS 기준 최대 2회",
+      "audioPlaysLeft": "남은 재생 {count}회",
+      "audioPlaysLeftPlural": "남은 재생 {count}회",
       "audioTurnProgress": "{current}/{total}턴",
       "audioNotSupported": "이 브라우저는 음성 재생을 지원하지 않아 대본으로 표시됩니다.",
       "audioShowTranscript": "대본 보기",
@@ -6064,8 +6103,8 @@
         "period": "/월",
         "description": "과외 및 개인 교사용",
         "features": [
-          "최대 15명의 사용자",
-          "2GB 클라우드 스토리지",
+          "최대 50명의 사용자",
+          "5GB 클라우드 스토리지",
           "웹 전용 액세스",
           "연락처 및 교실",
           "세션 및 과제",
@@ -6195,7 +6234,7 @@
       "title": "CLASSRAUM 소개"
     },
     "mission": {
-      "description": "CLASSRAUM은 교육자, 원장, 교육 기관을 위해 구축된 올인원 AI 기반 학원 관리 플랫폼입니다. 학생 학습이나 학부모 참여에 초점을 맞춘 일반적인 EdTech 도구와 달리, CLASSRAUM은 학교를 운영하고 교육을 제공하는 책임자인 교사와 원장의 실제 운영상 문제점을 해결합니다."
+      "description": "CLASSRAUM은 학원을 위한 올인원 AI 플랫폼입니다. 원장님과 선생님에게는 출결, 리포트 카드, 수납, 학부모 소통 같은 운영 업무를 대신하고, 학원의 모든 학생에게는 클래스라움 스터디라는 AI 학습 파트너를 제공합니다. 데스크에서 학생의 휴대폰까지, 하나의 시스템입니다."
     },
     "problemSolution": {
       "problem": {
@@ -6279,7 +6318,7 @@
     },
     "cta": {
       "title": "기관을 혁신할 준비가 되셨나요?",
-      "description": "이미 CLASSRAUM으로 시간을 절약하고 운영을 개선하고 있는 수백 개의 교육 기관과 함께하세요.",
+      "description": "오늘 오후에 시작해서 첫 주부터 달라진 하루를 경험하세요 — 10일 무료, 카드 등록 없이.",
       "startTrial": "무료 체험 시작 →",
       "demo": "데모 보기"
     }
@@ -6323,7 +6362,7 @@
       {
         "id": 7,
         "question": "모바일 앱이 있나요?",
-        "answer": "예, iOS와 Android 기기용 모바일 앱을 제공합니다(중간 규모 학원 플랜 이상에서 사용 가능). 모바일 앱은 성적 입력, 출석 추적, 소통 도구, 보고서 보기를 포함한 전체 기능을 제공합니다. 학생과 학부모도 모바일 앱을 통해 정보에 액세스할 수 있습니다."
+        "answer": "네 — 원장님·선생님용 웹 앱과 함께, 학생·학부모용 iOS/Android 앱을 제공합니다. 학생과 학부모는 일정, 과제, 리포트 카드, 청구서를 확인하고 이동 중에도 클래스라움 스터디를 이용할 수 있습니다."
       },
       {
         "id": 8,
@@ -6333,12 +6372,17 @@
       {
         "id": 9,
         "question": "우리 아이의 데이터가 안전하고 비공개로 유지되나요?",
-        "answer": "데이터 보안과 개인정보보호가 우리의 최우선 순위입니다. 우리는 엔터프라이즈급 암호화, 보안 서버를 사용하며 GDPR과 COPPA를 포함한 모든 주요 개인정보보호 규정을 준수합니다. 학생 데이터는 제3자와 절대 공유되지 않으며, 승인된 개인만이 민감한 정보를 볼 수 있도록 엄격한 액세스 제어를 구현합니다."
+        "answer": "데이터 보안과 프라이버시는 클래스라움 설계의 핵심입니다. 전송 구간은 암호화되고, 접근은 역할 기반으로 제어되며, 학원별 기록은 행 단위 보안(RLS)으로 격리됩니다. 학생 데이터는 학원 서비스 운영 목적으로만 사용됩니다."
       },
       {
         "id": 10,
         "question": "기술적 문제가 있을 때 지원을 받을 수 있나요?",
         "answer": "예! 이메일, 실시간 채팅, 전화 지원을 포함한 여러 채널을 통해 종합적인 지원을 제공합니다. 지원 팀은 업무 시간 동안 이용할 수 있으며, 광범위한 문서, 비디오 튜토리얼, 지식 베이스도 제공합니다. 프리미엄 플랜에는 더 빠른 응답 시간을 가진 우선 지원이 포함됩니다."
+      },
+      {
+        "id": 11,
+        "question": "클래스라움 스터디는 무엇인가요?",
+        "answer": "클래스라움 스터디는 학생을 위한 AI 학습 앱입니다. SAT·TOEFL·TOEIC·IELTS·수능 실전 모의고사를 AI가 생성하고, 사진으로 찍은 문제를 단계별로 풀어주며(스냅), 틀린 문제는 자동으로 복습 계획이 됩니다. 자체 무료 체험이 있으니 스터디 페이지에서 확인하세요."
       }
     ],
     "support": {
@@ -6384,7 +6428,8 @@
           "title": "설계 단계부터 고려된 개인정보보호",
           "description": "신뢰를 위해 구축되고 안전을 위해 설계됨"
         }
-      }
+      },
+      "forStudents": "학생용"
     },
     "hero": {
       "badge": "AI 기반 학원 관리 플랫폼",
@@ -6567,6 +6612,480 @@
         "address": "주소: 경기도 파주시 경의로 1250 1521호",
         "phone": "전화번호: 010-2299-7460",
         "businessRegistration": "사업자 등록번호: 484-86-03572"
+      }
+    },
+    "studySection": {
+      "eyebrow": "신규 — 클래스라움 스터디",
+      "title": "학원 운영은 클래스라움으로.",
+      "titleHighlight": "이제 학생의 공부까지.",
+      "description": "클래스라움 스터디는 학생을 위한 AI 학습 앱입니다 — SAT·TOEFL·TOEIC·IELTS·수능 모의고사, 사진 한 장으로 풀이를 보여주는 문제 풀이 카메라, 오답을 자동으로 복습 계획으로 만들어주는 오답노트까지.",
+      "bullets": {
+        "snap": "문제를 사진으로 찍으면 단계별 풀이를 바로 확인",
+        "tests": "실제 시험처럼 타이머·섹션·채점이 있는 AI 모의고사",
+        "review": "오답노트와 간격 반복 복습으로 약점 집중 관리"
+      },
+      "cta": "클래스라움 스터디 살펴보기 →",
+      "note": "학생 개인도, 학원 소속 학생도 모두 이용할 수 있습니다."
+    },
+    "studyPage": {
+      "hero": {
+        "badge": "클래스라움 스터디",
+        "title": "모든 시험을 위한",
+        "titleHighlight": "나만의 AI 학습 파트너",
+        "subtitle": "SAT, TOEFL, TOEIC, IELTS, 수능까지 AI가 만드는 모의고사로 연습하세요. 모르는 문제는 사진으로 찍으면 단계별 풀이를 보여드립니다. 틀린 문제는 자동으로 복습 계획이 됩니다.",
+        "ctaPrimary": "무료로 시작하기 →",
+        "features": {
+          "freeTrial": "무료 체험",
+          "anyDevice": "휴대폰·태블릿·웹 모두 지원",
+          "cancelAnytime": "언제든 해지 가능"
+        }
+      },
+      "snap": {
+        "eyebrow": "스냅",
+        "title": "막히면, 찍으세요.",
+        "description": "수학, 영어, 과학 — 어떤 문제든 카메라로 찍으면 AI가 문제를 읽고 풀이 과정을 하나하나 설명해 드립니다.",
+        "steps": {
+          "capture": {
+            "title": "찍기",
+            "description": "숙제나 교재의 문제를 그대로 사진으로 촬영"
+          },
+          "solve": {
+            "title": "풀이 확인",
+            "description": "AI가 문제를 읽고 단계별로 풀이를 설명"
+          },
+          "keep": {
+            "title": "저장하기",
+            "description": "오답노트에 저장하고 시험 전에 다시 복습"
+          }
+        }
+      },
+      "testPrep": {
+        "eyebrow": "시험 대비",
+        "title": "매번 새로 만들어지는 실전 모의고사",
+        "description": "실제 시험과 같은 섹션 구성, 시간 제한, 채점 방식 — 같은 시험은 두 번 나오지 않습니다.",
+        "items": {
+          "fullTests": {
+            "title": "실전 모의고사",
+            "description": "SAT·TOEFL·TOEIC·IELTS·수능 실전 형식 그대로"
+          },
+          "listening": {
+            "title": "실제 음성 리스닝",
+            "description": "자연스러운 음성으로 듣는 TOEFL 스타일 리스닝"
+          },
+          "speaking": {
+            "title": "스피킹 채점",
+            "description": "답변을 녹음하면 AI가 즉시 피드백"
+          },
+          "adaptive": {
+            "title": "내 수준에 맞게",
+            "description": "풀수록 내 실력에 맞춰 난이도가 조절됩니다"
+          }
+        }
+      },
+      "review": {
+        "eyebrow": "복습",
+        "title": "틀린 문제가 나의 학습 계획이 됩니다",
+        "description": "놓친 문제를 모두 기억해 두었다가 다음에 공부할 내용으로 만들어 드립니다.",
+        "items": {
+          "notebook": {
+            "title": "오답노트",
+            "description": "틀린 문제를 주제별로 정리, 인쇄까지 한 번에"
+          },
+          "srs": {
+            "title": "간격 반복 복습",
+            "description": "잊어버리기 직전에 문제가 다시 돌아옵니다"
+          },
+          "daily": {
+            "title": "데일리 챌린지",
+            "description": "매일 가장 약한 주제로 5문제 퀴즈"
+          }
+        }
+      },
+      "motivation": {
+        "eyebrow": "꾸준하게",
+        "title": "계속 돌아오게 만드는 공부",
+        "items": {
+          "streaks": {
+            "title": "스트릭",
+            "description": "하루하루 쌓아가는 공부 습관"
+          },
+          "xp": {
+            "title": "XP와 레벨",
+            "description": "모든 세션이 내 랭크를 올리는 포인트가 됩니다"
+          },
+          "league": {
+            "title": "주간 리그",
+            "description": "브론즈부터 다이아몬드까지, 또래와 함께 경쟁"
+          }
+        }
+      },
+      "bridge": {
+        "title": "학원을 운영하시나요?",
+        "description": "클래스라움 스터디는 올인원 학원 관리 플랫폼 클래스라움의 일부입니다. 우리 학원 모든 학생에게 AI 학습 파트너를 제공하세요.",
+        "cta": "학원용 클래스라움 보기 →"
+      },
+      "cta": {
+        "title": "오늘부터 더 똑똑하게 공부하세요",
+        "description": "무료로 시작할 수 있습니다. 휴대폰, 태블릿, 컴퓨터 어디서든.",
+        "button": "무료로 시작하기 →"
+      }
+    },
+    "pricingExtras": {
+      "freeTitle": "무료로 시작하세요 — 카드 등록 없이",
+      "freeDesc": "사용자 10명, 교실 2개까지 평생 무료. 학원이 커지면 그때 업그레이드하세요.",
+      "freeCta": "무료 계정 만들기",
+      "anchor": "모든 유료 플랜 10일 무료 체험 · 언제든 해지 가능"
+    },
+    "featuresPage": {
+      "hero": {
+        "eyebrow": "제품",
+        "title1": "학원 운영에 필요한 전부,",
+        "title2": "하나의 로그인으로.",
+        "sub": "아래 모든 화면은 실제 제품입니다 — 첫날부터 팀이 그대로 사용하게 될 화면들입니다."
+      },
+      "dashboard": {
+        "title": "학원 전체가 한 화면에",
+        "sub": "수익, 출결, 교실, 오늘의 수업까지 — 원장님과 선생님 모두 실시간으로 한눈에 봅니다."
+      },
+      "sessions": {
+        "title": "엑셀 없는 수업 일정 관리",
+        "sub": "반복 시간표와 예외 처리, 그리고 출결·리포트·수납의 기반이 되는 세션 기록까지 자동으로 연결됩니다."
+      },
+      "attendance": {
+        "title": "한 번의 탭으로 출석, 학부모에겐 즉시 알림",
+        "sub": "몇 초 만에 반 전체 출석 체크 — 같은 순간 학부모에게 도착 알림이 자동으로 갑니다."
+      },
+      "reports": {
+        "title": "우리 학원의 어조로 쓰는 AI 리포트",
+        "sub": "실제 성적과 출결로 한국어·영어 초안을 작성합니다. 선생님은 검토하고, 고치고, 보내기만 하세요."
+      },
+      "payments": {
+        "title": "스스로 걷히는 수강료",
+        "sub": "정기 청구서, 앱 내 카드 결제, 자동 리마인드, 실시간 수납 현황까지."
+      },
+      "communication": {
+        "title": "모든 학부모를 놓치지 않고",
+        "sub": "푸시, SMS, 인앱 메시지를 한 곳에서 — 공지, 리마인드, 리포트 발송까지 함께."
+      },
+      "exams": {
+        "title": "링크로 공유하는 레벨 테스트",
+        "sub": "등록 전 예비 학생이 응시할 수 있는 AI 레벨 테스트 — 채점도 자동입니다."
+      },
+      "study": {
+        "title": "클래스라움 스터디, 기본 포함",
+        "sub": "학원 모든 학생을 위한 AI 학습 앱 — 5개 시험 유형의 모의고사, 사진으로 푸는 스냅, 복습을 계획해 주는 오답노트까지."
+      },
+      "privacy": {
+        "title": "설계부터 프라이버시",
+        "sub": "접근 제어와 데이터 격리는 나중에 덧붙인 것이 아니라 기반에 내장되어 있습니다.",
+        "p1t": "역할 기반 접근",
+        "p1b": "원장·선생님·학생·학부모가 각자 자기 것만 봅니다.",
+        "p2t": "학원별 데이터 격리",
+        "p2b": "행 단위 보안(RLS)으로 학원마다 기록을 엄격히 분리합니다.",
+        "p3t": "전송 구간 암호화",
+        "p3b": "앱과 서버 사이 모든 트래픽은 TLS로 보호됩니다."
+      },
+      "assignments": {
+        "title": "과제 배포부터 채점까지",
+        "sub": "반별 과제 배포, 제출 추적, 코멘트와 함께 채점까지 — 업로드한 PDF나 사진에서 AI가 문제를 추출해 줍니다."
+      },
+      "asgMock": {
+        "title": "과제",
+        "a1n": "이차방정식 연습문제",
+        "a1m": "마감 7월 10일",
+        "a1b": "14/16 제출",
+        "a2n": "영어 독해 워크시트",
+        "a2m": "마감 7월 8일",
+        "a2b": "채점 완료",
+        "a3n": "과학 실험 보고서",
+        "a3m": "PDF 업로드",
+        "a3b": "AI 문제 추출됨"
+      },
+      "more": {
+        "title": "…그리고 학원 운영에 필요한 나머지",
+        "m1t": "실시간 메시지",
+        "m1b": "선생님·학생·학부모 간 1:1 대화.",
+        "m2t": "공지사항",
+        "m2b": "반별 공지를 첨부파일과 함께 발행.",
+        "m3t": "학생·가족 관리",
+        "m3b": "학생, 학부모, 형제자매를 연결하는 디렉토리.",
+        "m4t": "아카이브",
+        "m4b": "지난 교실과 세션을 보관하고 검색.",
+        "m5t": "도움말 센터",
+        "m5b": "앱 안에서 바로 찾아보는 스태프용 가이드.",
+        "m6t": "한국어 · English",
+        "m6b": "앱, 리포트, 알림까지 완전한 이중 언어 지원."
+      },
+      "examsMock": {
+        "title": "레벨 테스트",
+        "newBtn": "+ 새 테스트",
+        "r1n": "중등 수학 레벨 테스트",
+        "r1m": "20문항 · 45분",
+        "r1b": "링크 공유됨",
+        "r2n": "고등 영어 레벨 테스트",
+        "r2m": "25문항 · 60분",
+        "r2b": "평균 82점",
+        "r3n": "신입생 진단평가",
+        "r3m": "15문항 · 30분",
+        "r3b": "AI 채점 완료"
+      }
+    },
+    "home": {
+      "hero": {
+        "title1": "학원의 하루가",
+        "title2": "달라집니다.",
+        "tagline": "첫 출석 체크부터 월말 결산까지, 하나의 시스템으로.",
+        "sub": "출결, AI 리포트, 수납, 학부모 소통 — 원장님·선생님·학부모·학생이 같은 시스템 위에서 하루를 보냅니다.",
+        "ctaStart": "무료로 시작하기",
+        "ctaInquiry": "도입 문의하기",
+        "ctaKakao": "카카오톡 문의",
+        "anchor": "₩24,900/월부터 · 10일 무료 체험 · 카드 등록 없이 시작"
+      },
+      "ruler": {
+        "attendance": "출석",
+        "study": "자습",
+        "billing": "수납",
+        "report": "리포트",
+        "close": "결산",
+        "friday": "금 15:00",
+        "monthEnd": "월말"
+      },
+      "mock": {
+        "navDashboard": "대시보드",
+        "navClassrooms": "교실",
+        "navSessions": "수업",
+        "navAttendance": "출결",
+        "navReports": "리포트",
+        "navPayments": "수납",
+        "navMessages": "메시지",
+        "overview": "개요",
+        "dashTitle": "대시보드",
+        "customize": "커스터마이즈",
+        "kRevenue": "이번 달 수익",
+        "kRevenueDelta": "지난달 대비 +8.2%",
+        "kUsers": "활성 사용자",
+        "kClassrooms": "전체 교실",
+        "kSessions": "이번 주 세션",
+        "todayTitle": "오늘의 수업",
+        "viewAll": "전체 보기",
+        "cls1": "수학 심화반 A",
+        "cls2": "영어 독해반",
+        "cls3": "과학 실험반",
+        "tch1": "김민지",
+        "tch2": "박준영",
+        "tch3": "이수현",
+        "stDone": "출석 완료",
+        "stLive": "수업 중",
+        "stWait": "40분 후 시작",
+        "payTitle": "수납",
+        "kTotal": "총 수익",
+        "kPending": "미납 금액",
+        "kMrr": "월 반복 수익",
+        "thStudent": "학생",
+        "thInvoice": "청구서",
+        "thAmount": "금액",
+        "thStatus": "상태",
+        "inv1": "3월 수강료",
+        "inv2": "교재비",
+        "inv3": "특강비",
+        "paid": "완납",
+        "pendingBadge": "대기",
+        "greeting": "좋은 오후예요, 서연님",
+        "date": "7월 3일 (금)",
+        "tab1": "공부",
+        "tab2": "사진 풀이",
+        "tab3": "복습",
+        "tab4": "리그",
+        "tab5": "프로필",
+        "total": "합계",
+        "rpt2": "이** · 3월 리포트",
+        "finished": "완료",
+        "msg2": "3월 리포트 카드가 도착했어요.",
+        "month": "7월",
+        "navAssignments": "과제",
+        "navAnnouncements": "공지사항",
+        "navNotifications": "알림",
+        "navExams": "시험 및 성적",
+        "contacts": "연락처",
+        "navTeachers": "선생님",
+        "navFamilies": "가족",
+        "upgrade": "업그레이드",
+        "dashSub": "학원 현황을 한눈에 확인하세요",
+        "customizeFull": "대시보드 편집",
+        "sessionToday": "오늘의 세션",
+        "recentActivity": "최근 활동",
+        "viewAllSessions": "전체 세션 보기",
+        "activity1": "세션 자동 완료 처리됨",
+        "activity2": "AI 초안 완료 · 3월 리포트",
+        "billingEyebrow": "결제 및 수납",
+        "paySub": "결제를 관리하세요",
+        "addPayment": "+ 결제 추가",
+        "kTemplates": "활성 템플릿",
+        "tabOne": "일반",
+        "tabRecurring": "정기",
+        "tabPlans": "결제 플랜",
+        "searchPh": "상태, 이메일, 금액으로 검색...",
+        "thDue": "납부 기한",
+        "remaining": "12분 남았어요 → 오늘의 목표",
+        "statStreak": "연속",
+        "statSessions": "세션",
+        "statProblems": "문제",
+        "todayLabel": "오늘",
+        "resumeTitle": "이어서 공부하기",
+        "resumeSub": "TOEFL Listening · 모의고사 · 1일 전",
+        "readyTitle": "시험 준비 완료",
+        "readySub": "스피킹",
+        "challengeTitle": "오늘의 도전",
+        "challengeSub": "약점 보완 5문항",
+        "xp": "+50 XP",
+        "payTitleM": "결제",
+        "payAcademy": "클래스라움 데모 학원",
+        "summary": "청구서 요약",
+        "billTo": "청구서 대상: 최**",
+        "dueChip": "5월 27일 마감",
+        "subtotal": "소계",
+        "discount": "할인",
+        "totalAmt": "총액",
+        "methodTitle": "결제 방법",
+        "cardBtn": "카드",
+        "mtab1": "홈",
+        "mtab2": "과제",
+        "mtab3": "리포트",
+        "mtab4": "프로필",
+        "due1": "3월 10일",
+        "due2": "1월 2일",
+        "due3": "12월 4일"
+      },
+      "shots": {
+        "dashboard": "월 수익, 활성 사용자, 교실, 주간 세션을 보여주는 클래스라움 원장 대시보드",
+        "study": "오늘의 목표, 스트릭, 학습 목록이 있는 클래스라움 스터디 앱 홈",
+        "payments": "수강료 항목과 결제 버튼이 있는 학부모 앱 청구서 화면",
+        "paymentsAdmin": "총 수익, 미납 금액, 청구서 목록이 있는 수납 대시보드",
+        "reports": "AI가 생성한 월간 학생 리포트 목록 화면",
+        "sessions": "캘린더 뷰와 세션 통계가 있는 수업 관리 화면"
+      },
+      "stats": {
+        "tag": "지금까지, 계속 늘어나는 중",
+        "s1l": "기록된 출석 체크",
+        "s2l": "채점되어 기록된 과제",
+        "s3l": "발송된 알림·안내"
+      },
+      "m1": {
+        "when": "수업 10분 전",
+        "title1": "출석 한 번의 탭,",
+        "title2": "학부모에겐 1분 뒤 알림.",
+        "sub": "선생님이 출석을 체크하는 순간, 학부모 휴대폰에 도착 알림이 갑니다. '우리 애 잘 갔나요?' 전화는 이제 오지 않습니다.",
+        "uiTitle": "수학 심화반 A · 출석",
+        "st1n": "이**",
+        "st2n": "박**",
+        "st3n": "최**",
+        "present": "출석",
+        "late": "지각 · 알림 발송됨",
+        "notifTitle": "최** 학생이 학원에 도착했어요.",
+        "notifBody": "수학 심화반 A · 5분 지각",
+        "caption": "학부모가 받는 실제 푸시 알림 — 별도 설정 없이 자동입니다."
+      },
+      "m2": {
+        "when": "집에서, 자습",
+        "title1": "학원이 끝나도",
+        "title2": "공부는 같은 시스템 위에서.",
+        "sub": "클래스라움 스터디는 학원 학생 모두에게 제공되는 AI 학습 앱입니다. 모르는 문제는 사진 한 장으로, 시험 대비는 AI 모의고사로 — 틀린 문제는 자동으로 오답노트가 됩니다.",
+        "uiTitle": "Study · 오늘",
+        "streak": "🔥 12일 연속",
+        "goalLabel": "오늘의 학습",
+        "goalValue": "18 / 30 분",
+        "item1": "이어서 · TOEFL Listening 모의고사",
+        "item1cta": "계속",
+        "item2": "오늘의 도전 · 약점 5문항",
+        "item2cta": "+50 XP",
+        "snapTitle": "Snap · 사진으로 풀기",
+        "snap1": "이차방정식 문제 촬영",
+        "snap2": "AI가 문제 인식 — 근의 공식 적용 유형",
+        "snap3": "단계별 풀이 3단계 도착 · 오답노트에 저장"
+      },
+      "m3": {
+        "when": "같은 날 저녁",
+        "title1": "수강료는 앱에서,",
+        "title2": "독촉 전화 없이.",
+        "sub": "청구서 발행부터 카드 결제, 미납 리마인드까지 자동으로 돌아갑니다. 원장님이 돈 얘기를 꺼낼 일이 없어집니다.",
+        "uiTitle": "3월 수강료",
+        "uiApp": "학부모 앱",
+        "row1": "수학 심화반 A",
+        "row2": "교재비",
+        "payBtn": "₩404,000 결제하기",
+        "caption": "PortOne 연동 — 결제 즉시 원장 대시보드의 수납 현황에 반영됩니다."
+      },
+      "m4": {
+        "when": "리포트 보내는 날",
+        "title1": "리포트 카드 24장,",
+        "title2": "주말 대신 커피 한 잔.",
+        "sub": "성적과 출결이 이미 시스템 안에 있으니, AI가 학생별 피드백 초안을 씁니다. 선생님은 읽고, 고치고, 보내기만 하면 됩니다. 아래는 실제로 동작하는 모습입니다.",
+        "uiTitle": "최** · 3월 리포트",
+        "typed": "서연이는 3월 한 달간 출석률 100%를 유지했으며, 이차방정식 단원에서 뚜렷한 향상을 보였습니다. 특히 응용문제에서 풀이 과정을 스스로 설명하는 힘이 좋아졌습니다. 다음 달에는 함수 단원 대비로 Snap 오답노트의 그래프 문제 복습을 권합니다.",
+        "stateWriting": "AI 작성 중…",
+        "stateDone": "초안 완성 · 0.8초",
+        "btnSend": "학부모에게 보내기",
+        "btnTone": "어조 바꾸기",
+        "btnRewrite": "다시 쓰기"
+      },
+      "m5": {
+        "when": "결산하는 날",
+        "title1": "감이 아니라 숫자로",
+        "title2": "학원을 봅니다.",
+        "sub": "수납률, 출석률, 반별 현황이 한 화면에. 어느 반이 잘 되고 어디에 손이 필요한지, 등록 취소로 이어지기 전에 보입니다.",
+        "uiTitle": "3월 결산",
+        "kpi1": "수납률",
+        "kpi2": "평균 출석률",
+        "kpi3": "리포트 발송"
+      },
+      "unify": {
+        "eyebrow": "AI 기반 통합 플랫폼",
+        "title1": "방금 보신 하루 전체가,",
+        "title2": "하나의 시스템입니다.",
+        "sub": "따로 놀던 여섯 가지 도구가 하나의 데이터로 연결됩니다. 한 번 입력하면, AI가 필요한 곳마다 알아서 옮겨 씁니다.",
+        "chip1": "출결",
+        "chip2": "알림 · 소통",
+        "chip3": "수납 · 청구",
+        "chip4": "시험 · 성적",
+        "chip5": "AI 리포트",
+        "chip6": "Study · 학생 앱",
+        "mod1": "출결",
+        "mod2": "알림·소통",
+        "mod3": "수납",
+        "mod4": "시험·성적",
+        "mod5": "AI 리포트",
+        "mod6": "Study",
+        "cap1": "AI가 연결합니다",
+        "cap2": "6개 모듈 · 하나의 데이터",
+        "flow1t": "출결 체크 → 학부모 알림 → 월말 리포트",
+        "flow1b": "한 번의 탭이 알림이 되고, 월말 리포트의 출석률 문장이 됩니다.",
+        "flow2t": "시험 성적 → AI 피드백 → Study 복습",
+        "flow2b": "성적이 입력되면 AI가 피드백을 쓰고, 학생 앱에는 약점 복습이 뜹니다.",
+        "flow3t": "청구서 발행 → 앱 결제 → 수납 현황",
+        "flow3b": "학부모가 결제한 순간, 원장 대시보드의 수납률이 갱신됩니다.",
+        "replay": "↻ 다시 보기",
+        "aria": "출결, 알림, 수납, 성적, AI 리포트, Study 여섯 모듈이 클래스라움 하나로 연결되는 다이어그램"
+      },
+      "calc": {
+        "title1": "우리 학원은 한 달에",
+        "title2": "몇 시간을 아낄까요?",
+        "sub": "출결 알림, 수납 관리, 리포트 작성에 들어가는 손작업 기준의 추정입니다.",
+        "students": "학생 수",
+        "teachers": "선생님 수",
+        "unit": "명",
+        "outLabel": "매달 돌려받는 시간 (추정)",
+        "hoursSuffix": "시간",
+        "wonPrefix": "인건비 환산 시 월 약 ",
+        "wonSuffix": "",
+        "note": "추정 모델: 학생 1인당 월 18분(출결·수납·안내) + 선생님 1인당 월 4시간(리포트·정리). 실제 절감량은 운영 방식에 따라 다릅니다."
+      },
+      "cta": {
+        "title1": "내일부터,",
+        "title2": "다른 하루가 시작됩니다.",
+        "sub": "오늘 가입하면 첫 출석 체크까지 10분. 10일 무료, 카드 등록 없이.",
+        "ctaStart": "무료로 시작하기",
+        "ctaInquiry": "도입 문의하기",
+        "ctaKakao": "카카오톡 문의"
       }
     }
   },

@@ -1,0 +1,232 @@
+/* v4 homepage animation styles — scroll reveals, report typing demo,
+   and the "unified platform" absorption sequence. Layout lives in Tailwind;
+   only the stateful animation CSS that Tailwind can't express cleanly is here. */
+
+/* scroll reveal */
+.hv4-fade {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.hv4-fade.hv4-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* hero product panel entrance */
+.hv4-hero-panel {
+  animation: hv4-panel-rise 0.8s 0.15s cubic-bezier(0.2, 0.7, 0.25, 1) both;
+}
+@keyframes hv4-panel-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hv4-hero-panel {
+    animation: none;
+  }
+}
+
+/* report typing demo caret */
+.hv4-typed::after {
+  content: "▍";
+  color: #2885e8;
+  animation: hv4-blink 1s steps(1) infinite;
+}
+.hv4-typed.hv4-done::after {
+  content: "";
+}
+@keyframes hv4-blink {
+  50% { opacity: 0; }
+}
+
+/* unify canvas: connector lines draw in with the scattered chips */
+.hv4-usvg line {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  transition: stroke-dashoffset 1s ease 0.55s;
+}
+.hv4-canvas.hv4-go .hv4-usvg line {
+  stroke-dashoffset: 0;
+}
+
+/* module chips: scatter in via per-chip --sx/--sy offsets, then JS flies
+   them into the core with inline transforms */
+.hv4-uchip {
+  opacity: 0;
+  transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy))) scale(0.92);
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.25, 1), opacity 0.6s ease;
+}
+.hv4-canvas.hv4-go .hv4-uchip {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.hv4-canvas.hv4-go .hv4-uchip:nth-of-type(2) { transition-delay: 0.05s; }
+.hv4-canvas.hv4-go .hv4-uchip:nth-of-type(3) { transition-delay: 0.12s; }
+.hv4-canvas.hv4-go .hv4-uchip:nth-of-type(4) { transition-delay: 0.19s; }
+.hv4-canvas.hv4-go .hv4-uchip:nth-of-type(5) { transition-delay: 0.26s; }
+.hv4-canvas.hv4-go .hv4-uchip:nth-of-type(6) { transition-delay: 0.33s; }
+.hv4-canvas.hv4-go .hv4-uchip:nth-of-type(7) { transition-delay: 0.4s; }
+
+/* module pills inside the core card: empty sockets that expand when a chip lands */
+.hv4-umods span {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 5px 0;
+  max-width: 11px;
+  border-radius: 99px;
+  background: #f8fafc;
+  border: 1px solid #eaecf0;
+  color: transparent;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: max-width 0.45s cubic-bezier(0.2, 0.7, 0.25, 1), padding 0.45s ease,
+    color 0.3s ease 0.15s, background 0.3s ease, border-color 0.3s ease;
+}
+.hv4-umods span.hv4-on {
+  max-width: 96px;
+  padding: 5px 10px;
+  color: #2885e8;
+  background: rgba(40, 133, 232, 0.08);
+  border-color: transparent;
+}
+.hv4-umods span.hv4-on.hv4-teal {
+  color: #0a7d68;
+  background: rgba(0, 208, 174, 0.12);
+}
+
+/* core card pulse when the last module lands */
+.hv4-canvas.hv4-absorbed .hv4-ucenter {
+  animation: hv4-corepop 0.55s ease;
+}
+@keyframes hv4-corepop {
+  35% { transform: translate(-50%, -50%) scale(1.045); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* problem-card hover choreography */
+.hv4-pcard .hv4-tiles span {
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.25, 1);
+}
+.hv4-pcard:hover .hv4-tiles span {
+  transform: translateY(-4px);
+}
+.hv4-pcard .hv4-tiles span:nth-child(2) { transition-delay: 0.03s; }
+.hv4-pcard .hv4-tiles span:nth-child(3) { transition-delay: 0.06s; }
+.hv4-pcard .hv4-tiles span:nth-child(4) { transition-delay: 0.09s; }
+.hv4-pcard .hv4-tiles span:nth-child(5) { transition-delay: 0.12s; }
+.hv4-pcard .hv4-tiles span:nth-child(6) { transition-delay: 0.15s; }
+.hv4-pcard .hv4-tiles span:nth-child(7) { transition-delay: 0.18s; }
+.hv4-pcard .hv4-tiles span:nth-child(8) { transition-delay: 0.21s; }
+.hv4-pcard .hv4-tiles span:nth-child(9) { transition-delay: 0.24s; }
+.hv4-pcard .hv4-tiles span:nth-child(10) { transition-delay: 0.27s; }
+.hv4-gauge-band {
+  transition: filter 0.3s ease, stroke-width 0.3s ease;
+}
+.hv4-pcard:hover .hv4-gauge-band {
+  filter: saturate(1.35) brightness(1.05);
+  stroke-width: 11;
+}
+.hv4-spark-halo {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hv4-pcard:hover .hv4-spark-halo {
+    animation: hv4-ping 1.2s ease-out infinite;
+  }
+}
+@keyframes hv4-ping {
+  0% { opacity: 0.6; transform: scale(1); }
+  70% { opacity: 0.15; transform: scale(2.4); }
+  100% { opacity: 0; transform: scale(2.8); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hv4-pcard .hv4-tiles span {
+    transition: none;
+  }
+}
+
+/* unify canvas on narrow screens: pull the chips inward and compact them so
+   the 680px-designed scatter fits a phone viewport. Inline styles carry the
+   desktop positions, hence the !important overrides. */
+@media (max-width: 640px) {
+  .hv4-uchip {
+    font-size: 10.5px !important;
+    padding: 6px 10px !important;
+    gap: 5px !important;
+  }
+  .hv4-canvas > .hv4-uchip:nth-of-type(2) { left: 20% !important; top: 14% !important; }
+  .hv4-canvas > .hv4-uchip:nth-of-type(3) { left: 77% !important; top: 12% !important; }
+  .hv4-canvas > .hv4-uchip:nth-of-type(4) { left: 15% !important; top: 58% !important; }
+  .hv4-canvas > .hv4-uchip:nth-of-type(5) { left: 80% !important; top: 56% !important; }
+  .hv4-canvas > .hv4-uchip:nth-of-type(6) { left: 26% !important; top: 91% !important; }
+  .hv4-canvas > .hv4-uchip:nth-of-type(7) { left: 75% !important; top: 91% !important; }
+  .hv4-ucenter {
+    padding: 14px 18px !important;
+  }
+}
+
+/* calculator range sliders — filled track set inline via background gradient */
+.hv4-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 99px;
+  outline: none;
+  cursor: pointer;
+}
+.hv4-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #2885e8;
+  box-shadow: 0 1px 4px rgba(16, 24, 40, 0.25);
+  transition: transform 0.15s ease;
+}
+.hv4-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.hv4-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #2885e8;
+  box-shadow: 0 1px 4px rgba(16, 24, 40, 0.25);
+}
+.hv4-range:focus-visible {
+  box-shadow: 0 0 0 3px rgba(40, 133, 232, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hv4-fade {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hv4-typed::after {
+    animation: none;
+  }
+  .hv4-uchip {
+    transition: none;
+  }
+  .hv4-usvg line {
+    transition: none;
+  }
+  .hv4-canvas.hv4-absorbed .hv4-ucenter {
+    animation: none;
+  }
+}

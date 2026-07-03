@@ -1,252 +1,428 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle, FileText, BarChart3, Calendar, Users, Bell, Link2, Shield, Zap, Clock, AlertTriangle, Layers, TrendingDown } from "lucide-react"
-import { useState, useEffect, useRef, Suspense } from "react"
+import { useState, useEffect, useRef, useCallback, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import Link from "next/link"
+import {
+  UserCheck,
+  Bell,
+  FileText,
+  FileQuestion,
+  Sparkles,
+  BookOpen,
+  CreditCard,
+  BarChart,
+} from "lucide-react"
+import {
+  DashboardMock,
+  PaymentsMock,
+  StudyPhoneMock,
+  InvoicePhoneMock,
+  MiniReports,
+  MiniCalendar,
+  MiniComms,
+  AttendanceMock,
+  PushNotificationCard,
+  ReportDemo,
+} from "@/components/marketing/ProductMocks"
+import {
+  CARD,
+  CARD_HOVER,
+  type TFunc,
+  ts,
+  tOpt,
+  prefersReducedMotion,
+  useReveal,
+} from "@/components/marketing/ui"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useTranslation } from "@/hooks/useTranslation"
 import { supabase } from "@/lib/supabase"
+import "./home.css"
 
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
-}
+// Set NEXT_PUBLIC_KAKAO_CHANNEL_URL to show the KakaoTalk inquiry button.
+const KAKAO_CHANNEL_URL = process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || null
+const INQUIRY_URL = "mailto:support@classraum.com"
 
-// Ticking Clock Component
-function TickingClock() {
-  const [time, setTime] = useState<Date | null>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    setTime(new Date())
-    
-    let animationId: number
-    let lastUpdate = Date.now()
-    
-    const updateClock = () => {
-      const now = Date.now()
-      // Update every 1000ms (1 second) for efficiency
-      if (now - lastUpdate >= 1000) {
-        setTime(new Date())
-        lastUpdate = now
-      }
-      animationId = requestAnimationFrame(updateClock)
-    }
-    
-    animationId = requestAnimationFrame(updateClock)
-
-    return () => cancelAnimationFrame(animationId)
-  }, [])
-
-  // Don't render on server to avoid hydration mismatch
-  if (!mounted || !time) {
-    return (
-      <div className="relative inline-block ml-3" style={{ verticalAlign: 'middle', transform: 'translateY(-2px)' }}>
-        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-teal-500 rounded-full p-0.5 shadow-lg">
-          <svg width="32" height="32" viewBox="0 0 48 48" className="w-full h-full">
-            {/* Static clock face for SSR */}
-            <circle
-              cx="24"
-              cy="24"
-              r="20"
-              fill="white"
-              stroke="none"
-            />
-            
-            {/* Hour markers - only show 12, 3, 6, 9 */}
-            {[0, 3, 6, 9].map((hour) => {
-              const angle = (hour * 30) * (Math.PI / 180)
-              const x1 = Math.round((24 + 16 * Math.sin(angle)) * 1000) / 1000
-              const y1 = Math.round((24 - 16 * Math.cos(angle)) * 1000) / 1000
-              const x2 = Math.round((24 + 18 * Math.sin(angle)) * 1000) / 1000
-              const y2 = Math.round((24 - 18 * Math.cos(angle)) * 1000) / 1000
-              
-              return (
-                <line
-                  key={hour}
-                  x1={x1}
-                  y1={y1}
-                  x2={x2}
-                  y2={y2}
-                  stroke="#163e64"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              )
-            })}
-
-            {/* Hour dots for other positions */}
-            {[1, 2, 4, 5, 7, 8, 10, 11].map((hour) => {
-              const angle = (hour * 30) * (Math.PI / 180)
-              const x = Math.round((24 + 17 * Math.sin(angle)) * 1000) / 1000
-              const y = Math.round((24 - 17 * Math.cos(angle)) * 1000) / 1000
-              
-              return (
-                <circle
-                  key={hour}
-                  cx={x}
-                  cy={y}
-                  r="1.5"
-                  fill="#163e64"
-                />
-              )
-            })}
-
-            {/* Static hands pointing to 3:00 */}
-            <line x1="24" y1="24" x2="34" y2="24" stroke="#163e64" strokeWidth="3" strokeLinecap="round" />
-            <line x1="24" y1="24" x2="24" y2="10" stroke="#163e64" strokeWidth="2.5" strokeLinecap="round" />
-            <line x1="24" y1="24" x2="24" y2="8" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round" />
-            
-            <circle cx="24" cy="24" r="2" fill="#163e64" />
-          </svg>
-        </div>
-      </div>
-    )
-  }
-
-  const hours = time.getHours() % 12 || 12
-  const minutes = time.getMinutes()
-  const seconds = time.getSeconds()
-
-  // Calculate angles for clock hands
-  const hourAngle = (hours * 30) + (minutes * 0.5)
-  const minuteAngle = minutes * 6
-  const secondAngle = seconds * 6
-
+function SectionTime({ time, when }: { time: string; when: string }) {
   return (
-    <div className="relative inline-block ml-3" style={{ verticalAlign: 'middle', transform: 'translateY(-2px)' }}>
-      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-teal-500 rounded-full p-0.5 shadow-lg">
-        <svg width="32" height="32" viewBox="0 0 48 48" className="w-full h-full">
-          {/* Clock face */}
-          <circle
-            cx="24"
-            cy="24"
-            r="20"
-            fill="white"
-            stroke="none"
-          />
-          
-          {/* Hour markers - only show 12, 3, 6, 9 */}
-          {[0, 3, 6, 9].map((hour) => {
-            const angle = (hour * 30) * (Math.PI / 180)
-            const x1 = Math.round((24 + 16 * Math.sin(angle)) * 1000) / 1000
-            const y1 = Math.round((24 - 16 * Math.cos(angle)) * 1000) / 1000
-            const x2 = Math.round((24 + 18 * Math.sin(angle)) * 1000) / 1000
-            const y2 = Math.round((24 - 18 * Math.cos(angle)) * 1000) / 1000
-            
-            return (
-              <line
-                key={hour}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="#163e64"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            )
-          })}
-
-          {/* Hour dots for other positions */}
-          {[1, 2, 4, 5, 7, 8, 10, 11].map((hour) => {
-            const angle = (hour * 30) * (Math.PI / 180)
-            const x = Math.round((24 + 17 * Math.sin(angle)) * 1000) / 1000
-            const y = Math.round((24 - 17 * Math.cos(angle)) * 1000) / 1000
-            
-            return (
-              <circle
-                key={hour}
-                cx={x}
-                cy={y}
-                r="1.5"
-                fill="#163e64"
-              />
-            )
-          })}
-
-          {/* Hour hand */}
-          <line
-            x1="24"
-            y1="24"
-            x2={Math.round((24 + 10 * Math.sin(hourAngle * Math.PI / 180)) * 1000) / 1000}
-            y2={Math.round((24 - 10 * Math.cos(hourAngle * Math.PI / 180)) * 1000) / 1000}
-            stroke="#163e64"
-            strokeWidth="3"
-            strokeLinecap="round"
-          />
-
-          {/* Minute hand */}
-          <line
-            x1="24"
-            y1="24"
-            x2={Math.round((24 + 14 * Math.sin(minuteAngle * Math.PI / 180)) * 1000) / 1000}
-            y2={Math.round((24 - 14 * Math.cos(minuteAngle * Math.PI / 180)) * 1000) / 1000}
-            stroke="#163e64"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-
-          {/* Second hand */}
-          <line
-            x1="24"
-            y1="24"
-            x2={Math.round((24 + 16 * Math.sin(secondAngle * Math.PI / 180)) * 1000) / 1000}
-            y2={Math.round((24 - 16 * Math.cos(secondAngle * Math.PI / 180)) * 1000) / 1000}
-            stroke="#ef4444"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-
-          {/* Center dot */}
-          <circle
-            cx="24"
-            cy="24"
-            r="2"
-            fill="#163e64"
-          />
-        </svg>
-      </div>
+    <div className="md:text-right hv4-fade">
+      <b className="block font-mono text-[15px] font-semibold text-primary tabular-nums">{time}</b>
+      <span className="text-xs text-gray-400">{when}</span>
     </div>
   )
 }
+
+// ---------------------------------------------------------------------------
+// AI 기반 통합 플랫폼 — six module chips scatter in, then get absorbed into
+// the Classraum core; each landing expands a module pill inside the card.
+// ---------------------------------------------------------------------------
+const UNIFY_CHIPS = [
+  { key: "chip1", left: "17%", top: "19%", sx: "-70px", sy: "-40px", teal: false },
+  { key: "chip2", left: "83%", top: "17%", sx: "70px", sy: "-46px", teal: false },
+  { key: "chip3", left: "11%", top: "61%", sx: "-80px", sy: "30px", teal: false },
+  { key: "chip4", left: "88%", top: "59%", sx: "80px", sy: "34px", teal: false },
+  { key: "chip5", left: "26%", top: "87%", sx: "-50px", sy: "60px", teal: false },
+  { key: "chip6", left: "72%", top: "88%", sx: "56px", sy: "58px", teal: true },
+]
+const UNIFY_LINES = [
+  [115, 76],
+  [565, 68],
+  [75, 244],
+  [600, 236],
+  [177, 348],
+  [490, 352],
+] as const
+
+function UnifySection({ t }: { t: TFunc }) {
+  const canvasRef = useRef<HTMLDivElement>(null)
+  const chipRefs = useRef<(HTMLDivElement | null)[]>([])
+  const lineRefs = useRef<(SVGLineElement | null)[]>([])
+  const timers = useRef<number[]>([])
+  const [landed, setLanded] = useState<boolean[]>(Array(6).fill(false))
+  const [absorbed, setAbsorbed] = useState(false)
+
+  const play = useCallback(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    timers.current.forEach(window.clearTimeout)
+    timers.current = []
+
+    if (prefersReducedMotion()) {
+      canvas.classList.add("hv4-go", "hv4-absorbed")
+      chipRefs.current.forEach((ch) => {
+        if (ch) {
+          ch.style.transition = "none"
+          ch.style.opacity = "0"
+        }
+      })
+      lineRefs.current.forEach((l) => {
+        if (l) {
+          l.style.transition = "none"
+          l.style.strokeDashoffset = "300"
+        }
+      })
+      setLanded(Array(6).fill(true))
+      setAbsorbed(true)
+      return
+    }
+
+    // reset to the pre-animation state, then replay
+    canvas.classList.remove("hv4-go", "hv4-absorbed")
+    chipRefs.current.forEach((ch) => {
+      if (ch) {
+        ch.style.transition = ""
+        ch.style.transform = ""
+        ch.style.opacity = ""
+      }
+    })
+    lineRefs.current.forEach((l) => {
+      if (l) {
+        l.style.transition = ""
+        l.style.strokeDashoffset = ""
+      }
+    })
+    setLanded(Array(6).fill(false))
+    setAbsorbed(false)
+    void canvas.offsetWidth
+    canvas.classList.add("hv4-go")
+
+    // let the scattered chips + lines settle, then absorb them one by one
+    timers.current.push(
+      window.setTimeout(() => {
+        const c = canvas.getBoundingClientRect()
+        const cx = c.left + c.width / 2
+        const cy = c.top + c.height / 2
+        chipRefs.current.forEach((ch, i) => {
+          timers.current.push(
+            window.setTimeout(() => {
+              if (!ch) return
+              const r = ch.getBoundingClientRect()
+              const dx = cx - (r.left + r.width / 2)
+              const dy = cy - (r.top + r.height / 2)
+              ch.style.transition = "transform .6s cubic-bezier(.55,0,.7,.4), opacity .25s ease .38s"
+              ch.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.25)`
+              ch.style.opacity = "0"
+              const line = lineRefs.current[i]
+              if (line) {
+                line.style.transition = "stroke-dashoffset .6s ease"
+                line.style.strokeDashoffset = "300"
+              }
+              timers.current.push(
+                window.setTimeout(() => {
+                  setLanded((prev) => {
+                    const next = [...prev]
+                    next[i] = true
+                    return next
+                  })
+                }, 540)
+              )
+            }, i * 150)
+          )
+        })
+        timers.current.push(
+          window.setTimeout(() => {
+            canvas.classList.add("hv4-absorbed")
+            setAbsorbed(true)
+          }, UNIFY_CHIPS.length * 150 + 650)
+        )
+      }, 1600)
+    )
+  }, [])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            play()
+            io.disconnect()
+          }
+        }),
+      { threshold: 0.35 }
+    )
+    io.observe(canvas)
+    const currentTimers = timers.current
+    return () => {
+      io.disconnect()
+      currentTimers.forEach(window.clearTimeout)
+    }
+  }, [play])
+
+  return (
+    <section className="py-28 scroll-mt-16" id="platform">
+      <div className="max-w-[1080px] mx-auto px-6 sm:px-8">
+        <div className="text-center max-w-[620px] mx-auto">
+          <span className="text-[12.5px] font-semibold tracking-[0.08em] text-primary">
+            {ts(t, "landing.home.unify.eyebrow")}
+          </span>
+          <h2 className="hv4-fade text-[clamp(28px,3.6vw,40px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mt-3 mb-3.5">
+            {ts(t, "landing.home.unify.title1")}
+            <br />
+            {ts(t, "landing.home.unify.title2")}
+          </h2>
+          <p className="hv4-fade text-gray-500 leading-[1.75]">{ts(t, "landing.home.unify.sub")}</p>
+        </div>
+
+        <div
+          ref={canvasRef}
+          className="hv4-canvas relative max-w-[680px] h-[400px] max-sm:h-[340px] mx-auto mt-14"
+          role="img"
+          aria-label={ts(t, "landing.home.unify.aria")}
+        >
+          <svg className="hv4-usvg absolute inset-0 w-full h-full" viewBox="0 0 680 400" preserveAspectRatio="none" aria-hidden="true">
+            {UNIFY_LINES.map(([x2, y2], i) => (
+              <line
+                key={i}
+                ref={(el) => {
+                  lineRefs.current[i] = el
+                }}
+                x1={340}
+                y1={200}
+                x2={x2}
+                y2={y2}
+                className="stroke-gray-300"
+                strokeWidth={1}
+              />
+            ))}
+          </svg>
+
+          <div className={`hv4-ucenter ${CARD} absolute left-1/2 top-1/2 [transform:translate(-50%,-50%)] z-[2] flex flex-col items-center gap-2 px-7 py-5 shadow-[0_20px_48px_-20px_rgba(22,62,100,0.3)]`}>
+            <b className="text-sm font-extrabold tracking-[0.04em] text-[#163e64]">CLASSRAUM</b>
+            <div className="hv4-umods flex flex-wrap justify-center gap-[5px] max-w-[200px]">
+              {UNIFY_CHIPS.map((chip, i) => (
+                <span key={chip.key} className={`${landed[i] ? "hv4-on" : ""} ${chip.teal ? "hv4-teal" : ""}`}>
+                  {ts(t, `landing.home.unify.mod${i + 1}`)}
+                </span>
+              ))}
+            </div>
+            <i className="not-italic text-[11px] text-gray-400">
+              {absorbed ? ts(t, "landing.home.unify.cap2") : ts(t, "landing.home.unify.cap1")}
+            </i>
+          </div>
+
+          {UNIFY_CHIPS.map((chip, i) => (
+            <div
+              key={chip.key}
+              ref={(el) => {
+                chipRefs.current[i] = el
+              }}
+              className={`hv4-uchip ${CARD} absolute z-[1] flex items-center gap-2 rounded-[10px] px-[15px] py-[9px] text-[12.5px] font-semibold text-gray-900 whitespace-nowrap`}
+              style={{ left: chip.left, top: chip.top, "--sx": chip.sx, "--sy": chip.sy } as React.CSSProperties}
+            >
+              <s className={`w-[7px] h-[7px] rounded-full no-underline shrink-0 ${chip.teal ? "bg-[#00D0AE]" : "bg-primary"}`} />
+              {ts(t, `landing.home.unify.chip${i + 1}`)}
+            </div>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={play}
+          className="block mx-auto mt-5 font-mono text-[11px] tracking-[0.04em] text-gray-400 hover:text-primary transition-colors"
+        >
+          {ts(t, "landing.home.unify.replay")}
+        </button>
+
+        <div className="grid md:grid-cols-3 gap-4 max-w-[960px] mx-auto mt-14">
+          {[
+            { n: 1, icons: [UserCheck, Bell, FileText] },
+            { n: 2, icons: [FileQuestion, Sparkles, BookOpen] },
+            { n: 3, icons: [FileText, CreditCard, BarChart] },
+          ].map((f) => (
+            <div key={f.n} className={`${CARD} ${CARD_HOVER} hv4-fade p-6`}>
+              <div className="flex items-center gap-2 mb-5">
+                {f.icons.map((FlowIcon, i) => (
+                  <span key={i} className="flex items-center gap-2">
+                    <span className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                      <FlowIcon size={16} strokeWidth={2.2} />
+                    </span>
+                    {i < 2 && <span className="text-gray-300 text-sm leading-none">→</span>}
+                  </span>
+                ))}
+              </div>
+              <b className="block text-[13px] font-semibold text-[#163e64] leading-snug mb-1.5">
+                {ts(t, `landing.home.unify.flow${f.n}t`)}
+              </b>
+              <span className="block text-[12.5px] text-gray-500 leading-relaxed">
+                {ts(t, `landing.home.unify.flow${f.n}b`)}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// ROI calculator — hours returned per month, estimation model disclosed below
+// ---------------------------------------------------------------------------
+function RoiCalculator({ t }: { t: TFunc }) {
+  const [students, setStudents] = useState(120)
+  const [teachers, setTeachers] = useState(6)
+  const hours = Math.round((students * 18) / 60 + teachers * 4)
+  const won = hours * 12000
+  const wonLabel = `₩${won.toLocaleString("en-US")}`
+  const unit = tOpt(t, "landing.home.calc.unit")
+  const pct = (v: number, min: number, max: number) => ((v - min) / (max - min)) * 100
+  const track = (p: number) => ({ background: `linear-gradient(to right, #2885e8 ${p}%, #e5e7eb ${p}%)` })
+
+  return (
+    <section className="bg-[#f8fafc] border-y border-gray-100 py-24" id="calculator">
+      <div className="max-w-[1080px] mx-auto px-6 sm:px-8 grid md:grid-cols-2 gap-14 items-center">
+        <div className="hv4-fade">
+          <h2 className="text-[clamp(26px,3.2vw,36px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mb-3">
+            {ts(t, "landing.home.calc.title1")}
+            <br />
+            {ts(t, "landing.home.calc.title2")}
+          </h2>
+          <p className="text-gray-500 leading-[1.75]">{ts(t, "landing.home.calc.sub")}</p>
+          <div className="mt-6">
+            <label className="flex justify-between text-[13.5px] font-semibold text-gray-900 mb-2.5">
+              {ts(t, "landing.home.calc.students")}
+              <output className="text-primary tabular-nums">{students}{unit}</output>
+            </label>
+            <input
+              type="range"
+              min={20}
+              max={400}
+              step={10}
+              value={students}
+              onChange={(e) => setStudents(Number(e.target.value))}
+              className="hv4-range w-full"
+              style={track(pct(students, 20, 400))}
+            />
+            <div className="flex justify-between text-[11px] text-gray-400 tabular-nums mt-1.5">
+              <span>20{unit}</span>
+              <span>400{unit}</span>
+            </div>
+          </div>
+          <div className="mt-5">
+            <label className="flex justify-between text-[13.5px] font-semibold text-gray-900 mb-2.5">
+              {ts(t, "landing.home.calc.teachers")}
+              <output className="text-primary tabular-nums">{teachers}{unit}</output>
+            </label>
+            <input
+              type="range"
+              min={1}
+              max={30}
+              step={1}
+              value={teachers}
+              onChange={(e) => setTeachers(Number(e.target.value))}
+              className="hv4-range w-full"
+              style={track(pct(teachers, 1, 30))}
+            />
+            <div className="flex justify-between text-[11px] text-gray-400 tabular-nums mt-1.5">
+              <span>1{unit}</span>
+              <span>30{unit}</span>
+            </div>
+          </div>
+        </div>
+        <div className={`${CARD} hv4-fade p-8 text-center`}>
+          <i className="not-italic block text-[12.5px] text-gray-500 mb-1.5">{ts(t, "landing.home.calc.outLabel")}</i>
+          <b className="block text-[44px] font-bold text-[#163e64] tracking-tight tabular-nums leading-tight">
+            {hours}
+            {ts(t, "landing.home.calc.hoursSuffix")}
+          </b>
+          <p className="text-[15px] text-gray-500 mt-2 tabular-nums">
+            {tOpt(t, "landing.home.calc.wonPrefix")}
+            {wonLabel}
+            {tOpt(t, "landing.home.calc.wonSuffix")}
+          </p>
+          <p className="text-[11.5px] text-gray-400 mt-4 leading-relaxed">{ts(t, "landing.home.calc.note")}</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ---------------------------------------------------------------------------
 
 function HomeContent() {
   const { t, language } = useTranslation()
   const router = useRouter()
   const searchParams = useSearchParams()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
-  const unifiedSectionRef = useRef<HTMLDivElement>(null)
-  const centerBoxRef = useRef<HTMLDivElement>(null)
-  const featureBoxRefs = useRef<(HTMLDivElement | null)[]>([])
-  const animationContainerRef = useRef<HTMLDivElement>(null)
-  const timelineRef = useRef<gsap.core.Timeline | null>(null)
-  
-  
-  // Handle authentication redirects
-  useEffect(() => {
-    const code = searchParams.get('code')
-    const type = searchParams.get('type')
+  const [activeMoment, setActiveMoment] = useState(-1)
+  useReveal()
 
-    if (code && type === 'recovery') {
+  // Scrollspy for the day ruler: highlight the moment currently in view
+  useEffect(() => {
+    const ids = ["m1", "m2", "m3", "m4", "m5"]
+    const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
+    if (els.length === 0) return
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveMoment(ids.indexOf(e.target.id))
+        }),
+      { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+    )
+    els.forEach((el) => io.observe(el))
+    return () => io.disconnect()
+  }, [])
+
+  // Handle authentication redirects (Supabase auth callback lands on "/")
+  useEffect(() => {
+    const code = searchParams.get("code")
+    const type = searchParams.get("type")
+
+    if (code && type === "recovery") {
       // For password recovery, just redirect to auth page with the reset type
       // Don't exchange the code here - Supabase will handle it differently for password reset
-      router.push('/auth?type=reset')
+      router.push("/auth?type=reset")
     } else if (code) {
       // Exchange code for session for other auth flows
-      supabase.auth.exchangeCodeForSession(code).then(({ data, error }) => {
+      supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
         if (error) {
-          console.error('Code exchange error:', error)
-          router.push('/auth?error=invalid_code')
+          console.error("Code exchange error:", error)
+          router.push("/auth?error=invalid_code")
         } else {
-          router.push('/dashboard')
+          router.push("/dashboard")
         }
       })
     }
@@ -254,600 +430,499 @@ function HomeContent() {
 
   // Set the correct app URL based on environment
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+    if (typeof window !== "undefined" && window.location.hostname === "localhost") {
       const { protocol, port } = window.location
-      setAppUrl(`${protocol}//app.localhost${port ? ':' + port : ''}`)
+      setAppUrl(`${protocol}//app.localhost${port ? ":" + port : ""}`)
     }
   }, [])
 
-  // GSAP ScrollTrigger animation system
-  useEffect(() => {
-    if (typeof window === "undefined" || !unifiedSectionRef.current || !animationContainerRef.current) return
+  const signupUrl = `${appUrl}/auth?lang=${language}`
 
-    const section = unifiedSectionRef.current
-    const container = animationContainerRef.current
-    const centerBox = centerBoxRef.current
-    const featureBoxes = featureBoxRefs.current.filter(Boolean)
+  const ctaButtons = (startKey: string, inquiryKey: string, kakaoKey: string) => (
+    <div className="flex justify-center gap-2.5 flex-wrap">
+      <a href={signupUrl}>
+        <Button size="lg" className="text-sm sm:text-base px-6">
+          {ts(t, startKey)}
+        </Button>
+      </a>
+      <a href={INQUIRY_URL}>
+        <Button variant="outline" size="lg" className="text-sm sm:text-base px-6">
+          {ts(t, inquiryKey)}
+        </Button>
+      </a>
+      {KAKAO_CHANNEL_URL && (
+        <a
+          href={KAKAO_CHANNEL_URL}
+          className="inline-flex items-center gap-2 h-11 px-[18px] rounded-md bg-[#FEE500] text-[#191919] font-semibold text-sm"
+        >
+          <i className="not-italic w-[18px] h-[18px] rounded-full bg-[#191919] text-[#FEE500] inline-flex items-center justify-center text-[10px] font-extrabold">
+            K
+          </i>
+          {ts(t, kakaoKey)}
+        </a>
+      )}
+    </div>
+  )
 
-    if (featureBoxes.length === 0 || !centerBox) {
-      return
-    }
+  const ruler = [
+    { href: "#m1", time: "14:50", label: "attendance", night: false, Icon: UserCheck },
+    { href: "#m2", time: "19:30", label: "study", night: true, Icon: BookOpen },
+    { href: "#m3", time: "21:04", label: "billing", night: true, Icon: CreditCard },
+    { href: "#m4", time: ts(t, "landing.home.ruler.friday"), label: "report", night: false, Icon: FileText },
+    { href: "#m5", time: ts(t, "landing.home.ruler.monthEnd"), label: "close", night: false, Icon: BarChart },
+  ]
 
-    // Define initial scattered positions (relative to center)
-    const positions = [
-      { x: -250, y: -150 }, // Box 0 - Top left
-      { x: 250, y: -150 },  // Box 1 - Top right
-      { x: -300, y: 0 },    // Box 2 - Middle left
-      { x: 300, y: 0 },     // Box 3 - Middle right
-      { x: -250, y: 150 },  // Box 4 - Bottom left
-      { x: 0, y: 220 },     // Box 5 - Bottom center
-      { x: 250, y: 150 },   // Box 6 - Bottom right
-      { x: 0, y: -220 }     // Box 7 - Top center
-    ]
-
-    // Set initial positions for all feature boxes
-    featureBoxes.forEach((box, index) => {
-      const pos = positions[index]
-      if (pos && box) {
-        // Set initial scattered position with GSAP immediately
-        gsap.set(box, {
-          x: pos.x,
-          y: pos.y,
-          scale: 1,
-          opacity: 1,
-          transformOrigin: "center center",
-          force3D: true,
-          immediateRender: true
-        })
-      }
-    })
-
-    // Create the main timeline
-    const tl = gsap.timeline({
-      paused: true,
-      ease: "power2.inOut"
-    })
-
-    // Add convergence animations for each box - animate from current position to center
-    featureBoxes.forEach((box, index) => {
-      if (box) {
-        const pos = positions[index]
-        if (pos) {
-          tl.to(box, {
-            x: 0, // Move to center (0 offset from 50% 50%)
-            y: 0,
-            scale: 0.8,
-            opacity: 0.5,
-            duration: 1,
-            ease: "power2.inOut",
-            force3D: true,
-            transformOrigin: "center center"
-          }, index * 0.15) // Stagger by 0.15 seconds
-        }
-      }
-    })
-
-
-    // Add text transition at the end
-    if (centerBox) {
-      const allInOneText = centerBox.querySelector('.all-in-one-text')
-      const classraumText = centerBox.querySelector('.classraum-text')
-      
-      if (allInOneText && classraumText) {
-        tl.to(allInOneText, {
-          opacity: 0,
-          y: -15,
-          duration: 0.5
-        }, "-=0.3")
-        .to(classraumText, {
-          opacity: 1,
-          y: 0,
-          duration: 0.5
-        }, "-=0.3")
-      }
-    }
-
-    // Add header text fade-in after the cards animation
-    const headerText = typeof document !== 'undefined' ? document.getElementById('header-text') : null
-    if (headerText) {
-      tl.to(headerText, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out"
-      }, "-=0.2") // Start slightly before the center text finishes
-    }
-
-    // Store timeline reference
-    timelineRef.current = tl
-
-    // Create ScrollTrigger
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: container,
-      start: "top 20%",
-      end: "+=250%",
-      pin: section,
-      pinSpacing: true,
-      scrub: 2,
-      anticipatePin: 1,
-      refreshPriority: -1,
-      invalidateOnRefresh: false,
-      onUpdate: (self) => {
-        // Manually control timeline progress based on scroll
-        const progress = self.progress
-        tl.progress(progress)
-      }
-    })
-
-
-    // Cleanup
-    return () => {
-      scrollTrigger.kill()
-      tl.kill()
-      timelineRef.current = null
-    }
-  }, [])
-
-
-
-
-  
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-clip">
       <Header currentPage="home" />
 
-      {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="space-y-4">
-            <div className="w-fit flex items-center gap-2 bg-primary/10 px-4 py-2 text-[#163e64] text-sm font-semibold rounded-full">
-              <Zap className="h-4 w-4 text-[#163e64]" />
-              {t('landing.hero.badge')}
-            </div>
-            
-            <div className="space-y-4 sm:space-y-6">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
-                {t('landing.hero.title')}{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500">{t('landing.hero.titleHighlight')}</span><TickingClock />
-              </h1>
-              
-              <p className="text-base sm:text-lg text-[#163e64] max-w-2xl">
-                {t('landing.hero.subtitle')}
-              </p>
-            </div>
-            
-            <div className="space-y-6 sm:space-y-8">
-              <div className="mb-6 sm:mb-8">
-                <a href={`${appUrl}/auth?lang=${language}`}>
-                  <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
-                    {t('landing.hero.ctaPrimary')}
-                  </Button>
-                </a>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 text-xs sm:text-sm text-[#163e64]">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>{t('landing.hero.features.freeTrial')}</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>{t('landing.hero.features.noSetup')}</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>{t('landing.hero.features.cancelAnytime')}</span>
-                </div>
-              </div>
+      {/* Hero */}
+      <header className="relative pt-20 pb-14 text-center overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(40,133,232,.06), transparent 70%)" }}
+        />
+        <div className="relative max-w-[1080px] mx-auto px-6 sm:px-8">
+          <h1 className="text-[clamp(38px,5.4vw,64px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.024em]">
+            {ts(t, "landing.home.hero.title1")}
+            <br />
+            {ts(t, "landing.home.hero.title2")}
+          </h1>
+          <span className="block text-[13px] text-gray-400 mt-3 mb-6">{ts(t, "landing.home.hero.tagline")}</span>
+          <p className="text-gray-500 text-base sm:text-[16.5px] leading-[1.75] max-w-[52ch] mx-auto mb-8">
+            {ts(t, "landing.home.hero.sub")}
+          </p>
+          {ctaButtons("landing.home.hero.ctaStart", "landing.home.hero.ctaInquiry", "landing.home.hero.ctaKakao")}
+          <p className="text-[13px] text-gray-400 mt-4 tabular-nums">{ts(t, "landing.home.hero.anchor")}</p>
+
+          {/* Real product — the manager dashboard, rendered live */}
+          <div className="relative max-w-[980px] mx-auto mt-14">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-x-16 -top-10 -bottom-6 pointer-events-none"
+              style={{ background: "radial-gradient(60% 55% at 50% 42%, rgba(40,133,232,0.09), rgba(0,208,174,0.05) 55%, transparent 75%)" }}
+            />
+            <div className="hv4-hero-panel relative">
+              <DashboardMock t={t} label={ts(t, "landing.home.shots.dashboard")} />
             </div>
           </div>
-          
-          {/* Dashboard Preview */}
-          <div className="relative mt-8 lg:mt-0">
-            <Card className="bg-white shadow-2xl transform rotate-1 sm:rotate-3 hover:rotate-0 transition-transform duration-300 ease-in-out hover:shadow-3xl scale-90 sm:scale-90">
-              <CardContent className="p-3 sm:p-5">
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">{t('landing.hero.dashboardCard.title')}</h3>
-                    <Badge variant="secondary" className="text-xs bg-green-100 text-green-700 px-2 sm:px-3 py-1">{t('landing.hero.dashboardCard.badge')}</Badge>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-2 sm:space-x-3">
-                      <div className="w-8 h-8 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                        <div className="w-4 h-4 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                          <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
-                        </div>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm sm:text-base font-semibold text-gray-900 truncate">{t('landing.hero.dashboardCard.companyName')}</div>
-                        <div className="text-xs sm:text-sm text-gray-500">{t('landing.hero.dashboardCard.subtitle')}</div>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4 mt-6">
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-                        <div className="flex items-center space-x-2 sm:space-x-3">
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                            <Users className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
-                          </div>
-                          <span className="text-xs sm:text-sm font-medium text-gray-700">{t('landing.hero.dashboardCard.metrics.attendance')}</span>
-                        </div>
-                        <div className="flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto">
-                          <div className="w-16 sm:w-20 h-2 bg-gray-200 rounded-full">
-                            <div className="bg-green-500 h-2 rounded-full" style={{width: '94%'}}></div>
-                          </div>
-                          <span className="text-xs sm:text-sm font-bold text-gray-900 w-6 sm:w-8">94%</span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-                        <div className="flex items-center space-x-2 sm:space-x-3">
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                            <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
-                          </div>
-                          <span className="text-xs sm:text-sm font-medium text-gray-700">{t('landing.hero.dashboardCard.metrics.automation')}</span>
-                        </div>
-                        <div className="flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto">
-                          <div className="w-16 sm:w-20 h-2 bg-gray-200 rounded-full">
-                            <div className="bg-blue-500 h-2 rounded-full" style={{width: '70%'}}></div>
-                          </div>
-                          <span className="text-xs sm:text-sm font-bold text-gray-900 w-6 sm:w-8">70%</span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-                        <div className="flex items-center space-x-2 sm:space-x-3">
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                            <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
-                          </div>
-                          <span className="text-xs sm:text-sm font-medium text-gray-700">{t('landing.hero.dashboardCard.metrics.timeSaved')}</span>
-                        </div>
-                        <div className="flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto">
-                          <div className="w-16 sm:w-20 h-2 bg-gray-200 rounded-full">
-                            <div className="bg-purple-500 h-2 rounded-full" style={{width: '75%'}}></div>
-                          </div>
-                          <span className="text-xs sm:text-sm font-bold text-gray-900">{t('landing.hero.dashboardCard.timeSavedValue')}</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg mt-4 sm:mt-6">
-                      <div className="flex items-center justify-center space-x-2 text-xs sm:text-sm text-gray-600">
-                        <Zap className="h-3 w-3 sm:h-4 sm:w-4" />
-                        <span className="font-medium text-center">{t('landing.hero.dashboardCard.automationText')}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            {/* Floating elements */}
-            <div className="absolute -top-1 -right-1 w-8 h-8 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center text-white animate-bounce">
-              <Zap className="h-4 w-4 sm:h-6 sm:w-6" />
+
+          {/* Day ruler */}
+          <div className="max-w-[860px] mx-auto mt-14" id="day">
+            <div className="relative flex justify-between">
+              {/* day → night → day gradient through the tick centers */}
+              <div
+                className="absolute left-[10%] right-[10%] top-[14px] h-px"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #e5e7eb 0%, #e5e7eb 15%, #16304d 25%, #16304d 50%, #e5e7eb 62%, #e5e7eb 100%)",
+                }}
+              />
+              {ruler.map((tick, i) => {
+                const active = activeMoment === i
+                return (
+                  <a
+                    key={tick.href}
+                    href={tick.href}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      document
+                        .getElementById(tick.href.slice(1))
+                        ?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" })
+                    }}
+                    className="relative flex-1 text-center no-underline group"
+                  >
+                    <span
+                      className={`w-7 h-7 mx-auto mb-2 rounded-full flex items-center justify-center relative z-[1] transition-all duration-300 ${
+                        active
+                          ? "bg-primary text-white ring-4 ring-primary/15 scale-110"
+                          : tick.night
+                            ? "bg-[#0b2138] text-[#8fa8c2] ring-1 ring-[#0b2138] group-hover:text-white"
+                            : "bg-white text-gray-400 ring-1 ring-gray-200 group-hover:text-primary group-hover:ring-primary/40"
+                      }`}
+                    >
+                      <tick.Icon size={13} strokeWidth={2.2} />
+                    </span>
+                    <b
+                      className={`block font-mono text-[11px] font-semibold tabular-nums transition-colors ${
+                        active ? "text-primary" : "text-[#163e64] group-hover:text-primary"
+                      }`}
+                    >
+                      {tick.time}
+                    </b>
+                    <span className="text-[10px] sm:text-[11.5px] text-gray-400 group-hover:text-gray-500 transition-colors whitespace-nowrap">
+                      {ts(t, `landing.home.ruler.${tick.label}`)}
+                    </span>
+                  </a>
+                )
+              })}
             </div>
           </div>
         </div>
-        
-        {/* Problem Section */}
-        <section className="py-12 sm:py-16 lg:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 sm:mb-16">
-              <div className="mb-2">
-                <h3 className="text-lg sm:text-xl font-medium text-primary" style={{ fontFamily: 'Kalam, Comic Sans MS, cursive' }}>{t('landing.problemSection.solutionLabel')}</h3>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">{t('landing.problemSection.title')}</h2>
-              <p className="text-base sm:text-lg text-[#163e64] max-w-2xl mx-auto">
-                {t('landing.problemSection.description')} <span className="font-bold text-primary">{t('landing.problemSection.highlightText')}</span>.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-              <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 p-4 sm:p-6">
-                <div className="text-center space-y-3 sm:space-y-4">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto">
-                    <AlertTriangle className="w-6 h-6 sm:w-7 sm:h-7 text-rose-500" />
-                  </div>
-                  <div>
-                    <div className="text-3xl sm:text-4xl font-bold text-rose-500 mb-2">30-50%</div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">{t('landing.problemSection.painPoints.administrative.title')}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">{t('landing.problemSection.painPoints.administrative.description')}</p>
-                  </div>
-                </div>
-              </Card>
-            
-              <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 p-4 sm:p-6">
-                <div className="text-center space-y-3 sm:space-y-4">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
-                    <Layers className="w-6 h-6 sm:w-7 sm:h-7 text-orange-500" />
-                  </div>
-                  <div>
-                    <div className="text-3xl sm:text-4xl font-bold text-orange-500 mb-2">5-10</div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">{t('landing.problemSection.painPoints.fragmented.title')}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">{t('landing.problemSection.painPoints.fragmented.description')}</p>
-                  </div>
-                </div>
-              </Card>
-            
-              <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 p-4 sm:p-6">
-                <div className="text-center space-y-3 sm:space-y-4">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-                    <TrendingDown className="w-6 h-6 sm:w-7 sm:h-7 text-purple-500" />
-                  </div>
-                  <div>
-                    <div className="text-3xl sm:text-4xl font-bold text-purple-500 mb-2">70%</div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">{t('landing.problemSection.painPoints.quality.title')}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">{t('landing.problemSection.painPoints.quality.description')}</p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </section>
-      </main>
+      </header>
 
-{/* AI-Powered Unified Platform Section - Full Width */}
-      <section ref={unifiedSectionRef} className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white relative overflow-hidden" style={{ minHeight: '100vh' }}>
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
-          
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
-            
-            {/* Animated Feature Boxes */}
-            <div ref={animationContainerRef} className="relative max-w-8xl mx-auto h-[500px] mb-16 mt-20">
-              {/* Center AI-Powered Box */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                <div className="w-52 h-36 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex flex-col items-center justify-center text-center shadow-2xl border-2 border-white/30">
-                  <div ref={centerBoxRef} className="relative w-full h-10 flex items-center justify-center">
-                    <div className="classraum-text text-xl font-bold text-white tracking-wider absolute inset-0 flex items-center justify-center transform translate-y-5 opacity-0">
-                      {t('landing.allInOneSection.animatedBox.classraum')}
-                    </div>
-                    <div className="all-in-one-text text-xl font-bold text-white tracking-wider flex items-center justify-center">
-                      {t('landing.allInOneSection.animatedBox.allInOne')}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Feature Boxes - Initially scattered, positioned by animation system */}
-              {/* Box 1 - AI-Generated Reports */}
-              <div 
-                ref={(el) => { featureBoxRefs.current[0] = el }}
-                className="z-10"
-                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="w-24 h-16 sm:w-28 sm:h-20 lg:w-36 lg:h-24 bg-black/20 backdrop-blur-md border border-white/30 rounded-lg sm:rounded-xl flex flex-col items-center justify-center text-center shadow-xl group p-1 sm:p-2 lg:p-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-1 sm:mb-1 lg:mb-2 flex-shrink-0">
-                    <FileText className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-white leading-tight text-center">{t('landing.allInOneSection.featureCards.aiReports')}</div>
-                </div>
-              </div>
-
-              {/* Box 2 - Customized Dashboard */}
-              <div 
-                ref={(el) => { featureBoxRefs.current[1] = el }}
-                className="z-10"
-                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="w-24 h-16 sm:w-28 sm:h-20 lg:w-36 lg:h-24 bg-black/20 backdrop-blur-md border border-white/30 rounded-lg sm:rounded-xl flex flex-col items-center justify-center text-center shadow-xl group p-1 sm:p-2 lg:p-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-1 sm:mb-1 lg:mb-2 flex-shrink-0">
-                    <BarChart3 className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-white leading-tight text-center">{t('landing.allInOneSection.featureCards.dashboard')}</div>
-                </div>
-              </div>
-
-              {/* Box 3 - Lesson Planning */}
-              <div 
-                ref={(el) => { featureBoxRefs.current[2] = el }}
-                className="z-10"
-                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="w-24 h-16 sm:w-28 sm:h-20 lg:w-36 lg:h-24 bg-black/20 backdrop-blur-md border border-white/30 rounded-lg sm:rounded-xl flex flex-col items-center justify-center text-center shadow-xl group p-1 sm:p-2 lg:p-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-1 sm:mb-1 lg:mb-2 flex-shrink-0">
-                    <Calendar className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-white leading-tight text-center">{t('landing.allInOneSection.featureCards.planning')}</div>
-                </div>
-              </div>
-
-              {/* Box 4 - Attendance */}
-              <div 
-                ref={(el) => { featureBoxRefs.current[3] = el }}
-                className="z-10"
-                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="w-24 h-16 sm:w-28 sm:h-20 lg:w-36 lg:h-24 bg-black/20 backdrop-blur-md border border-white/30 rounded-lg sm:rounded-xl flex flex-col items-center justify-center text-center shadow-xl group p-1 sm:p-2 lg:p-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mb-1 sm:mb-1 lg:mb-2 flex-shrink-0">
-                    <Users className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-white leading-tight text-center">{t('landing.allInOneSection.featureCards.attendance')}</div>
-                </div>
-              </div>
-
-              {/* Box 5 - Notifications */}
-              <div 
-                ref={(el) => { featureBoxRefs.current[4] = el }}
-                className="z-10"
-                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="w-24 h-16 sm:w-28 sm:h-20 lg:w-36 lg:h-24 bg-black/20 backdrop-blur-md border border-white/30 rounded-lg sm:rounded-xl flex flex-col items-center justify-center text-center shadow-xl group p-1 sm:p-2 lg:p-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center mb-1 sm:mb-1 lg:mb-2 flex-shrink-0">
-                    <Bell className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-white leading-tight text-center">{t('landing.allInOneSection.featureCards.notifications')}</div>
-                </div>
-              </div>
-
-              {/* Box 6 - Privacy by Design */}
-              <div 
-                ref={(el) => { featureBoxRefs.current[5] = el }}
-                className="z-10"
-                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="w-24 h-16 sm:w-28 sm:h-20 lg:w-36 lg:h-24 bg-black/20 backdrop-blur-md border border-white/30 rounded-lg sm:rounded-xl flex flex-col items-center justify-center text-center shadow-xl group p-1 sm:p-2 lg:p-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-green-500 to-cyan-500 rounded-full flex items-center justify-center mb-1 sm:mb-1 lg:mb-2 flex-shrink-0">
-                    <Shield className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-white leading-tight text-center">{t('landing.allInOneSection.featureCards.privacy')}</div>
-                </div>
-              </div>
-
-              {/* Box 7 - Seamless Integration */}
-              <div 
-                ref={(el) => { featureBoxRefs.current[6] = el }}
-                className="z-10"
-                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="w-24 h-16 sm:w-28 sm:h-20 lg:w-36 lg:h-24 bg-black/20 backdrop-blur-md border border-white/30 rounded-lg sm:rounded-xl flex flex-col items-center justify-center text-center shadow-xl group p-1 sm:p-2 lg:p-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mb-1 sm:mb-1 lg:mb-2 flex-shrink-0">
-                    <Link2 className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-white leading-tight text-center">{t('landing.allInOneSection.featureCards.integration')}</div>
-                </div>
-              </div>
-
-              {/* Box 8 - Real-Time Analytics */}
-              <div 
-                ref={(el) => { featureBoxRefs.current[7] = el }}
-                className="z-10"
-                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div className="w-24 h-16 sm:w-28 sm:h-20 lg:w-36 lg:h-24 bg-black/20 backdrop-blur-md border border-white/30 rounded-lg sm:rounded-xl flex flex-col items-center justify-center text-center shadow-xl group p-1 sm:p-2 lg:p-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center mb-1 sm:mb-1 lg:mb-2 flex-shrink-0">
-                    <BarChart3 className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-white leading-tight text-center">{t('landing.allInOneSection.featureCards.analytics')}</div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Header text that appears after animation */}
-            <div id="header-text" className="text-center mb-16 transform translate-y-10 opacity-0">
-              <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-                {t('landing.allInOneSection.title')} <span className="text-cyan-400">{t('landing.allInOneSection.titleHighlight')}</span>
-              </h2>
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                {t('landing.allInOneSection.description')}
-              </p>
-            </div>
-          </div>
-        </section>
-
-      {/* Features Section */}
-      <section className="py-12 sm:py-16 lg:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">{t('landing.solutionSection.title')}</h2>
-            <p className="text-base sm:text-lg text-[#163e64] max-w-2xl mx-auto">
-              {t('landing.solutionSection.description')}
+      {/* The problem — carried over from the original landing page, restyled */}
+      <section className="pt-24 pb-4">
+        <div className="max-w-[1080px] mx-auto px-6 sm:px-8">
+          <div className="text-center max-w-[640px] mx-auto mb-12 hv4-fade">
+            <h2 className="text-[clamp(26px,3.2vw,36px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mb-3">
+              {ts(t, "landing.problemSection.title")}
+            </h2>
+            <p className="text-gray-500 leading-[1.75]">
+              {ts(t, "landing.problemSection.description")}{" "}
+              <span className="font-semibold text-primary">{ts(t, "landing.problemSection.highlightText")}</span>.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-4 sm:mb-6">
-                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              {
+                num: "30–50%",
+                key: "administrative",
+                accent: "text-rose-500",
+                rule: "bg-rose-200",
+                glow: "hover:shadow-[0_20px_44px_-16px_rgba(244,63,94,0.35)] hover:ring-rose-100",
+              },
+              {
+                num: "5–10",
+                key: "fragmented",
+                accent: "text-amber-500",
+                rule: "bg-amber-200",
+                glow: "hover:shadow-[0_20px_44px_-16px_rgba(245,158,11,0.35)] hover:ring-amber-100",
+              },
+              {
+                num: "70%",
+                key: "quality",
+                accent: "text-purple-500",
+                rule: "bg-purple-200",
+                glow: "hover:shadow-[0_20px_44px_-16px_rgba(168,85,247,0.35)] hover:ring-purple-100",
+              },
+            ].map((p) => (
+              <div
+                key={p.key}
+                className={`${CARD} hv4-pcard hv4-fade group px-6 py-6 flex flex-col transition-all duration-300 hover:-translate-y-1 ${p.glow}`}
+              >
+                {/* Editorial stat header — the number IS the visual.
+                    (The pastel icon-chip + stock-glyph row this replaces
+                    read as template filler; each card's bespoke chart
+                    below carries the imagery instead.) */}
+                <div className="mb-4">
+                  <b className={`block text-[38px] leading-none font-bold tracking-tight tabular-nums ${p.accent}`}>
+                    {p.num}
+                  </b>
+                  <span className={`block w-8 h-[3px] rounded-full mt-3 transition-all duration-300 group-hover:w-14 ${p.rule}`} />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-gray-900">{t('landing.solutionSection.features.aiReports.title')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
-                  {t('landing.solutionSection.features.aiReports.description')}
+                <h3 className="text-[15px] font-semibold text-gray-900 mb-1.5">
+                  {ts(t, `landing.problemSection.painPoints.${p.key}.title`)}
+                </h3>
+                <p className="text-[13px] text-gray-500 leading-relaxed">
+                  {ts(t, `landing.problemSection.painPoints.${p.key}.description`)}
                 </p>
-                <ul className="space-y-2 text-xs sm:text-sm text-gray-600">
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.aiReports.items.progress')}</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.aiReports.items.financial')}</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.aiReports.items.attendance')}</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-4 sm:mb-6">
-                  <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <div className="mt-auto pt-5" aria-hidden="true">
+                  {p.key === "administrative" && (
+                    <div>
+                      {/* gauge: the 30–50% band of educator time lost to admin */}
+                      <svg viewBox="0 0 120 64" className="w-full h-[64px]">
+                        <defs>
+                          <linearGradient id="hv4-grad-rose" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stopColor="#fda4af" />
+                            <stop offset="100%" stopColor="#f43f5e" />
+                          </linearGradient>
+                        </defs>
+                        <path d="M10 58 A50 50 0 0 1 110 58" fill="none" stroke="#ffe4e6" strokeWidth="10" strokeLinecap="round" />
+                        <path
+                          className="hv4-gauge-band"
+                          d="M10 58 A50 50 0 0 1 110 58"
+                          fill="none"
+                          stroke="url(#hv4-grad-rose)"
+                          strokeWidth="10"
+                          strokeLinecap="round"
+                          strokeDasharray="31.4 999"
+                          strokeDashoffset="-47.1"
+                        />
+                      </svg>
+                      <div className="flex justify-between text-[10px] text-gray-300 tabular-nums -mt-1">
+                        <span>0%</span>
+                        <span>100%</span>
+                      </div>
+                    </div>
+                  )}
+                  {p.key === "fragmented" && (
+                    <div className="hv4-tiles flex gap-1.5 items-end h-[44px]">
+                      {/* 10 tool tiles — 5 to 10 of them juggled daily */}
+                      {Array.from({ length: 10 }, (_, i) => (
+                        <span
+                          key={i}
+                          className={`flex-1 rounded-md flex items-start justify-center pt-1 ${
+                            i < 5
+                              ? "h-full bg-gradient-to-b from-amber-300 to-amber-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]"
+                              : "h-[72%] bg-amber-100/80"
+                          }`}
+                        >
+                          <span className={`w-1 h-1 rounded-full ${i < 5 ? "bg-white/80" : "bg-amber-300"}`} />
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {p.key === "quality" && (
+                    <svg viewBox="0 0 104 42" className="w-full h-[42px]">
+                      <defs>
+                        <linearGradient id="hv4-grad-purple" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#c084fc" stopOpacity="0.35" />
+                          <stop offset="100%" stopColor="#c084fc" stopOpacity="0" />
+                        </linearGradient>
+                      </defs>
+                      <line x1="2" y1="8" x2="98" y2="8" stroke="#e9d5ff" strokeDasharray="3 3" strokeWidth="1" />
+                      <path d="M2 8 L20 12 L38 15 L56 22 L74 27 L98 33 L98 42 L2 42 Z" fill="url(#hv4-grad-purple)" />
+                      <polyline
+                        points="2,8 20,12 38,15 56,22 74,27 98,33"
+                        fill="none"
+                        stroke="#a855f7"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <circle className="hv4-spark-halo" cx="98" cy="33" r="3.5" fill="#a855f7" opacity="0" />
+                      <circle cx="98" cy="33" r="3.5" fill="#a855f7" />
+                    </svg>
+                  )}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-gray-900">{t('landing.solutionSection.features.scheduling.title')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
-                  {t('landing.solutionSection.features.scheduling.description')}
-                </p>
-                <ul className="space-y-2 text-xs sm:text-sm text-gray-600">
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.scheduling.items.aiPlanning')}</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.scheduling.items.optimization')}</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.scheduling.items.resources')}</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-4 sm:mb-6">
-                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-gray-900">{t('landing.solutionSection.features.communication.title')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
-                  {t('landing.solutionSection.features.communication.description')}
-                </p>
-                <ul className="space-y-2 text-xs sm:text-sm text-gray-600">
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.communication.items.messaging')}</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.communication.items.notifications')}</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 flex-shrink-0" />
-                    <span>{t('landing.solutionSection.features.communication.items.emergency')}</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
-        <section className="text-center py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-2xl sm:rounded-3xl">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4 sm:px-6">
-            {t('landing.ctaSection.title')}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
-            {t('landing.ctaSection.description')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <a href={`${appUrl}/auth?lang=${language}`} className="w-full sm:w-auto">
-              <Button size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
-                {t('landing.hero.ctaPrimary')}
-              </Button>
-            </a>
-            <Button variant="outline" size="lg" className="text-sm sm:text-base px-6 sm:px-8 w-full sm:w-auto">
-              {t('landing.hero.ctaSecondary')}
-            </Button>
+      {/* 14:50 — attendance */}
+      <section className="py-24 scroll-mt-16" id="m1">
+        <div className="max-w-[1080px] mx-auto px-6 sm:px-8 grid md:grid-cols-[130px_1fr] gap-9">
+          <SectionTime time="14:50" when={ts(t, "landing.home.m1.when")} />
+          <div className="min-w-0">
+            <h2 className="hv4-fade text-[clamp(26px,3.2vw,36px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mb-3">
+              {ts(t, "landing.home.m1.title1")}
+              <br />
+              {ts(t, "landing.home.m1.title2")}
+            </h2>
+            <p className="hv4-fade text-gray-500 leading-[1.75] max-w-[56ch] mb-8">{ts(t, "landing.home.m1.sub")}</p>
+            <div className="grid md:grid-cols-[1.3fr_1fr] gap-4 items-start">
+              <AttendanceMock t={t} className="hv4-fade" />
+              <div className="hv4-fade">
+                <PushNotificationCard t={t} />
+                <p className="text-xs text-gray-400 mt-2.5 leading-normal">{ts(t, "landing.home.m1.caption")}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Night: 19:30 study + 21:04 billing */}
+      <div className="bg-gradient-to-b from-[#0b2138] to-[#0e2846]">
+        <section className="py-24 scroll-mt-16" id="m2">
+          <div className="max-w-[1080px] mx-auto px-6 sm:px-8 grid md:grid-cols-[130px_1fr] gap-9">
+            <div className="md:text-right hv4-fade">
+              <b className="block font-mono text-[15px] font-semibold text-[#00D0AE] tabular-nums">19:30</b>
+              <span className="text-xs text-[#7e97b2]">{ts(t, "landing.home.m2.when")}</span>
+            </div>
+            <div className="min-w-0">
+              <h2 className="hv4-fade text-[clamp(26px,3.2vw,36px)] font-bold text-white leading-[1.16] tracking-tight mb-3">
+                {ts(t, "landing.home.m2.title1")}
+                <br />
+                {ts(t, "landing.home.m2.title2")}
+              </h2>
+              <p className="hv4-fade text-[#9db3ca] leading-[1.75] max-w-[56ch] mb-8">{ts(t, "landing.home.m2.sub")}</p>
+              <div className="grid md:grid-cols-[230px_1fr_1fr] gap-4 items-start">
+                <StudyPhoneMock
+                  t={t}
+                  label={ts(t, "landing.home.shots.study")}
+                  className="hv4-fade max-md:max-w-[230px] max-md:mx-auto"
+                />
+                <div className="hv4-fade rounded-2xl overflow-hidden bg-white shadow-[0_16px_40px_-16px_rgba(0,0,0,0.5)]">
+                  <div className="flex items-center justify-between px-4 py-2.5 border-b border-gray-100 text-[12.5px] text-gray-400">
+                    <b className="font-bold text-[#163e64]">{ts(t, "landing.home.m2.uiTitle")}</b>
+                    <span>{ts(t, "landing.home.m2.streak")}</span>
+                  </div>
+                  <div className="px-4 py-3.5 border-b border-gray-100">
+                    <i className="not-italic block text-[10.5px] text-gray-400 mb-0.5">{ts(t, "landing.home.m2.goalLabel")}</i>
+                    <b className="text-base font-bold text-[#163e64] tabular-nums">{ts(t, "landing.home.m2.goalValue")}</b>
+                    <div className="h-1 bg-gray-100 rounded-full mt-2.5 overflow-hidden">
+                      <span className="block h-full w-[60%] bg-primary" />
+                    </div>
+                  </div>
+                  {[
+                    { label: ts(t, "landing.home.m2.item1"), cta: ts(t, "landing.home.m2.item1cta") },
+                    { label: ts(t, "landing.home.m2.item2"), cta: ts(t, "landing.home.m2.item2cta") },
+                  ].map((item) => (
+                    <div key={item.label} className="flex justify-between items-center gap-2 px-4 py-2.5 border-b border-gray-100 last:border-0 text-[12.5px] text-gray-700">
+                      <span>{item.label}</span>
+                      <span className="text-[10px] font-bold text-primary bg-primary/10 rounded-full px-2.5 py-0.5 whitespace-nowrap">{item.cta}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="hv4-fade rounded-2xl overflow-hidden bg-white shadow-[0_16px_40px_-16px_rgba(0,0,0,0.5)]">
+                  <div className="flex items-center justify-between px-4 py-2.5 border-b border-gray-100 text-[12.5px] text-gray-400">
+                    <b className="font-bold text-[#163e64]">{ts(t, "landing.home.m2.snapTitle")}</b>
+                    <span className="tabular-nums">19:42</span>
+                  </div>
+                  {[
+                    { time: "19:42:07", text: ts(t, "landing.home.m2.snap1") },
+                    { time: "19:42:11", text: ts(t, "landing.home.m2.snap2") },
+                    { time: "19:42:14", text: ts(t, "landing.home.m2.snap3") },
+                  ].map((step) => (
+                    <div key={step.time} className="flex gap-3 px-4 py-2.5 border-b border-gray-100 last:border-0 text-[12.5px] text-gray-700 items-baseline">
+                      <b className="font-mono text-[10px] font-semibold text-primary w-14 shrink-0">{step.time}</b>
+                      <span>{step.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Link
+                href="/study"
+                className="hv4-fade inline-flex items-center gap-1.5 mt-7 text-sm font-semibold text-[#00D0AE] hover:text-white transition-colors"
+              >
+                {ts(t, "landing.studySection.cta")}
+              </Link>
+            </div>
           </div>
         </section>
-      </main>
+
+        <section className="pb-24 scroll-mt-24" id="m3">
+          <div className="max-w-[1080px] mx-auto px-6 sm:px-8 grid md:grid-cols-[130px_1fr] gap-9">
+            <div className="md:text-right hv4-fade">
+              <b className="block font-mono text-[15px] font-semibold text-[#00D0AE] tabular-nums">21:04</b>
+              <span className="text-xs text-[#7e97b2]">{ts(t, "landing.home.m3.when")}</span>
+            </div>
+            <div className="min-w-0">
+              <h2 className="hv4-fade text-[clamp(26px,3.2vw,36px)] font-bold text-white leading-[1.16] tracking-tight mb-3">
+                {ts(t, "landing.home.m3.title1")}
+                <br />
+                {ts(t, "landing.home.m3.title2")}
+              </h2>
+              <p className="hv4-fade text-[#9db3ca] leading-[1.75] max-w-[56ch] mb-8">{ts(t, "landing.home.m3.sub")}</p>
+              <div className="grid md:grid-cols-[230px_1fr] gap-6 items-start">
+                <InvoicePhoneMock
+                  t={t}
+                  label={ts(t, "landing.home.shots.payments")}
+                  className="hv4-fade max-md:max-w-[230px] max-md:mx-auto"
+                />
+                <div className="hv4-fade md:pt-2">
+                  <div className="rounded-2xl overflow-hidden bg-white shadow-[0_16px_40px_-16px_rgba(0,0,0,0.5)] max-w-[340px]">
+                    <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 text-[12.5px]">
+                      <b className="font-bold text-[#163e64]">{ts(t, "landing.home.m3.uiTitle")}</b>
+                      <span className="text-[10px] font-semibold text-gray-400 border border-gray-200 rounded-full px-2 py-0.5">
+                        {ts(t, "landing.home.m3.uiApp")}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center px-4 py-3 border-b border-gray-100 text-[12.5px] text-gray-600">
+                      <span>{ts(t, "landing.home.m3.row1")}</span>
+                      <b className="font-semibold text-[#163e64] tabular-nums">₩380,000</b>
+                    </div>
+                    <div className="flex justify-between items-center px-4 py-3 border-b border-gray-100 text-[12.5px] text-gray-600">
+                      <span>{ts(t, "landing.home.m3.row2")}</span>
+                      <b className="font-semibold text-[#163e64] tabular-nums">₩24,000</b>
+                    </div>
+                    <div className="p-4">
+                      <span className="block text-center bg-primary text-white text-[12.5px] font-bold rounded-[10px] py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
+                        {ts(t, "landing.home.m3.payBtn")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* Friday 15:00 — AI report cards */}
+      <section className="py-24 scroll-mt-16" id="m4">
+        <div className="max-w-[1080px] mx-auto px-6 sm:px-8 grid md:grid-cols-[130px_1fr] gap-9">
+          <SectionTime time={ts(t, "landing.home.ruler.friday")} when={ts(t, "landing.home.m4.when")} />
+          <div className="min-w-0">
+            <h2 className="hv4-fade text-[clamp(26px,3.2vw,36px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mb-3">
+              {ts(t, "landing.home.m4.title1")}
+              <br />
+              {ts(t, "landing.home.m4.title2")}
+            </h2>
+            <p className="hv4-fade text-gray-500 leading-[1.75] max-w-[56ch] mb-8">{ts(t, "landing.home.m4.sub")}</p>
+            <ReportDemo t={t} />
+          </div>
+        </div>
+      </section>
+
+      {/* Month-end — dashboard */}
+      <section className="pt-4 pb-24 scroll-mt-16" id="m5">
+        <div className="max-w-[1080px] mx-auto px-6 sm:px-8 grid md:grid-cols-[130px_1fr] gap-9">
+          <SectionTime time={ts(t, "landing.home.ruler.monthEnd")} when={ts(t, "landing.home.m5.when")} />
+          <div className="min-w-0">
+            <h2 className="hv4-fade text-[clamp(26px,3.2vw,36px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mb-3">
+              {ts(t, "landing.home.m5.title1")}
+              <br />
+              {ts(t, "landing.home.m5.title2")}
+            </h2>
+            <p className="hv4-fade text-gray-500 leading-[1.75] max-w-[56ch] mb-8">{ts(t, "landing.home.m5.sub")}</p>
+            <div className="hv4-fade max-w-[820px]">
+              <PaymentsMock t={t} label={ts(t, "landing.home.shots.paymentsAdmin")} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <UnifySection t={t} />
+
+      {/* Everything in one place — feature detail from the original landing page */}
+      <section className="pb-24">
+        <div className="max-w-[1080px] mx-auto px-6 sm:px-8">
+          <div className="text-center max-w-[640px] mx-auto mb-12 hv4-fade">
+            <h2 className="text-[clamp(26px,3.2vw,36px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mb-3">
+              {ts(t, "landing.solutionSection.title")}
+            </h2>
+            <p className="text-gray-500 leading-[1.75]">{ts(t, "landing.solutionSection.description")}</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { key: "aiReports", items: ["progress", "financial", "attendance"], Mini: MiniReports, alt: "reports" },
+              { key: "scheduling", items: ["aiPlanning", "optimization", "resources"], Mini: MiniCalendar, alt: "sessions" },
+              { key: "communication", items: ["messaging", "notifications", "emergency"], Mini: MiniComms, alt: "reports" },
+            ].map((f) => (
+              <div key={f.key} className={`${CARD} ${CARD_HOVER} hv4-fade overflow-hidden p-0`}>
+                <div className="h-44 border-b border-gray-100 overflow-hidden">
+                  <f.Mini t={t} label={ts(t, `landing.home.shots.${f.alt}`)} />
+                </div>
+                <div className="p-6">
+                <h3 className="text-base font-bold text-[#163e64] mb-2">
+                  {ts(t, `landing.solutionSection.features.${f.key}.title`)}
+                </h3>
+                <p className="text-[13.5px] text-gray-500 leading-relaxed mb-4">
+                  {ts(t, `landing.solutionSection.features.${f.key}.description`)}
+                </p>
+                <ul className="space-y-2">
+                  {f.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[13px] text-gray-600">
+                      <s className="w-1.5 h-1.5 rounded-full bg-[#00D0AE] no-underline shrink-0 mt-1.5" />
+                      {ts(t, `landing.solutionSection.features.${f.key}.items.${item}`)}
+                    </li>
+                  ))}
+                </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <RoiCalculator t={t} />
+
+      {/* CTA */}
+      <section className="pt-28 pb-28 text-center">
+        <div className="max-w-[1080px] mx-auto px-6 sm:px-8 hv4-fade">
+          <h2 className="text-[clamp(30px,4.2vw,48px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mb-3">
+            {ts(t, "landing.home.cta.title1")}
+            <br />
+            {ts(t, "landing.home.cta.title2")}
+          </h2>
+          <p className="text-gray-500 leading-[1.75] max-w-[44ch] mx-auto mb-8">{ts(t, "landing.home.cta.sub")}</p>
+          {ctaButtons("landing.home.cta.ctaStart", "landing.home.cta.ctaInquiry", "landing.home.cta.ctaKakao")}
+        </div>
+      </section>
 
       <Footer />
     </div>
@@ -857,9 +932,6 @@ function HomeContent() {
 export default function Home() {
   // Null fallback — the Suspense boundary exists only so client hooks
   // inside HomeContent (useSearchParams, etc.) have somewhere to suspend.
-  // Showing a bare "Loading…" briefly on first paint looks broken, and the
-  // page renders fast enough that no spinner is preferable to an unstyled
-  // flash.
   return (
     <Suspense fallback={null}>
       <HomeContent />
