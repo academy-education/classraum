@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
-import bundleAnalyzer from "@next/bundle-analyzer";
 
 // SINGLE config file. There used to be a parallel next.config.js which
 // silently WON Next's config lookup (js > mjs > ts), so everything in
@@ -140,8 +139,15 @@ const nextConfig: NextConfig = {
 };
 
 // Optional bundle analyzer: `ANALYZE=true npm run build` opens the
-// treemap. enabled:false is a pure passthrough.
-const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
+// treemap. Required LAZILY — the package is a devDependency, so a
+// top-level import breaks config loading on deploy environments that
+// prune dev deps (NODE_ENV=production installs). Only dev machines
+// running ANALYZE=true ever load it.
+let withBundleAnalyzer = (config: NextConfig): NextConfig => config;
+if (process.env.ANALYZE === 'true') {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  withBundleAnalyzer = require('@next/bundle-analyzer')({ enabled: true });
+}
 
 // Sentry build-time options. Source maps are uploaded automatically when
 // SENTRY_AUTH_TOKEN is set; safe to leave unset in dev (Sentry just skips
