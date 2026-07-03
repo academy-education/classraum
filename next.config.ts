@@ -1,9 +1,21 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import bundleAnalyzer from "@next/bundle-analyzer";
 
+// SINGLE config file. There used to be a parallel next.config.js which
+// silently WON Next's config lookup (js > mjs > ts), so everything in
+// this file — security headers, Sentry source-map upload, strict type
+// checking — was inactive in every build until the .js file was
+// removed. Do not re-add a next.config.js.
 const nextConfig: NextConfig = {
+  // Strict mode intentionally off: double-invoked effects break the
+  // TOEFL Speaking auto-record flow in dev (mic starts twice) and
+  // double every API call.
+  reactStrictMode: false,
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
   images: {
-    domains: ['localhost', 'app.localhost', '127.0.0.1'],
     remotePatterns: [
       {
         protocol: 'http',
@@ -20,7 +32,28 @@ const nextConfig: NextConfig = {
         hostname: '*.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },
+      {
+        // Project bucket host — carried over from the legacy config's
+        // `domains` entry, which allowed every path on this host.
+        protocol: 'https',
+        hostname: 'pprxpviwtsyvbseaozeg.supabase.co',
+      },
     ],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+  },
+  trailingSlash: false,
+  poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-avatar', '@radix-ui/react-label'],
+  },
+  // Client-reference-manifest workaround for the (app) route group —
+  // see scripts/fix-client-manifest.js + CLAUDE.md build notes.
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.optimization.sideEffects = false
+    }
+    return config
   },
   // Build-time type checking. Previously set to `ignoreBuildErrors: true`,
   // which let bugs like the 'not_submitted' vs 'not submitted' status
@@ -78,19 +111,26 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            // We don't use any of these APIs anywhere. Disabling shrinks
-            // the attack surface against future supply-chain compromises
-            // of dependencies (e.g. a malicious npm pkg trying to grab
-            // the user's camera).
+            // Disable every browser API we don't use to shrink the
+            // attack surface against future supply-chain compromises.
+            // EXCEPTIONS that must stay same-origin-enabled:
+            //   - microphone=(self): TOEFL Speaking auto-record, chat
+            //     voice input, and response sessions all call
+            //     getUserMedia. microphone=() would silently break
+            //     the entire Speaking test.
+            //   - payment=(self): PortOne SDK uses Payment Request API.
+            // (Snap-to-solve's camera uses <input capture>, which goes
+            // through the OS picker and is NOT gated by this header —
+            // camera=() is safe.)
             value: [
               'camera=()',
-              'microphone=()',
+              'microphone=(self)',
               'geolocation=()',
               'usb=()',
               'magnetometer=()',
               'gyroscope=()',
               'accelerometer=()',
-              'payment=(self)',  // PortOne SDK uses Payment Request API
+              'payment=(self)',
             ].join(', '),
           },
         ],
@@ -99,10 +139,14 @@ const nextConfig: NextConfig = {
   },
 };
 
+// Optional bundle analyzer: `ANALYZE=true npm run build` opens the
+// treemap. enabled:false is a pure passthrough.
+const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
+
 // Sentry build-time options. Source maps are uploaded automatically when
 // SENTRY_AUTH_TOKEN is set; safe to leave unset in dev (Sentry just skips
 // the upload step). See docs/SENTRY_SETUP.md for the full env-var checklist.
-export default withSentryConfig(nextConfig, {
+export default withSentryConfig(withBundleAnalyzer(nextConfig), {
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
   silent: !process.env.CI,           // quiet builds locally, verbose in CI

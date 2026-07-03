@@ -387,13 +387,23 @@ export async function refreshTestSpecExamples(
   // same verifier the generator uses. We only keep items the verifier
   // rates as hard with high confidence — same bar as we'd hold our own
   // generated items to.
+  // Question is the post-sanitize shape with every field concrete —
+  // fill the fields the extractor doesn't produce with their empty
+  // values so the verifier gets the same shape the generator feeds it.
   const asQuestions: Question[] = mcItems.map(it => ({
+    passage: null,
+    passageGroupId: null,
     prompt: it.prompt,
     type: 'multiple_choice' as const,
     choices: it.choices,
     correct_answer: it.correct_answer,
+    correct_answers: null,
+    acceptable_answers: null,
     difficulty: it.difficulty,
     explanation: it.why_hard,
+    distractor_rationales: [],
+    blanks: null,
+    graphic: null,
   }))
   const mathHeavy = /math|quant|수학/i.test(sectionKey)
   const verifyResult = await verifyAndCorrect(asQuestions, apiKey, { mathHeavy })
