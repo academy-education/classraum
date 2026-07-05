@@ -534,15 +534,28 @@ export async function POST(req: NextRequest) {
     // single flaky subtask can't kill the whole test AND a transient
     // gpt-4.1 outage still ships a usable test.
     const fallbackHardModel = openai('gpt-4o')
+    // Per-run record of subtask failures — persisted by the empty-test
+    // guard so "0 questions" failures are diagnosable from the DB
+    // (serverless/other-terminal logs are often unreadable).
+    const subtaskErrors: string[] = []
     const settledGen = async (
       label: string,
       primary: Promise<SettledResult>,
       retryFn?: () => Promise<SettledResult>,
     ): Promise<SettledResult> => {
       try { return await primary } catch (e) {
+        subtaskErrors.push(`${label}[primary]: ${((e as Error)?.message ?? String(e)).slice(0, 160)}`)
         console.warn(`[test/generate] subtask '${label}' failed on primary — retrying with fallback model`, e)
         if (!retryFn) return EMPTY_RESULT
+        // Backoff before the retry — burn-in testing showed that when
+        // the primary fails on a RATE LIMIT (back-to-back generations
+        // → 30+ concurrent calls → 429 across the board), an instant
+        // retry lands in the same limit window and the whole run
+        // degrades to zero questions. 3-6s of jitter lets the TPM
+        // window roll over.
+        await new Promise(r => setTimeout(r, 3000 + Math.random() * 3000))
         try { return await retryFn() } catch (e2) {
+          subtaskErrors.push(`${label}[fallback]: ${((e2 as Error)?.message ?? String(e2)).slice(0, 160)}`)
           console.error(`[test/generate] subtask '${label}' failed on both primary and fallback`, e2)
           return EMPTY_RESULT
         }
@@ -1245,7 +1258,7 @@ export async function POST(req: NextRequest) {
       // made full runs fail almost every time. Failed chunks retry
       // once on the fallback model, then degrade to empty (the buffer
       // + top-up absorb the shortfall).
-      const easyMedPromises = chunkSizes.map((size, ci) => {
+      const easyMedThunks = chunkSizes.map((size, ci) => () => {
         const prompt = buildEasyMediumPrompt({
           topicName,
           count: size,
@@ -1279,7 +1292,7 @@ export async function POST(req: NextRequest) {
         hardChunkSizes.push(size)
         hardRemaining -= size
       }
-      const hardPromises = hardChunkSizes.map((size, ci) => {
+      const hardThunks = hardChunkSizes.map((size, ci) => () => {
         const prompt = buildHardOnlyPrompt({
           topicName,
           count: size,
@@ -1296,9 +1309,26 @@ export async function POST(req: NextRequest) {
           () => generateObject({ model: fallbackHardModel, schema: TestSchema, prompt, temperature: 0.3 }) as unknown as Promise<SettledResult>,
         )
       })
-      // Fire all chunks (easy/med + hard) concurrently. Wall-clock =
-      // max of any single call ≈ 20-30s, not sum.
-      const allResults = await Promise.all([...easyMedPromises, ...hardPromises])
+      // Bounded concurrency instead of firing everything at once.
+      // SAT Math produces ~30 chunks; 30 simultaneous gpt-4.1 calls
+      // blow straight through the org TPM limit whenever two
+      // generations overlap (burn-in: back-to-back runs 429'd on
+      // every chunk and the whole run degraded to zero questions).
+      // 6 workers keeps wall-clock in the same ballpark (chunks are
+      // ~20-30s each) while spreading token usage across the window.
+      const CHUNK_CONCURRENCY = 6
+      const runLimited = async (thunks: Array<() => Promise<SettledResult>>): Promise<SettledResult[]> => {
+        const out: SettledResult[] = new Array(thunks.length)
+        let next = 0
+        await Promise.all(Array.from({ length: Math.min(CHUNK_CONCURRENCY, thunks.length) }, async () => {
+          while (next < thunks.length) {
+            const i = next++
+            out[i] = await thunks[i]!()
+          }
+        }))
+        return out
+      }
+      const allResults = await runLimited([...easyMedThunks, ...hardThunks])
       phase('drafting_hard', 'study.test.progress.draftingHard', 40)
       for (const r of allResults) {
         allQuestions.push(...(r.object.questions as RawQuestion[]))
@@ -1834,10 +1864,28 @@ export async function POST(req: NextRequest) {
         generated: allQuestions.length,
         verified: verifyResult.kept.length,
         expectedChoiceCount,
+        subtaskErrors: subtaskErrors.slice(0, 5),
       })
+      // Persist the diagnosis — "0 questions" has two very different
+      // causes (every chunk call failed vs. the pipeline filtered
+      // everything out) and the difference is invisible without the
+      // generated/verified counts and the per-chunk error messages.
+      const { data: existingCfg } = await supabaseAdmin
+        .from('study_sessions')
+        .select('config')
+        .eq('id', sessionId)
+        .maybeSingle()
       await supabaseAdmin
         .from('study_sessions')
-        .update({ generation_status: 'failed' })
+        .update({
+          generation_status: 'failed',
+          config: {
+            ...(existingCfg?.config ?? {}),
+            last_error: `empty pipeline: generated=${allQuestions.length} verified=${verifyResult.kept.length} subtaskFailures=${subtaskErrors.length}`,
+            last_error_cause: subtaskErrors.slice(0, 4).join(' | ').slice(0, 800) || null,
+            last_error_at: new Date().toISOString(),
+          },
+        })
         .eq('id', sessionId)
       emit({ type: 'error', message: 'no questions survived verification — please retry' })
       try { controller.close() } catch { /* already closed */ }
