@@ -1238,21 +1238,28 @@ export async function POST(req: NextRequest) {
         chunkSizes.push(size)
         remaining -= size
       }
-      const easyMedPromises = chunkSizes.map(size =>
-        generateObject({
-          model: easyMedModel,
-          schema: TestSchema,
-          prompt: buildEasyMediumPrompt({
-            topicName,
-            count: size,
-            minutes,
-            formatBlock: testPrepBlock,
-            extraGuidance: extraGuidanceFor(family, sectionLabel, size, lang),
-            lang,
-          }),
-          temperature: 0.2,
+      // Every chunk goes through settledGen: with SAT Math firing ~30
+      // parallel 3-item calls, a bare Promise.all meant a SINGLE
+      // truncated/malformed JSON response (AI_JSONParseError) rejected
+      // the whole generation — even a small per-chunk failure rate
+      // made full runs fail almost every time. Failed chunks retry
+      // once on the fallback model, then degrade to empty (the buffer
+      // + top-up absorb the shortfall).
+      const easyMedPromises = chunkSizes.map((size, ci) => {
+        const prompt = buildEasyMediumPrompt({
+          topicName,
+          count: size,
+          minutes,
+          formatBlock: testPrepBlock,
+          extraGuidance: extraGuidanceFor(family, sectionLabel, size, lang),
+          lang,
         })
-      )
+        return settledGen(
+          `easymed-chunk-${ci}`,
+          generateObject({ model: easyMedModel, schema: TestSchema, prompt, temperature: 0.2 }) as unknown as Promise<SettledResult>,
+          () => generateObject({ model: fallbackHardModel, schema: TestSchema, prompt, temperature: 0.2 }) as unknown as Promise<SettledResult>,
+        )
+      })
       const hardFraming = (lang === 'ko' ? sectionSpec.hardItemFraming_ko : sectionSpec.hardItemFraming_en)
         ?? GENERIC_HARD_FRAMING[lang]
       const hardExamples = (lang === 'ko' ? sectionSpec.hardItemExamples_ko : sectionSpec.hardItemExamples_en) ?? []
@@ -1272,23 +1279,23 @@ export async function POST(req: NextRequest) {
         hardChunkSizes.push(size)
         hardRemaining -= size
       }
-      const hardPromises = hardChunkSizes.map(size =>
-        generateObject({
-          model: hardModel,
-          schema: TestSchema,
-          prompt: buildHardOnlyPrompt({
-            topicName,
-            count: size,
-            minutes,
-            formatBlock: testPrepBlock,
-            extraGuidance: extraGuidanceFor(family, sectionLabel, size, lang),
-            hardFraming,
-            hardExamples,
-            lang,
-          }),
-          temperature: 0.3,
-        }),
-      )
+      const hardPromises = hardChunkSizes.map((size, ci) => {
+        const prompt = buildHardOnlyPrompt({
+          topicName,
+          count: size,
+          minutes,
+          formatBlock: testPrepBlock,
+          extraGuidance: extraGuidanceFor(family, sectionLabel, size, lang),
+          hardFraming,
+          hardExamples,
+          lang,
+        })
+        return settledGen(
+          `hard-chunk-${ci}`,
+          generateObject({ model: hardModel, schema: TestSchema, prompt, temperature: 0.3 }) as unknown as Promise<SettledResult>,
+          () => generateObject({ model: fallbackHardModel, schema: TestSchema, prompt, temperature: 0.3 }) as unknown as Promise<SettledResult>,
+        )
+      })
       // Fire all chunks (easy/med + hard) concurrently. Wall-clock =
       // max of any single call ≈ 20-30s, not sum.
       const allResults = await Promise.all([...easyMedPromises, ...hardPromises])
