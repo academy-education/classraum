@@ -1336,6 +1336,30 @@ export async function POST(req: NextRequest) {
     // target hard count first, then easy/medium → shuffle choices
     phase('verifying', 'study.test.progress.verifying', 60)
     let questions = allQuestions.map(sanitizeQuestion)
+    // Figure/question consistency guard: coordinate-geometry prompts
+    // ("in the xy-plane", explicit (x, y) pairs) paired with an
+    // ABSTRACT geometry primitive (unit-circle chord diagrams,
+    // inscribed triangles, bare right triangles) are structurally
+    // wrong — those primitives cannot express coordinates, so the
+    // figure always contradicts the numbers in the prompt (seen in
+    // prod: a circle centered at (4,-3) drawn as a bare unit circle
+    // with "Center" floating on the rim). No figure beats a wrong
+    // figure: strip the graphic, keep the question. coordinatePlane
+    // graphics pass through — that renderer plots real coordinates.
+    {
+      const ABSTRACT_GRAPHIC = /^(circlewithchord|inscribedtriangle|righttriangle)/i
+      const COORD_PROMPT = /xy[- ]?plane|xy 평면|좌표평면|\(\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*\)/
+      let stripped = 0
+      questions = questions.map(q => {
+        const gType = String(q.graphic?.type ?? q.graphic?.shape ?? '')
+        if (q.graphic && ABSTRACT_GRAPHIC.test(gType) && COORD_PROMPT.test(q.prompt)) {
+          stripped++
+          return { ...q, graphic: null }
+        }
+        return q
+      })
+      if (stripped > 0) console.log('[test/generate] stripped mismatched abstract figures from coordinate questions', { stripped })
+    }
     const beforeInitialDedupe = questions.length
     questions = dedupeByPrompt(questions)
     // Semantic-signature dedupe catches "same archetype, tweaked
@@ -2695,6 +2719,7 @@ function extraGuidanceFor(
         '- "triangle" | "circle" | "polygon" | "solid": shape, spec, labels',
         '- "rawSvg": svg 문자열 (600자 이내, viewBox 0 0 200 200, stroke="#374151" fill="none")',
         '선택 caption: 축 설명·도형 노트. 시각이 필요한 데이터는 prose에 적지 말고 graphic에 — 반대로 graphic을 설정했으면 문항이 실제로 그것을 읽어야 풀리도록.',
+        '좌표 문항 — 문제가 xy평면이나 (x, y) 좌표를 언급하면 graphic은 "coordinatePlane"(문제와 동일한 점/직선) 또는 null만 허용. circleWithChord·inscribedTriangle·rightTriangle 같은 추상 도형은 좌표를 표현할 수 없어 문제와 모순되므로 절대 금지. 우선순위: 정확히 일치하는 도형 > 도형 없음 > 불일치 도형. 확신 없으면 null.',
         '',
         '대부분 실세계 맥락의 서술형 문항. 모든 문항에서 데스모스 계산기 가능 가정.',
       ].join('\n')
@@ -2747,7 +2772,8 @@ function extraGuidanceFor(
       // with two dots + a line on an item asking about a PARABOLA's
       // vertex — the visualization had nothing to do with the item's
       // actual mathematical content. Enforce graphic-question fit.
-      'GRAPHIC-QUESTION MATCH — if you set a graphic on an item, the graphic MUST show what the item is actually about. Do NOT emit a coordinatePlane with two points when the question is about a parabola\'s vertex — either use rawSvg to draw the actual parabola, or set graphic to null and let the algebra stand alone. Do NOT emit an inscribedTriangle just because the question mentions "triangle" — if the item is about a general triangle (not one inscribed in a circle), use rightTriangle or rawSvg instead. Wrong graphic > no graphic > right graphic on a self-evident item.',
+      'GRAPHIC-QUESTION MATCH — if you set a graphic on an item, the graphic MUST show what the item is actually about, with the SAME numbers the prompt states. Do NOT emit a coordinatePlane with two points when the question is about a parabola\'s vertex — either use rawSvg to draw the actual parabola, or set graphic to null and let the algebra stand alone. Do NOT emit an inscribedTriangle just because the question mentions "triangle" — if the item is about a general triangle (not one inscribed in a circle), use rightTriangle or rawSvg instead. Preference order: correct matching graphic > NO graphic > mismatched graphic. When unsure, set graphic to null.',
+      'COORDINATE QUESTIONS — if the prompt places anything in the xy-plane or gives (x, y) coordinates, the ONLY allowed graphic types are "coordinatePlane" (with the EXACT points/lines from the prompt) or null. NEVER use circleWithChord / inscribedTriangle* / rightTriangle for a coordinate question — those primitives cannot show coordinates, so the figure will contradict the prompt. In circleWithChord, point labels name points ON the circle (A, B, T…): never label a circumference point "Center" (use showCenter for the center dot) and never repeat a chord\'s label as a point label.',
       '',
       'GRAPHICS — REAL SAT MATH HAS VISUALS ON ~40% OF ITEMS. Include a "graphic" field on roughly that fraction, weighted by topic: Geometry/Trig ≈ 90% (figures are nearly always required), Problem Solving & Data Analysis ≈ 70% (scatterplots, bar charts, two-way tables, dot/box/histogram plots), Advanced Math ≈ 30% (parabolas, exponential curves, function tables on coordinate plane), Algebra ≈ 20% (lines on coordinate plane, tables of values). Omit `graphic` (or set null) on items that don\'t need one.',
       '',

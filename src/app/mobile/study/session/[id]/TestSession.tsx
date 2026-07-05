@@ -2688,45 +2688,113 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
       .filter(p => p && typeof p.x === 'number' && typeof p.y === 'number')
     const lines = ((graphic.spec as { lines?: Array<{ m: number; b: number }> } | undefined)?.lines
       ?? (graphic as unknown as { lines?: Array<{ m: number; b: number }> }).lines ?? [])
+      .filter(ln => ln && typeof ln.m === 'number' && typeof ln.b === 'number')
     const xVals = pts.map(p => p.x)
     const yVals = pts.map(p => p.y)
-    const xMin = Math.min(-5, ...xVals); const xMax = Math.max(5, ...xVals)
-    const yMin = Math.min(-5, ...yVals); const yMax = Math.max(5, ...yVals)
+    // Fit the window to the DATA (pad 1.5 units) — the old fixed
+    // [-5,5]-anchored window put e.g. R(6,11) at the extreme top edge
+    // with tick labels that stopped at 4, so figures with points
+    // beyond ±5 looked wrong/cut off.
+    const xMin = Math.floor(Math.min(-2, ...xVals) - 1.5)
+    const xMax = Math.ceil(Math.max(2, ...xVals) + 1.5)
+    const yMin = Math.floor(Math.min(-2, ...yVals) - 1.5)
+    const yMax = Math.ceil(Math.max(2, ...yVals) + 1.5)
     const xR = xMax - xMin; const yR = yMax - yMin
     const sx = (x: number) => padL + ((x - xMin) / xR) * innerW
     const sy = (y: number) => padT + innerH - ((y - yMin) / yR) * innerH
     const xOrigin = sx(0), yOrigin = sy(0)
+    // Adaptive tick step → ~4-6 labels per axis at any range.
+    const tickStep = (r: number) => r <= 12 ? 2 : r <= 30 ? 5 : 10
+    const ticksIn = (min: number, max: number, step: number) => {
+      const out: number[] = []
+      for (let v = Math.ceil(min / step) * step; v <= max; v += step) if (v !== 0) out.push(v)
+      return out
+    }
+    const xTicks = ticksIn(xMin, xMax, tickStep(xR))
+    const yTicks = ticksIn(yMin, yMax, tickStep(yR))
+    // If 3-8 labeled points form a figure and the lines are (or were
+    // meant to be) its side lines, draw the closed polygon through
+    // the POINTS and drop the lines. Two triggers:
+    //   - every line passes through ≥2 of the points (exact sides), or
+    //   - there are at least as many lines as points (the model
+    //     clearly attempted one side-line per edge — prod data shows
+    //     it often gets the m/b arithmetic WRONG, e.g. y=2x−9 for the
+    //     side through (2,3)-(6,11), while the points themselves match
+    //     the prompt; the points are the ground truth).
+    // Drawing side lines as infinite lines is what turned triangles
+    // into asterisks of crossing lines. Fewer lines than points =
+    // genuine function graphs → keep them, clipped to the window.
+    const onLine = (ln: { m: number; b: number }, p: { x: number; y: number }) =>
+      Math.abs(ln.m * p.x + ln.b - p.y) < 1e-6
+    const linesMatchPts = lines.length > 0
+      && lines.every(ln => pts.filter(p => onLine(ln, p)).length >= 2)
+    const polygonMode = pts.length >= 3 && pts.length <= 8
+      && (linesMatchPts || lines.length >= pts.length)
+    const freeLines = polygonMode ? [] : lines
+    // Clip y = mx + b to the [xMin,xMax]×[yMin,yMax] window so steep
+    // lines don't shoot across the whole figure.
+    const clipLine = (ln: { m: number; b: number }): [number, number, number, number] | null => {
+      if (ln.m === 0) {
+        if (ln.b < yMin || ln.b > yMax) return null
+        return [xMin, ln.b, xMax, ln.b]
+      }
+      const cand = ([
+        [xMin, ln.m * xMin + ln.b],
+        [xMax, ln.m * xMax + ln.b],
+        [(yMin - ln.b) / ln.m, yMin],
+        [(yMax - ln.b) / ln.m, yMax],
+      ] as Array<[number, number]>).filter(([x, y]) => x >= xMin - 1e-9 && x <= xMax + 1e-9 && y >= yMin - 1e-9 && y <= yMax + 1e-9)
+      if (cand.length < 2) return null
+      cand.sort((a, b) => a[0] - b[0])
+      const [x1, y1] = cand[0]!
+      const [x2, y2] = cand[cand.length - 1]!
+      return [x1, y1, x2, y2]
+    }
     return (
       <figure className="my-3">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-md mx-auto bg-white">
-          {/* grid */}
-          {Array.from({ length: Math.floor(xR) + 1 }).map((_, i) => {
-            const v = Math.ceil(xMin) + i
-            return <line key={`vg${i}`} x1={sx(v)} y1={padT} x2={sx(v)} y2={H - padB} stroke="#d4d4d4" strokeWidth={0.4} />
-          })}
-          {Array.from({ length: Math.floor(yR) + 1 }).map((_, i) => {
-            const v = Math.ceil(yMin) + i
-            return <line key={`hg${i}`} x1={padL} y1={sy(v)} x2={W - padR} y2={sy(v)} stroke="#d4d4d4" strokeWidth={0.4} />
-          })}
-          {/* axes */}
-          <line x1={padL} y1={yOrigin} x2={W - padR} y2={yOrigin} stroke="black" strokeWidth={1} />
-          <line x1={xOrigin} y1={padT} x2={xOrigin} y2={H - padB} stroke="black" strokeWidth={1} />
+          {/* grid — at unit density for small ranges, tick density for large */}
+          {ticksIn(xMin, xMax, xR <= 16 ? 1 : tickStep(xR)).concat(0).map((v, i) => (
+            <line key={`vg${i}`} x1={sx(v)} y1={padT} x2={sx(v)} y2={H - padB} stroke="#d4d4d4" strokeWidth={0.4} />
+          ))}
+          {ticksIn(yMin, yMax, yR <= 16 ? 1 : tickStep(yR)).concat(0).map((v, i) => (
+            <line key={`hg${i}`} x1={padL} y1={sy(v)} x2={W - padR} y2={sy(v)} stroke="#d4d4d4" strokeWidth={0.4} />
+          ))}
+          {/* axes (only when 0 is inside the window) */}
+          {yMin <= 0 && yMax >= 0 && <line x1={padL} y1={yOrigin} x2={W - padR} y2={yOrigin} stroke="black" strokeWidth={1} />}
+          {xMin <= 0 && xMax >= 0 && <line x1={xOrigin} y1={padT} x2={xOrigin} y2={H - padB} stroke="black" strokeWidth={1} />}
           {/* tick labels */}
-          {[-4, -2, 2, 4].map(v => v >= xMin && v <= xMax && (
-            <text key={`xt${v}`} x={sx(v)} y={yOrigin + 11} fontSize="8" textAnchor="middle" fill="black">{v}</text>
+          {xTicks.map(v => (
+            <text key={`xt${v}`} x={sx(v)} y={(yMin <= 0 && yMax >= 0 ? yOrigin : H - padB) + 11} fontSize="8" textAnchor="middle" fill="black">{v}</text>
           ))}
-          {[-4, -2, 2, 4].map(v => v >= yMin && v <= yMax && (
-            <text key={`yt${v}`} x={xOrigin - 5} y={sy(v) + 3} fontSize="8" textAnchor="end" fill="black">{v}</text>
+          {yTicks.map(v => (
+            <text key={`yt${v}`} x={(xMin <= 0 && xMax >= 0 ? xOrigin : padL) - 5} y={sy(v) + 3} fontSize="8" textAnchor="end" fill="black">{v}</text>
           ))}
-          {/* lines */}
-          {lines.map((ln, i) => (
-            <line key={i} x1={sx(xMin)} y1={sy(ln.m * xMin + ln.b)} x2={sx(xMax)} y2={sy(ln.m * xMax + ln.b)} stroke="black" strokeWidth={1} />
-          ))}
+          {/* polygon through the labeled points (side lines collapsed) */}
+          {polygonMode && (
+            <polygon
+              points={pts.map(p => `${sx(p.x)},${sy(p.y)}`).join(' ')}
+              fill="rgba(0,0,0,0.04)" stroke="black" strokeWidth={1.2} strokeLinejoin="round"
+            />
+          )}
+          {/* free lines, clipped to the window */}
+          {freeLines.map((ln, i) => {
+            const seg = clipLine(ln)
+            if (!seg) return null
+            return <line key={i} x1={sx(seg[0])} y1={sy(seg[1])} x2={sx(seg[2])} y2={sy(seg[3])} stroke="black" strokeWidth={1} />
+          })}
           {/* points */}
           {pts.map((p, i) => (
             <g key={i}>
               <circle cx={sx(p.x)} cy={sy(p.y)} r={2.5} fill="black" />
-              {p.label && <text x={sx(p.x) + 5} y={sy(p.y) - 4} fontSize="9" fill="black" fontWeight="600">{p.label}</text>}
+              {p.label && (
+                <text
+                  x={sx(p.x) + (sx(p.x) > W - padR - 20 ? -6 : 5)}
+                  y={sy(p.y) < padT + 14 ? sy(p.y) + 12 : sy(p.y) - 4}
+                  fontSize="9" fill="black" fontWeight="600"
+                  textAnchor={sx(p.x) > W - padR - 20 ? 'end' : 'start'}
+                >{p.label}</text>
+              )}
             </g>
           ))}
         </svg>
@@ -3061,7 +3129,18 @@ function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | un
     const toRad = (deg: number) => (deg - 90) * Math.PI / 180
     const pt = (deg: number) => [cx + DRAW_R * Math.cos(toRad(deg)), cy + DRAW_R * Math.sin(toRad(deg))] as [number, number]
     const chords = spec.chords ?? []
-    const points = spec.points ?? []
+    // Two model-misuse patterns to sanitize (both seen in prod):
+    //   - a circumference point labeled "Center"/"O" (the center is
+    //     drawn separately via showCenter — a rim point with that
+    //     label is contradictory), and
+    //   - a point label duplicating a chord label ("Tangent" on both
+    //     → the doubled "Tangent Tangent" render).
+    const chordLabels = new Set(chords.map(c => (c.label ?? '').trim().toLowerCase()).filter(Boolean))
+    const points = (spec.points ?? []).filter(p => {
+      const l = (p.label ?? '').trim().toLowerCase()
+      if (l === 'center' || l === '중심') return false
+      return true
+    }).map(p => chordLabels.has((p.label ?? '').trim().toLowerCase()) ? { ...p, label: undefined } : p)
     return (
       <figure className="my-3 flex flex-col items-center">
         <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
