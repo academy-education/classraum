@@ -112,6 +112,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const [test, setTest] = useState<TestPayload | null>(null)
   const [answers, setAnswers] = useState<(string | null)[]>([])
   const [currentIdx, setCurrentIdx] = useState(0)
+  // TOEFL adaptive routing (Reading/Listening). When the student
+  // crosses the module break we grade module 1 server-side and show
+  // where the real ETS test would have routed them. Content itself is
+  // pre-generated, so this is feedback + analytics, not regeneration.
+  const [moduleRoute, setModuleRoute] = useState<{
+    route: 'easy' | 'medium' | 'hard'
+    correct: number | null
+    total: number
+  } | null>(null)
+  const moduleRouteRequested = useRef(false)
   const [gridOpen, setGridOpen] = useState(false)
   const [result, setResult] = useState<SubmitResult | null>(null)
   // TOEFL Listening audio is playing — locks Prev/Next/Grid so students
@@ -417,6 +427,42 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }))
     } catch { /* quota exceeded — resume loses audio links only */ }
   }, [phase, sessionId, answerAudioPaths, answerSpeechSignals])
+
+  // TOEFL adaptive routing: the first time the student crosses the
+  // module break in a Reading/Listening test, send module-1 answers
+  // for server-side grading. The server stores module1_correct/total
+  // + module2_route on the session; we surface the routing verdict in
+  // the Module 2 banner. Fire-and-forget — a failure here must never
+  // block the test.
+  useEffect(() => {
+    if (phase !== 'taking' || !test || moduleRouteRequested.current) return
+    if (test.family !== 'toefl' || !test.section) return
+    const sectionName = /reading/i.test(test.section) ? 'Reading'
+      : /listening/i.test(test.section) ? 'Listening' : null
+    if (!sectionName) return
+    const breakIdx = test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2)
+    if (currentIdx < breakIdx) return
+    moduleRouteRequested.current = true
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/test/route', {
+          method: 'POST',
+          headers: { ...headers, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId,
+            sectionName,
+            answers: answers.slice(0, breakIdx).map((answer, index) => ({ index, answer })),
+          }),
+        })
+        if (!res.ok) return
+        const json = await res.json() as { route?: 'easy' | 'medium' | 'hard' | null; module1Correct?: number | null; module1Total?: number }
+        if (json.route) {
+          setModuleRoute({ route: json.route, correct: json.module1Correct ?? null, total: json.module1Total ?? breakIdx })
+        }
+      } catch { /* non-fatal */ }
+    })()
+  }, [phase, test, currentIdx, answers, sessionId])
 
   // Freeze the timer when the tab is hidden, resume when visible.
   // This makes practice tests non-hostile: a student who takes a call
@@ -996,6 +1042,23 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                       ? 'The remaining questions are in Module 2, including a second Complete-the-Words paragraph.'
                       : 'The remaining questions are in Module 2, including 3 Choose-a-Response items and the second half of the conversations, announcements, and talks.')}
               </p>
+              {/* Adaptive-routing verdict — where the real ETS test
+                  would branch you based on Module 1 performance. */}
+              {moduleRoute && (
+                <p className="text-[12px] text-amber-900 leading-relaxed mt-1.5 font-medium">
+                  {(() => {
+                    const scored = moduleRoute.correct != null
+                      ? `${moduleRoute.correct}/${moduleRoute.total}`
+                      : null
+                    if (ko) {
+                      const band = moduleRoute.route === 'hard' ? '더 어려운' : moduleRoute.route === 'easy' ? '더 쉬운' : '표준 난이도의'
+                      return `모듈 1 ${scored ? `정답 ${scored} — ` : ''}실제 TOEFL이라면 ${band} 모듈 2로 배정됩니다.`
+                    }
+                    const band = moduleRoute.route === 'hard' ? 'a harder' : moduleRoute.route === 'easy' ? 'an easier' : 'a standard'
+                    return `Module 1${scored ? `: ${scored} correct` : ''} — on the real TOEFL you'd be routed to ${band} Module 2.`
+                  })()}
+                </p>
+              )}
             </div>
           )
         })()}

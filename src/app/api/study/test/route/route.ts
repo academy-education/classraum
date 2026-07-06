@@ -25,6 +25,9 @@ import {
 
 export const dynamic = 'force-dynamic'
 
+/** Must match the generator's cache-row prefix (generate/route.ts). */
+const CACHED_TEST_MARKER = '[full-test-v1]'
+
 const AnswerSchema = z.object({
   index: z.number().int().min(0),
   answer: z.string().nullable().optional(),
@@ -63,13 +66,13 @@ export async function POST(req: NextRequest) {
 
   const { data: session, error: sessErr } = await supabaseAdmin
     .from('study_sessions')
-    .select('id, user_id, cached_test, module2_route')
+    .select('id, student_id, module2_route, module1_correct, module1_total')
     .eq('id', sessionId)
     .maybeSingle()
   if (sessErr || !session) {
     return NextResponse.json({ error: 'session_not_found' }, { status: 404 })
   }
-  if (session.user_id !== user.id) {
+  if (session.student_id !== user.id) {
     return NextResponse.json({ error: 'forbidden' }, { status: 403 })
   }
 
@@ -79,25 +82,44 @@ export async function POST(req: NextRequest) {
   if (session.module2_route) {
     return NextResponse.json({
       route: session.module2_route,
-      module1Correct: null,
-      module1Total: config.module1Total,
+      module1Correct: session.module1_correct ?? null,
+      module1Total: session.module1_total ?? config.module1Total,
       alreadyRouted: true,
     })
   }
 
-  const cached = session.cached_test as { questions?: Array<{ correct_answer?: string | null }> } | null
+  // The authoritative payload lives in the marker-prefixed assistant
+  // message (same row /submit grades against) — study_sessions has no
+  // cached_test column.
+  const { data: cacheRows } = await supabaseAdmin
+    .from('study_messages')
+    .select('content')
+    .eq('session_id', sessionId)
+    .eq('role', 'assistant')
+    .ilike('content', `${CACHED_TEST_MARKER}%`)
+    .limit(1)
+  let cached: { questions?: Array<{ correct_answer?: string | null }>; moduleBreakIdx?: number | null } | null = null
+  if (cacheRows?.[0]) {
+    try { cached = JSON.parse(cacheRows[0].content.slice(CACHED_TEST_MARKER.length)) } catch { /* corrupt cache */ }
+  }
   const questions = Array.isArray(cached?.questions) ? cached!.questions : []
-  const module1Questions = questions.slice(0, config.module1Total)
-  if (module1Questions.length < config.module1Total) {
+  // Prefer the payload's own break point — the generator may shift it
+  // off the nominal 10/14 split (e.g. Reading anchors it after the
+  // first Complete-the-Words block).
+  const breakIdx = (typeof cached?.moduleBreakIdx === 'number' && cached.moduleBreakIdx > 0)
+    ? cached.moduleBreakIdx
+    : config.module1Total
+  const module1Questions = questions.slice(0, breakIdx)
+  if (module1Questions.length < Math.min(breakIdx, 3)) {
     return NextResponse.json(
-      { error: 'insufficient_questions', have: module1Questions.length, need: config.module1Total },
+      { error: 'insufficient_questions', have: module1Questions.length, need: breakIdx },
       { status: 409 },
     )
   }
 
   let correct = 0
   for (const a of answers) {
-    if (a.index >= config.module1Total) continue
+    if (a.index >= module1Questions.length) continue
     const q = module1Questions[a.index]
     if (!q || typeof a.answer !== 'string') continue
     const key = String(q.correct_answer ?? '').trim().toLowerCase()
@@ -105,7 +127,7 @@ export async function POST(req: NextRequest) {
     if (a.answer.trim().toLowerCase() === key) correct++
   }
 
-  const route = computeToeflRoute(sectionName, correct, config.module1Total)
+  const route = computeToeflRoute(sectionName, correct, module1Questions.length)
   if (!route) {
     return NextResponse.json({ error: 'not_adaptive', route: null }, { status: 200 })
   }
@@ -114,7 +136,7 @@ export async function POST(req: NextRequest) {
     .from('study_sessions')
     .update({
       module1_correct: correct,
-      module1_total: config.module1Total,
+      module1_total: module1Questions.length,
       module2_route: route,
     })
     .eq('id', sessionId)
@@ -122,7 +144,7 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({
     route,
     module1Correct: correct,
-    module1Total: config.module1Total,
+    module1Total: module1Questions.length,
     alreadyRouted: false,
   })
 }
