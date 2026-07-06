@@ -1,8 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { AlertTriangle, Sparkles, Target, Clock, GraduationCap, Heart, Check } from "lucide-react"
+import { AlertTriangle, Sparkles, Target, Eye, Clock, GraduationCap, Heart, Check, ArrowRight, School, BookOpen } from "lucide-react"
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
@@ -11,6 +12,12 @@ import { LogoMark } from "@/components/marketing/ProductMocks"
 import { CARD, CARD_HOVER, WRAP, ts, useReveal } from "@/components/marketing/ui"
 
 const VALUE_ICONS = [GraduationCap, Sparkles, Clock, Heart]
+const VALUE_CHIPS = [
+  "bg-blue-50 text-primary",
+  "bg-purple-50 text-purple-500",
+  "bg-amber-50 text-amber-500",
+  "bg-rose-50 text-rose-500",
+]
 
 export default function AboutPage() {
   const { t, language } = useTranslation()
@@ -45,7 +52,8 @@ export default function AboutPage() {
           <div className="flex justify-center mb-6">
             <LogoMark size={56} radius={16} />
           </div>
-          <h1 className="text-[clamp(34px,4.6vw,56px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.024em]">
+          <span className="text-[12.5px] font-semibold tracking-[0.08em] text-primary">{ts(t, 'landing.aboutExtras.eyebrow')}</span>
+          <h1 className="text-[clamp(34px,4.6vw,56px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.024em] mt-3">
             {ts(t, 'about.hero.title')}
           </h1>
           <p className="text-gray-500 text-base sm:text-[16.5px] leading-[1.75] max-w-[58ch] mx-auto mt-6">
@@ -58,9 +66,9 @@ export default function AboutPage() {
         {/* Problem & Solution */}
         <section className="mb-20">
           <div className="grid lg:grid-cols-2 gap-4">
-            <div className={`${CARD} hv4-fade p-7 flex flex-col`}>
+            <div className={`${CARD} ${CARD_HOVER} hv4-fade group p-7 flex flex-col`}>
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center">
+                <span className="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                   <AlertTriangle size={18} strokeWidth={2.2} />
                 </span>
                 <h2 className="text-[19px] font-bold text-[#163e64]">{ts(t, 'about.problemSolution.problem.title')}</h2>
@@ -77,9 +85,9 @@ export default function AboutPage() {
                 ))}
               </ul>
             </div>
-            <div className={`${CARD} hv4-fade p-7 flex flex-col`}>
+            <div className={`${CARD} ${CARD_HOVER} hv4-fade group p-7 flex flex-col`}>
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                   <Sparkles size={18} strokeWidth={2.2} />
                 </span>
                 <h2 className="text-[19px] font-bold text-[#163e64]">{ts(t, 'about.problemSolution.solution.title')}</h2>
@@ -102,11 +110,14 @@ export default function AboutPage() {
         {/* Mission & Vision */}
         <section className="mb-20">
           <div className="grid lg:grid-cols-2 gap-4">
-            {(["mission", "vision"] as const).map((key) => (
-              <div key={key} className={`${CARD} hv4-fade p-7`}>
+            {([
+              { key: "mission", Icon: Target, chip: "bg-primary/10 text-primary" },
+              { key: "vision", Icon: Eye, chip: "bg-[#00D0AE]/10 text-[#00a98d]" },
+            ] as const).map(({ key, Icon, chip }) => (
+              <div key={key} className={`${CARD} ${CARD_HOVER} hv4-fade group p-7`}>
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                    <Target size={18} strokeWidth={2.2} />
+                  <span className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${chip}`}>
+                    <Icon size={18} strokeWidth={2.2} />
                   </span>
                   <h2 className="text-[19px] font-bold text-[#163e64]">{ts(t, `about.missionVision.${key}.title`)}</h2>
                 </div>
@@ -127,9 +138,10 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {values.map((value, i) => {
               const Icon = VALUE_ICONS[i % VALUE_ICONS.length]
+              const chip = VALUE_CHIPS[i % VALUE_CHIPS.length]
               return (
-                <div key={i} className={`${CARD} ${CARD_HOVER} hv4-fade p-6`}>
-                  <span className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                <div key={i} className={`${CARD} ${CARD_HOVER} hv4-fade group p-6`}>
+                  <span className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${chip}`}>
                     <Icon size={20} strokeWidth={2.2} />
                   </span>
                   <h3 className="text-[15px] font-semibold text-gray-900 mb-1.5">{value.title}</h3>
@@ -137,6 +149,33 @@ export default function AboutPage() {
                 </div>
               )
             })}
+          </div>
+        </section>
+
+        {/* Two products */}
+        <section className="mb-24">
+          <div className="text-center max-w-[640px] mx-auto mb-10">
+            <h2 className="hv4-fade text-[clamp(24px,2.8vw,32px)] font-bold text-[#163e64] leading-[1.16] tracking-tight">
+              {ts(t, 'landing.aboutExtras.prodTitle')}
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { href: "/features", Icon: School, chip: "bg-primary/10 text-primary", t1: 'landing.aboutExtras.prod1t', b: 'landing.aboutExtras.prod1b', c: 'landing.aboutExtras.prod1cta' },
+              { href: "/study", Icon: BookOpen, chip: "bg-[#00D0AE]/10 text-[#00a98d]", t1: 'landing.aboutExtras.prod2t', b: 'landing.aboutExtras.prod2b', c: 'landing.aboutExtras.prod2cta' },
+            ].map((p) => (
+              <Link key={p.href} href={p.href} className={`${CARD} ${CARD_HOVER} hv4-fade group p-7 block`}>
+                <span className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${p.chip}`}>
+                  <p.Icon size={20} strokeWidth={2.2} />
+                </span>
+                <h3 className="text-[16px] font-bold text-[#163e64] mb-1.5">{ts(t, p.t1)}</h3>
+                <p className="text-[13.5px] text-gray-500 leading-relaxed mb-4">{ts(t, p.b)}</p>
+                <span className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-primary">
+                  {ts(t, p.c)}
+                  <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
           </div>
         </section>
 

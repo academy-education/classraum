@@ -18,25 +18,23 @@ export default function TermsOfServicePage() {
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           {/* Hero */}
           <div className="text-center mb-12">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8" style={{ backgroundColor: '#2885e8' }}>
-              <ScrollText className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6">
+              <ScrollText className="w-6 h-6" strokeWidth={2.2} />
             </div>
 
             {/* Show tab selector only for Korean */}
             {language === 'korean' && (
               <div className="flex justify-center mb-6">
-                <div className="inline-flex rounded-lg border border-gray-300 p-1">
+                <div className="inline-flex rounded-xl ring-1 ring-gray-200 bg-white p-1 shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
                   <button
                     onClick={() => setTermsType('business')}
-                    className="px-4 py-2 text-sm font-medium rounded-md transition-colors"
-                    style={termsType === 'business' ? { backgroundColor: '#2885e8', color: 'white' } : { color: '#6b7280' }}
+                    className={`px-4 py-2 text-sm font-semibold rounded-[10px] transition-colors ${termsType === 'business' ? 'bg-primary text-white' : 'text-gray-500 hover:text-gray-700'}`}
                   >
                     {t('termsOfService.business.title')}
                   </button>
                   <button
                     onClick={() => setTermsType('consumer')}
-                    className="px-4 py-2 text-sm font-medium rounded-md transition-colors"
-                    style={termsType === 'consumer' ? { backgroundColor: '#2885e8', color: 'white' } : { color: '#6b7280' }}
+                    className={`px-4 py-2 text-sm font-semibold rounded-[10px] transition-colors ${termsType === 'consumer' ? 'bg-primary text-white' : 'text-gray-500 hover:text-gray-700'}`}
                   >
                     {t('termsOfService.consumer.title')}
                   </button>
@@ -44,11 +42,11 @@ export default function TermsOfServicePage() {
               </div>
             )}
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+            <h1 className="text-[clamp(30px,4vw,44px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.02em] mb-4">
               {language === 'english' ? t('termsOfService.business.title') : t(`termsOfService.${termsType}.title`)}
             </h1>
 
-            <p className="text-lg text-gray-600 mb-2">
+            <p className="text-[13px] text-gray-400 mb-2 tabular-nums">
               {language === 'english' ? t('termsOfService.business.lastUpdated') : t(`termsOfService.${termsType}.lastUpdated`)}
             </p>
           </div>
@@ -109,7 +107,7 @@ export default function TermsOfServicePage() {
 
               return (
                 <section key={sectionKey} id={`section-${index + 1}`} className="mb-12">
-                  <h2 className="text-2xl font-bold mb-6">
+                  <h2 className="text-[20px] font-bold text-[#163e64] mb-5">
                     {index + 1}. {sectionTitle}
                   </h2>
 

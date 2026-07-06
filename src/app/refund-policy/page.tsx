@@ -29,15 +29,15 @@ export default function RefundPolicyPage() {
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           {/* Hero */}
           <div className="text-center mb-12">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
-              <RefreshCw className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6">
+              <RefreshCw className="w-6 h-6" strokeWidth={2.2} />
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+            <h1 className="text-[clamp(30px,4vw,44px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.02em] mb-4">
               {t('refundPolicy.title')}
             </h1>
 
-            <p className="text-lg text-gray-600 mb-2">
+            <p className="text-[13px] text-gray-400 mb-2 tabular-nums">
               {t('refundPolicy.lastUpdated')}
             </p>
           </div>
@@ -46,7 +46,7 @@ export default function RefundPolicyPage() {
           <div className="prose prose-lg max-w-none">
             {/* Section 1 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section1.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('refundPolicy.sections.section1.title')}</h2>
 
               <p className="text-gray-700 leading-relaxed">
                 {t('refundPolicy.sections.section1.content')}
@@ -55,7 +55,7 @@ export default function RefundPolicyPage() {
 
             {/* Section 2 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section2.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('refundPolicy.sections.section2.title')}</h2>
 
               <ul className="list-disc pl-6 space-y-3 text-gray-700">
                 {getArray('refundPolicy.sections.section2.items').map((item: string, index: number) => (
@@ -66,7 +66,7 @@ export default function RefundPolicyPage() {
 
             {/* Section 3 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section3.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('refundPolicy.sections.section3.title')}</h2>
 
               <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6">
                 <p className="text-gray-700 font-medium">
@@ -81,7 +81,7 @@ export default function RefundPolicyPage() {
 
             {/* Section 4 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section4.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('refundPolicy.sections.section4.title')}</h2>
 
               <div className="bg-gray-50 rounded-lg p-6 mb-6">
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -103,7 +103,7 @@ export default function RefundPolicyPage() {
 
             {/* Section 5 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section5.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('refundPolicy.sections.section5.title')}</h2>
 
               <div className="space-y-4">
                 {getArray('refundPolicy.sections.section5.items').map((item: string, index: number) => (
@@ -118,7 +118,7 @@ export default function RefundPolicyPage() {
 
             {/* Section 6 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section6.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('refundPolicy.sections.section6.title')}</h2>
 
               <div className="bg-rose-50 border border-rose-200 rounded-lg p-6">
                 <p className="text-gray-700 font-medium mb-4">
@@ -135,7 +135,7 @@ export default function RefundPolicyPage() {
 
             {/* Section 7 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section7.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('refundPolicy.sections.section7.title')}</h2>
 
               <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                 <div className="space-y-3">
@@ -155,7 +155,7 @@ export default function RefundPolicyPage() {
 
             {/* Section 8 */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('refundPolicy.sections.section8.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('refundPolicy.sections.section8.title')}</h2>
 
               <div className="bg-gray-50 rounded-lg p-6">
                 <ul className="list-disc pl-6 space-y-3 text-gray-700">

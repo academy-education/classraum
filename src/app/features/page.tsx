@@ -13,6 +13,10 @@ import {
   Archive,
   HelpCircle,
   Globe,
+  ShieldCheck,
+  KeyRound,
+  Database,
+  Lock,
 } from "lucide-react"
 import {
   DashboardMock,
@@ -24,9 +28,8 @@ import {
   ExamsMock,
   AssignmentsMock,
   MiniCalendar,
-  MiniComms,
 } from "@/components/marketing/ProductMocks"
-import { CARD, WRAP, type TFunc, ts, useReveal } from "@/components/marketing/ui"
+import { CARD, CARD_HOVER, WRAP, type TFunc, ts, useReveal } from "@/components/marketing/ui"
 
 const F = "landing.featuresPage."
 
@@ -125,8 +128,22 @@ export default function FeaturesPage() {
       </FeatureSection>
 
       <FeatureSection id="communication" t={t} section="communication">
-        <div className={`${CARD} overflow-hidden h-[240px]`}>
-          <MiniComms t={t} label={ts(t, "landing.home.shots.reports")} />
+        <div className="space-y-3 max-w-[400px]">
+          <PushNotificationCard t={t} />
+          <PushNotificationCard
+            t={t}
+            className="ml-6 sm:ml-10"
+            title={ts(t, "landing.home.mock.msg2")}
+            body={ts(t, "landing.home.mock.rpt2")}
+            time="18:00"
+          />
+          <PushNotificationCard
+            t={t}
+            className="ml-12 sm:ml-20"
+            title={ts(t, `${F}commMock.n3t`)}
+            body={ts(t, `${F}commMock.n3b`)}
+            time={ts(t, `${F}commMock.n3time`)}
+          />
         </div>
       </FeatureSection>
 
@@ -169,21 +186,21 @@ export default function FeaturesPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { n: 1, Icon: MessageSquare },
-              { n: 2, Icon: Megaphone },
-              { n: 3, Icon: Users },
-              { n: 4, Icon: Archive },
-              { n: 5, Icon: HelpCircle },
-              { n: 6, Icon: Globe },
-            ].map(({ n, Icon }) => (
-              <div key={n} className={`${CARD} hv4-fade px-5 py-5 flex items-start gap-3.5`}>
-                <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <Icon size={17} strokeWidth={2.2} />
+              { n: 1, Icon: MessageSquare, chip: "bg-blue-50 text-primary" },
+              { n: 2, Icon: Megaphone, chip: "bg-amber-50 text-amber-500" },
+              { n: 3, Icon: Users, chip: "bg-purple-50 text-purple-500" },
+              { n: 4, Icon: Archive, chip: "bg-gray-100 text-gray-500" },
+              { n: 5, Icon: HelpCircle, chip: "bg-emerald-50 text-emerald-600" },
+              { n: 6, Icon: Globe, chip: "bg-[#00D0AE]/10 text-[#00a98d]" },
+            ].map(({ n, Icon, chip }) => (
+              <div key={n} className={`${CARD} ${CARD_HOVER} hv4-fade group px-6 py-6`}>
+                <span
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${chip}`}
+                >
+                  <Icon size={19} strokeWidth={2.2} />
                 </span>
-                <span className="min-w-0">
-                  <h3 className="text-[14px] font-semibold text-gray-900">{ts(t, `${F}more.m${n}t`)}</h3>
-                  <p className="text-[12.5px] text-gray-500 leading-relaxed mt-0.5">{ts(t, `${F}more.m${n}b`)}</p>
-                </span>
+                <h3 className="text-[15px] font-semibold text-gray-900">{ts(t, `${F}more.m${n}t`)}</h3>
+                <p className="text-[13px] text-gray-500 leading-relaxed mt-1">{ts(t, `${F}more.m${n}b`)}</p>
               </div>
             ))}
           </div>
@@ -191,17 +208,27 @@ export default function FeaturesPage() {
       </section>
 
       {/* Privacy */}
-      <section id="privacy" className="py-16 sm:py-20 scroll-mt-16">
+      <section id="privacy" className="py-16 sm:py-20 scroll-mt-16 bg-[#f8fafc] border-y border-gray-100">
         <div className={WRAP}>
           <div className="text-center max-w-[640px] mx-auto mb-10">
+            <span className="mx-auto mb-5 w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center hv4-fade">
+              <ShieldCheck size={22} strokeWidth={2.2} />
+            </span>
             <h2 className="hv4-fade text-[clamp(24px,2.8vw,32px)] font-bold text-[#163e64] leading-[1.16] tracking-tight mb-3">
               {ts(t, F + "privacy.title")}
             </h2>
             <p className="hv4-fade text-gray-500 leading-[1.75]">{ts(t, F + "privacy.sub")}</p>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
-            {[1, 2, 3].map((n) => (
-              <div key={n} className={`${CARD} hv4-fade px-6 py-6`}>
+            {[
+              { n: 1, Icon: KeyRound },
+              { n: 2, Icon: Database },
+              { n: 3, Icon: Lock },
+            ].map(({ n, Icon }) => (
+              <div key={n} className={`${CARD} ${CARD_HOVER} hv4-fade group px-6 py-6`}>
+                <span className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                  <Icon size={19} strokeWidth={2.2} />
+                </span>
                 <h3 className="text-[15px] font-semibold text-gray-900 mb-1.5">{ts(t, `${F}privacy.p${n}t`)}</h3>
                 <p className="text-[13px] text-gray-500 leading-relaxed">{ts(t, `${F}privacy.p${n}b`)}</p>
               </div>

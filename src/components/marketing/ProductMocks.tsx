@@ -666,14 +666,14 @@ export function MiniComms({ t, label }: { t: TFunc; label: string }) {
     <div role="img" aria-label={label} className="h-full bg-[#f8fafc] p-3.5 flex flex-col justify-center gap-2 text-left">
       <div className="bg-[#163e64] text-white rounded-xl px-3 py-2.5 shadow-[0_8px_16px_-8px_rgba(22,62,100,0.4)] max-w-[92%]">
         <i className="not-italic flex justify-between items-center text-[7.5px] opacity-70 mb-0.5">
-          <span className="flex items-center gap-1"><Bell size={7} /> CLASSRAUM</span>
+          <span className="flex items-center gap-1.5"><LogoMark size={11} radius={3} /> CLASSRAUM</span>
           <span>14:51</span>
         </i>
         <span className="text-[10px] font-medium leading-snug">{t("landing.home.m1.notifTitle")}</span>
       </div>
       <div className="bg-white ring-1 ring-gray-100 rounded-xl px-3 py-2.5 shadow-[0_1px_2px_rgba(16,24,40,0.03)] max-w-[92%] self-end">
         <i className="not-italic flex justify-between items-center text-[7.5px] text-gray-400 mb-0.5">
-          <span className="flex items-center gap-1"><Bell size={7} /> CLASSRAUM</span>
+          <span className="flex items-center gap-1.5"><LogoMark size={11} radius={3} /> CLASSRAUM</span>
           <span>18:00</span>
         </i>
         <span className="text-[10px] font-medium text-gray-800 leading-snug">{t(M + "msg2")}</span>
@@ -727,16 +727,28 @@ export function AttendanceMock({ t, className = "" }: { t: TFunc; className?: st
 }
 
 // The push notification parents receive, with the app icon
-export function PushNotificationCard({ t, className = "" }: { t: TFunc; className?: string }) {
+export function PushNotificationCard({
+  t,
+  className = "",
+  title,
+  body,
+  time = "14:51",
+}: {
+  t: TFunc
+  className?: string
+  title?: string
+  body?: string
+  time?: string
+}) {
   return (
     <div className={`rounded-2xl bg-white ring-1 ring-gray-100 shadow-[0_16px_32px_-12px_rgba(22,62,100,0.28)] p-3.5 text-left ${className}`}>
       <div className="flex items-center gap-2 mb-1.5">
         <LogoMark size={18} radius={5} />
         <span className="text-[10px] font-semibold tracking-[0.04em] text-gray-400 flex-1">CLASSRAUM</span>
-        <span className="text-[10px] text-gray-400 tabular-nums">14:51</span>
+        <span className="text-[10px] text-gray-400 tabular-nums">{time}</span>
       </div>
-      <b className="block text-[12.5px] font-bold text-gray-900">{t("landing.home.m1.notifTitle")}</b>
-      <span className="text-[12px] text-gray-500">{t("landing.home.m1.notifBody")}</span>
+      <b className="block text-[12.5px] font-bold text-gray-900">{title ?? t("landing.home.m1.notifTitle")}</b>
+      <span className="text-[12px] text-gray-500">{body ?? t("landing.home.m1.notifBody")}</span>
     </div>
   )
 }

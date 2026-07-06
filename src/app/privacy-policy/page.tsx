@@ -28,15 +28,15 @@ export default function PrivacyPolicyPage() {
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           {/* Hero */}
           <div className="text-center mb-12">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
-              <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6">
+              <Shield className="w-6 h-6" strokeWidth={2.2} />
             </div>
             
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+            <h1 className="text-[clamp(30px,4vw,44px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.02em] mb-4">
               {t('privacyPolicy.title')}
             </h1>
             
-            <p className="text-lg text-gray-600 mb-2">
+            <p className="text-[13px] text-gray-400 mb-2 tabular-nums">
               {t('privacyPolicy.lastUpdated')}
             </p>
           </div>
@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Summary Section */}
             <section className="bg-gray-50 rounded-lg p-6 mb-12">
-              <h2 className="text-2xl font-bold mb-6">{t('privacyPolicy.summary.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">{t('privacyPolicy.summary.title')}</h2>
               
               <div className="space-y-6">
                 <div>
@@ -112,7 +112,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Detailed Sections */}
             <section id="section-1" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">1. {t('privacyPolicy.sections.section1.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">1. {t('privacyPolicy.sections.section1.title')}</h2>
 
               <div className="mb-8">
                 <h3 className="text-xl font-semibold mb-4">{t('privacyPolicy.sections.section1.subtitle')}</h3>
@@ -131,7 +131,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-2" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">2. {t('privacyPolicy.sections.section2.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">2. {t('privacyPolicy.sections.section2.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section2.short')}</p>
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section2.intro')}</p>
@@ -145,7 +145,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-3" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">3. {t('privacyPolicy.sections.section3.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">3. {t('privacyPolicy.sections.section3.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section3.short')}</p>
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section3.intro')}</p>
@@ -161,7 +161,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-4" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">4. {t('privacyPolicy.sections.section4.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">4. {t('privacyPolicy.sections.section4.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section4.short')}</p>
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section4.intro')}</p>
@@ -177,14 +177,14 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-5" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">5. {t('privacyPolicy.sections.section5.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">5. {t('privacyPolicy.sections.section5.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section5.short')}</p>
               
               <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section5.content')}</p>
             </section>
 
             <section id="section-6" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">6. {t('privacyPolicy.sections.section6.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">6. {t('privacyPolicy.sections.section6.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section6.short')}</p>
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section6.intro')}</p>
@@ -196,14 +196,14 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-7" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">7. {t('privacyPolicy.sections.section7.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">7. {t('privacyPolicy.sections.section7.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section7.short')}</p>
               
               <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section7.content')}</p>
             </section>
 
             <section id="section-8" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">8. {t('privacyPolicy.sections.section8.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">8. {t('privacyPolicy.sections.section8.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section8.short')}</p>
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section8.content')}</p>
@@ -212,7 +212,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-9" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">9. {t('privacyPolicy.sections.section9.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">9. {t('privacyPolicy.sections.section9.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section9.short')}</p>
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section9.intro')}</p>
@@ -226,21 +226,21 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-10" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">10. {t('privacyPolicy.sections.section10.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">10. {t('privacyPolicy.sections.section10.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section10.short')}</p>
               
               <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section10.content')}</p>
             </section>
 
             <section id="section-11" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">11. {t('privacyPolicy.sections.section11.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">11. {t('privacyPolicy.sections.section11.title')}</h2>
               <p className="text-gray-700 font-medium mb-3">{t('privacyPolicy.sections.section11.short')}</p>
               
               <p className="text-gray-700 leading-relaxed">{t('privacyPolicy.sections.section11.content')}</p>
             </section>
 
             <section id="section-12" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">12. {t('privacyPolicy.sections.section12.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">12. {t('privacyPolicy.sections.section12.title')}</h2>
               
               <p className="text-gray-700 leading-relaxed mb-6">{t('privacyPolicy.sections.section12.description')}</p>
               
@@ -259,7 +259,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-13" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">13. {t('privacyPolicy.sections.section13.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">13. {t('privacyPolicy.sections.section13.title')}</h2>
               
               <p className="text-gray-700 leading-relaxed mb-4">{t('privacyPolicy.sections.section13.intro')}</p>
               <ul className="list-disc pl-6 mb-6 text-gray-700 space-y-2">
@@ -274,7 +274,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-14" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">14. {t('privacyPolicy.sections.section14.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">14. {t('privacyPolicy.sections.section14.title')}</h2>
               <p className="text-gray-700 font-medium mb-6">{t('privacyPolicy.sections.section14.short')}</p>
               
               <div className="space-y-8">
@@ -340,7 +340,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-15" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">15. {t('privacyPolicy.sections.section15.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">15. {t('privacyPolicy.sections.section15.title')}</h2>
               <p className="text-gray-700 leading-relaxed mb-6">
                 {t('privacyPolicy.sections.section15.description')}
               </p>
@@ -362,7 +362,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-16" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">16. {t('privacyPolicy.sections.section16.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">16. {t('privacyPolicy.sections.section16.title')}</h2>
               <p className="text-gray-700 leading-relaxed mb-6">
                 {t('privacyPolicy.sections.section16.retention')}
               </p>
@@ -382,7 +382,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="section-17" className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">17. {t('privacyPolicy.sections.section17.title')}</h2>
+              <h2 className="text-[20px] font-bold text-[#163e64] mb-5">17. {t('privacyPolicy.sections.section17.title')}</h2>
               <p className="text-gray-700 leading-relaxed mb-6">
                 {t('privacyPolicy.sections.section17.description')}
               </p>
