@@ -11,7 +11,9 @@ import { getPortOneConfig } from '@/lib/portone-config'
  * + a period marker (e.g. timestamp or YYYY-MM) so a retry within
  * the same period doesn't double-charge.
  */
-const PORTONE_API_URL = 'https://api.portone.io/v2/payments/billing-key'
+// V2 billing-key payment: paymentId (the idempotency key) lives in
+// the URL path, not the body. https://developers.portone.io/api/rest-v2
+const PORTONE_API_BASE = 'https://api.portone.io'
 
 export interface PortOneChargeInput {
   billingKey: string
@@ -43,7 +45,7 @@ export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortO
 
   let response: Response
   try {
-    response = await fetch(PORTONE_API_URL, {
+    response = await fetch(`${PORTONE_API_BASE}/payments/${encodeURIComponent(input.paymentId)}/billing-key`, {
       method: 'POST',
       headers: {
         Authorization: `PortOne ${cfg.apiSecret}`,
@@ -52,11 +54,12 @@ export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortO
       body: JSON.stringify({
         storeId: cfg.storeId,
         billingKey: input.billingKey,
-        paymentId: input.paymentId,
         orderName: input.orderName,
-        amount: { total: input.amount, currency: 'KRW' },
+        amount: { total: input.amount },
+        currency: 'KRW',
         customer: { id: input.customerId },
-        customData: input.customData ?? {},
+        // The V2 API takes customData as a string, not an object.
+        customData: JSON.stringify(input.customData ?? {}),
       }),
     })
   } catch (e) {
@@ -75,23 +78,13 @@ export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortO
     }
   }
 
-  // 200 OK but status may still be e.g. 'FAILED' for asynchronously
-  // failing PGs — treat anything not PAID as a failure.
-  const status = typeof body.status === 'string' ? body.status : undefined
-  if (status !== 'PAID') {
-    return {
-      ok: false,
-      status,
-      httpStatus: response.status,
-      payment: body,
-      message: typeof body.message === 'string' ? body.message : `status=${status ?? 'unknown'}`,
-    }
-  }
-
+  // A 200 from POST /payments/{id}/billing-key IS the success response
+  // (PayWithBillingKeyResponse) — there is no top-level status field;
+  // failures come back as non-2xx with a typed error body above.
   return {
     ok: true,
-    status,
+    status: 'PAID',
     httpStatus: response.status,
-    payment: body,
+    payment: (body.payment as Record<string, unknown> | undefined) ?? body,
   }
 }
