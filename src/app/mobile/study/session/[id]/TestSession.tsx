@@ -174,6 +174,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
    *  /api/study/test/generate. Each phase event carries an i18n key
    *  and an integer percent. Null until the first event arrives. */
   const [progress, setProgress] = useState<{ name: string; labelKey: string; percent: number } | null>(null)
+  /** Server-classified generation failure — drives the error screen's
+   *  explanation + retry copy. reason: quota | rate_limit |
+   *  in_progress | timeout | content | unknown. */
+  const [genError, setGenError] = useState<{ message: string; reason: string } | null>(null)
 
   // Timer plumbing (active-time model):
   //   - activeElapsedMsRef = total ms accumulated while the tab was
@@ -226,6 +230,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       if (pre?.speaking_grade_mode === 'audio') setSpeakingGradeMode('audio')
     } catch { /* fall through to 'generating' */ }
     setPhase(isResume ? 'resuming' : 'generating')
+    setGenError(null)
     setProgress({ name: 'starting', labelKey: 'study.test.progress.starting', percent: 0 })
     try {
       const headers = await authHeaders()
@@ -263,6 +268,14 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             payload = event.test as TestPayload
           } else if (event.type === 'error') {
             streamError = true
+            // Server classifies failures coarsely (quota / rate_limit /
+            // in_progress / timeout / content / unknown) so the error
+            // screen can say something actionable instead of a bare
+            // "failed".
+            setGenError({
+              message: String(event.message ?? ''),
+              reason: String((event as { reason?: string }).reason ?? 'unknown'),
+            })
           }
         }
       }
@@ -651,17 +664,69 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   }
 
   if (phase === 'error' || !test) {
+    // Reason-specific copy so students know whether to wait, retry
+    // now, or that it isn't their fault. Falls back to the generic
+    // "couldn't create" line for unclassified failures.
+    const reason = genError?.reason ?? 'unknown'
+    const stillWorking = reason === 'in_progress'
+    const copy = (() => {
+      switch (reason) {
+        case 'in_progress':
+          return {
+            title: ko ? '아직 문제를 만들고 있어요' : 'Your test is still being created',
+            body: ko
+              ? '전체 모의고사 생성에는 몇 분 정도 걸릴 수 있어요. 잠시 후 아래 버튼으로 다시 확인해 주세요.'
+              : 'Building a full mock test can take a few minutes. Check again shortly with the button below.',
+            cta: ko ? '다시 확인' : 'Check again',
+          }
+        case 'quota':
+          return {
+            title: ko ? '지금은 문제를 만들 수 없어요' : 'Test creation is temporarily unavailable',
+            body: ko
+              ? 'AI 서비스 사용량 한도에 도달했어요. 보통 곧 해결되니 잠시 후 다시 시도해 주세요.'
+              : 'The AI service has hit its usage limit. This usually resolves soon — please try again in a little while.',
+            cta: ko ? '다시 시도' : 'Try again',
+          }
+        case 'rate_limit':
+          return {
+            title: ko ? '지금 요청이 많아요' : 'Lots of tests are being created right now',
+            body: ko
+              ? '1~2분 후에 다시 시도하면 정상적으로 만들어져요.'
+              : 'Give it a minute or two and retry — it should go through.',
+            cta: ko ? '다시 시도' : 'Try again',
+          }
+        case 'timeout':
+        case 'content':
+        default:
+          return {
+            title: ko ? '테스트를 만들지 못했어요' : 'We couldn’t create your test',
+            body: ko
+              ? '일시적인 문제일 가능성이 높아요. 다시 시도하면 새로 생성을 시작합니다.'
+              : 'This is usually temporary. Retrying starts a fresh attempt.',
+            cta: ko ? '다시 시도' : 'Try again',
+          }
+      }
+    })()
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-3">
-        <p className="text-sm text-gray-600">{t('study.test.generateFailed')}</p>
+        <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-1 ${
+          stillWorking ? 'bg-primary/10 text-primary' : 'bg-amber-50 text-amber-500'
+        }`}>
+          {stillWorking ? <Loader2 className="w-6 h-6 animate-spin" /> : <AlertTriangle className="w-6 h-6" />}
+        </div>
+        <p className="text-[15px] font-semibold text-gray-900">{copy.title}</p>
+        <p className="text-[13px] text-gray-500 leading-relaxed max-w-[300px]">{copy.body}</p>
         <button
           type="button"
           onClick={() => void load()}
-          className="inline-flex items-center gap-1.5 px-4 h-10 rounded-full bg-primary text-white text-sm font-medium"
+          className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
         >
           <RefreshCw className="w-4 h-4" />
-          {t('study.test.tryAgain')}
+          {copy.cta}
         </button>
+        <Link href="/mobile/study" className="text-[12.5px] text-gray-400 underline mt-1">
+          {ko ? '학습 홈으로 돌아가기' : 'Back to Study home'}
+        </Link>
       </div>
     )
   }

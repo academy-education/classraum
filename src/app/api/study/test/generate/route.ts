@@ -1898,7 +1898,13 @@ export async function POST(req: NextRequest) {
           },
         })
         .eq('id', sessionId)
-      emit({ type: 'error', message: 'no questions survived verification — please retry' })
+      {
+        const joined = subtaskErrors.join(' ').toLowerCase()
+        const reason = /quota|billing/.test(joined) ? 'quota'
+          : /rate.?limit|429/.test(joined) ? 'rate_limit'
+          : 'content'
+        emit({ type: 'error', message: 'no questions survived verification — please retry', reason })
+      }
       try { controller.close() } catch { /* already closed */ }
       return
     }
@@ -1998,7 +2004,14 @@ export async function POST(req: NextRequest) {
       .from('study_sessions')
       .update({ generation_status: 'failed', config: nextConfig })
       .eq('id', sessionId)
-    emit({ type: 'error', message: 'generation failed' })
+    // Coarse reason classification so the client can tell the student
+    // something actionable ("usage limit — try later" vs "try again")
+    // without leaking raw provider errors.
+    const lowerErr = `${errName} ${errMsg}`.toLowerCase()
+    const reason = /quota|billing/.test(lowerErr) ? 'quota'
+      : /rate.?limit|429/.test(lowerErr) ? 'rate_limit'
+      : 'unknown'
+    emit({ type: 'error', message: 'generation failed', reason })
   } finally {
     try { controller.close() } catch { /* already closed */ }
   }
@@ -2079,7 +2092,7 @@ function buildPollingStream(sessionId: string): ReadableStream<Uint8Array> {
             .eq('id', sessionId)
             .maybeSingle()
           if (sess?.generation_status === 'failed') {
-            emit({ type: 'error', message: 'background generation failed — please retry' })
+            emit({ type: 'error', message: 'background generation failed — please retry', reason: 'unknown' })
             return
           }
 
@@ -2104,11 +2117,11 @@ function buildPollingStream(sessionId: string): ReadableStream<Uint8Array> {
             .from('study_sessions')
             .update({ generation_status: 'failed' })
             .eq('id', sessionId)
-          emit({ type: 'error', message: 'generation timed out — please retry' })
+          emit({ type: 'error', message: 'generation timed out — please retry', reason: 'timeout' })
         } else {
           // Original run is plausibly still working — leave status
           // alone and let the client re-poll.
-          emit({ type: 'error', message: 'still generating — please check back in a minute' })
+          emit({ type: 'error', message: 'still generating — please check back in a minute', reason: 'in_progress' })
         }
       } finally {
         try { controller.close() } catch { /* already closed */ }
