@@ -393,10 +393,15 @@ export async function POST(req: NextRequest) {
 
   // Mark this session's generation as in-flight so the landing page
   // can show the "generating tests" chip and the user can navigate
-  // away knowing it'll continue server-side.
+  // away knowing it'll continue server-side. last_gen_started_at lets
+  // the polling stream distinguish a HEALTHY long run from a stale
+  // zombie before it breaks the pending deadlock.
   await supabaseAdmin
     .from('study_sessions')
-    .update({ generation_status: 'pending' })
+    .update({
+      generation_status: 'pending',
+      config: { ...(session.config ?? {}), last_gen_started_at: new Date().toISOString() },
+    })
     .eq('id', sessionId)
 
   // Build the prompt context. For test-prep we prefer the detailed
@@ -1858,9 +1863,15 @@ export async function POST(req: NextRequest) {
     // every item, etc.), don't ship a broken session. Emit an error so
     // the client retries instead of rendering an empty grid that would
     // divide-by-zero in scoring.
-    if (questions.length === 0) {
-      console.error('[test/generate] pipeline produced 0 questions', {
-        sessionId, family, sectionLabel, target: count,
+    // Minimum-size floor, not just non-empty: a "full test" with a
+    // quarter of the target questions (observed: 11 of 44 when most
+    // chunks were quota-starved) is a broken product — fail it with
+    // diagnostics so the student retries instead of sitting a stub.
+    const minShip = Math.max(5, Math.ceil(count * 0.5))
+    if (questions.length < minShip) {
+      console.error('[test/generate] pipeline produced too few questions to ship', {
+        sessionId, family, sectionLabel, target: count, minShip,
+        final: questions.length,
         generated: allQuestions.length,
         verified: verifyResult.kept.length,
         expectedChoiceCount,
@@ -1881,7 +1892,7 @@ export async function POST(req: NextRequest) {
           generation_status: 'failed',
           config: {
             ...(existingCfg?.config ?? {}),
-            last_error: `empty pipeline: generated=${allQuestions.length} verified=${verifyResult.kept.length} subtaskFailures=${subtaskErrors.length}`,
+            last_error: `too few questions: final=${questions.length}/${count} (min ${minShip}) generated=${allQuestions.length} verified=${verifyResult.kept.length} subtaskFailures=${subtaskErrors.length}`,
             last_error_cause: subtaskErrors.slice(0, 4).join(' | ').slice(0, 800) || null,
             last_error_at: new Date().toISOString(),
           },
@@ -1917,7 +1928,12 @@ export async function POST(req: NextRequest) {
         : {}),
     }
 
-    await supabaseAdmin
+    // The cache row is LOAD-BEARING, not an optimization: resume after
+    // refresh reads it, the submit route grades against it (anti-
+    // forgery), and the polling stream watches for it. If this insert
+    // fails, the streamed test would be a ghost — visible once, gone
+    // on refresh — so fail the run instead of shipping it.
+    const { error: cacheErr } = await supabaseAdmin
       .from('study_messages')
       .insert({
         session_id: sessionId,
@@ -1929,6 +1945,9 @@ export async function POST(req: NextRequest) {
         // the actual hardModel/easyModel ids defined near the top.
         model: family ? 'gpt-4.1' : 'gpt-4o-mini',
       })
+    if (cacheErr) {
+      throw new Error(`test cache insert failed: ${cacheErr.message}`)
+    }
 
     // Mark generation complete + fire notification. Both fire whether
     // or not the client is still connected — the whole point of this
@@ -2066,16 +2085,31 @@ function buildPollingStream(sessionId: string): ReadableStream<Uint8Array> {
 
           await new Promise(r => setTimeout(r, 2000))
         }
-        // Polling window exhausted — the other request likely died
-        // mid-stream and never reached either the cache insert or the
-        // failed-status update. Tell the client to retry; a fresh
-        // POST will see status still 'pending' but no cache, and we
-        // need a way to break the loop. Clear status to allow retry.
-        await supabaseAdmin
+        // Polling window exhausted. This stream is a READER — it must
+        // not stomp a healthy in-flight run (observed in testing: a
+        // 4.6-min SAT Math generation was marked failed at the 4-min
+        // poll timeout by a second viewer, then delivered its result
+        // into a session already flagged failed). Only break the
+        // pending deadlock when the run is genuinely stale: no cache
+        // row AND the generation started >10 minutes ago.
+        const { data: staleCheck } = await supabaseAdmin
           .from('study_sessions')
-          .update({ generation_status: 'failed' })
+          .select('config')
           .eq('id', sessionId)
-        emit({ type: 'error', message: 'generation timed out — please retry' })
+          .maybeSingle()
+        const startedAt = Date.parse(String((staleCheck?.config as { last_gen_started_at?: string } | null)?.last_gen_started_at ?? ''))
+        const staleMs = Number.isFinite(startedAt) ? Date.now() - startedAt : Number.POSITIVE_INFINITY
+        if (staleMs > 10 * 60 * 1000) {
+          await supabaseAdmin
+            .from('study_sessions')
+            .update({ generation_status: 'failed' })
+            .eq('id', sessionId)
+          emit({ type: 'error', message: 'generation timed out — please retry' })
+        } else {
+          // Original run is plausibly still working — leave status
+          // alone and let the client re-poll.
+          emit({ type: 'error', message: 'still generating — please check back in a minute' })
+        }
       } finally {
         try { controller.close() } catch { /* already closed */ }
       }
