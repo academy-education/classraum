@@ -61,6 +61,7 @@ function SnapInner() {
   const [result, setResult] = useState<SolveResult | null>(null)
   const [captureId, setCaptureId] = useState<string | null>(null)
   const [err, setErr] = useState<string | null>(null)
+  const [dailyLimited, setDailyLimited] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const cameraInputRef = useRef<HTMLInputElement>(null)
 
@@ -85,6 +86,7 @@ function SnapInner() {
     if (!file) return
     setStage('solving')
     setErr(null)
+    setDailyLimited(false)
     try {
       const headers = await authHeaders()
       const form = new FormData()
@@ -98,7 +100,14 @@ function SnapInner() {
       })
       const json = await res.json()
       if (!res.ok) {
-        setErr(json?.error ?? 'solve failed')
+        if (json?.code === 'daily_limit') {
+          setErr(ko
+            ? `오늘 스냅 풀이 ${json.limit ?? 5}회를 모두 사용했어요. 프리미엄으로 업그레이드하면 무제한으로 이용할 수 있어요.`
+            : `You've used all ${json.limit ?? 5} snap solves for today. Upgrade to Premium for unlimited snaps.`)
+          setDailyLimited(true)
+        } else {
+          setErr(json?.error ?? 'solve failed')
+        }
         setStage('error')
         return
       }
@@ -139,7 +148,7 @@ function SnapInner() {
           <ResultStage result={result} captureId={captureId} previewUrl={previewUrl} onAnother={reset} ko={ko} languageHint={language} />
         )}
         {stage === 'error' && (
-          <ErrorStage message={err} ko={ko} onRetry={() => setStage('review')} onReset={reset} />
+          <ErrorStage message={err} ko={ko} onRetry={() => setStage('review')} onReset={reset} upsell={dailyLimited} />
         )}
         </StudyPageTransition>
         </div>
@@ -459,21 +468,32 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
   )
 }
 
-function ErrorStage({ message, ko, onRetry, onReset }: { message: string | null; ko: boolean; onRetry: () => void; onReset: () => void }) {
+function ErrorStage({ message, ko, onRetry, onReset, upsell }: { message: string | null; ko: boolean; onRetry: () => void; onReset: () => void; upsell?: boolean }) {
   return (
     <div className="py-12 text-center">
       <AlertCircle className="w-7 h-7 text-rose-500 mx-auto mb-2" />
-      <p className="text-[14px] font-medium text-gray-900">{ko ? '풀이를 가져오지 못했어요' : 'Could not get a solution'}</p>
+      <p className="text-[14px] font-medium text-gray-900">
+        {upsell
+          ? (ko ? '오늘은 여기까지!' : 'That’s all for today!')
+          : (ko ? '풀이를 가져오지 못했어요' : 'Could not get a solution')}
+      </p>
       <p className="text-[12px] text-gray-500 mt-1.5 max-w-xs mx-auto">{message ?? ''}</p>
       <div className="mt-4 flex items-center justify-center gap-2">
         <button type="button" onClick={onReset}
           className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-white ring-1 ring-gray-200 text-gray-700 text-[13px] font-medium hover:bg-gray-50 transition">
           <X className="w-4 h-4 mr-1" />{ko ? '취소' : 'Cancel'}
         </button>
-        <button type="button" onClick={onRetry}
-          className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-gray-900 text-white text-[13px] font-medium">
-          <RefreshCw className="w-4 h-4 mr-1" />{ko ? '다시 시도' : 'Retry'}
-        </button>
+        {upsell ? (
+          <Link href="/mobile/study/subscription"
+            className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-violet-600 text-white text-[13px] font-medium">
+            <Sparkles className="w-4 h-4 mr-1" />{ko ? '프리미엄 알아보기' : 'See Premium'}
+          </Link>
+        ) : (
+          <button type="button" onClick={onRetry}
+            className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-gray-900 text-white text-[13px] font-medium">
+            <RefreshCw className="w-4 h-4 mr-1" />{ko ? '다시 시도' : 'Retry'}
+          </button>
+        )}
       </div>
     </div>
   )

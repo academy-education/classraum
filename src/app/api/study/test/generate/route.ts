@@ -391,6 +391,30 @@ export async function POST(req: NextRequest) {
     })
   }
 
+  // ── Credit reserve ──────────────────────────────────────────────
+  // 1 credit = 1 generated test. Reserve BEFORE spending model tokens;
+  // every failure path below refunds it, and the debit is idempotent
+  // per session (a retry of a previously-debited session is free).
+  const { data: creditResult, error: creditErr } = await supabaseAdmin
+    .rpc('use_study_credit', { p_student: user.id, p_source: sessionId })
+  const credit = (creditResult ?? {}) as { ok?: boolean; reason?: string; grant?: number; purchased?: number }
+  if (creditErr || !credit.ok) {
+    if (creditErr) console.error('[test/generate] credit reserve errored', creditErr)
+    return ndjsonResponse([
+      {
+        type: 'error',
+        message: 'no test credits remaining',
+        reason: credit.reason === 'no_subscription' ? 'no_subscription' : 'no_credits',
+      },
+    ])
+  }
+  const refundCredit = async (why: string) => {
+    const { error } = await supabaseAdmin
+      .rpc('refund_study_credit', { p_student: user.id, p_source: sessionId })
+    if (error) console.error('[test/generate] credit refund failed', { sessionId, why, error })
+    else console.log('[test/generate] credit refunded', { sessionId, why })
+  }
+
   // Mark this session's generation as in-flight so the landing page
   // can show the "generating tests" chip and the user can navigate
   // away knowing it'll continue server-side. last_gen_started_at lets
@@ -1898,6 +1922,7 @@ export async function POST(req: NextRequest) {
           },
         })
         .eq('id', sessionId)
+      await refundCredit('too few questions')
       {
         const joined = subtaskErrors.join(' ').toLowerCase()
         const reason = /quota|billing/.test(joined) ? 'quota'
@@ -2004,6 +2029,9 @@ export async function POST(req: NextRequest) {
       .from('study_sessions')
       .update({ generation_status: 'failed', config: nextConfig })
       .eq('id', sessionId)
+    // Failed run — the student keeps their credit. (Idempotent: only
+    // refunds if this session actually holds an unrefunded debit.)
+    await refundCredit(`catch: ${errName}`)
     // Coarse reason classification so the client can tell the student
     // something actionable ("usage limit — try later" vs "try again")
     // without leaking raw provider errors.

@@ -64,6 +64,11 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
             status: 'trial',
             trial_ends_at: trialEnds,
             current_period_end: trialEnds,
+            // Trial allotment — enough to experience the full-test
+            // flow a few times before choosing a plan. Keep in sync
+            // with TRIAL_CREDITS in src/lib/study/plans.ts (client
+            // component, so the constant isn't imported server-side).
+            grant_credits_remaining: 3,
           })
         if (!cancelled) {
           // On insert success → allow through (the trial row is now valid

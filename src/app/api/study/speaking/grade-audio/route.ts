@@ -6,6 +6,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp } from '@/lib/study/xp'
 import { assessSessionMastery as _keepAlive } from '@/lib/study-mastery-assess'
 import { getRubric, GradeSchema, type ResponseTestFamily, type ResponseSkill, type ResponseTaskType } from '@/lib/study/responseRubrics'
+import { resolvePlan } from '@/lib/study/plans'
 
 /**
  * POST /api/study/speaking/grade-audio — real audio-native rubric
@@ -88,6 +89,22 @@ export async function POST(req: NextRequest) {
       error: 'session not configured for audio grading',
       hint: 'Restart the test with "Real audio" grading selected in the customization sheet.',
     }, { status: 400 })
+  }
+
+  // Audio-native grading is a Premium capability (it costs 3-4× the
+  // text route per response). Trial rows get General entitlements.
+  const { data: subRow } = await supabaseAdmin
+    .from('study_subscriptions')
+    .select('status, plan')
+    .eq('student_id', user.id)
+    .maybeSingle()
+  const isPremium = subRow?.status === 'active' && resolvePlan(subRow.plan).tier === 'premium'
+  if (!isPremium) {
+    return NextResponse.json({
+      error: 'premium required',
+      code: 'premium_required',
+      hint: 'Audio-based Speaking grading is a Premium feature — text-based grading is available on your plan.',
+    }, { status: 403 })
   }
 
   const language = (session.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en'

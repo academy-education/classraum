@@ -32,6 +32,9 @@ interface Stats {
     slug: string
     attempts: Array<{ score: number; date: string }>
   }>
+  /** True when the student HAS trend data but their plan doesn't
+   *  include score analytics — renders the locked upsell card. */
+  scoreTrendLocked?: boolean
   topMastered: Array<{ score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }>
   topWeak: Array<{ score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }>
   achievements: Achievement[]
@@ -138,6 +141,33 @@ function StatsInner() {
           <MiniMetric label={ko ? '사진 풀이' : 'Snap solves'} value={stats.snapCount ?? 0} />
           <MiniMetric label={ko ? '말하기·작문 제출' : 'Responses graded'} value={stats.responseCount ?? 0} />
         </div>
+      )}
+
+      {/* Premium upsell — the student has real trend data, but score
+          analytics belong to the Premium plan. */}
+      {stats.scoreTrendLocked && (
+        <section>
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
+            {ko ? '점수 추이' : 'Score trend'}
+          </h2>
+          <Link
+            href="/mobile/study/subscription"
+            className="flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-br from-violet-50/70 to-white ring-1 ring-violet-200/60 hover:ring-violet-300 transition-all"
+          >
+            <span className="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center flex-shrink-0">
+              <Lock className="w-4 h-4" />
+            </span>
+            <span className="flex-1 min-w-0">
+              <span className="block text-[13.5px] font-semibold text-gray-900">
+                {ko ? '프리미엄에서 점수 변화를 확인하세요' : 'See your score progress with Premium'}
+              </span>
+              <span className="block text-[12px] text-gray-500 mt-0.5">
+                {ko ? '섹션별 점수 추이와 상세 분석이 포함됩니다.' : 'Per-section score trends and deeper analytics are included.'}
+              </span>
+            </span>
+            <ArrowRight className="w-4 h-4 text-violet-500 flex-shrink-0" />
+          </Link>
+        </section>
       )}
 
       {/* Score trajectory — per-section test scores over time.

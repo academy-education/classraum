@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
+import { resolvePlan, STUDY_PLANS } from '@/lib/study/plans'
 
 /**
  * Daily cron — renew study subscriptions and finalize cancellations.
@@ -10,8 +11,10 @@ import { chargeBillingKey } from '@/lib/portone-charge'
  *
  *   1. status='active' AND current_period_end <= now AND
  *      cancel_at_period_end = false
- *      → Charge ₩9,900 against the stored billing key. On success
- *        advance current_period_end by 30 days. On failure flip to
+ *      → Charge the plan's price (pending_plan wins if a downgrade is
+ *        scheduled) against the stored billing key. On success advance
+ *        current_period_end by 30 days and RESET the monthly credit
+ *        grant to the plan's allotment. On failure flip to
  *        status='past_due' with last_payment_failure populated.
  *
  *   2. cancel_at_period_end = true AND current_period_end <= now
@@ -30,7 +33,6 @@ import { chargeBillingKey } from '@/lib/portone-charge'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
 
-const PRICE_WON = 9900
 const PERIOD_DAYS = 30
 const PAST_DUE_RETRY_DAYS = 3
 
@@ -38,11 +40,15 @@ interface SubscriptionRow {
   id: string
   student_id: string
   status: 'trial' | 'active' | 'past_due' | 'cancelled' | 'expired'
+  plan: string | null
+  pending_plan: string | null
   current_period_end: string
   cancel_at_period_end: boolean
   portone_subscription_id: string | null
   last_payment_attempt_at: string | null
 }
+
+const SUB_COLUMNS = 'id, student_id, status, plan, pending_plan, current_period_end, cancel_at_period_end, portone_subscription_id, last_payment_attempt_at'
 
 export async function GET(req: NextRequest) {
   if (!verifyCronAuth(req)) {
@@ -71,7 +77,7 @@ export async function GET(req: NextRequest) {
   // ── 2. Renewal charges for active subscriptions due today ──────
   const { data: dueRows } = await supabaseAdmin
     .from('study_subscriptions')
-    .select('id, student_id, status, current_period_end, cancel_at_period_end, portone_subscription_id, last_payment_attempt_at')
+    .select(SUB_COLUMNS)
     .eq('status', 'active')
     .eq('cancel_at_period_end', false)
     .lte('current_period_end', now.toISOString())
@@ -87,7 +93,7 @@ export async function GET(req: NextRequest) {
   const retryCutoff = new Date(now.getTime() - PAST_DUE_RETRY_DAYS * 24 * 60 * 60 * 1000)
   const { data: pastDueRows } = await supabaseAdmin
     .from('study_subscriptions')
-    .select('id, student_id, status, current_period_end, cancel_at_period_end, portone_subscription_id, last_payment_attempt_at')
+    .select(SUB_COLUMNS)
     .eq('status', 'past_due')
     .lt('last_payment_attempt_at', retryCutoff.toISOString())
   for (const row of (pastDueRows ?? []) as SubscriptionRow[]) {
@@ -129,6 +135,14 @@ async function chargeAndAdvance(
   now: Date,
   summary: { charged: number; failed: number; errors: string[] }
 ) {
+  // Scheduled downgrades take effect NOW, at the period boundary:
+  // the renewal charges the pending plan's price and the row flips
+  // to it. (Upgrades never sit in pending_plan — change-plan applies
+  // them immediately with an immediate charge.)
+  const effectivePlan = row.pending_plan && STUDY_PLANS[row.pending_plan]
+    ? STUDY_PLANS[row.pending_plan]!
+    : resolvePlan(row.plan)
+
   // Namespace by the period boundary so re-runs on the same day for
   // the same period don't double-charge.
   const periodMarker = row.current_period_end.split('T')[0]
@@ -137,14 +151,15 @@ async function chargeAndAdvance(
   const result = await chargeBillingKey({
     billingKey: row.portone_subscription_id!,
     paymentId,
-    amount: PRICE_WON,
-    orderName: 'Classraum Study — Monthly',
+    amount: effectivePlan.priceWon,
+    orderName: effectivePlan.orderName,
     customerId: row.student_id,
     customData: {
       kind: 'study_subscription',
       attempt: 'renewal',
       student_id: row.student_id,
       period_end: row.current_period_end,
+      plan: effectivePlan.id,
     },
   })
 
@@ -154,14 +169,27 @@ async function chargeAndAdvance(
       .from('study_subscriptions')
       .update({
         status: 'active',
+        plan: effectivePlan.id,
+        pending_plan: null,
+        price_cents: effectivePlan.priceWon * 100,
         current_period_start: now.toISOString(),
         current_period_end: nextEnd.toISOString(),
         last_payment_id: paymentId,
         last_payment_attempt_at: now.toISOString(),
         last_payment_failure: null,
+        // Monthly grant RESETS each cycle (no rollover); purchased
+        // pack credits are untouched.
+        grant_credits_remaining: effectivePlan.monthlyCredits,
         updated_at: now.toISOString(),
       })
       .eq('id', row.id)
+    await supabaseAdmin.from('study_credit_ledger').insert({
+      student_id: row.student_id,
+      delta: effectivePlan.monthlyCredits,
+      bucket: 'grant',
+      kind: 'grant',
+      note: `renewal ${effectivePlan.id} (${paymentId})`,
+    })
     summary.charged++
   } else {
     await supabaseAdmin

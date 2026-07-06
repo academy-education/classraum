@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {
   Loader2, RefreshCw, ArrowRight, ArrowLeft, Clock, CheckCircle2,
   XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles,
-  Volume2, Mic, MicOff, Play, Eye, EyeOff,
+  Volume2, Mic, MicOff, Play, Eye, EyeOff, CreditCard,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
@@ -669,7 +669,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     // "couldn't create" line for unclassified failures.
     const reason = genError?.reason ?? 'unknown'
     const stillWorking = reason === 'in_progress'
-    const copy = (() => {
+    const copy = ((): { title: string; body: string; cta: string; href?: string } => {
       switch (reason) {
         case 'in_progress':
           return {
@@ -678,6 +678,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               ? '전체 모의고사 생성에는 몇 분 정도 걸릴 수 있어요. 잠시 후 아래 버튼으로 다시 확인해 주세요.'
               : 'Building a full mock test can take a few minutes. Check again shortly with the button below.',
             cta: ko ? '다시 확인' : 'Check again',
+          }
+        case 'no_credits':
+        case 'no_subscription':
+          return {
+            title: ko ? '테스트 크레딧이 부족해요' : 'You’re out of test credits',
+            body: ko
+              ? '모의고사 1회 생성에 크레딧 1개가 사용돼요. 구독을 업그레이드하거나 다음 갱신을 기다리면 크레딧이 충전됩니다.'
+              : 'Each mock test uses 1 credit. Upgrade your plan or wait for your next renewal to get more.',
+            cta: ko ? '구독 관리' : 'Manage plan',
+            href: '/mobile/study/subscription',
           }
         case 'quota':
           return {
@@ -716,14 +726,24 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         </div>
         <p className="text-[15px] font-semibold text-gray-900">{copy.title}</p>
         <p className="text-[13px] text-gray-500 leading-relaxed max-w-[300px]">{copy.body}</p>
-        <button
-          type="button"
-          onClick={() => void load()}
-          className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
-        >
-          <RefreshCw className="w-4 h-4" />
-          {copy.cta}
-        </button>
+        {copy.href ? (
+          <Link
+            href={copy.href}
+            className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+          >
+            <CreditCard className="w-4 h-4" />
+            {copy.cta}
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={() => void load()}
+            className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+          >
+            <RefreshCw className="w-4 h-4" />
+            {copy.cta}
+          </button>
+        )}
         <Link href="/mobile/study" className="text-[12.5px] text-gray-400 underline mt-1">
           {ko ? '학습 홈으로 돌아가기' : 'Back to Study home'}
         </Link>

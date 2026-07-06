@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { resolvePlan, planFeatures, STUDY_PLANS, CREDIT_PACK } from '@/lib/study/plans'
 
 /**
  * GET  /api/study/subscription          — return current row.
@@ -26,9 +27,27 @@ export async function GET(req: NextRequest) {
 
   const { data: sub } = await supabaseAdmin
     .from('study_subscriptions')
-    .select('status, plan, price_cents, currency, trial_ends_at, current_period_start, current_period_end, cancel_at_period_end')
+    .select('status, plan, pending_plan, price_cents, currency, trial_ends_at, current_period_start, current_period_end, cancel_at_period_end, grant_credits_remaining, purchased_credits_remaining')
     .eq('student_id', user.id)
     .maybeSingle()
 
-  return NextResponse.json({ subscription: sub ?? null })
+  if (!sub) return NextResponse.json({ subscription: null })
+
+  // Enrich with the resolved tier, credit balance, and feature flags
+  // so every client surface (subscription page, upsell cards, snap
+  // limit banner) reads one payload instead of re-deriving plan rules.
+  const plan = resolvePlan(sub.plan)
+  const tier = sub.status === 'trial' ? 'general' : plan.tier
+  return NextResponse.json({
+    subscription: sub,
+    tier,
+    planMeta: plan,
+    credits: {
+      grant: sub.grant_credits_remaining ?? 0,
+      purchased: sub.purchased_credits_remaining ?? 0,
+      total: (sub.grant_credits_remaining ?? 0) + (sub.purchased_credits_remaining ?? 0),
+    },
+    features: planFeatures(tier),
+    catalog: { plans: Object.values(STUDY_PLANS), pack: CREDIT_PACK },
+  })
 }

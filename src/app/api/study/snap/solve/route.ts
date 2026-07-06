@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp } from '@/lib/study/xp'
+import { resolvePlan, planFeatures } from '@/lib/study/plans'
 
 /**
  * POST /api/study/snap/solve — accepts a photo of a problem (homework,
@@ -52,6 +53,34 @@ export async function POST(req: NextRequest) {
     { windowMs: 10 * 60 * 1000, max: 20 },
   )
   if (blocked) return blocked
+
+  // Tier gate: unlimited snaps are a Premium perk; General (and
+  // trial) users get a daily allowance. Counted against calendar-day
+  // UTC — simple and predictable.
+  const { data: subRow } = await supabaseAdmin
+    .from('study_subscriptions')
+    .select('status, plan')
+    .eq('student_id', user.id)
+    .maybeSingle()
+  const tier = subRow?.status === 'active' ? resolvePlan(subRow.plan).tier : 'general'
+  const features = planFeatures(tier)
+  if (Number.isFinite(features.snapDailyLimit)) {
+    const dayStart = new Date()
+    dayStart.setUTCHours(0, 0, 0, 0)
+    const { count: todayCount } = await supabaseAdmin
+      .from('study_snap_captures')
+      .select('id', { count: 'exact', head: true })
+      .eq('student_id', user.id)
+      .gte('created_at', dayStart.toISOString())
+    if ((todayCount ?? 0) >= features.snapDailyLimit) {
+      return NextResponse.json({
+        error: 'daily limit reached',
+        code: 'daily_limit',
+        limit: features.snapDailyLimit,
+        used: todayCount ?? 0,
+      }, { status: 403 })
+    }
+  }
 
   const form = await req.formData().catch(() => null)
   if (!form) return NextResponse.json({ error: 'expected multipart/form-data' }, { status: 400 })

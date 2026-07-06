@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey } from '@/lib/portone-charge'
+import { STUDY_PLANS, resolvePlan } from '@/lib/study/plans'
 
 /**
  * POST /api/study/subscription/billing-key
@@ -23,7 +24,6 @@ import { chargeBillingKey } from '@/lib/portone-charge'
 
 export const dynamic = 'force-dynamic'
 
-const PRICE_WON = 9900
 const PERIOD_DAYS = 30
 
 export async function POST(req: NextRequest) {
@@ -34,12 +34,18 @@ export async function POST(req: NextRequest) {
   const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
   if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  let body: { billingKey?: string }
+  let body: { billingKey?: string; plan?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
   const billingKey = body.billingKey
   if (!billingKey || typeof billingKey !== 'string') {
     return NextResponse.json({ error: 'missing billingKey' }, { status: 400 })
   }
+  // Tiered plans — must be an exact catalog id; missing defaults to
+  // General for backward compatibility with pre-tier clients.
+  if (body.plan && !STUDY_PLANS[body.plan]) {
+    return NextResponse.json({ error: 'unknown plan' }, { status: 400 })
+  }
+  const plan = resolvePlan(body.plan)
 
   // First charge. Namespace with init + epoch so retries don't
   // collide with the renewal cron's monthly paymentIds.
@@ -47,13 +53,14 @@ export async function POST(req: NextRequest) {
   const result = await chargeBillingKey({
     billingKey,
     paymentId,
-    amount: PRICE_WON,
-    orderName: 'Classraum Study — Monthly',
+    amount: plan.priceWon,
+    orderName: plan.orderName,
     customerId: user.id,
     customData: {
       kind: 'study_subscription',
       attempt: 'initial',
       student_id: user.id,
+      plan: plan.id,
     },
   })
 
@@ -85,8 +92,8 @@ export async function POST(req: NextRequest) {
     .upsert({
       student_id: user.id,
       status: 'active',
-      plan: 'monthly_v1',
-      price_cents: PRICE_WON * 100,
+      plan: plan.id,
+      price_cents: plan.priceWon * 100,
       currency: 'KRW',
       current_period_start: now.toISOString(),
       current_period_end: periodEnd.toISOString(),
@@ -95,8 +102,21 @@ export async function POST(req: NextRequest) {
       last_payment_id: paymentId,
       last_payment_attempt_at: now.toISOString(),
       last_payment_failure: null,
+      // Fresh cycle → fresh monthly test-credit grant (purchased pack
+      // credits, if any, are preserved by not touching that column).
+      grant_credits_remaining: plan.monthlyCredits,
       updated_at: now.toISOString(),
     }, { onConflict: 'student_id' })
+
+  if (!upsertError) {
+    await supabaseAdmin.from('study_credit_ledger').insert({
+      student_id: user.id,
+      delta: plan.monthlyCredits,
+      bucket: 'grant',
+      kind: 'grant',
+      note: `initial charge ${plan.id} (${paymentId})`,
+    })
+  }
 
   if (upsertError) {
     // Charge already succeeded — if we can't write the row this is a

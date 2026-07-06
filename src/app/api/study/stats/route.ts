@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { resolvePlan } from '@/lib/study/plans'
 
 /**
  * GET /api/study/stats — lifetime + weekly aggregates for the
@@ -126,13 +127,25 @@ export async function GET(req: NextRequest) {
     })
     trendMap.set(topic.slug, entry)
   }
-  const scoreTrend = [...trendMap.values()]
+  let scoreTrend = [...trendMap.values()]
     .filter(e => e.attempts.length >= 2)
     // Cap to the last 10 attempts per topic so the payload + chart
     // stay bounded for heavy users.
     .map(e => ({ ...e.topic, attempts: e.attempts.slice(-10) }))
     // Most recently active topic first.
     .sort((a, b) => (b.attempts[b.attempts.length - 1]!.date).localeCompare(a.attempts[a.attempts.length - 1]!.date))
+
+  // Score analytics are a Premium capability. General/trial users get
+  // an empty trend + a locked flag so the stats page renders an
+  // upsell card instead of the chart.
+  const { data: subRow } = await supabaseAdmin
+    .from('study_subscriptions')
+    .select('status, plan')
+    .eq('student_id', user.id)
+    .maybeSingle()
+  const isPremium = subRow?.status === 'active' && resolvePlan(subRow.plan).tier === 'premium'
+  const scoreTrendLocked = !isPremium && scoreTrend.length > 0
+  if (!isPremium) scoreTrend = []
 
   // Top mastered + weakest topics (score-based, attempts >= 2).
   type MasteryRow = { score: number; attempts_count: number; topic: { name_en: string; name_ko: string; slug: string } | null }
@@ -211,6 +224,7 @@ export async function GET(req: NextRequest) {
     last14,
     last90,
     scoreTrend,
+    scoreTrendLocked,
     topMastered,
     topWeak,
     achievements,
