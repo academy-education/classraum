@@ -66,3 +66,38 @@ ambiguous/mis-keyed item; `easy`/`weak` means below the difficulty bar;
   require an API key. That is by design — the app never calls a model.
 - Math bank items are verified by code (a sandbox computes the key), a
   separate path that also uses no external model.
+
+## Math pipeline (`math-bank-helper.mjs`)
+
+Math has a COMPUTABLE answer, so the correctness gate is a deterministic
+sandbox, not a vote. (The LLM harness has a ~18% false-negative rate on
+hard math — it falls for distractors — so a blind LLM solve must NOT gate
+math; it is only a soft cross-check + difficulty rating.)
+
+1. **Author** a batch to `scratchpad/math-batch.json` — each item adds a
+   `solve` field: a JS function BODY that recomputes the answer from the
+   problem's numbers (an independent method, not an echo of the key) and
+   returns it.
+
+2. **Sandbox gate** (the real check, no model):
+   ```
+   node scripts/study-bank/math-bank-helper.mjs verify scratchpad/math-batch.json
+   ```
+   Every item must recompute to its key. A mismatch = a mis-key; fix or drop.
+
+3. **Difficulty + cross-check** (Haiku subagents, in parallel): one grader
+   (difficulty vs a hard anchor [tangent-to-parabola/Vieta] and an easy
+   anchor [solve 2x=10]); one blind solver returning `{id:letter}` as an
+   independent confirmation. If the blind solver disagrees on a
+   sandbox-passing item, inspect it by hand before inserting.
+
+4. **Insert** (`insert` re-runs the sandbox as a hard gate, then requires
+   grader difficulty ∈ {hard, medium}):
+   ```
+   node scripts/study-bank/math-bank-helper.mjs insert scratchpad/math-batch.json scratchpad/math-qc.json
+   ```
+   qc.json: `{ "<id>": { difficulty, blind_letter } }`.
+
+Aim HARD: routine one-step items grade "easy" and get cut. Target Vieta /
+tangency, parameterized systems, function composition, non-obvious
+geometry/trig — the hardest-tier Module 2 shapes.
