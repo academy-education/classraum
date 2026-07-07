@@ -263,6 +263,87 @@ export const TEMPLATES: Record<string, Template> = {
       correct: an, distractors: [a1 * r ** n, a1 * r * (n - 1), a1 + (n - 1) * r, an * r],
       explanation: `The ${n}th term = a1·r^(n-1) = ${a1}·${r}^${n - 1} = ${an}.` })
   },
+  // 16) Linear cost model: solve for the number of units.
+  linear_units() {
+    const F = pick([10, 15, 20, 25, 30]), R = pick([3, 4, 5, 6, 8]), n = rnd(5, 15)
+    const T = F + R * n
+    return mc({ domain: 'Algebra', subskill: 'Linear models', topic_tag: 'linear-units',
+      prompt: `A service charges a flat fee of $${F} plus $${R} for each unit used. If the total charge was $${T}, how many units were used?`,
+      correct: n, distractors: [Math.round(T / R), T - F, n - 1, n + 1],
+      explanation: `${F} + ${R}n = ${T}, so ${R}n = ${T - F} and n = ${n}.` })
+  },
+  // 17) Absolute value: sum of the two solutions.
+  abs_value_sum() {
+    const h = rnd(-6, 8), k = rnd(2, 9)
+    const disp = h < 0 ? `+ ${Math.abs(h)}` : `- ${h}`
+    return mc({ domain: 'Advanced Math', subskill: 'Absolute value equations', topic_tag: 'abs-sum',
+      prompt: `The equation |x ${disp}| = ${k} has two solutions. What is the sum of the two solutions?`,
+      correct: 2 * h, distractors: [2 * k, h, h + k, 2 * h + 1],
+      explanation: `The solutions are ${h} + ${k} = ${h + k} and ${h} - ${k} = ${h - k}; their sum is ${2 * h}.` })
+  },
+  // 18) Markup then discount: final price.
+  markup_discount() {
+    const P = pick([80, 120, 150, 200, 250]), up = pick([20, 25, 50]), off = pick([10, 20, 40])
+    const final = P * (1 + up / 100) * (1 - off / 100)
+    if (!Number.isInteger(final)) return null
+    return mc({ domain: 'Problem-Solving and Data Analysis', subskill: 'Percent markup and discount', topic_tag: 'markup-discount',
+      prompt: `An item originally priced at $${P} is marked up ${up}% and then discounted ${off}%. What is the final price?`,
+      correct: final, distractors: [Math.round(P * (1 + (up - off) / 100)), P, Math.round(P * (1 + up / 100)), Math.round(P * (1 - off / 100))],
+      explanation: `Final = ${P} × ${(1 + up / 100).toFixed(2)} × ${(1 - off / 100).toFixed(2)} = ${final}.` })
+  },
+  // 19) Inverse variation.
+  inverse_variation() {
+    const k = pick([24, 36, 48, 60, 72, 120]), x0 = pick([2, 3, 4, 6]), x1 = pick([2, 3, 4, 6, 8, 12])
+    if (k % x0 !== 0 || k % x1 !== 0 || x0 === x1) return null
+    const y0 = k / x0, y1 = k / x1
+    return mc({ domain: 'Algebra', subskill: 'Inverse variation', topic_tag: 'inverse-variation',
+      prompt: `The variable y varies inversely with x. When x = ${x0}, y = ${y0}. What is y when x = ${x1}?`,
+      correct: y1, distractors: [y1 + 1, y0, x1, Math.round(y0 * x1 / x0)],
+      explanation: `Inverse variation: xy = k = ${x0}·${y0} = ${k}. When x = ${x1}, y = ${k}/${x1} = ${y1}.` })
+  },
+  // 20) Median of a data set.
+  median_dataset() {
+    const n = pick([5, 7])
+    const sorted = Array.from({ length: n }, () => rnd(2, 40)).sort((a, b) => a - b)
+    const med = sorted[(n - 1) / 2]!
+    const mean = Math.round(sorted.reduce((s, v) => s + v, 0) / n)
+    const disp = [...sorted]
+    for (let i = disp.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[disp[i], disp[j]] = [disp[j]!, disp[i]!] }
+    return mc({ domain: 'Problem-Solving and Data Analysis', subskill: 'Median', topic_tag: 'median',
+      prompt: `What is the median of the data set ${disp.join(', ')}?`,
+      correct: med, distractors: [mean, sorted[0]!, sorted[n - 1]!, med + 1],
+      explanation: `Ordering the ${n} values, the middle value is ${med}.` })
+  },
+  // 21) Weighted average.
+  weighted_average() {
+    const n1 = pick([2, 3, 4, 5]), n2 = pick([2, 3, 4, 5]), a1 = rnd(60, 80), a2 = rnd(80, 100)
+    const total = n1 * a1 + n2 * a2
+    if (total % (n1 + n2) !== 0) return null
+    const avg = total / (n1 + n2)
+    return mc({ domain: 'Problem-Solving and Data Analysis', subskill: 'Weighted average', topic_tag: 'weighted-avg',
+      prompt: `In a class, ${n1} students scored an average of ${a1} and ${n2} students scored an average of ${a2}. What is the average score of all ${n1 + n2} students?`,
+      correct: avg, distractors: [Math.round((a1 + a2) / 2), a1, a2, avg + 1],
+      explanation: `Total = ${n1}·${a1} + ${n2}·${a2} = ${total}; divided by ${n1 + n2} = ${avg}.` })
+  },
+  // 22) Cylinder volume in terms of pi.
+  cylinder_volume() {
+    const r = rnd(2, 7), h = rnd(3, 12)
+    const v = r * r * h
+    return mc({ domain: 'Geometry and Trigonometry', subskill: 'Volume of solids', topic_tag: 'cylinder-volume',
+      prompt: `A right circular cylinder has a base radius of ${r} and a height of ${h}. What is its volume?`,
+      correct: `${v}π`, distractors: [`${2 * r * (h + r)}π`, `${r * h}π`, `${2 * v}π`, `${r * r + h}π`],
+      explanation: `V = πr²h = π·${r}²·${h} = ${v}π.` })
+  },
+  // 23) Slope from two points.
+  slope_from_points() {
+    const x1 = rnd(-5, 4), y1 = rnd(-5, 4)
+    const dx = pick([1, 2, 3, 4]), dy = pick([-6, -4, -3, -2, 2, 3, 4, 6])
+    const x2 = x1 + dx, y2 = y1 + dy
+    return mc({ domain: 'Algebra', subskill: 'Slope of a line', topic_tag: 'slope-points',
+      prompt: `What is the slope of the line that passes through the points (${x1}, ${y1}) and (${x2}, ${y2})?`,
+      correct: frac(dy, dx), distractors: [frac(dx, dy), frac(-dy, dx), frac(dy + dx, 1), frac(dx - dy, 1)],
+      explanation: `slope = (${y2} - ${y1})/(${x2} - ${x1}) = ${dy}/${dx} = ${frac(dy, dx)}.` })
+  },
 }
 
 /**
