@@ -404,6 +404,10 @@ export async function refreshTestSpecExamples(
     distractor_rationales: [],
     blanks: null,
     graphic: null,
+    domain: null,
+    subskill: null,
+    topic_tag: null,
+    word_count: null,
   }))
   const mathHeavy = /math|quant|수학/i.test(sectionKey)
   const verifyResult = await verifyAndCorrect(asQuestions, apiKey, { mathHeavy })

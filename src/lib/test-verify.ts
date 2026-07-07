@@ -64,6 +64,20 @@ export interface Question {
   /** Optional visual asset. Permissive shape — UI dispatches on
    *  `type` and falls back gracefully on unknown shapes. */
   graphic: QuestionGraphic | null
+  /** Item-bank metadata (SAT + others). Official College Board
+   *  taxonomy for classification, blueprint enforcement, and QA:
+   *   - domain:   content domain, e.g. 'Information and Ideas',
+   *               'Craft and Structure', 'Algebra', 'Advanced Math'.
+   *   - subskill: sub-skill within the domain, e.g. 'Words in Context',
+   *               'Command of Evidence', 'Inferences'.
+   *   - topic_tag: free-form dedup/variety tag (NOT an official
+   *               category), e.g. 'exoplanets', 'similar-triangles'.
+   *   - word_count: passage length; QA metric (null when no passage).
+   *  All null on items authored/generated before the bank era. */
+  domain: string | null
+  subskill: string | null
+  topic_tag: string | null
+  word_count: number | null
 }
 
 /** Discriminated by `type`. All sub-payloads are intentionally loose
@@ -110,6 +124,12 @@ export interface RawQuestion {
   /** TOEFL Complete-the-Words (fill_in_blanks): per-blank answers. */
   blanks?: Array<{ id: number; answer: string; alternates?: string[] | null }> | null
   graphic?: QuestionGraphic | null
+  /** Item-bank metadata — see Question above. All nullish; the model
+   *  (or hand-author) may omit them. */
+  domain?: string | null
+  subskill?: string | null
+  topic_tag?: string | null
+  word_count?: number | null
 }
 
 const VerifierItemSchema = z.object({
@@ -407,6 +427,15 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     // Pass graphic through unchanged — UI renderer handles shape
     // validation and falls back to nothing on malformed data.
     graphic: q.graphic ?? null,
+    // Item-bank metadata — normalize to concrete null. Auto-derive
+    // word_count from the passage when the author omitted it so the
+    // QA metric is always populated for passage-bearing items.
+    domain: q.domain ? sanitize(q.domain) : null,
+    subskill: q.subskill ? sanitize(q.subskill) : null,
+    topic_tag: q.topic_tag ? sanitize(q.topic_tag) : null,
+    word_count: typeof q.word_count === 'number'
+      ? q.word_count
+      : (q.passage ? q.passage.trim().split(/\s+/).filter(Boolean).length : null),
   }
 }
 

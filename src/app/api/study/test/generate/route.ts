@@ -149,6 +149,14 @@ const QuestionSchema = z.object({
     })
     .passthrough()
     .nullish(),
+  /** Item-bank metadata (official College Board taxonomy + QA).
+   *  domain/subskill classify the item for blueprint enforcement;
+   *  topic_tag is a free-form dedup/variety tag; word_count is a QA
+   *  metric (auto-derived from passage in sanitizeQuestion if omitted). */
+  domain: z.string().nullish(),
+  subskill: z.string().nullish(),
+  topic_tag: z.string().nullish(),
+  word_count: z.number().int().nullish(),
 })
 
 const TestSchema = z.object({
