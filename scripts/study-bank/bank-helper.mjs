@@ -60,7 +60,7 @@ function renderBlind(batch) {
 }
 
 // The single source of truth for what gets into the bank.
-function accepts(qc, domain) {
+function accepts(qc, domain, subskill) {
   if (!qc) return { ok: false, why: 'no qc row' }
   const kv = Number(qc.key_votes)
   // Standard English Conventions carve-out: difficulty/distractor graders
@@ -75,6 +75,14 @@ function accepts(qc, domain) {
   }
   if (!(kv >= 2)) return { ok: false, why: `key_votes ${kv}<2 (contested/mis-keyed)` }
   if (!['hard', 'medium'].includes(qc.difficulty)) return { ok: false, why: `difficulty ${qc.difficulty}` }
+  // Rhetorical Synthesis carve-out: by design its distractors are TRUE
+  // statements drawn from the notes that fail the stated rhetorical goal,
+  // so graders systematically score them "weak" even when they are good
+  // traps. The distractor-quality lens doesn't fit this item type; gate on
+  // difficulty (already checked, not easy) + key agreement instead.
+  if (domain === 'Expression of Ideas' && subskill === 'Rhetorical Synthesis') {
+    return { ok: true }
+  }
   if (!['plausible', 'strong'].includes(qc.distractor_quality)) return { ok: false, why: `distractors ${qc.distractor_quality}` }
   if (qc.passage_needed !== true) return { ok: false, why: 'not passage-dependent' }
   return { ok: true }
@@ -127,7 +135,7 @@ async function main() {
     const q = qc[String(raw.id)]
     const label = `id${raw.id} [${raw.domain} / ${raw.subskill}]`
     if (!shapeOk(raw)) { console.log(`SKIP ${label} — bad shape (need 4 distinct choices incl. key)`); continue }
-    const verdict = accepts(q, raw.domain)
+    const verdict = accepts(q, raw.domain, raw.subskill)
     if (!verdict.ok) { console.log(`REJECT ${label} — ${verdict.why}`); continue }
     const it = toItem(raw, q.difficulty)
     const content_hash = hashOf(it)
