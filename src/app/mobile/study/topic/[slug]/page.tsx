@@ -8,6 +8,7 @@ import { StudySubPageHeader } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
+import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
@@ -93,6 +94,7 @@ function TopicInner({ slug }: { slug: string }) {
   const [selectedChildId, setSelectedChildId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<StudyMode | null>(null)
+  const [bankBusy, setBankBusy] = useState(false)
   const [testSheetOpen, setTestSheetOpen] = useState(false)
   const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
     count: 20, minutes: 30,
@@ -225,6 +227,31 @@ function TopicInner({ slug }: { slug: string }) {
     router.push(`/mobile/study/session/${data.id}`)
   }
 
+  // Instant bank-assembled practice (SAT). No AI wait, no credit —
+  // the assemble route builds a domain-balanced test from the verified
+  // item bank and returns a ready session to route into.
+  const startBankTest = async () => {
+    const target = effectiveTopic
+    if (!target || bankBusy) return
+    const { family, section } = parseTestSlug(target.slug)
+    if (family !== 'sat') return
+    const bankSection = section && /math/i.test(section) ? 'math' : 'reading_writing'
+    setBankBusy(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/test/assemble', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: bankSection, count: bankSection === 'math' ? 22 : 27 }),
+      })
+      if (!res.ok) { setBankBusy(false); return }
+      const json = await res.json()
+      router.push(`/mobile/study/session/${json.sessionId}`)
+    } catch {
+      setBankBusy(false)
+    }
+  }
+
   // Open the customization sheet for a full test. Loads the spec
   // defaults (question count + time) for the effective topic so the
   // sheet can show them as the starting values.
@@ -340,6 +367,10 @@ function TopicInner({ slug }: { slug: string }) {
             creating={creating}
             t={t}
           />
+        )}
+        {topic.category === 'test_prep'
+          && effectiveTopic && parseTestSlug(effectiveTopic.slug).family === 'sat' && (
+          <BankPracticeCard onStart={() => void startBankTest()} busy={bankBusy} ko={ko} />
         )}
         {isResponseEligible(effectiveTopic?.slug) && (
           <FeaturedResponseCard
@@ -646,6 +677,42 @@ function FeaturedResponseCard({
           </p>
         </div>
         <ArrowRight className="w-5 h-5 text-indigo-400/70 group-hover:text-indigo-500 group-hover:translate-x-0.5 mt-1.5 flex-shrink-0 transition-all" />
+      </div>
+    </button>
+  )
+}
+
+/** Instant, credit-free practice assembled from the verified item bank
+ *  (SAT only). Distinct from the AI-generated full test above. */
+function BankPracticeCard({ onStart, busy, ko }: { onStart: () => void; busy: boolean; ko: boolean }) {
+  return (
+    <button
+      type="button"
+      onClick={onStart}
+      disabled={busy}
+      className="group relative w-full rounded-2xl p-5 ring-1 ring-emerald-200/60 bg-gradient-to-br from-emerald-50/80 via-teal-50/30 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(16,185,129,0.16)] hover:ring-emerald-300/70 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait overflow-hidden"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 rounded-2xl bg-white text-emerald-600 flex items-center justify-center ring-1 ring-emerald-200/50 shadow-[0_1px_2px_rgba(16,185,129,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] flex-shrink-0">
+          {busy ? <Loader2 className="w-5 h-5 animate-spin" /> : <GraduationCap className="w-5 h-5" />}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="text-[17px] font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors tracking-tight">
+              {ko ? '즉시 연습' : 'Instant practice'}
+            </div>
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-emerald-700 bg-white/90 backdrop-blur ring-1 ring-emerald-200/80 rounded-full px-2 py-0.5">
+              {ko ? '무료 · 크레딧 불필요' : 'Free · no credit'}
+            </span>
+          </div>
+          <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">
+            {ko
+              ? '검증된 문제 은행에서 즉시 모의고사를 구성해요. 생성 대기 없이 바로 시작합니다.'
+              : 'Assembled instantly from our verified question bank — no generation wait, starts right away.'}
+          </p>
+        </div>
+        <ArrowRight className="w-5 h-5 text-emerald-400/70 group-hover:text-emerald-500 group-hover:translate-x-0.5 mt-1.5 flex-shrink-0 transition-all" />
       </div>
     </button>
   )
