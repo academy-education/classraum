@@ -22,6 +22,9 @@ export default function MobileStartPage() {
   const { user } = usePersistentMobileAuth()
   const role = user?.role
   const isStudent = role === 'student'
+  // Study-only students (self-serve signup, no academy membership)
+  // get no Grades tile — there's no academy data behind it.
+  const hasAcademy = (user?.academyIds?.length ?? 0) > 0
 
   // Personal greeting — same friendly tone the existing dashboard
   // uses but stripped to just the name. Falls back to a generic
@@ -45,7 +48,9 @@ export default function MobileStartPage() {
       </header>
 
       <div className="space-y-3 flex-1">
-        {/* Grades tile — links to existing /mobile dashboard. */}
+        {/* Grades tile — links to existing /mobile dashboard. Hidden
+            for study-only students with no academy behind it. */}
+        {hasAcademy && (
         <Link
           href="/mobile"
           className="group block rounded-2xl bg-white p-5 ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-16px_rgba(0,0,0,0.12)] hover:ring-emerald-200 transition-all active:scale-[0.99]"
@@ -65,6 +70,7 @@ export default function MobileStartPage() {
             <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-emerald-500 group-hover:translate-x-0.5 mt-1 flex-shrink-0 transition-all" />
           </div>
         </Link>
+        )}
 
         {/* Study tile — students only. Stronger gradient + accent ring
             so the new product gets visual weight on first encounter. */}

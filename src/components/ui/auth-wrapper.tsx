@@ -167,6 +167,29 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
               appInitTracker.markUserDataInitialized()
               return // Early return since we've already set the user data
             }
+            // No active academy membership → a study-only student
+            // (self-serve signup). Valid account state: they get the
+            // Study surface with no academy data instead of an error.
+            if (updateUserData && isMounted) {
+              updateUserData({
+                userId: user.id,
+                userName: userInfo.name || userInfo.email || user.email || '',
+                academyId: '',
+                academyIds: [],
+                isLoading: false
+              })
+            }
+            if (onUserData && isMounted) {
+              onUserData({
+                userId: user.id,
+                userName: userInfo.name || userInfo.email || user.email || '',
+                academyId: '',
+                isLoading: false
+              })
+            }
+            setIsLoadingAcademy(false)
+            appInitTracker.markUserDataInitialized()
+            return
           } catch (error) {
             console.warn('[AuthWrapper] Error fetching student data:', error)
           }

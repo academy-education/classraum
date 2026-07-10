@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Squares } from "@/components/ui/squares-background"
-import { Mail, Lock, User, Building, Phone, Eye, EyeOff, CheckCircle2 } from "lucide-react"
+import { Mail, Lock, User, Building, Phone, Eye, EyeOff, CheckCircle2, BookOpen } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
 import { useToast } from "@/hooks/use-toast"
 
@@ -36,6 +36,11 @@ export default function AuthPage() {
   const [schoolName, setSchoolName] = useState("")
   const [isRoleFromUrl, setIsRoleFromUrl] = useState(false)
   const [isAcademyIdFromUrl, setIsAcademyIdFromUrl] = useState(false)
+  // Signup door: 'study' = self-serve study account (role=student, no
+  // academy), 'academy' = the classic invite/manual flow. Invite links
+  // force 'academy' and hide the choice.
+  const [signupIntent, setSignupIntent] = useState<'study' | 'academy'>('study')
+  const [isInviteSignup, setIsInviteSignup] = useState(false)
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("")
@@ -111,10 +116,19 @@ export default function AuthPage() {
         window.history.replaceState({}, '', newUrl.toString())
       }
 
+      // Explicit door pre-selection from marketing links (?intent=study|academy).
+      const intentParam = urlParams.get('intent')
+      if (intentParam === 'study' || intentParam === 'academy') {
+        setActiveTab("signup")
+        setSignupIntent(intentParam)
+      }
+
       // Handle family_member_id parameter (personalized registration link)
       if (familyMemberIdParam && academyIdParam) {
         // Always show signup form for family member invites
         setActiveTab("signup")
+        setSignupIntent('academy')
+        setIsInviteSignup(true)
         setAcademyId(academyIdParam)
         setIsAcademyIdFromUrl(true)
 
@@ -155,6 +169,8 @@ export default function AuthPage() {
       // Pre-fill registration form if parameters present (standard flow)
       else if (roleParam || academyIdParam || familyIdParam) {
         setActiveTab("signup")
+        setSignupIntent('academy')
+        setIsInviteSignup(true)
         if (roleParam) {
           setRole(roleParam)
           setIsRoleFromUrl(true)
@@ -242,12 +258,24 @@ export default function AuthPage() {
         const userRole = userInfo.role
         console.log('[Auth] User role detected:', userRole)
 
-        // Redirect based on role. Students land on /mobile/start (the
-        // Grades/Study hub); parents skip the hub since Study is a
-        // student-only experience.
+        // Redirect based on role. Students WITH an academy land on
+        // /mobile/start (the Grades/Study hub); study-only students
+        // (no academy membership) go straight to Study — the hub's
+        // Grades tile would be an empty dead end for them. Parents
+        // skip the hub since Study is a student-only experience.
         if (userRole === 'student') {
-          console.log('[Auth] Redirecting student to mobile hub')
-          router.replace('/mobile/start')
+          const { count } = await supabase
+            .from('students')
+            .select('user_id', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+            .eq('active', true)
+          if ((count ?? 0) > 0) {
+            console.log('[Auth] Redirecting student to mobile hub')
+            router.replace('/mobile/start')
+          } else {
+            console.log('[Auth] Redirecting study-only student to study')
+            router.replace('/mobile/study')
+          }
         } else if (userRole === 'parent') {
           console.log('[Auth] Redirecting parent to mobile dashboard')
           router.replace('/mobile')
@@ -276,16 +304,17 @@ export default function AuthPage() {
     }, 100)
   }, [isInitialized, authLoading, user, isPasswordReset, activeTab, router])
 
-  // Check if all required signup fields are filled
+  // Check if all required signup fields are filled. The study door
+  // needs no role/academy — those only apply to the academy flow.
   const isSignupFormValid = useMemo(() => {
     if (activeTab !== 'signup') return true
-    return fullName.trim() !== '' &&
+    const baseValid = fullName.trim() !== '' &&
            email.trim() !== '' &&
            password.trim() !== '' &&
-           signupConfirmPassword.trim() !== '' &&
-           role.trim() !== '' &&
-           academyId.trim() !== ''
-  }, [activeTab, fullName, email, password, signupConfirmPassword, role, academyId])
+           signupConfirmPassword.trim() !== ''
+    if (signupIntent === 'study') return baseValid
+    return baseValid && role.trim() !== '' && academyId.trim() !== ''
+  }, [activeTab, fullName, email, password, signupConfirmPassword, role, academyId, signupIntent])
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -306,16 +335,21 @@ export default function AuthPage() {
       return
     }
 
+    // The study door always creates a student with no academy —
+    // whatever is left in the academy-flow fields is ignored.
+    const signupRole = signupIntent === 'study' ? 'student' : role
+    const signupAcademyId = signupIntent === 'study' ? '' : academyId
+
     try {
       // Check subscription user limit before signup (for invite links with academy_id)
-      if (academyId && (role === 'student' || role === 'teacher' || role === 'parent')) {
+      if (signupAcademyId && (signupRole === 'student' || signupRole === 'teacher' || signupRole === 'parent')) {
         try {
-          const checkType = role === 'teacher' ? 'teacher_add' : 'student_add'
+          const checkType = signupRole === 'teacher' ? 'teacher_add' : 'student_add'
           const limitCheckResponse = await fetch('/api/subscription/check-limits', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'x-academy-id': academyId
+              'x-academy-id': signupAcademyId
             },
             body: JSON.stringify({ checkType })
           })
@@ -342,10 +376,10 @@ export default function AuthPage() {
         options: {
           data: {
             name: fullName,
-            role: role,
-            academy_id: academyId,
+            role: signupRole,
+            academy_id: signupAcademyId,
             phone: phone || null,
-            school_name: role === 'student' ? schoolName || null : null,
+            school_name: signupRole === 'student' ? schoolName || null : null,
             family_id: familyMemberId ? null : (familyId || null) // Don't pass family_id if using family_member_id
           }
         }
@@ -384,39 +418,39 @@ export default function AuthPage() {
             id: authData.user.id,
             email: email,
             name: fullName,
-            role: role
+            role: signupRole
           })
 
         if (userInsertError) {
           console.error('[Auth] Failed to create user record:', userInsertError)
         } else {
-          console.log('[Auth] User record created, creating role-specific records...')
+          console.log('[Auth] User record created, creating signupRole-specific records...')
 
-          // Create role-specific record based on role and academy_id
-          if (academyId) {
-            if (role === 'parent') {
+          // Create signupRole-specific record based on signupRole and academy_id
+          if (signupAcademyId) {
+            if (signupRole === 'parent') {
               await supabase.from('parents').insert({
                 user_id: authData.user.id,
-                academy_id: academyId,
+                academy_id: signupAcademyId,
                 phone: phone || null
               })
-            } else if (role === 'student') {
+            } else if (signupRole === 'student') {
               await supabase.from('students').insert({
                 user_id: authData.user.id,
-                academy_id: academyId,
+                academy_id: signupAcademyId,
                 phone: phone || null,
                 school_name: schoolName || null
               })
-            } else if (role === 'teacher') {
+            } else if (signupRole === 'teacher') {
               await supabase.from('teachers').insert({
                 user_id: authData.user.id,
-                academy_id: academyId,
+                academy_id: signupAcademyId,
                 phone: phone || null
               })
-            } else if (role === 'manager') {
+            } else if (signupRole === 'manager') {
               await supabase.from('managers').insert({
                 user_id: authData.user.id,
-                academy_id: academyId,
+                academy_id: signupAcademyId,
                 phone: phone || null
               })
             }
@@ -428,11 +462,11 @@ export default function AuthPage() {
           })
 
           // If using standard family_id link (not family_member_id), create family_member record
-          if (familyId && !familyMemberId && (role === 'student' || role === 'parent')) {
+          if (familyId && !familyMemberId && (signupRole === 'student' || signupRole === 'parent')) {
             await supabase.from('family_members').insert({
               user_id: authData.user.id,
               family_id: familyId,
-              role: role
+              role: signupRole
             })
           }
 
@@ -446,15 +480,15 @@ export default function AuthPage() {
       // Always verify and create missing records, even if trigger ran
       console.log('[Auth] Verifying all required records were created...')
 
-      // Step 2.5a: Verify role table record exists, create if missing
-      if (academyId && role !== 'admin' && role !== 'super_admin') {
-        const roleTable = role === 'parent' ? 'parents' :
-                         role === 'student' ? 'students' :
-                         role === 'teacher' ? 'teachers' :
-                         role === 'manager' ? 'managers' : null
+      // Step 2.5a: Verify signupRole table record exists, create if missing
+      if (signupAcademyId && signupRole !== 'admin' && signupRole !== 'super_admin') {
+        const roleTable = signupRole === 'parent' ? 'parents' :
+                         signupRole === 'student' ? 'students' :
+                         signupRole === 'teacher' ? 'teachers' :
+                         signupRole === 'manager' ? 'managers' : null
 
         if (roleTable) {
-          // Check if role record exists
+          // Check if signupRole record exists
           const { data: roleRecord, error: roleCheckError } = await supabase
             .from(roleTable)
             .select('user_id')
@@ -464,15 +498,15 @@ export default function AuthPage() {
           if (roleCheckError || !roleRecord) {
             console.log(`[Auth] ${roleTable} record missing, creating...`)
 
-            // Create the missing role record
+            // Create the missing signupRole record
             const roleData: any = {
               user_id: authData.user.id,
-              academy_id: academyId,
+              academy_id: signupAcademyId,
               phone: phone || null
             }
 
             // Add student-specific fields
-            if (role === 'student') {
+            if (signupRole === 'student') {
               roleData.school_name = schoolName || null
             }
 
@@ -482,7 +516,7 @@ export default function AuthPage() {
 
             if (roleInsertError) {
               console.error(`[Auth] Failed to create ${roleTable} record:`, roleInsertError)
-              toast({ title: t('auth.signup.profileCreationFailed') as string || `Warning: Your ${role} profile could not be created. Please contact support.`, variant: 'warning' })
+              toast({ title: t('auth.signup.profileCreationFailed') as string || `Warning: Your ${signupRole} profile could not be created. Please contact support.`, variant: 'warning' })
             } else {
               console.log(`[Auth] ${roleTable} record created successfully`)
             }
@@ -493,7 +527,7 @@ export default function AuthPage() {
       }
 
       // Step 2.5b: Create family_member record if needed (standard family_id flow)
-      if (familyId && !familyMemberId && (role === 'student' || role === 'parent')) {
+      if (familyId && !familyMemberId && (signupRole === 'student' || signupRole === 'parent')) {
         // Check if family_member record exists
         const { data: familyMemberRecord, error: familyMemberCheckError } = await supabase
           .from('family_members')
@@ -506,7 +540,7 @@ export default function AuthPage() {
           console.log('[Auth] family_members record missing, creating...', {
             userId: authData.user.id,
             familyId,
-            role
+            signupRole
           })
 
           const { error: familyMemberError } = await supabase
@@ -514,7 +548,7 @@ export default function AuthPage() {
             .insert({
               user_id: authData.user.id,
               family_id: familyId,
-              role: role
+              role: signupRole
             })
 
           if (familyMemberError) {
@@ -596,7 +630,7 @@ export default function AuthPage() {
           body: JSON.stringify({
             email,
             name: fullName,
-            role,
+            role: signupRole,
             language
           })
         }).catch((err) => {
@@ -844,6 +878,49 @@ export default function AuthPage() {
 
         <Card className="p-6 sm:p-7 backdrop-blur-sm pointer-events-none gap-5">
           <form onSubmit={activeTab === "signin" ? handleSignIn : activeTab === "signup" ? handleSignUp : activeTab === "resetPassword" ? handlePasswordReset : handleForgotPassword} className="space-y-5 pointer-events-auto">
+            {activeTab === "signup" && !isInviteSignup && (
+              /* Segmented door toggle — mirrors the shared TabsList /
+                 TabsTrigger styling (muted track, white active pill) so
+                 it reads as the same control family as the rest of the
+                 app. Height matches the h-10 inputs below. */
+              <div
+                role="radiogroup"
+                aria-label={String(t('auth.signup.intentLabel'))}
+                className="bg-muted text-muted-foreground inline-flex h-10 w-full items-center justify-center rounded-lg p-[3px]"
+              >
+                {([
+                  { key: 'study' as const, icon: BookOpen, title: t('auth.signup.intentStudy') },
+                  { key: 'academy' as const, icon: Building, title: t('auth.signup.intentAcademy') },
+                ]).map(door => {
+                  const active = signupIntent === door.key
+                  const Icon = door.icon
+                  return (
+                    <button
+                      key={door.key}
+                      type="button"
+                      role="radio"
+                      aria-checked={active}
+                      onClick={() => {
+                        setSignupIntent(door.key)
+                        setErrorMessage("")
+                        // Leaving the academy door discards its fields so a
+                        // half-filled role/academy never leaks into a study
+                        // signup (and vice versa the selects start clean).
+                        if (door.key === 'study') { setRole(''); setAcademyId('') }
+                      }}
+                      className={`inline-flex h-full flex-1 items-center justify-center gap-1.5 rounded-md px-2 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 ${
+                        active
+                          ? 'bg-background text-foreground shadow-sm'
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {door.title}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
             {activeTab === "signup" && (
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.fullName')} <span className="text-rose-500">*</span></Label>
@@ -962,8 +1039,18 @@ export default function AuthPage() {
                 </div>
               </>
             )}
-            {activeTab === "signup" && (
+            {activeTab === "signup" && signupIntent === 'study' && (
+              <p className="text-xs text-muted-foreground leading-relaxed -mt-1">
+                {t('auth.signup.studyNote')}
+              </p>
+            )}
+            {activeTab === "signup" && signupIntent === 'academy' && (
               <>
+                {!isInviteSignup && (
+                  <p className="text-xs text-muted-foreground leading-relaxed -mt-1">
+                    {t('auth.signup.academyInviteHint')}
+                  </p>
+                )}
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.role')} <span className="text-rose-500">*</span></Label>
                   <Select value={role} onValueChange={setRole} required disabled={isRoleFromUrl}>

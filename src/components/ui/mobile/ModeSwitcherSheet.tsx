@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { GraduationCap, BookOpen, Check, X } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { storeMode } from '@/lib/study/currentMode'
 
 type ModeKey = 'grades' | 'study'
@@ -29,6 +30,10 @@ interface ModeSwitcherSheetProps {
 export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSheetProps) {
   const router = useRouter()
   const { t } = useTranslation()
+  const { user } = usePersistentMobileAuth()
+  // Study-only students (no academy membership) have no Grades data —
+  // offering the option would land them on an empty dashboard.
+  const hasAcademy = (user?.academyIds?.length ?? 0) > 0
 
   // Lock body scroll while open — same pattern as CommentBottomSheet.
   useEffect(() => {
@@ -50,13 +55,13 @@ export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSh
   }
 
   const options: Array<{ key: ModeKey; icon: typeof GraduationCap; iconBg: string; titleKey: string; blurbKey: string }> = [
-    {
-      key: 'grades',
+    ...(hasAcademy ? [{
+      key: 'grades' as const,
       icon: GraduationCap,
       iconBg: 'bg-gradient-to-br from-sky-400 to-blue-600',
       titleKey: 'mobile.mode.gradesLabel',
       blurbKey: 'mobile.mode.gradesBlurb',
-    },
+    }] : []),
     {
       key: 'study',
       icon: BookOpen,

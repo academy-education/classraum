@@ -41,11 +41,19 @@ export default function AppRootPage() {
         const userRole = userInfo.role
 
         // Redirect based on role (only if not already on target page).
-        // Students land on the Grades/Study hub; parents go straight to
-        // the Grades dashboard since Study is a student-only experience.
+        // Students with an academy land on the Grades/Study hub;
+        // study-only students (no academy membership) go straight to
+        // Study. Parents go to the Grades dashboard since Study is a
+        // student-only experience.
         if (userRole === 'student') {
-          if (pathname !== '/mobile/start') {
-            router.replace('/mobile/start')
+          const { count } = await supabase
+            .from('students')
+            .select('user_id', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+            .eq('active', true)
+          const target = (count ?? 0) > 0 ? '/mobile/start' : '/mobile/study'
+          if (pathname !== target) {
+            router.replace(target)
           }
         } else if (userRole === 'parent') {
           if (pathname !== '/mobile') {

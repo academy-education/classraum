@@ -55,8 +55,10 @@ export function SocialPresenceCard() {
   // Copy is deliberately warmer in Korean than English — the whole
   // point of the surface is to lean into Korean-market conventions
   // that our streak/XP alone doesn't cover.
+  // Academy-neutral wording: study-only students (no academy) see this
+  // card too, so "학원 친구" would be wrong for them.
   const label = ko
-    ? `학원 친구 ${count}명이 지금 공부하고 있어요`
+    ? `친구 ${count}명이 지금 공부하고 있어요`
     : `${count} ${count === 1 ? 'peer is' : 'peers are'} studying right now`
   const subLabel = ko ? '함께 공부해요' : 'You\'re not alone'
 
