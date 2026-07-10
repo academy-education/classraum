@@ -23,7 +23,7 @@ function Card({ className, onClick, onKeyDown, role, tabIndex, ...props }: React
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-2xl py-6 ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]",
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-3xl py-6 ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]",
         isClickable && "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
         className
       )}

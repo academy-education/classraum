@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import { scheduleNext, INITIAL_SRS } from '@/lib/srs'
+import { useStudyErrorToast, saveFailedMessage } from '../../_shared/useStudyErrorToast'
 
 interface Card { front: string; back: string; hint: string | null }
 interface Deck { cards: Card[] }
@@ -37,6 +38,8 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
   // the end so the user keeps hitting the hard ones until they stick.
   const [queue, setQueue] = useState<number[]>([])
   const [flipped, setFlipped] = useState(false)
+  const [marking, setMarking] = useState(false)
+  const { errorToast, showError } = useStudyErrorToast()
   const [showHint, setShowHint] = useState(false)
   const [reviewed, setReviewed] = useState(0)
   const [marked, setMarked] = useState({ got: 0, again: 0 })
@@ -83,7 +86,11 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
   }, [sessionId])
 
   const mark = useCallback(async (quality: 1 | 3 | 5) => {
-    if (!deck || queue.length === 0 || !user?.userId) return
+    // marking lock: setQueue is async, so a fast double-tap would read
+    // the same queue[0] twice — double-counting one card and silently
+    // skipping the next. Released by the queue-advance effect.
+    if (!deck || queue.length === 0 || !user?.userId || marking) return
+    setMarking(true)
     const currentIdx = queue[0]
     const card = deck[currentIdx]
     const isCorrect = quality >= 3
@@ -122,7 +129,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
       const prev = existing ?? INITIAL_SRS
       const next = scheduleNext(prev, quality)
 
-      await supabase.from('study_flashcard_reviews').upsert({
+      const { error: srsError } = await supabase.from('study_flashcard_reviews').upsert({
         student_id: user.userId,
         topic_id: topicId,
         card_front: card.front,
@@ -135,6 +142,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
         last_quality: quality,
         updated_at: new Date().toISOString(),
       }, { onConflict: 'student_id,topic_id,card_front' })
+      if (srsError) showError(saveFailedMessage(ko))
     })()
 
     // Toast first (instant) — server award follows in background.
@@ -169,7 +177,10 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
     })
     setFlipped(false)
     setShowHint(false)
-  }, [deck, queue, sessionId, user?.userId, topicId])
+  }, [deck, queue, sessionId, user?.userId, topicId, marking, ko, showError])
+
+  // Release the mark lock once the queue head advances.
+  useEffect(() => { setMarking(false) }, [queue])
 
   if (loading) {
     return (
@@ -249,6 +260,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
 
   return (
     <div className="flex-1 flex flex-col min-h-0">
+      {errorToast}
       <div className="flex-shrink-0 px-5 py-3 flex items-center justify-between text-xs text-gray-500">
         <span>
           {t('study.flashcards.progress', { current: String(position), total: String(deck.length) })}
@@ -352,7 +364,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
           <div className="grid grid-cols-3 gap-2">
             <button
               type="button"
-              onClick={() => void mark(1)}
+              disabled={marking} onClick={() => void mark(1)}
               className="h-12 rounded-2xl bg-rose-50 text-rose-700 ring-1 ring-rose-200 text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.97] transition-all"
             >
               <X className="w-3.5 h-3.5" />
@@ -360,7 +372,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
             </button>
             <button
               type="button"
-              onClick={() => void mark(3)}
+              disabled={marking} onClick={() => void mark(3)}
               className="h-12 rounded-2xl bg-amber-50 text-amber-800 ring-1 ring-amber-200 text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.97] transition-all"
             >
               <RefreshCcw className="w-3.5 h-3.5" />
@@ -368,7 +380,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
             </button>
             <button
               type="button"
-              onClick={() => void mark(5)}
+              disabled={marking} onClick={() => void mark(5)}
               className="h-12 rounded-2xl bg-emerald-600 text-white text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.97] transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(16,185,129,0.25)]"
             >
               <Zap className="w-3.5 h-3.5" fill="currentColor" />

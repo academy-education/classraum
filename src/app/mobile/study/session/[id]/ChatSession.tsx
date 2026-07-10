@@ -109,19 +109,23 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
   useEffect(() => {
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
-        .from('study_messages')
-        .select('id, role, content, created_at')
-        .eq('session_id', sessionId)
-        .order('created_at', { ascending: true })
-      if (cancelled) return
-      const rows = (data ?? []) as DbMessage[]
-      setMessages(
-        rows
-          .filter(m => m.role === 'user' || m.role === 'assistant')
-          .map(m => ({ id: m.id, role: m.role as 'user' | 'assistant', content: m.content }))
-      )
-      setLoadingHistory(false)
+      try {
+        const { data } = await supabase
+          .from('study_messages')
+          .select('id, role, content, created_at')
+          .eq('session_id', sessionId)
+          .order('created_at', { ascending: true })
+        if (cancelled) return
+        const rows = (data ?? []) as DbMessage[]
+        setMessages(
+          rows
+            .filter(m => m.role === 'user' || m.role === 'assistant')
+            .map(m => ({ id: m.id, role: m.role as 'user' | 'assistant', content: m.content }))
+        )
+      } catch { /* show empty thread + composer over an eternal skeleton */ }
+      finally {
+        if (!cancelled) setLoadingHistory(false)
+      }
     })()
     return () => { cancelled = true }
   }, [sessionId])

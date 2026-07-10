@@ -9,6 +9,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonSettingsGroup } from '../skeletons'
+import { useStudyErrorToast, startFailedMessage } from '../_shared/useStudyErrorToast'
 
 interface TopicRow {
   id: string
@@ -50,6 +51,7 @@ function BuilderInner() {
   const [timeLimit, setTimeLimit] = useState(30)
   const [difficulty, setDifficulty] = useState<'warmup' | 'balanced' | 'challenge'>('balanced')
   const [creating, setCreating] = useState(false)
+  const { errorToast, showError } = useStudyErrorToast()
   const [loadingTopics, setLoadingTopics] = useState(true)
 
   // Load every leaf topic the student can target. Both subject and
@@ -96,6 +98,7 @@ function BuilderInner() {
       .single()
     if (error || !data) {
       setCreating(false)
+      showError(startFailedMessage(ko))
       return
     }
     router.push(`/mobile/study/session/${data.id}`)
@@ -119,6 +122,7 @@ function BuilderInner() {
 
   return (
     <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      {errorToast}
       <StudySubPageHeader
         backHref="/mobile/study"
         backLabel={String(t('study.topic.backToStudy'))}

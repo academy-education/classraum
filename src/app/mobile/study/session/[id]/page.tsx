@@ -65,27 +65,31 @@ function SessionInner({ id }: { id: string }) {
   useEffect(() => {
     let cancelled = false
     void (async () => {
-      const { data: row } = await supabase
-        .from('study_sessions')
-        .select('id, topic_id, mode, title, language')
-        .eq('id', id)
-        .maybeSingle()
-
-      if (cancelled || !row) {
-        setLoading(false)
-        return
-      }
-      setSession(row as Session)
-
-      if (row.topic_id) {
-        const { data: t } = await supabase
-          .from('study_topics')
-          .select('slug, name_en, name_ko')
-          .eq('id', row.topic_id)
+      // try/finally: a thrown query (network drop) must not strand the
+      // skeleton — fall through to the not-found state, which has a
+      // back link, instead of spinning forever.
+      try {
+        const { data: row } = await supabase
+          .from('study_sessions')
+          .select('id, topic_id, mode, title, language')
+          .eq('id', id)
           .maybeSingle()
-        if (!cancelled) setTopic(t as Topic | null)
+
+        if (cancelled || !row) return
+        setSession(row as Session)
+
+        if (row.topic_id) {
+          const { data: t } = await supabase
+            .from('study_topics')
+            .select('slug, name_en, name_ko')
+            .eq('id', row.topic_id)
+            .maybeSingle()
+          if (!cancelled) setTopic(t as Topic | null)
+        }
+      } catch { /* handled by finally + not-found fallback */ }
+      finally {
+        if (!cancelled) setLoading(false)
       }
-      setLoading(false)
     })()
     return () => { cancelled = true }
   }, [id])

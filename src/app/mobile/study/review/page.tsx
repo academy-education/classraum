@@ -13,6 +13,7 @@ import { hapticTap } from '@/lib/nativeHaptics'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
 import { emitXp } from '../_shared/XpToast'
+import { useStudyErrorToast, saveFailedMessage } from '../_shared/useStudyErrorToast'
 
 /**
  * /mobile/study/review — Daily SRS Review.
@@ -56,9 +57,14 @@ function ReviewInner() {
   const [flipped, setFlipped] = useState(false)
   const [showWhy, setShowWhy] = useState(false)
   const [done, setDone] = useState(false)
+  const [loadFailed, setLoadFailed] = useState(false)
+  const [grading, setGrading] = useState(false)
+  const { errorToast, showError } = useStudyErrorToast()
+  const [retryKey, setRetryKey] = useState(0)
 
   useEffect(() => {
     let cancelled = false
+    setLoadFailed(false)
     void (async () => {
       try {
         const headers = await authHeaders()
@@ -69,16 +75,25 @@ function ReviewInner() {
         setQueue((json.queue ?? []) as Card[])
         setTopicCount(json.topicCount ?? 0)
       } catch {
-        if (!cancelled) setQueue([])
+        // Distinguish "network failed" from "queue is empty" — an empty
+        // queue renders the celebratory "all caught up" state, which is
+        // actively misleading when the student DOES have cards due.
+        if (!cancelled) setLoadFailed(true)
       } finally {
         if (!cancelled) setLoading(false)
       }
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [retryKey])
+
+  // Release the grade lock when the queue head actually advances —
+  // resetting inside grade() itself would still let a fast double-tap
+  // read the same queue[0] twice (setState is async).
+  useEffect(() => { setGrading(false) }, [queue])
 
   const grade = useCallback(async (quality: 1 | 3 | 5) => {
-    if (queue.length === 0 || !user?.userId) return
+    if (queue.length === 0 || !user?.userId || grading) return
+    setGrading(true)
     hapticTap()
     const card = queue[0]
 
@@ -92,7 +107,7 @@ function ReviewInner() {
         .maybeSingle()
       const prev = existing ?? INITIAL_SRS
       const next = scheduleNext(prev, quality)
-      await supabase.from('study_flashcard_reviews').upsert({
+      const { error: srsError } = await supabase.from('study_flashcard_reviews').upsert({
         student_id: user.userId,
         topic_id: card.topic_id,
         card_front: card.card_front,
@@ -105,6 +120,9 @@ function ReviewInner() {
         last_quality: quality,
         updated_at: new Date().toISOString(),
       }, { onConflict: 'student_id,topic_id,card_front' })
+      // Persistence failure used to vanish into console.error — the
+      // student thinks the review saved when it didn't. Tell them.
+      if (srsError) showError(saveFailedMessage(ko))
     })()
 
     // XP toast — fire immediately for UI delight; server award follows
@@ -137,7 +155,7 @@ function ReviewInner() {
     })
     setFlipped(false)
     if (queue.length <= 1 && quality !== 1) setDone(true)
-  }, [queue, user?.userId])
+  }, [queue, user?.userId, grading, ko, showError])
 
   const header = (
     <StudyPageHeader
@@ -176,6 +194,26 @@ function ReviewInner() {
     )
   }
 
+  if (loadFailed && queue.length === 0 && !done) {
+    return (
+      <div className="flex flex-col h-full bg-gray-50">
+        {header}
+        <div className="flex-1 flex flex-col items-center justify-center px-5 text-center gap-3">
+          <p className="text-sm text-gray-600">
+            {ko ? '복습 카드를 불러오지 못했어요.' : "We couldn't load your review cards."}
+          </p>
+          <button
+            type="button"
+            onClick={() => { setLoading(true); setRetryKey(k => k + 1) }}
+            className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-gray-900 text-white text-[13px] font-medium hover:bg-gray-800 active:scale-[0.98] transition-all"
+          >
+            {ko ? '다시 시도' : 'Retry'}
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   if (queue.length === 0 || done) {
     return (
       <div className="flex flex-col h-full bg-gray-50">
@@ -201,6 +239,7 @@ function ReviewInner() {
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
+      {errorToast}
       {header}
       <div className="flex-1 flex flex-col px-5 py-4">
 
@@ -276,17 +315,17 @@ function ReviewInner() {
 
         {/* Rating row — only enabled once flipped */}
         <div className={`grid grid-cols-3 gap-2 transition-opacity ${flipped ? 'opacity-100' : 'opacity-50 pointer-events-none'}`}>
-          <button type="button" onClick={() => void grade(1)}
+          <button type="button" disabled={grading} onClick={() => void grade(1)}
             className="h-12 rounded-2xl bg-white ring-1 ring-rose-200 text-rose-700 inline-flex flex-col items-center justify-center hover:bg-rose-50 transition">
             <X className="w-4 h-4 mb-0.5" />
             <span className="text-[11px] font-semibold">{t('study.flashcards.again')}</span>
           </button>
-          <button type="button" onClick={() => void grade(3)}
+          <button type="button" disabled={grading} onClick={() => void grade(3)}
             className="h-12 rounded-2xl bg-white ring-1 ring-amber-200 text-amber-700 inline-flex flex-col items-center justify-center hover:bg-amber-50 transition">
             <Zap className="w-4 h-4 mb-0.5" />
             <span className="text-[11px] font-semibold">{t('study.flashcards.hard')}</span>
           </button>
-          <button type="button" onClick={() => void grade(5)}
+          <button type="button" disabled={grading} onClick={() => void grade(5)}
             className="h-12 rounded-2xl bg-white ring-1 ring-emerald-200 text-emerald-700 inline-flex flex-col items-center justify-center hover:bg-emerald-50 transition">
             <Check className="w-4 h-4 mb-0.5" />
             <span className="text-[11px] font-semibold">{t('study.flashcards.easy')}</span>

@@ -24,6 +24,7 @@ import { DailyReviewCTA } from './DailyReviewCTA'
 import { StreakAtRiskBanner } from './_shared/StreakAtRiskBanner'
 import { DailyChallengeCard } from './_shared/DailyChallengeCard'
 import { SearchSheet } from './_shared/SearchSheet'
+import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
 import { LandingDataProvider, useLandingData } from './LandingDataProvider'
@@ -86,7 +87,7 @@ const NEUTRAL_THEME: Theme = {
   iconBg: 'bg-gradient-to-br from-slate-50 to-slate-100',
   iconText: 'text-slate-600',
   cardBg: 'bg-white',
-  ring: 'ring-gray-200/60',
+  ring: 'ring-gray-200/70',
   hoverText: 'group-hover:text-primary',
   hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.14),0_12px_28px_-12px_rgba(40,133,232,0.18)]',
 }
@@ -319,6 +320,7 @@ function StudyLandingInner() {
   const [loading, setLoading] = useState(true)
   const [freeFormQuery, setFreeFormQuery] = useState('')
   const [creatingFreeForm, setCreatingFreeForm] = useState(false)
+  const { errorToast, showError } = useStudyErrorToast()
   const [searchOpen, setSearchOpen] = useState(false)
   const { needsOnboarding, markComplete } = useOnboardingGate()
   const landingData = useLandingData()
@@ -389,6 +391,9 @@ function StudyLandingInner() {
       .single()
     if (error || !data) {
       setCreatingFreeForm(false)
+      // Surface the failure — a silently re-enabled button reads as
+      // "the app is broken", not "try again".
+      showError(startFailedMessage(ko))
       return
     }
     router.push(`/mobile/study/session/${data.id}`)
@@ -396,6 +401,7 @@ function StudyLandingInner() {
 
   return (
     <div className="relative">
+      {errorToast}
       {/* Decorative ambient gradient — sits behind everything, very subtle. */}
       <div
         aria-hidden

@@ -27,7 +27,7 @@ const EMPTY: SearchResults = { topics: [], sessions: [], snaps: [], mistakes: []
 
 export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter()
-  const { language } = useTranslation()
+  const { t, language } = useTranslation()
   const ko = language === 'korean'
   const [q, setQ] = useState('')
   const [results, setResults] = useState<SearchResults>(EMPTY)
@@ -170,7 +170,7 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
                     onClick={() => go(`/mobile/study/session/${s.id}`)}
                     icon={BookOpen} accent="text-violet-600"
                     title={s.title || (ko ? '제목 없음' : 'Untitled')}
-                    sub={s.mode + (s.last_active_at ? ` · ${formatAgo(s.last_active_at, ko)}` : '')}
+                    sub={String(t(`study.modes.${s.mode}.title`)) + (s.last_active_at ? ` · ${formatAgo(s.last_active_at, ko)}` : '')}
                     highlight={q} />
                 ))}
               </ResultGroup>

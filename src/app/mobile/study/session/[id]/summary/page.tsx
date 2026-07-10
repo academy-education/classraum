@@ -74,6 +74,7 @@ function SummaryInner({ id }: { id: string }) {
     if (!user?.userId) return
     let cancelled = false
     void (async () => {
+      try {
       const { data: sess } = await supabase
         .from('study_sessions')
         .select(`
@@ -94,7 +95,10 @@ function SummaryInner({ id }: { id: string }) {
         .order('created_at', { ascending: true })
       if (cancelled) return
       setAttempts((atts as unknown as AttemptRow[]) ?? [])
-      setLoading(false)
+      } catch { /* fall through to not-found via finally */ }
+      finally {
+        if (!cancelled) setLoading(false)
+      }
     })()
     return () => { cancelled = true }
   }, [id, user?.userId])
@@ -182,7 +186,9 @@ function SummaryInner({ id }: { id: string }) {
       {/* Hero — score in a big gradient card, with the mascot in the
           top-right giving the numbers a face. Emotional state follows
           accuracy so a hard session doesn't get a cheerful celebrate. */}
-      <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${hero.gradient} p-6 text-white shadow-[0_2px_8px_rgba(0,0,0,0.10),0_24px_48px_-16px_rgba(0,0,0,0.32)]`}>
+      {/* Sections enter with a soft stagger: hero → topic → mistakes →
+          CTAs (fill-mode backwards keeps delayed items hidden pre-run). */}
+      <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${hero.gradient} p-6 text-white shadow-[0_2px_8px_rgba(0,0,0,0.10),0_24px_48px_-16px_rgba(0,0,0,0.32)] animate-fade-in-up`} style={{ animationFillMode: 'backwards' }}>
         <div aria-hidden className="pointer-events-none absolute -top-12 -right-10 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
         {attempted && (
@@ -200,8 +206,8 @@ function SummaryInner({ id }: { id: string }) {
           </div>
           {attempted ? (
             <>
-              <h1 className={`text-[36px] font-bold leading-none tracking-tight ${hero.accent}`}>
-                {accuracy}<span className="text-[24px] opacity-80">%</span>
+              <h1 className={`text-[36px] font-bold leading-none tracking-tight tabular-nums ${hero.accent}`}>
+                <CountUp value={accuracy} /><span className="text-[24px] opacity-80">%</span>
               </h1>
               <p className={`text-[14px] ${hero.accent} mt-1.5 opacity-90`}>
                 {String(t('study.summary.accuracyLine', {
@@ -231,7 +237,7 @@ function SummaryInner({ id }: { id: string }) {
       </div>
 
       {/* Topic context — always shown for orientation, even for empty sessions. */}
-      <div className="rounded-2xl bg-white ring-1 ring-gray-200 px-4 py-3 flex items-center gap-3">
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200 px-4 py-3 flex items-center gap-3 animate-fade-in-up" style={{ animationDelay: '80ms', animationFillMode: 'backwards' }}>
         <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
           <BookOpen className="w-4 h-4" />
         </div>
@@ -247,7 +253,7 @@ function SummaryInner({ id }: { id: string }) {
 
       {/* Mistakes preview — only if there ARE mistakes AND we have some to show. */}
       {mistakes.length > 0 && (
-        <section>
+        <section className="animate-fade-in-up" style={{ animationDelay: '160ms', animationFillMode: 'backwards' }}>
           <div className="flex items-baseline justify-between mb-3">
             <h2 className="text-[15px] font-semibold tracking-tight text-gray-900">
               {String(t('study.summary.mistakesTitle', { count: String(mistakes.length) }))}
@@ -276,7 +282,7 @@ function SummaryInner({ id }: { id: string }) {
       )}
 
       {/* CTAs — unified h-12 rounded-2xl for both. */}
-      <section className="space-y-2 pt-2">
+      <section className="space-y-2 pt-2 animate-fade-in-up" style={{ animationDelay: '240ms', animationFillMode: 'backwards' }}>
         {session.topic && (
           <Link
             href={`/mobile/study/topic/${session.topic.slug}`}
@@ -296,6 +302,32 @@ function SummaryInner({ id }: { id: string }) {
       </section>
     </div>
   )
+}
+
+/**
+ * Eases 0→value over ~900ms on mount so the score lands as a moment
+ * instead of popping in. Respects prefers-reduced-motion (jumps
+ * straight to the final number).
+ */
+function CountUp({ value, durationMs = 900 }: { value: number; durationMs?: number }) {
+  const [shown, setShown] = useState(value)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setShown(value)
+      return
+    }
+    let raf = 0
+    const start = performance.now()
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / durationMs)
+      setShown(Math.round(value * (1 - Math.pow(1 - p, 3))))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    setShown(0)
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [value, durationMs])
+  return <>{shown}</>
 }
 
 function Stat({ icon: Icon, value, label }: {

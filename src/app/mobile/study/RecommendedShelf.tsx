@@ -9,6 +9,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import type { StudyMode } from './modes'
+import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
 
 interface Card {
   reason: 'weak' | 'recent' | 'snap_followup'
@@ -45,6 +46,7 @@ export function RecommendedShelf() {
   const [cards, setCards] = useState<Card[]>([])
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
+  const { errorToast, showError } = useStudyErrorToast()
 
   useEffect(() => {
     let cancelled = false
@@ -98,6 +100,7 @@ export function RecommendedShelf() {
       .single()
     if (error || !data) {
       setCreating(null)
+      showError(startFailedMessage(ko))
       return
     }
     router.push(`/mobile/study/session/${data.id}`)
@@ -107,6 +110,7 @@ export function RecommendedShelf() {
 
   return (
     <section>
+      {errorToast}
       <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
         {t('study.landing.recommendedTitle')}
       </h2>

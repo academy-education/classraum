@@ -68,20 +68,49 @@ function StatsInner() {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
   const [stats, setStats] = useState<Stats | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [retryKey, setRetryKey] = useState(0)
 
   useEffect(() => {
     let cancelled = false
+    setFailed(false)
     void (async () => {
       try {
         const headers = await authHeaders()
         const res = await fetch('/api/study/stats', { headers })
-        if (!res.ok) return
+        // Without an error state a failed fetch left the skeleton up
+        // FOREVER — surface it and offer a retry instead.
+        if (!res.ok) {
+          if (!cancelled) setFailed(true)
+          return
+        }
         const json = await res.json()
         if (!cancelled) setStats(json)
-      } catch { /* show empty */ }
+      } catch {
+        if (!cancelled) setFailed(true)
+      }
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [retryKey])
+
+  if (failed && !stats) {
+    return (
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14">
+        <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
+          <p className="text-sm text-gray-600">
+            {ko ? '통계를 불러오지 못했어요.' : "We couldn't load your stats."}
+          </p>
+          <button
+            type="button"
+            onClick={() => setRetryKey(k => k + 1)}
+            className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-gray-900 text-white text-[13px] font-medium hover:bg-gray-800 active:scale-[0.98] transition-all"
+          >
+            {ko ? '다시 시도' : 'Retry'}
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   if (!stats) {
     // Skeleton mirrors the loaded layout: back link → header →
@@ -190,7 +219,7 @@ function StatsInner() {
         <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
           {String(t('study.stats.last14days'))}
         </h2>
-        <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+        <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
           <Sparkline data={stats.last14} />
         </div>
       </section>
@@ -201,7 +230,7 @@ function StatsInner() {
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
             {ko ? '최근 90일' : 'Last 90 days'}
           </h2>
-          <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
             <ActivityHeatmap data={stats.last90} ko={ko} />
           </div>
         </section>
@@ -236,7 +265,7 @@ function StatsInner() {
               <Link
                 key={i}
                 href={`/mobile/study/topic/${row.topic.slug}`}
-                className="flex items-center justify-between p-3.5 rounded-xl bg-gradient-to-br from-emerald-50/60 to-white ring-1 ring-emerald-200/60 hover:ring-emerald-300 transition-all"
+                className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-br from-emerald-50/60 to-white ring-1 ring-emerald-200/60 hover:ring-emerald-300 transition-all"
               >
                 <span className="text-[14px] font-semibold text-gray-900">{name(row.topic)}</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-white/80 ring-1 ring-emerald-200 rounded-full px-2 py-0.5">
@@ -260,7 +289,7 @@ function StatsInner() {
               <Link
                 key={i}
                 href={`/mobile/study/topic/${row.topic.slug}`}
-                className="flex items-center justify-between p-3.5 rounded-xl bg-gradient-to-br from-amber-50/60 to-white ring-1 ring-amber-200/60 hover:ring-amber-300 transition-all"
+                className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-br from-amber-50/60 to-white ring-1 ring-amber-200/60 hover:ring-amber-300 transition-all"
               >
                 <span className="text-[14px] font-semibold text-gray-900">{name(row.topic)}</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-white/80 ring-1 ring-amber-200 rounded-full px-2 py-0.5">
@@ -305,7 +334,7 @@ function ScoreTrendRow({ row, ko }: {
   return (
     <Link
       href={`/mobile/study/topic/${row.slug}`}
-      className="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-white ring-1 ring-gray-200/60 hover:ring-gray-300 transition-all"
+      className="flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-gray-300 transition-all"
     >
       <div className="min-w-0">
         <div className="text-[14px] font-semibold text-gray-900 truncate">
@@ -337,7 +366,7 @@ function ScoreTrendRow({ row, ko }: {
 
 function MiniMetric({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-xl bg-white ring-1 ring-gray-200/60 px-3.5 py-2.5 flex items-center justify-between">
+    <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-3.5 py-2.5 flex items-center justify-between">
       <span className="text-[12px] text-gray-600">{label}</span>
       <span className="text-[15px] font-bold tabular-nums text-gray-900">
         <NumberRoll target={value} />
@@ -421,7 +450,7 @@ function AchievementBadge({ achievement, t }: { achievement: Achievement; t: Ret
       className={`relative overflow-hidden rounded-2xl p-3 flex items-start gap-2.5 transition-all ${
         unlocked
           ? 'bg-gradient-to-br from-amber-50 via-orange-50/60 to-white ring-1 ring-amber-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_4px_12px_-4px_rgba(245,158,11,0.18)]'
-          : 'bg-white ring-1 ring-gray-200/60'
+          : 'bg-white ring-1 ring-gray-200/70'
       }`}
     >
       {unlocked && (

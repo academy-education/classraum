@@ -7,6 +7,7 @@ import { SkeletonCard, SkeletonBlock } from '../skeletons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudyTodayCard } from './primitives'
+import { useStudyErrorToast, startFailedMessage } from './useStudyErrorToast'
 
 /**
  * DailyChallengeCard — daily 5-question micro-quiz prompt on the
@@ -36,6 +37,7 @@ export function DailyChallengeCard() {
   const [state, setState] = useState<ChallengeState | null>(null)
   const [loading, setLoading] = useState(true)
   const [starting, setStarting] = useState(false)
+  const { errorToast, showError } = useStudyErrorToast()
 
   const load = useCallback(async () => {
     try {
@@ -63,10 +65,11 @@ export function DailyChallengeCard() {
         body: JSON.stringify({ topicId: state.topic.id }),
       })
       const json = await res.json()
-      if (!res.ok || !json.sessionId) { setStarting(false); return }
+      if (!res.ok || !json.sessionId) { setStarting(false); showError(startFailedMessage(ko)); return }
       router.push(`/mobile/study/session/${json.sessionId}`)
     } catch {
       setStarting(false)
+      showError(startFailedMessage(ko))
     }
   }
 
@@ -102,6 +105,8 @@ export function DailyChallengeCard() {
   }
 
   return (
+    <>
+      {errorToast}
     <StudyTodayCard
       onClick={() => void start()}
       loading={starting}
@@ -115,5 +120,6 @@ export function DailyChallengeCard() {
           : (ko ? `${topicName} 5문항 풀기` : `5 questions on ${topicName}`))}
       subtitle={ko ? '5분이면 충분해요 · +50 XP' : '~5 minutes · earn ~50 XP'}
     />
+    </>
   )
 }

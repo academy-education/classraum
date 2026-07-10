@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons'
 import { StudySubPageHeader } from '../_shared/primitives'
+import { SegmentedTabs } from '../_shared/SegmentedTabs'
 
 interface Prefs {
   target_test: string | null
@@ -57,20 +58,29 @@ function PreferencesInner() {
   const ko = language === 'korean'
   const [prefs, setPrefs] = useState<Prefs | null>(null)
   const [saving, setSaving] = useState<keyof Prefs | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [retryKey, setRetryKey] = useState(0)
 
   useEffect(() => {
     let cancelled = false
+    setFailed(false)
     void (async () => {
       try {
         const headers = await authHeaders()
         const res = await fetch('/api/study/prefs', { headers })
-        if (!res.ok) return
+        // Surface failures — a silent return left the skeleton forever.
+        if (!res.ok) {
+          if (!cancelled) setFailed(true)
+          return
+        }
         const json = await res.json()
         if (!cancelled) setPrefs(json.prefs)
-      } catch { /* show empty state */ }
+      } catch {
+        if (!cancelled) setFailed(true)
+      }
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [retryKey])
 
   // Optimistic update — flip the UI, then PUT. Reverts on failure.
   const update = async <K extends keyof Prefs>(key: K, value: Prefs[K]) => {
@@ -91,6 +101,25 @@ function PreferencesInner() {
     } finally {
       setSaving(null)
     }
+  }
+
+  if (failed && !prefs) {
+    return (
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14">
+        <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
+          <p className="text-sm text-gray-600">
+            {ko ? '설정을 불러오지 못했어요.' : "We couldn't load your preferences."}
+          </p>
+          <button
+            type="button"
+            onClick={() => setRetryKey(k => k + 1)}
+            className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-gray-900 text-white text-[13px] font-medium hover:bg-gray-800 active:scale-[0.98] transition-all"
+          >
+            {ko ? '다시 시도' : 'Retry'}
+          </button>
+        </div>
+      </div>
+    )
   }
 
   if (!prefs) {
@@ -260,25 +289,5 @@ function SettingGroup({
 function Segmented<T>({ options, value, onChange }: {
   options: Array<{ value: T; label: string }>; value: T; onChange: (v: T) => void
 }) {
-  return (
-    <div className="inline-flex items-center w-full p-0.5 rounded-xl bg-gray-100 ring-1 ring-gray-200/70">
-      {options.map(opt => {
-        const selected = opt.value === value
-        return (
-          <button
-            key={String(opt.value)}
-            type="button"
-            onClick={() => onChange(opt.value)}
-            className={`flex-1 h-9 rounded-[10px] text-[13px] font-semibold transition-all ${
-              selected
-                ? 'bg-white text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.04]'
-                : 'text-gray-500 hover:text-gray-700 active:scale-[0.97]'
-            }`}
-          >
-            {opt.label}
-          </button>
-        )
-      })}
-    </div>
-  )
+  return <SegmentedTabs options={options} value={value} onChange={onChange} />
 }

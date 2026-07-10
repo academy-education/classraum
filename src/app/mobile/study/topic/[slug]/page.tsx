@@ -3,6 +3,7 @@
 import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
 import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, Layers as LayersIcon } from 'lucide-react'
 import { StudySubPageHeader } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
@@ -95,6 +96,7 @@ function TopicInner({ slug }: { slug: string }) {
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<StudyMode | null>(null)
   const [bankBusy, setBankBusy] = useState(false)
+  const { errorToast, showError } = useStudyErrorToast()
   const [testSheetOpen, setTestSheetOpen] = useState(false)
   const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
     count: 20, minutes: 30,
@@ -222,6 +224,7 @@ function TopicInner({ slug }: { slug: string }) {
       .single()
     if (error || !data) {
       setCreating(null)
+      showError(startFailedMessage(ko))
       return
     }
     router.push(`/mobile/study/session/${data.id}`)
@@ -244,11 +247,12 @@ function TopicInner({ slug }: { slug: string }) {
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({ section: bankSection, count: bankSection === 'math' ? 22 : 27 }),
       })
-      if (!res.ok) { setBankBusy(false); return }
+      if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
     } catch {
       setBankBusy(false)
+      showError(startFailedMessage(ko))
     }
   }
 
@@ -283,8 +287,15 @@ function TopicInner({ slug }: { slug: string }) {
 
   if (!topic) {
     return (
-      <div className="px-5 py-10 text-center text-sm text-gray-500">
-        {t('study.topic.notFound')}
+      <div className="px-5 py-10 text-center text-sm text-gray-500 space-y-3">
+        <p>{t('study.topic.notFound')}</p>
+        <Link
+          href="/mobile/study"
+          className="inline-flex items-center gap-1 text-primary font-medium"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          {String(t('study.topic.backToStudy'))}
+        </Link>
       </div>
     )
   }
@@ -293,6 +304,7 @@ function TopicInner({ slug }: { slug: string }) {
 
   return (
     <div className="relative">
+      {errorToast}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.03] to-transparent"

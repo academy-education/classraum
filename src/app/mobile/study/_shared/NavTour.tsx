@@ -4,14 +4,19 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { BookOpen, Camera, Shuffle, Trophy, X, ChevronRight, ChevronLeft } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { authHeaders } from '@/lib/auth-headers'
 
 /**
  * First-visit walkthrough for the 5 study-mode bottom-nav tabs.
  *
- * Shows once per device (localStorage key) the first time the student
- * lands on /mobile/study after onboarding. Four steps — Snap / Review
- * / League / Wrong-Answer Notebook (Study tab itself is the current
- * screen so we skip introducing it).
+ * Shows once per ACCOUNT: dismissal (X, "Don't show again", or
+ * finishing) persists `nav_tour_seen_at` via /api/study/prefs, so it
+ * never re-shows on a new device or origin. localStorage is kept as a
+ * fast local cache so returning visitors don't pay a prefs round-trip
+ * (and as the offline fallback if the PUT fails).
+ *
+ * Four steps — Snap / Review / League / Wrong-Answer Notebook (the
+ * Study tab itself is the current screen so we skip introducing it).
  */
 
 const STORAGE_KEY = 'study-nav-tour-seen-v1'
@@ -66,10 +71,38 @@ export function NavTour() {
   useEffect(() => {
     if (pathname !== '/mobile/study') return
     if (typeof window === 'undefined') return
-    const seen = localStorage.getItem(STORAGE_KEY) === '1'
-    if (seen) return
-    const id = setTimeout(() => setActive(true), 600)
-    return () => clearTimeout(id)
+    // Fast path: this device already knows the tour was dismissed.
+    if (localStorage.getItem(STORAGE_KEY) === '1') return
+
+    // Slow path: ask the account. A student who dismissed on another
+    // device (or before a storage wipe) should never see it again.
+    let cancelled = false
+    let timer: number | null = null
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/prefs', { headers })
+        if (cancelled) return
+        if (res.ok) {
+          const json = await res.json() as { prefs?: { nav_tour_seen_at?: string | null } }
+          if (json.prefs?.nav_tour_seen_at) {
+            // Backfill the local cache and stay hidden.
+            localStorage.setItem(STORAGE_KEY, '1')
+            return
+          }
+        }
+        // Genuinely unseen (or prefs unreachable — first visit wins).
+        timer = window.setTimeout(() => { if (!cancelled) setActive(true) }, 600)
+      } catch {
+        // Prefs unreachable: fall back to showing (worst case a repeat
+        // view), matching the old localStorage-only behaviour.
+        timer = window.setTimeout(() => { if (!cancelled) setActive(true) }, 600)
+      }
+    })()
+    return () => {
+      cancelled = true
+      if (timer) window.clearTimeout(timer)
+    }
   }, [pathname])
 
   if (!active) return null
@@ -77,8 +110,20 @@ export function NavTour() {
   const s = STEPS[step]
   const Icon = s.icon
   const finish = () => {
+    // Hide immediately; persist locally AND on the account so the
+    // dismissal survives new devices, new origins, and cache wipes.
     localStorage.setItem(STORAGE_KEY, '1')
     setActive(false)
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        await fetch('/api/study/prefs', {
+          method: 'PUT',
+          headers: { ...headers, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nav_tour_seen_at: new Date().toISOString() }),
+        })
+      } catch { /* localStorage still suppresses on this device */ }
+    })()
   }
 
   return (
@@ -126,7 +171,9 @@ export function NavTour() {
             ) : (
               <button type="button" onClick={finish}
                 className="flex-1 h-11 rounded-xl bg-white ring-1 ring-gray-200 text-gray-500 text-[13px] font-medium hover:bg-gray-50 transition">
-                {ko ? '나중에' : 'Skip'}
+                {/* Honest label: dismissal is permanent (account-level),
+                    so say so — "Skip/later" implied it would come back. */}
+                {ko ? '다시 보지 않기' : "Don't show again"}
               </button>
             )}
             {step < STEPS.length - 1 ? (

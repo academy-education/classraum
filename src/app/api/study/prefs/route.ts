@@ -25,6 +25,10 @@ export interface StudyUserPrefs {
   default_language: 'en' | 'ko'
   default_difficulty: 'warmup' | 'balanced' | 'challenge'
   onboarded_at: string | null
+  /** When the student dismissed the 4-step bottom-nav tour (Snap /
+   *  Review / League / Notebook). Account-level so it never re-shows
+   *  on a new device — localStorage alone reset per device/origin. */
+  nav_tour_seen_at: string | null
   updated_at: string
 }
 
@@ -67,7 +71,7 @@ export async function PUT(req: NextRequest) {
   // Whitelist mutable fields. student_id / created_at are never user-settable.
   const allowed: (keyof StudyUserPrefs)[] = [
     'target_test', 'target_tests', 'grade_level', 'daily_goal_minutes',
-    'default_language', 'default_difficulty', 'onboarded_at',
+    'default_language', 'default_difficulty', 'onboarded_at', 'nav_tour_seen_at',
   ]
   const patch: Record<string, unknown> = { updated_at: new Date().toISOString() }
   for (const key of allowed) {

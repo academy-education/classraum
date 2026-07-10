@@ -255,7 +255,9 @@ export function StudySectionHeader({
 }) {
   return (
     <div className="flex items-baseline justify-between mb-3 px-1">
-      <h2 className="text-[15px] font-semibold tracking-tight text-gray-900 inline-flex items-center gap-1.5">
+      {/* 17px matches the de-facto section-title size used across the
+          landing + stats pages — keep them in lockstep. */}
+      <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 inline-flex items-center gap-1.5">
         {Icon && <Icon className={`w-3.5 h-3.5 ${iconColorClass}`} />}
         {title}
       </h2>
@@ -292,6 +294,11 @@ export interface StudyTodayCardProps {
   eyebrow: string
   title: ReactNode
   subtitle?: ReactNode
+  /** Optional meta chips — small pills with a tiny icon + label, shown
+   *  under the title. Use for real data at a glance (question count,
+   *  time, mode). Rendered instead of `subtitle` when both are set is
+   *  avoided by callers; if both are provided, meta wins visually. */
+  meta?: Array<{ icon?: LucideIcon; label: string }>
   /** Optional right-side slot — a number badge, count, or arrow. */
   rightSlot?: ReactNode
   /** Optional dismiss handler — shows an X button on the right. */
@@ -301,7 +308,7 @@ export interface StudyTodayCardProps {
 
 export function StudyTodayCard({
   href, onClick, loading, icon: Icon, iconColorClass = 'bg-primary/10 text-primary',
-  eyebrow, title, subtitle, rightSlot, onDismiss, dismissLabel,
+  eyebrow, title, subtitle, meta, rightSlot, onDismiss, dismissLabel,
 }: StudyTodayCardProps) {
   // When onDismiss is present, the outer X sits at right-2, so the
   // inner content needs extra right padding to keep the arrow /
@@ -319,11 +326,26 @@ export function StudyTodayCard({
         <div className="text-[14px] font-semibold text-gray-900 leading-tight truncate">
           {title}
         </div>
-        {subtitle && (
+        {meta && meta.length > 0 ? (
+          <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+            {meta.map((m, i) => {
+              const MetaIcon = m.icon
+              return (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 text-[11px] font-medium text-gray-600 tabular-nums"
+                >
+                  {MetaIcon && <MetaIcon className="w-3 h-3 opacity-70" />}
+                  {m.label}
+                </span>
+              )
+            })}
+          </div>
+        ) : subtitle ? (
           <div className="text-[12px] text-gray-500 mt-0.5 truncate">
             {subtitle}
           </div>
-        )}
+        ) : null}
       </div>
       {rightSlot ? (
         <div className="flex-shrink-0">{rightSlot}</div>

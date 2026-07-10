@@ -468,7 +468,7 @@ function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: s
     <div className="flex-1 overflow-y-auto">
       {/* Hero-style progress banner — gradient card with mascot inline,
           big % display, sub-metric. Replaces the plain white card. */}
-      <div className="px-5 pt-4 pb-2">
+      <div className="max-w-md mx-auto px-5 pt-4 pb-2">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-indigo-700 text-white p-5 shadow-[0_10px_28px_-12px_rgba(40,133,232,0.55)]">
           <div aria-hidden className="pointer-events-none absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
           <div aria-hidden className="pointer-events-none absolute -bottom-8 -left-6 w-32 h-32 rounded-full bg-indigo-300/25 blur-2xl" />
@@ -508,7 +508,7 @@ function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: s
           "you-have-been-here" trail. overflow-x-hidden clips any
           transform overshoot on narrow phones (nodes are shifted ±32px
           off-center, callouts constrained to viewport-safe widths). */}
-      <div className="relative px-5 pt-4 pb-20 overflow-x-hidden">
+      <div className="relative max-w-md mx-auto px-5 pt-4 pb-20 overflow-x-hidden">
         {nodes.map((node, i) => {
           const isActive = node.state.status === 'active'
           const isLocked = node.state.status === 'locked'
@@ -534,10 +534,17 @@ function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: s
                 ref={isLastActive ? activeRef : undefined}
                 className={`relative flex flex-col items-center transition-transform ${offset}`}
               >
-                {/* Mascot floats above the active node */}
+                {/* Mascot stands BESIDE the active node, on the side away
+                    from its offset — absolutely positioned so it never
+                    breaks the connector chain or stretches the column. */}
                 {isLastActive && (
-                  <div className="mb-1 -mt-2">
-                    <PathMascot state="idle" size={72} />
+                  <div
+                    aria-hidden
+                    className={`pointer-events-none absolute top-3 ${
+                      curDir === 'left' ? 'left-1/2 ml-16' : 'right-1/2 mr-16'
+                    }`}
+                  >
+                    <PathMascot state="idle" size={64} />
                   </div>
                 )}
                 <PathNode node={node} onClick={() => !isLocked && handleLaunch(node)} pulsing={isLastActive} />
@@ -579,32 +586,38 @@ function SerpentineConnector({
 }) {
   // Both nodes same side → straight vertical. Different side → S-curve.
   const isCurve = prevSide !== currSide
-  const stroke = active ? '#10B981' : '#D1D5DB'
+  // Tailwind stroke utilities instead of raw hex so the connector
+  // colours stay on the token palette (emerald-500 / gray-300).
+  const strokeClass = active ? 'stroke-emerald-500' : 'stroke-gray-300'
   const dash = active ? undefined : '4 6'
+  // Node centres sit exactly ±32px from the column centre (the ±32px
+  // wrapper translate), so the connector is a FIXED 96px-wide box
+  // centred in the column: x=16 is the left node centre, x=80 the
+  // right. No preserveAspectRatio stretching — endpoints stay glued to
+  // the node circles at every viewport width.
+  const x1 = prevSide === 'left' ? 16 : 80
+  const x2 = currSide === 'left' ? 16 : 80
   return (
     <svg
       aria-hidden
-      viewBox="0 0 240 56"
-      className="w-full h-12 -mt-1 -mb-1"
-      preserveAspectRatio="none"
+      viewBox="0 0 96 48"
+      className="block mx-auto w-24 h-12 -mt-1 -mb-1"
     >
       {isCurve
         ? <path
-            d={prevSide === 'left'
-              ? 'M 56 0 C 56 28, 184 28, 184 56'
-              : 'M 184 0 C 184 28, 56 28, 56 56'}
-            stroke={stroke}
+            d={`M ${x1} 0 C ${x1} 24, ${x2} 24, ${x2} 48`}
+            className={strokeClass}
             strokeWidth="4"
             fill="none"
             strokeLinecap="round"
             strokeDasharray={dash}
           />
         : <line
-            x1={prevSide === 'left' ? 56 : 184}
+            x1={x1}
             y1="0"
-            x2={prevSide === 'left' ? 56 : 184}
-            y2="56"
-            stroke={stroke}
+            x2={x2}
+            y2="48"
+            className={strokeClass}
             strokeWidth="4"
             strokeLinecap="round"
             strokeDasharray={dash}
@@ -851,8 +864,11 @@ function TargetTestPicker({
     <div className="flex-1 overflow-y-auto px-5 pt-6 pb-14">
       <div className="max-w-md mx-auto">
         <div className="text-center mb-5">
-          <div className="inline-flex items-center justify-center mb-3">
+          <div className="inline-flex flex-col items-center justify-center mb-3">
             <PathMascot state="thinking" size={72} />
+            <span className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold tracking-[0.12em] uppercase text-primary">
+              {ko ? '라우미' : 'Meet Raumi'}
+            </span>
           </div>
           <h2 className="text-[19px] font-bold tracking-tight text-gray-900">
             {String(t('study.path.noTargetTitle'))}

@@ -11,6 +11,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { supabase } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
+import { hapticImpact, hapticSelection } from '@/lib/nativeHaptics'
 
 interface Question {
   passage?: string | null
@@ -697,9 +698,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       ? String(t('study.test.loadingTest'))
       : undefined
     return (
-      <div className="flex-1 flex flex-col items-center justify-center gap-3 px-6 text-center">
+      // role="status" + aria-live so screen readers announce the wait —
+      // the mascot alone is decorative and says nothing about loading.
+      <div role="status" aria-live="polite" className="flex-1 flex flex-col items-center justify-center gap-3 px-6 text-center">
+        {/* Short waits (DB check / cached-test fetch): calm "thinking"
+            — the 2.7s loading gag would get cut off mid-spin here. */}
         <PathMascot state="thinking" size={72} />
-        {label && <p className="text-[13px] text-gray-600">{label}</p>}
+        {label
+          ? <p className="text-[13px] text-gray-600">{label}</p>
+          : <span className="sr-only">{String(t('study.test.loadingTest'))}</span>}
       </div>
     )
   }
@@ -920,7 +927,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           <div className="inline-flex items-center gap-1.5">
             <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono tabular-nums border ${
               paused ? 'bg-primary/10 text-primary border-primary/30 font-semibold'
-                : timeCritical ? 'bg-rose-50 text-rose-700 border-rose-200 font-semibold'
+                // animate-pulse in the last 60s so the urgency registers
+                // peripherally even while the student reads the question
+                : timeCritical ? 'bg-rose-50 text-rose-700 border-rose-200 font-semibold animate-pulse'
                 : timeWarning ? 'bg-amber-50 text-amber-800 border-amber-200'
                 : 'bg-gray-50 text-gray-600 border-gray-200'
             }`}>
@@ -983,8 +992,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         </div>
       )}
 
-      {/* Question + answer choices */}
-      <div className="flex-1 overflow-y-auto px-5 py-5">
+      {/* Question + answer choices. Keyed by question index so each
+          Next/Prev remounts the body: scroll resets to the top and the
+          fade-in makes navigation read as movement, not a text swap. */}
+      <div key={currentIdx} className="flex-1 overflow-y-auto px-5 py-5 animate-fade-in">
         {/* Difficulty chip — hidden for SAT (the customization sheet
             already locks SAT to challenge and hides the picker, so
             surfacing per-item difficulty here would be inconsistent).
@@ -1256,8 +1267,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                       <button
                         key={choice}
                         type="button"
-                        onClick={() => toggle(choice)}
-                        className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors flex items-start gap-3 ${
+                        onClick={() => { hapticSelection(); toggle(choice) }}
+                        className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors active:scale-[0.99] flex items-start gap-3 ${
                           selected
                             ? 'border-primary bg-primary/5 text-gray-900'
                             : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
@@ -1791,13 +1802,14 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   key={choice}
                   type="button"
                   onClick={() => {
+                    hapticSelection()
                     setAnswers(prev => {
                       const next = [...prev]
                       next[currentIdx] = choice
                       return next
                     })
                   }}
-                  className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors flex items-start gap-3 ${
+                  className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors active:scale-[0.99] flex items-start gap-3 ${
                     selected
                       ? 'border-primary bg-primary/5 text-gray-900'
                       : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
@@ -3497,7 +3509,7 @@ function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript, 
       }, 250)
       // Haptic feedback on start — consistency with rest of the app's
       // primary-CTA tactile pattern.
-      if ('vibrate' in navigator) navigator.vibrate(15)
+      hapticImpact('medium')
     } catch (err) {
       // Real permission handling — distinguish "user said no" from
       // "no mic device" from other failure so the message is useful.
@@ -3522,7 +3534,7 @@ function VoiceRecorderButton({ sessionId, language, ko, disabled, onTranscript, 
     }
     setRecording(false)
     if (tickRef.current) { window.clearInterval(tickRef.current); tickRef.current = null }
-    if ('vibrate' in navigator) navigator.vibrate(15)
+    hapticImpact('medium')
   }
   useEffect(() => () => {
     // Discard any in-flight recording on unmount: detach onstop FIRST
@@ -4359,6 +4371,10 @@ function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange
  *  cards so the professor's prompt and each student's opinion are
  *  visually distinct instead of running together as one paragraph. */
 function WritingScenario({ text, kind }: { text: string; kind: 'email' | 'discussion' }) {
+  // UI-language for the section labels (the scenario TEXT stays in the
+  // test's own language; only our chrome should follow the app locale).
+  const { language: uiLanguage } = useTranslation()
+  const koUi = uiLanguage === 'korean'
   const normalized = normalizeDisplayText(text)
 
   if (kind === 'discussion') {
@@ -4427,7 +4443,7 @@ function WritingScenario({ text, kind }: { text: string; kind: 'email' | 'discus
       <div className="space-y-3">
         <div className="rounded-lg bg-primary/[0.04] border border-primary/15 px-3.5 py-3">
           <div className="text-[10px] font-bold uppercase tracking-wider text-primary mb-1.5">
-            {'Situation'}
+            {koUi ? '상황' : 'Situation'}
           </div>
           <p className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">
             {situationText}
@@ -4435,7 +4451,7 @@ function WritingScenario({ text, kind }: { text: string; kind: 'email' | 'discus
         </div>
         <div className="rounded-lg bg-amber-50 border border-amber-200 px-3.5 py-3">
           <div className="text-[10px] font-bold uppercase tracking-wider text-amber-800 mb-2 flex items-center gap-1.5">
-            <span>Include in your email</span>
+            <span>{koUi ? '이메일에 포함할 내용' : 'Include in your email'}</span>
             <span className="inline-flex items-center px-1.5 py-0.5 rounded-full bg-amber-200 text-amber-900 text-[9px] font-bold">
               {bullets.length}
             </span>
@@ -4762,10 +4778,11 @@ function GenerationProgress({
     <div className="flex-1 flex flex-col items-center justify-center px-6 py-10">
       <div className="w-full max-w-sm">
         <div className="text-center mb-6">
-          {/* Mascot in thinking state — turns the 90s test-gen wait
-              from a sterile spinner into a small character moment. */}
+          {/* Mascot in loading state — the grab→spin→catch gag runs on
+              a 2.7s loop, so the ~90s test-gen wait is the one place it
+              has time to land (short waits get "thinking" instead). */}
           <div className="inline-flex items-center justify-center mb-3">
-            <PathMascot state="thinking" size={72} />
+            <PathMascot state="loading" size={72} />
           </div>
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
             {String(t('study.test.progress.title'))}

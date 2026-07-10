@@ -28,11 +28,13 @@ type State =
   | { kind: 'allowed' }
   | { kind: 'paywall'; status: 'expired' | 'cancelled' }
   | { kind: 'unauthenticated' }
+  | { kind: 'error' }
 
 export function StudySubscriptionGate({ children }: { children: ReactNode }) {
   const { user } = useAuth()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [state, setState] = useState<State>({ kind: 'loading' })
+  const [retryKey, setRetryKey] = useState(0)
 
   useEffect(() => {
     if (!user?.id) {
@@ -40,16 +42,26 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
       return
     }
     let cancelled = false
+    setState({ kind: 'loading' })
     void (async () => {
+      try {
       // Look up existing subscription. RLS lets the student read their
       // own row; service-role isn't needed here.
-      const { data: existing } = await supabase
+      const { data: existing, error: readError } = await supabase
         .from('study_subscriptions')
         .select('status, current_period_end')
         .eq('student_id', user.id)
         .maybeSingle()
 
       if (cancelled) return
+
+      // A FAILED read is not the same as "no subscription row": treating
+      // it as a first visit would re-provision a trial (or paywall) for
+      // an existing subscriber on a transient glitch. Surface a retry.
+      if (readError) {
+        setState({ kind: 'error' })
+        return
+      }
 
       // No row yet → first study visit. Provision a 7-day trial. The
       // default column values in the migration already do the right
@@ -97,9 +109,14 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
         kind: 'paywall',
         status: existing.status === 'cancelled' ? 'cancelled' : 'expired',
       })
+      } catch {
+        // Network/unexpected throw — without this the gate spins forever
+        // and blocks the entire study module. Show a retry instead.
+        if (!cancelled) setState({ kind: 'error' })
+      }
     })()
     return () => { cancelled = true }
-  }, [user?.id])
+  }, [user?.id, retryKey])
 
   if (state.kind === 'loading') {
     return (
@@ -110,10 +127,34 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
     )
   }
 
+  if (state.kind === 'error') {
+    const ko = language === 'korean'
+    return (
+      <div className="flex flex-col items-center justify-center h-screen p-6 text-center gap-3">
+        <p className="text-sm text-gray-600">
+          {ko ? '연결에 문제가 있어요. 다시 시도해 주세요.' : "We couldn't check your access. Please try again."}
+        </p>
+        <button
+          type="button"
+          onClick={() => setRetryKey(k => k + 1)}
+          className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-gray-900 text-white text-[13px] font-medium hover:bg-gray-800 active:scale-[0.98] transition-all"
+        >
+          {ko ? '다시 시도' : 'Retry'}
+        </button>
+      </div>
+    )
+  }
+
   if (state.kind === 'unauthenticated') {
     return (
-      <div className="flex items-center justify-center h-screen p-6 text-center text-sm text-gray-500">
-        {t('study.gate.signInRequired') ?? 'Please sign in to access Study.'}
+      <div className="flex flex-col items-center justify-center h-screen p-6 text-center gap-3 text-sm text-gray-500">
+        <p>{t('study.gate.signInRequired') ?? 'Please sign in to access Study.'}</p>
+        {/* Escape hatch — this gate also wraps session routes where the
+            bottom nav is hidden, so without a link a logged-out visitor
+            is fully trapped on this screen. */}
+        <Link href="/auth" className="text-primary font-medium underline underline-offset-2">
+          {language === 'korean' ? '로그인' : 'Sign in'}
+        </Link>
       </div>
     )
   }

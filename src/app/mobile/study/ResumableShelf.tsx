@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, ArrowRight, type LucideIcon } from 'lucide-react'
+import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { SkeletonCard, SkeletonBlock } from './skeletons'
@@ -91,6 +91,7 @@ export function ResumableShelf() {
         `)
         .eq('student_id', user.userId)
         .neq('status', 'completed')
+        .eq('archived', false)
         .order('last_active_at', { ascending: false })
         .limit(10)
       if (cancelled) return
@@ -142,15 +143,22 @@ export function ResumableShelf() {
               href={`/mobile/study/session/${row.id}`}
               className="group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 px-4 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
             >
-              <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${style.iconBg} text-white flex items-center justify-center`}>
-                <Icon className="w-5 h-5" />
+              <div className={`flex-shrink-0 w-11 h-11 rounded-2xl ${style.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.28)]`}>
+                <Icon className="w-5 h-5" strokeWidth={2.25} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold tracking-[0.14em] uppercase text-gray-500">
-                  {String(t(`study.modes.${row.mode}.title`))} · {time}
-                </div>
-                <div className="text-[14.5px] font-semibold text-gray-900 truncate leading-snug mt-0.5">
+                <div className="text-[14.5px] font-semibold text-gray-900 truncate leading-snug">
                   {title}
+                </div>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 text-[11px] font-medium text-gray-600">
+                    <Icon className="w-3 h-3 opacity-70" />
+                    {String(t(`study.modes.${row.mode}.title`))}
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 text-[11px] font-medium text-gray-600 tabular-nums">
+                    <Clock className="w-3 h-3 opacity-70" />
+                    {time}
+                  </span>
                 </div>
               </div>
               <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />

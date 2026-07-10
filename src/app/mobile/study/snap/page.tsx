@@ -10,6 +10,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
+import { useStudyErrorToast, startFailedMessage } from '../_shared/useStudyErrorToast'
 
 /**
  * /mobile/study/snap — Snap-a-Photo problem solver.
@@ -317,6 +318,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
   const router = useRouter()
   const { user } = usePersistentMobileAuth()
   const [practiceLoading, setPracticeLoading] = useState(false)
+  const { errorToast, showError } = useStudyErrorToast()
   const [bookmarked, setBookmarked] = useState(false)
   const toggleBookmark = async () => {
     if (!captureId) return
@@ -358,6 +360,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
       .single()
     if (error || !data) {
       setPracticeLoading(false)
+      showError(startFailedMessage(ko))
       return
     }
     router.push(`/mobile/study/session/${data.id}`)
@@ -365,6 +368,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
   if (!result.isQuestionDetected) {
     return (
       <div className="space-y-3">
+        {errorToast}
         <div className="rounded-2xl bg-amber-50 ring-1 ring-amber-200 p-4 text-[13px] text-amber-800">
           <AlertCircle className="w-4 h-4 inline mr-1.5" />
           {ko ? '문제를 명확하게 인식하지 못했어요. 더 가까이서, 흔들림 없이 다시 찍어보세요.' : 'Could not clearly detect a question. Try a closer, sharper shot.'}

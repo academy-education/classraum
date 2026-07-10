@@ -44,7 +44,7 @@ export function SkeletonCard({
   children,
 }: { className?: string; children?: React.ReactNode }) {
   return (
-    <div className={`relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.02)] ${className}`}>
+    <div className={`relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.02)] ${className}`}>
       {children}
     </div>
   )
@@ -165,7 +165,7 @@ export function SkeletonTestGrid({ count = 6 }: { count?: number }) {
         <div
           key={i}
           style={{ animationDelay: `${i * 60}ms` }}
-          className="relative overflow-hidden rounded-2xl min-h-[120px] p-4 bg-gradient-to-br from-gray-100 to-gray-200 ring-1 ring-gray-200/60 animate-card-in opacity-0"
+          className="relative overflow-hidden rounded-2xl min-h-[120px] p-4 bg-gradient-to-br from-gray-100 to-gray-200 ring-1 ring-gray-200/70 animate-card-in opacity-0"
         >
           <div className="absolute inset-0 animate-shimmer-soft" />
         </div>
@@ -183,7 +183,7 @@ export function SkeletonSquareGrid({ count = 4 }: { count?: number }) {
         <div
           key={i}
           style={{ animationDelay: `${i * 60}ms` }}
-          className="relative overflow-hidden rounded-2xl min-h-[140px] p-4 bg-white ring-1 ring-gray-200/60 animate-card-in opacity-0 flex flex-col justify-between"
+          className="relative overflow-hidden rounded-2xl min-h-[140px] p-4 bg-white ring-1 ring-gray-200/70 animate-card-in opacity-0 flex flex-col justify-between"
         >
           <SkeletonIconTile size="w-12 h-12" />
           <div className="space-y-1.5">

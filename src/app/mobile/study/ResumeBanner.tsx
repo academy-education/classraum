@@ -57,6 +57,7 @@ export function ResumeBanner() {
         `)
         .eq('student_id', user.userId)
         .neq('status', 'completed')
+        .eq('archived', false)
         .order('last_active_at', { ascending: false })
         .limit(1)
       if (cancelled) return

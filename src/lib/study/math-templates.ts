@@ -119,7 +119,7 @@ export const TEMPLATES: Record<string, Template> = {
   },
   // 2) Vieta: r^2 + s^2 from x^2 + px + q = 0.
   vieta_sq() {
-    let r = rnd(-6, 7), s = rnd(-6, 7); if (r === s) s += 1
+    const r = rnd(-6, 7); let s = rnd(-6, 7); if (r === s) s += 1
     const p = -(r + s), q = r * s, ans = r * r + s * s
     const pp = p < 0 ? `- ${Math.abs(p)}` : `+ ${p}`, qq = q < 0 ? `- ${Math.abs(q)}` : `+ ${q}`
     return mc({ domain: 'Advanced Math', subskill: "Vieta's relations", topic_tag: 'vieta-sum-squares',

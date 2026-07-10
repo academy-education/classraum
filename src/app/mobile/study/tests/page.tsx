@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ClipboardList, CheckCircle2, Loader2, AlertTriangle, Play, ChevronRight, ChevronLeft, Trophy, Search, X } from 'lucide-react'
-import { StudySubPageHeader } from '../_shared/primitives'
+import { StudySubPageHeader, StudyEmptyState } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
@@ -67,6 +67,7 @@ function TestsInner() {
         `)
         .eq('student_id', user.userId)
         .eq('mode', 'full_test')
+        .eq('archived', false)
         .order('last_active_at', { ascending: false })
         .limit(200)
       if (cancelled) return
@@ -105,7 +106,7 @@ function TestsInner() {
     <div className="relative">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-emerald-500/[0.03] to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-primary/[0.025] to-transparent"
       />
       <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <StudySubPageHeader
@@ -115,9 +116,12 @@ function TestsInner() {
           iconColorClass="text-emerald-600 bg-emerald-50"
           eyebrow={ko ? '모의고사' : 'Mock tests'}
           title={ko ? '내 시험' : 'My tests'}
-          subtitle={ko
-            ? `전체 ${rows.length}개의 모의고사 세션을 관리하세요.`
-            : `Manage your ${rows.length} mock-test sessions.`}
+          subtitle={rows.length === 0
+            // Zero-aware copy — "Manage your 0 sessions" reads broken.
+            ? (ko ? '모의고사로 실전처럼 연습해 보세요.' : 'Practice under real test conditions.')
+            : (ko
+                ? `전체 ${rows.length}개의 모의고사 세션을 관리하세요.`
+                : `Manage your ${rows.length} mock-test session${rows.length === 1 ? '' : 's'}.`)}
         />
 
         <label className="relative block">
@@ -127,7 +131,7 @@ function TestsInner() {
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder={ko ? '주제로 검색' : 'Search by topic'}
-            className="w-full h-11 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+            className="w-full h-11 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
           {query && (
             <button
@@ -151,20 +155,18 @@ function TestsInner() {
         {loading ? (
           <SkeletonRowList count={6} />
         ) : filtered.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-12 text-center">
-            <p className="text-[13.5px] text-gray-500">
-              {query || filter !== 'all'
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200/70">
+            <StudyEmptyState
+              icon={ClipboardList}
+              headline={query || filter !== 'all'
                 ? (ko ? '일치하는 시험이 없어요' : 'No tests match')
-                : (ko ? '아직 시작한 모의고사가 없어요.' : "You haven't started a mock test yet.")}
-            </p>
-            {!query && filter === 'all' && (
-              <Link
-                href="/mobile/study"
-                className="mt-4 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-primary text-white text-[12.5px] font-medium hover:bg-primary/90 transition"
-              >
-                {ko ? '시험 시작' : 'Start a test'}
-              </Link>
-            )}
+                : (ko ? '아직 시작한 모의고사가 없어요' : "You haven't started a mock test yet")}
+              body={!query && filter === 'all'
+                ? (ko ? '첫 모의고사를 만들어 실전 감각을 길러보세요.' : 'Build your first mock test and get a feel for the real thing.')
+                : undefined}
+              ctaHref={!query && filter === 'all' ? '/mobile/study' : undefined}
+              ctaText={!query && filter === 'all' ? (ko ? '시험 시작' : 'Start a test') : undefined}
+            />
           </div>
         ) : (
           <>
@@ -187,7 +189,7 @@ function TestsInner() {
                   type="button"
                   onClick={() => setPage(p => Math.max(0, p - 1))}
                   disabled={clampedPage === 0}
-                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   {ko ? '이전' : 'Previous'}
@@ -201,7 +203,7 @@ function TestsInner() {
                   type="button"
                   onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
                   disabled={clampedPage >= totalPages - 1}
-                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
                 >
                   {ko ? '다음' : 'Next'}
                   <ChevronRight className="w-4 h-4" />
@@ -244,7 +246,7 @@ function StateFilter({ value, onSelect, counts, ko }: {
               className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
                 active
                   ? 'bg-gray-900 text-white'
-                  : 'bg-white ring-1 ring-gray-200 text-gray-700 hover:bg-gray-50'
+                  : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
               }`}
             >
               {item.label}
@@ -287,7 +289,7 @@ function TestRow({ row, ko }: { row: Row; ko: boolean }) {
   return (
     <Link
       href={`/mobile/study/session/${row.id}${state === 'completed' ? '/summary' : ''}`}
-      className="group flex items-center gap-3 px-4 py-3 rounded-2xl bg-white ring-1 ring-gray-200 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
+      className="group flex items-center gap-3 px-4 py-3 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
     >
       <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${meta.iconClass}`}>
         {state === 'generating' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}

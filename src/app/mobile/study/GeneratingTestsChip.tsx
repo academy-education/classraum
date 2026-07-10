@@ -47,6 +47,7 @@ export function GeneratingTestsChip() {
         .eq('mode', 'full_test')
         .in('generation_status', ['pending', 'ready'])
         .eq('status', 'active') // hide if already started or completed
+        .eq('archived', false)
         .order('created_at', { ascending: false })
         .limit(20)
       if (cancelled) return

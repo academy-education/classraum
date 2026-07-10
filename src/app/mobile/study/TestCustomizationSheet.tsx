@@ -6,6 +6,7 @@ import { X, Clock, Hash, Sparkles, Loader2, Award } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
+import { SegmentedTabs } from './_shared/SegmentedTabs'
 
 /** Per-session test customization payload. Stored on
  *  study_sessions.config (jsonb) and read by the test generator.
@@ -359,7 +360,8 @@ function SettingGroup({
 }
 
 /** iOS-style segmented control with optional "recommended" star badge
- *  on the recommended option. */
+ *  on the recommended option. Thin wrapper over the shared SegmentedTabs
+ *  primitive (kept as a local alias so call sites read unchanged). */
 function SegmentedControl<T>({
   options,
   value,
@@ -372,34 +374,6 @@ function SegmentedControl<T>({
   recommendedValue?: T
 }) {
   return (
-    <div className="inline-flex items-center w-full p-0.5 rounded-xl bg-gray-100 ring-1 ring-gray-200/70">
-      {options.map(opt => {
-        const selected = opt.value === value
-        const isRecommended = recommendedValue !== undefined && opt.value === recommendedValue
-        return (
-          <button
-            key={String(opt.value)}
-            type="button"
-            onClick={() => onChange(opt.value)}
-            className={`relative flex-1 h-9 rounded-[10px] text-[13px] font-semibold tracking-tight transition-all ${
-              selected
-                ? 'bg-white text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,0.05),0_2px_6px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04]'
-                : 'text-gray-500 hover:text-gray-700 active:scale-[0.97]'
-            }`}
-          >
-            {opt.label}
-            {isRecommended && (
-              <span
-                aria-hidden
-                className="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 rounded-full bg-amber-500 text-white text-[9px] font-bold shadow ring-2 ring-white"
-                title="Recommended"
-              >
-                ★
-              </span>
-            )}
-          </button>
-        )
-      })}
-    </div>
+    <SegmentedTabs options={options} value={value} onChange={onChange} recommendedValue={recommendedValue} />
   )
 }

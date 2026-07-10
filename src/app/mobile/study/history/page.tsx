@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, ChevronRight, ChevronLeft, History as HistoryIcon, Search, X } from 'lucide-react'
-import { StudySubPageHeader } from '../_shared/primitives'
+import { StudySubPageHeader, StudyEmptyState } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
@@ -68,6 +68,7 @@ function HistoryInner() {
           topic:study_topics ( slug, name_en, name_ko )
         `)
         .eq('student_id', user.userId)
+        .eq('archived', false)
         .order('last_active_at', { ascending: false })
         .limit(200)
       if (cancelled) return
@@ -118,7 +119,7 @@ function HistoryInner() {
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder={ko ? '제목·주제·모드로 검색' : 'Search by title, topic, or mode'}
-            className="w-full h-11 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+            className="w-full h-11 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
           {query && (
             <button
@@ -135,10 +136,15 @@ function HistoryInner() {
         {loading ? (
           <SkeletonRowList count={6} />
         ) : filtered.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-12 text-center">
-            <p className="text-sm text-gray-500">
-              {query ? (ko ? '일치하는 세션이 없어요' : 'No sessions match your search') : String(t('study.history.empty'))}
-            </p>
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200/70">
+            <StudyEmptyState
+              icon={HistoryIcon}
+              headline={query
+                ? (ko ? '일치하는 세션이 없어요' : 'No sessions match your search')
+                : String(t('study.history.empty'))}
+              ctaHref={query ? undefined : '/mobile/study'}
+              ctaText={query ? undefined : (ko ? '학습 시작하기' : 'Start studying')}
+            />
           </div>
         ) : (
           <>
@@ -160,7 +166,7 @@ function HistoryInner() {
                         <Link
                           key={row.id}
                           href={`/mobile/study/session/${row.id}`}
-                          className="group flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
+                          className="group flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
                         >
                           <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
                             <Icon className="w-4 h-4" />
@@ -186,7 +192,7 @@ function HistoryInner() {
                   type="button"
                   onClick={() => setPage(p => Math.max(0, p - 1))}
                   disabled={clampedPage === 0}
-                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   {ko ? '이전' : 'Previous'}
@@ -200,7 +206,7 @@ function HistoryInner() {
                   type="button"
                   onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
                   disabled={clampedPage >= totalPages - 1}
-                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
                 >
                   {ko ? '다음' : 'Next'}
                   <ChevronRight className="w-4 h-4" />

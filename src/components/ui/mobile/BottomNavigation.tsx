@@ -81,10 +81,12 @@ export function BottomNavigation() {
 
   return (
     <nav
-      className="flex-shrink-0 bg-white shadow-[0_-1px_0_rgba(0,0,0,0.04)] z-50"
+      className="flex-shrink-0 px-3 pt-1 pb-[max(0.5rem,env(safe-area-inset-bottom))] z-50"
       style={{ touchAction: 'none' }}
     >
-      <div className="flex items-center justify-around h-[72px] px-2">
+      {/* Floating, rounded bar — friendlier than a flat edge-to-edge strip.
+          The active tab lifts into a filled circle for a clear, playful anchor. */}
+      <div className="relative flex items-stretch justify-around h-[64px] rounded-[26px] bg-white/95 backdrop-blur-sm ring-1 ring-gray-200/70 shadow-[0_2px_6px_rgba(0,0,0,0.05),0_16px_32px_-14px_rgba(40,133,232,0.28)]">
         {navItems.map((item) => {
           const Icon = item.icon
           const active = isActive(item.href)
@@ -93,28 +95,24 @@ export function BottomNavigation() {
             <button
               key={item.href}
               onClick={() => handleNavigation(item.href)}
-              className="flex flex-col items-center gap-1 flex-1 py-1.5 px-2 transition-transform active:scale-95 focus:outline-none"
+              className="group relative flex flex-1 flex-col items-center justify-center gap-1 px-1 focus:outline-none"
               aria-label={item.label}
               aria-current={active ? 'page' : undefined}
             >
               <div
                 className={cn(
-                  "flex items-center justify-center w-11 h-7 rounded-full transition-colors",
-                  active ? "bg-primary/10" : ""
+                  "flex items-center justify-center rounded-full transition-all duration-300",
+                  active
+                    ? "w-12 h-12 -translate-y-3 bg-primary text-white ring-4 ring-white shadow-[0_8px_18px_-6px_rgba(40,133,232,0.55)]"
+                    : "w-11 h-8 text-gray-500 group-active:scale-90"
                 )}
               >
-                <Icon
-                  className={cn(
-                    "w-5 h-5 transition-colors",
-                    active ? "text-primary" : "text-gray-500"
-                  )}
-                  strokeWidth={active ? 2.25 : 1.75}
-                />
+                <Icon className="w-5 h-5" strokeWidth={active ? 2.25 : 1.75} />
               </div>
               <span
                 className={cn(
                   "text-[10px] font-semibold tracking-tight transition-colors truncate max-w-full",
-                  active ? "text-primary" : "text-gray-500"
+                  active ? "-mt-2 text-primary" : "text-gray-500"
                 )}
               >
                 {item.label}
