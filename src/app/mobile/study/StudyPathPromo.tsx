@@ -49,8 +49,8 @@ export function StudyPathPromo() {
           </div>
           <div className="text-[12px] text-white/85 leading-snug mt-0.5">
             {ko
-              ? '한 걸음씩 목표에 다가가요 — 오늘 할 일이 정해져 있어요.'
-              : 'One step at a time — today\'s next node is picked for you.'}
+              ? '라우미가 오늘 할 일을 골라줘요 — 한 걸음씩.'
+              : 'Raumi picks today\'s next step — one at a time.'}
           </div>
         </div>
         <div className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/25">
