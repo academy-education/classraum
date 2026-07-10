@@ -38,6 +38,51 @@ const SECTION_META: Record<string, { title: string; minutesPerQ: number; label: 
   math:            { title: 'Digital SAT — Math',              minutesPerQ: 1.59, label: 'Math' },
 }
 
+/**
+ * College Board Digital SAT domain blueprint — target share of each
+ * section's questions. Drives per-domain quotas at assembly so an
+ * assembled test mirrors the real exam's weighting (Algebra + Advanced
+ * Math dominate; Geometry/Trig is light) rather than an even split.
+ * Domain keys must match study_item_bank.domain exactly.
+ * Sources: College Board Digital SAT Assessment Framework.
+ */
+const BLUEPRINT: Record<string, Record<string, number>> = {
+  math: {
+    'Algebra': 0.35,
+    'Advanced Math': 0.35,
+    'Problem-Solving and Data Analysis': 0.15,
+    'Geometry and Trigonometry': 0.15,
+  },
+  reading_writing: {
+    'Craft and Structure': 0.28,
+    'Information and Ideas': 0.26,
+    'Standard English Conventions': 0.26,
+    'Expression of Ideas': 0.20,
+  },
+}
+
+/**
+ * Largest-remainder apportionment: turn fractional blueprint weights
+ * into whole per-domain quotas that sum to exactly `count`. Floors each
+ * ideal share, then hands the leftover seats to the domains with the
+ * biggest fractional remainders.
+ */
+function blueprintQuotas(weights: Record<string, number>, count: number): Record<string, number> {
+  const rows = Object.entries(weights).map(([d, w]) => {
+    const exact = w * count
+    const floor = Math.floor(exact)
+    return { d, n: floor, frac: exact - floor }
+  })
+  let leftover = count - rows.reduce((s, r) => s + r.n, 0)
+  rows.sort((a, b) => b.frac - a.frac)
+  for (let i = 0; leftover > 0 && rows.length > 0; i = (i + 1) % rows.length, leftover--) {
+    rows[i]!.n++
+  }
+  const out: Record<string, number> = {}
+  for (const r of rows) out[r.d] = r.n
+  return out
+}
+
 /** Deterministic-ish shuffle seeded by a string (stable per session id). */
 function seededShuffle<T>(arr: T[], seed: string): T[] {
   let h = 2166136261
@@ -59,6 +104,7 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
     .eq('family', family)
     .eq('section', p.section)
     .eq('verified', true)
+    .eq('archived', false)
   if (p.difficulties?.length) query = query.in('difficulty', p.difficulties)
 
   const { data, error } = await query
@@ -66,29 +112,55 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
   const rows = (data ?? []) as Array<{ domain: string; difficulty: string; item: Question }>
   if (rows.length === 0) throw new Error(`no verified items for ${family}/${p.section}`)
 
-  // Bucket by domain, shuffle within each, then round-robin across
-  // domains so the draw is balanced rather than clustered.
+  // Bucket by domain, shuffle within each.
   const byDomain = new Map<string, Question[]>()
   for (const r of rows) {
     const list = byDomain.get(r.domain) ?? []
     list.push(r.item)
     byDomain.set(r.domain, list)
   }
-  const domains = seededShuffle([...byDomain.keys()], seed)
-  for (const d of domains) byDomain.set(d, seededShuffle(byDomain.get(d)!, seed + d))
+  for (const d of byDomain.keys()) byDomain.set(d, seededShuffle(byDomain.get(d)!, seed + d))
+
+  // Draw per-domain quotas from the College Board blueprint so the test
+  // mirrors the real exam's weighting. Fall back to whatever domains
+  // exist (even share) if the section has no blueprint entry.
+  const weights = BLUEPRINT[p.section] ?? Object.fromEntries(
+    [...byDomain.keys()].map(d => [d, 1 / byDomain.size]),
+  )
+  const quota = blueprintQuotas(weights, p.count)
 
   const picked: Question[] = []
   const composition: Record<string, number> = {}
-  let exhausted = false
-  while (picked.length < p.count && !exhausted) {
-    exhausted = true
-    for (const d of domains) {
-      if (picked.length >= p.count) break
-      const list = byDomain.get(d)!
-      const q = list.shift()
-      if (q) { picked.push(q); composition[d] = (composition[d] ?? 0) + 1; exhausted = false }
-    }
+  // Primary pass: take each domain's blueprint quota.
+  for (const [d, q] of Object.entries(quota)) {
+    const list = byDomain.get(d) ?? []
+    const take = Math.min(q, list.length)
+    for (let i = 0; i < take; i++) { picked.push(list.shift()!); composition[d] = (composition[d] ?? 0) + 1 }
   }
+  // Shortfall fill: if a domain couldn't meet its quota (thin bank),
+  // backfill from remaining items — heaviest blueprint domains first —
+  // so the target count is still met without over-drawing a light
+  // domain. Include any non-blueprint domains last so nothing strands.
+  const fillOrder = [
+    ...Object.keys(weights).sort((a, b) => (weights[b] ?? 0) - (weights[a] ?? 0)),
+    ...[...byDomain.keys()].filter(d => !(d in weights)),
+  ]
+  while (picked.length < p.count) {
+    let progressed = false
+    for (const d of fillOrder) {
+      if (picked.length >= p.count) break
+      const list = byDomain.get(d)
+      if (list && list.length) {
+        picked.push(list.shift()!); composition[d] = (composition[d] ?? 0) + 1; progressed = true
+      }
+    }
+    if (!progressed) break
+  }
+
+  // Mix domain order so the section isn't clustered by domain.
+  const mixed = seededShuffle(picked, seed + ':order')
+  picked.length = 0
+  picked.push(...mixed)
 
   const meta = SECTION_META[p.section]!
   const timeLimitMinutes = Math.max(5, Math.round(picked.length * meta.minutesPerQ))

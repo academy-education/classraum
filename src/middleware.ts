@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
     '/dashboard', '/students', '/classrooms', '/sessions', '/assignments',
     '/attendance', '/announcements', '/payments', '/reports', '/settings', '/teachers',
     '/families', '/parents', '/notifications', '/upgrade', '/mobile', '/checkout',
-    '/archive', '/test-payment', '/order-summary', '/billing', '/messages',
+    '/archive', '/test-payment', '/order-summary', '/billing', '/messages', '/bank',
     // /exams-and-scores is the new URL; /level-tests stays in the protected
     // list so the redirect below (308) doesn't get short-circuited as
     // "unknown route → /auth" before the rename catches it.

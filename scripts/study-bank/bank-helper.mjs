@@ -95,7 +95,7 @@ function toItem(raw, difficulty) {
     correct_answers: null, acceptable_answers: null, difficulty,
     explanation: raw.explanation || '',
     distractor_rationales: raw.choices.filter(c => c !== raw.correct_answer).map(c => ({ choice: c, reason: '' })),
-    blanks: null, graphic: null, domain: raw.domain, subskill: raw.subskill,
+    blanks: null, graphic: raw.graphic || null, domain: raw.domain, subskill: raw.subskill,
     topic_tag: raw.topic_tag || null,
     word_count: raw.passage ? raw.passage.split(/\s+/).filter(Boolean).length : null,
   }
@@ -150,6 +150,8 @@ async function main() {
         qc: 'blind Claude solvers + anchored Claude grader; no external model',
       },
       source: 'hand',
+      archived: false,
+      cohort: process.env.BANK_COHORT || 'v2',
     })
     if (error) { console.log(`ERR  ${label}: ${error.message}`); continue }
     seen.add(content_hash); inserted++

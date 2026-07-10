@@ -1,3 +1,27 @@
+# SAT item-bank pipeline (Claude-only, no external model)
+
+## Cohorts & archiving (added 2026-07-08)
+
+`study_item_bank` has two lifecycle columns: `archived boolean` (the
+served-gate — the assemble route serves only `archived=false AND
+verified=true`) and `cohort text` (a batch label). The full pre-2026-07-08
+set (515 rows) is archived under `cohort='legacy'` — kept for dedup and
+reference, never served, never deleted. New verified items go in as the
+`v2` cohort (`archived=false`), so the app now serves ONLY the fresh,
+figure-capable, triple-gated set. Both helpers tag inserts with
+`cohort = process.env.BANK_COHORT || 'v2'`; override per batch, e.g.
+`BANK_COHORT=v2 node ... insert batch.json qc.json`. To un-archive or
+re-cohort, just `update study_item_bank set archived=..., cohort=...`.
+
+**Figures:** an item renders a diagram in-app when
+`item.graphic = { type:'rawsvg', svg:'<svg…>', caption? }` (the
+TestSession `RawSvgFigure` escape hatch). The math helper builds this
+automatically from a top-level `svg` (and optional `caption`) field on the
+batch item — author the SVG from structured data so the figure stays
+verifiable.
+
+---
+
 # SAT R&W item-bank pipeline (Claude-only, no external model)
 
 Builds verified SAT Reading & Writing items in `study_item_bank`, authored

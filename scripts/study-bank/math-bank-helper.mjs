@@ -81,7 +81,9 @@ function toItem(raw) {
     choices: raw.choices, correct_answer: raw.correct_answer, correct_answers: null,
     acceptable_answers: null, difficulty: raw.difficulty, explanation: raw.explanation || '',
     distractor_rationales: raw.choices.filter(c => c !== raw.correct_answer).map(c => ({ choice: c, reason: '' })),
-    blanks: null, graphic: null, domain: raw.domain, subskill: raw.subskill,
+    blanks: null,
+    graphic: raw.svg ? { type: 'rawsvg', svg: raw.svg, caption: raw.caption || null } : (raw.graphic || null),
+    domain: raw.domain, subskill: raw.subskill,
     topic_tag: raw.topic_tag || null, word_count: null,
   }
 }
@@ -146,6 +148,8 @@ async function main() {
         blind_letter: q.blind_letter || null, qc: 'deterministic sandbox recompute; no external model',
       },
       source: 'hand',
+      archived: false,
+      cohort: process.env.BANK_COHORT || 'v2',
     })
     if (error) { console.log(`ERR    ${label}: ${error.message}`); continue }
     seen.add(content_hash); inserted++
