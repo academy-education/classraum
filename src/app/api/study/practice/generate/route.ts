@@ -5,10 +5,18 @@ import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { loadStudyPromptContext, renderTestPrepBlock } from '@/lib/study-prompt-context'
+import { drawBankPractice } from '@/lib/study/assemble'
 
 /**
  * POST /api/study/practice/generate — produce a batch of practice
  * questions for the topic this session is scoped to.
+ *
+ * PREMADE-FIRST: topics with bank coverage (SAT) are served from the
+ * pre-verified item bank — instant, free, no AI call. The daily
+ * challenge seeds the draw with the DATE so every student gets the
+ * same set that day. Live AI generation only remains for free-form
+ * "type anything" sessions and topics without bank coverage, and
+ * requires an active subscription (premade paths don't).
  *
  * Returns a plain JSON array. Questions are not persisted at
  * generation time — they land in study_attempts when the student
@@ -128,14 +136,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'bad json' }, { status: 400 })
   }
   const sessionId = body.sessionId
-  const count = Math.max(3, Math.min(10, body.count ?? 5))
   if (!sessionId) {
     return NextResponse.json({ error: 'missing sessionId' }, { status: 400 })
   }
 
   const { data: session } = await supabaseAdmin
     .from('study_sessions')
-    .select('id, student_id, mode, language, topic_id, topic_freeform')
+    .select('id, student_id, mode, language, topic_id, topic_freeform, config')
     .eq('id', sessionId)
     .maybeSingle()
 
@@ -146,6 +153,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session is not in practice mode' }, { status: 400 })
   }
 
+  // The session's own config wins over the client's per-call count so
+  // the free-form creator's question-count option actually sticks
+  // (PracticeSession always POSTs count:5).
+  const config = (session.config ?? {}) as {
+    questionCount?: number
+    difficultyBias?: string
+    dailyChallenge?: string
+  }
+  const count = Math.max(3, Math.min(10, config.questionCount ?? body.count ?? 5))
+
   // Topic context. Test-prep topics get a richer prompt with the
   // test's actual question-format guidance; subject topics keep the
   // existing concept-focused prompt. Free-form sessions (no topic_id)
@@ -154,9 +171,15 @@ export async function POST(req: NextRequest) {
   let topicName: string | null = session.topic_freeform ?? null
   let gradeRange: string | null = null
   let testPrepBlock = ''
+  let bankSection: 'math' | 'reading_writing' | null = null
   if (session.topic_id) {
     const ctx = await loadStudyPromptContext(session.topic_id, lang)
     if (ctx) {
+      // Bank coverage: SAT topics are served premade. Section comes
+      // from the subtopic; the test root defaults to R&W (largest pool).
+      if (ctx.testFamily === 'sat') {
+        bankSection = ctx.testSection && /math/i.test(ctx.testSection) ? 'math' : 'reading_writing'
+      }
       topicName = ctx.topicName
       gradeRange = ctx.gradeRange
       testPrepBlock = renderTestPrepBlock(ctx, lang)
@@ -174,13 +197,74 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session has no topic' }, { status: 400 })
   }
 
-  const prompt = testPrepBlock
+  // PREMADE PATH — serve from the verified item bank. No AI, no cost,
+  // no subscription required (this is the free tier: daily challenge +
+  // journey + topic practice all land here for SAT). Daily-challenge
+  // sessions seed by DATE so every student gets the same set that day;
+  // everything else seeds by session id (stable per session, varied
+  // across sessions).
+  if (bankSection) {
+    try {
+      const seed = config.dailyChallenge
+        ? `daily:${config.dailyChallenge}:${bankSection}`
+        : `session:${session.id}`
+      const questions = await drawBankPractice({
+        section: bankSection,
+        count,
+        seed,
+        studentId: user.id,
+        source: config.dailyChallenge ? 'daily_challenge' : 'practice',
+        sessionId: session.id,
+      })
+      if (questions.length > 0) {
+        return NextResponse.json({ questions, source: 'bank' })
+      }
+      // Empty bank → fall through to live generation below.
+    } catch (err) {
+      console.error('[practice/generate] bank draw failed, falling back to AI', err)
+    }
+  }
+
+  // LIVE AI PATH — free-form topics and tests without bank coverage.
+  // This is the costly path, so it stays behind the subscription wall
+  // (premade paths above deliberately skip this check).
+  const { data: sub } = await supabaseAdmin
+    .from('study_subscriptions')
+    .select('status, current_period_end')
+    .eq('student_id', user.id)
+    .maybeSingle()
+  // Free rows have no billing period — they're always in good standing
+  // (the 10-req/10-min rate limit bounds their AI usage). Paid/trial
+  // rows must still be inside their period.
+  const subActive = !!sub && (
+    sub.status === 'free'
+    || ((sub.status === 'trial' || sub.status === 'active')
+      && !!sub.current_period_end
+      && new Date(sub.current_period_end as string) > new Date())
+  )
+  if (!subActive) {
+    return NextResponse.json({ error: 'subscription required', reason: 'no_subscription' }, { status: 403 })
+  }
+
+  // Difficulty bias — set by the free-form creator's options row.
+  const biasLine =
+    config.difficultyBias === 'warmup'
+      ? (lang === 'ko'
+          ? '\n\n난이도 지시: 쉬운 문제 위주로 구성하세요 (easy 다수, medium 소수, hard 금지).'
+          : '\n\nDifficulty directive: skew easier — mostly easy, a few medium, no hard questions.')
+      : config.difficultyBias === 'challenge'
+        ? (lang === 'ko'
+            ? '\n\n난이도 지시: 어려운 문제 위주로 구성하세요 (hard 다수, medium 소수, easy 금지).'
+            : '\n\nDifficulty directive: skew harder — mostly hard, a few medium, no easy questions.')
+        : ''
+
+  const prompt = (testPrepBlock
     ? (lang === 'ko'
         ? TEST_PROMPT_KO(topicName, count, testPrepBlock)
         : TEST_PROMPT_EN(topicName, count, testPrepBlock))
     : (lang === 'ko'
         ? SUBJECT_PROMPT_KO(topicName, gradeRange, count)
-        : SUBJECT_PROMPT_EN(topicName, gradeRange, count))
+        : SUBJECT_PROMPT_EN(topicName, gradeRange, count))) + biasLine
 
   const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
   try {

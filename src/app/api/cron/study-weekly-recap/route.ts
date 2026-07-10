@@ -59,9 +59,10 @@ export async function GET(req: NextRequest) {
       .from('study_attempts')
       .select(`
         is_correct, time_spent_seconds, created_at, topic_id,
-        session:study_sessions!inner ( student_id )
+        session:study_sessions!inner ( student_id, archived )
       `)
       .eq('session.student_id', studentId)
+      .eq('session.archived', false)
       .gte('created_at', sevenDaysAgo)
 
     if (!attempts || attempts.length === 0) {

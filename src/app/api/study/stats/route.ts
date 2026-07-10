@@ -42,14 +42,19 @@ export async function GET(req: NextRequest) {
     supabaseAdmin
       .from('study_sessions')
       .select('id', { count: 'exact', head: true })
-      .eq('student_id', user.id),
+      .eq('student_id', user.id)
+      .eq('archived', false),
+    // Archived sessions (and every question answered inside them) are
+    // excluded from all aggregates — matching the history page, which
+    // hides archived sessions entirely.
     supabaseAdmin
       .from('study_attempts')
       .select(`
         id, is_correct, time_spent_seconds, created_at,
-        session:study_sessions!inner ( student_id )
+        session:study_sessions!inner ( student_id, archived )
       `)
-      .eq('session.student_id', user.id),
+      .eq('session.student_id', user.id)
+      .eq('session.archived', false),
     supabaseAdmin
       .from('study_mastery')
       .select(`
@@ -108,6 +113,7 @@ export async function GET(req: NextRequest) {
       topic:study_topics ( name_en, name_ko, slug )
     `)
     .eq('student_id', user.id)
+    .eq('archived', false)
     .eq('mode', 'full_test')
     .eq('status', 'completed')
     .not('score', 'is', null)

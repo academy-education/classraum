@@ -52,46 +52,29 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  // No session yet — pick the topic for today's challenge.
-  // Priority: weakest mastery (score < 80, attempts >= 2). Fall back to
-  // the most-recent topic the student has touched. Fall back to null
-  // (no topic available — UI will offer to start later when the student
-  // has any history).
-  const [{ data: weak }, { data: recent }] = await Promise.all([
-    supabaseAdmin
-      .from('study_mastery')
-      .select(`score, attempts_count, topic:study_topics ( id, slug, name_en, name_ko )`)
-      .eq('student_id', user.id)
-      .lt('score', 80)
-      .gte('attempts_count', 2)
-      .order('score', { ascending: true })
-      .limit(1),
-    supabaseAdmin
-      .from('study_sessions')
-      .select(`topic_id, topic:study_topics ( id, slug, name_en, name_ko )`)
-      .eq('student_id', user.id)
-      .not('topic_id', 'is', null)
-      .order('last_active_at', { ascending: false })
-      .limit(1),
-  ])
-
-  let topic: { id: string; slug: string; name_en: string; name_ko: string } | null = null
-  let isWeak = false
-  if (weak && weak[0]) {
-    const tRaw = weak[0].topic as unknown
-    topic = (Array.isArray(tRaw) ? tRaw[0] : tRaw) as typeof topic ?? null
-    isWeak = !!topic
-  }
-  if (!topic && recent && recent[0]) {
-    const tRaw = recent[0].topic as unknown
-    topic = (Array.isArray(tRaw) ? tRaw[0] : tRaw) as typeof topic ?? null
-  }
+  // No session yet — today's challenge is a PREMADE set drawn from the
+  // SAT item bank, identical for every student (practice/generate seeds
+  // the draw with the date). The section alternates by date so Math and
+  // Reading & Writing days interleave. Free: no subscription or credit
+  // is involved anywhere in this flow.
+  const slug = dailyChallengeSlug(today)
+  const { data: topicRow } = await supabaseAdmin
+    .from('study_topics')
+    .select('id, slug, name_en, name_ko')
+    .eq('slug', slug)
+    .maybeSingle()
 
   return NextResponse.json({
     date: today,
     sessionId: null,
     completed: false,
-    topic,
-    weak: isWeak,
+    topic: topicRow ?? null,
+    weak: false,
   })
+}
+
+/** Global section-of-the-day: even days → R&W, odd days → Math. */
+function dailyChallengeSlug(date: string): string {
+  const dayNum = Math.floor(Date.parse(`${date}T00:00:00Z`) / 86400_000)
+  return dayNum % 2 === 0 ? 'sat-reading-writing' : 'sat-math'
 }

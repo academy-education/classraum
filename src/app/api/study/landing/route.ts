@@ -89,6 +89,7 @@ export async function GET(req: NextRequest) {
         topic:study_topics ( name_en, name_ko )
       `)
       .eq('student_id', user.id)
+      .eq('archived', false)
       .neq('status', 'completed')
       .order('last_active_at', { ascending: false })
       .limit(1)
@@ -97,16 +98,20 @@ export async function GET(req: NextRequest) {
       .from('study_sessions')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', user.id)
+      .eq('archived', false)
       .eq('mode', 'full_test')
       .eq('status', 'active')
       .eq('generation_status', 'ready'),
+    // Archived sessions' questions don't count toward today's totals —
+    // consistent with the stats page and history.
     supabaseAdmin
       .from('study_attempts')
       .select(`
         time_spent_seconds, created_at,
-        session:study_sessions!inner ( student_id, id )
+        session:study_sessions!inner ( student_id, id, archived )
       `)
       .eq('session.student_id', user.id)
+      .eq('session.archived', false)
       .gte('created_at', todayIso),
     supabaseAdmin
       .from('study_user_prefs')

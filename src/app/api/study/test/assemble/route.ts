@@ -8,10 +8,9 @@ import { assembleFromBank } from '@/lib/study/assemble'
  *
  * Unlike /generate this is INSTANT (a DB query, not a 12-minute model
  * run) and free — every banked item is already verified, so there's no
- * per-test AI cost. It therefore does NOT consume a generation credit:
- * a subscription grants unlimited bank practice; credits are for the
- * AI-generated custom tests only. Still gated on an active/trial
- * subscription so it stays inside the paywall.
+ * per-test AI cost. It consumes no credit AND requires no subscription:
+ * premade tests (journey, bank practice, daily challenge) are the free
+ * tier. Credits + subscription gate only the live AI generator.
  *
  * Writes the assembled payload as the same `[full-test-v1]` cache row
  * the generator emits, so the existing TestSession UI + submit grading
@@ -41,17 +40,6 @@ export async function POST(req: NextRequest) {
   if (!section) return NextResponse.json({ error: 'section must be math or reading_writing' }, { status: 400 })
   const count = Math.min(Math.max(Number(body.count) || 22, 5), 54)
 
-  // Subscription gate (trial or active, still in period). No credit spend.
-  const { data: sub } = await supabaseAdmin
-    .from('study_subscriptions')
-    .select('status, current_period_end')
-    .eq('student_id', user.id)
-    .maybeSingle()
-  const inPeriod = sub?.current_period_end ? new Date(sub.current_period_end).getTime() > Date.now() : false
-  if (!sub || !['trial', 'active'].includes(sub.status) || !inPeriod) {
-    return NextResponse.json({ error: 'no active subscription', reason: 'no_subscription' }, { status: 403 })
-  }
-
   // Assemble from the bank. Seed with the (not-yet-created) session id so
   // the shuffle is stable per session; fall back to a fresh session first.
   const { data: sess, error: sessErr } = await supabaseAdmin
@@ -67,7 +55,7 @@ export async function POST(req: NextRequest) {
 
   let test
   try {
-    test = await assembleFromBank({ section, count }, sess.id)
+    test = await assembleFromBank({ section, count, studentId: user.id }, sess.id)
   } catch (e) {
     // Not enough verified items for this section — roll back the session.
     await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
