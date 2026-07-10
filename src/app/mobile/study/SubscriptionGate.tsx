@@ -2,31 +2,27 @@
 
 import { ReactNode, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Loader2, Lock, CreditCard } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 
 /**
- * Phase 0 subscription gate for the study system.
+ * Study access gate — freemium model.
  *
- * Behaviour at this stage:
- * - First visit ever: auto-provision a 7-day trial row and continue.
- * - Trial / active row with `current_period_end > now`: render children.
- * - Cancelled / expired: render a placeholder paywall (Phase 4 will
- *   replace this with the real PortOne checkout button).
- *
- * The gate is intentionally generous in Phase 0 — we want every
- * authenticated student who lands on a study page to be inside the
- * funnel immediately so we can validate the experience. Billing-side
- * hardening (webhook reconciliation, grace periods, etc.) lands with
- * the PortOne integration in Phase 4.
+ * - First visit ever: auto-provision a FREE plan row (one-time 3 AI
+ *   credits) and continue.
+ * - Any existing row (free / trial / active / lapsed): render children.
+ *   There is no hard paywall — lapsed subscribers fall back to the
+ *   free experience, and paid features (AI generation credits, premium
+ *   capabilities) are enforced server-side per request.
+ * - The gate's real jobs are provisioning, the signed-out escape
+ *   hatch, and a retry surface for transient read failures.
  */
 
 type State =
   | { kind: 'loading' }
   | { kind: 'allowed' }
-  | { kind: 'paywall'; status: 'expired' | 'cancelled' }
   | { kind: 'unauthenticated' }
   | { kind: 'error' }
 
@@ -63,31 +59,28 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
         return
       }
 
-      // No row yet → first study visit. Provision a 7-day trial. The
-      // default column values in the migration already do the right
-      // thing (status='trial', period_end = now() + 7 days, plan =
-      // monthly_v1) so we only need to write student_id + status.
+      // No row yet → first study visit. Provision the FREE plan:
+      // premade content is unlimited, plus a one-time 3-credit grant
+      // for AI generation. Replaces the old auto 7-day trial (which
+      // confusingly showed "Cancel subscription" to people who never
+      // subscribed). Free rows never expire, so no period fields.
       if (!existing) {
-        const trialEnds = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
         const { error: insertError } = await supabase
           .from('study_subscriptions')
           .insert({
             student_id: user.id,
-            status: 'trial',
-            trial_ends_at: trialEnds,
-            current_period_end: trialEnds,
-            // Trial allotment — enough to experience the full-test
-            // flow a few times before choosing a plan. Keep in sync
-            // with TRIAL_CREDITS in src/lib/study/plans.ts (client
-            // component, so the constant isn't imported server-side).
+            status: 'free',
+            plan: 'free_v1',
+            // Keep in sync with FREE_CREDITS in src/lib/study/plans.ts
+            // (client component, so the constant isn't imported).
             grant_credits_remaining: 3,
           })
         if (!cancelled) {
-          // On insert success → allow through (the trial row is now valid
-          // for the next 7 days). On insert failure → paywall as a safe
-          // fallback so we don't ship study access without a record.
+          // On insert success → allow through. On insert failure show
+          // the retry state — free access shouldn't dead-end on a
+          // transient write error.
           if (insertError) {
-            setState({ kind: 'paywall', status: 'expired' })
+            setState({ kind: 'error' })
           } else {
             setState({ kind: 'allowed' })
           }
@@ -95,20 +88,11 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
         return
       }
 
-      const now = Date.now()
-      const periodEnd = new Date(existing.current_period_end).getTime()
-      const stillInPeriod = periodEnd > now
-      const statusOk = existing.status === 'trial' || existing.status === 'active'
-
-      if (statusOk && stillInPeriod) {
-        setState({ kind: 'allowed' })
-        return
-      }
-
-      setState({
-        kind: 'paywall',
-        status: existing.status === 'cancelled' ? 'cancelled' : 'expired',
-      })
+      // Everyone with a row gets in. Paid features are enforced
+      // server-side (credits for AI generation, premium gates); a
+      // lapsed subscriber simply falls back to the free experience —
+      // there is no hard paywall anymore.
+      setState({ kind: 'allowed' })
       } catch {
         // Network/unexpected throw — without this the gate spins forever
         // and blocks the entire study module. Show a retry instead.
@@ -154,31 +138,6 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
             is fully trapped on this screen. */}
         <Link href="/auth" className="text-primary font-medium underline underline-offset-2">
           {language === 'korean' ? '로그인' : 'Sign in'}
-        </Link>
-      </div>
-    )
-  }
-
-  if (state.kind === 'paywall') {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-6 text-center">
-        <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-          <Lock className="w-6 h-6" />
-        </div>
-        <h1 className="text-lg font-semibold text-gray-900 mb-1">
-          {state.status === 'expired'
-            ? (t('study.gate.expiredTitle') ?? 'Your study access has expired')
-            : (t('study.gate.cancelledTitle') ?? 'Your study subscription was cancelled')}
-        </h1>
-        <p className="text-sm text-gray-500 max-w-sm mb-6">
-          {t('study.gate.renewBody') ?? 'Renew to continue your sessions and keep your saved progress.'}
-        </p>
-        <Link
-          href="/mobile/study/subscription"
-          className="inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
-        >
-          <CreditCard className="w-4 h-4" />
-          {t('study.gate.renewCta') ?? 'Manage subscription'}
         </Link>
       </div>
     )

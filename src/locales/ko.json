@@ -3754,7 +3754,14 @@
       "accountCreationFailed": "사용자 계정 생성에 실패했습니다",
       "profileCreationFailed": "경고: 프로필을 생성할 수 없습니다. 고객센터에 문의해 주세요.",
       "familyAssociationFailed": "경고: 가족 연결을 생성할 수 없습니다. 고객센터에 문의해 주세요.",
-      "checkEmail": "계정이 생성되었습니다! 이메일에서 확인 링크를 확인해 주세요."
+      "checkEmail": "계정이 생성되었습니다! 이메일에서 확인 링크를 확인해 주세요.",
+      "intentLabel": "계정 유형",
+      "intentStudy": "개인 학습",
+      "intentStudyDesc": "혼자서 하는 AI 시험 대비",
+      "intentAcademy": "학원 회원",
+      "intentAcademyDesc": "학원 소속으로 가입",
+      "studyNote": "바로 학습을 시작할 수 있어요. 나중에 초대 링크로 학원에 가입할 수 있습니다.",
+      "academyInviteHint": "학원에서 받은 초대 링크로 열면 아래 정보가 자동으로 입력됩니다."
     },
     "form": {
       "labels": {
@@ -3958,7 +3965,8 @@
       "statusPastDue": "결제 실패",
       "statusCancelled": "취소됨",
       "statusExpired": "만료됨",
-      "statusCancelling": "취소 예정"
+      "statusCancelling": "취소 예정",
+      "statusFree": "무료"
     },
     "landing": {
       "eyebrow": "공부",
@@ -3977,7 +3985,7 @@
       "freeformTitle": "또는 직접 입력",
       "freeformPlaceholder": "예: \"제2차 세계대전\" 또는 \"이차방정식\"",
       "freeformGo": "시작",
-      "freeformHint": "AI가 과목을 파악해 채팅 세션을 시작합니다.",
+      "freeformHint": "입력한 내용으로 AI가 맞춤 문제 세트를 만들어요. 자세히 쓸수록 더 정확해집니다.",
       "topicCountSingular": "주제 {count}개",
       "topicCountPlural": "주제 {count}개",
       "resumeTitle": "최근 세션",

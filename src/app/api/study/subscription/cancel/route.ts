@@ -23,6 +23,9 @@ export async function POST(req: NextRequest) {
     .from('study_subscriptions')
     .update({ cancel_at_period_end: true, updated_at: new Date().toISOString() })
     .eq('student_id', user.id)
+    // Only live paid subscriptions can be cancelled — free/expired/
+    // cancelled rows have nothing to cancel (mirrors reactivate).
+    .in('status', ['trial', 'active'])
 
   if (error) return NextResponse.json({ error: 'cancel failed' }, { status: 500 })
   return NextResponse.json({ success: true })

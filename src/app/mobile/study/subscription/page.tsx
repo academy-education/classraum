@@ -9,11 +9,12 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubPageHeader } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
+import { FREE_CREDITS } from '@/lib/study/plans'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
 
 interface Subscription {
-  status: 'trial' | 'active' | 'past_due' | 'cancelled' | 'expired'
+  status: 'free' | 'trial' | 'active' | 'past_due' | 'cancelled' | 'expired'
   plan: string
   pending_plan: string | null
   price_cents: number
@@ -99,8 +100,13 @@ export default function SubscriptionPage() {
 
   const isActive = sub?.status === 'active'
   const isTrial = sub?.status === 'trial'
-  const needsCheckout = !sub || sub.status === 'expired' || sub.status === 'cancelled' || sub.status === 'past_due' || isTrial
-  const currentPlanId = isActive ? (data?.planMeta?.id ?? sub?.plan ?? null) : null
+  const isFree = !sub || sub.status === 'free'
+  // Anyone not on a live paid subscription goes through checkout to
+  // start one — free users, lapsed subscribers, and legacy trials.
+  const needsCheckout = isFree || sub?.status === 'expired' || sub?.status === 'cancelled' || sub?.status === 'past_due' || isTrial
+  const currentPlanId = isActive
+    ? (data?.planMeta?.id ?? sub?.plan ?? null)
+    : isFree ? 'free_v1' : null
   const currentTier = data?.tier ?? 'general'
   const credits = data?.credits ?? {
     grant: sub?.grant_credits_remaining ?? 0,
@@ -318,6 +324,7 @@ export default function SubscriptionPage() {
             const isCurrent = currentPlanId === plan.id
             const isPending = isActive && sub?.pending_plan === plan.id
             const premium = plan.tier === 'premium'
+            const isFreePlan = plan.id === 'free_v1'
             const busy = acting === `checkout:${plan.id}` || acting === `change:${plan.id}`
             return (
               <div
@@ -347,13 +354,17 @@ export default function SubscriptionPage() {
                   </div>
                   <div className="text-2xl font-semibold tracking-tight text-gray-900">
                     {formatWon(plan.priceWon)}
-                    <span className="text-sm font-normal text-gray-400"> / {t('study.subscription.month')}</span>
+                    {!isFreePlan && (
+                      <span className="text-sm font-normal text-gray-400"> / {t('study.subscription.month')}</span>
+                    )}
                   </div>
                 </div>
 
                 <ul className="space-y-2 text-[13px] text-gray-600 flex-1">
                   <Feature ok>
-                    {ko ? `매달 테스트 크레딧 ${plan.monthlyCredits}개` : `${plan.monthlyCredits} test credits every month`}
+                    {isFreePlan
+                      ? (ko ? `가입 시 AI 테스트 크레딧 ${FREE_CREDITS}개 (1회)` : `${FREE_CREDITS} AI test credits at signup (one-time)`)
+                      : (ko ? `매달 테스트 크레딧 ${plan.monthlyCredits}개` : `${plan.monthlyCredits} test credits every month`)}
                   </Feature>
                   <Feature ok>
                     {ko ? 'AI 튜터 · 문제 연습 · 플래시카드 무제한' : 'Unlimited AI tutor, practice & flashcards'}
@@ -374,7 +385,11 @@ export default function SubscriptionPage() {
                   </Feature>
                 </ul>
 
-                {isNative ? (
+                {isFreePlan && !isCurrent ? (
+                  <div className="h-11 rounded-full bg-gray-50 ring-1 ring-gray-200/50 text-gray-400 text-[12.5px] font-medium inline-flex items-center justify-center text-center px-3">
+                    {ko ? '유료 플랜이 없을 때 자동 적용돼요' : 'Applied automatically without a paid plan'}
+                  </div>
+                ) : isNative ? (
                   !isCurrent && (
                     <a
                       href="https://app.classraum.com/mobile/study/subscription"
@@ -503,6 +518,7 @@ function StatusPill({ status, cancelling }: { status: Subscription['status']; ca
     return <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 ring-1 ring-amber-200">{t('study.subscription.statusCancelling')}</span>
   }
   const map: Record<Subscription['status'], { cls: string; label: string }> = {
+    free:      { cls: 'bg-gray-100 text-gray-700 ring-gray-200',         label: t('study.subscription.statusFree') as string },
     trial:     { cls: 'bg-primary/10 text-primary ring-primary/30',     label: t('study.subscription.statusTrial') as string },
     active:    { cls: 'bg-emerald-50 text-emerald-700 ring-emerald-200', label: t('study.subscription.statusActive') as string },
     past_due:  { cls: 'bg-amber-50 text-amber-700 ring-amber-200',       label: t('study.subscription.statusPastDue') as string },

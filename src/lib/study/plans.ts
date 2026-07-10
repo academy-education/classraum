@@ -24,6 +24,18 @@ export interface StudyPlan {
 }
 
 export const STUDY_PLANS: Record<string, StudyPlan> = {
+  free_v1: {
+    id: 'free_v1',
+    tier: 'general',
+    priceWon: 0,
+    // One-time FREE_CREDITS grant at signup — never reset by the
+    // billing cron (free rows have status 'free', which the cron and
+    // renewal paths never touch).
+    monthlyCredits: 0,
+    orderName: 'Classraum Study — Free',
+    name_en: 'Free',
+    name_ko: '무료',
+  },
   general_v1: {
     id: 'general_v1',
     tier: 'general',
@@ -55,6 +67,11 @@ export const CREDIT_PACK = {
 
 /** Credits granted when the 7-day trial row is auto-provisioned. */
 export const TRIAL_CREDITS = 3
+
+/** One-time AI-generation credits granted with the auto-provisioned
+ *  Free plan. Premade (bank) tests never consume credits, so these
+ *  only meter the live AI generator. */
+export const FREE_CREDITS = 3
 
 /** Resolve a subscription row's plan id to a catalog entry. Legacy
  *  'monthly_v1' rows (pre-tier era) are grandfathered as General. */

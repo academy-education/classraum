@@ -3697,7 +3697,14 @@
       "accountCreationFailed": "Failed to create user account",
       "profileCreationFailed": "Warning: Your profile could not be created. Please contact support.",
       "familyAssociationFailed": "Warning: Family association could not be created. Please contact support.",
-      "checkEmail": "Account created! Please check your email for the confirmation link."
+      "checkEmail": "Account created! Please check your email for the confirmation link.",
+      "intentLabel": "Account type",
+      "intentStudy": "Self-study",
+      "intentStudyDesc": "AI test prep on your own",
+      "intentAcademy": "Academy member",
+      "intentAcademyDesc": "Join with your academy",
+      "studyNote": "Start studying right away. You can join an academy later with an invite link.",
+      "academyInviteHint": "Have an invite link from your academy? Opening it fills these fields automatically."
     },
     "form": {
       "labels": {
@@ -3901,7 +3908,8 @@
       "statusPastDue": "Payment failed",
       "statusCancelled": "Cancelled",
       "statusExpired": "Expired",
-      "statusCancelling": "Cancelling"
+      "statusCancelling": "Cancelling",
+      "statusFree": "Free"
     },
     "landing": {
       "eyebrow": "Study",
@@ -3920,7 +3928,7 @@
       "freeformTitle": "Or type anything",
       "freeformPlaceholder": "e.g. \"World War 2\" or \"quadratic equations\"",
       "freeformGo": "Go",
-      "freeformHint": "AI will figure out the subject and start a chat session.",
+      "freeformHint": "AI builds a custom question set from what you type. More detail = better questions.",
       "topicCountSingular": "{count} topic",
       "topicCountPlural": "{count} topics",
       "resumeTitle": "Recent sessions",

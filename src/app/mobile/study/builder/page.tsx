@@ -17,10 +17,30 @@ interface TopicRow {
   name_en: string
   name_ko: string
   parent_id: string | null
+  category: string
+  parent: { slug: string; name_en: string; name_ko: string } | { slug: string; name_en: string; name_ko: string }[] | null
 }
 
 const COUNT_PRESETS = [10, 20, 30, 50]
 const TIME_PRESETS = [15, 30, 45, 60, 90]
+
+/** Test roots whose sections may appear in the builder. Everything
+ *  else is coming-soon and would only add ambiguous entries (four
+ *  locked tests all have a section literally named "Writing"). */
+const OPEN_TEST_ROOT_SLUGS = new Set(['test-sat'])
+/** Mirrors the topic page's HIDDEN_SUBTOPIC_SLUGS. */
+const HIDDEN_BUILDER_SLUGS = new Set(['sat-essay'])
+
+/** Display label: test sections carry their family ("SAT · Math") so
+ *  same-named sections can never be confused; subjects keep their name. */
+function topicLabel(topic: TopicRow, ko: boolean): string {
+  const name = ko ? topic.name_ko : topic.name_en
+  if (topic.category !== 'test_prep') return name
+  const parent = Array.isArray(topic.parent) ? topic.parent[0] : topic.parent
+  if (!parent) return name
+  const family = (ko ? parent.name_ko : parent.name_en).replace(/^test[- ]/i, '')
+  return `${family} · ${name}`
+}
 
 /**
  * Custom test builder — pick a topic + question count + time + difficulty
@@ -54,8 +74,10 @@ function BuilderInner() {
   const { errorToast, showError } = useStudyErrorToast()
   const [loadingTopics, setLoadingTopics] = useState(true)
 
-  // Load every leaf topic the student can target. Both subject and
-  // test_prep leaves; user picks via the dropdown.
+  // Load the leaf topics the student can target: subject leaves plus
+  // test_prep leaves of OPEN tests only. Without the family filter the
+  // dropdown listed four adjacent "Writing" rows (TOEFL/TOEIC/IELTS/ACT
+  // sections — all locked tests) with no way to tell them apart.
   useEffect(() => {
     let cancelled = false
     void (async () => {
@@ -65,12 +87,34 @@ function BuilderInner() {
         .not('parent_id', 'is', null)
         .order('name_en', { ascending: true })
       if (cancelled) return
-      // Keep only leaves (no children of their own).
-      const leaves = (data ?? []).filter(t => {
-        const kids = (t as unknown as { children: { id: string }[] }).children
-        return !kids || kids.length === 0
+      // Parent rows (for family filtering + labels) in one extra query —
+      // PostgREST can't embed both directions of a self-FK reliably.
+      const parentIds = [...new Set((data ?? []).map(r => r.parent_id as string).filter(Boolean))]
+      const { data: parentRows } = await supabase
+        .from('study_topics')
+        .select('id, slug, name_en, name_ko')
+        .in('id', parentIds)
+      if (cancelled) return
+      const parentById = new Map((parentRows ?? []).map(p => [p.id as string, p]))
+
+      const leaves = (data ?? []).flatMap(t => {
+        const row = t as unknown as {
+          slug: string
+          category: string
+          parent_id: string
+          children: { id: string }[]
+        }
+        // Keep only leaves (no children of their own).
+        if (row.children && row.children.length > 0) return []
+        if (HIDDEN_BUILDER_SLUGS.has(row.slug)) return []
+        const parent = parentById.get(row.parent_id) ?? null
+        // Test-prep leaves: only families that are open (SAT for now).
+        if (row.category === 'test_prep') {
+          if (!parent || !OPEN_TEST_ROOT_SLUGS.has(parent.slug as string)) return []
+        }
+        return [{ ...(t as object), parent } as unknown as TopicRow]
       })
-      setTopics(leaves as TopicRow[])
+      setTopics(leaves)
       setLoadingTopics(false)
     })()
     return () => { cancelled = true }
@@ -145,7 +189,7 @@ function BuilderInner() {
             className="w-full flex items-center justify-between gap-3 px-4 h-12 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-primary/25 transition-all"
           >
             <span className={`text-[15px] font-semibold ${selectedTopic ? 'text-gray-900' : 'text-gray-400'}`}>
-              {selectedTopic ? (ko ? selectedTopic.name_ko : selectedTopic.name_en) : String(t('study.builder.topicPlaceholder'))}
+              {selectedTopic ? topicLabel(selectedTopic, ko) : String(t('study.builder.topicPlaceholder'))}
             </span>
             <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${topicPickerOpen ? 'rotate-180' : ''}`} />
           </button>
@@ -162,7 +206,7 @@ function BuilderInner() {
                       selected ? 'bg-primary/[0.06] text-primary font-semibold' : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
-                    <span className="truncate">{ko ? topic.name_ko : topic.name_en}</span>
+                    <span className="truncate">{topicLabel(topic, ko)}</span>
                     {selected && <Check className="w-4 h-4 flex-shrink-0" />}
                   </button>
                 )

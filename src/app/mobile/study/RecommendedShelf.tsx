@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2, Camera } from 'lucide-react'
@@ -10,6 +11,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import type { StudyMode } from './modes'
 import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
+import { useLandingData } from './LandingDataProvider'
 
 interface Card {
   reason: 'weak' | 'recent' | 'snap_followup'
@@ -47,6 +49,7 @@ export function RecommendedShelf() {
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
   const { errorToast, showError } = useStudyErrorToast()
+  const targetTest = useLandingData()?.prefs?.target_test ?? null
 
   useEffect(() => {
     let cancelled = false
@@ -125,13 +128,33 @@ export function RecommendedShelf() {
           </div>
         </SkeletonCard>
       ) : cards.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-gray-200 bg-white px-5 py-8 text-center">
+        // Nothing to recommend yet. Without a target test the fix is to
+        // pick one (recommendations anchor on it); with one it's simply
+        // "study a bit first".
+        <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-5 py-8 text-center">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white ring-1 ring-gray-200/70 mx-auto mb-3">
             <Lightbulb className="w-5 h-5 text-gray-300" />
           </div>
-          <p className="text-[13.5px] text-gray-500 leading-relaxed max-w-[24ch] mx-auto">
-            {t('study.landing.recommendedEmpty')}
-          </p>
+          {!targetTest ? (
+            <>
+              <p className="text-[13.5px] text-gray-500 leading-relaxed max-w-[26ch] mx-auto">
+                {ko
+                  ? '목표 시험을 선택하면 맞춤 추천이 시작돼요.'
+                  : 'Pick a target test to unlock personalized picks.'}
+              </p>
+              <Link
+                href="/mobile/study/path"
+                className="inline-flex items-center gap-1.5 mt-3 h-9 px-4 rounded-full bg-gray-900 text-white text-[13px] font-semibold hover:bg-gray-800 active:scale-[0.98] transition"
+              >
+                {ko ? '목표 시험 선택' : 'Choose a test'}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </>
+          ) : (
+            <p className="text-[13.5px] text-gray-500 leading-relaxed max-w-[24ch] mx-auto">
+              {t('study.landing.recommendedEmpty')}
+            </p>
+          )}
         </div>
       ) : (
         <div className="space-y-2">

@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, Layers as LayersIcon } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap } from 'lucide-react'
 import { StudySubPageHeader } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -13,6 +13,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
+import { DailyChallengeCard } from '../../_shared/DailyChallengeCard'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import type { TestFamily } from '@/lib/study-prompt-context'
 
@@ -44,7 +45,7 @@ interface Topic {
 // landing grid — must also block deep-link access here so users
 // can't bypass the lock with a direct URL or back-button.
 const LOCKED_TOPIC_SLUGS = new Set([
-  'test-ksat', 'test-toeic', 'test-ielts', 'test-act', 'test-ap', 'test-gre',
+  'test-toefl', 'test-ksat', 'test-toeic', 'test-ielts', 'test-act', 'test-ap', 'test-gre',
 ])
 
 export default function TopicPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -71,7 +72,7 @@ function LockedTopicView() {
       <div>
         <h1 className="text-[18px] font-semibold text-gray-900">Coming soon</h1>
         <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs leading-relaxed">
-          This test isn&apos;t available yet. Currently only SAT and TOEFL are open.
+          This test isn&apos;t available yet. Currently only the SAT is open.
         </p>
       </div>
       <Link
@@ -95,6 +96,8 @@ function TopicInner({ slug }: { slug: string }) {
   const [selectedChildId, setSelectedChildId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<StudyMode | null>(null)
+  // Test-prep layout tab: premade mock tests vs learning modes.
+  const [tab, setTab] = useState<'tests' | 'practice'>('tests')
   const [bankBusy, setBankBusy] = useState(false)
   const { errorToast, showError } = useStudyErrorToast()
   const [testSheetOpen, setTestSheetOpen] = useState(false)
@@ -203,6 +206,13 @@ function TopicInner({ slug }: { slug: string }) {
   const startSession = async (mode: StudyMode, config?: TestConfig, overrideLanguage?: 'en' | 'ko') => {
     const target = effectiveTopic
     if (!target || !user?.userId) return
+    // PREMADE-FIRST: SAT full tests are assembled instantly from the
+    // verified item bank, never AI-generated. Live generation is
+    // reserved for the free-form "type anything" creator.
+    if (mode === 'full_test' && parseTestSlug(target.slug).family === 'sat') {
+      void startBankTest()
+      return
+    }
     setCreating(mode)
     // Full-test sessions lock language to the test's native language
     // (KSAT → ko, everything else → en) via overrideLanguage. Other
@@ -302,6 +312,57 @@ function TopicInner({ slug }: { slug: string }) {
 
   const name = (n: { name_en: string; name_ko: string }) => ko ? n.name_ko : n.name_en
 
+  // The 2x2 learning-mode grid — shared by the subject layout and the
+  // test-prep "Practice" tab.
+  const modeGrid = (
+    <section className="grid grid-cols-2 gap-3">
+      {STUDY_MODES
+        .filter(m => m.key !== 'full_test')
+        .filter(m => m.key !== 'response')
+        .map((mode, i) => {
+          const Icon = mode.icon
+          // Per-mode ambient decoration — small glyph cluster that
+          // hints at what the mode does. Chat → dots, Practice →
+          // checkmarks, Lesson → reading lines, Flashcards → stacked
+          // card edges. Brilliant-style ambient texture.
+          const decor = MODE_DECOR[mode.key] ?? null
+          return (
+            <button
+              key={mode.key}
+              type="button"
+              onClick={() => startSession(mode.key)}
+              disabled={creating !== null}
+              style={{ animationDelay: `${i * 60}ms` }}
+              className={`group relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${mode.hoverRing} ${mode.hoverShadow} hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out text-left disabled:opacity-60 disabled:cursor-wait animate-card-in opacity-0`}
+            >
+              {/* Top edge highlight */}
+              <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+              {/* Decorative glow blob, mode-tinted */}
+              <div aria-hidden className={`pointer-events-none absolute -top-8 -right-8 w-24 h-24 rounded-full ${mode.iconBg} opacity-[0.12] blur-2xl group-hover:opacity-[0.20] transition-opacity duration-300`} />
+              {/* Mode-specific decoration */}
+              {decor}
+
+              <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04] group-hover:scale-105 transition-transform duration-300`}>
+                {creating === mode.key ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <Icon className="w-5 h-5" />
+                )}
+              </div>
+              <div className="relative">
+                <div className={`text-[15px] font-semibold text-gray-900 ${mode.hoverText} transition-colors`}>
+                  {t(`study.modes.${mode.key}.title`)}
+                </div>
+                <div className="text-[13px] text-gray-600 mt-1 leading-relaxed">
+                  {t(`study.modes.${mode.key}.body`)}
+                </div>
+              </div>
+            </button>
+          )
+        })}
+    </section>
+  )
+
   return (
     <div className="relative">
       {errorToast}
@@ -367,76 +428,89 @@ function TopicInner({ slug }: { slug: string }) {
         )}
 
         {/* Mode picker.
-            - Test-prep topics get a featured full-width "Full test"
-              tile at the top (it's the marquee mode for that surface),
-              then the four learning modes in a 2x2 grid below.
+            - Test-prep topics split into two tabs: "Full tests" (the
+              marquee premade mock test + the student's recent results)
+              and "Practice" (the four learning modes + today's
+              challenge). Keeps test-taking and question drilling from
+              competing on one scroll.
             - Subject topics omit Full test entirely — taking a "mock
               test" on Algebra is awkward; practice + lesson fit better.
          */}
-        {topic.category === 'test_prep' && (
-          <FeaturedFullTestCard
-            startSession={() => openTestSheet()}
-            creating={creating}
-            t={t}
-          />
-        )}
-        {topic.category === 'test_prep'
-          && effectiveTopic && parseTestSlug(effectiveTopic.slug).family === 'sat' && (
-          <BankPracticeCard onStart={() => void startBankTest()} busy={bankBusy} ko={ko} />
-        )}
-        {isResponseEligible(effectiveTopic?.slug) && (
-          <FeaturedResponseCard
-            startSession={() => startSession('response')}
-            creating={creating}
-            t={t}
-          />
-        )}
-        <section className="grid grid-cols-2 gap-3">
-          {STUDY_MODES
-            .filter(m => m.key !== 'full_test')
-            .filter(m => m.key !== 'response')
-            .map((mode, i) => {
-              const Icon = mode.icon
-              // Per-mode ambient decoration — small glyph cluster that
-              // hints at what the mode does. Chat → dots, Practice →
-              // checkmarks, Lesson → reading lines, Flashcards → stacked
-              // card edges. Brilliant-style ambient texture.
-              const decor = MODE_DECOR[mode.key] ?? null
-              return (
+        {topic.category === 'test_prep' ? (
+          <>
+            <div
+              role="tablist"
+              aria-label={ko ? '모드 탭' : 'Mode tabs'}
+              className="bg-muted text-muted-foreground inline-flex h-10 w-full items-center justify-center rounded-lg p-[3px]"
+            >
+              {([
+                { key: 'tests' as const, label: ko ? '모의고사' : 'Full tests' },
+                { key: 'practice' as const, label: ko ? '문제 연습' : 'Practice' },
+              ]).map(tabDef => (
                 <button
-                  key={mode.key}
+                  key={tabDef.key}
                   type="button"
-                  onClick={() => startSession(mode.key)}
-                  disabled={creating !== null}
-                  style={{ animationDelay: `${i * 60}ms` }}
-                  className={`group relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${mode.hoverRing} ${mode.hoverShadow} hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out text-left disabled:opacity-60 disabled:cursor-wait animate-card-in opacity-0`}
+                  role="tab"
+                  aria-selected={tab === tabDef.key}
+                  onClick={() => setTab(tabDef.key)}
+                  className={`inline-flex h-full flex-1 items-center justify-center rounded-md px-2 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] ${
+                    tab === tabDef.key
+                      ? 'bg-background text-foreground shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
                 >
-                  {/* Top edge highlight */}
-                  <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
-                  {/* Decorative glow blob, mode-tinted */}
-                  <div aria-hidden className={`pointer-events-none absolute -top-8 -right-8 w-24 h-24 rounded-full ${mode.iconBg} opacity-[0.12] blur-2xl group-hover:opacity-[0.20] transition-opacity duration-300`} />
-                  {/* Mode-specific decoration */}
-                  {decor}
-
-                  <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04] group-hover:scale-105 transition-transform duration-300`}>
-                    {creating === mode.key ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                    ) : (
-                      <Icon className="w-5 h-5" />
-                    )}
-                  </div>
-                  <div className="relative">
-                    <div className={`text-[15px] font-semibold text-gray-900 ${mode.hoverText} transition-colors`}>
-                      {t(`study.modes.${mode.key}.title`)}
-                    </div>
-                    <div className="text-[13px] text-gray-600 mt-1 leading-relaxed">
-                      {t(`study.modes.${mode.key}.body`)}
-                    </div>
-                  </div>
+                  {tabDef.label}
                 </button>
-              )
-            })}
-        </section>
+              ))}
+            </div>
+
+            {tab === 'tests' ? (
+              <>
+                <FeaturedFullTestCard
+                  // SAT tests are premade (instant bank assembly) and have no
+                  // customizable options, so skip the customization sheet.
+                  startSession={() => {
+                    if (effectiveTopic && parseTestSlug(effectiveTopic.slug).family === 'sat') {
+                      void startBankTest()
+                    } else {
+                      openTestSheet()
+                    }
+                  }}
+                  creating={bankBusy ? 'full_test' : creating}
+                  t={t}
+                />
+                <RecentTestsList
+                  topicIds={[topic.id, ...children.map(c => c.id)]}
+                  studentId={user?.userId ?? null}
+                  ko={ko}
+                />
+              </>
+            ) : (
+              <>
+                {isResponseEligible(effectiveTopic?.slug) && (
+                  <FeaturedResponseCard
+                    startSession={() => startSession('response')}
+                    creating={creating}
+                    t={t}
+                  />
+                )}
+                {modeGrid}
+                <DailyChallengeCard />
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            {isResponseEligible(effectiveTopic?.slug) && (
+              <FeaturedResponseCard
+                startSession={() => startSession('response')}
+                creating={creating}
+                t={t}
+              />
+            )}
+            {modeGrid}
+          </>
+        )}
 
       </div>
 
@@ -694,42 +768,6 @@ function FeaturedResponseCard({
   )
 }
 
-/** Instant, credit-free practice assembled from the verified item bank
- *  (SAT only). Distinct from the AI-generated full test above. */
-function BankPracticeCard({ onStart, busy, ko }: { onStart: () => void; busy: boolean; ko: boolean }) {
-  return (
-    <button
-      type="button"
-      onClick={onStart}
-      disabled={busy}
-      className="group relative w-full rounded-2xl p-5 ring-1 ring-emerald-200/60 bg-gradient-to-br from-emerald-50/80 via-teal-50/30 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(16,185,129,0.16)] hover:ring-emerald-300/70 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait overflow-hidden"
-    >
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
-      <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-white text-emerald-600 flex items-center justify-center ring-1 ring-emerald-200/50 shadow-[0_1px_2px_rgba(16,185,129,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] flex-shrink-0">
-          {busy ? <Loader2 className="w-5 h-5 animate-spin" /> : <GraduationCap className="w-5 h-5" />}
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <div className="text-[17px] font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors tracking-tight">
-              {ko ? '즉시 연습' : 'Instant practice'}
-            </div>
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-emerald-700 bg-white/90 backdrop-blur ring-1 ring-emerald-200/80 rounded-full px-2 py-0.5">
-              {ko ? '무료 · 크레딧 불필요' : 'Free · no credit'}
-            </span>
-          </div>
-          <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">
-            {ko
-              ? '검증된 문제 은행에서 즉시 모의고사를 구성해요. 생성 대기 없이 바로 시작합니다.'
-              : 'Assembled instantly from our verified question bank — no generation wait, starts right away.'}
-          </p>
-        </div>
-        <ArrowRight className="w-5 h-5 text-emerald-400/70 group-hover:text-emerald-500 group-hover:translate-x-0.5 mt-1.5 flex-shrink-0 transition-all" />
-      </div>
-    </button>
-  )
-}
-
 function FeaturedFullTestCard({
   startSession,
   creating,
@@ -809,4 +847,80 @@ function formatShortTimeAgo(iso: string, ko: boolean): string {
   if (hr >= 1) return ko ? `${hr}시간 전` : `${hr}h`
   if (min >= 1) return ko ? `${min}분 전` : `${min}m`
   return ko ? '방금' : 'now'
+}
+
+/** Recent completed mock tests for this test family — score + date,
+ *  linking into the session summary. Renders nothing until the student
+ *  has at least one completed test. */
+function RecentTestsList({ topicIds, studentId, ko }: {
+  topicIds: string[]
+  studentId: string | null
+  ko: boolean
+}) {
+  const [rows, setRows] = useState<Array<{
+    id: string
+    title: string | null
+    score: number | null
+    completed_at: string | null
+  }>>([])
+
+  useEffect(() => {
+    if (!studentId || topicIds.length === 0) return
+    let cancelled = false
+    void (async () => {
+      const { data } = await supabase
+        .from('study_sessions')
+        .select('id, title, score, completed_at')
+        .eq('student_id', studentId)
+        .eq('mode', 'full_test')
+        .eq('status', 'completed')
+        .eq('archived', false)
+        .in('topic_id', topicIds)
+        .order('completed_at', { ascending: false })
+        .limit(5)
+      if (!cancelled) setRows((data ?? []) as typeof rows)
+    })()
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [studentId, topicIds.join(',')])
+
+  if (rows.length === 0) return null
+
+  return (
+    <section>
+      <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
+        {ko ? '최근 응시한 테스트' : 'Recent tests'}
+      </h2>
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] divide-y divide-gray-100 overflow-hidden">
+        {rows.map(row => {
+          const score = row.score !== null ? Math.round(Number(row.score)) : null
+          return (
+            <Link
+              key={row.id}
+              href={`/mobile/study/session/${row.id}/summary`}
+              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
+            >
+              <div className={`flex-shrink-0 inline-flex items-center justify-center w-11 h-8 rounded-xl text-[13px] font-bold tabular-nums ring-1 ${
+                score === null ? 'bg-gray-50 ring-gray-200/70 text-gray-500'
+                : score >= 80 ? 'bg-emerald-50 ring-emerald-100 text-emerald-700'
+                : score >= 50 ? 'bg-amber-50 ring-amber-100 text-amber-700'
+                : 'bg-rose-50 ring-rose-100 text-rose-700'
+              }`}>
+                {score !== null ? `${score}%` : '—'}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[13.5px] font-medium text-gray-900 truncate">
+                  {row.title ?? (ko ? '모의고사' : 'Full test')}
+                </div>
+                <div className="text-[11.5px] text-gray-500 mt-0.5">
+                  {row.completed_at ? new Date(row.completed_at).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' }) : ''}
+                </div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
+            </Link>
+          )
+        })}
+      </div>
+    </section>
+  )
 }

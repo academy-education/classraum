@@ -9,15 +9,18 @@ interface Step1 { targetTest: string | null }
 interface Step2 { gradeLevel: string | null }
 interface Step3 { dailyGoalMinutes: number }
 
+// `available` mirrors the landing-grid lock: only the SAT is open for
+// now; the rest render dimmed with a "Soon" chip so new students can't
+// onboard onto a test that has no content yet.
 const TESTS = [
-  { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능' },
-  { value: 'sat',   label_en: 'SAT',         label_ko: 'SAT' },
-  { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL' },
-  { value: 'toeic', label_en: 'TOEIC',       label_ko: 'TOEIC' },
-  { value: 'ielts', label_en: 'IELTS',       label_ko: 'IELTS' },
-  { value: 'act',   label_en: 'ACT',         label_ko: 'ACT' },
-  { value: 'ap',    label_en: 'AP Exams',    label_ko: 'AP 시험' },
-  { value: 'gre',   label_en: 'GRE',         label_ko: 'GRE' },
+  { value: 'sat',   label_en: 'SAT',         label_ko: 'SAT',    available: true },
+  { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL',  available: false },
+  { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능',   available: false },
+  { value: 'toeic', label_en: 'TOEIC',       label_ko: 'TOEIC',  available: false },
+  { value: 'ielts', label_en: 'IELTS',       label_ko: 'IELTS',  available: false },
+  { value: 'act',   label_en: 'ACT',         label_ko: 'ACT',    available: false },
+  { value: 'ap',    label_en: 'AP Exams',    label_ko: 'AP 시험', available: false },
+  { value: 'gre',   label_en: 'GRE',         label_ko: 'GRE',    available: false },
 ]
 
 const GRADES = [
@@ -129,15 +132,23 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                     <button
                       key={test.value}
                       type="button"
+                      disabled={!test.available}
                       onClick={() => setS1({ targetTest: selected ? null : test.value })}
                       className={`group relative h-12 rounded-2xl text-[14px] font-semibold transition-all ${
                         selected
                           ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
-                          : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                          : test.available
+                            ? 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                            : 'bg-gray-50 text-gray-400 ring-1 ring-gray-200/60 cursor-not-allowed'
                       }`}
                     >
                       {ko ? test.label_ko : test.label_en}
                       {selected && <Check className="absolute top-1.5 right-1.5 w-3.5 h-3.5" />}
+                      {!test.available && (
+                        <span className="absolute top-1.5 right-1.5 rounded-full bg-gray-200/80 px-1.5 py-0.5 text-[8.5px] font-bold tracking-[0.08em] uppercase text-gray-500">
+                          {ko ? '준비 중' : 'Soon'}
+                        </span>
+                      )}
                     </button>
                   )
                 })}

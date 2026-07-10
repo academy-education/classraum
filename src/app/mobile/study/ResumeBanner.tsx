@@ -52,16 +52,23 @@ export function ResumeBanner() {
       const { data } = await supabase
         .from('study_sessions')
         .select(`
-          id, mode, title, last_active_at, topic_freeform,
+          id, mode, title, last_active_at, topic_freeform, config,
           topic:study_topics ( name_en, name_ko )
         `)
         .eq('student_id', user.userId)
         .neq('status', 'completed')
         .eq('archived', false)
         .order('last_active_at', { ascending: false })
-        .limit(1)
+        .limit(3)
       if (cancelled) return
-      setSession((data?.[0] as ActiveSession | undefined) ?? null)
+      // Today's challenge session already has its own card in the Today
+      // band ("Today's challenge — continue"); surfacing it here too
+      // showed two cards deep-linking to the same session. Older
+      // (missed) challenge sessions may still resume from here.
+      const today = new Date().toISOString().slice(0, 10)
+      const rows = (data ?? []) as unknown as Array<ActiveSession & { config?: { dailyChallenge?: string } | null }>
+      const first = rows.find(r => r.config?.dailyChallenge !== today) ?? null
+      setSession(first)
     })()
     return () => { cancelled = true }
   }, [user?.userId])

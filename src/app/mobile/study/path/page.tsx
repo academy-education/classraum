@@ -331,8 +331,11 @@ function TargetChipStrip({
   const [confirmRemove, setConfirmRemove] = useState<string | null>(null)
   return (
     <>
-      <div className="flex-shrink-0 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 px-5 py-2">
-        <div className="max-w-3xl mx-auto flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+      <div className="flex-shrink-0 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 px-5 py-1">
+        {/* py-1.5 INSIDE the scroller: overflow-x-auto clips vertically at
+            content height, so without inner padding the chips' 1px ring
+            and drop shadow get shaved off top and bottom. */}
+        <div className="max-w-3xl mx-auto flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1.5">
           {targets.map(test => {
             const isCurrent = test === currentTarget
             return (
@@ -807,6 +810,8 @@ function TargetTestPicker({
     subKo: string
     accent: string
     initial: string
+    /** Render dimmed + non-pickable with a "Coming soon" badge. */
+    comingSoon?: boolean
   }> = [
     {
       key: 'SAT',
@@ -825,11 +830,12 @@ function TargetTestPicker({
       subKo: '읽기 · 듣기 · 말하기 · 쓰기',
       accent: 'from-emerald-500 via-teal-600 to-cyan-700',
       initial: 'T',
+      comingSoon: true,
     },
   ]
 
   const pick = async (opt: typeof OPTIONS[number]) => {
-    if (saving) return
+    if (saving || opt.comingSoon) return
     setSaving(opt.key)
     setError(null)
     try {
@@ -890,7 +896,7 @@ function TargetTestPicker({
             const isCurrent = currentTarget === opt.key
             const isAlreadyAdded =
               disabledTargets.includes(opt.key) || sessionAdded.includes(opt.key)
-            const disabled = isCurrent || isAlreadyAdded
+            const disabled = isCurrent || isAlreadyAdded || !!opt.comingSoon
             return (
               <button
                 key={opt.key}
@@ -899,7 +905,7 @@ function TargetTestPicker({
                 disabled={!!saving || disabled}
                 className={`w-full relative overflow-hidden rounded-2xl bg-gradient-to-br ${opt.accent} text-white p-4 flex items-center gap-3 shadow-[0_8px_20px_-8px_rgba(0,0,0,0.32)] active:scale-[0.99] disabled:opacity-70 transition-all ${
                   isCurrent ? 'ring-2 ring-white/70' : ''
-                } ${isAlreadyAdded && !isCurrent ? 'opacity-60' : ''}`}
+                } ${isAlreadyAdded && !isCurrent ? 'opacity-60' : ''} ${opt.comingSoon && !isCurrent && !isAlreadyAdded ? 'opacity-55 saturate-50' : ''}`}
               >
                 <div aria-hidden className="pointer-events-none absolute -top-4 -right-4 w-24 h-24 rounded-full bg-white/15 blur-2xl" />
                 <div className="relative flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/20 ring-1 ring-white/25 text-[20px] font-black tracking-tight">
@@ -918,6 +924,11 @@ function TargetTestPicker({
                       <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[9.5px] font-bold tracking-[0.1em] uppercase">
                         <CheckCircle2 className="w-2.5 h-2.5" />
                         {ko ? '추가됨' : 'Added'}
+                      </span>
+                    )}
+                    {opt.comingSoon && !isCurrent && !isAlreadyAdded && (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[9.5px] font-bold tracking-[0.1em] uppercase">
+                        {ko ? '준비 중' : 'Coming soon'}
                       </span>
                     )}
                   </div>

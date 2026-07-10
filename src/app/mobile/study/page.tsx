@@ -8,12 +8,13 @@ import {
   FileText, CreditCard, Settings, Camera, Sparkles,
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
   PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, LucideIcon,
-  MoreHorizontal, Lock,
+  MoreHorizontal, Lock, Target as TargetIcon,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from './SubscriptionGate'
+import { StudyTodayCard } from './_shared/primitives'
 import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
 import { MistakeBankShelf } from './MistakeBankShelf'
@@ -320,6 +321,10 @@ function StudyLandingInner() {
   const [loading, setLoading] = useState(true)
   const [freeFormQuery, setFreeFormQuery] = useState('')
   const [creatingFreeForm, setCreatingFreeForm] = useState(false)
+  const [freeFormCount, setFreeFormCount] = useState(5)
+  const [freeFormDifficulty, setFreeFormDifficulty] =
+    useState<'warmup' | 'balanced' | 'challenge'>('balanced')
+  const [freeFormLanguage, setFreeFormLanguage] = useState<'auto' | 'en' | 'ko'>('auto')
   const { errorToast, showError } = useStudyErrorToast()
   const [searchOpen, setSearchOpen] = useState(false)
   const { needsOnboarding, markComplete } = useOnboardingGate()
@@ -362,18 +367,23 @@ function StudyLandingInner() {
   // /api/study/landing call replaces the 3 separate prefs/progress/
   // streak fetches this page used to fire.
 
-  // Sort test-prep grid so the student's target sits first + gets a badge.
+  // Sort test-prep grid: SAT is pinned first (the only open test —
+  // everything else is coming soon), then the student's target, then
+  // the rest in catalog order.
   const sortedTests = useMemo(() => {
-    if (!targetTest) return tests
-    const targetSlug = `test-${targetTest.toLowerCase()}`
-    const idx = tests.findIndex(t => t.slug === targetSlug)
-    if (idx < 0) return tests
-    return [tests[idx], ...tests.slice(0, idx), ...tests.slice(idx + 1)]
+    const targetSlug = targetTest ? `test-${targetTest.toLowerCase()}` : null
+    const rank = (t: BrowseItem) =>
+      t.slug === 'test-sat' ? 0 : t.slug === targetSlug ? 1 : 2
+    return [...tests].sort((a, b) => rank(a) - rank(b))
   }, [tests, targetTest])
 
 
   const name = (s: { name_en: string; name_ko: string }) => ko ? s.name_ko : s.name_en
 
+  // The free-form creator is the ONE surface that still generates a
+  // fresh question set with AI (everything topic-based is served from
+  // the premade bank). The typed text plus the options below feed the
+  // generator as context.
   const startFreeFormSession = async () => {
     const q = freeFormQuery.trim()
     if (!q || creatingFreeForm || !user?.userId) return
@@ -384,8 +394,9 @@ function StudyLandingInner() {
         student_id: user.userId,
         topic_id: null,
         topic_freeform: q,
-        mode: 'chat',
-        language: ko ? 'ko' : 'en',
+        mode: 'practice',
+        language: freeFormLanguage === 'auto' ? (ko ? 'ko' : 'en') : freeFormLanguage,
+        config: { questionCount: freeFormCount, difficultyBias: freeFormDifficulty },
       })
       .select('id')
       .single()
@@ -425,6 +436,21 @@ function StudyLandingInner() {
 
         {/* Today — time-sensitive, all self-hide when empty. */}
         <SectionGroup label={String(t('study.landing.todayBand'))}>
+          {/* No target test yet → the personalized cards below (path,
+              challenge, recommendations) have nothing to anchor on, so
+              lead with a pick-your-test prompt instead. */}
+          {landingData && !targetTest && (
+            <StudyTodayCard
+              href="/mobile/study/path"
+              icon={TargetIcon}
+              iconColorClass="bg-gradient-to-br from-amber-400 to-orange-600 text-white shadow-[0_4px_10px_-2px_rgba(245,158,11,0.35)]"
+              eyebrow={ko ? '시작하기' : 'Get started'}
+              title={ko ? '목표 시험을 선택하세요' : 'Pick your target test'}
+              subtitle={ko
+                ? '오늘의 추천과 학습 경로가 목표 시험에 맞춰 구성돼요.'
+                : "Today's picks and your journey are built around it."}
+            />
+          )}
           <StudyPathPromo />
           <ResumeBanner />
           <SocialPresenceCard />
@@ -467,12 +493,12 @@ function StudyLandingInner() {
                 const theme = themeForTest(test.slug)
                 const Icon = theme.Icon
                 const isTarget = targetTest !== null && test.slug === `test-${targetTest.toLowerCase()}`
-                // Only SAT + TOEFL are open; everything else (KSAT,
+                // Only the SAT is open; everything else (TOEFL, KSAT,
                 // TOEIC, IELTS, ACT, AP, GRE) shows a locked overlay
                 // until we expand coverage. We still render the card
                 // so users see what's coming, but disable navigation
                 // and dim the visuals.
-                const unlocked = test.slug === 'test-sat' || test.slug === 'test-toefl'
+                const unlocked = test.slug === 'test-sat'
                 // Rendered via an explicit Link/div branch below — a
                 // polymorphic `CardTag` union can't be typed cleanly
                 // (Link demands href; div rejects it).
@@ -586,11 +612,85 @@ function StudyLandingInner() {
           )}
         </section>
 
-        {/* Free-form — submit creates a chat session with topic_freeform. */}
+        {/* Free-form — the only AI-generated path. Submit creates a
+            practice session from the typed prompt + options. */}
         <section>
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
             {t('study.landing.freeformTitle')}
           </h2>
+          {/* Generator options — extra context for the question set.
+              Count + difficulty ride along in the session config. */}
+          <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 px-1">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+                {ko ? '문항 수' : 'Questions'}
+              </span>
+              {[5, 8, 10].map(n => (
+                <button
+                  key={n}
+                  type="button"
+                  onClick={() => setFreeFormCount(n)}
+                  disabled={creatingFreeForm}
+                  className={`h-7 min-w-[34px] px-2 rounded-full text-[12px] font-semibold transition-all ${
+                    freeFormCount === n
+                      ? 'bg-gray-900 text-white shadow-[0_1px_2px_rgba(0,0,0,0.15)]'
+                      : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
+                  }`}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+                {ko ? '난이도' : 'Difficulty'}
+              </span>
+              {([
+                { key: 'warmup' as const, en: 'Easy', ko: '쉬움' },
+                { key: 'balanced' as const, en: 'Mixed', ko: '중간' },
+                { key: 'challenge' as const, en: 'Hard', ko: '어려움' },
+              ]).map(d => (
+                <button
+                  key={d.key}
+                  type="button"
+                  onClick={() => setFreeFormDifficulty(d.key)}
+                  disabled={creatingFreeForm}
+                  className={`h-7 px-2.5 rounded-full text-[12px] font-semibold transition-all ${
+                    freeFormDifficulty === d.key
+                      ? 'bg-gray-900 text-white shadow-[0_1px_2px_rgba(0,0,0,0.15)]'
+                      : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
+                  }`}
+                >
+                  {ko ? d.ko : d.en}
+                </button>
+              ))}
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+                {ko ? '언어' : 'Language'}
+              </span>
+              {([
+                { key: 'auto' as const, en: 'Auto', ko: '자동' },
+                { key: 'en' as const, en: 'EN', ko: 'EN' },
+                { key: 'ko' as const, en: '한국어', ko: '한국어' },
+              ]).map(l => (
+                <button
+                  key={l.key}
+                  type="button"
+                  onClick={() => setFreeFormLanguage(l.key)}
+                  disabled={creatingFreeForm}
+                  className={`h-7 px-2.5 rounded-full text-[12px] font-semibold transition-all ${
+                    freeFormLanguage === l.key
+                      ? 'bg-gray-900 text-white shadow-[0_1px_2px_rgba(0,0,0,0.15)]'
+                      : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
+                  }`}
+                >
+                  {ko ? l.ko : l.en}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <form
             onSubmit={(e) => { e.preventDefault(); void startFreeFormSession() }}
             className="relative group"
