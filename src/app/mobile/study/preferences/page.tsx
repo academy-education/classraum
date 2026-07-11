@@ -1,8 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, BarChart3, ArrowRight, Settings } from 'lucide-react'
+import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -18,15 +17,19 @@ interface Prefs {
   default_difficulty: 'warmup' | 'balanced' | 'challenge'
 }
 
+// Values are canonical UPPERCASE test keys — the same shape the
+// journey's target picker writes, so one test never appears twice as
+// 'sat' vs 'SAT'. Only open tests are selectable; the rest render as
+// coming-soon.
 const TESTS = [
-  { value: 'ksat',  ko: '수능',         en: 'KSAT' },
-  { value: 'sat',   ko: 'SAT',         en: 'SAT' },
-  { value: 'toefl', ko: 'TOEFL',       en: 'TOEFL' },
-  { value: 'toeic', ko: 'TOEIC',       en: 'TOEIC' },
-  { value: 'ielts', ko: 'IELTS',       en: 'IELTS' },
-  { value: 'act',   ko: 'ACT',         en: 'ACT' },
-  { value: 'ap',    ko: 'AP 시험',     en: 'AP Exams' },
-  { value: 'gre',   ko: 'GRE',         en: 'GRE' },
+  { value: 'SAT',   ko: 'SAT',         en: 'SAT',      available: true },
+  { value: 'TOEFL', ko: 'TOEFL',       en: 'TOEFL',    available: false },
+  { value: 'KSAT',  ko: '수능',         en: 'KSAT',     available: false },
+  { value: 'TOEIC', ko: 'TOEIC',       en: 'TOEIC',    available: false },
+  { value: 'IELTS', ko: 'IELTS',       en: 'IELTS',    available: false },
+  { value: 'ACT',   ko: 'ACT',         en: 'ACT',      available: false },
+  { value: 'AP',    ko: 'AP 시험',     en: 'AP Exams', available: false },
+  { value: 'GRE',   ko: 'GRE',         en: 'GRE',      available: false },
 ]
 
 const GRADES = [
@@ -41,7 +44,7 @@ const GOAL_PRESETS = [15, 30, 45, 60, 90]
 
 /**
  * Study preferences page — surfaces every knob the onboarding
- * wizard collected, plus a stats link. Editable any time so the
+ * wizard collected. Editable any time so the
  * student can change their goal, target test, or default
  * difficulty without re-running onboarding.
  */
@@ -159,54 +162,34 @@ function PreferencesInner() {
         subtitle={String(t('study.prefs.subtitle'))}
       />
 
-      {/* Stats link card */}
-      <Link
-        href="/mobile/study/stats"
-        className="flex items-center gap-3 rounded-2xl bg-gradient-to-br from-primary/[0.06] via-indigo-50/40 to-white ring-1 ring-primary/20 p-4 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.18)] active:scale-[0.99] transition-all"
-      >
-        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-b from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/30">
-          <BarChart3 className="w-4 h-4" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="text-[15px] font-semibold text-gray-900">{String(t('study.prefs.statsTitle'))}</div>
-          <div className="text-[12.5px] text-gray-500 mt-0.5">{String(t('study.prefs.statsSubtitle'))}</div>
-        </div>
-        <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-      </Link>
-
-      {/* Custom test builder link */}
-      <Link
-        href="/mobile/study/builder"
-        className="flex items-center gap-3 rounded-2xl bg-gradient-to-br from-amber-50/60 via-orange-50/30 to-white ring-1 ring-amber-200/60 p-4 hover:shadow-[0_2px_8px_-2px_rgba(245,158,11,0.18)] active:scale-[0.99] transition-all"
-      >
-        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-b from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_2px_4px_rgba(245,158,11,0.25)] ring-1 ring-orange-600/20">
-          <Sparkles className="w-4 h-4" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="text-[15px] font-semibold text-gray-900">{String(t('study.builder.title'))}</div>
-          <div className="text-[12.5px] text-gray-500 mt-0.5">{String(t('study.builder.subtitle'))}</div>
-        </div>
-        <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-      </Link>
-
       {/* Target test */}
       <SettingGroup icon={Target} label={String(t('study.prefs.targetTest'))} saving={saving === 'target_test'}>
         <div className="grid grid-cols-2 gap-2">
           {TESTS.map(test => {
-            const selected = prefs.target_test === test.value
+            // Case-insensitive match tolerates legacy lowercase rows.
+            const selected = (prefs.target_test ?? '').toUpperCase() === test.value
+            const locked = !test.available && !selected
             return (
               <button
                 key={test.value}
                 type="button"
+                disabled={locked}
                 onClick={() => update('target_test', selected ? null : test.value)}
                 className={`relative h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
                   selected
                     ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/30'
-                    : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                    : locked
+                      ? 'bg-gray-50 text-gray-400 ring-1 ring-gray-200/60 cursor-not-allowed'
+                      : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
                 }`}
               >
                 {ko ? test.ko : test.en}
                 {selected && <Check className="absolute top-1.5 right-1.5 w-3 h-3" />}
+                {locked && (
+                  <span className="absolute top-1 right-1.5 text-[8.5px] font-bold uppercase tracking-wide text-gray-400">
+                    {ko ? '준비 중' : 'Soon'}
+                  </span>
+                )}
               </button>
             )
           })}
@@ -225,8 +208,8 @@ function PreferencesInner() {
                 onClick={() => update('grade_level', selected ? null : grade.value)}
                 className={`flex items-center justify-between h-11 px-4 rounded-xl text-[14px] font-semibold transition-all ${
                   selected
-                    ? 'bg-gradient-to-b from-emerald-500 to-emerald-600 text-white ring-1 ring-emerald-700/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]'
-                    : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-emerald-300 active:scale-[0.99]'
+                    ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)]'
+                    : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.99]'
                 }`}
               >
                 <span>{ko ? grade.ko : grade.en}</span>

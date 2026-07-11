@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Sparkles, X, Trophy } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -33,13 +34,24 @@ export function DailyGoalCelebration() {
   const { language } = useTranslation()
   const ko = language === 'korean'
   const landingData = useLandingData()
+  const pathname = usePathname()
   const [show, setShow] = useState(false)
+  // Crossing detected while the student was mid-session/summary — hold
+  // the pop until they're back on a browse surface so the overlay never
+  // covers a question or their results.
+  const [pending, setPending] = useState(false)
   const [fallbackProgress, setFallbackProgress] = useState<Progress | null>(null)
   const progress = landingData ? landingData.progress : fallbackProgress
 
-  // Session-scoped ratchet: only fire when the student crosses 0→met
-  // within this browser session, not on every re-render or refetch.
-  const prevMetRef = useRef(false)
+  // Ratchet: only fire on a genuine below→met crossing OBSERVED while
+  // mounted. `null` means "no sample seen yet" — the first sample only
+  // initializes the ratchet, so arriving on a page with the goal
+  // already met (e.g. opening a summary after a long study day) never
+  // pops the overlay on mount.
+  const prevMetRef = useRef<boolean | null>(null)
+
+  // Session screens (question UI, results) must never be covered.
+  const onSessionSurface = pathname?.includes('/mobile/study/session/') ?? false
 
   // Provider path: watch the shared payload + drive the 30s refetch
   // off the provider so we don't double the /api/study/landing call.
@@ -52,14 +64,32 @@ export function DailyGoalCelebration() {
   useEffect(() => {
     if (!progress) return
     const met = progress.minutesToday >= progress.goalMinutes && progress.goalMinutes > 0
+    // First sample after mount only calibrates the ratchet — never pop
+    // for a goal that was already met before we started watching.
+    if (prevMetRef.current === null) {
+      prevMetRef.current = met
+      return
+    }
     const dismissKey = `study-goal-celebration-shown:${todayKey()}`
     const alreadyShown = sessionStorage.getItem(dismissKey) === '1'
     if (met && !prevMetRef.current && !alreadyShown) {
-      setShow(true)
       sessionStorage.setItem(dismissKey, '1')
+      // Mid-session crossing: hold the celebration until the student
+      // leaves the session/summary surface instead of covering it.
+      if (onSessionSurface) setPending(true)
+      else setShow(true)
     }
     prevMetRef.current = met
-  }, [progress])
+  }, [progress, onSessionSurface])
+
+  // Release a held celebration once the student is back on a browse
+  // surface (landing, path, topic…).
+  useEffect(() => {
+    if (pending && !onSessionSurface) {
+      setPending(false)
+      setShow(true)
+    }
+  }, [pending, onSessionSurface])
 
   // Fallback path: no provider mounted, run the old polling loop.
   useEffect(() => {

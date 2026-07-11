@@ -34,11 +34,14 @@ export async function POST(req: NextRequest) {
   const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
   if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  let body: { section?: string; count?: number }
+  let body: { section?: string; count?: number; pathNode?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
   const section = body.section === 'math' || body.section === 'reading_writing' ? body.section : null
   if (!section) return NextResponse.json({ error: 'section must be math or reading_writing' }, { status: 400 })
   const count = Math.min(Math.max(Number(body.count) || 22, 5), 54)
+  // Journey section-test nodes tag their sessions so the path page can
+  // track per-node completion (config.pathNode → node id).
+  const pathNode = typeof body.pathNode === 'string' && body.pathNode.length <= 64 ? body.pathNode : null
 
   // Assemble from the bank. Seed with the (not-yet-created) session id so
   // the shuffle is stable per session; fall back to a fresh session first.
@@ -47,7 +50,7 @@ export async function POST(req: NextRequest) {
     .insert({
       student_id: user.id, topic_id: SECTION_TOPIC[section], mode: 'full_test',
       status: 'active', language: 'en', generation_status: 'ready',
-      config: { source: 'bank', section },
+      config: { source: 'bank', section, ...(pathNode ? { pathNode } : {}) },
     })
     .select('id')
     .single()

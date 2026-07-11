@@ -86,7 +86,7 @@ export function ResumableShelf() {
       const { data } = await supabase
         .from('study_sessions')
         .select(`
-          id, mode, title, status, last_active_at, topic_freeform,
+          id, mode, title, status, last_active_at, topic_freeform, config,
           topic:study_topics ( slug, name_en, name_ko )
         `)
         .eq('student_id', user.userId)
@@ -95,7 +95,17 @@ export function ResumableShelf() {
         .order('last_active_at', { ascending: false })
         .limit(10)
       if (cancelled) return
-      setRows((data ?? []) as unknown as Row[])
+      // Mirror the Today band's single-continue-card rule (see
+      // ResumeBanner): today's challenge session always has its own
+      // card there, so never re-list it. The newest other session is
+      // shown by the ResumeBanner ONLY when no challenge is in
+      // progress — exclude it here in exactly that case, otherwise it
+      // belongs to this shelf.
+      const today = new Date().toISOString().slice(0, 10)
+      const all = (data ?? []) as unknown as Array<Row & { config?: { dailyChallenge?: string } | null }>
+      const challengeInProgress = all.some(r => r.config?.dailyChallenge === today)
+      const rest = all.filter(r => r.config?.dailyChallenge !== today)
+      setRows(challengeInProgress ? rest : rest.slice(1))
       setLoading(false)
     })()
     return () => { cancelled = true }

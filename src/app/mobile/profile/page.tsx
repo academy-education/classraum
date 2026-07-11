@@ -559,7 +559,11 @@ function MobileProfilePageContent() {
           </div>
         </Card>
 
-        {/* Email Notifications — header + divide-y sub-toggles using switches (replaces native checkboxes) */}
+        {/* Email Notifications — header + divide-y sub-toggles using
+            switches. Academy members only: every email category here
+            (assignments, grades, announcements, reminders) is an
+            academy event, so study-only accounts just see noise. */}
+        {academyIds.length > 0 && (
         <Card className="overflow-hidden py-0 gap-0">
           <div className="p-4 flex items-center gap-3 border-b border-gray-100">
             <div className="w-9 h-9 rounded-lg bg-violet-50 flex items-center justify-center flex-shrink-0">
@@ -613,6 +617,7 @@ function MobileProfilePageContent() {
             })}
           </div>
         </Card>
+        )}
       </div>
 
       {/* Account actions — Logout + Delete in a single panel */}

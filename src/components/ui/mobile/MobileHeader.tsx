@@ -217,7 +217,10 @@ export function MobileHeader() {
                 the swap. Self-hides on the hub and for parents. */}
             <ModeChip />
 
-            {/* Messages Button — pill chrome with soft-rose unread badge */}
+            {/* Messages Button — pill chrome with soft-rose unread badge.
+                Messaging is academy-scoped (teacher/manager chat), so
+                study-only students without an academy don't get it. */}
+            {(user?.academyIds?.length ?? 0) > 0 && (
             <button
               onClick={handleMessagesClick}
               className="relative w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
@@ -230,6 +233,7 @@ export function MobileHeader() {
                 </span>
               )}
             </button>
+            )}
 
             {/* Notification Button */}
             <button

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Send, Loader2, Square, Mic, MicOff } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
+import { MascotLoader, useMascotGate } from '../../_shared/MascotLoader'
 import { authHeaders } from '@/lib/auth-headers'
 
 interface DbMessage {
@@ -100,6 +101,7 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
   }
   const [streamingContent, setStreamingContent] = useState<string | null>(null)
   const [loadingHistory, setLoadingHistory] = useState(true)
+  const showLoader = useMascotGate(loadingHistory)
   const scrollerRef = useRef<HTMLDivElement>(null)
   // AbortController lets the user kill the in-flight stream from the
   // composer (Stop button replaces Send while a response is rolling in).
@@ -237,13 +239,10 @@ export function ChatSession({ sessionId, language }: { sessionId: string; langua
     abortRef.current?.abort()
   }, [])
 
-  if (loadingHistory) {
-    return (
-      <div className="flex items-center justify-center h-full text-sm text-gray-500 px-5 py-10">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.session.loadingHistory')}
-      </div>
-    )
+  if (loadingHistory || showLoader) {
+    return showLoader
+      ? <MascotLoader className="h-full py-10" label={t('study.session.loadingHistory')} />
+      : <div className="h-full py-10" aria-hidden />
   }
 
   return (

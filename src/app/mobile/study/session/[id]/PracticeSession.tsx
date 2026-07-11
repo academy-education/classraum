@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw, Sparkles } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { PathMascot } from '../../_shared/PathMascot'
+import { MascotLoader } from '../../_shared/MascotLoader'
 
 type QuestionType = 'multiple_choice' | 'true_false' | 'short_answer'
 
@@ -34,6 +36,15 @@ interface Verdict {
  * sticky bottom CTA (Submit / Next). The card collapses into a
  * summary when the student finishes the set.
  */
+
+/** Raumi's thinking loop is 3.2s; hold the loader at least one cycle
+ *  so instant (bank-served) fetches don't flash the mascot. */
+const MIN_MASCOT_MS = 3200
+const holdForMascot = async (startedAt: number) => {
+  const left = MIN_MASCOT_MS - (Date.now() - startedAt)
+  if (left > 0) await new Promise(r => setTimeout(r, left))
+}
+
 export function PracticeSession({ sessionId, language }: { sessionId: string; language: 'en' | 'ko' }) {
   const { t } = useTranslation()
   const ko = language === 'ko'
@@ -54,6 +65,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
     setAnswer('')
     setVerdict(null)
     setResults([])
+    const startedAt = Date.now()
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/practice/generate', {
@@ -65,6 +77,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
       const json = await res.json()
       const list = (json.questions ?? []) as Question[]
       if (list.length === 0) throw new Error('empty set')
+      await holdForMascot(startedAt)
       setQuestions(list)
       startedAtRef.current = Date.now()
       setPhase('asking')
@@ -114,6 +127,19 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
   const next = useCallback(() => {
     if (idx + 1 >= questions.length) {
       setPhase('done')
+      // Persist completion server-side (score derived from the
+      // attempts ledger there). Drives daily-challenge "done" state
+      // and journey per-node progress; failure is non-fatal.
+      void (async () => {
+        try {
+          const headers = await authHeaders()
+          await fetch('/api/study/practice/complete', {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ sessionId }),
+          })
+        } catch { /* silent */ }
+      })()
       return
     }
     setIdx(i => i + 1)
@@ -125,16 +151,14 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
 
   if (phase === 'loading') {
     return (
-      <div className="flex-1 flex items-center justify-center text-sm text-gray-500">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.practice.generating')}
-      </div>
+      <MascotLoader className="flex-1" label={t('study.practice.generating')} />
     )
   }
 
   if (phase === 'error') {
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-3">
+        <PathMascot state="sad" size={84} />
         <p className="text-sm text-gray-600">{t('study.practice.generateFailed')}</p>
         <button
           type="button"
@@ -229,17 +253,18 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
           {/* Answer input — varies by type. */}
           <div className="mt-4 space-y-2">
             {q.type === 'multiple_choice' && q.choices && (
-              q.choices.map(choice => {
+              q.choices.map((choice, ci) => {
                 const selected = answer === choice
                 const showCorrect = phase === 'feedback' && choice === q.correct_answer
                 const showWrong = phase === 'feedback' && selected && !verdict?.isCorrect
+                const letter = String.fromCharCode(65 + ci)
                 return (
                   <button
                     key={choice}
                     type="button"
                     onClick={() => phase === 'asking' && setAnswer(choice)}
                     disabled={phase !== 'asking'}
-                    className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors ${
+                    className={`w-full flex items-start gap-3 text-left px-3.5 py-3 rounded-xl border text-sm transition-colors ${
                       showCorrect
                         ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
                         : showWrong
@@ -249,7 +274,18 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
                             : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
                     }`}
                   >
-                    {choice}
+                    <span className={`flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full text-[11px] font-bold mt-[1px] ${
+                      showCorrect
+                        ? 'bg-emerald-600 text-white'
+                        : showWrong
+                          ? 'bg-rose-500 text-white'
+                          : selected
+                            ? 'bg-primary text-white'
+                            : 'bg-gray-100 text-gray-500'
+                    }`}>
+                      {letter}
+                    </span>
+                    <span className="flex-1">{choice}</span>
                   </button>
                 )
               })
@@ -349,7 +385,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
           <button
             type="button"
             onClick={next}
-            className="w-full h-12 rounded-full bg-gray-900 text-white text-sm font-semibold flex items-center justify-center gap-1.5"
+            className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold flex items-center justify-center gap-1.5"
           >
             {idx + 1 >= questions.length
               ? t('study.practice.finish')

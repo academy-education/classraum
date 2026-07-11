@@ -1,11 +1,12 @@
 "use client"
 
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
+import { MascotLoader, useMascotGate } from './_shared/MascotLoader'
 
 /**
  * Study access gate — freemium model.
@@ -27,14 +28,24 @@ type State =
   | { kind: 'error' }
 
 export function StudySubscriptionGate({ children }: { children: ReactNode }) {
-  const { user } = useAuth()
+  const { user, isLoading: authLoading } = useAuth()
   const { t, language } = useTranslation()
   const [state, setState] = useState<State>({ kind: 'loading' })
   const [retryKey, setRetryKey] = useState(0)
+  // Sticky allow: once the student is through, NEVER regress to the
+  // loading state. Auth churn (token refresh, focus revalidation)
+  // re-runs the effect below; without this latch that re-run unmounts
+  // whatever page the student is on (e.g. a session summary flashing
+  // away mid-read). Provisioning only matters once per mount.
+  const allowedOnce = useRef(false)
+  const showLoader = useMascotGate(state.kind === 'loading')
 
   useEffect(() => {
+    if (allowedOnce.current) return
     if (!user?.id) {
-      setState({ kind: 'unauthenticated' })
+      // While auth is still resolving, hold the loading state instead
+      // of flashing the "please sign in" screen at every cold load.
+      if (!authLoading) setState({ kind: 'unauthenticated' })
       return
     }
     let cancelled = false
@@ -82,6 +93,7 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
           if (insertError) {
             setState({ kind: 'error' })
           } else {
+            allowedOnce.current = true
             setState({ kind: 'allowed' })
           }
         }
@@ -92,6 +104,7 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
       // server-side (credits for AI generation, premium gates); a
       // lapsed subscriber simply falls back to the free experience —
       // there is no hard paywall anymore.
+      allowedOnce.current = true
       setState({ kind: 'allowed' })
       } catch {
         // Network/unexpected throw — without this the gate spins forever
@@ -100,15 +113,12 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
       }
     })()
     return () => { cancelled = true }
-  }, [user?.id, retryKey])
+  }, [user?.id, retryKey, authLoading])
 
-  if (state.kind === 'loading') {
-    return (
-      <div className="flex items-center justify-center h-screen text-sm text-gray-500">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.gate.loading') ?? 'Loading...'}
-      </div>
-    )
+  if (state.kind === 'loading' || showLoader) {
+    return showLoader
+      ? <MascotLoader className="h-screen" label={t('study.gate.loading') ?? 'Loading...'} />
+      : <div className="h-screen" aria-hidden />
   }
 
   if (state.kind === 'error') {

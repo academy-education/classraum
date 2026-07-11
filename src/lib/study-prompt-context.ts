@@ -22,8 +22,11 @@ export interface StudyPromptContext {
   /** For test_prep: which test (KSAT / SAT / TOEFL / ...). null otherwise. */
   testFamily: TestFamily | null
   /** For test_prep: leaf section label like "Reading" / "Math". null when
-   *  the user is at the test root. */
+   *  the user is at the test root. LOCALIZED — never key logic off this;
+   *  use topicSlug for machine decisions. */
   testSection: string | null
+  /** Locale-independent topic slug (e.g. 'sat-math'). */
+  topicSlug: string
 }
 
 export type TestFamily =
@@ -97,6 +100,7 @@ export async function loadStudyPromptContext(
 
   return {
     topicName: language === 'ko' ? t.name_ko : t.name_en,
+    topicSlug: t.slug,
     category: t.category === 'test_prep' ? 'test_prep' : 'subject',
     gradeRange,
     testFamily,

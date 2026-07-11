@@ -178,7 +178,7 @@ export function NavTour() {
             )}
             {step < STEPS.length - 1 ? (
               <button type="button" onClick={() => setStep(step + 1)}
-                className="flex-[1.4] h-11 rounded-xl bg-gray-900 text-white text-[13px] font-semibold inline-flex items-center justify-center gap-1 hover:bg-gray-800 transition">
+                className="flex-[1.4] h-11 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-semibold inline-flex items-center justify-center gap-1 hover:opacity-95 transition">
                 {ko ? '다음' : 'Next'}<ChevronRight className="w-3.5 h-3.5" />
               </button>
             ) : (

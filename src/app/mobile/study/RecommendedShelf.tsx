@@ -49,7 +49,11 @@ export function RecommendedShelf() {
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState<string | null>(null)
   const { errorToast, showError } = useStudyErrorToast()
-  const targetTest = useLandingData()?.prefs?.target_test ?? null
+  const landing = useLandingData()
+  const targetTest = landing?.prefs?.target_test ?? null
+  // Personalized recommendations are a paid feature — hide the whole
+  // section unless the student has a live paid subscription.
+  const isPaid = landing?.subscriptionStatus === 'active'
 
   useEffect(() => {
     let cancelled = false
@@ -111,6 +115,39 @@ export function RecommendedShelf() {
 
   const name = (s: { name_en: string; name_ko: string }) => ko ? s.name_ko : s.name_en
 
+  // Non-paid users get a compact upsell teaser instead of the shelf.
+  if (landing && !isPaid) {
+    return (
+      <section>
+        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
+          {t('study.landing.recommendedTitle')}
+        </h2>
+        <div className="relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-5 flex items-center gap-4">
+          <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-24 h-24 rounded-full bg-primary/[0.06] blur-2xl" />
+          <div className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
+            <Lightbulb className="w-5 h-5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[14.5px] font-semibold text-gray-900">
+              {ko ? '맞춤 추천 잠금 해제' : 'Unlock personalized picks'}
+            </div>
+            <p className="text-[12.5px] text-gray-500 mt-0.5 leading-snug">
+              {ko
+                ? '일반 플랜부터 약점 분석 기반 추천을 받아요.'
+                : 'General plan finds your weak areas and picks what to study next.'}
+            </p>
+          </div>
+          <Link
+            href="/mobile/study/subscription"
+            className="flex-shrink-0 inline-flex items-center gap-1 h-9 px-3.5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[12.5px] font-semibold hover:opacity-95 active:scale-[0.98] transition"
+          >
+            {ko ? '플랜 보기' : 'See plans'}
+          </Link>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section>
       {errorToast}
@@ -118,7 +155,7 @@ export function RecommendedShelf() {
         {t('study.landing.recommendedTitle')}
       </h2>
 
-      {loading ? (
+      {loading || !landing ? (
         <SkeletonCard className="h-[104px] p-4 flex items-start gap-3">
           <SkeletonBlock className="w-11 h-11 rounded-2xl flex-shrink-0" />
           <div className="flex-1 space-y-2">
@@ -127,10 +164,11 @@ export function RecommendedShelf() {
             <SkeletonBlock className="h-2.5 w-3/5 rounded-full" />
           </div>
         </SkeletonCard>
-      ) : cards.length === 0 ? (
-        // Nothing to recommend yet. Without a target test the fix is to
-        // pick one (recommendations anchor on it); with one it's simply
-        // "study a bit first".
+      ) : cards.length === 0 || !targetTest ? (
+        // Without a target test the shelf ALWAYS prompts to pick one —
+        // even when history-based cards exist, recommending against a
+        // test the student hasn't chosen contradicts the prompt above.
+        // With a target but no data yet it's simply "study a bit first".
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-5 py-8 text-center">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white ring-1 ring-gray-200/70 mx-auto mb-3">
             <Lightbulb className="w-5 h-5 text-gray-300" />
@@ -144,7 +182,7 @@ export function RecommendedShelf() {
               </p>
               <Link
                 href="/mobile/study/path"
-                className="inline-flex items-center gap-1.5 mt-3 h-9 px-4 rounded-full bg-gray-900 text-white text-[13px] font-semibold hover:bg-gray-800 active:scale-[0.98] transition"
+                className="inline-flex items-center gap-1.5 mt-3 h-9 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-semibold hover:opacity-95 active:scale-[0.98] transition"
               >
                 {ko ? '목표 시험 선택' : 'Choose a test'}
                 <ArrowRight className="w-3.5 h-3.5" />

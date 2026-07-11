@@ -1886,7 +1886,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 type="button"
                 onClick={() => setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))}
                 disabled={audioPlaying}
-                className="flex-1 h-11 rounded-full bg-gray-900 text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                className="flex-1 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
               >
                 {t('study.test.next')}
                 <ArrowRight className="w-4 h-4" />

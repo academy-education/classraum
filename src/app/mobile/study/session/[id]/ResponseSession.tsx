@@ -1,12 +1,12 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import {
-  Loader2, Mic, Square, RotateCcw, Sparkles, AlertCircle,
+import { Mic, Square, RotateCcw, Sparkles, AlertCircle,
   ArrowRight, Clock, Pencil, Volume2, Award, ChevronRight, Info,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
+import { PathMascot } from '../../_shared/PathMascot'
 import { authHeaders } from '@/lib/auth-headers'
 
 type Family = 'toefl' | 'ielts'
@@ -473,7 +473,7 @@ function SpeakingCapture({
             {ko ? '메모하세요. 자동으로 녹음이 시작됩니다.' : 'Take notes. Recording starts automatically.'}
           </p>
           <button type="button" onClick={() => { setPrepRemaining(0); void startRecording() }}
-            className="mt-4 inline-flex items-center justify-center h-9 px-4 rounded-lg bg-gray-900 text-white text-[13px] font-medium hover:bg-gray-800 transition">
+            className="mt-4 inline-flex items-center justify-center h-9 px-4 rounded-lg bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-medium hover:opacity-95 transition">
             {ko ? '바로 시작' : 'Start now'}
           </button>
         </div>
@@ -495,7 +495,7 @@ function SpeakingCapture({
 
       {state === 'uploading' && (
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-8 text-center">
-          <Loader2 className="w-6 h-6 animate-spin text-indigo-600 mx-auto mb-3" />
+          <div className="flex justify-center mb-3"><PathMascot state="thinking" size={84} /></div>
           <p className="text-[13px] text-gray-700">
             {ko ? '음성을 텍스트로 변환 중…' : 'Transcribing your audio…'}
           </p>
@@ -521,7 +521,7 @@ function SpeakingCapture({
 function GradingScreen({ ko }: { ko: boolean }) {
   return (
     <div className="py-16 text-center">
-      <Loader2 className="w-7 h-7 animate-spin text-indigo-600 mx-auto mb-3" />
+      <div className="flex justify-center mb-3"><PathMascot state="thinking" size={96} /></div>
       <p className="text-[14px] font-medium text-gray-900">{ko ? '평가 중…' : 'Grading your response…'}</p>
       <p className="text-[12px] text-gray-500 mt-1.5">{ko ? '약 10–20초 소요됩니다.' : 'Typically 10–20 seconds.'}</p>
     </div>

@@ -35,6 +35,9 @@ export function ModeChip() {
 
   if (pathname === '/mobile/start') return null
   if (user?.role !== 'student') return null
+  // Study-only students (no academy) have exactly one mode — a
+  // switcher chip with nothing to switch to is noise.
+  if ((user?.academyIds?.length ?? 0) === 0) return null
 
   const inStudy = currentMode === 'study'
   const Icon = inStudy ? BookOpen : GraduationCap

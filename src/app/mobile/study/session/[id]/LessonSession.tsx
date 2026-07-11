@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw, Sparkles, BookOpen } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { PathMascot } from '../../_shared/PathMascot'
+import { MascotLoader } from '../../_shared/MascotLoader'
 
 interface Section { heading: string; body: string; example: string | null }
 interface ComprehensionQ {
@@ -34,6 +36,14 @@ interface Verdict { isCorrect: boolean; aiExplanation: string }
  * question shape matches. Lesson body is cached server-side so a
  * student can leave + resume without losing their place.
  */
+/** Raumi's thinking loop is 3.2s; hold the loader at least one cycle
+ *  so fast responses don't flash the mascot. */
+const MIN_MASCOT_MS = 3200
+const holdForMascot = async (startedAt: number) => {
+  const left = MIN_MASCOT_MS - (Date.now() - startedAt)
+  if (left > 0) await new Promise(r => setTimeout(r, left))
+}
+
 export function LessonSession({ sessionId, language }: { sessionId: string; language: 'en' | 'ko' }) {
   const { t } = useTranslation()
   const ko = language === 'ko'
@@ -49,6 +59,7 @@ export function LessonSession({ sessionId, language }: { sessionId: string; lang
   const load = useCallback(async () => {
     setLoading(true)
     setError(false)
+    const startedAt = Date.now()
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/lesson/generate', {
@@ -58,6 +69,7 @@ export function LessonSession({ sessionId, language }: { sessionId: string; lang
       })
       if (!res.ok) throw new Error()
       const json = await res.json()
+      await holdForMascot(startedAt)
       setLesson(json.lesson as Lesson)
     } catch {
       setError(true)
@@ -100,16 +112,14 @@ export function LessonSession({ sessionId, language }: { sessionId: string; lang
 
   if (loading) {
     return (
-      <div className="flex-1 flex items-center justify-center text-sm text-gray-500 px-6 text-center">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.lesson.generating')}
-      </div>
+      <MascotLoader className="flex-1" label={t('study.lesson.generating')} />
     )
   }
 
   if (error || !lesson) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-3">
+        <PathMascot state="sad" size={84} />
         <p className="text-sm text-gray-600">{t('study.lesson.generateFailed')}</p>
         <button
           type="button"
@@ -277,7 +287,7 @@ export function LessonSession({ sessionId, language }: { sessionId: string; lang
               )}
               <Link
                 href="/mobile/study"
-                className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-gray-900 text-white text-sm font-medium"
+                className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-medium"
               >
                 {t('study.lesson.finish')}
                 <ArrowRight className="w-4 h-4" />

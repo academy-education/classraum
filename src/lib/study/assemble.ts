@@ -189,6 +189,12 @@ export async function drawBankPractice(p: {
   section: 'reading_writing' | 'math'
   count: number
   seed: string
+  /** Content-domain filter (study_item_bank.domain, e.g. 'Algebra').
+   *  Used by journey nodes that train one skill at a time. */
+  domain?: string
+  /** Difficulty filter — journey Level I draws easy/medium, Level II
+   *  medium/hard. Omitted → all difficulties. */
+  difficulties?: Array<'easy' | 'medium' | 'hard'>
   /** Enables no-repeat tracking (see AssembleParams.studentId). */
   studentId?: string
   /** Exposure-ledger tag, e.g. 'daily_challenge' | 'practice'. */
@@ -198,16 +204,18 @@ export async function drawBankPractice(p: {
   sessionId?: string
 }): Promise<PracticeQuestion[]> {
   const family = p.family ?? 'sat'
-  const { data, error } = await supabaseAdmin
+  let query = supabaseAdmin
     .from('study_item_bank')
     .select('id, item')
     .eq('family', family)
     .eq('section', p.section)
     .eq('verified', true)
     .eq('archived', false)
-    // Stable pool order so the same seed always yields the same draw
-    // (the daily challenge relies on this for its shared-set property).
-    .order('id', { ascending: true })
+  if (p.domain) query = query.eq('domain', p.domain)
+  if (p.difficulties?.length) query = query.in('difficulty', p.difficulties)
+  // Stable pool order so the same seed always yields the same draw
+  // (the daily challenge relies on this for its shared-set property).
+  const { data, error } = await query.order('id', { ascending: true })
   if (error) throw new Error(`bank practice query failed: ${error.message}`)
 
   const pool = ((data ?? []) as Array<{ id: string; item: Question }>)

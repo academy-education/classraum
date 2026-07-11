@@ -31,7 +31,7 @@ import { useOnboardingGate } from './useOnboardingGate'
 import { LandingDataProvider, useLandingData } from './LandingDataProvider'
 import { StudyPathPromo } from './StudyPathPromo'
 import { SocialPresenceCard } from './SocialPresenceCard'
-import { SkeletonTestGrid } from './skeletons'
+import { SkeletonTestGrid, SkeletonBlock, SkeletonCard } from './skeletons'
 
 /**
  * /mobile/study — study landing.
@@ -410,6 +410,35 @@ function StudyLandingInner() {
     router.push(`/mobile/study/session/${data.id}`)
   }
 
+  // ONE coordinated first paint: hold the whole landing behind a
+  // full-page skeleton until the batched landing payload AND the topic
+  // catalog are both in. Without this the hero rendered with zeros,
+  // then the numbers snapped in, then the Today cards popped one by
+  // one — the "loads, then changes" effect.
+  if (!landingData || loading) {
+    return (
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-8">
+        <SkeletonBlock className="h-[190px] w-full rounded-3xl" />
+        <div className="space-y-3">
+          <SkeletonBlock className="h-5 w-16 rounded-full" />
+          {[0, 1].map(i => (
+            <SkeletonCard key={i} className="h-[80px] p-4 flex items-center gap-3">
+              <SkeletonBlock className="w-11 h-11 rounded-2xl flex-shrink-0" />
+              <div className="flex-1 space-y-2">
+                <SkeletonBlock className="h-2.5 w-1/4 rounded-full" />
+                <SkeletonBlock className="h-3 w-3/5 rounded-full" />
+              </div>
+            </SkeletonCard>
+          ))}
+        </div>
+        <div className="space-y-3">
+          <SkeletonBlock className="h-5 w-28 rounded-full" />
+          <SkeletonTestGrid />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="relative">
       {errorToast}
@@ -443,12 +472,10 @@ function StudyLandingInner() {
             <StudyTodayCard
               href="/mobile/study/path"
               icon={TargetIcon}
-              iconColorClass="bg-gradient-to-br from-amber-400 to-orange-600 text-white shadow-[0_4px_10px_-2px_rgba(245,158,11,0.35)]"
+              iconColorClass="bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-[0_4px_10px_-2px_rgba(139,92,246,0.35)]"
               eyebrow={ko ? '시작하기' : 'Get started'}
               title={ko ? '목표 시험을 선택하세요' : 'Pick your target test'}
-              subtitle={ko
-                ? '오늘의 추천과 학습 경로가 목표 시험에 맞춰 구성돼요.'
-                : "Today's picks and your journey are built around it."}
+              subtitle={ko ? '추천과 학습 경로의 기준이 돼요' : "Your picks are built around it"}
             />
           )}
           <StudyPathPromo />
@@ -622,7 +649,7 @@ function StudyLandingInner() {
               Count + difficulty ride along in the session config. */}
           <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 px-1">
             <div className="flex items-center gap-1.5">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+              <span className="w-[72px] flex-shrink-0 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
                 {ko ? '문항 수' : 'Questions'}
               </span>
               {[5, 8, 10].map(n => (
@@ -633,7 +660,7 @@ function StudyLandingInner() {
                   disabled={creatingFreeForm}
                   className={`h-7 min-w-[34px] px-2 rounded-full text-[12px] font-semibold transition-all ${
                     freeFormCount === n
-                      ? 'bg-gray-900 text-white shadow-[0_1px_2px_rgba(0,0,0,0.15)]'
+                      ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                       : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
                   }`}
                 >
@@ -642,7 +669,7 @@ function StudyLandingInner() {
               ))}
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+              <span className="w-[72px] flex-shrink-0 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
                 {ko ? '난이도' : 'Difficulty'}
               </span>
               {([
@@ -657,7 +684,7 @@ function StudyLandingInner() {
                   disabled={creatingFreeForm}
                   className={`h-7 px-2.5 rounded-full text-[12px] font-semibold transition-all ${
                     freeFormDifficulty === d.key
-                      ? 'bg-gray-900 text-white shadow-[0_1px_2px_rgba(0,0,0,0.15)]'
+                      ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                       : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
                   }`}
                 >
@@ -666,7 +693,7 @@ function StudyLandingInner() {
               ))}
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+              <span className="w-[72px] flex-shrink-0 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
                 {ko ? '언어' : 'Language'}
               </span>
               {([
@@ -681,7 +708,7 @@ function StudyLandingInner() {
                   disabled={creatingFreeForm}
                   className={`h-7 px-2.5 rounded-full text-[12px] font-semibold transition-all ${
                     freeFormLanguage === l.key
-                      ? 'bg-gray-900 text-white shadow-[0_1px_2px_rgba(0,0,0,0.15)]'
+                      ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                       : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
                   }`}
                 >
@@ -742,8 +769,10 @@ function StudyLandingInner() {
  *  section node — but space-y-8 collapses it cleanly. */
 function SectionGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <section className="space-y-2">
-      <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400">
+    <section className="space-y-3">
+      {/* Same treatment as the shelf headers below so every landing
+          section reads as one system. */}
+      <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
         {label}
       </h2>
       {children}

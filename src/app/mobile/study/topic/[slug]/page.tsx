@@ -8,6 +8,8 @@ import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check,
 import { StudySubPageHeader } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
+import { SkeletonBlock, SkeletonCard } from '../../skeletons'
+
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
@@ -287,10 +289,23 @@ function TopicInner({ slug }: { slug: string }) {
   }
 
   if (loading) {
+    // Browse surface → skeleton mirroring the loaded shell: back link,
+    // header, stat card, tab bar, featured card, 2x2 mode grid.
     return (
-      <div className="flex items-center justify-center h-full text-sm text-gray-500 px-5 py-10">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.landing.loading')}
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+        <SkeletonBlock className="h-4 w-28 rounded-full" />
+        <div className="flex items-start gap-3">
+          <SkeletonBlock className="w-9 h-9 rounded-xl flex-shrink-0" />
+          <div className="flex-1 space-y-2">
+            <SkeletonBlock className="h-3 w-20 rounded-full" />
+            <SkeletonBlock className="h-6 w-2/5 rounded-lg" />
+          </div>
+        </div>
+        <SkeletonBlock className="h-10 w-full rounded-lg" />
+        <SkeletonCard className="p-5 min-h-[92px]" />
+        <div className="grid grid-cols-2 gap-3">
+          {[0, 1, 2, 3].map(i => <SkeletonCard key={i} className="min-h-[148px]" />)}
+        </div>
       </div>
     )
   }
@@ -301,7 +316,7 @@ function TopicInner({ slug }: { slug: string }) {
         <p>{t('study.topic.notFound')}</p>
         <Link
           href="/mobile/study"
-          className="inline-flex items-center gap-1 text-primary font-medium"
+          className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           {String(t('study.topic.backToStudy'))}
@@ -487,6 +502,7 @@ function TopicInner({ slug }: { slug: string }) {
               </>
             ) : (
               <>
+                <DailyChallengeCard />
                 {isResponseEligible(effectiveTopic?.slug) && (
                   <FeaturedResponseCard
                     startSession={() => startSession('response')}
@@ -495,7 +511,6 @@ function TopicInner({ slug }: { slug: string }) {
                   />
                 )}
                 {modeGrid}
-                <DailyChallengeCard />
               </>
             )}
           </>

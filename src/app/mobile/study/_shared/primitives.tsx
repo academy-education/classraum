@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useState, type ComponentType } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Loader2, type LucideProps } from 'lucide-react'
 
 /**
@@ -35,11 +36,23 @@ export interface StudyPageHeaderProps {
   rightSlot?: ReactNode
 }
 
+
+/** History-aware back: return to the actual previous page when there
+ *  is one, else fall back to the header's declared parent route. */
+function useSmartBack(fallback: string) {
+  const router = useRouter()
+  return () => {
+    if (typeof window !== 'undefined' && window.history.length > 1) router.back()
+    else router.push(fallback)
+  }
+}
+
 export function StudyPageHeader({
   backHref, backLabel, icon: Icon, iconColorClass = 'text-primary bg-primary/10',
   eyebrow, title, rightSlot,
 }: StudyPageHeaderProps) {
   const hasBack = !!backHref && !!backLabel
+  const goBack = useSmartBack(backHref ?? '/mobile/study')
   // Sticky collapse: past 80px scroll, the header shrinks to a thin
   // bar (back link + title only). We walk up the DOM to find the
   // closest ancestor that actually scrolls — in the mobile layout it
@@ -55,9 +68,21 @@ export function StudyPageHeader({
       scroller = scroller.parentElement
     }
     const target: HTMLElement | Window = scroller ?? window
+    // Hysteresis: collapsing shrinks the header ~50px, which shrinks
+    // the scrollable height — if the user sits right at a single
+    // threshold the browser can clamp scrollTop back below it and the
+    // header oscillates (collapse → clamp → expand → …). Collapse past
+    // 80px but only re-expand under 16px, which is below the worst-
+    // case clamped position (80 − headerDelta), so both states are
+    // stable at every scroll position.
+    let isCollapsed = false
     const onScroll = () => {
       const top = scroller ? scroller.scrollTop : window.scrollY
-      setCollapsed(top > 80)
+      const next = isCollapsed ? top > 16 : top > 80
+      if (next !== isCollapsed) {
+        isCollapsed = next
+        setCollapsed(next)
+      }
     }
     target.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
@@ -76,18 +101,18 @@ export function StudyPageHeader({
           the page body on desktop viewports. */}
       <div className="max-w-3xl mx-auto px-5">
         {!collapsed && hasBack && (
-          <Link href={backHref!}
+          <button type="button" onClick={goBack}
             className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary mb-3 transition-colors">
             <ArrowLeft className="w-3.5 h-3.5" />{backLabel}
-          </Link>
+          </button>
         )}
         <div className="flex items-center gap-3">
           {collapsed && hasBack ? (
-            <Link href={backHref!}
+            <button type="button" onClick={goBack}
               aria-label={backLabel}
               className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors -ml-1">
               <ArrowLeft className="w-4 h-4" />
-            </Link>
+            </button>
           ) : (
             <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${iconColorClass}`}>
               <Icon className="w-4 h-4" />
@@ -130,13 +155,14 @@ export function StudySubPageHeader({
   backHref, backLabel, icon: Icon, iconColorClass = 'text-primary bg-primary/10',
   eyebrow, title, subtitle, rightSlot,
 }: StudySubPageHeaderProps) {
+  const goBack = useSmartBack(backHref ?? '/mobile/study')
   return (
     <header className="space-y-3">
       {backHref && backLabel && (
-        <Link href={backHref}
+        <button type="button" onClick={goBack}
           className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary transition-colors -ml-1 px-1 py-1">
           <ArrowLeft className="w-3.5 h-3.5" />{backLabel}
-        </Link>
+        </button>
       )}
       <div className="flex items-start gap-3">
         <div className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${iconColorClass}`}>
@@ -401,7 +427,7 @@ export function StudyEmptyState({
       {body && <p className="text-[12px] text-gray-500 mt-1.5 max-w-xs mx-auto leading-relaxed">{body}</p>}
       {ctaHref && ctaText && (
         <Link href={ctaHref}
-          className="mt-4 inline-flex items-center justify-center h-10 px-4 rounded-xl bg-gray-900 text-white text-[13px] font-medium hover:bg-gray-800 active:scale-[0.98] transition-all">
+          className="mt-4 inline-flex items-center justify-center h-10 px-4 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-medium hover:opacity-95 active:scale-[0.98] transition-all">
           {ctaText}
         </Link>
       )}

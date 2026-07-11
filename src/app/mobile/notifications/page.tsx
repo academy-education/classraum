@@ -128,7 +128,7 @@ function MobileNotificationsPageContent() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const fetchNotificationsOptimized = useCallback(async (): Promise<Notification[]> => {
-    if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return []
+    if (!effectiveUserId) return []
 
     // NOTE: We deliberately do NOT short-circuit on a sessionStorage cache here.
     // The outer `refetchNotifications` already caches at the page level for
@@ -170,6 +170,14 @@ function MobileNotificationsPageContent() {
         })
       }
       
+      const allNotifications: Notification[] = []
+
+      // Classroom-derived notifications (assignments, grades, upcoming
+      // sessions) only exist for academy members. Study-only students
+      // skip straight to the DB-notification merge below — previously
+      // the early returns in this block dropped their study
+      // notifications entirely, leaving the page permanently empty.
+      if (hasAcademyIds && academyIds.length > 0) await (async () => {
       // OPTIMIZATION: First get enrolled classrooms
       const { data: enrolledClassrooms } = await supabase
         .from('classroom_students')
@@ -185,7 +193,7 @@ function MobileNotificationsPageContent() {
         .in('classrooms.academy_id', academyIds)
       
       if (!enrolledClassrooms || enrolledClassrooms.length === 0) {
-        return []
+        return
       }
       
       const classroomIds = enrolledClassrooms.map(ec => ec.classroom_id)
@@ -199,7 +207,7 @@ function MobileNotificationsPageContent() {
         .limit(100)
       
       if (!sessions || sessions.length === 0) {
-        return []
+        return
       }
       
       const sessionIds = sessions.map(s => s.id)
@@ -257,7 +265,6 @@ function MobileNotificationsPageContent() {
         }
       }
       
-      const allNotifications: Notification[] = []
       const sessionMap = new Map()
       sessions.forEach((s) => {
         sessionMap.set(s.id, { ...s, classroom: classroomMap.get(s.classroom_id) })
@@ -387,6 +394,8 @@ function MobileNotificationsPageContent() {
         })
       }
       
+      })()
+
       // Append DB notifications that the synthesizer doesn't cover.
       // Triggers + crons populate `notifications` for: session.cancelled,
       // session.rescheduled, session reminders, assignment.due, assignment.overdue,
@@ -519,14 +528,6 @@ function MobileNotificationsPageContent() {
       return []
     }
 
-    if (!hasAcademyIds) {
-      return []
-    }
-
-    if (!academyIds || academyIds.length === 0) {
-      return []
-    }
-
     try {
       const result = await fetchNotificationsOptimized()
       return result || []
@@ -542,7 +543,7 @@ function MobileNotificationsPageContent() {
   
   // Fetch and save to Zustand
   const refetchNotifications = useStableCallback(async (forceRefresh = false) => {
-    if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) {
+    if (!effectiveUserId) {
       setNotifications([])
       setLocalNotifications([])
       setLoading(false)
@@ -599,7 +600,7 @@ function MobileNotificationsPageContent() {
   // (the bell badge reads the table directly, so without this the two counts
   // diverge whenever a new notification lands while a stale cache is alive).
   useEffect(() => {
-    if (effectiveUserId && hasAcademyIds && academyIds.length > 0) {
+    if (effectiveUserId) {
       // Bust the bell badge's separate sessionStorage cache so its unread
       // count re-syncs with the page's count on the next render.
       try {

@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
+import { PathMascot } from '../_shared/PathMascot'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
 import { useStudyErrorToast, startFailedMessage } from '../_shared/useStudyErrorToast'
@@ -305,7 +306,7 @@ function ReviewStage({ previewUrl, onSolve, onRetake, ko }: { previewUrl: string
 function SolvingStage({ ko }: { ko: boolean }) {
   return (
     <div className="py-16 text-center">
-      <Loader2 className="w-7 h-7 animate-spin text-amber-600 mx-auto mb-3" />
+      <div className="flex justify-center mb-3"><PathMascot state="thinking" size={96} /></div>
       <p className="text-[14px] font-medium text-gray-900">{ko ? '문제를 읽고 푸는 중…' : 'Reading and solving the problem…'}</p>
       <p className="text-[12px] text-gray-500 mt-1.5">{ko ? '보통 5–15초 걸려요.' : 'Typically 5–15 seconds.'}</p>
     </div>
@@ -374,7 +375,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
           {ko ? '문제를 명확하게 인식하지 못했어요. 더 가까이서, 흔들림 없이 다시 찍어보세요.' : 'Could not clearly detect a question. Try a closer, sharper shot.'}
         </div>
         <button type="button" onClick={onAnother}
-          className="w-full h-11 rounded-xl bg-gray-900 text-white text-[14px] font-semibold inline-flex items-center justify-center gap-1.5">
+          className="w-full h-11 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[14px] font-semibold inline-flex items-center justify-center gap-1.5">
           <Camera className="w-4 h-4" />{ko ? '다시 찍기' : 'Try again'}
         </button>
       </div>

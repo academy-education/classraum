@@ -7,6 +7,8 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
+import { PathMascot } from '../../_shared/PathMascot'
+import { MascotLoader } from '../../_shared/MascotLoader'
 import { scheduleNext, INITIAL_SRS } from '@/lib/srs'
 import { useStudyErrorToast, saveFailedMessage } from '../../_shared/useStudyErrorToast'
 
@@ -25,6 +27,14 @@ interface Deck { cards: Card[] }
  * sessions yet. Phase 3 graduates this into a real spaced-repetition
  * queue keyed by card front + topic_id.
  */
+/** Raumi's thinking loop is 3.2s; hold the loader at least one cycle
+ *  so fast responses don't flash the mascot. */
+const MIN_MASCOT_MS = 3200
+const holdForMascot = async (startedAt: number) => {
+  const left = MIN_MASCOT_MS - (Date.now() - startedAt)
+  if (left > 0) await new Promise(r => setTimeout(r, left))
+}
+
 export function FlashcardsSession({ sessionId, language }: { sessionId: string; language: 'en' | 'ko' }) {
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
@@ -47,6 +57,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
   const load = useCallback(async () => {
     setLoading(true)
     setError(false)
+    const startedAt = Date.now()
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/flashcards/generate', {
@@ -57,6 +68,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
       if (!res.ok) throw new Error()
       const json = await res.json()
       const cards = (json.deck as Deck).cards
+      await holdForMascot(startedAt)
       setDeck(cards)
       setQueue(cards.map((_, i) => i))
       setFlipped(false)
@@ -184,16 +196,14 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
 
   if (loading) {
     return (
-      <div className="flex-1 flex items-center justify-center text-sm text-gray-500 px-6 text-center">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.flashcards.generating')}
-      </div>
+      <MascotLoader className="flex-1" label={t('study.flashcards.generating')} />
     )
   }
 
   if (error || !deck) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-3">
+        <PathMascot state="sad" size={84} />
         <p className="text-sm text-gray-600">{t('study.flashcards.generateFailed')}</p>
         <button
           type="button"
@@ -391,7 +401,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
           <button
             type="button"
             onClick={() => setFlipped(true)}
-            className="w-full h-12 rounded-full bg-gray-900 text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5"
+            className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5"
           >
             <RotateCw className="w-4 h-4" />
             {t('study.flashcards.flip')}

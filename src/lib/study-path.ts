@@ -9,23 +9,29 @@
  * research pass flagged it as the highest-leverage UX shift over our
  * current shelf-and-grid landing.
  *
+ * CURRICULUM SHAPE (v2): each node focuses on ONE College Board
+ * content domain at a time (the `domain` field filters the bank draw),
+ * ramping Level I (easy/medium) → Level II (medium/hard) → timed
+ * section test → final full-length mocks. One skill at a time, slowly
+ * building up to the real test.
+ *
  * Progression rules:
  *   - Node 0 always starts unlocked.
- *   - Node N unlocks once every prior node has been *touched* (any
- *     session created for its subtopicSlug + mode combination).
- *   - Node N is "completed" once the mastery for its subtopicSlug is
- *     >= completeMastery (default 65) OR a session of matching mode
- *     has been submitted with score >= completeScore (default 70).
+ *   - Nodes are strictly linear: the first non-completed node is
+ *     "active", everything after it is locked.
+ *   - A node is "completed" once a session tagged with its id
+ *     (config.pathNode) reaches status='completed' — practice sessions
+ *     complete via /api/study/practice/complete when the set is
+ *     finished; full tests complete on submit.
  *
- * This is an MVP: templates live in code so we can iterate on shape
- * before committing to a DB schema. Once we've validated the pattern,
- * migrate to a `study_path_definitions` table.
+ * Templates live in code so we can iterate on shape before committing
+ * to a DB schema. Once validated, migrate to `study_path_definitions`.
  */
 
 export type PathNodeKind = 'diagnostic' | 'practice' | 'section_test' | 'full_test' | 'lesson'
 
 export interface StudyPathNode {
-  /** Stable id for progression lookups. */
+  /** Stable id for progression lookups — stored in session config. */
   id: string
   /** Node kind — drives icon + copy + launch behavior. */
   kind: PathNodeKind
@@ -39,9 +45,14 @@ export interface StudyPathNode {
   subtopicSlug: string
   /** Which session mode to launch — matches study_sessions.mode. */
   launchMode: 'full_test' | 'practice' | 'lesson' | 'chat'
-  /** Mastery threshold (0-100) to consider the node completed.
-   *  Defaults to 65 if omitted. */
-  completeMastery?: number
+  /** Bank content-domain filter for practice draws. Must match
+   *  study_item_bank.domain exactly (e.g. 'Algebra'). Omitted →
+   *  mixed draw across the section. */
+  domain?: string
+  /** Bank difficulty filter for practice draws. Omitted → all. */
+  difficulties?: Array<'easy' | 'medium' | 'hard'>
+  /** Items in the session: practice batch size or section-test length. */
+  questionCount?: number
   /** Milestone nodes get a bigger visual + gold ring. */
   milestone?: boolean
 }
@@ -53,6 +64,9 @@ export interface StudyPathTemplate {
   nodes: StudyPathNode[]
 }
 
+const RW = 'sat-reading-writing'
+const MATH = 'sat-math'
+
 const SAT_PATH: StudyPathTemplate = {
   testSlug: 'test-sat',
   titleEn: 'Your SAT Path',
@@ -63,83 +77,228 @@ const SAT_PATH: StudyPathTemplate = {
       kind: 'diagnostic',
       labelEn: 'Diagnostic',
       labelKo: '진단 평가',
-      detailEn: 'Quick 10-question warmup to gauge where you are.',
-      detailKo: '10문항으로 현재 수준을 빠르게 확인해요.',
-      subtopicSlug: 'sat-reading-writing',
+      detailEn: 'Quick 10-question check across Reading & Writing to gauge where you are.',
+      detailKo: '읽기·쓰기 10문항으로 현재 수준을 빠르게 확인해요.',
+      subtopicSlug: RW,
       launchMode: 'practice',
-      completeMastery: 0,  // completes on any attempt
+      questionCount: 10,
+    },
+    // ── Unit 1 · Reading & Writing — one domain at a time ──
+    {
+      id: 'sat-rw-info-1',
+      kind: 'practice',
+      labelEn: 'Info & Ideas I',
+      labelKo: '정보와 아이디어 I',
+      detailEn: 'Central ideas, evidence, and inference — the core reading skills.',
+      detailKo: '중심 내용, 근거 찾기, 추론 — 독해의 핵심 스킬이에요.',
+      subtopicSlug: RW,
+      launchMode: 'practice',
+      domain: 'Information and Ideas',
+      difficulties: ['easy', 'medium'],
+      questionCount: 8,
     },
     {
-      id: 'sat-rw-practice-1',
+      id: 'sat-rw-info-2',
       kind: 'practice',
-      labelEn: 'R&W · Warmup',
-      labelKo: '읽기·쓰기 · 워밍업',
-      detailEn: 'Build accuracy on short-passage questions.',
-      detailKo: '짧은 지문 문제로 정확도를 높여요.',
-      subtopicSlug: 'sat-reading-writing',
+      labelEn: 'Info & Ideas II',
+      labelKo: '정보와 아이디어 II',
+      detailEn: 'Same skills, tougher passages — quantitative evidence and dense inference.',
+      detailKo: '같은 스킬, 더 어려운 지문 — 자료 해석과 고난도 추론.',
+      subtopicSlug: RW,
       launchMode: 'practice',
+      domain: 'Information and Ideas',
+      difficulties: ['medium', 'hard'],
+      questionCount: 8,
     },
     {
-      id: 'sat-rw-practice-2',
+      id: 'sat-rw-craft-1',
       kind: 'practice',
-      labelEn: 'R&W · Multi-paragraph',
-      labelKo: '읽기·쓰기 · 장문',
-      detailEn: 'Longer paragraphs, inference-heavy items.',
-      detailKo: '더 긴 지문, 추론 중심 문제를 풀어요.',
-      subtopicSlug: 'sat-reading-writing',
+      labelEn: 'Craft & Structure I',
+      labelKo: '표현과 구조 I',
+      detailEn: 'Words in context, text structure, and author purpose.',
+      detailKo: '문맥 속 어휘, 글의 구조, 저자의 의도를 다뤄요.',
+      subtopicSlug: RW,
       launchMode: 'practice',
+      domain: 'Craft and Structure',
+      difficulties: ['easy', 'medium'],
+      questionCount: 8,
+    },
+    {
+      id: 'sat-rw-craft-2',
+      kind: 'practice',
+      labelEn: 'Craft & Structure II',
+      labelKo: '표현과 구조 II',
+      detailEn: 'Cross-text connections and precision vocabulary at test difficulty.',
+      detailKo: '지문 간 비교와 고난도 어휘 문제를 실전 난이도로.',
+      subtopicSlug: RW,
+      launchMode: 'practice',
+      domain: 'Craft and Structure',
+      difficulties: ['medium', 'hard'],
+      questionCount: 8,
+    },
+    {
+      id: 'sat-rw-conventions-1',
+      kind: 'practice',
+      labelEn: 'Conventions I',
+      labelKo: '문법 규칙 I',
+      detailEn: 'Sentence boundaries, punctuation, and agreement basics.',
+      detailKo: '문장 경계, 구두점, 수 일치의 기본기를 다져요.',
+      subtopicSlug: RW,
+      launchMode: 'practice',
+      domain: 'Standard English Conventions',
+      difficulties: ['easy', 'medium'],
+      questionCount: 8,
+    },
+    {
+      id: 'sat-rw-conventions-2',
+      kind: 'practice',
+      labelEn: 'Conventions II',
+      labelKo: '문법 규칙 II',
+      detailEn: 'Trickier boundaries, modifiers, and verb forms.',
+      detailKo: '까다로운 문장 구조, 수식어, 동사 형태 문제.',
+      subtopicSlug: RW,
+      launchMode: 'practice',
+      domain: 'Standard English Conventions',
+      difficulties: ['medium', 'hard'],
+      questionCount: 8,
+    },
+    {
+      id: 'sat-rw-expression',
+      kind: 'practice',
+      labelEn: 'Expression of Ideas',
+      labelKo: '아이디어 표현',
+      detailEn: 'Rhetorical synthesis and transitions — writing that flows.',
+      detailKo: '수사적 종합과 연결어 — 자연스러운 글쓰기 감각.',
+      subtopicSlug: RW,
+      launchMode: 'practice',
+      domain: 'Expression of Ideas',
+      questionCount: 8,
     },
     {
       id: 'sat-rw-section',
       kind: 'section_test',
       labelEn: 'R&W Section Test',
       labelKo: '읽기·쓰기 섹션 테스트',
-      detailEn: 'Timed R&W section — 32 minutes, 27 items.',
-      detailKo: '읽기·쓰기 섹션을 실전 시간으로 풀어요. 32분, 27문항.',
-      subtopicSlug: 'sat-reading-writing',
+      detailEn: 'Timed R&W section — 27 items mixing every domain you just trained.',
+      detailKo: '지금까지 익힌 모든 영역을 섞은 27문항 실전 섹션.',
+      subtopicSlug: RW,
       launchMode: 'full_test',
+      questionCount: 27,
       milestone: true,
     },
+    // ── Unit 2 · Math — one domain at a time ──
     {
-      id: 'sat-math-practice-1',
+      id: 'sat-math-algebra-1',
       kind: 'practice',
-      labelEn: 'Math · Algebra',
-      labelKo: '수학 · 대수',
-      detailEn: 'Linear equations, inequalities, systems.',
+      labelEn: 'Algebra I',
+      labelKo: '대수 I',
+      detailEn: 'Linear equations, inequalities, and systems.',
       detailKo: '일차방정식, 부등식, 연립방정식을 다뤄요.',
-      subtopicSlug: 'sat-math',
+      subtopicSlug: MATH,
       launchMode: 'practice',
+      domain: 'Algebra',
+      difficulties: ['easy', 'medium'],
+      questionCount: 8,
     },
     {
-      id: 'sat-math-practice-2',
+      id: 'sat-math-algebra-2',
       kind: 'practice',
-      labelEn: 'Math · Advanced',
-      labelKo: '수학 · 심화',
-      detailEn: 'Quadratics, functions, geometry.',
-      detailKo: '이차식, 함수, 기하 문제를 풀어요.',
-      subtopicSlug: 'sat-math',
+      labelEn: 'Algebra II',
+      labelKo: '대수 II',
+      detailEn: 'Harder linear modeling and multi-step systems.',
+      detailKo: '고난도 일차 모델링과 다단계 연립 문제.',
+      subtopicSlug: MATH,
       launchMode: 'practice',
+      domain: 'Algebra',
+      difficulties: ['medium', 'hard'],
+      questionCount: 8,
+    },
+    {
+      id: 'sat-math-advanced-1',
+      kind: 'practice',
+      labelEn: 'Advanced Math I',
+      labelKo: '심화 수학 I',
+      detailEn: 'Quadratics, exponentials, and nonlinear functions.',
+      detailKo: '이차식, 지수함수, 비선형 함수를 다뤄요.',
+      subtopicSlug: MATH,
+      launchMode: 'practice',
+      domain: 'Advanced Math',
+      difficulties: ['easy', 'medium'],
+      questionCount: 8,
+    },
+    {
+      id: 'sat-math-advanced-2',
+      kind: 'practice',
+      labelEn: 'Advanced Math II',
+      labelKo: '심화 수학 II',
+      detailEn: 'Function composition and the hardest nonlinear items.',
+      detailKo: '함수 합성과 최고난도 비선형 문제.',
+      subtopicSlug: MATH,
+      launchMode: 'practice',
+      domain: 'Advanced Math',
+      difficulties: ['medium', 'hard'],
+      questionCount: 8,
+    },
+    {
+      id: 'sat-math-data',
+      kind: 'practice',
+      labelEn: 'Data Analysis',
+      labelKo: '자료 분석',
+      detailEn: 'Ratios, percentages, and interpreting data.',
+      detailKo: '비율, 백분율, 자료 해석을 다뤄요.',
+      subtopicSlug: MATH,
+      launchMode: 'practice',
+      domain: 'Problem-Solving and Data Analysis',
+      questionCount: 8,
+    },
+    {
+      id: 'sat-math-geometry',
+      kind: 'practice',
+      labelEn: 'Geometry & Trig',
+      labelKo: '기하와 삼각비',
+      detailEn: 'Angles, circles, triangles, and trigonometry.',
+      detailKo: '각, 원, 삼각형, 삼각비 문제를 풀어요.',
+      subtopicSlug: MATH,
+      launchMode: 'practice',
+      domain: 'Geometry and Trigonometry',
+      questionCount: 8,
     },
     {
       id: 'sat-math-section',
       kind: 'section_test',
       labelEn: 'Math Section Test',
       labelKo: '수학 섹션 테스트',
-      detailEn: 'Timed Math section — 35 minutes, 22 items.',
-      detailKo: '수학 섹션을 실전 시간으로 풀어요. 35분, 22문항.',
-      subtopicSlug: 'sat-math',
+      detailEn: 'Timed Math section — 22 items across every domain.',
+      detailKo: '모든 영역을 섞은 22문항 실전 수학 섹션.',
+      subtopicSlug: MATH,
       launchMode: 'full_test',
+      questionCount: 22,
+      milestone: true,
+    },
+    // ── Finale · fresh full-length mocks (the exposure ledger keeps
+    //    these from repeating items you saw in earlier nodes) ──
+    {
+      id: 'sat-final-rw',
+      kind: 'full_test',
+      labelEn: 'Final Mock · R&W',
+      labelKo: '파이널 모의고사 · 읽기·쓰기',
+      detailEn: 'Full-length R&W mock with fresh questions. Test-day conditions.',
+      detailKo: '새 문항으로 구성된 실전 읽기·쓰기 모의고사.',
+      subtopicSlug: RW,
+      launchMode: 'full_test',
+      questionCount: 27,
       milestone: true,
     },
     {
-      id: 'sat-full-test',
+      id: 'sat-final-math',
       kind: 'full_test',
-      labelEn: 'Full Practice Test',
-      labelKo: '실전 모의고사',
-      detailEn: 'Complete SAT — both sections, back-to-back.',
-      detailKo: '두 섹션을 연속해서 푸는 실전 모의고사.',
-      subtopicSlug: 'test-sat',
+      labelEn: 'Final Mock · Math',
+      labelKo: '파이널 모의고사 · 수학',
+      detailEn: 'Full-length Math mock with fresh questions. You are ready.',
+      detailKo: '새 문항으로 구성된 실전 수학 모의고사. 이제 준비됐어요.',
+      subtopicSlug: MATH,
       launchMode: 'full_test',
+      questionCount: 22,
       milestone: true,
     },
   ],
@@ -159,6 +318,7 @@ const TOEFL_PATH: StudyPathTemplate = {
       detailKo: '짧은 지문 이해 문제로 시작해요.',
       subtopicSlug: 'toefl-reading',
       launchMode: 'practice',
+      questionCount: 8,
     },
     {
       id: 'toefl-reading-section',
@@ -180,6 +340,7 @@ const TOEFL_PATH: StudyPathTemplate = {
       detailKo: '강의와 대화 발췌 듣기.',
       subtopicSlug: 'toefl-listening',
       launchMode: 'practice',
+      questionCount: 8,
     },
     {
       id: 'toefl-listening-section',
@@ -233,10 +394,28 @@ export function getPathTemplate(targetTest: string | null | undefined): StudyPat
   return TEMPLATES[targetTest.toUpperCase()] ?? null
 }
 
+/** Per-node progress folded from the student's path-tagged sessions
+ *  (config.pathNode === node.id). */
+export interface PathNodeProgress {
+  /** Any session exists for this node. */
+  touched: boolean
+  /** A session for this node reached status='completed'. */
+  completed: boolean
+  /** Best score (0-100) across the node's completed sessions. */
+  bestScore: number | null
+  /** Most recent NON-completed session — tapping the node resumes it
+   *  instead of creating a duplicate. */
+  resumeSessionId: string | null
+  /** Most recent COMPLETED session — completed nodes link to its
+   *  results (summary page) instead of restarting. */
+  completedSessionId: string | null
+}
+
 export interface PathNodeState {
   status: 'locked' | 'active' | 'completed'
-  masteryPct: number | null
-  completedAt: string | null
+  bestScore: number | null
+  resumeSessionId: string | null
+  completedSessionId: string | null
 }
 
 export interface PathNodeWithState extends StudyPathNode {
@@ -244,30 +423,20 @@ export interface PathNodeWithState extends StudyPathNode {
 }
 
 /**
- * Fold student mastery + session history over a template into a
- * status-annotated node list ready for rendering. The active node is
- * the first non-completed node whose prior nodes are all completed.
- *
- * masteryBySlug: catalog-slug → mastery percentage (0-100). Nulls
- *                allowed for topics the student hasn't touched.
- * completedSlugs: set of subtopicSlugs that have at least one
- *                 completed session — cheap "have you engaged" signal
- *                 independent of mastery.
+ * Fold per-node session progress over a template into a
+ * status-annotated node list ready for rendering. Strictly linear:
+ * the first non-completed node is active, everything after is locked.
  */
 export function annotatePath(
   template: StudyPathTemplate,
-  masteryBySlug: Record<string, number>,
-  completedSlugs: Set<string>,
+  progressByNode: Record<string, PathNodeProgress>,
 ): PathNodeWithState[] {
   const out: PathNodeWithState[] = []
   let activeAssigned = false
 
   for (const node of template.nodes) {
-    const mastery = masteryBySlug[node.subtopicSlug] ?? null
-    const threshold = node.completeMastery ?? 65
-    const isCompleted =
-      (threshold === 0 && completedSlugs.has(node.subtopicSlug)) ||
-      (mastery !== null && mastery >= threshold)
+    const p = progressByNode[node.id]
+    const isCompleted = p?.completed ?? false
 
     let status: PathNodeState['status']
     if (isCompleted) {
@@ -283,8 +452,9 @@ export function annotatePath(
       ...node,
       state: {
         status,
-        masteryPct: mastery,
-        completedAt: null,  // future: pull from most-recent completed session
+        bestScore: p?.bestScore ?? null,
+        resumeSessionId: p?.resumeSessionId ?? null,
+        completedSessionId: p?.completedSessionId ?? null,
       },
     })
   }

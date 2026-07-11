@@ -1,9 +1,8 @@
 "use client"
 
 import { useCallback, useEffect, useState } from 'react'
-import Link from 'next/link'
 import { Shuffle, X, Zap, Check, Info, Sparkles } from 'lucide-react'
-import { SkeletonCard, SkeletonText, SkeletonBlock } from '../skeletons'
+import { MascotLoader, useMascotGate } from '../_shared/MascotLoader'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -11,7 +10,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { scheduleNext, INITIAL_SRS } from '@/lib/srs'
 import { hapticTap } from '@/lib/nativeHaptics'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { StudyPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
+import { StudyPageHeader, StudyEmptyState } from '../_shared/primitives'
 import { emitXp } from '../_shared/XpToast'
 import { useStudyErrorToast, saveFailedMessage } from '../_shared/useStudyErrorToast'
 
@@ -53,6 +52,7 @@ function ReviewInner() {
   const [queue, setQueue] = useState<Card[]>([])
   const [topicCount, setTopicCount] = useState(0)
   const [loading, setLoading] = useState(true)
+  const showLoader = useMascotGate(loading)
   const [reviewed, setReviewed] = useState(0)
   const [flipped, setFlipped] = useState(false)
   const [showWhy, setShowWhy] = useState(false)
@@ -175,21 +175,11 @@ function ReviewInner() {
     return (
       <div className="flex flex-col h-full bg-gray-50">
         {header}
-        <div className="flex-1 px-5 pt-5 space-y-3">
-          {/* Mirror the live review-card layout (large prompt block +
-              choice rows) so load → loaded has no layout jump. */}
-          <SkeletonCard className="p-5 space-y-4">
-            <SkeletonText widthClass="w-1/4" height="h-3" />
-            <SkeletonBlock className="h-6 w-full rounded" />
-            <SkeletonBlock className="h-6 w-4/5 rounded" />
-            <div className="space-y-2 pt-3">
-              <SkeletonBlock className="h-12 w-full rounded-xl" />
-              <SkeletonBlock className="h-12 w-full rounded-xl" />
-              <SkeletonBlock className="h-12 w-full rounded-xl" />
-              <SkeletonBlock className="h-12 w-full rounded-xl" />
-            </div>
-          </SkeletonCard>
-        </div>
+        {/* Studying surface → Raumi (commit-gated: fast loads show
+            nothing, slower ones get his full cycle). */}
+        {showLoader
+          ? <MascotLoader className="flex-1" label={ko ? '오늘의 복습을 준비 중…' : 'Preparing your review…'} />
+          : <div className="flex-1" aria-hidden />}
       </div>
     )
   }

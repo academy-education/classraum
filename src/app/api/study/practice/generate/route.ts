@@ -160,6 +160,11 @@ export async function POST(req: NextRequest) {
     questionCount?: number
     difficultyBias?: string
     dailyChallenge?: string
+    // Journey nodes tag their sessions with the node id plus optional
+    // bank filters so each node trains one skill at a time.
+    pathNode?: string
+    domain?: string
+    difficulties?: Array<'easy' | 'medium' | 'hard'>
   }
   const count = Math.max(3, Math.min(10, config.questionCount ?? body.count ?? 5))
 
@@ -176,9 +181,12 @@ export async function POST(req: NextRequest) {
     const ctx = await loadStudyPromptContext(session.topic_id, lang)
     if (ctx) {
       // Bank coverage: SAT topics are served premade. Section comes
-      // from the subtopic; the test root defaults to R&W (largest pool).
+      // from the SLUG (locale-independent — ctx.testSection is the
+      // localized display name; matching it against /math/i silently
+      // served R&W questions to Korean-language Math sessions). The
+      // test root defaults to R&W (largest pool).
       if (ctx.testFamily === 'sat') {
-        bankSection = ctx.testSection && /math/i.test(ctx.testSection) ? 'math' : 'reading_writing'
+        bankSection = ctx.topicSlug === 'sat-math' ? 'math' : 'reading_writing'
       }
       topicName = ctx.topicName
       gradeRange = ctx.gradeRange
@@ -212,8 +220,12 @@ export async function POST(req: NextRequest) {
         section: bankSection,
         count,
         seed,
+        domain: config.domain,
+        difficulties: config.difficulties,
         studentId: user.id,
-        source: config.dailyChallenge ? 'daily_challenge' : 'practice',
+        source: config.dailyChallenge
+          ? 'daily_challenge'
+          : config.pathNode ? 'path' : 'practice',
         sessionId: session.id,
       })
       if (questions.length > 0) {

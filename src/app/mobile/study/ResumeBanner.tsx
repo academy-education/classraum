@@ -61,13 +61,16 @@ export function ResumeBanner() {
         .order('last_active_at', { ascending: false })
         .limit(3)
       if (cancelled) return
-      // Today's challenge session already has its own card in the Today
-      // band ("Today's challenge — continue"); surfacing it here too
-      // showed two cards deep-linking to the same session. Older
-      // (missed) challenge sessions may still resume from here.
+      // ONE continue-style card in the Today band. If today's challenge
+      // is in progress, its own card ("Today's challenge — continue")
+      // owns that slot and this banner yields entirely — two adjacent
+      // "keep going" cards read as duplicates even when they point at
+      // different sessions. Other resumables stay in the Continue-
+      // studying shelf below.
       const today = new Date().toISOString().slice(0, 10)
       const rows = (data ?? []) as unknown as Array<ActiveSession & { config?: { dailyChallenge?: string } | null }>
-      const first = rows.find(r => r.config?.dailyChallenge !== today) ?? null
+      const challengeInProgress = rows.some(r => r.config?.dailyChallenge === today)
+      const first = challengeInProgress ? null : (rows[0] ?? null)
       setSession(first)
     })()
     return () => { cancelled = true }

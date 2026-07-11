@@ -89,11 +89,13 @@ export function useEffectiveUserId(): UseEffectiveUserIdReturn {
     const hasAcademyIds = academyIds.length > 0
 
     // Ready when:
-    // - For students: we have effective user ID and academy IDs
+    // - For students: we have an effective user ID. Academy membership
+    //   is OPTIONAL since study-only accounts exist — pages that need
+    //   academy data check hasAcademyIds themselves.
     // - For parents: we have academy IDs (even if no student selected - shows empty state)
     const isReady = user.role === 'parent'
       ? hasAcademyIds // Parents are ready if they have academy access, even without selected student
-      : Boolean(effectiveUserId && hasAcademyIds) // Students need both
+      : Boolean(effectiveUserId)
 
     const result = {
       effectiveUserId,

@@ -8,7 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { StudyPageHeader } from '../../_shared/primitives'
-import { SkeletonCard, SkeletonBlock } from '../../skeletons'
+import { MascotLoader, useMascotGate } from '../../_shared/MascotLoader'
 import { ChatSession } from './ChatSession'
 import { PracticeSession } from './PracticeSession'
 import { LessonSession } from './LessonSession'
@@ -61,6 +61,7 @@ function SessionInner({ id }: { id: string }) {
   const [session, setSession] = useState<Session | null>(null)
   const [topic, setTopic] = useState<Topic | null>(null)
   const [loading, setLoading] = useState(true)
+  const showLoader = useMascotGate(loading)
 
   useEffect(() => {
     let cancelled = false
@@ -94,27 +95,11 @@ function SessionInner({ id }: { id: string }) {
     return () => { cancelled = true }
   }, [id])
 
-  if (loading) {
-    // Skeleton mirrors the loaded session shell: sticky header +
-    // one big card body — so the mode-specific component slots in
-    // cleanly when data arrives.
-    return (
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
-        <SkeletonBlock className="h-4 w-24 rounded-full" />
-        <div className="flex items-start gap-3">
-          <SkeletonBlock className="w-9 h-9 rounded-xl flex-shrink-0" />
-          <div className="flex-1 space-y-2">
-            <SkeletonBlock className="h-2.5 w-16 rounded-full" />
-            <SkeletonBlock className="h-4 w-2/5 rounded-full" />
-          </div>
-        </div>
-        <SkeletonCard className="p-5 min-h-[240px] space-y-3">
-          <SkeletonBlock className="h-3 w-1/4 rounded-full" />
-          <SkeletonBlock className="h-4 w-4/5 rounded-full" />
-          <SkeletonBlock className="h-4 w-3/5 rounded-full" />
-        </SkeletonCard>
-      </div>
-    )
+  if (loading || showLoader) {
+    // Studying surface → Raumi (commit-gated).
+    return showLoader
+      ? <MascotLoader className="h-full py-16" label={t('study.landing.loading')} />
+      : <div className="h-full py-16" aria-hidden />
   }
 
   if (!session) {
@@ -123,9 +108,9 @@ function SessionInner({ id }: { id: string }) {
         <p className="text-sm text-gray-500">{t('study.session.notFound')}</p>
         <Link
           href="/mobile/study"
-          className="mt-4 inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80"
+          className="mt-4 inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />{t('study.topic.backToStudy')}
+          <ArrowLeft className="w-3.5 h-3.5" />{t('study.topic.backToStudy')}
         </Link>
       </div>
     )

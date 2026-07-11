@@ -8,6 +8,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudyTodayCard } from './primitives'
 import { useStudyErrorToast, startFailedMessage } from './useStudyErrorToast'
+import { useLandingData } from '../LandingDataProvider'
 
 /**
  * DailyChallengeCard — daily 5-question micro-quiz prompt on the
@@ -34,26 +35,37 @@ export function DailyChallengeCard() {
   const router = useRouter()
   const { t, language } = useTranslation()
   const ko = language === 'korean'
-  const [state, setState] = useState<ChallengeState | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [fetched, setFetched] = useState<ChallengeState | null>(null)
+  const [fetchLoading, setFetchLoading] = useState(true)
   const [starting, setStarting] = useState(false)
   const { errorToast, showError } = useStudyErrorToast()
 
+  // On the landing the challenge arrives batched with everything else
+  // (LandingDataProvider), so the card paints in the same frame as the
+  // rest of the Today band. Outside a provider (topic page) it fetches
+  // its own state from the dedicated endpoint.
+  const landing = useLandingData()
+  const hasProvider = landing !== null
+
   const load = useCallback(async () => {
+    if (hasProvider) return
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/daily-challenge', { headers })
       if (!res.ok) throw new Error()
       const json = await res.json() as ChallengeState
-      setState(json)
+      setFetched(json)
     } catch {
-      setState(null)
+      setFetched(null)
     } finally {
-      setLoading(false)
+      setFetchLoading(false)
     }
-  }, [])
+  }, [hasProvider])
 
   useEffect(() => { void load() }, [load])
+
+  const state = hasProvider ? (landing?.dailyChallenge ?? null) : fetched
+  const loading = hasProvider ? landing!.loading : fetchLoading
 
   const start = async () => {
     if (!state?.topic || starting) return

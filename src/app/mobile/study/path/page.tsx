@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   Sparkles, CheckCircle2, Lock, Play, Trophy, Target,
-  BookOpen, Zap, ChevronRight, Repeat, X, Plus,
+  Zap, ChevronRight, Repeat, X, Plus, Loader2,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
@@ -13,10 +13,10 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudyPageHeader, StudyPageTransition } from '../_shared/primitives'
 import { SkeletonBlock } from '../skeletons'
-import { PathMascot, type MascotState } from '../_shared/PathMascot'
+import { PathMascot } from '../_shared/PathMascot'
 import {
   annotatePath, getPathTemplate,
-  type PathNodeWithState, type StudyPathTemplate,
+  type PathNodeProgress, type PathNodeWithState, type StudyPathTemplate,
 } from '@/lib/study-path'
 
 /**
@@ -50,9 +50,11 @@ interface Prefs {
   target_tests: string[]
 }
 
-interface MasteryRow {
-  score: number
-  topic_id: string
+interface PathSessionRow {
+  id: string
+  status: string
+  score: number | null
+  config: { pathNode?: string } | null
 }
 
 export default function StudyPathPage() {
@@ -66,8 +68,8 @@ function StudyPathInner() {
   const [loading, setLoading] = useState(true)
   const [prefs, setPrefs] = useState<Prefs | null>(null)
   const [template, setTemplate] = useState<StudyPathTemplate | null>(null)
-  const [masteryBySlug, setMasteryBySlug] = useState<Record<string, number>>({})
-  const [completedSlugs, setCompletedSlugs] = useState<Set<string>>(new Set())
+  const [progressByNode, setProgressByNode] = useState<Record<string, PathNodeProgress>>({})
+  const [topicIdBySlug, setTopicIdBySlug] = useState<Record<string, string>>({})
   const [pickerOpen, setPickerOpen] = useState(false)
 
   useEffect(() => {
@@ -94,54 +96,58 @@ function StudyPathInner() {
         return
       }
 
-      // Slugs the template exercises + the parent test slug so we can
-      // count "full test" completions against it.
+      // Topic ids for the slugs the template exercises — needed to
+      // create sessions directly when a node is launched.
       const slugs = Array.from(new Set(tpl.nodes.map(n => n.subtopicSlug)))
-      const { data: topics } = await supabase
-        .from('study_topics')
-        .select('id, slug')
-        .in('slug', slugs)
-      const idToSlug: Record<string, string> = {}
-      const topicIds: string[] = []
+      const [{ data: topics }, { data: sessionRows }] = await Promise.all([
+        supabase
+          .from('study_topics')
+          .select('id, slug')
+          .in('slug', slugs),
+        // Per-node progress: every session this student launched from
+        // the path carries config.pathNode = node id.
+        supabase
+          .from('study_sessions')
+          .select('id, status, score, config')
+          .eq('student_id', user.userId)
+          .eq('archived', false)
+          .not('config->pathNode', 'is', null)
+          .order('last_active_at', { ascending: false }),
+      ])
+
+      const bySlug: Record<string, string> = {}
       for (const row of (topics ?? []) as Array<{ id: string; slug: string }>) {
-        idToSlug[row.id] = row.slug
-        topicIds.push(row.id)
+        bySlug[row.slug] = row.id
       }
 
-      if (topicIds.length > 0) {
-        const [{ data: masteryRows }, { data: sessionRows }] = await Promise.all([
-          supabase
-            .from('study_mastery')
-            .select('score, topic_id')
-            .eq('student_id', user.userId)
-            .in('topic_id', topicIds),
-          supabase
-            .from('study_sessions')
-            .select('topic_id')
-            .eq('student_id', user.userId)
-            .eq('status', 'completed')
-            .in('topic_id', topicIds),
-        ])
-
-        const mastery: Record<string, number> = {}
-        for (const row of (masteryRows ?? []) as MasteryRow[]) {
-          const slug = idToSlug[row.topic_id]
-          if (slug) mastery[slug] = row.score
+      const progress: Record<string, PathNodeProgress> = {}
+      for (const row of (sessionRows ?? []) as PathSessionRow[]) {
+        const nodeId = row.config?.pathNode
+        if (!nodeId) continue
+        const p = progress[nodeId] ?? { touched: false, completed: false, bestScore: null, resumeSessionId: null, completedSessionId: null }
+        p.touched = true
+        if (row.status === 'completed') {
+          p.completed = true
+          // Rows arrive newest-first → first completed row is the most
+          // recent submission; its results back the "View results" link.
+          if (!p.completedSessionId) p.completedSessionId = row.id
+          // numeric columns arrive as strings from PostgREST — coerce
+          // before comparing.
+          const score = row.score === null ? null : Number(row.score)
+          if (score !== null && (p.bestScore === null || score > p.bestScore)) p.bestScore = score
+        } else if (!p.resumeSessionId) {
+          // Rows arrive newest-first, so the first non-completed
+          // session per node is the one to resume.
+          p.resumeSessionId = row.id
         }
-
-        const completed = new Set<string>()
-        for (const row of (sessionRows ?? []) as Array<{ topic_id: string }>) {
-          const slug = idToSlug[row.topic_id]
-          if (slug) completed.add(slug)
-        }
-
-        if (!cancelled) {
-          setMasteryBySlug(mastery)
-          setCompletedSlugs(completed)
-        }
+        progress[nodeId] = p
       }
 
-      if (!cancelled) setLoading(false)
+      if (!cancelled) {
+        setTopicIdBySlug(bySlug)
+        setProgressByNode(progress)
+        setLoading(false)
+      }
     })()
 
     return () => { cancelled = true }
@@ -149,8 +155,8 @@ function StudyPathInner() {
 
   const annotated = useMemo(() => {
     if (!template) return []
-    return annotatePath(template, masteryBySlug, completedSlugs)
-  }, [template, masteryBySlug, completedSlugs])
+    return annotatePath(template, progressByNode)
+  }, [template, progressByNode])
 
   const activeTargets = prefs?.target_tests ?? []
   const currentTarget = prefs?.target_test ?? null
@@ -284,7 +290,7 @@ function StudyPathInner() {
         />
       )}
       <StudyPageTransition>
-        <PathList nodes={annotated} testSlug={template.testSlug} />
+        <PathList nodes={annotated} testSlug={template.testSlug} topicIdBySlug={topicIdBySlug} />
       </StudyPageTransition>
       {pickerOpen && (
         <div className="fixed inset-0 z-[60] flex flex-col bg-gray-50 overflow-y-auto">
@@ -442,10 +448,21 @@ function RemoveConfirmSheet({
   )
 }
 
-function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: string }) {
-  const { t, language } = useTranslation()
+function PathList({
+  nodes, testSlug, topicIdBySlug,
+}: {
+  nodes: PathNodeWithState[]
+  testSlug: string
+  topicIdBySlug: Record<string, string>
+}) {
+  const { language } = useTranslation()
   const ko = language === 'korean'
   const router = useRouter()
+  const { user } = usePersistentMobileAuth()
+  const [launchingId, setLaunchingId] = useState<string | null>(null)
+  // Completed node the student tapped — shows a results callout
+  // (score + view submission + restart) instead of relaunching.
+  const [openCompletedId, setOpenCompletedId] = useState<string | null>(null)
   const activeIdx = nodes.findIndex(n => n.state.status === 'active')
   const activeRef = useRef<HTMLDivElement | null>(null)
 
@@ -463,8 +480,68 @@ function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: s
     }
   }, [])
 
-  const handleLaunch = (node: PathNodeWithState) => {
-    router.push(`/mobile/study/topic/${node.subtopicSlug}?from=path&mode=${node.launchMode}`)
+  // Direct launch — tapping Start opens the actual activity, not the
+  // topic page. Practice nodes create a session tagged with the node
+  // id (+ domain/difficulty filters the generator honors); SAT test
+  // nodes assemble a timed section from the bank. An unfinished
+  // session for the node resumes instead of duplicating.
+  const handleLaunch = async (node: PathNodeWithState) => {
+    if (launchingId) return
+    if (node.state.resumeSessionId) {
+      router.push(`/mobile/study/session/${node.state.resumeSessionId}`)
+      return
+    }
+    setLaunchingId(node.id)
+    try {
+      if (node.launchMode === 'practice') {
+        const topicId = topicIdBySlug[node.subtopicSlug]
+        if (!topicId || !user?.userId) throw new Error('missing topic')
+        const { data, error } = await supabase
+          .from('study_sessions')
+          .insert({
+            student_id: user.userId,
+            topic_id: topicId,
+            mode: 'practice',
+            language: ko ? 'ko' : 'en',
+            config: {
+              pathNode: node.id,
+              ...(node.domain ? { domain: node.domain } : {}),
+              ...(node.difficulties ? { difficulties: node.difficulties } : {}),
+              questionCount: node.questionCount ?? 8,
+            },
+          })
+          .select('id')
+          .single()
+        if (error || !data) throw error ?? new Error('insert failed')
+        router.push(`/mobile/study/session/${data.id}`)
+        return
+      }
+      if (testSlug === 'test-sat') {
+        // Timed section test assembled from the bank — instant + free.
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/test/assemble', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            section: node.subtopicSlug === 'sat-math' ? 'math' : 'reading_writing',
+            count: node.questionCount ?? 22,
+            pathNode: node.id,
+          }),
+        })
+        if (!res.ok) throw new Error('assemble failed')
+        const json = await res.json() as { sessionId: string }
+        router.push(`/mobile/study/session/${json.sessionId}`)
+        return
+      }
+      // Non-SAT test nodes (TOEFL sections) still go through the topic
+      // page — their tests are AI-generated, not bank-assembled.
+      router.push(`/mobile/study/topic/${node.subtopicSlug}?from=path&mode=${node.launchMode}`)
+    } catch {
+      // Fallback: land on the topic page rather than stranding the tap.
+      router.push(`/mobile/study/topic/${node.subtopicSlug}?from=path&mode=${node.launchMode}`)
+    } finally {
+      setLaunchingId(null)
+    }
   }
 
   return (
@@ -550,26 +627,42 @@ function PathList({ nodes, testSlug }: { nodes: PathNodeWithState[]; testSlug: s
                     <PathMascot state="idle" size={64} />
                   </div>
                 )}
-                <PathNode node={node} onClick={() => !isLocked && handleLaunch(node)} pulsing={isLastActive} />
+                <PathNode
+                  node={node}
+                  onClick={() => {
+                    if (isLocked) return
+                    // Completed nodes open a results callout — the
+                    // student reviews their submission or explicitly
+                    // restarts; a tap never silently redoes the section.
+                    if (node.state.status === 'completed') {
+                      setOpenCompletedId(prev => (prev === node.id ? null : node.id))
+                      return
+                    }
+                    void handleLaunch(node)
+                  }}
+                  pulsing={isLastActive}
+                />
                 {/* Active node's callout sits BELOW, full-width. Better
                     readability than the prior cramped side-by-side layout. */}
                 {isLastActive && (
-                  <ActiveCallout node={node} onLaunch={() => handleLaunch(node)} />
+                  <ActiveCallout
+                    node={node}
+                    onLaunch={() => void handleLaunch(node)}
+                    launching={launchingId === node.id}
+                  />
+                )}
+                {node.state.status === 'completed' && openCompletedId === node.id && (
+                  <CompletedCallout
+                    node={node}
+                    onRestart={() => void handleLaunch(node)}
+                    launching={launchingId === node.id}
+                  />
                 )}
               </div>
             </div>
           )
         })}
 
-        <div className="mt-10 flex justify-center">
-          <Link
-            href="/mobile/study"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white ring-1 ring-gray-200 text-[12px] text-gray-600 hover:text-primary hover:ring-primary/40 transition"
-          >
-            <BookOpen className="w-3.5 h-3.5" />
-            {String(t('study.path.backToLanding'))}
-          </Link>
-        </div>
         <span data-test-slug={testSlug} className="hidden" aria-hidden />
       </div>
     </div>
@@ -730,15 +823,17 @@ function PathNode({
  *  narrow phones than the prior side-hugging bubble which forced text
  *  wrapping and cramped the horizontal layout. */
 function ActiveCallout({
-  node, onLaunch,
+  node, onLaunch, launching,
 }: {
   node: PathNodeWithState
   onLaunch: () => void
+  launching?: boolean
 }) {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
+  const resume = !!node.state.resumeSessionId
   return (
-    <div className="relative mt-3 w-[240px] max-w-[min(240px,calc(100vw-40px))] rounded-2xl bg-white ring-1 ring-primary/20 shadow-[0_10px_28px_-8px_rgba(40,133,232,0.40)] px-4 py-3">
+    <div className="relative z-10 mt-3 w-[240px] max-w-[min(240px,calc(100vw-40px))] rounded-2xl bg-white ring-1 ring-primary/20 shadow-[0_10px_28px_-8px_rgba(40,133,232,0.40)] px-4 py-3">
       {/* Speech-bubble tail pointing up at the node */}
       <div
         aria-hidden
@@ -757,11 +852,77 @@ function ActiveCallout({
         <button
           type="button"
           onClick={onLaunch}
-          className="mt-2.5 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-bold shadow-[0_6px_14px_-4px_rgba(40,133,232,0.55)] hover:brightness-110 active:scale-95 transition-all"
+          disabled={launching}
+          className="mt-2.5 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-bold shadow-[0_6px_14px_-4px_rgba(40,133,232,0.55)] hover:brightness-110 active:scale-95 transition-all disabled:opacity-70 disabled:cursor-wait"
         >
-          <Sparkles className="w-3.5 h-3.5" />
-          {String(t('study.path.start'))}
+          {launching
+            ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
+            : <Sparkles className="w-3.5 h-3.5" />}
+          {launching
+            ? (ko ? '준비 중…' : 'Preparing…')
+            : resume
+              ? (ko ? '이어서 하기' : 'Continue')
+              : String(t('study.path.start'))}
         </button>
+      </div>
+    </div>
+  )
+}
+
+/** Results callout for a COMPLETED node. Tapping a finished section
+ *  never silently restarts it — the student sees their saved score,
+ *  can open the full submission (summary page), or explicitly restart
+ *  (a NEW session; the original submission and score stay intact). */
+function CompletedCallout({
+  node, onRestart, launching,
+}: {
+  node: PathNodeWithState
+  onRestart: () => void
+  launching?: boolean
+}) {
+  const { language } = useTranslation()
+  const ko = language === 'korean'
+  const score = node.state.bestScore
+  return (
+    <div className="relative z-10 mt-3 w-[240px] max-w-[min(240px,calc(100vw-40px))] rounded-2xl bg-white ring-1 ring-emerald-200 shadow-[0_10px_28px_-8px_rgba(16,185,129,0.35)] px-4 py-3">
+      {/* Speech-bubble tail pointing up at the node */}
+      <div
+        aria-hidden
+        className="absolute -top-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45 bg-white ring-1 ring-emerald-200"
+        style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
+      />
+      <div className="relative text-center">
+        <div className="text-[14px] font-bold text-gray-900 leading-tight">
+          {ko ? node.labelKo : node.labelEn}
+        </div>
+        <div className="mt-1 inline-flex items-center gap-1.5 text-[12px] font-semibold text-emerald-600">
+          <CheckCircle2 className="w-3.5 h-3.5" />
+          {score !== null
+            ? (ko ? `완료 · 점수 ${Math.round(score)}점` : `Completed · Score ${Math.round(score)}%`)
+            : (ko ? '완료' : 'Completed')}
+        </div>
+        <div className="mt-2.5 flex items-center justify-center gap-2">
+          {node.state.completedSessionId && (
+            <Link
+              href={`/mobile/study/session/${node.state.completedSessionId}/summary`}
+              className="inline-flex items-center gap-1 h-9 px-3.5 rounded-full whitespace-nowrap bg-gradient-to-b from-primary to-primary/90 text-white text-[12.5px] font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:brightness-110 active:scale-95 transition-all"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+              {ko ? '결과 보기' : 'View results'}
+            </Link>
+          )}
+          <button
+            type="button"
+            onClick={onRestart}
+            disabled={launching}
+            className="inline-flex items-center gap-1 h-9 px-3.5 rounded-full whitespace-nowrap bg-white ring-1 ring-gray-200 text-gray-700 text-[12.5px] font-semibold hover:ring-primary/30 active:scale-95 transition-all disabled:opacity-70 disabled:cursor-wait"
+          >
+            {launching
+              ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              : <Repeat className="w-3.5 h-3.5" />}
+            {ko ? '다시 풀기' : 'Restart'}
+          </button>
+        </div>
       </div>
     </div>
   )

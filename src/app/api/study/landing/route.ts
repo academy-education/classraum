@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { computeDailyChallenge } from '@/lib/study/daily-challenge'
 
 /**
  * GET /api/study/landing — batched landing-page summary.
@@ -74,6 +75,8 @@ export async function GET(req: NextRequest) {
     { count: readyCount },
     { data: attempts },
     { data: prefsRow },
+    { data: subRow },
+    dailyChallenge,
   ] = await Promise.all([
     supabaseAdmin
       .from('study_sessions')
@@ -118,6 +121,12 @@ export async function GET(req: NextRequest) {
       .select('*')
       .eq('student_id', user.id)
       .maybeSingle(),
+    supabaseAdmin
+      .from('study_subscriptions')
+      .select('status')
+      .eq('student_id', user.id)
+      .maybeSingle(),
+    computeDailyChallenge(user.id),
   ])
 
   // Streak computation — same logic as /api/study/streak.
@@ -189,5 +198,11 @@ export async function GET(req: NextRequest) {
     activeSession: (activeRow as unknown as ActiveSession | null) ?? null,
     progress,
     prefs,
+    // Paid-tier gating for landing surfaces (e.g. the Recommended
+    // shelf is a paid feature). 'free' when no row exists yet.
+    subscriptionStatus: (subRow?.status as string | null) ?? 'free',
+    // Batched so the landing's Today band paints in one frame instead
+    // of the challenge card popping in after its own fetch.
+    dailyChallenge,
   })
 }

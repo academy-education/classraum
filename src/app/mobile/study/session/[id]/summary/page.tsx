@@ -8,7 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../../../SubscriptionGate'
-import { SkeletonCard, SkeletonBlock } from '../../../skeletons'
+import { MascotLoader, useMascotGate } from '../../../_shared/MascotLoader'
 import { PathMascot, type MascotState } from '../../../_shared/PathMascot'
 import { StudySubPageHeader } from '../../../_shared/primitives'
 
@@ -69,6 +69,7 @@ function SummaryInner({ id }: { id: string }) {
   const [session, setSession] = useState<SessionRow | null>(null)
   const [attempts, setAttempts] = useState<AttemptRow[]>([])
   const [loading, setLoading] = useState(true)
+  const showLoader = useMascotGate(loading)
 
   useEffect(() => {
     if (!user?.userId) return
@@ -103,24 +104,11 @@ function SummaryInner({ id }: { id: string }) {
     return () => { cancelled = true }
   }, [id, user?.userId])
 
-  if (loading) {
-    return (
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
-        <SkeletonBlock className="h-4 w-24 rounded-full" />
-        <SkeletonCard className="p-6 min-h-[220px] space-y-4">
-          <SkeletonBlock className="h-3 w-24 rounded-full" />
-          <SkeletonBlock className="h-10 w-32 rounded-full" />
-          <SkeletonBlock className="h-3 w-40 rounded-full" />
-          <div className="grid grid-cols-3 gap-3 pt-2">
-            {[0,1,2].map(i => (
-              <SkeletonBlock key={i} className="h-16 w-full rounded-xl" />
-            ))}
-          </div>
-        </SkeletonCard>
-        <SkeletonCard className="p-4 min-h-[60px]" />
-        <SkeletonCard className="p-4 min-h-[60px]" />
-      </div>
-    )
+  if (loading || showLoader) {
+    // Studying surface → Raumi (commit-gated).
+    return showLoader
+      ? <MascotLoader className="min-h-[60vh]" label={t('study.landing.loading')} />
+      : <div className="min-h-[60vh]" aria-hidden />
   }
 
   if (!session) {
@@ -129,9 +117,9 @@ function SummaryInner({ id }: { id: string }) {
         <p className="text-sm text-gray-500">{t('study.session.notFound')}</p>
         <Link
           href="/mobile/study"
-          className="mt-4 inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80"
+          className="mt-4 inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />{t('study.topic.backToStudy')}
+          <ArrowLeft className="w-3.5 h-3.5" />{t('study.topic.backToStudy')}
         </Link>
       </div>
     )
@@ -188,7 +176,7 @@ function SummaryInner({ id }: { id: string }) {
           accuracy so a hard session doesn't get a cheerful celebrate. */}
       {/* Sections enter with a soft stagger: hero → topic → mistakes →
           CTAs (fill-mode backwards keeps delayed items hidden pre-run). */}
-      <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${hero.gradient} p-6 text-white shadow-[0_2px_8px_rgba(0,0,0,0.10),0_24px_48px_-16px_rgba(0,0,0,0.32)] animate-fade-in-up`} style={{ animationFillMode: 'backwards' }}>
+      <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${hero.gradient} p-6 text-white shadow-[0_2px_8px_rgba(0,0,0,0.10),0_24px_48px_-16px_rgba(0,0,0,0.32)] animate-fade-in-up`} style={{ animationFillMode: 'both' }}>
         <div aria-hidden className="pointer-events-none absolute -top-12 -right-10 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
         {attempted && (
@@ -237,7 +225,7 @@ function SummaryInner({ id }: { id: string }) {
       </div>
 
       {/* Topic context — always shown for orientation, even for empty sessions. */}
-      <div className="rounded-2xl bg-white ring-1 ring-gray-200 px-4 py-3 flex items-center gap-3 animate-fade-in-up" style={{ animationDelay: '80ms', animationFillMode: 'backwards' }}>
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200 px-4 py-3 flex items-center gap-3 animate-fade-in-up" style={{ animationDelay: '80ms', animationFillMode: 'both' }}>
         <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
           <BookOpen className="w-4 h-4" />
         </div>
@@ -253,7 +241,7 @@ function SummaryInner({ id }: { id: string }) {
 
       {/* Mistakes preview — only if there ARE mistakes AND we have some to show. */}
       {mistakes.length > 0 && (
-        <section className="animate-fade-in-up" style={{ animationDelay: '160ms', animationFillMode: 'backwards' }}>
+        <section className="animate-fade-in-up" style={{ animationDelay: '160ms', animationFillMode: 'both' }}>
           <div className="flex items-baseline justify-between mb-3">
             <h2 className="text-[15px] font-semibold tracking-tight text-gray-900">
               {String(t('study.summary.mistakesTitle', { count: String(mistakes.length) }))}
@@ -282,7 +270,7 @@ function SummaryInner({ id }: { id: string }) {
       )}
 
       {/* CTAs — unified h-12 rounded-2xl for both. */}
-      <section className="space-y-2 pt-2 animate-fade-in-up" style={{ animationDelay: '240ms', animationFillMode: 'backwards' }}>
+      <section className="space-y-2 pt-2 animate-fade-in-up" style={{ animationDelay: '240ms', animationFillMode: 'both' }}>
         {session.topic && (
           <Link
             href={`/mobile/study/topic/${session.topic.slug}`}

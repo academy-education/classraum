@@ -7,6 +7,7 @@ import {
   XCircle, ExternalLink, Check, Sparkles, Coins, Plus,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { SkeletonBlock, SkeletonCard, SkeletonHeader } from '../skeletons'
 import { StudySubPageHeader } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS } from '@/lib/study/plans'
@@ -233,10 +234,29 @@ export default function SubscriptionPage() {
   }, [acting, ko, load, pack.credits])
 
   if (loading) {
+    // Settings surface → skeleton (Raumi is reserved for studying
+    // screens). Mirrors the loaded layout: header → credit balance →
+    // two plan cards.
     return (
-      <div className="px-5 py-10 flex items-center justify-center text-sm text-gray-500">
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-        {t('study.subscription.loading')}
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+        <SkeletonHeader />
+        <SkeletonCard className="p-5 space-y-3">
+          <SkeletonBlock className="h-3 w-28 rounded-full" />
+          <SkeletonBlock className="h-8 w-24 rounded-lg" />
+          <SkeletonBlock className="h-2.5 w-3/5 rounded-full" />
+        </SkeletonCard>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[0, 1].map(i => (
+            <SkeletonCard key={i} className="p-5 space-y-4 min-h-[280px]">
+              <SkeletonBlock className="h-3 w-20 rounded-full" />
+              <SkeletonBlock className="h-7 w-28 rounded-lg" />
+              <div className="space-y-2.5 pt-2">
+                {[0, 1, 2, 3].map(j => <SkeletonBlock key={j} className="h-3 w-full rounded-full" />)}
+              </div>
+              <SkeletonBlock className="h-11 w-full rounded-full" />
+            </SkeletonCard>
+          ))}
+        </div>
       </div>
     )
   }
