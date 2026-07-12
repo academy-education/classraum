@@ -610,9 +610,14 @@ function PathList({
                   active={prevCompleted}
                 />
               )}
+              {/* z-10 lifts the whole node column (circle + callout)
+                  above the NEXT node's connector — the translate-x
+                  makes this a stacking context, so a z-index on the
+                  callout alone can't escape it and the following
+                  sibling's line would draw across the card. */}
               <div
                 ref={isLastActive ? activeRef : undefined}
-                className={`relative flex flex-col items-center transition-transform ${offset}`}
+                className={`relative z-10 flex flex-col items-center transition-transform ${offset}`}
               >
                 {/* Mascot stands BESIDE the active node, on the side away
                     from its offset — absolutely positioned so it never
@@ -814,6 +819,14 @@ function PathNode({
           </span>
         </div>
       </button>
+      {/* Best score at a glance — previously only visible inside the
+          tap-callout, so a finished path read as an undifferentiated
+          wall of green checks. */}
+      {status === 'completed' && node.state.bestScore !== null && (
+        <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded-full bg-white ring-1 ring-emerald-200 text-emerald-700 text-[10px] font-bold tabular-nums shadow-[0_1px_2px_rgba(0,0,0,0.06)]">
+          {Math.round(node.state.bestScore)}%
+        </span>
+      )}
     </div>
   )
 }

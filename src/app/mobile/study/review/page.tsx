@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { Shuffle, X, Zap, Check, Info, Sparkles } from 'lucide-react'
 import { MascotLoader, useMascotGate } from '../_shared/MascotLoader'
 import { supabase } from '@/lib/supabase'
@@ -208,7 +209,7 @@ function ReviewInner() {
     return (
       <div className="flex flex-col h-full bg-gray-50">
         {header}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex flex-col items-center justify-center">
           <StudyEmptyState
             icon={Sparkles}
             iconColorClass="text-emerald-600 bg-emerald-50"
@@ -217,6 +218,14 @@ function ReviewInner() {
             ctaHref="/mobile/study"
             ctaText={String(t('study.review.backToStudy'))}
           />
+          {/* Secondary path — "nothing due" shouldn't be a dead end
+              when the student is in the mood to review anyway. */}
+          <Link
+            href="/mobile/study/wrong-notebook"
+            className="mt-2 text-[12.5px] font-medium text-primary hover:text-primary/80 transition-colors"
+          >
+            {ko ? '오답노트 다시 보기 →' : 'Or revisit your wrong answers →'}
+          </Link>
         </div>
       </div>
     )

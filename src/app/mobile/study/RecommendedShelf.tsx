@@ -122,24 +122,29 @@ export function RecommendedShelf() {
         <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
           {t('study.landing.recommendedTitle')}
         </h2>
-        <div className="relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-5 flex items-center gap-4">
+        {/* Text gets the full card width; the CTA sits on its own row
+            below — the old side-by-side layout squeezed the title into
+            a 3-line wrap next to the pill on 375px phones. */}
+        <div className="relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-5">
           <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-24 h-24 rounded-full bg-primary/[0.06] blur-2xl" />
-          <div className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
-            <Lightbulb className="w-5 h-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="text-[14.5px] font-semibold text-gray-900">
-              {ko ? '맞춤 추천 잠금 해제' : 'Unlock personalized picks'}
+          <div className="flex items-start gap-3.5">
+            <div className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
+              <Lightbulb className="w-5 h-5" />
             </div>
-            <p className="text-[12.5px] text-gray-500 mt-0.5 leading-snug">
-              {ko
-                ? '일반 플랜부터 약점 분석 기반 추천을 받아요.'
-                : 'General plan finds your weak areas and picks what to study next.'}
-            </p>
+            <div className="flex-1 min-w-0">
+              <div className="text-[14.5px] font-semibold text-gray-900">
+                {ko ? '맞춤 추천 잠금 해제' : 'Unlock personalized picks'}
+              </div>
+              <p className="text-[12.5px] text-gray-500 mt-0.5 leading-snug">
+                {ko
+                  ? '일반 플랜부터 약점 분석 기반 추천을 받아요.'
+                  : 'General plan finds your weak areas and picks what to study next.'}
+              </p>
+            </div>
           </div>
           <Link
             href="/mobile/study/subscription"
-            className="flex-shrink-0 inline-flex items-center gap-1 h-9 px-3.5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[12.5px] font-semibold hover:opacity-95 active:scale-[0.98] transition"
+            className="mt-3.5 ml-[58px] inline-flex items-center gap-1 h-9 px-3.5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[12.5px] font-semibold hover:opacity-95 active:scale-[0.98] transition"
           >
             {ko ? '플랜 보기' : 'See plans'}
           </Link>

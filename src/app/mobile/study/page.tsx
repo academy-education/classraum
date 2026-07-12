@@ -516,7 +516,7 @@ function StudyLandingInner() {
             <SkeletonTestGrid />
           ) : (
             <div className="grid grid-cols-2 gap-3">
-              {sortedTests.map((test, i) => {
+              {sortedTests.filter(t => t.slug === 'test-sat').map((test, i) => {
                 const theme = themeForTest(test.slug)
                 const Icon = theme.Icon
                 const isTarget = targetTest !== null && test.slug === `test-${targetTest.toLowerCase()}`
@@ -530,7 +530,7 @@ function StudyLandingInner() {
                 // polymorphic `CardTag` union can't be typed cleanly
                 // (Link demands href; div rejects it).
                 const cardStyle = { animationDelay: `${i * 40}ms` }
-                const cardClassName = `group relative overflow-hidden rounded-2xl p-4 min-h-[120px] ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out animate-card-in opacity-0 ${
+                const cardClassName = `group relative overflow-hidden rounded-2xl p-4 min-h-[120px] col-span-2 ring-1 ${theme.ring} ${theme.gradient} shadow-[0_2px_4px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out animate-card-in opacity-0 ${
                   unlocked
                     ? 'hover:shadow-[0_6px_12px_rgba(0,0,0,0.10),0_20px_40px_-12px_rgba(0,0,0,0.30)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.97]'
                     : 'cursor-not-allowed grayscale-[0.7] saturate-50'
@@ -561,23 +561,25 @@ function StudyLandingInner() {
                     <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                     {/* Soft glow blob */}
                     <div aria-hidden className="pointer-events-none absolute -top-8 -left-8 w-24 h-24 rounded-full bg-white/15 blur-2xl group-hover:bg-white/25 transition-colors" />
-                    {isTarget && unlocked && (
-                      <span className="absolute top-2 right-2 z-[1] inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white text-[9px] font-bold uppercase tracking-[0.10em] text-gray-900 shadow-[0_2px_6px_-2px_rgba(0,0,0,0.30)] ring-1 ring-white/60">
-                        <span className="w-1 h-1 rounded-full bg-emerald-500" />
-                        {ko ? '내 목표' : 'My target'}
-                      </span>
-                    )}
 
                     <div className={`relative flex flex-col h-full justify-between gap-3 ${unlocked ? '' : 'opacity-45'}`}>
                       <div className="flex items-start justify-between gap-2">
                         <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur-md ring-1 ring-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
                           <Icon className={`w-4 h-4 ${theme.accent}`} />
                         </div>
-                        {(ko ? theme.stat_ko : theme.stat_en) && (
-                          <span className={`inline-flex items-center text-[10px] font-semibold tracking-tight ${theme.accent} bg-black/15 backdrop-blur-md ring-1 ring-white/20 rounded-full px-2 py-0.5`}>
-                            {ko ? theme.stat_ko : theme.stat_en}
-                          </span>
-                        )}
+                        <div className="flex items-center gap-1.5">
+                          {(ko ? theme.stat_ko : theme.stat_en) && (
+                            <span className={`inline-flex items-center text-[10px] font-semibold tracking-tight ${theme.accent} bg-black/15 backdrop-blur-md ring-1 ring-white/20 rounded-full px-2 py-0.5`}>
+                              {ko ? theme.stat_ko : theme.stat_en}
+                            </span>
+                          )}
+                          {isTarget && unlocked && (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white text-[9px] font-bold uppercase tracking-[0.10em] text-gray-900 shadow-[0_2px_6px_-2px_rgba(0,0,0,0.30)] ring-1 ring-white/60">
+                              <span className="w-1 h-1 rounded-full bg-emerald-500" />
+                              {ko ? '내 목표' : 'My target'}
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <div className="flex items-end justify-between gap-2">
                         <span className={`text-[15px] font-bold ${theme.accent} leading-tight truncate tracking-tight`}>
@@ -635,6 +637,25 @@ function StudyLandingInner() {
                   </div>
                 )
               })}
+            </div>
+          )}
+          {/* Coming-soon tests as a compact chip strip — the old 2x4
+              grid of locked cards spent ~700px of scroll on things
+              that can't be tapped. */}
+          {!loading && sortedTests.some(t => t.slug !== 'test-sat') && (
+            <div className="mt-3 flex flex-wrap items-center gap-1.5">
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-400 mr-0.5">
+                <Lock className="w-3 h-3" />
+                {ko ? '준비 중' : 'Coming soon'}
+              </span>
+              {sortedTests.filter(t => t.slug !== 'test-sat').map(test => (
+                <span
+                  key={test.id}
+                  className="px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[11.5px] font-medium text-gray-400"
+                >
+                  {name(test)}
+                </span>
+              ))}
             </div>
           )}
         </section>

@@ -76,6 +76,7 @@ export async function GET(req: NextRequest) {
     { data: attempts },
     { data: prefsRow },
     { data: subRow },
+    { data: xpRows },
     dailyChallenge,
   ] = await Promise.all([
     supabaseAdmin
@@ -126,6 +127,13 @@ export async function GET(req: NextRequest) {
       .select('status')
       .eq('student_id', user.id)
       .maybeSingle(),
+    // Today's XP — the hero stat row shows this instead of repeating
+    // the streak (already shown in the hero chip).
+    supabaseAdmin
+      .from('study_xp_events')
+      .select('xp')
+      .eq('student_id', user.id)
+      .gte('created_at', todayIso),
     computeDailyChallenge(user.id),
   ])
 
@@ -201,6 +209,7 @@ export async function GET(req: NextRequest) {
     // Paid-tier gating for landing surfaces (e.g. the Recommended
     // shelf is a paid feature). 'free' when no row exists yet.
     subscriptionStatus: (subRow?.status as string | null) ?? 'free',
+    xpToday: (xpRows ?? []).reduce((s, r) => s + ((r.xp as number | null) ?? 0), 0),
     // Batched so the landing's Today band paints in one frame instead
     // of the challenge card popping in after its own fetch.
     dailyChallenge,

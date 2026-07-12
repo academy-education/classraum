@@ -108,18 +108,22 @@ export function BottomNavigation() {
   if (inSession) return null
 
   return (
+    // No env(safe-area-inset-bottom) padding here: the mobile layout's
+    // app container already stops at var(--safe-area-bottom) (a white
+    // spacer fills the gap below), so adding the inset again floated
+    // the bar ~34px+ above the bottom on native builds.
     <nav
-      className="flex-shrink-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 pb-[max(0.25rem,env(safe-area-inset-bottom))] z-50"
+      className="flex-shrink-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 pb-1 z-50"
       style={{ touchAction: 'none' }}
     >
       {/* Flat hairline-top bar; the only ornament is the pill gliding
           between tabs with a gentle ease-out — clean at rest, alive on
           every switch. */}
-      <div className="relative flex items-stretch justify-around h-[56px] max-w-3xl mx-auto px-2">
+      <div className="relative flex items-stretch justify-around h-[52px] max-w-3xl mx-auto px-2">
         {pill && (
           <span
             aria-hidden
-            className="absolute top-1/2 -translate-y-1/2 h-[44px] rounded-2xl bg-primary/[0.08]"
+            className="absolute top-1/2 -translate-y-1/2 h-[40px] rounded-2xl bg-primary/[0.08]"
             style={{
               left: pill.left,
               width: pill.width,

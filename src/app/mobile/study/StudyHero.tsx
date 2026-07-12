@@ -48,6 +48,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
   const streak = landingData ? landingData.streak : fallbackStreak
   const progress = landingData ? landingData.progress : fallbackProgress
   const loadingProgress = landingData ? landingData.loading : fallbackLoading
+  const xpToday = landingData?.xpToday ?? 0
 
   useEffect(() => {
     if (landingData) return
@@ -217,10 +218,11 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
             </p>
 
             <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-3 gap-2">
+              {/* XP today, not streak — the streak already lives in the
+                  hero chip above; repeating it wasted a stat slot. */}
               <MiniStat
-                label={ko ? '연속' : 'Streak'}
-                value={streak ?? 0}
-                unit={ko ? '일' : 'd'}
+                label={ko ? '오늘 XP' : 'XP today'}
+                value={xpToday}
                 accent="orange"
               />
               <MiniStat

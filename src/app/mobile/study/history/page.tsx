@@ -11,6 +11,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import type { StudyMode } from '../modes'
+import { getPathNodeLabel } from '@/lib/study-path'
 
 /**
  * /mobile/study/history — past study sessions, newest first, with
@@ -24,6 +25,8 @@ interface Row {
   language: 'en' | 'ko'
   title: string | null
   status: string
+  score: number | null
+  config: { pathNode?: string } | null
   last_active_at: string
   topic_freeform: string | null
   topic: { slug: string; name_en: string; name_ko: string } | null
@@ -64,7 +67,7 @@ function HistoryInner() {
       const { data } = await supabase
         .from('study_sessions')
         .select(`
-          id, mode, language, title, status, last_active_at, topic_freeform,
+          id, mode, language, title, status, score, config, last_active_at, topic_freeform,
           topic:study_topics ( slug, name_en, name_ko )
         `)
         .eq('student_id', user.userId)
@@ -157,11 +160,31 @@ function HistoryInner() {
                   <div className="space-y-2">
                     {group.rows.map(row => {
                       const Icon = MODE_ICONS[row.mode] ?? MessageCircle
-                      const title = row.title
+                      // Journey sessions get their node name ("Info &
+                      // Ideas I") — six rows of the shared topic name
+                      // were indistinguishable.
+                      const title = getPathNodeLabel(row.config?.pathNode, ko)
+                        ?? row.title
                         ?? (row.topic ? (ko ? row.topic.name_ko : row.topic.name_en) : null)
                         ?? row.topic_freeform
                         ?? t('study.session.untitled')
                       const time = formatTimeAgo(row.last_active_at, ko)
+                      // Outcome chip — without it every row reads
+                      // identically ("Practice questions · 1d ago") and
+                      // the list is impossible to scan. Score for
+                      // completed sessions, "In progress" otherwise.
+                      const completed = row.status === 'completed'
+                      const score = row.score === null ? null : Math.round(Number(row.score))
+                      const chip = completed
+                        ? {
+                            label: score !== null ? `${score}%` : (ko ? '완료' : 'Done'),
+                            cls: score === null || score >= 80
+                              ? 'bg-emerald-50 text-emerald-700'
+                              : score >= 50
+                                ? 'bg-amber-50 text-amber-700'
+                                : 'bg-rose-50 text-rose-600',
+                          }
+                        : { label: ko ? '진행 중' : 'In progress', cls: 'bg-gray-100 text-gray-500' }
                       return (
                         <Link
                           key={row.id}
@@ -177,6 +200,9 @@ function HistoryInner() {
                               {t(`study.modes.${row.mode}.title`)} <span className="text-gray-300 mx-1">·</span> {time}
                             </div>
                           </div>
+                          <span className={`flex-shrink-0 px-2 py-0.5 rounded-full text-[11px] font-bold tabular-nums ${chip.cls}`}>
+                            {chip.label}
+                          </span>
                           <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
                         </Link>
                       )

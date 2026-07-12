@@ -197,7 +197,10 @@ export function MobileHeader() {
       className="flex-shrink-0 bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] z-50"
       style={{ touchAction: 'none' }}
     >
-      <div className="px-4 py-3.5">
+      {/* Compact chrome: 32px logo + 8px padding ≈ 48px tall. The old
+          40px logo + 14px padding stacked ~68px on top of the native
+          safe-area inset and ate a big slice of the phone screen. */}
+      <div className="px-4 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
@@ -206,7 +209,7 @@ export function MobileHeader() {
               alt="Classraum"
               width={150}
               height={40}
-              className="h-10 w-auto"
+              className="h-8 w-auto"
               priority
             />
           </div>
@@ -223,7 +226,7 @@ export function MobileHeader() {
             {(user?.academyIds?.length ?? 0) > 0 && (
             <button
               onClick={handleMessagesClick}
-              className="relative w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
+              className="relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
               aria-label={String(t("common.messages"))}
             >
               <MessageSquare className="w-5 h-5 text-gray-700" strokeWidth={1.75} />
@@ -238,7 +241,7 @@ export function MobileHeader() {
             {/* Notification Button */}
             <button
               onClick={handleNotificationClick}
-              className="relative w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
+              className="relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
               aria-label={String(t("common.notifications"))}
             >
               <Bell className="w-5 h-5 text-gray-700" strokeWidth={1.75} />

@@ -394,6 +394,18 @@ export function getPathTemplate(targetTest: string | null | undefined): StudyPat
   return TEMPLATES[targetTest.toUpperCase()] ?? null
 }
 
+/** Node id → bilingual label, across every template. Used by surfaces
+ *  that only have a session's config.pathNode (e.g. history rows) to
+ *  show "Info & Ideas I" instead of a generic topic name. */
+export function getPathNodeLabel(nodeId: string | null | undefined, ko: boolean): string | null {
+  if (!nodeId) return null
+  for (const tpl of Object.values(TEMPLATES)) {
+    const node = tpl.nodes.find(n => n.id === nodeId)
+    if (node) return ko ? node.labelKo : node.labelEn
+  }
+  return null
+}
+
 /** Per-node progress folded from the student's path-tagged sessions
  *  (config.pathNode === node.id). */
 export interface PathNodeProgress {

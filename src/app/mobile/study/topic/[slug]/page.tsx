@@ -401,16 +401,14 @@ function TopicInner({ slug }: { slug: string }) {
         {progress.sessions > 0 && (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4 flex items-center gap-4">
             <div className="flex-1 grid grid-cols-3 gap-3">
+              {/* Neutral number — a red "37/100" read as an error state
+                  the moment the page opened. Progress context shouldn't
+                  scold; score screens carry the semantic colors. */}
               <MiniStat
                 label={ko ? '숙련도' : 'Mastery'}
                 value={progress.mastery !== null ? `${progress.mastery}` : '—'}
                 suffix={progress.mastery !== null ? '/100' : undefined}
-                accent={
-                  progress.mastery === null ? 'gray'
-                  : progress.mastery >= 80 ? 'emerald'
-                  : progress.mastery >= 50 ? 'amber'
-                  : 'rose'
-                }
+                accent="gray"
               />
               <MiniStat
                 label={ko ? '세션' : 'Sessions'}
@@ -797,22 +795,24 @@ function FeaturedFullTestCard({
       type="button"
       onClick={() => startSession('full_test')}
       disabled={creating !== null}
-      className="group relative w-full rounded-2xl p-5 ring-1 ring-rose-200/60 bg-gradient-to-br from-rose-50/80 via-amber-50/30 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(244,63,94,0.18)] hover:ring-rose-300/70 hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(244,63,94,0.26)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait overflow-hidden"
+      // Primary blue, not rose: this is the tab's go-action, and the
+      // color system reserves blue for exactly that.
+      className="group relative w-full rounded-2xl p-5 ring-1 ring-primary/20 bg-gradient-to-br from-primary/[0.06] via-primary/[0.02] to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(40,133,232,0.20)] hover:ring-primary/35 hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(40,133,232,0.28)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait overflow-hidden"
     >
       {/* Subtle inner highlight on top edge for premium depth */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-white text-rose-600 flex items-center justify-center ring-1 ring-rose-200/50 shadow-[0_1px_2px_rgba(244,63,94,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] flex-shrink-0">
+        <div className="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center ring-1 ring-primary/20 shadow-[0_1px_2px_rgba(40,133,232,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] flex-shrink-0">
           {creating === 'full_test'
             ? <Loader2 className="w-5 h-5 animate-spin" />
             : <FileText className="w-5 h-5" />}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <div className="text-[17px] font-semibold text-gray-900 group-hover:text-rose-700 transition-colors tracking-tight">
+            <div className="text-[17px] font-semibold text-gray-900 group-hover:text-primary transition-colors tracking-tight">
               {String(t('study.modes.full_test.title'))}
             </div>
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-rose-700 bg-white/90 backdrop-blur ring-1 ring-rose-200/80 rounded-full px-2 py-0.5 shadow-[0_1px_2px_rgba(244,63,94,0.06)]">
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-primary bg-white/90 backdrop-blur ring-1 ring-primary/25 rounded-full px-2 py-0.5 shadow-[0_1px_2px_rgba(40,133,232,0.06)]">
               <Sparkles className="w-2.5 h-2.5" />
               {String(t('study.topic.testPrepBadge'))}
             </span>
@@ -821,7 +821,7 @@ function FeaturedFullTestCard({
             {String(t('study.modes.full_test.body'))}
           </p>
         </div>
-        <ArrowRight className="w-5 h-5 text-rose-400/70 group-hover:text-rose-500 group-hover:translate-x-0.5 mt-1.5 flex-shrink-0 transition-all" />
+        <ArrowRight className="w-5 h-5 text-primary/50 group-hover:text-primary group-hover:translate-x-0.5 mt-1.5 flex-shrink-0 transition-all" />
       </div>
     </button>
   )

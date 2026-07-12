@@ -43,6 +43,8 @@ export interface LandingData {
   prefs: Prefs | null
   /** study_subscriptions.status ('free' | 'trial' | 'active' | ...). */
   subscriptionStatus: string | null
+  /** XP earned today — hero stat row. */
+  xpToday: number | null
   /** Batched daily-challenge state (null until loaded). */
   dailyChallenge: {
     date: string
@@ -62,6 +64,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   const [streak, setStreak] = useState<number | null>(null)
   const [prefs, setPrefs] = useState<Prefs | null>(null)
   const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null)
+  const [xpToday, setXpToday] = useState<number | null>(null)
   const [dailyChallenge, setDailyChallenge] = useState<LandingData['dailyChallenge']>(null)
   const [loading, setLoading] = useState(true)
 
@@ -75,12 +78,14 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
         streak: number
         prefs: Prefs
         subscriptionStatus?: string
+        xpToday?: number
         dailyChallenge?: LandingData['dailyChallenge']
       }
       setProgress(json.progress ?? null)
       setStreak(json.streak ?? 0)
       setPrefs(json.prefs ?? null)
       setSubscriptionStatus(json.subscriptionStatus ?? null)
+      setXpToday(json.xpToday ?? 0)
       setDailyChallenge(json.dailyChallenge ?? null)
     } catch {
       // Soft-fail: consumers using the fallback fetch will still work.
@@ -94,7 +99,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   }, [fetchOnce])
 
   return (
-    <Ctx.Provider value={{ progress, streak, prefs, subscriptionStatus, dailyChallenge, loading, refetch: fetchOnce }}>
+    <Ctx.Provider value={{ progress, streak, prefs, subscriptionStatus, xpToday, dailyChallenge, loading, refetch: fetchOnce }}>
       {children}
     </Ctx.Provider>
   )
