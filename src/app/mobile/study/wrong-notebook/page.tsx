@@ -201,14 +201,14 @@ function WrongNotebookInner() {
     <div className="relative">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-rose-500/[0.03] to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-primary/[0.025] to-transparent"
       />
       <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <StudySubPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.wrongNotebook.back'))}
           icon={BookOpen}
-          iconColorClass="text-rose-600 bg-rose-50"
+          iconColorClass="text-primary bg-primary/10"
           eyebrow={String(t('study.wrongNotebook.eyebrow'))}
           title={String(t('study.wrongNotebook.title'))}
           subtitle={ko
@@ -266,6 +266,11 @@ function WrongNotebookInner() {
         )}
 
         <StudyPageTransition>
+          {/* space-y-6 re-applied INSIDE the transition wrapper — the
+              wrapper is a single child of the outer space-y-6 column,
+              so without this the filter row, date groups, pagination,
+              and reviewed section all stacked with no gaps. */}
+          <div className="space-y-6">
           {/* Annotated count chip (only when > 0). */}
           {annotated > 0 && (
             <div className="flex items-center gap-2 text-[12px] text-gray-700">
@@ -307,42 +312,70 @@ function WrongNotebookInner() {
               )}
               {entries.length > 0 && (
                 <>
-                  {/* Difficulty filter chips + sort dropdown row. */}
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex gap-1.5">
-                      {([
-                        { key: 'all', label: ko ? '전체' : 'All' },
-                        { key: 'easy', label: ko ? '쉬움' : 'Easy' },
-                        { key: 'medium', label: ko ? '보통' : 'Medium' },
-                        { key: 'hard', label: ko ? '어려움' : 'Hard' },
-                      ] as Array<{ key: DifficultyKey; label: string }>).map(item => {
-                        const active = difficultyFilter === item.key
-                        return (
+                  {/* Difficulty + sort — labeled chip rows, mirroring
+                      the landing's option-row idiom (QUESTIONS /
+                      DIFFICULTY / LANGUAGE). Replaces the black chips +
+                      native <select> that clipped at 375px. Zero-count
+                      difficulties are disabled — tapping them could
+                      only show an empty list. */}
+                  <div className="space-y-2 px-1">
+                    <div className="flex items-start gap-1.5">
+                      <span className="w-[72px] flex-shrink-0 pt-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+                        {ko ? '난이도' : 'Difficulty'}
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {([
+                          { key: 'all', label: ko ? '전체' : 'All' },
+                          { key: 'easy', label: ko ? '쉬움' : 'Easy' },
+                          { key: 'medium', label: ko ? '보통' : 'Medium' },
+                          { key: 'hard', label: ko ? '어려움' : 'Hard' },
+                        ] as Array<{ key: DifficultyKey; label: string }>).map(item => {
+                          const active = difficultyFilter === item.key
+                          const empty = item.key !== 'all' && difficultyCounts[item.key] === 0
+                          return (
+                            <button
+                              key={item.key}
+                              type="button"
+                              onClick={() => setDifficultyFilter(item.key)}
+                              disabled={empty}
+                              className={`whitespace-nowrap inline-flex items-center gap-1 px-2.5 h-7 rounded-full text-[12px] font-semibold transition-all ${
+                                active
+                                  ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
+                                  : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
+                              } disabled:opacity-40 disabled:cursor-not-allowed`}
+                            >
+                              {item.label}
+                              <span className="opacity-60 tabular-nums">{difficultyCounts[item.key]}</span>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-1.5">
+                      <span className="w-[72px] flex-shrink-0 pt-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+                        {ko ? '정렬' : 'Sort'}
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {([
+                          { key: 'newest', label: ko ? '최신순' : 'Newest' },
+                          { key: 'oldest', label: ko ? '오래된순' : 'Oldest' },
+                          { key: 'hardest', label: ko ? '어려운순' : 'Hardest' },
+                        ] as Array<{ key: SortKey; label: string }>).map(item => (
                           <button
                             key={item.key}
                             type="button"
-                            onClick={() => setDifficultyFilter(item.key)}
-                            className={`whitespace-nowrap inline-flex items-center gap-1 px-2.5 h-7 rounded-full text-[11.5px] font-medium transition ${
-                              active
-                                ? 'bg-gray-900 text-white'
-                                : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
+                            onClick={() => setSortKey(item.key)}
+                            className={`whitespace-nowrap px-2.5 h-7 rounded-full text-[12px] font-semibold transition-all ${
+                              sortKey === item.key
+                                ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
+                                : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
                             }`}
                           >
                             {item.label}
-                            <span className="opacity-60 tabular-nums">{difficultyCounts[item.key]}</span>
                           </button>
-                        )
-                      })}
+                        ))}
+                      </div>
                     </div>
-                    <select
-                      value={sortKey}
-                      onChange={e => setSortKey(e.target.value as SortKey)}
-                      className="h-7 rounded-full bg-white ring-1 ring-gray-200/70 text-[11.5px] font-medium text-gray-700 pl-2.5 pr-2 focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    >
-                      <option value="newest">{ko ? '최신순' : 'Newest'}</option>
-                      <option value="oldest">{ko ? '오래된순' : 'Oldest'}</option>
-                      <option value="hardest">{ko ? '어려운순' : 'Hardest'}</option>
-                    </select>
                   </div>
 
                   {visibleActive.length > 0 && (
@@ -434,6 +467,7 @@ function WrongNotebookInner() {
               )}
             </>
           )}
+        </div>
         </StudyPageTransition>
       </div>
     </div>
@@ -486,8 +520,11 @@ function TopicFilter({
 }) {
   const totalCount = topics.reduce((s, t) => s + t.count, 0)
   return (
-    <div className="-mx-5 overflow-x-auto scrollbar-hide">
-      <div className="flex gap-2 pl-5 pr-5 pb-1">
+    <div className="flex items-start gap-1.5 px-1">
+      <span className="w-[72px] flex-shrink-0 pt-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+        {ko ? '주제' : 'Topic'}
+      </span>
+      <div className="flex flex-wrap gap-1.5">
         <FilterChip active={selectedId === null} onClick={() => onSelect(null)}>
           {allLabel} <span className="opacity-60 tabular-nums">{totalCount}</span>
         </FilterChip>
@@ -505,10 +542,10 @@ function FilterChip({ children, active, onClick }: { children: React.ReactNode; 
   return (
     <button
       type="button" onClick={onClick}
-      className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
+      className={`whitespace-nowrap inline-flex items-center gap-1 px-2.5 h-7 rounded-full text-[12px] font-semibold transition-all ${
         active
-          ? 'bg-gray-900 text-white'
-          : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
+          ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
+          : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
       }`}
     >{children}</button>
   )
