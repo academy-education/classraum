@@ -13,6 +13,7 @@ import { supabase } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
 import type { Question, SpeechSignals, SubmitResult, TestPayload } from './test/types'
+import { moduleRemainingMs } from '@/lib/study/sat-adaptive'
 import {
   normalizeDisplayText, choiceLabel, formatTime, passageGroupInfo, PassageParagraphs,
 } from './test/helpers'
@@ -154,6 +155,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const resumedAtRef = useRef<number | null>(null)
   const [paused, setPaused] = useState(false)
   const [now, setNow] = useState(Date.now())
+  // Adaptive per-module timing: total-elapsed value at the moment
+  // Module 2 began. null while still in Module 1. Persisted so a
+  // mid-Module-2 refresh keeps the module clock correct.
+  const [module2StartMs, setModule2StartMs] = useState<number | null>(null)
   // Helper to compute the total elapsed at any moment. Cheap, no
   // state — called wherever we need the current elapsed value.
   const currentElapsedMs = useCallback(() => {
@@ -331,6 +336,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }
       activeElapsedMsRef.current = restored
       resumedAtRef.current = Date.now()  // start the clock immediately on taking
+      // Restore the Module 2 start marker so a mid-Module-2 refresh keeps
+      // its own module clock (not restarted from the whole-test elapsed).
+      if (typeof window !== 'undefined') {
+        const m2 = localStorage.getItem(`study:test:${sessionId}:m2StartMs`)
+        if (m2) setModule2StartMs(parseInt(m2, 10) || null)
+      }
       setPhase('taking')
     } catch {
       setPhase('error')
@@ -415,13 +426,20 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       if (json.route) {
         setModuleRoute({ route: json.route, correct: json.module1Correct ?? null, total: json.module1Total ?? breakIdx })
       }
+      // Start Module 2's own clock from this moment (in whole-test
+      // elapsed terms) and persist it for resume.
+      const m2Start = currentElapsedMs()
+      setModule2StartMs(m2Start)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(`study:test:${sessionId}:m2StartMs`, String(m2Start))
+      }
       setCurrentIdx(breakIdx) // jump to the first Module 2 question
     } catch {
       setModule2Error(true)
     } finally {
       setModule2Loading(false)
     }
-  }, [test, module2Loading, sessionId, answers])
+  }, [test, module2Loading, sessionId, answers, currentElapsedMs])
 
   // TOEFL adaptive routing: the first time the student crosses the
   // module break in a Reading/Listening test, send module-1 answers
@@ -637,6 +655,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         localStorage.removeItem(`study:test:${sessionId}:currentIdx`)
         localStorage.removeItem(`study:test:${sessionId}:answers`)
         localStorage.removeItem(`study:test:${sessionId}:speech`)
+        localStorage.removeItem(`study:test:${sessionId}:m2StartMs`)
       }
       // Test is over — stop holding the mic open (browser tab keeps
       // showing the red recording dot while the primed stream lives).
@@ -717,15 +736,39 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // cycle. After the single auto attempt, the student retries via the
   // error banner's manual submit.
   const autoSubmitAttemptedRef = useRef(false)
-  const timeLimitMs = test ? test.timeLimitMinutes * 60_000 : 0
+  // Fires once when Module 1's clock expires — auto-advances to Module 2
+  // (same path as the "Continue to Module 2" tap).
+  const autoRouteAttemptedRef = useRef(false)
   useEffect(() => {
-    if (phase !== 'taking' || !timeLimitMs) return
-    if (autoSubmitAttemptedRef.current) return
-    if (currentElapsedMs() >= timeLimitMs) {
+    if (phase !== 'taking' || !test) return
+    const isAdaptive = !!test.adaptive && typeof test.moduleBreakIdx === 'number'
+    if (isAdaptive) {
+      // Per-module clock: each module gets its own budget.
+      const perModuleMinutes = test.perModuleMinutes ?? Math.round(test.timeLimitMinutes / 2)
+      const inModule2 = currentIdx >= test.moduleBreakIdx!
+      const remaining = moduleRemainingMs({
+        perModuleMinutes, currentElapsedMs: currentElapsedMs(), module2StartMs, inModule2,
+      })
+      if (!inModule2) {
+        // Module 1 timed out → route + draw Module 2 automatically.
+        if (!autoRouteAttemptedRef.current && !module2Loading && remaining <= 0) {
+          autoRouteAttemptedRef.current = true
+          void routeToModule2()
+        }
+      } else if (!autoSubmitAttemptedRef.current && remaining <= 0) {
+        // Module 2 timed out → submit the whole test.
+        autoSubmitAttemptedRef.current = true
+        void submit()
+      }
+      return
+    }
+    // Non-adaptive: one whole-test timer.
+    const timeLimitMs = test.timeLimitMinutes * 60_000
+    if (!autoSubmitAttemptedRef.current && timeLimitMs > 0 && currentElapsedMs() >= timeLimitMs) {
       autoSubmitAttemptedRef.current = true
       void submit()
     }
-  }, [now, timeLimitMs, phase, submit, currentElapsedMs])
+  }, [now, phase, test, currentIdx, module2StartMs, module2Loading, submit, routeToModule2, currentElapsedMs])
 
   // ── Render branches ─────────────────────────────────────────────
   // Both pre-'generating' phases share the same shell so the test-
@@ -856,8 +899,19 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
 
   // phase === 'taking' or 'submitting'
   const q = test.questions[currentIdx]
+  // Adaptive tests are timed per module; the countdown shows the CURRENT
+  // module's remaining time and resets when Module 2 begins.
+  const isAdaptiveTest = !!test.adaptive && typeof test.moduleBreakIdx === 'number'
+  const inModule2 = isAdaptiveTest && currentIdx >= test.moduleBreakIdx!
   // `now` in deps forces this to re-derive every tick.
-  const remainingMs = Math.max(0, timeLimitMs - currentElapsedMs())
+  const remainingMs = isAdaptiveTest
+    ? moduleRemainingMs({
+        perModuleMinutes: test.perModuleMinutes ?? Math.round(test.timeLimitMinutes / 2),
+        currentElapsedMs: currentElapsedMs(),
+        module2StartMs,
+        inModule2,
+      })
+    : Math.max(0, test.timeLimitMinutes * 60_000 - currentElapsedMs())
   void now
   // Answered detection — type-aware so partially-typed items don't
   // read as complete: fill_in_blanks needs EVERY blank filled; other
@@ -1016,12 +1070,14 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 ? (range.startAt === range.endAt ? String(range.startAt) : `${range.startAt}–${range.endAt}`)
                 : String(i + 1)
               const anyRecording = Object.values(interviewRecordingActive).some(Boolean)
+              // In Module 2, Module 1 cells are locked — no jumping back.
+              const moduleLocked = inModule2 && i < test.moduleBreakIdx!
               return (
                 <button
                   key={i}
                   type="button"
-                  disabled={anyRecording}
-                  onClick={() => { setCurrentIdx(i); setGridOpen(false) }}
+                  disabled={anyRecording || moduleLocked}
+                  onClick={() => { if (moduleLocked) return; setCurrentIdx(i); setGridOpen(false) }}
                   className={`h-8 rounded-md text-xs font-medium transition-colors tabular-nums disabled:opacity-40 ${
                     isCurrent
                       ? 'bg-primary text-white'
@@ -1944,8 +2000,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             {!isSpeakingItem && (
               <button
                 type="button"
-                onClick={() => setCurrentIdx(i => Math.max(0, i - 1))}
-                disabled={currentIdx === 0 || audioPlaying}
+                // Once in Module 2 the floor is the module break — a
+                // student can't return to Module 1 (already graded +
+                // routed), matching the real section-adaptive exam.
+                onClick={() => setCurrentIdx(i => Math.max(inModule2 ? test.moduleBreakIdx! : 0, i - 1))}
+                disabled={currentIdx === (inModule2 ? test.moduleBreakIdx! : 0) || audioPlaying}
                 className="h-11 w-11 rounded-full bg-white border border-gray-200 text-gray-700 inline-flex items-center justify-center disabled:opacity-40"
                 aria-label={String(t('study.test.previous'))}
               >

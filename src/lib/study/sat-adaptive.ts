@@ -54,6 +54,25 @@ export function difficultiesForModule2(route: SatModule2Route): Array<'easy' | '
   return route === 'hard' ? ['hard'] : ['easy', 'medium']
 }
 
+/**
+ * Remaining time on the CURRENT module's clock. Adaptive SAT tests are
+ * timed per module: Module 1 counts from test start; Module 2 counts
+ * from the moment it began (module2StartMs, in whole-test elapsed
+ * terms). Never returns negative.
+ */
+export function moduleRemainingMs(args: {
+  perModuleMinutes: number
+  currentElapsedMs: number
+  module2StartMs: number | null
+  inModule2: boolean
+}): number {
+  const perModuleMs = args.perModuleMinutes * 60_000
+  const moduleElapsed = args.inModule2 && args.module2StartMs != null
+    ? args.currentElapsedMs - args.module2StartMs
+    : args.currentElapsedMs
+  return Math.max(0, perModuleMs - moduleElapsed)
+}
+
 export interface SatSectionScore {
   /** 200–800, rounded to the nearest 10 like a real section score. */
   score: number

@@ -92,6 +92,9 @@ export async function POST(req: NextRequest) {
         sectionKey: section,
         moduleBreakIdx: test.questions.length,
         totalModules: 2,
+        // Per-module timing: each module gets its own countdown. The
+        // combined value is kept for any legacy/whole-test reader.
+        perModuleMinutes: SAT_MODULE_CONFIG[section].minutesPerModule,
         timeLimitMinutes: 2 * SAT_MODULE_CONFIG[section].minutesPerModule,
       }
     : test

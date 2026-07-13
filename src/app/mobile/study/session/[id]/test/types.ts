@@ -57,6 +57,9 @@ export interface TestPayload {
   adaptive?: boolean
   sectionKey?: 'reading_writing' | 'math'
   totalModules?: number
+  /** Adaptive tests are timed PER MODULE, not across the whole test.
+   *  Each module gets its own countdown of this many minutes. */
+  perModuleMinutes?: number
 }
 
 export interface SubmitResult {

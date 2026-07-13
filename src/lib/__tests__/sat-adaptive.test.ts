@@ -7,6 +7,7 @@ import {
   computeSatRoute,
   difficultiesForModule2,
   estimateSectionScore,
+  moduleRemainingMs,
   SAT_MODULE_CONFIG,
 } from '@/lib/study/sat-adaptive'
 
@@ -74,6 +75,41 @@ describe('estimateSectionScore (path-weighted)', () => {
     expect(estimateSectionScore(99, 54, 'hard').score).toBe(800)
     expect(estimateSectionScore(-5, 54, 'easy').score).toBe(200)
     expect(estimateSectionScore(5, 0, 'hard').score).toBe(400) // no questions → 0%
+  })
+})
+
+describe('moduleRemainingMs (per-module clock)', () => {
+  const MIN = 60_000
+
+  it('Module 1 counts down from the full per-module budget', () => {
+    // 32-min module, 10 min elapsed → 22 min left.
+    expect(moduleRemainingMs({ perModuleMinutes: 32, currentElapsedMs: 10 * MIN, module2StartMs: null, inModule2: false }))
+      .toBe(22 * MIN)
+  })
+
+  it('Module 2 clock resets — it measures time SINCE Module 2 began, not total', () => {
+    // Student spent 30 min total; Module 2 began at 25 min → 5 min into M2 → 27 left.
+    expect(moduleRemainingMs({ perModuleMinutes: 32, currentElapsedMs: 30 * MIN, module2StartMs: 25 * MIN, inModule2: true }))
+      .toBe(27 * MIN)
+  })
+
+  it('a fresh Module 2 (just began) shows the full budget again', () => {
+    expect(moduleRemainingMs({ perModuleMinutes: 35, currentElapsedMs: 35 * MIN, module2StartMs: 35 * MIN, inModule2: true }))
+      .toBe(35 * MIN)
+  })
+
+  it('never returns negative — a blown clock reads 0', () => {
+    expect(moduleRemainingMs({ perModuleMinutes: 32, currentElapsedMs: 50 * MIN, module2StartMs: null, inModule2: false }))
+      .toBe(0)
+    expect(moduleRemainingMs({ perModuleMinutes: 32, currentElapsedMs: 90 * MIN, module2StartMs: 25 * MIN, inModule2: true }))
+      .toBe(0)
+  })
+
+  it('a Module 1 that used almost all its time does NOT bleed into Module 2', () => {
+    // Spent 31 of 32 min in M1, then M2 began at 31 min. 2 min into M2 → 30 left,
+    // NOT 1 min (which a shared whole-test clock would show).
+    expect(moduleRemainingMs({ perModuleMinutes: 32, currentElapsedMs: 33 * MIN, module2StartMs: 31 * MIN, inModule2: true }))
+      .toBe(30 * MIN)
   })
 })
 
