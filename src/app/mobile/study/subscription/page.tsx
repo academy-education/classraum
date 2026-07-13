@@ -359,7 +359,7 @@ export default function SubscriptionPage() {
         )}
 
         {/* Plan cards */}
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {plans.map(plan => {
             const isCurrent = currentPlanId === plan.id
             const isPending = isActive && sub?.pending_plan === plan.id

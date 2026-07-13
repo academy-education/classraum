@@ -213,7 +213,7 @@ function PreferencesInner() {
 
       {/* Grade level */}
       <SettingGroup icon={GraduationCap} label={String(t('study.prefs.gradeLevel'))} saving={saving === 'grade_level'}>
-        <div className="grid grid-cols-1 gap-1.5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-1.5">
           {GRADES.map(grade => {
             const selected = prefs.grade_level === grade.value
             return (

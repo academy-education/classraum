@@ -525,7 +525,9 @@ function ActivityHeatmap({ data, ko }: { data: Array<{ date: string; count: numb
 
   return (
     <div>
-      <div className="grid grid-cols-13 grid-rows-7 gap-[3px]" style={{ gridTemplateColumns: 'repeat(13, minmax(0, 1fr))', gridAutoFlow: 'column' }}>
+      {/* Cap the grid width so cells stay compact (GitHub-graph size)
+          instead of ballooning when the stats card widens on desktop. */}
+      <div className="grid grid-cols-13 grid-rows-7 gap-[3px] max-w-sm" style={{ gridTemplateColumns: 'repeat(13, minmax(0, 1fr))', gridAutoFlow: 'column' }}>
         {cells.map((cell, i) => {
           const isSelected = cell.date === selectedDate && cell.inRange
           return (

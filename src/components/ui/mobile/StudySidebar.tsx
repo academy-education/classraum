@@ -27,10 +27,10 @@ export function StudySidebar() {
     >
       {/* Logo pinned to the rail's top-left — the desktop app's brand
           anchor (the mobile header hides its own logo at lg). */}
-      <div className="flex items-center h-14 px-5 border-b border-gray-100/80">
+      <div className="flex items-center h-14 px-5">
         <Image src="/logo2-test.png" alt="Classraum" width={150} height={40} className="h-8 w-auto" priority />
       </div>
-      <div className="flex-1 flex flex-col gap-1 px-3 py-4">
+      <div className="flex-1 flex flex-col gap-1 px-3 pb-4">
       {navItems.map(item => {
         const Icon = item.icon
         const active = isActive(item.href)
