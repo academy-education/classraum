@@ -12,7 +12,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { supabase } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
-import type { SpeechSignals, SubmitResult, TestPayload } from './test/types'
+import type { Question, SpeechSignals, SubmitResult, TestPayload } from './test/types'
 import {
   normalizeDisplayText, choiceLabel, formatTime, passageGroupInfo, PassageParagraphs,
 } from './test/helpers'
@@ -376,6 +376,52 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }))
     } catch { /* quota exceeded — resume loses audio links only */ }
   }, [phase, sessionId, answerAudioPaths, answerSpeechSignals])
+
+  // SAT bank two-module adaptive: the test loads with Module 1 only.
+  // When the student finishes Module 1 they tap "Continue to Module 2",
+  // which grades M1 server-side, draws the routed Module 2 from the
+  // bank, and APPENDS it to the in-memory test — a hard gate, unlike
+  // TOEFL's fire-and-forget feedback chip.
+  const [module2Loading, setModule2Loading] = useState(false)
+  const [module2Error, setModule2Error] = useState(false)
+  const routeToModule2 = useCallback(async () => {
+    if (!test || module2Loading) return
+    setModule2Loading(true)
+    setModule2Error(false)
+    try {
+      const breakIdx = test.moduleBreakIdx ?? test.questions.length
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/test/route', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sessionId,
+          sectionName: test.section ?? '',
+          answers: answers.slice(0, breakIdx).map((answer, index) => ({ index, answer })),
+        }),
+      })
+      if (!res.ok) throw new Error('route failed')
+      const json = await res.json() as {
+        route?: 'easy' | 'hard'
+        module1Correct?: number | null
+        module1Total?: number
+        module2Questions?: Question[]
+      }
+      const m2 = json.module2Questions ?? []
+      if (m2.length === 0) throw new Error('empty module 2')
+      // Append M2 to the in-memory test; the server already appended it
+      // to the cache row /submit grades against.
+      setTest(prev => (prev ? { ...prev, questions: [...prev.questions, ...m2] } : prev))
+      if (json.route) {
+        setModuleRoute({ route: json.route, correct: json.module1Correct ?? null, total: json.module1Total ?? breakIdx })
+      }
+      setCurrentIdx(breakIdx) // jump to the first Module 2 question
+    } catch {
+      setModule2Error(true)
+    } finally {
+      setModule2Loading(false)
+    }
+  }, [test, module2Loading, sessionId, answers])
 
   // TOEFL adaptive routing: the first time the student crosses the
   // module break in a Reading/Listening test, send module-1 answers
@@ -1024,6 +1070,47 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 </span>
               )
             })()}
+            {/* SAT two-module chip — Module 1 until the routed Module 2
+                is drawn + reached. */}
+            {test.adaptive && typeof test.moduleBreakIdx === 'number' && (() => {
+              const isModule2 = currentIdx >= test.moduleBreakIdx!
+              return (
+                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
+                  isModule2
+                    ? 'bg-amber-50 text-amber-800 ring-amber-200'
+                    : 'bg-primary/10 text-primary ring-primary/20'
+                }`}>
+                  {isModule2 ? 'Module 2' : 'Module 1'}
+                </span>
+              )
+            })()}
+          </div>
+        )}
+        {/* SAT "Module 2 begins" banner — shown on the first Module 2
+            question with the earned route so the student sees the
+            adaptivity happen. */}
+        {test.adaptive && typeof test.moduleBreakIdx === 'number'
+          && moduleRoute && currentIdx === test.moduleBreakIdx && (
+          <div className="mb-4 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-amber-50/40 px-4 py-3">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider">
+                Module 2
+              </span>
+              <span className="text-[13px] font-bold text-amber-900">
+                {ko ? '모듈 2 시작' : 'Module 2 begins'}
+              </span>
+            </div>
+            <p className="text-[12px] text-amber-800 leading-relaxed">
+              {(() => {
+                const scored = moduleRoute.correct != null ? `${moduleRoute.correct}/${moduleRoute.total}` : null
+                if (ko) {
+                  const band = moduleRoute.route === 'hard' ? '더 어려운' : '더 쉬운'
+                  return `모듈 1 ${scored ? `정답 ${scored} — ` : ''}실제 SAT처럼 ${band} 모듈 2로 배정됐어요.`
+                }
+                const band = moduleRoute.route === 'hard' ? 'a harder' : 'an easier'
+                return `Module 1${scored ? `: ${scored} correct` : ''} — like the real SAT, you've been routed to ${band} Module 2.`
+              })()}
+            </p>
           </div>
         )}
         {/* "Module 2 begins" banner — shown on the FIRST question of
@@ -1837,6 +1924,14 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       {(() => {
         const isSpeakingItem = q.type === 'speaking_repeat' || q.type === 'speaking_interview'
         const isLast = currentIdx === test.questions.length - 1
+        // SAT adaptive: while only Module 1 is loaded (M2 not yet
+        // appended), the last question ends Module 1 — show "Continue to
+        // Module 2" instead of Submit. Once M2 is appended, questions
+        // grows past moduleBreakIdx and this is false again.
+        const inModule1 = !!test.adaptive
+          && typeof test.moduleBreakIdx === 'number'
+          && test.questions.length <= test.moduleBreakIdx
+        const atModule1End = inModule1 && currentIdx === (test.moduleBreakIdx! - 1)
         const speakingKey = q.type === 'speaking_repeat' ? `repeat-${currentIdx}` : `interview-${currentIdx}`
         // Next button appears after the student's audio has been
         // PROCESSED — i.e., Whisper transcription completed. Set by
@@ -1857,7 +1952,28 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <ArrowLeft className="w-4 h-4" />
               </button>
             )}
-            {isLast ? (() => {
+            {atModule1End ? (
+              // End of Module 1 → grade + draw the routed Module 2.
+              <div className="flex-1 flex flex-col gap-1">
+                <button
+                  type="button"
+                  onClick={() => void routeToModule2()}
+                  disabled={module2Loading || audioPlaying}
+                  className="h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                >
+                  {module2Loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+                  {module2Loading
+                    ? (ko ? '모듈 2 준비 중…' : 'Preparing Module 2…')
+                    : (ko ? '모듈 2로 계속하기' : 'Continue to Module 2')}
+                  {!module2Loading && <ArrowRight className="w-4 h-4" />}
+                </button>
+                {module2Error && (
+                  <span className="text-[11px] text-rose-600 text-center">
+                    {ko ? '모듈 2를 불러오지 못했어요. 다시 시도해 주세요.' : "Couldn't load Module 2. Tap to retry."}
+                  </span>
+                )}
+              </div>
+            ) : isLast ? (() => {
               // Submit waits for any in-flight recording OR Whisper
               // transcription — otherwise a fast Submit on the last
               // speaking question races the transcription and the

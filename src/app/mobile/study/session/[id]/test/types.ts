@@ -51,12 +51,20 @@ export interface TestPayload {
    *  and Module 2 may be different sizes — e.g. Listening ships 8 CaR
    *  in M1 and 3 in M2, so the boundary is NOT the midpoint). */
   moduleBreakIdx?: number
+  /** SAT bank two-module adaptive test. Module 1 is served first; the
+   *  routed Module 2 is appended by /api/study/test/route after the
+   *  student finishes Module 1. */
+  adaptive?: boolean
+  sectionKey?: 'reading_writing' | 'math'
+  totalModules?: number
 }
 
 export interface SubmitResult {
   totalQuestions: number
   correctCount: number
   scorePercent: number
+  /** Path-weighted SAT section score (adaptive sessions only). */
+  sat?: { score: number; route: 'easy' | 'hard'; capped: boolean } | null
   /** ungraded = open-response item (interview / email / discussion):
    *  rubric-graded in review, excluded from the auto-score. */
   verdicts: { index: number; correct: boolean; correctAnswer: string; ungraded?: boolean }[]

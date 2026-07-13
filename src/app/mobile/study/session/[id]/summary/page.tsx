@@ -11,6 +11,7 @@ import { StudySubscriptionGate } from '../../../SubscriptionGate'
 import { MascotLoader, useMascotGate } from '../../../_shared/MascotLoader'
 import { PathMascot, type MascotState } from '../../../_shared/PathMascot'
 import { StudySubPageHeader } from '../../../_shared/primitives'
+import { estimateSectionScore } from '@/lib/study/sat-adaptive'
 
 interface SessionRow {
   id: string
@@ -24,6 +25,8 @@ interface SessionRow {
   score: number | null
   correct_count: number | null
   total_count: number | null
+  /** SAT two-module adaptive: the earned Module 2 route, or null. */
+  module2_route: string | null
   topic: { id: string; slug: string; name_en: string; name_ko: string } | null
 }
 
@@ -80,7 +83,7 @@ function SummaryInner({ id }: { id: string }) {
         .from('study_sessions')
         .select(`
           id, mode, language, topic_id, topic_freeform, status, created_at, last_active_at,
-          score, correct_count, total_count,
+          score, correct_count, total_count, module2_route,
           topic:study_topics ( id, slug, name_en, name_ko )
         `)
         .eq('id', id)
@@ -140,6 +143,13 @@ function SummaryInner({ id }: { id: string }) {
       ? Math.round(session.score)
       : Math.round((correct / totalItems) * 100)
   const incorrect = totalItems - correct
+  // SAT adaptive: path-weighted 200–800 section band (easy path caps).
+  const satRoute = session.module2_route === 'hard' || session.module2_route === 'easy'
+    ? session.module2_route
+    : null
+  const satBand = satRoute && attempted
+    ? estimateSectionScore(correct, totalItems, satRoute)
+    : null
   const totalSeconds = attempts.reduce((sum, a) => sum + (a.time_spent_seconds ?? 0), 0)
   const totalMinutes = Math.round(totalSeconds / 60)
   const topicName = session.topic
@@ -203,6 +213,21 @@ function SummaryInner({ id }: { id: string }) {
                   total: String(totalItems),
                 }))}
               </p>
+              {satBand && (
+                // Adaptive section band — a transparent 200–800 estimate,
+                // path-weighted so the easy module reads as capped.
+                <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/15 ring-1 ring-white/25 px-3 py-1.5 backdrop-blur-sm">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.10em] opacity-90">
+                    {ko ? '예상 점수' : 'Est. score'}
+                  </span>
+                  <span className="text-[15px] font-bold tabular-nums">{satBand.score}</span>
+                  <span className="text-[11px] opacity-90">
+                    {satBand.route === 'hard'
+                      ? (ko ? '· 상위 모듈' : '· harder module')
+                      : (ko ? '· 하위 모듈 (상한)' : '· easier module (capped)')}
+                  </span>
+                </div>
+              )}
               <div className={`mt-5 grid grid-cols-3 gap-3 ${hero.accent}`}>
                 <Stat icon={CheckCircle2} value={String(correct)} label={String(t('study.summary.correct'))} />
                 <Stat icon={XCircle} value={String(incorrect)} label={String(t('study.summary.incorrect'))} />

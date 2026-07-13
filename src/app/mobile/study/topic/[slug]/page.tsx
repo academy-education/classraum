@@ -257,7 +257,9 @@ function TopicInner({ slug }: { slug: string }) {
       const res = await fetch('/api/study/test/assemble', {
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ section: bankSection, count: bankSection === 'math' ? 22 : 27 }),
+        // Two-module adaptive: assemble draws Module 1 only; Module 2 is
+        // routed + drawn after the student finishes Module 1.
+        body: JSON.stringify({ section: bankSection, adaptive: true }),
       })
       if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()

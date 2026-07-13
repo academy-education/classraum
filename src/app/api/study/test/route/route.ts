@@ -6,6 +6,12 @@ import {
   TOEFL_ADAPTIVE_SECTIONS,
   computeToeflRoute,
 } from '@/lib/toefl-adaptive'
+import {
+  SAT_MODULE_CONFIG,
+  computeSatRoute,
+  difficultiesForModule2,
+} from '@/lib/study/sat-adaptive'
+import { assembleFromBank } from '@/lib/study/assemble'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -57,11 +63,6 @@ export async function POST(req: NextRequest) {
   }
   const { sessionId, sectionName, answers } = parsed.data
 
-  const config = TOEFL_ADAPTIVE_SECTIONS[sectionName]
-  if (!config) {
-    return NextResponse.json({ error: 'not_adaptive', route: null }, { status: 200 })
-  }
-
   const { data: session, error: sessErr } = await supabaseAdmin
     .from('study_sessions')
     .select('id, student_id, module2_route, module1_correct, module1_total')
@@ -74,18 +75,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'forbidden' }, { status: 403 })
   }
 
-  // Idempotent: if we've already routed this session, return the same
-  // decision instead of re-grading. A duplicate route decision would
-  // race the generator request the client kicks off on the response.
-  if (session.module2_route) {
-    return NextResponse.json({
-      route: session.module2_route,
-      module1Correct: session.module1_correct ?? null,
-      module1Total: session.module1_total ?? config.module1Total,
-      alreadyRouted: true,
-    })
-  }
-
   // The authoritative payload lives in the marker-prefixed assistant
   // message (same row /submit grades against) — study_sessions has no
   // cached_test column.
@@ -96,18 +85,120 @@ export async function POST(req: NextRequest) {
     .eq('role', 'assistant')
     .ilike('content', `${CACHED_TEST_MARKER}%`)
     .limit(1)
-  let cached: { questions?: Array<{ correct_answer?: string | null }>; moduleBreakIdx?: number | null } | null = null
+  let cached:
+    | {
+        questions?: Array<{ correct_answer?: string | null }>
+        moduleBreakIdx?: number | null
+        adaptive?: boolean
+        sectionKey?: 'reading_writing' | 'math'
+      }
+    | null = null
   if (cacheRows?.[0]) {
     try { cached = JSON.parse(cacheRows[0].content.slice(CACHED_TEST_MARKER.length)) } catch { /* corrupt cache */ }
   }
-  const questions = Array.isArray(cached?.questions) ? cached!.questions : []
+  const allQuestions = Array.isArray(cached?.questions) ? cached!.questions : []
+
+  // ── SAT bank adaptive: grade Module 1, draw the routed Module 2 ──
+  // Detected from the cached payload (not the section-name string) so a
+  // mislabeled client request can't skip the branch.
+  if (cached?.adaptive === true && cached.sectionKey && SAT_MODULE_CONFIG[cached.sectionKey]) {
+    const sectionKey = cached.sectionKey
+    const breakIdx = (typeof cached.moduleBreakIdx === 'number' && cached.moduleBreakIdx > 0)
+      ? cached.moduleBreakIdx
+      : SAT_MODULE_CONFIG[sectionKey].moduleSize
+
+    // Idempotent: once routed, Module 2 is already appended to the
+    // cache — return the same decision + the same M2 questions so a
+    // double-tap doesn't draw a second (different) module.
+    if (session.module2_route) {
+      return NextResponse.json({
+        route: session.module2_route,
+        module1Correct: session.module1_correct ?? null,
+        module1Total: session.module1_total ?? breakIdx,
+        module2Questions: allQuestions.slice(breakIdx),
+        alreadyRouted: true,
+      })
+    }
+
+    const module1Questions = allQuestions.slice(0, breakIdx)
+    if (module1Questions.length < Math.min(breakIdx, 3)) {
+      return NextResponse.json(
+        { error: 'insufficient_questions', have: module1Questions.length, need: breakIdx },
+        { status: 409 },
+      )
+    }
+
+    const correct = gradeMultipleChoice(module1Questions, answers)
+    const route = computeSatRoute(correct, module1Questions.length)
+
+    // Draw Module 2 from the routed difficulty band. Module 1 items are
+    // already in the exposure ledger (recorded at assemble) so this draw
+    // excludes them; seed with the session id so it's stable on retry.
+    let module2
+    try {
+      module2 = await assembleFromBank(
+        {
+          section: sectionKey,
+          count: SAT_MODULE_CONFIG[sectionKey].moduleSize,
+          difficulties: difficultiesForModule2(route),
+          studentId: user.id,
+        },
+        sessionId,
+      )
+    } catch (e) {
+      return NextResponse.json(
+        { error: 'module2_bank_empty', details: (e as Error).message }, { status: 409 },
+      )
+    }
+
+    // Append Module 2 to the cached payload (same row /submit reads).
+    const merged = { ...cached, questions: [...allQuestions, ...module2.questions] }
+    const { error: writeErr } = await supabaseAdmin
+      .from('study_messages')
+      .update({ content: CACHED_TEST_MARKER + JSON.stringify(merged) })
+      .eq('session_id', sessionId)
+      .eq('role', 'assistant')
+      .ilike('content', `${CACHED_TEST_MARKER}%`)
+    if (writeErr) {
+      return NextResponse.json({ error: 'module2_cache_write_failed' }, { status: 500 })
+    }
+
+    await supabaseAdmin
+      .from('study_sessions')
+      .update({ module1_correct: correct, module1_total: module1Questions.length, module2_route: route })
+      .eq('id', sessionId)
+
+    return NextResponse.json({
+      route,
+      module1Correct: correct,
+      module1Total: module1Questions.length,
+      module2Questions: module2.questions,
+      alreadyRouted: false,
+    })
+  }
+
+  // ── TOEFL Reading/Listening: soft route (feedback chip only) ──
+  const config = TOEFL_ADAPTIVE_SECTIONS[sectionName]
+  if (!config) {
+    return NextResponse.json({ error: 'not_adaptive', route: null }, { status: 200 })
+  }
+
+  if (session.module2_route) {
+    return NextResponse.json({
+      route: session.module2_route,
+      module1Correct: session.module1_correct ?? null,
+      module1Total: session.module1_total ?? config.module1Total,
+      alreadyRouted: true,
+    })
+  }
+
   // Prefer the payload's own break point — the generator may shift it
   // off the nominal 10/14 split (e.g. Reading anchors it after the
   // first Complete-the-Words block).
   const breakIdx = (typeof cached?.moduleBreakIdx === 'number' && cached.moduleBreakIdx > 0)
     ? cached.moduleBreakIdx
     : config.module1Total
-  const module1Questions = questions.slice(0, breakIdx)
+  const module1Questions = allQuestions.slice(0, breakIdx)
   if (module1Questions.length < Math.min(breakIdx, 3)) {
     return NextResponse.json(
       { error: 'insufficient_questions', have: module1Questions.length, need: breakIdx },
@@ -115,16 +206,7 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  let correct = 0
-  for (const a of answers) {
-    if (a.index >= module1Questions.length) continue
-    const q = module1Questions[a.index]
-    if (!q || typeof a.answer !== 'string') continue
-    const key = String(q.correct_answer ?? '').trim().toLowerCase()
-    if (!key) continue
-    if (a.answer.trim().toLowerCase() === key) correct++
-  }
-
+  const correct = gradeMultipleChoice(module1Questions, answers)
   const route = computeToeflRoute(sectionName, correct, module1Questions.length)
   if (!route) {
     return NextResponse.json({ error: 'not_adaptive', route: null }, { status: 200 })
@@ -145,4 +227,22 @@ export async function POST(req: NextRequest) {
     module1Total: module1Questions.length,
     alreadyRouted: false,
   })
+}
+
+/** Count correct multiple-choice answers against a question slice.
+ *  Shared by the SAT and TOEFL branches; case/space-insensitive. */
+function gradeMultipleChoice(
+  questions: Array<{ correct_answer?: string | null }>,
+  answers: Array<{ index: number; answer?: string | null }>,
+): number {
+  let correct = 0
+  for (const a of answers) {
+    if (a.index >= questions.length) continue
+    const q = questions[a.index]
+    if (!q || typeof a.answer !== 'string') continue
+    const key = String(q.correct_answer ?? '').trim().toLowerCase()
+    if (!key) continue
+    if (a.answer.trim().toLowerCase() === key) correct++
+  }
+  return correct
 }

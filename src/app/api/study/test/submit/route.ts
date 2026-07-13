@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assessSessionMastery } from '@/lib/study-mastery-assess'
+import { estimateSectionScore } from '@/lib/study/sat-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -91,7 +92,7 @@ export async function POST(req: NextRequest) {
 
   const { data: session } = await supabaseAdmin
     .from('study_sessions')
-    .select('id, student_id, mode, topic_id')
+    .select('id, student_id, mode, topic_id, module2_route')
     .eq('id', body.sessionId)
     .maybeSingle()
   if (!session || session.student_id !== user.id) {
@@ -100,6 +101,16 @@ export async function POST(req: NextRequest) {
   if (session.mode !== 'full_test') {
     return NextResponse.json({ error: 'session is not in full_test mode' }, { status: 400 })
   }
+
+  // Adaptive SAT sessions carry the earned Module 2 route; the score
+  // reveal adds a path-weighted 200–800 section-score band on top of
+  // the raw percentage. `satScore(correct, total)` builds it, or null
+  // for non-adaptive sessions.
+  const module2Route = session.module2_route === 'hard' || session.module2_route === 'easy'
+    ? session.module2_route
+    : null
+  const satScore = (correct: number, total: number) =>
+    module2Route ? estimateSectionScore(correct, total, module2Route) : null
 
   // ── Anti-forgery: grade against the SERVER's cached test payload ──
   // The client passes its questions array for convenience, but its
@@ -197,6 +208,7 @@ export async function POST(req: NextRequest) {
       totalQuestions: wTotal,
       correctCount: wCorrect,
       scorePercent: wTotal > 0 ? Math.round(100 * wCorrect / wTotal) : 0,
+      sat: satScore(wCorrect, wTotal),
       verdicts,
     })
   }
@@ -279,6 +291,7 @@ export async function POST(req: NextRequest) {
           totalQuestions: rTotal,
           correctCount: rCorrect,
           scorePercent: rTotal > 0 ? Math.round(100 * rCorrect / rTotal) : 0,
+          sat: satScore(rCorrect, rTotal),
           verdicts: racedVerdicts,
         })
       }
@@ -316,6 +329,7 @@ export async function POST(req: NextRequest) {
     totalQuestions: weightedTotal,
     correctCount: weightedCorrect,
     scorePercent: weightedTotal > 0 ? Math.round(100 * weightedCorrect / weightedTotal) : 0,
+    sat: satScore(weightedCorrect, weightedTotal),
     verdicts,
   })
 }
