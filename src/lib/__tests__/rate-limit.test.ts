@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import { checkRateLimit, __resetRateLimitStore } from '../rate-limit'
 
 describe('checkRateLimit', () => {

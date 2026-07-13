@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
   // only used for legacy sessions that predate payload caching.
   let gradingQuestions = body.questions
   try {
-    const { data: cachedMsg } = await supabaseAdmin
+    const { data: cachedMsg, error: cacheErr } = await supabaseAdmin
       .from('study_messages')
       .select('content')
       .eq('session_id', body.sessionId)
@@ -124,6 +124,12 @@ export async function POST(req: NextRequest) {
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle()
+    // A returned DB error must NOT read as "no cache row" — that would
+    // silently grade against the client's own answer key.
+    if (cacheErr) {
+      console.error('[test/submit] cached payload lookup failed', cacheErr)
+      return NextResponse.json({ error: 'served test payload unreadable' }, { status: 500 })
+    }
     if (cachedMsg?.content) {
       const cached = JSON.parse(cachedMsg.content.slice('[full-test-v1]'.length)) as {
         questions?: unknown[]

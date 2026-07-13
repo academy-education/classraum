@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
   // predating the cache fall back to the old client-trusting path.
   let gradedQ = q
   try {
-    const { data: cachedMsg } = await supabaseAdmin
+    const { data: cachedMsg, error: cacheErr } = await supabaseAdmin
       .from('study_messages')
       .select('content')
       .eq('session_id', sessionId)
@@ -103,6 +103,12 @@ export async function POST(req: NextRequest) {
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle()
+    // A returned DB error must NOT read as "no cache row" — that would
+    // silently fall back to the client-trusting legacy path.
+    if (cacheErr) {
+      console.error('[practice/grade] served-batch lookup failed', cacheErr)
+      return NextResponse.json({ error: 'served batch unreadable' }, { status: 500 })
+    }
     if (cachedMsg?.content) {
       const cached = JSON.parse(cachedMsg.content.slice('[practice-v1]'.length)) as {
         questions?: unknown[]
