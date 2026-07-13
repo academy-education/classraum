@@ -8,6 +8,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudyTodayCard } from './_shared/primitives'
 import { emitUndoable } from './_shared/UndoToast'
 import type { StudyMode } from './modes'
+import { formatTimeAgo } from './_shared/dateGroups'
 
 interface ActiveSession {
   id: string
@@ -109,13 +110,3 @@ export function ResumeBanner() {
   )
 }
 
-function formatTimeAgo(iso: string, ko: boolean): string {
-  const diff = Math.max(0, Date.now() - new Date(iso).getTime())
-  const min = Math.floor(diff / 60_000)
-  const hr = Math.floor(diff / 3_600_000)
-  const day = Math.floor(diff / 86_400_000)
-  if (day >= 1) return ko ? `${day}일 전` : `${day}d ago`
-  if (hr >= 1) return ko ? `${hr}시간 전` : `${hr}h ago`
-  if (min >= 1) return ko ? `${min}분 전` : `${min}m ago`
-  return ko ? '방금' : 'just now'
-}

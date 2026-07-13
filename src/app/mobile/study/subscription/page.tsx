@@ -7,7 +7,7 @@ import {
   XCircle, ExternalLink, Check, Sparkles, Coins, Plus,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
-import { SkeletonBlock, SkeletonCard, SkeletonHeader } from '../skeletons'
+import { SkeletonBlock, SkeletonCard, SkeletonPageHeader } from '../skeletons'
 import { StudySubPageHeader } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS } from '@/lib/study/plans'
@@ -73,6 +73,7 @@ export default function SubscriptionPage() {
   const [error, setError] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isNative, setIsNative] = useState(false)
+  const [confirmingCancel, setConfirmingCancel] = useState(false)
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
   const load = useCallback(async () => {
@@ -89,6 +90,12 @@ export default function SubscriptionPage() {
   }, [t])
 
   useEffect(() => { void load() }, [load])
+
+  // The feedback banner sits under the header; actions fire from the
+  // bottom of a tall page, so bring the result into view.
+  useEffect(() => {
+    if (error || successMessage) window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [error, successMessage])
 
   const sub = data?.subscription ?? null
   // Fallback catalog so the page still renders plan cards if the API
@@ -117,6 +124,7 @@ export default function SubscriptionPage() {
 
   const act = useCallback(async (kind: 'cancel' | 'reactivate') => {
     setActing(kind)
+    setConfirmingCancel(false)
     setError(null)
     setSuccessMessage(null)
     try {
@@ -239,7 +247,7 @@ export default function SubscriptionPage() {
     // two plan cards.
     return (
       <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
-        <SkeletonHeader />
+        <SkeletonPageHeader />
         <SkeletonCard className="p-5 space-y-3">
           <SkeletonBlock className="h-3 w-28 rounded-full" />
           <SkeletonBlock className="h-8 w-24 rounded-lg" />
@@ -267,7 +275,7 @@ export default function SubscriptionPage() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.02] to-transparent"
       />
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-7">
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <StudySubPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.topic.backToStudy'))}
@@ -276,6 +284,18 @@ export default function SubscriptionPage() {
           title={String(t('study.subscription.title'))}
           subtitle={String(t('study.subscription.subtitle'))}
         />
+
+        {/* Action feedback lives directly under the header — at the old
+            bottom-of-page spot it rendered off-screen after cancel/
+            checkout and the page looked like nothing happened. */}
+        {(error || successMessage) && (
+          <div className={`rounded-2xl px-4 py-3 text-[13.5px] flex items-start gap-2.5 ring-1 ${
+            error ? 'bg-rose-50/80 ring-rose-200/60 text-rose-700' : 'bg-emerald-50/80 ring-emerald-200/60 text-emerald-700'
+          }`}>
+            {error ? <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" /> : <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />}
+            <span className="leading-relaxed">{error ?? successMessage}</span>
+          </div>
+        )}
 
         {/* Credit balance — every generated mock test costs 1 credit. */}
         {sub && (
@@ -484,15 +504,47 @@ export default function SubscriptionPage() {
         {/* Secondary actions */}
         <div className="space-y-2.5">
           {sub && (isTrial || isActive) && !sub.cancel_at_period_end && (
-            <button
-              type="button"
-              onClick={() => void act('cancel')}
-              disabled={acting !== null}
-              className="w-full h-12 rounded-full bg-white ring-1 ring-gray-200/70 text-rose-600 text-sm font-medium inline-flex items-center justify-center gap-1.5 hover:ring-rose-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] active:scale-[0.98] disabled:opacity-60 transition-all"
-            >
-              {acting === 'cancel' ? <Loader2 className="w-4 h-4 animate-spin" /> : <XCircle className="w-4 h-4" />}
-              {t('study.subscription.cancel')}
-            </button>
+            confirmingCancel ? (
+              // Confirm step — cancelling a paid plan must never be one
+              // accidental tap. States what happens and when before the
+              // destructive action goes through.
+              <div className="rounded-2xl bg-white ring-1 ring-rose-200/70 p-4 space-y-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                <p className="text-[13.5px] text-gray-700 leading-relaxed">
+                  {ko
+                    ? `구독을 해지할까요? ${formatDate(sub.current_period_end, ko)}까지는 그대로 이용할 수 있고, 이후 무료 플랜으로 전환돼요.`
+                    : `Cancel your subscription? You keep full access until ${formatDate(sub.current_period_end, ko)}, then you move to the free plan.`}
+                </p>
+                <div className="flex gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => setConfirmingCancel(false)}
+                    disabled={acting !== null}
+                    className="flex-1 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold inline-flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
+                  >
+                    {ko ? '계속 이용하기' : 'Keep subscription'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => void act('cancel')}
+                    disabled={acting !== null}
+                    className="flex-1 h-11 rounded-full bg-white ring-1 ring-rose-200/80 text-rose-600 text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 hover:bg-rose-50/60 active:scale-[0.98] disabled:opacity-60 transition-all"
+                  >
+                    {acting === 'cancel' ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+                    {ko ? '해지하기' : 'Cancel plan'}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setConfirmingCancel(true)}
+                disabled={acting !== null}
+                className="w-full h-12 rounded-full bg-white ring-1 ring-gray-200/70 text-rose-600 text-sm font-medium inline-flex items-center justify-center gap-1.5 hover:ring-rose-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] active:scale-[0.98] disabled:opacity-60 transition-all"
+              >
+                <XCircle className="w-4 h-4" />
+                {t('study.subscription.cancel')}
+              </button>
+            )
           )}
 
           {sub?.cancel_at_period_end && (
@@ -508,14 +560,6 @@ export default function SubscriptionPage() {
           )}
         </div>
 
-        {(error || successMessage) && (
-          <div className={`rounded-2xl px-4 py-3 text-[13.5px] flex items-start gap-2.5 ring-1 ${
-            error ? 'bg-rose-50/80 ring-rose-200/60 text-rose-700' : 'bg-emerald-50/80 ring-emerald-200/60 text-emerald-700'
-          }`}>
-            {error ? <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" /> : <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />}
-            <span className="leading-relaxed">{error ?? successMessage}</span>
-          </div>
-        )}
       </div>
     </div>
   )

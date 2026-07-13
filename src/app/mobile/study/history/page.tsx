@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, ChevronRight, ChevronLeft, History as HistoryIcon, Search, X } from 'lucide-react'
 import { StudySubPageHeader, StudyEmptyState } from '../_shared/primitives'
-import { groupByDate } from '../_shared/dateGroups'
+import { groupByDate, formatTimeAgo } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -57,6 +57,7 @@ function HistoryInner() {
   const ko = language === 'korean'
   const [rows, setRows] = useState<Row[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadFailed, setLoadFailed] = useState(false)
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(0)
 
@@ -64,7 +65,7 @@ function HistoryInner() {
     if (!user?.userId) return
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('study_sessions')
         .select(`
           id, mode, language, title, status, score, config, last_active_at, topic_freeform,
@@ -75,7 +76,10 @@ function HistoryInner() {
         .order('last_active_at', { ascending: false })
         .limit(200)
       if (cancelled) return
-      setRows((data ?? []) as unknown as Row[])
+      // Query failure must not render the "start studying" empty state
+      // to a student with hundreds of sessions.
+      if (error) setLoadFailed(true)
+      else setRows((data ?? []) as unknown as Row[])
       setLoading(false)
     })()
     return () => { cancelled = true }
@@ -138,6 +142,19 @@ function HistoryInner() {
 
         {loading ? (
           <SkeletonRowList count={6} />
+        ) : loadFailed ? (
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
+            <p className="text-[13.5px] text-gray-600">
+              {ko ? '세션 기록을 불러오지 못했어요.' : "We couldn't load your sessions."}
+            </p>
+            <button
+              type="button"
+              onClick={() => window.location.reload()}
+              className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 transition"
+            >
+              {ko ? '다시 시도' : 'Retry'}
+            </button>
+          </div>
         ) : filtered.length === 0 ? (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200/70">
             <StudyEmptyState
@@ -246,19 +263,3 @@ function HistoryInner() {
   )
 }
 
-function formatTimeAgo(iso: string, ko: boolean): string {
-  const then = new Date(iso).getTime()
-  const diff = Math.max(0, Date.now() - then)
-  const min = Math.floor(diff / 60_000)
-  const hr = Math.floor(diff / 3_600_000)
-  const day = Math.floor(diff / 86_400_000)
-  if (day >= 7) {
-    return new Date(iso).toLocaleDateString(ko ? 'ko-KR' : 'en-US', {
-      month: 'short', day: 'numeric',
-    })
-  }
-  if (day >= 1) return ko ? `${day}일 전` : `${day}d ago`
-  if (hr >= 1) return ko ? `${hr}시간 전` : `${hr}h ago`
-  if (min >= 1) return ko ? `${min}분 전` : `${min}m ago`
-  return ko ? '방금' : 'just now'
-}

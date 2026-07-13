@@ -20,7 +20,15 @@ export function useOnboardingGate(): { needsOnboarding: boolean | null; markComp
     // Provider path: read from the shared context.
     if (landingData) {
       if (landingData.loading) return
-      setNeedsOnboarding(!landingData.prefs?.onboarded_at)
+      // prefs === null after loading means the landing fetch FAILED
+      // (the API auto-creates a prefs row, so a real first visit still
+      // returns one). Never full-screen the wizard over a returning
+      // user because of a transient error.
+      if (!landingData.prefs) {
+        setNeedsOnboarding(false)
+        return
+      }
+      setNeedsOnboarding(!landingData.prefs.onboarded_at)
       return
     }
     // Fallback path: no provider, fetch directly.

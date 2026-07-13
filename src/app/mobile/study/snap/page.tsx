@@ -74,6 +74,24 @@ function SnapInner() {
     setStage('review')
   }
 
+  // Reopen a past capture's saved solution from the "Recent captures"
+  // grid — the tiles were dead ends before this.
+  const openCapture = (cap: SnapHistory) => {
+    if (previewUrl) URL.revokeObjectURL(previewUrl)
+    setFile(null)
+    setPreviewUrl(cap.image_url)
+    setResult({
+      isQuestionDetected: true,
+      ocrText: cap.ocr_text,
+      subjectGuess: cap.subject_guess,
+      solutionSteps: cap.solution_steps,
+      finalAnswer: cap.final_answer,
+      confidence: 'medium',
+    })
+    setCaptureId(cap.id)
+    setStage('result')
+  }
+
   const reset = useCallback(() => {
     if (previewUrl) URL.revokeObjectURL(previewUrl)
     setFile(null)
@@ -140,6 +158,7 @@ function SnapInner() {
             ko={ko}
             onCameraClick={() => cameraInputRef.current?.click()}
             onUploadClick={() => inputRef.current?.click()}
+            onOpenCapture={openCapture}
           />
         )}
         {stage === 'review' && previewUrl && (
@@ -181,10 +200,17 @@ interface SnapHistory {
   image_url: string | null
   ocr_text: string
   subject_guess: string
+  final_answer: string
+  solution_steps: SolutionStep[]
   created_at: string
 }
 
-function PickerStage({ ko, onCameraClick, onUploadClick }: { ko: boolean; onCameraClick: () => void; onUploadClick: () => void }) {
+function PickerStage({ ko, onCameraClick, onUploadClick, onOpenCapture }: {
+  ko: boolean
+  onCameraClick: () => void
+  onUploadClick: () => void
+  onOpenCapture: (cap: SnapHistory) => void
+}) {
   const [history, setHistory] = useState<SnapHistory[] | null>(null)
   useEffect(() => {
     let cancelled = false
@@ -244,25 +270,36 @@ function PickerStage({ ko, onCameraClick, onUploadClick }: { ko: boolean; onCame
             {ko ? '최근 사진' : 'Recent captures'}
           </h3>
           <div className="grid grid-cols-3 gap-2">
-            {history.slice(0, 6).map((cap, i) => (
-              <div key={cap.id}
-                style={{ animationDelay: `${i * 50}ms` }}
-                className="relative rounded-xl overflow-hidden ring-1 ring-gray-200 bg-white aspect-square animate-card-in opacity-0">
-                {cap.image_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={cap.image_url} alt="" className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-50">
-                    <ImageIcon className="w-5 h-5 text-gray-300" />
+            {history.slice(0, 6).map((cap, i) => {
+              const openable = !!cap.image_url && cap.solution_steps.length > 0
+              return (
+                <button
+                  key={cap.id}
+                  type="button"
+                  disabled={!openable}
+                  onClick={() => openable && onOpenCapture(cap)}
+                  aria-label={ko ? '저장된 풀이 다시 보기' : 'Reopen saved solution'}
+                  style={{ animationDelay: `${i * 50}ms` }}
+                  className={`relative rounded-xl overflow-hidden ring-1 ring-gray-200 bg-white aspect-square animate-card-in opacity-0 text-left ${
+                    openable ? 'hover:ring-amber-300 active:scale-[0.97] transition-all' : 'cursor-default'
+                  }`}
+                >
+                  {cap.image_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={cap.image_url} alt="" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                      <ImageIcon className="w-5 h-5 text-gray-300" />
+                    </div>
+                  )}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-1.5">
+                    <div className="text-[9px] font-bold uppercase tracking-wider text-white truncate">
+                      {SUBJECT_LABEL[cap.subject_guess]?.[ko ? 1 : 0] ?? cap.subject_guess}
+                    </div>
                   </div>
-                )}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-1.5">
-                  <div className="text-[9px] font-bold uppercase tracking-wider text-white truncate">
-                    {SUBJECT_LABEL[cap.subject_guess]?.[ko ? 1 : 0] ?? cap.subject_guess}
-                  </div>
-                </div>
-              </div>
-            ))}
+                </button>
+              )
+            })}
           </div>
         </section>
       )}
@@ -327,13 +364,17 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
     setBookmarked(next)  // optimistic
     try {
       const headers = await authHeaders()
-      await fetch('/api/study/snap/bookmark', {
+      const res = await fetch('/api/study/snap/bookmark', {
         method: 'POST',
         headers,
         body: JSON.stringify({ captureId, bookmarked: next }),
       })
+      // Server rejection must roll back too — without this a 4xx/5xx
+      // left the button showing "Saved" while nothing persisted.
+      if (!res.ok) throw new Error()
     } catch {
       setBookmarked(!next)  // rollback
+      showError(ko ? '저장하지 못했어요. 다시 시도해 주세요.' : "Couldn't save. Please try again.")
     }
   }
   const startPracticeSimilar = async () => {
@@ -458,7 +499,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
           highest-value next action after seeing the solution. */}
       <button type="button" onClick={() => void startPracticeSimilar()}
         disabled={practiceLoading}
-        className="w-full h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white text-[14px] font-semibold inline-flex items-center justify-center gap-2 shadow-[0_4px_12px_-4px_rgba(16,185,129,0.45)] hover:opacity-95 active:scale-[0.98] disabled:opacity-60 transition-all">
+        className="w-full h-12 rounded-2xl bg-gradient-to-b from-primary to-primary/90 text-white text-[14px] font-semibold inline-flex items-center justify-center gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.45)] hover:opacity-95 active:scale-[0.98] disabled:opacity-60 transition-all">
         {practiceLoading
           ? <Loader2 className="w-4 h-4 animate-spin" />
           : <ListChecks className="w-4 h-4" />}

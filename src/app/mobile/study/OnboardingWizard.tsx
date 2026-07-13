@@ -180,8 +180,8 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       onClick={() => setS2({ gradeLevel: selected ? null : grade.value })}
                       className={`flex items-center justify-between h-12 px-4 rounded-2xl text-[14.5px] font-semibold transition-all ${
                         selected
-                          ? 'bg-gradient-to-b from-emerald-500 to-emerald-600 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(16,185,129,0.4)] ring-1 ring-emerald-700/30'
-                          : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-emerald-300 active:scale-[0.99]'
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                          : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.99]'
                       }`}
                     >
                       <span>{ko ? grade.label_ko : grade.label_en}</span>
@@ -217,8 +217,8 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       onClick={() => setS3({ dailyGoalMinutes: m })}
                       className={`h-14 rounded-2xl text-[15px] font-bold transition-all ${
                         selected
-                          ? 'bg-gradient-to-b from-amber-400 to-orange-500 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.20),0_4px_12px_-4px_rgba(245,158,11,0.4)] ring-1 ring-orange-600/30'
-                          : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-amber-300 active:scale-[0.98]'
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                          : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
                       }`}
                     >
                       {ko ? `${m}분` : `${m} min`}

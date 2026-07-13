@@ -82,19 +82,24 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  /* Aligned with the dark utility remap ramp further down (page
+     #0e1116, cards #171b22, elevated #232936) so token-driven shadcn
+     components sit on the same surfaces as the remapped utilities. */
+  --background: #0e1116;
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: #171b22;
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: #171b22;
   --popover-foreground: oklch(0.985 0 0);
-  --primary: #163e64;
+  /* Brand blue, same as light — the template's muted navy drained
+     every primary element of contrast. */
+  --primary: #2885e8;
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.269 0 0);
+  --secondary: #232936;
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --muted: #232936;
+  --muted-foreground: #98a1ae;
+  --accent: #232936;
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
@@ -114,6 +119,124 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
+/* ──────────────────────────────────────────────────────────────────
+   Dark-mode utility remap.
+
+   The mobile/study surfaces are written against a small, fixed light
+   ramp (bg-white cards on bg-gray-50 pages, gray-900→300 text,
+   gray-200/70 rings). Rather than hand-editing hundreds of class
+   strings with dark: variants, we retune that ramp here in ONE place
+   when `.dark` is on <html>. These rules are intentionally unlayered
+   so they beat Tailwind's layered utilities.
+
+   Deliberately NOT remapped: bg-white/15–/30 (glass overlays that sit
+   on colored gradients and need to stay white), semantic colors
+   (emerald/rose/amber/primary), and gradient utilities — gradients
+   read fine on the dark ground.
+   ────────────────────────────────────────────────────────────────── */
+.dark .bg-white { background-color: #171b22; }
+.dark .bg-white\/95 { background-color: rgb(23 27 34 / 0.95); }
+.dark .bg-white\/90 { background-color: rgb(23 27 34 / 0.9); }
+.dark .bg-white\/80 { background-color: rgb(23 27 34 / 0.8); }
+.dark .bg-gray-50 { background-color: #0e1116; }
+.dark .bg-gray-50\/95 { background-color: rgb(14 17 22 / 0.95); }
+.dark .hover\:bg-gray-50:hover { background-color: #1d222b; }
+.dark .bg-gray-100 { background-color: #232936; }
+.dark .hover\:bg-gray-100:hover { background-color: #2a3140; }
+.dark .bg-gray-200 { background-color: #2c3342; }
+.dark .hover\:bg-gray-200:hover { background-color: #353d4e; }
+.dark .bg-gray-300 { background-color: #39404f; }
+.dark .bg-gray-400 { background-color: #4b5563; }
+
+/* Text ramp — monotonic emphasis scale on the dark ground. 300/400
+   carry chevrons and low-emphasis icons, so they stay clearly visible
+   (~3:1 on the card surface), not merely present. */
+.dark .text-gray-900 { color: #f3f4f6; }
+.dark .text-gray-800 { color: #e5e7eb; }
+.dark .text-gray-700 { color: #d1d5db; }
+.dark .text-gray-600 { color: #aeb6c2; }
+.dark .text-gray-500 { color: #98a1ae; }
+.dark .text-gray-400 { color: #7b8494; }
+.dark .text-gray-300 { color: #5d6779; }
+.dark .hover\:text-gray-900:hover { color: #f3f4f6; }
+.dark .hover\:text-gray-700:hover { color: #d1d5db; }
+
+.dark .ring-gray-100 { --tw-ring-color: rgb(255 255 255 / 0.05); }
+.dark .ring-gray-200 { --tw-ring-color: rgb(255 255 255 / 0.09); }
+.dark .ring-gray-200\/70 { --tw-ring-color: rgb(255 255 255 / 0.08); }
+.dark .ring-gray-200\/60 { --tw-ring-color: rgb(255 255 255 / 0.07); }
+.dark .ring-gray-200\/50 { --tw-ring-color: rgb(255 255 255 / 0.06); }
+.dark .ring-gray-300 { --tw-ring-color: rgb(255 255 255 / 0.14); }
+.dark .hover\:ring-gray-300:hover { --tw-ring-color: rgb(255 255 255 / 0.16); }
+
+.dark .border-gray-100 { border-color: rgb(255 255 255 / 0.06); }
+.dark .border-gray-200 { border-color: rgb(255 255 255 / 0.09); }
+.dark .border-gray-300 { border-color: rgb(255 255 255 / 0.14); }
+
+/* Solid-dark chips/toasts (gray-900 on light) need to stay visible on
+   the dark ground: give them an elevated surface instead. */
+.dark .bg-gray-900 { background-color: #2c3342; }
+.dark .hover\:bg-gray-800:hover { background-color: #353d4e; }
+
+/* Journey path: locked-node ring gradient + untraveled connector used
+   light grays that glare on the dark ground. */
+.dark .from-gray-200 { --tw-gradient-from: #2c3342; }
+.dark .to-gray-300 { --tw-gradient-to: #39404f; }
+.dark .stroke-gray-300 { stroke: #39404f; }
+
+/* Second pass (profile/notifications audit): alpha washes, row
+   dividers, and hover borders the first inventory missed. */
+.dark .bg-gray-50\/60 { background-color: rgb(20 24 31 / 0.6); }
+.dark .bg-gray-50\/50 { background-color: rgb(20 24 31 / 0.5); }
+.dark .bg-gray-900\/50 { background-color: rgb(0 0 0 / 0.5); }
+.dark .hover\:bg-white:hover { background-color: #1d222b; }
+.dark .ring-gray-100\/80 { --tw-ring-color: rgb(255 255 255 / 0.05); }
+.dark .ring-gray-200\/80 { --tw-ring-color: rgb(255 255 255 / 0.09); }
+/* Both selector forms: Tailwind v4 divides via `> :not(:last-child)`
+   (border-bottom); the sibling form covers any v3-style markup. */
+.dark .divide-gray-100 > :not(:last-child),
+.dark .divide-gray-100 > :not([hidden]) ~ :not([hidden]) { border-color: rgb(255 255 255 / 0.06); }
+.dark .divide-gray-200 > :not(:last-child),
+.dark .divide-gray-200 > :not([hidden]) ~ :not([hidden]) { border-color: rgb(255 255 255 / 0.09); }
+
+/* Root ground — overscroll/bounce areas outside the app container. */
+.dark html, .dark body, html.dark, html.dark body { background-color: #0e1116; }
+
+/* Keep the brand blue in dark mode — the shadcn template's .dark block
+   swaps --primary to a muted navy (#163e64), which drained every
+   primary button/chip/gradient of contrast on the dark ground. */
+.dark { --primary: #2885e8; }
+
+/* Segmented controls / tab pills: a bg-white thumb inside a
+   bg-gray-100 track would remap DARKER than its track — invert to an
+   elevated thumb so the selected state still reads. */
+.dark .bg-gray-100 .bg-white { background-color: #333b4c; }
+
+/* Soft-tinted cards fade to WHITE in light mode (from-primary/[0.06]
+   ... to-white); on dark that painted a glaring white wash across the
+   card corner. Fade to the card surface instead. */
+.dark .to-white { --tw-gradient-to: #171b22; }
+.dark .via-white { --tw-gradient-via: #171b22; }
+.dark .from-white { --tw-gradient-from: #171b22; }
+/* Alpha variants used by the test pause overlay, sticky-footer fades,
+   and hairline glints. */
+.dark .bg-white\/85 { background-color: rgb(23 27 34 / 0.85); }
+.dark .bg-white\/70 { background-color: rgb(23 27 34 / 0.7); }
+.dark .to-white\/80 { --tw-gradient-to: rgb(23 27 34 / 0.8); }
+.dark .via-white\/80 { --tw-gradient-via: rgb(255 255 255 / 0.06); }
+.dark .from-white\/95 { --tw-gradient-from: rgb(23 27 34 / 0.95); }
+/* Chart fills/strokes (stats sparkline grid, score charts). */
+.dark .fill-gray-200 { fill: #2c3342; }
+.dark .fill-gray-400 { fill: #7b8494; }
+.dark .stroke-gray-200 { stroke: #2c3342; }
+
+/* shadcn Tabs: the active thumb uses bg-background, which sits BELOW
+   the bg-muted track on the dark ramp — lift it above instead. */
+.dark [role="tablist"] [data-state="active"] { background-color: #333b4c; color: #f3f4f6; }
+.dark .hover\:border-gray-200:hover { border-color: rgb(255 255 255 / 0.09); }
+.dark .hover\:border-gray-300:hover { border-color: rgb(255 255 255 / 0.14); }
+.dark .hover\:border-gray-400:hover { border-color: rgb(255 255 255 / 0.2); }
 
 @layer base {
   * {

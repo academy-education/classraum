@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/wrong-notebook/reviewed — mark or unmark a wrong-
@@ -18,12 +19,9 @@ const BodySchema = z.object({
 })
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   const blocked = enforceRateLimit(
     `wrong-notebook-reviewed:user:${user.id}`,
@@ -48,16 +46,35 @@ export async function POST(req: NextRequest) {
 
   const reviewedAt = reviewed ? new Date().toISOString() : null
 
-  // Upsert a row with just the reviewed flag when there's no note.
-  const { error: upsertErr } = await supabaseAdmin
+  // UPDATE-then-INSERT instead of upsert: the old upsert wrote
+  // note:'' on conflict, silently erasing any note the student had
+  // written on this attempt when they toggled "reviewed".
+  const { data: updated, error: updateErr } = await supabaseAdmin
     .from('study_attempt_notes')
-    .upsert(
-      { student_id: user.id, attempt_id: attemptId, reviewed_at: reviewedAt, note: '' },
-      { onConflict: 'student_id,attempt_id', ignoreDuplicates: false },
-    )
-  if (upsertErr) {
-    console.error('[wrong-notebook/reviewed]', upsertErr)
+    .update({ reviewed_at: reviewedAt })
+    .eq('student_id', user.id)
+    .eq('attempt_id', attemptId)
+    .select('attempt_id')
+  if (updateErr) {
+    console.error('[wrong-notebook/reviewed]', updateErr)
     return NextResponse.json({ error: 'persist failed' }, { status: 500 })
+  }
+  if (!updated || updated.length === 0) {
+    const { error: insertErr } = await supabaseAdmin
+      .from('study_attempt_notes')
+      .insert({ student_id: user.id, attempt_id: attemptId, reviewed_at: reviewedAt, note: '' })
+    // A concurrent insert can race us here — retry as an update.
+    if (insertErr) {
+      const { error: retryErr } = await supabaseAdmin
+        .from('study_attempt_notes')
+        .update({ reviewed_at: reviewedAt })
+        .eq('student_id', user.id)
+        .eq('attempt_id', attemptId)
+      if (retryErr) {
+        console.error('[wrong-notebook/reviewed]', retryErr)
+        return NextResponse.json({ error: 'persist failed' }, { status: 500 })
+      }
+    }
   }
 
   return NextResponse.json({ reviewedAt })

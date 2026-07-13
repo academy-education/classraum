@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { enforceRateLimit } from '@/lib/rate-limit'
 import { assembleFromBank } from '@/lib/study/assemble'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
@@ -28,11 +30,17 @@ const SECTION_TOPIC: Record<string, string> = {
 }
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
+
+  // Each call creates a session AND burns up to 54 exposure-ledger
+  // rows before the test is even opened — keep retry loops in check.
+  const blocked = enforceRateLimit(
+    `test-assemble:user:${user.id}`,
+    { windowMs: 60 * 1000, max: 6 },
+  )
+  if (blocked) return blocked
 
   let body: { section?: string; count?: number; pathNode?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }

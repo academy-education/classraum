@@ -5,7 +5,7 @@ import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons'
+import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup, SkeletonPageHeader } from '../skeletons'
 import { StudySubPageHeader } from '../_shared/primitives'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 
@@ -62,7 +62,15 @@ function PreferencesInner() {
   const [prefs, setPrefs] = useState<Prefs | null>(null)
   const [saving, setSaving] = useState<keyof Prefs | null>(null)
   const [failed, setFailed] = useState(false)
+  const [saveFailed, setSaveFailed] = useState(false)
   const [retryKey, setRetryKey] = useState(0)
+
+  // Auto-dismiss the save-failure toast.
+  useEffect(() => {
+    if (!saveFailed) return
+    const id = setTimeout(() => setSaveFailed(false), 3500)
+    return () => clearTimeout(id)
+  }, [saveFailed])
 
   useEffect(() => {
     let cancelled = false
@@ -100,7 +108,10 @@ function PreferencesInner() {
       })
       if (!res.ok) throw new Error('save failed')
     } catch {
+      // The optimistic flip snaps back — without a message it reads
+      // as the toggle "not working".
       setPrefs(prev)
+      setSaveFailed(true)
     } finally {
       setSaving(null)
     }
@@ -130,11 +141,7 @@ function PreferencesInner() {
     // subtitle, stats link card, then 5 setting groups.
     return (
       <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
-        <SkeletonBlock className="h-4 w-32 rounded-full" />
-        <div className="space-y-2">
-          <SkeletonBlock className="h-8 w-1/2 rounded-lg" />
-          <SkeletonBlock className="h-3 w-4/5 rounded-full" />
-        </div>
+        <SkeletonPageHeader />
         <SkeletonCard className="p-4 flex items-center gap-3">
           <SkeletonBlock className="w-10 h-10 rounded-xl" />
           <div className="flex-1 space-y-1.5">
@@ -161,6 +168,14 @@ function PreferencesInner() {
         title={String(t('study.prefs.title'))}
         subtitle={String(t('study.prefs.subtitle'))}
       />
+
+      {/* Save-failure toast — the optimistic revert is invisible
+          without it. Fixed above the bottom nav. */}
+      {saveFailed && (
+        <div className="fixed left-1/2 -translate-x-1/2 bottom-[calc(var(--safe-area-bottom,0px)+76px)] z-50 rounded-full bg-gray-900/95 text-white text-[12.5px] font-medium px-4 py-2.5 shadow-lg animate-fade-in-up">
+          {ko ? '저장하지 못했어요. 다시 시도해 주세요.' : "Couldn't save. Please try again."}
+        </div>
+      )}
 
       {/* Target test */}
       <SettingGroup icon={Target} label={String(t('study.prefs.targetTest'))} saving={saving === 'target_test'}>

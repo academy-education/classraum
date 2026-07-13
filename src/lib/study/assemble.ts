@@ -48,11 +48,19 @@ async function loadExposures(studentId: string, excludeSessionId?: string): Prom
  *  test — worst case the student can see a repeat later. */
 async function recordExposures(studentId: string, itemIds: string[], source: string, sessionId?: string): Promise<void> {
   if (itemIds.length === 0) return
+  // ignoreDuplicates:false so a re-serve REFRESHES seen_at — with
+  // true, recycled items kept their original timestamp and the
+  // oldest-first recycler dealt the identical set in the identical
+  // order every time a pool ran dry.
   const { error } = await supabaseAdmin
     .from('study_item_exposures')
     .upsert(
-      itemIds.map(item_id => ({ student_id: studentId, item_id, source, session_id: sessionId ?? null })),
-      { onConflict: 'student_id,item_id', ignoreDuplicates: true },
+      itemIds.map(item_id => ({
+        student_id: studentId, item_id, source,
+        session_id: sessionId ?? null,
+        seen_at: new Date().toISOString(),
+      })),
+      { onConflict: 'student_id,item_id', ignoreDuplicates: false },
     )
   if (error) console.error('[assemble] exposure write failed', error)
 }

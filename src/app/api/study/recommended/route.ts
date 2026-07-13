@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * GET /api/study/recommended — what the student should study next.
@@ -39,12 +40,9 @@ interface RecommendedCard {
 interface WeaknessNote { label?: string }
 
 export async function GET(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   // Pull target test from prefs so we can up-rank topics in the
   // student's target family before slicing the top 5.

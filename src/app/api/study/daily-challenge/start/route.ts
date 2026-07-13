@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { computeDailyChallenge } from '@/lib/study/daily-challenge'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/daily-challenge/start — create the practice session
@@ -19,12 +21,9 @@ const BodySchema = z.object({
 })
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   const blocked = enforceRateLimit(`daily-challenge-start:user:${user.id}`, { windowMs: 60 * 1000, max: 10 })
   if (blocked) return blocked
@@ -33,6 +32,14 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: 'bad body' }, { status: 400 })
 
   const today = new Date().toISOString().slice(0, 10)
+
+  // The topic must be TODAY'S computed challenge topic — otherwise any
+  // caller can mint free 5-question practice sessions on an arbitrary
+  // topic through this route.
+  const challenge = await computeDailyChallenge(user.id)
+  if (!challenge.topic || challenge.topic.id !== parsed.data.topicId) {
+    return NextResponse.json({ error: 'topic is not today\'s challenge' }, { status: 400 })
+  }
 
   // Idempotency — if today's session already exists, return it.
   const { data: existing } = await supabaseAdmin

@@ -61,6 +61,21 @@ export function SkeletonHeader({ widthClass = 'w-1/3' }: { widthClass?: string }
   return <SkeletonText widthClass={widthClass} height="h-4" className="mb-3" />
 }
 
+/** Page header skeleton — mirrors StudySubPageHeader (back pill row,
+ *  then eyebrow + large title) so the load → loaded transition has
+ *  no layout shift. */
+export function SkeletonPageHeader({ withBack = true }: { withBack?: boolean }) {
+  return (
+    <div>
+      {withBack && <SkeletonBlock className="w-9 h-9 rounded-full mb-5" />}
+      <div className="space-y-2">
+        <SkeletonText widthClass="w-16" height="h-2.5" />
+        <SkeletonText widthClass="w-2/5" height="h-6" />
+      </div>
+    </div>
+  )
+}
+
 /** Full-width carousel-card skeleton — same proportions as a
  *  Recommended / Resumable / MistakeBank card so the carousel's
  *  loading state matches its loaded state. */

@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assessSessionMastery } from '@/lib/study-mastery-assess'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -68,12 +69,9 @@ const SubmitSchema = z.object({
 })
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   const blocked = enforceRateLimit(
     `test-submit:user:${user.id}`,
@@ -111,6 +109,11 @@ export async function POST(req: NextRequest) {
   // client displays (shuffling happens before caching), so grading by
   // index against the cache is faithful. Client-supplied questions
   // remain the fallback for legacy sessions with no cache row.
+  // When a cache row exists, it is AUTHORITATIVE: a count mismatch is a
+  // 400, never a silent fallback to the client's array — that fallback
+  // was a forgery bypass (submit N−1 doctored questions and the server
+  // graded against the client's own answer key). Client questions are
+  // only used for legacy sessions that predate payload caching.
   let gradingQuestions = body.questions
   try {
     const { data: cachedMsg } = await supabaseAdmin
@@ -125,13 +128,27 @@ export async function POST(req: NextRequest) {
       const cached = JSON.parse(cachedMsg.content.slice('[full-test-v1]'.length)) as {
         questions?: unknown[]
       }
-      if (Array.isArray(cached.questions) && cached.questions.length === body.questions.length) {
+      if (Array.isArray(cached.questions)) {
+        if (cached.questions.length !== body.questions.length) {
+          return NextResponse.json(
+            { error: 'submitted question count does not match the served test' },
+            { status: 400 },
+          )
+        }
         const parsed = z.array(QuestionSchema).safeParse(cached.questions)
-        if (parsed.success) gradingQuestions = parsed.data
+        if (parsed.success) {
+          gradingQuestions = parsed.data
+        } else {
+          // Cache exists but is unreadable — refuse rather than trust
+          // the client for a session we KNOW was server-served.
+          console.error('[test/submit] cached payload failed schema parse', parsed.error)
+          return NextResponse.json({ error: 'served test payload unreadable' }, { status: 500 })
+        }
       }
     }
   } catch (e) {
-    console.warn('[test/submit] cached payload unreadable — falling back to client questions', e)
+    console.error('[test/submit] cached payload lookup failed', e)
+    return NextResponse.json({ error: 'served test payload unreadable' }, { status: 500 })
   }
 
   // Idempotency: if this session already has attempts, don't

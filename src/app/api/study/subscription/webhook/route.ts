@@ -37,12 +37,18 @@ interface WebhookPayload {
 
 export async function POST(req: NextRequest) {
   const raw = await req.text()
-  // Signature header is optional during PortOne test mode but
-  // required in production. Reject only when both signature + secret
-  // are present and mismatch — keeps test-mode rehearsals working.
+  // When PORTONE_WEBHOOK_SECRET is configured, EVERY request must carry
+  // a valid signature — a missing header is a rejection, not a bypass
+  // (the old `secret && sigHeader` gate failed open: omitting the
+  // header skipped verification entirely). Unsigned requests are only
+  // tolerated when no secret is configured at all (local test mode).
   const sigHeader = req.headers.get('webhook-signature') ?? ''
   const secret = process.env.PORTONE_WEBHOOK_SECRET
-  if (secret && sigHeader) {
+  if (secret) {
+    if (!sigHeader) {
+      console.warn('[study/subscription/webhook] missing signature header')
+      return NextResponse.json({ error: 'missing signature' }, { status: 401 })
+    }
     const ok = await verifySvixSignature(raw, sigHeader, secret, req.headers)
     if (!ok) {
       console.warn('[study/subscription/webhook] signature mismatch')

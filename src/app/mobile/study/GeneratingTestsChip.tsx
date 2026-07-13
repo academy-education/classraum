@@ -45,7 +45,9 @@ export function GeneratingTestsChip() {
         .select('id, generation_status, topic_freeform, created_at, topic:study_topics(name_en, name_ko)')
         .eq('student_id', user.userId)
         .eq('mode', 'full_test')
-        .in('generation_status', ['pending', 'ready'])
+        // 'failed' included so generation failures surface with a
+        // retry affordance instead of silently vanishing.
+        .in('generation_status', ['pending', 'ready', 'failed'])
         .eq('status', 'active') // hide if already started or completed
         .eq('archived', false)
         .order('created_at', { ascending: false })

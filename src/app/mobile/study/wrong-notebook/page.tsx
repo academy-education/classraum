@@ -1,8 +1,8 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Loader2, BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, Bookmark, Image as ImageIcon, Search, X } from 'lucide-react'
+import { ArrowLeft, Loader2, BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, Bookmark, Image as ImageIcon, Search, X, AlertCircle } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -88,6 +88,7 @@ function WrongNotebookInner() {
   const [sortKey, setSortKey] = useState<SortKey>('newest')
   const [showReviewed, setShowReviewed] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [loadFailed, setLoadFailed] = useState(false)
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(0)
 
@@ -95,8 +96,13 @@ function WrongNotebookInner() {
   // now-empty page after tightening a filter.
   useEffect(() => { setPage(0) }, [query, difficultyFilter, sortKey, selectedTopicId])
 
+  // Request-id guard: rapid topic-chip switches used to let a stale
+  // response win setEntries under the newly selected chip.
+  const loadSeq = useRef(0)
   const load = useCallback(async () => {
+    const seq = ++loadSeq.current
     setLoading(true)
+    setLoadFailed(false)
     try {
       const headers = await authHeaders()
       const url = selectedTopicId
@@ -105,15 +111,20 @@ function WrongNotebookInner() {
       const res = await fetch(url, { headers })
       if (!res.ok) throw new Error()
       const json = await res.json()
+      if (seq !== loadSeq.current) return
       setEntries((json.entries ?? []) as Entry[])
       // Only refresh the topic chip list on the all-topics view —
       // filtering should not collapse other topic options.
       if (!selectedTopicId) setTopics((json.topics ?? []) as TopicSummary[])
       setBookmarkedSnaps((json.bookmarkedSnaps ?? []) as BookmarkedSnap[])
     } catch {
+      if (seq !== loadSeq.current) return
+      // A failed fetch must NOT render the celebratory "no mistakes"
+      // empty state — that's actively misleading.
       setEntries([])
+      setLoadFailed(true)
     } finally {
-      setLoading(false)
+      if (seq === loadSeq.current) setLoading(false)
     }
   }, [selectedTopicId])
 
@@ -297,6 +308,21 @@ function WrongNotebookInner() {
                   </SkeletonCard>
                 </div>
               ))}
+            </div>
+          ) : loadFailed ? (
+            /* A failed fetch must not masquerade as the celebratory
+               "no mistakes" empty state. */
+            <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
+              <p className="text-[13.5px] text-gray-600">
+                {ko ? '오답노트를 불러오지 못했어요.' : "We couldn't load your wrong answers."}
+              </p>
+              <button
+                type="button"
+                onClick={() => void load()}
+                className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 transition"
+              >
+                {ko ? '다시 시도' : 'Retry'}
+              </button>
             </div>
           ) : entries.length === 0 && bookmarkedSnaps.length === 0 ? (
             <StudyEmptyState
@@ -559,7 +585,8 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
 }) {
   const { t } = useTranslation()
   const [note, setNote] = useState(entry.note)
-  const [saving, setSaving] = useState<'idle' | 'saving' | 'saved'>('idle')
+  const [saving, setSaving] = useState<'idle' | 'saving' | 'saved' | 'failed'>('idle')
+  const [retryTick, setRetryTick] = useState(0)
   const [expanded, setExpanded] = useState(false)
   const reviewed = entry.reviewed_at !== null
   const topicName = entry.topic
@@ -585,11 +612,13 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
         const fade = setTimeout(() => setSaving('idle'), 1500)
         return () => clearTimeout(fade)
       } catch {
-        setSaving('idle')
+        // Silent failure looked like a successful save — the student
+        // closes the page and loses the note. Surface it + offer retry.
+        setSaving('failed')
       }
     }, 1000)
     return () => clearTimeout(id)
-  }, [note, entry.attempt_id, entry.note])
+  }, [note, entry.attempt_id, entry.note, retryTick])
 
   return (
     <li className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
@@ -671,9 +700,20 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           <label className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600 inline-flex items-center gap-1.5">
             <Pencil className="w-3 h-3" />{t('study.wrongNotebook.myNoteLabel')}
           </label>
-          <span className={`text-[10px] font-medium transition-opacity ${saving === 'idle' ? 'opacity-0' : 'opacity-100'} ${saving === 'saved' ? 'text-emerald-600' : 'text-gray-500'}`}>
-            {saving === 'saving' ? t('study.wrongNotebook.saving') : saving === 'saved' ? t('study.wrongNotebook.saved') : ''}
-          </span>
+          {saving === 'failed' ? (
+            <button
+              type="button"
+              onClick={() => setRetryTick(n => n + 1)}
+              className="text-[10px] font-semibold text-rose-600 hover:text-rose-700 inline-flex items-center gap-1"
+            >
+              <AlertCircle className="w-3 h-3" />
+              {ko ? '저장 실패 — 다시 시도' : 'Save failed — retry'}
+            </button>
+          ) : (
+            <span className={`text-[10px] font-medium transition-opacity ${saving === 'idle' ? 'opacity-0' : 'opacity-100'} ${saving === 'saved' ? 'text-emerald-600' : 'text-gray-500'}`}>
+              {saving === 'saving' ? t('study.wrongNotebook.saving') : saving === 'saved' ? t('study.wrongNotebook.saved') : ''}
+            </span>
+          )}
         </div>
         <textarea
           value={note}

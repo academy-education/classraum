@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * GET /api/study/mistakes — recent unique wrong-answer questions.
@@ -34,12 +35,9 @@ interface MistakeCard {
 }
 
 export async function GET(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   // Pull the last 60 wrong attempts (we'll dedupe down). 60 is plenty
   // — most students won't have that many distinct mistakes.

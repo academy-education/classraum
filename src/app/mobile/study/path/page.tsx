@@ -636,10 +636,14 @@ function PathList({
                   node={node}
                   onClick={() => {
                     if (isLocked) return
-                    // Completed nodes open a results callout — the
-                    // student reviews their submission or explicitly
+                    // Nodes with a finished submission open a results
+                    // callout — the student reviews or explicitly
                     // restarts; a tap never silently redoes the section.
-                    if (node.state.status === 'completed') {
+                    // Branch on completedSessionId rather than display
+                    // status: when the whole path is done, annotatePath
+                    // relabels the final node 'active' for review, and
+                    // status alone would fall through to a fresh launch.
+                    if (node.state.completedSessionId && !node.state.resumeSessionId) {
                       setOpenCompletedId(prev => (prev === node.id ? null : node.id))
                       return
                     }
@@ -656,7 +660,7 @@ function PathList({
                     launching={launchingId === node.id}
                   />
                 )}
-                {node.state.status === 'completed' && openCompletedId === node.id && (
+                {!!node.state.completedSessionId && openCompletedId === node.id && (
                   <CompletedCallout
                     node={node}
                     onRestart={() => void handleLaunch(node)}

@@ -3,6 +3,7 @@ import { streamText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/chat — streaming chat tutor.
@@ -68,16 +69,9 @@ ${gradeRange ? `대략적인 학년: ${gradeRange}.` : ''}
 `.trim()
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) {
-    return new Response(JSON.stringify({ error: 'unauthorized' }), { status: 401 })
-  }
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) {
-    return new Response(JSON.stringify({ error: 'unauthorized' }), { status: 401 })
-  }
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   // 30 msgs / minute / student. enforceRateLimit returns a NextResponse
   // when blocked — we re-shape it into a plain Response since this route

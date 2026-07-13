@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * GET /api/study/prefs — returns the student's stored study prefs,
@@ -32,17 +33,10 @@ export interface StudyUserPrefs {
   updated_at: string
 }
 
-async function authedUser(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return null
-  const { data: { user } } = await supabaseAdmin.auth.getUser(token)
-  return user
-}
-
 export async function GET(req: NextRequest) {
-  const user = await authedUser(req)
-  if (!user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   const { data: existing } = await supabaseAdmin
     .from('study_user_prefs')
@@ -62,20 +56,40 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  const user = await authedUser(req)
-  if (!user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   let body: Partial<StudyUserPrefs> = {}
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
 
-  // Whitelist mutable fields. student_id / created_at are never user-settable.
-  const allowed: (keyof StudyUserPrefs)[] = [
-    'target_test', 'target_tests', 'grade_level', 'daily_goal_minutes',
-    'default_language', 'default_difficulty', 'onboarded_at', 'nav_tour_seen_at',
-  ]
+  // Whitelist + validate mutable fields. student_id / created_at are never
+  // user-settable, and a malformed value (target_tests as a string, a
+  // negative goal) must not reach the row — the landing page trusts these
+  // shapes and a bad write bricks it for that student.
+  const isNullOrString = (v: unknown, max = 64) =>
+    v === null || (typeof v === 'string' && v.length <= max)
+  const isNullOrIsoDate = (v: unknown) =>
+    v === null || (typeof v === 'string' && !Number.isNaN(Date.parse(v)))
+  const validators: Record<string, (v: unknown) => boolean> = {
+    target_test: v => isNullOrString(v),
+    target_tests: v => Array.isArray(v) && v.length <= 20 &&
+      v.every(t => typeof t === 'string' && t.length > 0 && t.length <= 64),
+    grade_level: v => isNullOrString(v),
+    daily_goal_minutes: v => typeof v === 'number' && Number.isInteger(v) && v >= 5 && v <= 480,
+    default_language: v => v === 'en' || v === 'ko',
+    default_difficulty: v => v === 'warmup' || v === 'balanced' || v === 'challenge',
+    onboarded_at: isNullOrIsoDate,
+    nav_tour_seen_at: isNullOrIsoDate,
+  }
   const patch: Record<string, unknown> = { updated_at: new Date().toISOString() }
-  for (const key of allowed) {
-    if (key in body) patch[key] = body[key]
+  for (const [key, valid] of Object.entries(validators)) {
+    if (!(key in body)) continue
+    const value = (body as Record<string, unknown>)[key]
+    if (!valid(value)) {
+      return NextResponse.json({ error: `invalid value for ${key}` }, { status: 400 })
+    }
+    patch[key] = value
   }
 
   // Keep target_test and target_tests in lockstep so callers can PUT

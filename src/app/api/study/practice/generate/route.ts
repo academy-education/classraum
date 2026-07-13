@@ -6,6 +6,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { loadStudyPromptContext, renderTestPrepBlock } from '@/lib/study-prompt-context'
 import { drawBankPractice } from '@/lib/study/assemble'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/practice/generate — produce a batch of practice
@@ -113,14 +114,9 @@ ${formatBlock}
 `.trim()
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) {
-    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-  }
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   // Generation is expensive — limit to 10 batches / 10 min / student.
   const blocked = enforceRateLimit(
@@ -229,6 +225,7 @@ export async function POST(req: NextRequest) {
         sessionId: session.id,
       })
       if (questions.length > 0) {
+        await cacheServedBatch(session.id, questions)
         return NextResponse.json({ questions, source: 'bank' })
       }
       // Empty bank → fall through to live generation below.
@@ -286,10 +283,41 @@ export async function POST(req: NextRequest) {
       prompt,
       temperature: 0.7,
     })
+    await cacheServedBatch(session.id, result.object.questions)
     return NextResponse.json({ questions: result.object.questions })
   } catch (err) {
     console.error('[practice/generate]', err)
     return NextResponse.json({ error: 'generation failed' }, { status: 502 })
+  }
+}
+
+/** Marker for the server-side copy of the served practice batch. The
+ *  grade route matches submitted questions against this row so a
+ *  doctored client payload can't smuggle its own answer key. */
+const PRACTICE_CACHE_MARKER = '[practice-v1]'
+
+/** Persist the batch we just served, replacing any prior batch for the
+ *  session ("Practice more" swaps the whole set). Non-fatal on failure
+ *  — the grade route falls back to legacy behavior when no row exists,
+ *  which is no worse than before this cache existed. */
+async function cacheServedBatch(sessionId: string, questions: unknown[]): Promise<void> {
+  try {
+    await supabaseAdmin
+      .from('study_messages')
+      .delete()
+      .eq('session_id', sessionId)
+      .like('content', `${PRACTICE_CACHE_MARKER}%`)
+    const { error } = await supabaseAdmin
+      .from('study_messages')
+      .insert({
+        session_id: sessionId,
+        role: 'assistant',
+        content: PRACTICE_CACHE_MARKER + JSON.stringify({ questions }),
+        model: 'practice-cache',
+      })
+    if (error) console.error('[practice/generate] batch cache write failed', error)
+  } catch (e) {
+    console.error('[practice/generate] batch cache write failed', e)
   }
 }
 

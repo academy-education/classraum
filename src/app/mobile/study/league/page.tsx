@@ -70,9 +70,14 @@ function LeagueInner() {
   const ko = language === 'korean'
   const [data, setData] = useState<LeagueData | null>(null)
   const [loading, setLoading] = useState(true)
+  // Fetch failure must NOT render as "not in a league yet" — a ranked
+  // student would see their placement apparently gone.
+  const [loadFailed, setLoadFailed] = useState(false)
+  const [retryKey, setRetryKey] = useState(0)
 
   useEffect(() => {
     let cancelled = false
+    setLoadFailed(false)
     void (async () => {
       try {
         const headers = await authHeaders()
@@ -81,13 +86,13 @@ function LeagueInner() {
         const json = await res.json()
         if (!cancelled) setData(json as LeagueData)
       } catch {
-        if (!cancelled) setData(null)
+        if (!cancelled) { setData(null); setLoadFailed(true) }
       } finally {
         if (!cancelled) setLoading(false)
       }
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [retryKey])
 
   const tier = TIERS.find(t => t.key === data?.tier) ?? TIERS[0]
 
@@ -122,6 +127,19 @@ function LeagueInner() {
               </div>
             </SkeletonCard>
             <SkeletonRowList count={5} />
+          </div>
+        ) : loadFailed ? (
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
+            <p className="text-[13.5px] text-gray-600">
+              {ko ? '리그 정보를 불러오지 못했어요.' : "We couldn't load your league."}
+            </p>
+            <button
+              type="button"
+              onClick={() => { setLoading(true); setRetryKey(k => k + 1) }}
+              className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 transition"
+            >
+              {ko ? '다시 시도' : 'Retry'}
+            </button>
           </div>
         ) : !data?.joined ? (
           <NotJoinedState ko={ko} />

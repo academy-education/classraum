@@ -68,7 +68,10 @@ export default function RootLayout({
   const initialLanguage: SupportedLanguage = 'korean'
 
   return (
-    <html lang="en">
+    // suppressHydrationWarning: the theme boot script below adds the
+    // .dark class before React hydrates — expected mismatch, same
+    // pattern next-themes uses.
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Explicit viewport meta for Capacitor/iOS WebView - ensures safe-area-inset-* CSS env variables work */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
@@ -77,6 +80,16 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{if(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()){document.documentElement.classList.add('native-app')}}catch(e){}})();`,
+          }}
+        />
+        {/* Apply the persisted theme BEFORE first paint so dark-mode
+            users never see a white flash. Reads the same zustand
+            persist blob useTheme writes ('global-store'). Scoped to
+            the /mobile app surfaces — marketing pages and the
+            dashboard always render light. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(!location.pathname.startsWith('/mobile'))return;var t='system';var raw=localStorage.getItem('global-store');if(raw){var s=JSON.parse(raw);if(s&&s.state&&s.state.theme)t=s.state.theme}var dark=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(dark)document.documentElement.classList.add('dark')}catch(e){}})();`,
           }}
         />
       </head>

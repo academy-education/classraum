@@ -70,3 +70,24 @@ export function groupByDate<T>(
   }
   return ordered
 }
+
+/**
+ * Relative "time ago" label shared by session lists and shelves.
+ * Falls back to a short absolute date past 7 days.
+ */
+export function formatTimeAgo(iso: string, ko: boolean): string {
+  const then = new Date(iso).getTime()
+  const diff = Math.max(0, Date.now() - then)
+  const min = Math.floor(diff / 60_000)
+  const hr = Math.floor(diff / 3_600_000)
+  const day = Math.floor(diff / 86_400_000)
+  if (day >= 7) {
+    return new Date(iso).toLocaleDateString(ko ? 'ko-KR' : 'en-US', {
+      month: 'short', day: 'numeric',
+    })
+  }
+  if (day >= 1) return ko ? `${day}일 전` : `${day}d ago`
+  if (hr >= 1) return ko ? `${hr}시간 전` : `${hr}h ago`
+  if (min >= 1) return ko ? `${min}분 전` : `${min}m ago`
+  return ko ? '방금' : 'just now'
+}

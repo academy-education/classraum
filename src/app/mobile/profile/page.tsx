@@ -7,6 +7,7 @@ import { performLogout } from '@/lib/logout'
 import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useTheme } from '@/hooks/useTheme'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
@@ -29,6 +30,7 @@ import {
   Mail,
   Phone,
   Globe,
+  Moon,
   Bell,
   LogOut,
   ChevronRight,
@@ -51,6 +53,7 @@ function MobileProfilePageContent() {
   const { t } = useTranslation()
   const { toast } = useToast()
   const { language, setLanguage } = useLanguage()
+  const { theme, setTheme } = useTheme()
   const { user } = usePersistentMobileAuth()
   const { effectiveUserId, isReady, isLoading: authLoading, academyIds } = useEffectiveUserId()
   const { selectedStudent, availableStudents, setSelectedStudent } = useSelectedStudentStore()
@@ -516,6 +519,32 @@ function MobileProfilePageContent() {
             <SelectContent>
               <SelectItem value="english">🇺🇸 English</SelectItem>
               <SelectItem value="korean">🇰🇷 한국어</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {/* Appearance — light / dark / system. Applies instantly via
+              the .dark class; persists in the global store. */}
+          <Select value={theme} onValueChange={(value) => { hapticTap(); setTheme(value as 'light' | 'dark' | 'system') }}>
+            <SelectTrigger className="w-full h-auto p-4 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
+              <div className="flex items-center gap-3 w-full">
+                <div className="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0">
+                  <Moon className="w-4 h-4 text-indigo-600" strokeWidth={1.75} />
+                </div>
+                <div className="flex-1 min-w-0 text-left">
+                  <span className="text-sm font-medium text-gray-900">
+                    {language === 'korean' ? '화면 테마' : 'Appearance'}
+                  </span>
+                </div>
+                <span className="text-sm text-gray-500 mr-1">
+                  <SelectValue />
+                </span>
+                <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+              </div>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="light">{language === 'korean' ? '라이트' : 'Light'}</SelectItem>
+              <SelectItem value="dark">{language === 'korean' ? '다크' : 'Dark'}</SelectItem>
+              <SelectItem value="system">{language === 'korean' ? '시스템 설정' : 'System'}</SelectItem>
             </SelectContent>
           </Select>
         </Card>

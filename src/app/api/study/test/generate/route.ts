@@ -20,6 +20,7 @@ import {
   type RawQuestion,
 } from '@/lib/test-verify'
 import { sendPushNotification } from '@/lib/notifications'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -330,12 +331,9 @@ ${formatBlock}
 `.trim()
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   // Test generation costs more than practice — cap tighter.
   const blocked = enforceRateLimit(

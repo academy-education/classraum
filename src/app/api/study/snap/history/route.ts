@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * GET /api/study/snap/history — recent snap captures for the caller.
@@ -13,19 +14,16 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 export const dynamic = 'force-dynamic'
 
 export async function GET(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   const blocked = enforceRateLimit(`snap-history:user:${user.id}`, { windowMs: 60 * 1000, max: 60 })
   if (blocked) return blocked
 
   const { data: rows } = await supabaseAdmin
     .from('study_snap_captures')
-    .select('id, image_path, ocr_text, subject_guess, final_answer, created_at')
+    .select('id, image_path, ocr_text, subject_guess, final_answer, solution_steps, created_at')
     .eq('student_id', user.id)
     .order('created_at', { ascending: false })
     .limit(8)
@@ -51,6 +49,7 @@ export async function GET(req: NextRequest) {
     ocr_text: (r.ocr_text as string | null) ?? '',
     subject_guess: (r.subject_guess as string | null) ?? 'other',
     final_answer: (r.final_answer as string | null) ?? '',
+    solution_steps: (r.solution_steps as unknown[] | null) ?? [],
     created_at: r.created_at as string,
   }))
 

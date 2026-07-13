@@ -314,17 +314,17 @@ function ReviewInner() {
 
         {/* Rating row — only enabled once flipped */}
         <div className={`grid grid-cols-3 gap-2 transition-opacity ${flipped ? 'opacity-100' : 'opacity-50 pointer-events-none'}`}>
-          <button type="button" disabled={grading} onClick={() => void grade(1)}
+          <button type="button" disabled={grading || !flipped} onClick={() => void grade(1)}
             className="h-12 rounded-2xl bg-white ring-1 ring-rose-200 text-rose-700 inline-flex flex-col items-center justify-center hover:bg-rose-50 transition">
             <X className="w-4 h-4 mb-0.5" />
             <span className="text-[11px] font-semibold">{t('study.flashcards.again')}</span>
           </button>
-          <button type="button" disabled={grading} onClick={() => void grade(3)}
+          <button type="button" disabled={grading || !flipped} onClick={() => void grade(3)}
             className="h-12 rounded-2xl bg-white ring-1 ring-amber-200 text-amber-700 inline-flex flex-col items-center justify-center hover:bg-amber-50 transition">
             <Zap className="w-4 h-4 mb-0.5" />
             <span className="text-[11px] font-semibold">{t('study.flashcards.hard')}</span>
           </button>
-          <button type="button" disabled={grading} onClick={() => void grade(5)}
+          <button type="button" disabled={grading || !flipped} onClick={() => void grade(5)}
             className="h-12 rounded-2xl bg-white ring-1 ring-emerald-200 text-emerald-700 inline-flex flex-col items-center justify-center hover:bg-emerald-50 transition">
             <Check className="w-4 h-4 mb-0.5" />
             <span className="text-[11px] font-semibold">{t('study.flashcards.easy')}</span>

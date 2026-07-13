@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp } from '@/lib/study/xp'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/practice/grade — verdict + explanation on one
@@ -40,14 +41,9 @@ const VerdictSchema = z.object({
 })
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) {
-    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-  }
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   // Generous because answering is per-question. Cap at 120/min so a
   // stuck-loop bug can't melt through tokens.
@@ -90,20 +86,55 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session is not in practice mode' }, { status: 400 })
   }
 
+  // ── Anti-forgery: grade against the SERVER's copy of the served
+  // batch. The generate route caches every batch it serves; when that
+  // row exists, the submitted question must match a served one (by
+  // prompt), and the server's correct_answer/explanation are used —
+  // the client's copies are display-only. A fabricated question can
+  // no longer buy correct attempts, XP, or node completions. Sessions
+  // predating the cache fall back to the old client-trusting path.
+  let gradedQ = q
+  try {
+    const { data: cachedMsg } = await supabaseAdmin
+      .from('study_messages')
+      .select('content')
+      .eq('session_id', sessionId)
+      .like('content', '[practice-v1]%')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    if (cachedMsg?.content) {
+      const cached = JSON.parse(cachedMsg.content.slice('[practice-v1]'.length)) as {
+        questions?: unknown[]
+      }
+      const served = z.array(QuestionSchema).safeParse(cached.questions ?? [])
+      if (served.success) {
+        const match = served.data.find(s => s.prompt.trim() === q.prompt.trim())
+        if (!match) {
+          return NextResponse.json({ error: 'question is not part of the served set' }, { status: 400 })
+        }
+        gradedQ = match
+      }
+    }
+  } catch (e) {
+    console.error('[practice/grade] served-batch lookup failed', e)
+    return NextResponse.json({ error: 'served batch unreadable' }, { status: 500 })
+  }
+
   let isCorrect: boolean
   let aiExplanation: string
 
   // Cheap path: MC and T/F are deterministic. Skip AI entirely.
-  if (q.type === 'multiple_choice' || q.type === 'true_false') {
-    isCorrect = studentAnswer.trim().toLowerCase() === q.correct_answer.trim().toLowerCase()
-    aiExplanation = q.explanation
+  if (gradedQ.type === 'multiple_choice' || gradedQ.type === 'true_false') {
+    isCorrect = studentAnswer.trim().toLowerCase() === gradedQ.correct_answer.trim().toLowerCase()
+    aiExplanation = gradedQ.explanation
   } else {
     // Short-answer: ask the AI to judge wording-tolerant correctness.
     const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
     try {
       const judgePrompt = session.language === 'ko'
-        ? `학생이 다음 문제에 답했습니다. 표현이 다르더라도 본질적으로 같은 의미면 정답으로 판정하세요.\n\n문제: ${q.prompt}\n정답: ${q.correct_answer}\n학생 답: ${studentAnswer}\n\n간결하게 판정하고, 1-2문장의 한국어 해설을 작성하세요. 틀렸다면 친절하게 오개념을 짚고 정답을 알려주세요.`
-        : `A student answered the question below. Judge correctness leniently — minor wording differences should still count.\n\nQuestion: ${q.prompt}\nCorrect answer: ${q.correct_answer}\nStudent answer: ${studentAnswer}\n\nReturn a verdict + 1-2 sentence explanation. If wrong, kindly point to the misconception and give the right answer.`
+        ? `학생이 다음 문제에 답했습니다. 표현이 다르더라도 본질적으로 같은 의미면 정답으로 판정하세요.\n\n문제: ${gradedQ.prompt}\n정답: ${gradedQ.correct_answer}\n학생 답: ${studentAnswer}\n\n간결하게 판정하고, 1-2문장의 한국어 해설을 작성하세요. 틀렸다면 친절하게 오개념을 짚고 정답을 알려주세요.`
+        : `A student answered the question below. Judge correctness leniently — minor wording differences should still count.\n\nQuestion: ${gradedQ.prompt}\nCorrect answer: ${gradedQ.correct_answer}\nStudent answer: ${studentAnswer}\n\nReturn a verdict + 1-2 sentence explanation. If wrong, kindly point to the misconception and give the right answer.`
       const judgeResult = await generateObject({
         model: openai('gpt-4o-mini'),
         schema: VerdictSchema,
@@ -116,8 +147,8 @@ export async function POST(req: NextRequest) {
       console.error('[practice/grade]', err)
       // Fall back to literal string match so the student still gets
       // something rather than a hard error.
-      isCorrect = studentAnswer.trim().toLowerCase() === q.correct_answer.trim().toLowerCase()
-      aiExplanation = q.explanation
+      isCorrect = studentAnswer.trim().toLowerCase() === gradedQ.correct_answer.trim().toLowerCase()
+      aiExplanation = gradedQ.explanation
     }
   }
 
@@ -128,7 +159,7 @@ export async function POST(req: NextRequest) {
     .insert({
       session_id: sessionId,
       topic_id: session.topic_id,
-      question: q,
+      question: gradedQ,
       student_answer: studentAnswer,
       is_correct: isCorrect,
       ai_explanation: aiExplanation,

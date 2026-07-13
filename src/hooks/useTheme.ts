@@ -1,44 +1,50 @@
 import { useEffect, useCallback } from 'react'
+import { usePathname } from 'next/navigation'
 import { useGlobalStore } from '@/stores/useGlobalStore'
 
 export type Theme = 'light' | 'dark' | 'system'
 
+/** Dark mode is scoped to the /mobile app surfaces — marketing pages
+ *  and the dashboard always render light (they haven't had a dark
+ *  visual pass). Keep in sync with the boot script in app/layout.tsx. */
+const darkAllowed = (pathname: string | null) => !!pathname?.startsWith('/mobile')
+
 export function useTheme() {
   const { theme, setTheme } = useGlobalStore()
+  const pathname = usePathname()
 
-  // Apply theme to document
+  // Apply theme to document. Tailwind's dark variant is class-based
+  // (`&:is(.dark *)`), so the `.dark` class on <html> is what actually
+  // switches the palette — data-theme is kept only as an inspectable
+  // marker. The boot script in app/layout.tsx applies the same class
+  // pre-paint from the persisted global-store value.
   useEffect(() => {
     const root = document.documentElement
-    
-    // Remove all theme classes first
-    root.removeAttribute('data-theme')
-    
-    // Apply new theme
+    const wantsDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    const isDark = wantsDark && darkAllowed(pathname)
+    root.classList.toggle('dark', isDark)
     root.setAttribute('data-theme', theme)
-    
+
     // Update meta theme-color for mobile browsers
     const metaThemeColor = document.querySelector('meta[name="theme-color"]')
     if (metaThemeColor) {
-      const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      metaThemeColor.setAttribute('content', isDark ? '#1f2937' : '#ffffff')
+      metaThemeColor.setAttribute('content', isDark ? '#0e1116' : '#ffffff')
     }
-  }, [theme])
+  }, [theme, pathname])
 
   // Listen for system theme changes
   useEffect(() => {
     if (theme !== 'system') return
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    
+
     const handleChange = () => {
-      // Trigger a re-render by updating the theme attribute
-      const root = document.documentElement
-      root.setAttribute('data-theme', 'system')
+      document.documentElement.classList.toggle('dark', mediaQuery.matches && darkAllowed(pathname))
     }
 
     mediaQuery.addEventListener('change', handleChange)
     return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [theme])
+  }, [theme, pathname])
 
   // Check if current effective theme is dark
   const isDarkMode = useCallback(() => {

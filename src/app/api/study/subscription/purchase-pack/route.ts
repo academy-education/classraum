@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { CREDIT_PACK, resolvePlan } from '@/lib/study/plans'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/subscription/purchase-pack — one-time charge for a
@@ -18,11 +20,17 @@ import { CREDIT_PACK, resolvePlan } from '@/lib/study/plans'
 export const dynamic = 'force-dynamic'
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
+
+  // Real-money endpoint: one charge per 15s per student. Absorbs
+  // double-taps and retry loops before they reach the card.
+  const blocked = enforceRateLimit(
+    `purchase-pack:user:${user.id}`,
+    { windowMs: 15 * 1000, max: 1 },
+  )
+  if (blocked) return blocked
 
   const { data: sub } = await supabaseAdmin
     .from('study_subscriptions')
@@ -59,13 +67,13 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const { error: updateErr } = await supabaseAdmin
-    .from('study_subscriptions')
-    .update({
-      purchased_credits_remaining: (sub.purchased_credits_remaining ?? 0) + CREDIT_PACK.credits,
-      updated_at: new Date().toISOString(),
-    })
-    .eq('student_id', user.id)
+  // Atomic increment via RPC — a read-modify-write here spanned the
+  // card charge, so a concurrent purchase or credit consumption could
+  // silently lose paid credits.
+  const { error: updateErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
+    p_student_id: user.id,
+    p_delta: CREDIT_PACK.credits,
+  })
   if (updateErr) {
     // Charge succeeded but the credit write failed — log loudly for
     // manual reconciliation rather than double-charging on retry.

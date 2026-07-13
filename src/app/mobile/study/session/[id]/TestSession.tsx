@@ -571,6 +571,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   /** Surfaces the actual submit error so the student knows what went
    *  wrong instead of seeing the Submit button silently do nothing. */
   const [submitError, setSubmitError] = useState<string | null>(null)
+  /** Waiting for the network to come back before auto-retrying the
+   *  submit. Answers are safe in localStorage the whole time. */
+  const [waitingForNetwork, setWaitingForNetwork] = useState(false)
   /** Confirm-before-submit dialog: opens when the student presses
    *  Submit, blocks the actual POST until they confirm. */
   const [confirmOpen, setConfirmOpen] = useState(false)
@@ -579,20 +582,47 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const submit = useCallback(async () => {
     if (!test || phase !== 'taking') return
     setSubmitError(null)
+    setWaitingForNetwork(false)
     setPhase('submitting')
     try {
       const elapsedSeconds = Math.max(0, Math.round(currentElapsedMs() / 1000))
       const headers = await authHeaders()
-      const res = await fetch('/api/study/test/submit', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          sessionId,
-          questions: test.questions,
-          answers,
-          elapsedSeconds,
-        }),
+      // School wifi is flaky: retry transient failures (network drop,
+      // 5xx) with backoff before surfacing an error. 4xx responses are
+      // permanent — no retry.
+      const body = JSON.stringify({
+        sessionId,
+        questions: test.questions,
+        answers,
+        elapsedSeconds,
       })
+      let res: Response | null = null
+      let lastNetworkError: Error | null = null
+      for (let attempt = 0; attempt < 3; attempt++) {
+        if (attempt > 0) await new Promise(r => setTimeout(r, attempt * 1500))
+        try {
+          res = await fetch('/api/study/test/submit', { method: 'POST', headers, body })
+          lastNetworkError = null
+          if (res.status < 500) break
+        } catch (e) {
+          lastNetworkError = e as Error
+          res = null
+        }
+      }
+      if (!res) {
+        // Never reached the server. If the device is offline, park in a
+        // "waiting for network" state and auto-retry on reconnect —
+        // answers stay in localStorage, nothing is lost.
+        if (typeof navigator !== 'undefined' && !navigator.onLine) {
+          setWaitingForNetwork(true)
+          setPhase('taking')
+          return
+        }
+        console.error('[TestSession] submit network failure', lastNetworkError)
+        throw new Error(ko
+          ? '네트워크 연결이 불안정해요. 답안은 저장되어 있으니 다시 시도해 주세요.'
+          : 'Network is unstable. Your answers are saved — try again.')
+      }
       if (!res.ok) {
         // Pull the actual error message from the response so the user
         // sees something specific instead of a silent no-op.
@@ -670,15 +700,37 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // losing the test to a transient error.
       setPhase('taking')
     }
-  }, [test, phase, answers, sessionId, answerAudioPaths, answerSpeechSignals, speakingGradeMode, currentElapsedMs])
+  }, [test, phase, answers, sessionId, answerAudioPaths, answerSpeechSignals, speakingGradeMode, currentElapsedMs, ko])
+
+  // Auto-resubmit when the connection comes back. The 1s delay lets
+  // the radio actually re-establish before we fire (the 'online'
+  // event often leads usable connectivity by a moment).
+  useEffect(() => {
+    if (!waitingForNetwork) return
+    const onOnline = () => {
+      setTimeout(() => { void submit() }, 1000)
+    }
+    window.addEventListener('online', onOnline)
+    return () => window.removeEventListener('online', onOnline)
+  }, [waitingForNetwork, submit])
 
   // Auto-submit when the timer hits zero.
   // Total time budget in ms. `now` is here so the effect re-runs
   // every tick to check whether we've exceeded the budget.
+  // ONE-SHOT: without the ref, a failed submit dropped phase back to
+  // 'taking' with elapsed still past the limit, so every tick
+  // re-submitted — endless POSTs and the error banner wiped each
+  // cycle. After the single auto attempt, the student retries via the
+  // error banner's manual submit.
+  const autoSubmitAttemptedRef = useRef(false)
   const timeLimitMs = test ? test.timeLimitMinutes * 60_000 : 0
   useEffect(() => {
     if (phase !== 'taking' || !timeLimitMs) return
-    if (currentElapsedMs() >= timeLimitMs) void submit()
+    if (autoSubmitAttemptedRef.current) return
+    if (currentElapsedMs() >= timeLimitMs) {
+      autoSubmitAttemptedRef.current = true
+      void submit()
+    }
   }, [now, timeLimitMs, phase, submit, currentElapsedMs])
 
   // ── Render branches ─────────────────────────────────────────────
@@ -1931,6 +1983,27 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             >
               {ko ? '재개' : 'Resume test'}
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Offline banner — the device lost its connection at submit
+          time. Answers are safe in localStorage; we auto-resubmit the
+          moment the browser reports the network is back. */}
+      {waitingForNetwork && (
+        <div className="absolute inset-x-3 bottom-20 z-40 rounded-xl bg-amber-50 ring-1 ring-amber-200 px-4 py-3 shadow-lg">
+          <div className="flex items-start gap-2">
+            <Loader2 className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5 animate-spin" />
+            <div className="flex-1 min-w-0">
+              <div className="text-[13px] font-semibold text-amber-900">
+                {ko ? '오프라인이에요' : "You're offline"}
+              </div>
+              <div className="text-[12px] text-amber-800 mt-0.5">
+                {ko
+                  ? '답안은 안전하게 저장됐어요. 인터넷이 연결되면 자동으로 제출됩니다.'
+                  : 'Your answers are saved. We’ll submit automatically once you’re back online.'}
+              </div>
+            </div>
           </div>
         </div>
       )}

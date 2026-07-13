@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { computeDailyChallenge } from '@/lib/study/daily-challenge'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * GET /api/study/landing — batched landing-page summary.
@@ -54,12 +55,9 @@ function localDayKey(d: Date): string {
 }
 
 export async function GET(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   const blocked = enforceRateLimit(`landing:user:${user.id}`, { windowMs: 60 * 1000, max: 60 })
   if (blocked) return blocked

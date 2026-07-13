@@ -10,6 +10,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
+import { formatTimeAgo } from '../_shared/dateGroups'
 
 /**
  * /mobile/study/tests — overview of every full_test session.
@@ -245,7 +246,7 @@ function StateFilter({ value, onSelect, counts, ko }: {
               onClick={() => onSelect(item.key)}
               className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
                 active
-                  ? 'bg-gray-900 text-white'
+                  ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                   : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
               }`}
             >
@@ -358,17 +359,3 @@ const STATE_META: Record<TestState, {
   },
 }
 
-function formatTimeAgo(iso: string, ko: boolean): string {
-  const then = new Date(iso).getTime()
-  const diff = Math.max(0, Date.now() - then)
-  const min = Math.floor(diff / 60_000)
-  const hr = Math.floor(diff / 3_600_000)
-  const day = Math.floor(diff / 86_400_000)
-  if (day >= 7) {
-    return new Date(iso).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
-  }
-  if (day >= 1) return ko ? `${day}일 전` : `${day}d ago`
-  if (hr >= 1) return ko ? `${hr}시간 전` : `${hr}h ago`
-  if (min >= 1) return ko ? `${min}분 전` : `${min}m ago`
-  return ko ? '방금' : 'just now'
-}

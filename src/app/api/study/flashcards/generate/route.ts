@@ -4,6 +4,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/flashcards/generate — produce a flashcard deck for
@@ -66,12 +67,9 @@ const PROMPT_KO = (topic: string, grade: string | null) => `
 const CACHED_DECK_MARKER = '[flashcards-v1]'
 
 export async function POST(req: NextRequest) {
-  const auth = req.headers.get('authorization')
-  const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
-  if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const authResult = await requireStudyUser(req)
+  if (authResult.response) return authResult.response
+  const user = authResult.user
 
   const blocked = enforceRateLimit(
     `flashcards-generate:user:${user.id}`,

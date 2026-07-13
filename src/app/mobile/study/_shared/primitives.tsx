@@ -48,7 +48,7 @@ function useSmartBack(fallback: string) {
 }
 
 export function StudyPageHeader({
-  backHref, backLabel, icon: Icon, iconColorClass = 'text-primary bg-primary/10',
+  backHref, backLabel, icon: _Icon, iconColorClass: _iconColorClass,
   eyebrow, title, rightSlot,
 }: StudyPageHeaderProps) {
   const hasBack = !!backHref && !!backLabel
@@ -93,35 +93,31 @@ export function StudyPageHeader({
     <header
       ref={setEl}
       className={`sticky top-0 z-30 bg-gray-50/95 backdrop-blur-sm transition-all duration-200 ${
-        collapsed ? 'border-b border-gray-200 py-2' : 'border-b border-gray-100 pt-5 pb-3'
+        collapsed ? 'border-b border-gray-200 py-2' : 'border-b border-gray-100 pt-5 pb-3.5'
       }`}
     >
       {/* Inner wrapper — bg + border go edge-to-edge for the sticky
           effect, but content is width-constrained so it aligns with
           the page body on desktop viewports. */}
       <div className="max-w-3xl mx-auto px-5">
-        {!collapsed && hasBack && (
-          <button type="button" onClick={goBack}
-            className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary mb-3 transition-colors">
-            <ArrowLeft className="w-3.5 h-3.5" />{backLabel}
-          </button>
-        )}
         <div className="flex items-center gap-3">
-          {collapsed && hasBack ? (
+          {hasBack && (
             <button type="button" onClick={goBack}
               aria-label={backLabel}
-              className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors -ml-1">
+              className={`flex-shrink-0 inline-flex items-center justify-center rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:ring-primary/40 hover:text-primary active:scale-95 transition-all ${
+                collapsed ? 'w-8 h-8' : 'w-9 h-9'
+              }`}>
               <ArrowLeft className="w-4 h-4" />
             </button>
-          ) : (
-            <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${iconColorClass}`}>
-              <Icon className="w-4 h-4" />
-            </div>
           )}
           <div className="min-w-0 flex-1">
-            {!collapsed && <p className="text-[11px] text-gray-500">{eyebrow}</p>}
-            <h1 className={`font-semibold tracking-tight text-gray-900 truncate transition-all ${
-              collapsed ? 'text-[14px]' : 'text-base'
+            {!collapsed && (
+              <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1">
+                {eyebrow}
+              </p>
+            )}
+            <h1 className={`font-bold tracking-tight text-gray-900 truncate transition-all ${
+              collapsed ? 'text-[14px]' : 'text-[20px] sm:text-[22px] leading-tight'
             }`}>{title}</h1>
           </div>
           {rightSlot}
@@ -152,31 +148,39 @@ export interface StudySubPageHeaderProps {
 }
 
 export function StudySubPageHeader({
-  backHref, backLabel, icon: Icon, iconColorClass = 'text-primary bg-primary/10',
+  backHref, backLabel, icon: _Icon, iconColorClass: _iconColorClass,
   eyebrow, title, subtitle, rightSlot,
 }: StudySubPageHeaderProps) {
   const goBack = useSmartBack(backHref ?? '/mobile/study')
+  const hasBackRow = !!backHref
   return (
-    <header className="space-y-3">
-      {backHref && backLabel && (
-        <button type="button" onClick={goBack}
-          className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary transition-colors -ml-1 px-1 py-1">
-          <ArrowLeft className="w-3.5 h-3.5" />{backLabel}
-        </button>
+    <header>
+      {hasBackRow && (
+        <div className="flex items-center justify-between mb-5">
+          <button type="button" onClick={goBack}
+            aria-label={backLabel ?? 'Back'}
+            className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:ring-primary/40 hover:text-primary active:scale-95 transition-all">
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+          {rightSlot}
+        </div>
       )}
-      <div className="flex items-start gap-3">
-        <div className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${iconColorClass}`}>
-          <Icon className="w-4 h-4" />
-        </div>
+      {/* Typography-led header — no icon tile. The eyebrow + large
+          bold title reads cleaner and scales with the viewport. */}
+      <div className="flex items-end gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] text-gray-500">{eyebrow}</p>
-          <h1 className="text-base font-semibold tracking-tight text-gray-900 truncate">{title}</h1>
-          {subtitle && (
-            <p className="text-[13px] text-gray-500 mt-1 leading-relaxed">{subtitle}</p>
-          )}
+          <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1.5">
+            {eyebrow}
+          </p>
+          <h1 className="text-[24px] sm:text-[26px] font-bold tracking-tight text-gray-900 truncate leading-tight">
+            {title}
+          </h1>
         </div>
-        {rightSlot}
+        {!hasBackRow && rightSlot}
       </div>
+      {subtitle && (
+        <p className="text-[13.5px] sm:text-[14px] text-gray-500 mt-1.5 leading-relaxed">{subtitle}</p>
+      )}
     </header>
   )
 }
