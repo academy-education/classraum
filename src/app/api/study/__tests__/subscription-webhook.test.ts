@@ -83,6 +83,30 @@ describe('POST /api/study/subscription/webhook', () => {
       expect(fromMock).not.toHaveBeenCalled()
     })
 
+    it('rejects a validly signed but stale payload with 401 (replay protection)', async () => {
+      // Signed correctly — but with a timestamp 10 minutes old. The
+      // signature verifies; the tolerance check must still reject it.
+      const id = 'wh_msg_replay'
+      const staleTs = Math.floor(Date.now() / 1000 - 10 * 60).toString()
+      const res = await POST(makeRequest(FAILED_EVENT, { headers: {
+        'webhook-id': id,
+        'webhook-timestamp': staleTs,
+        'webhook-signature': `v1,${sign(FAILED_EVENT, id, staleTs)}`,
+      } }))
+      expect(res.status).toBe(401)
+      expect(await res.json()).toEqual({ error: 'invalid signature' })
+    })
+
+    it('rejects a non-numeric timestamp with 401', async () => {
+      const id = 'wh_msg_badts'
+      const res = await POST(makeRequest(FAILED_EVENT, { headers: {
+        'webhook-id': id,
+        'webhook-timestamp': 'not-a-number',
+        'webhook-signature': `v1,${sign(FAILED_EVENT, id, 'not-a-number')}`,
+      } }))
+      expect(res.status).toBe(401)
+    })
+
     it('rejects a signature computed with the wrong secret with 401', async () => {
       const res = await POST(makeRequest(FAILED_EVENT, {
         headers: signedHeaders(FAILED_EVENT, 'some-other-secret'),

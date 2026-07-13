@@ -153,6 +153,17 @@ async function verifySvixSignature(
   const ts = headers.get('webhook-timestamp') ?? ''
   if (!id || !ts) return false
 
+  // Replay protection: the timestamp is part of the signed content, so
+  // an old signature only verifies with its old timestamp — rejecting
+  // stale timestamps caps the replay window. 5 minutes, matching the
+  // tolerance in lib/portone-webhook.ts.
+  const tsSeconds = Number(ts)
+  if (!Number.isFinite(tsSeconds)) return false
+  if (Math.abs(Date.now() / 1000 - tsSeconds) > 5 * 60) {
+    console.warn('[study/subscription/webhook] timestamp outside tolerance')
+    return false
+  }
+
   const enc = new TextEncoder()
   // Secret strings from PortOne start with "whsec_" — strip + base64-decode.
   const secretBytes = secret.startsWith('whsec_')
