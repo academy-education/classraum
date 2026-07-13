@@ -200,7 +200,7 @@ export function RecommendedShelf() {
           )}
         </div>
       ) : (
-        <div className="space-y-2">
+        <div className="grid gap-2 lg:grid-cols-2">
           {cards.slice(0, 2).map((card, idx) => (
             <div
               key={card.reason === 'snap_followup' ? `snap-${card.snap?.capture_id ?? idx}` : `${card.topic?.id}-${card.reason}`}

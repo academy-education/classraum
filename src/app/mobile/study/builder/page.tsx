@@ -150,7 +150,7 @@ function BuilderInner() {
 
   if (loadingTopics) {
     return (
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <SkeletonBlock className="h-4 w-32 rounded-full" />
         <div className="space-y-2">
           <SkeletonBlock className="h-8 w-1/2 rounded-lg" />
@@ -165,7 +165,7 @@ function BuilderInner() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+    <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
       {errorToast}
       <StudySubPageHeader
         backHref="/mobile/study"

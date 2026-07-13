@@ -214,7 +214,7 @@ function WrongNotebookInner() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-primary/[0.025] to-transparent"
       />
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <StudySubPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.wrongNotebook.back'))}
@@ -416,7 +416,7 @@ function WrongNotebookInner() {
                               <h3 className="text-[11px] font-bold uppercase tracking-[0.10em] text-gray-500 mb-2 px-1">
                                 {group.bucket.label(ko)}
                               </h3>
-                              <ol className="space-y-3">
+                              <ol className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                                 {group.rows.map((e, i) => (
                                   <div key={e.attempt_id} style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }} className="animate-card-in opacity-0">
                                     <NotebookEntryCard entry={e} index={startIdx + i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
@@ -482,7 +482,7 @@ function WrongNotebookInner() {
                           {showReviewed ? (ko ? '숨기기' : 'Hide') : (ko ? '보기' : 'Show')}
                         </span>
                       </summary>
-                      <ol className="px-4 pb-4 space-y-3">
+                      <ol className="px-4 pb-4 grid grid-cols-1 lg:grid-cols-2 gap-3">
                         {visibleReviewed.map((e, i) => (
                           <NotebookEntryCard key={e.attempt_id} entry={e} index={i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
                         ))}

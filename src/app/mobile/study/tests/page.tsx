@@ -109,7 +109,7 @@ function TestsInner() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-primary/[0.025] to-transparent"
       />
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
         <StudySubPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.topic.backToStudy'))}
@@ -177,7 +177,7 @@ function TestsInner() {
                   <h3 className="text-[11px] font-bold uppercase tracking-[0.10em] text-gray-500 mb-2 px-1">
                     {group.bucket.label(ko)}
                   </h3>
-                  <div className="space-y-2">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
                     {group.rows.map(row => <TestRow key={row.id} row={row} ko={ko} />)}
                   </div>
                 </section>
