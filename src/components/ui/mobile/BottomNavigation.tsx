@@ -1,82 +1,29 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
-import { Home, ClipboardList, FileText, User, BookOpen, Camera, Shuffle, Trophy } from 'lucide-react'
-import { useTranslation } from '@/hooks/useTranslation'
+import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { hapticTap } from '@/lib/nativeHaptics'
-import { resolveMode, storeMode, modeForPath } from '@/lib/study/currentMode'
-
-interface NavItem {
-  href: string
-  icon: React.ElementType
-  label: string
-  /** Optional matcher override for active state — defaults to `pathname.startsWith(href)`. */
-  matchExact?: boolean
-}
+import { useMobileNav } from './useMobileNav'
 
 /**
- * Mode-aware bottom navigation.
+ * Mode-aware bottom navigation (mobile / narrow screens only — hidden
+ * at lg where the desktop StudySidebar takes over).
  *
  * The tab set switches based on which top-level mode the student is
- * in (Grades vs Study). Grades mode keeps the original Home /
- * Assignments / Reports / Profile set; Study mode shows the surfaces
- * unique to the learning loop: Study home, Snap, Review, League, and
- * the shared Profile.
+ * in (Grades vs Study). Nav model + active logic live in useMobileNav
+ * so the sidebar can't drift from this bar.
  *
  * Focus mode (auto-hide on /mobile/study/session/*) stays — the
  * session UI is full-screen interactive.
  */
 export function BottomNavigation() {
-  const pathname = usePathname()
   const router = useRouter()
-  const { t } = useTranslation()
-
-  // Mode-aware nav. Pathname wins when explicit (study/*); shared
-  // routes (profile, messages, notifications) use the stored
-  // preference so tapping "프로필" from study mode stays in study.
-  const [mode, setMode] = useState<'grades' | 'study'>('grades')
-  useEffect(() => {
-    const explicit = modeForPath(pathname)
-    if (explicit) storeMode(explicit)
-    setMode(resolveMode(pathname))
-  }, [pathname])
-  const inStudy = mode === 'study'
-
-  const gradesNav: NavItem[] = [
-    { href: '/mobile', icon: Home, label: String(t('mobile.navigation.home')), matchExact: true },
-    { href: '/mobile/assignments', icon: ClipboardList, label: String(t('mobile.navigation.assignments')) },
-    { href: '/mobile/reports', icon: FileText, label: String(t('mobile.navigation.reports')) },
-    { href: '/mobile/profile', icon: User, label: String(t('mobile.navigation.profile')) },
-  ]
-
-  const studyNav: NavItem[] = [
-    { href: '/mobile/study', icon: BookOpen, label: String(t('mobile.navigation.study')), matchExact: true },
-    { href: '/mobile/study/snap', icon: Camera, label: String(t('mobile.navigation.snap')) },
-    { href: '/mobile/study/review', icon: Shuffle, label: String(t('mobile.navigation.review')) },
-    { href: '/mobile/study/league', icon: Trophy, label: String(t('mobile.navigation.league')) },
-    { href: '/mobile/profile', icon: User, label: String(t('mobile.navigation.profile')) },
-  ]
-
-  const navItems = inStudy ? studyNav : gradesNav
+  const { mode, navItems, isActive, inSession } = useMobileNav()
 
   const handleNavigation = (href: string) => {
     if (!isActive(href)) hapticTap()
     router.push(href)
-  }
-
-  const isActive = (href: string) => {
-    const item = navItems.find(n => n.href === href)
-    if (item?.matchExact) {
-      if (pathname === href) return true
-      // Section-root tabs stay lit on their sub-pages (topic, journey,
-      // stats, ...) as long as no sibling tab claims the path — a bar
-      // with nothing highlighted reads as broken.
-      return pathname.startsWith(`${href}/`) &&
-        !navItems.some(n => n.href !== href && pathname.startsWith(n.href))
-    }
-    return pathname.startsWith(href)
   }
 
   // Sliding active pill: measure the active tab's button and glide a
@@ -100,11 +47,6 @@ export function BottomNavigation() {
     return () => window.removeEventListener('resize', measure)
   }, [activeIndex, mode])
 
-  // Focus mode — hide bottom nav inside an active study session so
-  // the session UI gets the full screen. Reappears on the summary.
-  const inSession = pathname.startsWith('/mobile/study/session/') &&
-    !pathname.endsWith('/summary')
-
   if (inSession) return null
 
   return (
@@ -112,8 +54,9 @@ export function BottomNavigation() {
     // app container already stops at var(--safe-area-bottom) (a white
     // spacer fills the gap below), so adding the inset again floated
     // the bar ~34px+ above the bottom on native builds.
+    // Hidden at lg — the desktop sidebar takes over there.
     <nav
-      className="flex-shrink-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 pb-1 z-50"
+      className="flex-shrink-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 pb-1 z-50 lg:hidden"
       style={{ touchAction: 'none' }}
     >
       {/* Flat hairline-top bar; the only ornament is the pill gliding

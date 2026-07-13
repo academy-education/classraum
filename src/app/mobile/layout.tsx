@@ -2,6 +2,7 @@
 
 import { ReactNode, useCallback } from 'react'
 import { BottomNavigation } from '@/components/ui/mobile/BottomNavigation'
+import { StudySidebar } from '@/components/ui/mobile/StudySidebar'
 import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
 import { XpToast } from '@/app/mobile/study/_shared/XpToast'
 import { UndoToast } from '@/app/mobile/study/_shared/UndoToast'
@@ -64,20 +65,24 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
   // Render the content - safe area backgrounds are handled by parent MobileLayout
   return (
     <>
-      {/* Header - non-scrollable */}
+      {/* Header - non-scrollable, full width above the sidebar+content row */}
       <MobileHeader />
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-hidden">
-        <div
-          className="h-full overflow-y-auto scroll-smooth bg-gray-50"
-          style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
-        >
-          {isLoading ? <LoadingScreen /> : children}
-        </div>
-      </main>
+      {/* Body row: desktop nav rail (lg+) beside the scrolling content.
+          On narrow screens the rail is hidden and the bottom bar shows. */}
+      <div className="flex-1 flex overflow-hidden">
+        <StudySidebar />
+        <main className="flex-1 overflow-hidden">
+          <div
+            className="h-full overflow-y-auto scroll-smooth bg-gray-50"
+            style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
+          >
+            {isLoading ? <LoadingScreen /> : children}
+          </div>
+        </main>
+      </div>
 
-      {/* Bottom Navigation - non-scrollable */}
+      {/* Bottom Navigation - non-scrollable (hidden at lg) */}
       <BottomNavigation />
 
       {/* Global XP toast — listens for window 'study:xp' events.
