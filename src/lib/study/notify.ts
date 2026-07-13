@@ -1,4 +1,5 @@
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { sendPushToStudent } from '@/lib/study/push'
 
 /**
  * notifyStudent — server-side helper to insert into the existing
@@ -19,16 +20,21 @@ export type StudyNotificationKind =
   | 'study_league_demoted'
   | 'study_weekly_recap'
   | 'study_streak_milestone'
+  | 'study_streak_at_risk'
+  | 'study_daily_challenge'
   | 'study_response_graded'
 
 export async function notifyStudent({
-  studentId, kind, title, message, link,
+  studentId, kind, title, message, link, push,
 }: {
   studentId: string
   kind: StudyNotificationKind
   title: string
   message: string
   link?: string
+  /** Also deliver as a device push (same title/body). No-ops when FCM
+   *  isn't configured or the student has no active tokens. */
+  push?: boolean
 }): Promise<void> {
   try {
     const { error } = await supabaseAdmin
@@ -44,5 +50,12 @@ export async function notifyStudent({
     if (error) console.error('[notify]', error)
   } catch (e) {
     console.error('[notify] failed', e)
+  }
+  if (push) {
+    try {
+      await sendPushToStudent(studentId, { title, body: message, url: link })
+    } catch (e) {
+      console.error('[notify] push failed', e)
+    }
   }
 }

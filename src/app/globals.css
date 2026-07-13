@@ -620,3 +620,16 @@
   transform: scale(1);
   opacity: 1;
 }
+
+/* Gaps surfaced by scripts/check-dark-remap.js */
+.dark .from-gray-100 { --tw-gradient-from: #232936; } /* skeleton shimmer */
+.dark .to-gray-200 { --tw-gradient-to: #2c3342; }
+.dark .bg-gray-800 { background-color: #333b4c; }
+.dark .bg-gray-900\/95 { background-color: rgb(35 41 54 / 0.97); }
+.dark .bg-gray-200\/80 { background-color: rgb(51 59 76 / 0.85); }
+.dark .bg-gray-50\/80 { background-color: rgb(35 41 54 / 0.8); }
+.dark .border-gray-400 { border-color: rgb(255 255 255 / 0.28); }
+.dark .fill-gray-500 { fill: #98a1ae; }
+.dark .fill-gray-700 { fill: #d1d5db; }
+.dark .via-white\/30 { --tw-gradient-via: rgb(255 255 255 / 0.05); }
+.dark .via-white\/40 { --tw-gradient-via: rgb(255 255 255 / 0.06); }

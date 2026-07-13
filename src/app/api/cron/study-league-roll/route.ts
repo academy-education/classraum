@@ -79,6 +79,7 @@ export async function GET(req: NextRequest) {
       title,
       message,
       link: '/mobile/study/league',
+      push: true,
     })
     notified++
   }
