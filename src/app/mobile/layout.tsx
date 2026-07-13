@@ -72,21 +72,27 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
   // Render the content - safe area backgrounds are handled by parent MobileLayout
   return (
     <>
-      {/* Header - non-scrollable, full width above the sidebar+content row */}
-      <MobileHeader />
-
-      {/* Body row: desktop nav rail (lg+) beside the scrolling content.
-          On narrow screens the rail is hidden and the bottom bar shows. */}
+      {/* Desktop shell (lg+): a FULL-HEIGHT nav rail on the left with the
+          logo at its top-left corner, and the content column to its
+          right carrying its own top utility strip. On phones the rail is
+          hidden, so the header spans full width on top exactly as before
+          and the bottom bar shows. */}
       <div className="flex-1 flex overflow-hidden">
         <StudySidebar />
-        <main className="flex-1 overflow-hidden">
-          <div
-            className="h-full overflow-y-auto scroll-smooth bg-gray-50"
-            style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
-          >
-            {isLoading ? <LoadingScreen /> : children}
-          </div>
-        </main>
+        <div className="flex-1 flex flex-col overflow-hidden">
+          {/* Header - non-scrollable. Full width on phones; a top-right
+              utility strip beside the content on desktop (its logo hides
+              at lg since the rail owns it). */}
+          <MobileHeader />
+          <main className="flex-1 overflow-hidden">
+            <div
+              className="h-full overflow-y-auto scroll-smooth bg-gray-50"
+              style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
+            >
+              {isLoading ? <LoadingScreen /> : children}
+            </div>
+          </main>
+        </div>
       </div>
 
       {/* Bottom Navigation - non-scrollable (hidden at lg) */}

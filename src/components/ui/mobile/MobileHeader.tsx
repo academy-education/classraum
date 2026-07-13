@@ -202,8 +202,10 @@ export function MobileHeader() {
           safe-area inset and ate a big slice of the phone screen. */}
       <div className="px-4 py-2">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo — hidden at lg, where the desktop sidebar owns the
+              brand mark. The empty flex slot keeps the utility actions
+              pinned right so the header reads as a top strip. */}
+          <div className="flex items-center lg:hidden">
             <Image
               src="/logo2-test.png"
               alt="Classraum"

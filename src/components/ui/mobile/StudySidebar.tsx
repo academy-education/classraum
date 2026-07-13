@@ -1,5 +1,6 @@
 "use client"
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { useMobileNav } from './useMobileNav'
@@ -22,8 +23,14 @@ export function StudySidebar() {
   return (
     <nav
       aria-label="Study navigation"
-      className="hidden lg:flex flex-shrink-0 w-56 xl:w-60 flex-col gap-1 border-r border-gray-100 bg-white/80 px-3 py-5 overflow-y-auto"
+      className="hidden lg:flex flex-shrink-0 w-60 xl:w-64 flex-col border-r border-gray-100 bg-white overflow-y-auto"
     >
+      {/* Logo pinned to the rail's top-left — the desktop app's brand
+          anchor (the mobile header hides its own logo at lg). */}
+      <div className="flex items-center h-14 px-5 border-b border-gray-100/80">
+        <Image src="/logo2-test.png" alt="Classraum" width={150} height={40} className="h-8 w-auto" priority />
+      </div>
+      <div className="flex-1 flex flex-col gap-1 px-3 py-4">
       {navItems.map(item => {
         const Icon = item.icon
         const active = isActive(item.href)
@@ -48,6 +55,7 @@ export function StudySidebar() {
           </button>
         )
       })}
+      </div>
     </nav>
   )
 }
