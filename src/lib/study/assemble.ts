@@ -3,15 +3,18 @@ import type { Question } from '@/lib/test-verify'
 
 /**
  * Assemble a test from the pre-verified item bank (study_item_bank),
- * as opposed to generating one live. Pulls only verified rows, spreads
- * selection across content domains (round-robin) so a section isn't
- * clustered in one domain, and shapes the result into the same
- * TestPayload the generator emits and the renderer consumes.
+ * as opposed to generating one live. Pulls only verified rows, draws
+ * per-domain quotas from the College Board blueprint (see BLUEPRINT)
+ * so the mix mirrors the real exam's weighting rather than an even
+ * split, and shapes the result into the same TestPayload the generator
+ * emits and the renderer consumes.
  *
- * v1 is a simple domain-balanced draw. The full blueprint enforcement
- * (exact per-domain quotas + difficulty mix + adaptive module-2
- * routing) layers on top of this once the bank is large enough to
- * satisfy every cell.
+ * Draw order within a domain is unseen-first (no-repeat tracking via
+ * study_item_exposures), and a shortfall in one domain backfills from
+ * the heaviest remaining domains so the target count is still met.
+ *
+ * Not yet layered on: difficulty-mix targets per module and the
+ * 2-module adaptive routing the live/TOEFL path uses.
  */
 
 export interface AssembleParams {
@@ -118,7 +121,7 @@ const SECTION_META: Record<string, { title: string; minutesPerQ: number; label: 
  * Domain keys must match study_item_bank.domain exactly.
  * Sources: College Board Digital SAT Assessment Framework.
  */
-const BLUEPRINT: Record<string, Record<string, number>> = {
+export const BLUEPRINT: Record<string, Record<string, number>> = {
   math: {
     'Algebra': 0.35,
     'Advanced Math': 0.35,
@@ -139,7 +142,7 @@ const BLUEPRINT: Record<string, Record<string, number>> = {
  * ideal share, then hands the leftover seats to the domains with the
  * biggest fractional remainders.
  */
-function blueprintQuotas(weights: Record<string, number>, count: number): Record<string, number> {
+export function blueprintQuotas(weights: Record<string, number>, count: number): Record<string, number> {
   const rows = Object.entries(weights).map(([d, w]) => {
     const exact = w * count
     const floor = Math.floor(exact)
