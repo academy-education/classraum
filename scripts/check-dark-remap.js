@@ -23,27 +23,37 @@ const GLOBALS = path.join(ROOT, 'src/app/globals.css')
 const SCAN_DIR = path.join(ROOT, 'src/app/mobile')
 
 // Utility families that render near-invisible or glaring when the
-// dark remap misses them. Everything else (primary, semantic colors)
-// is theme-safe by design.
-const WATCH = /^(bg-white(\/\d+)?|bg-gray-\d+(\/\d+)?|text-gray-\d+|ring-gray-\d+(\/\d+)?|border-gray-\d+(\/\d+)?|divide-gray-\d+(\/\d+)?|from-white(\/\d+)?|via-white(\/\d+)?|to-white(\/\d+)?|from-gray-\d+|via-gray-\d+|to-gray-\d+|fill-gray-\d+|stroke-gray-\d+)$/
+// dark remap misses them, optionally under a hover:/group-hover:/
+// active: state prefix (a hover that isn't remapped flashes a
+// light-scheme colour on hover in dark mode). Everything else
+// (primary, semantic colors) is theme-safe by design.
+const BASE = 'bg-white(\\/\\d+)?|bg-gray-\\d+(\\/\\d+)?|text-gray-\\d+|ring-gray-\\d+(\\/\\d+)?|border-gray-\\d+(\\/\\d+)?|divide-gray-\\d+(\\/\\d+)?|from-white(\\/\\d+)?|via-white(\\/\\d+)?|to-white(\\/\\d+)?|from-gray-\\d+|via-gray-\\d+|to-gray-\\d+|fill-gray-\\d+|stroke-gray-\\d+'
+const WATCH = new RegExp(`^((hover|group-hover|active):)?(${BASE})$`)
 
 // Confirmed-intentional gaps: white-alpha glass on gradient hero cards
-// reads correctly on both themes.
+// reads correctly on both themes (base + hover/group-hover forms).
 const ALLOWLIST = new Set([
   'bg-white/10', 'bg-white/15', 'bg-white/20', 'bg-white/25', 'bg-white/30',
+  'hover:bg-white/25', 'hover:bg-white/30', 'group-hover:bg-white/25',
+  'group-hover:text-white',
   // League obsidian tier gradient — deliberately dark in both themes.
   'from-gray-700', 'via-gray-500', 'to-gray-900',
 ])
 
 function cssEscapeToClass(sel) {
-  // ".dark .bg-white\/85" → "bg-white/85"
+  // ".dark .hover\:bg-white\/85:hover" → "hover:bg-white/85"
   return sel.replace(/\\/g, '')
 }
 
 const css = fs.readFileSync(GLOBALS, 'utf8')
 const remapped = new Set()
-for (const m of css.matchAll(/\.dark\s+\.([A-Za-z0-9\\/_.-]+)/g)) {
-  remapped.add(cssEscapeToClass(m[1]))
+// Grab the full selector-tail (may include escaped `\:` / `\/` and a
+// trailing state pseudo like `:hover`), strip the CSS backslashes,
+// then drop the trailing pseudo so `.dark .hover\:bg-gray-50:hover`
+// registers the Tailwind class `hover:bg-gray-50`.
+for (const m of css.matchAll(/\.dark\s+\.([A-Za-z0-9\\/_.:-]+)/g)) {
+  const cls = cssEscapeToClass(m[1]).replace(/:(hover|focus|active|focus-visible)$/, '')
+  remapped.add(cls)
 }
 
 const used = new Map() // class → [files]
@@ -53,8 +63,8 @@ function scan(dir) {
     if (entry.isDirectory()) { scan(p); continue }
     if (!/\.(tsx|ts)$/.test(entry.name)) continue
     const src = fs.readFileSync(p, 'utf8')
-    // Tokenize anything class-like; cheap but effective for Tailwind.
-    for (const m of src.matchAll(/[a-z][a-z0-9/-]+/g)) {
+    // Tokenize anything class-like, including a state prefix.
+    for (const m of src.matchAll(/(?:(?:hover|group-hover|active):)?[a-z][a-z0-9/-]+/g)) {
       const token = m[0]
       if (!WATCH.test(token)) continue
       if (ALLOWLIST.has(token) || remapped.has(token)) continue
@@ -66,6 +76,9 @@ function scan(dir) {
   }
 }
 scan(SCAN_DIR)
+// Shared mobile chrome (header, bottom nav, desktop sidebar) also
+// renders under the dark /mobile surfaces.
+scan(path.join(ROOT, 'src/components/ui/mobile'))
 
 if (used.size === 0) {
   console.log('✓ dark remap covers every watched utility under src/app/mobile')

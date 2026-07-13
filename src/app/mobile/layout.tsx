@@ -17,6 +17,7 @@ import { RoleBasedAuthWrapper } from '@/components/ui/role-based-auth-wrapper'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 import { usePushNotifications } from '@/hooks/usePushNotifications'
 import { useNativeApp } from '@/hooks/useNativeApp'
+import { useTheme } from '@/hooks/useTheme'
 
 interface MobileLayoutProps {
   children: ReactNode
@@ -24,6 +25,12 @@ interface MobileLayoutProps {
 
 function MobileLayoutContent({ children }: MobileLayoutProps) {
   const { isInitializing, isAuthenticated, user, refetch } = usePersistentMobileAuth()
+
+  // Apply the persisted theme on EVERY /mobile page (not just profile,
+  // where the appearance setting lives). Without this, dark mode only
+  // took effect once Profile mounted its own useTheme; a client-side
+  // nav into any other study page left the boot-script class stale.
+  useTheme()
 
   // Handle app resume - refresh data when coming back from background
   const handleAppResume = useCallback(() => {
