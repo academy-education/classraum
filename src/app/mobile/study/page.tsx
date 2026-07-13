@@ -417,7 +417,7 @@ function StudyLandingInner() {
   // one — the "loads, then changes" effect.
   if (!landingData || loading) {
     return (
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-8">
+      <div className="max-w-3xl lg:max-w-6xl mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
         <SkeletonBlock className="h-[190px] w-full rounded-3xl" />
         <div className="space-y-3">
           <SkeletonBlock className="h-5 w-16 rounded-full" />
@@ -447,7 +447,7 @@ function StudyLandingInner() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-72 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.025] to-transparent"
       />
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-8">
+      <div className="max-w-3xl lg:max-w-6xl mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
         {/* Dark hero band renders its own top-right action row
             (search + overflow) on a light-on-dark treatment so both
             elements share one visual layer. */}
@@ -463,8 +463,9 @@ function StudyLandingInner() {
             uniformly between label↔card and card↔card, defeating the
             visual grouping. */}
 
-        {/* Today — time-sensitive, all self-hide when empty. */}
-        <SectionGroup label={String(t('study.landing.todayBand'))}>
+        {/* Today — time-sensitive, all self-hide when empty. 2-up on
+            desktop so the band uses the width. */}
+        <SectionGroup label={String(t('study.landing.todayBand'))} cols>
           {/* No target test yet → the personalized cards below (path,
               challenge, recommendations) have nothing to anchor on, so
               lead with a pick-your-test prompt instead. */}
@@ -788,7 +789,7 @@ function StudyLandingInner() {
  *  every child auto-hides (e.g. first-time user with no resumable
  *  session, no streak, no due reviews), we still render an empty
  *  section node — but space-y-8 collapses it cleanly. */
-function SectionGroup({ label, children }: { label: string; children: React.ReactNode }) {
+function SectionGroup({ label, children, cols }: { label: string; children: React.ReactNode; cols?: boolean }) {
   return (
     <section className="space-y-3">
       {/* Same treatment as the shelf headers below so every landing
@@ -796,7 +797,12 @@ function SectionGroup({ label, children }: { label: string; children: React.Reac
       <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
         {label}
       </h2>
-      {children}
+      {/* `cols` flows the cards into a 2-up grid on wide screens so a
+          band of full-width phone cards doesn't stretch across the
+          desktop content column. */}
+      <div className={cols ? 'grid gap-3 lg:grid-cols-2 items-start' : 'space-y-3'}>
+        {children}
+      </div>
     </section>
   )
 }
