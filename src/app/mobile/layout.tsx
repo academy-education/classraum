@@ -4,6 +4,7 @@ import { ReactNode, useCallback } from 'react'
 import { BottomNavigation } from '@/components/ui/mobile/BottomNavigation'
 import { StudySidebar } from '@/components/ui/mobile/StudySidebar'
 import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
+import { useMobileNav } from '@/components/ui/mobile/useMobileNav'
 import { XpToast } from '@/app/mobile/study/_shared/XpToast'
 import { UndoToast } from '@/app/mobile/study/_shared/UndoToast'
 import { DailyGoalCelebration } from '@/app/mobile/study/_shared/DailyGoalCelebration'
@@ -25,6 +26,14 @@ interface MobileLayoutProps {
 
 function MobileLayoutContent({ children }: MobileLayoutProps) {
   const { isInitializing, isAuthenticated, user, refetch } = usePersistentMobileAuth()
+
+  // Focus mode — inside an active test/session, the session UI owns the
+  // whole screen (its own progress + timer bar). Hiding the shell chrome
+  // (header, sidebar, bottom bar) turns it into a dedicated test surface
+  // instead of a mobile page nested under a redundant top bar. The
+  // sidebar and bottom bar already self-hide on inSession; the header
+  // is hidden here to match.
+  const { inSession } = useMobileNav()
 
   // Apply the persisted theme on EVERY /mobile page (not just profile,
   // where the appearance setting lives). Without this, dark mode only
@@ -82,8 +91,9 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Header - non-scrollable. Full width on phones; a top-right
               utility strip beside the content on desktop (its logo hides
-              at lg since the rail owns it). */}
-          <MobileHeader />
+              at lg since the rail owns it). Hidden inside an active
+              session so the test surface is full-screen. */}
+          {!inSession && <MobileHeader />}
           <main className="flex-1 overflow-hidden">
             <div
               className="h-full overflow-y-auto scroll-smooth bg-gray-50"

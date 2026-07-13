@@ -355,7 +355,10 @@ function MobileProfilePageContent() {
         </div>
       )}
 
-      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
+      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform max-w-3xl lg:max-w-5xl mx-auto w-full">
+      {/* Cap + center content so the profile page doesn't stretch
+          full-bleed on desktop — matches the study data pages
+          (max-w-3xl lg:max-w-5xl). */}
       {/* Page Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-semibold tracking-tight text-gray-900">

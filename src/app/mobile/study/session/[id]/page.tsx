@@ -130,69 +130,42 @@ function SessionInner({ id }: { id: string }) {
     />
   )
 
-  // Chat + Practice modes get real UIs now. Lesson + Flashcards still
-  // show the Phase 1.5 placeholder until their implementations land.
-  if (session.mode === 'chat') {
-    return (
-      <div className="flex flex-col h-full bg-gray-50">
-        {header}
-        <ChatSession sessionId={session.id} language={session.language} />
-      </div>
-    )
-  }
-  if (session.mode === 'practice') {
-    return (
-      <div className="flex flex-col h-full bg-gray-50">
-        {header}
-        <PracticeSession sessionId={session.id} language={session.language} />
-      </div>
-    )
-  }
-  if (session.mode === 'lesson') {
-    return (
-      <div className="flex flex-col h-full bg-gray-50">
-        {header}
-        <LessonSession sessionId={session.id} language={session.language} />
-      </div>
-    )
-  }
-  if (session.mode === 'flashcards') {
-    return (
-      <div className="flex flex-col h-full bg-gray-50">
-        {header}
-        <FlashcardsSession sessionId={session.id} language={session.language} />
-      </div>
-    )
-  }
-  if (session.mode === 'full_test') {
-    return (
-      <div className="flex flex-col h-full bg-gray-50">
-        {header}
-        <TestSession sessionId={session.id} language={session.language} />
-      </div>
-    )
-  }
-  if (session.mode === 'response') {
-    return (
-      <div className="flex flex-col h-full bg-gray-50">
-        {header}
-        <ResponseSession sessionId={session.id} language={session.language} />
-      </div>
-    )
-  }
+  // Pick the mode-specific session UI. Every mode shares the same
+  // chrome so this is chosen once and wrapped in a single capped column.
+  const body = (() => {
+    switch (session.mode) {
+      case 'chat':       return <ChatSession sessionId={session.id} language={session.language} />
+      case 'practice':   return <PracticeSession sessionId={session.id} language={session.language} />
+      case 'lesson':     return <LessonSession sessionId={session.id} language={session.language} />
+      case 'flashcards': return <FlashcardsSession sessionId={session.id} language={session.language} />
+      case 'full_test':  return <TestSession sessionId={session.id} language={session.language} />
+      case 'response':   return <ResponseSession sessionId={session.id} language={session.language} />
+      default:
+        // Safety net if a row ever lands with an unknown mode value.
+        return (
+          <div className="flex-1 px-5 py-8">
+            <div className="rounded-2xl border border-dashed border-gray-200 bg-white p-6 text-center">
+              <Sparkles className="w-6 h-6 text-primary mx-auto mb-2" />
+              <p className="text-sm font-medium text-gray-900">
+                {t('study.session.unknownMode')}
+              </p>
+            </div>
+          </div>
+        )
+    }
+  })()
 
-  // All four modes are wired; this branch is the safety net if a row
-  // ever lands with an unknown mode value.
   return (
     <div className="flex flex-col h-full bg-gray-50">
-      {header}
-      <div className="flex-1 px-5 py-8">
-        <div className="rounded-2xl border border-dashed border-gray-200 bg-white p-6 text-center">
-          <Sparkles className="w-6 h-6 text-primary mx-auto mb-2" />
-          <p className="text-sm font-medium text-gray-900">
-            {t('study.session.unknownMode')}
-          </p>
-        </div>
+      {/* Width-capped, centered session column. On phones it fills the
+          screen (max-w has no effect below 48rem); on desktop it caps to
+          a comfortable reading measure and centers so the test surface
+          reads as a deliberate exam sheet — not full-bleed mobile text
+          stretched edge to edge. Header + body share the width so the
+          chrome lines up with the content. */}
+      <div className="flex-1 flex flex-col min-h-0 w-full max-w-3xl mx-auto">
+        {header}
+        {body}
       </div>
     </div>
   )

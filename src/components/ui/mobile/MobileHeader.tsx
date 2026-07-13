@@ -216,7 +216,10 @@ export function MobileHeader() {
             />
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* ml-auto pins the utility actions right even when the logo
+              is display:none at lg — otherwise justify-between with a
+              single visible child collapses them to the left edge. */}
+          <div className="flex items-center gap-2 ml-auto">
             {/* Mode chip — displays the current top-level mode (Grades
                 or Study) with chevron. Tap opens ModeSwitcherSheet for
                 the swap. Self-hides on the hub and for parents. */}
