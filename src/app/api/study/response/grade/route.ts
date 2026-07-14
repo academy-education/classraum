@@ -5,7 +5,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { awardXp } from '@/lib/study/xp'
+import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { notifyStudent } from '@/lib/study/notify'
 import {
   GradeSchema,
@@ -217,6 +217,19 @@ export async function POST(req: NextRequest) {
   // the award rolls back — first grade per task is the only one
   // that pays out.
   void awardXp(user.id, 'response_graded', xpSourceId)
+
+  // Mark the session completed with a 0-100 score (band / scaleMax) so it
+  // stops showing "in progress" in history and gets a score chip — the
+  // response mode never flipped its session status before.
+  void supabaseAdmin
+    .from('study_sessions')
+    .update({
+      status: 'completed',
+      completed_at: new Date().toISOString(),
+      score: Math.round((clampedBand / rubric.scaleMax) * 100),
+    })
+    .eq('id', session.id)
+    .eq('student_id', user.id)
   // Inbox row — useful for the student to revisit their graded
   // response later from the bell icon without scrolling history.
   const skillLabel = body.skill === 'speaking' ? '말하기' : '작문'
@@ -233,5 +246,6 @@ export async function POST(req: NextRequest) {
     submissionId: submission.id,
     grade: { ...grade, overallBand: clampedBand },
     scaleMax: rubric.scaleMax,
+    xpAwarded: XP_VALUES.response_graded,
   })
 }

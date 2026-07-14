@@ -142,6 +142,11 @@ export function ResponseSession({
       setGrade(json.grade as Grade)
       setScaleMax(json.scaleMax as number)
       setStage('result')
+      // Celebrate earned XP like every other mode (response was the only
+      // one that awarded XP silently).
+      if (typeof json.xpAwarded === 'number' && json.xpAwarded > 0) {
+        void import('../../_shared/XpToast').then(m => m.emitXp(json.xpAwarded, ko ? '응답 평가 완료' : 'Response graded'))
+      }
     } catch (e) {
       console.error(e)
       setErrMsg(String(e))

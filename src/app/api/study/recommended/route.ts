@@ -85,7 +85,10 @@ export async function GET(req: NextRequest) {
   // family topics come first within the weak section. Slug pattern
   // for test_prep children is e.g. "sat-math", "ksat-korean" — we
   // match prefix "{family}-" to identify membership.
-  const inTarget = (slug: string) => targetTest ? slug.startsWith(targetTest + '-') : false
+  // Case-insensitive: target_test is stored "SAT" (onboarding/prefs) or
+  // "sat" (path/topic PUTs) while slugs are lowercase ("sat-math"), so a
+  // case-sensitive prefix match silently disabled the whole rerank.
+  const inTarget = (slug: string) => targetTest ? slug.toLowerCase().startsWith(targetTest.toLowerCase() + '-') : false
   const weakSorted = targetTest
     ? [...(weak ?? [])].sort((a, b) => {
         const ta = (a as unknown as { topic: { slug: string } | null }).topic?.slug ?? ''

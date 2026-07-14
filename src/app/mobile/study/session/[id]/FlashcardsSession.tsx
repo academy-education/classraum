@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Loader2, RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Zap } from 'lucide-react'
@@ -195,6 +195,23 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
 
   // Release the mark lock once the queue head advances.
   useEffect(() => { setMarking(false) }, [queue])
+
+  // Mark the session completed once the student clears the whole queue.
+  // Flashcards were never flipped off 'in_progress', so history showed
+  // them "in progress" forever and they never got a score chip. Score =
+  // % of cards rated "got it". Fires once via the ref guard.
+  const completedRef = useRef(false)
+  useEffect(() => {
+    if (completedRef.current) return
+    if (!user?.userId || !deck || deck.length === 0 || queue.length !== 0) return
+    completedRef.current = true
+    const score = Math.round((marked.got / deck.length) * 100)
+    void supabase
+      .from('study_sessions')
+      .update({ status: 'completed', completed_at: new Date().toISOString(), score })
+      .eq('id', sessionId)
+      .eq('student_id', user.userId)
+  }, [deck, queue.length, marked.got, sessionId, user?.userId])
 
   if (loading) {
     return (
