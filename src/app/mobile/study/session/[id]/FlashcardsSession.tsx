@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Loader2, RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Zap } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
@@ -38,6 +39,7 @@ const holdForMascot = async (startedAt: number) => {
 export function FlashcardsSession({ sessionId, language }: { sessionId: string; language: 'en' | 'ko' }) {
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
+  const router = useRouter()
   const ko = language === 'ko'
 
   const [deck, setDeck] = useState<Card[] | null>(null)
@@ -217,6 +219,21 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
     )
   }
 
+  // "New deck" starts a FRESH flashcards session on the same topic so
+  // the bank draw serves the next unseen cards (reloading this session
+  // just returns the cached deck). Falls back to a reload if we can't
+  // spin up a new session.
+  const startFreshDeck = async () => {
+    if (!user?.userId || !topicId) { void load(); return }
+    const { data, error: insErr } = await supabase
+      .from('study_sessions')
+      .insert({ student_id: user.userId, topic_id: topicId, mode: 'flashcards', language })
+      .select('id')
+      .single()
+    if (insErr || !data) { void load(); return }
+    router.push(`/mobile/study/session/${data.id}`)
+  }
+
   // Empty queue means the student reviewed every card and didn't mark
   // any "again" — show the summary.
   if (queue.length === 0) {
@@ -237,7 +254,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
         <div className="mt-6 w-full max-w-xs flex flex-col gap-2">
           <button
             type="button"
-            onClick={() => void load()}
+            onClick={() => void startFreshDeck()}
             className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-medium"
           >
             <RefreshCw className="w-4 h-4" />
