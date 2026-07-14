@@ -155,15 +155,17 @@ function SessionInner({ id }: { id: string }) {
     }
   })()
 
+  // Test-taking surfaces (practice + full test) lay their content out in
+  // TWO panes on desktop (passage/prompt beside the answers) so they fill
+  // the width; everything else is a single reading column, so it caps
+  // narrower and centers. Phones get the full screen either way.
+  const wide = session.mode === 'practice' || session.mode === 'full_test'
+
   return (
     <div className="flex flex-col h-full bg-gray-50">
-      {/* Width-capped, centered session column. On phones it fills the
-          screen (max-w has no effect below 48rem); on desktop it caps to
-          a comfortable reading measure and centers so the test surface
-          reads as a deliberate exam sheet — not full-bleed mobile text
-          stretched edge to edge. Header + body share the width so the
-          chrome lines up with the content. */}
-      <div className="flex-1 flex flex-col min-h-0 w-full max-w-3xl mx-auto">
+      {/* Width-capped, centered session column. Header + body share the
+          width so the chrome lines up with the content. */}
+      <div className={`flex-1 flex flex-col min-h-0 w-full mx-auto ${wide ? 'max-w-6xl' : 'max-w-3xl'}`}>
         {header}
         {body}
       </div>

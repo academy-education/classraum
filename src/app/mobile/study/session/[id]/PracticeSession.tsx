@@ -227,7 +227,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
   return (
     <div className="flex-1 flex flex-col min-h-0">
       {/* Progress strip */}
-      <div className="flex-shrink-0 px-5 py-3 flex items-center justify-between text-xs text-gray-500">
+      <div className="flex-shrink-0 px-5 lg:px-8 py-3 flex items-center justify-between text-xs text-gray-500">
         <span>{t('study.practice.progress', { current: String(idx + 1), total: String(questions.length) })}</span>
         <span className="inline-flex items-center gap-1 text-emerald-700">
           <CheckCircle2 className="w-3.5 h-3.5" />
@@ -236,8 +236,8 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
       </div>
 
       {/* Question card */}
-      <div className="flex-1 px-5 pb-5 overflow-y-auto">
-        <div className="rounded-2xl border border-gray-200 bg-white p-5">
+      <div className="flex-1 px-5 lg:px-8 pb-5 overflow-y-auto">
+        <div className="rounded-2xl border border-gray-200 bg-white p-5 lg:p-6">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
               {t(`study.practice.difficulty.${q.difficulty}`)}
@@ -246,12 +246,18 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
               {t(`study.practice.type.${q.type}`)}
             </span>
           </div>
-          <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap">
-            {q.prompt}
-          </p>
+          {/* Two-pane on desktop: the passage + question sit on the left,
+              the answer choices on the right, so a wide screen is used
+              instead of a narrow centered column. Stacks on phones. */}
+          <div className="lg:grid lg:grid-cols-[1.4fr_1fr] lg:gap-8 lg:items-start">
+            <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap">
+              {q.prompt}
+            </p>
 
+            {/* Right pane: answer choices + post-submit feedback. */}
+            <div className="mt-5 lg:mt-0">
           {/* Answer input — varies by type. */}
-          <div className="mt-4 space-y-2">
+          <div className="space-y-2">
             {q.type === 'multiple_choice' && q.choices && (
               q.choices.map((choice, ci) => {
                 const selected = answer === choice
@@ -360,11 +366,13 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
               )}
             </div>
           )}
+            </div>{/* end right pane */}
+          </div>{/* end two-pane grid */}
         </div>
       </div>
 
       {/* Bottom CTA */}
-      <div className="flex-shrink-0 px-5 py-3 border-t border-gray-100 bg-white">
+      <div className="flex-shrink-0 px-5 lg:px-8 py-3 border-t border-gray-100 bg-white">
         {phase === 'asking' ? (
           <button
             type="button"
