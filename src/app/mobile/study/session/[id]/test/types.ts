@@ -68,6 +68,9 @@ export interface SubmitResult {
   scorePercent: number
   /** Path-weighted SAT section score (adaptive sessions only). */
   sat?: { score: number; route: 'easy' | 'hard'; capped: boolean } | null
+  /** session_complete XP — present only on the fresh grade, so the
+   *  client fires the completion toast exactly once. */
+  xpAwarded?: number
   /** ungraded = open-response item (interview / email / discussion):
    *  rubric-graded in review, excluded from the auto-score. */
   verdicts: { index: number; correct: boolean; correctAnswer: string; ungraded?: boolean }[]

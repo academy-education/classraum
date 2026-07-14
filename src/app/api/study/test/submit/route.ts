@@ -5,6 +5,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { assessSessionMastery } from '@/lib/study-mastery-assess'
 import { estimateSectionScore } from '@/lib/study/sat-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
+import { awardXp, XP_VALUES } from '@/lib/study/xp'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -324,12 +325,18 @@ export async function POST(req: NextRequest) {
   // Failure is silent — the test result still ships to the client.
   void assessSessionMastery(body.sessionId)
 
+  // Session-complete XP + celebration. This is the fresh-grade path
+  // (idempotent replays returned earlier), so it fires exactly once per
+  // completed test. The client emits the big toast off `xpAwarded`.
+  void awardXp(user.id, 'session_complete', body.sessionId)
+
   return NextResponse.json({
     success: true,
     totalQuestions: weightedTotal,
     correctCount: weightedCorrect,
     scorePercent: weightedTotal > 0 ? Math.round(100 * weightedCorrect / weightedTotal) : 0,
     sat: satScore(weightedCorrect, weightedTotal),
+    xpAwarded: XP_VALUES.session_complete,
     verdicts,
   })
 }

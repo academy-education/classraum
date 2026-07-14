@@ -650,6 +650,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }
       const json = await res.json() as SubmitResult
       setResult(json)
+      // Celebrate finishing the test. Only the fresh-grade path returns
+      // xpAwarded (idempotent replays omit it), so this fires once.
+      if ((json.xpAwarded ?? 0) > 0) {
+        void import('../../_shared/XpToast').then(m =>
+          m.emitXp(json.xpAwarded!, undefined, 'big'))
+      }
       if (typeof window !== 'undefined') {
         localStorage.removeItem(`study:test:${sessionId}:elapsedMs`)
         localStorage.removeItem(`study:test:${sessionId}:startedAt`)

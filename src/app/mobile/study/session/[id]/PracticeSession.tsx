@@ -23,6 +23,7 @@ interface Question {
 interface Verdict {
   isCorrect: boolean
   aiExplanation: string
+  xpAwarded?: number
 }
 
 /**
@@ -112,6 +113,12 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
       setVerdict(v)
       setResults(prev => [...prev, v.isCorrect])
       setPhase('feedback')
+      // Fire the XP celebration on a correct answer — the toast engine
+      // was previously only wired for flashcards, so the highest-volume
+      // reward moment (answering a question) was silent.
+      if (v.isCorrect && (v.xpAwarded ?? 0) > 0) {
+        void import('../../_shared/XpToast').then(m => m.emitXp(v.xpAwarded!))
+      }
     } catch {
       // Soft-fail: show a synthetic verdict using the AI's pre-baked
       // explanation so the student isn't stranded on a 500 page.
@@ -134,11 +141,18 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
       void (async () => {
         try {
           const headers = await authHeaders()
-          await fetch('/api/study/practice/complete', {
+          const res = await fetch('/api/study/practice/complete', {
             method: 'POST',
             headers,
             body: JSON.stringify({ sessionId }),
           })
+          // Celebrate finishing the set (first completion only — the
+          // server returns 0 XP on a repeat round so no double toast).
+          const done = res.ok ? await res.json().catch(() => null) : null
+          if (done && (done.xpAwarded ?? 0) > 0) {
+            void import('../../_shared/XpToast').then(m =>
+              m.emitXp(done.xpAwarded, undefined, 'big'))
+          }
         } catch { /* silent */ }
       })()
       return

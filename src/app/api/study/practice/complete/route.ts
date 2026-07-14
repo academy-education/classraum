@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
+import { awardXp, XP_VALUES } from '@/lib/study/xp'
 
 /**
  * POST /api/study/practice/complete — mark a practice session finished.
@@ -52,6 +53,11 @@ export async function POST(req: NextRequest) {
   const correct = (attempts ?? []).filter(a => a.is_correct).length
   const score = Math.round((correct / total) * 100)
 
+  // Award session-complete XP only on the FIRST completion so re-finishing
+  // (e.g. a "practice more" second round) can't farm XP. Return the amount
+  // so the client fires the completion celebration.
+  const wasAlreadyComplete = session.status === 'completed'
+
   // Idempotent: re-finishing (e.g. "practice more" second round) keeps
   // the session completed and lets the score reflect the full ledger.
   await supabaseAdmin
@@ -59,5 +65,11 @@ export async function POST(req: NextRequest) {
     .update({ status: 'completed', completed_at: new Date().toISOString(), score })
     .eq('id', session.id)
 
-  return NextResponse.json({ score, correct, total })
+  let xpAwarded = 0
+  if (!wasAlreadyComplete) {
+    xpAwarded = XP_VALUES.session_complete
+    void awardXp(user.id, 'session_complete', session.id)
+  }
+
+  return NextResponse.json({ score, correct, total, xpAwarded })
 }
