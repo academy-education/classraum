@@ -121,6 +121,7 @@ function SessionInner({ id }: { id: string }) {
 
   const header = (
     <StudyPageHeader
+      wide
       backHref={topic ? `/mobile/study/topic/${topic.slug}` : '/mobile/study'}
       backLabel={String(t('study.session.back'))}
       icon={ModeIcon}
@@ -156,17 +157,18 @@ function SessionInner({ id }: { id: string }) {
   })()
 
   // Test-taking surfaces (practice + full test) lay their content out in
-  // TWO panes on desktop (passage/prompt beside the answers) so they fill
-  // the width; everything else is a single reading column, so it caps
-  // narrower and centers. Phones get the full screen either way.
+  // TWO panes on desktop (passage/prompt beside the answers) and FILL the
+  // width — big screens should be used, not framed by dead gutters.
+  // Single-flow reading modes (chat/lesson/flashcards/response) still cap
+  // to a comfortable measure. The header always spans full width with the
+  // back button at the left. Phones get the full screen either way.
   const wide = session.mode === 'practice' || session.mode === 'full_test'
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
-      {/* Width-capped, centered session column. Header + body share the
-          width so the chrome lines up with the content. */}
-      <div className={`flex-1 flex flex-col min-h-0 w-full mx-auto ${wide ? 'max-w-6xl' : 'max-w-3xl'}`}>
-        {header}
+      {/* Full-width header (back at the left edge). */}
+      {header}
+      <div className={`flex-1 flex flex-col min-h-0 w-full ${wide ? '' : 'max-w-3xl mx-auto'}`}>
         {body}
       </div>
     </div>

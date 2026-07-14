@@ -34,6 +34,11 @@ export interface StudyPageHeaderProps {
   eyebrow: string
   title: string
   rightSlot?: ReactNode
+  /** Full-bleed header: back button pinned to the left edge and the row
+   *  spanning the whole width (used by the session shell, which fills the
+   *  screen). Default stays centered at max-w-3xl for the standalone
+   *  sub-pages. */
+  wide?: boolean
 }
 
 
@@ -49,7 +54,7 @@ function useSmartBack(fallback: string) {
 
 export function StudyPageHeader({
   backHref, backLabel, icon: _Icon, iconColorClass: _iconColorClass,
-  eyebrow, title, rightSlot,
+  eyebrow, title, rightSlot, wide,
 }: StudyPageHeaderProps) {
   const hasBack = !!backHref && !!backLabel
   const goBack = useSmartBack(backHref ?? '/mobile/study')
@@ -97,9 +102,10 @@ export function StudyPageHeader({
       }`}
     >
       {/* Inner wrapper — bg + border go edge-to-edge for the sticky
-          effect, but content is width-constrained so it aligns with
-          the page body on desktop viewports. */}
-      <div className="max-w-3xl mx-auto px-5">
+          effect. Standalone sub-pages keep the content centered at
+          max-w-3xl; the session shell passes `wide` so the back button
+          sits at the far left and the row fills the screen. */}
+      <div className={wide ? 'w-full px-5 lg:px-8' : 'max-w-3xl mx-auto px-5'}>
         <div className="flex items-center gap-3">
           {hasBack && (
             <button type="button" onClick={goBack}

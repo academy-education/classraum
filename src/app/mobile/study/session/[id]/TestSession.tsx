@@ -1016,7 +1016,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             the bar carries the primary progress signal now. Inner row is
             capped + centered so it lines up with the question column on
             wide screens (the bar/border still spans full width). */}
-        <div className="px-5 py-2 flex items-center justify-between max-w-5xl mx-auto w-full">
+        <div className="px-5 py-2 flex items-center justify-between w-full">
           <button
             type="button"
             onClick={() => setGridOpen(v => !v)}
@@ -1063,7 +1063,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           question. */}
       {gridOpen && (
         <div className="flex-shrink-0 border-b border-gray-100 bg-gray-50/60 px-3 py-3">
-          <div className="grid grid-cols-8 gap-1.5 max-w-5xl mx-auto">
+          <div className="grid grid-cols-8 gap-1.5">
             {test.questions.map((_, i) => {
               const isCurrent = i === currentIdx
               const isAnswered = isItemAnswered(i)
@@ -1100,7 +1100,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           Next/Prev remounts the body: scroll resets to the top and the
           fade-in makes navigation read as movement, not a text swap. */}
       <div key={currentIdx} className="flex-1 overflow-y-auto animate-fade-in">
-       <div className="max-w-5xl mx-auto w-full px-5 py-5 lg:py-8">
+       <div className="w-full px-5 lg:px-8 py-5 lg:py-8">
         {/* Difficulty chip — hidden for SAT (the customization sheet
             already locks SAT to challenge and hides the picker, so
             surfacing per-item difficulty here would be inconsistent).
@@ -2000,7 +2000,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         // isn't stuck if auto-record silently fails).
         if (isSpeakingItem && !isLast && !interviewNextReady[speakingKey]) return null
         return (
-          <div className="flex-shrink-0 px-5 py-3 border-t border-gray-100 bg-white flex items-center gap-2 max-w-5xl mx-auto w-full">
+          <div className="flex-shrink-0 px-5 py-3 border-t border-gray-100 bg-white flex items-center gap-2 w-full">
             {!isSpeakingItem && (
               <button
                 type="button"

@@ -417,7 +417,7 @@ function StudyLandingInner() {
   // one — the "loads, then changes" effect.
   if (!landingData || loading) {
     return (
-      <div className="max-w-3xl lg:max-w-6xl mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
         <SkeletonBlock className="h-[190px] w-full rounded-3xl" />
         <div className="space-y-3">
           <SkeletonBlock className="h-5 w-16 rounded-full" />
@@ -447,7 +447,7 @@ function StudyLandingInner() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-72 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.025] to-transparent"
       />
-      <div className="max-w-3xl lg:max-w-6xl mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
         {/* Dark hero band renders its own top-right action row
             (search + overflow) on a light-on-dark treatment so both
             elements share one visual layer. */}
