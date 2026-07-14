@@ -291,13 +291,18 @@ function MobileProfilePageContent() {
   if (authLoading || loading || !studentHydrated) {
     return (
       <MobilePageErrorBoundary>
-        <div className="p-4">
-          <div className="mb-6">
-            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-              {t('mobile.profile.title')}
-            </h1>
+        <div className="px-5 lg:px-8 pt-6 pb-14 overflow-y-auto">
+          <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto w-full">
+            <div className="mb-6">
+              <StudySubPageHeader
+                icon={UserIcon}
+                eyebrow={String(t('mobile.profile.eyebrow'))}
+                title={String(t('mobile.profile.title'))}
+                subtitle={String(t('mobile.profile.subtitle'))}
+              />
+            </div>
+            <ProfileSkeleton />
           </div>
-          <ProfileSkeleton />
         </div>
       </MobilePageErrorBoundary>
     )
@@ -307,19 +312,24 @@ function MobileProfilePageContent() {
   if (!isReady) {
     return (
       <MobilePageErrorBoundary>
-        <div className="p-4">
-          <div className="mb-6">
-            <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-              {t('mobile.profile.title')}
-            </h1>
+        <div className="px-5 lg:px-8 pt-6 pb-14 overflow-y-auto">
+          <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto w-full">
+            <div className="mb-6">
+              <StudySubPageHeader
+                icon={UserIcon}
+                eyebrow={String(t('mobile.profile.eyebrow'))}
+                title={String(t('mobile.profile.title'))}
+                subtitle={String(t('mobile.profile.subtitle'))}
+              />
+            </div>
+            <Card>
+              <EmptyState
+                icon={School}
+                title={String(!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies'))}
+                size="sm"
+              />
+            </Card>
           </div>
-          <Card>
-            <EmptyState
-              icon={School}
-              title={String(!effectiveUserId ? t('mobile.common.selectStudent') : t('mobile.common.noAcademies'))}
-              size="sm"
-            />
-          </Card>
         </div>
       </MobilePageErrorBoundary>
     )
