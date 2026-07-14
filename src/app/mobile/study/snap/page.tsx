@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Camera, Image as ImageIcon, Loader2, RefreshCw, Sparkles, CheckCircle2, X, AlertCircle, ListChecks, Bookmark, BookmarkCheck } from 'lucide-react'
+import { ArrowLeft, Camera, Image as ImageIcon, Loader2, RefreshCw, Sparkles, CheckCircle2, X, AlertCircle, ListChecks, Bookmark, BookmarkCheck, Lock } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -46,11 +46,48 @@ interface SolveResponse {
 
 type Stage = 'pick' | 'review' | 'solving' | 'result' | 'error'
 
+// Snap-to-solve is temporarily gated behind a "coming soon" lock while
+// the feature is finalized. Flip to `true` to re-enable the full tool —
+// SnapInner and its whole flow below are left intact for that switch.
+const SNAP_ENABLED: boolean = false
+
 export default function SnapPage() {
+  if (!SNAP_ENABLED) return <SnapComingSoon />
   return (
     <StudySubscriptionGate>
       <SnapInner />
     </StudySubscriptionGate>
+  )
+}
+
+function SnapComingSoon() {
+  const { language } = useTranslation()
+  const ko = language === 'korean'
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 text-center gap-4">
+      <div className="relative w-16 h-16 rounded-2xl bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
+        <Camera className="w-7 h-7 text-gray-400" />
+        <span className="absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-white ring-1 ring-gray-200 flex items-center justify-center">
+          <Lock className="w-3.5 h-3.5 text-gray-500" />
+        </span>
+      </div>
+      <div>
+        <h1 className="text-[19px] font-semibold text-gray-900">
+          {ko ? '곧 만나요' : 'Coming soon'}
+        </h1>
+        <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs leading-relaxed">
+          {ko
+            ? '사진 풀이 기능을 준비 중이에요. 조금만 기다려 주세요!'
+            : "Snap-a-photo solving is on the way. We're putting the finishing touches on it."}
+        </p>
+      </div>
+      <Link
+        href="/mobile/study"
+        className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(40,133,232,0.30)] active:scale-[0.97] transition-transform"
+      >
+        {ko ? '학습으로 돌아가기' : 'Back to study'}
+      </Link>
+    </div>
   )
 }
 

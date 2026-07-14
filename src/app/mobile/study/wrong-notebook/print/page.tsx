@@ -1,8 +1,9 @@
 "use client"
 
 import { Suspense, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { Loader2 } from 'lucide-react'
+import { Loader2, ArrowLeft } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -93,8 +94,17 @@ function PrintInner() {
       <div className="min-h-screen bg-white text-black">
         <div className="max-w-3xl mx-auto px-8 py-10 print:px-0 print:py-0">
 
-          <div className="no-print mb-6 flex items-center justify-between">
-            <span className="text-[12px] text-gray-500">{ko ? '인쇄 미리보기' : 'Print preview'}</span>
+          <div className="no-print mb-6 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <Link
+                href="/mobile/study/wrong-notebook"
+                className="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg ring-1 ring-gray-200 text-[13px] font-medium text-gray-700 hover:bg-gray-50 transition"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                {ko ? '오답노트' : 'Back'}
+              </Link>
+              <span className="text-[12px] text-gray-500 truncate">{ko ? '인쇄 미리보기' : 'Print preview'}</span>
+            </div>
             <button type="button" onClick={() => window.print()}
               className="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-black text-white text-[13px] font-semibold hover:bg-gray-800 transition">
               {ko ? '인쇄 / PDF로 저장' : 'Print / Save as PDF'}

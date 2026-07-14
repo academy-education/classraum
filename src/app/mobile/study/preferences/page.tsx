@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp, Calendar } from 'lucide-react'
+import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -238,15 +238,6 @@ function PreferencesInner() {
                 )
               })}
             </div>
-          </SettingGroup>
-
-          <SettingGroup icon={Calendar} label={ko ? '시험 날짜' : 'Test date'} saving={saving === 'test_date'}>
-            <input
-              type="date"
-              value={prefs.test_date ?? ''}
-              onChange={(e) => update('test_date', e.target.value || null)}
-              className="w-full h-11 px-4 rounded-xl bg-white ring-1 ring-gray-200/70 text-[14px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
-            />
           </SettingGroup>
         </>
       )}

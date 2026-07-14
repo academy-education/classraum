@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { ArrowRight, Loader2, Sparkles, ChevronDown, Check } from 'lucide-react'
 import { StudySubPageHeader } from '../_shared/primitives'
 import { supabase } from '@/lib/supabase'
+import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -125,27 +126,31 @@ function BuilderInner() {
   const start = async () => {
     if (!user?.userId || !selectedTopic || creating) return
     setCreating(true)
-    const { data, error } = await supabase
-      .from('study_sessions')
-      .insert({
-        student_id: user.userId,
-        topic_id: selectedTopic.id,
-        mode: 'full_test',
-        language: ko ? 'ko' : 'en',
-        config: {
-          questionCount,
-          timeLimit,
-          difficultyBias: difficulty,
-        },
+    // The builder is SAT-only (OPEN_TEST_ROOT_SLUGS), and SAT full tests
+    // are assembled instantly from the verified item bank — never
+    // AI-generated. Route through /assemble (free, no credit) instead of
+    // a raw session insert that would fall into the generate pipeline and
+    // reserve a credit. `count` honors the picked length; the bank is
+    // fixed-difficulty so the difficulty/time knobs don't apply here.
+    const section = /math/i.test(selectedTopic.slug) ? 'math' : 'reading_writing'
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/test/assemble', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section, count: questionCount, adaptive: false }),
       })
-      .select('id')
-      .single()
-    if (error || !data) {
+      if (!res.ok) {
+        setCreating(false)
+        showError(startFailedMessage(ko))
+        return
+      }
+      const json = await res.json()
+      router.push(`/mobile/study/session/${json.sessionId}`)
+    } catch {
       setCreating(false)
       showError(startFailedMessage(ko))
-      return
     }
-    router.push(`/mobile/study/session/${data.id}`)
   }
 
   if (loadingTopics) {

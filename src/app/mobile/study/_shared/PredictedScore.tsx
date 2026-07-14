@@ -69,7 +69,7 @@ export function PredictedScore() {
               {ko ? '전체 모의고사를 한 번 풀면 기준 점수와 예상 SAT 점수를 잡아드려요.' : 'Take one full practice test to set your baseline and predicted SAT score.'}
             </p>
           </div>
-          <Link href="/mobile/study/tests" aria-label={ko ? '진단 모의고사 풀기' : 'Take a diagnostic'}
+          <Link href="/mobile/study/builder" aria-label={ko ? '진단 모의고사 풀기' : 'Take a diagnostic'}
             className="flex-shrink-0 w-9 h-9 rounded-full bg-white/15 ring-1 ring-white/20 flex items-center justify-center hover:bg-white/25 transition">
             <ArrowRight className="w-4 h-4" />
           </Link>

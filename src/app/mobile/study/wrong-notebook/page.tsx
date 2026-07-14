@@ -92,10 +92,11 @@ function WrongNotebookInner() {
   const [loadFailed, setLoadFailed] = useState(false)
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(0)
+  const [reviewedPage, setReviewedPage] = useState(0)
 
-  // Reset paginator when filters change so students never land on a
+  // Reset both paginators when filters change so students never land on a
   // now-empty page after tightening a filter.
-  useEffect(() => { setPage(0) }, [query, difficultyFilter, sortKey, selectedTopicId])
+  useEffect(() => { setPage(0); setReviewedPage(0) }, [query, difficultyFilter, sortKey, selectedTopicId])
 
   // Request-id guard: rapid topic-chip switches used to let a stale
   // response win setEntries under the newly selected chip.
@@ -195,12 +196,16 @@ function WrongNotebookInner() {
   const filteredActive = sortEntries(filterByQuery(filterByDifficulty(activeEntries)))
   const filteredReviewed = sortEntries(filterByQuery(filterByDifficulty(reviewedEntries)))
 
-  // Pagination on the active list only — reviewed sits under a
-  // <details> and stays fully expanded when opened.
+  // Both lists paginate at PAGE_SIZE. Active is the primary list;
+  // reviewed sits under a <details> and paginates independently so a
+  // long review history doesn't render hundreds of cards at once.
   const totalPages = Math.max(1, Math.ceil(filteredActive.length / PAGE_SIZE))
   const clampedPage = Math.min(page, totalPages - 1)
   const visibleActive = filteredActive.slice(clampedPage * PAGE_SIZE, (clampedPage + 1) * PAGE_SIZE)
-  const visibleReviewed = filteredReviewed
+
+  const reviewedTotalPages = Math.max(1, Math.ceil(filteredReviewed.length / PAGE_SIZE))
+  const clampedReviewedPage = Math.min(reviewedPage, reviewedTotalPages - 1)
+  const visibleReviewed = filteredReviewed.slice(clampedReviewedPage * PAGE_SIZE, (clampedReviewedPage + 1) * PAGE_SIZE)
 
   const difficultyCounts: Record<DifficultyKey, number> = {
     all: activeEntries.length,
@@ -262,20 +267,6 @@ function WrongNotebookInner() {
             </button>
           )}
         </label>
-
-        {/* Topic filter — horizontal chip row. No StudyPageTransition
-            wrapper: it collapses space-y-6 into one child, so all
-            sub-sections would stack tightly. Direct children of the
-            outer container keep proper 24px gaps between them. */}
-        {topics.length > 0 && (
-          <TopicFilter
-            topics={topics}
-            selectedId={selectedTopicId}
-            onSelect={setSelectedTopicId}
-            ko={ko}
-            allLabel={String(t('study.wrongNotebook.allTopics'))}
-          />
-        )}
 
         <StudyPageTransition>
           {/* space-y-6 re-applied INSIDE the transition wrapper — the
@@ -339,13 +330,23 @@ function WrongNotebookInner() {
               )}
               {entries.length > 0 && (
                 <>
-                  {/* Difficulty + sort — labeled chip rows, mirroring
-                      the landing's option-row idiom (QUESTIONS /
-                      DIFFICULTY / LANGUAGE). Replaces the black chips +
-                      native <select> that clipped at 375px. Zero-count
-                      difficulties are disabled — tapping them could
-                      only show an empty list. */}
+                  {/* Topic + difficulty + sort — one labeled-chip-row
+                      group so all three filters share the same 8px
+                      vertical rhythm (previously the topic row sat in
+                      the outer 24px column, leaving it unevenly spaced
+                      from difficulty/sort). Zero-count difficulties are
+                      disabled — tapping them could only show an empty
+                      list. */}
                   <div className="space-y-2 px-1">
+                    {topics.length > 0 && (
+                      <TopicFilter
+                        topics={topics}
+                        selectedId={selectedTopicId}
+                        onSelect={setSelectedTopicId}
+                        ko={ko}
+                        allLabel={String(t('study.wrongNotebook.allTopics'))}
+                      />
+                    )}
                     <div className="flex items-start gap-1.5">
                       <span className="w-[72px] flex-shrink-0 pt-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
                         {ko ? '난이도' : 'Difficulty'}
@@ -477,17 +478,44 @@ function WrongNotebookInner() {
                       >
                         <span className="inline-flex items-center gap-2 text-[13px] font-semibold text-gray-800">
                           <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                          {ko ? `복습 완료 ${visibleReviewed.length}개` : `Reviewed · ${visibleReviewed.length}`}
+                          {ko ? `복습 완료 ${filteredReviewed.length}개` : `Reviewed · ${filteredReviewed.length}`}
                         </span>
                         <span className="text-[11px] text-gray-500">
                           {showReviewed ? (ko ? '숨기기' : 'Hide') : (ko ? '보기' : 'Show')}
                         </span>
                       </summary>
-                      <ol className="px-4 pb-4 grid grid-cols-1 lg:grid-cols-2 gap-3">
+                      <ol className={`px-4 grid grid-cols-1 lg:grid-cols-2 gap-3 ${reviewedTotalPages > 1 ? '' : 'pb-4'}`}>
                         {visibleReviewed.map((e, i) => (
-                          <NotebookEntryCard key={e.attempt_id} entry={e} index={i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
+                          <NotebookEntryCard key={e.attempt_id} entry={e} index={clampedReviewedPage * PAGE_SIZE + i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
                         ))}
                       </ol>
+                      {reviewedTotalPages > 1 && (
+                        <div className="flex items-center justify-between px-4 py-3">
+                          <button
+                            type="button"
+                            onClick={() => setReviewedPage(p => Math.max(0, p - 1))}
+                            disabled={clampedReviewedPage === 0}
+                            className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                          >
+                            <ChevronLeft className="w-4 h-4" />
+                            {ko ? '이전' : 'Previous'}
+                          </button>
+                          <div className="text-[12.5px] text-gray-500 tabular-nums">
+                            {ko
+                              ? `${clampedReviewedPage + 1} / ${reviewedTotalPages} 페이지`
+                              : `Page ${clampedReviewedPage + 1} of ${reviewedTotalPages}`}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setReviewedPage(p => Math.min(reviewedTotalPages - 1, p + 1))}
+                            disabled={clampedReviewedPage >= reviewedTotalPages - 1}
+                            className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                          >
+                            {ko ? '다음' : 'Next'}
+                            <ChevronRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      )}
                     </details>
                   )}
                 </>
@@ -547,7 +575,7 @@ function TopicFilter({
 }) {
   const totalCount = topics.reduce((s, t) => s + t.count, 0)
   return (
-    <div className="flex items-start gap-1.5 px-1">
+    <div className="flex items-start gap-1.5">
       <span className="w-[72px] flex-shrink-0 pt-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
         {ko ? '주제' : 'Topic'}
       </span>

@@ -165,7 +165,7 @@ function TestsInner() {
               body={!query && filter === 'all'
                 ? (ko ? '첫 모의고사를 만들어 실전 감각을 길러보세요.' : 'Build your first mock test and get a feel for the real thing.')
                 : undefined}
-              ctaHref={!query && filter === 'all' ? '/mobile/study' : undefined}
+              ctaHref={!query && filter === 'all' ? '/mobile/study/builder' : undefined}
               ctaText={!query && filter === 'all' ? (ko ? '시험 시작' : 'Start a test') : undefined}
             />
           </div>
@@ -234,7 +234,10 @@ function StateFilter({ value, onSelect, counts, ko }: {
   ]
   return (
     <div className="-mx-5 overflow-x-auto scrollbar-hide">
-      <div className="flex gap-2 pl-5 pr-5 pb-1">
+      {/* pt-1 gives the active chip's ring headroom — overflow-x:auto
+          forces overflow-y to compute to auto, which clipped the top of
+          the ring when chips sat flush against y=0. */}
+      <div className="flex gap-2 pl-5 pr-5 pt-1 pb-1">
         {items.map(item => {
           const active = value === item.key
           const count = counts[item.key]
