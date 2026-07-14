@@ -5,9 +5,14 @@ import { Sparkles, Target, GraduationCap, Clock, ArrowRight, Check, Loader2 } fr
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 
-interface Step1 { targetTest: string | null }
+interface Step1 { targetTest: string | null; goalScore: number | null }
 interface Step2 { gradeLevel: string | null }
 interface Step3 { dailyGoalMinutes: number }
+
+// SAT goal-score presets (mirror the preferences page). Captured up
+// front so the predicted-score card shows the motivating "X to go" gap
+// from day one instead of "Set a goal score".
+const SCORE_PRESETS = [1200, 1300, 1400, 1500, 1600]
 
 // `available` mirrors the landing-grid lock: only the SAT is open for
 // now; the rest render dimmed with a "Soon" chip so new students can't
@@ -47,7 +52,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
   const ko = language === 'korean'
 
   const [step, setStep] = useState<1 | 2 | 3>(1)
-  const [s1, setS1] = useState<Step1>({ targetTest: null })
+  const [s1, setS1] = useState<Step1>({ targetTest: null, goalScore: null })
   const [s2, setS2] = useState<Step2>({ gradeLevel: null })
   const [s3, setS3] = useState<Step3>({ dailyGoalMinutes: 30 })
   const [saving, setSaving] = useState(false)
@@ -69,6 +74,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
         body: JSON.stringify({
           ...(skipped ? {} : {
             target_test: s1.targetTest,
+            goal_score: s1.goalScore,
             grade_level: s2.gradeLevel,
             daily_goal_minutes: s3.dailyGoalMinutes,
           }),
@@ -133,7 +139,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       key={test.value}
                       type="button"
                       disabled={!test.available}
-                      onClick={() => setS1({ targetTest: selected ? null : test.value })}
+                      onClick={() => setS1(prev => ({ ...prev, targetTest: selected ? null : test.value }))}
                       className={`group relative h-12 rounded-2xl text-[14px] font-semibold transition-all ${
                         selected
                           ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
@@ -153,6 +159,35 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   )
                 })}
               </div>
+
+              {/* Goal score — appears once SAT is chosen. Lights up the
+                  predicted-score gap ("X points to go") from the start. */}
+              {s1.targetTest === 'sat' && (
+                <div className="mt-5">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-400 mb-2">
+                    {ko ? '목표 점수' : 'Goal score'}
+                  </p>
+                  <div className="grid grid-cols-5 gap-2">
+                    {SCORE_PRESETS.map(s => {
+                      const selected = s1.goalScore === s
+                      return (
+                        <button
+                          key={s}
+                          type="button"
+                          onClick={() => setS1(prev => ({ ...prev, goalScore: selected ? null : s }))}
+                          className={`h-11 rounded-xl text-[13px] font-semibold tabular-nums transition-all ${
+                            selected
+                              ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30'
+                              : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                          }`}
+                        >
+                          {s}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
