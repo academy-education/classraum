@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList } from 'lucide-react'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -940,18 +940,35 @@ function RecentTestsList({ topicIds, studentId, ko }: {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studentId, topicIds.join(',')])
 
-  if (rows.length === 0) return null
-
+  // Always render the header + "View all" link so the student can reach
+  // their full mock-test history even before finishing a test on this
+  // section (the list itself only shows COMPLETED tests). When empty,
+  // the whole section becomes a single tappable "see your history" card.
   return (
     <section>
       <div className="flex items-center justify-between mb-2 px-1">
         <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">
-          {ko ? '최근 응시한 테스트' : 'Recent tests'}
+          {ko ? '내 모의고사' : 'My mock tests'}
         </h2>
         <Link href="/mobile/study/tests" className="inline-flex items-center gap-1 text-[12px] font-medium text-gray-600 hover:text-primary transition-colors">
           {ko ? '전체 보기' : 'View all'}<ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
+      {rows.length === 0 ? (
+        <Link
+          href="/mobile/study/tests"
+          className="flex items-center gap-3 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-4 py-4 hover:ring-primary/30 active:scale-[0.99] transition"
+        >
+          <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-gray-100 text-gray-500 flex items-center justify-center">
+            <ClipboardList className="w-4 h-4" />
+          </span>
+          <div className="flex-1 min-w-0">
+            <p className="text-[13.5px] font-medium text-gray-800">{ko ? '지난 모의고사 보기' : 'See your past mock tests'}</p>
+            <p className="text-[12px] text-gray-500 mt-0.5">{ko ? '완료·진행 중인 시험을 모두 확인하세요' : 'Completed and in-progress tests, all in one place'}</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+        </Link>
+      ) : (
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] divide-y divide-gray-100 overflow-hidden">
         {rows.map(row => {
           const score = row.score !== null ? Math.round(Number(row.score)) : null
@@ -982,6 +999,7 @@ function RecentTestsList({ topicIds, studentId, ko }: {
           )
         })}
       </div>
+      )}
     </section>
   )
 }
