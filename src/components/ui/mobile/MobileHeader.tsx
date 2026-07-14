@@ -1,9 +1,11 @@
 "use client"
 
 import { useEffect, useState, useRef, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
-import { Bell, User, MessageSquare, ChevronDown } from 'lucide-react'
+import { useRouter, usePathname } from 'next/navigation'
+import { Bell, User, MessageSquare, ChevronDown, Zap } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { authHeaders } from '@/lib/auth-headers'
+import Link from 'next/link'
 import Image from 'next/image'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
@@ -13,12 +15,19 @@ import { ModeChip } from '@/components/ui/mobile/ModeChip'
 
 export function MobileHeader() {
   const router = useRouter()
+  const pathname = usePathname()
+  const isStudy = pathname?.startsWith('/mobile/study') ?? false
+  // Test-generation credit balance — surfaced on study routes so the
+  // cost of AI mock-test generation is visible before it's spent.
+  // Practice / lesson / flashcards / chat are all free (no credit), so
+  // this only moves when the student generates a non-SAT mock test.
+  const [credits, setCredits] = useState<number | null>(null)
   const [unreadCount, setUnreadCount] = useState(0)
   const [unreadMessagesCount, setUnreadMessagesCount] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const { user } = usePersistentMobileAuth()
   const { selectedStudent, availableStudents, setSelectedStudent } = useSelectedStudentStore()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const [showStudentSelector, setShowStudentSelector] = useState(false)
   const hasMultipleChildren = availableStudents.length > 1
   const lastFetchTimeRef = useRef<number>(0)
@@ -45,6 +54,23 @@ export function MobileHeader() {
       fetchUnreadMessages()
     }, 500)
   }, [])
+
+  // Fetch the study credit balance on study routes (re-runs on
+  // navigation so it reflects a spend after generating a test).
+  useEffect(() => {
+    if (!isStudy) return
+    let cancelled = false
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/subscription', { headers })
+        if (!res.ok) return
+        const json = await res.json()
+        if (!cancelled) setCredits(typeof json?.credits?.total === 'number' ? json.credits.total : null)
+      } catch { /* silent — chip just self-hides */ }
+    })()
+    return () => { cancelled = true }
+  }, [isStudy, pathname])
 
   useEffect(() => {
     fetchUnreadNotifications()
@@ -224,6 +250,21 @@ export function MobileHeader() {
                 or Study) with chevron. Tap opens ModeSwitcherSheet for
                 the swap. Self-hides on the hub and for parents. */}
             <ModeChip />
+
+            {/* Study test-generation credits. Tapping opens the plan /
+                credit store. Only rendered on study routes and once the
+                balance has loaded. */}
+            {isStudy && credits !== null && (
+              <Link
+                href="/mobile/study/subscription"
+                aria-label={language === 'korean' ? '크레딧' : 'Credits'}
+                title={language === 'korean' ? '모의고사 생성 크레딧' : 'Mock-test credits'}
+                className="inline-flex items-center gap-1 h-9 pl-2 pr-2.5 rounded-full bg-primary/10 hover:bg-primary/15 active:bg-primary/20 transition-colors focus:outline-none"
+              >
+                <Zap className="w-4 h-4 text-primary" fill="currentColor" strokeWidth={0} />
+                <span className="text-[13px] font-bold text-primary tabular-nums leading-none">{credits}</span>
+              </Link>
+            )}
 
             {/* Messages Button — pill chrome with soft-rose unread badge.
                 Messaging is academy-scoped (teacher/manager chat), so
