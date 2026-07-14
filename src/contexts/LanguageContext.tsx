@@ -298,7 +298,16 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Handle async user preference loading using unified auth
+  // Handle async user preference loading using unified auth.
+  //
+  // IMPORTANT: this must run once per user session (login / auth-init),
+  // NOT on every `language` change. `language` was previously in the dep
+  // array, so toggling the language re-ran this effect, which re-read the
+  // DB and — if the read raced ahead of the just-issued write — called
+  // setLanguageState with the STALE value, flipping the UI back. That
+  // flip re-triggered the effect, producing the multi-flicker on toggle.
+  // We read the DB preference once and reconcile with a functional update
+  // (no `language` closure needed), so a local toggle can't restart it.
   useEffect(() => {
     let mounted = true
 
@@ -308,9 +317,11 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       try {
         const databaseLanguage = await loadUserLanguage(user.id)
 
-        if (databaseLanguage && databaseLanguage !== language && mounted) {
-          // Update language if database preference is different
-          setLanguageState(databaseLanguage)
+        if (databaseLanguage && mounted) {
+          // Reconcile against the CURRENT state via a functional update so
+          // this never overwrites a newer value and doesn't depend on the
+          // `language` closure (which would force this effect to re-run).
+          setLanguageState(prev => (databaseLanguage !== prev ? databaseLanguage : prev))
         }
       } catch (error) {
         //console.warn('[LanguageContext] Error loading user preferences:', error)
@@ -322,7 +333,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     return () => {
       mounted = false
     }
-  }, [user?.id, isInitialized, language]) // React to changes in auth state
+  }, [user?.id, isInitialized]) // eslint-disable-line react-hooks/exhaustive-deps -- load once per user, not per language change
 
   // Handle sign out to reset to cookie/URL language
   useEffect(() => {
