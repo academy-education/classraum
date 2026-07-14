@@ -7,6 +7,7 @@ import { PathMascot } from '../../../_shared/PathMascot'
  *  don't accidentally lock in a score they meant to revisit. */
 export function SubmitConfirmModal({
   unanswered, totalQuestions, t, onCancel, onConfirm,
+  title, body, confirmLabel,
 }: {
   unanswered: number
   totalQuestions: number
@@ -16,6 +17,12 @@ export function SubmitConfirmModal({
   t: (key: string, params?: Record<string, string | number>) => string | string[]
   onCancel: () => void
   onConfirm: () => void
+  /** Optional copy overrides so the same modal can gate an irreversible
+   *  step other than final submit (e.g. the SAT module-1 → module-2
+   *  transition, which locks Module 1). */
+  title?: string
+  body?: string
+  confirmLabel?: string
 }) {
   const bodyKey = unanswered === 0
     ? 'study.test.submitConfirm.bodyAllAnswered'
@@ -36,10 +43,10 @@ export function SubmitConfirmModal({
       >
         <div className="px-5 pt-5 pb-3">
           <h3 className="text-[17px] font-semibold tracking-tight text-gray-900">
-            {String(t('study.test.submitConfirm.titleSubmit'))}
+            {title ?? String(t('study.test.submitConfirm.titleSubmit'))}
           </h3>
           <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">
-            {String(t(bodyKey, { count: unanswered, total: totalQuestions }))}
+            {body ?? String(t(bodyKey, { count: unanswered, total: totalQuestions }))}
           </p>
         </div>
         <div className="px-3 py-3 border-t border-gray-100 flex items-center gap-2">
@@ -59,7 +66,7 @@ export function SubmitConfirmModal({
                 : 'bg-primary hover:bg-primary/90'
             }`}
           >
-            {String(t('study.test.submitConfirm.confirm'))}
+            {confirmLabel ?? String(t('study.test.submitConfirm.confirm'))}
           </button>
         </div>
       </div>

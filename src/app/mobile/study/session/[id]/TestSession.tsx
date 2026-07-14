@@ -589,6 +589,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   /** Confirm-before-submit dialog: opens when the student presses
    *  Submit, blocks the actual POST until they confirm. */
   const [confirmOpen, setConfirmOpen] = useState(false)
+  const [module2ConfirmOpen, setModule2ConfirmOpen] = useState(false)
 
   // ── Submission path (used by manual Submit + timer expiry) ─────
   const submit = useCallback(async () => {
@@ -974,6 +975,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     return isItemAnswered(idx) ? 1 : 0
   }
   const weightedAnswered = test.questions.reduce((n, _, i) => n + weightedAnsweredFor(i), 0)
+  // Unanswered items within Module 1 — used to warn before the
+  // irreversible "Continue to Module 2" (Module 1 locks after routing).
+  const module1Unanswered = typeof test.moduleBreakIdx === 'number'
+    ? Array.from({ length: test.moduleBreakIdx }, (_, i) => i).filter(i => !isItemAnswered(i)).length
+    : 0
   // Effective 1-indexed range each question occupies within the
   // weighted total: startAt[i] = position of first sub-question,
   // endAt[i] = position of last sub-question.
@@ -2045,7 +2051,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               <div className="flex-1 flex flex-col gap-1">
                 <button
                   type="button"
-                  onClick={() => void routeToModule2()}
+                  onClick={() => {
+                    // Warn before the irreversible transition if any
+                    // Module-1 items are still blank — otherwise route.
+                    if (module1Unanswered > 0) setModule2ConfirmOpen(true)
+                    else void routeToModule2()
+                  }}
                   disabled={module2Loading || audioPlaying}
                   className="h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
                 >
@@ -2195,6 +2206,24 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           t={t}
           onCancel={() => setConfirmOpen(false)}
           onConfirm={() => { setConfirmOpen(false); void submit() }}
+        />
+      )}
+
+      {/* Confirm before the SAT module-1 → module-2 transition, which
+          grades + locks Module 1 irreversibly. Only shown when Module 1
+          still has blank items (the button routes directly otherwise). */}
+      {module2ConfirmOpen && (
+        <SubmitConfirmModal
+          unanswered={module1Unanswered}
+          totalQuestions={test.moduleBreakIdx ?? totalQuestions}
+          t={t}
+          title={ko ? '모듈 2로 넘어갈까요?' : 'Continue to Module 2?'}
+          body={ko
+            ? `모듈 1에서 ${module1Unanswered}문항을 아직 풀지 않았어요. 모듈 2로 넘어가면 모듈 1로 돌아올 수 없어요.`
+            : `You have ${module1Unanswered} unanswered question${module1Unanswered === 1 ? '' : 's'} in Module 1. Once you continue you can't return to it.`}
+          confirmLabel={ko ? '계속하기' : 'Continue'}
+          onCancel={() => setModule2ConfirmOpen(false)}
+          onConfirm={() => { setModule2ConfirmOpen(false); void routeToModule2() }}
         />
       )}
     </div>

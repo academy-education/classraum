@@ -1,6 +1,7 @@
 "use client"
 
 import { use, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Sparkles, HelpCircle, ArrowLeft } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
@@ -38,6 +39,7 @@ interface Session {
   mode: StudyMode
   title: string | null
   language: 'en' | 'ko'
+  status: string | null
 }
 
 interface Topic {
@@ -58,6 +60,7 @@ export default function SessionPage({ params }: { params: Promise<{ id: string }
 function SessionInner({ id }: { id: string }) {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
+  const router = useRouter()
   const [session, setSession] = useState<Session | null>(null)
   const [topic, setTopic] = useState<Topic | null>(null)
   const [loading, setLoading] = useState(true)
@@ -65,6 +68,7 @@ function SessionInner({ id }: { id: string }) {
 
   useEffect(() => {
     let cancelled = false
+    let redirecting = false
     void (async () => {
       // try/finally: a thrown query (network drop) must not strand the
       // skeleton — fall through to the not-found state, which has a
@@ -72,11 +76,25 @@ function SessionInner({ id }: { id: string }) {
       try {
         const { data: row } = await supabase
           .from('study_sessions')
-          .select('id, topic_id, mode, title, language')
+          .select('id, topic_id, mode, title, language, status')
           .eq('id', id)
           .maybeSingle()
 
         if (cancelled || !row) return
+
+        // A COMPLETED full test must not re-enter the test-taking flow.
+        // On a fresh mount (reload / back-forward / deep link) the
+        // in-memory graded result is gone and localStorage was cleared
+        // on submit, so rendering TestSession would drop the student
+        // into a blank, seemingly-reset test. Route them to the durable
+        // summary (persisted score + mistake review) instead. Keep the
+        // loader up through the navigation so the test never flashes.
+        if (row.mode === 'full_test' && row.status === 'completed') {
+          redirecting = true
+          router.replace(`/mobile/study/session/${id}/summary`)
+          return
+        }
+
         setSession(row as Session)
 
         if (row.topic_id) {
@@ -89,11 +107,12 @@ function SessionInner({ id }: { id: string }) {
         }
       } catch { /* handled by finally + not-found fallback */ }
       finally {
-        if (!cancelled) setLoading(false)
+        // Leave the loader up while a completed-test redirect navigates.
+        if (!cancelled && !redirecting) setLoading(false)
       }
     })()
     return () => { cancelled = true }
-  }, [id])
+  }, [id, router])
 
   if (loading || showLoader) {
     // Studying surface → Raumi (commit-gated).

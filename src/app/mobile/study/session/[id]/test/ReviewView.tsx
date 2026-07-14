@@ -125,6 +125,29 @@ export function ReviewView({
               </div>
             )
           })()}
+          {/* SAT: the number the student actually cares about — the
+              estimated 200–800 section score — shouldn't be buried a
+              navigation away on the summary. `result.sat` is already
+              returned by submit. */}
+          {result.sat && (
+            <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
+                {ko ? '예상 SAT 점수 (200-800)' : 'Est. SAT score (200–800)'}
+              </div>
+              <div className="text-4xl font-bold text-primary tabular-nums mt-1 leading-none">
+                {result.sat.score}
+              </div>
+              <p className="text-[11px] text-gray-400 mt-1.5 leading-relaxed">
+                {result.sat.capped
+                  ? (ko
+                      ? '실제 시험처럼 모듈 2 난이도에 따라 상한이 적용된 추정치예요.'
+                      : 'An estimate — like the real test, your Module 2 band caps the range.')
+                  : (ko
+                      ? '이 섹션 추정치이며, 모의고사를 더 풀수록 정확해져요.'
+                      : 'A section estimate — more full tests sharpen it.')}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Per-question review accordion */}

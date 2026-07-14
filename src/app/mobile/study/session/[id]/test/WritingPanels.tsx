@@ -411,6 +411,7 @@ export function WritingFeedbackPanel({
 }) {
   const [audioUrl, setAudioUrl] = useState<string | null>(null)
   const [gradeNotice, setGradeNotice] = useState<string | null>(null)
+  const [premiumUpsell, setPremiumUpsell] = useState(false)
   // Fetch a signed URL for the private audio file on demand so the
   // student can play it back. We defer the fetch until they open the
   // review section — nothing to fetch if audioPath is empty.
@@ -461,6 +462,7 @@ export function WritingFeedbackPanel({
 
       let res: Response
       let fellBack = false
+      let premiumFallback = false
       if (useAudio) {
         res = await fetch('/api/study/speaking/grade-audio', {
           method: 'POST', headers: authH, body: JSON.stringify(commonBody),
@@ -468,10 +470,13 @@ export function WritingFeedbackPanel({
         // If the audio route fails on the server (transcode error,
         // OpenAI 5xx, model 404, etc.), auto-retry with text-mode so
         // the student still gets *some* grade instead of a dead-end.
-        // 4xx errors (too short, wrong mode) are legitimate user-
-        // facing failures — don't retry those.
-        if (!res.ok && res.status >= 500) {
-          console.warn('[WritingFeedbackPanel] audio grade failed, falling back to text', res.status)
+        // A 403 `premium_required` means the student picked real-audio
+        // grading without a Premium plan — rather than dead-ending on a
+        // raw error, fall back to text grading and nudge the upgrade.
+        // Other 4xx (too short, wrong mode) are legitimate failures.
+        if (!res.ok && (res.status >= 500 || res.status === 403)) {
+          premiumFallback = res.status === 403
+          console.warn('[WritingFeedbackPanel] audio grade unavailable, falling back to text', res.status)
           res = await callText()
           fellBack = true
         }
@@ -487,9 +492,16 @@ export function WritingFeedbackPanel({
       const data = await res.json() as GradeResponse
       setGrade(data.grade)
       setScaleMax(data.scaleMax)
-      if (fellBack) setGradeNotice(ko
-        ? '오디오 채점에 실패해 텍스트 채점 결과를 표시합니다.'
-        : 'Audio grading failed — showing text-based grade instead.')
+      if (fellBack) {
+        setPremiumUpsell(premiumFallback)
+        setGradeNotice(premiumFallback
+          ? (ko
+              ? '실음성(ETS급) 채점은 프리미엄 기능이에요 — 텍스트 기반 채점 결과를 표시합니다.'
+              : 'Real-audio (ETS-parity) grading is a Premium feature — showing a text-based grade instead.')
+          : (ko
+              ? '오디오 채점에 실패해 텍스트 채점 결과를 표시합니다.'
+              : 'Audio grading failed — showing text-based grade instead.'))
+      }
       setState('done')
     } catch (e) {
       setErrMsg((e as Error).message)
@@ -518,6 +530,11 @@ export function WritingFeedbackPanel({
         {gradeNotice && (
           <div className="text-[11px] text-amber-700 bg-amber-50 rounded px-2 py-1 border border-amber-200">
             {gradeNotice}
+            {premiumUpsell && (
+              <a href="/mobile/study/subscription" className="ml-1 font-semibold text-primary underline underline-offset-2">
+                {ko ? '프리미엄 보기' : 'See Premium'}
+              </a>
+            )}
           </div>
         )}
         <div className="text-[12px] text-gray-700 leading-relaxed">{grade.summary}</div>
