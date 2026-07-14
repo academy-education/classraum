@@ -178,64 +178,165 @@ function LeagueInner() {
   )
 }
 
+// Top 5 of each cohort advance to the next tier each week (Duolingo-style).
+const PROMOTE_ZONE = 5
+
+/** Deterministic initials + a stable hue from a display name. */
+function initialsOf(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean)
+  if (parts.length === 0) return '?'
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+}
+const AVATAR_HUES = ['bg-rose-100 text-rose-700', 'bg-sky-100 text-sky-700', 'bg-emerald-100 text-emerald-700', 'bg-violet-100 text-violet-700', 'bg-amber-100 text-amber-700', 'bg-cyan-100 text-cyan-700', 'bg-fuchsia-100 text-fuchsia-700', 'bg-indigo-100 text-indigo-700']
+function hueOf(id: string): string {
+  let h = 0
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0
+  return AVATAR_HUES[h % AVATAR_HUES.length]
+}
+
 function TierBanner({ tier, ko, myRank, myXp, resetSeconds }: {
   tier: typeof TIERS[number]; ko: boolean; myRank: number | null; myXp: number; resetSeconds: number
 }) {
+  const idx = TIERS.findIndex(t => t.key === tier.key)
+  const next = idx >= 0 && idx < TIERS.length - 1 ? TIERS[idx + 1] : null
+  const inPromo = myRank != null && myRank <= PROMOTE_ZONE
   return (
-    <div className={`rounded-2xl bg-gradient-to-br ${tier.color} text-white p-5 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.30)]`}>
-      <div className="flex items-start justify-between">
-        <div>
-          <div className="text-[10px] font-semibold tracking-[0.14em] uppercase opacity-85">{ko ? '이번 주 리그' : 'This week'}</div>
-          <h2 className="text-2xl font-bold tracking-tight mt-0.5">{ko ? tier.label_ko : tier.label_en}</h2>
+    <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${tier.color} text-white p-5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.40)]`}>
+      <div aria-hidden className="pointer-events-none absolute -top-10 -right-8 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-12 -left-6 w-36 h-36 rounded-full bg-black/10 blur-2xl" />
+      <div className="relative flex items-center gap-4">
+        {/* Tier emblem */}
+        <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white/20 ring-1 ring-white/30 backdrop-blur-sm flex items-center justify-center shadow-inner">
+          <Crown className="w-8 h-8 drop-shadow" />
         </div>
-        <Crown className="w-7 h-7 opacity-90" />
+        <div className="min-w-0 flex-1">
+          <div className="text-[10px] font-semibold tracking-[0.16em] uppercase opacity-85">{ko ? '이번 주 리그' : 'This week · League'}</div>
+          <h2 className="text-[26px] font-bold tracking-tight leading-none mt-1">{ko ? tier.label_ko : tier.label_en}</h2>
+          {next && (
+            <div className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium opacity-90">
+              <TrendingUp className="w-3 h-3" />
+              {ko ? `상위 ${PROMOTE_ZONE}위 → ${next.label_ko} 승급` : `Top ${PROMOTE_ZONE} advance to ${next.label_en}`}
+            </div>
+          )}
+        </div>
       </div>
-      <div className="mt-4 grid grid-cols-3 gap-3">
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] opacity-70">{ko ? '내 순위' : 'My rank'}</div>
-          <div className="text-2xl font-bold tabular-nums leading-none mt-1">#{myRank ?? '—'}</div>
-        </div>
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] opacity-70">XP</div>
-          <div className="text-2xl font-bold tabular-nums leading-none mt-1">{myXp}</div>
-        </div>
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] opacity-70">{ko ? '마감' : 'Resets'}</div>
-          <div className="text-[15px] font-semibold leading-none mt-1.5 inline-flex items-center gap-1">
-            <Clock className="w-3.5 h-3.5" />{formatCountdown(resetSeconds, ko)}
+      <div className="relative mt-4 grid grid-cols-3 gap-2">
+        {[
+          { label: ko ? '내 순위' : 'My rank', node: <span className="tabular-nums">#{myRank ?? '—'}</span> },
+          { label: 'XP', node: <span className="tabular-nums">{myXp}</span> },
+          { label: ko ? '마감' : 'Resets', node: <span className="inline-flex items-center gap-1 text-[15px]"><Clock className="w-3.5 h-3.5" />{formatCountdown(resetSeconds, ko)}</span> },
+        ].map((s, i) => (
+          <div key={i} className="rounded-2xl bg-white/12 ring-1 ring-white/15 px-3 py-2.5">
+            <div className="text-[9.5px] uppercase tracking-[0.12em] opacity-70">{s.label}</div>
+            <div className="text-[22px] font-bold leading-none mt-1">{s.node}</div>
           </div>
-        </div>
+        ))}
       </div>
+      {myRank != null && (
+        <div className={`relative mt-3 rounded-xl px-3 py-2 text-[12px] font-semibold text-center ${inPromo ? 'bg-emerald-400/25 ring-1 ring-emerald-200/40' : 'bg-white/12 ring-1 ring-white/15'}`}>
+          {inPromo
+            ? (ko ? '🎉 승급권 안에 있어요 — 계속 유지하세요!' : "🎉 You're in the promotion zone — hold your spot!")
+            : (ko ? `승급권까지 ${Math.max(0, myRank - PROMOTE_ZONE)}계단 남았어요` : `${Math.max(0, myRank - PROMOTE_ZONE)} spots from the promotion zone`)}
+        </div>
+      )}
     </div>
   )
 }
 
-function Leaderboard({ rows, ko }: { rows: LeaderboardRow[]; ko: boolean }) {
+function Podium({ top, ko }: { top: LeaderboardRow[]; ko: boolean }) {
+  // Visual order 2 · 1 · 3 with descending heights.
+  const order = [top[1], top[0], top[2]].filter(Boolean)
+  const meta: Record<number, { h: string; ring: string; badge: string; medal: string }> = {
+    1: { h: 'h-20', ring: 'ring-amber-300', badge: 'bg-amber-400 text-amber-950', medal: '🥇' },
+    2: { h: 'h-16', ring: 'ring-slate-300', badge: 'bg-slate-300 text-slate-800', medal: '🥈' },
+    3: { h: 'h-14', ring: 'ring-orange-300', badge: 'bg-orange-400 text-orange-950', medal: '🥉' },
+  }
   return (
     <section>
-      <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? '리더보드' : 'Leaderboard'}</h3>
-      <ol className="space-y-1.5">
-        {rows.map((r, i) => (
-          <li key={r.student_id}
-            style={{ animationDelay: `${i * 40}ms` }}
-            className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl ring-1 animate-card-in opacity-0 ${
-              r.is_me
-                ? 'bg-amber-50 ring-amber-200'
-                : 'bg-white ring-gray-200/70'
-            }`}>
-            <span className={`flex-shrink-0 w-7 text-center text-[12px] font-bold tabular-nums ${
-              r.rank === 1 ? 'text-amber-600' : r.rank === 2 ? 'text-gray-500' : r.rank === 3 ? 'text-orange-600' : 'text-gray-400'
-            }`}>{r.rank === 1 ? '🥇' : r.rank === 2 ? '🥈' : r.rank === 3 ? '🥉' : r.rank}</span>
-            <span className={`flex-1 min-w-0 truncate text-[13.5px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
-              {r.display_name}{r.is_me && <span className="text-[10px] font-semibold text-amber-600 ml-1.5">({ko ? '나' : 'me'})</span>}
-            </span>
-            <span className="flex-shrink-0 inline-flex items-center gap-1 text-[12.5px] tabular-nums font-mono text-gray-700">
-              <Sparkles className="w-3 h-3 text-amber-500" />{r.xp_this_week}
-            </span>
-          </li>
-        ))}
-      </ol>
+      <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? '이번 주 톱3' : 'Top 3 this week'}</h3>
+      <div className="grid grid-cols-3 items-end gap-2.5">
+        {order.map((r) => {
+          const m = meta[r.rank] ?? meta[3]
+          return (
+            <div key={r.student_id} className="flex flex-col items-center animate-card-in opacity-0" style={{ animationDelay: `${r.rank * 60}ms` }}>
+              <div className="relative">
+                <div className={`w-14 h-14 rounded-full ring-2 ${m.ring} ${hueOf(r.student_id)} flex items-center justify-center text-[16px] font-bold shadow-sm`}>
+                  {initialsOf(r.display_name)}
+                </div>
+                <span className="absolute -bottom-1 -right-1 text-[15px] drop-shadow-sm">{m.medal}</span>
+              </div>
+              <div className={`mt-2 max-w-full truncate text-[12px] font-semibold ${r.is_me ? 'text-amber-700' : 'text-gray-800'}`}>
+                {r.display_name}{r.is_me && <span className="text-[9px] text-amber-600 ml-1">({ko ? '나' : 'me'})</span>}
+              </div>
+              <div className="inline-flex items-center gap-0.5 text-[11px] font-bold tabular-nums text-gray-500">
+                <Sparkles className="w-2.5 h-2.5 text-amber-500" />{r.xp_this_week}
+              </div>
+              <div className={`mt-1.5 w-full ${m.h} rounded-t-xl bg-gradient-to-b from-white to-gray-100 ring-1 ring-gray-200/70 flex items-start justify-center pt-1.5`}>
+                <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-[12px] font-bold tabular-nums ${m.badge}`}>{r.rank}</span>
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </section>
+  )
+}
+
+function Leaderboard({ rows, ko }: { rows: LeaderboardRow[]; ko: boolean }) {
+  const hasPodium = rows.length >= 3
+  const top = hasPodium ? rows.slice(0, 3) : []
+  const rest = hasPodium ? rows.slice(3) : rows
+  return (
+    <>
+      {hasPodium && <Podium top={top} ko={ko} />}
+      <section>
+        <div className="flex items-center justify-between mb-3 px-1">
+          <h3 className="text-[13px] font-semibold text-gray-900">{ko ? '전체 순위' : 'Full standings'}</h3>
+          <span className="inline-flex items-center gap-1 text-[10.5px] font-medium text-emerald-600">
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />{ko ? '승급권' : 'Promotion zone'}
+          </span>
+        </div>
+        <ol className="space-y-1.5">
+          {rest.map((r, i) => {
+            const promo = r.rank <= PROMOTE_ZONE
+            const showDivider = hasPodium && r.rank === PROMOTE_ZONE + 1
+            return (
+              <div key={r.student_id}>
+                {showDivider && (
+                  <div className="flex items-center gap-2 py-1.5 px-1">
+                    <div className="flex-1 h-px bg-gradient-to-r from-emerald-300/60 to-transparent" />
+                    <span className="text-[9.5px] font-bold uppercase tracking-wider text-emerald-500">{ko ? '승급 경계선' : 'Promotion line'}</span>
+                    <div className="flex-1 h-px bg-gradient-to-l from-emerald-300/60 to-transparent" />
+                  </div>
+                )}
+                <li
+                  style={{ animationDelay: `${Math.min(i, 10) * 35}ms` }}
+                  className={`flex items-center gap-3 pl-2 pr-3.5 py-2 rounded-xl ring-1 animate-card-in opacity-0 ${
+                    r.is_me
+                      ? 'bg-amber-50 ring-amber-200'
+                      : promo
+                        ? 'bg-emerald-50/60 ring-emerald-100'
+                        : 'bg-white ring-gray-200/70'
+                  }`}>
+                  <span className={`flex-shrink-0 w-6 text-center text-[12.5px] font-bold tabular-nums ${promo ? 'text-emerald-600' : 'text-gray-400'}`}>{r.rank}</span>
+                  <span className={`flex-shrink-0 w-8 h-8 rounded-full ${hueOf(r.student_id)} flex items-center justify-center text-[11px] font-bold`}>
+                    {initialsOf(r.display_name)}
+                  </span>
+                  <span className={`flex-1 min-w-0 truncate text-[13.5px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
+                    {r.display_name}{r.is_me && <span className="text-[10px] font-semibold text-amber-600 ml-1.5">({ko ? '나' : 'me'})</span>}
+                  </span>
+                  {promo && <TrendingUp className="flex-shrink-0 w-3.5 h-3.5 text-emerald-500" />}
+                  <span className="flex-shrink-0 inline-flex items-center gap-1 text-[12.5px] tabular-nums font-semibold text-gray-700">
+                    <Sparkles className="w-3 h-3 text-amber-500" />{r.xp_this_week}
+                  </span>
+                </li>
+              </div>
+            )
+          })}
+        </ol>
+      </section>
+    </>
   )
 }
 

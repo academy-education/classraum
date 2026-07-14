@@ -37,7 +37,7 @@ export function TestPrepPathCard({ test }: { test: string }) {
         const headers = await authHeaders()
         const res = await fetch('/api/study/prefs', { headers })
         const json = res.ok ? await res.json() : null
-        if (!cancelled) setTarget((json?.target_test as string | null) ?? null)
+        if (!cancelled) setTarget((json?.prefs?.target_test as string | null) ?? null)
       } catch {
         if (!cancelled) setTarget(null)
       }

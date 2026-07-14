@@ -2,10 +2,19 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { TrendingUp, Target, ArrowRight, Sparkles } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { TrendingUp, Target, ArrowRight, Sparkles, Lock, ListChecks, Layers, Clock, Loader2, Crown } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { NumberRoll } from './primitives'
+
+// Digital SAT structure — shown on the diagnostic card so students know
+// exactly what the baseline test involves. Reading & Writing: 2 adaptive
+// modules × 27 (54 Q, 64 min); Math: 2 × 22 (44 Q, 70 min).
+const SAT_FORMAT = { questions: 98, modules: 4, minutes: 134 }
+// Section topic slug the assemble route maps to a seed topic. The
+// diagnostic starts with Reading & Writing (the SAT root's canonical
+// adaptive full test); Math is diagnosed when they take that section.
 
 /**
  * Predicted SAT score — the headline of the score-plan engine (P1).
@@ -35,47 +44,71 @@ interface Payload {
 export function PredictedScore() {
   const { language } = useTranslation()
   const ko = language === 'korean'
+  const router = useRouter()
   const [data, setData] = useState<Payload | null>(null)
   const [loaded, setLoaded] = useState(false)
+  const [isPremium, setIsPremium] = useState<boolean | null>(null)
+  const [starting, setStarting] = useState(false)
 
   useEffect(() => {
     let cancelled = false
     void (async () => {
       try {
         const headers = await authHeaders()
-        const res = await fetch('/api/study/prediction', { headers })
-        if (!res.ok) { if (!cancelled) setLoaded(true); return }
-        const json = (await res.json()) as Payload
-        if (!cancelled) { setData(json); setLoaded(true) }
-      } catch { if (!cancelled) setLoaded(true) }
+        // Prediction + subscription tier in parallel — the diagnostic
+        // card is premium-gated, so we need both before rendering it.
+        const [predRes, subRes] = await Promise.all([
+          fetch('/api/study/prediction', { headers }),
+          fetch('/api/study/subscription', { headers }),
+        ])
+        if (predRes.ok) {
+          const json = (await predRes.json()) as Payload
+          if (!cancelled) setData(json)
+        }
+        if (subRes.ok) {
+          const sub = await subRes.json()
+          if (!cancelled) setIsPremium(sub?.tier === 'premium')
+        } else if (!cancelled) {
+          setIsPremium(false)
+        }
+      } catch {
+        if (!cancelled) setIsPremium(false)
+      } finally {
+        if (!cancelled) setLoaded(true)
+      }
     })()
     return () => { cancelled = true }
   }, [])
 
+  // Launch the real adaptive Digital SAT (Reading & Writing module 1) —
+  // the same instant, credit-free bank assembly the topic page uses. The
+  // completed test writes mastery, which powers the predicted score and
+  // the weak-area picks on the "recommended for you" shelf.
+  const startDiagnostic = async () => {
+    if (starting) return
+    setStarting(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/test/assemble', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: 'reading_writing', adaptive: true }),
+      })
+      if (!res.ok) { setStarting(false); return }
+      const json = await res.json()
+      router.push(`/mobile/study/session/${json.sessionId}`)
+    } catch {
+      setStarting(false)
+    }
+  }
+
   // Self-hide until loaded and only for the supported (SAT) target.
   if (!loaded || !data || !data.supported) return null
 
-  // Cold start — no completed full test yet. Nudge toward a diagnostic.
+  // Cold start — no completed full test yet. Premium-gated diagnostic:
+  // free users see the format + an unlock CTA; premium users can start.
   if (!data.enoughData) {
-    return (
-      <Shell>
-        <div className="flex items-center gap-3">
-          <span className="flex-shrink-0 w-11 h-11 rounded-2xl bg-white/15 ring-1 ring-white/20 flex items-center justify-center">
-            <Sparkles className="w-5 h-5" />
-          </span>
-          <div className="min-w-0 flex-1">
-            <p className="text-[13px] font-semibold">{ko ? '진단 모의고사로 시작하기' : 'Start with a diagnostic'}</p>
-            <p className="text-[12px] text-white/75 leading-snug">
-              {ko ? '전체 모의고사를 한 번 풀면 기준 점수와 예상 SAT 점수를 잡아드려요.' : 'Take one full practice test to set your baseline and predicted SAT score.'}
-            </p>
-          </div>
-          <Link href="/mobile/study/builder" aria-label={ko ? '진단 모의고사 풀기' : 'Take a diagnostic'}
-            className="flex-shrink-0 w-9 h-9 rounded-full bg-white/15 ring-1 ring-white/20 flex items-center justify-center hover:bg-white/25 transition">
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </Shell>
-    )
+    return <DiagnosticCard ko={ko} isPremium={isPremium === true} starting={starting} onStart={() => void startDiagnostic()} />
   }
 
   const rangeStr = data.low != null && data.high != null ? `${data.low}–${data.high}` : ''
@@ -130,6 +163,98 @@ export function PredictedScore() {
             `${(ko ? s.label_ko : s.label_en).split(/[ &·]/)[0]} ${s.current}`
           ).join(' · ')}
         </span>
+      </div>
+    </Shell>
+  )
+}
+
+/**
+ * Cold-start diagnostic — the premium upsell surface. Shows the Digital
+ * SAT format so students know what they're committing to, then either
+ * launches the real adaptive test (premium) or routes to the paywall
+ * (free). Baseline results feed the predicted score + recommended shelf.
+ */
+function DiagnosticCard({ ko, isPremium, starting, onStart }: {
+  ko: boolean; isPremium: boolean; starting: boolean; onStart: () => void
+}) {
+  const hrs = Math.floor(SAT_FORMAT.minutes / 60)
+  const mins = SAT_FORMAT.minutes % 60
+  const timeStr = ko ? `${hrs}시간 ${mins}분` : `${hrs}h ${mins}m`
+  const facts: { Icon: typeof ListChecks; value: string; label: string }[] = [
+    { Icon: ListChecks, value: String(SAT_FORMAT.questions), label: ko ? '문항' : 'Questions' },
+    { Icon: Layers, value: String(SAT_FORMAT.modules), label: ko ? '모듈' : 'Modules' },
+    { Icon: Clock, value: timeStr, label: ko ? '소요' : 'Length' },
+    { Icon: Sparkles, value: ko ? '적응형' : 'Adaptive', label: ko ? '방식' : 'Format' },
+  ]
+  return (
+    <Shell>
+      <div className="flex items-start gap-3">
+        <span className="flex-shrink-0 w-11 h-11 rounded-2xl bg-white/15 ring-1 ring-white/20 flex items-center justify-center">
+          <Target className="w-5 h-5" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-1.5">
+            <p className="text-[10.5px] font-bold uppercase tracking-[0.12em] text-white/70">{ko ? '진단 모의고사' : 'Diagnostic'}</p>
+            {!isPremium && (
+              <span className="inline-flex items-center gap-0.5 rounded-full bg-amber-300/25 ring-1 ring-amber-200/40 px-1.5 py-px text-[9px] font-bold uppercase tracking-wide text-amber-100">
+                <Crown className="w-2.5 h-2.5" />{ko ? '프리미엄' : 'Premium'}
+              </span>
+            )}
+          </div>
+          <p className="text-[15px] font-bold leading-tight mt-0.5">{ko ? 'SAT 기준 점수 찾기' : 'Find your SAT baseline'}</p>
+          <p className="text-[12px] text-white/75 leading-snug mt-0.5">
+            {ko
+              ? '전체 적응형 디지털 SAT를 풀면 예상 점수가 정해지고, 취약 영역에 맞춘 연습이 추천돼요.'
+              : 'One adaptive Digital SAT sets your predicted score and unlocks practice targeted at your weak areas.'}
+          </p>
+        </div>
+      </div>
+
+      {/* Test format facts */}
+      <div className="mt-3 grid grid-cols-4 gap-2">
+        {facts.map((f, i) => {
+          const Icon = f.Icon
+          return (
+            <div key={i} className="rounded-xl bg-white/10 ring-1 ring-white/15 px-1.5 py-2 text-center">
+              <Icon className="w-3.5 h-3.5 mx-auto text-white/70" />
+              <div className="text-[13px] font-bold tabular-nums leading-none mt-1">{f.value}</div>
+              <div className="text-[9px] uppercase tracking-wide text-white/55 mt-0.5">{f.label}</div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* CTA — start (premium) or unlock (free). Reading & Writing runs
+          first; the note keeps that honest without cluttering the facts. */}
+      <div className="mt-3">
+        {isPremium ? (
+          <>
+            <button
+              type="button"
+              onClick={onStart}
+              disabled={starting}
+              className="w-full h-11 rounded-full bg-white text-primary text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.12)] active:scale-[0.99] transition disabled:opacity-70"
+            >
+              {starting ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
+              {ko ? '진단 시작하기' : 'Start diagnostic'}
+            </button>
+            <p className="text-[10.5px] text-white/55 text-center mt-1.5">
+              {ko ? 'Reading & Writing부터 시작 · 2개 적응형 모듈' : 'Begins with Reading & Writing · 2 adaptive modules'}
+            </p>
+          </>
+        ) : (
+          <>
+            <Link
+              href="/mobile/study/subscription"
+              className="w-full h-11 rounded-full bg-white text-primary text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.12)] active:scale-[0.99] transition"
+            >
+              <Lock className="w-4 h-4" />{ko ? '프리미엄으로 잠금 해제' : 'Unlock with Premium'}
+            </Link>
+            <p className="text-[10.5px] text-white/55 text-center mt-1.5">
+              {ko ? '진단 모의고사 + 취약 영역 맞춤 연습은 프리미엄 전용이에요.' : 'Diagnostic + targeted weak-area practice are Premium features.'}
+            </p>
+          </>
+        )}
       </div>
     </Shell>
   )
