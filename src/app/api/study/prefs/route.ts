@@ -23,6 +23,8 @@ export interface StudyUserPrefs {
   target_tests: string[]
   grade_level: string | null
   daily_goal_minutes: number
+  goal_score: number | null
+  test_date: string | null
   default_language: 'en' | 'ko'
   default_difficulty: 'warmup' | 'balanced' | 'challenge'
   onboarded_at: string | null
@@ -81,6 +83,9 @@ export async function PUT(req: NextRequest) {
     default_difficulty: v => v === 'warmup' || v === 'balanced' || v === 'challenge',
     onboarded_at: isNullOrIsoDate,
     nav_tour_seen_at: isNullOrIsoDate,
+    // Score-plan engine (P1): the total goal (SAT 400–1600) + exam date.
+    goal_score: v => v === null || (typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 2000),
+    test_date: v => v === null || (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) && !Number.isNaN(Date.parse(v))),
   }
   const patch: Record<string, unknown> = { updated_at: new Date().toISOString() }
   for (const [key, valid] of Object.entries(validators)) {

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings } from 'lucide-react'
+import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp, Calendar } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -13,6 +13,8 @@ interface Prefs {
   target_test: string | null
   grade_level: string | null
   daily_goal_minutes: number
+  goal_score: number | null
+  test_date: string | null
   default_language: 'en' | 'ko'
   default_difficulty: 'warmup' | 'balanced' | 'challenge'
 }
@@ -41,6 +43,7 @@ const GRADES = [
 ]
 
 const GOAL_PRESETS = [15, 30, 45, 60, 90]
+const SCORE_PRESETS = [1200, 1300, 1400, 1500, 1600]
 
 /**
  * Study preferences page — surfaces every knob the onboarding
@@ -210,6 +213,43 @@ function PreferencesInner() {
           })}
         </div>
       </SettingGroup>
+
+      {/* Goal score + test date — feed the predicted-score engine, which
+          is SAT-only for now, so only surface them when SAT is the target. */}
+      {(prefs.target_test ?? '').toUpperCase() === 'SAT' && (
+        <>
+          <SettingGroup icon={TrendingUp} label={ko ? '목표 점수' : 'Goal score'} saving={saving === 'goal_score'}>
+            <div className="grid grid-cols-5 gap-2">
+              {SCORE_PRESETS.map(s => {
+                const selected = prefs.goal_score === s
+                return (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => update('goal_score', selected ? null : s)}
+                    className={`h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
+                      selected
+                        ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)]'
+                        : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                    }`}
+                  >
+                    {s}
+                  </button>
+                )
+              })}
+            </div>
+          </SettingGroup>
+
+          <SettingGroup icon={Calendar} label={ko ? '시험 날짜' : 'Test date'} saving={saving === 'test_date'}>
+            <input
+              type="date"
+              value={prefs.test_date ?? ''}
+              onChange={(e) => update('test_date', e.target.value || null)}
+              className="w-full h-11 px-4 rounded-xl bg-white ring-1 ring-gray-200/70 text-[14px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+            />
+          </SettingGroup>
+        </>
+      )}
 
       {/* Grade level */}
       <SettingGroup icon={GraduationCap} label={String(t('study.prefs.gradeLevel'))} saving={saving === 'grade_level'}>

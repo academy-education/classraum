@@ -21,6 +21,7 @@ import { MistakeBankShelf } from './MistakeBankShelf'
 import { GeneratingTestsChip } from './GeneratingTestsChip'
 import { StudyHero } from './StudyHero'
 import { WeeklyQuests } from './_shared/WeeklyQuests'
+import { PredictedScore } from './_shared/PredictedScore'
 import { ResumeBanner } from './ResumeBanner'
 import { DailyReviewCTA } from './DailyReviewCTA'
 import { StreakAtRiskBanner } from './_shared/StreakAtRiskBanner'
@@ -456,6 +457,10 @@ function StudyLandingInner() {
           onOpenSearch={() => setSearchOpen(true)}
           overflowMenu={<HeaderOverflowMenu variant="dark" />}
         />
+
+        {/* Predicted-score headline (score-plan engine P1) — self-hides
+            for non-SAT targets and until a full test exists. */}
+        <PredictedScore />
 
         {/* Each band below is wrapped in its own <SectionGroup> so
             its label sits tight to its cards (internal space-y-2)
