@@ -342,8 +342,10 @@ function TargetChipStrip({
             content height, so without inner padding the chips' 1px ring
             and drop shadow get shaved off top and bottom. */}
         <div className="max-w-3xl mx-auto flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1.5">
-          {targets.map(test => {
-            const isCurrent = test === currentTarget
+          {/* Dedupe case-insensitively so a "SAT"/"sat" pair (legacy data
+              from mixed-case writes) doesn't render as two identical chips. */}
+          {targets.filter((t, i) => targets.findIndex(o => o.toLowerCase() === t.toLowerCase()) === i).map(test => {
+            const isCurrent = test.toLowerCase() === (currentTarget ?? '').toLowerCase()
             return (
               <div
                 key={test}

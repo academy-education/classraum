@@ -112,7 +112,11 @@ export async function PUT(req: NextRequest) {
       .eq('student_id', user.id)
       .maybeSingle()
     const existing = (row?.target_tests as string[] | undefined) ?? []
-    if (current && !existing.includes(current)) {
+    // Case-insensitive membership: onboarding stored "SAT" while other
+    // callers may PUT "sat"; a case-sensitive check appended a duplicate
+    // that rendered as two identical chips. Keep the existing casing if
+    // a case-insensitive match is already present.
+    if (current && !existing.some(e => e.toLowerCase() === current.toLowerCase())) {
       patch.target_tests = [...existing, current]
     }
   } else if ('target_tests' in patch) {

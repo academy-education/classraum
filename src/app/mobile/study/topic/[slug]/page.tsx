@@ -19,6 +19,7 @@ import { DailyChallengeCard } from '../../_shared/DailyChallengeCard'
 import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
 import { PredictedScore } from '../../_shared/PredictedScore'
 import { RecommendedShelf } from '../../RecommendedShelf'
+import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import type { TestFamily } from '@/lib/study-prompt-context'
 
@@ -410,10 +411,13 @@ function TopicInner({ slug }: { slug: string }) {
             diagnostic (PredictedScore cold-start) and their weak-area
             picks together. Both self-hide when not applicable. */}
         {topic.category === 'test_prep' && (
-          <>
+          // RecommendedShelf reads subscription + target from LandingData;
+          // that provider is only mounted on the home, so wrap it here or
+          // the shelf's paid-gate self-hides everywhere else.
+          <LandingDataProvider>
             <PredictedScore />
             <RecommendedShelf />
-          </>
+          </LandingDataProvider>
         )}
         {/* Browse-the-bank entry — opens the Library (all practice
             questions, flashcards, and full tests) scoped to this test's
