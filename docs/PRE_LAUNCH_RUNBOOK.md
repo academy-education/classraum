@@ -4,6 +4,13 @@ Consolidates the 20-commit pre-launch hardening pass shipped on 2026-05-25
 into a single deploy-day checklist. Follow this top-to-bottom before
 flipping `app.classraum.com` to public traffic.
 
+> **⚠️ Launching the study system?** This runbook predates the B2C study
+> product (`/mobile/study/*`, AI test generation, study credits/subscriptions,
+> and the study crons). It does **not** cover `OPENAI_API_KEY`, the study
+> storage buckets, migrations 035–041, or the `study-billing` /
+> `study-league-roll` / `study-*` crons. Run this runbook first, then
+> [`PRE_LAUNCH_RUNBOOK_STUDY.md`](./PRE_LAUNCH_RUNBOOK_STUDY.md).
+
 If you're new to this codebase: the audits today (toast, tech debt,
 loading/error states, rate limiting, PII logging, webhook idempotency,
 cron idempotency, admin routes, file uploads, CORS, public routes, RLS
