@@ -20,6 +20,7 @@ import { ResumableShelf } from './ResumableShelf'
 import { MistakeBankShelf } from './MistakeBankShelf'
 import { GeneratingTestsChip } from './GeneratingTestsChip'
 import { StudyHero } from './StudyHero'
+import { WeeklyQuests } from './_shared/WeeklyQuests'
 import { ResumeBanner } from './ResumeBanner'
 import { DailyReviewCTA } from './DailyReviewCTA'
 import { StreakAtRiskBanner } from './_shared/StreakAtRiskBanner'
@@ -487,6 +488,11 @@ function StudyLandingInner() {
           <DailyReviewCTA />
           <DailyChallengeCard />
         </SectionGroup>
+
+        {/* Weekly quests — three goals that reset Monday; progress is
+            derived from the week's activity and completing one grants a
+            one-time bonus XP. Self-hides until loaded. */}
+        <WeeklyQuests />
 
         {/* Snap-to-solve CTA removed from the landing — discoverable
             via the bottom-nav "사진 풀이" tab. Removing the orange hero
