@@ -163,7 +163,11 @@ export function StudySubPageHeader({
   const goBack = useSmartBack(backHref ?? '/mobile/study')
   const hasBackRow = !!backHref
   return (
-    <header>
+    // -mt-1 trims 4px so the eyebrow lands at the same top offset as the
+    // sticky StudyPageHeader (pt-5). Its pages sit in pt-6 containers, so
+    // without this the sub-pages (stats, profile, prefs…) read 4px lower
+    // than review/league/snap and the top spacing looks uneven.
+    <header className="-mt-1">
       {hasBackRow && (
         <div className="flex items-center justify-between mb-5">
           <button type="button" onClick={goBack}
