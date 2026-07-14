@@ -15,7 +15,6 @@ import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
-import { DailyChallengeCard } from '../../_shared/DailyChallengeCard'
 import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
 import { PredictedScore } from '../../_shared/PredictedScore'
 import { RecommendedShelf } from '../../RecommendedShelf'
@@ -419,24 +418,6 @@ function TopicInner({ slug }: { slug: string }) {
             <RecommendedShelf />
           </LandingDataProvider>
         )}
-        {/* Browse-the-bank entry — opens the Library (all practice
-            questions, flashcards, and full tests) scoped to this test's
-            section. SAT-only for now, since the bank is SAT. */}
-        {topic.category === 'test_prep' && parseTestSlug(topic.slug).family === 'sat' && (
-          <Link
-            href={`/mobile/study/library?section=${parseTestSlug(effectiveTopic?.slug ?? topic.slug).section === 'math' ? 'math' : 'reading_writing'}`}
-            className="flex items-center gap-3 rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 hover:ring-primary/30 active:scale-[0.99] transition"
-          >
-            <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <BookOpen className="w-5 h-5" />
-            </span>
-            <div className="flex-1 min-w-0">
-              <p className="text-[14px] font-semibold text-gray-900">{ko ? '문제 은행 둘러보기' : 'Browse the question bank'}</p>
-              <p className="text-[12.5px] text-gray-500 leading-snug">{ko ? '모든 연습 문제·플래시카드·모의고사를 한곳에서' : 'Every practice question, flashcard, and full test'}</p>
-            </div>
-            <ArrowRight className="w-4 h-4 text-gray-400" />
-          </Link>
-        )}
         {/* Per-topic progress mini-card — only when the student has
             done at least one session on this topic. Gives quick context
             before they pick a mode. */}
@@ -542,7 +523,6 @@ function TopicInner({ slug }: { slug: string }) {
               </>
             ) : (
               <>
-                <DailyChallengeCard />
                 {isResponseEligible(effectiveTopic?.slug) && (
                   <FeaturedResponseCard
                     startSession={() => startSession('response')}
@@ -550,7 +530,50 @@ function TopicInner({ slug }: { slug: string }) {
                     t={t}
                   />
                 )}
-                {modeGrid}
+                {/* Practice & flashcards each offer both paths: start a
+                    fresh session, or browse what already exists in the
+                    bank (the Library, deep-linked to this section + mode).
+                    Replaces the old single "browse the bank" card. */}
+                <div className="space-y-3">
+                  {STUDY_MODES.filter(m => m.key === 'practice' || m.key === 'flashcards').map(mode => {
+                    const Icon = mode.icon
+                    const librarySection = parseTestSlug(effectiveTopic?.slug ?? topic.slug).section === 'math' ? 'math' : 'reading_writing'
+                    const isSat = parseTestSlug(effectiveTopic?.slug ?? topic.slug).family === 'sat'
+                    return (
+                      <div key={mode.key} className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                        <div className="flex items-center gap-3">
+                          <span className={`flex-shrink-0 w-11 h-11 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)]`}>
+                            <Icon className="w-5 h-5" />
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <div className="text-[15px] font-semibold text-gray-900">{t(`study.modes.${mode.key}.title`)}</div>
+                            <div className="text-[12.5px] text-gray-500 leading-snug">{t(`study.modes.${mode.key}.body`)}</div>
+                          </div>
+                        </div>
+                        <div className={`mt-3 grid gap-2 ${isSat ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                          <button
+                            type="button"
+                            onClick={() => startSession(mode.key)}
+                            disabled={creating !== null}
+                            className="h-10 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait transition"
+                          >
+                            {creating === mode.key ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                            {ko ? '새로 시작' : 'Start new'}
+                          </button>
+                          {/* Bank browsing is SAT-only for now. */}
+                          {isSat && (
+                            <Link
+                              href={`/mobile/study/library?section=${librarySection}&tab=${mode.key}`}
+                              className="h-10 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 hover:ring-primary/40 hover:text-primary active:scale-[0.98] transition"
+                            >
+                              <BookOpen className="w-4 h-4" />{ko ? '기존 보기' : 'Browse existing'}
+                            </Link>
+                          )}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
               </>
             )}
           </>
