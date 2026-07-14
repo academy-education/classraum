@@ -487,7 +487,11 @@ function PathList({
   // session for the node resumes instead of duplicating.
   const handleLaunch = async (node: PathNodeWithState) => {
     if (launchingId) return
-    if (node.state.resumeSessionId) {
+    // Resume an in-progress attempt only for a node that isn't already
+    // completed. A completed node reached here means the student tapped
+    // "Restart" in the review card, which should start fresh — not silently
+    // resume a stray unfinished re-attempt.
+    if (node.state.resumeSessionId && !node.state.completedSessionId) {
       router.push(`/mobile/study/session/${node.state.resumeSessionId}`)
       return
     }
@@ -636,14 +640,15 @@ function PathList({
                   node={node}
                   onClick={() => {
                     if (isLocked) return
-                    // Nodes with a finished submission open a results
-                    // callout — the student reviews or explicitly
-                    // restarts; a tap never silently redoes the section.
-                    // Branch on completedSessionId rather than display
-                    // status: when the whole path is done, annotatePath
-                    // relabels the final node 'active' for review, and
-                    // status alone would fall through to a fresh launch.
-                    if (node.state.completedSessionId && !node.state.resumeSessionId) {
+                    // ANY node with a finished submission opens the results
+                    // callout (view / restart) — a tap never silently redoes
+                    // OR resumes the section. Branch on completedSessionId,
+                    // not display status: when the whole path is done,
+                    // annotatePath relabels the final node 'active' for
+                    // review. (Previously a completed node that also had a
+                    // stray in-progress re-attempt fell through and launched
+                    // directly — the inconsistency this fixes.)
+                    if (node.state.completedSessionId) {
                       setOpenCompletedId(prev => (prev === node.id ? null : node.id))
                       return
                     }
@@ -651,9 +656,12 @@ function PathList({
                   }}
                   pulsing={isLastActive}
                 />
-                {/* Active node's callout sits BELOW, full-width. Better
-                    readability than the prior cramped side-by-side layout. */}
-                {isLastActive && (
+                {/* Active node's "Start" callout sits BELOW, full-width.
+                    Hidden once the node is completed (e.g. the final node
+                    that annotatePath relabels 'active' for review) so a
+                    finished node shows only its results card, never a
+                    second "Start" affordance. */}
+                {isLastActive && !node.state.completedSessionId && (
                   <ActiveCallout
                     node={node}
                     onLaunch={() => void handleLaunch(node)}
