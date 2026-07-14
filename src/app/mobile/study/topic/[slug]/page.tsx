@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen } from 'lucide-react'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -414,6 +414,24 @@ function TopicInner({ slug }: { slug: string }) {
             <PredictedScore />
             <RecommendedShelf />
           </>
+        )}
+        {/* Browse-the-bank entry — opens the Library (all practice
+            questions, flashcards, and full tests) scoped to this test's
+            section. SAT-only for now, since the bank is SAT. */}
+        {topic.category === 'test_prep' && parseTestSlug(topic.slug).family === 'sat' && (
+          <Link
+            href={`/mobile/study/library?section=${parseTestSlug(effectiveTopic?.slug ?? topic.slug).section === 'math' ? 'math' : 'reading_writing'}`}
+            className="flex items-center gap-3 rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 hover:ring-primary/30 active:scale-[0.99] transition"
+          >
+            <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <BookOpen className="w-5 h-5" />
+            </span>
+            <div className="flex-1 min-w-0">
+              <p className="text-[14px] font-semibold text-gray-900">{ko ? '문제 은행 둘러보기' : 'Browse the question bank'}</p>
+              <p className="text-[12.5px] text-gray-500 leading-snug">{ko ? '모든 연습 문제·플래시카드·모의고사를 한곳에서' : 'Every practice question, flashcard, and full test'}</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-gray-400" />
+          </Link>
         )}
         {/* Per-topic progress mini-card — only when the student has
             done at least one session on this topic. Gives quick context
