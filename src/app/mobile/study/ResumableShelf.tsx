@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { ListChecks, BookOpen, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from 'lucide-react'
+import { ListChecks, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { SkeletonCard, SkeletonBlock } from './skeletons'
@@ -29,12 +29,6 @@ const MODE_STYLE: Record<StudyMode, { Icon: LucideIcon; iconBg: string; cardBg: 
     iconBg: 'bg-gradient-to-br from-emerald-400 to-teal-600',
     cardBg: 'bg-gradient-to-br from-emerald-50/60 via-white to-white',
     ring: 'ring-emerald-100',
-  },
-  lesson: {
-    Icon: BookOpen,
-    iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
-    cardBg: 'bg-gradient-to-br from-amber-50/70 via-white to-white',
-    ring: 'ring-amber-100',
   },
   flashcards: {
     Icon: Layers,

@@ -1,4 +1,4 @@
-import { ListChecks, BookOpen, Layers, FileText, Mic } from 'lucide-react'
+import { ListChecks, Layers, FileText, Mic } from 'lucide-react'
 
 /**
  * Study modes — single source of truth used by topic picker, session
@@ -19,16 +19,6 @@ export const STUDY_MODES = [
     hoverRing: 'hover:ring-emerald-200',
     hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(16,185,129,0.18),0_16px_32px_-12px_rgba(16,185,129,0.25)]',
     hoverText: 'group-hover:text-emerald-700',
-  },
-  {
-    key: 'lesson',
-    icon: BookOpen,
-    color: 'text-amber-600 bg-amber-50',
-    cardBg: 'bg-gradient-to-br from-amber-50/70 via-white to-white',
-    iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
-    hoverRing: 'hover:ring-amber-200',
-    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(245,158,11,0.20),0_16px_32px_-12px_rgba(245,158,11,0.26)]',
-    hoverText: 'group-hover:text-amber-700',
   },
   {
     key: 'flashcards',

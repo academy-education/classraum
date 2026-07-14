@@ -11,7 +11,6 @@ import { STUDY_MODES, type StudyMode } from '../../modes'
 import { StudyPageHeader } from '../../_shared/primitives'
 import { MascotLoader, useMascotGate } from '../../_shared/MascotLoader'
 import { PracticeSession } from './PracticeSession'
-import { LessonSession } from './LessonSession'
 import { FlashcardsSession } from './FlashcardsSession'
 import { TestSession } from './TestSession'
 import { ResponseSession } from './ResponseSession'
@@ -155,7 +154,6 @@ function SessionInner({ id }: { id: string }) {
       // chat tutor retired — any legacy chat session falls to the
       // "unknown mode" safety net below with a link back to study.
       case 'practice':   return <PracticeSession sessionId={session.id} language={session.language} />
-      case 'lesson':     return <LessonSession sessionId={session.id} language={session.language} />
       case 'flashcards': return <FlashcardsSession sessionId={session.id} language={session.language} />
       case 'full_test':  return <TestSession sessionId={session.id} language={session.language} />
       case 'response':   return <ResponseSession sessionId={session.id} language={session.language} />

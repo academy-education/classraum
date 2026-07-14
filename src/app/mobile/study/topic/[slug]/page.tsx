@@ -699,19 +699,6 @@ const MODE_DECOR: Record<StudyMode, React.ReactElement | null> = {
       <path d="M7 29 L9 31 L13 27" stroke="white" strokeWidth="1.5" fill="none" />
     </svg>
   ),
-  lesson: (
-    // Open book — two pages with reading lines
-    <svg aria-hidden viewBox="0 0 80 60" className="pointer-events-none absolute bottom-2 right-2 w-16 h-12 text-amber-500/10 group-hover:text-amber-500/20 transition-colors">
-      <path d="M5 10 L5 50 L40 50 L40 12 Q22 6 5 10 Z" fill="currentColor" />
-      <path d="M75 10 L75 50 L40 50 L40 12 Q58 6 75 10 Z" fill="currentColor" />
-      <line x1="12" y1="22" x2="32" y2="22" stroke="white" strokeWidth="1.2" opacity="0.6" />
-      <line x1="12" y1="30" x2="32" y2="30" stroke="white" strokeWidth="1.2" opacity="0.6" />
-      <line x1="12" y1="38" x2="28" y2="38" stroke="white" strokeWidth="1.2" opacity="0.6" />
-      <line x1="48" y1="22" x2="68" y2="22" stroke="white" strokeWidth="1.2" opacity="0.6" />
-      <line x1="48" y1="30" x2="68" y2="30" stroke="white" strokeWidth="1.2" opacity="0.6" />
-      <line x1="48" y1="38" x2="64" y2="38" stroke="white" strokeWidth="1.2" opacity="0.6" />
-    </svg>
-  ),
   flashcards: (
     // Stacked card edges showing depth
     <svg aria-hidden viewBox="0 0 80 60" className="pointer-events-none absolute bottom-2 right-2 w-16 h-12 text-violet-500/10 group-hover:text-violet-500/20 transition-colors">

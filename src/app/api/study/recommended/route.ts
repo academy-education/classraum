@@ -23,7 +23,7 @@ interface RecommendedCard {
   topic: { id: string; slug: string; name_en: string; name_ko: string; category: string } | null
   score: number | null
   attempts_count: number
-  suggested_mode: 'chat' | 'practice' | 'lesson' | 'flashcards' | 'full_test'
+  suggested_mode: 'practice' | 'flashcards' | 'response' | 'full_test'
   /** First weakness label from the AI assessment, if any — gives the
    *  recommended card a more specific reason than just the score. */
   weakness_hint?: string | null
@@ -153,10 +153,12 @@ export async function GET(req: NextRequest) {
       topic: t,
       score: mRow?.score ?? masteryScore,
       attempts_count: 0,
-      // Recent topics suggest the mode the student last used, but we
-      // don't have it indexed — defaulting to chat as the safest
-      // resume CTA.
-      suggested_mode: row.mode as RecommendedCard['suggested_mode'],
+      // Suggest the mode the student last used, but coerce any retired
+      // mode (chat / lesson) to practice so the card never deep-links to
+      // a mode that no longer renders.
+      suggested_mode: (['practice', 'flashcards', 'response', 'full_test'].includes(row.mode)
+        ? row.mode
+        : 'practice') as RecommendedCard['suggested_mode'],
     })
   }
 

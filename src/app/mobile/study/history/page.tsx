@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, ChevronRight, ChevronLeft, History as HistoryIcon, Search, X } from 'lucide-react'
+import { MessageCircle, ListChecks, Layers, ClipboardList, Mic, ChevronRight, ChevronLeft, History as HistoryIcon, Search, X } from 'lucide-react'
 import { StudySubPageHeader, StudyEmptyState } from '../_shared/primitives'
 import { groupByDate, formatTimeAgo } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
@@ -34,7 +34,6 @@ interface Row {
 
 const MODE_ICONS: Record<StudyMode, typeof MessageCircle> = {
   practice: ListChecks,
-  lesson: BookOpen,
   flashcards: Layers,
   full_test: ClipboardList,
   response: Mic,
