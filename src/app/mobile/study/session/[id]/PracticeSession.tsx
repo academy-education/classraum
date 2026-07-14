@@ -7,6 +7,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
+import { ExplainMore } from '../../_shared/ExplainMore'
 
 type QuestionType = 'multiple_choice' | 'true_false' | 'short_answer'
 
@@ -339,6 +340,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
 
           {/* Feedback panel — shown after submit. */}
           {phase === 'feedback' && verdict && (
+            <>
             <div className={`mt-4 rounded-xl p-4 ${
               verdict.isCorrect
                 ? 'bg-emerald-50 border border-emerald-200'
@@ -365,6 +367,16 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
                 </p>
               )}
             </div>
+            {/* Interactive follow-up: step-by-step, simpler, or ask. */}
+            <ExplainMore
+              prompt={q.prompt}
+              choices={q.type === 'multiple_choice' ? (q.choices ?? undefined) : undefined}
+              correctAnswer={q.correct_answer}
+              studentAnswer={answer}
+              priorExplanation={verdict.aiExplanation}
+              language={language}
+            />
+            </>
           )}
             </div>{/* end right pane */}
           </div>{/* end two-pane grid */}
