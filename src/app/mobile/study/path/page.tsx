@@ -361,7 +361,7 @@ function TargetChipStrip({
                   } ${targets.length > 1 && !isCurrent ? 'pr-1' : 'pr-2.5'}`}
                   aria-pressed={isCurrent}
                 >
-                  {test}
+                  {test.toUpperCase()}
                 </button>
                 {/* Remove × — only on non-current chips, only when
                     there's more than one target. Prevents the empty-

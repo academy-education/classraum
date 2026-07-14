@@ -57,6 +57,7 @@ function HistoryInner() {
   const [loading, setLoading] = useState(true)
   const [loadFailed, setLoadFailed] = useState(false)
   const [query, setQuery] = useState('')
+  const [modeFilter, setModeFilter] = useState<StudyMode | 'all'>('all')
   const [page, setPage] = useState(0)
 
   useEffect(() => {
@@ -83,19 +84,29 @@ function HistoryInner() {
     return () => { cancelled = true }
   }, [user?.userId])
 
+  // Counts per mode — powers the filter chip badges (over the whole
+  // fetched window, not the query-narrowed set, so the badges are stable
+  // while typing).
+  const modeCounts = useMemo(() => {
+    const c: Record<StudyMode | 'all', number> = { all: rows.length, practice: 0, flashcards: 0, full_test: 0, response: 0 }
+    for (const r of rows) c[r.mode] = (c[r.mode] ?? 0) + 1
+    return c
+  }, [rows])
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
-    if (!q) return rows
     return rows.filter(row => {
+      if (modeFilter !== 'all' && row.mode !== modeFilter) return false
+      if (!q) return true
       const title = row.title ?? ''
       const topicName = row.topic ? `${row.topic.name_en} ${row.topic.name_ko}` : ''
       const freeform = row.topic_freeform ?? ''
       const modeLabel = String(t(`study.modes.${row.mode}.title`))
       return `${title} ${topicName} ${freeform} ${modeLabel}`.toLowerCase().includes(q)
     })
-  }, [rows, query, t])
+  }, [rows, query, modeFilter, t])
 
-  useEffect(() => { setPage(0) }, [query])
+  useEffect(() => { setPage(0) }, [query, modeFilter])
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
   const clampedPage = Math.min(page, totalPages - 1)
@@ -137,6 +148,8 @@ function HistoryInner() {
             </button>
           )}
         </label>
+
+        <ModeFilter value={modeFilter} onSelect={setModeFilter} counts={modeCounts} ko={ko} />
 
         {loading ? (
           <SkeletonRowList count={6} />
@@ -256,6 +269,53 @@ function HistoryInner() {
             )}
           </>
         )}
+      </div>
+    </div>
+  )
+}
+
+// Mode filter — same chip row as the tests page's StateFilter, but keyed
+// on study mode (practice / flashcards / full test / response). Hides a
+// chip when the student has no sessions of that mode, so it never shows
+// an always-empty filter.
+function ModeFilter({ value, onSelect, counts, ko }: {
+  value: StudyMode | 'all'
+  onSelect: (k: StudyMode | 'all') => void
+  counts: Record<StudyMode | 'all', number>
+  ko: boolean
+}) {
+  const items: Array<{ key: StudyMode | 'all'; label: string }> = [
+    { key: 'all', label: ko ? '전체' : 'All' },
+    { key: 'practice', label: ko ? '연습 문제' : 'Practice' },
+    { key: 'flashcards', label: ko ? '플래시카드' : 'Flashcards' },
+    { key: 'full_test', label: ko ? '모의고사' : 'Full tests' },
+    { key: 'response', label: ko ? '말하기·작문' : 'Response' },
+  ]
+  return (
+    <div className="-mx-5 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-2 pl-5 pr-5 pt-1 pb-1">
+        {items.map(item => {
+          const active = value === item.key
+          const count = counts[item.key] ?? 0
+          if (count === 0 && item.key !== 'all') return null
+          const Icon = item.key === 'all' ? null : MODE_ICONS[item.key]
+          return (
+            <button
+              key={item.key}
+              type="button"
+              onClick={() => onSelect(item.key)}
+              className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
+                active
+                  ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
+                  : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {Icon && <Icon className="w-3.5 h-3.5" />}
+              {item.label}
+              <span className="opacity-60 tabular-nums">{count}</span>
+            </button>
+          )
+        })}
       </div>
     </div>
   )
