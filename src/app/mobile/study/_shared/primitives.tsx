@@ -33,6 +33,9 @@ export interface StudyPageHeaderProps {
   iconColorClass?: string      // e.g. "text-amber-600 bg-amber-50"
   eyebrow: string
   title: string
+  /** Optional one-line subtitle under the title. Hidden when the header
+   *  collapses on scroll (keeps the thin bar to back + title only). */
+  subtitle?: string
   rightSlot?: ReactNode
   /** Full-bleed header: back button pinned to the left edge and the row
    *  spanning the whole width (used by the session shell, which fills the
@@ -54,7 +57,7 @@ function useSmartBack(fallback: string) {
 
 export function StudyPageHeader({
   backHref, backLabel, icon: _Icon, iconColorClass: _iconColorClass,
-  eyebrow, title, rightSlot, wide,
+  eyebrow, title, subtitle, rightSlot, wide,
 }: StudyPageHeaderProps) {
   const hasBack = !!backHref && !!backLabel
   const goBack = useSmartBack(backHref ?? '/mobile/study')
@@ -128,11 +131,45 @@ export function StudyPageHeader({
             <h1 className={`font-bold tracking-tight text-gray-900 truncate transition-all ${
               collapsed ? 'text-[14px]' : 'text-[24px] sm:text-[26px] leading-tight'
             }`}>{title}</h1>
+            {subtitle && !collapsed && (
+              <p className="text-[13px] text-gray-500 mt-1 leading-snug truncate">{subtitle}</p>
+            )}
           </div>
           {rightSlot}
         </div>
       </div>
     </header>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// StudyScrollShell — the page shell that gives every sub-page the same
+// sticky, collapse-on-scroll header as the StudyPath page. Establishes
+// its own scroll context (flex-col h-full > flex-1 overflow-y-auto) so a
+// `sticky top-0` StudyPageHeader pins to it. Pass the <StudyPageHeader>
+// as `header`; content goes in `children` (already wrapped in the
+// standard centered, padded container). Optional `decoration` renders a
+// full-bleed background flourish behind the content.
+// ─────────────────────────────────────────────────────────────────────
+export function StudyScrollShell({
+  header, children, bg = 'bg-gray-50', decoration, contentClassName,
+}: {
+  header: ReactNode
+  children: ReactNode
+  bg?: string
+  decoration?: ReactNode
+  contentClassName?: string
+}) {
+  return (
+    <div className={`flex flex-col h-full ${bg}`}>
+      <div className="flex-1 overflow-y-auto relative">
+        {decoration}
+        {header}
+        <div className={contentClassName ?? 'max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6'}>
+          {children}
+        </div>
+      </div>
+    </div>
   )
 }
 
