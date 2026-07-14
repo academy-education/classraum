@@ -415,12 +415,34 @@ function TopicInner({ slug }: { slug: string }) {
           // the shelf's paid-gate self-hides everywhere else.
           <LandingDataProvider>
             <PredictedScore />
-            <RecommendedShelf />
+            {/* hideUpsell: the diagnostic card above is already the
+                premium pitch (and promises weak-area targeted practice),
+                so a second "unlock personalized picks" paywall here just
+                repeats it. Free users see one pitch; paid users still get
+                real recommended cards. */}
+            <RecommendedShelf hideUpsell />
           </LandingDataProvider>
         )}
-        {/* Per-topic progress mini-card — only when the student has
-            done at least one session on this topic. Gives quick context
-            before they pick a mode. */}
+
+        {/* Category picker — only when the topic has children.
+            AP → AP Biology / AP Calc AB, KSAT → 국어 / 수학 / 영어, etc.
+            The student picks a category first, then the mode picker
+            below targets that specific category. For leaves (sat-math,
+            ksat-korean) this section doesn't render and the mode
+            picker targets the leaf itself. */}
+        {children.length > 0 && (
+          <CategoryPicker
+            label={String(t(topic.category === 'test_prep' ? 'study.topic.sectionPickerLabel' : 'study.topic.categoryPickerLabel'))}
+            items={children}
+            selectedId={selectedChildId}
+            onSelect={setSelectedChildId}
+            name={name}
+          />
+        )}
+
+        {/* Per-topic progress mini-card — sits directly under the section
+            dropdown so mastery/sessions/last read as stats for the chosen
+            section. Only when the student has done a session here. */}
         {progress.sessions > 0 && (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4 flex items-center gap-4">
             <div className="flex-1 grid grid-cols-3 gap-3">
@@ -445,22 +467,6 @@ function TopicInner({ slug }: { slug: string }) {
               />
             </div>
           </div>
-        )}
-
-        {/* Category picker — only when the topic has children.
-            AP → AP Biology / AP Calc AB, KSAT → 국어 / 수학 / 영어, etc.
-            The student picks a category first, then the mode picker
-            below targets that specific category. For leaves (sat-math,
-            ksat-korean) this section doesn't render and the mode
-            picker targets the leaf itself. */}
-        {children.length > 0 && (
-          <CategoryPicker
-            label={String(t(topic.category === 'test_prep' ? 'study.topic.sectionPickerLabel' : 'study.topic.categoryPickerLabel'))}
-            items={children}
-            selectedId={selectedChildId}
-            onSelect={setSelectedChildId}
-            name={name}
-          />
         )}
 
         {/* Mode picker.

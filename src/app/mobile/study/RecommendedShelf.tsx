@@ -39,7 +39,7 @@ interface Card {
  * suggested topic and routes to it. Skips the topic page since the
  * card already represents an explicit (topic, mode) decision.
  */
-export function RecommendedShelf() {
+export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean } = {}) {
   const router = useRouter()
   const { t, language } = useTranslation()
   const { user } = usePersistentMobileAuth()
@@ -116,7 +116,10 @@ export function RecommendedShelf() {
   const name = (s: { name_en: string; name_ko: string }) => ko ? s.name_ko : s.name_en
 
   // Non-paid users get a compact upsell teaser instead of the shelf.
+  // On surfaces that already carry a premium pitch (the test-prep page's
+  // diagnostic card), pass hideUpsell to drop this duplicate paywall.
   if (landing && !isPaid) {
+    if (hideUpsell) return null
     return (
       <section>
         <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
