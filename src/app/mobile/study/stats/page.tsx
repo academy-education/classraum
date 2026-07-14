@@ -7,7 +7,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader } from '../skeletons'
-import { StudyMetric, NumberRoll, StudySubPageHeader } from '../_shared/primitives'
+import { StudyMetric, NumberRoll, StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 
 interface Achievement {
   key: string
@@ -139,15 +139,18 @@ function StatsInner() {
   const name = (n: { name_en: string; name_ko: string }) => ko ? n.name_ko : n.name_en
 
   return (
-    <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-      <StudySubPageHeader
-        backHref="/mobile/study"
-        backLabel={String(t('study.topic.backToStudy'))}
-        icon={BarChart3}
-        eyebrow={ko ? '학습' : 'Study'}
-        title={String(t('study.stats.title'))}
-        subtitle={String(t('study.stats.subtitle'))}
-      />
+    <StudyScrollShell
+      header={
+        <StudyPageHeader
+          backHref="/mobile/study"
+          backLabel={String(t('study.topic.backToStudy'))}
+          icon={BarChart3}
+          eyebrow={ko ? '학습' : 'Study'}
+          title={String(t('study.stats.title'))}
+          subtitle={String(t('study.stats.subtitle'))}
+        />
+      }
+    >
 
       {/* This week — XP + active days + league rank. Visible only
           when the student has done something this week. */}
@@ -300,7 +303,7 @@ function StatsInner() {
           </div>
         </section>
       )}
-    </div>
+    </StudyScrollShell>
   )
 }
 

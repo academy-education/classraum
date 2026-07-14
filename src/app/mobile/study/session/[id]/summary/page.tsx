@@ -10,7 +10,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../../../SubscriptionGate'
 import { MascotLoader, useMascotGate } from '../../../_shared/MascotLoader'
 import { PathMascot, type MascotState } from '../../../_shared/PathMascot'
-import { StudySubPageHeader } from '../../../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell } from '../../../_shared/primitives'
 import { estimateSectionScore } from '@/lib/study/sat-adaptive'
 
 interface SessionRow {
@@ -171,16 +171,18 @@ function SummaryInner({ id }: { id: string }) {
   const mistakes = attempts.filter(a => !a.is_correct)
 
   return (
-    <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-      <StudySubPageHeader
-        backHref="/mobile/study"
-        backLabel={String(t('study.topic.backToStudy'))}
-        icon={Sparkles}
-        iconColorClass="text-primary bg-primary/10"
-        eyebrow={String(t('study.summary.eyebrow'))}
-        title={modeLabel}
-      />
-
+    <StudyScrollShell
+      header={
+        <StudyPageHeader
+          backHref="/mobile/study"
+          backLabel={String(t('study.topic.backToStudy'))}
+          icon={Sparkles}
+          iconColorClass="text-primary bg-primary/10"
+          eyebrow={String(t('study.summary.eyebrow'))}
+          title={modeLabel}
+        />
+      }
+    >
       {/* Hero — score in a big gradient card, with the mascot in the
           top-right giving the numbers a face. Emotional state follows
           accuracy so a hard session doesn't get a cheerful celebrate. */}
@@ -313,7 +315,7 @@ function SummaryInner({ id }: { id: string }) {
           <ArrowRight className="w-4 h-4" />
         </Link>
       </section>
-    </div>
+    </StudyScrollShell>
   )
 }
 

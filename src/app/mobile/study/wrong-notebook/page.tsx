@@ -6,7 +6,7 @@ import { ArrowLeft, Loader2, BookOpen, Printer, CheckCircle2, XCircle, Pencil, S
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { StudySubPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
 import { ExplainMore } from '../_shared/ExplainMore'
 import { SkeletonCard, SkeletonIconTile, SkeletonBlock } from '../skeletons'
@@ -215,13 +215,9 @@ function WrongNotebookInner() {
   }
 
   return (
-    <div className="relative">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-primary/[0.025] to-transparent"
-      />
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <StudySubPageHeader
+    <StudyScrollShell
+      header={
+        <StudyPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.wrongNotebook.back'))}
           icon={BookOpen}
@@ -243,7 +239,8 @@ function WrongNotebookInner() {
             </Link>
           }
         />
-
+      }
+    >
         {/* Search — mirrors the history page pattern so the two list
             surfaces feel like siblings. Client-side across prompt,
             answers, and the student's own note. */}
@@ -524,8 +521,7 @@ function WrongNotebookInner() {
           )}
         </div>
         </StudyPageTransition>
-      </div>
-    </div>
+    </StudyScrollShell>
   )
 }
 

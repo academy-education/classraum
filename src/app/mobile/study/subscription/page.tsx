@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonPageHeader } from '../skeletons'
-import { StudySubPageHeader } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS } from '@/lib/study/plans'
 import { PortOne } from '@/lib/portone-browser'
@@ -270,13 +270,9 @@ export default function SubscriptionPage() {
   }
 
   return (
-    <div className="relative">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.02] to-transparent"
-      />
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <StudySubPageHeader
+    <StudyScrollShell
+      header={
+        <StudyPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.topic.backToStudy'))}
           icon={CreditCard}
@@ -284,7 +280,8 @@ export default function SubscriptionPage() {
           title={String(t('study.subscription.title'))}
           subtitle={String(t('study.subscription.subtitle'))}
         />
-
+      }
+    >
         {/* Action feedback lives directly under the header — at the old
             bottom-of-page spot it rendered off-screen after cancel/
             checkout and the page looked like nothing happened. */}
@@ -560,8 +557,7 @@ export default function SubscriptionPage() {
           )}
         </div>
 
-      </div>
-    </div>
+    </StudyScrollShell>
   )
 }
 

@@ -6,7 +6,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup, SkeletonPageHeader } from '../skeletons'
-import { StudySubPageHeader } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 
 interface Prefs {
@@ -162,16 +162,18 @@ function PreferencesInner() {
   }
 
   return (
-    <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-      <StudySubPageHeader
-        backHref="/mobile/study"
-        backLabel={String(t('study.topic.backToStudy'))}
-        icon={Settings}
-        eyebrow={ko ? '학습' : 'Study'}
-        title={String(t('study.prefs.title'))}
-        subtitle={String(t('study.prefs.subtitle'))}
-      />
-
+    <StudyScrollShell
+      header={
+        <StudyPageHeader
+          backHref="/mobile/study"
+          backLabel={String(t('study.topic.backToStudy'))}
+          icon={Settings}
+          eyebrow={ko ? '학습' : 'Study'}
+          title={String(t('study.prefs.title'))}
+          subtitle={String(t('study.prefs.subtitle'))}
+        />
+      }
+    >
       {/* Save-failure toast — the optimistic revert is invisible
           without it. Fixed above the bottom nav. */}
       {saveFailed && (
@@ -296,7 +298,7 @@ function PreferencesInner() {
           onChange={(v) => update('default_difficulty', v as Prefs['default_difficulty'])}
         />
       </SettingGroup>
-    </div>
+    </StudyScrollShell>
   )
 }
 

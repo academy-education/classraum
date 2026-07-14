@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
 import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap } from 'lucide-react'
-import { StudySubPageHeader } from '../../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard } from '../../skeletons'
@@ -382,14 +382,9 @@ function TopicInner({ slug }: { slug: string }) {
   )
 
   return (
-    <div className="relative">
-      {errorToast}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.03] to-transparent"
-      />
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <StudySubPageHeader
+    <StudyScrollShell
+      header={
+        <StudyPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.topic.backToStudy'))}
           icon={topic.category === 'test_prep' ? FileText : GraduationCap}
@@ -398,6 +393,9 @@ function TopicInner({ slug }: { slug: string }) {
           title={name(topic)}
           subtitle={String(t('study.topic.pickMode'))}
         />
+      }
+    >
+      {errorToast}
         {/* Mascot-led path entry — only for test-prep topics that have a
             hand-crafted path (SAT / TOEFL). Self-gates on whether this
             test is already the student's goal: continue-path card if so,
@@ -535,8 +533,6 @@ function TopicInner({ slug }: { slug: string }) {
           </>
         )}
 
-      </div>
-
       {/* Pre-test customization sheet — opens when student taps Full
           Test. Saves their choices to session.config which the test
           generator reads to override the spec defaults. */}
@@ -549,7 +545,7 @@ function TopicInner({ slug }: { slug: string }) {
         onClose={() => setTestSheetOpen(false)}
         onStart={(config) => { setTestSheetOpen(false); void startSession('full_test', config, testLanguage) }}
       />
-    </div>
+    </StudyScrollShell>
   )
 }
 

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ClipboardList, CheckCircle2, Loader2, AlertTriangle, Play, ChevronRight, ChevronLeft, Trophy, Search, X } from 'lucide-react'
-import { StudySubPageHeader, StudyEmptyState } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell, StudyEmptyState } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
@@ -104,13 +104,9 @@ function TestsInner() {
   const paged = filtered.slice(clampedPage * PAGE_SIZE, (clampedPage + 1) * PAGE_SIZE)
 
   return (
-    <div className="relative">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 -z-10 bg-gradient-to-b from-primary/[0.025] to-transparent"
-      />
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <StudySubPageHeader
+    <StudyScrollShell
+      header={
+        <StudyPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.topic.backToStudy'))}
           icon={ClipboardList}
@@ -124,7 +120,8 @@ function TestsInner() {
                 ? `전체 ${rows.length}개의 모의고사 세션을 관리하세요.`
                 : `Manage your ${rows.length} mock-test session${rows.length === 1 ? '' : 's'}.`)}
         />
-
+      }
+    >
         <label className="relative block">
           <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
@@ -213,8 +210,7 @@ function TestsInner() {
             )}
           </>
         )}
-      </div>
-    </div>
+    </StudyScrollShell>
   )
 }
 

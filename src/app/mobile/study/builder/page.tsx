@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, Loader2, Sparkles, ChevronDown, Check } from 'lucide-react'
-import { StudySubPageHeader } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -170,18 +170,20 @@ function BuilderInner() {
   }
 
   return (
-    <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
+    <StudyScrollShell
+      header={
+        <StudyPageHeader
+          backHref="/mobile/study"
+          backLabel={String(t('study.topic.backToStudy'))}
+          icon={Sparkles}
+          iconColorClass="text-orange-600 bg-orange-50"
+          eyebrow={String(t('study.builder.eyebrow'))}
+          title={String(t('study.builder.title'))}
+          subtitle={String(t('study.builder.subtitle'))}
+        />
+      }
+    >
       {errorToast}
-      <StudySubPageHeader
-        backHref="/mobile/study"
-        backLabel={String(t('study.topic.backToStudy'))}
-        icon={Sparkles}
-        iconColorClass="text-orange-600 bg-orange-50"
-        eyebrow={String(t('study.builder.eyebrow'))}
-        title={String(t('study.builder.title'))}
-        subtitle={String(t('study.builder.subtitle'))}
-      />
-
       {/* Topic picker — dropdown opens a full topic list. */}
       <section>
         <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
@@ -271,7 +273,7 @@ function BuilderInner() {
         {creating ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
         {String(t('study.builder.start'))}
       </button>
-    </div>
+    </StudyScrollShell>
   )
 }
 
