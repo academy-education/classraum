@@ -944,9 +944,14 @@ function RecentTestsList({ topicIds, studentId, ko }: {
 
   return (
     <section>
-      <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
-        {ko ? '최근 응시한 테스트' : 'Recent tests'}
-      </h2>
+      <div className="flex items-center justify-between mb-2 px-1">
+        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">
+          {ko ? '최근 응시한 테스트' : 'Recent tests'}
+        </h2>
+        <Link href="/mobile/study/tests" className="inline-flex items-center gap-1 text-[12px] font-medium text-gray-600 hover:text-primary transition-colors">
+          {ko ? '전체 보기' : 'View all'}<ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </div>
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] divide-y divide-gray-100 overflow-hidden">
         {rows.map(row => {
           const score = row.score !== null ? Math.round(Number(row.score)) : null
