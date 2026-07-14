@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Home, ClipboardList, FileText, User, BookOpen, Camera, Shuffle, Trophy } from 'lucide-react'
+import { Home, ClipboardList, FileText, User, BookOpen, Route, Shuffle, Trophy } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { resolveMode, storeMode, modeForPath } from '@/lib/study/currentMode'
 
@@ -42,7 +42,9 @@ export function useMobileNav() {
 
   const studyNav: MobileNavItem[] = [
     { href: '/mobile/study', icon: BookOpen, label: String(t('mobile.navigation.study')), matchExact: true },
-    { href: '/mobile/study/snap', icon: Camera, label: String(t('mobile.navigation.snap')) },
+    // Path is the core mascot-led loop — give it a permanent tab (it
+    // replaces Snap, which links to a "coming soon" page).
+    { href: '/mobile/study/path', icon: Route, label: String(t('mobile.navigation.path')) },
     { href: '/mobile/study/review', icon: Shuffle, label: String(t('mobile.navigation.review')) },
     { href: '/mobile/study/league', icon: Trophy, label: String(t('mobile.navigation.league')) },
     { href: '/mobile/profile', icon: User, label: String(t('mobile.navigation.profile')) },

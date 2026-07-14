@@ -31,7 +31,6 @@ import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorT
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
 import { LandingDataProvider, useLandingData } from './LandingDataProvider'
-import { StudyPathPromo } from './StudyPathPromo'
 import { SocialPresenceCard } from './SocialPresenceCard'
 import { SkeletonTestGrid, SkeletonBlock, SkeletonCard } from './skeletons'
 
@@ -513,7 +512,9 @@ function StudyLandingInner() {
               subtitle={ko ? '추천과 학습 경로의 기준이 돼요' : "Your picks are built around it"}
             />
           )}
-          <StudyPathPromo />
+          {/* StudyPathPromo removed — the Path now has a permanent bottom-
+              nav tab, so a promo card here was a redundant "continue"
+              surface competing with Resume / Daily Challenge below. */}
           <ResumeBanner />
           <SocialPresenceCard />
           <GeneratingTestsChip />
