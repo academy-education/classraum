@@ -899,6 +899,20 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
 
   // phase === 'taking' or 'submitting'
   const q = test.questions[currentIdx]
+  // Desktop two-pane: a reading/listening item with reference material
+  // (a passage or listening recording) puts that material in a left pane
+  // and the prompt + answers in a right pane — the Digital-SAT / TOEFL
+  // layout, so the passage and choices each keep a comfortable measure
+  // instead of one column stretching the full 1600px shell. Items that
+  // author their OWN full-width body (Complete-the-Words fill-in,
+  // Speaking start screen, Writing editor) stay single-column. Phones
+  // always stack (the grid only engages at lg).
+  const twoPane = !!q?.passage
+    && q.type !== 'fill_in_blanks'
+    && q.type !== 'speaking_repeat'
+    && q.type !== 'speaking_interview'
+    && q.type !== 'writing_email'
+    && q.type !== 'writing_discussion'
   // Adaptive tests are timed per module; the countdown shows the CURRENT
   // module's remaining time and resets when Module 2 begins.
   const isAdaptiveTest = !!test.adaptive && typeof test.moduleBreakIdx === 'number'
@@ -1013,9 +1027,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           />
         </div>
         {/* Row 2: N/M · timer · pause. Everything demoted vs. before —
-            the bar carries the primary progress signal now. Inner row is
-            capped + centered so it lines up with the question column on
-            wide screens (the bar/border still spans full width). */}
+            the bar carries the primary progress signal now. The bar spans
+            the full shell width; its px-5 padding lands the N/M pill at the
+            same left edge as the question column below. */}
         <div className="px-5 py-2 flex items-center justify-between w-full">
           <button
             type="button"
@@ -1267,6 +1281,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               : 'Microphone access was denied, so your answers will not be recorded. Allow the microphone in your browser settings and refresh to re-enable recording.'}
           </div>
         )}
+        {/* Content panes. twoPane → passage (left) beside prompt+answers
+            (right) on desktop; otherwise one capped, left-aligned column
+            so short items (Math, Writing) don't stretch the full shell.
+            The transparent `contents` wrappers let the single-column case
+            flow passage+prompt+answers inside the one max-w-3xl box. */}
+        <div className={twoPane ? 'lg:grid lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:items-start' : 'max-w-3xl'}>
+        <div className={twoPane ? 'lg:min-w-0 lg:sticky lg:top-4' : 'contents'}>
         {q.passage
           && q.type !== 'fill_in_blanks'
           // Speaking items handle their OWN audio + no-transcript
@@ -1345,6 +1366,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             </>
           )
         })()}
+        </div>{/* /left pane */}
+        <div className={twoPane ? 'lg:min-w-0 mt-4 lg:mt-0' : 'contents'}>
         {q.type !== 'speaking_repeat' && q.type !== 'speaking_interview' && (
           // Skip the prompt text for Speaking — the interview question
           // and repeat sentence are audio-only. Showing the text
@@ -1972,6 +1995,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             })}
           </div>
         )}
+        </div>{/* /right pane */}
+        </div>{/* /content panes */}
        </div>
       </div>
 
