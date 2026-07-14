@@ -64,12 +64,12 @@ export function PredictedScore() {
             <Sparkles className="w-5 h-5" />
           </span>
           <div className="min-w-0 flex-1">
-            <p className="text-[13px] font-semibold">{ko ? '예상 점수를 확인하세요' : 'See your predicted score'}</p>
+            <p className="text-[13px] font-semibold">{ko ? '진단 모의고사로 시작하기' : 'Start with a diagnostic'}</p>
             <p className="text-[12px] text-white/75 leading-snug">
-              {ko ? '전체 모의고사를 한 번 풀면 예상 SAT 점수를 알려드려요.' : 'Take one full practice test and we’ll project your SAT score.'}
+              {ko ? '전체 모의고사를 한 번 풀면 기준 점수와 예상 SAT 점수를 잡아드려요.' : 'Take one full practice test to set your baseline and predicted SAT score.'}
             </p>
           </div>
-          <Link href="/mobile/study/tests" aria-label={ko ? '모의고사 풀기' : 'Take a test'}
+          <Link href="/mobile/study/tests" aria-label={ko ? '진단 모의고사 풀기' : 'Take a diagnostic'}
             className="flex-shrink-0 w-9 h-9 rounded-full bg-white/15 ring-1 ring-white/20 flex items-center justify-center hover:bg-white/25 transition">
             <ArrowRight className="w-4 h-4" />
           </Link>
