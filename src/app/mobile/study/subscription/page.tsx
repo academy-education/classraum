@@ -403,7 +403,7 @@ export default function SubscriptionPage() {
                       : (ko ? `매달 테스트 크레딧 ${plan.monthlyCredits}개` : `${plan.monthlyCredits} test credits every month`)}
                   </Feature>
                   <Feature ok>
-                    {ko ? 'AI 튜터 · 문제 연습 · 플래시카드 무제한' : 'Unlimited AI tutor, practice & flashcards'}
+                    {ko ? '문제 연습 · 플래시카드 무제한' : 'Unlimited practice & flashcards'}
                   </Feature>
                   <Feature ok={premium}>
                     {ko ? '스피킹 음성 채점 (TOEFL)' : 'Audio Speaking grading (TOEFL)'}
