@@ -8,6 +8,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudySubPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
+import { ExplainMore } from '../_shared/ExplainMore'
 import { SkeletonCard, SkeletonIconTile, SkeletonBlock } from '../skeletons'
 
 /**
@@ -692,6 +693,16 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
             <span className="font-medium text-indigo-700">{t('study.wrongNotebook.explanationLabel')}: </span>{entry.ai_explanation}
           </div>
         )}
+
+        {/* On-demand step-by-step / simpler / ask, same as practice. */}
+        <ExplainMore
+          prompt={entry.question.prompt}
+          choices={entry.question.choices}
+          correctAnswer={entry.question.correct_answer}
+          studentAnswer={entry.student_answer}
+          priorExplanation={entry.ai_explanation ?? undefined}
+          language={ko ? 'ko' : 'en'}
+        />
       </div>
 
       {/* Note editor */}
