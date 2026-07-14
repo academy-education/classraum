@@ -219,6 +219,27 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
     )
   }
 
+  // No cards for this section yet (e.g. a section with no bank coverage).
+  // Distinct from the "you reviewed everything" done state below.
+  if (deck.length === 0) {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 text-center gap-3">
+        <div className="w-14 h-14 rounded-2xl bg-gray-100 text-gray-400 flex items-center justify-center">
+          <Sparkles className="w-6 h-6" />
+        </div>
+        <p className="text-sm text-gray-600 max-w-xs">
+          {ko ? '이 섹션의 플래시카드는 아직 준비 중이에요.' : "Flashcards for this section aren't ready yet."}
+        </p>
+        <Link
+          href="/mobile/study"
+          className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-sm font-medium"
+        >
+          {ko ? '학습으로 돌아가기' : 'Back to study'}
+        </Link>
+      </div>
+    )
+  }
+
   // "New deck" starts a FRESH flashcards session on the same topic so
   // the bank draw serves the next unseen cards (reloading this session
   // just returns the cached deck). Falls back to a reload if we can't
