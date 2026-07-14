@@ -463,9 +463,20 @@ function StudyLandingInner() {
             items; the diagnostic now sits with "recommended for you"
             where a student prepping for a specific test looks for it. */}
 
-        {/* This week's plan (score-plan engine P3) — self-hides until
-            there's a weak-topic focus to attack. */}
-        <WeekPlanCard />
+        {/* This week — plan (score-plan engine P3) + weekly quests under
+            one heading. Both are weekly-goal cards; grouping them stops
+            them reading as two competing sections. Each self-hides when
+            empty; on a loaded page Quests always renders, so the heading
+            is never orphaned. */}
+        <section>
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3 px-1">
+            {ko ? '이번 주' : 'This week'}
+          </h2>
+          <div className="space-y-4">
+            <WeekPlanCard hideHeading />
+            <WeeklyQuests hideHeading />
+          </div>
+        </section>
 
         {/* Each band below is wrapped in its own <SectionGroup> so
             its label sits tight to its cards (internal space-y-2)
@@ -479,8 +490,11 @@ function StudyLandingInner() {
         <SectionGroup label={String(t('study.landing.todayBand'))} cols>
           {/* No target test yet → the personalized cards below (path,
               challenge, recommendations) have nothing to anchor on, so
-              lead with a pick-your-test prompt instead. */}
-          {landingData && !targetTest && (
+              lead with a pick-your-test prompt instead. Gate on
+              !landingData.loading: the context object exists immediately
+              while prefs are still null, so without this the card flashes
+              for everyone until prefs resolve. */}
+          {landingData && !landingData.loading && !targetTest && (
             <StudyTodayCard
               href="/mobile/study/path"
               icon={TargetIcon}
@@ -498,11 +512,6 @@ function StudyLandingInner() {
           <DailyReviewCTA />
           <DailyChallengeCard />
         </SectionGroup>
-
-        {/* Weekly quests — three goals that reset Monday; progress is
-            derived from the week's activity and completing one grants a
-            one-time bonus XP. Self-hides until loaded. */}
-        <WeeklyQuests />
 
         {/* Snap-to-solve CTA removed from the landing — discoverable
             via the bottom-nav "사진 풀이" tab. Removing the orange hero

@@ -33,7 +33,7 @@ function resetLabel(iso: string, ko: boolean): string {
   return ko ? `${hours}시간 후 초기화` : `Resets in ${hours}h`
 }
 
-export function WeeklyQuests() {
+export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } = {}) {
   const { language } = useTranslation()
   const ko = language === 'korean'
   const [data, setData] = useState<Payload | null>(null)
@@ -65,9 +65,15 @@ export function WeeklyQuests() {
   return (
     <section>
       <div className="flex items-center justify-between mb-3 px-1">
-        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
-          {ko ? '주간 퀘스트' : 'Weekly quests'}
-        </h2>
+        {hideHeading ? (
+          <p className="text-[11px] font-semibold uppercase tracking-[0.09em] text-gray-500">
+            {ko ? '주간 퀘스트' : 'Quests'}
+          </p>
+        ) : (
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+            {ko ? '주간 퀘스트' : 'Weekly quests'}
+          </h2>
+        )}
         <span className="text-[11.5px] font-medium text-gray-400 tabular-nums">
           {resetLabel(data.resetsAt, ko)}
         </span>

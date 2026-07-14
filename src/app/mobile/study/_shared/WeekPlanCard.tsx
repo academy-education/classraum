@@ -25,7 +25,7 @@ interface Payload {
   focus: FocusItem[]
 }
 
-export function WeekPlanCard() {
+export function WeekPlanCard({ hideHeading = false }: { hideHeading?: boolean } = {}) {
   const { language } = useTranslation()
   const ko = language === 'korean'
   const [data, setData] = useState<Payload | null>(null)
@@ -50,9 +50,15 @@ export function WeekPlanCard() {
   return (
     <section>
       <div className="flex items-center justify-between mb-3 px-1">
-        <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
-          {ko ? '이번 주 학습 계획' : "This week’s plan"}
-        </h2>
+        {hideHeading ? (
+          <p className="text-[11px] font-semibold uppercase tracking-[0.09em] text-gray-500">
+            {ko ? '학습 계획' : 'Plan'}
+          </p>
+        ) : (
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+            {ko ? '이번 주 학습 계획' : "This week’s plan"}
+          </h2>
+        )}
         {data.perWeekPoints != null && (
           <span className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-primary tabular-nums">
             <Flag className="w-3 h-3" />
