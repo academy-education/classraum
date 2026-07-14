@@ -17,6 +17,8 @@ import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
 import { DailyChallengeCard } from '../../_shared/DailyChallengeCard'
 import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
+import { PredictedScore } from '../../_shared/PredictedScore'
+import { RecommendedShelf } from '../../RecommendedShelf'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import type { TestFamily } from '@/lib/study-prompt-context'
 
@@ -402,6 +404,16 @@ function TopicInner({ slug }: { slug: string }) {
             "make this your goal?" card if not. */}
         {topic.category === 'test_prep' && parseTestSlug(topic.slug).family && (
           <TestPrepPathCard test={parseTestSlug(topic.slug).family as string} />
+        )}
+        {/* Diagnostic + "recommended for you" — moved here from the home
+            so a student prepping for a specific test finds the baseline
+            diagnostic (PredictedScore cold-start) and their weak-area
+            picks together. Both self-hide when not applicable. */}
+        {topic.category === 'test_prep' && (
+          <>
+            <PredictedScore />
+            <RecommendedShelf />
+          </>
         )}
         {/* Per-topic progress mini-card — only when the student has
             done at least one session on this topic. Gives quick context

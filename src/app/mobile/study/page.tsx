@@ -21,7 +21,6 @@ import { MistakeBankShelf } from './MistakeBankShelf'
 import { GeneratingTestsChip } from './GeneratingTestsChip'
 import { StudyHero } from './StudyHero'
 import { WeeklyQuests } from './_shared/WeeklyQuests'
-import { PredictedScore } from './_shared/PredictedScore'
 import { WeekPlanCard } from './_shared/WeekPlanCard'
 import { ResumeBanner } from './ResumeBanner'
 import { DailyReviewCTA } from './DailyReviewCTA'
@@ -459,9 +458,10 @@ function StudyLandingInner() {
           overflowMenu={<HeaderOverflowMenu variant="dark" />}
         />
 
-        {/* Predicted-score headline (score-plan engine P1) — self-hides
-            for non-SAT targets and until a full test exists. */}
-        <PredictedScore />
+        {/* Predicted-score headline + diagnostic moved to the test-prep
+            page (topic/[slug]) so the home stays focused on time-sensitive
+            items; the diagnostic now sits with "recommended for you"
+            where a student prepping for a specific test looks for it. */}
 
         {/* This week's plan (score-plan engine P3) — self-hides until
             there's a weak-topic focus to attack. */}
