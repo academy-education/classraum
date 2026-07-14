@@ -18,6 +18,8 @@ import { Button } from '@/components/ui/button'
 import { ProfileSkeleton } from '@/components/ui/skeleton'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { StatusPill } from '@/components/ui/status-pill'
+import { StudySubPageHeader } from '@/app/mobile/study/_shared/primitives'
+import { User as UserIcon } from 'lucide-react'
 import { useMobileProfile } from './hooks/useMobileProfile'
 import {
   Select,
@@ -355,15 +357,18 @@ function MobileProfilePageContent() {
         </div>
       )}
 
-      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform max-w-3xl lg:max-w-5xl mx-auto w-full">
-      {/* Cap + center content so the profile page doesn't stretch
-          full-bleed on desktop — matches the study data pages
-          (max-w-3xl lg:max-w-5xl). */}
-      {/* Page Header */}
+      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto w-full">
+      {/* Page header — same typography-led eyebrow + title + subtitle as
+          the study sub-pages (stats, preferences, etc.) so the account
+          page reads as part of the same app. No back button: it's a
+          bottom-nav / sidebar tab, like League and Review. */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-          {t('mobile.profile.title')}
-        </h1>
+        <StudySubPageHeader
+          icon={UserIcon}
+          eyebrow={String(t('mobile.profile.eyebrow'))}
+          title={String(t('mobile.profile.title'))}
+          subtitle={String(t('mobile.profile.subtitle'))}
+        />
       </div>
 
       {/* Profile Hero — centered avatar + role-based gradient + role pill */}
