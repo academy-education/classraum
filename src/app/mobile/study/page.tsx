@@ -661,8 +661,9 @@ function StudyLandingInner() {
           )}
         </section>
 
-        {/* Free-form — the only AI-generated path. Submit creates a
-            practice session from the typed prompt + options. */}
+        {/* Free-form "Or type anything" AI creator — hidden for now.
+            Flip this `false` back to re-enable the whole section. */}
+        {false && (
         <section>
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
             {t('study.landing.freeformTitle')}
@@ -765,6 +766,7 @@ function StudyLandingInner() {
             {t('study.landing.freeformHint')}
           </p>
         </section>
+        )}
       </div>
 
       {/* First-visit onboarding wizard — bottom-sheet that gates the
