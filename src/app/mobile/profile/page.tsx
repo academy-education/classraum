@@ -329,7 +329,7 @@ function MobileProfilePageContent() {
     <>
     <div
       ref={scrollRef}
-      className="p-4 relative overflow-y-auto"
+      className="px-5 lg:px-8 pt-6 pb-14 relative overflow-y-auto"
       style={{ touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 0 ? 'none' : 'auto' }}
       {...(MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && {
         onTouchStart: handleTouchStart,
@@ -386,7 +386,7 @@ function MobileProfilePageContent() {
           'violet' as const
 
         return (
-          <Card className="p-6 mb-4">
+          <Card className="p-6 mb-6">
             <div className="flex flex-col items-center text-center">
               <div className={`w-20 h-20 bg-gradient-to-br ${roleGradient} rounded-full flex items-center justify-center mb-3`}>
                 <span className="text-2xl font-semibold text-white">
@@ -408,7 +408,7 @@ function MobileProfilePageContent() {
       {/* Contact Information panel — only renders rows that have data */}
       {(profile?.phone || profile?.academy_name || profile?.student_school || profile?.student_grade) && (
         <div className="mb-6">
-          <Eyebrow as="h3" className="mb-2 px-1">
+          <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
             {t('mobile.profile.contactInformation')}
           </Eyebrow>
           <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
@@ -475,7 +475,7 @@ function MobileProfilePageContent() {
       {/* Active student (parents only) — academy-picker-style row */}
       {profile?.role === 'parent' && (
         <div className="mb-6">
-          <Eyebrow as="h3" className="mb-2 px-1">
+          <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
             {t('mobile.profile.activeStudent')}
           </Eyebrow>
           <Card className="p-0 overflow-hidden">
@@ -504,7 +504,7 @@ function MobileProfilePageContent() {
 
       {/* General Settings — divide-y panel */}
       <div className="mb-6">
-        <Eyebrow as="h3" className="mb-2 px-1">
+        <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
           {t('mobile.profile.generalSettings')}
         </Eyebrow>
         <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
@@ -560,7 +560,7 @@ function MobileProfilePageContent() {
 
       {/* Notification Settings — Push toggle + Email sub-toggles in one panel */}
       <div className="mb-6">
-        <Eyebrow as="h3" className="mb-2 px-1">
+        <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
           {t('mobile.profile.notificationSettings')}
         </Eyebrow>
 
@@ -659,7 +659,7 @@ function MobileProfilePageContent() {
 
       {/* Account actions — Logout + Delete in a single panel */}
       <div className="mb-6">
-        <Eyebrow as="h3" className="mb-2 px-1">
+        <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
           {t('mobile.profile.account')}
         </Eyebrow>
         <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
