@@ -8,7 +8,7 @@ import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check,
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
-import { SkeletonBlock, SkeletonCard } from '../../skeletons'
+import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../../skeletons'
 
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -298,21 +298,7 @@ function TopicInner({ slug }: { slug: string }) {
     // sticky header → path card → section dropdown → progress mini-card
     // → tab bar → featured full-test card.
     return (
-      <StudyScrollShell
-        header={
-          <header className="sticky top-0 z-30 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 pt-5 pb-3.5">
-            <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8">
-              <div className="flex items-center gap-3">
-                <SkeletonBlock className="w-9 h-9 rounded-full flex-shrink-0" />
-                <div className="flex-1 space-y-2">
-                  <SkeletonBlock className="h-2.5 w-20 rounded-full" />
-                  <SkeletonBlock className="h-6 w-2/5 rounded-lg" />
-                </div>
-              </div>
-            </div>
-          </header>
-        }
-      >
+      <StudyScrollShell header={<SkeletonStickyHeader />}>
         {/* Path card */}
         <SkeletonBlock className="h-[92px] w-full rounded-2xl" />
         {/* Choose a section — label + dropdown */}

@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useState, type ComponentType } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, ArrowRight, Loader2, type LucideProps } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Loader2, type LucideProps } from 'lucide-react'
 
 /**
  * Shared study-mode primitives. Every new study surface should use
@@ -170,6 +170,57 @@ export function StudyScrollShell({
         </div>
       </div>
     </div>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// StudyPager — prev / "Page X of Y · N total" / next. One shape for
+// every paginated list (sessions, tests, wrong-notebook, library). Pass
+// 0-based `page`. Self-hides on a single page.
+// ─────────────────────────────────────────────────────────────────────
+export function StudyPager({ page, totalPages, total, ko, onPrev, onNext }: {
+  page: number; totalPages: number; total: number; ko: boolean; onPrev: () => void; onNext: () => void
+}) {
+  if (totalPages <= 1) return null
+  const btn = 'inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition'
+  return (
+    <div className="flex items-center justify-between pt-1">
+      <button type="button" onClick={onPrev} disabled={page <= 0} className={btn}>
+        <ChevronLeft className="w-4 h-4" />{ko ? '이전' : 'Prev'}
+      </button>
+      <div className="text-[12.5px] text-gray-500 tabular-nums">
+        {ko ? `${page + 1} / ${totalPages} 페이지 · 총 ${total}개` : `Page ${page + 1} of ${totalPages} · ${total} total`}
+      </div>
+      <button type="button" onClick={onNext} disabled={page >= totalPages - 1} className={btn}>
+        {ko ? '다음' : 'Next'}<ChevronRight className="w-4 h-4" />
+      </button>
+    </div>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// StudyFilterChip — one pill for filter/tab chip rows (sessions mode
+// filter, tests state filter, library tabs, wrong-notebook difficulty).
+// Same height/size/weight/active color everywhere. Render inside a
+// horizontally-scrolling `-mx-5 overflow-x-auto` row.
+// ─────────────────────────────────────────────────────────────────────
+export function StudyFilterChip({ label, active, count, icon: Icon, onClick }: {
+  label: string; active: boolean; count?: number; icon?: LucideIcon; onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
+        active
+          ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
+          : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
+      }`}
+    >
+      {Icon && <Icon className="w-3.5 h-3.5" />}
+      {label}
+      {count !== undefined && <span className="opacity-60 tabular-nums">{count}</span>}
+    </button>
   )
 }
 

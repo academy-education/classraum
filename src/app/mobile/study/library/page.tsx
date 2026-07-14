@@ -3,8 +3,8 @@
 import { Suspense, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { Library as LibraryIcon, ListChecks, Layers, ClipboardList, ChevronDown, ChevronLeft, ChevronRight, Search, X, ArrowRight, Check } from 'lucide-react'
-import { StudyPageHeader, StudyScrollShell, StudyEmptyState } from '../_shared/primitives'
+import { Library as LibraryIcon, ListChecks, Layers, ClipboardList, ChevronDown, ChevronRight, Search, X, ArrowRight, Check } from 'lucide-react'
+import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyFilterChip } from '../_shared/primitives'
 import { SkeletonRowList } from '../skeletons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -90,17 +90,9 @@ function LibraryInner() {
             { key: 'practice', label: ko ? '연습 문제' : 'Practice', Icon: ListChecks },
             { key: 'flashcards', label: ko ? '플래시카드' : 'Flashcards', Icon: Layers },
             { key: 'full_test', label: ko ? '모의고사' : 'Full tests', Icon: ClipboardList },
-          ] as { key: Tab; label: string; Icon: typeof ListChecks }[]).map(({ key, label, Icon }) => {
-            const active = tab === key
-            return (
-              <button key={key} type="button" onClick={() => setTab(key)}
-                className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
-                  active ? 'bg-primary/10 text-primary ring-1 ring-primary/25' : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
-                }`}>
-                <Icon className="w-3.5 h-3.5" />{label}
-              </button>
-            )
-          })}
+          ] as { key: Tab; label: string; Icon: typeof ListChecks }[]).map(({ key, label, Icon }) => (
+            <StudyFilterChip key={key} label={label} icon={Icon} active={tab === key} onClick={() => setTab(key)} />
+          ))}
         </div>
       </div>
 
@@ -153,8 +145,8 @@ function PracticeBrowser({ section, ko }: { section: Section; ko: boolean }) {
       {domains.length > 0 && (
         <div className="-mx-5 overflow-x-auto scrollbar-hide">
           <div className="flex gap-2 pl-5 pr-5 pt-1 pb-1">
-            <DomainChip label={ko ? '전체' : 'All'} active={domain === null} onClick={() => { setDomain(null); setPage(0) }} />
-            {domains.map(d => <DomainChip key={d} label={d} active={domain === d} onClick={() => { setDomain(d); setPage(0) }} />)}
+            <StudyFilterChip label={ko ? '전체' : 'All'} active={domain === null} onClick={() => { setDomain(null); setPage(0) }} />
+            {domains.map(d => <StudyFilterChip key={d} label={d} active={domain === d} onClick={() => { setDomain(d); setPage(0) }} />)}
           </div>
         </div>
       )}
@@ -174,7 +166,7 @@ function PracticeBrowser({ section, ko }: { section: Section; ko: boolean }) {
           <ol className="space-y-2.5">
             {items.map((it, i) => <PracticeCard key={it.id} item={it} ko={ko} index={i} />)}
           </ol>
-          <Pager page={page} totalPages={totalPages} total={total} ko={ko} onPrev={() => setPage(p => Math.max(0, p - 1))} onNext={() => setPage(p => Math.min(totalPages - 1, p + 1))} />
+          <StudyPager page={page} totalPages={totalPages} total={total} ko={ko} onPrev={() => setPage(p => Math.max(0, p - 1))} onNext={() => setPage(p => Math.min(totalPages - 1, p + 1))} />
         </>
       )}
     </div>
@@ -329,41 +321,11 @@ function FullTestPanel({ section, ko }: { section: Section; ko: boolean }) {
 }
 
 // ── Small shared bits ────────────────────────────────────────────────
-function DomainChip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
-  return (
-    <button type="button" onClick={onClick}
-      className={`whitespace-nowrap px-3 h-8 rounded-full text-[12px] font-medium transition ${active ? 'bg-primary/10 text-primary ring-1 ring-primary/25' : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'}`}>
-      {label}
-    </button>
-  )
-}
-
 function DifficultyPill({ d, ko }: { d: string; ko: boolean }) {
   const key = d.toLowerCase()
   const cls = key === 'hard' ? 'bg-rose-50 text-rose-700' : key === 'medium' ? 'bg-amber-50 text-amber-700' : 'bg-emerald-50 text-emerald-700'
   const label = key === 'hard' ? (ko ? '어려움' : 'Hard') : key === 'medium' ? (ko ? '보통' : 'Medium') : (ko ? '쉬움' : 'Easy')
   return <span className={`inline-flex items-center rounded-full text-[10.5px] font-semibold px-2 py-0.5 ${cls}`}>{label}</span>
-}
-
-function Pager({ page, totalPages, total, ko, onPrev, onNext }: {
-  page: number; totalPages: number; total: number; ko: boolean; onPrev: () => void; onNext: () => void
-}) {
-  if (totalPages <= 1) return null
-  return (
-    <div className="flex items-center justify-between pt-1">
-      <button type="button" onClick={onPrev} disabled={page <= 0}
-        className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition">
-        <ChevronLeft className="w-4 h-4" />{ko ? '이전' : 'Prev'}
-      </button>
-      <div className="text-[12.5px] text-gray-500 tabular-nums">
-        {ko ? `${page + 1} / ${totalPages} 페이지 · 총 ${total}개` : `Page ${page + 1} of ${totalPages} · ${total} total`}
-      </div>
-      <button type="button" onClick={onNext} disabled={page >= totalPages - 1}
-        className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition">
-        {ko ? '다음' : 'Next'}<ChevronRight className="w-4 h-4" />
-      </button>
-    </div>
-  )
 }
 
 function ErrorCard({ ko }: { ko: boolean }) {

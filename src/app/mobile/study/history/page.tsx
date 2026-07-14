@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { MessageCircle, ListChecks, Layers, ClipboardList, Mic, ChevronRight, ChevronLeft, History as HistoryIcon, Search, X } from 'lucide-react'
-import { StudyPageHeader, StudyScrollShell, StudyEmptyState } from '../_shared/primitives'
+import { MessageCircle, ChevronRight, ListChecks, Layers, ClipboardList, Mic, History as HistoryIcon, Search, X } from 'lucide-react'
+import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '../_shared/primitives'
 import { groupByDate, formatTimeAgo } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
@@ -237,33 +237,11 @@ function HistoryInner() {
               ))}
             </div>
 
-            {totalPages > 1 && (
-              <div className="flex items-center justify-between pt-2">
-                <button
-                  type="button"
-                  onClick={() => setPage(p => Math.max(0, p - 1))}
-                  disabled={clampedPage === 0}
-                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                  {ko ? '이전' : 'Previous'}
-                </button>
-                <div className="text-[12.5px] text-gray-500 tabular-nums">
-                  {ko
-                    ? `${clampedPage + 1} / ${totalPages} 페이지 · 총 ${filtered.length}개`
-                    : `Page ${clampedPage + 1} of ${totalPages} · ${filtered.length} total`}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
-                  disabled={clampedPage >= totalPages - 1}
-                  className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
-                >
-                  {ko ? '다음' : 'Next'}
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            )}
+            <StudyPager
+              page={clampedPage} totalPages={totalPages} total={filtered.length} ko={ko}
+              onPrev={() => setPage(p => Math.max(0, p - 1))}
+              onNext={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+            />
           </>
         )}
     </StudyScrollShell>
