@@ -33,7 +33,6 @@ interface Row {
 }
 
 const MODE_ICONS: Record<StudyMode, typeof MessageCircle> = {
-  chat: MessageCircle,
   practice: ListChecks,
   lesson: BookOpen,
   flashcards: Layers,

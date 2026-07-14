@@ -1,4 +1,4 @@
-import { MessageCircle, ListChecks, BookOpen, Layers, FileText, Mic } from 'lucide-react'
+import { ListChecks, BookOpen, Layers, FileText, Mic } from 'lucide-react'
 
 /**
  * Study modes — single source of truth used by topic picker, session
@@ -10,21 +10,6 @@ import { MessageCircle, ListChecks, BookOpen, Layers, FileText, Mic } from 'luci
  * 30-min / 20-question fallback.
  */
 export const STUDY_MODES = [
-  {
-    key: 'chat',
-    icon: MessageCircle,
-    color: 'text-primary bg-primary/10',
-    /** Card background tint (subtle gradient overlay). */
-    cardBg: 'bg-gradient-to-br from-sky-50/60 via-white to-white',
-    /** Gradient for the prominent icon tile. */
-    iconBg: 'bg-gradient-to-br from-sky-400 to-blue-600',
-    /** Ring color for hover state. */
-    hoverRing: 'hover:ring-sky-200',
-    /** Glow shadow for hover. */
-    hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(14,165,233,0.18),0_16px_32px_-12px_rgba(14,165,233,0.25)]',
-    /** Hover text color (for the title). */
-    hoverText: 'group-hover:text-sky-700',
-  },
   {
     key: 'practice',
     icon: ListChecks,

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { MessageCircle, ListChecks, BookOpen, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from 'lucide-react'
+import { ListChecks, BookOpen, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { SkeletonCard, SkeletonBlock } from './skeletons'
@@ -24,12 +24,6 @@ interface Row {
  *  tile + bg tint matches the topic-page mode cards so the whole
  *  study system reads as a coherent design language. */
 const MODE_STYLE: Record<StudyMode, { Icon: LucideIcon; iconBg: string; cardBg: string; ring: string }> = {
-  chat: {
-    Icon: MessageCircle,
-    iconBg: 'bg-gradient-to-br from-sky-400 to-blue-600',
-    cardBg: 'bg-gradient-to-br from-sky-50/60 via-white to-white',
-    ring: 'ring-sky-100',
-  },
   practice: {
     Icon: ListChecks,
     iconBg: 'bg-gradient-to-br from-emerald-400 to-teal-600',
@@ -141,7 +135,7 @@ export function ResumableShelf() {
       />
       <div className="space-y-2">
         {rows.slice(0, 1).map(row => {
-          const style = MODE_STYLE[row.mode] ?? MODE_STYLE.chat
+          const style = MODE_STYLE[row.mode] ?? MODE_STYLE.practice
           const Icon = style.Icon
           const title = row.title
             ?? (row.topic ? (ko ? row.topic.name_ko : row.topic.name_en) : null)

@@ -10,7 +10,6 @@ import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { StudyPageHeader } from '../../_shared/primitives'
 import { MascotLoader, useMascotGate } from '../../_shared/MascotLoader'
-import { ChatSession } from './ChatSession'
 import { PracticeSession } from './PracticeSession'
 import { LessonSession } from './LessonSession'
 import { FlashcardsSession } from './FlashcardsSession'
@@ -153,7 +152,8 @@ function SessionInner({ id }: { id: string }) {
   // chrome so this is chosen once and wrapped in a single capped column.
   const body = (() => {
     switch (session.mode) {
-      case 'chat':       return <ChatSession sessionId={session.id} language={session.language} />
+      // chat tutor retired — any legacy chat session falls to the
+      // "unknown mode" safety net below with a link back to study.
       case 'practice':   return <PracticeSession sessionId={session.id} language={session.language} />
       case 'lesson':     return <LessonSession sessionId={session.id} language={session.language} />
       case 'flashcards': return <FlashcardsSession sessionId={session.id} language={session.language} />

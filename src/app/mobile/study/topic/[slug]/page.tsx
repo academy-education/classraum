@@ -686,15 +686,6 @@ function CategoryPicker({
  *  Each is an SVG block positioned absolutely; pointer-events-none
  *  so they don't interfere with clicks. */
 const MODE_DECOR: Record<StudyMode, React.ReactElement | null> = {
-  chat: (
-    // Speech bubble cluster — small dots inside a bubble shape
-    <svg aria-hidden viewBox="0 0 80 60" className="pointer-events-none absolute bottom-2 right-2 w-16 h-12 text-sky-500/10 group-hover:text-sky-500/20 transition-colors">
-      <path d="M5 20 Q5 5 20 5 L55 5 Q70 5 70 20 L70 30 Q70 45 55 45 L25 45 L15 55 L17 45 Q5 45 5 30 Z" fill="currentColor" />
-      <circle cx="25" cy="25" r="3" fill="white" />
-      <circle cx="37" cy="25" r="3" fill="white" />
-      <circle cx="49" cy="25" r="3" fill="white" />
-    </svg>
-  ),
   practice: (
     // Stacked checklist lines with checkmarks
     <svg aria-hidden viewBox="0 0 80 60" className="pointer-events-none absolute bottom-2 right-2 w-16 h-12 text-emerald-500/10 group-hover:text-emerald-500/20 transition-colors">
