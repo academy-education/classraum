@@ -96,6 +96,25 @@ function LeagueInner() {
 
   const tier = TIERS.find(t => t.key === data?.tier) ?? TIERS[0]
 
+  // Not in a league yet — mirror the review page's empty state exactly:
+  // header on top, the shared StudyEmptyState vertically centered in the
+  // rest of the viewport (not top-anchored inside the scroll container).
+  if (!loading && !loadFailed && !data?.joined) {
+    return (
+      <div className="flex flex-col h-full bg-gray-50">
+        <StudyPageHeader
+          icon={Trophy}
+          iconColorClass="text-amber-600 bg-amber-50"
+          eyebrow={String(t('study.league.eyebrow'))}
+          title={String(t('study.league.title'))}
+        />
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <NotJoinedState ko={ko} />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col h-full bg-gray-50">
       <div className="flex-1 overflow-y-auto">
@@ -141,9 +160,7 @@ function LeagueInner() {
               {ko ? '다시 시도' : 'Retry'}
             </button>
           </div>
-        ) : !data?.joined ? (
-          <NotJoinedState ko={ko} />
-        ) : (
+        ) : data ? (
           <div className="space-y-6">
             {data.promotionNotice && (
               <PromotionBanner notice={data.promotionNotice} ko={ko} />
@@ -153,7 +170,7 @@ function LeagueInner() {
             <TierLadder activeKey={data.tier ?? 'bronze'} ko={ko} />
             <EarnXpPanel ko={ko} />
           </div>
-        )}
+        ) : null}
         </StudyPageTransition>
         </div>
       </div>
