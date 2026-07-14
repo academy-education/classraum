@@ -5,7 +5,7 @@ import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup, SkeletonPageHeader } from '../skeletons'
+import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup, SkeletonStickyHeader } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 
@@ -143,8 +143,7 @@ function PreferencesInner() {
     // Skeleton mirrors the loaded layout: back link, title +
     // subtitle, stats link card, then 5 setting groups.
     return (
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <SkeletonPageHeader />
+      <StudyScrollShell header={<SkeletonStickyHeader />}>
         <SkeletonCard className="p-4 flex items-center gap-3">
           <SkeletonBlock className="w-10 h-10 rounded-xl" />
           <div className="flex-1 space-y-1.5">
@@ -157,7 +156,7 @@ function PreferencesInner() {
         <SkeletonSettingsGroup />
         <SkeletonSettingsGroup />
         <SkeletonSettingsGroup />
-      </div>
+      </StudyScrollShell>
     )
   }
 

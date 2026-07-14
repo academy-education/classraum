@@ -9,7 +9,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { SkeletonBlock, SkeletonSettingsGroup } from '../skeletons'
+import { SkeletonSettingsGroup, SkeletonStickyHeader } from '../skeletons'
 import { useStudyErrorToast, startFailedMessage } from '../_shared/useStudyErrorToast'
 
 interface TopicRow {
@@ -155,17 +155,12 @@ function BuilderInner() {
 
   if (loadingTopics) {
     return (
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <SkeletonBlock className="h-4 w-32 rounded-full" />
-        <div className="space-y-2">
-          <SkeletonBlock className="h-8 w-1/2 rounded-lg" />
-          <SkeletonBlock className="h-3 w-4/5 rounded-full" />
-        </div>
+      <StudyScrollShell header={<SkeletonStickyHeader />}>
         <SkeletonSettingsGroup rows={2} />
         <SkeletonSettingsGroup />
         <SkeletonSettingsGroup />
         <SkeletonSettingsGroup />
-      </div>
+      </StudyScrollShell>
     )
   }
 

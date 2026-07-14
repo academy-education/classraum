@@ -61,18 +61,32 @@ export function SkeletonHeader({ widthClass = 'w-1/3' }: { widthClass?: string }
   return <SkeletonText widthClass={widthClass} height="h-4" className="mb-3" />
 }
 
-/** Page header skeleton — mirrors StudySubPageHeader (back pill row,
- *  then eyebrow + large title) so the load → loaded transition has
- *  no layout shift. */
+/** Page header skeleton — mirrors StudyPageHeader (back button INLINE
+ *  with the eyebrow + large title on one row) so the load → loaded
+ *  transition has no layout shift. */
 export function SkeletonPageHeader({ withBack = true }: { withBack?: boolean }) {
   return (
-    <div>
-      {withBack && <SkeletonBlock className="w-9 h-9 rounded-full mb-5" />}
-      <div className="space-y-2">
+    <div className="flex items-center gap-3">
+      {withBack && <SkeletonBlock className="w-9 h-9 rounded-full flex-shrink-0" />}
+      <div className="flex-1 space-y-2">
         <SkeletonText widthClass="w-16" height="h-2.5" />
         <SkeletonText widthClass="w-2/5" height="h-6" />
       </div>
     </div>
+  )
+}
+
+/** Full-bleed sticky-header skeleton — matches the StudyPageHeader bar
+ *  (bg + bottom border + inner max-w). Drop into a StudyScrollShell's
+ *  `header` slot so a page's loading state carries the same sticky
+ *  header as its loaded state. */
+export function SkeletonStickyHeader() {
+  return (
+    <header className="sticky top-0 z-30 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 pt-5 pb-3.5">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8">
+        <SkeletonPageHeader />
+      </div>
+    </header>
   )
 }
 

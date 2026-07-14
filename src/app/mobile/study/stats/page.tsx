@@ -6,7 +6,7 @@ import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, 
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader } from '../skeletons'
+import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader, SkeletonStickyHeader } from '../skeletons'
 import { StudyMetric, NumberRoll, StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 
 interface Achievement {
@@ -117,12 +117,7 @@ function StatsInner() {
     // 2x2 metric grid → sparkline card → two row lists. No content
     // shift when stats arrive.
     return (
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <SkeletonBlock className="h-4 w-32 rounded-full" />
-        <div className="space-y-2">
-          <SkeletonBlock className="h-8 w-2/3 rounded-lg" />
-          <SkeletonBlock className="h-3 w-4/5 rounded-full" />
-        </div>
+      <StudyScrollShell header={<SkeletonStickyHeader />}>
         <SkeletonMetricGrid />
         <div>
           <SkeletonHeader widthClass="w-1/4" />
@@ -132,7 +127,7 @@ function StatsInner() {
           <SkeletonHeader widthClass="w-1/3" />
           <SkeletonRowList count={2} />
         </div>
-      </div>
+      </StudyScrollShell>
     )
   }
 

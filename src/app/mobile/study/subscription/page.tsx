@@ -7,7 +7,7 @@ import {
   XCircle, ExternalLink, Check, Sparkles, Coins, Plus,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
-import { SkeletonBlock, SkeletonCard, SkeletonPageHeader } from '../skeletons'
+import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS } from '@/lib/study/plans'
@@ -246,8 +246,7 @@ export default function SubscriptionPage() {
     // screens). Mirrors the loaded layout: header → credit balance →
     // two plan cards.
     return (
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <SkeletonPageHeader />
+      <StudyScrollShell header={<SkeletonStickyHeader />}>
         <SkeletonCard className="p-5 space-y-3">
           <SkeletonBlock className="h-3 w-28 rounded-full" />
           <SkeletonBlock className="h-8 w-24 rounded-lg" />
@@ -265,7 +264,7 @@ export default function SubscriptionPage() {
             </SkeletonCard>
           ))}
         </div>
-      </div>
+      </StudyScrollShell>
     )
   }
 

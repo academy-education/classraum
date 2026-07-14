@@ -294,24 +294,39 @@ function TopicInner({ slug }: { slug: string }) {
   }
 
   if (loading) {
-    // Browse surface → skeleton mirroring the loaded shell: back link,
-    // header, stat card, tab bar, featured card, 2x2 mode grid.
+    // Mirror the loaded shell so nothing shifts when data arrives:
+    // sticky header → path card → section dropdown → progress mini-card
+    // → tab bar → featured full-test card.
     return (
-      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
-        <SkeletonBlock className="h-4 w-28 rounded-full" />
-        <div className="flex items-start gap-3">
-          <SkeletonBlock className="w-9 h-9 rounded-xl flex-shrink-0" />
-          <div className="flex-1 space-y-2">
-            <SkeletonBlock className="h-3 w-20 rounded-full" />
-            <SkeletonBlock className="h-6 w-2/5 rounded-lg" />
-          </div>
+      <StudyScrollShell
+        header={
+          <header className="sticky top-0 z-30 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 pt-5 pb-3.5">
+            <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8">
+              <div className="flex items-center gap-3">
+                <SkeletonBlock className="w-9 h-9 rounded-full flex-shrink-0" />
+                <div className="flex-1 space-y-2">
+                  <SkeletonBlock className="h-2.5 w-20 rounded-full" />
+                  <SkeletonBlock className="h-6 w-2/5 rounded-lg" />
+                </div>
+              </div>
+            </div>
+          </header>
+        }
+      >
+        {/* Path card */}
+        <SkeletonBlock className="h-[92px] w-full rounded-2xl" />
+        {/* Choose a section — label + dropdown */}
+        <div className="space-y-2">
+          <SkeletonBlock className="h-2.5 w-24 rounded-full" />
+          <SkeletonBlock className="h-12 w-full rounded-2xl" />
         </div>
+        {/* Progress mini-card */}
+        <SkeletonCard className="h-[72px]" />
+        {/* Tab bar */}
         <SkeletonBlock className="h-10 w-full rounded-lg" />
-        <SkeletonCard className="p-5 min-h-[92px]" />
-        <div className="grid grid-cols-2 gap-3">
-          {[0, 1, 2, 3].map(i => <SkeletonCard key={i} className="min-h-[148px]" />)}
-        </div>
-      </div>
+        {/* Featured full-test card */}
+        <SkeletonCard className="min-h-[120px]" />
+      </StudyScrollShell>
     )
   }
 
