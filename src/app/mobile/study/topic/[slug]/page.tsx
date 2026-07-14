@@ -16,6 +16,7 @@ import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
 import { DailyChallengeCard } from '../../_shared/DailyChallengeCard'
+import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import type { TestFamily } from '@/lib/study-prompt-context'
 
@@ -397,6 +398,13 @@ function TopicInner({ slug }: { slug: string }) {
           title={name(topic)}
           subtitle={String(t('study.topic.pickMode'))}
         />
+        {/* Mascot-led path entry — only for test-prep topics that have a
+            hand-crafted path (SAT / TOEFL). Self-gates on whether this
+            test is already the student's goal: continue-path card if so,
+            "make this your goal?" card if not. */}
+        {topic.category === 'test_prep' && parseTestSlug(topic.slug).family && (
+          <TestPrepPathCard test={parseTestSlug(topic.slug).family as string} />
+        )}
         {/* Per-topic progress mini-card — only when the student has
             done at least one session on this topic. Gives quick context
             before they pick a mode. */}
