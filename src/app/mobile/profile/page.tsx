@@ -298,7 +298,6 @@ function MobileProfilePageContent() {
                 icon={UserIcon}
                 eyebrow={String(t('mobile.profile.eyebrow'))}
                 title={String(t('mobile.profile.title'))}
-                subtitle={String(t('mobile.profile.subtitle'))}
               />
             </div>
             <ProfileSkeleton />
@@ -319,7 +318,6 @@ function MobileProfilePageContent() {
                 icon={UserIcon}
                 eyebrow={String(t('mobile.profile.eyebrow'))}
                 title={String(t('mobile.profile.title'))}
-                subtitle={String(t('mobile.profile.subtitle'))}
               />
             </div>
             <Card>
@@ -377,7 +375,6 @@ function MobileProfilePageContent() {
           icon={UserIcon}
           eyebrow={String(t('mobile.profile.eyebrow'))}
           title={String(t('mobile.profile.title'))}
-          subtitle={String(t('mobile.profile.subtitle'))}
         />
       </div>
 

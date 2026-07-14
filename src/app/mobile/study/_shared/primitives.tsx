@@ -118,12 +118,15 @@ export function StudyPageHeader({
           )}
           <div className="min-w-0 flex-1">
             {!collapsed && (
-              <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1">
+              <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1.5">
                 {eyebrow}
               </p>
             )}
+            {/* Non-collapsed title matches StudySubPageHeader (24/26px) so
+                sticky-header pages (review, league, snap, session) read
+                identically to the in-flow ones (profile, stats, prefs). */}
             <h1 className={`font-bold tracking-tight text-gray-900 truncate transition-all ${
-              collapsed ? 'text-[14px]' : 'text-[20px] sm:text-[22px] leading-tight'
+              collapsed ? 'text-[14px]' : 'text-[24px] sm:text-[26px] leading-tight'
             }`}>{title}</h1>
           </div>
           {rightSlot}
