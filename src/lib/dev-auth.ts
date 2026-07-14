@@ -10,6 +10,11 @@ export const DEV_AUTH = {
 }
 
 export function isDevAuthEnabled() {
+  // Hard production guard: the dev-auth bypass can NEVER be active in a
+  // production build, regardless of the DEV_AUTH.enabled flag above.
+  // This makes the flag a footgun-free dev convenience — flipping it to
+  // `true` and committing it cannot ship an auth bypass to real users.
+  if (process.env.NODE_ENV === 'production') return false
   return DEV_AUTH.enabled
 }
 
