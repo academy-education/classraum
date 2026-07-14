@@ -95,7 +95,7 @@ function StatsInner() {
 
   if (failed && !stats) {
     return (
-      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14">
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
           <p className="text-sm text-gray-600">
             {ko ? '통계를 불러오지 못했어요.' : "We couldn't load your stats."}
@@ -117,7 +117,7 @@ function StatsInner() {
     // 2x2 metric grid → sparkline card → two row lists. No content
     // shift when stats arrive.
     return (
-      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
         <SkeletonBlock className="h-4 w-32 rounded-full" />
         <div className="space-y-2">
           <SkeletonBlock className="h-8 w-2/3 rounded-lg" />
@@ -139,7 +139,7 @@ function StatsInner() {
   const name = (n: { name_en: string; name_ko: string }) => ko ? n.name_ko : n.name_en
 
   return (
-    <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
+    <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
       <StudySubPageHeader
         backHref="/mobile/study"
         backLabel={String(t('study.topic.backToStudy'))}

@@ -119,7 +119,7 @@ function PreferencesInner() {
 
   if (failed && !prefs) {
     return (
-      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14">
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
           <p className="text-sm text-gray-600">
             {ko ? '설정을 불러오지 못했어요.' : "We couldn't load your preferences."}
@@ -140,7 +140,7 @@ function PreferencesInner() {
     // Skeleton mirrors the loaded layout: back link, title +
     // subtitle, stats link card, then 5 setting groups.
     return (
-      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
         <SkeletonPageHeader />
         <SkeletonCard className="p-4 flex items-center gap-3">
           <SkeletonBlock className="w-10 h-10 rounded-xl" />
@@ -159,7 +159,7 @@ function PreferencesInner() {
   }
 
   return (
-    <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
+    <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
       <StudySubPageHeader
         backHref="/mobile/study"
         backLabel={String(t('study.topic.backToStudy'))}

@@ -105,7 +105,7 @@ export function StudyPageHeader({
           effect. Standalone sub-pages keep the content centered at
           max-w-3xl; the session shell passes `wide` so the back button
           sits at the far left and the row fills the screen. */}
-      <div className={wide ? 'w-full px-5 lg:px-8' : 'max-w-3xl mx-auto px-5'}>
+      <div className={wide ? 'w-full px-5 lg:px-8' : 'max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8'}>
         <div className="flex items-center gap-3">
           {hasBack && (
             <button type="button" onClick={goBack}

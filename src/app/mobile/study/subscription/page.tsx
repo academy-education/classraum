@@ -246,7 +246,7 @@ export default function SubscriptionPage() {
     // screens). Mirrors the loaded layout: header → credit balance →
     // two plan cards.
     return (
-      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
         <SkeletonPageHeader />
         <SkeletonCard className="p-5 space-y-3">
           <SkeletonBlock className="h-3 w-28 rounded-full" />
@@ -275,7 +275,7 @@ export default function SubscriptionPage() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.02] to-transparent"
       />
-      <div className="max-w-3xl lg:max-w-5xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
         <StudySubPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.topic.backToStudy'))}

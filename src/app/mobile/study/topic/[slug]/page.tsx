@@ -294,7 +294,7 @@ function TopicInner({ slug }: { slug: string }) {
     // Browse surface → skeleton mirroring the loaded shell: back link,
     // header, stat card, tab bar, featured card, 2x2 mode grid.
     return (
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
         <SkeletonBlock className="h-4 w-28 rounded-full" />
         <div className="flex items-start gap-3">
           <SkeletonBlock className="w-9 h-9 rounded-xl flex-shrink-0" />
@@ -387,7 +387,7 @@ function TopicInner({ slug }: { slug: string }) {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-56 -z-10 bg-gradient-to-b from-primary/[0.03] to-transparent"
       />
-      <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+      <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
         <StudySubPageHeader
           backHref="/mobile/study"
           backLabel={String(t('study.topic.backToStudy'))}

@@ -171,7 +171,7 @@ function SummaryInner({ id }: { id: string }) {
   const mistakes = attempts.filter(a => !a.is_correct)
 
   return (
-    <div className="max-w-3xl mx-auto px-5 pt-6 pb-14 space-y-6">
+    <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6">
       <StudySubPageHeader
         backHref="/mobile/study"
         backLabel={String(t('study.topic.backToStudy'))}

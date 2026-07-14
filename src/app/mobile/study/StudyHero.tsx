@@ -100,8 +100,11 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
   const pct = Math.round(fraction * 100)
 
   return (
-    <section className="-mx-5 -mt-6 mb-2">
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-indigo-700 px-5 pt-5 pb-24 text-white">
+    <section className="-mx-5 -mt-6 mb-2 lg:mx-0 lg:mt-0">
+      {/* Full-bleed banner on phones; on desktop it becomes a rounded
+          hero card aligned with the content cards below (no stray edge
+          padding), so the whole page shares one left/right edge. */}
+      <div className="relative overflow-hidden lg:rounded-3xl bg-gradient-to-br from-primary via-primary to-indigo-700 px-5 lg:px-8 pt-5 lg:pt-7 pb-24 text-white">
         <div aria-hidden className="pointer-events-none absolute -top-8 -right-8 w-40 h-40 rounded-full bg-white/10 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-10 -left-6 w-32 h-32 rounded-full bg-indigo-300/20 blur-2xl" />
 
