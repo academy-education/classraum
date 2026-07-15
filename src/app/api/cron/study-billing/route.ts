@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
-import { resolvePlan, STUDY_PLANS, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
+import { resolvePlan, STUDY_PLANS, GRANT_INTERVAL_DAYS, isPassPlan } from '@/lib/study/plans'
 
 /**
  * Daily cron — renew study subscriptions and finalize cancellations.
@@ -81,6 +81,12 @@ export async function GET(req: NextRequest) {
     .eq('cancel_at_period_end', false)
     .lte('current_period_end', now.toISOString())
   for (const row of (dueRows ?? []) as SubscriptionRow[]) {
+    // Seasonal passes are cancel_at_period_end=true so they shouldn't
+    // reach here, but never charge a renewal for one as defense-in-depth.
+    if (isPassPlan(row.plan)) {
+      summary.skipped++
+      continue
+    }
     if (!row.portone_subscription_id) {
       summary.skipped++
       continue

@@ -85,11 +85,44 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
     name_en: 'Premium · Annual',
     name_ko: '프리미엄 · 연간',
   },
+  // 수능 대비 패스 — a ONE-TIME seasonal pass, not a recurring plan.
+  // Grants Premium features until the KSAT (수능) exam date plus a batch
+  // of test credits. Modelled as an active row with cancel_at_period_end
+  // = true so the billing cron finalizes it (→ cancelled) at expiry and
+  // NEVER charges a renewal. Guard rails (isPassPlan) keep it out of the
+  // renewal/reactivate paths.
+  sunung_pass_v1: {
+    id: 'sunung_pass_v1',
+    tier: 'premium',
+    priceWon: 39000,
+    // Pass credits are granted once (into the purchased bucket) at
+    // purchase — the pass never refreshes a monthly grant.
+    monthlyCredits: 0,
+    intervalDays: 3650, // never "due" for a renewal charge; expiry is date-driven
+    orderName: 'Classraum Study — 수능 대비 패스',
+    name_en: 'Exam Prep Pass',
+    name_ko: '수능 대비 패스',
+  },
 }
 
 /** Monthly credit-grant cadence — annual plans still refresh credits
  *  every 30 days, decoupled from their yearly charge. */
 export const GRANT_INTERVAL_DAYS = 30
+
+/** 수능 대비 패스 config — one-time seasonal Premium pass. */
+export const SUNUNG_PASS_PLAN_ID = 'sunung_pass_v1'
+/** Test credits granted once when the pass is purchased. */
+export const SUNUNG_PASS_CREDITS = 30
+/** KSAT (수능) exam date the pass runs until — the 2027학년도 수능 is
+ *  Thursday, 19 Nov 2026. Update yearly. */
+export const SUNUNG_EXAM_DATE = '2026-11-19'
+/** Days before the exam the purchase CTA becomes visible (D-120 window). */
+export const SUNUNG_PASS_WINDOW_DAYS = 120
+/** Rows on the seasonal pass must be excluded from the recurring-charge
+ *  and reactivate paths — they finalize at expiry, never renew. */
+export function isPassPlan(planId: string | null | undefined): boolean {
+  return planId === SUNUNG_PASS_PLAN_ID
+}
 
 /** Credit top-up packs — available to any active/trial subscriber (not
  *  just Premium). Bigger packs give a lower per-credit price to raise

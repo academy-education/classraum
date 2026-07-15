@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
 import {
   CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw,
-  XCircle, ExternalLink, Check, Sparkles, Coins,
+  XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../skeletons'
@@ -38,15 +38,26 @@ interface CatalogPlan {
   name_ko: string
 }
 
+interface PassInfo {
+  id: string
+  priceWon: number
+  credits: number
+  examDate: string
+  daysToExam: number
+  offer: boolean
+  onPass: boolean
+}
+
 interface SubPayload {
   subscription: Subscription | null
   tier?: 'general' | 'premium'
   planMeta?: CatalogPlan
   credits?: { grant: number; purchased: number; total: number }
   catalog?: { plans: CatalogPlan[]; pack: { id: string; credits: number; priceWon: number }; packs?: { id: string; credits: number; priceWon: number }[] }
+  pass?: PassInfo
 }
 
-type Acting = 'cancel' | 'reactivate' | 'pack' | `checkout:${string}` | `change:${string}` | null
+type Acting = 'cancel' | 'reactivate' | 'pack' | 'pass' | `checkout:${string}` | `change:${string}` | null
 
 /**
  * /mobile/study/subscription — plans, credits, and billing management.
@@ -118,6 +129,12 @@ export default function SubscriptionPage() {
   const currentPlanId = isActive
     ? (data?.planMeta?.id ?? sub?.plan ?? null)
     : isFree ? 'free_v1' : null
+  // 수능 대비 패스 — a one-time seasonal Premium pass surfaced outside the
+  // recurring plan grid. onPass hides the plan grid / cancel-reactivate;
+  // passOffer shows the purchase CTA (in-season, web, non-active only).
+  const pass = data?.pass
+  const onPass = pass?.onPass === true
+  const passOffer = pass?.offer === true && !isNative
   const credits = data?.credits ?? {
     grant: sub?.grant_credits_remaining ?? 0,
     purchased: sub?.purchased_credits_remaining ?? 0,
@@ -216,6 +233,55 @@ export default function SubscriptionPage() {
       setActing(null)
     }
   }, [acting, load, t, user])
+
+  /**
+   * 수능 대비 패스 purchase — same PortOne billing-key overlay as a new
+   * subscription, but the server charges once and writes a seasonal
+   * Premium pass (no recurring renewal).
+   */
+  const buyPass = useCallback(async () => {
+    if (acting !== null) return
+    setActing('pass')
+    setError(null)
+    setSuccessMessage(null)
+    try {
+      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
+      const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
+      if (!storeId || !channelKey) throw new Error('PortOne not configured')
+
+      const issueId = `study-pass-issue-${user?.id ?? 'anon'}-${Date.now()}`
+      const issued = await PortOne.requestIssueBillingKey({
+        storeId,
+        channelKey,
+        billingKeyMethod: 'CARD',
+        issueId,
+        issueName: 'Classraum 수능 대비 패스',
+        customer: { customerId: user?.id, email: user?.email ?? undefined },
+        customData: { kind: 'study_sunung_pass' },
+      })
+      if (!issued?.billingKey) {
+        if (issued?.code) setError(issued.message ?? (t('study.subscription.checkoutFailed') as string))
+        return
+      }
+
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/subscription/purchase-pass', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ billingKey: issued.billingKey }),
+      })
+      const body = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(typeof body.message === 'string' ? body.message : (ko ? '패스 구매에 실패했어요.' : 'Pass purchase failed.'))
+      }
+      await load()
+      setSuccessMessage(ko ? '수능 대비 패스가 활성화되었어요!' : 'Your exam-prep pass is active!')
+    } catch (e) {
+      setError((e instanceof Error && e.message) || (ko ? '패스 구매에 실패했어요.' : 'Pass purchase failed.'))
+    } finally {
+      setActing(null)
+    }
+  }, [acting, ko, load, t, user])
 
   /** Active-subscription plan switch (upgrade now / downgrade at renewal). */
   const changePlan = useCallback(async (planId: string) => {
@@ -384,8 +450,62 @@ export default function SubscriptionPage() {
           </div>
         )}
 
+        {/* 수능 대비 패스 — active banner */}
+        {onPass && sub && (
+          <div className="rounded-2xl bg-gradient-to-br from-rose-50 via-white to-white ring-1 ring-rose-200/70 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+            <div className="flex items-center gap-3">
+              <span className="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-600 flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="w-5 h-5" />
+              </span>
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-600">
+                  {ko ? '수능 대비 패스' : 'Exam Prep Pass'}
+                </div>
+                <div className="text-[15px] font-semibold text-gray-900">
+                  {ko ? '프리미엄 이용 중' : 'Premium active'}
+                </div>
+              </div>
+            </div>
+            <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
+              {ko
+                ? `수능일(${formatDate(sub.current_period_end, ko)})까지 모든 프리미엄 기능을 이용할 수 있어요. 이후 자동으로 무료 플랜으로 전환됩니다.`
+                : `Full Premium access through exam day (${formatDate(sub.current_period_end, ko)}). You'll move to the free plan automatically after that.`}
+            </p>
+          </div>
+        )}
+
+        {/* 수능 대비 패스 — purchase offer (in-season, web, not on a paid plan) */}
+        {passOffer && pass && (
+          <div className="rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 p-5 text-white shadow-[0_8px_24px_-12px_rgba(225,29,72,0.5)]">
+            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-100">
+              <GraduationCap className="w-4 h-4" />
+              {ko ? '수능 대비 패스' : 'Exam Prep Pass'}
+              {pass.daysToExam > 0 && (
+                <span className="ml-auto px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold tabular-nums">
+                  D-{pass.daysToExam}
+                </span>
+              )}
+            </div>
+            <div className="mt-2 text-2xl font-bold tracking-tight">{formatWon(pass.priceWon)}</div>
+            <p className="text-[13px] text-rose-50 mt-1.5 leading-relaxed">
+              {ko
+                ? `수능일까지 프리미엄 전 기능 + 테스트 크레딧 ${pass.credits}개. 한 번 결제로 끝.`
+                : `Every Premium feature through exam day + ${pass.credits} test credits. One payment, done.`}
+            </p>
+            <button
+              type="button"
+              onClick={() => void buyPass()}
+              disabled={acting !== null}
+              className="mt-3.5 w-full h-11 rounded-full bg-white text-rose-600 text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-70 transition-all"
+            >
+              {acting === 'pass' ? <Loader2 className="w-4 h-4 animate-spin" /> : <GraduationCap className="w-4 h-4" />}
+              {ko ? '패스 구매하기' : 'Get the pass'}
+            </button>
+          </div>
+        )}
+
         {/* Trial / period banner */}
-        {sub && (
+        {sub && !onPass && (
           <div className="rounded-xl bg-gray-50/80 ring-1 ring-gray-200/50 px-4 py-3 text-[13.5px] text-gray-700 inline-flex items-start gap-2.5 w-full">
             <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
             <div className="leading-relaxed">
@@ -406,7 +526,7 @@ export default function SubscriptionPage() {
         )}
 
         {/* Monthly / Annual billing-cycle toggle */}
-        {hasAnnual && (
+        {!onPass && hasAnnual && (
           <div className="flex items-center justify-center">
             <div className="inline-flex items-center gap-1 p-1 rounded-full bg-gray-100/80 ring-1 ring-gray-200/60">
               {(['monthly', 'annual'] as const).map(cycle => (
@@ -435,6 +555,7 @@ export default function SubscriptionPage() {
         )}
 
         {/* Plan cards */}
+        {!onPass && (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {displayedPlans.map(plan => {
             const isCurrent = currentPlanId === plan.id
@@ -594,8 +715,10 @@ export default function SubscriptionPage() {
             )
           })}
         </div>
+        )}
 
         {/* Secondary actions */}
+        {!onPass && (
         <div className="space-y-2.5">
           {sub && (isTrial || isActive) && !sub.cancel_at_period_end && (
             confirmingCancel ? (
@@ -653,6 +776,7 @@ export default function SubscriptionPage() {
             </button>
           )}
         </div>
+        )}
 
     </StudyScrollShell>
   )

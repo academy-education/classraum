@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resolvePlan, planFeatures, STUDY_PLANS, CREDIT_PACK, CREDIT_PACKS } from '@/lib/study/plans'
+import {
+  resolvePlan, planFeatures, STUDY_PLANS, CREDIT_PACK, CREDIT_PACKS,
+  SUNUNG_PASS_PLAN_ID, SUNUNG_PASS_CREDITS, SUNUNG_EXAM_DATE, SUNUNG_PASS_WINDOW_DAYS,
+} from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -29,13 +32,37 @@ export async function GET(req: NextRequest) {
     .eq('student_id', user.id)
     .maybeSingle()
 
-  if (!sub) return NextResponse.json({ subscription: null })
+  // The 수능 pass is a one-time seasonal SKU, not a recurring plan card —
+  // keep it out of the plan grid and surface it separately. The purchase
+  // CTA is only offered inside the pre-exam window and to members not on
+  // an active recurring plan. Computed even for null-row (brand-new) users
+  // so the offer can reach them too.
+  const passPlan = STUDY_PLANS[SUNUNG_PASS_PLAN_ID]!
+  const examEnd = new Date(`${SUNUNG_EXAM_DATE}T23:59:59+09:00`)
+  const daysToExam = Math.ceil((examEnd.getTime() - Date.now()) / (24 * 60 * 60 * 1000))
+  const inSeason = daysToExam > 0 && daysToExam <= SUNUNG_PASS_WINDOW_DAYS
+  const onPass = sub?.plan === SUNUNG_PASS_PLAN_ID && sub?.status === 'active'
+  // Offer to anyone not currently on an active recurring plan (a live
+  // pass-holder is 'active' too, so this also hides it while a pass runs).
+  const passOffer = inSeason && sub?.status !== 'active'
+  const passBlock = {
+    id: passPlan.id,
+    priceWon: passPlan.priceWon,
+    credits: SUNUNG_PASS_CREDITS,
+    examDate: SUNUNG_EXAM_DATE,
+    daysToExam,
+    offer: passOffer,
+    onPass,
+  }
+
+  if (!sub) return NextResponse.json({ subscription: null, pass: passBlock })
 
   // Enrich with the resolved tier, credit balance, and feature flags
   // so every client surface (subscription page, upsell cards, snap
   // limit banner) reads one payload instead of re-deriving plan rules.
   const plan = resolvePlan(sub.plan)
   const tier = sub.status === 'trial' ? 'general' : plan.tier
+
   return NextResponse.json({
     subscription: sub,
     tier,
@@ -46,6 +73,11 @@ export async function GET(req: NextRequest) {
       total: (sub.grant_credits_remaining ?? 0) + (sub.purchased_credits_remaining ?? 0),
     },
     features: planFeatures(tier),
-    catalog: { plans: Object.values(STUDY_PLANS), pack: CREDIT_PACK, packs: CREDIT_PACKS },
+    catalog: {
+      plans: Object.values(STUDY_PLANS).filter(p => p.id !== SUNUNG_PASS_PLAN_ID),
+      pack: CREDIT_PACK,
+      packs: CREDIT_PACKS,
+    },
+    pass: passBlock,
   })
 }
