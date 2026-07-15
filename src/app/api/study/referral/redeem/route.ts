@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { REFERRAL_SIGNUP_CREDITS, normalizeReferralCode } from '@/lib/study/referral'
 import { trackEvent } from '@/lib/study/analytics'
+import { ensureAcceptedFriendship } from '@/lib/study/friends'
 
 /**
  * POST /api/study/referral/redeem — a new student redeems a friend's
@@ -103,6 +104,9 @@ export async function POST(req: NextRequest) {
     .eq('id', inserted.id)
 
   void trackEvent(user.id, 'referral_redeemed', { referrerId, creditsAdded: refereeAdded })
+  // A referral is a real social connection — auto-add the pair as friends
+  // so they land on each other's friends leaderboard immediately.
+  void ensureAcceptedFriendship(user.id, referrerId)
 
   return NextResponse.json({
     success: true,
