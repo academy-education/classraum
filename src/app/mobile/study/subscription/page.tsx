@@ -408,7 +408,7 @@ export default function SubscriptionPage() {
             <div className="flex flex-wrap items-center gap-1.5 mt-4">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[12px] text-gray-600">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                {ko ? '이번 달' : 'Monthly'}
+                {isFree ? (ko ? '가입 크레딧' : 'Starter') : (ko ? '이번 달' : 'Monthly')}
                 <b className="tabular-nums text-gray-900 font-semibold">{credits.grant}</b>
               </span>
               {credits.purchased > 0 && (
