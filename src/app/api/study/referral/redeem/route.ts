@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { REFERRAL_REWARD_CREDITS, normalizeReferralCode } from '@/lib/study/referral'
+import { trackEvent } from '@/lib/study/analytics'
 
 /**
  * POST /api/study/referral/redeem — a new student redeems a friend's
@@ -100,6 +101,8 @@ export async function POST(req: NextRequest) {
     .from('study_referral_redemptions')
     .update({ rewarded: true })
     .eq('id', inserted.id)
+
+  void trackEvent(user.id, 'referral_redeemed', { referrerId, creditsAdded: refereeAdded })
 
   return NextResponse.json({
     success: true,

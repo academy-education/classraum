@@ -9,6 +9,7 @@ import {
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
   PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, LucideIcon,
   MoreHorizontal, Lock, Target as TargetIcon,
+  Gift, X, Check, Loader2,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -35,6 +36,7 @@ import { SocialPresenceCard } from './SocialPresenceCard'
 import { SkeletonTestGrid, SkeletonBlock, SkeletonCard } from './skeletons'
 import { track } from '@/lib/study/track-client'
 import { authHeaders } from '@/lib/auth-headers'
+import { captureReferralFromUrl, readPendingReferral, clearPendingReferral } from '@/lib/study/pending-referral'
 
 /**
  * /mobile/study — study landing.
@@ -334,6 +336,15 @@ function StudyLandingInner() {
   const landingData = useLandingData()
   const targetTest = landingData?.prefs?.target_test ?? null
 
+  // Invite-link capture: a friend arriving via /mobile/study?ref=CODE has
+  // the code stashed + stripped from the URL here, then surfaced as a
+  // one-tap claim banner below. Persisted so it survives auth/onboarding.
+  const [pendingRef, setPendingRef] = useState<string | null>(null)
+  useEffect(() => {
+    captureReferralFromUrl()
+    setPendingRef(readPendingReferral())
+  }, [])
+
   useEffect(() => {
     let cancelled = false
     void (async () => {
@@ -469,6 +480,16 @@ function StudyLandingInner() {
           onOpenSearch={() => setSearchOpen(true)}
           overflowMenu={<HeaderOverflowMenu variant="dark" />}
         />
+
+        {/* Invite claim — shows when the student arrived via a friend's
+            invite link (?ref=CODE). One tap redeems; both sides get credits.
+            Self-clears on any terminal outcome (claimed / already / invalid). */}
+        {pendingRef && (
+          <ReferralClaimBanner
+            code={pendingRef}
+            onDone={() => { clearPendingReferral(); setPendingRef(null) }}
+          />
+        )}
 
         {/* First-test activation — the single highest-leverage nudge for a
             brand-new user. Shows only until they finish their first mock
@@ -908,6 +929,98 @@ function HeaderOverflowMenu({ variant = 'light' }: { variant?: 'light' | 'dark' 
           </div>
         </>
       )}
+    </div>
+  )
+}
+
+/** Invite-claim banner. Appears on the landing when the student arrived
+ *  via a friend's invite link (?ref=CODE, captured into localStorage). One
+ *  tap redeems the code — both sides get credits — via the same endpoint
+ *  the Redeem box uses. Any terminal outcome (claimed, already redeemed,
+ *  self, invalid) clears the pending code so the banner doesn't linger. */
+function ReferralClaimBanner({ code, onDone }: { code: string; onDone: () => void }) {
+  const { language } = useTranslation()
+  const ko = language === 'korean'
+  const [state, setState] = useState<'idle' | 'busy' | 'done'>('idle')
+  const [msg, setMsg] = useState<string | null>(null)
+
+  const claim = async () => {
+    if (state === 'busy') return
+    setState('busy')
+    setMsg(null)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/referral/redeem', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (res.ok) {
+        const added = typeof json?.creditsAdded === 'number' ? json.creditsAdded : 0
+        setMsg(added > 0
+          ? (ko ? `크레딧 ${added}개가 지급됐어요!` : `${added} credits added!`)
+          : (ko ? '코드를 사용했어요!' : 'Code redeemed!'))
+        setState('done')
+        setTimeout(onDone, 1600)
+        return
+      }
+      // Terminal failures — clear so we don't nag on every load.
+      if (['already_redeemed', 'self_referral', 'unknown_code'].includes(json?.code)) {
+        onDone()
+        return
+      }
+      setMsg(ko ? '다시 시도해 주세요.' : 'Please try again.')
+      setState('idle')
+    } catch {
+      setMsg(ko ? '다시 시도해 주세요.' : 'Please try again.')
+      setState('idle')
+    }
+  }
+
+  return (
+    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 text-white p-5 shadow-[0_10px_30px_-10px_rgba(16,185,129,0.5)]">
+      <div aria-hidden className="pointer-events-none absolute -top-10 -right-8 w-36 h-36 rounded-full bg-white/20 blur-3xl" />
+      {state !== 'done' && (
+        <button
+          type="button"
+          onClick={onDone}
+          aria-label={ko ? '닫기' : 'Dismiss'}
+          className="absolute top-3 right-3 w-7 h-7 inline-flex items-center justify-center rounded-full bg-white/15 hover:bg-white/25 ring-1 ring-white/20 transition"
+        >
+          <X className="w-3.5 h-3.5" />
+        </button>
+      )}
+      <div className="relative flex items-center gap-4">
+        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm ring-1 ring-white/25 flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+          {state === 'done' ? <Check className="w-5 h-5" /> : <Gift className="w-5 h-5" />}
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="inline-flex items-center gap-1 text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+            <Sparkles className="w-3 h-3" />
+            {ko ? '친구 초대' : "You're invited"}
+          </div>
+          <div className="text-[15px] font-bold leading-snug mt-0.5">
+            {msg
+              ? msg
+              : (ko
+                  ? `초대 코드 ${code} · 둘 다 크레딧 5개`
+                  : `Code ${code} · you both get 5 credits`)}
+          </div>
+        </div>
+        {state !== 'done' && (
+          <button
+            type="button"
+            onClick={() => void claim()}
+            disabled={state === 'busy'}
+            className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-full bg-white text-emerald-700 text-[13px] font-bold shadow-[0_2px_8px_-2px_rgba(0,0,0,0.25)] hover:bg-emerald-50 active:scale-[0.97] disabled:opacity-70 transition"
+          >
+            {state === 'busy'
+              ? <Loader2 className="w-4 h-4 animate-spin" />
+              : (ko ? '받기' : 'Claim')}
+          </button>
+        )}
+      </div>
     </div>
   )
 }
