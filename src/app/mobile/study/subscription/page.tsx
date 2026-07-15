@@ -2,9 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
+import Link from 'next/link'
 import {
   CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw,
-  XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap,
+  XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap, Gift, Users, ChevronRight,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../skeletons'
@@ -745,6 +746,36 @@ export default function SubscriptionPage() {
           })}
         </div>
         )}
+
+        {/* Gift + referral entry points (both pages self-gate native). */}
+        <div className="grid grid-cols-2 gap-2.5">
+          <Link
+            href="/mobile/study/gift"
+            className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/60 p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.98] transition-all"
+          >
+            <span className="w-9 h-9 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center flex-shrink-0">
+              <Gift className="w-4 h-4" />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[13px] font-semibold text-gray-900 truncate">{ko ? '프리미엄 선물' : 'Gift Premium'}</span>
+              <span className="block text-[11.5px] text-gray-400 truncate">{ko ? '3개월 선물하기' : 'Give 3 months'}</span>
+            </span>
+            <ChevronRight className="w-4 h-4 text-gray-300 ml-auto flex-shrink-0" />
+          </Link>
+          <Link
+            href="/mobile/study/referral"
+            className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/60 p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.98] transition-all"
+          >
+            <span className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+              <Users className="w-4 h-4" />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[13px] font-semibold text-gray-900 truncate">{ko ? '친구 초대' : 'Refer a friend'}</span>
+              <span className="block text-[11.5px] text-gray-400 truncate">{ko ? '둘 다 크레딧 5개' : '5 credits each'}</span>
+            </span>
+            <ChevronRight className="w-4 h-4 text-gray-300 ml-auto flex-shrink-0" />
+          </Link>
+        </div>
 
         {/* Secondary actions */}
         {!onPass && (
