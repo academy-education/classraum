@@ -81,12 +81,23 @@ describe('POST /api/study/subscription/purchase-pack', () => {
     expect(chargeMock).not.toHaveBeenCalled()
   })
 
-  it('denies with 403 when there is no active subscription', async () => {
+  it('lets a lapsed (cancelled) member with a stored card still top up', async () => {
     enqueue('study_subscriptions', { data: { ...PREMIUM_SUB, status: 'cancelled' } })
+    enqueue('study_credit_ledger', { error: null })
     const res = await POST(makeRequest({}))
-    expect(res.status).toBe(403)
-    expect(await res.json()).toEqual({ error: 'active subscription required' })
-    expect(chargeMock).not.toHaveBeenCalled()
+    expect(res.status).toBe(200)
+    expect(chargeMock).toHaveBeenCalled()
+  })
+
+  it('lets a card-less free user buy by passing a freshly issued billingKey', async () => {
+    enqueue('study_subscriptions', { data: { status: 'free', plan: 'free_v1', portone_subscription_id: null } })
+    const update = enqueue('study_subscriptions', { error: null }) // store the new card
+    enqueue('study_credit_ledger', { error: null })
+    const res = await POST(makeRequest({ billingKey: 'fresh-key' }))
+    expect(res.status).toBe(200)
+    expect(chargeMock).toHaveBeenCalledWith(expect.objectContaining({ billingKey: 'fresh-key' }))
+    expect(update.update).toHaveBeenCalledWith(expect.objectContaining({ portone_subscription_id: 'fresh-key' }))
+    expect(rpcMock).toHaveBeenCalledWith('increment_study_purchased_credits', expect.any(Object))
   })
 
   it('allows a General (non-premium) subscriber to buy a pack', async () => {

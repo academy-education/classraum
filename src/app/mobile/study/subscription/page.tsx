@@ -11,6 +11,7 @@ import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS } from '@/lib/study/plans'
+import { buyCreditPack } from '@/lib/study/purchase-credits'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
 
@@ -314,32 +315,17 @@ export default function SubscriptionPage() {
     setActing('pack')
     setError(null)
     setSuccessMessage(null)
-    try {
-      const headers = await authHeaders()
-      const res = await fetch('/api/study/subscription/purchase-pack', {
-        method: 'POST',
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ packId }),
-      })
-      const body = await res.json().catch(() => ({}))
-      if (!res.ok) {
-        // No card on file (e.g. trial) → point them at checkout instead
-        // of a dead error.
-        if (body.code === 'no_billing_key') {
-          throw new Error(ko ? '결제 수단을 먼저 등록해 주세요 — 플랜을 시작하면 등록됩니다.' : 'Add a payment method first — start a plan to set one up.')
-        }
-        throw new Error(typeof body.message === 'string' ? body.message : (ko ? '크레딧 구매에 실패했어요.' : 'Credit purchase failed.'))
-      }
+    // Shared flow: charges a stored card, or issues one via the PortOne
+    // overlay for card-less (free) buyers, then retries.
+    const r = await buyCreditPack(packId, user)
+    if (r.ok) {
       await load()
-      setSuccessMessage(ko
-        ? `크레딧 ${credits}개가 추가되었어요.`
-        : `${credits} credits added to your account.`)
-    } catch (e) {
-      setError((e instanceof Error && e.message) || (ko ? '크레딧 구매에 실패했어요.' : 'Credit purchase failed.'))
-    } finally {
-      setActing(null)
+      setSuccessMessage(ko ? `크레딧 ${credits}개가 추가되었어요.` : `${credits} credits added to your account.`)
+    } else if (r.error) {
+      setError(r.error)
     }
-  }, [acting, ko, load])
+    setActing(null)
+  }, [acting, ko, load, user])
 
   if (loading) {
     // Settings surface → skeleton (Raumi is reserved for studying
@@ -417,10 +403,10 @@ export default function SubscriptionPage() {
                 ? `모의고사 1회 생성에 크레딧 1개가 사용돼요. 이번 달 제공 ${credits.grant}개${credits.purchased > 0 ? ` + 구매 ${credits.purchased}개` : ''} 남았어요. 생성에 실패하면 크레딧은 자동으로 환불됩니다.`
                 : `Each generated mock test uses 1 credit. ${credits.grant} from this month's grant${credits.purchased > 0 ? ` + ${credits.purchased} purchased` : ''} remaining. Failed generations are refunded automatically.`}
             </p>
-            {/* Credit top-ups — open to any active member (General too),
-                three sizes with a lower per-credit price on bigger packs.
+            {/* Credit top-ups — open to everyone on web (free & General
+                included; card-less buyers register a card in the flow).
                 Native app hides in-app purchases (App Store IAP rules). */}
-            {isActive && !isNative && (
+            {!isNative && (
               <div className="mt-3.5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-2">
                   {ko ? '크레딧 충전' : 'Top up credits'}

@@ -62,6 +62,43 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
     name_en: 'Premium',
     name_ko: '프리미엄',
   },
+  // Premium Plus — the "best" rung of good-better-best. Double the
+  // credits at a price that makes ₩16,900 Premium read as the moderate,
+  // sensible default. Same premium entitlements (a heavy generator is the
+  // real cost driver, so credits are the lever).
+  premium_plus_v1: {
+    id: 'premium_plus_v1',
+    tier: 'premium',
+    priceWon: 24900,
+    monthlyCredits: 40,
+    intervalDays: 30,
+    orderName: 'Classraum Study — Premium Plus (Monthly)',
+    name_en: 'Premium Plus',
+    name_ko: '프리미엄 플러스',
+  },
+  // Prepaid Premium — commitment discounts for students who plan around a
+  // sitting. Same 20-credit monthly cadence (refreshed every 30d via
+  // next_grant_at); billed once up front.
+  premium_3mo_v1: {
+    id: 'premium_3mo_v1',
+    tier: 'premium',
+    priceWon: 45000,
+    monthlyCredits: 20,
+    intervalDays: 90,
+    orderName: 'Classraum Study — Premium (3 Months)',
+    name_en: 'Premium · 3 months',
+    name_ko: '프리미엄 · 3개월',
+  },
+  premium_6mo_v1: {
+    id: 'premium_6mo_v1',
+    tier: 'premium',
+    priceWon: 84000,
+    monthlyCredits: 20,
+    intervalDays: 180,
+    orderName: 'Classraum Study — Premium (6 Months)',
+    name_en: 'Premium · 6 months',
+    name_ko: '프리미엄 · 6개월',
+  },
   // Annual plans — ~2 months free vs monthly. Same monthly credit
   // cadence; billed once a year. Korean parents prefer a single lump
   // "결제 한 번" over a recurring monthly charge.
@@ -84,6 +121,16 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
     orderName: 'Classraum Study — Premium (Annual)',
     name_en: 'Premium · Annual',
     name_ko: '프리미엄 · 연간',
+  },
+  premium_plus_annual_v1: {
+    id: 'premium_plus_annual_v1',
+    tier: 'premium',
+    priceWon: 249000,
+    monthlyCredits: 40,
+    intervalDays: 365,
+    orderName: 'Classraum Study — Premium Plus (Annual)',
+    name_en: 'Premium Plus · Annual',
+    name_ko: '프리미엄 플러스 · 연간',
   },
   // 수능 대비 패스 — a ONE-TIME seasonal pass, not a recurring plan.
   // Grants Premium features until the KSAT (수능) exam date plus a batch
@@ -139,8 +186,18 @@ export const CREDIT_PACKS: CreditPack[] = [
   { id: 'pack15_v1', credits: 15, priceWon: 16900, orderName: 'Classraum Study — 15 Test Credits' },
   { id: 'pack40_v1', credits: 40, priceWon: 36900, orderName: 'Classraum Study — 40 Test Credits' },
 ]
-/** Resolve a pack id to its catalog entry (defaults to the 5-pack). */
+/** Micro top-up — the instant a free user burns their starter credits,
+ *  a ₩1,900 / 3-credit "just let me finish" offer beats hard-walling them
+ *  to a ₩9,900 plan. Not shown in the regular top-up grid; surfaced only
+ *  at the out-of-credits moment. */
+export const MICRO_PACK: CreditPack = {
+  id: 'pack3_micro_v1', credits: 3, priceWon: 1900, orderName: 'Classraum Study — 3 Test Credits',
+}
+
+/** Resolve a pack id to its catalog entry (defaults to the 5-pack).
+ *  Includes the micro pack so the out-of-credits offer resolves too. */
 export function resolvePack(packId: string | null | undefined): CreditPack {
+  if (packId === MICRO_PACK.id) return MICRO_PACK
   return CREDIT_PACKS.find(p => p.id === packId) ?? CREDIT_PACKS[0]!
 }
 /** Back-compat alias — the smallest pack. */

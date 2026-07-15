@@ -5,9 +5,12 @@ import Link from 'next/link'
 import {
   Loader2, RefreshCw, ArrowRight, ArrowLeft, Clock, CheckCircle2,
   AlertTriangle, ChevronDown, ChevronUp,
-  Mic, MicOff, CreditCard,
+  Mic, MicOff, Coins,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useAuth } from '@/contexts/AuthContext'
+import { buyCreditPack } from '@/lib/study/purchase-credits'
+import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
 import { supabase } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
@@ -44,7 +47,12 @@ import { SubmitConfirmModal, GenerationProgress } from './test/chrome'
  */
 export function TestSession({ sessionId, language }: { sessionId: string; language: 'en' | 'ko' }) {
   const { t } = useTranslation()
+  const { user } = useAuth()
   const ko = language === 'ko'
+  // Out-of-credits one-tap purchase — buying here retries generation
+  // immediately instead of bouncing the student to the plan catalog.
+  const [buyingPack, setBuyingPack] = useState<string | null>(null)
+  const [buyError, setBuyError] = useState<string | null>(null)
 
   // Phase machine — splits the old single 'loading' state into three
   // distinct entry phases so we never flash the wrong UI on resume:
@@ -833,10 +841,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           return {
             title: ko ? '테스트 크레딧이 부족해요' : 'You’re out of test credits',
             body: ko
-              ? '모의고사 1회 생성에 크레딧 1개가 사용돼요. 구독을 업그레이드하거나 다음 갱신을 기다리면 크레딧이 충전됩니다.'
-              : 'Each mock test uses 1 credit. Upgrade your plan or wait for your next renewal to get more.',
-            cta: ko ? '구독 관리' : 'Manage plan',
-            href: '/mobile/study/subscription',
+              ? '모의고사 1회 생성에 크레딧 1개가 사용돼요. 크레딧을 충전하면 바로 이어서 만들 수 있어요.'
+              : 'Each mock test uses 1 credit. Top up and we’ll pick up right where you left off.',
+            cta: '',
           }
         case 'quota':
           return {
@@ -866,23 +873,62 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           }
       }
     })()
+    const isCreditsReason = reason === 'no_credits' || reason === 'no_subscription'
+    const fivePack = CREDIT_PACKS[0]! // pack5_v1 — ₩6,900
+    const doBuy = async (packId: string) => {
+      if (buyingPack) return
+      setBuyingPack(packId)
+      setBuyError(null)
+      const r = await buyCreditPack(packId, user)
+      setBuyingPack(null)
+      if (r.ok) {
+        // Credits in hand — clear the error and re-run generation.
+        setGenError(null)
+        await load()
+      } else if (r.error) {
+        setBuyError(r.error)
+      }
+    }
+    const fmtWon = (w: number) => `₩${w.toLocaleString()}`
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-3">
         <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-1 ${
-          stillWorking ? 'bg-primary/10 text-primary' : 'bg-amber-50 text-amber-500'
+          stillWorking ? 'bg-primary/10 text-primary' : isCreditsReason ? 'bg-amber-50 text-amber-500' : 'bg-amber-50 text-amber-500'
         }`}>
-          {stillWorking ? <Loader2 className="w-6 h-6 animate-spin" /> : <AlertTriangle className="w-6 h-6" />}
+          {stillWorking ? <Loader2 className="w-6 h-6 animate-spin" /> : isCreditsReason ? <Coins className="w-6 h-6" /> : <AlertTriangle className="w-6 h-6" />}
         </div>
         <p className="text-[15px] font-semibold text-gray-900">{copy.title}</p>
         <p className="text-[13px] text-gray-500 leading-relaxed max-w-[300px]">{copy.body}</p>
-        {copy.href ? (
-          <Link
-            href={copy.href}
-            className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
-          >
-            <CreditCard className="w-4 h-4" />
-            {copy.cta}
-          </Link>
+        {isCreditsReason ? (
+          <div className="mt-2 w-full max-w-[300px] flex flex-col items-stretch gap-2">
+            {/* One-tap top-up — the primary unblock. Card-less users get
+                the PortOne overlay via buyCreditPack, then generation
+                retries automatically. */}
+            <button
+              type="button"
+              onClick={() => void doBuy(fivePack.id)}
+              disabled={!!buyingPack}
+              className="inline-flex items-center justify-center gap-1.5 px-5 h-12 rounded-full bg-primary text-white text-sm font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
+            >
+              {buyingPack === fivePack.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Coins className="w-4 h-4" />}
+              {ko ? `크레딧 ${fivePack.credits}개 — ${fmtWon(fivePack.priceWon)}` : `Get ${fivePack.credits} credits — ${fmtWon(fivePack.priceWon)}`}
+            </button>
+            {/* Micro "just let me finish" — cheaper unblock the instant a
+                free user hits the wall, instead of a full plan. */}
+            <button
+              type="button"
+              onClick={() => void doBuy(MICRO_PACK.id)}
+              disabled={!!buyingPack}
+              className="inline-flex items-center justify-center gap-1.5 px-4 h-10 rounded-full bg-white ring-1 ring-gray-200 text-gray-600 text-[13px] font-medium active:scale-[0.98] disabled:opacity-60 transition-all"
+            >
+              {buyingPack === MICRO_PACK.id ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+              {ko ? `또는 ${MICRO_PACK.credits}개만 — ${fmtWon(MICRO_PACK.priceWon)}` : `Or just ${MICRO_PACK.credits} — ${fmtWon(MICRO_PACK.priceWon)}`}
+            </button>
+            {buyError && <p className="text-[12px] text-rose-600 leading-snug">{buyError}</p>}
+            <Link href="/mobile/study/subscription" className="text-[12px] text-gray-400 underline mt-0.5">
+              {ko ? '구독 플랜 보기' : 'See subscription plans'}
+            </Link>
+          </div>
         ) : (
           <button
             type="button"

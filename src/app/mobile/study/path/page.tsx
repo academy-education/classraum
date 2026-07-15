@@ -167,8 +167,6 @@ function StudyPathInner() {
 
   const header = (
     <StudyPageHeader
-      backHref="/mobile/study"
-      backLabel={ko ? '공부 화면으로' : 'Back to Study'}
       icon={Target}
       iconColorClass="text-primary bg-primary/10"
       eyebrow={String(t('study.path.eyebrow'))}
