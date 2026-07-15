@@ -16,6 +16,10 @@ export const dynamic = 'force-dynamic'
 
 export interface StudyUserPrefs {
   student_id: string
+  /** Public unique handle shown on leaderboards + used for friend search.
+   *  Null until set. Written via /api/study/nickname (not the prefs PUT),
+   *  which owns the format + uniqueness rules. */
+  nickname: string | null
   target_test: string | null
   /** Full set of active target tests (SAT, TOEFL, …). Superset of
    *  target_test, which is the "current focus" pointer. Empty array

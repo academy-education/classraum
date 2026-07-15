@@ -81,19 +81,37 @@ export async function GET(req: NextRequest) {
     .limit(20)
 
   const ids = (top ?? []).map(r => r.student_id)
-  const { data: users } = ids.length > 0
-    ? await supabaseAdmin.from('users').select('id, name').in('id', ids)
-    : { data: [] }
+  // Two identity sources, resolved in parallel: the real name (masked for
+  // privacy) and the opt-in public nickname. A member who set a nickname
+  // shows it UNMASKED — it's a handle they chose to be seen by; everyone
+  // else keeps the masked real name.
+  const [{ data: users }, { data: nickRows }] = await Promise.all([
+    ids.length > 0
+      ? supabaseAdmin.from('users').select('id, name').in('id', ids)
+      : Promise.resolve({ data: [] as { id: string; name: string | null }[] }),
+    ids.length > 0
+      ? supabaseAdmin.from('study_user_prefs').select('student_id, nickname').in('student_id', ids)
+      : Promise.resolve({ data: [] as { student_id: string; nickname: string | null }[] }),
+  ])
   const nameMap = new Map<string, string>()
   for (const u of (users ?? [])) nameMap.set(u.id as string, (u.name as string | null) ?? 'Student')
+  const nickMap = new Map<string, string>()
+  for (const r of (nickRows ?? [])) {
+    if (r.nickname) nickMap.set(r.student_id as string, r.nickname as string)
+  }
 
-  const leaderboard: LeaderboardRow[] = (top ?? []).map((m, i) => ({
-    student_id: m.student_id as string,
-    display_name: maskName(nameMap.get(m.student_id as string) ?? 'Student', m.student_id === user.id),
-    xp_this_week: m.xp_this_week as number,
-    rank: i + 1,
-    is_me: m.student_id === user.id,
-  }))
+  const leaderboard: LeaderboardRow[] = (top ?? []).map((m, i) => {
+    const sid = m.student_id as string
+    const nick = nickMap.get(sid)
+    return {
+      student_id: sid,
+      // Nickname wins (shown as-is); otherwise fall back to the masked name.
+      display_name: nick ?? maskName(nameMap.get(sid) ?? 'Student', sid === user.id),
+      xp_this_week: m.xp_this_week as number,
+      rank: i + 1,
+      is_me: sid === user.id,
+    }
+  })
 
   // Caller's actual rank — if not in top 20, count all members with
   // strictly more XP and add 1.
