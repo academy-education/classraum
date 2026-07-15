@@ -20,10 +20,19 @@ import { usePushNotifications } from '@/hooks/usePushNotifications'
 import { useNativeApp } from '@/hooks/useNativeApp'
 import { useTheme } from '@/hooks/useTheme'
 import { fetchThemeFromAccount } from '@/lib/theme-account'
+import { stashReferralFromUrl } from '@/lib/study/pending-referral'
 
 interface MobileLayoutProps {
   children: ReactNode
 }
+
+// Capture a referral code from an invite link (?ref=CODE) the moment the
+// mobile tree first renders — BEFORE the auth gate below can redirect a
+// logged-out visitor to /auth (which drops the query string). Stashed to
+// localStorage so it survives login + onboarding and surfaces as the
+// claim banner once the student reaches the study home. Module-guarded so
+// it runs once per page load, and render-safe (idempotent, never throws).
+let referralStashed = false
 
 function MobileLayoutContent({ children }: MobileLayoutProps) {
   const { isInitializing, isAuthenticated, user, refetch } = usePersistentMobileAuth()
@@ -142,6 +151,15 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
 }
 
 export default function MobileLayout({ children }: MobileLayoutProps) {
+  // Capture an invite-link referral code synchronously on the first client
+  // render — this runs above (and before) the AuthWrapper redirect, so a
+  // logged-out visitor's ?ref= is stashed before router.replace('/auth')
+  // strips the query. See stashReferralFromUrl for why this is render-safe.
+  if (typeof window !== 'undefined' && !referralStashed) {
+    referralStashed = true
+    stashReferralFromUrl()
+  }
+
   // Safe area backgrounds and main container are rendered here UNCONDITIONALLY
   // This ensures they're always visible regardless of auth/loading states in child wrappers
   return (

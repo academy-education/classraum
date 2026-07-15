@@ -34,6 +34,27 @@ export function clearPendingReferral(): void {
 }
 
 /**
+ * Read `?ref=CODE` off the current URL and persist it — WITHOUT touching
+ * the URL. Render-safe (pure read + idempotent localStorage write, never
+ * throws), so it can run synchronously during a render high in the tree,
+ * before an auth gate's redirect effect fires and drops the query string.
+ * Returns the captured code, or null.
+ */
+export function stashReferralFromUrl(): string | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = new URL(window.location.href).searchParams.get('ref')
+    if (!raw) return null
+    const code = raw.trim().toUpperCase()
+    if (!code) return null
+    savePendingReferral(code)
+    return code
+  } catch {
+    return null
+  }
+}
+
+/**
  * Read `?ref=CODE` off the current URL, persist it, and strip it from the
  * address bar (history.replaceState) so a refresh / share of the current
  * URL doesn't re-trigger it. Returns the captured code, or null. Safe to
