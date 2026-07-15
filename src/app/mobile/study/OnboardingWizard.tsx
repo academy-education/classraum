@@ -1,15 +1,20 @@
 "use client"
 
-import { useEffect, useState } from 'react'
-import { Sparkles, Target, GraduationCap, Clock, ArrowRight, Check, Loader2 } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Sparkles, Target, GraduationCap, Clock, ArrowRight, Check, Loader2, Globe, AtSign, X } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { track } from '@/lib/study/track-client'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ModalPortal } from '@/components/ui/modal-portal'
+import { validateNickname, normalizeNickname } from '@/lib/study/nickname'
 
+type Difficulty = 'warmup' | 'balanced' | 'challenge'
 interface Step1 { targetTest: string | null; goalScore: number | null }
 interface Step2 { gradeLevel: string | null }
 interface Step3 { dailyGoalMinutes: number }
+interface Step4 { defaultLanguage: 'en' | 'ko'; defaultDifficulty: Difficulty }
+
+const TOTAL_STEPS = 5
 
 // SAT goal-score presets (mirror the preferences page). Captured up
 // front so the predicted-score card shows the motivating "X to go" gap
@@ -41,9 +46,10 @@ const GRADES = [
 const GOAL_PRESETS = [15, 30, 60, 90]
 
 /**
- * 3-step onboarding wizard shown on first visit to the study landing.
- * Asks for target test, grade level, daily goal. Saves to prefs and
- * sets onboarded_at so the wizard never shows again.
+ * 5-step onboarding wizard shown on first visit to the study landing.
+ * Asks for target test + goal, grade level, daily goal, default
+ * language/difficulty, and an optional nickname. Saves to prefs (and the
+ * nickname to its own route) and sets onboarded_at so it never re-shows.
  *
  * Each step can be skipped; a fully-skipped onboarding still
  * persists onboarded_at so the user isn't re-prompted. Defaults
@@ -53,11 +59,33 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
 
-  const [step, setStep] = useState<1 | 2 | 3>(1)
+  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1)
   const [s1, setS1] = useState<Step1>({ targetTest: null, goalScore: null })
   const [s2, setS2] = useState<Step2>({ gradeLevel: null })
   const [s3, setS3] = useState<Step3>({ dailyGoalMinutes: 30 })
+  const [s4, setS4] = useState<Step4>({ defaultLanguage: ko ? 'ko' : 'en', defaultDifficulty: 'balanced' })
+  const [nickname, setNickname] = useState('')
+  const [nickStatus, setNickStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'invalid'>('idle')
   const [saving, setSaving] = useState(false)
+  const nickDebounce = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Live nickname availability check (debounced) on step 5.
+  useEffect(() => {
+    const n = nickname.trim()
+    if (n.length === 0) { setNickStatus('idle'); return }
+    if (validateNickname(n)) { setNickStatus('invalid'); return }
+    setNickStatus('checking')
+    if (nickDebounce.current) clearTimeout(nickDebounce.current)
+    nickDebounce.current = setTimeout(async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch(`/api/study/nickname?check=${encodeURIComponent(n)}`, { headers })
+        const json = await res.json()
+        setNickStatus(json.available ? 'available' : (json.reason === 'taken' ? 'taken' : 'invalid'))
+      } catch { setNickStatus('idle') }
+    }, 400)
+    return () => { if (nickDebounce.current) clearTimeout(nickDebounce.current) }
+  }, [nickname])
 
   // Lock body scroll while open.
   useEffect(() => {
@@ -79,10 +107,25 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
             goal_score: s1.goalScore,
             grade_level: s2.gradeLevel,
             daily_goal_minutes: s3.dailyGoalMinutes,
+            default_language: s4.defaultLanguage,
+            default_difficulty: s4.defaultDifficulty,
           }),
           onboarded_at: new Date().toISOString(),
         }),
       })
+      // Nickname is its own route + uniqueness rules. Best-effort: only
+      // save a valid, un-taken handle; a collision just leaves it unset
+      // (the student can pick one later in Profile). Never blocks onboarding.
+      if (!skipped) {
+        const n = normalizeNickname(nickname)
+        if (n && !validateNickname(n) && nickStatus !== 'taken') {
+          await fetch('/api/study/nickname', {
+            method: 'PUT',
+            headers: { ...headers, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nickname: n }),
+          }).catch(() => {})
+        }
+      }
     } catch {
       // Still close the wizard — student can adjust prefs later from the profile.
     }
@@ -111,7 +154,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
 
         {/* Step indicator */}
         <div className="flex justify-center gap-1.5 pb-2">
-          {[1, 2, 3].map(n => (
+          {Array.from({ length: TOTAL_STEPS }, (_, i) => i + 1).map(n => (
             <span
               key={n}
               className={`h-1 rounded-full transition-all ${
@@ -268,6 +311,123 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
               </div>
             </div>
           )}
+
+          {step === 4 && (
+            <div>
+              <div className="inline-flex items-center gap-2 mb-2">
+                <Globe className="w-4 h-4 text-sky-600" />
+                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-700">
+                  {ko ? '4 / 5 단계' : 'Step 4 of 5'}
+                </span>
+              </div>
+              <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">
+                {ko ? '기본값을 정해요' : 'Set your defaults'}
+              </h2>
+              <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
+                {ko ? '연습에 기본으로 쓸 언어와 난이도예요. 언제든 바꿀 수 있어요.' : 'The default language and difficulty for your practice. Change these anytime.'}
+              </p>
+
+              <p className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-400 mt-5 mb-2">
+                {ko ? '언어' : 'Language'}
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {([
+                  { value: 'en' as const, label: 'English' },
+                  { value: 'ko' as const, label: '한국어' },
+                ]).map(o => {
+                  const selected = s4.defaultLanguage === o.value
+                  return (
+                    <button
+                      key={o.value}
+                      type="button"
+                      onClick={() => setS4(prev => ({ ...prev, defaultLanguage: o.value }))}
+                      className={`h-12 rounded-2xl text-[14px] font-semibold transition-all ${
+                        selected
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                          : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                      }`}
+                    >
+                      {o.label}
+                    </button>
+                  )
+                })}
+              </div>
+
+              <p className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-400 mt-5 mb-2">
+                {ko ? '난이도' : 'Difficulty'}
+              </p>
+              <div className="grid grid-cols-3 gap-2">
+                {([
+                  { value: 'warmup' as const,    label: String(t('study.testConfig.difficultyWarmup')) },
+                  { value: 'balanced' as const,  label: String(t('study.testConfig.difficultyBalanced')) },
+                  { value: 'challenge' as const, label: String(t('study.testConfig.difficultyChallenge')) },
+                ]).map(o => {
+                  const selected = s4.defaultDifficulty === o.value
+                  return (
+                    <button
+                      key={o.value}
+                      type="button"
+                      onClick={() => setS4(prev => ({ ...prev, defaultDifficulty: o.value }))}
+                      className={`h-12 rounded-2xl text-[13.5px] font-semibold transition-all ${
+                        selected
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                          : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                      }`}
+                    >
+                      {o.label}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {step === 5 && (
+            <div>
+              <div className="inline-flex items-center gap-2 mb-2">
+                <AtSign className="w-4 h-4 text-violet-600" />
+                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-violet-700">
+                  {ko ? '5 / 5 단계' : 'Step 5 of 5'}
+                </span>
+              </div>
+              <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">
+                {ko ? '닉네임을 정하세요' : 'Pick a nickname'}
+              </h2>
+              <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
+                {ko ? '리더보드와 친구에게 보여요. 한 번만 변경할 수 있어요. (선택)' : 'Shown on the leaderboard and to friends. Changeable once. (optional)'}
+              </p>
+              <div className="relative mt-5">
+                <AtSign className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
+                <input
+                  type="text"
+                  value={nickname}
+                  onChange={e => setNickname(e.target.value)}
+                  maxLength={16}
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  placeholder={ko ? '닉네임을 정하세요' : 'Choose a nickname'}
+                  className="w-full h-12 pl-10 pr-3 rounded-2xl bg-gray-50 ring-1 ring-gray-200/70 text-[15px] font-medium text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+                />
+              </div>
+              <div className="flex items-center gap-1.5 mt-2 px-1 min-h-[18px]">
+                {nickStatus === 'checking' && <Loader2 className="w-3.5 h-3.5 text-gray-400 animate-spin" />}
+                {nickStatus === 'available' && <Check className="w-3.5 h-3.5 text-emerald-600" />}
+                {(nickStatus === 'taken' || nickStatus === 'invalid') && <X className="w-3.5 h-3.5 text-rose-600" />}
+                <span className={`text-[12px] ${
+                  nickStatus === 'available' ? 'text-emerald-600'
+                  : nickStatus === 'taken' || nickStatus === 'invalid' ? 'text-rose-600'
+                  : 'text-gray-400'
+                }`}>
+                  {nickStatus === 'checking' ? (ko ? '확인 중…' : 'Checking…')
+                  : nickStatus === 'available' ? (ko ? '사용 가능해요' : 'Available')
+                  : nickStatus === 'taken' ? (ko ? '이미 사용 중이에요' : 'Already taken')
+                  : nickStatus === 'invalid' ? (ko ? '2–16자, 문자·숫자·밑줄만' : '2–16 chars, letters/numbers/_')
+                  : (ko ? '비워두면 나중에 정할 수 있어요' : 'Leave blank to set it later')}
+                </span>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="sticky bottom-0 px-5 py-4 flex items-center justify-between gap-3 bg-gradient-to-t from-white via-white to-white/80 border-t border-gray-100">
@@ -279,10 +439,10 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
           >
             {String(t('study.onboarding.skip'))}
           </button>
-          {step < 3 ? (
+          {step < TOTAL_STEPS ? (
             <button
               type="button"
-              onClick={() => setStep((step + 1) as 1 | 2 | 3)}
+              onClick={() => setStep((step + 1) as 1 | 2 | 3 | 4 | 5)}
               className="flex-1 inline-flex items-center justify-center gap-1.5 h-12 rounded-2xl bg-gradient-to-b from-primary to-primary/90 text-white text-[15px] font-semibold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30 active:scale-[0.98] transition-all"
             >
               {String(t('study.onboarding.next'))}
