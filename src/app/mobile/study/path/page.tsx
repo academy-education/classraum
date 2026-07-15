@@ -12,7 +12,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudyPageHeader, StudyPageTransition } from '../_shared/primitives'
-import { SkeletonBlock } from '../skeletons'
+import { SkeletonBlock, SkeletonStickyHeader } from '../skeletons'
 import { PathMascot } from '../_shared/PathMascot'
 import {
   annotatePath, getPathTemplate,
@@ -190,15 +190,21 @@ function StudyPathInner() {
   )
 
   if (loading) {
+    // Title is data-dependent (the target-test template name), so use the
+    // skeleton header rather than flashing a generic title. Body hints the
+    // loaded layout: hero progress banner + serpentine alternating nodes.
     return (
       <div className="flex flex-col h-full bg-gray-50">
-        {header}
+        <SkeletonStickyHeader />
         <div className="flex-1 px-5 pt-6 space-y-6">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="flex justify-center">
-              <SkeletonBlock className="h-20 w-20 rounded-full" />
-            </div>
-          ))}
+          <SkeletonBlock className="h-28 w-full rounded-3xl" />
+          <div className="space-y-5 pt-1">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className={`flex ${i % 2 === 0 ? 'justify-start pl-6' : 'justify-end pr-6'}`}>
+                <SkeletonBlock className="h-16 w-16 rounded-full" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     )

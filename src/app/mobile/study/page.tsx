@@ -421,11 +421,13 @@ function StudyLandingInner() {
       <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
         {/* Hero */}
         <SkeletonBlock className="h-[190px] w-full rounded-3xl" />
-        {/* This week — heading + plan card + quests card */}
+        {/* This week — heading + plan card + quests card. Use SkeletonBlock
+            (which shimmers) rather than a childless SkeletonCard (a static
+            white frame that would read as a dead card). */}
         <div className="space-y-3">
           <SkeletonBlock className="h-5 w-24 rounded-full" />
-          <SkeletonCard className="h-[132px]" />
-          <SkeletonCard className="h-[150px]" />
+          <SkeletonBlock className="h-[132px] w-full rounded-2xl" />
+          <SkeletonBlock className="h-[150px] w-full rounded-2xl" />
         </div>
         {/* Today band — heading + 2 cards */}
         <div className="space-y-3">
@@ -548,9 +550,9 @@ function StudyLandingInner() {
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
             {t('study.landing.testsTitle')}
           </h2>
-          {loading ? (
-            <SkeletonTestGrid />
-          ) : (
+          {/* No loading branch here: the page early-returns its full
+              skeleton while `loading` is true, so this only renders loaded. */}
+          {(
             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {sortedTests.filter(t => t.slug === 'test-sat').map((test, i) => {
                 const theme = themeForTest(test.slug)

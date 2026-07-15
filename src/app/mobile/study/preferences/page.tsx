@@ -5,7 +5,7 @@ import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup, SkeletonStickyHeader } from '../skeletons'
+import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 
@@ -139,11 +139,24 @@ function PreferencesInner() {
     )
   }
 
+  // Static title → render the real header immediately during load too
+  // (study-wide standard for static-title pages).
+  const header = (
+    <StudyPageHeader
+      backHref="/mobile/study"
+      backLabel={String(t('study.topic.backToStudy'))}
+      icon={Settings}
+      eyebrow={ko ? '학습' : 'Study'}
+      title={String(t('study.prefs.title'))}
+      subtitle={String(t('study.prefs.subtitle'))}
+    />
+  )
+
   if (!prefs) {
-    // Skeleton mirrors the loaded layout: back link, title +
-    // subtitle, stats link card, then 5 setting groups.
+    // Skeleton body mirrors the loaded layout: stats link card, then 5
+    // setting groups.
     return (
-      <StudyScrollShell header={<SkeletonStickyHeader />}>
+      <StudyScrollShell header={header}>
         <SkeletonCard className="p-4 flex items-center gap-3">
           <SkeletonBlock className="w-10 h-10 rounded-xl" />
           <div className="flex-1 space-y-1.5">
@@ -161,18 +174,7 @@ function PreferencesInner() {
   }
 
   return (
-    <StudyScrollShell
-      header={
-        <StudyPageHeader
-          backHref="/mobile/study"
-          backLabel={String(t('study.topic.backToStudy'))}
-          icon={Settings}
-          eyebrow={ko ? '학습' : 'Study'}
-          title={String(t('study.prefs.title'))}
-          subtitle={String(t('study.prefs.subtitle'))}
-        />
-      }
-    >
+    <StudyScrollShell header={header}>
       {/* Save-failure toast — the optimistic revert is invisible
           without it. Fixed above the bottom nav. */}
       {saveFailed && (

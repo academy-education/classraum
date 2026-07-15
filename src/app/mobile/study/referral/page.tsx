@@ -9,6 +9,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyScrollShell, StudyMetric, StudyPageTransition } from '../_shared/primitives'
+import { SkeletonBlock, SkeletonCard, SkeletonMetricCard } from '../skeletons'
 
 /**
  * /mobile/study/referral — invite-a-friend referral loop.
@@ -81,9 +82,25 @@ function ReferralInner() {
       <StudyPageTransition>
         <div className="space-y-6">
           {loading ? (
-            <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-6 h-6 text-gray-300 animate-spin" />
-            </div>
+            // Skeleton mirroring the loaded body (share card → 2 metrics →
+            // redeem box), matching the study-wide shimmer standard.
+            <>
+              <SkeletonCard className="p-5 space-y-4">
+                <SkeletonBlock className="h-3 w-24 rounded-full mx-auto" />
+                <SkeletonBlock className="h-14 w-52 rounded-2xl mx-auto" />
+                <SkeletonBlock className="h-3 w-3/4 rounded-full mx-auto" />
+                <SkeletonBlock className="h-12 w-full rounded-xl" />
+                <SkeletonBlock className="h-12 w-full rounded-xl" />
+              </SkeletonCard>
+              <div className="grid grid-cols-2 gap-3">
+                <SkeletonMetricCard />
+                <SkeletonMetricCard />
+              </div>
+              <SkeletonCard className="p-5 space-y-3">
+                <SkeletonBlock className="h-3 w-28 rounded-full" />
+                <SkeletonBlock className="h-11 w-full rounded-xl" />
+              </SkeletonCard>
+            </>
           ) : loadFailed || !data ? (
             <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
               <p className="text-[13.5px] text-gray-600">

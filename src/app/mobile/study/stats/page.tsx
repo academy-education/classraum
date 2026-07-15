@@ -6,7 +6,7 @@ import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, 
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader, SkeletonStickyHeader } from '../skeletons'
+import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader } from '../skeletons'
 import { StudyMetric, NumberRoll, StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 
 interface Achievement {
@@ -112,12 +112,24 @@ function StatsInner() {
     )
   }
 
+  // Static title → render the real header immediately during load too
+  // (study-wide standard for static-title pages).
+  const header = (
+    <StudyPageHeader
+      backHref="/mobile/study"
+      backLabel={String(t('study.topic.backToStudy'))}
+      icon={BarChart3}
+      eyebrow={ko ? '학습' : 'Study'}
+      title={String(t('study.stats.title'))}
+      subtitle={String(t('study.stats.subtitle'))}
+    />
+  )
+
   if (!stats) {
-    // Skeleton mirrors the loaded layout: back link → header →
-    // 2x2 metric grid → sparkline card → two row lists. No content
-    // shift when stats arrive.
+    // Skeleton body mirrors the loaded layout: 2x2 metric grid →
+    // sparkline card → two row lists. No content shift when stats arrive.
     return (
-      <StudyScrollShell header={<SkeletonStickyHeader />}>
+      <StudyScrollShell header={header}>
         <SkeletonMetricGrid />
         <div>
           <SkeletonHeader widthClass="w-1/4" />
@@ -134,18 +146,7 @@ function StatsInner() {
   const name = (n: { name_en: string; name_ko: string }) => ko ? n.name_ko : n.name_en
 
   return (
-    <StudyScrollShell
-      header={
-        <StudyPageHeader
-          backHref="/mobile/study"
-          backLabel={String(t('study.topic.backToStudy'))}
-          icon={BarChart3}
-          eyebrow={ko ? '학습' : 'Study'}
-          title={String(t('study.stats.title'))}
-          subtitle={String(t('study.stats.subtitle'))}
-        />
-      }
-    >
+    <StudyScrollShell header={header}>
 
       {/* This week — XP + active days + league rank. Visible only
           when the student has done something this week. */}

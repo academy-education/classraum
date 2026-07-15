@@ -47,6 +47,7 @@ function PrintInner() {
   const ko = language === 'korean'
   const [entries, setEntries] = useState<Entry[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadFailed, setLoadFailed] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -59,9 +60,11 @@ function PrintInner() {
         const res = await fetch(url, { headers })
         if (!res.ok) throw new Error()
         const json = await res.json()
-        if (!cancelled) setEntries((json.entries ?? []) as Entry[])
+        if (!cancelled) { setEntries((json.entries ?? []) as Entry[]); setLoadFailed(false) }
       } catch {
-        if (!cancelled) setEntries([])
+        // Never render an empty "no wrong answers" state on a fetch failure —
+        // that misleads the student into thinking they have none. Flag it.
+        if (!cancelled) setLoadFailed(true)
       } finally {
         if (!cancelled) setLoading(false)
       }
@@ -116,7 +119,9 @@ function PrintInner() {
             <p className="text-[12px] text-gray-600 mt-1 tabular-nums">{today} · {entries.length} {ko ? '문항' : 'items'}</p>
           </header>
 
-          {entries.length === 0 ? (
+          {loadFailed ? (
+            <p className="text-gray-500">{ko ? '오답노트를 불러오지 못했습니다. 다시 시도해 주세요.' : "Couldn't load the notebook. Please try again."}</p>
+          ) : entries.length === 0 ? (
             <p className="text-gray-500">{ko ? '틀린 문제가 없습니다.' : 'No wrong answers yet.'}</p>
           ) : (
             <ol className="space-y-6">

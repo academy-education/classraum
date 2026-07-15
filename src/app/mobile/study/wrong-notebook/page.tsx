@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Loader2, BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, Bookmark, Image as ImageIcon, Search, X, AlertCircle } from 'lucide-react'
+import { ArrowLeft, BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, Bookmark, Image as ImageIcon, Search, X, AlertCircle } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'

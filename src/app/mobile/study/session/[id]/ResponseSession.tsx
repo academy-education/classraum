@@ -500,7 +500,7 @@ function SpeakingCapture({
 
       {state === 'uploading' && (
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-8 text-center">
-          <div className="flex justify-center mb-3"><PathMascot state="thinking" size={84} /></div>
+          <div className="flex justify-center mb-3"><PathMascot state="thinking" size={96} /></div>
           <p className="text-[13px] text-gray-700">
             {ko ? '음성을 텍스트로 변환 중…' : 'Transcribing your audio…'}
           </p>

@@ -806,8 +806,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // the mascot alone is decorative and says nothing about loading.
       <div role="status" aria-live="polite" className="flex-1 flex flex-col items-center justify-center gap-3 px-6 text-center">
         {/* Short waits (DB check / cached-test fetch): calm "thinking"
-            — the 2.7s loading gag would get cut off mid-spin here. */}
-        <PathMascot state="thinking" size={72} />
+            — the 2.7s loading gag would get cut off mid-spin here. Size 96
+            matches the session-shell MascotLoader that precedes this so the
+            mascot doesn't shrink between the two load phases. */}
+        <PathMascot state="thinking" size={96} />
         {label
           ? <p className="text-[13px] text-gray-600">{label}</p>
           : <span className="sr-only">{String(t('study.test.loadingTest'))}</span>}

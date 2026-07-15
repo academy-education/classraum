@@ -8,7 +8,7 @@ import {
   XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap, Gift, Users, ChevronRight,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
-import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../skeletons'
+import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS } from '@/lib/study/plans'
@@ -332,12 +332,25 @@ export default function SubscriptionPage() {
     setActing(null)
   }, [acting, ko, load, user])
 
+  // Header has a static title, so render it immediately during load too
+  // (only the body swaps to a skeleton) — the study-wide standard for
+  // static-title pages. Raumi is reserved for studying screens.
+  const header = (
+    <StudyPageHeader
+      backHref="/mobile/study"
+      backLabel={String(t('study.topic.backToStudy'))}
+      icon={CreditCard}
+      eyebrow={ko ? '학습' : 'Study'}
+      title={String(t('study.subscription.title'))}
+      subtitle={String(t('study.subscription.subtitle'))}
+    />
+  )
+
   if (loading) {
-    // Settings surface → skeleton (Raumi is reserved for studying
-    // screens). Mirrors the loaded layout: header → credit balance →
-    // two plan cards.
+    // Skeleton body mirroring the loaded layout: credit balance → two
+    // plan cards.
     return (
-      <StudyScrollShell header={<SkeletonStickyHeader />}>
+      <StudyScrollShell header={header}>
         <SkeletonCard className="p-5 space-y-3">
           <SkeletonBlock className="h-3 w-28 rounded-full" />
           <SkeletonBlock className="h-8 w-24 rounded-lg" />
@@ -360,18 +373,7 @@ export default function SubscriptionPage() {
   }
 
   return (
-    <StudyScrollShell
-      header={
-        <StudyPageHeader
-          backHref="/mobile/study"
-          backLabel={String(t('study.topic.backToStudy'))}
-          icon={CreditCard}
-          eyebrow={ko ? '학습' : 'Study'}
-          title={String(t('study.subscription.title'))}
-          subtitle={String(t('study.subscription.subtitle'))}
-        />
-      }
-    >
+    <StudyScrollShell header={header}>
         {/* Action feedback lives directly under the header — at the old
             bottom-of-page spot it rendered off-screen after cancel/
             checkout and the page looked like nothing happened. */}
