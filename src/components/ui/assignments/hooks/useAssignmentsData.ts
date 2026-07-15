@@ -237,26 +237,53 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       setInitialized(true)
 
       // STEP 1: Fetch classrooms and assignments in parallel
-      // Assignments query uses inner joins to filter by academy_id, so it doesn't need classroom results
-      let assignmentsQuery = supabase
-        .from('assignments')
-        .select(`
-          *,
-          classroom_sessions!inner(
-            id,
-            classroom_id,
-            classrooms!inner(
-              id,
-              academy_id
-            )
-          )
-        `)
-        .eq('classroom_sessions.classrooms.academy_id', academyId)
-        .is('deleted_at', null)
+      // Assignments query uses inner joins to filter by academy_id, so it doesn't need classroom results.
+      //
+      // PostgREST caps a single response at ~1000 rows, so this MUST paginate:
+      // academies with >1000 assignments were silently missing the overflow.
+      // Order deterministically (created_at, then id as a tiebreaker) so
+      // pages never skip or duplicate a row across .range() calls.
+      const ASSIGNMENTS_PAGE_SIZE = 1000
+      type PgError = { message?: string; details?: string; hint?: string; code?: string }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const fetchAllAssignments = async (): Promise<{ data: any[] | null; error: PgError | null }> => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const all: any[] = []
+        let from = 0
+        // Safety bound so a pathological loop can't run forever.
+        for (let page = 0; page < 100; page++) {
+          let query = supabase
+            .from('assignments')
+            .select(`
+              *,
+              classroom_sessions!inner(
+                id,
+                classroom_id,
+                classrooms!inner(
+                  id,
+                  academy_id
+                )
+              )
+            `)
+            .eq('classroom_sessions.classrooms.academy_id', academyId)
+            .is('deleted_at', null)
+            .order('created_at', { ascending: false })
+            .order('id', { ascending: true })
+            .range(from, from + ASSIGNMENTS_PAGE_SIZE - 1)
 
-      // Apply session filter if provided
-      if (filterSessionId) {
-        assignmentsQuery = assignmentsQuery.eq('classroom_session_id', filterSessionId)
+          // Apply session filter if provided
+          if (filterSessionId) {
+            query = query.eq('classroom_session_id', filterSessionId)
+          }
+
+          const { data, error } = await query
+          if (error) return { data: null, error }
+          const rows = (data as Assignment[] | null) || []
+          all.push(...rows)
+          if (rows.length < ASSIGNMENTS_PAGE_SIZE) break
+          from += ASSIGNMENTS_PAGE_SIZE
+        }
+        return { data: all, error: null }
       }
 
       const [classroomsResult, assignmentsResult] = await Promise.all([
@@ -266,7 +293,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
           .eq('academy_id', academyId)
           .is('deleted_at', null)
           .order('name'),
-        assignmentsQuery
+        fetchAllAssignments()
       ])
 
       const allClassrooms = classroomsResult.data
