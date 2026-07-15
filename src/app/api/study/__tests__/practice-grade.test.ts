@@ -16,7 +16,10 @@ jest.mock('@/lib/supabase-admin', () => ({
 }))
 jest.mock('@/lib/rate-limit', () => ({ enforceRateLimit: jest.fn(() => null) }))
 jest.mock('@/lib/study/auth', () => ({ requireStudyUser: jest.fn() }))
-jest.mock('@/lib/study/xp', () => ({ awardXp: jest.fn(async () => undefined) }))
+jest.mock('@/lib/study/xp', () => ({
+  ...jest.requireActual('@/lib/study/xp'),
+  awardXp: jest.fn(async () => undefined),
+}))
 // Keep AI grading off the network — MC/TF paths never call it anyway.
 jest.mock('ai', () => ({ generateObject: jest.fn() }))
 jest.mock('@ai-sdk/openai', () => ({ createOpenAI: jest.fn(() => jest.fn(() => 'mock-model')) }))
@@ -72,7 +75,7 @@ describe('POST /api/study/practice/grade', () => {
 
     const res = await POST(makeRequest(gradeBody(clientQ, 'A')))
     expect(res.status).toBe(200)
-    expect(await res.json()).toEqual({ isCorrect: false, aiExplanation: 'server explanation' })
+    expect(await res.json()).toEqual({ isCorrect: false, aiExplanation: 'server explanation', xpAwarded: 0 })
     // The attempt persists the SERVER copy of the question
     expect(attemptsChain.insert).toHaveBeenCalledWith(expect.objectContaining({
       is_correct: false,

@@ -6,6 +6,7 @@ import { assessSessionMastery } from '@/lib/study-mastery-assess'
 import { estimateSectionScore } from '@/lib/study/sat-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
+import { seedSrsFromWrongAnswer } from '@/lib/study/srs-seed'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -226,6 +227,9 @@ export async function POST(req: NextRequest) {
   // weight 1. Verdict rows stay one-per-item for the review screen.
   let weightedTotal = 0
   let weightedCorrect = 0
+  // Missed, gradable questions to drop into the SRS review queue after a
+  // successful insert (skip open-response items — no single correct key).
+  const wrongToSeed: { front: string; back: string }[] = []
 
   const rows = gradingQuestions.map((q, i) => {
     const studentAnswer = body.answers[i] ?? null
@@ -234,6 +238,12 @@ export async function POST(req: NextRequest) {
     weightedTotal += w.total
     weightedCorrect += w.correct
     const displayCorrect = displayCorrectAnswer(q)
+    if (!isCorrect && !isOpenResponse(q) && q.prompt) {
+      wrongToSeed.push({
+        front: q.prompt,
+        back: q.explanation ? `${displayCorrect}\n\n${q.explanation}` : displayCorrect,
+      })
+    }
     verdicts.push({
       index: i,
       correct: isCorrect,
@@ -324,6 +334,18 @@ export async function POST(req: NextRequest) {
   // strengths/weaknesses jsonb fields for the recommended shelf.
   // Failure is silent — the test result still ships to the client.
   void assessSessionMastery(body.sessionId)
+
+  // Auto-seed the spaced-repetition queue from every missed question so
+  // the student re-encounters them on their next review. Best-effort;
+  // capped so a badly-failed 50Q test doesn't flood one review session.
+  for (const item of wrongToSeed.slice(0, 20)) {
+    void seedSrsFromWrongAnswer({
+      studentId: user.id,
+      topicId: session.topic_id,
+      front: item.front,
+      back: item.back,
+    })
+  }
 
   // Session-complete XP + celebration. This is the fresh-grade path
   // (idempotent replays returned earlier), so it fires exactly once per

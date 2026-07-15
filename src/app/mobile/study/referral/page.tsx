@@ -1,7 +1,9 @@
 "use client"
 
 import { useCallback, useEffect, useState } from 'react'
-import { Gift, Copy, Check, Users, Sparkles, Loader2, Ticket, MessageCircle } from 'lucide-react'
+import { Capacitor } from '@capacitor/core'
+import { Share } from '@capacitor/share'
+import { Gift, Copy, Check, Users, Sparkles, Loader2, Ticket, MessageCircle, Share2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'
@@ -141,21 +143,35 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
     }
   }, [])
 
-  // Real KakaoTalk share when a Kakao JS key is configured; otherwise the
-  // button stays a disabled "준비 중" placeholder below.
+  // Share routing: native (Capacitor) uses the OS share sheet — which
+  // lists KakaoTalk when it's installed — via @capacitor/share; web uses
+  // the Kakao JS SDK when a key is configured. Either way, copy-link is the
+  // fallback. On web without a Kakao key the button stays a disabled
+  // placeholder below.
+  const [isNative, setIsNative] = useState(false)
+  useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
   const kakaoEnabled = isKakaoShareEnabled()
-  const shareKakao = useCallback(async () => {
+  const canShare = isNative || kakaoEnabled
+  const doShare = useCallback(async () => {
     const text = ko
       ? `Classraum에서 함께 공부해요! 초대 코드 "${code}"를 입력하면 친구도 나도 테스트 크레딧 ${reward}개씩 받아요.`
       : `Study with me on Classraum! Use my invite code "${code}" and we each get ${reward} test credits.`
+    if (isNative) {
+      try {
+        await Share.share({ text, url: inviteLink, dialogTitle: ko ? '친구 초대' : 'Invite a friend' })
+      } catch {
+        // User dismissed the sheet, or share unavailable — offer copy.
+        void copy(inviteLink)
+      }
+      return
+    }
     const ok = await shareToKakao({
       text,
       link: inviteLink,
       buttonTitle: ko ? '초대 코드 받기' : 'Get the code',
     })
-    // Fall back to copy-link if Kakao couldn't open (SDK blocked, etc.).
     if (!ok) void copy(inviteLink)
-  }, [ko, code, reward, inviteLink, copy])
+  }, [isNative, ko, code, reward, inviteLink, copy])
 
   return (
     <section className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-5 space-y-4">
@@ -187,13 +203,22 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
             : (ko ? '초대 링크 복사' : 'Copy invite link')}
         </button>
 
-        {/* KakaoTalk share — a live one-tap share when a Kakao JS key is
-            configured (NEXT_PUBLIC_KAKAO_JS_KEY); otherwise a disabled
-            "준비 중" placeholder that reserves the slot. */}
-        {kakaoEnabled ? (
+        {/* Share — native uses the OS share sheet (@capacitor/share), which
+            includes KakaoTalk; web uses the Kakao JS SDK when a key is set.
+            Web without a key falls back to a disabled "준비 중" placeholder. */}
+        {isNative ? (
           <button
             type="button"
-            onClick={() => void shareKakao()}
+            onClick={() => void doShare()}
+            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white text-[14px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 active:scale-[0.99] transition"
+          >
+            <Share2 className="w-4 h-4" />
+            {ko ? '친구에게 공유' : 'Share with a friend'}
+          </button>
+        ) : canShare ? (
+          <button
+            type="button"
+            onClick={() => void doShare()}
             className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[14px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
           >
             <MessageCircle className="w-4 h-4" />

@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
+import { seedSrsFromWrongAnswer } from '@/lib/study/srs-seed'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -178,6 +179,17 @@ export async function POST(req: NextRequest) {
   // (the celebration engine was previously only wired for flashcards).
   const xpAwarded = isCorrect ? XP_VALUES.attempt_correct : 0
   if (isCorrect) void awardXp(user.id, 'attempt_correct', sessionId)
+
+  // Wrong answers auto-seed the spaced-repetition queue (due now) so the
+  // student re-encounters the missed concept on their next review.
+  if (!isCorrect) {
+    void seedSrsFromWrongAnswer({
+      studentId: user.id,
+      topicId: session.topic_id,
+      front: gradedQ.prompt,
+      back: `${gradedQ.correct_answer}\n\n${aiExplanation}`,
+    })
+  }
 
   return NextResponse.json({ isCorrect, aiExplanation, xpAwarded })
 }

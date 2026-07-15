@@ -2,11 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { X, Clock, Hash, Sparkles, Loader2, Award } from 'lucide-react'
+import Link from 'next/link'
+import { X, Clock, Hash, Sparkles, Loader2, Award, Coins } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
 import { SegmentedTabs } from './_shared/SegmentedTabs'
+
+/** An AI-generated full test costs one credit (SAT bank tests bypass this
+ *  sheet entirely — they're free instant assembly). */
+const TEST_CREDIT_COST = 1
 
 /** Per-session test customization payload. Stored on
  *  study_sessions.config (jsonb) and read by the test generator.
@@ -62,6 +67,7 @@ export function TestCustomizationSheet({
   const [difficultyBias, setDifficultyBias] = useState<DifficultyBias>('balanced')
   const [recommended, setRecommended] = useState<DifficultyBias | null>(null)
   const [masteryScore, setMasteryScore] = useState<number | null>(null)
+  const [creditBalance, setCreditBalance] = useState<number | null>(null)
   const [starting, setStarting] = useState(false)
   const [speakingGradeMode, setSpeakingGradeMode] = useState<'text' | 'audio'>('text')
   const isSpeakingTest = family === 'toefl' && section != null && /speaking/i.test(section)
@@ -103,6 +109,28 @@ export function TestCustomizationSheet({
     })()
     return () => { cancelled = true }
   }, [open, topicId])
+
+  // Credit balance — this sheet always launches a 1-credit AI test, so
+  // show the student what they have and what it'll cost before they start.
+  useEffect(() => {
+    if (!open) return
+    let cancelled = false
+    void (async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user || cancelled) return
+      const { data } = await supabase
+        .from('study_subscriptions')
+        .select('grant_credits_remaining, purchased_credits_remaining')
+        .eq('student_id', user.id)
+        .maybeSingle()
+      if (cancelled) return
+      setCreditBalance(
+        ((data?.grant_credits_remaining as number | undefined) ?? 0) +
+        ((data?.purchased_credits_remaining as number | undefined) ?? 0),
+      )
+    })()
+    return () => { cancelled = true }
+  }, [open])
 
   // Close on Escape.
   useEffect(() => {
@@ -264,7 +292,25 @@ export function TestCustomizationSheet({
           )}
         </div>
 
-        <div className="sticky bottom-0 px-5 py-4 bg-gradient-to-t from-white via-white to-white/80 border-t border-gray-100">
+        <div className="sticky bottom-0 px-5 py-4 bg-gradient-to-t from-white via-white to-white/80 border-t border-gray-100 space-y-2.5">
+          {/* Credit cost + balance — an AI-generated test uses 1 credit. */}
+          <div className="flex items-center justify-between gap-3 text-[12.5px]">
+            <span className="inline-flex items-center gap-1.5 text-gray-500">
+              <Coins className="w-4 h-4 text-amber-500" />
+              {ko ? `테스트 크레딧 1개 사용` : `Uses 1 test credit`}
+            </span>
+            {creditBalance !== null && (
+              creditBalance >= TEST_CREDIT_COST ? (
+                <span className="text-gray-500 tabular-nums">
+                  {ko ? `보유 ${creditBalance}개` : `${creditBalance} left`}
+                </span>
+              ) : (
+                <Link href="/mobile/study/subscription" className="inline-flex items-center gap-1 font-semibold text-amber-600 underline">
+                  {ko ? '크레딧이 없어요 · 충전' : 'Out of credits · Top up'}
+                </Link>
+              )
+            )}
+          </div>
           <button
             type="button"
             onClick={submit}
