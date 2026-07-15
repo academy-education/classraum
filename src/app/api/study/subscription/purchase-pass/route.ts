@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { STUDY_PLANS, STUDY_PASSES, resolvePass, isPassPlan } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
+import { trackEvent } from '@/lib/study/analytics'
 
 /**
  * POST /api/study/subscription/purchase-pass — one-time 수능 대비 패스.
@@ -157,6 +158,8 @@ export async function POST(req: NextRequest) {
     kind: 'purchase',
     note: `${passPlan.id} (${paymentId})`,
   })
+
+  void trackEvent(user.id, 'pass_purchased', { passId: passPlan.id, credits: passTerms.credits, priceWon: passPlan.priceWon })
 
   return NextResponse.json({
     success: true,

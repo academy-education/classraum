@@ -13,6 +13,7 @@ import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS } from '@/lib/study/plans'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
+import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
 
@@ -198,6 +199,7 @@ export default function SubscriptionPage() {
     setActing(`checkout:${planId}`)
     setError(null)
     setSuccessMessage(null)
+    track('checkout_started', { kind: 'subscription', plan: planId })
     try {
       const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
       const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
@@ -251,6 +253,7 @@ export default function SubscriptionPage() {
     setActing('pass')
     setError(null)
     setSuccessMessage(null)
+    track('checkout_started', { kind: 'pass', passId })
     try {
       const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
       const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
@@ -320,6 +323,7 @@ export default function SubscriptionPage() {
     setActing('pack')
     setError(null)
     setSuccessMessage(null)
+    track('checkout_started', { kind: 'pack', packId })
     // Shared flow: charges a stored card, or issues one via the PortOne
     // overlay for card-less (free) buyers, then retries.
     const r = await buyCreditPack(packId, user)

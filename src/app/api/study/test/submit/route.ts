@@ -7,6 +7,7 @@ import { estimateSectionScore } from '@/lib/study/sat-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { seedSrsFromWrongAnswer } from '@/lib/study/srs-seed'
+import { trackEvent } from '@/lib/study/analytics'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -351,6 +352,12 @@ export async function POST(req: NextRequest) {
   // (idempotent replays returned earlier), so it fires exactly once per
   // completed test. The client emits the big toast off `xpAwarded`.
   void awardXp(user.id, 'session_complete', body.sessionId)
+
+  // Funnel: a completed test — the key activation event.
+  void trackEvent(user.id, 'test_completed', {
+    scorePercent: persistedScore,
+    total: weightedTotal,
+  })
 
   return NextResponse.json({
     success: true,

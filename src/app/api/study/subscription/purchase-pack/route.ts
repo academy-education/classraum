@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { resolvePack } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
+import { trackEvent } from '@/lib/study/analytics'
 
 /**
  * POST /api/study/subscription/purchase-pack — one-time charge for a
@@ -126,6 +127,8 @@ export async function POST(req: NextRequest) {
     kind: 'purchase',
     note: `${pack.id} (${paymentId})`,
   })
+
+  void trackEvent(user.id, 'pack_purchased', { packId: pack.id, credits: pack.credits, priceWon: pack.priceWon })
 
   return NextResponse.json({
     success: true,

@@ -21,6 +21,7 @@ import {
 } from '@/lib/test-verify'
 import { sendPushNotification } from '@/lib/notifications'
 import { requireStudyUser } from '@/lib/study/auth'
+import { trackEvent } from '@/lib/study/analytics'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -406,6 +407,9 @@ export async function POST(req: NextRequest) {
   const credit = (creditResult ?? {}) as { ok?: boolean; reason?: string; grant?: number; purchased?: number }
   if (creditErr || !credit.ok) {
     if (creditErr) console.error('[test/generate] credit reserve errored', creditErr)
+    // Funnel: the paywall trigger — the student wanted a test but had no
+    // credits. This is where an upsell converts.
+    void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits' })
     return ndjsonResponse([
       {
         type: 'error',
@@ -414,6 +418,8 @@ export async function POST(req: NextRequest) {
       },
     ])
   }
+  // Funnel: an AI test generation actually started (credit reserved).
+  void trackEvent(user.id, 'test_started', { kind: 'ai_generated' })
   const refundCredit = async (why: string) => {
     const { error } = await supabaseAdmin
       .rpc('refund_study_credit', { p_student: user.id, p_source: sessionId })

@@ -76,6 +76,7 @@ export async function GET(req: NextRequest) {
     { data: subRow },
     { data: xpRows },
     dailyChallenge,
+    { count: completedTestCount },
   ] = await Promise.all([
     supabaseAdmin
       .from('study_sessions')
@@ -133,6 +134,15 @@ export async function GET(req: NextRequest) {
       .eq('student_id', user.id)
       .gte('created_at', todayIso),
     computeDailyChallenge(user.id),
+    // Activation: has the student ever COMPLETED a test? Drives the
+    // first-test nudge for brand-new users (first-test completion is the
+    // key activation signal).
+    supabaseAdmin
+      .from('study_sessions')
+      .select('id', { count: 'exact', head: true })
+      .eq('student_id', user.id)
+      .eq('mode', 'full_test')
+      .eq('status', 'completed'),
   ])
 
   // Streak computation — same logic as /api/study/streak.
@@ -201,6 +211,9 @@ export async function GET(req: NextRequest) {
     streak,
     priorLostStreak,
     readyTests: readyCount ?? 0,
+    // True until the student finishes their first mock test — the landing
+    // shows the first-test activation nudge while this holds.
+    firstTestPending: (completedTestCount ?? 0) === 0,
     activeSession: (activeRow as unknown as ActiveSession | null) ?? null,
     progress,
     prefs,

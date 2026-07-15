@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { assembleFromBank } from '@/lib/study/assemble'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
+import { trackEvent } from '@/lib/study/analytics'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
@@ -110,6 +111,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'cache write failed' }, { status: 500 })
   }
   await supabaseAdmin.from('study_sessions').update({ title: test.title }).eq('id', sess.id)
+
+  // Funnel: a (free, bank-assembled) SAT test started — the usual first
+  // test for a new free user, so key for activation.
+  void trackEvent(user.id, 'test_started', { kind: 'bank_sat', section })
 
   return NextResponse.json({
     sessionId: sess.id,

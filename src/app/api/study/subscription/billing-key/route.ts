@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { STUDY_PLANS, resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
+import { trackEvent } from '@/lib/study/analytics'
 
 /**
  * POST /api/study/subscription/billing-key
@@ -132,6 +133,9 @@ export async function POST(req: NextRequest) {
       paymentId,
     }, { status: 500 })
   }
+
+  // Funnel: a new paid subscription completed — the conversion event.
+  void trackEvent(user.id, 'checkout_completed', { plan: plan.id, priceWon: plan.priceWon })
 
   return NextResponse.json({
     success: true,

@@ -33,6 +33,8 @@ import { useOnboardingGate } from './useOnboardingGate'
 import { LandingDataProvider, useLandingData } from './LandingDataProvider'
 import { SocialPresenceCard } from './SocialPresenceCard'
 import { SkeletonTestGrid, SkeletonBlock, SkeletonCard } from './skeletons'
+import { track } from '@/lib/study/track-client'
+import { authHeaders } from '@/lib/auth-headers'
 
 /**
  * /mobile/study — study landing.
@@ -468,6 +470,12 @@ function StudyLandingInner() {
           overflowMenu={<HeaderOverflowMenu variant="dark" />}
         />
 
+        {/* First-test activation — the single highest-leverage nudge for a
+            brand-new user. Shows only until they finish their first mock
+            test (firstTestPending), then never again. One tap starts a free,
+            instant, bank-assembled SAT test (no AI wait, no credit). */}
+        {landingData.firstTestPending && <FirstTestActivationCard />}
+
         {/* Predicted-score headline + diagnostic moved to the test-prep
             page (topic/[slug]) so the home stays focused on time-sensitive
             items; the diagnostic now sits with "recommended for you"
@@ -901,6 +909,76 @@ function HeaderOverflowMenu({ variant = 'light' }: { variant?: 'light' | 'dark' 
         </>
       )}
     </div>
+  )
+}
+
+/** First-test activation card. The single most important step for a new
+ *  user is completing one full practice test — this hero-weight card
+ *  drives that with one tap into a free, instant, bank-assembled SAT
+ *  Reading & Writing test (no AI generation wait, no credit spend). It
+ *  self-removes once the student has completed any full test
+ *  (firstTestPending flips false), so returning users never see it. */
+function FirstTestActivationCard() {
+  const { language } = useTranslation()
+  const router = useRouter()
+  const ko = language === 'korean'
+  const [busy, setBusy] = useState(false)
+  const { showError } = useStudyErrorToast()
+
+  const start = async () => {
+    if (busy) return
+    setBusy(true)
+    track('activation_cta_clicked', { surface: 'first_test', kind: 'bank_sat' })
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/test/assemble', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        // Two-module adaptive R&W — the most representative first SAT
+        // experience, and instant from the verified bank.
+        body: JSON.stringify({ section: 'reading_writing', adaptive: true }),
+      })
+      if (!res.ok) { setBusy(false); showError(startFailedMessage(ko)); return }
+      const json = await res.json()
+      router.push(`/mobile/study/session/${json.sessionId}`)
+    } catch {
+      setBusy(false)
+      showError(startFailedMessage(ko))
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={start}
+      disabled={busy}
+      className="group relative block w-full overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-blue-600 to-indigo-700 text-left text-white p-5 shadow-[0_10px_30px_-10px_rgba(40,133,232,0.5)] hover:shadow-[0_16px_40px_-10px_rgba(40,133,232,0.6)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] disabled:opacity-70 disabled:cursor-wait transition-all"
+    >
+      <div aria-hidden className="pointer-events-none absolute -top-10 -right-8 w-36 h-36 rounded-full bg-white/20 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -top-2 -right-3 text-[72px] font-black tracking-tighter text-white/[0.10] select-none leading-none">SAT</div>
+      <div className="relative flex items-center gap-4">
+        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm ring-1 ring-white/25 flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+          <PenLine className="w-5 h-5" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="inline-flex items-center gap-1 text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+            <Sparkles className="w-3 h-3" />
+            {ko ? '첫 걸음' : 'Start here'}
+          </div>
+          <div className="text-[16px] font-bold leading-snug mt-0.5">
+            {ko ? '첫 모의고사를 풀어보세요' : 'Take your first practice test'}
+          </div>
+          <div className="text-[12.5px] opacity-90 mt-0.5 leading-snug">
+            {ko ? '무료 · 즉시 시작 · 크레딧 불필요' : 'Free · instant · no credits needed'}
+          </div>
+        </div>
+        <span className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/20 ring-1 ring-white/25 group-hover:bg-white/30 transition-colors">
+          {busy
+            ? <span className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+            : <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />}
+        </span>
+      </div>
+    </button>
   )
 }
 

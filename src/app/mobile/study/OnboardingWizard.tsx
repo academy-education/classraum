@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Sparkles, Target, GraduationCap, Clock, ArrowRight, Check, Loader2 } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
+import { track } from '@/lib/study/track-client'
 import { useTranslation } from '@/hooks/useTranslation'
 
 interface Step1 { targetTest: string | null; goalScore: number | null }
@@ -84,6 +85,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
     } catch {
       // Still close the wizard — student can adjust prefs later from the profile.
     }
+    track('onboarding_completed', { skipped, targetTest: skipped ? null : s1.targetTest })
     onComplete()
   }
 

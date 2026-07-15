@@ -45,6 +45,9 @@ export interface LandingData {
   subscriptionStatus: string | null
   /** XP earned today — hero stat row. */
   xpToday: number | null
+  /** True until the student completes their first mock test — drives
+   *  the first-test activation nudge on the landing. */
+  firstTestPending: boolean | null
   /** Batched daily-challenge state (null until loaded). */
   dailyChallenge: {
     date: string
@@ -65,6 +68,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   const [prefs, setPrefs] = useState<Prefs | null>(null)
   const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null)
   const [xpToday, setXpToday] = useState<number | null>(null)
+  const [firstTestPending, setFirstTestPending] = useState<boolean | null>(null)
   const [dailyChallenge, setDailyChallenge] = useState<LandingData['dailyChallenge']>(null)
   const [loading, setLoading] = useState(true)
 
@@ -79,6 +83,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
         prefs: Prefs
         subscriptionStatus?: string
         xpToday?: number
+        firstTestPending?: boolean
         dailyChallenge?: LandingData['dailyChallenge']
       }
       setProgress(json.progress ?? null)
@@ -86,6 +91,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
       setPrefs(json.prefs ?? null)
       setSubscriptionStatus(json.subscriptionStatus ?? null)
       setXpToday(json.xpToday ?? 0)
+      setFirstTestPending(json.firstTestPending ?? null)
       setDailyChallenge(json.dailyChallenge ?? null)
     } catch {
       // Soft-fail: consumers using the fallback fetch will still work.
@@ -99,7 +105,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   }, [fetchOnce])
 
   return (
-    <Ctx.Provider value={{ progress, streak, prefs, subscriptionStatus, xpToday, dailyChallenge, loading, refetch: fetchOnce }}>
+    <Ctx.Provider value={{ progress, streak, prefs, subscriptionStatus, xpToday, firstTestPending, dailyChallenge, loading, refetch: fetchOnce }}>
       {children}
     </Ctx.Provider>
   )
