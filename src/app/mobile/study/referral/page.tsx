@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Gift, Copy, Check, Users, Sparkles, Loader2, Ticket, MessageCircle } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyScrollShell, StudyMetric, StudyPageTransition } from '../_shared/primitives'
 
@@ -14,9 +15,9 @@ import { StudyPageHeader, StudyScrollShell, StudyMetric, StudyPageTransition } f
  * stats, and a box to redeem a friend's code. Both sides get 5 test
  * credits on a successful redemption (server-enforced, once per referee).
  *
- * NOTE: the KakaoTalk share button is intentionally a disabled
- * placeholder — the app currently has a Solapi Kakao *notification*
- * channel, not the JS Share SDK. Real Kakao share wiring is a follow-up.
+ * KakaoTalk share is live one-tap when NEXT_PUBLIC_KAKAO_JS_KEY is set
+ * (loads the Kakao JS SDK lazily); without the key the button falls back
+ * to a disabled "준비 중" placeholder. See src/lib/kakao-share.ts.
  */
 
 interface ReferralData {
@@ -140,6 +141,22 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
     }
   }, [])
 
+  // Real KakaoTalk share when a Kakao JS key is configured; otherwise the
+  // button stays a disabled "준비 중" placeholder below.
+  const kakaoEnabled = isKakaoShareEnabled()
+  const shareKakao = useCallback(async () => {
+    const text = ko
+      ? `Classraum에서 함께 공부해요! 초대 코드 "${code}"를 입력하면 친구도 나도 테스트 크레딧 ${reward}개씩 받아요.`
+      : `Study with me on Classraum! Use my invite code "${code}" and we each get ${reward} test credits.`
+    const ok = await shareToKakao({
+      text,
+      link: inviteLink,
+      buttonTitle: ko ? '초대 코드 받기' : 'Get the code',
+    })
+    // Fall back to copy-link if Kakao couldn't open (SDK blocked, etc.).
+    if (!ok) void copy(inviteLink)
+  }, [ko, code, reward, inviteLink, copy])
+
   return (
     <section className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-5 space-y-4">
       <div className="text-center">
@@ -170,28 +187,33 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
             : (ko ? '초대 링크 복사' : 'Copy invite link')}
         </button>
 
-        {/* ─────────────────────────────────────────────────────────────
-            PLACEHOLDER — KakaoTalk share button.
-            The app only has a Solapi Kakao *notification* channel, not
-            the JS Share SDK, so real one-tap Kakao share is NOT wired up
-            yet. This disabled button reserves the slot + sets the visual
-            expectation. Replace with the Kakao JS SDK Share.sendDefault()
-            call once the SDK + app key are provisioned. Do NOT ship as a
-            working control until then.
-            ───────────────────────────────────────────────────────────── */}
-        <button
-          type="button"
-          disabled
-          aria-disabled="true"
-          title={ko ? '곧 제공됩니다' : 'Coming soon'}
-          className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[14px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
-        >
-          <MessageCircle className="w-4 h-4" />
-          {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
-          <span className="text-[10px] font-medium uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-black/10">
-            {ko ? '준비 중' : 'Soon'}
-          </span>
-        </button>
+        {/* KakaoTalk share — a live one-tap share when a Kakao JS key is
+            configured (NEXT_PUBLIC_KAKAO_JS_KEY); otherwise a disabled
+            "준비 중" placeholder that reserves the slot. */}
+        {kakaoEnabled ? (
+          <button
+            type="button"
+            onClick={() => void shareKakao()}
+            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[14px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
+          >
+            <MessageCircle className="w-4 h-4" />
+            {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
+          </button>
+        ) : (
+          <button
+            type="button"
+            disabled
+            aria-disabled="true"
+            title={ko ? '곧 제공됩니다' : 'Coming soon'}
+            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[14px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
+          >
+            <MessageCircle className="w-4 h-4" />
+            {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
+            <span className="text-[10px] font-medium uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-black/10">
+              {ko ? '준비 중' : 'Soon'}
+            </span>
+          </button>
+        )}
       </div>
     </section>
   )
