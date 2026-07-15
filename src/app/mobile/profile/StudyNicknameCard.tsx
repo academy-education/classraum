@@ -18,6 +18,8 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
   const [initial, setInitial] = useState<string | null>(null)
   const [value, setValue] = useState('')
   const [ready, setReady] = useState(false)
+  // Locked once the student has used their one post-pick change.
+  const [locked, setLocked] = useState(false)
   const [status, setStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'invalid'>('idle')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -35,6 +37,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
         if (cancelled) return
         setInitial(nick)
         setValue(nick ?? '')
+        setLocked(json?.prefs?.nickname_changed === true)
       } catch { /* leave empty */ } finally {
         if (!cancelled) setReady(true)
       }
@@ -71,9 +74,11 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
         body: JSON.stringify({ nickname: trimmed }),
       })
       if (res.status === 409) { setStatus('taken'); return }
+      if (res.status === 423) { setLocked(true); return } // change already used
       if (!res.ok) { setStatus('invalid'); return }
       const json = await res.json()
       setInitial(json.nickname as string)
+      if (json.locked === true) setLocked(true)
       setSaved(true)
       setStatus('idle')
       setTimeout(() => setSaved(false), 1800)
@@ -83,13 +88,17 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
   }, [dirty, saving, status, trimmed])
 
   const hint =
-    status === 'checking' ? (ko ? '확인 중…' : 'Checking…')
+    locked ? (ko ? '닉네임은 더 이상 변경할 수 없어요.' : "Your nickname can't be changed again.")
+    : status === 'checking' ? (ko ? '확인 중…' : 'Checking…')
     : status === 'available' ? (ko ? '사용 가능해요' : 'Available')
     : status === 'taken' ? (ko ? '이미 사용 중이에요' : 'Already taken')
     : status === 'invalid' ? (ko ? '2–16자, 문자·숫자·밑줄만' : '2–16 chars, letters/numbers/_')
-    : (ko ? '리더보드와 친구에게 보여요' : 'Shown on the leaderboard and to friends')
+    // A picked-but-not-yet-changed nickname gets one warning about the limit.
+    : initial ? (ko ? '닉네임은 한 번만 변경할 수 있어요.' : 'You can change your nickname once.')
+    : (ko ? '리더보드와 친구에게 보여요 · 한 번만 변경 가능' : 'Shown on the leaderboard · changeable once')
   const hintColor =
-    status === 'available' ? 'text-emerald-600'
+    locked ? 'text-gray-400'
+    : status === 'available' ? 'text-emerald-600'
     : status === 'taken' || status === 'invalid' ? 'text-rose-600'
     : 'text-gray-500'
 
@@ -108,7 +117,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
             value={value}
             onChange={e => setValue(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter') void save() }}
-            disabled={!ready}
+            disabled={!ready || locked}
             maxLength={16}
             autoCapitalize="none"
             autoCorrect="off"
@@ -120,7 +129,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
             className="flex-shrink-0"
             size="sm"
             onClick={() => void save()}
-            disabled={!dirty || saving || status === 'taken' || status === 'invalid' || status === 'checking' || trimmed.length === 0}
+            disabled={locked || !dirty || saving || status === 'taken' || status === 'invalid' || status === 'checking' || trimmed.length === 0}
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <Check className="w-4 h-4" /> : (ko ? '저장' : 'Save')}
           </Button>

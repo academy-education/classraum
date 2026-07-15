@@ -431,56 +431,62 @@ export default function SubscriptionPage() {
             <p className="text-[11.5px] text-gray-400 mt-1.5">
               {ko ? '생성에 실패하면 크레딧은 자동으로 환불돼요.' : 'Failed generations are refunded automatically.'}
             </p>
+          </div>
+        )}
 
-            {/* Credit top-ups — open to everyone on web (free & General
-                included; card-less buyers register a card in the flow).
-                Native app hides in-app purchases (App Store IAP rules). */}
-            {!isNative && (
-              <div className="mt-4 pt-4 border-t border-gray-100">
-                <div className="flex items-center justify-between mb-2.5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">
-                    {ko ? '크레딧 충전' : 'Top up credits'}
-                  </p>
-                  <span className="text-[11px] text-gray-400">{ko ? '구매 크레딧은 만료 없음' : 'Never expire'}</span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {packs.map((p, i) => {
-                    const best = i === packs.length - 1 && packs.length > 1
-                    const perCredit = Math.round(p.priceWon / p.credits)
-                    return (
-                      <button
-                        key={p.id}
-                        type="button"
-                        onClick={() => void buyPack(p.id, p.credits)}
-                        disabled={acting !== null}
-                        className={`relative flex flex-col items-center justify-center gap-0.5 h-[76px] rounded-xl active:scale-[0.98] disabled:opacity-60 transition-all ${
-                          best
-                            ? 'bg-amber-500 text-white ring-1 ring-amber-500 shadow-[0_2px_8px_rgba(245,158,11,0.3)]'
-                            : 'bg-amber-500/10 text-amber-700 ring-1 ring-amber-200/70 hover:bg-amber-500/15'
-                        }`}
-                      >
-                        {best && (
-                          <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded-full bg-gray-900 text-white text-[9px] font-bold whitespace-nowrap">
-                            {ko ? '최고 혜택' : 'Best value'}
-                          </span>
-                        )}
-                        {acting === 'pack' ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : (
-                          <>
-                            <span className="text-[15px] font-bold tabular-nums">+{p.credits}</span>
-                            <span className="text-[11.5px] font-semibold tabular-nums">{formatWon(p.priceWon)}</span>
-                            <span className={`text-[9.5px] tabular-nums ${best ? 'text-amber-100' : 'text-amber-600/70'}`}>
-                              {ko ? `개당 ₩${perCredit.toLocaleString()}` : `₩${perCredit.toLocaleString()}/ea`}
-                            </span>
-                          </>
-                        )}
-                      </button>
-                    )
-                  })}
+        {/* Buy credits — its own card so it's always visible on web, even
+            for users with no subscription row yet. Open to everyone (free &
+            General included; card-less buyers register a card in the flow).
+            Native app hides in-app purchases (App Store IAP rules). */}
+        {!isNative && (
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+            <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center gap-2.5">
+                <span className="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center flex-shrink-0">
+                  <Coins className="w-4 h-4" />
+                </span>
+                <div>
+                  <p className="text-[14px] font-semibold text-gray-900">{ko ? '크레딧 충전' : 'Buy credits'}</p>
+                  <p className="text-[11.5px] text-gray-400">{ko ? '구매 크레딧은 만료 없음 · 모의고사 1회 = 1개' : 'Never expire · 1 mock test = 1 credit'}</p>
                 </div>
               </div>
-            )}
+            </div>
+            <div className="grid grid-cols-3 gap-2 mt-3">
+              {packs.map((p, i) => {
+                const best = i === packs.length - 1 && packs.length > 1
+                const perCredit = Math.round(p.priceWon / p.credits)
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => void buyPack(p.id, p.credits)}
+                    disabled={acting !== null}
+                    className={`relative flex flex-col items-center justify-center gap-0.5 h-[80px] rounded-xl active:scale-[0.98] disabled:opacity-60 transition-all ${
+                      best
+                        ? 'bg-amber-500 text-white ring-1 ring-amber-500 shadow-[0_2px_8px_rgba(245,158,11,0.3)]'
+                        : 'bg-amber-500/10 text-amber-700 ring-1 ring-amber-200/70 hover:bg-amber-500/15'
+                    }`}
+                  >
+                    {best && (
+                      <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded-full bg-gray-900 text-white text-[9px] font-bold whitespace-nowrap">
+                        {ko ? '최고 혜택' : 'Best value'}
+                      </span>
+                    )}
+                    {acting === 'pack' ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <>
+                        <span className="text-[16px] font-bold tabular-nums">+{p.credits}</span>
+                        <span className="text-[12px] font-semibold tabular-nums">{formatWon(p.priceWon)}</span>
+                        <span className={`text-[9.5px] tabular-nums ${best ? 'text-amber-100' : 'text-amber-600/70'}`}>
+                          {ko ? `개당 ₩${perCredit.toLocaleString()}` : `₩${perCredit.toLocaleString()}/ea`}
+                        </span>
+                      </>
+                    )}
+                  </button>
+                )
+              })}
+            </div>
           </div>
         )}
 
@@ -753,8 +759,9 @@ export default function SubscriptionPage() {
         </div>
         )}
 
-        {/* Gift + referral entry points (both pages self-gate native). */}
-        <div className="grid grid-cols-2 gap-2.5">
+        {/* Gift + referral entry points — each on its own full-width row
+            (both pages self-gate native). */}
+        <div className="space-y-2.5">
           <Link
             href="/mobile/study/gift"
             className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/60 p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.98] transition-all"
@@ -777,7 +784,7 @@ export default function SubscriptionPage() {
             </span>
             <span className="min-w-0">
               <span className="block text-[13px] font-semibold text-gray-900 truncate">{ko ? '친구 초대' : 'Refer a friend'}</span>
-              <span className="block text-[11.5px] text-gray-400 truncate">{ko ? '둘 다 크레딧 5개' : '5 credits each'}</span>
+              <span className="block text-[11.5px] text-gray-400 truncate">{ko ? '가입 시 1개 + 프리미엄 시 10개' : '1 credit + 10 on Premium'}</span>
             </span>
             <ChevronRight className="w-4 h-4 text-gray-300 ml-auto flex-shrink-0" />
           </Link>

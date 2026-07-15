@@ -18,6 +18,10 @@ import { validateNickname, normalizeNickname } from '@/lib/study/nickname'
  *   case-insensitive unique index as the source of truth for uniqueness
  *   (a race between two claimers resolves to one winner → the loser gets a
  *   409 'nickname_taken' instead of a 500).
+ *
+ *   Change-once rule: the initial pick (null → value) is free; the student
+ *   then gets exactly ONE change, after which the handle is locked (423).
+ *   nickname_changed on study_user_prefs tracks this.
  */
 
 export const dynamic = 'force-dynamic'
@@ -53,16 +57,42 @@ export async function PUT(req: NextRequest) {
   if (reason) return NextResponse.json({ error: 'invalid nickname', code: reason }, { status: 400 })
   const nickname = normalizeNickname(body.nickname)
 
+  // Current state — decides the change-once rule. A first pick is free; a
+  // second distinct value uses the one allowed change; a third is locked.
+  const { data: current } = await supabaseAdmin
+    .from('study_user_prefs')
+    .select('nickname, nickname_changed')
+    .eq('student_id', user.id)
+    .maybeSingle()
+  const hadNickname = !!current?.nickname
+  const alreadyChanged = current?.nickname_changed === true
+
+  // No-op: re-saving the same handle (case-insensitive) is always allowed
+  // and doesn't consume the change.
+  if (hadNickname && (current!.nickname as string).toLowerCase() === nickname.toLowerCase()) {
+    return NextResponse.json({ nickname: current!.nickname })
+  }
+  // Locked: the student already used their one change after picking.
+  if (hadNickname && alreadyChanged) {
+    return NextResponse.json({ error: 'nickname is locked', code: 'locked' }, { status: 423 })
+  }
+
   // Pre-check for a friendly 409 (the unique index is still the real guard
   // below, in case of a concurrent claim between this read and the write).
   if (await nicknameTakenByOther(nickname, user.id)) {
     return NextResponse.json({ error: 'nickname taken', code: 'taken' }, { status: 409 })
   }
 
+  // Changing an existing handle (not the first pick) consumes the one change.
   const { data, error } = await supabaseAdmin
     .from('study_user_prefs')
-    .upsert({ student_id: user.id, nickname, updated_at: new Date().toISOString() }, { onConflict: 'student_id' })
-    .select('nickname')
+    .upsert({
+      student_id: user.id,
+      nickname,
+      ...(hadNickname ? { nickname_changed: true } : {}),
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'student_id' })
+    .select('nickname, nickname_changed')
     .single()
 
   if (error) {
@@ -72,7 +102,11 @@ export async function PUT(req: NextRequest) {
     }
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
-  return NextResponse.json({ nickname: data?.nickname ?? nickname })
+  return NextResponse.json({
+    nickname: data?.nickname ?? nickname,
+    // True once the one post-pick change has been used → the UI locks the field.
+    locked: data?.nickname_changed === true,
+  })
 }
 
 /** Is this handle owned by someone OTHER than the caller? Case-insensitive.
