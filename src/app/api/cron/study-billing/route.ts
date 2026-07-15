@@ -3,6 +3,33 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { resolvePlan, STUDY_PLANS, GRANT_INTERVAL_DAYS, isPassPlan } from '@/lib/study/plans'
+import { notifyStudent } from '@/lib/study/notify'
+
+const SUB_LINK = '/mobile/study/subscription'
+
+/** Dunning: a failed charge usually means an expired/blocked card the
+ *  student doesn't know about. A prompt to re-enter it recovers a large
+ *  share of would-be churn. Fired on the drop to past_due and on expiry. */
+async function notifyPaymentFailed(studentId: string) {
+  await notifyStudent({
+    studentId,
+    kind: 'study_payment_failed',
+    title: '결제에 실패했어요',
+    message: '카드 결제가 처리되지 않았어요. 학습 구독을 유지하려면 결제 수단을 업데이트해 주세요.',
+    link: SUB_LINK,
+    push: true,
+  })
+}
+async function notifySubscriptionExpired(studentId: string) {
+  await notifyStudent({
+    studentId,
+    kind: 'study_subscription_expired',
+    title: '구독이 만료됐어요',
+    message: '결제가 계속 실패해 구독이 만료됐어요. 언제든 다시 시작할 수 있어요 — 크레딧은 그대로 남아 있어요.',
+    link: SUB_LINK,
+    push: true,
+  })
+}
 
 /**
  * Daily cron — renew study subscriptions and finalize cancellations.
@@ -109,6 +136,7 @@ export async function GET(req: NextRequest) {
         .from('study_subscriptions')
         .update({ status: 'expired', updated_at: now.toISOString() })
         .eq('id', row.id)
+      await notifySubscriptionExpired(row.student_id)
       summary.expired++
       continue
     }
@@ -127,6 +155,7 @@ export async function GET(req: NextRequest) {
           .from('study_subscriptions')
           .update({ status: 'expired', updated_at: now.toISOString() })
           .eq('id', row.id)
+        await notifySubscriptionExpired(row.student_id)
         summary.expired++
       }
     }
@@ -245,6 +274,10 @@ async function chargeAndAdvance(
         updated_at: now.toISOString(),
       })
       .eq('id', row.id)
+    // Dunning notice — tell the student their card failed and link them
+    // to update it. This is the single biggest involuntary-churn recovery
+    // lever; without it a dead card silently expires the subscription.
+    await notifyPaymentFailed(row.student_id)
     summary.failed++
     if (result.code) summary.errors.push(`${row.id}: ${result.code} ${result.message ?? ''}`)
   }
