@@ -87,7 +87,7 @@ export default function SubscriptionPage() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isNative, setIsNative] = useState(false)
   const [confirmingCancel, setConfirmingCancel] = useState(false)
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly')
+  const [cycleDays, setCycleDays] = useState<number>(30)
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
   const load = useCallback(async () => {
@@ -142,21 +142,20 @@ export default function SubscriptionPage() {
     total: (sub?.grant_credits_remaining ?? 0) + (sub?.purchased_credits_remaining ?? 0),
   }
 
-  // Monthly / Annual toggle. Free (interval 30, price 0) shows in both
-  // views; paid plans are filtered to the selected cadence so the grid
-  // stays at three cards. Default the toggle to the cadence the user is
-  // already on so their current plan is visible without a tap.
-  const hasAnnual = plans.some(p => p.intervalDays === 365)
+  // Duration toggle (월간 / 3개월 / 6개월 / 연간). Free (interval 30, price 0)
+  // always shows; paid plans filter to the selected cadence. Durations are
+  // derived from whatever the catalog actually offers, so adding/removing a
+  // prepaid SKU needs no UI change. Default to the cadence the user is on.
+  const availableDurations = Array.from(
+    new Set(plans.filter(p => p.priceWon > 0).map(p => p.intervalDays)),
+  ).sort((a, b) => a - b)
   const currentPlanInterval = plans.find(p => p.id === currentPlanId)?.intervalDays
   useEffect(() => {
-    if (currentPlanInterval === 365) setBillingCycle('annual')
+    if (currentPlanInterval && currentPlanInterval !== 30) setCycleDays(currentPlanInterval)
   }, [currentPlanInterval])
-  const displayedPlans = plans.filter(p =>
-    p.id === 'free_v1' ||
-    (billingCycle === 'annual' ? p.intervalDays === 365 : p.intervalDays === 30)
-  )
-  // Per-tier monthly price, so annual cards can show the equivalent
-  // monthly-billed cost struck through and the months-free savings.
+  const displayedPlans = plans.filter(p => p.id === 'free_v1' || p.intervalDays === cycleDays)
+  // Per-tier monthly price, so longer-cadence cards can show the equivalent
+  // month-by-month cost struck through and the savings.
   const monthlyPriceByTier: Record<string, number> = {}
   for (const p of plans) if (p.intervalDays === 30 && p.priceWon > 0) monthlyPriceByTier[p.tier] = p.priceWon
   // Plan-switch direction is set by price, not tier: switching a monthly
@@ -511,29 +510,24 @@ export default function SubscriptionPage() {
           </div>
         )}
 
-        {/* Monthly / Annual billing-cycle toggle */}
-        {!onPass && hasAnnual && (
-          <div className="flex items-center justify-center">
-            <div className="inline-flex items-center gap-1 p-1 rounded-full bg-gray-100/80 ring-1 ring-gray-200/60">
-              {(['monthly', 'annual'] as const).map(cycle => (
+        {/* Billing-duration toggle — one segment per cadence the catalog
+            offers (월간 / 3개월 / 6개월 / 연간). Horizontal-scrolls if it
+            overflows on narrow phones. */}
+        {!onPass && availableDurations.length > 1 && (
+          <div className="flex justify-center">
+            <div className="inline-flex items-center gap-1 p-1 rounded-full bg-gray-100/80 ring-1 ring-gray-200/60 max-w-full overflow-x-auto">
+              {availableDurations.map(days => (
                 <button
-                  key={cycle}
+                  key={days}
                   type="button"
-                  onClick={() => setBillingCycle(cycle)}
-                  className={`px-4 h-9 rounded-full text-[13px] font-semibold inline-flex items-center gap-1.5 transition-all ${
-                    billingCycle === cycle
+                  onClick={() => setCycleDays(days)}
+                  className={`px-3.5 h-9 rounded-full text-[13px] font-semibold whitespace-nowrap transition-all ${
+                    cycleDays === days
                       ? 'bg-white text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,0.06)]'
                       : 'text-gray-500 hover:text-gray-700'
                   }`}
                 >
-                  {cycle === 'monthly'
-                    ? (ko ? '월간' : 'Monthly')
-                    : (ko ? '연간' : 'Annual')}
-                  {cycle === 'annual' && (
-                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">
-                      {ko ? '2개월 무료' : '2 months free'}
-                    </span>
-                  )}
+                  {durationLabel(days, ko)}
                 </button>
               ))}
             </div>
@@ -579,20 +573,23 @@ export default function SubscriptionPage() {
                   <div className="text-2xl font-semibold tracking-tight text-gray-900">
                     {formatWon(plan.priceWon)}
                     {!isFreePlan && (
-                      <span className="text-sm font-normal text-gray-400"> / {plan.intervalDays === 365 ? (ko ? '년' : 'yr') : t('study.subscription.month')}</span>
+                      <span className="text-sm font-normal text-gray-400"> / {durationUnit(plan.intervalDays, ko, t)}</span>
                     )}
                   </div>
-                  {plan.intervalDays === 365 && monthlyPriceByTier[plan.tier] && (
-                    <div className="text-[12.5px] text-gray-500 mt-1">
-                      <span className="line-through text-gray-400">{formatWon(monthlyPriceByTier[plan.tier]! * 12)}</span>
-                      {' · '}
-                      <span className="text-emerald-600 font-medium">
-                        {ko
-                          ? `${formatWon(monthlyPriceByTier[plan.tier]! * 12 - plan.priceWon)} 절약`
-                          : `Save ${formatWon(monthlyPriceByTier[plan.tier]! * 12 - plan.priceWon)}`}
-                      </span>
-                    </div>
-                  )}
+                  {plan.intervalDays > 30 && monthlyPriceByTier[plan.tier] && (() => {
+                    const months = Math.round(plan.intervalDays / 30)
+                    const equiv = monthlyPriceByTier[plan.tier]! * months
+                    const saved = equiv - plan.priceWon
+                    return saved > 0 ? (
+                      <div className="text-[12.5px] text-gray-500 mt-1">
+                        <span className="line-through text-gray-400">{formatWon(equiv)}</span>
+                        {' · '}
+                        <span className="text-emerald-600 font-medium">
+                          {ko ? `${formatWon(saved)} 절약` : `Save ${formatWon(saved)}`}
+                        </span>
+                      </div>
+                    ) : null
+                  })()}
                 </div>
 
                 <ul className="space-y-2 text-[13px] text-gray-600 flex-1">
@@ -804,6 +801,22 @@ function planName(plans: CatalogPlan[], planId: string, ko: boolean): string {
 
 function formatWon(won: number): string {
   return `₩${won.toLocaleString()}`
+}
+
+/** Toggle-segment label for a billing cadence (30 → 월간, 90 → 3개월…). */
+function durationLabel(days: number, ko: boolean): string {
+  if (days === 30) return ko ? '월간' : 'Monthly'
+  if (days === 365) return ko ? '연간' : 'Annual'
+  const months = Math.round(days / 30)
+  return ko ? `${months}개월` : `${months} mo`
+}
+
+/** Per-price unit suffix (/ month, / 3 mo, / yr). */
+function durationUnit(days: number, ko: boolean, t: (k: string) => unknown): string {
+  if (days === 30) return String(t('study.subscription.month'))
+  if (days === 365) return ko ? '년' : 'yr'
+  const months = Math.round(days / 30)
+  return ko ? `${months}개월` : `${months} mo`
 }
 
 function formatDate(iso: string, ko: boolean): string {
