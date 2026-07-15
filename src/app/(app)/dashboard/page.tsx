@@ -110,9 +110,26 @@ export default function DashboardPage() {
           return
         }
 
-        // Teachers should not access dashboard - redirect to classrooms
-        if (userInfo?.role === 'teacher') {
+        // The dashboard is the academy (manager) surface. Non-manager
+        // roles that land here — e.g. when middleware redirects the app
+        // root '/' → '/dashboard' before the role-aware root page runs —
+        // must be bounced to their own home, or a study-only student
+        // (no academy) gets stuck in "academy mode". Mirrors the routing
+        // in (app)/page.tsx.
+        const role = userInfo?.role
+        if (role === 'teacher') {
           router.replace('/classrooms')
+        } else if (role === 'student') {
+          // Study-only students (no active academy membership) go straight
+          // to Study; students with an academy get the mobile hub.
+          const { count } = await supabase
+            .from('students')
+            .select('user_id', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+            .eq('active', true)
+          router.replace((count ?? 0) > 0 ? '/mobile/start' : '/mobile/study')
+        } else if (role === 'parent') {
+          router.replace('/mobile')
         }
       } catch (error) {
         console.error('[Dashboard] Error checking user role:', error)
