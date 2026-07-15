@@ -719,7 +719,7 @@ function MobileProfilePageContent() {
     {showLogoutConfirm && (
       <>
         <div
-          className="fixed inset-0 backdrop-blur-sm bg-black/20 z-[9998]"
+          className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[9998]"
           onClick={() => setShowLogoutConfirm(false)}
         />
         <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
@@ -755,7 +755,7 @@ function MobileProfilePageContent() {
     {showDeleteConfirm && (
       <>
         <div
-          className="fixed inset-0 backdrop-blur-sm bg-black/20 z-[9998]"
+          className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[9998]"
           onClick={() => {
             if (!deletingAccount) {
               setShowDeleteConfirm(false)

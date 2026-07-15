@@ -119,7 +119,7 @@ export function DailyGoalCelebration() {
       {/* Backdrop */}
       <div
         onClick={() => setShow(false)}
-        className="fixed inset-0 z-[110] bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
+        className="fixed inset-0 z-[110] bg-black/40 backdrop-blur-sm animate-in fade-in duration-300"
       />
       {/* Confetti dots — pure CSS, no library. Random hues, falling. */}
       <ConfettiBurst />

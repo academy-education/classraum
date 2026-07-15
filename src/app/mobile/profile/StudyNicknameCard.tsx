@@ -152,7 +152,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
           knows a change is limited. */}
       {confirming && (
         <>
-          <div className="fixed inset-0 backdrop-blur-sm bg-black/20 z-[9998]" onClick={() => setConfirming(false)} />
+          <div className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[9998]" onClick={() => setConfirming(false)} />
           <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
             <Card className="w-full max-w-sm p-6">
               <div className="flex flex-col items-center text-center mb-5">

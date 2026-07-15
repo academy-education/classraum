@@ -129,7 +129,7 @@ export function NavTour() {
   return (
     <>
       <div onClick={finish}
-        className="fixed inset-0 z-[105] bg-black/65 backdrop-blur-sm animate-in fade-in duration-300" />
+        className="fixed inset-0 z-[105] bg-black/40 backdrop-blur-sm animate-in fade-in duration-300" />
       <div
         role="dialog"
         aria-modal="true"
