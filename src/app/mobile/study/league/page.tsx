@@ -209,7 +209,7 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
 
   const manageBtn = (
     <Link href="/mobile/study/friends"
-      className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gray-900 text-white text-[12.5px] font-semibold hover:bg-gray-800 active:scale-95 transition">
+      className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[12.5px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 active:scale-95 transition">
       <UserPlus className="w-3.5 h-3.5" />{ko ? '친구 관리' : 'Manage friends'}
     </Link>
   )
@@ -438,7 +438,9 @@ function TierLadder({ activeKey, ko }: { activeKey: string; ko: boolean }) {
     <section>
       <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? '리그 단계' : 'Tier ladder'}</h3>
       <div className="-mx-5 px-5">
-        <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-hide">
+        {/* pt-1 gives the pills' top ring/shadow headroom — overflow-x-auto
+            forces overflow-y to clip, which was shaving the top edge. */}
+        <div className="flex gap-1.5 overflow-x-auto pt-1 pb-2 scrollbar-hide">
           {TIERS.map((tier, i) => (
             <div key={tier.key}
               className={`flex-shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition ${

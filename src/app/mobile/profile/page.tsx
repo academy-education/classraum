@@ -22,6 +22,7 @@ import { StatusPill } from '@/components/ui/status-pill'
 import { StudySubPageHeader } from '@/app/mobile/study/_shared/primitives'
 import { User as UserIcon } from 'lucide-react'
 import { useMobileProfile } from './hooks/useMobileProfile'
+import { StudyNicknameCard } from './StudyNicknameCard'
 import {
   Select,
   SelectContent,
@@ -412,6 +413,10 @@ function MobileProfilePageContent() {
           </Card>
         )
       })()}
+
+      {/* Study nickname — the public leaderboard handle. Students only
+          (the study/leaderboard audience). */}
+      {profile?.role === 'student' && <StudyNicknameCard ko={language === 'korean'} />}
 
       {/* Contact Information panel — only renders rows that have data */}
       {(profile?.phone || profile?.academy_name || profile?.student_school || profile?.student_grade) && (
