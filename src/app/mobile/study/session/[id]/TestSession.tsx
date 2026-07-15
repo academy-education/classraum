@@ -264,8 +264,23 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           const rawAnswers = localStorage.getItem(`study:test:${sessionId}:answers`)
           if (rawAnswers) {
             const parsed = JSON.parse(rawAnswers)
-            if (Array.isArray(parsed) && parsed.length === payload.questions.length) {
-              restoredAnswers = parsed as (string | null)[]
+            // Restore by copying index-by-index into a payload-sized array
+            // rather than requiring an EXACT length match. In the adaptive
+            // SAT flow the saved array is routinely a different length than
+            // the resumed test: it starts at the Module-1 count and only
+            // grows as Module-2 answers come in, while a resume rebuilds the
+            // full Module-1+2 payload. The old strict `length ===` guard
+            // discarded the whole array on that mismatch, wiping every
+            // answer (Module 1 included) on any mid-Module-2 refresh — the
+            // student then submitted a near-empty array and every question
+            // scored "Not Answered". Copy-by-index preserves answered slots.
+            if (Array.isArray(parsed)) {
+              const base: (string | null)[] = new Array(payload.questions.length).fill(null)
+              for (let i = 0; i < Math.min(parsed.length, base.length); i++) {
+                const v = parsed[i]
+                base[i] = typeof v === 'string' ? v : null
+              }
+              restoredAnswers = base
             }
           }
           const rawIdx = localStorage.getItem(`study:test:${sessionId}:currentIdx`)
@@ -611,10 +626,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // School wifi is flaky: retry transient failures (network drop,
       // 5xx) with backoff before surfacing an error. 4xx responses are
       // permanent — no retry.
+      // Pad the answers array to exactly one entry per question. The
+      // in-memory array is only as long as (highest answered index + 1),
+      // so a test with blank trailing questions would otherwise be shorter
+      // than test.questions and the server would 400 on the length check.
+      // Explicit nulls make every unanswered slot survive the round-trip.
+      const fullAnswers: (string | null)[] = test.questions.map((_, i) => answers[i] ?? null)
       const body = JSON.stringify({
         sessionId,
         questions: test.questions,
-        answers,
+        answers: fullAnswers,
         elapsedSeconds,
       })
       let res: Response | null = null
