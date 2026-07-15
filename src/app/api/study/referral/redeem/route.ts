@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
-import { REFERRAL_REWARD_CREDITS, normalizeReferralCode } from '@/lib/study/referral'
+import { REFERRAL_SIGNUP_CREDITS, normalizeReferralCode } from '@/lib/study/referral'
 import { trackEvent } from '@/lib/study/analytics'
 
 /**
  * POST /api/study/referral/redeem — a new student redeems a friend's
- * referral code. BOTH sides get +REFERRAL_REWARD_CREDITS purchased test
+ * referral code. BOTH sides get +REFERRAL_SIGNUP_CREDITS purchased test
  * credits, exactly once.
  *
  * Body: { code }.
@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
 }
 
 /**
- * Add REFERRAL_REWARD_CREDITS to a student's purchased bucket and write a
+ * Add REFERRAL_SIGNUP_CREDITS to a student's purchased bucket and write a
  * ledger row — but only if they have a subscription row for the RPC to
  * update (it keys on student_id and would otherwise silently no-op).
  * Returns the credits actually granted (0 when there's no row yet).
@@ -126,7 +126,7 @@ async function grantReferralCredits(studentId: string, sourceId: string): Promis
 
   const { error: rpcErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId,
-    p_delta: REFERRAL_REWARD_CREDITS,
+    p_delta: REFERRAL_SIGNUP_CREDITS,
   })
   if (rpcErr) {
     console.error('[study/referral/redeem] credit grant failed', { studentId, error: rpcErr })
@@ -135,13 +135,13 @@ async function grantReferralCredits(studentId: string, sourceId: string): Promis
 
   await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: studentId,
-    delta: REFERRAL_REWARD_CREDITS,
+    delta: REFERRAL_SIGNUP_CREDITS,
     bucket: 'purchased',
     kind: 'referral',
     source_id: sourceId,
     note: 'referral reward',
   })
-  return REFERRAL_REWARD_CREDITS
+  return REFERRAL_SIGNUP_CREDITS
 }
 
 function isUniqueViolation(error: unknown): boolean {

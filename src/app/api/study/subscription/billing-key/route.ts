@@ -4,6 +4,7 @@ import { chargeBillingKey } from '@/lib/portone-charge'
 import { STUDY_PLANS, resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
+import { grantReferralConversionIfEligible } from '@/lib/study/referral-conversion'
 
 /**
  * POST /api/study/subscription/billing-key
@@ -136,6 +137,11 @@ export async function POST(req: NextRequest) {
 
   // Funnel: a new paid subscription completed — the conversion event.
   void trackEvent(user.id, 'checkout_completed', { plan: plan.id, priceWon: plan.priceWon })
+
+  // Referral stage 2: if this buyer was referred, grant BOTH sides the
+  // premium-conversion bonus, exactly once. Fire-and-forget — never blocks
+  // or fails the subscription that already succeeded.
+  void grantReferralConversionIfEligible(user.id)
 
   return NextResponse.json({
     success: true,

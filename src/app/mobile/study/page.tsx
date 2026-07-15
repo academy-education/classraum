@@ -1004,8 +1004,8 @@ function ReferralClaimBanner({ code, onDone }: { code: string; onDone: () => voi
             {msg
               ? msg
               : (ko
-                  ? `초대 코드 ${code} · 둘 다 크레딧 5개`
-                  : `Code ${code} · you both get 5 credits`)}
+                  ? `초대 코드 ${code} · 지금 크레딧 1개, 프리미엄 시 +10`
+                  : `Code ${code} · 1 credit now, +10 when you go Premium`)}
           </div>
         </div>
         {state !== 'done' && (

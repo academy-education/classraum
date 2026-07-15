@@ -26,7 +26,11 @@ import { SkeletonBlock, SkeletonCard, SkeletonMetricCard } from '../skeletons'
 interface ReferralData {
   code: string
   rewardPerReferral: number
-  stats: { referrals: number; creditsEarned: number }
+  /** Credits each side gets when the code is redeemed. */
+  signupReward: number
+  /** Extra credits each side gets when the friend first goes Premium. */
+  premiumReward: number
+  stats: { referrals: number; creditsEarned: number; converted?: number }
 }
 
 /** Official KakaoTalk speech-bubble mark. Fills with currentColor so it
@@ -71,7 +75,8 @@ function ReferralInner() {
 
   useEffect(() => { void load() }, [load])
 
-  const reward = data?.rewardPerReferral ?? 5
+  const signupReward = data?.signupReward ?? 1
+  const premiumReward = data?.premiumReward ?? 10
 
   return (
     <StudyScrollShell
@@ -84,8 +89,8 @@ function ReferralInner() {
           eyebrow={ko ? '친구 초대' : 'Invite friends'}
           title={ko ? '친구 초대하고 크레딧 받기' : 'Invite friends, earn credits'}
           subtitle={ko
-            ? `친구도 나도 크레딧 ${reward}개씩 받아요.`
-            : `You and your friend each get ${reward} credits.`}
+            ? `가입 시 둘 다 크레딧 ${signupReward}개, 프리미엄 전환 시 각각 ${premiumReward}개 더!`
+            : `You both get ${signupReward} credit when they join — and ${premiumReward} more each when they go Premium!`}
         />
       }
     >
@@ -126,7 +131,7 @@ function ReferralInner() {
             </div>
           ) : (
             <>
-              <ShareCard code={data.code} reward={reward} ko={ko} />
+              <ShareCard code={data.code} signupReward={signupReward} premiumReward={premiumReward} ko={ko} />
 
               <div className="grid grid-cols-2 gap-3">
                 <StudyMetric
@@ -152,7 +157,7 @@ function ReferralInner() {
   )
 }
 
-function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boolean }) {
+function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; signupReward: number; premiumReward: number; ko: boolean }) {
   const [copied, setCopied] = useState(false)
 
   const inviteLink = typeof window !== 'undefined'
@@ -181,8 +186,8 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
   const canShare = isNative || kakaoEnabled
   const doShare = useCallback(async () => {
     const text = ko
-      ? `Classraum에서 함께 공부해요! 초대 코드 "${code}"를 입력하면 친구도 나도 테스트 크레딧 ${reward}개씩 받아요.`
-      : `Study with me on Classraum! Use my invite code "${code}" and we each get ${reward} test credits.`
+      ? `Classraum에서 함께 공부해요! 초대 코드 "${code}"를 입력하면 둘 다 테스트 크레딧 ${signupReward}개, 프리미엄 전환 시 각각 ${premiumReward}개 더 받아요.`
+      : `Study with me on Classraum! Use my invite code "${code}" — we each get ${signupReward} test credit now, and ${premiumReward} more each when you go Premium.`
     if (isNative) {
       try {
         await Share.share({ text, url: inviteLink, dialogTitle: ko ? '친구 초대' : 'Invite a friend' })
@@ -198,7 +203,7 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
       buttonTitle: ko ? '초대 코드 받기' : 'Get the code',
     })
     if (!ok) void copy(inviteLink)
-  }, [isNative, ko, code, reward, inviteLink, copy])
+  }, [isNative, ko, code, signupReward, premiumReward, inviteLink, copy])
 
   return (
     <section className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-5 space-y-4">
@@ -213,8 +218,8 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
         </div>
         <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
           {ko
-            ? `친구가 이 코드를 입력하면 친구도 나도 크레딧 ${reward}개씩 받아요.`
-            : `When a friend redeems this code, you both get ${reward} credits.`}
+            ? `친구가 가입하면 둘 다 ${signupReward}개, 프리미엄 전환 시 각각 ${premiumReward}개 더 받아요.`
+            : `You both get ${signupReward} credit when they join, and ${premiumReward} more each when they go Premium.`}
         </p>
       </div>
 

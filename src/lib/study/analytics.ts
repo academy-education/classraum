@@ -26,6 +26,7 @@ export type StudyEvent =
   | 'plan_changed'
   | 'gift_redeemed'
   | 'referral_redeemed'
+  | 'referral_converted'
   | 'activation_cta_clicked'
 
 /** Client-supplied events are restricted to this set so the endpoint can't

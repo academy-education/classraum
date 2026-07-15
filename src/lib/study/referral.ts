@@ -1,16 +1,24 @@
 /**
  * Referral-loop constants + helpers for Classraum Study (B2C).
  *
- * A student invites a friend with their code; when the friend redeems it,
- * BOTH sides get REFERRAL_REWARD_CREDITS purchased test credits, exactly
- * once. Reward-granting + idempotency live in the redeem route; this file
- * only owns the reward size and the code generator so tests and routes
- * agree on both.
+ * Two-stage rewards, both in never-expiring purchased-bucket credits:
+ *   1. SIGNUP  — when the friend redeems the code, BOTH sides get
+ *      REFERRAL_SIGNUP_CREDITS, exactly once (a small "you joined" nudge).
+ *   2. PREMIUM — when that referred friend FIRST becomes a paying
+ *      subscriber, BOTH sides get REFERRAL_PREMIUM_CREDITS, exactly once
+ *      (the real reward — quality referrals, not just signups).
+ *
+ * Signup granting + idempotency live in the redeem route; the premium
+ * grant lives in referral-conversion.ts (called from the subscribe path).
+ * This file only owns the reward sizes + the code generator so tests and
+ * routes agree.
  */
 
-/** Credits granted to EACH side (referrer + referee) on a successful
- *  redemption. Purchased-bucket credits, so they never expire. */
-export const REFERRAL_REWARD_CREDITS = 5
+/** Credits to EACH side (referrer + referee) when the code is redeemed. */
+export const REFERRAL_SIGNUP_CREDITS = 1
+
+/** Extra credits to EACH side when the referred friend first goes paid. */
+export const REFERRAL_PREMIUM_CREDITS = 10
 
 /** Length of a generated referral code. */
 export const REFERRAL_CODE_LENGTH = 6

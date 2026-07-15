@@ -15,7 +15,7 @@ import { POST } from '@/app/api/study/referral/redeem/route'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { REFERRAL_REWARD_CREDITS } from '@/lib/study/referral'
+import { REFERRAL_SIGNUP_CREDITS, REFERRAL_PREMIUM_CREDITS } from '@/lib/study/referral'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 import { NextRequest } from 'next/server'
 
@@ -60,16 +60,25 @@ describe('referral loop', () => {
     it('returns an existing code with referral stats', async () => {
       enqueue('study_referral_codes', { data: { code: 'ABC234' } })
       enqueue('study_referral_redemptions', {
-        data: [{ rewarded: true }, { rewarded: true }, { rewarded: false }],
+        data: [
+          { rewarded: true, converted: true },
+          { rewarded: true, converted: false },
+          { rewarded: false, converted: false },
+        ],
       })
 
       const res = await GET(makeGetRequest())
       expect(res.status).toBe(200)
       const body = await res.json()
       expect(body.code).toBe('ABC234')
-      expect(body.rewardPerReferral).toBe(REFERRAL_REWARD_CREDITS)
-      // 3 referrals, 2 rewarded → 2 × 5 credits earned.
-      expect(body.stats).toEqual({ referrals: 3, creditsEarned: 2 * REFERRAL_REWARD_CREDITS })
+      expect(body.rewardPerReferral).toBe(REFERRAL_SIGNUP_CREDITS)
+      // 3 referrals, 2 rewarded (signup), 1 converted (premium) → earned =
+      // 2×signup + 1×premium.
+      expect(body.stats).toEqual({
+        referrals: 3,
+        creditsEarned: 2 * REFERRAL_SIGNUP_CREDITS + REFERRAL_PREMIUM_CREDITS,
+        converted: 1,
+      })
     })
 
     it('mints and inserts a code on first call, then returns it', async () => {
@@ -81,7 +90,7 @@ describe('referral loop', () => {
       expect(res.status).toBe(200)
       const body = await res.json()
       expect(body.code).toBe('FRESH7')
-      expect(body.stats).toEqual({ referrals: 0, creditsEarned: 0 })
+      expect(body.stats).toEqual({ referrals: 0, creditsEarned: 0, converted: 0 })
       // Inserted a row keyed to the caller.
       expect(insertChain.insert).toHaveBeenCalledWith(
         expect.objectContaining({ student_id: 'student-1', code: expect.any(String) }),
@@ -110,7 +119,7 @@ describe('referral loop', () => {
   })
 
   describe('POST /api/study/referral/redeem', () => {
-    it('grants both sides +5 and marks the redemption rewarded', async () => {
+    it('grants both sides the signup reward and marks the redemption rewarded', async () => {
       enqueue('study_referral_redemptions', { data: null })                 // not yet referred
       enqueue('study_referral_codes', { data: { student_id: 'referrer-1' } }) // code owner
       enqueue('study_referral_redemptions', { data: { id: 'redemption-1' } }) // insert
@@ -123,15 +132,15 @@ describe('referral loop', () => {
       const res = await POST(makeRequest({ code: 'abc234' }))
       expect(res.status).toBe(200)
       const body = await res.json()
-      expect(body).toEqual({ success: true, creditsAdded: REFERRAL_REWARD_CREDITS })
+      expect(body).toEqual({ success: true, creditsAdded: REFERRAL_SIGNUP_CREDITS })
 
       // Both sides incremented by the reward amount.
       expect(rpcMock).toHaveBeenCalledTimes(2)
       expect(rpcMock).toHaveBeenCalledWith('increment_study_purchased_credits', {
-        p_student_id: 'student-1', p_delta: REFERRAL_REWARD_CREDITS,
+        p_student_id: 'student-1', p_delta: REFERRAL_SIGNUP_CREDITS,
       })
       expect(rpcMock).toHaveBeenCalledWith('increment_study_purchased_credits', {
-        p_student_id: 'referrer-1', p_delta: REFERRAL_REWARD_CREDITS,
+        p_student_id: 'referrer-1', p_delta: REFERRAL_SIGNUP_CREDITS,
       })
       expect(updateChain.update).toHaveBeenCalledWith(expect.objectContaining({ rewarded: true }))
     })
@@ -187,7 +196,7 @@ describe('referral loop', () => {
       // Only the referrer got a credit increment.
       expect(rpcMock).toHaveBeenCalledTimes(1)
       expect(rpcMock).toHaveBeenCalledWith('increment_study_purchased_credits', {
-        p_student_id: 'referrer-1', p_delta: REFERRAL_REWARD_CREDITS,
+        p_student_id: 'referrer-1', p_delta: REFERRAL_SIGNUP_CREDITS,
       })
     })
 

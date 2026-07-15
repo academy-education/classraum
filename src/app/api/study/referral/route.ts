@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
-import { REFERRAL_REWARD_CREDITS, generateReferralCode } from '@/lib/study/referral'
+import { REFERRAL_SIGNUP_CREDITS, REFERRAL_PREMIUM_CREDITS, generateReferralCode } from '@/lib/study/referral'
 
 /**
  * GET /api/study/referral — the caller's referral code + stats.
@@ -13,8 +13,9 @@ import { REFERRAL_REWARD_CREDITS, generateReferralCode } from '@/lib/study/refer
  * rather than 500 on the astronomically rare hit.
  *
  * Stats: friends invited = redemptions where referrer_id = me; credits
- * earned = rewarded redemptions × REFERRAL_REWARD_CREDITS (unrewarded
- * rows — e.g. a referee who had no subscription row yet — don't count).
+ * earned = signup rewards (rewarded rows × SIGNUP) + premium-conversion
+ * rewards (converted rows × PREMIUM). Unrewarded rows — e.g. a referee who
+ * had no subscription row yet — don't count toward the signup total.
  */
 
 export const dynamic = 'force-dynamic'
@@ -70,19 +71,27 @@ export async function GET(req: NextRequest) {
 
   const { data: redemptions } = await supabaseAdmin
     .from('study_referral_redemptions')
-    .select('rewarded')
+    .select('rewarded, converted')
     .eq('referrer_id', user.id)
 
   const rows = redemptions ?? []
   const referrals = rows.length
   const rewardedCount = rows.filter(r => r.rewarded === true).length
+  const convertedCount = rows.filter(r => r.converted === true).length
+  const creditsEarned =
+    rewardedCount * REFERRAL_SIGNUP_CREDITS + convertedCount * REFERRAL_PREMIUM_CREDITS
 
   return NextResponse.json({
     code,
-    rewardPerReferral: REFERRAL_REWARD_CREDITS,
+    // Two-stage reward amounts so the UI can explain both.
+    signupReward: REFERRAL_SIGNUP_CREDITS,
+    premiumReward: REFERRAL_PREMIUM_CREDITS,
+    // Back-compat: existing clients read rewardPerReferral as the headline.
+    rewardPerReferral: REFERRAL_SIGNUP_CREDITS,
     stats: {
       referrals,
-      creditsEarned: rewardedCount * REFERRAL_REWARD_CREDITS,
+      creditsEarned,
+      converted: convertedCount,
     },
   })
 }
