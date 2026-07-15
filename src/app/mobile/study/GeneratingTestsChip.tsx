@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Loader2, CheckCircle2, AlertTriangle, ArrowRight } from 'lucide-react'
+import { Loader2, CheckCircle2, AlertTriangle, ArrowRight } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'

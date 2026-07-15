@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp } from 'lucide-react'
+import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'

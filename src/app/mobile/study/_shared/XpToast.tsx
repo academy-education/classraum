@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Sparkles, Trophy } from 'lucide-react'
+import { Sparkles, Trophy } from '@/app/mobile/study/_shared/icons'
 import { hapticImpact, hapticNotification, hapticTap } from '@/lib/nativeHaptics'
 import { PathMascot } from './PathMascot'
 

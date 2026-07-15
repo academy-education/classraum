@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useState, type ComponentType } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Loader2, type LucideProps } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Loader2, type LucideProps } from '@/app/mobile/study/_shared/icons'
 
 /**
  * Shared study-mode primitives. Every new study surface should use

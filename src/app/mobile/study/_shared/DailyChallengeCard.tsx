@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Target, CheckCircle2 } from 'lucide-react'
+import { Target, CheckCircle2 } from '@/app/mobile/study/_shared/icons'
 import { SkeletonCard, SkeletonBlock } from '../skeletons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'

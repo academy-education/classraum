@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Home, ClipboardList, FileText, User, BookOpen, Route, Shuffle, Trophy } from 'lucide-react'
+import { Home, ClipboardList, FileText, User, BookOpen, Route, Shuffle, Trophy } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { resolveMode, storeMode, modeForPath } from '@/lib/study/currentMode'
 

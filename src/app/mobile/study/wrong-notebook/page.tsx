@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, Bookmark, Image as ImageIcon, Search, X, AlertCircle } from 'lucide-react'
+import { ArrowLeft, BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, Bookmark, BookmarkCheck, Image as ImageIcon, Search, X, AlertCircle } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -530,7 +530,7 @@ function BookmarkedSnapsSection({ snaps, ko }: { snaps: BookmarkedSnap[]; ko: bo
     <section className="mb-6">
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 inline-flex items-center gap-2">
-          <Bookmark className="w-4 h-4 text-amber-600 fill-amber-600" />
+          <BookmarkCheck className="w-4 h-4 text-amber-600" />
           {ko ? '북마크한 사진' : 'Bookmarked snaps'}
         </h2>
         <span className="text-[11px] text-gray-500 font-normal tabular-nums">
@@ -551,7 +551,7 @@ function BookmarkedSnapsSection({ snaps, ko }: { snaps: BookmarkedSnap[]; ko: bo
               </div>
             )}
             <div className="absolute top-1.5 right-1.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500 text-white shadow-sm">
-              <Bookmark className="w-2.5 h-2.5 fill-current" />
+              <BookmarkCheck className="w-2.5 h-2.5" />
             </div>
           </div>
         ))}

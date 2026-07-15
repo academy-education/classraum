@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Flame } from 'lucide-react'
+import { Flame } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useTranslation } from '@/hooks/useTranslation'

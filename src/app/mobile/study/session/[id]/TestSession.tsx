@@ -6,7 +6,7 @@ import {
   Loader2, RefreshCw, ArrowRight, ArrowLeft, Clock, CheckCircle2,
   AlertTriangle, ChevronDown, ChevronUp,
   Mic, MicOff, Coins,
-} from 'lucide-react'
+} from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useAuth } from '@/contexts/AuthContext'
 import { buyCreditPack } from '@/lib/study/purchase-credits'

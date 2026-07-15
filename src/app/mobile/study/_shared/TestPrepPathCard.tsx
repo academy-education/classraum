@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Sparkles, Target, ArrowRight, Loader2 } from 'lucide-react'
+import { Sparkles, Target, ArrowRight, Loader2 } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { getPathTemplate } from '@/lib/study-path'

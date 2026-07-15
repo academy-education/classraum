@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Loader2, Volume2, Play, Eye, EyeOff } from 'lucide-react'
+import { Loader2, Volume2, Play, Eye, EyeOff } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { PassageParagraphs } from './helpers'

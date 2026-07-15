@@ -6,7 +6,7 @@ import Link from 'next/link'
 import {
   Sparkles, CheckCircle2, Lock, Play, Trophy, Target,
   Zap, ChevronRight, Repeat, X, Plus, Loader2,
-} from 'lucide-react'
+} from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'

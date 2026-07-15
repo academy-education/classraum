@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { BookOpen, Camera, Shuffle, Trophy, X, ChevronRight, ChevronLeft } from 'lucide-react'
+import { BookOpen, Camera, Shuffle, Trophy, X, ChevronRight, ChevronLeft } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Users, UserPlus, Copy, Check, Search, X, Loader2, Trophy, Clock, Swords } from 'lucide-react'
+import { Users, UserPlus, Copy, Check, Search, X, Loader2, Trophy, Clock, Swords } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'

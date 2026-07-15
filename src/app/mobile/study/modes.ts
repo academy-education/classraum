@@ -1,4 +1,4 @@
-import { ListChecks, Layers, FileText, Mic } from 'lucide-react'
+import { ListChecks, Layers, FileText, Mic } from '@/app/mobile/study/_shared/icons'
 
 /**
  * Study modes — single source of truth used by topic picker, session

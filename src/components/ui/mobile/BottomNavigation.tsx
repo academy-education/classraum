@@ -94,7 +94,10 @@ export function BottomNavigation() {
                   "w-[22px] h-[22px] transition-all duration-300 ease-out group-active:scale-90",
                   active ? "text-primary scale-105" : "text-gray-400"
                 )}
-                strokeWidth={active ? 2.3 : 1.8}
+                // Phosphor uses weight (not strokeWidth): the active tab
+                // fills solid for a clear iOS-style emphasis; idle tabs
+                // stay at the regular outline.
+                weight={active ? 'fill' : 'regular'}
               />
               <span
                 className={cn(

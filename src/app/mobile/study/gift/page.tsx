@@ -5,7 +5,7 @@ import { Capacitor } from '@capacitor/core'
 import {
   Gift, Ticket, Loader2, Copy, Check, AlertCircle, CheckCircle2,
   ExternalLink, Sparkles,
-} from 'lucide-react'
+} from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { authHeaders } from '@/lib/auth-headers'

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { RotateCcw } from 'lucide-react'
+import { RotateCcw } from '@/app/mobile/study/_shared/icons'
 
 /**
  * UndoToast — global bottom-center toast with an inline Undo button.

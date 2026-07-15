@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
-import { Sparkles, Target, GraduationCap, Clock, ArrowRight, Check, Loader2, Globe, AtSign, X } from 'lucide-react'
+import { Sparkles, Target, GraduationCap, Clock, ArrowRight, Check, Loader2, Globe, AtSign, X } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { track } from '@/lib/study/track-client'
 import { useTranslation } from '@/hooks/useTranslation'

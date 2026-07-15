@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { Library as LibraryIcon, ListChecks, Layers, ClipboardList, ChevronDown, ChevronRight, Search, X, ArrowRight, Check } from 'lucide-react'
+import { Library as LibraryIcon, ListChecks, Layers, ClipboardList, ChevronDown, ChevronRight, Search, X, ArrowRight, Check } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyFilterChip } from '../_shared/primitives'
 import { SkeletonRowList } from '../skeletons'
 import { authHeaders } from '@/lib/auth-headers'

@@ -10,7 +10,7 @@ import {
   PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, LucideIcon,
   MoreHorizontal, Lock, Target as TargetIcon,
   Gift, X, Check, Loader2,
-} from 'lucide-react'
+} from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw, Sparkles } from 'lucide-react'
+import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw, Sparkles } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { PathMascot } from '../../_shared/PathMascot'

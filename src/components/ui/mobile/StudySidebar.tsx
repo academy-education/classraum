@@ -49,7 +49,9 @@ export function StudySidebar() {
           >
             <Icon
               className={cn('w-5 h-5 transition-transform group-active:scale-90', active ? 'scale-105' : '')}
-              strokeWidth={active ? 2.3 : 1.9}
+              // Phosphor uses weight, not strokeWidth: fill the active tab
+              // for emphasis, regular outline when idle.
+              weight={active ? 'fill' : 'regular'}
             />
             <span className="truncate">{item.label}</span>
           </button>

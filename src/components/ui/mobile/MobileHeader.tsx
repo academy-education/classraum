@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { Bell, User, MessageSquare, ChevronDown, Zap } from 'lucide-react'
+import { Bell, User, MessageSquare, ChevronDown, Zap } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import Link from 'next/link'
@@ -261,7 +261,7 @@ export function MobileHeader() {
                 title={language === 'korean' ? '모의고사 생성 크레딧' : 'Mock-test credits'}
                 className="inline-flex items-center gap-1 h-9 pl-2 pr-2.5 rounded-full bg-primary/10 hover:bg-primary/15 active:bg-primary/20 transition-colors focus:outline-none"
               >
-                <Zap className="w-4 h-4 text-primary" fill="currentColor" strokeWidth={0} />
+                <Zap className="w-4 h-4 text-primary" weight="fill" />
                 <span className="text-[13px] font-bold text-primary tabular-nums leading-none">{credits}</span>
               </Link>
             )}

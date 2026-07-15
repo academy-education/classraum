@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
-import { Loader2, Mic } from 'lucide-react'
+import { Loader2, Mic } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { hapticImpact } from '@/lib/nativeHaptics'
 import type { SpeechSignals } from './types'
