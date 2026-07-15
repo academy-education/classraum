@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode, useCallback } from 'react'
+import { ReactNode, useCallback, useEffect, useRef } from 'react'
 import { BottomNavigation } from '@/components/ui/mobile/BottomNavigation'
 import { StudySidebar } from '@/components/ui/mobile/StudySidebar'
 import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
@@ -19,6 +19,7 @@ import { appInitTracker } from '@/utils/appInitializationTracker'
 import { usePushNotifications } from '@/hooks/usePushNotifications'
 import { useNativeApp } from '@/hooks/useNativeApp'
 import { useTheme } from '@/hooks/useTheme'
+import { fetchThemeFromAccount } from '@/lib/theme-account'
 
 interface MobileLayoutProps {
   children: ReactNode
@@ -39,7 +40,22 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
   // where the appearance setting lives). Without this, dark mode only
   // took effect once Profile mounted its own useTheme; a client-side
   // nav into any other study page left the boot-script class stale.
-  useTheme()
+  const { setTheme } = useTheme()
+
+  // Hydrate the theme from the ACCOUNT once per sign-in. The on-device
+  // store is only a pre-paint cache (and can be wiped on a native
+  // relaunch); the account's user_preferences.theme is the durable source
+  // of truth, so a fresh install / new device shows the saved appearance.
+  const themeHydratedFor = useRef<string | null>(null)
+  useEffect(() => {
+    const uid = user?.userId
+    if (!uid || themeHydratedFor.current === uid) return
+    themeHydratedFor.current = uid
+    void (async () => {
+      const saved = await fetchThemeFromAccount(uid)
+      if (saved) setTheme(saved)
+    })()
+  }, [user?.userId, setTheme])
 
   // Handle app resume - refresh data when coming back from background
   const handleAppResume = useCallback(() => {

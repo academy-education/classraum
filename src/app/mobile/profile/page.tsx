@@ -8,6 +8,7 @@ import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useTheme } from '@/hooks/useTheme'
+import { saveThemeToAccount } from '@/lib/theme-account'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
@@ -537,9 +538,16 @@ function MobileProfilePageContent() {
             </SelectContent>
           </Select>
 
-          {/* Appearance — light / dark / system. Applies instantly via
-              the .dark class; persists in the global store. */}
-          <Select value={theme} onValueChange={(value) => { hapticTap(); setTheme(value as 'light' | 'dark' | 'system') }}>
+          {/* Appearance — light / dark / system. Applies instantly via the
+              .dark class, caches in the global store for pre-paint, and
+              persists to the account so it survives relaunch + syncs across
+              devices. */}
+          <Select value={theme} onValueChange={(value) => {
+            hapticTap()
+            const next = value as 'light' | 'dark' | 'system'
+            setTheme(next)
+            if (user?.userId) void saveThemeToAccount(user.userId, next)
+          }}>
             <SelectTrigger className="w-full h-auto p-4 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
               <div className="flex items-center gap-3 w-full">
                 <div className="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0">
