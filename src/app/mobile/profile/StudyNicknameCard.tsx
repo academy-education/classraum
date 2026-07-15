@@ -5,7 +5,6 @@ import { AtSign, Check, Loader2 } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
-import { Button } from '@/components/ui/button'
 
 /**
  * Study nickname editor for the profile page — the public handle shown on
@@ -125,14 +124,14 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
             placeholder={ko ? '닉네임을 정하세요' : 'Choose a nickname'}
             className="flex-1 min-w-0 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent disabled:bg-gray-100"
           />
-          <Button
-            className="flex-shrink-0"
-            size="sm"
+          <button
+            type="button"
             onClick={() => void save()}
             disabled={locked || !dirty || saving || status === 'taken' || status === 'invalid' || status === 'checking' || trimmed.length === 0}
+            className="flex-shrink-0 inline-flex items-center justify-center h-10 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <Check className="w-4 h-4" /> : (ko ? '저장' : 'Save')}
-          </Button>
+          </button>
         </div>
         <p className={`text-xs mt-2 px-0.5 ${hintColor}`}>{hint}</p>
       </Card>
