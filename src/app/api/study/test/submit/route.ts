@@ -234,12 +234,19 @@ export async function POST(req: NextRequest) {
 
   const rows = gradingQuestions.map((q, i) => {
     const studentAnswer = body.answers[i] ?? null
-    const isCorrect = gradeAnswer(q, studentAnswer)
+    // Open-response items (writing / speaking interview) have no objective
+    // answer key — they're rubric-graded elsewhere. Store is_correct=null
+    // (not true) so downstream aggregators that count is_correct — the
+    // lifetime accuracy stat, achievements — don't treat "wrote enough
+    // characters" as a correct answer and inflate the number. They're
+    // already excluded from the weighted test score via weightedScore.
+    const openResp = isOpenResponse(q)
+    const isCorrect = openResp ? false : gradeAnswer(q, studentAnswer)
     const w = weightedScore(q, studentAnswer)
     weightedTotal += w.total
     weightedCorrect += w.correct
     const displayCorrect = displayCorrectAnswer(q)
-    if (!isCorrect && !isOpenResponse(q) && q.prompt) {
+    if (!isCorrect && !openResp && q.prompt) {
       wrongToSeed.push({
         front: q.prompt,
         back: q.explanation ? `${displayCorrect}\n\n${q.explanation}` : displayCorrect,
@@ -249,7 +256,7 @@ export async function POST(req: NextRequest) {
       index: i,
       correct: isCorrect,
       correctAnswer: displayCorrect,
-      ...(isOpenResponse(q) ? { ungraded: true } : {}),
+      ...(openResp ? { ungraded: true } : {}),
     })
     return {
       session_id: body.sessionId,
@@ -260,7 +267,8 @@ export async function POST(req: NextRequest) {
       position: i,
       question: q,
       student_answer: studentAnswer,
-      is_correct: isCorrect,
+      // null = not objectively gradable (open response); true/false otherwise.
+      is_correct: openResp ? null : isCorrect,
       ai_explanation: q.explanation,
       time_spent_seconds: studentAnswer == null ? null : perQuestionTime,
     }
