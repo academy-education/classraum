@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resolvePlan, planFeatures, STUDY_PLANS, CREDIT_PACK } from '@/lib/study/plans'
+import { resolvePlan, planFeatures, STUDY_PLANS, CREDIT_PACK, CREDIT_PACKS } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -46,6 +46,6 @@ export async function GET(req: NextRequest) {
       total: (sub.grant_credits_remaining ?? 0) + (sub.purchased_credits_remaining ?? 0),
     },
     features: planFeatures(tier),
-    catalog: { plans: Object.values(STUDY_PLANS), pack: CREDIT_PACK },
+    catalog: { plans: Object.values(STUDY_PLANS), pack: CREDIT_PACK, packs: CREDIT_PACKS },
   })
 }

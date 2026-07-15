@@ -89,19 +89,37 @@ describe('POST /api/study/subscription/purchase-pack', () => {
     expect(chargeMock).not.toHaveBeenCalled()
   })
 
-  it('denies with 403 premium_required for non-premium plans', async () => {
+  it('allows a General (non-premium) subscriber to buy a pack', async () => {
     enqueue('study_subscriptions', { data: { ...PREMIUM_SUB, plan: 'general_v1' } })
+    enqueue('study_credit_ledger', { error: null })
     const res = await POST(makeRequest({}))
-    expect(res.status).toBe(403)
-    expect(await res.json()).toEqual({ error: 'premium required', code: 'premium_required' })
-    expect(chargeMock).not.toHaveBeenCalled()
+    expect(res.status).toBe(200)
+    expect(await res.json()).toMatchObject({ success: true, creditsAdded: CREDIT_PACK.credits })
+    expect(chargeMock).toHaveBeenCalled()
+  })
+
+  it('allows a trial subscriber (with a billing key) to buy a pack', async () => {
+    enqueue('study_subscriptions', { data: { ...PREMIUM_SUB, status: 'trial' } })
+    enqueue('study_credit_ledger', { error: null })
+    const res = await POST(makeRequest({}))
+    expect(res.status).toBe(200)
+    expect(chargeMock).toHaveBeenCalled()
+  })
+
+  it('charges the requested pack size when a packId is passed', async () => {
+    enqueue('study_subscriptions', { data: PREMIUM_SUB })
+    enqueue('study_credit_ledger', { error: null })
+    const res = await POST(makeRequest({ packId: 'pack40_v1' }))
+    expect(res.status).toBe(200)
+    expect(await res.json()).toMatchObject({ success: true, creditsAdded: 40 })
+    expect(chargeMock).toHaveBeenCalledWith(expect.objectContaining({ amount: 36900 }))
   })
 
   it('denies with 402 when no billing key is on file', async () => {
     enqueue('study_subscriptions', { data: { ...PREMIUM_SUB, portone_subscription_id: null } })
     const res = await POST(makeRequest({}))
     expect(res.status).toBe(402)
-    expect(await res.json()).toEqual({ error: 'no payment method on file' })
+    expect(await res.json()).toEqual({ error: 'no payment method on file', code: 'no_billing_key' })
     expect(chargeMock).not.toHaveBeenCalled()
   })
 

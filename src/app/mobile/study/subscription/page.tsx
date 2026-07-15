@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
 import {
   CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw,
-  XCircle, ExternalLink, Check, Sparkles, Coins, Plus,
+  XCircle, ExternalLink, Check, Sparkles, Coins,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../skeletons'
@@ -42,7 +42,7 @@ interface SubPayload {
   tier?: 'general' | 'premium'
   planMeta?: CatalogPlan
   credits?: { grant: number; purchased: number; total: number }
-  catalog?: { plans: CatalogPlan[]; pack: { id: string; credits: number; priceWon: number } }
+  catalog?: { plans: CatalogPlan[]; pack: { id: string; credits: number; priceWon: number }; packs?: { id: string; credits: number; priceWon: number }[] }
 }
 
 type Acting = 'cancel' | 'reactivate' | 'pack' | `checkout:${string}` | `change:${string}` | null
@@ -105,6 +105,7 @@ export default function SubscriptionPage() {
     { id: 'premium_v1', tier: 'premium', priceWon: 16900, monthlyCredits: 20, name_en: 'Premium', name_ko: '프리미엄' },
   ]
   const pack = data?.catalog?.pack ?? { id: 'pack5_v1', credits: 5, priceWon: 6900 }
+  const packs = data?.catalog?.packs ?? [pack]
 
   const isActive = sub?.status === 'active'
   const isTrial = sub?.status === 'trial'
@@ -115,7 +116,6 @@ export default function SubscriptionPage() {
   const currentPlanId = isActive
     ? (data?.planMeta?.id ?? sub?.plan ?? null)
     : isFree ? 'free_v1' : null
-  const currentTier = data?.tier ?? 'general'
   const credits = data?.credits ?? {
     grant: sub?.grant_credits_remaining ?? 0,
     purchased: sub?.purchased_credits_remaining ?? 0,
@@ -218,28 +218,37 @@ export default function SubscriptionPage() {
     }
   }, [acting, ko, load])
 
-  const buyPack = useCallback(async () => {
+  const buyPack = useCallback(async (packId: string, credits: number) => {
     if (acting !== null) return
     setActing('pack')
     setError(null)
     setSuccessMessage(null)
     try {
       const headers = await authHeaders()
-      const res = await fetch('/api/study/subscription/purchase-pack', { method: 'POST', headers })
+      const res = await fetch('/api/study/subscription/purchase-pack', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packId }),
+      })
       const body = await res.json().catch(() => ({}))
       if (!res.ok) {
+        // No card on file (e.g. trial) → point them at checkout instead
+        // of a dead error.
+        if (body.code === 'no_billing_key') {
+          throw new Error(ko ? '결제 수단을 먼저 등록해 주세요 — 플랜을 시작하면 등록됩니다.' : 'Add a payment method first — start a plan to set one up.')
+        }
         throw new Error(typeof body.message === 'string' ? body.message : (ko ? '크레딧 구매에 실패했어요.' : 'Credit purchase failed.'))
       }
       await load()
       setSuccessMessage(ko
-        ? `크레딧 ${pack.credits}개가 추가되었어요.`
-        : `${pack.credits} credits added to your account.`)
+        ? `크레딧 ${credits}개가 추가되었어요.`
+        : `${credits} credits added to your account.`)
     } catch (e) {
       setError((e instanceof Error && e.message) || (ko ? '크레딧 구매에 실패했어요.' : 'Credit purchase failed.'))
     } finally {
       setActing(null)
     }
-  }, [acting, ko, load, pack.credits])
+  }, [acting, ko, load])
 
   if (loading) {
     // Settings surface → skeleton (Raumi is reserved for studying
@@ -317,18 +326,35 @@ export default function SubscriptionPage() {
                 ? `모의고사 1회 생성에 크레딧 1개가 사용돼요. 이번 달 제공 ${credits.grant}개${credits.purchased > 0 ? ` + 구매 ${credits.purchased}개` : ''} 남았어요. 생성에 실패하면 크레딧은 자동으로 환불됩니다.`
                 : `Each generated mock test uses 1 credit. ${credits.grant} from this month's grant${credits.purchased > 0 ? ` + ${credits.purchased} purchased` : ''} remaining. Failed generations are refunded automatically.`}
             </p>
-            {isActive && currentTier === 'premium' && !isNative && (
-              <button
-                type="button"
-                onClick={() => void buyPack()}
-                disabled={acting !== null}
-                className="mt-3.5 inline-flex items-center gap-1.5 h-10 px-4 rounded-full bg-amber-500/10 text-amber-700 ring-1 ring-amber-200/70 text-[13px] font-semibold hover:bg-amber-500/15 active:scale-[0.98] disabled:opacity-60 transition-all"
-              >
-                {acting === 'pack' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
-                {ko
-                  ? `크레딧 ${pack.credits}개 추가 — ${formatWon(pack.priceWon)}`
-                  : `Add ${pack.credits} credits — ${formatWon(pack.priceWon)}`}
-              </button>
+            {/* Credit top-ups — open to any active member (General too),
+                three sizes with a lower per-credit price on bigger packs.
+                Native app hides in-app purchases (App Store IAP rules). */}
+            {isActive && !isNative && (
+              <div className="mt-3.5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-2">
+                  {ko ? '크레딧 충전' : 'Top up credits'}
+                </p>
+                <div className="grid grid-cols-3 gap-2">
+                  {packs.map(p => (
+                    <button
+                      key={p.id}
+                      type="button"
+                      onClick={() => void buyPack(p.id, p.credits)}
+                      disabled={acting !== null}
+                      className="flex flex-col items-center justify-center gap-0.5 h-16 rounded-xl bg-amber-500/10 text-amber-700 ring-1 ring-amber-200/70 hover:bg-amber-500/15 active:scale-[0.98] disabled:opacity-60 transition-all"
+                    >
+                      {acting === 'pack' ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <>
+                          <span className="text-[14px] font-bold tabular-nums">+{p.credits}</span>
+                          <span className="text-[11px] font-semibold tabular-nums">{formatWon(p.priceWon)}</span>
+                        </>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
         )}
@@ -416,7 +442,7 @@ export default function SubscriptionPage() {
                   <Feature ok={premium}>
                     {ko ? '점수 추이 + 상세 분석' : 'Score trend + analytics'}
                   </Feature>
-                  <Feature ok={premium}>
+                  <Feature ok={!isFreePlan}>
                     {ko ? '크레딧 추가 구매 가능' : 'Buy extra credit packs'}
                   </Feature>
                 </ul>

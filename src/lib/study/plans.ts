@@ -56,14 +56,27 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
   },
 }
 
-/** Credit top-up pack — Premium members only. Purchased credits never
- *  expire and are consumed only after the monthly grant runs out. */
-export const CREDIT_PACK = {
-  id: 'pack5_v1',
-  credits: 5,
-  priceWon: 6900,
-  orderName: 'Classraum Study — 5 Test Credits',
+/** Credit top-up packs — available to any active/trial subscriber (not
+ *  just Premium). Bigger packs give a lower per-credit price to raise
+ *  AOV. Purchased credits never expire and are consumed only after the
+ *  monthly grant runs out. */
+export interface CreditPack {
+  id: string
+  credits: number
+  priceWon: number
+  orderName: string
 }
+export const CREDIT_PACKS: CreditPack[] = [
+  { id: 'pack5_v1', credits: 5, priceWon: 6900, orderName: 'Classraum Study — 5 Test Credits' },
+  { id: 'pack15_v1', credits: 15, priceWon: 16900, orderName: 'Classraum Study — 15 Test Credits' },
+  { id: 'pack40_v1', credits: 40, priceWon: 36900, orderName: 'Classraum Study — 40 Test Credits' },
+]
+/** Resolve a pack id to its catalog entry (defaults to the 5-pack). */
+export function resolvePack(packId: string | null | undefined): CreditPack {
+  return CREDIT_PACKS.find(p => p.id === packId) ?? CREDIT_PACKS[0]!
+}
+/** Back-compat alias — the smallest pack. */
+export const CREDIT_PACK = CREDIT_PACKS[0]!
 
 /** Credits granted when the 7-day trial row is auto-provisioned. */
 export const TRIAL_CREDITS = 3
@@ -86,7 +99,9 @@ export function planFeatures(tier: StudyTier) {
     audioSpeakingGrading: tier === 'premium',
     unlimitedSnap: tier === 'premium',
     scoreAnalytics: tier === 'premium',
-    creditPacks: tier === 'premium',
+    // Credit top-ups are open to any paid/trial tier (General runs out
+    // of its 8 monthly credits fast — refusing their money was a leak).
+    creditPacks: true,
     /** Daily snap-to-solve cap for non-premium users. */
     snapDailyLimit: tier === 'premium' ? Infinity : 5,
   }
