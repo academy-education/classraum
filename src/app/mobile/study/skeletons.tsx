@@ -3,6 +3,18 @@
 /**
  * Shared shimmer skeleton primitives for the study surfaces.
  *
+ * ── WHEN TO USE (the study loading rule) ─────────────────────────────
+ *   SKELETONS for BROWSING — any page whose initial load is a plain data
+ *   fetch: the landing hub, lists (tests/history/wrong-notebook/library),
+ *   stats, leagues, and settings/commerce (preferences/subscription/gift/
+ *   referral/builder). Compose Skeleton* to mirror the loaded layout.
+ *   MASCOT (Raumi) for STUDYING — session entry + AI-generation waits
+ *   (test/practice/flashcard/response generation, snap solving, grading).
+ *   See src/app/mobile/study/_shared/MascotLoader.tsx.
+ * Never a bare <Loader2> for a page's first paint — that's for inline
+ * button-busy states only.
+ * ─────────────────────────────────────────────────────────────────────
+ *
  * Consolidates the four-or-five ad-hoc loading states (mix of
  * Loader2 spinners + landing-only shimmer cards) into reusable
  * building blocks so every loading state across the study app

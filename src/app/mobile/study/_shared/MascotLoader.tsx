@@ -9,6 +9,14 @@ export const MASCOT_CYCLE_MS = 3200
 const APPEAR_DELAY_MS = 300
 
 /**
+ * ── WHEN TO USE (the study loading rule) ─────────────────────────────
+ *   MASCOT (Raumi) for STUDYING — session entry + AI-generation waits
+ *   (test/practice/flashcard/response generation, snap solving, grading).
+ *   Centered loading mascots are size 96. SKELETONS for BROWSING — plain
+ *   data-fetch page loads (landing, lists, stats, leagues, settings).
+ *   See src/app/mobile/study/skeletons.tsx.
+ * ─────────────────────────────────────────────────────────────────────
+ *
  * Show/hide gate for the study loading mascot with ONE rule everywhere:
  * Raumi either never appears (load finished inside the 300ms grace
  * window) or he appears and performs a full animation cycle — no
