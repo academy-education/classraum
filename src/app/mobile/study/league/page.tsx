@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus } from 'lucide-react'
+import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition } from '../_shared/primitives'
 import { SkeletonCard, SkeletonBlock, SkeletonRowList } from '../skeletons'
+import { SegmentedTabs } from '../_shared/SegmentedTabs'
 
 /**
  * /mobile/study/league — weekly cohort leaderboard.
@@ -96,24 +97,13 @@ function LeagueInner() {
 
   const tier = TIERS.find(t => t.key === data?.tier) ?? TIERS[0]
 
-  // Not in a league yet — mirror the review page's empty state exactly:
-  // header on top, the shared StudyEmptyState vertically centered in the
-  // rest of the viewport (not top-anchored inside the scroll container).
-  if (!loading && !loadFailed && !data?.joined) {
-    return (
-      <div className="flex flex-col h-full bg-gray-50">
-        <StudyPageHeader
-          icon={Trophy}
-          iconColorClass="text-amber-600 bg-amber-50"
-          eyebrow={String(t('study.league.eyebrow'))}
-          title={String(t('study.league.title'))}
-        />
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <NotJoinedState ko={ko} />
-        </div>
-      </div>
-    )
-  }
+  // League vs Friends view. Deep-linkable via ?view=friends (the friends
+  // page links here) so "Friends leaderboard" lands on the right tab.
+  const [view, setView] = useState<'league' | 'friends'>('league')
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (new URLSearchParams(window.location.search).get('view') === 'friends') setView('friends')
+  }, [])
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
@@ -125,6 +115,21 @@ function LeagueInner() {
           title={String(t('study.league.title'))}
         />
         <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14">
+        <div className="mb-5">
+          <SegmentedTabs
+            options={[
+              { value: 'league', label: ko ? '리그' : 'League' },
+              { value: 'friends', label: ko ? '친구' : 'Friends' },
+            ]}
+            value={view}
+            onChange={(v) => setView(v as 'league' | 'friends')}
+          />
+        </div>
+        {view === 'friends' ? (
+          <StudyPageTransition><FriendsLeaderboardView ko={ko} /></StudyPageTransition>
+        ) : (!loading && !loadFailed && !data?.joined) ? (
+          <div className="py-10"><NotJoinedState ko={ko} /></div>
+        ) : (
         <StudyPageTransition>
         {loading ? (
           <div className="space-y-6">
@@ -172,8 +177,95 @@ function LeagueInner() {
           </div>
         ) : null}
         </StudyPageTransition>
+        )}
         </div>
       </div>
+    </div>
+  )
+}
+
+/** Friends leaderboard — you + accepted friends ranked by this week's XP.
+ *  Reuses the league row visuals; empty state routes into adding friends. */
+function FriendsLeaderboardView({ ko }: { ko: boolean }) {
+  const [rows, setRows] = useState<LeaderboardRow[] | null>(null)
+  const [failed, setFailed] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    setFailed(false)
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/friends/leaderboard', { headers })
+        if (!res.ok) throw new Error()
+        const json = await res.json()
+        if (!cancelled) setRows(json.rows as LeaderboardRow[])
+      } catch {
+        if (!cancelled) setFailed(true)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
+
+  const manageBtn = (
+    <Link href="/mobile/study/friends"
+      className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gray-900 text-white text-[12.5px] font-semibold hover:bg-gray-800 active:scale-95 transition">
+      <UserPlus className="w-3.5 h-3.5" />{ko ? '친구 관리' : 'Manage friends'}
+    </Link>
+  )
+
+  if (failed) {
+    return (
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center">
+        <p className="text-[13.5px] text-gray-600">{ko ? '친구 순위를 불러오지 못했어요.' : "Couldn't load the friends leaderboard."}</p>
+      </div>
+    )
+  }
+  if (!rows) return <SkeletonRowList count={4} />
+
+  // Only the caller present → no friends yet.
+  if (rows.length <= 1) {
+    return (
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
+        <div className="w-12 h-12 mx-auto rounded-2xl bg-amber-50 ring-1 ring-amber-100 flex items-center justify-center">
+          <Users className="w-5 h-5 text-amber-500" />
+        </div>
+        <div>
+          <p className="text-[14px] font-semibold text-gray-900">{ko ? '친구를 추가해 경쟁하세요' : 'Add friends to compete'}</p>
+          <p className="text-[12.5px] text-gray-500 mt-1">{ko ? '친구와 이번 주 XP를 겨뤄보세요.' : "Race your friends on this week's XP."}</p>
+        </div>
+        <div className="flex justify-center pt-1">{manageBtn}</div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between px-1">
+        <h3 className="text-[13px] font-semibold text-gray-900">{ko ? '이번 주 친구 순위' : "Friends · this week"}</h3>
+        {manageBtn}
+      </div>
+      <ol className="space-y-1.5">
+        {rows.map((r, i) => (
+          <li key={r.student_id}
+            style={{ animationDelay: `${Math.min(i, 10) * 35}ms` }}
+            className={`flex items-center gap-3 pl-2 pr-3.5 py-2.5 rounded-xl ring-1 animate-card-in opacity-0 ${
+              r.is_me ? 'bg-amber-50 ring-amber-200' : 'bg-white ring-gray-200/70'
+            }`}>
+            <span className={`flex-shrink-0 w-6 text-center text-[13px] font-bold tabular-nums ${r.rank === 1 ? 'text-amber-500' : 'text-gray-400'}`}>{r.rank}</span>
+            <span className={`flex-shrink-0 w-8 h-8 rounded-full ${hueOf(r.student_id)} flex items-center justify-center text-[11px] font-bold`}>
+              {initialsOf(r.display_name)}
+            </span>
+            <span className={`flex-1 min-w-0 truncate text-[13.5px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
+              {r.display_name}{r.is_me && <span className="text-[10px] font-semibold text-amber-600 ml-1.5">({ko ? '나' : 'me'})</span>}
+            </span>
+            {r.rank === 1 && r.xp_this_week > 0 && <Crown className="flex-shrink-0 w-3.5 h-3.5 text-amber-400" />}
+            <span className="flex-shrink-0 inline-flex items-center gap-1 text-[12.5px] tabular-nums font-semibold text-gray-700">
+              <Sparkles className="w-3 h-3 text-amber-500" />{r.xp_this_week}
+            </span>
+          </li>
+        ))}
+      </ol>
     </div>
   )
 }
