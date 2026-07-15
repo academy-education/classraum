@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
 import { Share } from '@capacitor/share'
-import { Gift, Copy, Check, Users, Sparkles, Loader2, Ticket, MessageCircle, Share2 } from 'lucide-react'
+import { Gift, Copy, Check, Users, Sparkles, Loader2, Ticket, Share2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'
@@ -27,6 +27,16 @@ interface ReferralData {
   code: string
   rewardPerReferral: number
   stats: { referrals: number; creditsEarned: number }
+}
+
+/** Official KakaoTalk speech-bubble mark. Fills with currentColor so it
+ *  inherits the button's near-black text on the #FEE500 yellow. */
+function KakaoIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 256 256" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M128 36C70.562 36 24 72.713 24 118.008c0 29.28 19.466 54.968 48.766 69.397-1.61 5.606-10.35 35.744-10.696 38.108 0 0-.21 1.785.94 2.465 1.15.68 2.503.148 2.503.148 3.307-.462 38.315-25.048 44.372-29.315 6.06.856 12.3 1.31 18.665 1.31 57.438 0 104-36.713 104-82.008S185.438 36 128 36z" />
+    </svg>
+  )
 }
 
 export default function ReferralPage() {
@@ -238,7 +248,7 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
             onClick={() => void doShare()}
             className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[14px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
           >
-            <MessageCircle className="w-4 h-4" />
+            <KakaoIcon className="w-[18px] h-[18px]" />
             {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
           </button>
         ) : (
@@ -249,7 +259,7 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
             title={ko ? '곧 제공됩니다' : 'Coming soon'}
             className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[14px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
           >
-            <MessageCircle className="w-4 h-4" />
+            <KakaoIcon className="w-[18px] h-[18px]" />
             {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
             <span className="text-[10px] font-medium uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-black/10">
               {ko ? '준비 중' : 'Soon'}
