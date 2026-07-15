@@ -32,14 +32,14 @@ export function SubmitConfirmModal({
   return (
     <>
       <div
-        className="fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm animate-fade-in"
+        className="fixed inset-0 z-[120] bg-black/40 backdrop-blur-sm animate-fade-in"
         onClick={onCancel}
         aria-hidden
       />
       <div
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[71] max-w-sm mx-auto rounded-2xl bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] animate-slide-up"
+        className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[121] max-w-sm mx-auto rounded-2xl bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] animate-slide-up"
       >
         <div className="px-5 pt-5 pb-3">
           <h3 className="text-[17px] font-semibold tracking-tight text-gray-900">

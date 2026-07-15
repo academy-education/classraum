@@ -165,14 +165,14 @@ export function TestCustomizationSheet({
   return createPortal(
     <>
       <div
-        className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm animate-fade-in"
+        className="fixed inset-0 z-[120] bg-black/40 backdrop-blur-sm animate-fade-in"
         onClick={onClose}
         aria-hidden
       />
       <div
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-0 bottom-0 z-[61] max-h-[88vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
+        className="fixed inset-x-0 bottom-0 z-[121] max-h-[88vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         <div className="pt-2.5 pb-1.5 flex justify-center">

@@ -418,7 +418,7 @@ function RemoveConfirmSheet({
   const { language } = useTranslation()
   const ko = language === 'korean'
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center px-6" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-[120] flex items-center justify-center px-6" role="dialog" aria-modal="true">
       <div
         aria-hidden
         onClick={onCancel}
