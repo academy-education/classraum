@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import {
   resolvePlan, planFeatures, STUDY_PLANS, CREDIT_PACK, CREDIT_PACKS,
-  SUNUNG_PASS_PLAN_ID, SUNUNG_PASS_CREDITS, SUNUNG_EXAM_DATE, SUNUNG_PASS_WINDOW_DAYS,
+  STUDY_PASSES, isPassPlan,
 } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -32,30 +32,35 @@ export async function GET(req: NextRequest) {
     .eq('student_id', user.id)
     .maybeSingle()
 
-  // The 수능 pass is a one-time seasonal SKU, not a recurring plan card —
-  // keep it out of the plan grid and surface it separately. The purchase
-  // CTA is only offered inside the pre-exam window and to members not on
-  // an active recurring plan. Computed even for null-row (brand-new) users
-  // so the offer can reach them too.
-  const passPlan = STUDY_PLANS[SUNUNG_PASS_PLAN_ID]!
-  const examEnd = new Date(`${SUNUNG_EXAM_DATE}T23:59:59+09:00`)
-  const daysToExam = Math.ceil((examEnd.getTime() - Date.now()) / (24 * 60 * 60 * 1000))
-  const inSeason = daysToExam > 0 && daysToExam <= SUNUNG_PASS_WINDOW_DAYS
-  const onPass = sub?.plan === SUNUNG_PASS_PLAN_ID && sub?.status === 'active'
-  // Offer to anyone not currently on an active recurring plan (a live
-  // pass-holder is 'active' too, so this also hides it while a pass runs).
-  const passOffer = inSeason && sub?.status !== 'active'
-  const passBlock = {
-    id: passPlan.id,
-    priceWon: passPlan.priceWon,
-    credits: SUNUNG_PASS_CREDITS,
-    examDate: SUNUNG_EXAM_DATE,
-    daysToExam,
-    offer: passOffer,
-    onPass,
-  }
+  // Exam-sitting passes are one-time seasonal SKUs, not recurring plan
+  // cards — keep them out of the plan grid and surface them separately.
+  // Each purchase CTA is offered only inside its pre-exam window and to
+  // members not on an active plan. Computed even for null-row (brand-new)
+  // users so offers can reach them too.
+  const now = Date.now()
+  const activePassId = sub?.status === 'active' && isPassPlan(sub.plan) ? sub.plan : null
+  const passes = STUDY_PASSES.map(p => {
+    const examEnd = new Date(`${p.examDate}T23:59:59+09:00`)
+    const daysToExam = Math.ceil((examEnd.getTime() - now) / (24 * 60 * 60 * 1000))
+    const inSeason = daysToExam > 0 && daysToExam <= p.windowDays
+    return {
+      id: p.id,
+      priceWon: STUDY_PLANS[p.id]?.priceWon ?? p.priceWon,
+      credits: p.credits,
+      examDate: p.examDate,
+      daysToExam,
+      name_en: p.name_en,
+      name_ko: p.name_ko,
+      blurb_en: p.blurb_en,
+      blurb_ko: p.blurb_ko,
+      // Offer only in-season, only to non-active members, and never a
+      // pass the user is already on.
+      offer: inSeason && sub?.status !== 'active',
+      onPass: activePassId === p.id,
+    }
+  })
 
-  if (!sub) return NextResponse.json({ subscription: null, pass: passBlock })
+  if (!sub) return NextResponse.json({ subscription: null, passes })
 
   // Enrich with the resolved tier, credit balance, and feature flags
   // so every client surface (subscription page, upsell cards, snap
@@ -74,10 +79,10 @@ export async function GET(req: NextRequest) {
     },
     features: planFeatures(tier),
     catalog: {
-      plans: Object.values(STUDY_PLANS).filter(p => p.id !== SUNUNG_PASS_PLAN_ID),
+      plans: Object.values(STUDY_PLANS).filter(p => !isPassPlan(p.id)),
       pack: CREDIT_PACK,
       packs: CREDIT_PACKS,
     },
-    pass: passBlock,
+    passes,
   })
 }

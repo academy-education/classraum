@@ -2,9 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey } from '@/lib/portone-charge'
-import {
-  STUDY_PLANS, SUNUNG_PASS_PLAN_ID, SUNUNG_PASS_CREDITS, SUNUNG_EXAM_DATE, isPassPlan,
-} from '@/lib/study/plans'
+import { STUDY_PLANS, STUDY_PASSES, resolvePass, isPassPlan } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -41,20 +39,23 @@ export async function POST(req: NextRequest) {
   )
   if (blocked) return blocked
 
-  let body: { billingKey?: string }
+  let body: { billingKey?: string; passId?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
   const billingKey = body.billingKey
   if (!billingKey || typeof billingKey !== 'string') {
     return NextResponse.json({ error: 'missing billingKey' }, { status: 400 })
   }
 
-  const pass = STUDY_PLANS[SUNUNG_PASS_PLAN_ID]!
+  // Default to the first pass for pre-passId clients; otherwise resolve the
+  // requested sitting pass.
+  const passTerms = resolvePass(body.passId) ?? STUDY_PASSES[0]!
+  const passPlan = STUDY_PLANS[passTerms.id]!
 
   // The pass runs until the exam date (end of day, KST). If that has
   // already passed the pass is out of season — refuse rather than sell a
   // zero-day pass.
   const now = new Date()
-  const periodEnd = new Date(`${SUNUNG_EXAM_DATE}T23:59:59+09:00`)
+  const periodEnd = new Date(`${passTerms.examDate}T23:59:59+09:00`)
   if (periodEnd.getTime() <= now.getTime()) {
     return NextResponse.json({ error: 'pass out of season', code: 'pass_unavailable' }, { status: 409 })
   }
@@ -78,12 +79,12 @@ export async function POST(req: NextRequest) {
   const result = await chargeBillingKey({
     billingKey,
     paymentId,
-    amount: pass.priceWon,
-    orderName: pass.orderName,
+    amount: passPlan.priceWon,
+    orderName: passPlan.orderName,
     customerId: user.id,
     customData: {
-      kind: 'study_sunung_pass',
-      pass: pass.id,
+      kind: 'study_exam_pass',
+      pass: passPlan.id,
       student_id: user.id,
     },
   })
@@ -103,9 +104,9 @@ export async function POST(req: NextRequest) {
     .upsert({
       student_id: user.id,
       status: 'active',
-      plan: pass.id,
+      plan: passPlan.id,
       pending_plan: null,
-      price_cents: pass.priceWon * 100,
+      price_cents: passPlan.priceWon * 100,
       currency: 'KRW',
       current_period_start: now.toISOString(),
       current_period_end: periodEnd.toISOString(),
@@ -135,7 +136,7 @@ export async function POST(req: NextRequest) {
   // purchased balance).
   const { error: creditErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: user.id,
-    p_delta: SUNUNG_PASS_CREDITS,
+    p_delta: passTerms.credits,
   })
   if (creditErr) {
     console.error('[study/purchase-pass] pass row ok but credit grant failed', {
@@ -150,16 +151,16 @@ export async function POST(req: NextRequest) {
   }
   await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: user.id,
-    delta: SUNUNG_PASS_CREDITS,
+    delta: passTerms.credits,
     bucket: 'purchased',
     kind: 'purchase',
-    note: `${pass.id} (${paymentId})`,
+    note: `${passPlan.id} (${paymentId})`,
   })
 
   return NextResponse.json({
     success: true,
     current_period_end: periodEnd.toISOString(),
-    creditsAdded: SUNUNG_PASS_CREDITS,
+    creditsAdded: passTerms.credits,
     paymentId,
   })
 }

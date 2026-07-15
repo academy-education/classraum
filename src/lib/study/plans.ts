@@ -132,23 +132,32 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
     name_en: 'Premium Plus · Annual',
     name_ko: '프리미엄 플러스 · 연간',
   },
-  // 수능 대비 패스 — a ONE-TIME seasonal pass, not a recurring plan.
-  // Grants Premium features until the KSAT (수능) exam date plus a batch
+  // Exam-sitting passes — ONE-TIME seasonal passes, not recurring plans.
+  // Each grants Premium features until a specific exam date plus a batch
   // of test credits. Modelled as an active row with cancel_at_period_end
   // = true so the billing cron finalizes it (→ cancelled) at expiry and
-  // NEVER charges a renewal. Guard rails (isPassPlan) keep it out of the
-  // renewal/reactivate paths.
+  // NEVER charges a renewal. Guard rails (isPassPlan) keep them out of the
+  // renewal/reactivate paths. One STUDY_PLANS entry per pass so tier /
+  // feature resolution works; the sale terms live in STUDY_PASSES below.
   sunung_pass_v1: {
     id: 'sunung_pass_v1',
     tier: 'premium',
     priceWon: 39000,
-    // Pass credits are granted once (into the purchased bucket) at
-    // purchase — the pass never refreshes a monthly grant.
-    monthlyCredits: 0,
+    monthlyCredits: 0, // pass credits are a one-time purchased-bucket grant
     intervalDays: 3650, // never "due" for a renewal charge; expiry is date-driven
     orderName: 'Classraum Study — 수능 대비 패스',
     name_en: 'Exam Prep Pass',
     name_ko: '수능 대비 패스',
+  },
+  sat_pass_v1: {
+    id: 'sat_pass_v1',
+    tier: 'premium',
+    priceWon: 29000,
+    monthlyCredits: 0,
+    intervalDays: 3650,
+    orderName: 'Classraum Study — SAT Sitting Pass',
+    name_en: 'SAT Sitting Pass',
+    name_ko: 'SAT 대비 패스',
   },
 }
 
@@ -156,19 +165,62 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
  *  every 30 days, decoupled from their yearly charge. */
 export const GRANT_INTERVAL_DAYS = 30
 
-/** 수능 대비 패스 config — one-time seasonal Premium pass. */
-export const SUNUNG_PASS_PLAN_ID = 'sunung_pass_v1'
-/** Test credits granted once when the pass is purchased. */
-export const SUNUNG_PASS_CREDITS = 30
-/** KSAT (수능) exam date the pass runs until — the 2027학년도 수능 is
- *  Thursday, 19 Nov 2026. Update yearly. */
-export const SUNUNG_EXAM_DATE = '2026-11-19'
-/** Days before the exam the purchase CTA becomes visible (D-120 window). */
-export const SUNUNG_PASS_WINDOW_DAYS = 120
-/** Rows on the seasonal pass must be excluded from the recurring-charge
- *  and reactivate paths — they finalize at expiry, never renew. */
+/**
+ * Exam-sitting passes. Each is sold in the run-up to a specific exam,
+ * grants Premium until that exam date, and drops a one-time batch of test
+ * credits. `examDate` and `windowDays` drive the CTA visibility and the
+ * pass expiry — UPDATE THESE each exam season. The `id` matches a premium
+ * STUDY_PLANS entry so feature gates resolve.
+ */
+export interface StudyPass {
+  id: string
+  priceWon: number
+  credits: number
+  /** ISO date the pass runs until (interpreted end-of-day KST). */
+  examDate: string
+  /** CTA visible within this many days before examDate. */
+  windowDays: number
+  name_en: string
+  name_ko: string
+  blurb_en: string
+  blurb_ko: string
+}
+export const STUDY_PASSES: StudyPass[] = [
+  {
+    id: 'sunung_pass_v1',
+    priceWon: 39000,
+    credits: 30,
+    // 2027학년도 수능 — Thursday, 19 Nov 2026.
+    examDate: '2026-11-19',
+    windowDays: 120,
+    name_en: 'Exam Prep Pass',
+    name_ko: '수능 대비 패스',
+    blurb_en: 'Every Premium feature through 수능 day',
+    blurb_ko: '수능일까지 프리미엄 전 기능',
+  },
+  {
+    id: 'sat_pass_v1',
+    priceWon: 29000,
+    credits: 20,
+    // Next SAT sitting — update per the College Board calendar.
+    examDate: '2026-08-29',
+    windowDays: 56,
+    name_en: 'SAT Sitting Pass',
+    name_ko: 'SAT 대비 패스',
+    blurb_en: 'Premium all the way to your SAT test day',
+    blurb_ko: 'SAT 시험일까지 프리미엄',
+  },
+]
+
+/** Resolve a pass id to its sale terms (null if not a known pass). */
+export function resolvePass(passId: string | null | undefined): StudyPass | null {
+  return STUDY_PASSES.find(p => p.id === passId) ?? null
+}
+
+/** Rows on a seasonal pass must be excluded from the recurring-charge and
+ *  reactivate paths — they finalize at expiry, never renew. */
 export function isPassPlan(planId: string | null | undefined): boolean {
-  return planId === SUNUNG_PASS_PLAN_ID
+  return STUDY_PASSES.some(p => p.id === planId)
 }
 
 /** Credit top-up packs — available to any active/trial subscriber (not
