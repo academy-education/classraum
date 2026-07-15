@@ -23,6 +23,7 @@ import { StudySubPageHeader } from '@/app/mobile/study/_shared/primitives'
 import { User as UserIcon } from 'lucide-react'
 import { useMobileProfile } from './hooks/useMobileProfile'
 import { StudyNicknameCard } from './StudyNicknameCard'
+import { ModalPortal } from '@/components/ui/modal-portal'
 import {
   Select,
   SelectContent,
@@ -717,7 +718,7 @@ function MobileProfilePageContent() {
 
     {/* Logout Confirmation Modal */}
     {showLogoutConfirm && (
-      <>
+      <ModalPortal>
         <div
           className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[9998]"
           onClick={() => setShowLogoutConfirm(false)}
@@ -748,12 +749,12 @@ function MobileProfilePageContent() {
             </div>
           </Card>
         </div>
-      </>
+      </ModalPortal>
     )}
 
     {/* Delete Account Confirmation Modal */}
     {showDeleteConfirm && (
-      <>
+      <ModalPortal>
         <div
           className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[9998]"
           onClick={() => {
@@ -880,7 +881,7 @@ function MobileProfilePageContent() {
             </div>
           </Card>
         </div>
-      </>
+      </ModalPortal>
     )}
 
     {/* Student Selector Modal */}

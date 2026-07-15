@@ -14,6 +14,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudyPageHeader, StudyPageTransition } from '../_shared/primitives'
 import { SkeletonBlock, SkeletonStickyHeader } from '../skeletons'
 import { PathMascot } from '../_shared/PathMascot'
+import { ModalPortal } from '@/components/ui/modal-portal'
 import {
   annotatePath, getPathTemplate,
   type PathNodeProgress, type PathNodeWithState, type StudyPathTemplate,
@@ -418,6 +419,7 @@ function RemoveConfirmSheet({
   const { language } = useTranslation()
   const ko = language === 'korean'
   return (
+    <ModalPortal>
     <div className="fixed inset-0 z-[120] flex items-center justify-center px-6" role="dialog" aria-modal="true">
       <div
         aria-hidden
@@ -451,6 +453,7 @@ function RemoveConfirmSheet({
         </div>
       </div>
     </div>
+    </ModalPortal>
   )
 }
 

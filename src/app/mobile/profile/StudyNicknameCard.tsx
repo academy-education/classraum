@@ -5,6 +5,7 @@ import { AtSign, Check, Loader2 } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
+import { ModalPortal } from '@/components/ui/modal-portal'
 
 /**
  * Study nickname editor for the profile page — the public handle shown on
@@ -151,7 +152,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
           before committing. The initial pick still confirms so the student
           knows a change is limited. */}
       {confirming && (
-        <>
+        <ModalPortal>
           <div className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[9998]" onClick={() => setConfirming(false)} />
           <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
             <Card className="w-full max-w-sm p-6">
@@ -190,7 +191,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
               </div>
             </Card>
           </div>
-        </>
+        </ModalPortal>
       )}
     </div>
   )

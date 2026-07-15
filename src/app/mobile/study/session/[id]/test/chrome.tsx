@@ -2,6 +2,7 @@
 
 import { Loader2, CheckCircle2 } from 'lucide-react'
 import { PathMascot } from '../../../_shared/PathMascot'
+import { ModalPortal } from '@/components/ui/modal-portal'
 
 /** Pre-submit confirmation. Highlights unanswered count so students
  *  don't accidentally lock in a score they meant to revisit. */
@@ -30,7 +31,7 @@ export function SubmitConfirmModal({
       ? 'study.test.submitConfirm.bodyUnansweredOne'
       : 'study.test.submitConfirm.bodyUnansweredMany'
   return (
-    <>
+    <ModalPortal>
       <div
         className="fixed inset-0 z-[120] bg-black/40 backdrop-blur-sm animate-fade-in"
         onClick={onCancel}
@@ -70,7 +71,7 @@ export function SubmitConfirmModal({
           </button>
         </div>
       </div>
-    </>
+    </ModalPortal>
   )
 }
 

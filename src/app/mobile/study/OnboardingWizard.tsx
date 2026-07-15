@@ -5,6 +5,7 @@ import { Sparkles, Target, GraduationCap, Clock, ArrowRight, Check, Loader2 } fr
 import { authHeaders } from '@/lib/auth-headers'
 import { track } from '@/lib/study/track-client'
 import { useTranslation } from '@/hooks/useTranslation'
+import { ModalPortal } from '@/components/ui/modal-portal'
 
 interface Step1 { targetTest: string | null; goalScore: number | null }
 interface Step2 { gradeLevel: string | null }
@@ -90,7 +91,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
   }
 
   return (
-    <>
+    <ModalPortal>
       <div className="fixed inset-0 z-[120] bg-black/40 backdrop-blur-sm animate-fade-in" aria-hidden />
       <div
         role="dialog"
@@ -300,6 +301,6 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
           )}
         </div>
       </div>
-    </>
+    </ModalPortal>
   )
 }
