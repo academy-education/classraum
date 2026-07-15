@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey } from '@/lib/portone-charge'
-import { STUDY_PLANS, resolvePlan } from '@/lib/study/plans'
+import { STUDY_PLANS, resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -25,7 +25,6 @@ import { requireStudyUser } from '@/lib/study/auth'
 
 export const dynamic = 'force-dynamic'
 
-const PERIOD_DAYS = 30
 
 export async function POST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
@@ -82,9 +81,13 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Success — store the billing key, mark active, advance period.
+  // Success — store the billing key, mark active, advance period. The
+  // charge cadence follows the plan (30 = monthly, 365 = annual); the
+  // credit grant refreshes every GRANT_INTERVAL_DAYS regardless, tracked
+  // by next_grant_at so annual subscribers still get monthly credits.
   const now = new Date()
-  const periodEnd = new Date(now.getTime() + PERIOD_DAYS * 24 * 60 * 60 * 1000)
+  const periodEnd = new Date(now.getTime() + plan.intervalDays * 24 * 60 * 60 * 1000)
+  const nextGrantAt = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
   const { error: upsertError } = await supabaseAdmin
     .from('study_subscriptions')
     .upsert({
@@ -95,6 +98,7 @@ export async function POST(req: NextRequest) {
       currency: 'KRW',
       current_period_start: now.toISOString(),
       current_period_end: periodEnd.toISOString(),
+      next_grant_at: nextGrantAt.toISOString(),
       cancel_at_period_end: false,
       portone_subscription_id: billingKey,
       last_payment_id: paymentId,

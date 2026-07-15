@@ -33,6 +33,7 @@ interface CatalogPlan {
   tier: 'general' | 'premium'
   priceWon: number
   monthlyCredits: number
+  intervalDays: number
   name_en: string
   name_ko: string
 }
@@ -74,6 +75,7 @@ export default function SubscriptionPage() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isNative, setIsNative] = useState(false)
   const [confirmingCancel, setConfirmingCancel] = useState(false)
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly')
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
   const load = useCallback(async () => {
@@ -101,8 +103,8 @@ export default function SubscriptionPage() {
   // Fallback catalog so the page still renders plan cards if the API
   // payload predates the tier era (e.g. cached response).
   const plans: CatalogPlan[] = data?.catalog?.plans ?? [
-    { id: 'general_v1', tier: 'general', priceWon: 9900, monthlyCredits: 8, name_en: 'General', name_ko: '일반' },
-    { id: 'premium_v1', tier: 'premium', priceWon: 16900, monthlyCredits: 20, name_en: 'Premium', name_ko: '프리미엄' },
+    { id: 'general_v1', tier: 'general', priceWon: 9900, monthlyCredits: 8, intervalDays: 30, name_en: 'General', name_ko: '일반' },
+    { id: 'premium_v1', tier: 'premium', priceWon: 16900, monthlyCredits: 20, intervalDays: 30, name_en: 'Premium', name_ko: '프리미엄' },
   ]
   const pack = data?.catalog?.pack ?? { id: 'pack5_v1', credits: 5, priceWon: 6900 }
   const packs = data?.catalog?.packs ?? [pack]
@@ -121,6 +123,29 @@ export default function SubscriptionPage() {
     purchased: sub?.purchased_credits_remaining ?? 0,
     total: (sub?.grant_credits_remaining ?? 0) + (sub?.purchased_credits_remaining ?? 0),
   }
+
+  // Monthly / Annual toggle. Free (interval 30, price 0) shows in both
+  // views; paid plans are filtered to the selected cadence so the grid
+  // stays at three cards. Default the toggle to the cadence the user is
+  // already on so their current plan is visible without a tap.
+  const hasAnnual = plans.some(p => p.intervalDays === 365)
+  const currentPlanInterval = plans.find(p => p.id === currentPlanId)?.intervalDays
+  useEffect(() => {
+    if (currentPlanInterval === 365) setBillingCycle('annual')
+  }, [currentPlanInterval])
+  const displayedPlans = plans.filter(p =>
+    p.id === 'free_v1' ||
+    (billingCycle === 'annual' ? p.intervalDays === 365 : p.intervalDays === 30)
+  )
+  // Per-tier monthly price, so annual cards can show the equivalent
+  // monthly-billed cost struck through and the months-free savings.
+  const monthlyPriceByTier: Record<string, number> = {}
+  for (const p of plans) if (p.intervalDays === 30 && p.priceWon > 0) monthlyPriceByTier[p.tier] = p.priceWon
+  // Plan-switch direction is set by price, not tier: switching a monthly
+  // plan to its annual version costs more → immediate-charge upgrade,
+  // while a cheaper target is a downgrade scheduled for renewal. (The
+  // change-plan route uses the same priceWon comparison.)
+  const currentPrice = plans.find(p => p.id === currentPlanId)?.priceWon ?? 0
 
   const act = useCallback(async (kind: 'cancel' | 'reactivate') => {
     setActing(kind)
@@ -380,13 +405,43 @@ export default function SubscriptionPage() {
           </div>
         )}
 
+        {/* Monthly / Annual billing-cycle toggle */}
+        {hasAnnual && (
+          <div className="flex items-center justify-center">
+            <div className="inline-flex items-center gap-1 p-1 rounded-full bg-gray-100/80 ring-1 ring-gray-200/60">
+              {(['monthly', 'annual'] as const).map(cycle => (
+                <button
+                  key={cycle}
+                  type="button"
+                  onClick={() => setBillingCycle(cycle)}
+                  className={`px-4 h-9 rounded-full text-[13px] font-semibold inline-flex items-center gap-1.5 transition-all ${
+                    billingCycle === cycle
+                      ? 'bg-white text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,0.06)]'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  {cycle === 'monthly'
+                    ? (ko ? '월간' : 'Monthly')
+                    : (ko ? '연간' : 'Annual')}
+                  {cycle === 'annual' && (
+                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">
+                      {ko ? '2개월 무료' : '2 months free'}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Plan cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {plans.map(plan => {
+          {displayedPlans.map(plan => {
             const isCurrent = currentPlanId === plan.id
             const isPending = isActive && sub?.pending_plan === plan.id
             const premium = plan.tier === 'premium'
             const isFreePlan = plan.id === 'free_v1'
+            const isUpgrade = isActive && !isCurrent && plan.priceWon > currentPrice
             const busy = acting === `checkout:${plan.id}` || acting === `change:${plan.id}`
             return (
               <div
@@ -417,9 +472,20 @@ export default function SubscriptionPage() {
                   <div className="text-2xl font-semibold tracking-tight text-gray-900">
                     {formatWon(plan.priceWon)}
                     {!isFreePlan && (
-                      <span className="text-sm font-normal text-gray-400"> / {t('study.subscription.month')}</span>
+                      <span className="text-sm font-normal text-gray-400"> / {plan.intervalDays === 365 ? (ko ? '년' : 'yr') : t('study.subscription.month')}</span>
                     )}
                   </div>
+                  {plan.intervalDays === 365 && monthlyPriceByTier[plan.tier] && (
+                    <div className="text-[12.5px] text-gray-500 mt-1">
+                      <span className="line-through text-gray-400">{formatWon(monthlyPriceByTier[plan.tier]! * 12)}</span>
+                      {' · '}
+                      <span className="text-emerald-600 font-medium">
+                        {ko
+                          ? `${formatWon(monthlyPriceByTier[plan.tier]! * 12 - plan.priceWon)} 절약`
+                          : `Save ${formatWon(monthlyPriceByTier[plan.tier]! * 12 - plan.priceWon)}`}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <ul className="space-y-2 text-[13px] text-gray-600 flex-1">
@@ -500,22 +566,28 @@ export default function SubscriptionPage() {
                     onClick={() => void changePlan(plan.id)}
                     disabled={acting !== null}
                     className={`h-11 rounded-full text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-60 transition-all ${
-                      premium
-                        ? 'bg-gradient-to-b from-violet-600 to-violet-600/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(124,58,237,0.28)]'
+                      isUpgrade
+                        ? premium
+                          ? 'bg-gradient-to-b from-violet-600 to-violet-600/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(124,58,237,0.28)]'
+                          : 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)]'
                         : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:ring-gray-300'
                     }`}
                   >
-                    {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : premium ? <Sparkles className="w-4 h-4" /> : null}
-                    {premium
-                      ? (ko ? '프리미엄으로 업그레이드' : 'Upgrade to Premium')
-                      : (ko ? '갱신일에 일반으로 변경' : 'Switch at renewal')}
+                    {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : isUpgrade && premium ? <Sparkles className="w-4 h-4" /> : null}
+                    {isUpgrade
+                      ? premium
+                        ? (ko ? '프리미엄으로 업그레이드' : 'Upgrade to Premium')
+                        : (ko ? '이 플랜으로 업그레이드' : 'Upgrade to this plan')
+                      : (ko ? '갱신일에 변경' : 'Switch at renewal')}
                   </button>
                 )}
                 {!isNative && !isCurrent && isActive && (
                   <p className="text-[11.5px] text-gray-400 -mt-2 text-center leading-snug">
-                    {premium
-                      ? (ko ? '지금 결제되고 새 30일 기간이 시작돼요.' : 'Charged now — a fresh 30-day period starts.')
-                      : (ko ? '다음 갱신일부터 적용돼요. 그 전까지 프리미엄이 유지됩니다.' : 'Applies at your next renewal. Premium stays until then.')}
+                    {isUpgrade
+                      ? plan.intervalDays === 365
+                        ? (ko ? '지금 결제되고 새 1년 기간이 시작돼요.' : 'Charged now — a fresh 1-year period starts.')
+                        : (ko ? '지금 결제되고 새 30일 기간이 시작돼요.' : 'Charged now — a fresh 30-day period starts.')
+                      : (ko ? '다음 갱신일부터 적용돼요. 그 전까지 현재 플랜이 유지됩니다.' : 'Applies at your next renewal. Your current plan stays until then.')}
                   </p>
                 )}
               </div>

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
-import { resolvePlan, STUDY_PLANS } from '@/lib/study/plans'
+import { resolvePlan, STUDY_PLANS, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
 
 /**
  * Daily cron — renew study subscriptions and finalize cancellations.
@@ -33,7 +33,6 @@ import { resolvePlan, STUDY_PLANS } from '@/lib/study/plans'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
 
-const PERIOD_DAYS = 30
 const PAST_DUE_RETRY_DAYS = 3
 
 interface SubscriptionRow {
@@ -56,7 +55,7 @@ export async function GET(req: NextRequest) {
   }
 
   const now = new Date()
-  const summary = { cancelled: 0, charged: 0, failed: 0, expired: 0, skipped: 0, errors: [] as string[] }
+  const summary = { cancelled: 0, charged: 0, granted: 0, failed: 0, expired: 0, skipped: 0, errors: [] as string[] }
 
   // ── 1. Finalize cancellations whose period just ended ───────────
   const { data: toCancel } = await supabaseAdmin
@@ -127,6 +126,39 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  // ── 4. Monthly credit-grant refresh (annual subs) ──────────────
+  // Active subs whose next_grant_at has passed but whose charge isn't
+  // due yet (i.e. annual plans mid-year) get their monthly grant reset
+  // without a charge. Monthly plans refresh via the renewal charge, so
+  // their next_grant_at moves forward there and this rarely fires.
+  const { data: grantRows } = await supabaseAdmin
+    .from('study_subscriptions')
+    .select('id, student_id, plan, next_grant_at')
+    .eq('status', 'active')
+    .not('next_grant_at', 'is', null)
+    .lte('next_grant_at', now.toISOString())
+    .gt('current_period_end', now.toISOString()) // charge not due → handled by §2 otherwise
+  for (const row of (grantRows ?? []) as { id: string; student_id: string; plan: string; next_grant_at: string }[]) {
+    const plan = resolvePlan(row.plan)
+    const nextGrant = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
+    await supabaseAdmin
+      .from('study_subscriptions')
+      .update({
+        grant_credits_remaining: plan.monthlyCredits,
+        next_grant_at: nextGrant.toISOString(),
+        updated_at: now.toISOString(),
+      })
+      .eq('id', row.id)
+    await supabaseAdmin.from('study_credit_ledger').insert({
+      student_id: row.student_id,
+      delta: plan.monthlyCredits,
+      bucket: 'grant',
+      kind: 'grant',
+      note: `monthly grant refresh ${plan.id}`,
+    })
+    summary.granted = (summary.granted ?? 0) + 1
+  }
+
   return NextResponse.json({ ok: true, summary, ranAt: now.toISOString() })
 }
 
@@ -164,7 +196,12 @@ async function chargeAndAdvance(
   })
 
   if (result.ok) {
-    const nextEnd = new Date(Math.max(now.getTime(), new Date(row.current_period_end).getTime()) + PERIOD_DAYS * 24 * 60 * 60 * 1000)
+    // Advance the charge period by the plan's cadence (30 = monthly,
+    // 365 = annual). Credits refresh on the renewal AND every 30 days in
+    // between (via next_grant_at) so annual subs still get monthly grants.
+    const base = Math.max(now.getTime(), new Date(row.current_period_end).getTime())
+    const nextEnd = new Date(base + effectivePlan.intervalDays * 24 * 60 * 60 * 1000)
+    const nextGrant = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
     await supabaseAdmin
       .from('study_subscriptions')
       .update({
@@ -174,6 +211,7 @@ async function chargeAndAdvance(
         price_cents: effectivePlan.priceWon * 100,
         current_period_start: now.toISOString(),
         current_period_end: nextEnd.toISOString(),
+        next_grant_at: nextGrant.toISOString(),
         last_payment_id: paymentId,
         last_payment_attempt_at: now.toISOString(),
         last_payment_failure: null,
