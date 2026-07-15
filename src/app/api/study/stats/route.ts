@@ -72,8 +72,15 @@ export async function GET(req: NextRequest) {
   ])
 
   const totalAttempts = attempts?.length ?? 0
-  const correct = attempts?.filter(a => a.is_correct).length ?? 0
-  const accuracy = totalAttempts === 0 ? 0 : Math.round((correct / totalAttempts) * 100)
+  // Accuracy is over GRADABLE attempts only. Open-response items (writing /
+  // speaking) store is_correct=null — they have no objective verdict, so
+  // they belong in neither the numerator nor the denominator. Counting them
+  // (as the old `filter(a => a.is_correct)` over all attempts did) inflated
+  // accuracy on TOEFL/IELTS. totalAttempts stays all-inclusive for the
+  // "questions practiced" style counters/achievements.
+  const gradableAttempts = attempts?.filter(a => a.is_correct !== null).length ?? 0
+  const correct = attempts?.filter(a => a.is_correct === true).length ?? 0
+  const accuracy = gradableAttempts === 0 ? 0 : Math.round((correct / gradableAttempts) * 100)
   const totalSeconds = (attempts ?? []).reduce((s, a) => s + ((a.time_spent_seconds as number | null) ?? 0), 0)
   const totalHours = Math.round((totalSeconds / 3600) * 10) / 10  // 1 decimal
 

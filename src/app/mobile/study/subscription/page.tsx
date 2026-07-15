@@ -6,7 +6,7 @@ import Link from 'next/link'
 import {
   CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw,
   XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap, Gift, Users, ChevronRight,
-} from 'lucide-react'
+} from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'

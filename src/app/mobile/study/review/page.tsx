@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Shuffle, X, Zap, Check, Info, Sparkles } from 'lucide-react'
+import { Shuffle, X, Zap, Check, Info, Sparkles } from '@/app/mobile/study/_shared/icons'
 import { MascotLoader, useMascotGate } from '../_shared/MascotLoader'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'

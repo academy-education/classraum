@@ -29,7 +29,7 @@ const nextConfig = {
 
   // Experimental features for better client component handling
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-avatar', '@radix-ui/react-label'],
+    optimizePackageImports: ['lucide-react', '@phosphor-icons/react', '@radix-ui/react-avatar', '@radix-ui/react-label'],
   },
 
   // Custom webpack config to handle client reference manifests

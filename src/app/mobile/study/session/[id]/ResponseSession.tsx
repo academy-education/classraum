@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Mic, Square, RotateCcw, Sparkles, AlertCircle,
   ArrowRight, Clock, Pencil, Volume2, Award, ChevronRight, Info,
-} from 'lucide-react'
+} from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { PathMascot } from '../../_shared/PathMascot'

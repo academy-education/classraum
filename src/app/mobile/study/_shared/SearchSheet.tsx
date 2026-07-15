@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Search, X, BookOpen, Camera, AlertCircle, Compass, Loader2 } from 'lucide-react'
+import { Search, X, BookOpen, Camera, AlertCircle, Compass, Loader2 } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import {
   ArrowRight, CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles,
-} from 'lucide-react'
+} from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { normalizeDisplayText, PassageParagraphs, percentToToeflBand } from './helpers'
 import { QuestionGraphicView } from './QuestionGraphicView'

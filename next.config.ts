@@ -44,7 +44,7 @@ const nextConfig: NextConfig = {
   trailingSlash: false,
   poweredByHeader: false,
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-avatar', '@radix-ui/react-label'],
+    optimizePackageImports: ['lucide-react', '@phosphor-icons/react', '@radix-ui/react-avatar', '@radix-ui/react-label'],
   },
   // Client-reference-manifest workaround for the (app) route group —
   // see scripts/fix-client-manifest.js + CLAUDE.md build notes.

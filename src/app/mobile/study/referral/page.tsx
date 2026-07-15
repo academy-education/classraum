@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
 import { Share } from '@capacitor/share'
-import { Gift, Copy, Check, Users, Sparkles, Loader2, Ticket, Share2 } from 'lucide-react'
+import { Gift, Copy, Check, Users, Sparkles, Loader2, Ticket, Share2 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'

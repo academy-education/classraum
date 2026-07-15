@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { MessageCircle, ChevronRight, ListChecks, Layers, ClipboardList, Mic, History as HistoryIcon, Search, X } from 'lucide-react'
+import { MessageCircle, ChevronRight, ListChecks, Layers, ClipboardList, Mic, History as HistoryIcon, Search, X } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '../_shared/primitives'
 import { groupByDate, formatTimeAgo } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'

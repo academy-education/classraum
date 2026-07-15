@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, Loader2, Sparkles, ChevronDown, Check } from 'lucide-react'
+import { ArrowRight, Loader2, Sparkles, ChevronDown, Check } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'

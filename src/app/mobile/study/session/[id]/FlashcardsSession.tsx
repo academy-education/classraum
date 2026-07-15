@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Loader2, RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Zap } from 'lucide-react'
+import { Loader2, RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Zap } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'

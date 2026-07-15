@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { Sparkles, Target, ArrowRight } from 'lucide-react'
+import { Sparkles, Target, ArrowRight } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLandingData } from './LandingDataProvider'
 import { getPathTemplate } from '@/lib/study-path'

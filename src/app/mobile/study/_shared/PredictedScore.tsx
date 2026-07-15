@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { TrendingUp, Target, ArrowRight, Sparkles, Lock, ListChecks, Layers, Clock, Loader2, Crown } from 'lucide-react'
+import { TrendingUp, Target, ArrowRight, Sparkles, Lock, ListChecks, Layers, Clock, Loader2, Crown } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { NumberRoll } from './primitives'

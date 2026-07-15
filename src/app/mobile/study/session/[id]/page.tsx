@@ -3,7 +3,7 @@
 import { use, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Sparkles, HelpCircle, ArrowLeft } from 'lucide-react'
+import { Sparkles, HelpCircle, ArrowLeft } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../../SubscriptionGate'

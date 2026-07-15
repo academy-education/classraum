@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock, Sparkles, Flame, ArrowRight, BarChart3 } from 'lucide-react'
+import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock, Sparkles, Flame, ArrowRight, BarChart3 } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'

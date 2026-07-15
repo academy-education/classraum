@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { Sparkles, ListOrdered, Baby, Send, Loader2 } from 'lucide-react'
+import { Sparkles, ListOrdered, Baby, Send, Loader2 } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { hapticSelection } from '@/lib/nativeHaptics'
 

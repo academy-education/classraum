@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { BookOpen, GraduationCap, ChevronDown } from 'lucide-react'
+import { BookOpen, GraduationCap, ChevronDown } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { ModeSwitcherSheet } from '@/components/ui/mobile/ModeSwitcherSheet'

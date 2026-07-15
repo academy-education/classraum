@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { ListChecks, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from 'lucide-react'
+import { ListChecks, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { SkeletonCard, SkeletonBlock } from './skeletons'

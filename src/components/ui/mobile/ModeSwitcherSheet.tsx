@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { GraduationCap, BookOpen, Check, X } from 'lucide-react'
+import { GraduationCap, BookOpen, Check, X } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { storeMode } from '@/lib/study/currentMode'

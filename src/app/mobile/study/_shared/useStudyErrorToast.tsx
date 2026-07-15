@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { AlertTriangle } from 'lucide-react'
+import { AlertTriangle } from '@/app/mobile/study/_shared/icons'
 
 /**
  * useStudyErrorToast — tiny transient error toast for the study module.

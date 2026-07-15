@@ -1,6 +1,6 @@
 "use client"
 
-import { Loader2, CheckCircle2 } from 'lucide-react'
+import { Loader2, CheckCircle2 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot } from '../../../_shared/PathMascot'
 import { ModalPortal } from '@/components/ui/modal-portal'
 

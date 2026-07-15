@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { CalendarCheck, ChevronRight, Clock, ListChecks, Flag } from 'lucide-react'
+import { CalendarCheck, ChevronRight, Clock, ListChecks, Flag } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 
