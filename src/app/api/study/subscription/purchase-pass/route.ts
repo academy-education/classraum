@@ -51,11 +51,12 @@ export async function POST(req: NextRequest) {
   const passTerms = resolvePass(body.passId) ?? STUDY_PASSES[0]!
   const passPlan = STUDY_PLANS[passTerms.id]!
 
-  // The pass runs until the exam date (end of day, KST). If that has
-  // already passed the pass is out of season — refuse rather than sell a
-  // zero-day pass.
+  // Date-anchored passes run until a fixed exam date (and refuse once it
+  // has passed); rolling passes run a fixed number of days from purchase.
   const now = new Date()
-  const periodEnd = new Date(`${passTerms.examDate}T23:59:59+09:00`)
+  const periodEnd = passTerms.examDate
+    ? new Date(`${passTerms.examDate}T23:59:59+09:00`)
+    : new Date(now.getTime() + (passTerms.durationDays ?? 90) * 24 * 60 * 60 * 1000)
   if (periodEnd.getTime() <= now.getTime()) {
     return NextResponse.json({ error: 'pass out of season', code: 'pass_unavailable' }, { status: 409 })
   }

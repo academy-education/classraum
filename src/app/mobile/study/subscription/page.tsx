@@ -43,8 +43,9 @@ interface PassInfo {
   id: string
   priceWon: number
   credits: number
-  examDate: string
-  daysToExam: number
+  examDate: string | null
+  durationDays: number | null
+  daysToExam: number | null
   name_en: string
   name_ko: string
   blurb_en: string
@@ -382,57 +383,94 @@ export default function SubscriptionPage() {
           </div>
         )}
 
-        {/* Credit balance — every generated mock test costs 1 credit. */}
+        {/* Credit balance — every generated AI mock test costs 1 credit. */}
         {sub && (
-          <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-            <div className="flex items-center justify-between gap-3">
+          <div className="rounded-2xl bg-gradient-to-br from-amber-50/70 via-white to-white ring-1 ring-amber-200/50 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+            <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+                <span className="w-11 h-11 rounded-2xl bg-amber-500/15 text-amber-600 flex items-center justify-center flex-shrink-0">
                   <Coins className="w-5 h-5" />
                 </span>
                 <div>
-                  <div className="text-[13px] text-gray-500">
+                  <div className="text-[12px] font-medium text-gray-500">
                     {ko ? '테스트 크레딧' : 'Test credits'}
                   </div>
-                  <div className="text-xl font-semibold tracking-tight text-gray-900 tabular-nums">
+                  <div className="text-[28px] leading-none font-bold tracking-tight text-gray-900 tabular-nums mt-1">
                     {credits.total}
                   </div>
                 </div>
               </div>
               <StatusPill status={sub.status} cancelling={sub.cancel_at_period_end} />
             </div>
-            <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
-              {ko
-                ? `모의고사 1회 생성에 크레딧 1개가 사용돼요. 이번 달 제공 ${credits.grant}개${credits.purchased > 0 ? ` + 구매 ${credits.purchased}개` : ''} 남았어요. 생성에 실패하면 크레딧은 자동으로 환불됩니다.`
-                : `Each generated mock test uses 1 credit. ${credits.grant} from this month's grant${credits.purchased > 0 ? ` + ${credits.purchased} purchased` : ''} remaining. Failed generations are refunded automatically.`}
+
+            {/* Breakdown — monthly grant vs never-expiring purchased. */}
+            <div className="flex flex-wrap items-center gap-1.5 mt-4">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[12px] text-gray-600">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                {ko ? '이번 달' : 'Monthly'}
+                <b className="tabular-nums text-gray-900 font-semibold">{credits.grant}</b>
+              </span>
+              {credits.purchased > 0 && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[12px] text-gray-600">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  {ko ? '구매' : 'Purchased'}
+                  <b className="tabular-nums text-gray-900 font-semibold">{credits.purchased}</b>
+                </span>
+              )}
+              <span className="text-[11.5px] text-gray-400 ml-auto">
+                {ko ? '모의고사 1회 = 크레딧 1개' : '1 mock test = 1 credit'}
+              </span>
+            </div>
+            <p className="text-[11.5px] text-gray-400 mt-1.5">
+              {ko ? '생성에 실패하면 크레딧은 자동으로 환불돼요.' : 'Failed generations are refunded automatically.'}
             </p>
+
             {/* Credit top-ups — open to everyone on web (free & General
                 included; card-less buyers register a card in the flow).
                 Native app hides in-app purchases (App Store IAP rules). */}
             {!isNative && (
-              <div className="mt-3.5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-2">
-                  {ko ? '크레딧 충전' : 'Top up credits'}
-                </p>
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <div className="flex items-center justify-between mb-2.5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">
+                    {ko ? '크레딧 충전' : 'Top up credits'}
+                  </p>
+                  <span className="text-[11px] text-gray-400">{ko ? '구매 크레딧은 만료 없음' : 'Never expire'}</span>
+                </div>
                 <div className="grid grid-cols-3 gap-2">
-                  {packs.map(p => (
-                    <button
-                      key={p.id}
-                      type="button"
-                      onClick={() => void buyPack(p.id, p.credits)}
-                      disabled={acting !== null}
-                      className="flex flex-col items-center justify-center gap-0.5 h-16 rounded-xl bg-amber-500/10 text-amber-700 ring-1 ring-amber-200/70 hover:bg-amber-500/15 active:scale-[0.98] disabled:opacity-60 transition-all"
-                    >
-                      {acting === 'pack' ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      ) : (
-                        <>
-                          <span className="text-[14px] font-bold tabular-nums">+{p.credits}</span>
-                          <span className="text-[11px] font-semibold tabular-nums">{formatWon(p.priceWon)}</span>
-                        </>
-                      )}
-                    </button>
-                  ))}
+                  {packs.map((p, i) => {
+                    const best = i === packs.length - 1 && packs.length > 1
+                    const perCredit = Math.round(p.priceWon / p.credits)
+                    return (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onClick={() => void buyPack(p.id, p.credits)}
+                        disabled={acting !== null}
+                        className={`relative flex flex-col items-center justify-center gap-0.5 h-[76px] rounded-xl active:scale-[0.98] disabled:opacity-60 transition-all ${
+                          best
+                            ? 'bg-amber-500 text-white ring-1 ring-amber-500 shadow-[0_2px_8px_rgba(245,158,11,0.3)]'
+                            : 'bg-amber-500/10 text-amber-700 ring-1 ring-amber-200/70 hover:bg-amber-500/15'
+                        }`}
+                      >
+                        {best && (
+                          <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded-full bg-gray-900 text-white text-[9px] font-bold whitespace-nowrap">
+                            {ko ? '최고 혜택' : 'Best value'}
+                          </span>
+                        )}
+                        {acting === 'pack' ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <>
+                            <span className="text-[15px] font-bold tabular-nums">+{p.credits}</span>
+                            <span className="text-[11.5px] font-semibold tabular-nums">{formatWon(p.priceWon)}</span>
+                            <span className={`text-[9.5px] tabular-nums ${best ? 'text-amber-100' : 'text-amber-600/70'}`}>
+                              {ko ? `개당 ₩${perCredit.toLocaleString()}` : `₩${perCredit.toLocaleString()}/ea`}
+                            </span>
+                          </>
+                        )}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             )}
@@ -469,11 +507,15 @@ export default function SubscriptionPage() {
             <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-100">
               <GraduationCap className="w-4 h-4" />
               {ko ? p.name_ko : p.name_en}
-              {p.daysToExam > 0 && (
+              {p.daysToExam !== null && p.daysToExam > 0 ? (
                 <span className="ml-auto px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold tabular-nums">
                   D-{p.daysToExam}
                 </span>
-              )}
+              ) : p.durationDays ? (
+                <span className="ml-auto px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold tabular-nums">
+                  {ko ? `${Math.round(p.durationDays / 30)}개월` : `${Math.round(p.durationDays / 30)}M`}
+                </span>
+              ) : null}
             </div>
             <div className="mt-2 text-2xl font-bold tracking-tight">{formatWon(p.priceWon)}</div>
             <p className="text-[13px] text-rose-50 mt-1.5 leading-relaxed">
@@ -493,16 +535,16 @@ export default function SubscriptionPage() {
           </div>
         ))}
 
-        {/* Trial / period banner */}
-        {sub && !onPass && (
+        {/* Period banner — only meaningful for a live paid subscription
+            (renews on / cancels on). Free, expired, and lapsed rows have
+            no upcoming billing date, so no banner. */}
+        {sub && !onPass && isActive && (
           <div className="rounded-xl bg-gray-50/80 ring-1 ring-gray-200/50 px-4 py-3 text-[13.5px] text-gray-700 inline-flex items-start gap-2.5 w-full">
             <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
             <div className="leading-relaxed">
               {sub.cancel_at_period_end
                 ? t('study.subscription.cancelsOn', { date: formatDate(sub.current_period_end, ko) })
-                : sub.status === 'trial'
-                  ? t('study.subscription.trialEnds', { date: formatDate(sub.current_period_end, ko) })
-                  : t('study.subscription.renewsOn', { date: formatDate(sub.current_period_end, ko) })}
+                : t('study.subscription.renewsOn', { date: formatDate(sub.current_period_end, ko) })}
               {isActive && sub.pending_plan && (
                 <span className="block text-amber-700 mt-0.5">
                   {ko
@@ -807,20 +849,20 @@ function formatWon(won: number): string {
   return `₩${won.toLocaleString()}`
 }
 
-/** Toggle-segment label for a billing cadence (30 → 월간, 90 → 3개월…). */
+/** Toggle-segment label for a billing cadence (30 → 월간, 90 → 3M…). */
 function durationLabel(days: number, ko: boolean): string {
   if (days === 30) return ko ? '월간' : 'Monthly'
   if (days === 365) return ko ? '연간' : 'Annual'
   const months = Math.round(days / 30)
-  return ko ? `${months}개월` : `${months} mo`
+  return ko ? `${months}개월` : `${months}M`
 }
 
-/** Per-price unit suffix (/ month, / 3 mo, / yr). */
+/** Per-price unit suffix (/ month, / 3M, / yr). */
 function durationUnit(days: number, ko: boolean, t: (k: string) => unknown): string {
   if (days === 30) return String(t('study.subscription.month'))
   if (days === 365) return ko ? '년' : 'yr'
   const months = Math.round(days / 30)
-  return ko ? `${months}개월` : `${months} mo`
+  return ko ? `${months}개월` : `${months}M`
 }
 
 function formatDate(iso: string, ko: boolean): string {

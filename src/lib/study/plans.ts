@@ -176,10 +176,15 @@ export interface StudyPass {
   id: string
   priceWon: number
   credits: number
-  /** ISO date the pass runs until (interpreted end-of-day KST). */
-  examDate: string
-  /** CTA visible within this many days before examDate. */
-  windowDays: number
+  /** Date-anchored pass: ISO date it runs until (end-of-day KST). Set
+   *  this OR durationDays, not both. Anchored passes are seasonal — the
+   *  CTA only shows inside `windowDays` before the date. */
+  examDate?: string
+  /** CTA visible within this many days before examDate (anchored passes). */
+  windowDays?: number
+  /** Rolling pass: runs this many days from the moment of purchase, and
+   *  the CTA is always available (not tied to a calendar date). */
+  durationDays?: number
   name_en: string
   name_ko: string
   blurb_en: string
@@ -190,7 +195,7 @@ export const STUDY_PASSES: StudyPass[] = [
     id: 'sunung_pass_v1',
     priceWon: 39000,
     credits: 30,
-    // 2027학년도 수능 — Thursday, 19 Nov 2026.
+    // Date-anchored to the 2027학년도 수능 — Thursday, 19 Nov 2026.
     examDate: '2026-11-19',
     windowDays: 120,
     name_en: 'Exam Prep Pass',
@@ -202,13 +207,12 @@ export const STUDY_PASSES: StudyPass[] = [
     id: 'sat_pass_v1',
     priceWon: 29000,
     credits: 20,
-    // Next SAT sitting — update per the College Board calendar.
-    examDate: '2026-08-29',
-    windowDays: 56,
-    name_en: 'SAT Sitting Pass',
-    name_ko: 'SAT 대비 패스',
-    blurb_en: 'Premium all the way to your SAT test day',
-    blurb_ko: 'SAT 시험일까지 프리미엄',
+    // Rolling 3-month pass from purchase — no fixed exam date.
+    durationDays: 90,
+    name_en: 'SAT 3-Month Pass',
+    name_ko: 'SAT 3개월 패스',
+    blurb_en: '3 months of Premium to prep for your SAT',
+    blurb_ko: 'SAT 준비를 위한 프리미엄 3개월',
   },
 ]
 

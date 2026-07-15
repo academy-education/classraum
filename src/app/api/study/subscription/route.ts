@@ -40,22 +40,30 @@ export async function GET(req: NextRequest) {
   const now = Date.now()
   const activePassId = sub?.status === 'active' && isPassPlan(sub.plan) ? sub.plan : null
   const passes = STUDY_PASSES.map(p => {
-    const examEnd = new Date(`${p.examDate}T23:59:59+09:00`)
-    const daysToExam = Math.ceil((examEnd.getTime() - now) / (24 * 60 * 60 * 1000))
-    const inSeason = daysToExam > 0 && daysToExam <= p.windowDays
+    // Date-anchored passes are seasonal (offer only inside their pre-exam
+    // window, show a D-<n> countdown). Rolling passes are always offered
+    // and show their duration instead.
+    let daysToExam: number | null = null
+    let available = true
+    if (p.examDate) {
+      const examEnd = new Date(`${p.examDate}T23:59:59+09:00`)
+      daysToExam = Math.ceil((examEnd.getTime() - now) / (24 * 60 * 60 * 1000))
+      available = daysToExam > 0 && daysToExam <= (p.windowDays ?? 120)
+    }
     return {
       id: p.id,
       priceWon: STUDY_PLANS[p.id]?.priceWon ?? p.priceWon,
       credits: p.credits,
-      examDate: p.examDate,
+      examDate: p.examDate ?? null,
+      durationDays: p.durationDays ?? null,
       daysToExam,
       name_en: p.name_en,
       name_ko: p.name_ko,
       blurb_en: p.blurb_en,
       blurb_ko: p.blurb_ko,
-      // Offer only in-season, only to non-active members, and never a
+      // Offer only when available, only to non-active members, and never a
       // pass the user is already on.
-      offer: inSeason && sub?.status !== 'active',
+      offer: available && sub?.status !== 'active',
       onPass: activePassId === p.id,
     }
   })
