@@ -22,6 +22,8 @@ export type StudyNotificationKind =
   | 'study_streak_milestone'
   | 'study_streak_at_risk'
   | 'study_daily_challenge'
+  | 'study_duel_won'
+  | 'study_duel_lost'
   | 'study_response_graded'
   | 'study_payment_failed'
   | 'study_subscription_expired'

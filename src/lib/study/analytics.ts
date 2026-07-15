@@ -28,6 +28,8 @@ export type StudyEvent =
   | 'referral_redeemed'
   | 'referral_converted'
   | 'challenge_sent'
+  | 'challenge_won'
+  | 'challenge_lost'
   | 'activation_cta_clicked'
 
 /** Client-supplied events are restricted to this set so the endpoint can't
