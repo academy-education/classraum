@@ -22,6 +22,8 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
   const [status, setStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'invalid'>('idle')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  // Nickname changes are one-time, so a save is gated behind a confirm.
+  const [confirming, setConfirming] = useState(false)
   const debounce = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -62,7 +64,16 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
     return () => { if (debounce.current) clearTimeout(debounce.current) }
   }, [trimmed, dirty])
 
-  const save = useCallback(async () => {
+  const canSave = dirty && !saving && status !== 'taken' && status !== 'invalid' && status !== 'checking' && trimmed.length > 0 && !locked
+
+  // Open the confirm dialog (the actual write happens on confirm).
+  const requestSave = useCallback(() => {
+    if (!canSave) return
+    setConfirming(true)
+  }, [canSave])
+
+  const doSave = useCallback(async () => {
+    setConfirming(false)
     if (!dirty || saving || status === 'taken' || status === 'invalid' || trimmed.length === 0) return
     setSaving(true)
     try {
@@ -115,7 +126,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
             type="text"
             value={value}
             onChange={e => setValue(e.target.value)}
-            onKeyDown={e => { if (e.key === 'Enter') void save() }}
+            onKeyDown={e => { if (e.key === 'Enter') requestSave() }}
             disabled={!ready || locked}
             maxLength={16}
             autoCapitalize="none"
@@ -126,8 +137,8 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
           />
           <button
             type="button"
-            onClick={() => void save()}
-            disabled={locked || !dirty || saving || status === 'taken' || status === 'invalid' || status === 'checking' || trimmed.length === 0}
+            onClick={requestSave}
+            disabled={!canSave}
             className="flex-shrink-0 inline-flex items-center justify-center h-10 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <Check className="w-4 h-4" /> : (ko ? '저장' : 'Save')}
@@ -135,6 +146,52 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
         </div>
         <p className={`text-xs mt-2 px-0.5 ${hintColor}`}>{hint}</p>
       </Card>
+
+      {/* Confirm dialog — nickname changes are one-time, so double-check
+          before committing. The initial pick still confirms so the student
+          knows a change is limited. */}
+      {confirming && (
+        <>
+          <div className="fixed inset-0 backdrop-blur-sm bg-black/20 z-[9998]" onClick={() => setConfirming(false)} />
+          <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
+            <Card className="w-full max-w-sm p-6">
+              <div className="flex flex-col items-center text-center mb-5">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+                  <AtSign className="w-5 h-5 text-primary" strokeWidth={1.75} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                  {initial ? (ko ? '닉네임 변경' : 'Change nickname') : (ko ? '닉네임 설정' : 'Set nickname')}
+                </h3>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {initial
+                    ? (ko
+                        ? `닉네임을 "${trimmed}"(으)로 변경할까요? 닉네임은 한 번만 변경할 수 있어요.`
+                        : `Change your nickname to "${trimmed}"? You can only change it once.`)
+                    : (ko
+                        ? `닉네임을 "${trimmed}"(으)로 설정할까요? 이후 한 번만 변경할 수 있어요.`
+                        : `Set your nickname to "${trimmed}"? You'll be able to change it once after this.`)}
+                </p>
+              </div>
+              <div className="flex gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => setConfirming(false)}
+                  className="flex-1 h-11 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-[13px] font-semibold inline-flex items-center justify-center hover:ring-gray-300 active:scale-[0.98] transition-all"
+                >
+                  {ko ? '취소' : 'Cancel'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void doSave()}
+                  className="flex-1 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold inline-flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] transition-all"
+                >
+                  {initial ? (ko ? '변경하기' : 'Change') : (ko ? '설정하기' : 'Set nickname')}
+                </button>
+              </div>
+            </Card>
+          </div>
+        </>
+      )}
     </div>
   )
 }
