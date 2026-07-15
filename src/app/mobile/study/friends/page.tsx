@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Users, UserPlus, Copy, Check, Search, X, Loader2, Trophy, Clock } from 'lucide-react'
+import { Users, UserPlus, Copy, Check, Search, X, Loader2, Trophy, Clock, Swords } from 'lucide-react'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -31,6 +31,10 @@ interface SearchResult {
   nickname: string
   relation: 'none' | 'friends' | 'pending_out' | 'pending_in'
 }
+interface ActiveDuel { id: string; opponent: Person; my_xp: number; their_xp: number; ends_at: string | null }
+interface DuelRequest { id: string; opponent: Person }
+interface RecentDuel { id: string; opponent: Person; my_xp: number; their_xp: number; won: boolean | null }
+interface DuelsData { active: ActiveDuel[]; incoming: DuelRequest[]; outgoing: DuelRequest[]; recent: RecentDuel[] }
 
 export default function FriendsPage() {
   return (
@@ -45,6 +49,8 @@ function FriendsInner() {
   const ko = language === 'korean'
   const [data, setData] = useState<FriendsData | null>(null)
   const [failed, setFailed] = useState(false)
+  // Bumped to force the Duels panel to refetch after a challenge is sent.
+  const [duelsKey, setDuelsKey] = useState(0)
 
   const load = useCallback(async () => {
     setFailed(false)
@@ -104,9 +110,13 @@ function FriendsInner() {
       <StudyPageTransition>
         <div className="space-y-6">
           <ViewLeaderboardButton ko={ko} count={data.friends.length} />
+          <Duels ko={ko} refreshKey={duelsKey} />
           <AddFriend ko={ko} myCode={data.myCode} onChanged={load} />
           {data.incoming.length > 0 && <IncomingRequests ko={ko} requests={data.incoming} onChanged={load} />}
-          <FriendsList ko={ko} friends={data.friends} outgoing={data.outgoing} onChanged={load} />
+          <FriendsList
+            ko={ko} friends={data.friends} outgoing={data.outgoing} onChanged={load}
+            onChallenge={() => setDuelsKey(k => k + 1)}
+          />
         </div>
       </StudyPageTransition>
     </StudyScrollShell>
@@ -317,7 +327,20 @@ function IncomingRequests({ ko, requests, onChanged }: { ko: boolean; requests: 
   )
 }
 
-function FriendsList({ ko, friends, outgoing, onChanged }: { ko: boolean; friends: Person[]; outgoing: FriendRequest[]; onChanged: () => void }) {
+function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: boolean; friends: Person[]; outgoing: FriendRequest[]; onChanged: () => void; onChallenge: () => void }) {
+  const [challenging, setChallenging] = useState<string | null>(null)
+  const challenge = async (friendId: string) => {
+    if (challenging) return
+    setChallenging(friendId)
+    try {
+      const headers = await authHeaders()
+      await fetch('/api/study/challenges', {
+        method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'challenge', friendId }),
+      })
+      onChallenge()
+    } catch { /* no-op */ } finally { setChallenging(null) }
+  }
   const remove = async (friendId: string) => {
     try {
       const headers = await authHeaders()
@@ -362,6 +385,11 @@ function FriendsList({ ko, friends, outgoing, onChanged }: { ko: boolean; friend
           <div key={f.student_id} className="group flex items-center gap-2.5 px-4 py-3">
             <Avatar name={f.display_name} />
             <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{f.display_name}</span>
+            <button type="button" onClick={() => void challenge(f.student_id)} disabled={challenging === f.student_id}
+              className="inline-flex items-center gap-1 h-8 px-3 rounded-full bg-primary/10 text-primary text-[12px] font-semibold hover:bg-primary/15 active:scale-95 disabled:opacity-50 transition">
+              {challenging === f.student_id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Swords className="w-3.5 h-3.5" />}
+              {ko ? '대결' : 'Duel'}
+            </button>
             <button type="button" onClick={() => void remove(f.student_id)} aria-label={ko ? '친구 삭제' : 'Remove'}
               className="w-8 h-8 inline-flex items-center justify-center rounded-full text-gray-300 hover:bg-rose-50 hover:text-rose-500 active:scale-95 transition">
               <X className="w-4 h-4" />
@@ -380,6 +408,133 @@ function FriendsList({ ko, friends, outgoing, onChanged }: { ko: boolean; friend
           </div>
         ))}
       </div>
+    </section>
+  )
+}
+
+/** 1v1 duels panel — active duels (live XP), incoming challenge requests,
+ *  and recent results. Refetches when refreshKey changes (after a new
+ *  challenge is sent from the friends list). */
+function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
+  const [data, setData] = useState<DuelsData | null>(null)
+
+  const load = useCallback(async () => {
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/challenges', { headers })
+      if (res.ok) setData(await res.json())
+    } catch { /* keep stale */ }
+  }, [])
+  useEffect(() => { void load() }, [load, refreshKey])
+
+  const respond = async (id: string, action: 'accept' | 'decline' | 'cancel') => {
+    try {
+      const headers = await authHeaders()
+      await fetch('/api/study/challenges', {
+        method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, id }),
+      })
+      void load()
+    } catch { /* no-op */ }
+  }
+
+  if (!data) return null
+  const nothing = data.active.length === 0 && data.incoming.length === 0 && data.outgoing.length === 0 && data.recent.length === 0
+  if (nothing) return null
+
+  const endsIn = (iso: string | null): string => {
+    if (!iso) return ''
+    const ms = new Date(iso).getTime() - Date.now()
+    if (ms <= 0) return ko ? '종료' : 'ended'
+    const d = Math.floor(ms / 86400000); const h = Math.floor((ms % 86400000) / 3600000)
+    return d >= 1 ? (ko ? `${d}일 남음` : `${d}d left`) : (ko ? `${h}시간 남음` : `${h}h left`)
+  }
+
+  return (
+    <section className="space-y-2">
+      <div className="flex items-center gap-2 px-1">
+        <Swords className="w-4 h-4 text-primary" />
+        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">{ko ? '대결' : 'Duels'}</h2>
+      </div>
+
+      {/* Incoming challenge requests */}
+      {data.incoming.map(r => (
+        <div key={r.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-primary/20 px-4 py-3">
+          <Avatar name={r.opponent.display_name} />
+          <div className="flex-1 min-w-0">
+            <div className="text-[13.5px] font-medium text-gray-800 truncate">{r.opponent.display_name}</div>
+            <div className="text-[11.5px] text-gray-400">{ko ? '대결을 신청했어요' : 'challenged you'}</div>
+          </div>
+          <button type="button" onClick={() => void respond(r.id, 'accept')}
+            className="h-8 px-3 rounded-full bg-primary text-white text-[12px] font-semibold hover:opacity-95 active:scale-95 transition">
+            {ko ? '수락' : 'Accept'}
+          </button>
+          <button type="button" onClick={() => void respond(r.id, 'decline')} aria-label={ko ? '거절' : 'Decline'}
+            className="w-8 h-8 inline-flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 active:scale-95 transition">
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      ))}
+
+      {/* Active duels — live scoreboard */}
+      {data.active.map(d => {
+        const leading = d.my_xp > d.their_xp
+        const tied = d.my_xp === d.their_xp
+        return (
+          <div key={d.id} className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-3">
+            <div className="flex items-center justify-between mb-2">
+              <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-gray-800">
+                <Avatar name={d.opponent.display_name} />
+                <span className="truncate max-w-[120px]">{d.opponent.display_name}</span>
+              </span>
+              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-gray-400">
+                <Clock className="w-3 h-3" />{endsIn(d.ends_at)}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className={`flex-1 text-center rounded-xl py-2 ${!tied && leading ? 'bg-emerald-50 ring-1 ring-emerald-200' : 'bg-gray-50 ring-1 ring-gray-200/70'}`}>
+                <div className="text-[10px] uppercase tracking-wide text-gray-400">{ko ? '나' : 'You'}</div>
+                <div className="text-[18px] font-bold tabular-nums text-gray-900">{d.my_xp}</div>
+              </div>
+              <span className="text-[11px] font-bold text-gray-300">VS</span>
+              <div className={`flex-1 text-center rounded-xl py-2 ${!tied && !leading ? 'bg-rose-50 ring-1 ring-rose-200' : 'bg-gray-50 ring-1 ring-gray-200/70'}`}>
+                <div className="text-[10px] uppercase tracking-wide text-gray-400 truncate">{d.opponent.display_name}</div>
+                <div className="text-[18px] font-bold tabular-nums text-gray-900">{d.their_xp}</div>
+              </div>
+            </div>
+            <div className={`mt-2 text-center text-[11.5px] font-semibold ${tied ? 'text-gray-400' : leading ? 'text-emerald-600' : 'text-rose-500'}`}>
+              {tied ? (ko ? '동점 — 접전이에요!' : 'Tied — neck and neck!') : leading ? (ko ? '앞서고 있어요! 🔥' : "You're ahead! 🔥") : (ko ? '뒤처지고 있어요 — 분발하세요!' : 'Behind — catch up!')}
+            </div>
+          </div>
+        )
+      })}
+
+      {/* Outgoing pending */}
+      {data.outgoing.map(o => (
+        <div key={o.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-3 opacity-80">
+          <Avatar name={o.opponent.display_name} />
+          <span className="flex-1 min-w-0 truncate text-[13.5px] text-gray-600">{o.opponent.display_name}</span>
+          <span className="text-[11.5px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
+          <button type="button" onClick={() => void respond(o.id, 'cancel')} aria-label={ko ? '취소' : 'Cancel'}
+            className="w-8 h-8 inline-flex items-center justify-center rounded-full text-gray-300 hover:bg-gray-100 hover:text-gray-500 active:scale-95 transition">
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      ))}
+
+      {/* Recent results */}
+      {data.recent.map(r => (
+        <div key={r.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-2.5">
+          <Avatar name={r.opponent.display_name} />
+          <span className="flex-1 min-w-0 truncate text-[13.5px] text-gray-700">{r.opponent.display_name}</span>
+          <span className="text-[12px] tabular-nums text-gray-500">{r.my_xp}–{r.their_xp}</span>
+          <span className={`text-[11px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${
+            r.won === null ? 'bg-gray-100 text-gray-500' : r.won ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-600'
+          }`}>
+            {r.won === null ? (ko ? '무' : 'Tie') : r.won ? (ko ? '승' : 'Won') : (ko ? '패' : 'Lost')}
+          </span>
+        </div>
+      ))}
     </section>
   )
 }
