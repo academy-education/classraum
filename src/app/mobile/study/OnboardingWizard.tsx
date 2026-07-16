@@ -7,6 +7,7 @@ import { track } from '@/lib/study/track-client'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ModalPortal } from '@/components/ui/modal-portal'
 import { validateNickname, normalizeNickname } from '@/lib/study/nickname'
+import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 
 type Difficulty = 'warmup' | 'balanced' | 'challenge'
 interface Step1 { targetTest: string | null; goalScore: number | null }
@@ -440,24 +441,26 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
             {String(t('study.onboarding.skip'))}
           </button>
           {step < TOTAL_STEPS ? (
-            <button
+            <StudyButton
               type="button"
+              size="lg"
               onClick={() => setStep((step + 1) as 1 | 2 | 3 | 4 | 5)}
-              className="flex-1 inline-flex items-center justify-center gap-1.5 h-12 rounded-2xl bg-gradient-to-b from-primary to-primary/90 text-white text-[15px] font-semibold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30 active:scale-[0.98] transition-all"
+              rightIcon={<ArrowRight className="w-4 h-4" />}
+              className="flex-1"
             >
               {String(t('study.onboarding.next'))}
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            </StudyButton>
           ) : (
-            <button
+            <StudyButton
               type="button"
+              size="lg"
               onClick={() => void finish(false)}
-              disabled={saving}
-              className="flex-1 inline-flex items-center justify-center gap-1.5 h-12 rounded-2xl bg-gradient-to-b from-primary to-primary/90 text-white text-[15px] font-semibold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30 active:scale-[0.98] disabled:opacity-60 transition-all"
+              loading={saving}
+              leftIcon={<Sparkles className="w-4 h-4" />}
+              className="flex-1"
             >
-              {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               {String(t('study.onboarding.finish'))}
-            </button>
+            </StudyButton>
           )}
         </div>
       </div>

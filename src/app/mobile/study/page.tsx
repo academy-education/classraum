@@ -15,6 +15,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from './SubscriptionGate'
+import { StudyButton } from './_shared/StudyButton'
 import { StudyTodayCard } from './_shared/primitives'
 import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
@@ -820,13 +821,16 @@ function StudyLandingInner() {
               disabled={creatingFreeForm}
               className="w-full h-12 pl-10 pr-24 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[15px] placeholder:text-gray-400 shadow-[0_1px_2px_rgba(0,0,0,0.03)] focus:outline-none focus:ring-2 focus:ring-primary/30 focus:shadow-[0_2px_12px_-2px_rgba(40,133,232,0.15)] transition-all"
             />
-            <button
+            <StudyButton
               type="submit"
+              variant="primary"
+              size="sm"
+              square
               disabled={!freeFormQuery.trim() || creatingFreeForm}
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-8 px-3.5 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white text-xs font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_1px_2px_rgba(40,133,232,0.3)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_2px_8px_rgba(40,133,232,0.35)] active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              className="absolute right-2 top-1/2 -translate-y-1/2"
             >
               {creatingFreeForm ? '…' : String(t('study.landing.freeformGo'))}
-            </button>
+            </StudyButton>
           </form>
           <p className="text-xs text-gray-400 mt-2.5 px-1 leading-relaxed">
             {t('study.landing.freeformHint')}

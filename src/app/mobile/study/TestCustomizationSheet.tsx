@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
-import { X, Clock, Hash, Sparkles, Loader2, Award, Coins } from '@/app/mobile/study/_shared/icons'
+import { X, Clock, Hash, Sparkles, Award, Coins } from '@/app/mobile/study/_shared/icons'
 import type { LucideIcon } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
 import { SegmentedTabs } from './_shared/SegmentedTabs'
+import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 
 /** An AI-generated full test costs one credit (SAT bank tests bypass this
  *  sheet entirely — they're free instant assembly). */
@@ -311,15 +312,15 @@ export function TestCustomizationSheet({
               )
             )}
           </div>
-          <button
+          <StudyButton
             type="button"
+            size="lg"
+            fullWidth
             onClick={submit}
-            disabled={starting}
-            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-2xl bg-gradient-to-b from-primary to-primary/90 text-white text-[15px] font-semibold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25),0_8px_20px_-8px_rgba(40,133,232,0.4)] ring-1 ring-primary/30 hover:from-primary/95 hover:to-primary/85 active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait transition-all"
+            loading={starting}
           >
-            {starting && <Loader2 className="w-4 h-4 animate-spin" />}
             {ko ? '시험 시작' : 'Start test'}
-          </button>
+          </StudyButton>
         </div>
       </div>
     </>,

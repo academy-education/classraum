@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { BookOpen, Camera, Shuffle, Trophy, X, ChevronRight, ChevronLeft } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { StudyButton } from './StudyButton'
 
 /**
  * First-visit walkthrough for the 5 study-mode bottom-nav tabs.
@@ -164,23 +165,22 @@ export function NavTour() {
           </div>
           <div className="flex gap-2 mt-4">
             {step > 0 ? (
-              <button type="button" onClick={() => setStep(step - 1)}
-                className="flex-1 h-11 rounded-xl bg-white ring-1 ring-gray-200 text-gray-700 text-[13px] font-semibold inline-flex items-center justify-center gap-1 hover:bg-gray-50 transition">
-                <ChevronLeft className="w-3.5 h-3.5" />{ko ? '이전' : 'Back'}
-              </button>
+              <StudyButton type="button" variant="secondary" square onClick={() => setStep(step - 1)}
+                className="flex-1" leftIcon={<ChevronLeft className="w-3.5 h-3.5" />}>
+                {ko ? '이전' : 'Back'}
+              </StudyButton>
             ) : (
-              <button type="button" onClick={finish}
-                className="flex-1 h-11 rounded-xl bg-white ring-1 ring-gray-200 text-gray-500 text-[13px] font-medium hover:bg-gray-50 transition">
+              <StudyButton type="button" variant="secondary" square onClick={finish} className="flex-1">
                 {/* Honest label: dismissal is permanent (account-level),
                     so say so — "Skip/later" implied it would come back. */}
                 {ko ? '다시 보지 않기' : "Don't show again"}
-              </button>
+              </StudyButton>
             )}
             {step < STEPS.length - 1 ? (
-              <button type="button" onClick={() => setStep(step + 1)}
-                className="flex-[1.4] h-11 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-semibold inline-flex items-center justify-center gap-1 hover:opacity-95 transition">
-                {ko ? '다음' : 'Next'}<ChevronRight className="w-3.5 h-3.5" />
-              </button>
+              <StudyButton type="button" square onClick={() => setStep(step + 1)}
+                className="flex-[1.4]" rightIcon={<ChevronRight className="w-3.5 h-3.5" />}>
+                {ko ? '다음' : 'Next'}
+              </StudyButton>
             ) : (
               <button type="button" onClick={finish}
                 className="flex-[1.4] h-11 rounded-xl bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-semibold hover:opacity-95 transition">

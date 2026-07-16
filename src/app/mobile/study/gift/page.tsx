@@ -8,6 +8,7 @@ import {
 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
+import { StudyButton } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { GIFT } from '@/lib/study/gifts'
 import { PortOne } from '@/lib/portone-browser'
@@ -272,15 +273,16 @@ export default function GiftPage() {
               disabled={redeeming}
               className="flex-1 h-11 px-4 rounded-full bg-gray-50 ring-1 ring-gray-200/70 text-[14px] font-semibold tracking-wider text-gray-900 placeholder:text-gray-400 placeholder:font-normal placeholder:tracking-normal focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-60"
             />
-            <button
+            <StudyButton
               type="button"
+              variant="primary"
               onClick={() => void redeem()}
               disabled={redeeming || !codeInput.trim()}
-              className="h-11 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13.5px] font-semibold inline-flex items-center justify-center gap-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-50 transition-all"
+              loading={redeeming}
+              leftIcon={<Ticket className="w-4 h-4" />}
             >
-              {redeeming ? <Loader2 className="w-4 h-4 animate-spin" /> : <Ticket className="w-4 h-4" />}
               {ko ? '사용하기' : 'Redeem'}
-            </button>
+            </StudyButton>
           </div>
         </div>
       </section>

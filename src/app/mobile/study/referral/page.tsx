@@ -3,12 +3,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
 import { Share } from '@capacitor/share'
-import { Gift, Copy, Check, Users, Sparkles, Loader2, Ticket, Share2 } from '@/app/mobile/study/_shared/icons'
+import { Gift, Copy, Check, Users, Sparkles, Ticket, Share2 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyScrollShell, StudyMetric, StudyPageTransition } from '../_shared/primitives'
+import { StudyButton } from '../_shared/StudyButton'
 import { SkeletonBlock, SkeletonCard, SkeletonMetricCard } from '../skeletons'
 
 /**
@@ -121,13 +122,14 @@ function ReferralInner() {
               <p className="text-[13.5px] text-gray-600">
                 {ko ? '초대 정보를 불러오지 못했어요.' : "We couldn't load your invite info."}
               </p>
-              <button
+              <StudyButton
                 type="button"
+                variant="primary"
+                size="sm"
                 onClick={() => void load()}
-                className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 transition"
               >
                 {ko ? '다시 시도' : 'Retry'}
-              </button>
+              </StudyButton>
             </div>
           ) : (
             <>
@@ -224,29 +226,35 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
       </div>
 
       <div className="space-y-2">
-        <button
+        <StudyButton
           type="button"
+          variant="primary"
+          size="lg"
+          fullWidth
+          square
           onClick={() => void copy(inviteLink)}
-          className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white text-[14px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 active:scale-[0.99] transition"
+          leftIcon={copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
         >
-          {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           {copied
             ? (ko ? '복사됐어요!' : 'Copied!')
             : (ko ? '초대 링크 복사' : 'Copy invite link')}
-        </button>
+        </StudyButton>
 
         {/* Share — native uses the OS share sheet (@capacitor/share), which
             includes KakaoTalk; web uses the Kakao JS SDK when a key is set.
             Web without a key falls back to a disabled "준비 중" placeholder. */}
         {isNative ? (
-          <button
+          <StudyButton
             type="button"
+            variant="primary"
+            size="lg"
+            fullWidth
+            square
             onClick={() => void doShare()}
-            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white text-[14px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 active:scale-[0.99] transition"
+            leftIcon={<Share2 className="w-4 h-4" />}
           >
-            <Share2 className="w-4 h-4" />
             {ko ? '친구에게 공유' : 'Share with a friend'}
-          </button>
+          </StudyButton>
         ) : canShare ? (
           <button
             type="button"
@@ -362,16 +370,18 @@ function RedeemBox({ ko, onRedeemed }: { ko: boolean; onRedeemed: () => void }) 
           maxLength={16}
           className="flex-1 min-w-0 h-12 px-4 rounded-xl bg-white ring-1 ring-gray-200/70 text-[15px] font-semibold tracking-[0.12em] text-gray-900 uppercase placeholder:font-normal placeholder:tracking-normal placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
         />
-        <button
+        <StudyButton
           type="button"
+          variant="primary"
+          size="lg"
+          square
           onClick={() => void submit()}
           disabled={!code.trim() || state === 'submitting'}
-          className="flex-shrink-0 inline-flex items-center justify-center gap-1.5 h-12 px-5 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white text-[14px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed transition"
+          loading={state === 'submitting'}
+          className="flex-shrink-0"
         >
-          {state === 'submitting'
-            ? <Loader2 className="w-4 h-4 animate-spin" />
-            : (ko ? '적용' : 'Redeem')}
-        </button>
+          {ko ? '적용' : 'Redeem'}
+        </StudyButton>
       </div>
       {message && (
         <p className={`text-[12.5px] font-medium ${message.kind === 'success' ? 'text-emerald-600' : 'text-rose-600'}`}>

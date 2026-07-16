@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Sparkles, Target, ArrowRight, Loader2 } from '@/app/mobile/study/_shared/icons'
+import { Sparkles, Target, ArrowRight } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { getPathTemplate } from '@/lib/study-path'
 import { PathMascot } from '../_shared/PathMascot'
+import { StudyButton } from './StudyButton'
 
 /**
  * Surfaces the mascot-led StudyPath on a test-prep topic page.
@@ -113,15 +114,16 @@ export function TestPrepPathCard({ test }: { test: string }) {
           </p>
         </div>
       </div>
-      <button
+      <StudyButton
         type="button"
+        fullWidth
+        loading={setting}
         onClick={() => void makeGoal()}
-        disabled={setting}
-        className="mt-3 w-full h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13.5px] font-semibold inline-flex items-center justify-center gap-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.99] transition disabled:opacity-60"
+        leftIcon={<Target className="w-4 h-4" />}
+        className="mt-3"
       >
-        {setting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Target className="w-4 h-4" />}
         {ko ? '목표로 설정하고 시작하기' : 'Set as my goal & start the path'}
-      </button>
+      </StudyButton>
     </div>
   )
 }

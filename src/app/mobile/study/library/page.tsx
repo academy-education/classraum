@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Library as LibraryIcon, ListChecks, Layers, ClipboardList, ChevronDown, ChevronRight, Search, X, ArrowRight, Check } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyFilterChip } from '../_shared/primitives'
+import { studyButtonClass } from '../_shared/StudyButton'
 import { SkeletonRowList } from '../skeletons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -306,7 +307,7 @@ function FullTestPanel({ section, ko }: { section: Section; ko: boolean }) {
           </div>
         </div>
         <Link href={`/mobile/study/topic/${section === 'math' ? 'sat-math' : 'sat-reading-writing'}`}
-          className="mt-4 w-full h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13.5px] font-semibold inline-flex items-center justify-center gap-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.99] transition">
+          className={studyButtonClass({ variant: 'primary', fullWidth: true, className: 'mt-4' })}>
           {ko ? '모의고사 시작' : 'Start a full test'}<ArrowRight className="w-4 h-4" />
         </Link>
       </div>

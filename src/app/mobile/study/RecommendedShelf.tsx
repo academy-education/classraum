@@ -12,6 +12,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import type { StudyMode } from './modes'
 import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
 import { useLandingData } from './LandingDataProvider'
+import { studyButtonClass } from './_shared/StudyButton'
 
 interface Card {
   reason: 'weak' | 'recent' | 'snap_followup'
@@ -147,7 +148,7 @@ export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean 
           </div>
           <Link
             href="/mobile/study/subscription"
-            className="mt-3.5 ml-[58px] inline-flex items-center gap-1 h-9 px-3.5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[12.5px] font-semibold hover:opacity-95 active:scale-[0.98] transition"
+            className={studyButtonClass({ variant: 'primary', size: 'sm', className: 'mt-3.5 ml-[58px]' })}
           >
             {ko ? '플랜 보기' : 'See plans'}
           </Link>
@@ -190,7 +191,7 @@ export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean 
               </p>
               <Link
                 href="/mobile/study/path"
-                className="inline-flex items-center gap-1.5 mt-3 h-9 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-semibold hover:opacity-95 active:scale-[0.98] transition"
+                className={studyButtonClass({ variant: 'primary', size: 'sm', className: 'mt-3' })}
               >
                 {ko ? '목표 시험 선택' : 'Choose a test'}
                 <ArrowRight className="w-3.5 h-3.5" />

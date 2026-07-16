@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
 import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
+import { StudyButton, studyButtonClass } from '../../_shared/StudyButton'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../../skeletons'
@@ -558,20 +559,21 @@ function TopicInner({ slug }: { slug: string }) {
                           </div>
                         </div>
                         <div className={`mt-3 grid gap-2 ${isSat ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                          <button
+                          <StudyButton
                             type="button"
+                            size="sm"
                             onClick={() => startSession(mode.key)}
                             disabled={creating !== null}
-                            className="h-10 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait transition"
+                            loading={creating === mode.key}
+                            leftIcon={<Sparkles className="w-4 h-4" />}
                           >
-                            {creating === mode.key ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                             {ko ? '새로 시작' : 'Start new'}
-                          </button>
+                          </StudyButton>
                           {/* Bank browsing is SAT-only for now. */}
                           {isSat && (
                             <Link
                               href={`/mobile/study/library?section=${librarySection}&tab=${mode.key}`}
-                              className="h-10 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 hover:ring-primary/40 hover:text-primary active:scale-[0.98] transition"
+                              className={studyButtonClass({ variant: 'secondary', size: 'sm' })}
                             >
                               <BookOpen className="w-4 h-4" />{ko ? '기존 보기' : 'Browse existing'}
                             </Link>

@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyScrollShell, StudyPageTransition } from '../_shared/primitives'
 import { SkeletonBlock, SkeletonCard } from '../skeletons'
+import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 
 /**
  * /mobile/study/friends — friend management.
@@ -84,10 +85,9 @@ function FriendsInner() {
         {failed ? (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
             <p className="text-[13.5px] text-gray-600">{ko ? '친구 정보를 불러오지 못했어요.' : "Couldn't load your friends."}</p>
-            <button type="button" onClick={() => void load()}
-              className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold hover:opacity-95 transition">
+            <StudyButton type="button" size="sm" onClick={() => void load()}>
               {ko ? '다시 시도' : 'Retry'}
-            </button>
+            </StudyButton>
           </div>
         ) : (
           <>
