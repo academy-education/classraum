@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
+import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
 import { scheduleNext, INITIAL_SRS } from '@/lib/srs'
@@ -105,6 +106,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
     // skipping the next. Released by the queue-advance effect.
     if (!deck || queue.length === 0 || !user?.userId || marking) return
     setMarking(true)
+    hapticImpact('medium')  // tactile commit when rating a card
     const currentIdx = queue[0]
     const card = deck[currentIdx]
     const isCorrect = quality >= 3
@@ -349,7 +351,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
             Tap anywhere to flip. */}
         <button
           type="button"
-          onClick={() => setFlipped(f => !f)}
+          onClick={() => { hapticTap(); setFlipped(f => !f) }}
           aria-pressed={flipped}
           className="flex-1 group"
           style={{ perspective: '1200px' }}
@@ -455,7 +457,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
         ) : (
           <button
             type="button"
-            onClick={() => setFlipped(true)}
+            onClick={() => { hapticTap(); setFlipped(true) }}
             className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5"
           >
             <RotateCw className="w-4 h-4" />

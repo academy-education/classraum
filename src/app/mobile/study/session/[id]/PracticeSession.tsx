@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw, Sparkles } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { hapticSelection, hapticNotification } from '@/lib/nativeHaptics'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
 import { ExplainMore } from '../../_shared/ExplainMore'
@@ -111,6 +112,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
       if (!res.ok) throw new Error()
       const v = (await res.json()) as Verdict
       setVerdict(v)
+      hapticNotification(v.isCorrect ? 'success' : 'error')
       setResults(prev => [...prev, v.isCorrect])
       setPhase('feedback')
       // Fire the XP celebration on a correct answer — the toast engine
@@ -125,6 +127,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
       const q = questions[idx]
       const isCorrect = trimmed.toLowerCase() === q.correct_answer.trim().toLowerCase()
       setVerdict({ isCorrect, aiExplanation: q.explanation })
+      hapticNotification(isCorrect ? 'success' : 'error')
       setResults(prev => [...prev, isCorrect])
       setPhase('feedback')
     } finally {
@@ -283,7 +286,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
                   <button
                     key={choice}
                     type="button"
-                    onClick={() => phase === 'asking' && setAnswer(choice)}
+                    onClick={() => { if (phase === 'asking') { hapticSelection(); setAnswer(choice) } }}
                     disabled={phase !== 'asking'}
                     className={`w-full flex items-start gap-3 text-left px-3.5 py-3 rounded-xl border text-sm transition-colors ${
                       showCorrect
@@ -322,7 +325,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
                     <button
                       key={opt}
                       type="button"
-                      onClick={() => phase === 'asking' && setAnswer(opt)}
+                      onClick={() => { if (phase === 'asking') { hapticSelection(); setAnswer(opt) } }}
                       disabled={phase !== 'asking'}
                       className={`h-12 rounded-xl border text-sm font-medium transition-colors ${
                         showCorrect

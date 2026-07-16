@@ -279,6 +279,42 @@
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
   }
+
+  /* Native-app interaction feel — the difference between "a website in a
+     shell" and "an app". Scoped to .native-app so the dev/mobile-web
+     browser (where selecting text and the tap flash are expected) is
+     untouched.
+       - no grey tap-flash on touch
+       - no long-press callout / magnifier on UI chrome
+       - no text selection on chrome (buttons, labels, cards) */
+  html.native-app {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  /* Kill the 300ms tap delay + double-tap-zoom on things you tap (keeps
+     pinch-zoom + scrolling intact by only targeting interactive nodes). */
+  html.native-app button,
+  html.native-app a,
+  html.native-app [role="button"],
+  html.native-app label,
+  html.native-app input,
+  html.native-app textarea,
+  html.native-app select {
+    touch-action: manipulation;
+  }
+  /* Re-enable selection/callout where content is meant to be read or
+     copied: form fields, editable regions, and an opt-in `.select-text`
+     hook (Tailwind's select-text utility) for passages/explanations. */
+  html.native-app input,
+  html.native-app textarea,
+  html.native-app [contenteditable="true"],
+  html.native-app .select-text {
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
+  }
 }
 
 /* Safe area utilities for notch and home indicator (iOS + Android) */
