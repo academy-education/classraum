@@ -8,6 +8,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
 import { ExplainMore } from '../../_shared/ExplainMore'
+import { StudyButton } from '../../_shared/StudyButton'
 
 type QuestionType = 'multiple_choice' | 'true_false' | 'short_answer'
 
@@ -416,16 +417,16 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
             )}
           </button>
         ) : (
-          <button
-            type="button"
+          <StudyButton
+            size="lg"
+            fullWidth
             onClick={next}
-            className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold flex items-center justify-center gap-1.5"
+            rightIcon={<ArrowRight className="w-4 h-4" />}
           >
             {idx + 1 >= questions.length
               ? t('study.practice.finish')
               : t('study.practice.next')}
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          </StudyButton>
         )}
       </div>
     </div>

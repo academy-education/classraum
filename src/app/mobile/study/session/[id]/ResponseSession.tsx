@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { PathMascot } from '../../_shared/PathMascot'
 import { authHeaders } from '@/lib/auth-headers'
+import { StudyButton } from '../../_shared/StudyButton'
 
 type Family = 'toefl' | 'ielts'
 type Skill = 'speaking' | 'writing'
@@ -477,10 +478,9 @@ function SpeakingCapture({
           <p className="text-[12px] text-gray-500 mt-3">
             {ko ? '메모하세요. 자동으로 녹음이 시작됩니다.' : 'Take notes. Recording starts automatically.'}
           </p>
-          <button type="button" onClick={() => { setPrepRemaining(0); void startRecording() }}
-            className="mt-4 inline-flex items-center justify-center h-9 px-4 rounded-lg bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-medium hover:opacity-95 transition">
+          <StudyButton size="sm" onClick={() => { setPrepRemaining(0); void startRecording() }} className="mt-4">
             {ko ? '바로 시작' : 'Start now'}
-          </button>
+          </StudyButton>
         </div>
       )}
 

@@ -10,6 +10,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
+import { StudyButton } from '../../_shared/StudyButton'
 import { scheduleNext, INITIAL_SRS } from '@/lib/srs'
 import { useStudyErrorToast, saveFailedMessage } from '../../_shared/useStudyErrorToast'
 
@@ -453,14 +454,14 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
             </button>
           </div>
         ) : (
-          <button
-            type="button"
+          <StudyButton
+            size="lg"
+            fullWidth
             onClick={() => setFlipped(true)}
-            className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5"
+            leftIcon={<RotateCw className="w-4 h-4" />}
           >
-            <RotateCw className="w-4 h-4" />
             {t('study.flashcards.flip')}
-          </button>
+          </StudyButton>
         )}
       </div>
     </div>
