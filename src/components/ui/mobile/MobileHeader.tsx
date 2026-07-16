@@ -268,8 +268,11 @@ export function MobileHeader() {
 
             {/* Messages Button — pill chrome with soft-rose unread badge.
                 Messaging is academy-scoped (teacher/manager chat), so
-                study-only students without an academy don't get it. */}
-            {(user?.academyIds?.length ?? 0) > 0 && (
+                study-only students without an academy don't get it. Also
+                hidden throughout study mode: messaging is a Grades-side
+                feature and doesn't belong in the study surface even for
+                students who do have an academy. */}
+            {!isStudy && (user?.academyIds?.length ?? 0) > 0 && (
             <button
               onClick={handleMessagesClick}
               className="relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
