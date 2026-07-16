@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { TrendingUp, Target, ArrowRight, Sparkles, Lock, ListChecks, Layers, Clock, Loader2, Crown } from '@/app/mobile/study/_shared/icons'
+import { TrendingUp, Target, ArrowRight, Sparkles, Lock, ListChecks, Layers, Clock, Crown } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { NumberRoll } from './primitives'
+import { StudyButton, studyButtonClass } from './StudyButton'
 
 // Digital SAT structure — shown on the diagnostic card so students know
 // exactly what the baseline test involves. Reading & Writing: 2 adaptive
@@ -229,15 +230,15 @@ function DiagnosticCard({ ko, isPremium, starting, onStart }: {
       <div className="mt-3">
         {isPremium ? (
           <>
-            <button
-              type="button"
+            <StudyButton
+              variant="inverse"
+              fullWidth
+              loading={starting}
               onClick={onStart}
-              disabled={starting}
-              className="w-full h-11 rounded-full bg-white text-primary text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.12)] active:scale-[0.99] transition disabled:opacity-70"
+              leftIcon={<ArrowRight className="w-4 h-4" />}
             >
-              {starting ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
               {ko ? '진단 시작하기' : 'Start diagnostic'}
-            </button>
+            </StudyButton>
             <p className="text-[10.5px] text-white/55 text-center mt-1.5">
               {ko ? 'Reading & Writing부터 시작 · 2개 적응형 모듈' : 'Begins with Reading & Writing · 2 adaptive modules'}
             </p>
@@ -246,7 +247,7 @@ function DiagnosticCard({ ko, isPremium, starting, onStart }: {
           <>
             <Link
               href="/mobile/study/subscription"
-              className="w-full h-11 rounded-full bg-white text-primary text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.12)] active:scale-[0.99] transition"
+              className={studyButtonClass({ variant: 'inverse', fullWidth: true })}
             >
               <Lock className="w-4 h-4" />{ko ? '프리미엄으로 잠금 해제' : 'Unlock with Premium'}
             </Link>
