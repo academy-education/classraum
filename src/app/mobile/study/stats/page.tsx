@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock, Sparkles, Flame, ArrowRight, BarChart3 } from '@/app/mobile/study/_shared/icons'
+import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock, Sparkles, Flame, Snowflake, ArrowRight, BarChart3 } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -68,8 +68,25 @@ function StatsInner() {
   const { t, language } = useTranslation()
   const ko = language === 'korean'
   const [stats, setStats] = useState<Stats | null>(null)
+  const [streakInfo, setStreakInfo] = useState<{ streak: number; freezes: number; maxStreak: number } | null>(null)
   const [failed, setFailed] = useState(false)
   const [retryKey, setRetryKey] = useState(0)
+
+  // Streak + freeze state (separate lightweight endpoint) — powers the
+  // best-streak / freeze card.
+  useEffect(() => {
+    let cancelled = false
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/streak', { headers })
+        if (!res.ok) return
+        const json = await res.json() as { streak: number; freezes?: number; maxStreak?: number }
+        if (!cancelled) setStreakInfo({ streak: json.streak, freezes: json.freezes ?? 0, maxStreak: json.maxStreak ?? json.streak })
+      } catch { /* silent */ }
+    })()
+    return () => { cancelled = true }
+  }, [retryKey])
 
   useEffect(() => {
     let cancelled = false
@@ -152,6 +169,11 @@ function StatsInner() {
           when the student has done something this week. */}
       {stats.week && (stats.week.xp > 0 || stats.week.activeDays > 0) && (
         <WeekCard week={stats.week} ko={ko} t={t} />
+      )}
+
+      {/* Streak · best streak · freeze inventory. */}
+      {streakInfo && (streakInfo.streak > 0 || streakInfo.maxStreak > 0) && (
+        <StreakFreezeCard info={streakInfo} ko={ko} />
       )}
 
       {/* Hero stats — 2x2 grid (lifetime), 4-across at lg — using shared StudyMetric */}
@@ -385,6 +407,49 @@ const TIER_LABEL_KO: Record<string, string> = {
 const TIER_LABEL_EN: Record<string, string> = {
   bronze: 'Bronze', silver: 'Silver', gold: 'Gold', sapphire: 'Sapphire', ruby: 'Ruby',
   emerald: 'Emerald', amethyst: 'Amethyst', pearl: 'Pearl', obsidian: 'Obsidian', diamond: 'Diamond',
+}
+
+/** Streak · best streak · freeze inventory. A calmer companion to the
+ *  hot WeekCard — cool tones for the freeze theme. */
+function StreakFreezeCard({ info, ko }: {
+  info: { streak: number; freezes: number; maxStreak: number }
+  ko: boolean
+}) {
+  return (
+    <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4">
+      <div className="grid grid-cols-3 gap-3">
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
+            <Flame className="w-3 h-3 text-orange-500" />{ko ? '연속' : 'Streak'}
+          </div>
+          <div className="text-2xl font-bold tabular-nums leading-none mt-1 text-gray-900">
+            {info.streak}<span className="text-[13px] font-medium text-gray-400 ml-0.5">{ko ? '일' : 'd'}</span>
+          </div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
+            <Trophy className="w-3 h-3 text-amber-500" />{ko ? '최고 기록' : 'Best'}
+          </div>
+          <div className="text-2xl font-bold tabular-nums leading-none mt-1 text-gray-900">
+            {info.maxStreak}<span className="text-[13px] font-medium text-gray-400 ml-0.5">{ko ? '일' : 'd'}</span>
+          </div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
+            <Snowflake className="w-3 h-3 text-sky-500" />{ko ? '프리즈' : 'Freezes'}
+          </div>
+          <div className="text-2xl font-bold tabular-nums leading-none mt-1 text-gray-900">
+            {info.freezes}
+          </div>
+        </div>
+      </div>
+      <p className="mt-3 text-[11.5px] text-gray-500 leading-relaxed">
+        {ko
+          ? '프리즈는 하루를 놓쳐도 연속 기록을 지켜줘요. 7일마다 하나씩 받아요.'
+          : 'A freeze protects your streak if you miss a day. You earn one every 7-day milestone.'}
+      </p>
+    </div>
+  )
 }
 
 function WeekCard({ week, ko, t }: {

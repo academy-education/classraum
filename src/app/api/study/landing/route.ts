@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { computeDailyChallenge } from '@/lib/study/daily-challenge'
 import { requireStudyUser } from '@/lib/study/auth'
+import { evaluateStreak } from '@/lib/study/streak'
 
 /**
  * GET /api/study/landing — batched landing-page summary.
@@ -50,10 +51,6 @@ interface ActiveSession {
   topic: { name_en: string; name_ko: string } | null
 }
 
-function localDayKey(d: Date): string {
-  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
-}
-
 export async function GET(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
@@ -68,7 +65,7 @@ export async function GET(req: NextRequest) {
   const todayIso = todayStart.toISOString()
 
   const [
-    { data: streakRows },
+    streakState,
     { data: activeRow },
     { count: readyCount },
     { data: attempts },
@@ -78,13 +75,9 @@ export async function GET(req: NextRequest) {
     dailyChallenge,
     { count: completedTestCount },
   ] = await Promise.all([
-    supabaseAdmin
-      .from('study_sessions')
-      .select('last_active_at')
-      .eq('student_id', user.id)
-      .gte('last_active_at', cutoff60)
-      .order('last_active_at', { ascending: false })
-      .limit(500),
+    // Streak + freeze: derives the count, auto-consumes freezes to bridge a
+    // missed day, grants milestone freezes, and persists study_streak_state.
+    evaluateStreak(user.id),
     supabaseAdmin
       .from('study_sessions')
       .select(`
@@ -145,35 +138,8 @@ export async function GET(req: NextRequest) {
       .eq('status', 'completed'),
   ])
 
-  // Streak computation — same logic as /api/study/streak.
-  const days = new Set<string>()
-  for (const row of streakRows ?? []) {
-    if (!row.last_active_at) continue
-    days.add(localDayKey(new Date(row.last_active_at as string)))
-  }
-  const today = new Date()
-  const cursor = new Date(today)
-  if (!days.has(localDayKey(cursor)) && days.has(localDayKey(new Date(cursor.getTime() - 86400_000)))) {
-    cursor.setDate(cursor.getDate() - 1)
-  }
-  let streak = 0
-  while (days.has(localDayKey(cursor)) && streak < 400) {
-    streak++
-    cursor.setDate(cursor.getDate() - 1)
-  }
-
-  // Prior-lost streak: student missed BOTH today AND yesterday.
-  let priorLostStreak = 0
-  const hasToday = days.has(localDayKey(today))
-  const yesterday = new Date(today); yesterday.setDate(yesterday.getDate() - 1)
-  const hasYesterday = days.has(localDayKey(yesterday))
-  if (!hasToday && !hasYesterday) {
-    const walk = new Date(today); walk.setDate(walk.getDate() - 2)
-    while (days.has(localDayKey(walk)) && priorLostStreak < 400) {
-      priorLostStreak++
-      walk.setDate(walk.getDate() - 1)
-    }
-  }
+  // Streak + freeze state (evaluated + persisted by evaluateStreak above).
+  const { streak, freezes, maxStreak, priorLostStreak, streakSaved } = streakState
 
   // Progress block — mirrors /api/study/progress logic. Goal minutes
   // are read off the prefs row we already fetched above rather than
@@ -210,6 +176,11 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     streak,
     priorLostStreak,
+    // Streak-freeze state — inventory + whether a freeze is currently
+    // holding the streak (drives the freeze chip + "protected" banner).
+    freezes,
+    maxStreak,
+    streakSaved,
     readyTests: readyCount ?? 0,
     // True until the student finishes their first mock test — the landing
     // shows the first-test activation nudge while this holds.

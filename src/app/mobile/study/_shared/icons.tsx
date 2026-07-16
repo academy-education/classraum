@@ -33,6 +33,7 @@ import {
   Trophy as PhTrophy,
   Target as PhTarget,
   Flame as PhFlame,
+  Snowflake as PhSnowflake,
   Crown as PhCrown,
   Medal as PhMedal,
   Coins as PhCoins,
@@ -159,6 +160,7 @@ export const Sparkles = make(PhSparkle)
 export const Trophy = make(PhTrophy)
 export const Target = make(PhTarget)
 export const Flame = make(PhFlame)
+export const Snowflake = make(PhSnowflake)
 export const Crown = make(PhCrown)
 export const Award = make(PhMedal)
 export const Coins = make(PhCoins)
