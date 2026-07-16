@@ -27,6 +27,7 @@ import { WeekPlanCard } from './_shared/WeekPlanCard'
 import { ResumeBanner } from './ResumeBanner'
 import { DailyReviewCTA } from './DailyReviewCTA'
 import { StreakAtRiskBanner } from './_shared/StreakAtRiskBanner'
+import { StreakSavedBanner } from './_shared/StreakSavedBanner'
 import { DailyChallengeCard } from './_shared/DailyChallengeCard'
 import { SearchSheet } from './_shared/SearchSheet'
 import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
@@ -558,6 +559,7 @@ function StudyLandingInner() {
           <ResumeBanner />
           <SocialPresenceCard />
           <GeneratingTestsChip />
+          <StreakSavedBanner />
           <StreakAtRiskBanner />
           <DailyReviewCTA />
           <DailyChallengeCard />

@@ -40,6 +40,13 @@ interface Prefs {
 export interface LandingData {
   progress: Progress | null
   streak: number | null
+  /** Streak-freeze inventory (auto-protects a missed day). */
+  freezes: number | null
+  /** True when a freeze is currently holding the streak (yesterday missed
+   *  but protected) — drives the "streak protected" banner. */
+  streakSaved: boolean | null
+  /** Best streak ever reached (persisted; survives a reset). */
+  maxStreak: number | null
   prefs: Prefs | null
   /** study_subscriptions.status ('free' | 'trial' | 'active' | ...). */
   subscriptionStatus: string | null
@@ -65,6 +72,9 @@ const Ctx = createContext<LandingData | null>(null)
 export function LandingDataProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState<Progress | null>(null)
   const [streak, setStreak] = useState<number | null>(null)
+  const [freezes, setFreezes] = useState<number | null>(null)
+  const [streakSaved, setStreakSaved] = useState<boolean | null>(null)
+  const [maxStreak, setMaxStreak] = useState<number | null>(null)
   const [prefs, setPrefs] = useState<Prefs | null>(null)
   const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null)
   const [xpToday, setXpToday] = useState<number | null>(null)
@@ -80,6 +90,9 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
       const json = await res.json() as {
         progress: Progress
         streak: number
+        freezes?: number
+        streakSaved?: boolean
+        maxStreak?: number
         prefs: Prefs
         subscriptionStatus?: string
         xpToday?: number
@@ -88,6 +101,9 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
       }
       setProgress(json.progress ?? null)
       setStreak(json.streak ?? 0)
+      setFreezes(json.freezes ?? 0)
+      setStreakSaved(json.streakSaved ?? false)
+      setMaxStreak(json.maxStreak ?? 0)
       setPrefs(json.prefs ?? null)
       setSubscriptionStatus(json.subscriptionStatus ?? null)
       setXpToday(json.xpToday ?? 0)
@@ -105,7 +121,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   }, [fetchOnce])
 
   return (
-    <Ctx.Provider value={{ progress, streak, prefs, subscriptionStatus, xpToday, firstTestPending, dailyChallenge, loading, refetch: fetchOnce }}>
+    <Ctx.Provider value={{ progress, streak, freezes, streakSaved, maxStreak, prefs, subscriptionStatus, xpToday, firstTestPending, dailyChallenge, loading, refetch: fetchOnce }}>
       {children}
     </Ctx.Provider>
   )
