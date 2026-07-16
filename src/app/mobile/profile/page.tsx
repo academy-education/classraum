@@ -7,7 +7,7 @@ import { performLogout } from '@/lib/logout'
 import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { useTheme } from '@/hooks/useTheme'
+import { useTheme, DARK_MODE_ENABLED } from '@/hooks/useTheme'
 import { saveThemeToAccount } from '@/lib/theme-account'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
@@ -544,10 +544,10 @@ function MobileProfilePageContent() {
             </SelectContent>
           </Select>
 
-          {/* Appearance — light / dark / system. Applies instantly via the
-              .dark class, caches in the global store for pre-paint, and
-              persists to the account so it survives relaunch + syncs across
-              devices. */}
+          {/* Appearance — light / dark / system. Hidden while dark mode is
+              globally disabled (DARK_MODE_ENABLED) so we don't offer a
+              control that does nothing; restore by flipping the flag. */}
+          {DARK_MODE_ENABLED && (
           <Select value={theme} onValueChange={(value) => {
             hapticTap()
             const next = value as 'light' | 'dark' | 'system'
@@ -576,6 +576,7 @@ function MobileProfilePageContent() {
               <SelectItem value="system">{language === 'korean' ? '시스템 설정' : 'System'}</SelectItem>
             </SelectContent>
           </Select>
+          )}
         </Card>
       </div>
 

@@ -4,6 +4,14 @@ import { useGlobalStore } from '@/stores/useGlobalStore'
 
 export type Theme = 'light' | 'dark' | 'system'
 
+/** Dark mode is temporarily DISABLED app-wide while we finish a
+ *  consistency/UI pass — the dark palette has drifted across surfaces.
+ *  Flip this back to true (and remove the boot-script neutralization in
+ *  app/layout.tsx) to restore the theme picker's effect. The picker in
+ *  profile is hidden while this is false so users aren't offered a
+ *  no-op control. */
+export const DARK_MODE_ENABLED = false
+
 /** Dark mode is scoped to the /mobile app surfaces — marketing pages
  *  and the dashboard always render light (they haven't had a dark
  *  visual pass). Keep in sync with the boot script in app/layout.tsx. */
@@ -21,7 +29,7 @@ export function useTheme() {
   useEffect(() => {
     const root = document.documentElement
     const wantsDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    const isDark = wantsDark && darkAllowed(pathname)
+    const isDark = DARK_MODE_ENABLED && wantsDark && darkAllowed(pathname)
     root.classList.toggle('dark', isDark)
     root.setAttribute('data-theme', theme)
 
@@ -34,6 +42,7 @@ export function useTheme() {
 
   // Listen for system theme changes
   useEffect(() => {
+    if (!DARK_MODE_ENABLED) return
     if (theme !== 'system') return
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')

@@ -89,7 +89,12 @@ export default function RootLayout({
             dashboard always render light. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(!location.pathname.startsWith('/mobile'))return;var t='system';var raw=localStorage.getItem('global-store');if(raw){var s=JSON.parse(raw);if(s&&s.state&&s.state.theme)t=s.state.theme}var dark=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(dark)document.documentElement.classList.add('dark')}catch(e){}})();`,
+            // Dark mode is temporarily disabled app-wide (see
+            // DARK_MODE_ENABLED in hooks/useTheme.ts). Defensively strip any
+            // `.dark` a previous build/persisted preference may have left on
+            // <html> so nothing renders dark pre-paint. Restore the theme-
+            // reading logic here when re-enabling dark mode.
+            __html: `(function(){try{document.documentElement.classList.remove('dark')}catch(e){}})();`,
           }}
         />
       </head>
