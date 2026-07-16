@@ -4,6 +4,7 @@ import { ReactNode, useEffect, useState, type ComponentType } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Loader2, type LucideProps } from '@/app/mobile/study/_shared/icons'
+import { usePullToRefresh } from '@/app/mobile/study/_shared/usePullToRefresh'
 
 /**
  * Shared study-mode primitives. Every new study surface should use
@@ -152,21 +153,50 @@ export function StudyPageHeader({
 // full-bleed background flourish behind the content.
 // ─────────────────────────────────────────────────────────────────────
 export function StudyScrollShell({
-  header, children, bg = 'bg-gray-50', decoration, contentClassName,
+  header, children, bg = 'bg-gray-50', decoration, contentClassName, onRefresh,
 }: {
   header: ReactNode
   children: ReactNode
   bg?: string
   decoration?: ReactNode
   contentClassName?: string
+  /** Enables native pull-to-refresh. Called on release past the threshold;
+   *  await your data reload so the spinner holds until it's done. */
+  onRefresh?: () => void | Promise<void>
 }) {
+  const { scrollRef, pullDistance, refreshing, threshold, handlers } = usePullToRefresh(onRefresh)
   return (
     <div className={`flex flex-col h-full ${bg}`}>
-      <div className="flex-1 overflow-y-auto relative">
-        {decoration}
-        {header}
-        <div className={contentClassName ?? 'max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6'}>
-          {children}
+      <div
+        ref={scrollRef}
+        {...handlers}
+        className="flex-1 overflow-y-auto relative"
+        style={pullDistance > 0 ? { touchAction: 'none' } : undefined}
+      >
+        {/* Pull-to-refresh spinner — sits in the gap the content reveals as
+            it's dragged down; spins once refreshing, otherwise rotates with
+            the pull for a live-feeling gesture. */}
+        {onRefresh && (pullDistance > 0 || refreshing) && (
+          <div
+            className="absolute top-0 inset-x-0 z-0 flex items-end justify-center pb-2 pointer-events-none"
+            style={{ height: pullDistance || threshold, opacity: Math.min(1, pullDistance / threshold || (refreshing ? 1 : 0)) }}
+            aria-hidden
+          >
+            <Loader2
+              className={`w-5 h-5 text-primary ${refreshing ? 'animate-spin' : ''}`}
+              style={refreshing ? undefined : { transform: `rotate(${pullDistance * 3}deg)` }}
+            />
+          </div>
+        )}
+        <div
+          className={pullDistance > 0 ? 'relative z-[1]' : 'relative z-[1] transition-transform duration-300 ease-out'}
+          style={pullDistance > 0 ? { transform: `translateY(${pullDistance}px)` } : undefined}
+        >
+          {decoration}
+          {header}
+          <div className={contentClassName ?? 'max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-6'}>
+            {children}
+          </div>
         </div>
       </div>
     </div>

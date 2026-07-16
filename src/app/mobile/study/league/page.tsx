@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition } from '../_shared/primitives'
+import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition, StudyScrollShell } from '../_shared/primitives'
 import { SkeletonCard, SkeletonBlock, SkeletonRowList } from '../skeletons'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
@@ -77,24 +77,24 @@ function LeagueInner() {
   const [loadFailed, setLoadFailed] = useState(false)
   const [retryKey, setRetryKey] = useState(0)
 
-  useEffect(() => {
-    let cancelled = false
+  // Callable so both the mount effect and pull-to-refresh can trigger it;
+  // pull-to-refresh awaits it so the spinner holds until the data lands.
+  const load = useCallback(async () => {
     setLoadFailed(false)
-    void (async () => {
-      try {
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/league', { headers })
-        if (!res.ok) throw new Error()
-        const json = await res.json()
-        if (!cancelled) setData(json as LeagueData)
-      } catch {
-        if (!cancelled) { setData(null); setLoadFailed(true) }
-      } finally {
-        if (!cancelled) setLoading(false)
-      }
-    })()
-    return () => { cancelled = true }
-  }, [retryKey])
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/league', { headers })
+      if (!res.ok) throw new Error()
+      const json = await res.json()
+      setData(json as LeagueData)
+    } catch {
+      setData(null); setLoadFailed(true)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => { void load() }, [load, retryKey])
 
   const tier = TIERS.find(t => t.key === data?.tier) ?? TIERS[0]
 
@@ -107,15 +107,18 @@ function LeagueInner() {
   }, [])
 
   return (
-    <div className="flex flex-col h-full bg-gray-50">
-      <div className="flex-1 overflow-y-auto">
+    <StudyScrollShell
+      onRefresh={load}
+      header={
         <StudyPageHeader
           icon={Trophy}
           iconColorClass="text-amber-600 bg-amber-50"
           eyebrow={String(t('study.league.eyebrow'))}
           title={String(t('study.league.title'))}
         />
-        <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14">
+      }
+      contentClassName="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14"
+    >
         <div className="mb-5">
           <SegmentedTabs
             options={[
@@ -179,9 +182,7 @@ function LeagueInner() {
         ) : null}
         </StudyPageTransition>
         )}
-        </div>
-      </div>
-    </div>
+    </StudyScrollShell>
   )
 }
 

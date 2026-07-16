@@ -9,6 +9,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { supabase } from '@/lib/supabase'
 import { SegmentedTabs } from './_shared/SegmentedTabs'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
+import { useSheetDrag } from '@/app/mobile/study/_shared/useSheetDrag'
 
 /** An AI-generated full test costs one credit (SAT bank tests bypass this
  *  sheet entirely — they're free instant assembly). */
@@ -65,6 +66,7 @@ export function TestCustomizationSheet({
 }) {
   const { t, language: uiLanguage } = useTranslation()
   const ko = uiLanguage === 'korean'
+  const { handleProps, sheetStyle } = useSheetDrag(onClose)
   const [difficultyBias, setDifficultyBias] = useState<DifficultyBias>('balanced')
   const [recommended, setRecommended] = useState<DifficultyBias | null>(null)
   const [masteryScore, setMasteryScore] = useState<number | null>(null)
@@ -174,9 +176,9 @@ export function TestCustomizationSheet({
         role="dialog"
         aria-modal="true"
         className="fixed inset-x-0 bottom-0 z-[121] max-h-[88vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
-        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)', ...sheetStyle }}
       >
-        <div className="pt-2.5 pb-1.5 flex justify-center">
+        <div {...handleProps} className="pt-2.5 pb-1.5 flex justify-center cursor-grab active:cursor-grabbing touch-none">
           <div className="w-10 h-1 rounded-full bg-gray-200" />
         </div>
 

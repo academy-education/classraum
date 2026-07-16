@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
@@ -346,37 +346,45 @@ function StudyLandingInner() {
     setPendingRef(readPendingReferral())
   }, [])
 
-  useEffect(() => {
-    let cancelled = false
-    void (async () => {
-      const { data } = await supabase
-        .from('study_topics')
-        .select('id, slug, name_en, name_ko, level, parent_id, category')
-        .in('level', [0, 1])
-        .order('sort_order', { ascending: true })
+  const loadTopics = useCallback(async () => {
+    const { data } = await supabase
+      .from('study_topics')
+      .select('id, slug, name_en, name_ko, level, parent_id, category')
+      .in('level', [0, 1])
+      .order('sort_order', { ascending: true })
 
-      if (cancelled) return
-      const rows = (data ?? []) as Topic[]
+    const rows = (data ?? []) as Topic[]
 
-      // Test prep: skip the level-0 'test-prep' wrapper. Each level-1
-      // test (TOEFL, SAT, ...) becomes a top-level card whose branches
-      // load lazily on the dedicated topic page. We surface them as
-      // a flat list (no expand) so the most-needed test is one tap away.
-      const testTops = rows.filter(r => r.level === 1 && r.category === 'test_prep')
+    // Test prep: skip the level-0 'test-prep' wrapper. Each level-1
+    // test (TOEFL, SAT, ...) becomes a top-level card whose branches
+    // load lazily on the dedicated topic page. We surface them as
+    // a flat list (no expand) so the most-needed test is one tap away.
+    const testTops = rows.filter(r => r.level === 1 && r.category === 'test_prep')
 
-      const testItems: BrowseItem[] = testTops.map(t => ({
-        id: t.id,
-        slug: t.slug,
-        name_en: t.name_en,
-        name_ko: t.name_ko,
-        branches: [],
-      }))
+    const testItems: BrowseItem[] = testTops.map(t => ({
+      id: t.id,
+      slug: t.slug,
+      name_en: t.name_en,
+      name_ko: t.name_ko,
+      branches: [],
+    }))
 
-      setTests(testItems)
-      setLoading(false)
-    })()
-    return () => { cancelled = true }
+    setTests(testItems)
+    setLoading(false)
   }, [])
+
+  useEffect(() => { void loadTopics() }, [loadTopics])
+
+  // Native pull-to-refresh: the shared app layout fires this event on a
+  // mobile pull-down. Reload the topic grid + the bundled landing data
+  // (streak / progress / prefs) so the gesture actually refreshes content
+  // rather than just spinning the indicator.
+  const refetchLanding = landingData?.refetch
+  useEffect(() => {
+    const onRefresh = () => { void loadTopics(); void refetchLanding?.() }
+    window.addEventListener('dashboardPullRefresh', onRefresh)
+    return () => window.removeEventListener('dashboardPullRefresh', onRefresh)
+  }, [loadTopics, refetchLanding])
 
   // target_test now flows in via LandingDataProvider — one bundled
   // /api/study/landing call replaces the 3 separate prefs/progress/

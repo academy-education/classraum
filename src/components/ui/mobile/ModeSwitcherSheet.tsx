@@ -6,6 +6,7 @@ import { GraduationCap, BookOpen, Check, X } from '@/app/mobile/study/_shared/ic
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { storeMode } from '@/lib/study/currentMode'
+import { useSheetDrag } from '@/app/mobile/study/_shared/useSheetDrag'
 
 type ModeKey = 'grades' | 'study'
 
@@ -31,6 +32,7 @@ export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSh
   const router = useRouter()
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
+  const { handleProps, sheetStyle } = useSheetDrag(onClose)
   // Study-only students (no academy membership) have no Grades data —
   // offering the option would land them on an empty dashboard.
   const hasAcademy = (user?.academyIds?.length ?? 0) > 0
@@ -87,10 +89,10 @@ export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSh
         className="fixed inset-x-0 bottom-0 z-[101] bg-white rounded-t-2xl shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.20)] animate-in slide-in-from-bottom duration-250"
         // Push content above the 72px bottom nav so the second mode
         // card isn't clipped on routes where the nav is visible.
-        style={{ paddingBottom: 'calc(72px + env(safe-area-inset-bottom))' }}
+        style={{ paddingBottom: 'calc(72px + env(safe-area-inset-bottom))', ...sheetStyle }}
       >
-        {/* Grab handle */}
-        <div className="pt-2 pb-1 flex items-center justify-center">
+        {/* Grab handle — drag zone for swipe-down-to-dismiss. */}
+        <div {...handleProps} className="pt-2 pb-1 flex items-center justify-center cursor-grab active:cursor-grabbing touch-none">
           <span aria-hidden className="w-9 h-1 rounded-full bg-gray-300" />
         </div>
 
