@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Camera, Image as ImageIcon, Loader2, RefreshCw, Sparkles, CheckCircle2, X, AlertCircle, ListChecks, Bookmark, BookmarkCheck, Lock } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, Camera, Image as ImageIcon, RefreshCw, Sparkles, CheckCircle2, X, AlertCircle, ListChecks, Bookmark, BookmarkCheck, Lock } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -12,6 +12,7 @@ import { PathMascot } from '../_shared/PathMascot'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudyPageTransition } from '../_shared/primitives'
 import { useStudyErrorToast, startFailedMessage } from '../_shared/useStudyErrorToast'
+import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 
 /**
  * /mobile/study/snap — Snap-a-Photo problem solver.
@@ -64,7 +65,7 @@ function SnapComingSoon() {
   const { language } = useTranslation()
   const ko = language === 'korean'
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 text-center gap-4">
+    <div className="flex flex-col items-center justify-center min-h-[70vh] px-5 text-center gap-4">
       <div className="relative w-16 h-16 rounded-2xl bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
         <Camera className="w-7 h-7 text-gray-400" />
         <span className="absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-white ring-1 ring-gray-200 flex items-center justify-center">
@@ -452,10 +453,10 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
           <AlertCircle className="w-4 h-4 inline mr-1.5" />
           {ko ? '문제를 명확하게 인식하지 못했어요. 더 가까이서, 흔들림 없이 다시 찍어보세요.' : 'Could not clearly detect a question. Try a closer, sharper shot.'}
         </div>
-        <button type="button" onClick={onAnother}
-          className="w-full h-11 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[14px] font-semibold inline-flex items-center justify-center gap-1.5">
-          <Camera className="w-4 h-4" />{ko ? '다시 찍기' : 'Try again'}
-        </button>
+        <StudyButton type="button" fullWidth onClick={onAnother}
+          leftIcon={<Camera className="w-4 h-4" />}>
+          {ko ? '다시 찍기' : 'Try again'}
+        </StudyButton>
       </div>
     )
   }
@@ -534,14 +535,12 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
           questions on the same subject so the student converts a one-shot
           answer into actual learning. Visually loud because it's the
           highest-value next action after seeing the solution. */}
-      <button type="button" onClick={() => void startPracticeSimilar()}
-        disabled={practiceLoading}
-        className="w-full h-12 rounded-2xl bg-gradient-to-b from-primary to-primary/90 text-white text-[14px] font-semibold inline-flex items-center justify-center gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.45)] hover:opacity-95 active:scale-[0.98] disabled:opacity-60 transition-all">
-        {practiceLoading
-          ? <Loader2 className="w-4 h-4 animate-spin" />
-          : <ListChecks className="w-4 h-4" />}
+      <StudyButton type="button" size="lg" fullWidth
+        onClick={() => void startPracticeSimilar()}
+        loading={practiceLoading}
+        leftIcon={<ListChecks className="w-4 h-4" />}>
         {ko ? '유사 문제 5개 풀기' : 'Practice 5 similar'}
-      </button>
+      </StudyButton>
 
       <button type="button" onClick={onAnother}
         className="w-full h-11 rounded-xl bg-white ring-1 ring-gray-200 text-gray-800 text-[14px] font-semibold inline-flex items-center justify-center gap-1.5 hover:bg-gray-50 transition">

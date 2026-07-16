@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { MessageCircle, ChevronRight, ListChecks, Layers, ClipboardList, Mic, History as HistoryIcon, Search, X } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '../_shared/primitives'
+import { StudyButton } from '../_shared/StudyButton'
 import { groupByDate, formatTimeAgo } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
 import { supabase } from '@/lib/supabase'
@@ -155,13 +156,14 @@ function HistoryInner() {
             <p className="text-[13.5px] text-gray-600">
               {ko ? '세션 기록을 불러오지 못했어요.' : "We couldn't load your sessions."}
             </p>
-            <button
+            <StudyButton
               type="button"
+              variant="primary"
+              size="sm"
               onClick={() => window.location.reload()}
-              className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 transition"
             >
               {ko ? '다시 시도' : 'Retry'}
-            </button>
+            </StudyButton>
           </div>
         ) : filtered.length === 0 ? (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200/70">

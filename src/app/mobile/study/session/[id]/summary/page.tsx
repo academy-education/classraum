@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../../../SubscriptionGate'
+import { studyButtonClass } from '../../../_shared/StudyButton'
 import { MascotLoader, useMascotGate } from '../../../_shared/MascotLoader'
 import { PathMascot, type MascotState } from '../../../_shared/PathMascot'
 import { StudyPageHeader, StudyScrollShell } from '../../../_shared/primitives'
@@ -301,7 +302,7 @@ function SummaryInner({ id }: { id: string }) {
         {session.topic && (
           <Link
             href={`/mobile/study/topic/${session.topic.slug}`}
-            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-2xl bg-gradient-to-b from-primary to-primary/90 text-white text-[15px] font-semibold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25),0_8px_20px_-8px_rgba(40,133,232,0.4)] ring-1 ring-primary/30 active:scale-[0.98] transition-all"
+            className={studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })}
           >
             <RotateCcw className="w-4 h-4" />
             {String(t('study.summary.tryAgain'))}
@@ -309,7 +310,7 @@ function SummaryInner({ id }: { id: string }) {
         )}
         <Link
           href="/mobile/study"
-          className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-2xl bg-white text-gray-700 text-[14px] font-semibold ring-1 ring-gray-200 hover:ring-primary/30 hover:text-primary active:scale-[0.98] transition-all"
+          className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })}
         >
           {String(t('study.summary.backToStudy'))}
           <ArrowRight className="w-4 h-4" />

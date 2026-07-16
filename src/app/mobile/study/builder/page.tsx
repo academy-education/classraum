@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, Loader2, Sparkles, ChevronDown, Check } from '@/app/mobile/study/_shared/icons'
+import { ArrowRight, Sparkles, ChevronDown, Check } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
+import { StudyButton } from '../_shared/StudyButton'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -259,15 +260,19 @@ function BuilderInner() {
       </section>
 
       {/* Start CTA */}
-      <button
+      <StudyButton
         type="button"
+        variant="primary"
+        size="lg"
+        fullWidth
+        square
         onClick={() => void start()}
         disabled={!selectedTopic || creating}
-        className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-2xl bg-gradient-to-b from-primary to-primary/90 text-white text-[15px] font-semibold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25),0_8px_20px_-8px_rgba(40,133,232,0.4)] ring-1 ring-primary/30 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+        loading={creating}
+        leftIcon={<ArrowRight className="w-4 h-4" />}
       >
-        {creating ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
         {String(t('study.builder.start'))}
-      </button>
+      </StudyButton>
     </StudyScrollShell>
   )
 }

@@ -9,6 +9,7 @@ import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition } from '../_shared/primitives'
 import { SkeletonCard, SkeletonBlock, SkeletonRowList } from '../skeletons'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
+import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
 
 /**
  * /mobile/study/league — weekly cohort leaderboard.
@@ -157,13 +158,13 @@ function LeagueInner() {
             <p className="text-[13.5px] text-gray-600">
               {ko ? '리그 정보를 불러오지 못했어요.' : "We couldn't load your league."}
             </p>
-            <button
+            <StudyButton
               type="button"
+              size="sm"
               onClick={() => { setLoading(true); setRetryKey(k => k + 1) }}
-              className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 transition"
             >
               {ko ? '다시 시도' : 'Retry'}
-            </button>
+            </StudyButton>
           </div>
         ) : data ? (
           <div className="space-y-6">
@@ -209,7 +210,7 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
 
   const manageBtn = (
     <Link href="/mobile/study/friends"
-      className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[12.5px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 active:scale-95 transition">
+      className={studyButtonClass({ size: 'sm' })}>
       <UserPlus className="w-3.5 h-3.5" />{ko ? '친구 관리' : 'Manage friends'}
     </Link>
   )

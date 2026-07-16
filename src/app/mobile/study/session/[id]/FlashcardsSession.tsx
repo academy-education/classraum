@@ -10,6 +10,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
+import { StudyButton } from '../../_shared/StudyButton'
 import { scheduleNext, INITIAL_SRS } from '@/lib/srs'
 import { useStudyErrorToast, saveFailedMessage } from '../../_shared/useStudyErrorToast'
 
@@ -221,7 +222,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
 
   if (error || !deck) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-3">
+      <div className="flex-1 flex flex-col items-center justify-center px-5 text-center gap-3">
         <PathMascot state="sad" size={84} />
         <p className="text-sm text-gray-600">{t('study.flashcards.generateFailed')}</p>
         <button
@@ -240,7 +241,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
   // Distinct from the "you reviewed everything" done state below.
   if (deck.length === 0) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 text-center gap-3">
+      <div className="flex-1 flex flex-col items-center justify-center px-5 py-8 text-center gap-3">
         <div className="w-14 h-14 rounded-2xl bg-gray-100 text-gray-400 flex items-center justify-center">
           <Sparkles className="w-6 h-6" />
         </div>
@@ -276,7 +277,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
   // any "again" — show the summary.
   if (queue.length === 0) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 text-center">
+      <div className="flex-1 flex flex-col items-center justify-center px-5 py-8 text-center">
         <div className="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-3">
           <Sparkles className="w-6 h-6" />
         </div>
@@ -363,7 +364,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
           >
             {/* Front face */}
             <div
-              className="absolute inset-0 rounded-2xl border-2 border-gray-200 bg-white px-6 py-8 flex flex-col items-center justify-center gap-3 text-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06),0_12px_28px_-12px_rgba(0,0,0,0.10)]"
+              className="absolute inset-0 rounded-2xl border-2 border-gray-200 bg-white px-5 py-8 flex flex-col items-center justify-center gap-3 text-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06),0_12px_28px_-12px_rgba(0,0,0,0.10)]"
               style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
             >
               <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
@@ -402,7 +403,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
             {/* Back face — pre-rotated 180° so it shows right-side-up
                 when the card flips. */}
             <div
-              className="absolute inset-0 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/[0.06] via-white to-primary/[0.04] px-6 py-8 flex flex-col items-center justify-center gap-3 text-center shadow-[0_2px_8px_-2px_rgba(40,133,232,0.10),0_12px_28px_-12px_rgba(40,133,232,0.16)]"
+              className="absolute inset-0 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/[0.06] via-white to-primary/[0.04] px-5 py-8 flex flex-col items-center justify-center gap-3 text-center shadow-[0_2px_8px_-2px_rgba(40,133,232,0.10),0_12px_28px_-12px_rgba(40,133,232,0.16)]"
               style={{
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
@@ -453,14 +454,14 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
             </button>
           </div>
         ) : (
-          <button
-            type="button"
+          <StudyButton
+            size="lg"
+            fullWidth
             onClick={() => setFlipped(true)}
-            className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5"
+            leftIcon={<RotateCw className="w-4 h-4" />}
           >
-            <RotateCw className="w-4 h-4" />
             {t('study.flashcards.flip')}
-          </button>
+          </StudyButton>
         )}
       </div>
     </div>

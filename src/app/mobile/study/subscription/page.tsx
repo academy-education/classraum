@@ -10,6 +10,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
+import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS } from '@/lib/study/plans'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
@@ -686,7 +687,7 @@ export default function SubscriptionPage() {
                       href="https://app.classraum.com/mobile/study/subscription"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="h-11 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-[13px] font-medium inline-flex items-center justify-center gap-1.5"
+                      className={studyButtonClass({ variant: 'secondary' })}
                     >
                       <ExternalLink className="w-4 h-4" />
                       {t('study.subscription.subscribeOnWeb')}
@@ -694,15 +695,17 @@ export default function SubscriptionPage() {
                   )
                 ) : isCurrent ? (
                   sub?.pending_plan ? (
-                    <button
+                    <StudyButton
                       type="button"
+                      variant="secondary"
+                      fullWidth
                       onClick={() => void changePlan(plan.id)}
                       disabled={acting !== null}
-                      className="h-11 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 hover:ring-gray-300 active:scale-[0.98] disabled:opacity-60 transition-all"
+                      loading={busy}
+                      leftIcon={<RotateCcw className="w-4 h-4" />}
                     >
-                      {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <RotateCcw className="w-4 h-4" />}
                       {ko ? '플랜 변경 취소' : 'Keep this plan'}
-                    </button>
+                    </StudyButton>
                   ) : (
                     <div className="h-11 rounded-full bg-gray-50 ring-1 ring-gray-200/50 text-gray-400 text-[13px] font-medium inline-flex items-center justify-center gap-1.5">
                       <Check className="w-4 h-4" />
@@ -805,14 +808,15 @@ export default function SubscriptionPage() {
                     : `Cancel your subscription? You keep full access until ${formatDate(sub.current_period_end, ko)}, then you move to the free plan.`}
                 </p>
                 <div className="flex gap-2.5">
-                  <button
+                  <StudyButton
                     type="button"
+                    variant="primary"
                     onClick={() => setConfirmingCancel(false)}
                     disabled={acting !== null}
-                    className="flex-1 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold inline-flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
+                    className="flex-1"
                   >
                     {ko ? '계속 이용하기' : 'Keep subscription'}
-                  </button>
+                  </StudyButton>
                   <button
                     type="button"
                     onClick={() => void act('cancel')}
@@ -838,15 +842,18 @@ export default function SubscriptionPage() {
           )}
 
           {sub?.cancel_at_period_end && (
-            <button
+            <StudyButton
               type="button"
+              variant="primary"
+              size="lg"
+              fullWidth
               onClick={() => void act('reactivate')}
               disabled={acting !== null}
-              className="w-full h-12 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-sm font-semibold inline-flex items-center justify-center gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
+              loading={acting === 'reactivate'}
+              leftIcon={<RotateCcw className="w-4 h-4" />}
             >
-              {acting === 'reactivate' ? <Loader2 className="w-4 h-4 animate-spin" /> : <RotateCcw className="w-4 h-4" />}
               {t('study.subscription.reactivate')}
-            </button>
+            </StudyButton>
           )}
         </div>
         )}

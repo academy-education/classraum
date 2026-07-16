@@ -10,6 +10,7 @@ import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPageTransition
 import { groupByDate } from '../_shared/dateGroups'
 import { ExplainMore } from '../_shared/ExplainMore'
 import { SkeletonCard, SkeletonIconTile, SkeletonBlock } from '../skeletons'
+import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 
 /**
  * /mobile/study/wrong-notebook — full 오답노트 page.
@@ -305,13 +306,13 @@ function WrongNotebookInner() {
               <p className="text-[13.5px] text-gray-600">
                 {ko ? '오답노트를 불러오지 못했어요.' : "We couldn't load your wrong answers."}
               </p>
-              <button
+              <StudyButton
                 type="button"
+                size="sm"
                 onClick={() => void load()}
-                className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:opacity-95 transition"
               >
                 {ko ? '다시 시도' : 'Retry'}
-              </button>
+              </StudyButton>
             </div>
           ) : entries.length === 0 && bookmarkedSnaps.length === 0 ? (
             <StudyEmptyState

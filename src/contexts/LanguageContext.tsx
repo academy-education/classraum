@@ -66,11 +66,17 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     const raw = getNestedValue(translations, key) || key
     let translation: string = Array.isArray(raw) ? raw.join(', ') : raw
 
-    // Replace parameters in the translation string
+    // Replace parameters in the translation string. Accept BOTH single
+    // `{key}` and double `{{key}}` placeholder styles: some strings were
+    // authored with `{{count}}` (i18next-style) but this interpolator only
+    // handled `{count}`, so `{{count}}` rendered as a literal `{15}`.
+    // Replace the double-brace form first so its inner braces don't survive.
     if (params) {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
         if (paramValue !== undefined) {
-          translation = translation.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
+          translation = translation
+            .replace(new RegExp(`\\{\\{${paramKey}\\}\\}`, 'g'), String(paramValue))
+            .replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramValue))
         }
       })
     }
