@@ -65,7 +65,7 @@ function SnapComingSoon() {
   const { language } = useTranslation()
   const ko = language === 'korean'
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 text-center gap-4">
+    <div className="flex flex-col items-center justify-center min-h-[70vh] px-5 text-center gap-4">
       <div className="relative w-16 h-16 rounded-2xl bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
         <Camera className="w-7 h-7 text-gray-400" />
         <span className="absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-white ring-1 ring-gray-200 flex items-center justify-center">

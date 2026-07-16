@@ -825,7 +825,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     return (
       // role="status" + aria-live so screen readers announce the wait —
       // the mascot alone is decorative and says nothing about loading.
-      <div role="status" aria-live="polite" className="flex-1 flex flex-col items-center justify-center gap-3 px-6 text-center">
+      <div role="status" aria-live="polite" className="flex-1 flex flex-col items-center justify-center gap-3 px-5 text-center">
         {/* Short waits (DB check / cached-test fetch): calm "thinking"
             — the 2.7s loading gag would get cut off mid-spin here. Size 96
             matches the session-shell MascotLoader that precedes this so the
@@ -914,7 +914,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     }
     const fmtWon = (w: number) => `₩${w.toLocaleString()}`
     return (
-      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-3">
+      <div className="flex-1 flex flex-col items-center justify-center px-5 text-center gap-3">
         <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-1 ${
           stillWorking ? 'bg-primary/10 text-primary' : isCreditsReason ? 'bg-amber-50 text-amber-500' : 'bg-amber-50 text-amber-500'
         }`}>
@@ -2197,7 +2197,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         // can see remaining time. Resume via Pause button (still
         // clickable since the header sits above the overlay).
         <div
-          className="absolute inset-0 z-30 bg-white/85 backdrop-blur-sm flex items-center justify-center px-6"
+          className="absolute inset-0 z-30 bg-white/85 backdrop-blur-sm flex items-center justify-center px-5"
           role="dialog"
           aria-modal="true"
           aria-label={ko ? '시험 일시정지' : 'Test paused'}

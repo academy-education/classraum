@@ -103,7 +103,7 @@ export function GenerationProgress({
   // we're waiting for the existing run, not starting a new one.
   const isResuming = progress?.name === 'resuming'
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-6 py-10">
+    <div className="flex-1 flex flex-col items-center justify-center px-5 py-10">
       <div className="w-full max-w-sm">
         <div className="text-center mb-6">
           {/* Mascot in loading state — the grab→spin→catch gag runs on
