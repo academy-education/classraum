@@ -15,6 +15,7 @@ import { Squares } from "@/components/ui/squares-background"
 import { Mail, Lock, User, Building, Phone, Eye, EyeOff, CheckCircle2, BookOpen } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
 import { useToast } from "@/hooks/use-toast"
+import { readStoredMode } from "@/lib/study/currentMode"
 
 export default function AuthPage() {
   const router = useRouter()
@@ -258,10 +259,11 @@ export default function AuthPage() {
         const userRole = userInfo.role
         console.log('[Auth] User role detected:', userRole)
 
-        // Redirect based on role. Students WITH an academy land on
-        // /mobile/start (the Grades/Study hub); study-only students
-        // (no academy membership) go straight to Study — the hub's
-        // Grades tile would be an empty dead end for them. Parents
+        // Redirect based on role. Study-only students (no academy
+        // membership) go straight to Study — the hub's Grades tile
+        // would be an empty dead end for them. Academy students land
+        // in their LAST-USED mode (persisted in localStorage); the
+        // /mobile/start hub only shows on a true first visit. Parents
         // skip the hub since Study is a student-only experience.
         if (userRole === 'student') {
           const { count } = await supabase
@@ -269,13 +271,17 @@ export default function AuthPage() {
             .select('user_id', { count: 'exact', head: true })
             .eq('user_id', user.id)
             .eq('active', true)
-          if ((count ?? 0) > 0) {
-            console.log('[Auth] Redirecting student to mobile hub')
-            router.replace('/mobile/start')
-          } else {
-            console.log('[Auth] Redirecting study-only student to study')
-            router.replace('/mobile/study')
-          }
+          const hasAcademy = (count ?? 0) > 0
+          const storedMode = readStoredMode()
+          const target = !hasAcademy
+            ? '/mobile/study'
+            : storedMode === 'study'
+              ? '/mobile/study'
+              : storedMode === 'grades'
+                ? '/mobile'
+                : '/mobile/start'
+          console.log('[Auth] Redirecting student to', target)
+          router.replace(target)
         } else if (userRole === 'parent') {
           console.log('[Auth] Redirecting parent to mobile dashboard')
           router.replace('/mobile')
@@ -658,12 +664,23 @@ export default function AuthPage() {
     setLoading(true)
 
     try {
-      // Check for contaminated session state before attempting login
-      const { data: preLoginSession } = await supabase.auth.getSession()
-      if (preLoginSession.session) {
-        await supabase.auth.signOut({ scope: 'global' })
-        // Wait briefly for cleanup
-        await new Promise(resolve => setTimeout(resolve, 200))
+      // Check for contaminated session state before attempting login.
+      // scope: 'local' on purpose — we only need to clear THIS browser's
+      // stale session before a fresh sign-in. A global revoke here (a) logs
+      // the user out of their other devices just for logging in again, and
+      // (b) throws "Invalid Refresh Token: Refresh Token Not Found" when the
+      // stored refresh token was already revoked elsewhere, surfacing a raw
+      // AuthApiError on the auth page.
+      try {
+        const { data: preLoginSession } = await supabase.auth.getSession()
+        if (preLoginSession.session) {
+          await supabase.auth.signOut({ scope: 'local' })
+          // Wait briefly for cleanup
+          await new Promise(resolve => setTimeout(resolve, 200))
+        }
+      } catch {
+        // Stale/revoked session — signInWithPassword below replaces the
+        // local session anyway, so cleanup failure is not fatal.
       }
 
       // Clear all cached data to ensure fresh data for the new login session
@@ -713,7 +730,16 @@ export default function AuthPage() {
         setLoading(false)
       }
     } catch (error) {
-      toast({ title: (error as Error).message, variant: 'destructive' })
+      // Never surface raw auth-internal errors (e.g. "Invalid Refresh
+      // Token: Refresh Token Not Found") — they describe stale token
+      // state, not anything the user did wrong.
+      const raw = (error as Error).message || ''
+      const friendly = /refresh token/i.test(raw)
+        ? (language === 'korean'
+            ? '이전 세션이 만료되었어요. 다시 로그인해 주세요.'
+            : 'Your previous session expired. Please try signing in again.')
+        : raw || (t('auth.signin.failed') as string || 'Sign in failed')
+      toast({ title: t('auth.signin.failed') as string || 'Sign in failed', description: friendly, variant: 'destructive' })
       setLoading(false)
     }
   }
@@ -812,8 +838,16 @@ export default function AuthPage() {
       setActiveTab("signin") // Switch back to login form
       setLoading(false)
 
-      // Sign out with global scope to clear ALL sessions and cached state
-      const { error: signOutError } = await supabase.auth.signOut({ scope: 'global' })
+      // Sign out with global scope to clear ALL sessions and cached state.
+      // Global is intentional here (password just changed — revoke every
+      // device), but tolerate a throw from already-stale tokens so the
+      // catch below doesn't toast a raw AuthApiError.
+      let signOutError: unknown = null
+      try {
+        ({ error: signOutError } = await supabase.auth.signOut({ scope: 'global' }))
+      } catch (e) {
+        signOutError = e
+      }
 
       if (signOutError) {
         toast({ title: t('auth.resetPassword.cleanupFailed') as string || 'Session cleanup failed. Please refresh the page.', variant: 'warning' })
