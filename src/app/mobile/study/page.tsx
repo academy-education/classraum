@@ -28,6 +28,7 @@ import { ResumeBanner } from './ResumeBanner'
 import { DailyReviewCTA } from './DailyReviewCTA'
 import { StreakAtRiskBanner } from './_shared/StreakAtRiskBanner'
 import { StreakSavedBanner } from './_shared/StreakSavedBanner'
+import { TestPrepDisclaimer } from './_shared/TestPrepDisclaimer'
 import { DailyChallengeCard } from './_shared/DailyChallengeCard'
 import { SearchSheet } from './_shared/SearchSheet'
 import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
@@ -736,6 +737,9 @@ function StudyLandingInner() {
               ))}
             </div>
           )}
+          {/* Legal: AI-generated / not-affiliated disclaimer + ⓘ trademark
+              notice. Keep wherever mock tests are listed or launched. */}
+          <TestPrepDisclaimer ko={ko} />
         </section>
 
         {/* Free-form "Or type anything" AI creator — hidden for now.

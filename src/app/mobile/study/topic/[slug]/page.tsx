@@ -16,6 +16,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
+import { TestPrepDisclaimer } from '../../_shared/TestPrepDisclaimer'
 import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
 import { PredictedScore } from '../../_shared/PredictedScore'
 import { RecommendedShelf } from '../../RecommendedShelf'
@@ -598,6 +599,10 @@ function TopicInner({ slug }: { slug: string }) {
             {modeGrid}
           </>
         )}
+
+      {/* Legal: AI-generated / not-affiliated disclaimer + ⓘ trademark
+          notice — this is the surface where mock tests are launched. */}
+      {topic.category === 'test_prep' && <TestPrepDisclaimer ko={language === 'korean'} />}
 
       {/* Pre-test customization sheet — opens when student taps Full
           Test. Saves their choices to session.config which the test
