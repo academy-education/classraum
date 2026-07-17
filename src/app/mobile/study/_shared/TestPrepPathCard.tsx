@@ -22,15 +22,20 @@ import { StudyButton } from './StudyButton'
  * Self-hides for tests without a hand-crafted path template (only SAT /
  * TOEFL today) so it never promotes an empty path.
  */
-export function TestPrepPathCard({ test }: { test: string }) {
+export function TestPrepPathCard({ test, target: targetProp }: { test: string; target?: string | null }) {
   const { language } = useTranslation()
   const ko = language === 'korean'
   const router = useRouter()
   const template = getPathTemplate(test)
-  const [target, setTarget] = useState<string | null | undefined>(undefined)
+  // When the parent already knows the student's target (the topic page
+  // fetches prefs with its initial load), render immediately from the
+  // prop — no second fetch, no pop-in after the page paints.
+  const hasProp = targetProp !== undefined
+  const [target, setTarget] = useState<string | null | undefined>(hasProp ? targetProp : undefined)
   const [setting, setSetting] = useState(false)
 
   useEffect(() => {
+    if (hasProp) { setTarget(targetProp); return }
     if (!template) return
     let cancelled = false
     void (async () => {
@@ -44,7 +49,7 @@ export function TestPrepPathCard({ test }: { test: string }) {
       }
     })()
     return () => { cancelled = true }
-  }, [template])
+  }, [template, hasProp, targetProp])
 
   if (!template) return null
   if (target === undefined) return null // loading — avoid a flash

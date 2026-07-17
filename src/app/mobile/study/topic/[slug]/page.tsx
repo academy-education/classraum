@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../../_shared/StudyButton'
 import { supabase } from '@/lib/supabase'
@@ -22,6 +22,7 @@ import { PredictedScore } from '../../_shared/PredictedScore'
 import { RecommendedShelf } from '../../RecommendedShelf'
 import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
+import { creditCostForTest } from '@/lib/study/plans'
 import type { TestFamily } from '@/lib/study-prompt-context'
 
 /**
@@ -115,6 +116,10 @@ function TopicInner({ slug }: { slug: string }) {
     mastery: null, sessions: 0, lastActive: null,
   })
   const [testLanguage, setTestLanguage] = useState<'en' | 'ko'>('en')
+  // Student's target test, fetched WITH the initial page load so the
+  // path / diagnostic cards render on first paint instead of popping
+  // in after their own fetches resolve.
+  const [targetTest, setTargetTest] = useState<string | null>(null)
 
   // When the topic has children (e.g., AP → AP Biology / AP Calc AB),
   // the page shows a category picker. The selected category becomes
@@ -126,6 +131,17 @@ function TopicInner({ slug }: { slug: string }) {
 
   useEffect(() => {
     let cancelled = false
+    // Kick off the prefs fetch immediately so target_test is resolved
+    // by the time the page skeleton clears — the path + diagnostic
+    // cards then render with the rest of the page, not after it.
+    const prefsPromise = (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/prefs', { headers })
+        const json = res.ok ? await res.json() : null
+        return (json?.prefs?.target_test as string | null) ?? null
+      } catch { return null }
+    })()
     void (async () => {
       const { data: row } = await supabase
         .from('study_topics')
@@ -172,6 +188,9 @@ function TopicInner({ slug }: { slug: string }) {
       // Default-select the first child so the mode picker has a real
       // target on first paint (no "you haven't chosen a category" state).
       if (kids.length > 0) setSelectedChildId(kids[0].id)
+      const target = await prefsPromise
+      if (cancelled) return
+      setTargetTest(target)
       setLoading(false)
     })()
     return () => { cancelled = true }
@@ -407,7 +426,7 @@ function TopicInner({ slug }: { slug: string }) {
             test is already the student's goal: continue-path card if so,
             "make this your goal?" card if not. */}
         {topic.category === 'test_prep' && parseTestSlug(topic.slug).family && (
-          <TestPrepPathCard test={parseTestSlug(topic.slug).family as string} />
+          <TestPrepPathCard test={parseTestSlug(topic.slug).family as string} target={targetTest} />
         )}
         {/* Diagnostic + "recommended for you" — moved here from the home
             so a student prepping for a specific test finds the baseline
@@ -418,7 +437,11 @@ function TopicInner({ slug }: { slug: string }) {
           // that provider is only mounted on the home, so wrap it here or
           // the shelf's paid-gate self-hides everywhere else.
           <LandingDataProvider>
-            <PredictedScore />
+            {/* Mount only when the prediction is actually supported
+                (SAT target on an SAT topic) — the component would
+                self-hide anyway, and this way its loading skeleton
+                never flashes for students it doesn't apply to. */}
+            {(targetTest ?? '').toLowerCase() === 'sat' && parseTestSlug(topic.slug).family === 'sat' && <PredictedScore />}
             {/* hideUpsell: the diagnostic card above is already the
                 premium pitch (and promises weak-area targeted practice),
                 so a second "unlock personalized picks" paywall here just
@@ -524,6 +547,11 @@ function TopicInner({ slug }: { slug: string }) {
                   }}
                   creating={bankBusy ? 'full_test' : creating}
                   t={t}
+                  ko={ko}
+                  creditCost={(() => {
+                    const parsed = parseTestSlug(effectiveTopic?.slug ?? topic.slug)
+                    return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
+                  })()}
                 />
                 <RecentTestsList
                   topicIds={[topic.id, ...children.map(c => c.id)]}
@@ -841,10 +869,14 @@ function FeaturedFullTestCard({
   startSession,
   creating,
   t,
+  ko,
+  creditCost,
 }: {
   startSession: (m: StudyMode) => void
   creating: StudyMode | null
   t: (k: string) => unknown
+  ko: boolean
+  creditCost: number
 }) {
   return (
     <button
@@ -871,6 +903,10 @@ function FeaturedFullTestCard({
             <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-primary bg-white/90 backdrop-blur ring-1 ring-primary/25 rounded-full px-2 py-0.5 shadow-[0_1px_2px_rgba(40,133,232,0.06)]">
               <Sparkles className="w-2.5 h-2.5" />
               {String(t('study.topic.testPrepBadge'))}
+            </span>
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-amber-700 bg-amber-50 ring-1 ring-amber-200/80 rounded-full px-2 py-0.5">
+              <Coins className="w-2.5 h-2.5" />
+              {ko ? `크레딧 ${creditCost}개` : `${creditCost} credit${creditCost === 1 ? '' : 's'}`}
             </span>
           </div>
           <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">

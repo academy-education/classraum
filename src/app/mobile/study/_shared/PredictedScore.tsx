@@ -82,7 +82,8 @@ export function PredictedScore() {
   }, [])
 
   // Launch the real adaptive Digital SAT (Reading & Writing module 1) —
-  // the same instant, credit-free bank assembly the topic page uses. The
+  // the same instant bank assembly the topic page uses. Costs credits
+  // like any full mock (R&W = 2 since the 2026-07 relaunch). The
   // completed test writes mastery, which powers the predicted score and
   // the weak-area picks on the "recommended for you" shelf.
   const startDiagnostic = async () => {
@@ -95,6 +96,7 @@ export function PredictedScore() {
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({ section: 'reading_writing', adaptive: true }),
       })
+      if (res.status === 402) { router.push('/mobile/study/subscription'); return }
       if (!res.ok) { setStarting(false); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
@@ -103,8 +105,18 @@ export function PredictedScore() {
     }
   }
 
-  // Self-hide until loaded and only for the supported (SAT) target.
-  if (!loaded || !data || !data.supported) return null
+  // Shimmer while loading so the card appears WITH the page instead of
+  // popping in after its own fetches (parents only mount this when the
+  // prediction is supported, so the skeleton never flashes-then-hides).
+  if (!loaded) {
+    return (
+      <section aria-hidden>
+        <div className="h-[150px] rounded-2xl bg-gray-200/70 animate-pulse" />
+      </section>
+    )
+  }
+  // Self-hide only for the unsupported (non-SAT) target edge case.
+  if (!data || !data.supported) return null
 
   // Cold start — no completed full test yet. Premium-gated diagnostic:
   // free users see the format + an unlock CTA; premium users can start.
@@ -240,7 +252,7 @@ function DiagnosticCard({ ko, isPremium, starting, onStart }: {
               {ko ? '진단 시작하기' : 'Start diagnostic'}
             </StudyButton>
             <p className="text-[10.5px] text-white/55 text-center mt-1.5">
-              {ko ? 'Reading & Writing부터 시작 · 2개 적응형 모듈' : 'Begins with Reading & Writing · 2 adaptive modules'}
+              {ko ? 'Reading & Writing부터 시작 · 크레딧 2개 사용' : 'Begins with Reading & Writing · uses 2 credits'}
             </p>
           </>
         ) : (

@@ -12,7 +12,7 @@ import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
-import { FREE_CREDITS } from '@/lib/study/plans'
+import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
@@ -453,6 +453,23 @@ export default function SubscriptionPage() {
                   <p className="text-[11.5px] text-gray-400">{ko ? '구매 크레딧은 만료 없음 · 테스트당 1~2개 사용' : 'Never expire · tests use 1–2 credits'}</p>
                 </div>
               </div>
+            </div>
+            {/* Per-test cost key — values read live from the credit
+                table so this can't drift from what tests actually charge. */}
+            <div className="mt-2.5 rounded-xl bg-gray-50 ring-1 ring-gray-100 px-3 py-2 flex flex-wrap gap-x-3 gap-y-1">
+              {([
+                [ko ? 'SAT 영어' : 'SAT R&W', creditCostForTest('sat', 'reading_writing')],
+                [ko ? 'SAT 수학' : 'SAT Math', creditCostForTest('sat', 'math')],
+                [ko ? 'TOEFL 리딩' : 'TOEFL Reading', creditCostForTest('toefl', 'reading')],
+                [ko ? '라이팅' : 'Writing', creditCostForTest('toefl', 'writing')],
+                [ko ? '스피킹' : 'Speaking', creditCostForTest('toefl', 'speaking')],
+                [ko ? '리스닝' : 'Listening', creditCostForTest('toefl', 'listening')],
+              ] as [string, number][]).map(([label, cost]) => (
+                <span key={label} className="inline-flex items-baseline gap-1 text-[10.5px] text-gray-500">
+                  {label}
+                  <span className="font-bold text-amber-600 tabular-nums">{cost}</span>
+                </span>
+              ))}
             </div>
             <div className="grid grid-cols-3 gap-2 mt-3">
               {packs.map((p, i) => {

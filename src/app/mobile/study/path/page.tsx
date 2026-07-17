@@ -72,6 +72,11 @@ function StudyPathInner() {
   const [progressByNode, setProgressByNode] = useState<Record<string, PathNodeProgress>>({})
   const [topicIdBySlug, setTopicIdBySlug] = useState<Record<string, string>>({})
   const [pickerOpen, setPickerOpen] = useState(false)
+  // Paid-only surface: null while resolving, then true/false. Free
+  // users see a locked state with the subscription CTA instead of
+  // the path (its section tests are credit-free, so gating the page
+  // is what keeps the free tier honest).
+  const [paid, setPaid] = useState<boolean | null>(null)
 
   useEffect(() => {
     if (!user?.userId) return
@@ -79,16 +84,26 @@ function StudyPathInner() {
 
     void (async () => {
       // Prefs first — target_test drives which template we resolve.
+      // Subscription tier rides along to gate the page for free users.
       let target: string | null = null
       try {
         const headers = await authHeaders()
-        const res = await fetch('/api/study/prefs', { headers })
+        const [res, subRes] = await Promise.all([
+          fetch('/api/study/prefs', { headers }),
+          fetch('/api/study/subscription', { headers }),
+        ])
         if (res.ok) {
           const json = await res.json() as { prefs?: Prefs }
           target = json.prefs?.target_test ?? null
           if (!cancelled) setPrefs(json.prefs ?? null)
         }
-      } catch { /* silent */ }
+        if (!cancelled) {
+          const sub = subRes.ok ? await subRes.json() : null
+          const tier = (sub?.tier as string | undefined) ?? 'free'
+          const status = sub?.subscription?.status as string | undefined
+          setPaid(tier !== 'free' && (status === 'active' || status === 'trial'))
+        }
+      } catch { if (!cancelled) setPaid(false) }
 
       const tpl = getPathTemplate(target)
       if (!cancelled) setTemplate(tpl)
@@ -190,7 +205,7 @@ function StudyPathInner() {
     />
   )
 
-  if (loading) {
+  if (loading || paid === null) {
     // Title is data-dependent (the target-test template name), so use the
     // skeleton header rather than flashing a generic title. Body hints the
     // loaded layout: hero progress banner + serpentine alternating nodes.
@@ -208,6 +223,48 @@ function StudyPathInner() {
           </div>
         </div>
       </div>
+    )
+  }
+
+  // Free tier → locked state. Rendered after the skeleton so the gate
+  // never flashes for paid users (paid resolves with the initial load).
+  if (paid === false) {
+    return (
+      <StudyPageTransition>
+        <div className="flex flex-col h-full bg-gray-50">
+          {/* Plain header — the Change/Add target button is pointless
+              behind the paywall (the picker sheet isn't mounted here). */}
+          <StudyPageHeader
+            icon={Target}
+            iconColorClass="text-primary bg-primary/10"
+            eyebrow={String(t('study.path.eyebrow'))}
+            title={String(t('study.path.title'))}
+          />
+          <div className="flex-1 flex flex-col items-center justify-center px-5 pb-16 text-center gap-4">
+            <PathMascot state="idle" size={88} />
+            <div className="w-12 h-12 -mt-2 rounded-full bg-white ring-1 ring-gray-200 shadow-sm flex items-center justify-center">
+              <Lock className="w-5 h-5 text-gray-500" />
+            </div>
+            <div>
+              <p className="text-[17px] font-bold text-gray-900">
+                {ko ? '학습 경로는 구독 회원 전용이에요' : 'The study path is for subscribers'}
+              </p>
+              <p className="text-[13px] text-gray-500 leading-relaxed mt-1.5 max-w-[300px]">
+                {ko
+                  ? '라우미가 목표 시험까지 단계별로 안내하는 학습 경로는 유료 플랜에서 열려요. 경로의 섹션 테스트는 크레딧 없이 무제한이에요.'
+                  : "Raumi's step-by-step path to your target test unlocks with any paid plan — and its section tests never use credits."}
+              </p>
+            </div>
+            <Link
+              href="/mobile/study/subscription"
+              className="inline-flex items-center justify-center gap-1.5 h-12 px-6 rounded-full bg-primary text-white text-sm font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] transition-all"
+            >
+              <Sparkles className="w-4 h-4" />
+              {ko ? '플랜 보기' : 'See plans'}
+            </Link>
+          </div>
+        </div>
+      </StudyPageTransition>
     )
   }
 
