@@ -3,7 +3,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { authHeaders } from '@/lib/auth-headers'
-import { takeBillingIntent, type BillingIntent } from '@/lib/study/purchase-credits'
+import { takeBillingIntent } from '@/lib/study/purchase-credits'
+
+/**
+ * The PG redirect lands on a cold page load, and Supabase may still be
+ * restoring the session from storage when our effect runs — calling the
+ * purchase endpoint in that window 401s. Poll (up to ~6s) until a
+ * Bearer token is actually present.
+ */
+async function waitForAuthHeaders(): Promise<HeadersInit | null> {
+  for (let i = 0; i < 12; i++) {
+    const headers = await authHeaders()
+    if ((headers as Record<string, string>).Authorization) return headers
+    await new Promise(resolve => setTimeout(resolve, 500))
+  }
+  return null
+}
 import { MascotLoader } from '../_shared/MascotLoader'
 import { StudyButton } from '../_shared/StudyButton'
 
@@ -58,7 +73,13 @@ export default function BillingRedirectPage() {
       }
 
       try {
-        const headers = await authHeaders()
+        const headers = await waitForAuthHeaders()
+        if (!headers) {
+          fail(isKo
+            ? '로그인 정보를 불러오지 못했어요. 앱을 다시 열고 결제를 재시도해 주세요. 이미 결제된 금액은 중복 청구되지 않아요.'
+            : "Couldn't restore your login. Reopen the app and retry — a completed payment will not be charged twice.")
+          return
+        }
         const post = (url: string, body: Record<string, unknown>) =>
           fetch(url, {
             method: 'POST',
