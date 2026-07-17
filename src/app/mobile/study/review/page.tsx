@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Shuffle, X, Zap, Check, Info, Sparkles } from '@/app/mobile/study/_shared/icons'
+import { Shuffle, X, Barbell, Check, Info, Sparkles } from '@/app/mobile/study/_shared/icons'
 import { MascotLoader, useMascotGate } from '../_shared/MascotLoader'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -321,7 +321,7 @@ function ReviewInner() {
             { quality: 1 as const, Icon: X, label: t('study.flashcards.again'),
               cls: 'bg-rose-50 ring-rose-200/70 text-rose-700 hover:bg-rose-100',
               disc: 'from-rose-400 to-rose-600 shadow-[0_2px_6px_-1px_rgba(244,63,94,0.45)]' },
-            { quality: 3 as const, Icon: Zap, label: t('study.flashcards.hard'),
+            { quality: 3 as const, Icon: Barbell, label: t('study.flashcards.hard'),
               cls: 'bg-amber-50 ring-amber-200/70 text-amber-700 hover:bg-amber-100',
               disc: 'from-amber-400 to-orange-500 shadow-[0_2px_6px_-1px_rgba(251,146,60,0.45)]' },
             { quality: 5 as const, Icon: Check, label: t('study.flashcards.easy'),
