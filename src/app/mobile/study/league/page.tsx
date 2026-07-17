@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus } from '@/app/mobile/study/_shared/icons'
+import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus, Award, Diamond, Shield } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -20,17 +20,21 @@ import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyB
  * wire up the Sunday cron.
  */
 
+// Per-tier emblem icons: medals for the entry metals, a trophy for Gold,
+// gems for the jewel tiers, a shield for Obsidian, and the crown only at
+// the top — the emblem should feel like climbing, not the same crown
+// on every rung.
 const TIERS = [
-  { key: 'bronze',   label_en: 'Bronze',    label_ko: '브론즈',   color: 'from-amber-700 to-orange-800' },
-  { key: 'silver',   label_en: 'Silver',    label_ko: '실버',     color: 'from-slate-400 to-slate-600' },
-  { key: 'gold',     label_en: 'Gold',      label_ko: '골드',     color: 'from-amber-400 to-yellow-600' },
-  { key: 'sapphire', label_en: 'Sapphire',  label_ko: '사파이어', color: 'from-blue-400 to-blue-700' },
-  { key: 'ruby',     label_en: 'Ruby',      label_ko: '루비',     color: 'from-rose-400 to-red-600' },
-  { key: 'emerald',  label_en: 'Emerald',   label_ko: '에메랄드', color: 'from-emerald-400 to-green-700' },
-  { key: 'amethyst', label_en: 'Amethyst',  label_ko: '자수정',   color: 'from-violet-400 to-purple-700' },
-  { key: 'pearl',    label_en: 'Pearl',     label_ko: '진주',     color: 'from-pink-200 to-pink-400' },
-  { key: 'obsidian', label_en: 'Obsidian',  label_ko: '흑요석',   color: 'from-gray-700 to-gray-900' },
-  { key: 'diamond',  label_en: 'Diamond',   label_ko: '다이아몬드', color: 'from-sky-300 to-cyan-500' },
+  { key: 'bronze',   label_en: 'Bronze',    label_ko: '브론즈',   color: 'from-amber-700 to-orange-800', Icon: Award },
+  { key: 'silver',   label_en: 'Silver',    label_ko: '실버',     color: 'from-slate-400 to-slate-600', Icon: Award },
+  { key: 'gold',     label_en: 'Gold',      label_ko: '골드',     color: 'from-amber-400 to-yellow-600', Icon: Trophy },
+  { key: 'sapphire', label_en: 'Sapphire',  label_ko: '사파이어', color: 'from-blue-400 to-blue-700', Icon: Diamond },
+  { key: 'ruby',     label_en: 'Ruby',      label_ko: '루비',     color: 'from-rose-400 to-red-600', Icon: Diamond },
+  { key: 'emerald',  label_en: 'Emerald',   label_ko: '에메랄드', color: 'from-emerald-400 to-green-700', Icon: Diamond },
+  { key: 'amethyst', label_en: 'Amethyst',  label_ko: '자수정',   color: 'from-violet-400 to-purple-700', Icon: Diamond },
+  { key: 'pearl',    label_en: 'Pearl',     label_ko: '진주',     color: 'from-pink-200 to-pink-400', Icon: Sparkles },
+  { key: 'obsidian', label_en: 'Obsidian',  label_ko: '흑요석',   color: 'from-gray-700 to-gray-900', Icon: Shield },
+  { key: 'diamond',  label_en: 'Diamond',   label_ko: '다이아몬드', color: 'from-sky-300 to-cyan-500', Icon: Crown },
 ] as const
 
 interface LeaderboardRow {
@@ -302,7 +306,7 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds }: {
       <div className="relative flex items-center gap-4">
         {/* Tier emblem */}
         <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white/20 ring-1 ring-white/30 backdrop-blur-sm flex items-center justify-center shadow-inner">
-          <Crown className="w-8 h-8 drop-shadow" />
+          <tier.Icon className="w-8 h-8 drop-shadow" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="text-[10px] font-semibold tracking-[0.16em] uppercase opacity-85">{ko ? '이번 주 리그' : 'This week · League'}</div>
@@ -505,12 +509,15 @@ function PromotionBanner({ notice, ko }: { notice: PromotionNotice; ko: boolean 
 }
 
 function EarnXpPanel({ ko }: { ko: boolean }) {
+  // Per-activity gradient tiles — same icon-tile system as the landing,
+  // so each way to earn XP carries its activity's color instead of five
+  // identical amber squares.
   const rows = [
-    { Icon: ListChecks, xp: 10, label_en: 'Each correct practice answer', label_ko: '연습 문제 정답', href: '/mobile/study' },
-    { Icon: Camera, xp: 5, label_en: 'Solve a problem with Snap', label_ko: '사진으로 문제 풀이', href: '/mobile/study/snap' },
-    { Icon: Mic, xp: 20, label_en: 'Submit a speaking or writing response', label_ko: '말하기·작문 응답 제출', href: '/mobile/study' },
-    { Icon: Layers, xp: 5, label_en: 'Easy flashcard review', label_ko: '플래시카드 쉬움', href: '/mobile/study/review' },
-    { Icon: BookOpen, xp: 25, label_en: 'Complete a full study session', label_ko: '학습 세션 완료', href: '/mobile/study' },
+    { Icon: ListChecks, xp: 10, label_en: 'Each correct practice answer', label_ko: '연습 문제 정답', href: '/mobile/study', tile: 'bg-gradient-to-br from-sky-400 to-blue-500 shadow-[0_3px_8px_-2px_rgba(56,189,248,0.4)]' },
+    { Icon: Camera, xp: 5, label_en: 'Solve a problem with Snap', label_ko: '사진으로 문제 풀이', href: '/mobile/study/snap', tile: 'bg-gradient-to-br from-amber-400 to-orange-500 shadow-[0_3px_8px_-2px_rgba(251,146,60,0.4)]' },
+    { Icon: Mic, xp: 20, label_en: 'Submit a speaking or writing response', label_ko: '말하기·작문 응답 제출', href: '/mobile/study', tile: 'bg-gradient-to-br from-rose-400 to-pink-600 shadow-[0_3px_8px_-2px_rgba(244,63,94,0.4)]' },
+    { Icon: Layers, xp: 5, label_en: 'Easy flashcard review', label_ko: '플래시카드 쉬움', href: '/mobile/study/review', tile: 'bg-gradient-to-br from-violet-500 to-purple-600 shadow-[0_3px_8px_-2px_rgba(139,92,246,0.4)]' },
+    { Icon: BookOpen, xp: 25, label_en: 'Complete a full study session', label_ko: '학습 세션 완료', href: '/mobile/study', tile: 'bg-gradient-to-br from-emerald-400 to-teal-500 shadow-[0_3px_8px_-2px_rgba(16,185,129,0.4)]' },
   ]
   return (
     <section>
@@ -521,7 +528,7 @@ function EarnXpPanel({ ko }: { ko: boolean }) {
           return (
             <Link key={i} href={r.href}
               className="flex items-center gap-3 px-3.5 py-3 hover:bg-gray-50 transition group">
-              <div className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-50 ring-1 ring-amber-100 text-amber-700">
+              <div className={`flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg text-white ${r.tile}`}>
                 <Icon className="w-4 h-4" />
               </div>
               <div className="flex-1 min-w-0 text-[13px] text-gray-800">{ko ? r.label_ko : r.label_en}</div>

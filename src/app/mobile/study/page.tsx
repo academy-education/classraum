@@ -1162,15 +1162,14 @@ function FirstTestActivationCard() {
           </div>
           <div className="text-[12.5px] opacity-90 mt-0.5 leading-snug">
             {ko ? 'SAT 읽기와 쓰기' : 'SAT Reading & Writing'}
-            {/* One coin per credit instead of "uses N credits" text.
-                Inline so the line wraps naturally; the dot and coins are
-                one no-wrap unit so a wrap never strands the separator. */}
+            {/* Coin + count, matching the top-bar credits chip. The dot
+                and coin chip are one no-wrap unit so a wrap never
+                strands the separator. */}
             <span className="whitespace-nowrap">
               <span className="opacity-60"> · </span>
-              <span className="inline-flex items-center gap-0.5 align-[-2.5px]" aria-label={ko ? `크레딧 ${cost}개 사용` : `uses ${cost} credits`}>
-                {Array.from({ length: cost }).map((_, i) => (
-                  <Coins key={i} className="w-3.5 h-3.5" aria-hidden />
-                ))}
+              <span className="inline-flex items-center gap-1 align-[-2.5px]" aria-label={ko ? `크레딧 ${cost}개 사용` : `uses ${cost} credits`}>
+                <Coins className="w-3.5 h-3.5" aria-hidden />
+                <span className="font-semibold tabular-nums">{cost}</span>
               </span>
             </span>
           </div>

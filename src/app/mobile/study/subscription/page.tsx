@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
 import Link from 'next/link'
 import {
@@ -540,39 +540,17 @@ export default function SubscriptionPage() {
           </div>
         )}
 
-        {/* Exam passes — purchase offers (in-season, web, not on a paid plan) */}
-        {passOffers.map(p => (
-          <div key={p.id} className="rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 p-5 text-white shadow-[0_8px_24px_-12px_rgba(225,29,72,0.5)]">
-            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-100">
-              <GraduationCap className="w-4 h-4" />
-              {ko ? p.name_ko : p.name_en}
-              {p.daysToExam !== null && p.daysToExam > 0 ? (
-                <span className="ml-auto px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold tabular-nums">
-                  D-{p.daysToExam}
-                </span>
-              ) : p.durationDays ? (
-                <span className="ml-auto px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold tabular-nums">
-                  {ko ? `${Math.round(p.durationDays / 30)}개월` : `${Math.round(p.durationDays / 30)}M`}
-                </span>
-              ) : null}
-            </div>
-            <div className="mt-2 text-2xl font-bold tracking-tight">{formatWon(p.priceWon)}</div>
-            <p className="text-[13px] text-rose-50 mt-1.5 leading-relaxed">
-              {ko
-                ? `${p.blurb_ko} + 테스트 크레딧 ${p.credits}개. 한 번 결제로 끝.`
-                : `${p.blurb_en} + ${p.credits} test credits. One payment, done.`}
-            </p>
-            <button
-              type="button"
-              onClick={() => void buyPass(p.id, ko ? p.name_ko : p.name_en)}
-              disabled={acting !== null}
-              className="mt-3.5 w-full h-11 rounded-full bg-white text-rose-600 text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-70 transition-all"
-            >
-              {acting === 'pass' ? <Loader2 className="w-4 h-4 animate-spin" /> : <GraduationCap className="w-4 h-4" />}
-              {ko ? '패스 구매하기' : 'Get the pass'}
-            </button>
-          </div>
-        ))}
+        {/* Exam passes — purchase offers (in-season, web, not on a paid
+            plan). Each pass carries its own identity color; with more
+            than one offer they sit in an auto-advancing snap carousel. */}
+        {passOffers.length > 0 && (
+          <PassCarousel
+            passes={passOffers}
+            ko={ko}
+            acting={acting}
+            onBuy={(id, name) => void buyPass(id, name)}
+          />
+        )}
 
         {/* Period banner — only meaningful for a live paid subscription
             (renews on / cancels on). Free, expired, and lapsed rows have
@@ -945,4 +923,134 @@ function formatDate(iso: string, ko: boolean): string {
   return new Date(iso).toLocaleDateString(ko ? 'ko-KR' : 'en-US', {
     year: 'numeric', month: 'short', day: 'numeric',
   })
+}
+
+/** Per-pass identity colors — each exam pass gets its own gradient so
+ *  SAT / TOEFL / 수능 read as distinct products, not three rose clones. */
+const PASS_THEMES: Record<string, { gradient: string; shadow: string; buttonText: string; bodyText: string; labelText: string }> = {
+  sat_pass_v1: {
+    gradient: 'from-indigo-500 to-blue-600',
+    shadow: 'shadow-[0_8px_24px_-12px_rgba(79,70,229,0.5)]',
+    buttonText: 'text-indigo-600', bodyText: 'text-indigo-50', labelText: 'text-indigo-100',
+  },
+  toefl_pass_v1: {
+    gradient: 'from-emerald-500 to-teal-600',
+    shadow: 'shadow-[0_8px_24px_-12px_rgba(16,185,129,0.5)]',
+    buttonText: 'text-emerald-600', bodyText: 'text-emerald-50', labelText: 'text-emerald-100',
+  },
+  sunung_pass_v1: {
+    gradient: 'from-rose-500 to-rose-600',
+    shadow: 'shadow-[0_8px_24px_-12px_rgba(225,29,72,0.5)]',
+    buttonText: 'text-rose-600', bodyText: 'text-rose-50', labelText: 'text-rose-100',
+  },
+}
+const PASS_THEME_FALLBACK = PASS_THEMES.sunung_pass_v1
+
+function PassCard({ p, ko, acting, onBuy }: {
+  p: PassInfo; ko: boolean; acting: Acting; onBuy: (id: string, name: string) => void
+}) {
+  const theme = PASS_THEMES[p.id] ?? PASS_THEME_FALLBACK
+  return (
+    <div className={`rounded-2xl bg-gradient-to-br ${theme.gradient} p-5 text-white ${theme.shadow} h-full flex flex-col`}>
+      <div className={`flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] ${theme.labelText}`}>
+        <GraduationCap className="w-4 h-4" />
+        {ko ? p.name_ko : p.name_en}
+        {p.daysToExam !== null && p.daysToExam > 0 ? (
+          <span className="ml-auto px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold tabular-nums">
+            D-{p.daysToExam}
+          </span>
+        ) : p.durationDays ? (
+          <span className="ml-auto px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold tabular-nums">
+            {ko ? `${Math.round(p.durationDays / 30)}개월` : `${Math.round(p.durationDays / 30)}M`}
+          </span>
+        ) : null}
+      </div>
+      <div className="mt-2 text-2xl font-bold tracking-tight">{formatWon(p.priceWon)}</div>
+      <p className={`text-[13px] ${theme.bodyText} mt-1.5 leading-relaxed flex-1`}>
+        {ko
+          ? `${p.blurb_ko} + 테스트 크레딧 ${p.credits}개. 한 번 결제로 끝.`
+          : `${p.blurb_en} + ${p.credits} test credits. One payment, done.`}
+      </p>
+      <button
+        type="button"
+        onClick={() => onBuy(p.id, ko ? p.name_ko : p.name_en)}
+        disabled={acting !== null}
+        className={`mt-3.5 w-full h-11 rounded-full bg-white ${theme.buttonText} text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-70 transition-all`}
+      >
+        {acting === 'pass' ? <Loader2 className="w-4 h-4 animate-spin" /> : <GraduationCap className="w-4 h-4" />}
+        {ko ? '패스 구매하기' : 'Get the pass'}
+      </button>
+    </div>
+  )
+}
+
+/** Snap carousel over the pass offers. Auto-advances every 4s, pauses
+ *  while the user is touching/hovering, and loops back to the first
+ *  card. A single offer renders as a plain card — no carousel chrome. */
+function PassCarousel({ passes, ko, acting, onBuy }: {
+  passes: PassInfo[]; ko: boolean; acting: Acting; onBuy: (id: string, name: string) => void
+}) {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const pausedRef = useRef(false)
+  const [index, setIndex] = useState(0)
+
+  // Card stride = card width + gap. clientWidth alone over-counts by the
+  // track's own px-5 padding, which drifts the index/scroll target.
+  const strideOf = (el: HTMLDivElement) => {
+    const card = el.firstElementChild as HTMLElement | null
+    return card ? card.offsetWidth + 12 /* gap-3 */ : el.clientWidth
+  }
+
+  // Keep the dot indicator in sync with manual swipes.
+  const onScroll = useCallback(() => {
+    const el = trackRef.current
+    if (!el) return
+    const stride = strideOf(el)
+    if (stride > 0) setIndex(Math.round(el.scrollLeft / stride))
+  }, [])
+
+  useEffect(() => {
+    if (passes.length < 2) return
+    const id = setInterval(() => {
+      const el = trackRef.current
+      if (!el || pausedRef.current) return
+      const stride = strideOf(el)
+      if (stride <= 0) return
+      const next = (Math.round(el.scrollLeft / stride) + 1) % passes.length
+      el.scrollTo({ left: next * stride, behavior: 'smooth' })
+    }, 4000)
+    return () => clearInterval(id)
+  }, [passes.length])
+
+  if (passes.length === 1) {
+    return <PassCard p={passes[0]} ko={ko} acting={acting} onBuy={onBuy} />
+  }
+
+  return (
+    <div>
+      <div
+        ref={trackRef}
+        onScroll={onScroll}
+        onTouchStart={() => { pausedRef.current = true }}
+        onTouchEnd={() => { pausedRef.current = false }}
+        onMouseEnter={() => { pausedRef.current = true }}
+        onMouseLeave={() => { pausedRef.current = false }}
+        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-5 px-5 scroll-px-5 gap-3"
+      >
+        {passes.map(p => (
+          <div key={p.id} className="flex-shrink-0 w-full snap-center">
+            <PassCard p={p} ko={ko} acting={acting} onBuy={onBuy} />
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center gap-1.5 mt-3" aria-hidden>
+        {passes.map((p, i) => (
+          <span
+            key={p.id}
+            className={`h-1.5 rounded-full transition-all duration-300 ${i === index ? 'w-5 bg-gray-500' : 'w-1.5 bg-gray-300'}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
 }
