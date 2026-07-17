@@ -12,6 +12,7 @@ import { StudyButton } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { GIFT } from '@/lib/study/gifts'
 import { PortOne } from '@/lib/portone-browser'
+import { billingCustomer, missingPhoneMessage } from '@/lib/study/purchase-credits'
 import { useAuth } from '@/contexts/AuthContext'
 
 /**
@@ -57,13 +58,15 @@ export default function GiftPage() {
       const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
       if (!storeId || !channelKey) throw new Error('PortOne not configured')
 
+      const customer = await billingCustomer(user)
+      if (!customer.phoneNumber) { setBuyError(missingPhoneMessage(ko)); return }
       const issued = await PortOne.requestIssueBillingKey({
         storeId,
         channelKey,
         billingKeyMethod: 'CARD',
         issueId: `study-gift-issue-${user?.id ?? 'anon'}-${Date.now()}`,
         issueName: ko ? GIFT.name_ko : GIFT.name_en,
-        customer: { customerId: user?.id, email: user?.email ?? undefined },
+        customer,
         customData: { kind: 'study_gift', gift: GIFT.id },
       })
       if (!issued?.billingKey) {
