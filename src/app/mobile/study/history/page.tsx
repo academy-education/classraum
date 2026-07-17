@@ -40,6 +40,16 @@ const MODE_ICONS: Record<StudyMode, typeof MessageCircle> = {
   response: Mic,
 }
 
+// Per-mode gradient tiles (white icon on a colored gradient) — the same
+// icon-tile system as the landing cards, so rows are scannable by mode
+// color instead of six identical flat-blue squares.
+const MODE_TILES: Record<StudyMode, string> = {
+  practice: 'bg-gradient-to-br from-sky-400 to-blue-500 text-white shadow-[0_4px_10px_-2px_rgba(56,189,248,0.35)]',
+  flashcards: 'bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-[0_4px_10px_-2px_rgba(139,92,246,0.35)]',
+  full_test: 'bg-gradient-to-br from-rose-400 to-pink-600 text-white shadow-[0_4px_10px_-2px_rgba(244,63,94,0.35)]',
+  response: 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_4px_10px_-2px_rgba(251,146,60,0.35)]',
+}
+
 const PAGE_SIZE = 20
 
 export default function StudyHistoryPage() {
@@ -218,8 +228,8 @@ function HistoryInner() {
                           href={`/mobile/study/session/${row.id}`}
                           className="group flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
                         >
-                          <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                            <Icon className="w-4 h-4" />
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${MODE_TILES[row.mode] ?? 'bg-primary/10 text-primary'}`}>
+                            <Icon className="w-[18px] h-[18px]" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="text-sm font-semibold text-gray-900 truncate">{title}</div>
