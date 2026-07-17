@@ -34,6 +34,53 @@ export function missingPhoneMessage(ko: boolean): string {
 }
 
 /**
+ * Mobile WebViews (the Capacitor app) can't open the PG's card window
+ * from the Promise flow — the screen just dims. PortOne's redirect flow
+ * is required there: we pass `redirectUrl` on every issue call (the SDK
+ * still resolves the Promise on PC, and redirects on mobile), stash the
+ * purchase intent in sessionStorage, and /mobile/study/billing-redirect
+ * finishes the purchase after the round-trip.
+ */
+export const BILLING_REDIRECT_PATH = '/mobile/study/billing-redirect'
+
+export interface BillingIntent {
+  kind: 'plan' | 'pass' | 'pack' | 'gift'
+  planId?: string
+  passId?: string
+  packId?: string
+  /** Where to send the user after the redirect flow completes. */
+  returnTo: string
+  ko: boolean
+  ts: number
+}
+
+const INTENT_KEY = 'study-billing-intent'
+
+export function stashBillingIntent(intent: Omit<BillingIntent, 'ts'>): void {
+  try {
+    sessionStorage.setItem(INTENT_KEY, JSON.stringify({ ...intent, ts: Date.now() }))
+  } catch { /* storage unavailable → PC Promise flow still works */ }
+}
+
+/** Read-and-clear. Returns null when absent or older than 30 minutes. */
+export function takeBillingIntent(): BillingIntent | null {
+  try {
+    const raw = sessionStorage.getItem(INTENT_KEY)
+    sessionStorage.removeItem(INTENT_KEY)
+    if (!raw) return null
+    const intent = JSON.parse(raw) as BillingIntent
+    if (!intent.kind || Date.now() - (intent.ts ?? 0) > 30 * 60_000) return null
+    return intent
+  } catch {
+    return null
+  }
+}
+
+export function billingRedirectUrl(): string {
+  return `${window.location.origin}${BILLING_REDIRECT_PATH}`
+}
+
+/**
  * Client-side credit-pack purchase, shared by the subscription page and
  * the out-of-credits screen.
  *
@@ -79,6 +126,14 @@ export async function buyCreditPack(
 
       const customer = await billingCustomer(user)
       if (!customer.phoneNumber) return { ok: false, error: missingPhoneMessage(ko) }
+      // Mobile WebViews leave via redirect here; the billing-redirect
+      // page retries the purchase with the issued key.
+      stashBillingIntent({
+        kind: 'pack',
+        packId,
+        returnTo: window.location.pathname + window.location.search,
+        ko,
+      })
       const issued = await PortOne.requestIssueBillingKey({
         storeId,
         channelKey,
@@ -87,6 +142,7 @@ export async function buyCreditPack(
         issueName: 'Classraum Study credits',
         customer,
         customData: { kind: 'study_credit_pack', packId },
+        redirectUrl: billingRedirectUrl(),
       })
       if (!issued?.billingKey) {
         // No code → user closed the overlay; a code → PortOne error.

@@ -12,7 +12,7 @@ import { StudyButton } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { GIFT } from '@/lib/study/gifts'
 import { PortOne } from '@/lib/portone-browser'
-import { billingCustomer, missingPhoneMessage } from '@/lib/study/purchase-credits'
+import { billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl } from '@/lib/study/purchase-credits'
 import { useAuth } from '@/contexts/AuthContext'
 
 /**
@@ -32,6 +32,18 @@ export default function GiftPage() {
 
   const [isNative, setIsNative] = useState(false)
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
+
+  // A mobile redirect-flow purchase finishes on /billing-redirect, which
+  // stashes the issued gift code here before routing back.
+  useEffect(() => {
+    try {
+      const code = sessionStorage.getItem('study-gift-issued')
+      if (code) {
+        sessionStorage.removeItem('study-gift-issued')
+        setIssuedCode(code)
+      }
+    } catch { /* no-op */ }
+  }, [])
 
   // Buy state
   const [buying, setBuying] = useState(false)
@@ -60,6 +72,7 @@ export default function GiftPage() {
 
       const customer = await billingCustomer(user)
       if (!customer.phoneNumber) { setBuyError(missingPhoneMessage(ko)); return }
+      stashBillingIntent({ kind: 'gift', returnTo: '/mobile/study/gift', ko })
       const issued = await PortOne.requestIssueBillingKey({
         storeId,
         channelKey,
@@ -68,6 +81,7 @@ export default function GiftPage() {
         issueName: ko ? GIFT.name_ko : GIFT.name_en,
         customer,
         customData: { kind: 'study_gift', gift: GIFT.id },
+        redirectUrl: billingRedirectUrl(),
       })
       if (!issued?.billingKey) {
         // No billingKey: a code means a PortOne error, none means the

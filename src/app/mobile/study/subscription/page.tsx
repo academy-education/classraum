@@ -13,7 +13,7 @@ import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
-import { buyCreditPack, billingCustomer, missingPhoneMessage } from '@/lib/study/purchase-credits'
+import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
@@ -211,6 +211,9 @@ export default function SubscriptionPage() {
       const customer = await billingCustomer(user)
       if (!customer.phoneNumber) { setError(missingPhoneMessage(ko)); return }
 
+      // Mobile WebViews leave via redirect; billing-redirect completes
+      // the charge with the issued key. PC stays on the Promise flow.
+      stashBillingIntent({ kind: 'plan', planId, returnTo: '/mobile/study/subscription', ko })
       const issueId = `study-issue-${user?.id ?? 'anon'}-${Date.now()}`
       const issued = await PortOne.requestIssueBillingKey({
         storeId,
@@ -220,6 +223,7 @@ export default function SubscriptionPage() {
         issueName: 'Classraum Study subscription',
         customer,
         customData: { kind: 'study_subscription', plan: planId },
+        redirectUrl: billingRedirectUrl(),
       })
 
       if (!issued?.billingKey) {
@@ -267,6 +271,7 @@ export default function SubscriptionPage() {
 
       const customer = await billingCustomer(user)
       if (!customer.phoneNumber) { setError(missingPhoneMessage(ko)); return }
+      stashBillingIntent({ kind: 'pass', passId, returnTo: '/mobile/study/subscription', ko })
       const issued = await PortOne.requestIssueBillingKey({
         storeId,
         channelKey,
@@ -275,6 +280,7 @@ export default function SubscriptionPage() {
         issueName,
         customer,
         customData: { kind: 'study_exam_pass', passId },
+        redirectUrl: billingRedirectUrl(),
       })
       if (!issued?.billingKey) {
         if (issued?.code) setError(issued.message ?? (t('study.subscription.checkoutFailed') as string))
