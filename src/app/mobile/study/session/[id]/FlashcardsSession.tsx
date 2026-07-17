@@ -3,14 +3,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Loader2, RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Zap } from '@/app/mobile/study/_shared/icons'
+import { Loader2, RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Barbell } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
-import { StudyButton } from '../../_shared/StudyButton'
 import { scheduleNext, INITIAL_SRS } from '@/lib/srs'
 import { useStudyErrorToast, saveFailedMessage } from '../../_shared/useStudyErrorToast'
 
@@ -364,13 +363,13 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
           >
             {/* Front face */}
             <div
-              className="absolute inset-0 rounded-2xl border-2 border-gray-200 bg-white px-5 py-8 flex flex-col items-center justify-center gap-3 text-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06),0_12px_28px_-12px_rgba(0,0,0,0.10)]"
+              className="absolute inset-0 rounded-3xl bg-white ring-1 ring-gray-200/70 px-6 py-6 flex flex-col items-center justify-center gap-3 text-center shadow-[0_8px_24px_-12px_rgba(0,0,0,0.10)]"
               style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
             >
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-violet-100 text-violet-700 text-[10px] font-bold tracking-wider uppercase">
                 {t('study.flashcards.frontLabel')}
               </span>
-              <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap">
+              <p className="text-[20px] font-semibold text-gray-900 leading-snug whitespace-pre-wrap">
                 {card.front}
               </p>
 
@@ -394,7 +393,7 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
                 )
               )}
 
-              <span className="mt-2 text-xs text-gray-400 inline-flex items-center gap-1">
+              <span className="mt-2 text-[11px] text-gray-400 inline-flex items-center gap-1">
                 <RotateCw className="w-3 h-3" />
                 {t('study.flashcards.tapToFlip')}
               </span>
@@ -403,17 +402,17 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
             {/* Back face — pre-rotated 180° so it shows right-side-up
                 when the card flips. */}
             <div
-              className="absolute inset-0 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/[0.06] via-white to-primary/[0.04] px-5 py-8 flex flex-col items-center justify-center gap-3 text-center shadow-[0_2px_8px_-2px_rgba(40,133,232,0.10),0_12px_28px_-12px_rgba(40,133,232,0.16)]"
+              className="absolute inset-0 rounded-3xl bg-gradient-to-br from-violet-500 to-blue-600 text-white px-6 py-6 flex flex-col items-center justify-center gap-3 text-center"
               style={{
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
                 transform: 'rotateY(180deg)',
               }}
             >
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/15 text-white text-[10px] font-bold tracking-wider uppercase">
                 {t('study.flashcards.backLabel')}
               </span>
-              <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap">
+              <p className="text-[18px] font-medium leading-relaxed whitespace-pre-wrap">
                 {card.back}
               </p>
             </div>
@@ -426,43 +425,24 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
           rating drives the card's next-review schedule in
           study_flashcard_reviews. */}
       <div className="flex-shrink-0 px-5 py-3 border-t border-gray-100 bg-white">
-        {flipped ? (
-          <div className="grid grid-cols-3 gap-2">
-            <button
-              type="button"
-              disabled={marking} onClick={() => void mark(1)}
-              className="h-12 rounded-2xl bg-rose-50 text-rose-700 ring-1 ring-rose-200 text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.97] transition-all"
-            >
-              <X className="w-3.5 h-3.5" />
-              {t('study.flashcards.again')}
+        {/* Full-color gradient buttons (rose / amber / emerald) matching
+            the Daily Review page — dimmed until the card is flipped. */}
+        <div className={`grid grid-cols-3 gap-2 transition-opacity ${flipped ? 'opacity-100' : 'opacity-50 pointer-events-none'}`}>
+          {([
+            { quality: 1 as const, Icon: X, label: t('study.flashcards.again'),
+              cls: 'from-rose-400 to-rose-600 shadow-[0_6px_16px_-6px_rgba(244,63,94,0.5)]' },
+            { quality: 3 as const, Icon: Barbell, label: t('study.flashcards.hard'),
+              cls: 'from-amber-400 to-orange-500 shadow-[0_6px_16px_-6px_rgba(251,146,60,0.5)]' },
+            { quality: 5 as const, Icon: Check, label: t('study.flashcards.easy'),
+              cls: 'from-emerald-400 to-teal-500 shadow-[0_6px_16px_-6px_rgba(16,185,129,0.5)]' },
+          ]).map(({ quality, Icon, label, cls }) => (
+            <button key={quality} type="button" disabled={marking || !flipped} onClick={() => void mark(quality)}
+              className={`h-13 min-h-[52px] rounded-2xl bg-gradient-to-b text-white inline-flex items-center justify-center gap-1.5 hover:brightness-105 active:scale-[0.96] transition-all ${cls}`}>
+              <Icon className="w-4 h-4" strokeWidth={2.5} />
+              <span className="text-[13px] font-bold">{label}</span>
             </button>
-            <button
-              type="button"
-              disabled={marking} onClick={() => void mark(3)}
-              className="h-12 rounded-2xl bg-amber-50 text-amber-800 ring-1 ring-amber-200 text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.97] transition-all"
-            >
-              <RefreshCcw className="w-3.5 h-3.5" />
-              {t('study.flashcards.hard')}
-            </button>
-            <button
-              type="button"
-              disabled={marking} onClick={() => void mark(5)}
-              className="h-12 rounded-2xl bg-emerald-600 text-white text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.97] transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(16,185,129,0.25)]"
-            >
-              <Zap className="w-3.5 h-3.5" fill="currentColor" />
-              {t('study.flashcards.easy')}
-            </button>
-          </div>
-        ) : (
-          <StudyButton
-            size="lg"
-            fullWidth
-            onClick={() => setFlipped(true)}
-            leftIcon={<RotateCw className="w-4 h-4" />}
-          >
-            {t('study.flashcards.flip')}
-          </StudyButton>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   )

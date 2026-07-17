@@ -110,7 +110,8 @@ function FriendsInner() {
       <StudyPageTransition>
         <div className="space-y-6">
           <ViewLeaderboardButton ko={ko} count={data.friends.length} />
-          <Duels ko={ko} refreshKey={duelsKey} />
+          {/* duels hidden for launch */}
+          {false && <Duels ko={ko} refreshKey={duelsKey} />}
           <AddFriend ko={ko} myCode={data.myCode} onChanged={load} />
           {data.incoming.length > 0 && <IncomingRequests ko={ko} requests={data.incoming} onChanged={load} />}
           <FriendsList
@@ -385,11 +386,14 @@ function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: bo
           <div key={f.student_id} className="group flex items-center gap-2.5 px-4 py-3">
             <Avatar name={f.display_name} />
             <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{f.display_name}</span>
-            <button type="button" onClick={() => void challenge(f.student_id)} disabled={challenging === f.student_id}
-              className="inline-flex items-center gap-1 h-8 px-3 rounded-full bg-primary/10 text-primary text-[12px] font-semibold hover:bg-primary/15 active:scale-95 disabled:opacity-50 transition">
-              {challenging === f.student_id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Swords className="w-3.5 h-3.5" />}
-              {ko ? '대결' : 'Duel'}
-            </button>
+            {/* duels hidden for launch */}
+            {false && (
+              <button type="button" onClick={() => void challenge(f.student_id)} disabled={challenging === f.student_id}
+                className="inline-flex items-center gap-1 h-8 px-3 rounded-full bg-primary/10 text-primary text-[12px] font-semibold hover:bg-primary/15 active:scale-95 disabled:opacity-50 transition">
+                {challenging === f.student_id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Swords className="w-3.5 h-3.5" />}
+                {ko ? '대결' : 'Duel'}
+              </button>
+            )}
             <button type="button" onClick={() => void remove(f.student_id)} aria-label={ko ? '친구 삭제' : 'Remove'}
               className="w-8 h-8 inline-flex items-center justify-center rounded-full text-gray-300 hover:bg-rose-50 hover:text-rose-500 active:scale-95 transition">
               <X className="w-4 h-4" />

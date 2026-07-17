@@ -292,9 +292,9 @@ export const TRIAL_CREDITS = 3
 
 /** One-time test credits granted with the auto-provisioned Free plan.
  *  Since the 2026-07 relaunch EVERY full mock test consumes credits
- *  (bank SAT included), so this is enough for one SAT section test
- *  (2 credits) with one credit spare. */
-export const FREE_CREDITS = 3
+ *  (bank SAT included), so this is enough for exactly one SAT section
+ *  test (2 credits). */
+export const FREE_CREDITS = 2
 
 /**
  * Per-section full-test credit costs (2026-07 credit relaunch). EVERY

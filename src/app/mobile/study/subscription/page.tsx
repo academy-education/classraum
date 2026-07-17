@@ -5,7 +5,7 @@ import { Capacitor } from '@capacitor/core'
 import Link from 'next/link'
 import {
   CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw,
-  XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap, Gift, Users, ChevronRight,
+  XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap, Gift, ChevronRight,
 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard } from '../skeletons'
@@ -95,7 +95,6 @@ export default function SubscriptionPage() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isNative, setIsNative] = useState(false)
   const [confirmingCancel, setConfirmingCancel] = useState(false)
-  const [cycleDays, setCycleDays] = useState<number>(30)
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
   const load = useCallback(async () => {
@@ -152,17 +151,9 @@ export default function SubscriptionPage() {
     total: (sub?.grant_credits_remaining ?? 0) + (sub?.purchased_credits_remaining ?? 0),
   }
 
-  // Duration toggle (월간 / 3개월 / 6개월 / 연간). Free (interval 30, price 0)
-  // always shows; paid plans filter to the selected cadence. Durations are
-  // derived from whatever the catalog actually offers, so adding/removing a
-  // prepaid SKU needs no UI change. Default to the cadence the user is on.
-  const availableDurations = Array.from(
-    new Set(plans.filter(p => p.priceWon > 0).map(p => p.intervalDays)),
-  ).sort((a, b) => a - b)
-  const currentPlanInterval = plans.find(p => p.id === currentPlanId)?.intervalDays
-  useEffect(() => {
-    if (currentPlanInterval && currentPlanInterval !== 30) setCycleDays(currentPlanInterval)
-  }, [currentPlanInterval])
+  // Monthly plans only — the billing-duration toggle was removed for
+  // launch, so the grid always shows the 30-day cadence (+ free).
+  const cycleDays = 30
   const displayedPlans = plans.filter(p => p.id === 'free_v1' || p.intervalDays === cycleDays)
   // Per-tier monthly price, so longer-cadence cards can show the equivalent
   // month-by-month cost struck through and the savings.
@@ -585,30 +576,6 @@ export default function SubscriptionPage() {
           </div>
         )}
 
-        {/* Billing-duration toggle — one segment per cadence the catalog
-            offers (월간 / 3개월 / 6개월 / 연간). Horizontal-scrolls if it
-            overflows on narrow phones. */}
-        {!onPass && availableDurations.length > 1 && (
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-1 p-1 rounded-full bg-gray-100/80 ring-1 ring-gray-200/60 max-w-full overflow-x-auto">
-              {availableDurations.map(days => (
-                <button
-                  key={days}
-                  type="button"
-                  onClick={() => setCycleDays(days)}
-                  className={`px-3.5 h-9 rounded-full text-[13px] font-semibold whitespace-nowrap transition-all ${
-                    cycleDays === days
-                      ? 'bg-white text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,0.06)]'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {durationLabel(days, ko)}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Plan cards */}
         {!onPass && (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -777,8 +744,8 @@ export default function SubscriptionPage() {
         </div>
         )}
 
-        {/* Gift + referral entry points — each on its own full-width row
-            (both pages self-gate native). */}
+        {/* gift hidden for launch — referral moved to the preferences page */}
+        {false && (
         <div className="space-y-2.5">
           <Link
             href="/mobile/study/gift"
@@ -793,20 +760,8 @@ export default function SubscriptionPage() {
             </span>
             <ChevronRight className="w-4 h-4 text-gray-300 ml-auto flex-shrink-0" />
           </Link>
-          <Link
-            href="/mobile/study/referral"
-            className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/60 p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.98] transition-all"
-          >
-            <span className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-              <Users className="w-4 h-4" />
-            </span>
-            <span className="min-w-0">
-              <span className="block text-[13px] font-semibold text-gray-900 truncate">{ko ? '친구 초대' : 'Refer a friend'}</span>
-              <span className="block text-[11.5px] text-gray-400 truncate">{ko ? '가입 시 1개 + 프리미엄 시 10개' : '1 credit + 10 on Premium'}</span>
-            </span>
-            <ChevronRight className="w-4 h-4 text-gray-300 ml-auto flex-shrink-0" />
-          </Link>
         </div>
+        )}
 
         {/* Secondary actions */}
         {!onPass && (
@@ -913,14 +868,6 @@ function planName(plans: CatalogPlan[], planId: string, ko: boolean): string {
 
 function formatWon(won: number): string {
   return `₩${won.toLocaleString()}`
-}
-
-/** Toggle-segment label for a billing cadence (30 → 월간, 90 → 3M…). */
-function durationLabel(days: number, ko: boolean): string {
-  if (days === 30) return ko ? '월간' : 'Monthly'
-  if (days === 365) return ko ? '연간' : 'Annual'
-  const months = Math.round(days / 30)
-  return ko ? `${months}개월` : `${months}M`
 }
 
 /** Per-price unit suffix (/ month, / 3M, / yr). */
