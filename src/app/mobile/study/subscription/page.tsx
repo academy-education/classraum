@@ -353,8 +353,8 @@ export default function SubscriptionPage() {
   )
 
   if (loading) {
-    // Skeleton body mirroring the loaded layout: credit balance → two
-    // plan cards.
+    // Skeleton body mirroring the loaded layout: credit balance →
+    // buy-credits card → three plan cards.
     return (
       <StudyScrollShell header={header}>
         <SkeletonCard className="p-5 space-y-3">
@@ -362,8 +362,14 @@ export default function SubscriptionPage() {
           <SkeletonBlock className="h-8 w-24 rounded-lg" />
           <SkeletonBlock className="h-2.5 w-3/5 rounded-full" />
         </SkeletonCard>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {[0, 1].map(i => (
+        <SkeletonCard className="p-5 space-y-3">
+          <SkeletonBlock className="h-3 w-24 rounded-full" />
+          <div className="grid grid-cols-3 gap-2">
+            {[0, 1, 2].map(i => <SkeletonBlock key={i} className="h-[86px] rounded-xl" />)}
+          </div>
+        </SkeletonCard>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[0, 1, 2].map(i => (
             <SkeletonCard key={i} className="p-5 space-y-4 min-h-[280px]">
               <SkeletonBlock className="h-3 w-20 rounded-full" />
               <SkeletonBlock className="h-7 w-28 rounded-lg" />

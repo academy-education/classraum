@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { Library as LibraryIcon, ListChecks, Layers, ClipboardList, ChevronDown, ChevronRight, Search, X, ArrowRight, Check } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyFilterChip } from '../_shared/primitives'
 import { studyButtonClass } from '../_shared/StudyButton'
-import { SkeletonRowList } from '../skeletons'
+import { SkeletonTextCardList } from '../skeletons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -153,7 +153,7 @@ function PracticeBrowser({ section, ko }: { section: Section; ko: boolean }) {
       )}
 
       {loading ? (
-        <SkeletonRowList count={6} />
+        <SkeletonTextCardList count={6} />
       ) : failed ? (
         <ErrorCard ko={ko} />
       ) : items.length === 0 ? (
@@ -243,7 +243,7 @@ function FlashcardBrowser({ section, ko }: { section: Section; ko: boolean }) {
     return items.filter(c => `${c.front} ${c.back} ${c.domain ?? ''}`.toLowerCase().includes(q))
   }, [items, query])
 
-  if (loading) return <SkeletonRowList count={6} />
+  if (loading) return <SkeletonTextCardList count={6} />
   if (failed) return <ErrorCard ko={ko} />
   if (items.length === 0) {
     return (

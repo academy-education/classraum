@@ -216,8 +216,8 @@ function StudyPathInner() {
           <SkeletonBlock className="h-28 w-full rounded-3xl" />
           <div className="space-y-5 pt-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={`flex ${i % 2 === 0 ? 'justify-start pl-6' : 'justify-end pr-6'}`}>
-                <SkeletonBlock className="h-16 w-16 rounded-full" />
+              <div key={i} className={`flex justify-center ${i % 2 === 0 ? '-translate-x-8' : 'translate-x-8'}`}>
+                <SkeletonBlock className="h-24 w-24 rounded-full" />
               </div>
             ))}
           </div>
@@ -1082,7 +1082,6 @@ function TargetTestPicker({
       subKo: '읽기 · 듣기 · 말하기 · 쓰기',
       accent: 'from-emerald-500 via-teal-600 to-cyan-700',
       initial: 'T',
-      comingSoon: true,
     },
   ]
 

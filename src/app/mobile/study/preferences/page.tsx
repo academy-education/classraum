@@ -25,7 +25,7 @@ interface Prefs {
 // coming-soon.
 const TESTS = [
   { value: 'SAT',   ko: 'SAT',         en: 'SAT',      available: true },
-  { value: 'TOEFL', ko: 'TOEFL',       en: 'TOEFL',    available: false },
+  { value: 'TOEFL', ko: 'TOEFL',       en: 'TOEFL',    available: true },
   { value: 'KSAT',  ko: '수능',         en: 'KSAT',     available: false },
   { value: 'TOEIC', ko: 'TOEIC',       en: 'TOEIC',    available: false },
   { value: 'IELTS', ko: 'IELTS',       en: 'IELTS',    available: false },
@@ -153,17 +153,10 @@ function PreferencesInner() {
   )
 
   if (!prefs) {
-    // Skeleton body mirrors the loaded layout: stats link card, then 5
-    // setting groups.
+    // Skeleton body mirrors the loaded layout: 5 setting groups (target
+    // test + grade level as tall grids, then the three segmented rows).
     return (
       <StudyScrollShell header={header}>
-        <SkeletonCard className="p-4 flex items-center gap-3">
-          <SkeletonBlock className="w-10 h-10 rounded-xl" />
-          <div className="flex-1 space-y-1.5">
-            <SkeletonBlock className="h-3.5 w-1/3 rounded-full" />
-            <SkeletonBlock className="h-2.5 w-2/5 rounded-full" />
-          </div>
-        </SkeletonCard>
         <SkeletonSettingsGroup rows={2} />
         <SkeletonSettingsGroup rows={2} />
         <SkeletonSettingsGroup />

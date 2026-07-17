@@ -455,15 +455,8 @@ function StudyLandingInner() {
       <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
         {/* Hero */}
         <SkeletonBlock className="h-[190px] w-full rounded-3xl" />
-        {/* This week — heading + plan card + quests card. Use SkeletonBlock
-            (which shimmers) rather than a childless SkeletonCard (a static
-            white frame that would read as a dead card). */}
-        <div className="space-y-3">
-          <SkeletonBlock className="h-5 w-24 rounded-full" />
-          <SkeletonBlock className="h-[132px] w-full rounded-2xl" />
-          <SkeletonBlock className="h-[150px] w-full rounded-2xl" />
-        </div>
-        {/* Today band — heading + 2 cards */}
+        {/* Today band — heading + 2 cards. Matches the loaded band
+            order: Today → This week → Test prep. */}
         <div className="space-y-3">
           <SkeletonBlock className="h-5 w-16 rounded-full" />
           {[0, 1].map(i => (
@@ -475,6 +468,14 @@ function StudyLandingInner() {
               </div>
             </SkeletonCard>
           ))}
+        </div>
+        {/* This week — heading + plan card + quests card. Use SkeletonBlock
+            (which shimmers) rather than a childless SkeletonCard (a static
+            white frame that would read as a dead card). */}
+        <div className="space-y-3">
+          <SkeletonBlock className="h-5 w-24 rounded-full" />
+          <SkeletonBlock className="h-[132px] w-full rounded-2xl" />
+          <SkeletonBlock className="h-[150px] w-full rounded-2xl" />
         </div>
         {/* Test prep grid */}
         <div className="space-y-3">
