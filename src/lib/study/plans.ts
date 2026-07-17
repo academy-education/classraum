@@ -69,7 +69,7 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
   premium_plus_v1: {
     id: 'premium_plus_v1',
     tier: 'premium',
-    priceWon: 24900,
+    priceWon: 29900,
     monthlyCredits: 40,
     intervalDays: 30,
     orderName: 'Classraum Study — Premium Plus (Monthly)',
