@@ -23,6 +23,13 @@
  *     (config.pathNode) reaches status='completed' — practice sessions
  *     complete via /api/study/practice/complete when the set is
  *     finished; full tests complete on submit.
+ *   - Completed nodes are TERMINAL: a single stop can never be
+ *     replayed (server-enforced in practice/generate + test/assemble).
+ *     The only repeat is the WHOLE path via /api/study/path/repeat,
+ *     which costs PATH_REPEAT_CREDITS and archives every path-tagged
+ *     session so the student starts over from node 0.
+ *   - Every non-mock stop serves exactly 3 questions. Mock-test stops
+ *     (launchMode 'full_test') keep their full-length behavior.
  *
  * Templates live in code so we can iterate on shape before committing
  * to a DB schema. Once validated, migrate to `study_path_definitions`.
@@ -64,6 +71,15 @@ export interface StudyPathTemplate {
   nodes: StudyPathNode[]
 }
 
+/** Credits charged to repeat the whole path once it's fully completed.
+ *  Shared by the repeat API route (server-side charge) and the path
+ *  page (client-side confirm copy + balance pre-check). */
+export const PATH_REPEAT_CREDITS = 2
+
+/** Question count for every non-mock path stop. Mock-test stops
+ *  (launchMode 'full_test') keep their own full-length counts. */
+export const PATH_STOP_QUESTION_COUNT = 3
+
 const RW = 'sat-reading-writing'
 const MATH = 'sat-math'
 
@@ -77,11 +93,11 @@ const SAT_PATH: StudyPathTemplate = {
       kind: 'diagnostic',
       labelEn: 'Diagnostic',
       labelKo: '진단 평가',
-      detailEn: 'Quick 10-question check across Reading & Writing to gauge where you are.',
-      detailKo: '읽기·쓰기 10문항으로 현재 수준을 빠르게 확인해요.',
+      detailEn: 'Quick 3-question check across Reading & Writing to gauge where you are.',
+      detailKo: '읽기·쓰기 3문항으로 현재 수준을 빠르게 확인해요.',
       subtopicSlug: RW,
       launchMode: 'practice',
-      questionCount: 10,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     // ── Unit 1 · Reading & Writing — one domain at a time ──
     {
@@ -95,7 +111,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Information and Ideas',
       difficulties: ['easy', 'medium'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-rw-info-2',
@@ -108,7 +124,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Information and Ideas',
       difficulties: ['medium', 'hard'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-rw-craft-1',
@@ -121,7 +137,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Craft and Structure',
       difficulties: ['easy', 'medium'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-rw-craft-2',
@@ -134,7 +150,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Craft and Structure',
       difficulties: ['medium', 'hard'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-rw-conventions-1',
@@ -147,7 +163,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Standard English Conventions',
       difficulties: ['easy', 'medium'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-rw-conventions-2',
@@ -160,7 +176,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Standard English Conventions',
       difficulties: ['medium', 'hard'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-rw-expression',
@@ -172,7 +188,7 @@ const SAT_PATH: StudyPathTemplate = {
       subtopicSlug: RW,
       launchMode: 'practice',
       domain: 'Expression of Ideas',
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-rw-section',
@@ -198,7 +214,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Algebra',
       difficulties: ['easy', 'medium'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-math-algebra-2',
@@ -211,7 +227,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Algebra',
       difficulties: ['medium', 'hard'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-math-advanced-1',
@@ -224,7 +240,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Advanced Math',
       difficulties: ['easy', 'medium'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-math-advanced-2',
@@ -237,7 +253,7 @@ const SAT_PATH: StudyPathTemplate = {
       launchMode: 'practice',
       domain: 'Advanced Math',
       difficulties: ['medium', 'hard'],
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-math-data',
@@ -249,7 +265,7 @@ const SAT_PATH: StudyPathTemplate = {
       subtopicSlug: MATH,
       launchMode: 'practice',
       domain: 'Problem-Solving and Data Analysis',
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-math-geometry',
@@ -261,7 +277,7 @@ const SAT_PATH: StudyPathTemplate = {
       subtopicSlug: MATH,
       launchMode: 'practice',
       domain: 'Geometry and Trigonometry',
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'sat-math-section',
@@ -318,7 +334,7 @@ const TOEFL_PATH: StudyPathTemplate = {
       detailKo: '짧은 지문 이해 문제로 시작해요.',
       subtopicSlug: 'toefl-reading',
       launchMode: 'practice',
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'toefl-reading-section',
@@ -340,7 +356,7 @@ const TOEFL_PATH: StudyPathTemplate = {
       detailKo: '강의와 대화 발췌 듣기.',
       subtopicSlug: 'toefl-listening',
       launchMode: 'practice',
-      questionCount: 8,
+      questionCount: PATH_STOP_QUESTION_COUNT,
     },
     {
       id: 'toefl-listening-section',
@@ -471,12 +487,9 @@ export function annotatePath(
     })
   }
 
-  // Edge case: every node is completed → mark the last one as
-  // 'active' so the student can still tap to review it. Prevents the
-  // path looking abandoned once the student finishes.
-  if (!activeAssigned && out.length > 0) {
-    out[out.length - 1] = { ...out[out.length - 1], state: { ...out[out.length - 1].state, status: 'active' } }
-  }
-
+  // When every node is completed we deliberately leave them ALL
+  // 'completed' (checked + inert) — single stops can never be
+  // replayed. The path page renders a "repeat the whole path" CTA
+  // (2 credits) instead of relabeling the last node active.
   return out
 }

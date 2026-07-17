@@ -5,6 +5,7 @@ import { BottomNavigation } from '@/components/ui/mobile/BottomNavigation'
 import { StudySidebar } from '@/components/ui/mobile/StudySidebar'
 import { MobileHeader } from '@/components/ui/mobile/MobileHeader'
 import { useMobileNav } from '@/components/ui/mobile/useMobileNav'
+import { StudyOnlyGuard } from '@/components/ui/mobile/StudyOnlyGuard'
 import { XpToast } from '@/app/mobile/study/_shared/XpToast'
 import { UndoToast } from '@/app/mobile/study/_shared/UndoToast'
 import { DailyGoalCelebration } from '@/app/mobile/study/_shared/DailyGoalCelebration'
@@ -124,7 +125,7 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
               className="h-full overflow-y-auto scroll-smooth bg-gray-50"
               style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
             >
-              {isLoading ? <LoadingScreen /> : children}
+              {isLoading ? <LoadingScreen /> : <StudyOnlyGuard>{children}</StudyOnlyGuard>}
             </div>
           </main>
         </div>

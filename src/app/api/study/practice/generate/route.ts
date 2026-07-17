@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { loadStudyPromptContext } from '@/lib/study-prompt-context'
 import { drawBankPractice } from '@/lib/study/assemble'
 import { requireStudyUser } from '@/lib/study/auth'
+import { PATH_STOP_QUESTION_COUNT } from '@/lib/study-path'
 
 /**
  * POST /api/study/practice/generate — serve a batch of practice
@@ -74,7 +75,35 @@ export async function POST(req: NextRequest) {
     domain?: string
     difficulties?: Array<'easy' | 'medium' | 'hard'>
   }
-  const count = Math.max(3, Math.min(10, config.questionCount ?? body.count ?? 5))
+  // Path stops serve EXACTLY 3 questions — enforced here so a doctored
+  // client config can't inflate a free path stop into a bigger draw.
+  // (Mock-test stops don't pass through this route; they assemble via
+  // /test/assemble with their full-length counts.)
+  const count = config.pathNode
+    ? PATH_STOP_QUESTION_COUNT
+    : Math.max(3, Math.min(10, config.questionCount ?? body.count ?? 5))
+
+  // No single-stop repeats: once ANY unarchived session for this path
+  // node is completed, the stop is terminal. Repeating is whole-path
+  // only (POST /api/study/path/repeat archives the old run's sessions,
+  // which is what un-blocks this check for the new run).
+  if (config.pathNode) {
+    const { data: done } = await supabaseAdmin
+      .from('study_sessions')
+      .select('id')
+      .eq('student_id', user.id)
+      .eq('archived', false)
+      .eq('status', 'completed')
+      .eq('config->>pathNode', config.pathNode)
+      .neq('id', session.id)
+      .limit(1)
+    if (done && done.length > 0) {
+      return NextResponse.json(
+        { error: 'path stop already completed', reason: 'node_completed' },
+        { status: 409 },
+      )
+    }
+  }
 
   // Resolve the bank section from the topic. Section comes from the
   // locale-independent SLUG (ctx.testSection is a localized display
