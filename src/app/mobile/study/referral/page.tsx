@@ -91,7 +91,7 @@ function ReferralInner() {
           title={ko ? '친구 초대하고 크레딧 받기' : 'Invite friends, earn credits'}
           subtitle={ko
             ? `가입 시 둘 다 크레딧 ${signupReward}개, 프리미엄 전환 시 각각 ${premiumReward}개 더!`
-            : `You both get ${signupReward} credit when they join — and ${premiumReward} more each when they go Premium!`}
+            : `You both get ${signupReward} credit when they sign up — and ${premiumReward} more each when they go Premium!`}
         />
       }
     >
@@ -221,7 +221,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
         <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
           {ko
             ? `친구가 가입하면 둘 다 ${signupReward}개, 프리미엄 전환 시 각각 ${premiumReward}개 더 받아요.`
-            : `You both get ${signupReward} credit when they join, and ${premiumReward} more each when they go Premium.`}
+            : `You both get ${signupReward} credit when they sign up, and ${premiumReward} more each when they go Premium.`}
         </p>
       </div>
 
