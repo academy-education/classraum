@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
+import { SkeletonBlock, SkeletonCard } from './skeletons'
 
 interface MistakeQuestion {
   prompt: string
@@ -90,7 +91,27 @@ export function MistakeBankShelf() {
     router.push(`/mobile/study/session/${data.id}`)
   }
 
-  if (loading || mistakes.length === 0) {
+  // Shimmer while loading so the shelf lands WITH the page instead of
+  // popping in after its own fetch (matches ResumableShelf).
+  if (loading) {
+    return (
+      <section>
+        <div className="flex items-baseline justify-between mb-3">
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+            {t('study.mistakes.title')}
+          </h2>
+        </div>
+        <SkeletonCard className="h-[80px] p-4 flex items-center gap-3">
+          <SkeletonBlock className="w-10 h-10 rounded-xl flex-shrink-0" />
+          <div className="flex-1 space-y-2">
+            <SkeletonBlock className="h-2.5 w-1/4 rounded-full" />
+            <SkeletonBlock className="h-3 w-3/5 rounded-full" />
+          </div>
+        </SkeletonCard>
+      </section>
+    )
+  }
+  if (mistakes.length === 0) {
     // Don't show the section at all when there are no mistakes —
     // celebratory absence, not an empty discouraging shelf.
     return null

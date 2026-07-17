@@ -58,7 +58,26 @@ export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } 
     return () => { cancelled = true }
   }, [ko])
 
-  if (!data) return null
+  // Quests always render once loaded, so a shimmer here is safe — the
+  // card lands with the page instead of popping into the This-week band.
+  if (!data) {
+    return (
+      <section>
+        <div className="flex items-center justify-between mb-3 px-1">
+          {hideHeading ? (
+            <p className="text-[11px] font-semibold uppercase tracking-[0.09em] text-gray-500">
+              {ko ? '주간 퀘스트' : 'Quests'}
+            </p>
+          ) : (
+            <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+              {ko ? '주간 퀘스트' : 'Weekly quests'}
+            </h2>
+          )}
+        </div>
+        <div className="h-[168px] rounded-2xl bg-gray-200/70 animate-pulse" />
+      </section>
+    )
+  }
 
   const allDone = data.quests.every(q => q.done)
 
