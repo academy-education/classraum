@@ -4,9 +4,10 @@
  * (billing-key, cron renewal, pack purchase, feature gates) and the
  * subscription UI all read from here so a price change is one edit.
  *
- * Credits: 1 credit = 1 successfully generated full mock test.
- * Retakes, resume, review, and FAILED generations never consume a
- * credit (the generate route reserves at start and refunds on any
+ * Credits: every full mock test consumes credits per section (see
+ * SECTION_CREDIT_COST — e.g. SAT R&W/Math 2, TOEFL Reading/Writing 1,
+ * Speaking/Listening 2). Retakes, resume, review, and FAILED starts
+ * never consume a credit (routes reserve at start and refund on any
  * failure path).
  */
 
@@ -42,35 +43,37 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
     name_en: 'Free',
     name_ko: '무료',
   },
+  // 2026-07 credit-system relaunch: sections cost 1-2 credits each (see
+  // SECTION_CREDIT_COST below) and the good-better-best ladder is
+  // Basic 10 / Premium 20 / Premium Plus 30 credits.
   general_v1: {
     id: 'general_v1',
     tier: 'general',
     priceWon: 9900,
-    monthlyCredits: 8,
+    monthlyCredits: 10,
     intervalDays: 30,
-    orderName: 'Classraum Study — General (Monthly)',
-    name_en: 'General',
-    name_ko: '일반',
+    orderName: 'Classraum Study — Basic (Monthly)',
+    name_en: 'Basic',
+    name_ko: '베이직',
   },
   premium_v1: {
     id: 'premium_v1',
     tier: 'premium',
-    priceWon: 16900,
+    priceWon: 18900,
     monthlyCredits: 20,
     intervalDays: 30,
     orderName: 'Classraum Study — Premium (Monthly)',
     name_en: 'Premium',
     name_ko: '프리미엄',
   },
-  // Premium Plus — the "best" rung of good-better-best. Double the
-  // credits at a price that makes ₩16,900 Premium read as the moderate,
-  // sensible default. Same premium entitlements (a heavy generator is the
-  // real cost driver, so credits are the lever).
+  // Premium Plus — the "best" rung of good-better-best. Same premium
+  // entitlements (a heavy generator is the real cost driver, so credits
+  // are the lever).
   premium_plus_v1: {
     id: 'premium_plus_v1',
     tier: 'premium',
-    priceWon: 29900,
-    monthlyCredits: 40,
+    priceWon: 26900,
+    monthlyCredits: 30,
     intervalDays: 30,
     orderName: 'Classraum Study — Premium Plus (Monthly)',
     name_en: 'Premium Plus',
@@ -106,16 +109,17 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
     id: 'general_annual_v1',
     tier: 'general',
     priceWon: 99000,
-    monthlyCredits: 8,
+    monthlyCredits: 10,
     intervalDays: 365,
-    orderName: 'Classraum Study — General (Annual)',
-    name_en: 'General · Annual',
-    name_ko: '일반 · 연간',
+    orderName: 'Classraum Study — Basic (Annual)',
+    name_en: 'Basic · Annual',
+    name_ko: '베이직 · 연간',
   },
   premium_annual_v1: {
     id: 'premium_annual_v1',
+    // 10× the monthly — keeps the "2 months free" annual framing.
     tier: 'premium',
-    priceWon: 169000,
+    priceWon: 189000,
     monthlyCredits: 20,
     intervalDays: 365,
     orderName: 'Classraum Study — Premium (Annual)',
@@ -124,10 +128,10 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
   },
   premium_plus_annual_v1: {
     id: 'premium_plus_annual_v1',
-    // 10× the ₩29,900 monthly — keeps the "2 months free" annual framing.
+    // 10× the monthly — keeps the "2 months free" annual framing.
     tier: 'premium',
-    priceWon: 299000,
-    monthlyCredits: 40,
+    priceWon: 269000,
+    monthlyCredits: 30,
     intervalDays: 365,
     orderName: 'Classraum Study — Premium Plus (Annual)',
     name_en: 'Premium Plus · Annual',
@@ -263,10 +267,28 @@ export const CREDIT_PACK = CREDIT_PACKS[0]!
 /** Credits granted when the 7-day trial row is auto-provisioned. */
 export const TRIAL_CREDITS = 3
 
-/** One-time AI-generation credits granted with the auto-provisioned
- *  Free plan. Premade (bank) tests never consume credits, so these
- *  only meter the live AI generator. */
+/** One-time test credits granted with the auto-provisioned Free plan.
+ *  Since the 2026-07 relaunch EVERY full mock test consumes credits
+ *  (bank SAT included), so this is enough for one SAT section test
+ *  (2 credits) with one credit spare. */
 export const FREE_CREDITS = 3
+
+/**
+ * Per-section full-test credit costs (2026-07 credit relaunch). EVERY
+ * full mock test now consumes credits — including bank-assembled SAT
+ * tests, which were previously free. Longer / costlier-to-serve
+ * sections price at 2; shorter ones at 1. Anything unlisted costs 1.
+ */
+const SECTION_CREDIT_COST: Record<string, Record<string, number>> = {
+  sat: { reading_writing: 2, math: 2 },
+  toefl: { reading: 1, writing: 1, speaking: 2, listening: 2 },
+}
+
+/** Credit cost to start one full test for (family, section). */
+export function creditCostForTest(family: string | null | undefined, section: string | null | undefined): number {
+  if (!family) return 1
+  return SECTION_CREDIT_COST[family]?.[section ?? ''] ?? 1
+}
 
 /** Resolve a subscription row's plan id to a catalog entry. Legacy
  *  'monthly_v1' rows (pre-tier era) are grandfathered as General. */

@@ -10,10 +10,10 @@ import { supabase } from '@/lib/supabase'
 import { SegmentedTabs } from './_shared/SegmentedTabs'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 import { useSheetDrag } from '@/app/mobile/study/_shared/useSheetDrag'
+import { creditCostForTest } from '@/lib/study/plans'
 
-/** An AI-generated full test costs one credit (SAT bank tests bypass this
- *  sheet entirely — they're free instant assembly). */
-const TEST_CREDIT_COST = 1
+// Per-section credit cost (2026-07 relaunch) comes from the shared
+// catalog — e.g. TOEFL Speaking/Listening 2, Reading/Writing 1.
 
 /** Per-session test customization payload. Stored on
  *  study_sessions.config (jsonb) and read by the test generator.
@@ -67,6 +67,9 @@ export function TestCustomizationSheet({
   const { t, language: uiLanguage } = useTranslation()
   const ko = uiLanguage === 'korean'
   const { handleProps, sheetStyle } = useSheetDrag(onClose)
+  // Section prop arrives Title Cased ("Reading Writing"); the cost map
+  // keys are snake_case.
+  const creditCost = creditCostForTest(family, section?.toLowerCase().replace(/\s+/g, '_') ?? null)
   const [difficultyBias, setDifficultyBias] = useState<DifficultyBias>('balanced')
   const [recommended, setRecommended] = useState<DifficultyBias | null>(null)
   const [masteryScore, setMasteryScore] = useState<number | null>(null)
@@ -296,14 +299,14 @@ export function TestCustomizationSheet({
         </div>
 
         <div className="sticky bottom-0 px-5 py-4 bg-gradient-to-t from-white via-white to-white/80 border-t border-gray-100 space-y-2.5">
-          {/* Credit cost + balance — an AI-generated test uses 1 credit. */}
+          {/* Credit cost + balance — per-section cost from the catalog. */}
           <div className="flex items-center justify-between gap-3 text-[12.5px]">
             <span className="inline-flex items-center gap-1.5 text-gray-500">
               <Coins className="w-4 h-4 text-amber-500" />
-              {ko ? `테스트 크레딧 1개 사용` : `Uses 1 test credit`}
+              {ko ? `테스트 크레딧 ${creditCost}개 사용` : `Uses ${creditCost} test credit${creditCost > 1 ? 's' : ''}`}
             </span>
             {creditBalance !== null && (
-              creditBalance >= TEST_CREDIT_COST ? (
+              creditBalance >= creditCost ? (
                 <span className="text-gray-500 tabular-nums">
                   {ko ? `보유 ${creditBalance}개` : `${creditBalance} left`}
                 </span>

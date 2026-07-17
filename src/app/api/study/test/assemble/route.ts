@@ -5,16 +5,18 @@ import { assembleFromBank } from '@/lib/study/assemble'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
+import { creditCostForTest } from '@/lib/study/plans'
+import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
  * pre-verified item bank instead of generating one live.
  *
  * Unlike /generate this is INSTANT (a DB query, not a 12-minute model
- * run) and free — every banked item is already verified, so there's no
- * per-test AI cost. It consumes no credit AND requires no subscription:
- * premade tests (journey, bank practice, daily challenge) are the free
- * tier. Credits + subscription gate only the live AI generator.
+ * run). Since the 2026-07 credit relaunch, bank-assembled SAT mock
+ * tests consume credits like every other full test (SAT R&W / Math =
+ * 2 each; see creditCostForTest). Journey path-node sessions stay free
+ * — they're the StudyPath progression loop, not standalone mocks.
  *
  * Writes the assembled payload as the same `[full-test-v1]` cache row
  * the generator emits, so the existing TestSession UI + submit grading
@@ -73,12 +75,29 @@ export async function POST(req: NextRequest) {
     .single()
   if (sessErr || !sess) return NextResponse.json({ error: 'session create failed' }, { status: 500 })
 
+  // ── Credit reserve ─────────────────────────────────────────────
+  // Full SAT mocks cost credits (R&W / Math = 2 each). Journey
+  // path-node sessions are exempt — the StudyPath loop stays free.
+  const creditCost = pathNode ? 0 : creditCostForTest('sat', section)
+  if (creditCost > 0) {
+    const credit = await reserveTestCredits(user.id, sess.id, creditCost)
+    if (!credit.ok) {
+      await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
+      void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits', kind: 'bank_sat' })
+      return NextResponse.json(
+        { error: 'no test credits remaining', reason: credit.reason === 'no_subscription' ? 'no_subscription' : 'no_credits' },
+        { status: 402 },
+      )
+    }
+  }
+
   let test
   try {
     // Module 1 is mixed difficulty → no difficulty filter, blueprint-weighted.
     test = await assembleFromBank({ section, count, studentId: user.id }, sess.id)
   } catch (e) {
     // Not enough verified items for this section — roll back the session.
+    if (creditCost > 0) await refundTestCredits(user.id, sess.id, creditCost)
     await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
     return NextResponse.json({ error: (e as Error).message, reason: 'bank_empty' }, { status: 409 })
   }
@@ -107,14 +126,15 @@ export async function POST(req: NextRequest) {
       content: CACHED_TEST_MARKER + JSON.stringify(payload), model: 'bank-assembled',
     })
   if (cacheErr) {
+    if (creditCost > 0) await refundTestCredits(user.id, sess.id, creditCost)
     await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
     return NextResponse.json({ error: 'cache write failed' }, { status: 500 })
   }
   await supabaseAdmin.from('study_sessions').update({ title: test.title }).eq('id', sess.id)
 
-  // Funnel: a (free, bank-assembled) SAT test started — the usual first
-  // test for a new free user, so key for activation.
-  void trackEvent(user.id, 'test_started', { kind: 'bank_sat', section })
+  // Funnel: a bank-assembled SAT test started — the usual first test
+  // for a new user, so key for activation.
+  void trackEvent(user.id, 'test_started', { kind: 'bank_sat', section, creditCost })
 
   return NextResponse.json({
     sessionId: sess.id,

@@ -123,8 +123,9 @@ export default function SubscriptionPage() {
   // Fallback catalog so the page still renders plan cards if the API
   // payload predates the tier era (e.g. cached response).
   const plans: CatalogPlan[] = data?.catalog?.plans ?? [
-    { id: 'general_v1', tier: 'general', priceWon: 9900, monthlyCredits: 8, intervalDays: 30, name_en: 'General', name_ko: '일반' },
-    { id: 'premium_v1', tier: 'premium', priceWon: 16900, monthlyCredits: 20, intervalDays: 30, name_en: 'Premium', name_ko: '프리미엄' },
+    { id: 'general_v1', tier: 'general', priceWon: 9900, monthlyCredits: 10, intervalDays: 30, name_en: 'Basic', name_ko: '베이직' },
+    { id: 'premium_v1', tier: 'premium', priceWon: 18900, monthlyCredits: 20, intervalDays: 30, name_en: 'Premium', name_ko: '프리미엄' },
+    { id: 'premium_plus_v1', tier: 'premium', priceWon: 26900, monthlyCredits: 30, intervalDays: 30, name_en: 'Premium Plus', name_ko: '프리미엄 플러스' },
   ]
   const pack = data?.catalog?.pack ?? { id: 'pack5_v1', credits: 5, priceWon: 6900 }
   const packs = data?.catalog?.packs ?? [pack]

@@ -266,6 +266,7 @@ function TopicInner({ slug }: { slug: string }) {
         // routed + drawn after the student finishes Module 1.
         body: JSON.stringify({ section: bankSection, adaptive: true }),
       })
+      if (res.status === 402) { setBankBusy(false); router.push('/mobile/study/subscription'); return }
       if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)

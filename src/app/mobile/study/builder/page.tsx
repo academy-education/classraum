@@ -129,7 +129,8 @@ function BuilderInner() {
     setCreating(true)
     // The builder is SAT-only (OPEN_TEST_ROOT_SLUGS), and SAT full tests
     // are assembled instantly from the verified item bank — never
-    // AI-generated. Route through /assemble (free, no credit) instead of
+    // AI-generated. Route through /assemble (charges the per-section
+    // credit cost since the 2026-07 relaunch) instead of
     // a raw session insert that would fall into the generate pipeline and
     // reserve a credit. `count` honors the picked length; the bank is
     // fixed-difficulty so the difficulty/time knobs don't apply here.
@@ -141,6 +142,11 @@ function BuilderInner() {
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({ section, count: questionCount, adaptive: false }),
       })
+      if (res.status === 402) {
+        setCreating(false)
+        router.push('/mobile/study/subscription')
+        return
+      }
       if (!res.ok) {
         setCreating(false)
         showError(startFailedMessage(ko))
