@@ -224,6 +224,10 @@ export default function SubscriptionPage() {
         customer,
         customData: { kind: 'study_subscription', plan: planId },
         redirectUrl: billingRedirectUrl(),
+        // Explicit per-platform window: Inicis PC module is an iframe,
+        // mobile module only works via redirection. Platform itself is
+        // UA-detected by the SDK (screen width plays no part).
+        windowType: { pc: 'IFRAME', mobile: 'REDIRECTION' },
       })
 
       if (!issued?.billingKey) {
@@ -281,6 +285,10 @@ export default function SubscriptionPage() {
         customer,
         customData: { kind: 'study_exam_pass', passId },
         redirectUrl: billingRedirectUrl(),
+        // Explicit per-platform window: Inicis PC module is an iframe,
+        // mobile module only works via redirection. Platform itself is
+        // UA-detected by the SDK (screen width plays no part).
+        windowType: { pc: 'IFRAME', mobile: 'REDIRECTION' },
       })
       if (!issued?.billingKey) {
         if (issued?.code) setError(issued.message ?? (t('study.subscription.checkoutFailed') as string))

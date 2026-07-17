@@ -152,6 +152,10 @@ export async function buyCreditPack(
         customer,
         customData: { kind: 'study_credit_pack', packId },
         redirectUrl: billingRedirectUrl(),
+        // Explicit per-platform window: Inicis PC module is an iframe,
+        // mobile module only works via redirection. Platform itself is
+        // UA-detected by the SDK (screen width plays no part).
+        windowType: { pc: 'IFRAME', mobile: 'REDIRECTION' },
       })
       if (!issued?.billingKey) {
         // No code → user closed the overlay; a code → PortOne error.
