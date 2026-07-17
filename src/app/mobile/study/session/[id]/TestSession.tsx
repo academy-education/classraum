@@ -897,7 +897,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }
     })()
     const isCreditsReason = reason === 'no_credits' || reason === 'no_subscription'
-    const fivePack = CREDIT_PACKS[0]! // pack5_v1 — ₩6,900
+    const fivePack = CREDIT_PACKS[1] ?? CREDIT_PACKS[0]! // the 5-pack — primary top-up offer
     const doBuy = async (packId: string) => {
       if (buyingPack) return
       setBuyingPack(packId)

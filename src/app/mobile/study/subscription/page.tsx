@@ -127,7 +127,7 @@ export default function SubscriptionPage() {
     { id: 'premium_v1', tier: 'premium', priceWon: 18900, monthlyCredits: 20, intervalDays: 30, name_en: 'Premium', name_ko: '프리미엄' },
     { id: 'premium_plus_v1', tier: 'premium', priceWon: 26900, monthlyCredits: 30, intervalDays: 30, name_en: 'Premium Plus', name_ko: '프리미엄 플러스' },
   ]
-  const pack = data?.catalog?.pack ?? { id: 'pack5_v1', credits: 5, priceWon: 6900 }
+  const pack = data?.catalog?.pack ?? { id: 'pack1_v1', credits: 1, priceWon: 1900 }
   const packs = data?.catalog?.packs ?? [pack]
 
   const isActive = sub?.status === 'active'
@@ -427,7 +427,7 @@ export default function SubscriptionPage() {
                 </span>
               )}
               <span className="text-[11.5px] text-gray-400 ml-auto">
-                {ko ? '모의고사 1회 = 크레딧 1개' : '1 mock test = 1 credit'}
+                {ko ? '모의고사 1회 = 크레딧 1~2개' : '1 mock test = 1–2 credits'}
               </span>
             </div>
             <p className="text-[11.5px] text-gray-400 mt-1.5">
@@ -449,7 +449,7 @@ export default function SubscriptionPage() {
                 </span>
                 <div>
                   <p className="text-[14px] font-semibold text-gray-900">{ko ? '크레딧 충전' : 'Buy credits'}</p>
-                  <p className="text-[11.5px] text-gray-400">{ko ? '구매 크레딧은 만료 없음 · 모의고사 1회 = 1개' : 'Never expire · 1 mock test = 1 credit'}</p>
+                  <p className="text-[11.5px] text-gray-400">{ko ? '구매 크레딧은 만료 없음 · 테스트당 1~2개 사용' : 'Never expire · tests use 1–2 credits'}</p>
                 </div>
               </div>
             </div>
