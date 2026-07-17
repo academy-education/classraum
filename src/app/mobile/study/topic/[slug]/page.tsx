@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList, Coins, Calculator, PenLine, Volume2 } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../../_shared/StudyButton'
 import { supabase } from '@/lib/supabase'
@@ -19,6 +19,7 @@ import { TestCustomizationSheet, type TestConfig } from '../../TestCustomization
 import { TestPrepDisclaimer } from '../../_shared/TestPrepDisclaimer'
 import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
 import { CreditConfirmSheet, NoCreditsSheet } from '../../_shared/CreditConfirmSheet'
+import { sectionVisual } from '../../_shared/sectionVisuals'
 import { PredictedScore } from '../../_shared/PredictedScore'
 import { RecommendedShelf } from '../../RecommendedShelf'
 import { LandingDataProvider } from '../../LandingDataProvider'
@@ -761,21 +762,6 @@ function isResponseEligible(slug: string | undefined): boolean {
  *  chip row when the option count is large (AP has 9, KSAT has 6),
  *  and gives more affordance for the "this is a selector" intent.
  *  Apple-style: subtle bg, chevron, soft shadow when open. */
-/** Per-section icon + tint for the section dropdown — gives each
- *  section a distinct visual identity instead of plain text rows.
- *  Keyed by topic slug; unknown sections fall back to a neutral doc. */
-const SECTION_VISUALS: Record<string, { icon: React.ComponentType<{ className?: string }>; tile: string }> = {
-  'sat-reading-writing': { icon: BookOpen, tile: 'bg-sky-500/12 text-sky-600' },
-  'sat-math': { icon: Calculator, tile: 'bg-violet-500/12 text-violet-600' },
-  'toefl-reading': { icon: BookOpen, tile: 'bg-sky-500/12 text-sky-600' },
-  'toefl-writing': { icon: PenLine, tile: 'bg-amber-500/12 text-amber-600' },
-  'toefl-speaking': { icon: Mic, tile: 'bg-rose-500/12 text-rose-600' },
-  'toefl-listening': { icon: Volume2, tile: 'bg-emerald-500/12 text-emerald-600' },
-}
-function sectionVisual(slug: string) {
-  return SECTION_VISUALS[slug] ?? { icon: FileText, tile: 'bg-gray-100 text-gray-500' }
-}
-
 function CategoryPicker({
   label,
   items: categories,

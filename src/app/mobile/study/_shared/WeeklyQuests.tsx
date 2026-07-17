@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Target, Check } from '@/app/mobile/study/_shared/icons'
+import { Target, Check, Play, ListChecks, CalendarCheck } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -23,6 +23,18 @@ interface QuestState {
   label_ko: string
 }
 interface Payload { resetsAt: string; quests: QuestState[]; earnedXp: number }
+
+/** Per-quest icon + tint + bar color, keyed by quest key (see
+ *  lib/study/quests.ts) — three distinct identities instead of the
+ *  same target glyph three times. Unknown keys fall back to Target. */
+const QUEST_VISUALS: Record<string, { icon: typeof Target; tile: string; bar: string }> = {
+  sessions_5: { icon: Play, tile: 'bg-primary/10 text-primary', bar: 'bg-gradient-to-r from-primary to-indigo-500' },
+  questions_50: { icon: ListChecks, tile: 'bg-violet-500/12 text-violet-600', bar: 'bg-gradient-to-r from-violet-500 to-purple-500' },
+  active_4: { icon: CalendarCheck, tile: 'bg-amber-500/12 text-amber-600', bar: 'bg-gradient-to-r from-amber-400 to-orange-500' },
+}
+function questVisual(key: string) {
+  return QUEST_VISUALS[key] ?? { icon: Target, tile: 'bg-primary/10 text-primary', bar: 'bg-gradient-to-r from-primary to-indigo-500' }
+}
 
 function resetLabel(iso: string, ko: boolean): string {
   const ms = Date.parse(iso) - Date.now()
@@ -101,12 +113,14 @@ export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } 
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] divide-y divide-gray-100 overflow-hidden">
         {data.quests.map(q => {
           const pct = Math.min(100, Math.round((q.current / q.target) * 100))
+          const v = questVisual(q.key)
+          const Icon = v.icon
           return (
             <div key={q.key} className="px-4 py-3 flex items-center gap-3">
               <div className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${
-                q.done ? 'bg-emerald-50 text-emerald-600' : 'bg-primary/10 text-primary'
+                q.done ? 'bg-emerald-50 text-emerald-600' : v.tile
               }`}>
-                {q.done ? <Check className="w-4 h-4" strokeWidth={2.5} /> : <Target className="w-4 h-4" />}
+                {q.done ? <Check className="w-4 h-4" strokeWidth={2.5} /> : <Icon className="w-4 h-4" />}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
@@ -120,14 +134,18 @@ export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } 
                 <div className="mt-1.5 h-1.5 rounded-full bg-gray-100 overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all duration-700 ease-out ${
-                      q.done ? 'bg-emerald-500' : 'bg-gradient-to-r from-primary to-indigo-500'
+                      q.done ? 'bg-emerald-500' : v.bar
                     }`}
                     style={{ width: `${Math.max(4, pct)}%` }}
                   />
                 </div>
               </div>
-              <span className={`flex-shrink-0 text-[11px] font-bold tabular-nums ${q.done ? 'text-emerald-600' : 'text-gray-400'}`}>
-                +{q.rewardXp}
+              <span className={`flex-shrink-0 inline-flex items-center px-1.5 py-0.5 rounded-full text-[10.5px] font-bold tabular-nums ${
+                q.done
+                  ? 'bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200/70'
+                  : 'bg-amber-500/10 text-amber-600 ring-1 ring-amber-200/60'
+              }`}>
+                +{q.rewardXp} XP
               </span>
             </div>
           )
