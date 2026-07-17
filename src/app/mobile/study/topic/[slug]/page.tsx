@@ -54,7 +54,7 @@ interface Topic {
 // landing grid — must also block deep-link access here so users
 // can't bypass the lock with a direct URL or back-button.
 const LOCKED_TOPIC_SLUGS = new Set([
-  'test-toefl', 'test-ksat', 'test-toeic', 'test-ielts', 'test-act', 'test-ap', 'test-gre',
+  'test-ksat', 'test-toeic', 'test-ielts', 'test-act', 'test-ap', 'test-gre',
 ])
 
 export default function TopicPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -81,7 +81,7 @@ function LockedTopicView() {
       <div>
         <h1 className="text-[18px] font-semibold text-gray-900">Coming soon</h1>
         <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs leading-relaxed">
-          This test isn&apos;t available yet. Currently only the SAT is open.
+          This test isn&apos;t available yet. Currently the SAT and TOEFL are open.
         </p>
       </div>
       <Link
@@ -613,7 +613,13 @@ function TopicInner({ slug }: { slug: string }) {
                     bank (the Library, deep-linked to this section + mode).
                     Replaces the old single "browse the bank" card. */}
                 <div className="space-y-3">
-                  {STUDY_MODES.filter(m => m.key === 'practice' || m.key === 'flashcards').map(mode => {
+                  {/* Flashcards draw from the hand-authored bank, which
+                      only covers SAT today — hide the mode elsewhere so
+                      TOEFL students never open an empty deck. */}
+                  {STUDY_MODES.filter(m =>
+                    m.key === 'practice' ||
+                    (m.key === 'flashcards' && parseTestSlug(effectiveTopic?.slug ?? topic.slug).family === 'sat'),
+                  ).map(mode => {
                     const Icon = mode.icon
                     const librarySection = parseTestSlug(effectiveTopic?.slug ?? topic.slug).section === 'math' ? 'math' : 'reading_writing'
                     const isSat = parseTestSlug(effectiveTopic?.slug ?? topic.slug).family === 'sat'

@@ -203,6 +203,11 @@ function themeForSubject(slug: string, name: string): Theme {
  *     style background texture
  *   - a stat chip ("44 Q · 70 min") so the card carries useful info
  *     not just brand identity */
+/** Tests that are open for use — everything else renders in the
+ *  coming-soon strip. Keep in sync with LOCKED_TOPIC_SLUGS on the
+ *  topic page (that's the deep-link guard for the same gate). */
+const OPEN_TEST_SLUGS = new Set(['test-sat', 'test-toefl'])
+
 const TEST_THEMES: Record<string, {
   Icon: LucideIcon
   gradient: string
@@ -400,7 +405,10 @@ function StudyLandingInner() {
   const sortedTests = useMemo(() => {
     const targetSlug = targetTest ? `test-${targetTest.toLowerCase()}` : null
     const rank = (t: BrowseItem) =>
-      t.slug === 'test-sat' ? 0 : t.slug === targetSlug ? 1 : 2
+      t.slug === targetSlug && OPEN_TEST_SLUGS.has(t.slug) ? 0
+        : t.slug === 'test-sat' ? 1
+        : OPEN_TEST_SLUGS.has(t.slug) ? 2
+        : 3
     return [...tests].sort((a, b) => rank(a) - rank(b))
   }, [tests, targetTest])
 
@@ -597,16 +605,14 @@ function StudyLandingInner() {
               skeleton while `loading` is true, so this only renders loaded. */}
           {(
             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-              {sortedTests.filter(t => t.slug === 'test-sat').map((test, i) => {
+              {sortedTests.filter(t => OPEN_TEST_SLUGS.has(t.slug)).map((test, i) => {
                 const theme = themeForTest(test.slug)
                 const Icon = theme.Icon
                 const isTarget = targetTest !== null && test.slug === `test-${targetTest.toLowerCase()}`
-                // Only the SAT is open; everything else (TOEFL, KSAT,
-                // TOEIC, IELTS, ACT, AP, GRE) shows a locked overlay
-                // until we expand coverage. We still render the card
-                // so users see what's coming, but disable navigation
-                // and dim the visuals.
-                const unlocked = test.slug === 'test-sat'
+                // SAT + TOEFL are open; everything else (KSAT, TOEIC,
+                // IELTS, ACT, AP, GRE) sits in the coming-soon strip
+                // below until we expand coverage.
+                const unlocked = OPEN_TEST_SLUGS.has(test.slug)
                 // Rendered via an explicit Link/div branch below — a
                 // polymorphic `CardTag` union can't be typed cleanly
                 // (Link demands href; div rejects it).
@@ -723,13 +729,13 @@ function StudyLandingInner() {
           {/* Coming-soon tests as a compact chip strip — the old 2x4
               grid of locked cards spent ~700px of scroll on things
               that can't be tapped. */}
-          {!loading && sortedTests.some(t => t.slug !== 'test-sat') && (
+          {!loading && sortedTests.some(t => !OPEN_TEST_SLUGS.has(t.slug)) && (
             <div className="mt-3 flex flex-wrap items-center gap-1.5">
               <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-400 mr-0.5">
                 <Lock className="w-3 h-3" />
                 {ko ? '준비 중' : 'Coming soon'}
               </span>
-              {sortedTests.filter(t => t.slug !== 'test-sat').map(test => (
+              {sortedTests.filter(t => !OPEN_TEST_SLUGS.has(t.slug)).map(test => (
                 <span
                   key={test.id}
                   className="px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[11.5px] font-medium text-gray-400"
