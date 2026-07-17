@@ -18,7 +18,7 @@ import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
 import { TestPrepDisclaimer } from '../../_shared/TestPrepDisclaimer'
 import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
-import { CreditConfirmSheet } from '../../_shared/CreditConfirmSheet'
+import { CreditConfirmSheet, NoCreditsSheet } from '../../_shared/CreditConfirmSheet'
 import { PredictedScore } from '../../_shared/PredictedScore'
 import { RecommendedShelf } from '../../RecommendedShelf'
 import { LandingDataProvider } from '../../LandingDataProvider'
@@ -113,6 +113,9 @@ function TopicInner({ slug }: { slug: string }) {
   // Credit-spend confirm for the one-tap SAT bank start (the AI-test
   // customization sheet shows its own cost line, so it skips this).
   const [creditConfirmOpen, setCreditConfirmOpen] = useState(false)
+  // 402 from the start call → explicit "not enough credits" popup with
+  // a cancel / buy-credits choice (no more silent redirect).
+  const [noCreditsOpen, setNoCreditsOpen] = useState(false)
   const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
     count: 20, minutes: 30,
   })
@@ -291,7 +294,7 @@ function TopicInner({ slug }: { slug: string }) {
         // routed + drawn after the student finishes Module 1.
         body: JSON.stringify({ section: bankSection, adaptive: true }),
       })
-      if (res.status === 402) { setBankBusy(false); router.push('/mobile/study/subscription'); return }
+      if (res.status === 402) { setBankBusy(false); setCreditConfirmOpen(false); setNoCreditsOpen(true); return }
       if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
@@ -663,6 +666,15 @@ function TopicInner({ slug }: { slug: string }) {
         ko={ko}
         onCancel={() => setCreditConfirmOpen(false)}
         onConfirm={() => { void startBankTest().finally(() => setCreditConfirmOpen(false)) }}
+      />
+      <NoCreditsSheet
+        open={noCreditsOpen}
+        cost={(() => {
+          const parsed = parseTestSlug(effectiveTopic?.slug ?? slug)
+          return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
+        })()}
+        ko={ko}
+        onCancel={() => setNoCreditsOpen(false)}
       />
     </StudyScrollShell>
   )

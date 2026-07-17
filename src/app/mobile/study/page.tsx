@@ -16,6 +16,8 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from './SubscriptionGate'
 import { StudyButton } from './_shared/StudyButton'
+import { CreditConfirmSheet, NoCreditsSheet } from './_shared/CreditConfirmSheet'
+import { creditCostForTest } from '@/lib/study/plans'
 import { StudyTodayCard } from './_shared/primitives'
 import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
@@ -1045,8 +1047,9 @@ function ReferralClaimBanner({ code, onDone }: { code: string; onDone: () => voi
 
 /** First-test activation card. The single most important step for a new
  *  user is completing one full practice test — this hero-weight card
- *  drives that with one tap into a free, instant, bank-assembled SAT
- *  Reading & Writing test (no AI generation wait, no credit spend). It
+ *  drives that with one tap into an instant, bank-assembled SAT
+ *  Reading & Writing test (no AI generation wait; costs 2 credits,
+ *  covered by the signup grant, disclosed via the confirm sheet). It
  *  self-removes once the student has completed any full test
  *  (firstTestPending flips false), so returning users never see it. */
 function FirstTestActivationCard() {
@@ -1054,7 +1057,11 @@ function FirstTestActivationCard() {
   const router = useRouter()
   const ko = language === 'korean'
   const [busy, setBusy] = useState(false)
+  // Credit disclosure before the spend + explicit out-of-credits popup.
+  const [confirmOpen, setConfirmOpen] = useState(false)
+  const [noCreditsOpen, setNoCreditsOpen] = useState(false)
   const { showError } = useStudyErrorToast()
+  const cost = creditCostForTest('sat', 'reading_writing')
 
   const start = async () => {
     if (busy) return
@@ -1069,7 +1076,7 @@ function FirstTestActivationCard() {
         // experience, and instant from the verified bank.
         body: JSON.stringify({ section: 'reading_writing', adaptive: true }),
       })
-      if (res.status === 402) { setBusy(false); router.push('/mobile/study/subscription'); return }
+      if (res.status === 402) { setBusy(false); setConfirmOpen(false); setNoCreditsOpen(true); return }
       if (!res.ok) { setBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
@@ -1080,9 +1087,19 @@ function FirstTestActivationCard() {
   }
 
   return (
+    <>
+    <CreditConfirmSheet
+      open={confirmOpen}
+      cost={cost}
+      busy={busy}
+      ko={ko}
+      onCancel={() => setConfirmOpen(false)}
+      onConfirm={() => void start().finally(() => setConfirmOpen(false))}
+    />
+    <NoCreditsSheet open={noCreditsOpen} cost={cost} ko={ko} onCancel={() => setNoCreditsOpen(false)} />
     <button
       type="button"
-      onClick={start}
+      onClick={() => setConfirmOpen(true)}
       disabled={busy}
       className="group relative block w-full overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-blue-600 to-indigo-700 text-left text-white p-5 shadow-[0_10px_30px_-10px_rgba(40,133,232,0.5)] hover:shadow-[0_16px_40px_-10px_rgba(40,133,232,0.6)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] disabled:opacity-70 disabled:cursor-wait transition-all"
     >
@@ -1101,7 +1118,7 @@ function FirstTestActivationCard() {
             {ko ? '첫 모의고사를 풀어보세요' : 'Take your first practice test'}
           </div>
           <div className="text-[12.5px] opacity-90 mt-0.5 leading-snug">
-            {ko ? '무료 · 즉시 시작 · 크레딧 불필요' : 'Free · instant · no credits needed'}
+            {ko ? `즉시 시작 · 크레딧 ${cost}개 사용` : `Instant start · uses ${cost} credits`}
           </div>
         </div>
         <span className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/20 ring-1 ring-white/25 group-hover:bg-white/30 transition-colors">
@@ -1111,6 +1128,7 @@ function FirstTestActivationCard() {
         </span>
       </div>
     </button>
+    </>
   )
 }
 
