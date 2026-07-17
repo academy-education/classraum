@@ -4,9 +4,10 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
-import { StudyButton, studyButtonClass } from '../../_shared/StudyButton'
+import { StudyButton } from '../../_shared/StudyButton'
+import { PathMascot } from '../../_shared/PathMascot'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../../skeletons'
@@ -579,9 +580,14 @@ function TopicInner({ slug }: { slug: string }) {
               aria-label={ko ? '모드 탭' : 'Mode tabs'}
               className="bg-muted text-muted-foreground inline-flex h-10 w-full items-center justify-center rounded-lg p-[3px]"
             >
+              {/* Practice tab is gated for launch: it stays visible (so
+                  students know it's coming) but reads as locked — dimmed
+                  label + lock glyph — and selecting it shows a coming-soon
+                  panel instead of the mode list. Default tab is 'tests',
+                  so the locked tab is never the landing state. */}
               {([
-                { key: 'tests' as const, label: ko ? '모의고사' : 'Full tests' },
-                { key: 'practice' as const, label: ko ? '문제 연습' : 'Practice' },
+                { key: 'tests' as const, label: ko ? '모의고사' : 'Full tests', locked: false },
+                { key: 'practice' as const, label: ko ? '문제 연습' : 'Practice', locked: true },
               ]).map(tabDef => (
                 <button
                   key={tabDef.key}
@@ -589,12 +595,15 @@ function TopicInner({ slug }: { slug: string }) {
                   role="tab"
                   aria-selected={tab === tabDef.key}
                   onClick={() => setTab(tabDef.key)}
-                  className={`inline-flex h-full flex-1 items-center justify-center rounded-md px-2 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] ${
+                  className={`inline-flex h-full flex-1 items-center justify-center gap-1.5 rounded-md px-2 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] ${
                     tab === tabDef.key
-                      ? 'bg-background text-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? `bg-background shadow-sm ${tabDef.locked ? 'text-gray-400' : 'text-foreground'}`
+                      : tabDef.locked
+                        ? 'text-gray-400'
+                        : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
+                  {tabDef.locked && <Lock className="w-3.5 h-3.5" aria-hidden />}
                   {tabDef.label}
                 </button>
               ))}
@@ -622,14 +631,9 @@ function TopicInner({ slug }: { slug: string }) {
                     return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
                   })()}
                 />
-                <RecentTestsList
-                  topicIds={[topic.id, ...children.map(c => c.id)]}
-                  studentId={user?.userId ?? null}
-                  ko={ko}
-                />
-              </>
-            ) : (
-              <>
+                {/* AI Speaking/Writing grader (Beta) — lived on the
+                    Practice tab before it was locked; kept reachable
+                    here for the TOEFL/IELTS speaking + writing leaves. */}
                 {isResponseEligible(effectiveTopic?.slug) && (
                   <FeaturedResponseCard
                     startSession={() => startSession('response')}
@@ -637,81 +641,35 @@ function TopicInner({ slug }: { slug: string }) {
                     t={t}
                   />
                 )}
-                {/* Practice & flashcards each offer both paths: start a
-                    fresh session, or browse what already exists in the
-                    bank (the Library, deep-linked to this section + mode).
-                    Replaces the old single "browse the bank" card. */}
-                <div className="space-y-3">
-                  {/* Flashcards draw from the hand-authored bank, which
-                      only covers SAT today — hide the mode elsewhere so
-                      TOEFL students never open an empty deck. */}
-                  {STUDY_MODES.filter(m =>
-                    m.key === 'practice' ||
-                    (m.key === 'flashcards' && parseTestSlug(effectiveTopic?.slug ?? topic.slug).family === 'sat'),
-                  ).map(mode => {
-                    const Icon = mode.icon
-                    const librarySection = parseTestSlug(effectiveTopic?.slug ?? topic.slug).section === 'math' ? 'math' : 'reading_writing'
-                    const isSat = parseTestSlug(effectiveTopic?.slug ?? topic.slug).family === 'sat'
-                    /* practice gated for launch — dimmed card + Coming-soon
-                       badge, no start/browse actions. */
-                    if (mode.key === 'practice') {
-                      return (
-                        <div key={mode.key} aria-disabled className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                          <div className="flex items-center gap-3">
-                            <span className={`flex-shrink-0 w-11 h-11 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] opacity-40`}>
-                              <Icon className="w-5 h-5" />
-                            </span>
-                            <div className="min-w-0 flex-1">
-                              <div className="text-[15px] font-semibold text-gray-400 flex items-center gap-2">
-                                {t(`study.modes.${mode.key}.title`)}
-                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-50 ring-1 ring-gray-200/70 text-[11px] font-semibold text-gray-400">
-                                  <Lock className="w-3 h-3" />
-                                  {ko ? '준비 중' : 'Coming soon'}
-                                </span>
-                              </div>
-                              <div className="text-[12.5px] text-gray-400 leading-snug">{t(`study.modes.${mode.key}.body`)}</div>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    }
-                    return (
-                      <div key={mode.key} className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                        <div className="flex items-center gap-3">
-                          <span className={`flex-shrink-0 w-11 h-11 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)]`}>
-                            <Icon className="w-5 h-5" />
-                          </span>
-                          <div className="min-w-0 flex-1">
-                            <div className="text-[15px] font-semibold text-gray-900">{t(`study.modes.${mode.key}.title`)}</div>
-                            <div className="text-[12.5px] text-gray-500 leading-snug">{t(`study.modes.${mode.key}.body`)}</div>
-                          </div>
-                        </div>
-                        <div className={`mt-3 grid gap-2 ${isSat ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                          <StudyButton
-                            type="button"
-                            size="sm"
-                            onClick={() => startSession(mode.key)}
-                            disabled={creating !== null}
-                            loading={creating === mode.key}
-                            leftIcon={<Sparkles className="w-4 h-4" />}
-                          >
-                            {ko ? '새로 시작' : 'Start new'}
-                          </StudyButton>
-                          {/* Bank browsing is SAT-only for now. */}
-                          {isSat && (
-                            <Link
-                              href={`/mobile/study/library?section=${librarySection}&tab=${mode.key}`}
-                              className={studyButtonClass({ variant: 'secondary', size: 'sm' })}
-                            >
-                              <BookOpen className="w-4 h-4" />{ko ? '기존 보기' : 'Browse existing'}
-                            </Link>
-                          )}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
+                <RecentTestsList
+                  topicIds={[topic.id, ...children.map(c => c.id)]}
+                  studentId={user?.userId ?? null}
+                  ko={ko}
+                />
               </>
+            ) : (
+              /* Practice tab gated for launch — the whole tab is locked,
+                 so the panel is a single coming-soon state (same mascot
+                 pattern as the review page) instead of a mode list. */
+              <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-6 py-10 flex flex-col items-center text-center">
+                <PathMascot state="locked" size={96} />
+                <h3 className="mt-4 text-[16px] font-bold text-gray-900">
+                  {ko ? '문제 연습은 준비 중이에요' : 'Practice is coming soon'}
+                </h3>
+                <p className="mt-2 text-[13px] text-gray-500 leading-relaxed max-w-[280px]">
+                  {ko
+                    ? '곧 만나요! 그동안 모의고사 탭에서 실전처럼 연습할 수 있어요.'
+                    : 'Coming soon! Meanwhile you can train with full tests in the Full tests tab.'}
+                </p>
+                <StudyButton
+                  type="button"
+                  size="sm"
+                  className="mt-6"
+                  onClick={() => setTab('tests')}
+                >
+                  {ko ? '모의고사 보러 가기' : 'Go to full tests'}
+                </StudyButton>
+              </div>
             )}
           </>
         ) : (

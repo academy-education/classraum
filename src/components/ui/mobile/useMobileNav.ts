@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Home, ClipboardList, FileText, User, BookOpen, Route, Shuffle, Trophy } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
+import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { resolveMode, storeMode, modeForPath } from '@/lib/study/currentMode'
 
 /**
@@ -24,13 +25,21 @@ export interface MobileNavItem {
 export function useMobileNav() {
   const pathname = usePathname()
   const { t } = useTranslation()
+  const { user } = usePersistentMobileAuth()
 
-  const [mode, setMode] = useState<'grades' | 'study'>('grades')
+  // Study-only students (no academy membership) have exactly one
+  // mode — never show them the Grades tab set, regardless of path or
+  // stored preference. StudyOnlyGuard redirects them off academy
+  // routes; this keeps the nav from flashing grades in the meantime.
+  const studyOnly = user?.role === 'student' && user.academyIds.length === 0
+
+  const [resolved, setResolved] = useState<'grades' | 'study'>('grades')
   useEffect(() => {
     const explicit = modeForPath(pathname)
     if (explicit) storeMode(explicit)
-    setMode(resolveMode(pathname))
+    setResolved(resolveMode(pathname))
   }, [pathname])
+  const mode: 'grades' | 'study' = studyOnly ? 'study' : resolved
   const inStudy = mode === 'study'
 
   const gradesNav: MobileNavItem[] = [

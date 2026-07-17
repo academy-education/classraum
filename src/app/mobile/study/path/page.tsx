@@ -15,8 +15,9 @@ import { StudyPageHeader, StudyPageTransition } from '../_shared/primitives'
 import { SkeletonBlock, SkeletonStickyHeader } from '../skeletons'
 import { PathMascot } from '../_shared/PathMascot'
 import { ModalPortal } from '@/components/ui/modal-portal'
+import { CreditConfirmSheet, NoCreditsSheet } from '../_shared/CreditConfirmSheet'
 import {
-  annotatePath, getPathTemplate,
+  annotatePath, getPathTemplate, PATH_REPEAT_CREDITS,
   type PathNodeProgress, type PathNodeWithState, type StudyPathTemplate,
 } from '@/lib/study-path'
 
@@ -77,6 +78,18 @@ function StudyPathInner() {
   // the path (its section tests are credit-free, so gating the page
   // is what keeps the free tier honest).
   const [paid, setPaid] = useState<boolean | null>(null)
+  // Credit balance (grant + purchased) — rides along on the
+  // subscription fetch the page already makes. Lets the "repeat path"
+  // tap skip the spend confirm and go straight to "not enough credits"
+  // when the balance is already known to be short (same convention as
+  // the topic page's one-tap test start). null = unknown → fall
+  // through to the confirm; the 402 path catches any race.
+  const [creditBalance, setCreditBalance] = useState<number | null>(null)
+  // Whole-path repeat flow (the ONLY repeat — single stops are inert
+  // once completed).
+  const [repeatConfirmOpen, setRepeatConfirmOpen] = useState(false)
+  const [noCreditsOpen, setNoCreditsOpen] = useState(false)
+  const [repeating, setRepeating] = useState(false)
 
   useEffect(() => {
     if (!user?.userId) return
@@ -102,6 +115,7 @@ function StudyPathInner() {
           const tier = (sub?.tier as string | undefined) ?? 'free'
           const status = sub?.subscription?.status as string | undefined
           setPaid(tier !== 'free' && (status === 'active' || status === 'trial'))
+          if (typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
         }
       } catch { if (!cancelled) setPaid(false) }
 
@@ -330,6 +344,49 @@ function StudyPathInner() {
     } catch { /* silent */ }
   }
 
+  /** Repeat-path entry tap: skip the spend confirm and go straight to
+   *  "not enough credits" when the balance is already known short —
+   *  one popup, not two back-to-back (same convention as one-tap test
+   *  starts elsewhere). Unknown balance falls through to the confirm;
+   *  the server 402 stays as the race-safety net. */
+  const requestRepeat = () => {
+    if (creditBalance !== null && creditBalance < PATH_REPEAT_CREDITS) {
+      setNoCreditsOpen(true)
+    } else {
+      setRepeatConfirmOpen(true)
+    }
+  }
+
+  /** Confirmed spend → server charges 2 credits (idempotent against
+   *  double-taps — the charge id derives from the completed run) and
+   *  archives the run's sessions. Locally we just clear the derived
+   *  progress: annotatePath re-marks node 0 active. */
+  const confirmRepeat = async () => {
+    if (repeating || !prefs?.target_test) return
+    setRepeating(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/path/repeat', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ target: prefs.target_test }),
+      })
+      if (res.status === 402) {
+        setRepeatConfirmOpen(false)
+        setNoCreditsOpen(true)
+        return
+      }
+      if (!res.ok) throw new Error('repeat failed')
+      setProgressByNode({})
+      setCreditBalance(b => (b === null ? null : Math.max(0, b - PATH_REPEAT_CREDITS)))
+      setRepeatConfirmOpen(false)
+    } catch {
+      // Leave the confirm open — the student can retry or cancel.
+    } finally {
+      setRepeating(false)
+    }
+  }
+
   if (!template) {
     return (
       <div className="flex flex-col h-full bg-gray-50">
@@ -351,8 +408,37 @@ function StudyPathInner() {
         />
       )}
       <StudyPageTransition>
-        <PathList nodes={annotated} testSlug={template.testSlug} topicIdBySlug={topicIdBySlug} />
+        <PathList
+          nodes={annotated}
+          testSlug={template.testSlug}
+          topicIdBySlug={topicIdBySlug}
+          onRepeatRequest={requestRepeat}
+        />
       </StudyPageTransition>
+      <CreditConfirmSheet
+        open={repeatConfirmOpen}
+        cost={PATH_REPEAT_CREDITS}
+        busy={repeating}
+        ko={ko}
+        onConfirm={() => void confirmRepeat()}
+        onCancel={() => { if (!repeating) setRepeatConfirmOpen(false) }}
+        title={ko
+          ? `크레딧 ${PATH_REPEAT_CREDITS}개로 경로를 다시 시작할까요?`
+          : `Repeat the path for ${PATH_REPEAT_CREDITS} credits?`}
+        description={ko
+          ? `전체 경로가 처음부터 다시 시작돼요. 테스트 크레딧 ${PATH_REPEAT_CREDITS}개가 사용되고, 지금까지의 기록은 그대로 보관돼요.`
+          : `Your whole path restarts from stop 1. This uses ${PATH_REPEAT_CREDITS} test credits — your past results stay saved.`}
+        confirmLabel={ko ? '다시 시작' : 'Repeat path'}
+      />
+      <NoCreditsSheet
+        open={noCreditsOpen}
+        cost={PATH_REPEAT_CREDITS}
+        ko={ko}
+        onCancel={() => setNoCreditsOpen(false)}
+        description={ko
+          ? `경로를 다시 시작하려면 크레딧 ${PATH_REPEAT_CREDITS}개가 필요해요. 크레딧을 구매하면 바로 시작할 수 있어요.`
+          : `Repeating the path needs ${PATH_REPEAT_CREDITS} credits. Top up and you can restart right away.`}
+      />
       {pickerOpen && (
         <div className="fixed inset-0 z-[60] flex flex-col bg-gray-50 overflow-y-auto">
           <button
@@ -514,11 +600,14 @@ function RemoveConfirmSheet({
 }
 
 function PathList({
-  nodes, testSlug, topicIdBySlug,
+  nodes, testSlug, topicIdBySlug, onRepeatRequest,
 }: {
   nodes: PathNodeWithState[]
   testSlug: string
   topicIdBySlug: Record<string, string>
+  /** Opens the 2-credit whole-path repeat flow (confirm sheet lives in
+   *  the parent). Only reachable once every stop is completed. */
+  onRepeatRequest: () => void
 }) {
   const { language } = useTranslation()
   const ko = language === 'korean'
@@ -536,6 +625,7 @@ function PathList({
     [nodes],
   )
   const overallPct = nodes.length === 0 ? 0 : Math.round((completedCount / nodes.length) * 100)
+  const allComplete = nodes.length > 0 && completedCount === nodes.length
 
   // Scroll the active node into view on mount so returning students
   // see their next task without having to hunt for it.
@@ -552,11 +642,13 @@ function PathList({
   // session for the node resumes instead of duplicating.
   const handleLaunch = async (node: PathNodeWithState) => {
     if (launchingId) return
-    // Resume an in-progress attempt only for a node that isn't already
-    // completed. A completed node reached here means the student tapped
-    // "Restart" in the review card, which should start fresh — not silently
-    // resume a stray unfinished re-attempt.
-    if (node.state.resumeSessionId && !node.state.completedSessionId) {
+    // Completed stops are terminal — no single-stop repeat exists (the
+    // server rejects re-draws for a completed node anyway; the only
+    // repeat is the whole-path 2-credit reset). This guard keeps any
+    // stray call path honest.
+    if (node.state.completedSessionId) return
+    // Resume an in-progress attempt instead of creating a duplicate.
+    if (node.state.resumeSessionId) {
       router.push(`/mobile/study/session/${node.state.resumeSessionId}`)
       return
     }
@@ -706,13 +798,10 @@ function PathList({
                   onClick={() => {
                     if (isLocked) return
                     // ANY node with a finished submission opens the results
-                    // callout (view / restart) — a tap never silently redoes
-                    // OR resumes the section. Branch on completedSessionId,
-                    // not display status: when the whole path is done,
-                    // annotatePath relabels the final node 'active' for
-                    // review. (Previously a completed node that also had a
-                    // stray in-progress re-attempt fell through and launched
-                    // directly — the inconsistency this fixes.)
+                    // callout (view-only) — completed stops are terminal, a
+                    // tap never redoes OR resumes the section. Branch on
+                    // completedSessionId, not display status, so a stray
+                    // in-progress re-attempt can't sneak a relaunch.
                     if (node.state.completedSessionId) {
                       setOpenCompletedId(prev => (prev === node.id ? null : node.id))
                       return
@@ -722,9 +811,8 @@ function PathList({
                   pulsing={isLastActive}
                 />
                 {/* Active node's "Start" callout sits BELOW, full-width.
-                    Hidden once the node is completed (e.g. the final node
-                    that annotatePath relabels 'active' for review) so a
-                    finished node shows only its results card, never a
+                    Hidden once the node has a finished submission so a
+                    completed node shows only its results card, never a
                     second "Start" affordance. */}
                 {isLastActive && !node.state.completedSessionId && (
                   <ActiveCallout
@@ -734,16 +822,45 @@ function PathList({
                   />
                 )}
                 {!!node.state.completedSessionId && openCompletedId === node.id && (
-                  <CompletedCallout
-                    node={node}
-                    onRestart={() => void handleLaunch(node)}
-                    launching={launchingId === node.id}
-                  />
+                  <CompletedCallout node={node} />
                 )}
               </div>
             </div>
           )
         })}
+
+        {/* Path complete → whole-path repeat CTA. The ONLY repeat
+            affordance: single stops stay checked and inert, so a
+            finished path offers exactly one action — start the whole
+            journey over (2 credits, confirmed via the standard
+            credit-spend sheet in the parent). */}
+        {allComplete && (
+          <div className="relative z-10 mt-8">
+            <div className="rounded-3xl bg-white ring-1 ring-emerald-200 shadow-[0_10px_28px_-10px_rgba(16,185,129,0.35)] px-5 py-5 text-center">
+              <div className="flex justify-center">
+                <PathMascot state="celebrate" size={72} />
+              </div>
+              <p className="mt-2 text-[16px] font-bold text-gray-900">
+                {ko ? '경로를 모두 완주했어요!' : 'You finished the whole path!'}
+              </p>
+              <p className="mt-1 text-[12.5px] text-gray-500 leading-relaxed">
+                {ko
+                  ? '완료한 단계는 다시 열리지 않아요. 처음부터 새 문제로 전체 경로를 다시 도전할 수 있어요.'
+                  : 'Completed stops stay locked in. You can take on the whole path again from the start with fresh questions.'}
+              </p>
+              <button
+                type="button"
+                onClick={onRepeatRequest}
+                className="mt-3.5 inline-flex items-center gap-1.5 h-11 px-5 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13.5px] font-bold shadow-[0_6px_14px_-4px_rgba(40,133,232,0.55)] hover:brightness-110 active:scale-95 transition-all"
+              >
+                <Repeat className="w-4 h-4" />
+                {ko
+                  ? `경로 다시 시작 · 크레딧 ${PATH_REPEAT_CREDITS}개`
+                  : `Repeat path · ${PATH_REPEAT_CREDITS} credits`}
+              </button>
+            </div>
+          </div>
+        )}
 
         <span data-test-slug={testSlug} className="hidden" aria-hidden />
       </div>
@@ -959,16 +1076,14 @@ function ActiveCallout({
   )
 }
 
-/** Results callout for a COMPLETED node. Tapping a finished section
- *  never silently restarts it — the student sees their saved score,
- *  can open the full submission (summary page), or explicitly restart
- *  (a NEW session; the original submission and score stay intact). */
+/** Results callout for a COMPLETED node. Completed stops are terminal
+ *  — no per-stop restart exists (repeating is whole-path only, for
+ *  credits). The student sees their saved score and can open the full
+ *  submission (summary page). */
 function CompletedCallout({
-  node, onRestart, launching,
+  node,
 }: {
   node: PathNodeWithState
-  onRestart: () => void
-  launching?: boolean
 }) {
   const { language } = useTranslation()
   const ko = language === 'korean'
@@ -1001,18 +1116,9 @@ function CompletedCallout({
               {ko ? '결과 보기' : 'View results'}
             </Link>
           )}
-          <button
-            type="button"
-            onClick={onRestart}
-            disabled={launching}
-            className="inline-flex items-center gap-1 h-9 px-3.5 rounded-full whitespace-nowrap bg-white ring-1 ring-gray-200 text-gray-700 text-[12.5px] font-semibold hover:ring-primary/30 active:scale-95 transition-all disabled:opacity-70 disabled:cursor-wait"
-          >
-            {launching
-              ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
-              : <Repeat className="w-3.5 h-3.5" />}
-            {ko ? '다시 풀기' : 'Restart'}
-          </button>
         </div>
+        {/* No per-stop restart — completed stops are terminal. The
+            whole-path repeat (2 credits) is the only way to redo them. */}
       </div>
     </div>
   )

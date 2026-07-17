@@ -1,4 +1,5 @@
 import { authHeaders } from '@/lib/auth-headers'
+import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { supabase } from '@/lib/supabase'
 import { resolvePack } from '@/lib/study/plans'
@@ -165,11 +166,19 @@ export async function requestOneTimePayment(opts: {
     windowType: { pc: 'IFRAME' as const, mobile: 'REDIRECTION' as const },
   })
   if (res?.code != null) {
+    track('checkout_result', {
+      step: 'window',
+      ok: false,
+      paymentId: opts.paymentId,
+      code: res.code,
+      message: res.message?.slice(0, 300),
+    })
     // PG error or user closed the window.
     return res.code === 'FAILURE_TYPE_PG' || res.message
       ? { ok: false, error: res.message ?? 'payment failed' }
       : { ok: false, cancelled: true }
   }
+  track('checkout_result', { step: 'window', ok: true, paymentId: res?.paymentId ?? opts.paymentId })
   return { ok: true, paymentId: res?.paymentId ?? opts.paymentId }
 }
 
@@ -240,8 +249,16 @@ export async function buyCreditPack(
       // redirect page) already granted the credits for this payment —
       // that's a success from the buyer's point of view.
       if (second.res.ok || second.body.code === 'already_processed') {
+        track('checkout_result', { step: 'redeem', ok: true, paymentId: pay.paymentId })
         return { ok: true, creditsAdded: Number(second.body.creditsAdded) || undefined }
       }
+      track('checkout_result', {
+        step: 'redeem',
+        ok: false,
+        paymentId: pay.paymentId,
+        status: second.res.status,
+        code: second.body.code,
+      })
       return { ok: false, error: typeof second.body.message === 'string' ? second.body.message : 'purchase failed' }
     }
     return { ok: false, error: typeof first.body.message === 'string' ? first.body.message : 'purchase failed' }

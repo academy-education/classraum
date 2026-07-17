@@ -31,6 +31,11 @@ export type StudyEvent =
   | 'challenge_won'
   | 'challenge_lost'
   | 'activation_cta_clicked'
+  // Terminal outcome of a checkout attempt (window opened/failed, redeem
+  // succeeded/failed) — diagnostic breadcrumb for payments that "vanish".
+  | 'checkout_result'
+  // Whole-path repeat purchased (2-credit reset via /api/study/path/repeat).
+  | 'path_repeated'
 
 /** Client-supplied events are restricted to this set so the endpoint can't
  *  be used to write arbitrary rows. Server-only events (revenue) are never
@@ -40,6 +45,7 @@ export const CLIENT_TRACKABLE: ReadonlySet<string> = new Set<StudyEvent>([
   'test_started',
   'out_of_credits',
   'checkout_started',
+  'checkout_result',
   'activation_cta_clicked',
 ])
 

@@ -18,13 +18,19 @@ import { ModalPortal } from '@/components/ui/modal-portal'
  * (sticky header band, rounded pill chips) visible as a "partial
  * rounded blur" before the full-screen blur finished ramping in.
  */
-export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel }: {
+export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, title, description, confirmLabel }: {
   open: boolean
   cost: number
   busy: boolean
   ko: boolean
   onConfirm: () => void
   onCancel: () => void
+  /** Optional copy overrides — the defaults speak about "this test";
+   *  surfaces spending on something else (e.g. the path repeat) pass
+   *  their own bilingual strings. */
+  title?: string
+  description?: string
+  confirmLabel?: string
 }) {
   if (!open) return null
   return (
@@ -40,12 +46,12 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel }
               <Coins className="w-5 h-5" />
             </span>
             <p className="text-[16px] font-bold text-gray-900">
-              {ko ? `크레딧 ${cost}개를 사용할까요?` : `Use ${cost} credit${cost === 1 ? '' : 's'} to start?`}
+              {title ?? (ko ? `크레딧 ${cost}개를 사용할까요?` : `Use ${cost} credit${cost === 1 ? '' : 's'} to start?`)}
             </p>
             <p className="text-[12.5px] text-gray-500 leading-relaxed">
-              {ko
+              {description ?? (ko
                 ? `이 테스트를 시작하면 테스트 크레딧 ${cost}개가 사용돼요. 테스트 생성에 실패하면 자동으로 환불돼요.`
-                : `Starting this test uses ${cost} test credit${cost === 1 ? '' : 's'}. If the test fails to generate, they're refunded automatically.`}
+                : `Starting this test uses ${cost} test credit${cost === 1 ? '' : 's'}. If the test fails to generate, they're refunded automatically.`)}
             </p>
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2">
@@ -64,7 +70,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel }
               className="h-11 rounded-full bg-primary text-white text-[13.5px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-60 transition-all"
             >
               {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-              {ko ? '시작하기' : 'Start'}
+              {confirmLabel ?? (ko ? '시작하기' : 'Start')}
             </button>
           </div>
         </div>
@@ -80,11 +86,13 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel }
  * go buy credits (the store's top-up grid). Same logout-style structure
  * as CreditConfirmSheet above.
  */
-export function NoCreditsSheet({ open, cost, ko, onCancel }: {
+export function NoCreditsSheet({ open, cost, ko, onCancel, description }: {
   open: boolean
   cost: number
   ko: boolean
   onCancel: () => void
+  /** Optional copy override — default speaks about "this test". */
+  description?: string
 }) {
   if (!open) return null
   return (
@@ -103,9 +111,9 @@ export function NoCreditsSheet({ open, cost, ko, onCancel }: {
               {ko ? '크레딧이 부족해요' : 'Not enough credits'}
             </p>
             <p className="text-[12.5px] text-gray-500 leading-relaxed">
-              {ko
+              {description ?? (ko
                 ? `이 테스트에는 크레딧 ${cost}개가 필요해요. 크레딧을 구매하면 바로 시작할 수 있어요.`
-                : `This test needs ${cost} credit${cost === 1 ? '' : 's'}. Top up and you can start right away.`}
+                : `This test needs ${cost} credit${cost === 1 ? '' : 's'}. Top up and you can start right away.`)}
             </p>
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2">

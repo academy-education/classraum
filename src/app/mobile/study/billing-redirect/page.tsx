@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { authHeaders } from '@/lib/auth-headers'
 import { takeBillingIntent } from '@/lib/study/purchase-credits'
+import { track } from '@/lib/study/track-client'
 
 /**
  * The PG redirect lands on a cold page load, and Supabase may still be
@@ -61,10 +62,24 @@ export default function BillingRedirectPage() {
 
       // PG returned an error, or the user backed out of the window.
       if (code || (!billingKey && !paymentId)) {
+        track('checkout_result', {
+          step: 'redirect-return',
+          ok: false,
+          kind: intent?.kind,
+          code,
+          message: message?.slice(0, 300),
+        })
         if (code) fail(message)
         else router.replace(back)
         return
       }
+      track('checkout_result', {
+        step: 'redirect-return',
+        ok: true,
+        kind: intent?.kind,
+        hasPaymentId: Boolean(paymentId),
+        hasBillingKey: Boolean(billingKey),
+      })
       if (!intent) {
         // Stale/unknown redirect (e.g. reopened from history) — nothing
         // safe to charge. Send them home.
@@ -106,9 +121,17 @@ export default function BillingRedirectPage() {
         // (page reloaded / reopened from history) — the product was
         // granted, so treat it as success rather than scaring the buyer.
         if (!res.ok && body.code !== 'already_processed') {
+          track('checkout_result', {
+            step: 'redeem',
+            ok: false,
+            kind: intent.kind,
+            status: res.status,
+            code: body.code,
+          })
           fail(typeof body.message === 'string' ? body.message : null)
           return
         }
+        track('checkout_result', { step: 'redeem', ok: true, kind: intent.kind })
         // The gift page shows the issued code — hand it across the
         // navigation the same way the intent came in.
         if (intent.kind === 'gift' && body.code) {

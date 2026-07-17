@@ -62,6 +62,27 @@ export async function POST(req: NextRequest) {
   // track per-node completion (config.pathNode → node id).
   const pathNode = typeof body.pathNode === 'string' && body.pathNode.length <= 64 ? body.pathNode : null
 
+  // No single-stop repeats on the path: once a node has a completed
+  // unarchived session, it's terminal. The only way back in is the
+  // whole-path repeat (POST /api/study/path/repeat), which archives
+  // the old run's sessions and thereby clears this check.
+  if (pathNode) {
+    const { data: done } = await supabaseAdmin
+      .from('study_sessions')
+      .select('id')
+      .eq('student_id', user.id)
+      .eq('archived', false)
+      .eq('status', 'completed')
+      .eq('config->>pathNode', pathNode)
+      .limit(1)
+    if (done && done.length > 0) {
+      return NextResponse.json(
+        { error: 'path stop already completed', reason: 'node_completed' },
+        { status: 409 },
+      )
+    }
+  }
+
   // Assemble from the bank. Seed with the (not-yet-created) session id so
   // the shuffle is stable per session; fall back to a fresh session first.
   const { data: sess, error: sessErr } = await supabaseAdmin
