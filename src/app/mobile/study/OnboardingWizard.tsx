@@ -27,7 +27,7 @@ const SCORE_PRESETS = [1200, 1300, 1400, 1500, 1600]
 // onboard onto a test that has no content yet.
 const TESTS = [
   { value: 'sat',   label_en: 'SAT',         label_ko: 'SAT',    available: true },
-  { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL',  available: false },
+  { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL',  available: true },
   { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능',   available: false },
   { value: 'toeic', label_en: 'TOEIC',       label_ko: 'TOEIC',  available: false },
   { value: 'ielts', label_en: 'IELTS',       label_ko: 'IELTS',  available: false },

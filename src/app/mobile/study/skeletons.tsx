@@ -250,3 +250,20 @@ export function SkeletonSettingsGroup({ rows = 1 }: { rows?: number }) {
     </div>
   )
 }
+
+/** Text-block card list — small pill + two text lines per card. Matches
+ *  the library's practice/flashcard cards, which have no leading icon
+ *  tile or trailing chip (unlike SkeletonRowList rows). */
+export function SkeletonTextCardList({ count = 6 }: { count?: number }) {
+  return (
+    <div className="space-y-3">
+      {Array.from({ length: count }).map((_, i) => (
+        <SkeletonCard key={i} className="p-4 space-y-2.5">
+          <SkeletonBlock className="h-4 w-16 rounded-full" />
+          <SkeletonBlock className="h-3 w-full rounded-full" />
+          <SkeletonBlock className="h-3 w-4/5 rounded-full" />
+        </SkeletonCard>
+      ))}
+    </div>
+  )
+}

@@ -781,6 +781,13 @@ function MobileNotificationsPageContent() {
 
     // 1. Specific-item deep links — only when the destination has a
     //    real per-item page on mobile.
+    // Study test-ready notifications carry page:'study-session' — their
+    // sessionId is a STUDY session, not an academy class session, so
+    // this must win before the generic sessionId branch below.
+    if (page === 'study-session' && filters.sessionId) {
+      router.push(`/mobile/study/session/${filters.sessionId}`)
+      return
+    }
     if (filters.sessionId) {
       router.push(`/mobile/session/${filters.sessionId}`)
       return

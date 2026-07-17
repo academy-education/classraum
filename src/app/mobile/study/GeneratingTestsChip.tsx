@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Loader2, CheckCircle2, AlertTriangle, ArrowRight } from '@/app/mobile/study/_shared/icons'
+import { Loader2, AlertTriangle, ArrowRight } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -10,14 +10,15 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 /**
  * Background test-generation tracker. Renders a compact banner on the
  * study landing for any full_test session whose generation_status is
- * 'pending' (still being built by the server) or 'ready' (built but
- * not yet opened). 'ready' lets the user jump straight into the test
- * after navigating away mid-generation. 'pending' confirms the server
- * is still working.
+ * 'pending' (still being built by the server) or 'failed' (retry
+ * affordance). The READY moment is delivered as a notification instead
+ * (in-app inbox row + push, fired by the generate route on completion),
+ * so this chip clears itself when generation finishes rather than
+ * lingering as a landing card.
  *
- * Polls every 5s while at least one row is pending so the UI flips to
- * 'ready' without a manual refresh. Polling stops as soon as nothing
- * is pending — no idle cost.
+ * Polls every 5s while at least one row is pending so the chip clears
+ * without a manual refresh. Polling stops as soon as nothing is
+ * pending — no idle cost.
  */
 
 interface Row {
@@ -46,8 +47,10 @@ export function GeneratingTestsChip() {
         .eq('student_id', user.userId)
         .eq('mode', 'full_test')
         // 'failed' included so generation failures surface with a
-        // retry affordance instead of silently vanishing.
-        .in('generation_status', ['pending', 'ready', 'failed'])
+        // retry affordance instead of silently vanishing. 'ready' is
+        // NOT listed — that moment arrives via the test-ready
+        // notification (inbox + push), not a landing card.
+        .in('generation_status', ['pending', 'failed'])
         .eq('status', 'active') // hide if already started or completed
         .eq('archived', false)
         .order('created_at', { ascending: false })
@@ -95,12 +98,10 @@ export function GeneratingTestsChip() {
   const isStuck = (r: Row) => r.generation_status === 'pending'
     && now - new Date(r.created_at).getTime() > STUCK_PENDING_MS
 
-  // Split by state. Pending + failed need per-row visibility because
-  // each carries live progress; multiple "ready" rows all share the
-  // same action ("open test"), so they collapse into a single row.
+  // Split by state — each pending/failed row gets its own line since
+  // each carries a distinct topic + action.
   const pending = rows.filter(r => r.generation_status === 'pending' && !isStuck(r))
   const failed = rows.filter(r => r.generation_status === 'failed' || isStuck(r))
-  const ready = rows.filter(r => r.generation_status === 'ready')
 
   const topicNameOf = (row: Row) => row.topic
     ? (ko ? row.topic.name_ko : row.topic.name_en)
@@ -126,27 +127,6 @@ export function GeneratingTestsChip() {
           subtitle={topicNameOf(row)}
         />
       ))}
-      {ready.length === 1 && (
-        <StatusRow
-          href={`/mobile/study/session/${ready[0].id}`}
-          state="ready"
-          title={ko ? '시험 준비 완료' : 'Test ready'}
-          subtitle={topicNameOf(ready[0])}
-        />
-      )}
-      {ready.length > 1 && (
-        <StatusRow
-          // Tap opens the tests overview so the student can pick
-          // which ready test to start (opening the newest one would
-          // be a guess that fights the intent).
-          href="/mobile/study/tests"
-          state="ready"
-          title={ko
-            ? `시험 ${ready.length}개 준비 완료`
-            : `${ready.length} tests ready`}
-          subtitle={ready.map(topicNameOf).filter(Boolean).join(' · ')}
-        />
-      )}
     </section>
   )
 }
@@ -155,35 +135,30 @@ function StatusRow({
   href, state, title, subtitle,
 }: {
   href: string
-  state: 'pending' | 'ready' | 'failed'
+  state: 'pending' | 'failed'
   title: string
   subtitle: string
 }) {
-  const ready = state === 'ready'
   const failed = state === 'failed'
   return (
     <Link
       href={href}
       className={`group flex items-center gap-3 px-4 py-3 rounded-2xl ring-1 transition-all active:scale-[0.99] ${
-        ready
-          ? 'bg-emerald-50 ring-emerald-200 hover:bg-emerald-100/60'
-          : failed
-            ? 'bg-rose-50 ring-rose-200 hover:bg-rose-100/60'
-            : 'bg-primary/5 ring-primary/20 hover:bg-primary/10'
+        failed
+          ? 'bg-rose-50 ring-rose-200 hover:bg-rose-100/60'
+          : 'bg-primary/5 ring-primary/20 hover:bg-primary/10'
       }`}
     >
       <div className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${
-        ready ? 'bg-emerald-500 text-white' : failed ? 'bg-rose-500 text-white' : 'bg-primary/15 text-primary'
+        failed ? 'bg-rose-500 text-white' : 'bg-primary/15 text-primary'
       }`}>
-        {ready
-          ? <CheckCircle2 className="w-5 h-5" />
-          : failed
-            ? <AlertTriangle className="w-5 h-5" />
-            : <Loader2 className="w-5 h-5 animate-spin" />}
+        {failed
+          ? <AlertTriangle className="w-5 h-5" />
+          : <Loader2 className="w-5 h-5 animate-spin" />}
       </div>
       <div className="flex-1 min-w-0">
         <div className={`text-[13.5px] font-semibold leading-tight ${
-          ready ? 'text-emerald-900' : failed ? 'text-rose-900' : 'text-gray-900'
+          failed ? 'text-rose-900' : 'text-gray-900'
         }`}>
           {title}
         </div>
@@ -194,7 +169,7 @@ function StatusRow({
         )}
       </div>
       <ArrowRight className={`w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5 ${
-        ready ? 'text-emerald-700' : failed ? 'text-rose-700' : 'text-primary'
+        failed ? 'text-rose-700' : 'text-primary'
       }`} />
     </Link>
   )
