@@ -133,7 +133,7 @@ export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } 
         {data.quests.map(q => {
           const pct = Math.min(100, Math.round((q.current / q.target) * 100))
           return (
-            <div key={q.key} className="px-4 py-3 flex items-center gap-3">
+            <div key={q.key} className={`px-4 py-3 flex items-center gap-3 ${q.done ? 'bg-emerald-50/60' : ''}`}>
               <QuestRing pct={pct} done={q.done} />
               <div className="flex-1 min-w-0">
                 <p className={`text-[13.5px] font-medium truncate ${q.done ? 'text-gray-400 line-through' : 'text-gray-900'}`}>

@@ -93,7 +93,7 @@ export function WeekPlanCard({ hideHeading = false }: { hideHeading?: boolean } 
                 href={`/mobile/study/topic/${f.slug}`}
                 className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 active:bg-gray-100 transition-colors"
               >
-                <span className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${v.tile}`}>
+                <span className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${v.gradientTile}`}>
                   <Icon className="w-4 h-4" />
                 </span>
                 <span className="flex-1 min-w-0 text-[13.5px] font-medium text-gray-900 truncate">
