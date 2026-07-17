@@ -463,14 +463,14 @@ export default function SubscriptionPage() {
                     type="button"
                     onClick={() => void buyPack(p.id, p.credits)}
                     disabled={acting !== null}
-                    className={`relative flex flex-col items-center justify-center gap-0.5 h-[80px] rounded-xl active:scale-[0.98] disabled:opacity-60 transition-all ${
+                    className={`relative flex flex-col items-center justify-center gap-0.5 h-[86px] rounded-xl overflow-hidden active:scale-[0.98] disabled:opacity-60 transition-all ${
                       best
-                        ? 'bg-amber-500 text-white ring-1 ring-amber-500 shadow-[0_2px_8px_rgba(245,158,11,0.3)]'
+                        ? 'bg-amber-500 text-white ring-1 ring-amber-500 shadow-[0_2px_8px_rgba(245,158,11,0.3)] pt-4'
                         : 'bg-amber-500/10 text-amber-700 ring-1 ring-amber-200/70 hover:bg-amber-500/15'
                     }`}
                   >
                     {best && (
-                      <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded-full bg-gray-900 text-white text-[9px] font-bold whitespace-nowrap">
+                      <span className="absolute top-0 inset-x-0 py-[3px] bg-amber-600/90 text-white text-[8.5px] font-bold uppercase tracking-wide text-center">
                         {ko ? '최고 혜택' : 'Best value'}
                       </span>
                     )}
