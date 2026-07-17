@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { chargeBillingKey } from '@/lib/portone-charge'
+import { chargeBillingKey, verifyOneTimePayment } from '@/lib/portone-charge'
 import { resolvePack } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
   )
   if (blocked) return blocked
 
-  let body: { packId?: string; billingKey?: string } = {}
+  let body: { packId?: string; billingKey?: string; paymentId?: string } = {}
   try { body = await req.json() } catch { /* default pack */ }
   const pack = resolvePack(body.packId)
 
@@ -48,35 +48,64 @@ export async function POST(req: NextRequest) {
     .eq('student_id', user.id)
     .maybeSingle()
 
-  // No plan gate — any authenticated user can buy credits. Resolve the
-  // card to charge: a stored key wins; otherwise the client issues one
-  // via the PortOne overlay and passes it. No key either way → tell the
-  // client to issue one and retry.
+  // Two ways to pay. A stored billing key (subscribers) is charged
+  // server-side, invisibly. Card-less buyers now pay through a normal
+  // one-time checkout window (requestPayment) and send us the paymentId
+  // to verify — no card registration for a one-off purchase.
+  const providedPaymentId = typeof body.paymentId === 'string' && body.paymentId ? body.paymentId : null
   const storedKey = sub?.portone_subscription_id ?? null
   const providedKey = typeof body.billingKey === 'string' && body.billingKey ? body.billingKey : null
   const billingKey = storedKey ?? providedKey
-  if (!billingKey) {
-    return NextResponse.json({ error: 'no payment method on file', code: 'no_billing_key' }, { status: 402 })
-  }
 
-  const paymentId = `study-pack-${user.id}-${Date.now()}`
-  const result = await chargeBillingKey({
-    billingKey,
-    paymentId,
-    amount: pack.priceWon,
-    orderName: pack.orderName,
-    customerId: user.id,
-    customData: {
-      kind: 'study_credit_pack',
-      pack: pack.id,
+  let paymentId: string
+  if (providedPaymentId) {
+    const v = await verifyOneTimePayment({
+      paymentId: providedPaymentId,
+      expectedAmount: pack.priceWon,
+      expectedKind: 'study_credit_pack',
+    })
+    if (!v.ok) {
+      return NextResponse.json({ error: 'payment verification failed', message: v.message }, { status: 402 })
+    }
+    // The paid payment must be for THIS pack and THIS buyer — customData
+    // is written at request time and immutable at PortOne.
+    if (v.customData?.pack !== pack.id || v.customData?.student_id !== user.id) {
+      return NextResponse.json({ error: 'payment does not match this purchase' }, { status: 402 })
+    }
+    // Exactly-once redemption: the PK insert loses on replay.
+    const { error: idemErr } = await supabaseAdmin.from('study_payments').insert({
+      payment_id: providedPaymentId,
       student_id: user.id,
-    },
-  })
-  if (!result.ok) {
-    return NextResponse.json(
-      { error: 'charge failed', code: result.code, message: result.message },
-      { status: 402 },
-    )
+      kind: 'study_credit_pack',
+      amount_won: pack.priceWon,
+    })
+    if (idemErr) {
+      return NextResponse.json({ error: 'payment already processed', code: 'already_processed' }, { status: 409 })
+    }
+    paymentId = providedPaymentId
+  } else {
+    if (!billingKey) {
+      return NextResponse.json({ error: 'no payment method on file', code: 'no_billing_key' }, { status: 402 })
+    }
+    paymentId = `study-pack-${user.id}-${Date.now()}`
+    const result = await chargeBillingKey({
+      billingKey,
+      paymentId,
+      amount: pack.priceWon,
+      orderName: pack.orderName,
+      customerId: user.id,
+      customData: {
+        kind: 'study_credit_pack',
+        pack: pack.id,
+        student_id: user.id,
+      },
+    })
+    if (!result.ok) {
+      return NextResponse.json(
+        { error: 'charge failed', code: result.code, message: result.message },
+        { status: 402 },
+      )
+    }
   }
 
   // Ensure a subscription row exists to hold the credits (the increment
@@ -90,7 +119,7 @@ export async function POST(req: NextRequest) {
       status: 'free',
       plan: 'free_v1',
       currency: 'KRW',
-      portone_subscription_id: billingKey,
+      portone_subscription_id: billingKey ?? null,
       grant_credits_remaining: 0,
       purchased_credits_remaining: 0,
       updated_at: nowIso,

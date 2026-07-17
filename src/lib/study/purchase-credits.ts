@@ -1,6 +1,7 @@
 import { authHeaders } from '@/lib/auth-headers'
 import { PortOne } from '@/lib/portone-browser'
 import { supabase } from '@/lib/supabase'
+import { resolvePack } from '@/lib/study/plans'
 
 /**
  * PortOne customer block for billing-key issuance. Inicis V2 refuses to
@@ -122,6 +123,53 @@ export function billingIssueId(prefix: string, userId?: string): string {
 }
 
 /**
+ * One-time checkout via PortOne requestPayment on the PAYMENT channel —
+ * a normal payment window, not the billing-key card-registration form.
+ * Used for non-recurring products (passes, credit packs). Mobile leaves
+ * via redirect (billing-redirect completes with the paymentId); PC
+ * resolves the Promise.
+ */
+export interface OneTimePaymentResult {
+  ok: boolean
+  paymentId?: string
+  cancelled?: boolean
+  error?: string
+}
+
+export async function requestOneTimePayment(opts: {
+  paymentId: string
+  orderName: string
+  amountWon: number
+  customer: { customerId?: string; email?: string; phoneNumber?: string; fullName?: string }
+  customData: Record<string, unknown>
+}): Promise<OneTimePaymentResult> {
+  const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
+  const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_PAYMENT_LIVE
+  if (!storeId || !channelKey) return { ok: false, error: 'PortOne not configured' }
+
+  const res = await PortOne.requestPayment({
+    storeId,
+    channelKey,
+    paymentId: opts.paymentId,
+    orderName: opts.orderName,
+    totalAmount: opts.amountWon,
+    currency: 'KRW' as const,
+    payMethod: 'CARD' as const,
+    customer: opts.customer,
+    customData: opts.customData,
+    redirectUrl: billingRedirectUrl(),
+    windowType: billingWindowType(),
+  })
+  if (res?.code != null) {
+    // PG error or user closed the window.
+    return res.code === 'FAILURE_TYPE_PG' || res.message
+      ? { ok: false, error: res.message ?? 'payment failed' }
+      : { ok: false, cancelled: true }
+  }
+  return { ok: true, paymentId: res?.paymentId ?? opts.paymentId }
+}
+
+/**
  * Client-side credit-pack purchase, shared by the subscription page and
  * the out-of-credits screen.
  *
@@ -143,12 +191,12 @@ export async function buyCreditPack(
   user: { id?: string; email?: string | null } | null | undefined,
   ko = false,
 ): Promise<BuyCreditPackResult> {
-  const post = async (billingKey?: string) => {
+  const post = async (extra?: { billingKey?: string; paymentId?: string }) => {
     const headers = await authHeaders()
     const res = await fetch('/api/study/subscription/purchase-pack', {
       method: 'POST',
       headers: { ...headers, 'Content-Type': 'application/json' },
-      body: JSON.stringify(billingKey ? { packId, billingKey } : { packId }),
+      body: JSON.stringify({ packId, ...(extra ?? {}) }),
     })
     const body = await res.json().catch(() => ({} as Record<string, unknown>))
     return { res, body }
@@ -159,42 +207,31 @@ export async function buyCreditPack(
     if (first.res.ok) {
       return { ok: true, creditsAdded: Number(first.body.creditsAdded) || undefined }
     }
-    // Card-less buyer → issue a billing key via the overlay, then retry.
+    // Card-less buyer → one-time checkout window (normal payment, NOT
+    // card registration — packs are one-off purchases), then redeem the
+    // paymentId server-side.
     if (first.body.code === 'no_billing_key') {
-      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
-      const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
-      if (!storeId || !channelKey) return { ok: false, error: 'PortOne not configured' }
-
       const customer = await billingCustomer(user)
       if (!customer.phoneNumber) return { ok: false, error: missingPhoneMessage(ko) }
       // Mobile WebViews leave via redirect here; the billing-redirect
-      // page retries the purchase with the issued key.
+      // page redeems the paymentId.
       stashBillingIntent({
         kind: 'pack',
         packId,
         returnTo: window.location.pathname + window.location.search,
         ko,
       })
-      const issued = await PortOne.requestIssueBillingKey({
-        storeId,
-        channelKey,
-        billingKeyMethod: 'CARD',
-        issueId: billingIssueId('spk', user?.id),
-        issueName: 'Classraum Study credits',
+      const pay = await requestOneTimePayment({
+        paymentId: billingIssueId('spk', user?.id),
+        orderName: ko ? 'Classraum 테스트 크레딧' : 'Classraum Study credits',
+        amountWon: resolvePack(packId).priceWon,
         customer,
-        customData: { kind: 'study_credit_pack', packId },
-        redirectUrl: billingRedirectUrl(),
-        windowType: billingWindowType(),
-        // Credits never expire → open-ended service period.
-        offerPeriod: offerPeriodFor(null),
+        customData: { kind: 'study_credit_pack', pack: packId, student_id: user?.id },
       })
-      if (!issued?.billingKey) {
-        // No code → user closed the overlay; a code → PortOne error.
-        return issued?.code
-          ? { ok: false, error: issued.message ?? 'card registration failed' }
-          : { ok: false, cancelled: true }
+      if (!pay.ok) {
+        return pay.cancelled ? { ok: false, cancelled: true } : { ok: false, error: pay.error }
       }
-      const second = await post(issued.billingKey)
+      const second = await post({ paymentId: pay.paymentId })
       if (second.res.ok) {
         return { ok: true, creditsAdded: Number(second.body.creditsAdded) || undefined }
       }

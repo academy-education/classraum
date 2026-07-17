@@ -601,25 +601,35 @@ export default function MobileInvoicePaymentPage() {
           
           <div className="grid grid-cols-3 gap-2">
             {([
-              { key: 'card' as const, Icon: CreditCard, label: t('mobile.payment.methods.card') },
-              { key: 'easy_pay' as const, Icon: Wallet, label: t('mobile.payment.methods.easyPay') },
-              { key: 'transfer' as const, Icon: Landmark, label: t('mobile.payment.methods.transfer') },
-            ]).map(({ key, Icon, label }) => {
+              { key: 'card' as const, Icon: CreditCard, label: t('mobile.payment.methods.card'), disabled: false },
+              // 간편결제 not launched yet — visible but locked so users
+              // know it's coming without a dead-end PG window.
+              { key: 'easy_pay' as const, Icon: Wallet, label: t('mobile.payment.methods.easyPay'), disabled: true },
+              { key: 'transfer' as const, Icon: Landmark, label: t('mobile.payment.methods.transfer'), disabled: false },
+            ]).map(({ key, Icon, label, disabled }) => {
               const active = paymentMethod === key
               return (
                 <button
                   key={key}
-                  onClick={() => setPaymentMethod(key)}
-                  className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors ${
-                    active
-                      ? 'border-primary bg-primary/10'
-                      : 'border-gray-200 hover:border-gray-300'
+                  onClick={() => { if (!disabled) setPaymentMethod(key) }}
+                  disabled={disabled}
+                  className={`relative p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors ${
+                    disabled
+                      ? 'border-gray-100 bg-gray-50 cursor-not-allowed'
+                      : active
+                        ? 'border-primary bg-primary/10'
+                        : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <Icon className={`w-6 h-6 ${active ? 'text-primary' : 'text-gray-600'}`} />
-                  <span className={`text-sm font-medium ${active ? 'text-primary' : 'text-gray-700'}`}>
+                  <Icon className={`w-6 h-6 ${disabled ? 'text-gray-300' : active ? 'text-primary' : 'text-gray-600'}`} />
+                  <span className={`text-sm font-medium ${disabled ? 'text-gray-400' : active ? 'text-primary' : 'text-gray-700'}`}>
                     {label}
                   </span>
+                  {disabled && (
+                    <span className="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-full bg-gray-200 text-gray-500 text-[9px] font-semibold">
+                      {language === 'korean' ? '준비 중' : 'Soon'}
+                    </span>
+                  )}
                 </button>
               )
             })}
