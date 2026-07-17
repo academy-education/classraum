@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { cookies } from 'next/headers'
 import { Montserrat, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { LanguageWrapper } from './language-wrapper'
@@ -58,14 +59,18 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // Use default language for SSR to prevent Vercel serverless issues
-  // Client-side will handle cookie reading and update after hydration
-  const initialLanguage: SupportedLanguage = 'korean'
+  // Read the language cookie server-side so the FIRST paint is already in
+  // the user's language. Hardcoding 'korean' here made every English
+  // user's page flash Korean, then flip after hydration when the client
+  // read the cookie — the "language flicker" on every load.
+  const cookieStore = await cookies()
+  const cookieLang = cookieStore.get('classraum_language')?.value
+  const initialLanguage: SupportedLanguage = cookieLang === 'english' ? 'english' : 'korean'
 
   return (
     // suppressHydrationWarning: the theme boot script below adds the

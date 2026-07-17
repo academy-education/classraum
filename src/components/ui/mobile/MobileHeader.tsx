@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { Bell, User, MessageSquare, ChevronDown, Zap } from '@/app/mobile/study/_shared/icons'
+import { Bell, User, MessageSquare, ChevronDown, Coins } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import Link from 'next/link'
@@ -259,17 +259,25 @@ export function MobileHeader() {
                 href="/mobile/study/subscription"
                 aria-label={language === 'korean' ? '크레딧' : 'Credits'}
                 title={language === 'korean' ? '모의고사 생성 크레딧' : 'Mock-test credits'}
-                className="inline-flex items-center gap-1 h-9 pl-2 pr-2.5 rounded-full bg-primary/10 hover:bg-primary/15 active:bg-primary/20 transition-colors focus:outline-none"
+                className="inline-flex items-center gap-1.5 h-9 pl-2 pr-2 rounded-full bg-primary/10 hover:bg-primary/15 active:bg-primary/20 transition-colors focus:outline-none"
               >
-                <Zap className="w-4 h-4 text-primary" weight="fill" />
+                {/* Coin + count + "+" — the plus sits AFTER the number so
+                    the chip reads "5 credits, tap to add more" (the chip
+                    links to the credit store). */}
+                <Coins className="w-4 h-4 text-primary" weight="fill" />
                 <span className="text-[13px] font-bold text-primary tabular-nums leading-none">{credits}</span>
+                {/* -ml cancels the chip gap so the + hugs the count. */}
+                <span aria-hidden className="-ml-1 text-[15px] font-bold text-primary leading-none">
+                  +
+                </span>
               </Link>
             )}
 
             {/* Messages Button — pill chrome with soft-rose unread badge.
-                Messaging is academy-scoped (teacher/manager chat), so
-                study-only students without an academy don't get it. */}
-            {(user?.academyIds?.length ?? 0) > 0 && (
+                Messaging is academy-scoped (teacher/manager chat), so it
+                only shows in Grades mode: study surfaces hide it even for
+                students who do have an academy. */}
+            {!isStudy && (user?.academyIds?.length ?? 0) > 0 && (
             <button
               onClick={handleMessagesClick}
               className="relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"

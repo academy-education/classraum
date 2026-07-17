@@ -7,6 +7,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { ModeSwitcherSheet } from '@/components/ui/mobile/ModeSwitcherSheet'
 import { resolveMode, storeMode, modeForPath } from '@/lib/study/currentMode'
+import { hapticTap } from '@/lib/nativeHaptics'
 
 /**
  * Mode chip in the mobile header — shows the *current* mode (Grades
@@ -47,7 +48,7 @@ export function ModeChip() {
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => { hapticTap(); setOpen(true) }}
         aria-label={String(t('mobile.mode.sheetTitle'))}
         aria-expanded={open}
         className="inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/15 active:bg-primary/20 transition-colors"

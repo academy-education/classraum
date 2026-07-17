@@ -1390,7 +1390,7 @@ export default function MobilePage() {
     >
       {/* Invite Confirmation Modal */}
       {showInviteConfirmation && inviteData && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-[9998] p-4">
           <Card className="w-full max-w-md p-6 bg-white">
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
