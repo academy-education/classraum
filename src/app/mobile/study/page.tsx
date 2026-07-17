@@ -1069,6 +1069,7 @@ function FirstTestActivationCard() {
         // experience, and instant from the verified bank.
         body: JSON.stringify({ section: 'reading_writing', adaptive: true }),
       })
+      if (res.status === 402) { setBusy(false); router.push('/mobile/study/subscription'); return }
       if (!res.ok) { setBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)

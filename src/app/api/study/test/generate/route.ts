@@ -22,6 +22,8 @@ import {
 import { sendPushNotification } from '@/lib/notifications'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
+import { creditCostForTest } from '@/lib/study/plans'
+import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -399,14 +401,24 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Credit reserve ──────────────────────────────────────────────
-  // 1 credit = 1 generated test. Reserve BEFORE spending model tokens;
-  // every failure path below refunds it, and the debit is idempotent
-  // per session (a retry of a previously-debited session is free).
-  const { data: creditResult, error: creditErr } = await supabaseAdmin
-    .rpc('use_study_credit', { p_student: user.id, p_source: sessionId })
-  const credit = (creditResult ?? {}) as { ok?: boolean; reason?: string; grant?: number; purchased?: number }
-  if (creditErr || !credit.ok) {
-    if (creditErr) console.error('[test/generate] credit reserve errored', creditErr)
+  // Per-section pricing (2026-07 relaunch): e.g. TOEFL Speaking /
+  // Listening cost 2 credits, Reading / Writing 1 (creditCostForTest).
+  // Reserve BEFORE spending model tokens; every failure path below
+  // refunds, and each debit slice is idempotent per session (a retry
+  // of a previously-debited session is free).
+  let creditCost = 1
+  if (session.topic_id) {
+    const { data: topicRow } = await supabaseAdmin
+      .from('study_topics').select('slug').eq('id', session.topic_id).maybeSingle()
+    const slug = (topicRow?.slug as string | undefined) ?? ''
+    // Slugs look like 'test-toefl-speaking' / 'test-sat-reading-writing':
+    // strip the 'test-' prefix; the next token is the family and the rest
+    // is the section (dashes → underscores).
+    const parts = slug.replace(/^test-/, '').split('-')
+    creditCost = creditCostForTest(parts[0] ?? null, parts.slice(1).join('_') || null)
+  }
+  const credit = await reserveTestCredits(user.id, sessionId, creditCost)
+  if (!credit.ok) {
     // Funnel: the paywall trigger — the student wanted a test but had no
     // credits. This is where an upsell converts.
     void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits' })
@@ -418,13 +430,11 @@ export async function POST(req: NextRequest) {
       },
     ])
   }
-  // Funnel: an AI test generation actually started (credit reserved).
-  void trackEvent(user.id, 'test_started', { kind: 'ai_generated' })
+  // Funnel: an AI test generation actually started (credits reserved).
+  void trackEvent(user.id, 'test_started', { kind: 'ai_generated', creditCost })
   const refundCredit = async (why: string) => {
-    const { error } = await supabaseAdmin
-      .rpc('refund_study_credit', { p_student: user.id, p_source: sessionId })
-    if (error) console.error('[test/generate] credit refund failed', { sessionId, why, error })
-    else console.log('[test/generate] credit refunded', { sessionId, why })
+    await refundTestCredits(user.id, sessionId, creditCost)
+    console.log('[test/generate] credit refunded', { sessionId, why, creditCost })
   }
 
   // Mark this session's generation as in-flight so the landing page
