@@ -49,8 +49,10 @@ import {
   BookOpen,
   Megaphone,
   Clock,
-  Pencil
+  Pencil,
+  Users
 } from 'lucide-react'
+import Link from 'next/link'
 import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
@@ -440,6 +442,30 @@ function MobileProfilePageContent() {
           and only when the profile was reached from Study mode: in the
           Grades/academy context the nickname is meaningless noise. */}
       {profile?.role === 'student' && inStudyMode && <StudyNicknameCard ko={language === 'korean'} />}
+
+      {/* Friend referral — lives here (not on the subscription page) so
+          the invite loop reads as an account feature. Study mode only. */}
+      {profile?.role === 'student' && inStudyMode && (
+        <div className="mb-6">
+          <Link
+            href="/mobile/study/referral"
+            className="flex items-center gap-3 rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.99] transition-all"
+          >
+            <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+              <Users className="w-5 h-5" strokeWidth={1.75} />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-sm font-semibold text-gray-900 truncate">
+                {language === 'korean' ? '친구 초대' : 'Refer a friend'}
+              </span>
+              <span className="block text-[12px] text-gray-500 truncate">
+                {language === 'korean' ? '가입 시 1개 + 프리미엄 시 10개' : '1 credit + 10 on Premium'}
+              </span>
+            </span>
+            <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
+          </Link>
+        </div>
+      )}
 
       {/* Contact Information panel — the phone row always renders (it's
           editable, so an empty value shows an Add action); other rows
