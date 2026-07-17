@@ -392,7 +392,8 @@ export default function SubscriptionPage() {
           </div>
         )}
 
-        {/* Credit balance — every generated AI mock test costs 1 credit. */}
+        {/* Credit balance — full mock tests cost 1–2 credits by section
+            (see creditCostForTest in plans.ts). */}
         {sub && (
           <div className="rounded-2xl bg-gradient-to-br from-amber-50/70 via-white to-white ring-1 ring-amber-200/50 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
             <div className="flex items-start justify-between gap-3">
