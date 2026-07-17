@@ -8,7 +8,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { NumberRoll } from './primitives'
 import { StudyButton, studyButtonClass } from './StudyButton'
-import { CreditConfirmSheet } from './CreditConfirmSheet'
+import { CreditConfirmSheet, NoCreditsSheet } from './CreditConfirmSheet'
 import { creditCostForTest } from '@/lib/study/plans'
 
 // The diagnostic launches an SAT Reading & Writing adaptive full test.
@@ -57,6 +57,8 @@ export function PredictedScore() {
   const [starting, setStarting] = useState(false)
   // Credit-spend confirm — the diagnostic charges like any full mock.
   const [confirmOpen, setConfirmOpen] = useState(false)
+  // 402 → explicit "not enough credits" popup (cancel / buy).
+  const [noCreditsOpen, setNoCreditsOpen] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -88,12 +90,13 @@ export function PredictedScore() {
     return () => { cancelled = true }
   }, [])
 
-  // Launch the real adaptive Digital SAT (Reading & Writing module 1) —
-  // the same instant bank assembly the topic page uses. Costs credits
-  // like any full mock (R&W = 2 since the 2026-07 relaunch). The
-  // completed test writes mastery, which powers the predicted score and
-  // the weak-area picks on the "recommended for you" shelf.
-  const startDiagnostic = async () => {
+  // Launch a real adaptive Digital SAT section — the same instant bank
+  // assembly the topic page uses. Costs credits like any full mock
+  // (2/section since the 2026-07 relaunch). The completed test writes
+  // mastery, which powers the predicted score and the weak-area picks
+  // on the "recommended for you" shelf. The section is whichever one
+  // the baseline still needs (R&W first, then Math).
+  const startDiagnostic = async (section: 'reading_writing' | 'math') => {
     if (starting) return
     setStarting(true)
     try {
@@ -101,9 +104,9 @@ export function PredictedScore() {
       const res = await fetch('/api/study/test/assemble', {
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ section: 'reading_writing', adaptive: true }),
+        body: JSON.stringify({ section, adaptive: true }),
       })
-      if (res.status === 402) { router.push('/mobile/study/subscription'); return }
+      if (res.status === 402) { setStarting(false); setConfirmOpen(false); setNoCreditsOpen(true); return }
       if (!res.ok) { setStarting(false); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
@@ -125,20 +128,39 @@ export function PredictedScore() {
   // Self-hide only for the unsupported (non-SAT) target edge case.
   if (!data || !data.supported) return null
 
-  // Cold start — no completed full test yet. Premium-gated diagnostic:
-  // free users see the format + an unlock CTA; premium users confirm
-  // the credit spend, then start.
+  // Cold start / partial baseline — not every section has a completed
+  // full test yet. Premium-gated diagnostic: free users see the format
+  // + an unlock CTA; premium users confirm the credit spend, then
+  // start whichever section the baseline still needs (R&W first).
   if (!data.enoughData) {
+    const done = data.sections.filter(s => s.current !== null)
+    const remaining = data.sections.filter(s => s.current === null)
+    const next = remaining.find(s => s.key === 'sat-reading-writing') ?? remaining[0] ?? null
+    const nextSection: 'reading_writing' | 'math' = next?.key === 'sat-math' ? 'math' : 'reading_writing'
     return (
       <>
-        <DiagnosticCard ko={ko} isPremium={isPremium === true} starting={starting} onStart={() => setConfirmOpen(true)} />
+        <DiagnosticCard
+          ko={ko}
+          isPremium={isPremium === true}
+          starting={starting}
+          onStart={() => setConfirmOpen(true)}
+          doneCount={done.length}
+          totalCount={data.sections.length}
+          nextLabel={next ? (ko ? next.label_ko : next.label_en) : null}
+        />
         <CreditConfirmSheet
           open={confirmOpen}
           cost={DIAGNOSTIC_CREDIT_COST}
           busy={starting}
           ko={ko}
           onCancel={() => setConfirmOpen(false)}
-          onConfirm={() => void startDiagnostic().finally(() => setConfirmOpen(false))}
+          onConfirm={() => void startDiagnostic(nextSection).finally(() => setConfirmOpen(false))}
+        />
+        <NoCreditsSheet
+          open={noCreditsOpen}
+          cost={DIAGNOSTIC_CREDIT_COST}
+          ko={ko}
+          onCancel={() => setNoCreditsOpen(false)}
         />
       </>
     )
@@ -207,9 +229,15 @@ export function PredictedScore() {
  * launches the real adaptive test (premium) or routes to the paywall
  * (free). Baseline results feed the predicted score + recommended shelf.
  */
-function DiagnosticCard({ ko, isPremium, starting, onStart }: {
+function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCount, nextLabel }: {
   ko: boolean; isPremium: boolean; starting: boolean; onStart: () => void
+  /** Sections with ≥1 completed full test / total — drives the
+   *  "1 of 2 done, finish Math" partial state. */
+  doneCount: number; totalCount: number
+  /** Display name of the next section to take (null when unknown). */
+  nextLabel: string | null
 }) {
+  const partial = doneCount > 0 && doneCount < totalCount
   const hrs = Math.floor(SAT_FORMAT.minutes / 60)
   const mins = SAT_FORMAT.minutes % 60
   const timeStr = ko ? `${hrs}시간 ${mins}분` : `${hrs}h ${mins}m`
@@ -234,11 +262,19 @@ function DiagnosticCard({ ko, isPremium, starting, onStart }: {
               </span>
             )}
           </div>
-          <p className="text-[15px] font-bold leading-tight mt-0.5">{ko ? 'SAT 기준 점수 찾기' : 'Find your SAT baseline'}</p>
+          <p className="text-[15px] font-bold leading-tight mt-0.5">
+            {partial
+              ? (ko ? `${nextLabel} 테스트로 예상 점수 완성하기` : `${doneCount} of ${totalCount} done — finish with ${nextLabel}`)
+              : (ko ? 'SAT 기준 점수 찾기' : 'Find your SAT baseline')}
+          </p>
           <p className="text-[12px] text-white/75 leading-snug mt-0.5">
-            {ko
-              ? '전체 적응형 디지털 SAT를 풀면 예상 점수가 정해지고, 취약 영역에 맞춘 연습이 추천돼요.'
-              : 'One adaptive Digital SAT sets your predicted score and unlocks practice targeted at your weak areas.'}
+            {partial
+              ? (ko
+                  ? `${totalCount}개 섹션 중 ${doneCount}개를 완료했어요. ${nextLabel} 테스트를 마치면 예상 점수가 열려요.`
+                  : `You've finished ${doneCount} of ${totalCount} sections. Complete ${nextLabel} to unlock your predicted score.`)
+              : (ko
+                  ? '전체 적응형 디지털 SAT를 풀면 예상 점수가 정해지고, 취약 영역에 맞춘 연습이 추천돼요.'
+                  : 'One adaptive Digital SAT sets your predicted score and unlocks practice targeted at your weak areas.')}
           </p>
         </div>
       </div>
@@ -269,10 +305,14 @@ function DiagnosticCard({ ko, isPremium, starting, onStart }: {
               onClick={onStart}
               leftIcon={<ArrowRight className="w-4 h-4" />}
             >
-              {ko ? '진단 시작하기' : 'Start diagnostic'}
+              {partial
+                ? (ko ? `${nextLabel} 시작하기` : `Start ${nextLabel}`)
+                : (ko ? '진단 시작하기' : 'Start diagnostic')}
             </StudyButton>
             <p className="text-[10.5px] text-white/55 text-center mt-1.5">
-              {ko ? 'Reading & Writing부터 시작 · 크레딧 2개 사용' : 'Begins with Reading & Writing · uses 2 credits'}
+              {partial
+                ? (ko ? '크레딧 2개 사용 · 2개 적응형 모듈' : 'Uses 2 credits · 2 adaptive modules')
+                : (ko ? 'Reading & Writing부터 시작 · 크레딧 2개 사용' : 'Begins with Reading & Writing · uses 2 credits')}
             </p>
           </>
         ) : (

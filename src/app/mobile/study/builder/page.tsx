@@ -12,6 +12,8 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonSettingsGroup, SkeletonStickyHeader } from '../skeletons'
 import { useStudyErrorToast, startFailedMessage } from '../_shared/useStudyErrorToast'
+import { NoCreditsSheet } from '../_shared/CreditConfirmSheet'
+import { creditCostForTest } from '@/lib/study/plans'
 
 interface TopicRow {
   id: string
@@ -73,6 +75,8 @@ function BuilderInner() {
   const [timeLimit, setTimeLimit] = useState(30)
   const [difficulty, setDifficulty] = useState<'warmup' | 'balanced' | 'challenge'>('balanced')
   const [creating, setCreating] = useState(false)
+  // 402 → explicit "not enough credits" popup (cancel / buy).
+  const [noCreditsOpen, setNoCreditsOpen] = useState(false)
   const { errorToast, showError } = useStudyErrorToast()
   const [loadingTopics, setLoadingTopics] = useState(true)
 
@@ -144,7 +148,7 @@ function BuilderInner() {
       })
       if (res.status === 402) {
         setCreating(false)
-        router.push('/mobile/study/subscription')
+        setNoCreditsOpen(true)
         return
       }
       if (!res.ok) {
@@ -279,6 +283,12 @@ function BuilderInner() {
       >
         {String(t('study.builder.start'))}
       </StudyButton>
+      <NoCreditsSheet
+        open={noCreditsOpen}
+        cost={creditCostForTest('sat', selectedTopic && /math/i.test(selectedTopic.slug) ? 'math' : 'reading_writing')}
+        ko={ko}
+        onCancel={() => setNoCreditsOpen(false)}
+      />
     </StudyScrollShell>
   )
 }
