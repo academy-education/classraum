@@ -25,6 +25,13 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
+// useLayoutEffect fires before the browser paints — that's what lets the
+// cookie language apply without a visible Korean→English flash — but React
+// warns when it runs during SSR, so fall back to useEffect on the server
+// (where it never fires anyway).
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : useEffect
+
 interface LanguageProviderProps {
   children: ReactNode
   initialLanguage?: SupportedLanguage
@@ -252,53 +259,21 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     }
   }, [user?.id])
 
-  // Handle client-side initialization with enhanced debugging
-  useEffect(() => {
+  // Client-side language init — apply the cookie language BEFORE the first
+  // paint. This used to run in useEffect + requestAnimationFrame, i.e. after
+  // the browser had already painted the server default (Korean) at least
+  // once, which produced the visible language flicker on every load for
+  // English users. A pre-paint layout effect re-renders to the cookie
+  // language within the same frame, so no wrong-language frame is shown.
+  // (The server HTML itself stays on the default — reading cookies() in the
+  // root layout is off-limits; see the note in app/layout.tsx.)
+  useIsomorphicLayoutEffect(() => {
     try {
-      // Only run on client-side after hydration to prevent SSR/client mismatches
-      if (typeof window === 'undefined') return
-
-      // Mark as hydrated to prevent hydration mismatches
       setIsHydrated(true)
-
-      // Enhanced debugging for production cookie transfer issues
-      const hostname = window.location.hostname
-      const isProduction = process.env.NODE_ENV === 'production'
-      const hasClassraumDomain = hostname.includes('classraum.com')
-
-      console.debug('[LanguageProvider] Client-side initialization:', {
-        hostname,
-        isProduction,
-        hasClassraumDomain,
-        currentLanguage: language,
-        initialLanguage,
-        isHydrated: true
-      })
-
-      // Only update language from cookies after hydration to prevent flashing
-      // Use requestAnimationFrame to ensure this runs after React has finished hydrating
-      requestAnimationFrame(() => {
-        const cookieLanguage = languageCookies.get()
-
-        console.debug('[LanguageProvider] Cookie language check:', {
-          cookieLanguage,
-          currentLanguage: language,
-          willUpdate: cookieLanguage !== language
-        })
-
-        // Only update if there's a meaningful difference and we're not already using the cookie language
-        if (cookieLanguage !== language && cookieLanguage !== initialLanguage) {
-          console.log('[LanguageProvider] Loading language from cookies after hydration:', {
-            from: language,
-            to: cookieLanguage,
-            hostname,
-            isProduction
-          })
-          setLanguageState(cookieLanguage)
-        } else {
-          console.debug('[LanguageProvider] Cookie language matches current state, no update needed')
-        }
-      })
+      const cookieLanguage = languageCookies.get()
+      if (cookieLanguage === 'english' || cookieLanguage === 'korean') {
+        setLanguageState(prev => (cookieLanguage !== prev ? cookieLanguage : prev))
+      }
     } catch (error) {
       console.warn('[LanguageProvider] Error during client-side initialization:', error)
     }
