@@ -8,7 +8,7 @@ import {
   FileText, CreditCard, Settings, Camera, Sparkles,
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
   PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, LucideIcon,
-  MoreHorizontal, Lock, Target as TargetIcon,
+  MoreHorizontal, Lock, Target as TargetIcon, Lightbulb,
   Gift, X, Check, Loader2,
 } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
@@ -19,7 +19,6 @@ import { StudyButton } from './_shared/StudyButton'
 import { CreditConfirmSheet, NoCreditsSheet } from './_shared/CreditConfirmSheet'
 import { creditCostForTest } from '@/lib/study/plans'
 import { StudyTodayCard } from './_shared/primitives'
-import { RecommendedShelf } from './RecommendedShelf'
 import { ResumableShelf } from './ResumableShelf'
 import { MistakeBankShelf } from './MistakeBankShelf'
 import { GeneratingTestsChip } from './GeneratingTestsChip'
@@ -553,6 +552,21 @@ function StudyLandingInner() {
           {/* StudyPathPromo removed — the Path now has a permanent bottom-
               nav tab, so a promo card here was a redundant "continue"
               surface competing with Resume / Daily Challenge below. */}
+          {/* Free-tier upsell — replaces the old "Recommended for you"
+              shelf (personalized picks are a paid feature, so for free
+              users that section was 100% paywall; paid users see their
+              picks on the test-prep page). Same loading gate as the
+              pick-target card so it doesn't flash while prefs resolve. */}
+          {landingData && !landingData.loading && landingData.subscriptionStatus !== 'active' && (
+            <StudyTodayCard
+              href="/mobile/study/subscription"
+              icon={Lightbulb}
+              iconColorClass="bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_4px_10px_-2px_rgba(251,146,60,0.35)]"
+              eyebrow={ko ? '플랜' : 'Plans'}
+              title={ko ? '맞춤 추천 잠금 해제' : 'Unlock personalized picks'}
+              subtitle={ko ? '약점 분석 기반 추천을 받아요' : 'Picks built from your weak areas'}
+            />
+          )}
           <ResumeBanner />
           <SocialPresenceCard />
           <GeneratingTestsChip />
@@ -748,7 +762,9 @@ function StudyLandingInner() {
             no SectionGroup wrapper (that would double-label them). They
             close the page: act now (Today) → weekly goals → start a
             test → pick up where you left off. */}
-        <RecommendedShelf />
+        {/* RecommendedShelf removed from the landing — for free users it
+            was a pure paywall section (now a compact card in Today), and
+            paid users get their picks on the test-prep page. */}
         <ResumableShelf />
         <MistakeBankShelf />
 
@@ -1145,7 +1161,7 @@ function FirstTestActivationCard() {
             {ko ? '첫 모의고사를 풀어보세요' : 'Take your first practice test'}
           </div>
           <div className="text-[12.5px] opacity-90 mt-0.5 leading-snug">
-            {ko ? `즉시 시작 · 크레딧 ${cost}개 사용` : `Instant start · uses ${cost} credits`}
+            {ko ? `SAT 읽기와 쓰기 · 크레딧 ${cost}개 사용` : `SAT Reading & Writing · uses ${cost} credits`}
           </div>
         </div>
         <span className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/20 ring-1 ring-white/25 group-hover:bg-white/30 transition-colors">
