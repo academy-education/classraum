@@ -28,7 +28,11 @@ export default function BillingRedirectPage() {
 
     void (async () => {
       const params = new URLSearchParams(window.location.search)
+      // Billing-key issuance returns billingKey; one-time checkout
+      // (passes, packs) returns paymentId. Either way `code` means
+      // the PG reported a failure.
       const billingKey = params.get('billingKey')
+      const paymentId = params.get('paymentId')
       const code = params.get('code')
       const message = params.get('message')
       const intent = takeBillingIntent()
@@ -40,8 +44,8 @@ export default function BillingRedirectPage() {
       const fail = (msg?: string | null) =>
         setError(msg || (isKo ? '결제에 실패했어요. 다시 시도해 주세요.' : 'Payment failed. Please try again.'))
 
-      // PG returned an error, or the user backed out of the card window.
-      if (code || !billingKey) {
+      // PG returned an error, or the user backed out of the window.
+      if (code || (!billingKey && !paymentId)) {
         if (code) fail(message)
         else router.replace(back)
         return
@@ -63,13 +67,13 @@ export default function BillingRedirectPage() {
           })
 
         let res: Response
-        if (intent.kind === 'plan' && intent.planId) {
+        if (intent.kind === 'plan' && intent.planId && billingKey) {
           res = await post('/api/study/subscription/billing-key', { billingKey, plan: intent.planId })
-        } else if (intent.kind === 'pass' && intent.passId) {
-          res = await post('/api/study/subscription/purchase-pass', { billingKey, passId: intent.passId })
-        } else if (intent.kind === 'pack' && intent.packId) {
-          res = await post('/api/study/subscription/purchase-pack', { billingKey, packId: intent.packId })
-        } else if (intent.kind === 'gift') {
+        } else if (intent.kind === 'pass' && intent.passId && paymentId) {
+          res = await post('/api/study/subscription/purchase-pass', { paymentId, passId: intent.passId })
+        } else if (intent.kind === 'pack' && intent.packId && paymentId) {
+          res = await post('/api/study/subscription/purchase-pack', { paymentId, packId: intent.packId })
+        } else if (intent.kind === 'gift' && billingKey) {
           res = await post('/api/study/gift/purchase', { billingKey })
         } else {
           router.replace(back)

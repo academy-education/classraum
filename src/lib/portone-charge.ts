@@ -37,6 +37,67 @@ export interface PortOneChargeResult {
   httpStatus?: number
 }
 
+export interface VerifyOneTimeInput {
+  paymentId: string
+  /** Expected charge in whole won — mismatch fails verification. */
+  expectedAmount: number
+  /** Expected customData.kind (e.g. 'study_exam_pass'). */
+  expectedKind: string
+}
+
+export interface VerifyOneTimeResult {
+  ok: boolean
+  message?: string
+  /** Parsed customData from the payment, for product/buyer checks. */
+  customData?: Record<string, unknown>
+}
+
+/**
+ * Verify a client-initiated one-time payment (browser-SDK requestPayment)
+ * before granting the product: the payment must exist, be PAID, in KRW,
+ * for exactly the expected amount, and carry the expected customData
+ * kind. Callers must ALSO check customData product/buyer fields and
+ * record the paymentId for idempotency — PortOne does not prevent the
+ * same paid payment from being redeemed twice on our side.
+ */
+export async function verifyOneTimePayment(input: VerifyOneTimeInput): Promise<VerifyOneTimeResult> {
+  const cfg = getPortOneConfig()
+  if (!cfg.apiSecret) return { ok: false, message: 'PORTONE_API_SECRET not configured' }
+
+  let response: Response
+  try {
+    response = await fetch(`${PORTONE_API_BASE}/payments/${encodeURIComponent(input.paymentId)}`, {
+      headers: { Authorization: `PortOne ${cfg.apiSecret}` },
+    })
+  } catch (e) {
+    return { ok: false, message: `network: ${(e as Error).message}` }
+  }
+  let body: Record<string, unknown> = {}
+  try { body = await response.json() } catch { /* non-JSON */ }
+  if (!response.ok) {
+    return { ok: false, message: typeof body.message === 'string' ? body.message : `HTTP ${response.status}` }
+  }
+
+  if (body.status !== 'PAID') {
+    return { ok: false, message: `payment status ${String(body.status)}` }
+  }
+  const amount = body.amount as { total?: number } | undefined
+  if (!amount || amount.total !== input.expectedAmount) {
+    return { ok: false, message: `amount mismatch (got ${amount?.total}, expected ${input.expectedAmount})` }
+  }
+  if (body.currency !== 'KRW') {
+    return { ok: false, message: `currency ${String(body.currency)}` }
+  }
+  let customData: Record<string, unknown> = {}
+  try {
+    customData = typeof body.customData === 'string' ? JSON.parse(body.customData) : (body.customData as Record<string, unknown>) ?? {}
+  } catch { /* leave empty → kind check fails */ }
+  if (customData.kind !== input.expectedKind) {
+    return { ok: false, message: `customData kind mismatch (${String(customData.kind)})` }
+  }
+  return { ok: true, customData }
+}
+
 export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortOneChargeResult> {
   const cfg = getPortOneConfig()
   if (!cfg.apiSecret) {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { chargeBillingKey } from '@/lib/portone-charge'
+import { chargeBillingKey, verifyOneTimePayment } from '@/lib/portone-charge'
 import { STUDY_PLANS, STUDY_PASSES, resolvePass, isPassPlan } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
@@ -40,11 +40,12 @@ export async function POST(req: NextRequest) {
   )
   if (blocked) return blocked
 
-  let body: { billingKey?: string; passId?: string }
+  let body: { billingKey?: string; passId?: string; paymentId?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
-  const billingKey = body.billingKey
-  if (!billingKey || typeof billingKey !== 'string') {
-    return NextResponse.json({ error: 'missing billingKey' }, { status: 400 })
+  const billingKey = typeof body.billingKey === 'string' && body.billingKey ? body.billingKey : null
+  const providedPaymentId = typeof body.paymentId === 'string' && body.paymentId ? body.paymentId : null
+  if (!billingKey && !providedPaymentId) {
+    return NextResponse.json({ error: 'missing billingKey or paymentId' }, { status: 400 })
   }
 
   // Default to the first pass for pre-passId clients; otherwise resolve the
@@ -64,7 +65,7 @@ export async function POST(req: NextRequest) {
 
   const { data: sub } = await supabaseAdmin
     .from('study_subscriptions')
-    .select('status, plan')
+    .select('status, plan, portone_subscription_id')
     .eq('student_id', user.id)
     .maybeSingle()
   // Don't clobber a live recurring subscription. A row that is active on
@@ -77,24 +78,52 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'pass already active', code: 'pass_active' }, { status: 409 })
   }
 
-  const paymentId = `study-pass-${user.id}-${Date.now()}`
-  const result = await chargeBillingKey({
-    billingKey,
-    paymentId,
-    amount: passPlan.priceWon,
-    orderName: passPlan.orderName,
-    customerId: user.id,
-    customData: {
-      kind: 'study_exam_pass',
-      pass: passPlan.id,
+  // One-time checkout (requestPayment) verifies the paid payment; the
+  // legacy billing-key path charges server-side. Passes never renew, so
+  // one-time is the default client flow now.
+  let paymentId: string
+  if (providedPaymentId) {
+    const v = await verifyOneTimePayment({
+      paymentId: providedPaymentId,
+      expectedAmount: passPlan.priceWon,
+      expectedKind: 'study_exam_pass',
+    })
+    if (!v.ok) {
+      return NextResponse.json({ error: 'payment verification failed', message: v.message }, { status: 402 })
+    }
+    if (v.customData?.pass !== passPlan.id || v.customData?.student_id !== user.id) {
+      return NextResponse.json({ error: 'payment does not match this purchase' }, { status: 402 })
+    }
+    const { error: idemErr } = await supabaseAdmin.from('study_payments').insert({
+      payment_id: providedPaymentId,
       student_id: user.id,
-    },
-  })
-  if (!result.ok) {
-    return NextResponse.json(
-      { error: 'charge failed', code: result.code, message: result.message },
-      { status: 402 },
-    )
+      kind: 'study_exam_pass',
+      amount_won: passPlan.priceWon,
+    })
+    if (idemErr) {
+      return NextResponse.json({ error: 'payment already processed', code: 'already_processed' }, { status: 409 })
+    }
+    paymentId = providedPaymentId
+  } else {
+    paymentId = `study-pass-${user.id}-${Date.now()}`
+    const result = await chargeBillingKey({
+      billingKey: billingKey!,
+      paymentId,
+      amount: passPlan.priceWon,
+      orderName: passPlan.orderName,
+      customerId: user.id,
+      customData: {
+        kind: 'study_exam_pass',
+        pass: passPlan.id,
+        student_id: user.id,
+      },
+    })
+    if (!result.ok) {
+      return NextResponse.json(
+        { error: 'charge failed', code: result.code, message: result.message },
+        { status: 402 },
+      )
+    }
   }
 
   // Success — write the pass row. cancel_at_period_end=true so the cron
@@ -114,7 +143,7 @@ export async function POST(req: NextRequest) {
       current_period_end: periodEnd.toISOString(),
       next_grant_at: null,
       cancel_at_period_end: true,
-      portone_subscription_id: billingKey,
+      portone_subscription_id: billingKey ?? sub?.portone_subscription_id ?? null,
       last_payment_id: paymentId,
       last_payment_attempt_at: now.toISOString(),
       last_payment_failure: null,

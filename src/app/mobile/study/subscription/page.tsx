@@ -13,7 +13,7 @@ import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
-import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor } from '@/lib/study/purchase-credits'
+import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
@@ -262,34 +262,28 @@ export default function SubscriptionPage() {
    * subscription, but the server charges once and writes a seasonal
    * Premium pass (no recurring renewal).
    */
-  const buyPass = useCallback(async (passId: string, issueName: string, durationDays: number | null) => {
+  const buyPass = useCallback(async (passId: string, issueName: string) => {
     if (acting !== null) return
     setActing('pass')
     setError(null)
     setSuccessMessage(null)
     track('checkout_started', { kind: 'pass', passId })
     try {
-      const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
-      const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
-      if (!storeId || !channelKey) throw new Error('PortOne not configured')
-
       const customer = await billingCustomer(user)
       if (!customer.phoneNumber) { setError(missingPhoneMessage(ko)); return }
       stashBillingIntent({ kind: 'pass', passId, returnTo: '/mobile/study/subscription', ko })
-      const issued = await PortOne.requestIssueBillingKey({
-        storeId,
-        channelKey,
-        billingKeyMethod: 'CARD',
-        issueId: billingIssueId('pas', user?.id),
-        issueName,
+      // Passes never renew → a normal one-time checkout window, not the
+      // billing-key card-registration form.
+      const price = (data?.passes ?? []).find(p => p.id === passId)?.priceWon ?? 0
+      const pay = await requestOneTimePayment({
+        paymentId: billingIssueId('pas', user?.id),
+        orderName: issueName,
+        amountWon: price,
         customer,
-        customData: { kind: 'study_exam_pass', passId },
-        redirectUrl: billingRedirectUrl(),
-        windowType: billingWindowType(),
-        offerPeriod: offerPeriodFor(durationDays),
+        customData: { kind: 'study_exam_pass', pass: passId, student_id: user?.id },
       })
-      if (!issued?.billingKey) {
-        if (issued?.code) setError(issued.message ?? (t('study.subscription.checkoutFailed') as string))
+      if (!pay.ok) {
+        if (!pay.cancelled) setError(pay.error ?? (t('study.subscription.checkoutFailed') as string))
         return
       }
 
@@ -297,7 +291,7 @@ export default function SubscriptionPage() {
       const res = await fetch('/api/study/subscription/purchase-pass', {
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ billingKey: issued.billingKey, passId }),
+        body: JSON.stringify({ paymentId: pay.paymentId, passId }),
       })
       const body = await res.json().catch(() => ({}))
       if (!res.ok) {
@@ -310,7 +304,7 @@ export default function SubscriptionPage() {
     } finally {
       setActing(null)
     }
-  }, [acting, ko, load, t, user])
+  }, [acting, data, ko, load, t, user])
 
   /** Active-subscription plan switch (upgrade now / downgrade at renewal). */
   const changePlan = useCallback(async (planId: string) => {
@@ -566,7 +560,7 @@ export default function SubscriptionPage() {
             passes={passOffers}
             ko={ko}
             acting={acting}
-            onBuy={(id, name, days) => void buyPass(id, name, days)}
+            onBuy={(id, name) => void buyPass(id, name)}
           />
         )}
 
@@ -965,7 +959,7 @@ const PASS_THEMES: Record<string, { gradient: string; shadow: string; buttonText
 const PASS_THEME_FALLBACK = PASS_THEMES.sunung_pass_v1
 
 function PassCard({ p, ko, acting, onBuy }: {
-  p: PassInfo; ko: boolean; acting: Acting; onBuy: (id: string, name: string, durationDays: number | null) => void
+  p: PassInfo; ko: boolean; acting: Acting; onBuy: (id: string, name: string) => void
 }) {
   const theme = PASS_THEMES[p.id] ?? PASS_THEME_FALLBACK
   return (
@@ -991,7 +985,7 @@ function PassCard({ p, ko, acting, onBuy }: {
       </p>
       <button
         type="button"
-        onClick={() => onBuy(p.id, ko ? p.name_ko : p.name_en, p.durationDays ?? p.daysToExam)}
+        onClick={() => onBuy(p.id, ko ? p.name_ko : p.name_en)}
         disabled={acting !== null}
         className={`mt-3.5 w-full h-11 rounded-full bg-white ${theme.buttonText} text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-70 transition-all`}
       >
@@ -1006,7 +1000,7 @@ function PassCard({ p, ko, acting, onBuy }: {
  *  while the user is touching/hovering, and loops back to the first
  *  card. A single offer renders as a plain card — no carousel chrome. */
 function PassCarousel({ passes, ko, acting, onBuy }: {
-  passes: PassInfo[]; ko: boolean; acting: Acting; onBuy: (id: string, name: string, durationDays: number | null) => void
+  passes: PassInfo[]; ko: boolean; acting: Acting; onBuy: (id: string, name: string) => void
 }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(false)
