@@ -25,14 +25,17 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel }
     <div className="fixed inset-0 z-[70] flex items-center justify-center px-6">
       {/* Whole-screen blur, matching the logout dialog treatment —
           portaled to <body> so page-transition transforms can't clip
-          the overlay to the content area (header/nav must blur too). */}
+          the overlay to the content area (header/nav must blur too).
+          The fade lives ON the overlay and card, never on a shared
+          parent: an opacity-animated ancestor becomes a backdrop root
+          and silently kills the backdrop-filter. */}
       <button
         type="button"
         aria-label={ko ? '닫기' : 'Close'}
         onClick={busy ? undefined : onCancel}
-        className="absolute inset-0 bg-gray-900/30 backdrop-blur-sm"
+        className="absolute inset-0 bg-gray-900/30 backdrop-blur-sm animate-fade-in [animation-duration:200ms]"
       />
-      <div className="relative w-full max-w-[320px] rounded-2xl bg-white p-5 shadow-xl">
+      <div className="relative w-full max-w-[320px] rounded-2xl bg-white p-5 shadow-xl animate-fade-in [animation-duration:200ms]">
         <div className="flex flex-col items-center text-center gap-2.5">
           <span className="w-11 h-11 rounded-full bg-amber-500/15 text-amber-600 flex items-center justify-center">
             <Coins className="w-5 h-5" />
@@ -91,9 +94,9 @@ export function NoCreditsSheet({ open, cost, ko, onCancel }: {
         type="button"
         aria-label={ko ? '닫기' : 'Close'}
         onClick={onCancel}
-        className="absolute inset-0 bg-gray-900/30 backdrop-blur-sm"
+        className="absolute inset-0 bg-gray-900/30 backdrop-blur-sm animate-fade-in [animation-duration:200ms]"
       />
-      <div className="relative w-full max-w-[320px] rounded-2xl bg-white p-5 shadow-xl">
+      <div className="relative w-full max-w-[320px] rounded-2xl bg-white p-5 shadow-xl animate-fade-in [animation-duration:200ms]">
         <div className="flex flex-col items-center text-center gap-2.5">
           <span className="w-11 h-11 rounded-full bg-amber-500/15 text-amber-600 flex items-center justify-center">
             <Coins className="w-5 h-5" />
