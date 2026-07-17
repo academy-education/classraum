@@ -82,6 +82,10 @@ export default function GiftPage() {
         customer,
         customData: { kind: 'study_gift', gift: GIFT.id },
         redirectUrl: billingRedirectUrl(),
+        // Explicit per-platform window: Inicis PC module is an iframe,
+        // mobile module only works via redirection. Platform itself is
+        // UA-detected by the SDK (screen width plays no part).
+        windowType: { pc: 'IFRAME', mobile: 'REDIRECTION' },
       })
       if (!issued?.billingKey) {
         // No billingKey: a code means a PortOne error, none means the
