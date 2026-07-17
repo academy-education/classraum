@@ -12,7 +12,7 @@ import { StudyButton } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { GIFT } from '@/lib/study/gifts'
 import { PortOne } from '@/lib/portone-browser'
-import { billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl } from '@/lib/study/purchase-credits'
+import { billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId } from '@/lib/study/purchase-credits'
 import { useAuth } from '@/contexts/AuthContext'
 
 /**
@@ -77,7 +77,7 @@ export default function GiftPage() {
         storeId,
         channelKey,
         billingKeyMethod: 'CARD',
-        issueId: `study-gift-issue-${user?.id ?? 'anon'}-${Date.now()}`,
+        issueId: billingIssueId('gft', user?.id),
         issueName: ko ? GIFT.name_ko : GIFT.name_en,
         customer,
         customData: { kind: 'study_gift', gift: GIFT.id },

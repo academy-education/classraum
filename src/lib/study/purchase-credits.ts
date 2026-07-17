@@ -81,6 +81,15 @@ export function billingRedirectUrl(): string {
 }
 
 /**
+ * Compact unique issue id. Inicis caps oid at 40 chars, and the old
+ * `study-*-issue-<full-uuid>-<ms>` shape was 67 — the card window
+ * refused to open. prefix(≤4) + 8 uuid chars + base36 ms ≈ 22 chars.
+ */
+export function billingIssueId(prefix: string, userId?: string): string {
+  return `${prefix}-${(userId ?? 'anon').slice(0, 8)}-${Date.now().toString(36)}`
+}
+
+/**
  * Client-side credit-pack purchase, shared by the subscription page and
  * the out-of-credits screen.
  *
@@ -138,7 +147,7 @@ export async function buyCreditPack(
         storeId,
         channelKey,
         billingKeyMethod: 'CARD',
-        issueId: `study-pack-issue-${user?.id ?? 'anon'}-${Date.now()}`,
+        issueId: billingIssueId('spk', user?.id),
         issueName: 'Classraum Study credits',
         customer,
         customData: { kind: 'study_credit_pack', packId },
