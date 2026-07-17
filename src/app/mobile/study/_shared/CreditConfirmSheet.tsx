@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Coins, Loader2 } from '@/app/mobile/study/_shared/icons'
+import { ModalPortal } from '@/components/ui/modal-portal'
 
 /**
  * Credit-spend confirmation — shown before any one-tap test start that
@@ -20,8 +21,11 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel }
 }) {
   if (!open) return null
   return (
+    <ModalPortal>
     <div className="fixed inset-0 z-[70] flex items-center justify-center px-6">
-      {/* Whole-screen blur, matching the logout dialog treatment. */}
+      {/* Whole-screen blur, matching the logout dialog treatment —
+          portaled to <body> so page-transition transforms can't clip
+          the overlay to the content area (header/nav must blur too). */}
       <button
         type="button"
         aria-label={ko ? '닫기' : 'Close'}
@@ -63,6 +67,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel }
         </div>
       </div>
     </div>
+    </ModalPortal>
   )
 }
 
@@ -80,6 +85,7 @@ export function NoCreditsSheet({ open, cost, ko, onCancel }: {
 }) {
   if (!open) return null
   return (
+    <ModalPortal>
     <div className="fixed inset-0 z-[70] flex items-center justify-center px-6">
       <button
         type="button"
@@ -119,5 +125,6 @@ export function NoCreditsSheet({ open, cost, ko, onCancel }: {
         </div>
       </div>
     </div>
+    </ModalPortal>
   )
 }
