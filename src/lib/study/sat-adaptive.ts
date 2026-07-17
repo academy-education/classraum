@@ -82,22 +82,71 @@ export interface SatSectionScore {
   capped: boolean
 }
 
+export type SatSection = 'reading_writing' | 'math'
+
 /**
- * Path-weighted section score. Raw accuracy maps onto a 200–800 band,
- * but the achievable ceiling depends on the earned path: the hard
- * module spans the full 400–800 range, the easy module caps at 590
- * (≈ the real exam's lower-module ceiling). This makes the branch
- * consequential without pretending to be an official equated score.
+ * Official raw→scaled conversion tables from College Board's
+ * "Scoring Your Paper SAT Practice Test #4" guide (2324-BB-852),
+ * the published paper form of the digital SAT. Each raw score maps to
+ * a [lower, upper] scaled pair: the guide's two guardrail columns,
+ * which correspond to the least/most favorable adaptive path — so we
+ * read the UPPER column for the earned-hard route and the LOWER column
+ * for the easy route.
+ *
+ * The paper form is longer than the adaptive form (R&W 66 vs 54 raw,
+ * Math 54 vs 44) because it can't adapt, so our raw score is converted
+ * via PERCENTAGE correct: fraction × table max, interpolated between
+ * the surrounding rows. Still labeled an estimate in the UI — true
+ * adaptive equating is per-form and unpublished — but the curve shape
+ * (flat floor, steep top) is now College Board's own.
+ */
+// prettier-ignore
+const RW_CONVERSION: ReadonlyArray<readonly [number, number]> = [
+  [200,200],[200,200],[200,200],[200,200],[200,200],[200,200],[200,200],
+  [200,210],[200,220],[210,230],[230,250],[240,260],[250,270],[260,280],
+  [280,300],[290,310],[320,340],[340,360],[350,370],[360,380],[370,390],
+  [370,390],[380,400],[390,410],[400,420],[410,430],[420,440],[420,440],
+  [430,450],[440,460],[450,470],[460,480],[460,480],[470,490],[480,500],
+  [490,510],[490,510],[500,520],[510,530],[520,540],[530,550],[540,560],
+  [540,560],[550,570],[560,580],[570,590],[580,600],[590,610],[590,610],
+  [600,620],[610,630],[620,640],[630,650],[630,650],[640,660],[650,670],
+  [660,680],[670,690],[680,700],[690,710],[700,720],[710,730],[720,740],
+  [730,750],[750,770],[770,790],[790,800],
+]
+// prettier-ignore
+const MATH_CONVERSION: ReadonlyArray<readonly [number, number]> = [
+  [200,200],[200,200],[200,200],[200,200],[200,200],[200,200],[200,200],
+  [200,220],[200,230],[220,250],[250,280],[280,310],[290,320],[300,330],
+  [310,340],[320,350],[330,360],[330,360],[340,370],[350,380],[360,390],
+  [370,400],[370,400],[380,410],[390,420],[400,430],[420,450],[430,460],
+  [440,470],[460,490],[470,500],[480,510],[500,530],[510,540],[520,550],
+  [530,560],[550,580],[560,590],[570,600],[580,610],[590,620],[600,630],
+  [620,650],[630,660],[650,680],[670,700],[690,720],[710,740],[730,760],
+  [740,770],[750,780],[760,790],[770,800],[780,800],[790,800],
+]
+
+/**
+ * Section score from the official conversion curve. Fraction correct is
+ * projected onto the paper form's raw scale and linearly interpolated
+ * between the two surrounding table rows; the earned route picks the
+ * guardrail column (hard → upper, easy → lower). Rounded to the nearest
+ * 10 like a real section score.
  */
 export function estimateSectionScore(
   totalCorrect: number,
   totalQuestions: number,
   route: SatModule2Route,
+  section: SatSection = 'reading_writing',
 ): SatSectionScore {
+  const table = section === 'math' ? MATH_CONVERSION : RW_CONVERSION
+  const maxRaw = table.length - 1
   const pct = totalQuestions > 0 ? Math.max(0, Math.min(1, totalCorrect / totalQuestions)) : 0
-  // Hard path: 400 floor → 800 ceiling. Easy path: 200 floor → 590 ceiling.
-  const [floor, ceiling] = route === 'hard' ? [400, 800] : [200, 590]
-  const raw = floor + pct * (ceiling - floor)
-  const score = Math.round(raw / 10) * 10
+  const rawOnTable = pct * maxRaw
+  const lo = Math.floor(rawOnTable)
+  const hi = Math.min(maxRaw, lo + 1)
+  const frac = rawOnTable - lo
+  const col = route === 'hard' ? 1 : 0
+  const interpolated = table[lo][col] + (table[hi][col] - table[lo][col]) * frac
+  const score = Math.max(200, Math.min(800, Math.round(interpolated / 10) * 10))
   return { score, route, capped: route === 'easy' }
 }

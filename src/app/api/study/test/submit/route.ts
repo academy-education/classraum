@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
 
   const { data: session } = await supabaseAdmin
     .from('study_sessions')
-    .select('id, student_id, mode, topic_id, module2_route')
+    .select('id, student_id, mode, topic_id, module2_route, topic:study_topics(slug)')
     .eq('id', body.sessionId)
     .maybeSingle()
   if (!session || session.student_id !== user.id) {
@@ -106,14 +106,19 @@ export async function POST(req: NextRequest) {
   }
 
   // Adaptive SAT sessions carry the earned Module 2 route; the score
-  // reveal adds a path-weighted 200–800 section-score band on top of
-  // the raw percentage. `satScore(correct, total)` builds it, or null
-  // for non-adaptive sessions.
+  // reveal adds a 200–800 section score from College Board's published
+  // conversion curve on top of the raw percentage. The topic slug picks
+  // the section-specific table (Math vs Reading & Writing).
+  // `satScore(correct, total)` builds it, or null for non-adaptive
+  // sessions.
   const module2Route = session.module2_route === 'hard' || session.module2_route === 'easy'
     ? session.module2_route
     : null
+  const topicRel = session.topic as { slug: string } | { slug: string }[] | null
+  const topicSlug = (Array.isArray(topicRel) ? topicRel[0]?.slug : topicRel?.slug) ?? ''
+  const satSection = topicSlug.includes('math') ? 'math' as const : 'reading_writing' as const
   const satScore = (correct: number, total: number) =>
-    module2Route ? estimateSectionScore(correct, total, module2Route) : null
+    module2Route ? estimateSectionScore(correct, total, module2Route, satSection) : null
 
   // ── Anti-forgery: grade against the SERVER's cached test payload ──
   // The client passes its questions array for convenience, but its
