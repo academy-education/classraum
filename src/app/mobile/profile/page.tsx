@@ -48,7 +48,8 @@ import {
   AlertTriangle,
   BookOpen,
   Megaphone,
-  Clock
+  Clock,
+  Pencil
 } from 'lucide-react'
 import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
@@ -72,8 +73,22 @@ function MobileProfilePageContent() {
     loading,
     preferencesLoading,
     refetch: refetchProfile,
-    updatePreferences
+    updatePreferences,
+    updatePhone
   } = useMobileProfile(user?.userId || null, user?.userName || null, academyIds)
+
+  // Inline phone editor state (contact info card).
+  const [editingPhone, setEditingPhone] = useState(false)
+  const [phoneDraft, setPhoneDraft] = useState('')
+  const [phoneSaving, setPhoneSaving] = useState(false)
+  const savePhone = async () => {
+    if (phoneSaving) return
+    setPhoneSaving(true)
+    const ok = await updatePhone(phoneDraft)
+    setPhoneSaving(false)
+    if (ok) setEditingPhone(false)
+    else toast({ title: t('common.error') as string || 'Failed to save', variant: 'destructive' })
+  }
 
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
   const [showStudentSelector, setShowStudentSelector] = useState(false)
@@ -426,22 +441,66 @@ function MobileProfilePageContent() {
           Grades/academy context the nickname is meaningless noise. */}
       {profile?.role === 'student' && inStudyMode && <StudyNicknameCard ko={language === 'korean'} />}
 
-      {/* Contact Information panel — only renders rows that have data */}
-      {(profile?.phone || profile?.academy_name || profile?.student_school || profile?.student_grade) && (
+      {/* Contact Information panel — the phone row always renders (it's
+          editable, so an empty value shows an Add action); other rows
+          only when they have data. */}
+      {profile && (
         <div className="mb-6">
           <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
             {t('mobile.profile.contactInformation')}
           </Eyebrow>
           <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
-            {profile?.phone && (
-              <div className="p-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
-                  <span className="text-sm text-gray-700">{t('mobile.profile.phone')}</span>
+            <div className="p-4">
+              {editingPhone ? (
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-gray-500 flex-shrink-0" strokeWidth={1.75} />
+                  <input
+                    type="tel"
+                    autoFocus
+                    value={phoneDraft}
+                    onChange={(e) => setPhoneDraft(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === 'Enter') void savePhone() }}
+                    placeholder="010-1234-5678"
+                    className="flex-1 min-w-0 h-9 px-3 rounded-lg ring-1 ring-gray-200 bg-white text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setEditingPhone(false)}
+                    disabled={phoneSaving}
+                    className="flex-shrink-0 h-9 px-3 rounded-lg text-[12.5px] font-medium text-gray-600 hover:bg-gray-100 transition"
+                  >
+                    {t('common.cancel')}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => void savePhone()}
+                    disabled={phoneSaving}
+                    className="flex-shrink-0 h-9 px-3.5 rounded-lg bg-primary text-white text-[12.5px] font-semibold disabled:opacity-60 active:scale-[0.97] transition"
+                  >
+                    {phoneSaving ? '…' : t('common.save')}
+                  </button>
                 </div>
-                <span className="text-sm font-medium text-gray-900 truncate ml-3">{profile.phone}</span>
-              </div>
-            )}
+              ) : (
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                    <span className="text-sm text-gray-700">{t('mobile.profile.phone')}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => { setPhoneDraft(profile.phone ?? ''); setEditingPhone(true) }}
+                    className="flex items-center gap-1.5 ml-3 min-w-0 group"
+                  >
+                    {profile.phone ? (
+                      <span className="text-sm font-medium text-gray-900 truncate">{profile.phone}</span>
+                    ) : (
+                      <span className="text-sm font-medium text-primary">{t('common.add')}</span>
+                    )}
+                    <Pencil className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary flex-shrink-0 transition-colors" strokeWidth={1.75} />
+                  </button>
+                </div>
+              )}
+            </div>
             {(profile?.academy_names?.length || profile?.academy_name) && (() => {
               // Multi-academy display: stack academies vertically when there are 2+,
               // since the right-aligned single-line layout would truncate them.

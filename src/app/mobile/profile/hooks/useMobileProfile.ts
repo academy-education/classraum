@@ -43,6 +43,10 @@ interface UseMobileProfileReturn {
   error: string | null
   refetch: () => Promise<void>
   updatePreferences: (updates: Partial<UserPreferences>) => Promise<void>
+  /** Save a new phone number. Writes users.phone (the home for
+   *  academy-less study accounts) and the role table when a row exists.
+   *  Returns false if every write failed. */
+  updatePhone: (phone: string) => Promise<boolean>
 }
 
 const defaultPreferences: UserPreferences = {
@@ -140,7 +144,11 @@ export const useMobileProfile = (
           id: userData.id,
           name: userData.name || userName || 'User',
           email: userData.email || '',
-          role: userData.role
+          role: userData.role,
+          // users.phone is the base — study-only accounts have no role
+          // table row, so this is their only phone home. Role tables
+          // override below when they carry one.
+          phone: userData.phone || undefined
         }
 
         // Fetch role-specific data
@@ -153,7 +161,7 @@ export const useMobileProfile = (
               .single()
 
             if (studentData) {
-              profileData.phone = studentData.phone
+              if (studentData.phone) profileData.phone = studentData.phone
               profileData.student_school = studentData.school_name
             }
           } else if (userData.role === 'teacher') {
@@ -163,7 +171,7 @@ export const useMobileProfile = (
               .eq('user_id', userId)
               .single()
 
-            if (teacherData) {
+            if (teacherData?.phone) {
               profileData.phone = teacherData.phone
             }
           } else if (userData.role === 'parent') {
@@ -173,7 +181,7 @@ export const useMobileProfile = (
               .eq('user_id', userId)
               .single()
 
-            if (parentData) {
+            if (parentData?.phone) {
               profileData.phone = parentData.phone
             }
           } else if (userData.role === 'academy_owner') {
@@ -183,7 +191,7 @@ export const useMobileProfile = (
               .eq('user_id', userId)
               .single()
 
-            if (ownerData) {
+            if (ownerData?.phone) {
               profileData.phone = ownerData.phone
             }
           }
@@ -312,6 +320,47 @@ export const useMobileProfile = (
     }
   }, [userId, data])
 
+  const updatePhone = useCallback(async (rawPhone: string): Promise<boolean> => {
+    if (!userId || !data) return false
+    const phone = rawPhone.trim() || null
+
+    // users.phone always (the only home for academy-less study accounts).
+    const { error: usersError } = await supabase
+      .from('users')
+      .update({ phone })
+      .eq('id', userId)
+    if (usersError) {
+      console.error('[useMobileProfile] Error updating users.phone:', usersError)
+      return false
+    }
+
+    // Role table too, when a row exists — keeps academy surfaces (which
+    // read the role tables) in sync. A 0-row update is a silent no-op.
+    const roleTable = data.profile.role === 'student' ? 'students' :
+                      data.profile.role === 'teacher' ? 'teachers' :
+                      data.profile.role === 'parent' ? 'parents' :
+                      data.profile.role === 'academy_owner' ? 'academy_owners' : null
+    if (roleTable) {
+      const { error: roleError } = await supabase
+        .from(roleTable)
+        .update({ phone })
+        .eq('user_id', userId)
+      if (roleError) console.warn(`[useMobileProfile] Error updating ${roleTable}.phone:`, roleError)
+    }
+
+    const cachedData: CachedProfileData = {
+      profile: { ...data.profile, phone: phone || undefined },
+      preferences: data.preferences
+    }
+    setData(cachedData)
+    try {
+      const sessionCacheKey = `mobile-profile-${userId}`
+      sessionStorage.setItem(sessionCacheKey, JSON.stringify(cachedData))
+      sessionStorage.setItem(`${sessionCacheKey}-timestamp`, Date.now().toString())
+    } catch { /* cache best-effort */ }
+    return true
+  }, [userId, data])
+
   // Fetch on mount and when userId changes
   useEffect(() => {
     if (userId) {
@@ -337,6 +386,7 @@ export const useMobileProfile = (
     preferencesLoading,
     error,
     refetch: fetchProfileData,
-    updatePreferences
+    updatePreferences,
+    updatePhone
   }
 }
