@@ -71,7 +71,7 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
       }
 
       // No row yet → first study visit. Provision the FREE plan:
-      // premade content is unlimited, plus a one-time 3-credit grant
+      // premade content is unlimited, plus a one-time 2-credit grant
       // for AI generation. Replaces the old auto 7-day trial (which
       // confusingly showed "Cancel subscription" to people who never
       // subscribed). Free rows never expire, so no period fields.
@@ -84,7 +84,7 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
             plan: 'free_v1',
             // Keep in sync with FREE_CREDITS in src/lib/study/plans.ts
             // (client component, so the constant isn't imported).
-            grant_credits_remaining: 3,
+            grant_credits_remaining: 2,
           })
         if (!cancelled) {
           // On insert success → allow through. On insert failure show

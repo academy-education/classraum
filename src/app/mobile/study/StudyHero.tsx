@@ -84,14 +84,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
   }, [landingData])
 
   const now = new Date()
-  const hour = now.getHours()
-  const greeting = hour < 5
-    ? (ko ? '늦은 밤이에요' : 'Late night')
-    : hour < 12
-      ? (ko ? '좋은 아침이에요' : 'Good morning')
-      : hour < 18
-        ? (ko ? '좋은 오후예요' : 'Good afternoon')
-        : (ko ? '좋은 저녁이에요' : 'Good evening')
+  const greeting = ko ? '안녕하세요' : 'Hello'
   const firstName = user?.userName?.split(' ')[0] ?? user?.userName ?? ''
   const dateStr = now.toLocaleDateString(ko ? 'ko-KR' : 'en-US', {
     month: 'short', day: 'numeric', weekday: 'short',
@@ -131,7 +124,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
             <p className="text-[11px] font-medium text-white/70 tabular-nums">{dateStr}</p>
             <h1 className="mt-1 text-[22px] leading-tight font-bold tracking-tight text-white">
               {greeting}{firstName ? `,` : ''}
-              {firstName && <span className="block text-white/95">{firstName}</span>}
+              {firstName && <span className="block text-white/95">{firstName}{ko ? '님' : ''}</span>}
             </h1>
           </div>
 
