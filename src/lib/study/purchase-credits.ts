@@ -1,5 +1,37 @@
 import { authHeaders } from '@/lib/auth-headers'
 import { PortOne } from '@/lib/portone-browser'
+import { supabase } from '@/lib/supabase'
+
+/**
+ * PortOne customer block for billing-key issuance. Inicis V2 refuses to
+ * even open the card window without the buyer's phone number, so pull
+ * it (and the real name) from users — study signups store it there.
+ */
+export async function billingCustomer(
+  user: { id?: string; email?: string | null } | null | undefined,
+): Promise<{ customerId?: string; email?: string; phoneNumber?: string; fullName?: string }> {
+  let phoneNumber: string | undefined
+  let fullName: string | undefined
+  if (user?.id) {
+    try {
+      const { data } = await supabase
+        .from('users')
+        .select('phone, name')
+        .eq('id', user.id)
+        .maybeSingle()
+      phoneNumber = data?.phone || undefined
+      fullName = data?.name || undefined
+    } catch { /* fall through — PortOne will surface its own error */ }
+  }
+  return { customerId: user?.id, email: user?.email ?? undefined, phoneNumber, fullName }
+}
+
+/** Localized "add your phone first" message for pre-empting the Inicis error. */
+export function missingPhoneMessage(ko: boolean): string {
+  return ko
+    ? '결제하려면 휴대폰 번호가 필요해요. 프로필에서 먼저 등록해 주세요.'
+    : 'A phone number is required for payment. Please add one in your Profile first.'
+}
 
 /**
  * Client-side credit-pack purchase, shared by the subscription page and
@@ -21,6 +53,7 @@ export interface BuyCreditPackResult {
 export async function buyCreditPack(
   packId: string,
   user: { id?: string; email?: string | null } | null | undefined,
+  ko = false,
 ): Promise<BuyCreditPackResult> {
   const post = async (billingKey?: string) => {
     const headers = await authHeaders()
@@ -44,13 +77,15 @@ export async function buyCreditPack(
       const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
       if (!storeId || !channelKey) return { ok: false, error: 'PortOne not configured' }
 
+      const customer = await billingCustomer(user)
+      if (!customer.phoneNumber) return { ok: false, error: missingPhoneMessage(ko) }
       const issued = await PortOne.requestIssueBillingKey({
         storeId,
         channelKey,
         billingKeyMethod: 'CARD',
         issueId: `study-pack-issue-${user?.id ?? 'anon'}-${Date.now()}`,
         issueName: 'Classraum Study credits',
-        customer: { customerId: user?.id, email: user?.email ?? undefined },
+        customer,
         customData: { kind: 'study_credit_pack', packId },
       })
       if (!issued?.billingKey) {

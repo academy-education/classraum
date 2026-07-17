@@ -902,7 +902,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       if (buyingPack) return
       setBuyingPack(packId)
       setBuyError(null)
-      const r = await buyCreditPack(packId, user)
+      const r = await buyCreditPack(packId, user, ko)
       setBuyingPack(null)
       if (r.ok) {
         // Credits in hand — clear the error and re-run generation.

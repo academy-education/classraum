@@ -13,7 +13,7 @@ import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
-import { buyCreditPack } from '@/lib/study/purchase-credits'
+import { buyCreditPack, billingCustomer, missingPhoneMessage } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
@@ -207,6 +207,10 @@ export default function SubscriptionPage() {
       const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
       if (!storeId || !channelKey) throw new Error('PortOne not configured')
 
+      // Inicis V2 needs the buyer's phone to open the card window.
+      const customer = await billingCustomer(user)
+      if (!customer.phoneNumber) { setError(missingPhoneMessage(ko)); return }
+
       const issueId = `study-issue-${user?.id ?? 'anon'}-${Date.now()}`
       const issued = await PortOne.requestIssueBillingKey({
         storeId,
@@ -214,7 +218,7 @@ export default function SubscriptionPage() {
         billingKeyMethod: 'CARD',
         issueId,
         issueName: 'Classraum Study subscription',
-        customer: { customerId: user?.id, email: user?.email ?? undefined },
+        customer,
         customData: { kind: 'study_subscription', plan: planId },
       })
 
@@ -261,13 +265,15 @@ export default function SubscriptionPage() {
       const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE
       if (!storeId || !channelKey) throw new Error('PortOne not configured')
 
+      const customer = await billingCustomer(user)
+      if (!customer.phoneNumber) { setError(missingPhoneMessage(ko)); return }
       const issued = await PortOne.requestIssueBillingKey({
         storeId,
         channelKey,
         billingKeyMethod: 'CARD',
         issueId: `study-pass-issue-${user?.id ?? 'anon'}-${Date.now()}`,
         issueName,
-        customer: { customerId: user?.id, email: user?.email ?? undefined },
+        customer,
         customData: { kind: 'study_exam_pass', passId },
       })
       if (!issued?.billingKey) {
@@ -328,7 +334,7 @@ export default function SubscriptionPage() {
     track('checkout_started', { kind: 'pack', packId })
     // Shared flow: charges a stored card, or issues one via the PortOne
     // overlay for card-less (free) buyers, then retries.
-    const r = await buyCreditPack(packId, user)
+    const r = await buyCreditPack(packId, user, ko)
     if (r.ok) {
       await load()
       setSuccessMessage(ko ? `크레딧 ${credits}개가 추가되었어요.` : `${credits} credits added to your account.`)
