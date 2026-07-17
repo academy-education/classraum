@@ -18,6 +18,7 @@ import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
 import { TestPrepDisclaimer } from '../../_shared/TestPrepDisclaimer'
 import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
+import { CreditConfirmSheet } from '../../_shared/CreditConfirmSheet'
 import { PredictedScore } from '../../_shared/PredictedScore'
 import { RecommendedShelf } from '../../RecommendedShelf'
 import { LandingDataProvider } from '../../LandingDataProvider'
@@ -109,6 +110,9 @@ function TopicInner({ slug }: { slug: string }) {
   const [bankBusy, setBankBusy] = useState(false)
   const { errorToast, showError } = useStudyErrorToast()
   const [testSheetOpen, setTestSheetOpen] = useState(false)
+  // Credit-spend confirm for the one-tap SAT bank start (the AI-test
+  // customization sheet shows its own cost line, so it skips this).
+  const [creditConfirmOpen, setCreditConfirmOpen] = useState(false)
   const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
     count: 20, minutes: 30,
   })
@@ -236,7 +240,9 @@ function TopicInner({ slug }: { slug: string }) {
     // verified item bank, never AI-generated. Live generation is
     // reserved for the free-form "type anything" creator.
     if (mode === 'full_test' && parseTestSlug(target.slug).family === 'sat') {
-      void startBankTest()
+      // Route through the credit-spend confirm — bank SAT tests charge
+      // credits, and no start path should skip the disclosure.
+      setCreditConfirmOpen(true)
       return
     }
     setCreating(mode)
@@ -537,10 +543,12 @@ function TopicInner({ slug }: { slug: string }) {
               <>
                 <FeaturedFullTestCard
                   // SAT tests are premade (instant bank assembly) and have no
-                  // customizable options, so skip the customization sheet.
+                  // customizable options, so skip the customization sheet —
+                  // but confirm the credit spend first (the sheet shows its
+                  // own cost line; this one-tap path had none).
                   startSession={() => {
                     if (effectiveTopic && parseTestSlug(effectiveTopic.slug).family === 'sat') {
-                      void startBankTest()
+                      setCreditConfirmOpen(true)
                     } else {
                       openTestSheet()
                     }
@@ -644,6 +652,17 @@ function TopicInner({ slug }: { slug: string }) {
         section={effectiveTopic ? parseTestSlug(effectiveTopic.slug).section : null}
         onClose={() => setTestSheetOpen(false)}
         onStart={(config) => { setTestSheetOpen(false); void startSession('full_test', config, testLanguage) }}
+      />
+      <CreditConfirmSheet
+        open={creditConfirmOpen}
+        cost={(() => {
+          const parsed = parseTestSlug(effectiveTopic?.slug ?? slug)
+          return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
+        })()}
+        busy={bankBusy}
+        ko={ko}
+        onCancel={() => setCreditConfirmOpen(false)}
+        onConfirm={() => { void startBankTest().finally(() => setCreditConfirmOpen(false)) }}
       />
     </StudyScrollShell>
   )

@@ -8,6 +8,11 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { NumberRoll } from './primitives'
 import { StudyButton, studyButtonClass } from './StudyButton'
+import { CreditConfirmSheet } from './CreditConfirmSheet'
+import { creditCostForTest } from '@/lib/study/plans'
+
+// The diagnostic launches an SAT Reading & Writing adaptive full test.
+const DIAGNOSTIC_CREDIT_COST = creditCostForTest('sat', 'reading_writing')
 
 // Digital SAT structure — shown on the diagnostic card so students know
 // exactly what the baseline test involves. Reading & Writing: 2 adaptive
@@ -50,6 +55,8 @@ export function PredictedScore() {
   const [loaded, setLoaded] = useState(false)
   const [isPremium, setIsPremium] = useState<boolean | null>(null)
   const [starting, setStarting] = useState(false)
+  // Credit-spend confirm — the diagnostic charges like any full mock.
+  const [confirmOpen, setConfirmOpen] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -119,9 +126,22 @@ export function PredictedScore() {
   if (!data || !data.supported) return null
 
   // Cold start — no completed full test yet. Premium-gated diagnostic:
-  // free users see the format + an unlock CTA; premium users can start.
+  // free users see the format + an unlock CTA; premium users confirm
+  // the credit spend, then start.
   if (!data.enoughData) {
-    return <DiagnosticCard ko={ko} isPremium={isPremium === true} starting={starting} onStart={() => void startDiagnostic()} />
+    return (
+      <>
+        <DiagnosticCard ko={ko} isPremium={isPremium === true} starting={starting} onStart={() => setConfirmOpen(true)} />
+        <CreditConfirmSheet
+          open={confirmOpen}
+          cost={DIAGNOSTIC_CREDIT_COST}
+          busy={starting}
+          ko={ko}
+          onCancel={() => setConfirmOpen(false)}
+          onConfirm={() => void startDiagnostic().finally(() => setConfirmOpen(false))}
+        />
+      </>
+    )
   }
 
   const rangeStr = data.low != null && data.high != null ? `${data.low}–${data.high}` : ''
