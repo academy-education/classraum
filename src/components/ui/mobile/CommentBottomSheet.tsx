@@ -120,7 +120,7 @@ export function CommentBottomSheet({
     <>
       {/* Backdrop with blur */}
       <div
-        className="fixed inset-0 backdrop-blur-sm bg-black/30"
+        className="fixed inset-0 backdrop-blur-sm bg-black/40"
         style={{ zIndex: 9998 }}
         onClick={handleBackdropClick}
       />

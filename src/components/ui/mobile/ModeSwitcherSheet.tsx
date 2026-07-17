@@ -77,7 +77,7 @@ export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSh
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/40 z-[100] animate-in fade-in duration-200"
+        className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[120] animate-in fade-in duration-200"
         onClick={onClose}
         aria-hidden
       />
@@ -86,7 +86,7 @@ export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSh
         role="dialog"
         aria-modal="true"
         aria-label={String(t('mobile.mode.sheetTitle'))}
-        className="fixed inset-x-0 bottom-0 z-[101] bg-white rounded-t-2xl shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.20)] animate-in slide-in-from-bottom duration-250"
+        className="fixed inset-x-0 bottom-0 z-[121] bg-white rounded-t-2xl shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.20)] animate-in slide-in-from-bottom duration-250"
         // Push content above the 72px bottom nav so the second mode
         // card isn't clipped on routes where the nav is visible.
         style={{ paddingBottom: 'calc(72px + env(safe-area-inset-bottom))', ...sheetStyle }}

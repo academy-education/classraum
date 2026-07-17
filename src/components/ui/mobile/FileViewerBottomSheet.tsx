@@ -208,7 +208,7 @@ export function FileViewerBottomSheet({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center"
+      className="fixed inset-0 z-[120] flex items-end justify-center"
       onClick={handleBackdropClick}
     >
       {/* Backdrop */}
@@ -405,7 +405,7 @@ export function FileViewerBottomSheet({
 
       {/* Native Action Sheet for Download/Share */}
       {showActionSheet && (
-        <div className="fixed inset-0 z-[60] flex items-end justify-center">
+        <div className="fixed inset-0 z-[121] flex items-end justify-center">
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setShowActionSheet(false)}

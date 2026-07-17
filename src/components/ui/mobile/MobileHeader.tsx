@@ -259,20 +259,19 @@ export function MobileHeader() {
                 href="/mobile/study/subscription"
                 aria-label={language === 'korean' ? '크레딧' : 'Credits'}
                 title={language === 'korean' ? '모의고사 생성 크레딧' : 'Mock-test credits'}
-                className="inline-flex items-center gap-2 h-9 pl-2 pr-2.5 rounded-full bg-primary/10 hover:bg-primary/15 active:bg-primary/20 transition-colors focus:outline-none"
+                className="inline-flex items-center gap-1.5 h-9 pl-2 pr-2 rounded-full bg-primary/10 hover:bg-primary/15 active:bg-primary/20 transition-colors focus:outline-none"
               >
-                {/* Coin with a tiny "+" badge — reads as "credits, tap to
-                    top up" (the chip links to the credit store). */}
-                <span className="relative inline-flex">
-                  <Coins className="w-4 h-4 text-primary" weight="fill" />
-                  <span
-                    aria-hidden
-                    className="absolute -top-1 -right-1.5 w-3 h-3 rounded-full bg-primary text-white flex items-center justify-center text-[9px] font-bold leading-none ring-[1.5px] ring-white"
-                  >
-                    +
-                  </span>
-                </span>
+                {/* Coin + count + "+" — the plus sits AFTER the number so
+                    the chip reads "5 credits, tap to add more" (the chip
+                    links to the credit store). */}
+                <Coins className="w-4 h-4 text-primary" weight="fill" />
                 <span className="text-[13px] font-bold text-primary tabular-nums leading-none">{credits}</span>
+                <span
+                  aria-hidden
+                  className="w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[11px] font-bold leading-none"
+                >
+                  +
+                </span>
               </Link>
             )}
 
