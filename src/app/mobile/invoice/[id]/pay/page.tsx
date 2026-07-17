@@ -17,7 +17,9 @@ import {
   ExternalLink,
   Shield,
   FileText,
-  Loader2
+  Loader2,
+  Wallet,
+  Landmark
 } from 'lucide-react'
 import * as PortOne from '@portone/browser-sdk/v2'
 import { useToast } from '@/hooks/use-toast'
@@ -47,7 +49,7 @@ export default function MobileInvoicePaymentPage() {
   const { toast } = useToast()
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [processing, setProcessing] = useState(false)
-  const [paymentMethod, setPaymentMethod] = useState('card')
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'easy_pay' | 'transfer'>('card')
 
   // Fetch invoice details (same logic as details page)
   const invoiceFetcher = useCallback(async (): Promise<InvoiceDetails | null> => {
@@ -210,7 +212,28 @@ export default function MobileInvoicePaymentPage() {
       const shortInvoiceId = invoiceId.slice(-8) // Last 8 chars of invoice ID
       const paymentId = `inv_${shortInvoiceId}_${timestamp}_${randomSuffix}` // ~32 chars
 
+      // Real payer contact from users — the PG shows this to the payer
+      // and Inicis PC requires a real phone. The old dummy values
+      // ("01012341234"/test@test.com) remain only as a last resort so a
+      // contact-less account can still pay.
+      let payerPhone: string | undefined
+      let payerName: string | undefined
+      let payerEmail: string | undefined
+      try {
+        const { data: payer } = await supabase
+          .from('users')
+          .select('phone, name, email')
+          .eq('id', user!.userId)
+          .maybeSingle()
+        payerPhone = payer?.phone || undefined
+        payerName = payer?.name || undefined
+        payerEmail = payer?.email || undefined
+      } catch { /* fall through to fallbacks */ }
+
       // Request payment using PortOne SDK
+      const payMethod = paymentMethod === 'easy_pay' ? 'EASY_PAY' as const
+        : paymentMethod === 'transfer' ? 'TRANSFER' as const
+        : 'CARD' as const
       const paymentRequest = {
         storeId: storeId,
         channelKey: channelKey,
@@ -218,11 +241,11 @@ export default function MobileInvoicePaymentPage() {
         orderName: `Invoice Payment - ${invoice.studentName}`,
         totalAmount: invoice.finalAmount,
         currency: "KRW" as const,
-        payMethod: "CARD" as const,
+        payMethod,
         customer: {
-          fullName: invoice.studentName,
-          phoneNumber: (user as any)?.phone || "01012345678",
-          email: (user as any)?.email || "test@test.com",
+          fullName: payerName || invoice.studentName,
+          phoneNumber: payerPhone || "01012345678",
+          email: payerEmail || "test@test.com",
         },
         redirectUrl: `${window.location.origin}/payments/redirect`,
         noticeUrls: [`${window.location.origin}/api/payments/webhook`],
@@ -576,20 +599,30 @@ export default function MobileInvoicePaymentPage() {
             {t('mobile.payment.paymentMethod')}
           </h3>
           
-          <div className="flex justify-center">
-            <button
-              onClick={() => setPaymentMethod('card')}
-              className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors w-full max-w-xs ${
-                paymentMethod === 'card'
-                  ? 'border-primary bg-primary/10'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              <CreditCard className={`w-6 h-6 ${paymentMethod === 'card' ? 'text-primary' : 'text-gray-600'}`} />
-              <span className={`text-sm font-medium ${paymentMethod === 'card' ? 'text-primary' : 'text-gray-700'}`}>
-                {t('mobile.payment.methods.card')}
-              </span>
-            </button>
+          <div className="grid grid-cols-3 gap-2">
+            {([
+              { key: 'card' as const, Icon: CreditCard, label: t('mobile.payment.methods.card') },
+              { key: 'easy_pay' as const, Icon: Wallet, label: t('mobile.payment.methods.easyPay') },
+              { key: 'transfer' as const, Icon: Landmark, label: t('mobile.payment.methods.transfer') },
+            ]).map(({ key, Icon, label }) => {
+              const active = paymentMethod === key
+              return (
+                <button
+                  key={key}
+                  onClick={() => setPaymentMethod(key)}
+                  className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors ${
+                    active
+                      ? 'border-primary bg-primary/10'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <Icon className={`w-6 h-6 ${active ? 'text-primary' : 'text-gray-600'}`} />
+                  <span className={`text-sm font-medium ${active ? 'text-primary' : 'text-gray-700'}`}>
+                    {label}
+                  </span>
+                </button>
+              )
+            })}
           </div>
         </Card>
 
