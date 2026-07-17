@@ -318,9 +318,11 @@ export default function AuthPage() {
            email.trim() !== '' &&
            password.trim() !== '' &&
            signupConfirmPassword.trim() !== ''
-    if (signupIntent === 'study') return baseValid
+    // Study door collects a phone number (there's no academy to reach
+    // these students through, so it's the only contact channel).
+    if (signupIntent === 'study') return baseValid && phone.trim() !== ''
     return baseValid && role.trim() !== '' && academyId.trim() !== ''
-  }, [activeTab, fullName, email, password, signupConfirmPassword, role, academyId, signupIntent])
+  }, [activeTab, fullName, email, password, signupConfirmPassword, role, academyId, signupIntent, phone])
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -424,7 +426,8 @@ export default function AuthPage() {
             id: authData.user.id,
             email: email,
             name: fullName,
-            role: signupRole
+            role: signupRole,
+            phone: phone || null
           })
 
         if (userInsertError) {
@@ -1074,9 +1077,27 @@ export default function AuthPage() {
               </>
             )}
             {activeTab === "signup" && signupIntent === 'study' && (
-              <p className="text-xs text-muted-foreground leading-relaxed -mt-1">
-                {t('auth.signup.studyNote')}
-              </p>
+              <>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('auth.form.labels.phone')} <span className="text-rose-500">*</span>
+                  </Label>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                    <Input
+                      type="tel"
+                      required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder={String(t('auth.form.placeholders.phone'))}
+                      className="pl-10"
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed -mt-1">
+                  {t('auth.signup.studyNote')}
+                </p>
+              </>
             )}
             {activeTab === "signup" && signupIntent === 'academy' && (
               <>
