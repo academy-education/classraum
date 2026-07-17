@@ -12,7 +12,7 @@ import { StudyButton } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { GIFT } from '@/lib/study/gifts'
 import { PortOne } from '@/lib/portone-browser'
-import { billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType } from '@/lib/study/purchase-credits'
+import { billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor } from '@/lib/study/purchase-credits'
 import { useAuth } from '@/contexts/AuthContext'
 
 /**
@@ -83,6 +83,8 @@ export default function GiftPage() {
         customData: { kind: 'study_gift', gift: GIFT.id },
         redirectUrl: billingRedirectUrl(),
         windowType: billingWindowType(),
+        // Redeemed later by the recipient → open-ended service period.
+        offerPeriod: offerPeriodFor(null),
       })
       if (!issued?.billingKey) {
         // No billingKey: a code means a PortOne error, none means the

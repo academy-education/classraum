@@ -13,7 +13,7 @@ import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
-import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType } from '@/lib/study/purchase-credits'
+import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
@@ -225,6 +225,9 @@ export default function SubscriptionPage() {
         customData: { kind: 'study_subscription', plan: planId },
         redirectUrl: billingRedirectUrl(),
         windowType: billingWindowType(),
+        // Inicis mobile issuance requires the service period; use the
+        // plan's own cadence (1m/1y interval or an explicit range).
+        offerPeriod: offerPeriodFor(plans.find(p => p.id === planId)?.intervalDays ?? 30),
       })
 
       if (!issued?.billingKey) {
@@ -252,14 +255,14 @@ export default function SubscriptionPage() {
     } finally {
       setActing(null)
     }
-  }, [acting, load, t, user])
+  }, [acting, load, plans, t, user])
 
   /**
    * 수능 대비 패스 purchase — same PortOne billing-key overlay as a new
    * subscription, but the server charges once and writes a seasonal
    * Premium pass (no recurring renewal).
    */
-  const buyPass = useCallback(async (passId: string, issueName: string) => {
+  const buyPass = useCallback(async (passId: string, issueName: string, durationDays: number | null) => {
     if (acting !== null) return
     setActing('pass')
     setError(null)
@@ -283,6 +286,7 @@ export default function SubscriptionPage() {
         customData: { kind: 'study_exam_pass', passId },
         redirectUrl: billingRedirectUrl(),
         windowType: billingWindowType(),
+        offerPeriod: offerPeriodFor(durationDays),
       })
       if (!issued?.billingKey) {
         if (issued?.code) setError(issued.message ?? (t('study.subscription.checkoutFailed') as string))
@@ -562,7 +566,7 @@ export default function SubscriptionPage() {
             passes={passOffers}
             ko={ko}
             acting={acting}
-            onBuy={(id, name) => void buyPass(id, name)}
+            onBuy={(id, name, days) => void buyPass(id, name, days)}
           />
         )}
 
@@ -961,7 +965,7 @@ const PASS_THEMES: Record<string, { gradient: string; shadow: string; buttonText
 const PASS_THEME_FALLBACK = PASS_THEMES.sunung_pass_v1
 
 function PassCard({ p, ko, acting, onBuy }: {
-  p: PassInfo; ko: boolean; acting: Acting; onBuy: (id: string, name: string) => void
+  p: PassInfo; ko: boolean; acting: Acting; onBuy: (id: string, name: string, durationDays: number | null) => void
 }) {
   const theme = PASS_THEMES[p.id] ?? PASS_THEME_FALLBACK
   return (
@@ -987,7 +991,7 @@ function PassCard({ p, ko, acting, onBuy }: {
       </p>
       <button
         type="button"
-        onClick={() => onBuy(p.id, ko ? p.name_ko : p.name_en)}
+        onClick={() => onBuy(p.id, ko ? p.name_ko : p.name_en, p.durationDays ?? p.daysToExam)}
         disabled={acting !== null}
         className={`mt-3.5 w-full h-11 rounded-full bg-white ${theme.buttonText} text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-70 transition-all`}
       >
@@ -1002,7 +1006,7 @@ function PassCard({ p, ko, acting, onBuy }: {
  *  while the user is touching/hovering, and loops back to the first
  *  card. A single offer renders as a plain card — no carousel chrome. */
 function PassCarousel({ passes, ko, acting, onBuy }: {
-  passes: PassInfo[]; ko: boolean; acting: Acting; onBuy: (id: string, name: string) => void
+  passes: PassInfo[]; ko: boolean; acting: Acting; onBuy: (id: string, name: string, durationDays: number | null) => void
 }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(false)
