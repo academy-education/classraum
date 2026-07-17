@@ -266,8 +266,9 @@ export function MobileHeader() {
                     links to the credit store). */}
                 <Coins className="w-4 h-4 text-primary" weight="fill" />
                 <span className="text-[13px] font-bold text-primary tabular-nums leading-none">{credits}</span>
-                {/* -ml cancels the chip gap so the + hugs the count. */}
-                <span aria-hidden className="-ml-1 text-[15px] font-bold text-primary leading-none">
+                {/* Outlined + — reads as a "buy more" affordance rather
+                    than part of the count. -ml keeps it hugging the number. */}
+                <span aria-hidden className="-ml-0.5 w-[17px] h-[17px] rounded-full ring-1 ring-primary/50 bg-white/70 flex items-center justify-center text-[12px] font-bold text-primary leading-none">
                   +
                 </span>
               </Link>
