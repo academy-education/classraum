@@ -94,7 +94,7 @@ export function SkeletonPageHeader({ withBack = true }: { withBack?: boolean }) 
  *  header as its loaded state. */
 export function SkeletonStickyHeader() {
   return (
-    <header className="sticky top-0 z-30 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 pt-5 pb-3.5">
+    <header className="sticky top-0 z-30 bg-gray-50/[0.97] border-b border-gray-100 pt-5 pb-3.5">
       <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8">
         <SkeletonPageHeader />
       </div>

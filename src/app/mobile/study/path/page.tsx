@@ -399,7 +399,7 @@ function TargetChipStrip({
   const [confirmRemove, setConfirmRemove] = useState<string | null>(null)
   return (
     <>
-      <div className="flex-shrink-0 bg-gray-50/95 backdrop-blur-sm border-b border-gray-100 px-5 py-1">
+      <div className="flex-shrink-0 bg-gray-50/[0.97] border-b border-gray-100 px-5 py-1">
         {/* py-1.5 INSIDE the scroller: overflow-x-auto clips vertically at
             content height, so without inner padding the chips' 1px ring
             and drop shadow get shaved off top and bottom. */}

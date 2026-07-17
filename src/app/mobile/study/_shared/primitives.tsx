@@ -101,7 +101,7 @@ export function StudyPageHeader({
   return (
     <header
       ref={setEl}
-      className={`sticky top-0 z-30 bg-gray-50/95 backdrop-blur-sm transition-all duration-200 ${
+      className={`sticky top-0 z-30 bg-gray-50/[0.97] transition-all duration-200 ${
         collapsed ? 'border-b border-gray-200 py-2' : 'border-b border-gray-100 pt-5 pb-3.5'
       }`}
     >
