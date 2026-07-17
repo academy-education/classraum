@@ -56,7 +56,7 @@ export function BottomNavigation() {
     // the bar ~34px+ above the bottom on native builds.
     // Hidden at lg — the desktop sidebar takes over there.
     <nav
-      className="flex-shrink-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 pb-1 z-50 lg:hidden"
+      className="flex-shrink-0 bg-white/[0.97] border-t border-gray-100 pb-1 z-50 lg:hidden"
       style={{ touchAction: 'none' }}
     >
       {/* Flat hairline-top bar; the only ornament is the pill gliding
