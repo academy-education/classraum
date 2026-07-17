@@ -5,7 +5,7 @@
  * rendered anywhere in study mode.
  *
  * The whole product draws from the Phosphor set at one pinned weight
- * ("light") so lines share a consistent quality that sits naturally next
+ * ("bold") so lines share a consistent quality that sits naturally next
  * to Raumi's soft-flat mascot. A handful of celebratory "hero" icons ship
  * as duotone variants (`*Hero`) whose two-tone fill echoes Raumi on the
  * big gradient cards.
@@ -136,7 +136,7 @@ import {
   BookBookmark as PhBookBookmark,
 } from '@phosphor-icons/react'
 
-const DEFAULT_WEIGHT: IconWeight = 'regular'
+const DEFAULT_WEIGHT: IconWeight = 'bold'
 const HERO_WEIGHT: IconWeight = 'duotone'
 
 /** Icon component shape used by call sites that store icons in typed

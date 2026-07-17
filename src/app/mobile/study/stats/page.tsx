@@ -143,18 +143,25 @@ function StatsInner() {
   )
 
   if (!stats) {
-    // Skeleton body mirrors the loaded layout: 2x2 metric grid →
-    // sparkline card → two row lists. No content shift when stats arrive.
+    // Skeleton body mirrors the loaded layout top-to-bottom: This-week
+    // card → streak/freeze card → 2x2 metric grid → score trend →
+    // activity heatmap → row list. No content shift when stats arrive.
     return (
       <StudyScrollShell header={header}>
+        <SkeletonBlock className="h-[104px] w-full rounded-2xl" />
+        <SkeletonBlock className="h-[76px] w-full rounded-2xl" />
         <SkeletonMetricGrid />
         <div>
           <SkeletonHeader widthClass="w-1/4" />
-          <SkeletonBlock className="h-20 w-full rounded-2xl" />
+          <SkeletonBlock className="h-36 w-full rounded-2xl" />
         </div>
         <div>
           <SkeletonHeader widthClass="w-1/3" />
-          <SkeletonRowList count={2} />
+          <SkeletonBlock className="h-[120px] w-full rounded-2xl" />
+        </div>
+        <div>
+          <SkeletonHeader widthClass="w-1/3" />
+          <SkeletonRowList count={3} />
         </div>
       </StudyScrollShell>
     )
