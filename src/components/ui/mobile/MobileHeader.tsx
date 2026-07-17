@@ -266,10 +266,7 @@ export function MobileHeader() {
                     links to the credit store). */}
                 <Coins className="w-4 h-4 text-primary" weight="fill" />
                 <span className="text-[13px] font-bold text-primary tabular-nums leading-none">{credits}</span>
-                <span
-                  aria-hidden
-                  className="w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[11px] font-bold leading-none"
-                >
+                <span aria-hidden className="text-[15px] font-bold text-primary leading-none">
                   +
                 </span>
               </Link>
