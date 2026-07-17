@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import { cookies } from 'next/headers'
 import { Montserrat, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { LanguageWrapper } from './language-wrapper'
@@ -59,18 +58,18 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // Read the language cookie server-side so the FIRST paint is already in
-  // the user's language. Hardcoding 'korean' here made every English
-  // user's page flash Korean, then flip after hydration when the client
-  // read the cookie — the "language flicker" on every load.
-  const cookieStore = await cookies()
-  const cookieLang = cookieStore.get('classraum_language')?.value
-  const initialLanguage: SupportedLanguage = cookieLang === 'english' ? 'english' : 'korean'
+  // DO NOT read cookies() here. It forces every route dynamic, and this
+  // app has BOTH src/app/page.tsx and src/app/(app)/page.tsx mapping to
+  // "/" (papered over by scripts/fix-client-manifest.js) — dynamic
+  // rendering of "/" 500s on Vercel (www.classraum.com went down when we
+  // tried). The language flicker this reintroduces needs a scoped fix
+  // (e.g. per-surface cookie read below the root), not root-level dynamic.
+  const initialLanguage: SupportedLanguage = 'korean'
 
   return (
     // suppressHydrationWarning: the theme boot script below adds the
