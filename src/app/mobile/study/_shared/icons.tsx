@@ -37,6 +37,7 @@ import {
   Crown as PhCrown,
   Medal as PhMedal,
   Coins as PhCoins,
+  Coin as PhCoin,
   Ticket as PhTicket,
   Gift as PhGift,
   GraduationCap as PhGraduationCap,
@@ -163,7 +164,9 @@ export const Flame = make(PhFlame)
 export const Snowflake = make(PhSnowflake)
 export const Crown = make(PhCrown)
 export const Award = make(PhMedal)
-export const Coins = make(PhCoins)
+// Single coin — Phosphor's two-coin `Coins` glyph turns into overlapping
+// ellipses at chip/card sizes (w-4/w-5); the hero variant keeps the stack.
+export const Coins = make(PhCoin)
 export const Ticket = make(PhTicket)
 export const Gift = make(PhGift)
 export const GraduationCap = make(PhGraduationCap)

@@ -864,8 +864,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           return {
             title: ko ? '테스트 크레딧이 부족해요' : 'You’re out of test credits',
             body: ko
-              ? '모의고사 1회 생성에 크레딧 1개가 사용돼요. 크레딧을 충전하면 바로 이어서 만들 수 있어요.'
-              : 'Each mock test uses 1 credit. Top up and we’ll pick up right where you left off.',
+              ? '모의고사 생성에는 크레딧 1~2개가 사용돼요. 크레딧을 충전하면 바로 이어서 만들 수 있어요.'
+              : 'Each mock test uses 1–2 credits. Top up and we’ll pick up right where you left off.',
             cta: '',
           }
         case 'quota':
