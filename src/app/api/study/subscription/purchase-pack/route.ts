@@ -30,14 +30,6 @@ export async function POST(req: NextRequest) {
   if (authResult.response) return authResult.response
   const user = authResult.user
 
-  // Real-money endpoint: one charge per 15s per student. Absorbs
-  // double-taps and retry loops before they reach the card.
-  const blocked = enforceRateLimit(
-    `purchase-pack:user:${user.id}`,
-    { windowMs: 15 * 1000, max: 1 },
-  )
-  if (blocked) return blocked
-
   let body: { packId?: string; billingKey?: string; paymentId?: string } = {}
   try { body = await req.json() } catch { /* default pack */ }
   const pack = resolvePack(body.packId)
@@ -87,6 +79,17 @@ export async function POST(req: NextRequest) {
     if (!billingKey) {
       return NextResponse.json({ error: 'no payment method on file', code: 'no_billing_key' }, { status: 402 })
     }
+    // Real-money charge: one per 15s per student, absorbing double-taps
+    // before they reach the card. Only the billing-key branch is
+    // limited — the card-less probe above must stay free (it's the
+    // first POST of every one-time checkout), and the paymentId
+    // redemption path is already exactly-once via the study_payments
+    // PK, so limiting it could only strand a paid buyer with a 429.
+    const blocked = enforceRateLimit(
+      `purchase-pack:user:${user.id}`,
+      { windowMs: 15 * 1000, max: 1 },
+    )
+    if (blocked) return blocked
     paymentId = `study-pack-${user.id}-${Date.now()}`
     const result = await chargeBillingKey({
       billingKey,

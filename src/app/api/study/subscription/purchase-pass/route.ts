@@ -33,13 +33,6 @@ export async function POST(req: NextRequest) {
   if (authResult.response) return authResult.response
   const user = authResult.user
 
-  // Real-money endpoint: one charge per 15s per student.
-  const blocked = enforceRateLimit(
-    `purchase-pass:user:${user.id}`,
-    { windowMs: 15 * 1000, max: 1 },
-  )
-  if (blocked) return blocked
-
   let body: { billingKey?: string; passId?: string; paymentId?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
   const billingKey = typeof body.billingKey === 'string' && body.billingKey ? body.billingKey : null
@@ -105,6 +98,15 @@ export async function POST(req: NextRequest) {
     }
     paymentId = providedPaymentId
   } else {
+    // Real-money charge: one per 15s per student. Only the billing-key
+    // branch is limited — the paymentId redemption path above is
+    // already exactly-once via the study_payments PK, so limiting it
+    // could only strand a paid buyer with a 429.
+    const blocked = enforceRateLimit(
+      `purchase-pass:user:${user.id}`,
+      { windowMs: 15 * 1000, max: 1 },
+    )
+    if (blocked) return blocked
     paymentId = `study-pass-${user.id}-${Date.now()}`
     const result = await chargeBillingKey({
       billingKey: billingKey!,

@@ -3704,7 +3704,8 @@
       "intentAcademy": "Academy member",
       "intentAcademyDesc": "Join with your academy",
       "studyNote": "Start studying right away. You can join an academy later with an invite link.",
-      "academyInviteHint": "Have an invite link from your academy? Opening it fills these fields automatically."
+      "academyInviteHint": "Have an invite link from your academy? Opening it fills these fields automatically.",
+      "referralApplied": "Your friend's invite code is applied — you both get bonus credits after you sign up."
     },
     "form": {
       "labels": {
@@ -3717,7 +3718,8 @@
         "schoolName": "School Name",
         "schoolNameOptional": "(optional)",
         "phone": "Phone",
-        "phoneOptional": "(optional)"
+        "phoneOptional": "(optional)",
+        "referralCode": "Referral code (optional)"
       },
       "placeholders": {
         "fullName": "Enter your full name",
@@ -3727,7 +3729,8 @@
         "role": "Select your role",
         "academyId": "Enter your academy ID",
         "schoolName": "Enter your school name",
-        "phone": "Enter your phone number"
+        "phone": "Enter your phone number",
+        "referralCode": "Enter a friend's invite code"
       },
       "roles": {
         "manager": "Manager",

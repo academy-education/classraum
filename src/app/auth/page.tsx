@@ -12,10 +12,36 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Squares } from "@/components/ui/squares-background"
-import { Mail, Lock, User, Building, Phone, Eye, EyeOff, CheckCircle2, BookOpen } from "lucide-react"
+import { Mail, Lock, User, Building, Phone, Eye, EyeOff, CheckCircle2, BookOpen, Ticket } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
 import { useToast } from "@/hooks/use-toast"
 import { readStoredMode } from "@/lib/study/currentMode"
+import { authHeaders } from "@/lib/auth-headers"
+import { savePendingReferral, clearPendingReferral } from "@/lib/study/pending-referral"
+
+/**
+ * POST the referral code to the redeem endpoint using the current session.
+ * Terminal outcomes (success, already redeemed, self-referral, unknown
+ * code) clear the stashed pending code; transient/network failures keep it
+ * so the study home's claim banner can retry. Never throws — referral
+ * redemption must not break the signup flow.
+ */
+async function redeemReferralCode(code: string): Promise<void> {
+  try {
+    const headers = await authHeaders()
+    const res = await fetch('/api/study/referral/redeem', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ code }),
+    })
+    const json: { code?: string } = await res.json().catch(() => ({}))
+    const terminal = res.ok ||
+      ['already_redeemed', 'self_referral', 'unknown_code', 'missing_code'].includes(json?.code ?? '')
+    if (terminal) clearPendingReferral()
+  } catch {
+    // Network hiccup — keep the pending code for the home banner.
+  }
+}
 
 export default function AuthPage() {
   const router = useRouter()
@@ -42,6 +68,11 @@ export default function AuthPage() {
   // force 'academy' and hide the choice.
   const [signupIntent, setSignupIntent] = useState<'study' | 'academy'>('study')
   const [isInviteSignup, setIsInviteSignup] = useState(false)
+  // Study-door referral code (optional). Prefilled + locked when the
+  // student arrives via a friend's invite link (/auth?intent=study&ref=CODE),
+  // mirroring the academy_id-from-URL pattern above.
+  const [referralCode, setReferralCode] = useState("")
+  const [isReferralCodeFromUrl, setIsReferralCodeFromUrl] = useState(false)
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("")
@@ -122,6 +153,22 @@ export default function AuthPage() {
       if (intentParam === 'study' || intentParam === 'academy') {
         setActiveTab("signup")
         setSignupIntent(intentParam)
+      }
+
+      // Friend-invite link (?ref=CODE) — study signups only. Prefill and
+      // lock the referral input, same pattern as role/academy_id above.
+      // Also stash the code (localStorage) right away so it survives an
+      // email-confirmation round-trip; the study home's claim banner is
+      // the fallback redeemer if the immediate post-signup redeem never
+      // runs. Ignored for academy invite links, which never carry ?ref.
+      const refParam = urlParams.get('ref')
+      if (refParam && refParam.trim() && !academyIdParam && !familyIdParam && !familyMemberIdParam) {
+        const normalizedRef = refParam.trim().toUpperCase()
+        setActiveTab("signup")
+        setSignupIntent('study')
+        setReferralCode(normalizedRef)
+        setIsReferralCodeFromUrl(true)
+        savePendingReferral(normalizedRef)
       }
 
       // Handle family_member_id parameter (personalized registration link)
@@ -405,6 +452,14 @@ export default function AuthPage() {
         return
       }
 
+      // Study signups with a referral code: persist the code NOW (account
+      // exists but may still need email confirmation, i.e. no session yet).
+      // If the immediate sign-in below succeeds we redeem right away;
+      // otherwise the study home's ReferralClaimBanner picks the stashed
+      // code up on the first authenticated load after confirmation.
+      const pendingReferral = signupIntent === 'study' ? referralCode.trim().toUpperCase() : ''
+      if (pendingReferral) savePendingReferral(pendingReferral)
+
       // User profile will be created automatically by the handle_new_user trigger
       // Wait briefly for the trigger to complete
       await new Promise(resolve => setTimeout(resolve, 1000))
@@ -630,6 +685,16 @@ export default function AuthPage() {
           } else {
             console.log('[Auth] Successfully updated family_member:', updateData)
           }
+        }
+
+        // Redeem the referral code now that a session exists (the redeem
+        // API needs a Bearer token). Awaited so the credits are granted
+        // before the role-based redirect lands the student on the study
+        // home; failures are non-fatal — a transient error leaves the
+        // stashed code for the home claim banner to retry, while terminal
+        // outcomes clear it so the banner never nags.
+        if (pendingReferral) {
+          await redeemReferralCode(pendingReferral)
         }
 
         // Send welcome email (don't await - fire and forget)
@@ -1093,6 +1158,31 @@ export default function AuthPage() {
                       className="pl-10"
                     />
                   </div>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground/80">
+                    {t('auth.form.labels.referralCode')}
+                  </Label>
+                  <div className="relative">
+                    <Ticket className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                    <Input
+                      type="text"
+                      value={referralCode}
+                      onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
+                      placeholder={String(t('auth.form.placeholders.referralCode'))}
+                      autoCapitalize="characters"
+                      autoCorrect="off"
+                      spellCheck={false}
+                      maxLength={16}
+                      disabled={isReferralCodeFromUrl}
+                      className={`pl-10 uppercase ${isReferralCodeFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`}
+                    />
+                  </div>
+                  {isReferralCodeFromUrl && (
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {t('auth.signup.referralApplied')}
+                    </p>
+                  )}
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed -mt-1">
                   {t('auth.signup.studyNote')}

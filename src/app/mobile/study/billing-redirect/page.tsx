@@ -102,7 +102,10 @@ export default function BillingRedirectPage() {
         }
 
         const body = await res.json().catch(() => ({} as Record<string, unknown>))
-        if (!res.ok) {
+        // 409 already_processed = this paymentId was already redeemed
+        // (page reloaded / reopened from history) — the product was
+        // granted, so treat it as success rather than scaring the buyer.
+        if (!res.ok && body.code !== 'already_processed') {
           fail(typeof body.message === 'string' ? body.message : null)
           return
         }
@@ -110,6 +113,17 @@ export default function BillingRedirectPage() {
         // navigation the same way the intent came in.
         if (intent.kind === 'gift' && body.code) {
           try { sessionStorage.setItem('study-gift-issued', String(body.code)) } catch { /* shown on gift page best-effort */ }
+        }
+        // Pack/pass buyers land back with a success flag so the return
+        // page can show its "credits added / pass active" banner — the
+        // redirect flow otherwise ends with no feedback at all.
+        if (intent.kind === 'pack' || intent.kind === 'pass') {
+          const dest = new URL(back, window.location.origin)
+          dest.searchParams.set('purchased', intent.kind)
+          const credits = Number(body.creditsAdded)
+          if (credits > 0) dest.searchParams.set('credits', String(credits))
+          router.replace(dest.pathname + dest.search)
+          return
         }
         router.replace(back)
       } catch {

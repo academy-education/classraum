@@ -3761,7 +3761,8 @@
       "intentAcademy": "학원 회원",
       "intentAcademyDesc": "학원 소속으로 가입",
       "studyNote": "바로 학습을 시작할 수 있어요. 나중에 초대 링크로 학원에 가입할 수 있습니다.",
-      "academyInviteHint": "학원에서 받은 초대 링크로 열면 아래 정보가 자동으로 입력됩니다."
+      "academyInviteHint": "학원에서 받은 초대 링크로 열면 아래 정보가 자동으로 입력됩니다.",
+      "referralApplied": "친구의 초대 코드가 적용됐어요. 가입하면 둘 다 보너스 크레딧을 받아요."
     },
     "form": {
       "labels": {
@@ -3774,7 +3775,8 @@
         "schoolName": "학교명",
         "schoolNameOptional": "(선택사항)",
         "phone": "전화번호",
-        "phoneOptional": "(선택사항)"
+        "phoneOptional": "(선택사항)",
+        "referralCode": "초대 코드 (선택)"
       },
       "placeholders": {
         "fullName": "성명을 입력하세요",
@@ -3784,7 +3786,8 @@
         "role": "역할을 선택하세요",
         "academyId": "학원 ID를 입력하세요",
         "schoolName": "학교명을 입력하세요",
-        "phone": "전화번호를 입력하세요"
+        "phone": "전화번호를 입력하세요",
+        "referralCode": "친구의 초대 코드를 입력하세요"
       },
       "roles": {
         "manager": "원장",

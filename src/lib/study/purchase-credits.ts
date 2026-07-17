@@ -158,7 +158,11 @@ export async function requestOneTimePayment(opts: {
     customer: opts.customer,
     customData: opts.customData,
     redirectUrl: billingRedirectUrl(),
-    windowType: billingWindowType(),
+    // NOT billingWindowType(): Inicis V2 일반결제 rejects POPUP on PC
+    // ("PC환경에서 지원하지 않는 PG사 창 유형(POPUP)") — the sub-900px
+    // POPUP fallback that billing-key issuance needs kills the payment
+    // window outright. Payments must use IFRAME on PC, always.
+    windowType: { pc: 'IFRAME' as const, mobile: 'REDIRECTION' as const },
   })
   if (res?.code != null) {
     // PG error or user closed the window.
@@ -232,7 +236,10 @@ export async function buyCreditPack(
         return pay.cancelled ? { ok: false, cancelled: true } : { ok: false, error: pay.error }
       }
       const second = await post({ paymentId: pay.paymentId })
-      if (second.res.ok) {
+      // 409 already_processed means a parallel redemption (e.g. the
+      // redirect page) already granted the credits for this payment —
+      // that's a success from the buyer's point of view.
+      if (second.res.ok || second.body.code === 'already_processed') {
         return { ok: true, creditsAdded: Number(second.body.creditsAdded) || undefined }
       }
       return { ok: false, error: typeof second.body.message === 'string' ? second.body.message : 'purchase failed' }

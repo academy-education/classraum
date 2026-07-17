@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { REFERRAL_SIGNUP_CREDITS, normalizeReferralCode } from '@/lib/study/referral'
+import { FREE_CREDITS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
 
 /**
@@ -94,6 +95,12 @@ export async function POST(req: NextRequest) {
   }
 
   // We own the (only) redemption row now — grant both sides exactly once.
+  // A referee redeeming straight from signup may not have visited a study
+  // page yet, so their study_subscriptions row (normally provisioned by
+  // SubscriptionGate on first visit) may not exist — and the credit RPC
+  // would silently no-op. Provision the same free row here so the signup
+  // reward actually lands.
+  await ensureFreeSubscription(user.id)
   const refereeAdded = await grantReferralCredits(user.id, inserted.id)
   await grantReferralCredits(referrerId, inserted.id)
 
@@ -110,6 +117,35 @@ export async function POST(req: NextRequest) {
     success: true,
     creditsAdded: refereeAdded,
   })
+}
+
+/**
+ * Provision the free study_subscriptions row for a brand-new referee, if
+ * they don't have one yet. Mirrors the SubscriptionGate first-visit insert
+ * (status 'free', FREE_CREDITS one-time grant); the gate later sees the
+ * existing row and lets them straight through. A concurrent gate insert
+ * losing the race is fine — the unique violation is swallowed.
+ */
+async function ensureFreeSubscription(studentId: string): Promise<void> {
+  const { data: existing } = await supabaseAdmin
+    .from('study_subscriptions')
+    .select('student_id')
+    .eq('student_id', studentId)
+    .maybeSingle()
+  if (existing) return
+
+  const { error } = await supabaseAdmin
+    .from('study_subscriptions')
+    .insert({
+      student_id: studentId,
+      status: 'free',
+      plan: 'free_v1',
+      grant_credits_remaining: FREE_CREDITS,
+    })
+  if (error && !isUniqueViolation(error)) {
+    // Non-fatal: grantReferralCredits re-checks and just grants 0.
+    console.error('[study/referral/redeem] free-row provision failed', { studentId, error })
+  }
 }
 
 /**

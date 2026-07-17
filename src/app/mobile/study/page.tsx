@@ -570,8 +570,10 @@ function StudyLandingInner() {
           <ResumeBanner />
           <SocialPresenceCard />
           <GeneratingTestsChip />
-          <StreakSavedBanner />
-          <StreakAtRiskBanner />
+          {/* review gated for launch — both banners deep-link to
+              /mobile/study/review, which is a coming-soon page for now. */}
+          {false && <StreakSavedBanner />}
+          {false && <StreakAtRiskBanner />}
           <DailyReviewCTA />
           <DailyChallengeCard />
         </SectionGroup>

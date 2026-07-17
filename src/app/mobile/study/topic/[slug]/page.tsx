@@ -408,6 +408,34 @@ function TopicInner({ slug }: { slug: string }) {
           // checkmarks, Lesson → reading lines, Flashcards → stacked
           // card edges. Brilliant-style ambient texture.
           const decor = MODE_DECOR[mode.key] ?? null
+          /* practice gated for launch — dimmed, non-navigating card
+             with a Coming-soon badge, matching the locked-tests
+             pattern on the study landing. */
+          if (mode.key === 'practice') {
+            return (
+              <div
+                key={mode.key}
+                aria-disabled
+                style={{ animationDelay: `${i * 60}ms` }}
+                className={`relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-left animate-card-in opacity-0`}
+              >
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                {decor}
+                <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] opacity-40`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div className="relative">
+                  <div className="text-[15px] font-semibold text-gray-400">
+                    {t(`study.modes.${mode.key}.title`)}
+                  </div>
+                  <span className="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white ring-1 ring-gray-200/70 text-[11px] font-semibold text-gray-400">
+                    <Lock className="w-3 h-3" />
+                    {ko ? '준비 중' : 'Coming soon'}
+                  </span>
+                </div>
+              </div>
+            )
+          }
           return (
             <button
               key={mode.key}
@@ -624,6 +652,29 @@ function TopicInner({ slug }: { slug: string }) {
                     const Icon = mode.icon
                     const librarySection = parseTestSlug(effectiveTopic?.slug ?? topic.slug).section === 'math' ? 'math' : 'reading_writing'
                     const isSat = parseTestSlug(effectiveTopic?.slug ?? topic.slug).family === 'sat'
+                    /* practice gated for launch — dimmed card + Coming-soon
+                       badge, no start/browse actions. */
+                    if (mode.key === 'practice') {
+                      return (
+                        <div key={mode.key} aria-disabled className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                          <div className="flex items-center gap-3">
+                            <span className={`flex-shrink-0 w-11 h-11 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] opacity-40`}>
+                              <Icon className="w-5 h-5" />
+                            </span>
+                            <div className="min-w-0 flex-1">
+                              <div className="text-[15px] font-semibold text-gray-400 flex items-center gap-2">
+                                {t(`study.modes.${mode.key}.title`)}
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-50 ring-1 ring-gray-200/70 text-[11px] font-semibold text-gray-400">
+                                  <Lock className="w-3 h-3" />
+                                  {ko ? '준비 중' : 'Coming soon'}
+                                </span>
+                              </div>
+                              <div className="text-[12.5px] text-gray-400 leading-snug">{t(`study.modes.${mode.key}.body`)}</div>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    }
                     return (
                       <div key={mode.key} className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
                         <div className="flex items-center gap-3">
