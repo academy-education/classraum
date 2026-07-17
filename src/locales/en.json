@@ -6673,6 +6673,36 @@
           }
         }
       },
+      "pricing": {
+        "eyebrow": "Pricing",
+        "title": "Start free, upgrade when you need more",
+        "subtitle": "Signing up is free and includes free mock-test credits. Every plan unlocks all study modes — plans differ in how many full mock tests you can generate each month.",
+        "perMonth": "/mo",
+        "creditsPerMonth": "{count} mock-test credits every month",
+        "popular": "Most popular",
+        "annualNote": "Pay annually and get 2 months free.",
+        "cta": "Start free",
+        "plans": {
+          "general": {
+            "blurb": "For steady weekly practice",
+            "f1": "All study modes: practice, lessons, flashcards, AI tutor",
+            "f2": "Wrong-answer notebook and spaced review",
+            "f3": "Streaks, XP, and the weekly league"
+          },
+          "premium": {
+            "blurb": "The full test-prep experience",
+            "f1": "Everything in General",
+            "f2": "Speaking graded from real audio recordings",
+            "f3": "Score analytics and progress trends"
+          },
+          "premiumPlus": {
+            "blurb": "For a heavy mock-test schedule",
+            "f1": "Everything in Premium",
+            "f2": "Double the monthly mock-test credits",
+            "f3": "Best value per test for exam season"
+          }
+        }
+      },
       "bridge": {
         "title": "Run an academy?",
         "description": "Classraum Study is part of Classraum, the all-in-one academy management platform. Give every student in your academy an AI study partner.",
