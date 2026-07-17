@@ -67,7 +67,7 @@ describe('POST /api/study/subscription/purchase-pack', () => {
     })
     // No .update() on the subscription row — the RPC is the only writer
     expect(subChain.update).not.toHaveBeenCalled()
-    expect(fromMock.mock.calls.map(c => c[0])).toEqual(['study_subscriptions', 'study_credit_ledger'])
+    expect(fromMock.mock.calls.map(c => c[0])).toEqual(['study_subscriptions', 'study_credit_ledger', 'study_analytics_events'])
   })
 
   it('returns the rate-limit response as-is', async () => {
@@ -120,10 +120,10 @@ describe('POST /api/study/subscription/purchase-pack', () => {
   it('charges the requested pack size when a packId is passed', async () => {
     enqueue('study_subscriptions', { data: PREMIUM_SUB })
     enqueue('study_credit_ledger', { error: null })
-    const res = await POST(makeRequest({ packId: 'pack40_v1' }))
+    const res = await POST(makeRequest({ packId: 'pack10_v1' }))
     expect(res.status).toBe(200)
-    expect(await res.json()).toMatchObject({ success: true, creditsAdded: 40 })
-    expect(chargeMock).toHaveBeenCalledWith(expect.objectContaining({ amount: 36900 }))
+    expect(await res.json()).toMatchObject({ success: true, creditsAdded: 10 })
+    expect(chargeMock).toHaveBeenCalledWith(expect.objectContaining({ amount: 13900 }))
   })
 
   it('denies with 402 when no billing key is on file', async () => {

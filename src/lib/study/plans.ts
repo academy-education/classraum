@@ -242,23 +242,25 @@ export interface CreditPack {
   priceWon: number
   orderName: string
 }
+/** PRICING INVARIANT: per-credit price must stay ABOVE every
+ *  subscription's per-credit rate (cheapest is Premium Plus at
+ *  ₩26,900/30 ≈ ₩897, then Premium ₩945, Basic ₩990) so packs never
+ *  undercut subscribing. Current ladder per credit: ₩1,900 / ₩1,580 /
+ *  ₩1,390 — bulk discount within packs, but subscriptions always win. */
 export const CREDIT_PACKS: CreditPack[] = [
-  { id: 'pack5_v1', credits: 5, priceWon: 6900, orderName: 'Classraum Study — 5 Test Credits' },
-  { id: 'pack15_v1', credits: 15, priceWon: 16900, orderName: 'Classraum Study — 15 Test Credits' },
-  { id: 'pack40_v1', credits: 40, priceWon: 36900, orderName: 'Classraum Study — 40 Test Credits' },
+  { id: 'pack1_v1', credits: 1, priceWon: 1900, orderName: 'Classraum Study — 1 Test Credit' },
+  { id: 'pack5_v2', credits: 5, priceWon: 7900, orderName: 'Classraum Study — 5 Test Credits' },
+  { id: 'pack10_v1', credits: 10, priceWon: 13900, orderName: 'Classraum Study — 10 Test Credits' },
 ]
 /** Micro top-up — the instant a free user burns their starter credits,
- *  a ₩1,900 / 3-credit "just let me finish" offer beats hard-walling them
- *  to a ₩9,900 plan. Not shown in the regular top-up grid; surfaced only
- *  at the out-of-credits moment. */
-export const MICRO_PACK: CreditPack = {
-  id: 'pack3_micro_v1', credits: 3, priceWon: 1900, orderName: 'Classraum Study — 3 Test Credits',
-}
+ *  a ₩1,900 single-credit "just let me finish" offer beats hard-walling
+ *  them to a ₩9,900 plan. Since the 1/5/10 ladder this is simply the
+ *  smallest pack, surfaced at the out-of-credits moment. */
+export const MICRO_PACK: CreditPack = CREDIT_PACKS[0]!
 
-/** Resolve a pack id to its catalog entry (defaults to the 5-pack).
- *  Includes the micro pack so the out-of-credits offer resolves too. */
+/** Resolve a pack id to its catalog entry (defaults to the smallest
+ *  pack, so an unknown id can never accidentally overcharge). */
 export function resolvePack(packId: string | null | undefined): CreditPack {
-  if (packId === MICRO_PACK.id) return MICRO_PACK
   return CREDIT_PACKS.find(p => p.id === packId) ?? CREDIT_PACKS[0]!
 }
 /** Back-compat alias — the smallest pack. */
