@@ -312,28 +312,22 @@ function ReviewInner() {
           </button>
         </div>
 
-        {/* Rating row — only enabled once flipped. Each button pairs a
-            gradient icon disc (same tile language as the landing) with a
-            bold label on a soft tint, so the three grades read at a
-            glance instead of three near-identical white pills. */}
+        {/* Rating row — only enabled once flipped. Full-color gradient
+            buttons (rose / amber / emerald) with white icon + label, so
+            the three grades read instantly and feel like primary CTAs. */}
         <div className={`grid grid-cols-3 gap-2 transition-opacity ${flipped ? 'opacity-100' : 'opacity-50 pointer-events-none'}`}>
           {([
             { quality: 1 as const, Icon: X, label: t('study.flashcards.again'),
-              cls: 'bg-rose-50 ring-rose-200/70 text-rose-700 hover:bg-rose-100',
-              disc: 'from-rose-400 to-rose-600 shadow-[0_2px_6px_-1px_rgba(244,63,94,0.45)]' },
+              cls: 'from-rose-400 to-rose-600 shadow-[0_6px_16px_-6px_rgba(244,63,94,0.5)]' },
             { quality: 3 as const, Icon: Barbell, label: t('study.flashcards.hard'),
-              cls: 'bg-amber-50 ring-amber-200/70 text-amber-700 hover:bg-amber-100',
-              disc: 'from-amber-400 to-orange-500 shadow-[0_2px_6px_-1px_rgba(251,146,60,0.45)]' },
+              cls: 'from-amber-400 to-orange-500 shadow-[0_6px_16px_-6px_rgba(251,146,60,0.5)]' },
             { quality: 5 as const, Icon: Check, label: t('study.flashcards.easy'),
-              cls: 'bg-emerald-50 ring-emerald-200/70 text-emerald-700 hover:bg-emerald-100',
-              disc: 'from-emerald-400 to-teal-500 shadow-[0_2px_6px_-1px_rgba(16,185,129,0.45)]' },
-          ]).map(({ quality, Icon, label, cls, disc }) => (
+              cls: 'from-emerald-400 to-teal-500 shadow-[0_6px_16px_-6px_rgba(16,185,129,0.5)]' },
+          ]).map(({ quality, Icon, label, cls }) => (
             <button key={quality} type="button" disabled={grading || !flipped} onClick={() => void grade(quality)}
-              className={`h-14 rounded-2xl ring-1 inline-flex flex-col items-center justify-center gap-1 active:scale-[0.96] transition-all ${cls}`}>
-              <span className={`w-6 h-6 rounded-full bg-gradient-to-br ${disc} text-white flex items-center justify-center`}>
-                <Icon className="w-3.5 h-3.5" strokeWidth={2.5} />
-              </span>
-              <span className="text-[11.5px] font-bold">{label}</span>
+              className={`h-13 min-h-[52px] rounded-2xl bg-gradient-to-b text-white inline-flex items-center justify-center gap-1.5 hover:brightness-105 active:scale-[0.96] transition-all ${cls}`}>
+              <Icon className="w-4 h-4" strokeWidth={2.5} />
+              <span className="text-[13px] font-bold">{label}</span>
             </button>
           ))}
         </div>
