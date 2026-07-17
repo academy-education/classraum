@@ -11,6 +11,7 @@ import { useTheme } from '@/hooks/useTheme'
 import { saveThemeToAccount } from '@/lib/theme-account'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
+import { readStoredMode } from '@/lib/study/currentMode'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { useToast } from '@/hooks/use-toast'
 import { Card } from '@/components/ui/card'
@@ -76,6 +77,11 @@ function MobileProfilePageContent() {
 
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
   const [showStudentSelector, setShowStudentSelector] = useState(false)
+  // Profile is a shared route — which mode the user came from decides
+  // whether study-only sections (nickname) render. Read in an effect
+  // (localStorage isn't available during SSR).
+  const [inStudyMode, setInStudyMode] = useState(false)
+  useEffect(() => { setInStudyMode(readStoredMode() === 'study') }, [])
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('')
   const [deletingAccount, setDeletingAccount] = useState(false)
@@ -415,9 +421,10 @@ function MobileProfilePageContent() {
         )
       })()}
 
-      {/* Study nickname — the public leaderboard handle. Students only
-          (the study/leaderboard audience). */}
-      {profile?.role === 'student' && <StudyNicknameCard ko={language === 'korean'} />}
+      {/* Study nickname — the public leaderboard handle. Students only,
+          and only when the profile was reached from Study mode: in the
+          Grades/academy context the nickname is meaningless noise. */}
+      {profile?.role === 'student' && inStudyMode && <StudyNicknameCard ko={language === 'korean'} />}
 
       {/* Contact Information panel — only renders rows that have data */}
       {(profile?.phone || profile?.academy_name || profile?.student_school || profile?.student_grade) && (
