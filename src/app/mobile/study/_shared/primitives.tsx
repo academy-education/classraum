@@ -553,9 +553,24 @@ export function StudyEmptyState({
   ctaHref?: string
   ctaText?: string
 }) {
+  // Map the legacy tint prop onto the gradient tile system the rest of
+  // the app uses (landing cards, week plan, league) — callers keep
+  // passing "text-emerald-600 bg-emerald-50" and get the matching
+  // gradient, so every empty state stays on one icon language.
+  const gradients: Array<[string, string]> = [
+    ['emerald', 'from-emerald-400 to-teal-500 shadow-[0_6px_16px_-6px_rgba(16,185,129,0.45)]'],
+    ['amber', 'from-amber-400 to-orange-500 shadow-[0_6px_16px_-6px_rgba(251,146,60,0.45)]'],
+    ['violet', 'from-violet-500 to-purple-600 shadow-[0_6px_16px_-6px_rgba(139,92,246,0.45)]'],
+    ['rose', 'from-rose-400 to-pink-600 shadow-[0_6px_16px_-6px_rgba(244,63,94,0.45)]'],
+    ['sky', 'from-sky-400 to-blue-500 shadow-[0_6px_16px_-6px_rgba(56,189,248,0.45)]'],
+    ['indigo', 'from-indigo-400 to-blue-600 shadow-[0_6px_16px_-6px_rgba(79,70,229,0.45)]'],
+    ['primary', 'from-primary to-indigo-600 shadow-[0_6px_16px_-6px_rgba(40,133,232,0.45)]'],
+  ]
+  const gradient = gradients.find(([key]) => iconColorClass.includes(key))?.[1]
+    ?? 'from-gray-300 to-gray-400 shadow-[0_6px_16px_-6px_rgba(107,114,128,0.4)]'
   return (
     <div className="py-12 text-center">
-      <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3 ${iconColorClass}`}>
+      <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3 bg-gradient-to-br text-white ${gradient}`}>
         <Icon className="w-6 h-6" />
       </div>
       <p className="text-[15px] font-semibold text-gray-900">{headline}</p>
