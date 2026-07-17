@@ -124,8 +124,9 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
   },
   premium_plus_annual_v1: {
     id: 'premium_plus_annual_v1',
+    // 10× the ₩29,900 monthly — keeps the "2 months free" annual framing.
     tier: 'premium',
-    priceWon: 249000,
+    priceWon: 299000,
     monthlyCredits: 40,
     intervalDays: 365,
     orderName: 'Classraum Study — Premium Plus (Annual)',
