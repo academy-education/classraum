@@ -13,7 +13,7 @@ import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
-import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId } from '@/lib/study/purchase-credits'
+import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
@@ -224,10 +224,7 @@ export default function SubscriptionPage() {
         customer,
         customData: { kind: 'study_subscription', plan: planId },
         redirectUrl: billingRedirectUrl(),
-        // Explicit per-platform window: Inicis PC module is an iframe,
-        // mobile module only works via redirection. Platform itself is
-        // UA-detected by the SDK (screen width plays no part).
-        windowType: { pc: 'IFRAME', mobile: 'REDIRECTION' },
+        windowType: billingWindowType(),
       })
 
       if (!issued?.billingKey) {
@@ -285,10 +282,7 @@ export default function SubscriptionPage() {
         customer,
         customData: { kind: 'study_exam_pass', passId },
         redirectUrl: billingRedirectUrl(),
-        // Explicit per-platform window: Inicis PC module is an iframe,
-        // mobile module only works via redirection. Platform itself is
-        // UA-detected by the SDK (screen width plays no part).
-        windowType: { pc: 'IFRAME', mobile: 'REDIRECTION' },
+        windowType: billingWindowType(),
       })
       if (!issued?.billingKey) {
         if (issued?.code) setError(issued.message ?? (t('study.subscription.checkoutFailed') as string))

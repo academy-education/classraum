@@ -81,6 +81,20 @@ export function billingRedirectUrl(): string {
 }
 
 /**
+ * Per-platform window type. Inicis's PC module is a fixed ~820px-wide
+ * iframe — on narrower desktop windows the right panel (with the 확인
+ * button) clips off-screen and the flow looks broken. Below that width
+ * we open a POPUP (own properly-sized browser window) instead. Mobile
+ * devices (UA-detected by the SDK) always use redirection.
+ */
+export function billingWindowType(): { pc: 'IFRAME' | 'POPUP'; mobile: 'REDIRECTION' } {
+  return {
+    pc: typeof window !== 'undefined' && window.innerWidth < 900 ? 'POPUP' : 'IFRAME',
+    mobile: 'REDIRECTION',
+  }
+}
+
+/**
  * Compact unique issue id. Inicis caps oid at 40 chars, and the old
  * `study-*-issue-<full-uuid>-<ms>` shape was 67 — the card window
  * refused to open. prefix(≤4) + 8 uuid chars + base36 ms ≈ 22 chars.
@@ -152,10 +166,7 @@ export async function buyCreditPack(
         customer,
         customData: { kind: 'study_credit_pack', packId },
         redirectUrl: billingRedirectUrl(),
-        // Explicit per-platform window: Inicis PC module is an iframe,
-        // mobile module only works via redirection. Platform itself is
-        // UA-detected by the SDK (screen width plays no part).
-        windowType: { pc: 'IFRAME', mobile: 'REDIRECTION' },
+        windowType: billingWindowType(),
       })
       if (!issued?.billingKey) {
         // No code → user closed the overlay; a code → PortOne error.

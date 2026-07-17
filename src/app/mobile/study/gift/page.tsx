@@ -12,7 +12,7 @@ import { StudyButton } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { GIFT } from '@/lib/study/gifts'
 import { PortOne } from '@/lib/portone-browser'
-import { billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId } from '@/lib/study/purchase-credits'
+import { billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType } from '@/lib/study/purchase-credits'
 import { useAuth } from '@/contexts/AuthContext'
 
 /**
@@ -82,10 +82,7 @@ export default function GiftPage() {
         customer,
         customData: { kind: 'study_gift', gift: GIFT.id },
         redirectUrl: billingRedirectUrl(),
-        // Explicit per-platform window: Inicis PC module is an iframe,
-        // mobile module only works via redirection. Platform itself is
-        // UA-detected by the SDK (screen width plays no part).
-        windowType: { pc: 'IFRAME', mobile: 'REDIRECTION' },
+        windowType: billingWindowType(),
       })
       if (!issued?.billingKey) {
         // No billingKey: a code means a PortOne error, none means the
