@@ -162,8 +162,12 @@ function ReferralInner() {
 function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; signupReward: number; premiumReward: number; ko: boolean }) {
   const [copied, setCopied] = useState(false)
 
+  // Invite link points at the signup page's study door with the code in
+  // the URL: /auth prefills + locks the referral input from ?ref, and the
+  // code is persisted (pending-referral) so it survives email confirmation
+  // and is redeemed after the account exists.
   const inviteLink = typeof window !== 'undefined'
-    ? `${window.location.origin}/mobile/study?ref=${encodeURIComponent(code)}`
+    ? `${window.location.origin}/auth?intent=study&ref=${encodeURIComponent(code)}`
     : ''
 
   const copy = useCallback(async (text: string) => {

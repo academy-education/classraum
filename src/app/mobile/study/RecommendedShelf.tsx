@@ -65,7 +65,13 @@ export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean 
         if (!res.ok) throw new Error()
         const json = await res.json()
         if (cancelled) return
-        setCards((json.cards ?? []) as Card[])
+        /* practice gated for launch — drop suggestion cards that would
+           start a practice session: topic cards with suggested_mode
+           'practice', and snap follow-ups (which always seed a freeform
+           practice session). Flashcard/test suggestions stay. */
+        setCards(((json.cards ?? []) as Card[]).filter(
+          c => c.suggested_mode !== 'practice' && c.reason !== 'snap_followup',
+        ))
       } catch {
         // Soft-fail: show the empty state rather than an error chunk.
         if (!cancelled) setCards([])

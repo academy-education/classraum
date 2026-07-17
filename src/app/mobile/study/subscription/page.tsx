@@ -112,6 +112,26 @@ export default function SubscriptionPage() {
 
   useEffect(() => { void load() }, [load])
 
+  // Mobile redirect checkouts (packs / passes) come back from
+  // /mobile/study/billing-redirect with ?purchased=pack|pass — surface
+  // the same success banner the PC Promise flow shows, then strip the
+  // flag so a reload doesn't re-announce it.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const purchased = params.get('purchased')
+    if (purchased !== 'pack' && purchased !== 'pass') return
+    const credits = Number(params.get('credits')) || 0
+    setSuccessMessage(purchased === 'pass'
+      ? (ko ? '패스가 활성화되었어요!' : 'Your pass is active!')
+      : credits > 0
+        ? (ko ? `크레딧 ${credits}개가 추가되었어요.` : `${credits} credits added to your account.`)
+        : (ko ? '크레딧이 추가되었어요.' : 'Credits added to your account.'))
+    params.delete('purchased')
+    params.delete('credits')
+    const rest = params.toString()
+    window.history.replaceState(null, '', window.location.pathname + (rest ? `?${rest}` : ''))
+  }, [ko])
+
   // The feedback banner sits under the header; actions fire from the
   // bottom of a tall page, so bring the result into view.
   useEffect(() => {
@@ -284,9 +304,11 @@ export default function SubscriptionPage() {
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({ paymentId: pay.paymentId, passId }),
       })
-      const body = await res.json().catch(() => ({}))
-      if (!res.ok) {
-        throw new Error(typeof body.message === 'string' ? body.message : (ko ? '패스 구매에 실패했어요.' : 'Pass purchase failed.'))
+      const body = await res.json().catch(() => ({} as Record<string, unknown>))
+      // already_processed = a parallel redemption (redirect page) beat
+      // us to it; the pass is active, so it's a success for the buyer.
+      if (!res.ok && (body as Record<string, unknown>).code !== 'already_processed') {
+        throw new Error(typeof (body as Record<string, unknown>).message === 'string' ? String((body as Record<string, unknown>).message) : (ko ? '패스 구매에 실패했어요.' : 'Pass purchase failed.'))
       }
       await load()
       setSuccessMessage(ko ? '패스가 활성화되었어요!' : 'Your pass is active!')
