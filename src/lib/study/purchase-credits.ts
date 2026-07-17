@@ -95,6 +95,24 @@ export function billingWindowType(): { pc: 'IFRAME' | 'POPUP'; mobile: 'REDIRECT
 }
 
 /**
+ * Service offer period — REQUIRED by Inicis for mobile billing-key
+ * issuance ('제공기간(offerPeriod)은 필수 입력입니다'). Inicis only
+ * accepts `1m`/`1y` as intervals; other durations go as a date range,
+ * and open-ended products (credits, gifts) as a from-only range.
+ */
+export function offerPeriodFor(days?: number | null):
+  | { interval: string }
+  | { range: { from: string } }
+  | { range: { from: string; to: string } } {
+  if (days === 30) return { interval: '1m' }
+  if (days === 365) return { interval: '1y' }
+  const from = new Date()
+  if (!days || days <= 0) return { range: { from: from.toISOString() } }
+  const to = new Date(from.getTime() + days * 86_400_000)
+  return { range: { from: from.toISOString(), to: to.toISOString() } }
+}
+
+/**
  * Compact unique issue id. Inicis caps oid at 40 chars, and the old
  * `study-*-issue-<full-uuid>-<ms>` shape was 67 — the card window
  * refused to open. prefix(≤4) + 8 uuid chars + base36 ms ≈ 22 chars.
@@ -167,6 +185,8 @@ export async function buyCreditPack(
         customData: { kind: 'study_credit_pack', packId },
         redirectUrl: billingRedirectUrl(),
         windowType: billingWindowType(),
+        // Credits never expire → open-ended service period.
+        offerPeriod: offerPeriodFor(null),
       })
       if (!issued?.billingKey) {
         // No code → user closed the overlay; a code → PortOne error.
