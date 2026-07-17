@@ -523,21 +523,6 @@ function StudyLandingInner() {
             items; the diagnostic now sits with "recommended for you"
             where a student prepping for a specific test looks for it. */}
 
-        {/* This week — plan (score-plan engine P3) + weekly quests under
-            one heading. Both are weekly-goal cards; grouping them stops
-            them reading as two competing sections. Each self-hides when
-            empty; on a loaded page Quests always renders, so the heading
-            is never orphaned. */}
-        <section>
-          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3 px-1">
-            {ko ? '이번 주' : 'This week'}
-          </h2>
-          <div className="space-y-4">
-            <WeekPlanCard hideHeading />
-            <WeeklyQuests hideHeading />
-          </div>
-        </section>
-
         {/* Each band below is wrapped in its own <SectionGroup> so
             its label sits tight to its cards (internal space-y-2)
             while the parent's space-y-8 only fires BETWEEN bands.
@@ -576,19 +561,26 @@ function StudyLandingInner() {
           <DailyChallengeCard />
         </SectionGroup>
 
+        {/* This week — plan (score-plan engine P3) + weekly quests under
+            one heading. Both are weekly-goal cards; grouping them stops
+            them reading as two competing sections. Each self-hides when
+            empty; on a loaded page Quests always renders, so the heading
+            is never orphaned. Sits right after Today: act now → weekly
+            goals → start a test → history. */}
+        <section>
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3 px-1">
+            {ko ? '이번 주' : 'This week'}
+          </h2>
+          <div className="space-y-4">
+            <WeekPlanCard hideHeading />
+            <WeeklyQuests hideHeading />
+          </div>
+        </section>
+
         {/* Snap-to-solve CTA removed from the landing — discoverable
             via the bottom-nav "사진 풀이" tab. Removing the orange hero
             here keeps the landing focused on time-sensitive items
             (Today) and learning history. */}
-
-        {/* Shelves below render their own h2 headers (study.landing.
-            recommendedTitle / resumeTitle / mistakes.title), so we
-            don't wrap them in SectionGroup — that would double-label
-            them. They sit as direct space-y-8 children of the parent
-            stack, treating each shelf as its own band. */}
-        <RecommendedShelf />
-        <ResumableShelf />
-        <MistakeBankShelf />
 
         {/* Subjects (K-12 catalog) removed from landing while locked
             — a full section of blurred non-clickable cards was pure
@@ -749,6 +741,15 @@ function StudyLandingInner() {
               notice. Keep wherever mock tests are listed or launched. */}
           <TestPrepDisclaimer ko={ko} />
         </section>
+
+        {/* History shelves — each renders its own h2 header (study.
+            landing.recommendedTitle / resumeTitle / mistakes.title), so
+            no SectionGroup wrapper (that would double-label them). They
+            close the page: act now (Today) → weekly goals → start a
+            test → pick up where you left off. */}
+        <RecommendedShelf />
+        <ResumableShelf />
+        <MistakeBankShelf />
 
         {/* Free-form "Or type anything" AI creator — hidden for now.
             Flip this `false` back to re-enable the whole section. */}
