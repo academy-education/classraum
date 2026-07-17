@@ -164,6 +164,16 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
     name_en: 'SAT Sitting Pass',
     name_ko: 'SAT 대비 패스',
   },
+  toefl_pass_v1: {
+    id: 'toefl_pass_v1',
+    tier: 'premium',
+    priceWon: 29000,
+    monthlyCredits: 0,
+    intervalDays: 3650,
+    orderName: 'Classraum Study — TOEFL 3-Month Pass',
+    name_en: 'TOEFL 3-Month Pass',
+    name_ko: 'TOEFL 3개월 패스',
+  },
 }
 
 /** Monthly credit-grant cadence — annual plans still refresh credits
@@ -218,6 +228,17 @@ export const STUDY_PASSES: StudyPass[] = [
     name_ko: 'SAT 3개월 패스',
     blurb_en: '3 months of Premium to prep for your SAT',
     blurb_ko: 'SAT 준비를 위한 프리미엄 3개월',
+  },
+  {
+    id: 'toefl_pass_v1',
+    priceWon: 29000,
+    credits: 20,
+    // Rolling 3-month pass from purchase, mirroring the SAT pass.
+    durationDays: 90,
+    name_en: 'TOEFL 3-Month Pass',
+    name_ko: 'TOEFL 3개월 패스',
+    blurb_en: '3 months of Premium to prep for your TOEFL',
+    blurb_ko: 'TOEFL 준비를 위한 프리미엄 3개월',
   },
 ]
 

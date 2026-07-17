@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, BookOpen, ClipboardList, Coins, Calculator, PenLine, Volume2 } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../../_shared/StudyButton'
 import { supabase } from '@/lib/supabase'
@@ -755,6 +755,21 @@ function isResponseEligible(slug: string | undefined): boolean {
  *  chip row when the option count is large (AP has 9, KSAT has 6),
  *  and gives more affordance for the "this is a selector" intent.
  *  Apple-style: subtle bg, chevron, soft shadow when open. */
+/** Per-section icon + tint for the section dropdown — gives each
+ *  section a distinct visual identity instead of plain text rows.
+ *  Keyed by topic slug; unknown sections fall back to a neutral doc. */
+const SECTION_VISUALS: Record<string, { icon: React.ComponentType<{ className?: string }>; tile: string }> = {
+  'sat-reading-writing': { icon: BookOpen, tile: 'bg-sky-500/12 text-sky-600' },
+  'sat-math': { icon: Calculator, tile: 'bg-violet-500/12 text-violet-600' },
+  'toefl-reading': { icon: BookOpen, tile: 'bg-sky-500/12 text-sky-600' },
+  'toefl-writing': { icon: PenLine, tile: 'bg-amber-500/12 text-amber-600' },
+  'toefl-speaking': { icon: Mic, tile: 'bg-rose-500/12 text-rose-600' },
+  'toefl-listening': { icon: Volume2, tile: 'bg-emerald-500/12 text-emerald-600' },
+}
+function sectionVisual(slug: string) {
+  return SECTION_VISUALS[slug] ?? { icon: FileText, tile: 'bg-gray-100 text-gray-500' }
+}
+
 function CategoryPicker({
   label,
   items: categories,
@@ -805,8 +820,19 @@ function CategoryPicker({
               : 'ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/25'
           }`}
         >
-          <span className="text-[15px] font-semibold text-gray-900 truncate">
-            {selected ? name(selected) : '—'}
+          <span className="flex items-center gap-2.5 min-w-0">
+            {selected && (() => {
+              const v = sectionVisual(selected.slug)
+              const Icon = v.icon
+              return (
+                <span className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center ${v.tile}`}>
+                  <Icon className="w-4 h-4" />
+                </span>
+              )
+            })()}
+            <span className="text-[15px] font-semibold text-gray-900 truncate">
+              {selected ? name(selected) : '—'}
+            </span>
           </span>
           <ChevronDown
             className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180 text-primary' : ''}`}
@@ -819,6 +845,8 @@ function CategoryPicker({
           >
             {categories.map(cat => {
               const isSelected = cat.id === selectedId
+              const v = sectionVisual(cat.slug)
+              const Icon = v.icon
               return (
                 <button
                   key={cat.id}
@@ -826,13 +854,16 @@ function CategoryPicker({
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => { onSelect(cat.id); setOpen(false) }}
-                  className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-[14px] text-left transition-colors ${
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-[14px] text-left transition-colors ${
                     isSelected
                       ? 'bg-primary/[0.06] text-primary font-semibold'
                       : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100 font-medium'
                   }`}
                 >
-                  <span className="truncate">{name(cat)}</span>
+                  <span className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center ${v.tile}`}>
+                    <Icon className="w-4 h-4" />
+                  </span>
+                  <span className="truncate flex-1">{name(cat)}</span>
                   {isSelected && <Check className="w-4 h-4 text-primary flex-shrink-0" />}
                 </button>
               )
