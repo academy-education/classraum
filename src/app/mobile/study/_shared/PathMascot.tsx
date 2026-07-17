@@ -17,6 +17,9 @@ import { useRive, useStateMachineInput } from '@rive-app/react-canvas'
  *   'loading'    — grabs his head, spins it, catches it; glitchy visor,
  *                  puzzled recovery. Meant for LONG waits (~90s test
  *                  generation) — short waits should use 'thinking'.
+ *   'locked'     — polite gatekeeper: raised hand wags "no-no" while the
+ *                  head shakes, narrowed eyes; long calm hold between
+ *                  beats so it stays friendly, not scolding.
  *
  * RaumiSvg style: "soft-flat" — flat colour blocking with a controlled
  * two-tone soft shadow (not blur-mush, not a cartoon outline) and a
@@ -33,7 +36,7 @@ import { useRive, useStateMachineInput } from '@rive-app/react-canvas'
 /** Set to '/raumi.riv' once the commissioned file is added to /public. */
 const RAUMI_RIVE_SRC: string | null = null
 
-export type MascotState = 'idle' | 'thinking' | 'celebrate' | 'sad' | 'loading'
+export type MascotState = 'idle' | 'thinking' | 'celebrate' | 'sad' | 'loading' | 'locked'
 
 interface Props {
   state?: MascotState
@@ -42,7 +45,7 @@ interface Props {
 }
 
 /** state → Rive state-machine number input value. */
-const STATE_INDEX: Record<MascotState, number> = { idle: 0, thinking: 1, celebrate: 2, sad: 3, loading: 4 }
+const STATE_INDEX: Record<MascotState, number> = { idle: 0, thinking: 1, celebrate: 2, sad: 3, loading: 4, locked: 5 }
 
 /**
  * Memoized: hosts like TestSession re-render every second on timer
@@ -222,6 +225,14 @@ function RaumiSvg({ state = 'idle', size = 72, className = '' }: Props) {
                 <rect x="39.5" y="29.5" width="7" height="4" rx="2" fill={eye} />
                 <rect x="53.5" y="29.5" width="7" height="4" rx="2" fill={eye} />
               </>
+            ) : state === 'locked' ? (
+              // narrowed, composed eyes — firm but friendly gatekeeper
+              <>
+                <rect x="39.5" y="27" width="7" height="9" rx="3.5" fill={eye} />
+                <rect x="53.5" y="27" width="7" height="9" rx="3.5" fill={eye} />
+                <circle cx="41.6" cy="29.6" r="1.5" fill="#EEFCFF" />
+                <circle cx="55.6" cy="29.6" r="1.5" fill="#EEFCFF" />
+              </>
             ) : state === 'loading' ? (
               // calm eyes at the start; dizzy swirls during + after the spin
               <>
@@ -354,6 +365,17 @@ const CSS = `
   .raumi--sad .r-glow{animation:rkDim 3.4s ease-in-out infinite}
   .raumi--sad .r-head{animation:rkHang 3.4s ease-in-out infinite}
 
+  /* locked: polite gatekeeper — floats like idle, then one "no-no" beat
+     per loop: the raised hand wags while the head shakes, long calm
+     hold after so it reads friendly, not scolding. */
+  .raumi--locked .r-body{animation:rkFloat 3.6s ease-in-out infinite}
+  .raumi--locked .r-shadow{animation:rkShadow 3.6s ease-in-out infinite}
+  .raumi--locked .r-eyes{animation:rkBlink 4.8s ease-in-out infinite}
+  .raumi--locked .r-glow{animation:rkDim 3.4s ease-in-out infinite}
+  .raumi--locked .r-head{animation:rkNoNo 3.4s ease-in-out infinite}
+  .raumi--locked .r-armR{opacity:1;animation:rkWagNo 3.4s ease-in-out infinite}
+  .raumi--locked .r-earlight,.raumi--locked .r-chip{animation:rkEar 2.4s ease-in-out infinite}
+
   /* loading: grab → spin → catch on one shared 2.8s timeline. */
   .raumi--loading .r-head{transform-box:view-box;transform-origin:50px 30px;animation:rkHead 2.7s linear infinite}
   .raumi--loading .r-grab{opacity:1;animation:rkGrab 2.7s ease-in-out infinite}
@@ -386,6 +408,24 @@ const CSS = `
 @keyframes rkLookT{0%,100%{transform:translateX(0)}30%{transform:translateX(2.2px)}70%{transform:translateX(-2.2px)}}
 /* sad: head hangs a little, in phase with the body droop. */
 @keyframes rkHang{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-3.5deg) translateY(1px)}}
+/* locked: one head-shake "no" beat per loop, still the rest of the time. */
+@keyframes rkNoNo{
+  0%,40%{transform:rotate(0deg)}
+  48%{transform:rotate(-6deg)}
+  56%{transform:rotate(5deg)}
+  64%{transform:rotate(-3.5deg)}
+  72%,100%{transform:rotate(0deg)}
+}
+/* locked: raised hand wags in counter-phase with the head shake, easing
+   back to a gentle resting tilt during the calm hold. */
+@keyframes rkWagNo{
+  0%,40%{transform:rotate(9deg)}
+  48%{transform:rotate(-13deg)}
+  56%{transform:rotate(11deg)}
+  64%{transform:rotate(-9deg)}
+  72%{transform:rotate(5deg)}
+  100%{transform:rotate(9deg)}
+}
 /* grab → spin → catch. HORIZONTAL spin: scaleX through 0 (edge-on) to -1
    (mirror) = a half turn about the vertical axis. Keyframe gaps widen over
    time so the spin DECELERATES like it has real angular momentum, then

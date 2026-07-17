@@ -241,10 +241,9 @@ function StudyPathInner() {
             title={String(t('study.path.title'))}
           />
           <div className="flex-1 flex flex-col items-center justify-center px-5 pb-16 text-center gap-4">
-            <PathMascot state="idle" size={88} />
-            <div className="w-12 h-12 -mt-2 rounded-full bg-white ring-1 ring-gray-200 shadow-sm flex items-center justify-center">
-              <Lock className="w-5 h-5 text-gray-500" />
-            </div>
+            {/* Raumi's "locked" no-no gesture carries the gate on its
+                own — no lock badge needed. */}
+            <PathMascot state="locked" size={96} />
             <div>
               <p className="text-[17px] font-bold text-gray-900">
                 {ko ? '학습 경로는 구독 회원 전용이에요' : 'The study path is for subscribers'}
