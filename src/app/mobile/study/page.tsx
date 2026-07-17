@@ -1060,8 +1060,24 @@ function FirstTestActivationCard() {
   // Credit disclosure before the spend + explicit out-of-credits popup.
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [noCreditsOpen, setNoCreditsOpen] = useState(false)
+  // Balance so an insufficient tap goes STRAIGHT to the no-credits
+  // popup instead of confirming a spend that would fail.
+  const [creditBalance, setCreditBalance] = useState<number | null>(null)
   const { showError } = useStudyErrorToast()
   const cost = creditCostForTest('sat', 'reading_writing')
+
+  useEffect(() => {
+    let cancelled = false
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/subscription', { headers })
+        const sub = res.ok ? await res.json() : null
+        if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
+      } catch { /* unknown balance → confirm flow; 402 still catches */ }
+    })()
+    return () => { cancelled = true }
+  }, [])
 
   const start = async () => {
     if (busy) return
@@ -1099,7 +1115,10 @@ function FirstTestActivationCard() {
     <NoCreditsSheet open={noCreditsOpen} cost={cost} ko={ko} onCancel={() => setNoCreditsOpen(false)} />
     <button
       type="button"
-      onClick={() => setConfirmOpen(true)}
+      onClick={() => {
+        if (creditBalance !== null && creditBalance < cost) setNoCreditsOpen(true)
+        else setConfirmOpen(true)
+      }}
       disabled={busy}
       className="group relative block w-full overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-blue-600 to-indigo-700 text-left text-white p-5 shadow-[0_10px_30px_-10px_rgba(40,133,232,0.5)] hover:shadow-[0_16px_40px_-10px_rgba(40,133,232,0.6)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] disabled:opacity-70 disabled:cursor-wait transition-all"
     >

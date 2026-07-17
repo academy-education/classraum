@@ -127,6 +127,12 @@ function TopicInner({ slug }: { slug: string }) {
   // path / diagnostic cards render on first paint instead of popping
   // in after their own fetches resolve.
   const [targetTest, setTargetTest] = useState<string | null>(null)
+  // Credit balance (grant + purchased), fetched with the page load.
+  // Lets the start tap skip the confirm and go STRAIGHT to the
+  // "not enough credits" popup when the balance can't cover the cost.
+  // null = unknown (fetch failed) → fall through to confirm; the 402
+  // path still catches any race.
+  const [creditBalance, setCreditBalance] = useState<number | null>(null)
 
   // When the topic has children (e.g., AP → AP Biology / AP Calc AB),
   // the page shows a category picker. The selected category becomes
@@ -144,8 +150,13 @@ function TopicInner({ slug }: { slug: string }) {
     const prefsPromise = (async () => {
       try {
         const headers = await authHeaders()
-        const res = await fetch('/api/study/prefs', { headers })
+        const [res, subRes] = await Promise.all([
+          fetch('/api/study/prefs', { headers }),
+          fetch('/api/study/subscription', { headers }),
+        ])
         const json = res.ok ? await res.json() : null
+        const sub = subRes.ok ? await subRes.json() : null
+        if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
         return (json?.prefs?.target_test as string | null) ?? null
       } catch { return null }
     })()
@@ -236,6 +247,24 @@ function TopicInner({ slug }: { slug: string }) {
     return () => { cancelled = true }
   }, [user?.userId, effectiveTopic])
 
+  // Credit cost of the bank test for the currently-selected section.
+  const bankCreditCost = () => {
+    const parsed = parseTestSlug(effectiveTopic?.slug ?? slug)
+    return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
+  }
+
+  // One-tap start entry: if we already know the balance can't cover the
+  // cost, go straight to "not enough credits" — no point confirming a
+  // spend that will fail. Unknown balance falls through to the confirm
+  // (the 402 path still catches any race).
+  const requestBankStart = () => {
+    if (creditBalance !== null && creditBalance < bankCreditCost()) {
+      setNoCreditsOpen(true)
+    } else {
+      setCreditConfirmOpen(true)
+    }
+  }
+
   const startSession = async (mode: StudyMode, config?: TestConfig, overrideLanguage?: 'en' | 'ko') => {
     const target = effectiveTopic
     if (!target || !user?.userId) return
@@ -245,7 +274,7 @@ function TopicInner({ slug }: { slug: string }) {
     if (mode === 'full_test' && parseTestSlug(target.slug).family === 'sat') {
       // Route through the credit-spend confirm — bank SAT tests charge
       // credits, and no start path should skip the disclosure.
-      setCreditConfirmOpen(true)
+      requestBankStart()
       return
     }
     setCreating(mode)
@@ -551,7 +580,7 @@ function TopicInner({ slug }: { slug: string }) {
                   // own cost line; this one-tap path had none).
                   startSession={() => {
                     if (effectiveTopic && parseTestSlug(effectiveTopic.slug).family === 'sat') {
-                      setCreditConfirmOpen(true)
+                      requestBankStart()
                     } else {
                       openTestSheet()
                     }

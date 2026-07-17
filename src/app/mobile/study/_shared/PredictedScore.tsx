@@ -59,6 +59,10 @@ export function PredictedScore() {
   const [confirmOpen, setConfirmOpen] = useState(false)
   // 402 → explicit "not enough credits" popup (cancel / buy).
   const [noCreditsOpen, setNoCreditsOpen] = useState(false)
+  // Balance from the same subscription fetch — when it can't cover the
+  // cost, the start tap goes straight to the no-credits popup instead
+  // of confirming a spend that would fail.
+  const [creditBalance, setCreditBalance] = useState<number | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -77,7 +81,10 @@ export function PredictedScore() {
         }
         if (subRes.ok) {
           const sub = await subRes.json()
-          if (!cancelled) setIsPremium(sub?.tier === 'premium')
+          if (!cancelled) {
+            setIsPremium(sub?.tier === 'premium')
+            if (typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
+          }
         } else if (!cancelled) {
           setIsPremium(false)
         }
@@ -143,7 +150,10 @@ export function PredictedScore() {
           ko={ko}
           isPremium={isPremium === true}
           starting={starting}
-          onStart={() => setConfirmOpen(true)}
+          onStart={() => {
+            if (creditBalance !== null && creditBalance < DIAGNOSTIC_CREDIT_COST) setNoCreditsOpen(true)
+            else setConfirmOpen(true)
+          }}
           doneCount={done.length}
           totalCount={data.sections.length}
           nextLabel={next ? (ko ? next.label_ko : next.label_en) : null}
