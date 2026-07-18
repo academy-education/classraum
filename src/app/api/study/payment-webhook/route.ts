@@ -42,5 +42,11 @@ export async function POST(req: NextRequest) {
   }
 
   const outcome = await tryHandleStudyOneTimeWebhook(raw)
+  // Ask PortOne to re-deliver when we couldn't verify the payment (a
+  // transient fetch failure) — a 2xx would tell it to stop retrying.
+  if (outcome.retryable) {
+    console.warn('[study/payment-webhook] retryable:', outcome.reason)
+    return NextResponse.json({ ok: false, ...outcome }, { status: 503 })
+  }
   return NextResponse.json({ ok: true, ...outcome })
 }

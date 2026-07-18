@@ -28,6 +28,9 @@ export interface StudyWebhookOutcome {
   handled: boolean
   applied?: string
   reason?: string
+  /** Transient failure (couldn't reach PortOne to verify) — the caller
+   *  should respond non-2xx so PortOne re-delivers the webhook. */
+  retryable?: boolean
 }
 
 function normalize(event: Record<string, unknown>): { isPaid: boolean; paymentId: string } {
@@ -61,8 +64,13 @@ export async function tryHandleStudyOneTimeWebhook(rawBody: string): Promise<Stu
   if (!isPaid) return { handled: true, reason: 'non-paid study event' }
 
   const info = await getPaymentInfo(paymentId)
-  if (!info.ok || info.status !== 'PAID' || info.currency !== 'KRW') {
-    return { handled: true, reason: `unverifiable (${String(info.status)})` }
+  // Couldn't reach PortOne to verify (network / read-after-write lag /
+  // auth) — ask for a retry rather than silently dropping the grant.
+  if (!info.ok) {
+    return { handled: true, retryable: true, reason: `payment fetch failed: ${info.message ?? 'unknown'}` }
+  }
+  if (info.status !== 'PAID' || info.currency !== 'KRW') {
+    return { handled: true, reason: `not grantable (status=${String(info.status)}, currency=${String(info.currency)})` }
   }
   const cd = info.customData ?? {}
   const studentId = typeof cd.student_id === 'string' ? cd.student_id : ''

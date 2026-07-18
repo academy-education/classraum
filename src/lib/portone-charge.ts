@@ -162,33 +162,44 @@ export async function getPaymentInfo(paymentId: string): Promise<PaymentInfoResu
   const cfg = getPortOneConfig()
   if (!cfg.apiSecret) return { ok: false, message: 'PORTONE_API_SECRET not configured' }
 
-  let response: Response
-  try {
-    response = await fetch(`${PORTONE_API_BASE}/payments/${encodeURIComponent(paymentId)}`, {
-      headers: { Authorization: `PortOne ${cfg.apiSecret}` },
-    })
-  } catch (e) {
-    return { ok: false, message: `network: ${(e as Error).message}` }
+  // The Transaction.Paid webhook can arrive a beat before the payment is
+  // readable via GET (read-after-write lag) — a bare fetch then returns
+  // 404/empty and the grant is wrongly skipped. Retry a few times before
+  // giving up so the common race self-heals within the request.
+  let lastMessage = 'unknown'
+  for (let attempt = 0; attempt < 4; attempt++) {
+    if (attempt > 0) await new Promise(resolve => setTimeout(resolve, 500))
+    let response: Response
+    try {
+      response = await fetch(`${PORTONE_API_BASE}/payments/${encodeURIComponent(paymentId)}`, {
+        headers: { Authorization: `PortOne ${cfg.apiSecret}` },
+      })
+    } catch (e) {
+      lastMessage = `network: ${(e as Error).message}`
+      continue
+    }
+    let body: Record<string, unknown> = {}
+    try { body = await response.json() } catch { /* non-JSON */ }
+    if (!response.ok) {
+      lastMessage = typeof body.message === 'string' ? body.message : `HTTP ${response.status}`
+      continue
+    }
+    let customData: Record<string, unknown> = {}
+    try {
+      customData = typeof body.customData === 'string'
+        ? JSON.parse(body.customData)
+        : (body.customData as Record<string, unknown>) ?? {}
+    } catch { /* leave empty */ }
+    const amount = body.amount as { total?: number } | undefined
+    return {
+      ok: true,
+      status: typeof body.status === 'string' ? body.status : undefined,
+      amountTotal: amount?.total,
+      currency: typeof body.currency === 'string' ? body.currency : undefined,
+      customData,
+    }
   }
-  let body: Record<string, unknown> = {}
-  try { body = await response.json() } catch { /* non-JSON */ }
-  if (!response.ok) {
-    return { ok: false, message: typeof body.message === 'string' ? body.message : `HTTP ${response.status}` }
-  }
-  let customData: Record<string, unknown> = {}
-  try {
-    customData = typeof body.customData === 'string'
-      ? JSON.parse(body.customData)
-      : (body.customData as Record<string, unknown>) ?? {}
-  } catch { /* leave empty */ }
-  const amount = body.amount as { total?: number } | undefined
-  return {
-    ok: true,
-    status: typeof body.status === 'string' ? body.status : undefined,
-    amountTotal: amount?.total,
-    currency: typeof body.currency === 'string' ? body.currency : undefined,
-    customData,
-  }
+  return { ok: false, message: lastMessage }
 }
 
 export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortOneChargeResult> {
