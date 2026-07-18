@@ -3,10 +3,22 @@ import { verifyPayment } from '@/lib/portone';
 import { createClient } from '@/lib/supabase/server';
 import { triggerInvoicePaymentNotifications } from '@/lib/notification-triggers';
 import { verifyWebhookSignature as verifyStandardWebhook, WebhookVerificationError } from '@/lib/portone-webhook';
+import { tryHandleStudyOneTimeWebhook } from '@/lib/study/payment-webhook-handler';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.text();
+
+    // Study one-time purchases (spk-/pas-) can land here when the payment
+    // was sent without noticeUrls and fell back to this console-configured
+    // webhook. Grant them via the shared study handler BEFORE the invoice
+    // secret gate below (the study grant re-verifies against PortOne's API,
+    // so it doesn't need the webhook signature). Anything not a study
+    // payment falls through to the invoice flow untouched.
+    const studyOutcome = await tryHandleStudyOneTimeWebhook(body);
+    if (studyOutcome.handled) {
+      return NextResponse.json({ ok: true, study: true, ...studyOutcome });
+    }
 
     // Verify webhook signature using Standard Webhooks specification
     // PortOne V2 sends: webhook-id, webhook-signature (v1,base64), webhook-timestamp
