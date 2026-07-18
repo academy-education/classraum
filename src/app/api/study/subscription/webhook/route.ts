@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { getBillingKeyInfo } from '@/lib/portone-charge'
+import { STUDY_PLANS } from '@/lib/study/plans'
+import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
 
 /**
  * PortOne webhook for the study subscription stream.
@@ -30,6 +33,7 @@ interface WebhookPayload {
   type?: string
   data?: {
     paymentId?: string
+    billingKey?: string
     customData?: string | Record<string, unknown>
     status?: string
   }
@@ -62,6 +66,39 @@ export async function POST(req: NextRequest) {
   }
 
   const type = event.type ?? ''
+
+  // Backstop: BillingKey.Issued fires when a card is registered. Normally
+  // the subscribe page immediately posts the key to /billing-key to run
+  // the first charge — but if that client call is lost (dropped redirect,
+  // closed WebView), the card is registered and never charged. Here we
+  // complete the first charge server-side. The event body carries only
+  // the raw billingKey, so we fetch its stored customData (kind + plan +
+  // student_id, stamped at issuance) to recover the buyer.
+  if (type === 'BillingKey.Issued') {
+    const billingKey = event.data?.billingKey ?? ''
+    if (!billingKey) return NextResponse.json({ ok: true, ignored: 'no billingKey' })
+
+    const info = await getBillingKeyInfo(billingKey)
+    if (!info.ok) {
+      console.warn('[study/subscription/webhook] billing-key fetch failed', { message: info.message })
+      return NextResponse.json({ ok: true, ignored: 'billing-key fetch failed' })
+    }
+    const cd = info.customData ?? {}
+    const studentId = typeof cd.student_id === 'string' ? cd.student_id : ''
+    const planId = typeof cd.plan === 'string' ? cd.plan : undefined
+    // Not one of our subscription billing keys (e.g. a pass/gift key, or
+    // pre-backstop issuance without student_id) — nothing to do here.
+    if (cd.kind !== 'study_subscription' || !studentId || (planId && !STUDY_PLANS[planId])) {
+      return NextResponse.json({ ok: true, ignored: 'not a study subscription key' })
+    }
+    // onlyIfNoActiveSub: never charges a buyer a client retry already
+    // subscribed; the shared guard also no-ops on the exact-key match.
+    const outcome = await activateSubscriptionFromBillingKey({
+      studentId, billingKey, planId, onlyIfNoActiveSub: true,
+    })
+    return NextResponse.json({ ok: true, applied: outcome.status })
+  }
+
   const paymentId = event.data?.paymentId ?? ''
 
   // Only respond to study events. customData should mark the kind;

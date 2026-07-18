@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
-import { chargeBillingKey } from '@/lib/portone-charge'
-import { STUDY_PLANS, resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
+import { STUDY_PLANS } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
-import { trackEvent } from '@/lib/study/analytics'
-import { grantReferralConversionIfEligible } from '@/lib/study/referral-conversion'
+import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
 
 /**
  * POST /api/study/subscription/billing-key
@@ -44,108 +41,32 @@ export async function POST(req: NextRequest) {
   if (body.plan && !STUDY_PLANS[body.plan]) {
     return NextResponse.json({ error: 'unknown plan' }, { status: 400 })
   }
-  const plan = resolvePlan(body.plan)
 
-  // First charge. Namespace with init + epoch so retries don't
-  // collide with the renewal cron's monthly paymentIds.
-  const paymentId = `study-sub-init-${user.id}-${Date.now()}`
-  const result = await chargeBillingKey({
+  // Charge + activate via the shared helper — the SAME code the
+  // BillingKey.Issued webhook backstop runs, so a dropped client return
+  // can't leave a registered-but-uncharged card behind.
+  const outcome = await activateSubscriptionFromBillingKey({
+    studentId: user.id,
     billingKey,
-    paymentId,
-    amount: plan.priceWon,
-    orderName: plan.orderName,
-    customerId: user.id,
-    customData: {
-      kind: 'study_subscription',
-      attempt: 'initial',
-      student_id: user.id,
-      plan: plan.id,
-    },
+    planId: body.plan,
   })
 
-  if (!result.ok) {
-    // Persist the failure for the management UI to surface, but DON'T
-    // store the billing key — a bad first charge could mean the card
-    // is dead, so we don't want renewal cron to keep retrying it.
-    await supabaseAdmin
-      .from('study_subscriptions')
-      .upsert({
-        student_id: user.id,
-        status: 'past_due',
-        last_payment_attempt_at: new Date().toISOString(),
-        last_payment_failure: result.message ?? 'unknown',
-        updated_at: new Date().toISOString(),
-      }, { onConflict: 'student_id' })
-
+  if (outcome.status === 'charge_failed') {
     return NextResponse.json(
-      { error: 'charge failed', code: result.code, message: result.message },
+      { error: 'charge failed', code: outcome.code, message: outcome.message },
       { status: 402 }
     )
   }
-
-  // Success — store the billing key, mark active, advance period. The
-  // charge cadence follows the plan (30 = monthly, 365 = annual); the
-  // credit grant refreshes every GRANT_INTERVAL_DAYS regardless, tracked
-  // by next_grant_at so annual subscribers still get monthly credits.
-  const now = new Date()
-  const periodEnd = new Date(now.getTime() + plan.intervalDays * 24 * 60 * 60 * 1000)
-  const nextGrantAt = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
-  const { error: upsertError } = await supabaseAdmin
-    .from('study_subscriptions')
-    .upsert({
-      student_id: user.id,
-      status: 'active',
-      plan: plan.id,
-      price_cents: plan.priceWon * 100,
-      currency: 'KRW',
-      current_period_start: now.toISOString(),
-      current_period_end: periodEnd.toISOString(),
-      next_grant_at: nextGrantAt.toISOString(),
-      cancel_at_period_end: false,
-      portone_subscription_id: billingKey,
-      last_payment_id: paymentId,
-      last_payment_attempt_at: now.toISOString(),
-      last_payment_failure: null,
-      // Fresh cycle → fresh monthly test-credit grant (purchased pack
-      // credits, if any, are preserved by not touching that column).
-      grant_credits_remaining: plan.monthlyCredits,
-      updated_at: now.toISOString(),
-    }, { onConflict: 'student_id' })
-
-  if (!upsertError) {
-    await supabaseAdmin.from('study_credit_ledger').insert({
-      student_id: user.id,
-      delta: plan.monthlyCredits,
-      bucket: 'grant',
-      kind: 'grant',
-      note: `initial charge ${plan.id} (${paymentId})`,
-    })
+  if (outcome.status === 'error') {
+    return NextResponse.json({ error: outcome.message, paymentId: outcome.paymentId }, { status: outcome.httpStatus })
   }
-
-  if (upsertError) {
-    // Charge already succeeded — if we can't write the row this is a
-    // reconciliation problem, not a refund-immediately one. Log loud
-    // so support can repair from the webhook later.
-    console.error('[study/subscription/billing-key] charge ok but upsert failed', {
-      studentId: user.id, paymentId, error: upsertError,
-    })
-    return NextResponse.json({
-      error: 'charge ok but state write failed; support will reconcile',
-      paymentId,
-    }, { status: 500 })
+  if (outcome.status === 'already_active') {
+    // Re-submit of a key that already activated — idempotent success.
+    return NextResponse.json({ success: true, alreadyActive: true })
   }
-
-  // Funnel: a new paid subscription completed — the conversion event.
-  void trackEvent(user.id, 'checkout_completed', { plan: plan.id, priceWon: plan.priceWon })
-
-  // Referral stage 2: if this buyer was referred, grant BOTH sides the
-  // premium-conversion bonus, exactly once. Fire-and-forget — never blocks
-  // or fails the subscription that already succeeded.
-  void grantReferralConversionIfEligible(user.id)
-
   return NextResponse.json({
     success: true,
-    current_period_end: periodEnd.toISOString(),
-    paymentId,
+    current_period_end: outcome.periodEnd,
+    paymentId: outcome.paymentId,
   })
 }
