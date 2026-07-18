@@ -17,7 +17,10 @@ export async function POST(request: NextRequest) {
     // payment falls through to the invoice flow untouched.
     const studyOutcome = await tryHandleStudyOneTimeWebhook(body);
     if (studyOutcome.handled) {
-      return NextResponse.json({ ok: true, study: true, ...studyOutcome });
+      // Retryable = couldn't verify the payment (transient) → ask PortOne
+      // to re-deliver rather than acking with a 2xx.
+      const status = studyOutcome.retryable ? 503 : 200;
+      return NextResponse.json({ ok: !studyOutcome.retryable, study: true, ...studyOutcome }, { status });
     }
 
     // Verify webhook signature using Standard Webhooks specification
