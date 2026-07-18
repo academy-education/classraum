@@ -143,6 +143,54 @@ export async function getBillingKeyInfo(billingKey: string): Promise<BillingKeyI
   }
 }
 
+export interface PaymentInfoResult {
+  ok: boolean
+  status?: string
+  amountTotal?: number
+  currency?: string
+  customData?: Record<string, unknown>
+  message?: string
+}
+
+/**
+ * Read a payment's authoritative state + stored customData. Used by the
+ * webhook backstop, which (in the legacy 2024-01-01 webhook format) gets
+ * only a paymentId with no customData in the body, so it must fetch the
+ * payment to learn the product + buyer. GET /payments/{paymentId}.
+ */
+export async function getPaymentInfo(paymentId: string): Promise<PaymentInfoResult> {
+  const cfg = getPortOneConfig()
+  if (!cfg.apiSecret) return { ok: false, message: 'PORTONE_API_SECRET not configured' }
+
+  let response: Response
+  try {
+    response = await fetch(`${PORTONE_API_BASE}/payments/${encodeURIComponent(paymentId)}`, {
+      headers: { Authorization: `PortOne ${cfg.apiSecret}` },
+    })
+  } catch (e) {
+    return { ok: false, message: `network: ${(e as Error).message}` }
+  }
+  let body: Record<string, unknown> = {}
+  try { body = await response.json() } catch { /* non-JSON */ }
+  if (!response.ok) {
+    return { ok: false, message: typeof body.message === 'string' ? body.message : `HTTP ${response.status}` }
+  }
+  let customData: Record<string, unknown> = {}
+  try {
+    customData = typeof body.customData === 'string'
+      ? JSON.parse(body.customData)
+      : (body.customData as Record<string, unknown>) ?? {}
+  } catch { /* leave empty */ }
+  const amount = body.amount as { total?: number } | undefined
+  return {
+    ok: true,
+    status: typeof body.status === 'string' ? body.status : undefined,
+    amountTotal: amount?.total,
+    currency: typeof body.currency === 'string' ? body.currency : undefined,
+    customData,
+  }
+}
+
 export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortOneChargeResult> {
   const cfg = getPortOneConfig()
   if (!cfg.apiSecret) {

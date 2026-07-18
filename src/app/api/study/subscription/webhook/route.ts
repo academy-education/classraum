@@ -30,6 +30,7 @@ import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscri
 export const dynamic = 'force-dynamic'
 
 interface WebhookPayload {
+  // 2024-04-25 (Standard Webhooks) shape.
   type?: string
   data?: {
     paymentId?: string
@@ -37,6 +38,11 @@ interface WebhookPayload {
     customData?: string | Record<string, unknown>
     status?: string
   }
+  // 2024-01-01 (legacy) shape — flat fields, no `type`.
+  status?: string
+  payment_id?: string
+  billing_key?: string
+  billingKey?: string
 }
 
 export async function POST(req: NextRequest) {
@@ -65,7 +71,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'bad json' }, { status: 400 })
   }
 
+  // Normalize the two webhook body formats. The 2024-04-25 shape carries
+  // `type` (e.g. 'BillingKey.Issued', 'Transaction.Failed'); the legacy
+  // 2024-01-01 shape has a flat `status` ('Issued'/'Failed'/'Cancelled'/…)
+  // and no `type`. Depending on the console's webhook-version setting we
+  // may receive either.
   const type = event.type ?? ''
+  const legacyStatus = !type && typeof event.status === 'string' ? event.status : ''
+  const isBillingKeyIssued = type === 'BillingKey.Issued' || legacyStatus === 'Issued'
+  const isTxFailed = type === 'Transaction.Failed' || legacyStatus === 'Failed'
+  const isTxCancelled = type === 'Transaction.Cancelled' || legacyStatus === 'Cancelled'
 
   // Backstop: BillingKey.Issued fires when a card is registered. Normally
   // the subscribe page immediately posts the key to /billing-key to run
@@ -74,8 +89,8 @@ export async function POST(req: NextRequest) {
   // complete the first charge server-side. The event body carries only
   // the raw billingKey, so we fetch its stored customData (kind + plan +
   // student_id, stamped at issuance) to recover the buyer.
-  if (type === 'BillingKey.Issued') {
-    const billingKey = event.data?.billingKey ?? ''
+  if (isBillingKeyIssued) {
+    const billingKey = event.data?.billingKey ?? event.billing_key ?? event.billingKey ?? ''
     if (!billingKey) return NextResponse.json({ ok: true, ignored: 'no billingKey' })
 
     const info = await getBillingKeyInfo(billingKey)
@@ -99,13 +114,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, applied: outcome.status })
   }
 
-  const paymentId = event.data?.paymentId ?? ''
+  const paymentId = event.data?.paymentId ?? event.payment_id ?? ''
 
-  // Only respond to study events. customData should mark the kind;
-  // skip silently otherwise so this route doesn't conflict with the
-  // academy webhook flow that may share the endpoint pool.
+  // Only respond to study events. The new-format body carries customData
+  // marking the kind; the legacy body doesn't, so when customData is
+  // present we gate on it, and otherwise fall through to the row match
+  // (which only hits study_subscriptions rows anyway).
   const customData = parseCustomData(event.data?.customData)
-  if (customData?.kind !== 'study_subscription') {
+  if (customData && customData.kind !== 'study_subscription') {
     return NextResponse.json({ ok: true, ignored: 'not a study event' })
   }
 
@@ -126,7 +142,7 @@ export async function POST(req: NextRequest) {
   }
 
   const now = new Date().toISOString()
-  if (type === 'Transaction.Failed') {
+  if (isTxFailed) {
     // Only flip if not already terminal — don't resurrect a
     // cancelled/expired row from a stale webhook.
     if (row.status === 'active' || row.status === 'trial') {
@@ -134,7 +150,7 @@ export async function POST(req: NextRequest) {
         .from('study_subscriptions')
         .update({
           status: 'past_due',
-          last_payment_failure: 'webhook: ' + (event.data?.status ?? type),
+          last_payment_failure: 'webhook: ' + (event.data?.status ?? legacyStatus ?? type),
           updated_at: now,
         })
         .eq('id', row.id)
@@ -142,7 +158,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, applied: 'past_due' })
   }
 
-  if (type === 'Transaction.Cancelled') {
+  if (isTxCancelled) {
     // Refund — set period_end to now so access drops immediately,
     // and mark cancelled. Customer support follows up on partial
     // refund edge cases manually.
