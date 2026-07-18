@@ -52,7 +52,11 @@ describe('POST /api/study/subscription/purchase-pack', () => {
   })
 
   it('adds credits via the increment_study_purchased_credits RPC (no read-modify-write update)', async () => {
-    const subChain = enqueue('study_subscriptions', { data: PREMIUM_SUB })
+    // Two subscription reads now: the route (gating/stored-key) and the
+    // shared grant helper (which re-fetches to persist a card). Both see
+    // the existing premium row.
+    enqueue('study_subscriptions', { data: PREMIUM_SUB })
+    const subChainHelper = enqueue('study_subscriptions', { data: PREMIUM_SUB })
     enqueue('study_credit_ledger', { error: null })
 
     const res = await POST(makeRequest({}))
@@ -65,19 +69,24 @@ describe('POST /api/study/subscription/purchase-pack', () => {
       p_student_id: 'student-1',
       p_delta: CREDIT_PACK.credits,
     })
-    // No .update() on the subscription row — the RPC is the only writer
-    expect(subChain.update).not.toHaveBeenCalled()
-    expect(fromMock.mock.calls.map(c => c[0])).toEqual(['study_subscriptions', 'study_credit_ledger', 'study_analytics_events'])
+    // No .update() on the subscription row (card already stored) — the
+    // RPC is the only credit writer.
+    expect(subChainHelper.update).not.toHaveBeenCalled()
+    // Idempotency row is written before granting.
+    expect(fromMock.mock.calls.map(c => c[0])).toContain('study_payments')
   })
 
-  it('returns the rate-limit response as-is', async () => {
+  it('returns the rate-limit response as-is (and never reaches the charge)', async () => {
+    // The limiter guards the billing-key charge branch, so the buyer
+    // needs a stored card to reach it. It must short-circuit before the
+    // card is charged.
+    enqueue('study_subscriptions', { data: PREMIUM_SUB })
     const limited = NextResponse.json({ error: 'rate limited' }, { status: 429 })
     enforceRateLimitMock.mockReturnValue(limited)
 
     const res = await POST(makeRequest({}))
     expect(res.status).toBe(429)
     expect(await res.json()).toEqual({ error: 'rate limited' })
-    expect(fromMock).not.toHaveBeenCalled()
     expect(chargeMock).not.toHaveBeenCalled()
   })
 
@@ -90,7 +99,10 @@ describe('POST /api/study/subscription/purchase-pack', () => {
   })
 
   it('lets a card-less free user buy by passing a freshly issued billingKey', async () => {
+    // Route read (gating): free, no card.
     enqueue('study_subscriptions', { data: { status: 'free', plan: 'free_v1', portone_subscription_id: null } })
+    // Helper read: row exists but still cardless → takes the update branch.
+    enqueue('study_subscriptions', { data: { portone_subscription_id: null } })
     const update = enqueue('study_subscriptions', { error: null }) // store the new card
     enqueue('study_credit_ledger', { error: null })
     const res = await POST(makeRequest({ billingKey: 'fresh-key' }))
@@ -153,7 +165,7 @@ describe('POST /api/study/subscription/purchase-pack', () => {
     const res = await POST(makeRequest({}))
     expect(res.status).toBe(500)
     const body = await res.json()
-    expect(body.error).toBe('charge ok but credit write failed; support will reconcile')
+    expect(body.error).toBe('credit write failed; support will reconcile')
     expect(body.paymentId).toMatch(/^study-pack-student-1-/)
   })
 })
