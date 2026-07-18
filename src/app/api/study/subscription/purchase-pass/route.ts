@@ -4,7 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey, verifyOneTimePayment } from '@/lib/portone-charge'
 import { STUDY_PLANS, STUDY_PASSES, resolvePass, isPassPlan } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
-import { trackEvent } from '@/lib/study/analytics'
+import { grantExamPass } from '@/lib/study/grant-purchase'
 
 /**
  * POST /api/study/subscription/purchase-pass — one-time 수능 대비 패스.
@@ -87,15 +87,6 @@ export async function POST(req: NextRequest) {
     if (v.customData?.pass !== passPlan.id || v.customData?.student_id !== user.id) {
       return NextResponse.json({ error: 'payment does not match this purchase' }, { status: 402 })
     }
-    const { error: idemErr } = await supabaseAdmin.from('study_payments').insert({
-      payment_id: providedPaymentId,
-      student_id: user.id,
-      kind: 'study_exam_pass',
-      amount_won: passPlan.priceWon,
-    })
-    if (idemErr) {
-      return NextResponse.json({ error: 'payment already processed', code: 'already_processed' }, { status: 409 })
-    }
     paymentId = providedPaymentId
   } else {
     // Real-money charge: one per 15s per student. Only the billing-key
@@ -128,74 +119,24 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Success — write the pass row. cancel_at_period_end=true so the cron
-  // finalizes (never renews) it; next_grant_at=null so §4 never refreshes
-  // a monthly grant. Store the billing key so the buyer can top up credit
-  // packs during the pass window.
-  const { error: upsertError } = await supabaseAdmin
-    .from('study_subscriptions')
-    .upsert({
-      student_id: user.id,
-      status: 'active',
-      plan: passPlan.id,
-      pending_plan: null,
-      price_cents: passPlan.priceWon * 100,
-      currency: 'KRW',
-      current_period_start: now.toISOString(),
-      current_period_end: periodEnd.toISOString(),
-      next_grant_at: null,
-      cancel_at_period_end: true,
-      portone_subscription_id: billingKey ?? sub?.portone_subscription_id ?? null,
-      last_payment_id: paymentId,
-      last_payment_attempt_at: now.toISOString(),
-      last_payment_failure: null,
-      // Pass credits go to the purchased bucket via the atomic RPC below;
-      // the pass never carries a monthly grant.
-      grant_credits_remaining: 0,
-      updated_at: now.toISOString(),
-    }, { onConflict: 'student_id' })
-
-  if (upsertError) {
-    console.error('[study/purchase-pass] charge ok but state write failed', {
-      studentId: user.id, paymentId, error: upsertError,
-    })
-    return NextResponse.json({
-      error: 'charge ok but state write failed; support will reconcile',
-      paymentId,
-    }, { status: 500 })
-  }
-
-  // Grant the pass credits atomically (never clobbers an existing
-  // purchased balance).
-  const { error: creditErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
-    p_student_id: user.id,
-    p_delta: passTerms.credits,
+  // Record + grant via the shared helper — the SAME code the webhook
+  // backstop runs. It writes the pass row (cancel_at_period_end so the
+  // cron finalizes and never renews it) and grants the pass credits.
+  const outcome = await grantExamPass({
+    studentId: user.id,
+    passId: passPlan.id,
+    paymentId,
   })
-  if (creditErr) {
-    console.error('[study/purchase-pass] pass row ok but credit grant failed', {
-      studentId: user.id, paymentId, error: creditErr,
-    })
-    // Row is already Premium-active; the credit shortfall is a
-    // reconciliation issue, not a refund-now one.
-    return NextResponse.json({
-      error: 'pass active but credit grant failed; support will reconcile',
-      paymentId,
-    }, { status: 500 })
+  if (outcome.status === 'already_processed') {
+    return NextResponse.json({ error: 'payment already processed', code: 'already_processed' }, { status: 409 })
   }
-  await supabaseAdmin.from('study_credit_ledger').insert({
-    student_id: user.id,
-    delta: passTerms.credits,
-    bucket: 'purchased',
-    kind: 'purchase',
-    note: `${passPlan.id} (${paymentId})`,
-  })
-
-  void trackEvent(user.id, 'pass_purchased', { passId: passPlan.id, credits: passTerms.credits, priceWon: passPlan.priceWon })
-
+  if (outcome.status === 'error') {
+    return NextResponse.json({ error: outcome.message, paymentId }, { status: outcome.httpStatus })
+  }
   return NextResponse.json({
     success: true,
-    current_period_end: periodEnd.toISOString(),
-    creditsAdded: passTerms.credits,
+    current_period_end: outcome.periodEnd ?? periodEnd.toISOString(),
+    creditsAdded: outcome.creditsAdded,
     paymentId,
   })
 }

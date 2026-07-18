@@ -82,6 +82,14 @@ export function billingRedirectUrl(): string {
   return `${window.location.origin}${BILLING_REDIRECT_PATH}`
 }
 
+/** Server-to-server webhook for one-time purchases. Passed as noticeUrls
+ *  so PortOne notifies our backend even when the client never returns —
+ *  the backstop that actually grants credits on a lost redirect. */
+export const STUDY_PAYMENT_WEBHOOK_PATH = '/api/study/payment-webhook'
+export function studyPaymentWebhookUrl(): string {
+  return `${window.location.origin}${STUDY_PAYMENT_WEBHOOK_PATH}`
+}
+
 /**
  * Per-platform window type. Inicis's PC module is a fixed ~820px-wide
  * iframe — on narrower desktop windows the right panel (with the 확인
@@ -159,6 +167,9 @@ export async function requestOneTimePayment(opts: {
     customer: opts.customer,
     customData: opts.customData,
     redirectUrl: billingRedirectUrl(),
+    // Server-side backstop: PortOne POSTs the paid event here even if the
+    // client never returns to redeem, so the grant still fires.
+    noticeUrls: [studyPaymentWebhookUrl()],
     // NOT billingWindowType(): Inicis V2 일반결제 rejects POPUP on PC
     // ("PC환경에서 지원하지 않는 PG사 창 유형(POPUP)") — the sub-900px
     // POPUP fallback that billing-key issuance needs kills the payment

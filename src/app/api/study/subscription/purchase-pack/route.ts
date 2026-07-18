@@ -4,7 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey, verifyOneTimePayment } from '@/lib/portone-charge'
 import { resolvePack } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
-import { trackEvent } from '@/lib/study/analytics'
+import { grantCreditPack } from '@/lib/study/grant-purchase'
 
 /**
  * POST /api/study/subscription/purchase-pack — one-time charge for a
@@ -50,6 +50,7 @@ export async function POST(req: NextRequest) {
   const billingKey = storedKey ?? providedKey
 
   let paymentId: string
+  let billingKeyToPersist: string | null = null
   if (providedPaymentId) {
     const v = await verifyOneTimePayment({
       paymentId: providedPaymentId,
@@ -63,16 +64,6 @@ export async function POST(req: NextRequest) {
     // is written at request time and immutable at PortOne.
     if (v.customData?.pack !== pack.id || v.customData?.student_id !== user.id) {
       return NextResponse.json({ error: 'payment does not match this purchase' }, { status: 402 })
-    }
-    // Exactly-once redemption: the PK insert loses on replay.
-    const { error: idemErr } = await supabaseAdmin.from('study_payments').insert({
-      payment_id: providedPaymentId,
-      student_id: user.id,
-      kind: 'study_credit_pack',
-      amount_won: pack.priceWon,
-    })
-    if (idemErr) {
-      return NextResponse.json({ error: 'payment already processed', code: 'already_processed' }, { status: 409 })
     }
     paymentId = providedPaymentId
   } else {
@@ -109,62 +100,28 @@ export async function POST(req: NextRequest) {
         { status: 402 },
       )
     }
+    // Persist a freshly issued card (only when the row didn't already
+    // have one) so future top-ups can charge it invisibly.
+    billingKeyToPersist = !storedKey ? providedKey : null
   }
 
-  // Ensure a subscription row exists to hold the credits (the increment
-  // RPC updates by student_id) and persist a freshly issued card for
-  // reuse. A brand-new buyer with no row gets a minimal Free row; an
-  // existing row that lacked a card records the one we just charged.
-  const nowIso = new Date().toISOString()
-  if (!sub) {
-    await supabaseAdmin.from('study_subscriptions').insert({
-      student_id: user.id,
-      status: 'free',
-      plan: 'free_v1',
-      currency: 'KRW',
-      portone_subscription_id: billingKey ?? null,
-      grant_credits_remaining: 0,
-      purchased_credits_remaining: 0,
-      updated_at: nowIso,
-    })
-  } else if (!storedKey && providedKey) {
-    await supabaseAdmin
-      .from('study_subscriptions')
-      .update({ portone_subscription_id: providedKey, updated_at: nowIso })
-      .eq('student_id', user.id)
-  }
-
-  // Atomic increment via RPC — a read-modify-write here spanned the
-  // card charge, so a concurrent purchase or credit consumption could
-  // silently lose paid credits.
-  const { error: updateErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
-    p_student_id: user.id,
-    p_delta: pack.credits,
+  // Record + grant via the shared helper — the SAME code the webhook
+  // backstop runs, so a lost client return can't diverge from this path.
+  const outcome = await grantCreditPack({
+    studentId: user.id,
+    packId: pack.id,
+    paymentId,
+    billingKeyToPersist,
   })
-  if (updateErr) {
-    // Charge succeeded but the credit write failed — log loudly for
-    // manual reconciliation rather than double-charging on retry.
-    console.error('[study/purchase-pack] charge ok but credit write failed', {
-      studentId: user.id, paymentId, error: updateErr,
-    })
-    return NextResponse.json({
-      error: 'charge ok but credit write failed; support will reconcile',
-      paymentId,
-    }, { status: 500 })
+  if (outcome.status === 'already_processed') {
+    return NextResponse.json({ error: 'payment already processed', code: 'already_processed' }, { status: 409 })
   }
-  await supabaseAdmin.from('study_credit_ledger').insert({
-    student_id: user.id,
-    delta: pack.credits,
-    bucket: 'purchased',
-    kind: 'purchase',
-    note: `${pack.id} (${paymentId})`,
-  })
-
-  void trackEvent(user.id, 'pack_purchased', { packId: pack.id, credits: pack.credits, priceWon: pack.priceWon })
-
+  if (outcome.status === 'error') {
+    return NextResponse.json({ error: outcome.message, paymentId }, { status: outcome.httpStatus })
+  }
   return NextResponse.json({
     success: true,
-    creditsAdded: pack.credits,
+    creditsAdded: outcome.creditsAdded,
     paymentId,
   })
 }
