@@ -233,8 +233,13 @@ export default function SubscriptionPage() {
         issueId,
         issueName: 'Classraum Study subscription',
         customer,
-        customData: { kind: 'study_subscription', plan: planId },
+        // student_id lets the BillingKey.Issued webhook backstop recover
+        // the buyer (the event body carries only the raw billingKey).
+        customData: { kind: 'study_subscription', plan: planId, student_id: user?.id },
         redirectUrl: billingRedirectUrl(),
+        // Server-side backstop: PortOne posts BillingKey.Issued here even
+        // if the client never returns to run the first charge.
+        noticeUrls: [`${window.location.origin}/api/study/subscription/webhook`],
         windowType: billingWindowType(),
         // Inicis mobile issuance requires the service period; use the
         // plan's own cadence (1m/1y interval or an explicit range).

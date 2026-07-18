@@ -98,6 +98,51 @@ export async function verifyOneTimePayment(input: VerifyOneTimeInput): Promise<V
   return { ok: true, customData }
 }
 
+export interface BillingKeyInfoResult {
+  ok: boolean
+  /** ISSUED or DELETED. */
+  status?: string
+  /** Parsed customData stamped at issuance (kind/plan/student_id). */
+  customData?: Record<string, unknown>
+  message?: string
+}
+
+/**
+ * Fetch an issued billing key's stored info — used by the subscription
+ * webhook's BillingKey.Issued backstop, which only receives the raw
+ * billingKey and must recover the plan + buyer from the customData that
+ * was stamped at issuance. GET /billing-keys/{billingKey}.
+ */
+export async function getBillingKeyInfo(billingKey: string): Promise<BillingKeyInfoResult> {
+  const cfg = getPortOneConfig()
+  if (!cfg.apiSecret) return { ok: false, message: 'PORTONE_API_SECRET not configured' }
+
+  let response: Response
+  try {
+    response = await fetch(`${PORTONE_API_BASE}/billing-keys/${encodeURIComponent(billingKey)}`, {
+      headers: { Authorization: `PortOne ${cfg.apiSecret}` },
+    })
+  } catch (e) {
+    return { ok: false, message: `network: ${(e as Error).message}` }
+  }
+  let body: Record<string, unknown> = {}
+  try { body = await response.json() } catch { /* non-JSON */ }
+  if (!response.ok) {
+    return { ok: false, message: typeof body.message === 'string' ? body.message : `HTTP ${response.status}` }
+  }
+  let customData: Record<string, unknown> = {}
+  try {
+    customData = typeof body.customData === 'string'
+      ? JSON.parse(body.customData)
+      : (body.customData as Record<string, unknown>) ?? {}
+  } catch { /* leave empty */ }
+  return {
+    ok: true,
+    status: typeof body.status === 'string' ? body.status : undefined,
+    customData,
+  }
+}
+
 export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortOneChargeResult> {
   const cfg = getPortOneConfig()
   if (!cfg.apiSecret) {
