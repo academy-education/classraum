@@ -21,6 +21,12 @@ export const dynamic = 'force-dynamic'
 export async function POST(req: NextRequest) {
   const raw = await req.text()
 
+  // Signature check is ADVISORY here, not a gate: the grant re-verifies
+  // the payment against PortOne's API (getPaymentInfo → PAID + amount +
+  // customData), which is the real security boundary. So a wrong/rotated
+  // PORTONE_WEBHOOK_SECRET can never block a legitimate grant — we just
+  // log the mismatch and proceed. (An attacker can't forge a PAID payment
+  // with matching customData, so no signature is needed to stay safe.)
   const secret = process.env.PORTONE_WEBHOOK_SECRET
   if (secret) {
     const headers: WebhookHeaders = {
@@ -31,8 +37,7 @@ export async function POST(req: NextRequest) {
     try {
       verifyWebhookSignature(secret, raw, headers)
     } catch {
-      console.warn('[study/payment-webhook] signature verification failed')
-      return NextResponse.json({ error: 'invalid signature' }, { status: 401 })
+      console.warn('[study/payment-webhook] signature verification failed — proceeding (API re-verify is the gate)')
     }
   }
 
