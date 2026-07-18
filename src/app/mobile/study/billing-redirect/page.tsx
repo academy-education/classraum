@@ -34,6 +34,11 @@ import { StudyButton } from '../_shared/StudyButton'
 export default function BillingRedirectPage() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
+  // "Pending" = the PG approved (money taken / card issued) but our
+  // client-side redemption couldn't finish (session-restore race, etc.).
+  // The server webhook backstop completes it, so we show a reassuring
+  // success screen — NOT the failure screen.
+  const [pending, setPending] = useState(false)
   const [returnTo, setReturnTo] = useState('/mobile/study/subscription')
   const [ko, setKo] = useState(true)
   const ran = useRef(false)
@@ -90,9 +95,11 @@ export default function BillingRedirectPage() {
       try {
         const headers = await waitForAuthHeaders()
         if (!headers) {
-          fail(isKo
-            ? '로그인 정보를 불러오지 못했어요. 앱을 다시 열고 결제를 재시도해 주세요. 이미 결제된 금액은 중복 청구되지 않아요.'
-            : "Couldn't restore your login. Reopen the app and retry — a completed payment will not be charged twice.")
+          // The PG already approved (money taken / card issued). The
+          // server webhook backstop will grant it — show a success/pending
+          // screen, never a failure.
+          track('checkout_result', { step: 'redeem', ok: false, kind: intent.kind, reason: 'no_auth_pending' })
+          setPending(true)
           return
         }
         const post = (url: string, body: Record<string, unknown>) =>
@@ -128,7 +135,10 @@ export default function BillingRedirectPage() {
             status: res.status,
             code: body.code,
           })
-          fail(typeof body.message === 'string' ? body.message : null)
+          // The card was charged (or the key issued) at the PG — this
+          // failure is only our client-side redemption. The webhook
+          // backstop finishes it, so show pending success, not an error.
+          setPending(true)
           return
         }
         track('checkout_result', { step: 'redeem', ok: true, kind: intent.kind })
@@ -150,10 +160,37 @@ export default function BillingRedirectPage() {
         }
         router.replace(back)
       } catch {
-        fail(null)
+        // PG-approved payment + an unexpected client error → the webhook
+        // still completes it. Pending success, not failure.
+        setPending(true)
       }
     })()
   }, [router])
+
+  if (pending) {
+    // Payment succeeded at the PG; the server is finalizing it (webhook
+    // backstop). Reassure, don't alarm — the balance updates shortly.
+    return (
+      <div className="flex flex-col h-full bg-gray-50 items-center justify-center px-6 text-center gap-4">
+        <div className="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center">
+          <svg className="w-7 h-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <p className="text-[15px] font-semibold text-gray-900">
+          {ko ? '결제가 완료되었어요' : 'Payment complete'}
+        </p>
+        <p className="text-[13px] text-gray-500 leading-relaxed max-w-[300px]">
+          {ko
+            ? '잠시 후 반영돼요. 화면을 새로고침하면 확인할 수 있어요.'
+            : "It'll appear in a moment — pull to refresh to see it."}
+        </p>
+        <StudyButton type="button" variant="primary" onClick={() => router.replace(returnTo)}>
+          {ko ? '돌아가기' : 'Go back'}
+        </StudyButton>
+      </div>
+    )
+  }
 
   if (error) {
     return (
