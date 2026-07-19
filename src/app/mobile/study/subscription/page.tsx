@@ -64,6 +64,7 @@ interface SubPayload {
   credits?: { grant: number; purchased: number; total: number }
   catalog?: { plans: CatalogPlan[]; pack: { id: string; credits: number; priceWon: number }; packs?: { id: string; credits: number; priceWon: number }[] }
   passes?: PassInfo[]
+  access?: { all: boolean; tests: string[] }
 }
 
 type Acting = 'cancel' | 'reactivate' | 'pack' | 'pass' | `checkout:${string}` | `change:${string}` | null
@@ -152,19 +153,22 @@ export default function SubscriptionPage() {
   const isActive = sub?.status === 'active'
   const isTrial = sub?.status === 'trial'
   const isFree = !sub || sub.status === 'free'
-  // Anyone not on a live paid subscription goes through checkout to
-  // start one — free users, lapsed subscribers, and legacy trials.
-  const needsCheckout = isFree || sub?.status === 'expired' || sub?.status === 'cancelled' || sub?.status === 'past_due' || isTrial
-  const currentPlanId = isActive
-    ? (data?.planMeta?.id ?? sub?.plan ?? null)
-    : isFree ? 'free_v1' : null
   // Exam-sitting passes — one-time seasonal Premium passes surfaced
-  // outside the recurring plan grid. An active pass hides the plan grid /
-  // cancel-reactivate; in-season offers render as purchase CTAs (web only).
+  // alongside the recurring plan grid. An active pass keeps its own
+  // banner + hides cancel/reactivate (a pass isn't cancelled the normal
+  // way), but the user can still buy a recurring plan or another pass.
   const passes = data?.passes ?? []
   const activePass = passes.find(p => p.onPass) ?? null
   const onPass = activePass !== null
   const passOffers = isNative ? [] : passes.filter(p => p.offer)
+  // Anyone not on a live paid subscription goes through checkout to
+  // start one — free users, lapsed subscribers, legacy trials, and
+  // pass holders (a pass isn't a recurring plan, so starting one is a
+  // fresh checkout, not a plan switch).
+  const needsCheckout = isFree || sub?.status === 'expired' || sub?.status === 'cancelled' || sub?.status === 'past_due' || isTrial || onPass
+  const currentPlanId = isActive && !onPass
+    ? (data?.planMeta?.id ?? sub?.plan ?? null)
+    : isFree ? 'free_v1' : null
   const credits = data?.credits ?? {
     grant: sub?.grant_credits_remaining ?? 0,
     purchased: sub?.purchased_credits_remaining ?? 0,
@@ -576,12 +580,19 @@ export default function SubscriptionPage() {
             plan). Each pass carries its own identity color; with more
             than one offer they sit in an auto-advancing snap carousel. */}
         {passOffers.length > 0 && (
-          <PassCarousel
-            passes={passOffers}
-            ko={ko}
-            acting={acting}
-            onBuy={(id, name) => void buyPass(id, name)}
-          />
+          <div className="space-y-2.5">
+            {onPass && (
+              <p className="text-[12px] font-medium text-gray-500 px-1">
+                {ko ? '다른 시험도 추가할 수 있어요' : 'Add another test'}
+              </p>
+            )}
+            <PassCarousel
+              passes={passOffers}
+              ko={ko}
+              acting={acting}
+              onBuy={(id, name) => void buyPass(id, name)}
+            />
+          </div>
         )}
 
         {/* Period banner — only meaningful for a live paid subscription
@@ -605,8 +616,8 @@ export default function SubscriptionPage() {
           </div>
         )}
 
-        {/* Plan cards */}
-        {!onPass && (
+        {/* Plan cards — visible even while on a pass, so a pass holder can
+            upgrade to a recurring plan that unlocks every test. */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {displayedPlans.map(plan => {
             const isCurrent = currentPlanId === plan.id
@@ -758,7 +769,7 @@ export default function SubscriptionPage() {
                       : (ko ? '갱신일에 변경' : 'Switch at renewal')}
                   </button>
                 )}
-                {!isNative && !isCurrent && isActive && (
+                {!isNative && !isCurrent && isActive && !onPass && (
                   <p className="text-[11.5px] text-gray-400 -mt-2 text-center leading-snug">
                     {isUpgrade
                       ? plan.intervalDays === 365
@@ -771,7 +782,6 @@ export default function SubscriptionPage() {
             )
           })}
         </div>
-        )}
 
         {/* gift hidden for launch — referral moved to the preferences page */}
         {false && (

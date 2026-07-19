@@ -191,6 +191,9 @@ export interface StudyPass {
   id: string
   priceWon: number
   credits: number
+  /** Test family this pass unlocks (lowercase, matches topic slug prefix):
+   *  'sat' | 'toefl'. '*' = all tests (a general Premium pass, e.g. 수능). */
+  test: 'sat' | 'toefl' | '*'
   /** Date-anchored pass: ISO date it runs until (end-of-day KST). Set
    *  this OR durationDays, not both. Anchored passes are seasonal — the
    *  CTA only shows inside `windowDays` before the date. */
@@ -210,6 +213,7 @@ export const STUDY_PASSES: StudyPass[] = [
     id: 'sunung_pass_v1',
     priceWon: 39000,
     credits: 30,
+    test: '*',
     // Date-anchored to the 2027학년도 수능 — Thursday, 19 Nov 2026.
     examDate: '2026-11-19',
     windowDays: 120,
@@ -222,6 +226,7 @@ export const STUDY_PASSES: StudyPass[] = [
     id: 'sat_pass_v1',
     priceWon: 29000,
     credits: 20,
+    test: 'sat',
     // Rolling 3-month pass from purchase — no fixed exam date.
     durationDays: 90,
     name_en: 'SAT 3-Month Pass',
@@ -233,6 +238,7 @@ export const STUDY_PASSES: StudyPass[] = [
     id: 'toefl_pass_v1',
     priceWon: 29000,
     credits: 20,
+    test: 'toefl',
     // Rolling 3-month pass from purchase, mirroring the SAT pass.
     durationDays: 90,
     name_en: 'TOEFL 3-Month Pass',

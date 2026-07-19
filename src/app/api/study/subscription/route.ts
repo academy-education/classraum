@@ -5,6 +5,7 @@ import {
   STUDY_PASSES, isPassPlan,
 } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
+import { getTestAccess } from '@/lib/study/entitlements'
 
 /**
  * GET  /api/study/subscription          — return current row.
@@ -37,6 +38,11 @@ export async function GET(req: NextRequest) {
   // Each purchase CTA is offered only inside its pre-exam window and to
   // members not on an active plan. Computed even for null-row (brand-new)
   // users so offers can reach them too.
+  // Per-test entitlements — lets client surfaces (topic pages, plan
+  // grid) lock tests a pass-scoped user can't access. { all:true } for
+  // recurring-plan / all-access-pass / free-trial users.
+  const access = await getTestAccess(user.id)
+
   const now = Date.now()
   const activePassId = sub?.status === 'active' && isPassPlan(sub.plan) ? sub.plan : null
   const passes = STUDY_PASSES.map(p => {
@@ -61,14 +67,16 @@ export async function GET(req: NextRequest) {
       name_ko: p.name_ko,
       blurb_en: p.blurb_en,
       blurb_ko: p.blurb_ko,
-      // Offer only when available, only to non-active members, and never a
-      // pass the user is already on.
-      offer: available && sub?.status !== 'active',
+      // Offer only when available. Shown to non-active members and — so a
+      // pass holder can stack another test — to pass holders for any pass
+      // OTHER than the one they're already on. Recurring-plan actives
+      // (all-access) never see pass offers.
+      offer: available && (sub?.status !== 'active' || (activePassId !== null && activePassId !== p.id)),
       onPass: activePassId === p.id,
     }
   })
 
-  if (!sub) return NextResponse.json({ subscription: null, passes })
+  if (!sub) return NextResponse.json({ subscription: null, passes, access })
 
   // Enrich with the resolved tier, credit balance, and feature flags
   // so every client surface (subscription page, upsell cards, snap
@@ -92,5 +100,6 @@ export async function GET(req: NextRequest) {
       packs: CREDIT_PACKS,
     },
     passes,
+    access,
   })
 }

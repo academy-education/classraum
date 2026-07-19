@@ -135,6 +135,10 @@ function TopicInner({ slug }: { slug: string }) {
   // null = unknown (fetch failed) → fall through to confirm; the 402
   // path still catches any race.
   const [creditBalance, setCreditBalance] = useState<number | null>(null)
+  // Per-test entitlements from the subscription payload. null = unknown
+  // (cold load / fetch failed) → NEVER lock; only a loaded, test-scoped
+  // access set that excludes this family locks the full-test entry.
+  const [access, setAccess] = useState<{ all: boolean; tests: string[] } | null>(null)
 
   // When the topic has children (e.g., AP → AP Biology / AP Calc AB),
   // the page shows a category picker. The selected category becomes
@@ -159,6 +163,7 @@ function TopicInner({ slug }: { slug: string }) {
         const json = res.ok ? await res.json() : null
         const sub = subRes.ok ? await subRes.json() : null
         if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
+        if (!cancelled && sub?.access && typeof sub.access.all === 'boolean') setAccess(sub.access)
         return (json?.prefs?.target_test as string | null) ?? null
       } catch { return null }
     })()
@@ -395,6 +400,15 @@ function TopicInner({ slug }: { slug: string }) {
 
   const name = (n: { name_en: string; name_ko: string }) => ko ? n.name_ko : n.name_en
 
+  // Test-scoped access lock: if the user holds only a pass (or passes)
+  // that don't cover this page's test family, the full-test / generate
+  // entry is locked behind a subscription CTA. Fails OPEN — an unknown
+  // access set (cold load) never locks a paying user.
+  const pageFamily = parseTestSlug(topic.slug).family
+  const testLocked = topic.category === 'test_prep'
+    && !!access && !access.all
+    && !!pageFamily && !access.tests.includes(pageFamily)
+
   // The 2x2 learning-mode grid — shared by the subject layout and the
   // test-prep "Practice" tab.
   const modeGrid = (
@@ -611,35 +625,45 @@ function TopicInner({ slug }: { slug: string }) {
 
             {tab === 'tests' ? (
               <>
-                <FeaturedFullTestCard
-                  // SAT tests are premade (instant bank assembly) and have no
-                  // customizable options, so skip the customization sheet —
-                  // but confirm the credit spend first (the sheet shows its
-                  // own cost line; this one-tap path had none).
-                  startSession={() => {
-                    if (effectiveTopic && parseTestSlug(effectiveTopic.slug).family === 'sat') {
-                      requestBankStart()
-                    } else {
-                      openTestSheet()
-                    }
-                  }}
-                  creating={bankBusy ? 'full_test' : creating}
-                  t={t}
-                  ko={ko}
-                  creditCost={(() => {
-                    const parsed = parseTestSlug(effectiveTopic?.slug ?? topic.slug)
-                    return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
-                  })()}
-                />
-                {/* AI Speaking/Writing grader (Beta) — lived on the
-                    Practice tab before it was locked; kept reachable
-                    here for the TOEFL/IELTS speaking + writing leaves. */}
-                {isResponseEligible(effectiveTopic?.slug) && (
-                  <FeaturedResponseCard
-                    startSession={() => startSession('response')}
-                    creating={creating}
-                    t={t}
-                  />
+                {testLocked ? (
+                  // Pass-scoped user without access to THIS test family —
+                  // the full-test / generate entry is locked behind a
+                  // subscription CTA (dimmed card, matching the landing /
+                  // practice-tab locked-card pattern).
+                  <FullTestLockedCard family={pageFamily as string} ko={ko} />
+                ) : (
+                  <>
+                    <FeaturedFullTestCard
+                      // SAT tests are premade (instant bank assembly) and have no
+                      // customizable options, so skip the customization sheet —
+                      // but confirm the credit spend first (the sheet shows its
+                      // own cost line; this one-tap path had none).
+                      startSession={() => {
+                        if (effectiveTopic && parseTestSlug(effectiveTopic.slug).family === 'sat') {
+                          requestBankStart()
+                        } else {
+                          openTestSheet()
+                        }
+                      }}
+                      creating={bankBusy ? 'full_test' : creating}
+                      t={t}
+                      ko={ko}
+                      creditCost={(() => {
+                        const parsed = parseTestSlug(effectiveTopic?.slug ?? topic.slug)
+                        return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
+                      })()}
+                    />
+                    {/* AI Speaking/Writing grader (Beta) — lived on the
+                        Practice tab before it was locked; kept reachable
+                        here for the TOEFL/IELTS speaking + writing leaves. */}
+                    {isResponseEligible(effectiveTopic?.slug) && (
+                      <FeaturedResponseCard
+                        startSession={() => startSession('response')}
+                        creating={creating}
+                        t={t}
+                      />
+                    )}
+                  </>
                 )}
                 <RecentTestsList
                   topicIds={[topic.id, ...children.map(c => c.id)]}
@@ -954,6 +978,42 @@ function FeaturedResponseCard({
         <ArrowRight className="w-5 h-5 text-indigo-400/70 group-hover:text-indigo-500 group-hover:translate-x-0.5 mt-1.5 flex-shrink-0 transition-all" />
       </div>
     </button>
+  )
+}
+
+/**
+ * Locked full-test entry for a pass-scoped user who can't access this
+ * test family (e.g. holds a TOEFL pass, viewing an SAT topic). Dimmed
+ * card + lock glyph with a CTA into the subscription page — mirrors the
+ * locked-card pattern used on the landing grid and the practice tab.
+ */
+function FullTestLockedCard({ family, ko }: { family: string; ko: boolean }) {
+  const label = family.toUpperCase()
+  return (
+    <Link
+      href="/mobile/study/subscription"
+      className="group relative block w-full rounded-2xl p-5 ring-1 ring-gray-200/70 bg-gray-50/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300/80 active:scale-[0.99] transition-all overflow-hidden"
+    >
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 rounded-2xl bg-white text-gray-400 flex items-center justify-center ring-1 ring-gray-200/70 flex-shrink-0">
+          <Lock className="w-5 h-5" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-[16px] font-semibold text-gray-600 tracking-tight">
+            {ko ? `${label} 패스가 필요해요` : `Requires the ${label} pass`}
+          </div>
+          <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
+            {ko
+              ? `${label} 모의고사를 이용하려면 ${label} 패스나 프리미엄 구독이 필요해요.`
+              : `Unlock ${label} full tests with the ${label} pass or a Premium plan.`}
+          </p>
+          <span className="mt-3.5 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(40,133,232,0.30)]">
+            {ko ? '구독 보기' : 'View plans'}
+            <ArrowRight className="w-4 h-4" />
+          </span>
+        </div>
+      </div>
+    </Link>
   )
 }
 
