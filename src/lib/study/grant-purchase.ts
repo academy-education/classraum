@@ -135,10 +135,12 @@ export async function grantExamPass(opts: {
     ? new Date(`${passTerms.examDate}T23:59:59+09:00`)
     : new Date(now.getTime() + (passTerms.durationDays ?? 90) * 24 * 60 * 60 * 1000)
 
-  // Preserve an existing stored card so the buyer can still top up packs.
+  // Preserve an existing stored card so the buyer can still top up packs,
+  // and (critically) preserve any grant-bucket credits they already have —
+  // buying a pass must not wipe free/monthly credits.
   const { data: sub } = await supabaseAdmin
     .from('study_subscriptions')
-    .select('portone_subscription_id')
+    .select('portone_subscription_id, grant_credits_remaining')
     .eq('student_id', opts.studentId)
     .maybeSingle()
 
@@ -159,7 +161,9 @@ export async function grantExamPass(opts: {
       last_payment_id: opts.paymentId,
       last_payment_attempt_at: now.toISOString(),
       last_payment_failure: null,
-      grant_credits_remaining: 0,
+      // Keep existing grant-bucket credits — the pass adds to the purchased
+      // bucket (RPC below) and must never zero out credits the buyer had.
+      grant_credits_remaining: sub?.grant_credits_remaining ?? 0,
       updated_at: now.toISOString(),
     }, { onConflict: 'student_id' })
   if (upsertError) {
