@@ -24,6 +24,7 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
+import { canAccessTest } from '@/lib/study/entitlements'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -416,6 +417,15 @@ export async function POST(req: NextRequest) {
     // is the section (dashes → underscores).
     const parts = slug.replace(/^test-/, '').split('-')
     creditCost = creditCostForTest(parts[0] ?? null, parts.slice(1).join('_') || null)
+    // Test-scoped access: block a pass holder scoped to a different test
+    // before reserving credits or spending model tokens. Only blocks when
+    // we positively resolve a family AND it's not accessible — an empty/
+    // unresolvable slug falls through (fail open; free/plan users always
+    // pass canAccessTest).
+    const family = parts[0] ? parts[0].toLowerCase() : null
+    if (family && !(await canAccessTest(user.id, family))) {
+      return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: family }, { status: 403 })
+    }
   }
   const credit = await reserveTestCredits(user.id, sessionId, creditCost)
   if (!credit.ok) {

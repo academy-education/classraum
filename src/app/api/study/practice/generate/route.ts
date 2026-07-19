@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { loadStudyPromptContext } from '@/lib/study-prompt-context'
 import { drawBankPractice } from '@/lib/study/assemble'
 import { requireStudyUser } from '@/lib/study/auth'
+import { canAccessTest } from '@/lib/study/entitlements'
 import { PATH_STOP_QUESTION_COUNT } from '@/lib/study-path'
 
 /**
@@ -115,6 +116,13 @@ export async function POST(req: NextRequest) {
     const ctx = await loadStudyPromptContext(session.topic_id, lang)
     if (ctx?.testFamily === 'sat') {
       bankSection = ctx.topicSlug === 'sat-math' ? 'math' : 'reading_writing'
+    }
+    // Test-scoped access: family = topicSlug prefix before '-'. Block a
+    // pass holder scoped to a different test before the draw. Fail open
+    // when the slug is missing/unresolvable (free/plan users always pass).
+    const family = ctx?.topicSlug ? ctx.topicSlug.split('-')[0]?.toLowerCase() : null
+    if (family && !(await canAccessTest(user.id, family))) {
+      return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: family }, { status: 403 })
     }
   }
 

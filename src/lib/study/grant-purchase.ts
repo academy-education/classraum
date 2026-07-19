@@ -1,6 +1,7 @@
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { resolvePack, resolvePass, STUDY_PLANS, isPassPlan } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
+import { grantTestEntitlement, pointStudyPathAtTest } from '@/lib/study/entitlements'
 
 /**
  * Shared grant logic for one-time study purchases (credit packs + exam
@@ -190,6 +191,23 @@ export async function grantExamPass(opts: {
     kind: 'purchase',
     note: `${passPlan.id} (${opts.paymentId})`,
   })
+
+  // Test-scoped access: record the entitlement (stackable — a SAT pass and a
+  // TOEFL pass coexist) so this pass unlocks its test until the period ends,
+  // and point the study path at that test. All-access passes ('*') skip the
+  // path pointer since they don't correspond to a single test.
+  try {
+    await grantTestEntitlement({ studentId: opts.studentId, test: passTerms.test, expiresAt: periodEnd, source: 'pass' })
+    if (passTerms.test === 'sat' || passTerms.test === 'toefl') {
+      await pointStudyPathAtTest(opts.studentId, passTerms.test)
+    }
+  } catch (e) {
+    // Access-grant failure shouldn't fail the (already succeeded) purchase —
+    // log for reconciliation; the entitlement can be backfilled.
+    console.error('[grant] pass credits ok but entitlement write failed', {
+      studentId: opts.studentId, paymentId: opts.paymentId, error: e,
+    })
+  }
 
   void trackEvent(opts.studentId, 'pass_purchased', {
     passId: passPlan.id, credits: passTerms.credits, priceWon: passPlan.priceWon,

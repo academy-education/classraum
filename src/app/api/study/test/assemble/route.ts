@@ -7,6 +7,7 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
+import { canAccessTest } from '@/lib/study/entitlements'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
@@ -37,6 +38,14 @@ export async function POST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
   const user = authResult.user
+
+  // Test-scoped access: this endpoint only ever builds SAT bank tests
+  // (SECTION_TOPIC is SAT-only). Block a pass holder scoped to a
+  // different test before any session/credit work. Free/plan/all-access
+  // users pass through (canAccessTest returns true for them).
+  if (!(await canAccessTest(user.id, 'sat'))) {
+    return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: 'sat' }, { status: 403 })
+  }
 
   // Each call creates a session AND burns up to 54 exposure-ledger
   // rows before the test is even opened — keep retry loops in check.
