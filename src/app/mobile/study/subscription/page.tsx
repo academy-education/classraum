@@ -12,7 +12,7 @@ import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
-import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
+import { FREE_CREDITS, creditCostForTest, isPassPlan } from '@/lib/study/plans'
 import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
@@ -446,7 +446,9 @@ export default function SubscriptionPage() {
                   </div>
                 </div>
               </div>
-              <StatusPill status={sub.status} cancelling={sub.cancel_at_period_end} />
+              {/* A pass is modelled with cancel_at_period_end=true (it ends at
+                  the exam date, never renews) — don't mislabel it "Cancelling". */}
+              <StatusPill status={sub.status} cancelling={sub.cancel_at_period_end && !onPass && !isPassPlan(sub.plan)} />
             </div>
 
             {/* Breakdown — monthly grant vs never-expiring purchased. */}
