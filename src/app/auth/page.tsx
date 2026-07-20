@@ -360,6 +360,15 @@ export default function AuthPage() {
     }, 100)
   }, [isInitialized, authLoading, user, isPasswordReset, activeTab, router])
 
+  // Loose plausibility check, not a strict format: 9–15 digits once
+  // separators are stripped covers KR mobiles (010-XXXX-XXXX) and
+  // international numbers. Billing (Inicis) later requires a real
+  // number, so an empty-but-garbage value here just defers the failure.
+  const isPlausiblePhone = (v: string) => {
+    const digits = v.replace(/[\s\-().+]/g, '')
+    return /^\d{9,15}$/.test(digits)
+  }
+
   // Check if all required signup fields are filled. The study door
   // needs no role/academy — those only apply to the academy flow.
   const isSignupFormValid = useMemo(() => {
@@ -370,7 +379,7 @@ export default function AuthPage() {
            signupConfirmPassword.trim() !== ''
     // Study door collects a phone number (there's no academy to reach
     // these students through, so it's the only contact channel).
-    if (signupIntent === 'study') return baseValid && phone.trim() !== ''
+    if (signupIntent === 'study') return baseValid && isPlausiblePhone(phone)
     return baseValid && role.trim() !== '' && academyId.trim() !== ''
   }, [activeTab, fullName, email, password, signupConfirmPassword, role, academyId, signupIntent, phone])
 
@@ -1188,6 +1197,13 @@ export default function AuthPage() {
                       className="pl-10"
                     />
                   </div>
+                  {phone.trim() !== '' && !isPlausiblePhone(phone) && (
+                    <p className="text-xs text-rose-600 leading-relaxed">
+                      {language === 'korean'
+                        ? '올바른 휴대폰 번호를 입력해 주세요 (예: 010-1234-5678).'
+                        : 'Please enter a valid phone number (e.g. 010-1234-5678).'}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">
