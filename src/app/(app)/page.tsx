@@ -66,8 +66,11 @@ export default function AppRootPage() {
             router.replace(target)
           }
         } else if (userRole === 'parent') {
-          if (pathname !== '/mobile') {
-            router.replace('/mobile')
+          // Parents default to Grades but keep their last-used mode —
+          // study is open to them too (ModeChip offers the switch).
+          const target = readStoredMode() === 'study' ? '/mobile/study' : '/mobile'
+          if (pathname !== target) {
+            router.replace(target)
           }
         } else if (userRole === 'manager') {
           if (pathname !== '/dashboard') {

@@ -15,6 +15,7 @@ import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { AnimatedStatSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase'
+import { authHeaders } from '@/lib/auth-headers'
 import { hapticImpact } from '@/lib/nativeHaptics'
 import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin, DoorOpen, Megaphone, X } from 'lucide-react'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
@@ -158,60 +159,41 @@ export default function MobilePage() {
 
       if (!academyIdParam || !roleParam) return
 
-      // Check if this is a personalized invite
-      if (familyMemberIdParam) {
-        try {
-          const { data: memberData } = await supabase
-            .from('family_members')
-            .select(`
-              id,
-              user_name,
-              role,
-              family_id,
-              families!inner(academy_id, academies(name))
-            `)
-            .eq('id', familyMemberIdParam)
-            .is('user_id', null)
-            .single()
-
-          if (memberData) {
-            const academy = (memberData.families as any)?.academies
+      // Preview via the server — RLS blocks an invitee from reading the
+      // academies row (members-only) or the family_members row directly,
+      // which used to silently swallow the modal for the exact people
+      // invite links target. The join endpoint reads with the service
+      // role; possession of the link is the authorization.
+      try {
+        const headers = await authHeaders()
+        const qs = new URLSearchParams({ academy_id: academyIdParam })
+        if (familyMemberIdParam) qs.set('family_member_id', familyMemberIdParam)
+        const res = await fetch(`/api/academy/join?${qs.toString()}`, { headers })
+        if (res.ok) {
+          const json = await res.json()
+          if (familyMemberIdParam && json.member) {
             setInviteData({
               type: 'personalized',
-              role: memberData.role,
+              role: json.member.role,
               academyId: academyIdParam,
-              academyName: academy?.name,
-              familyId: memberData.family_id,
+              academyName: json.academyName,
+              familyId: json.member.familyId,
               familyMemberId: familyMemberIdParam,
-              memberName: memberData.user_name || undefined
+              memberName: json.member.name || undefined
             })
-            setShowInviteConfirmation(true)
-          }
-        } catch (error) {
-          console.error('[Mobile] Error fetching personalized invite data:', error)
-        }
-      } else {
-        // General invite link
-        try {
-          const { data: academyData } = await supabase
-            .from('academies')
-            .select('name')
-            .eq('id', academyIdParam)
-            .single()
-
-          if (academyData) {
+          } else {
             setInviteData({
               type: 'general',
               role: roleParam,
               academyId: academyIdParam,
-              academyName: academyData.name,
+              academyName: json.academyName,
               familyId: familyIdParam || undefined
             })
-            setShowInviteConfirmation(true)
           }
-        } catch (error) {
-          console.error('[Mobile] Error fetching academy data:', error)
+          setShowInviteConfirmation(true)
         }
+      } catch (error) {
+        console.error('[Mobile] Error fetching invite data:', error)
       }
 
       // Clean URL
@@ -1187,72 +1169,24 @@ export default function MobilePage() {
 
     setJoiningAcademy(true)
     try {
-      if (inviteData.type === 'personalized' && inviteData.familyMemberId) {
-        // Personalized invite: Link user to existing family member
-        const { error: linkError } = await supabase
-          .from('family_members')
-          .update({ user_id: user.userId })
-          .eq('id', inviteData.familyMemberId)
-
-        if (linkError) throw linkError
-
-        // Create role record based on member's role
-        if (inviteData.role === 'student') {
-          const { error: studentError } = await supabase
-            .from('students')
-            .insert({
-              user_id: user.userId,
-              academy_id: inviteData.academyId,
-              active: true
-            })
-
-          if (studentError && !studentError.message.includes('duplicate')) throw studentError
-        } else if (inviteData.role === 'parent') {
-          const { error: parentError } = await supabase
-            .from('parents')
-            .insert({
-              user_id: user.userId,
-              academy_id: inviteData.academyId
-            })
-
-          if (parentError && !parentError.message.includes('duplicate')) throw parentError
-        }
-      } else {
-        // General invite: Create new family member and role record
-        if (inviteData.familyId) {
-          // Add to existing family
-          await supabase
-            .from('family_members')
-            .insert({
-              family_id: inviteData.familyId,
-              user_id: user.userId,
-              user_name: user.userName,
-              role: inviteData.role
-            })
-        }
-
-        // Create role record
-        if (inviteData.role === 'student') {
-          const { error: studentError } = await supabase
-            .from('students')
-            .insert({
-              user_id: user.userId,
-              academy_id: inviteData.academyId,
-              active: true
-            })
-
-          if (studentError && !studentError.message.includes('duplicate')) throw studentError
-        } else if (inviteData.role === 'parent') {
-          const { error: parentError } = await supabase
-            .from('parents')
-            .insert({
-              user_id: user.userId,
-              academy_id: inviteData.academyId
-            })
-
-          if (parentError && !parentError.message.includes('duplicate')) throw parentError
-        }
-      }
+      // Server-side join ("link, don't create"): attaches the membership
+      // row to THIS account with the service role, claims the family
+      // member for personalized invites, and reconciles the users.role
+      // default-surface pointer. RLS blocks the client from doing any of
+      // this cross-role (a study student accepting a parent invite, or
+      // vice versa), which is exactly the case the feature exists for.
+      const headers = await authHeaders()
+      const res = await fetch('/api/academy/join', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          role: inviteData.role,
+          academyId: inviteData.academyId,
+          familyId: inviteData.familyId,
+          familyMemberId: inviteData.familyMemberId,
+        }),
+      })
+      if (!res.ok) throw new Error(`join failed (${res.status})`)
 
       // Success! Close modal and refresh
       setShowInviteConfirmation(false)
