@@ -57,6 +57,14 @@ interface PassInfo {
   onPass: boolean
 }
 
+interface HeldPass {
+  test: string
+  passId: string | null
+  expiresAt: string | null
+  name_en: string
+  name_ko: string
+}
+
 interface SubPayload {
   subscription: Subscription | null
   tier?: 'general' | 'premium'
@@ -64,6 +72,7 @@ interface SubPayload {
   credits?: { grant: number; purchased: number; total: number }
   catalog?: { plans: CatalogPlan[]; pack: { id: string; credits: number; priceWon: number }; packs?: { id: string; credits: number; priceWon: number }[] }
   passes?: PassInfo[]
+  heldPasses?: HeldPass[]
   access?: { all: boolean; tests: string[] }
 }
 
@@ -160,6 +169,10 @@ export default function SubscriptionPage() {
   const passes = data?.passes ?? []
   const activePass = passes.find(p => p.onPass) ?? null
   const onPass = activePass !== null
+  // Passes the student holds (from entitlements), shown even when a recurring
+  // plan overwrote the shared plan row. Exclude the one already shown by the
+  // active-pass banner (the pure-pass case) so it isn't listed twice.
+  const heldPasses = (data?.heldPasses ?? []).filter(hp => hp.passId !== activePass?.id)
   const passOffers = isNative ? [] : passes.filter(p => p.offer)
   // Anyone not on a live paid subscription goes through checkout to
   // start one — free users, lapsed subscribers, legacy trials, and
@@ -476,6 +489,26 @@ export default function SubscriptionPage() {
             <p className="text-[11.5px] text-gray-400 mt-1.5">
               {ko ? '생성에 실패하면 크레딧은 자동으로 환불돼요.' : 'Failed generations are refunded automatically.'}
             </p>
+
+            {/* Renewal / cancel date — surfaced on the top card so the next
+                billing moment is visible at a glance (not buried lower). */}
+            {isActive && !onPass && (
+              <div className="mt-4 pt-3.5 border-t border-amber-200/40 flex items-start gap-2.5 text-[13px] text-gray-600">
+                <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
+                <div className="leading-relaxed">
+                  {sub.cancel_at_period_end
+                    ? t('study.subscription.cancelsOn', { date: formatDate(sub.current_period_end, ko) })
+                    : t('study.subscription.renewsOn', { date: formatDate(sub.current_period_end, ko) })}
+                  {sub.pending_plan && (
+                    <span className="block text-amber-700 mt-0.5">
+                      {ko
+                        ? `다음 갱신일에 ${planName(plans, sub.pending_plan, ko)} 플랜으로 변경돼요.`
+                        : `Switching to the ${planName(plans, sub.pending_plan, ko)} plan at your next renewal.`}
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -576,6 +609,35 @@ export default function SubscriptionPage() {
           </div>
         )}
 
+        {/* Passes you hold — surfaced from entitlements so a valid pass
+            stays visible even after a recurring plan overwrote the shared
+            plan row. Each keeps its own expiry (outlives a cancelled sub). */}
+        {heldPasses.length > 0 && (
+          <div className="space-y-2">
+            {heldPasses.map(hp => {
+              const theme = PASS_THEMES[hp.passId ?? ''] ?? PASS_THEME_FALLBACK
+              return (
+                <div key={hp.test} className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-4 flex items-center gap-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                  <span className={`w-10 h-10 rounded-xl bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center flex-shrink-0`}>
+                    <GraduationCap className="w-5 h-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="text-[14px] font-semibold text-gray-900 truncate">{ko ? hp.name_ko : hp.name_en}</div>
+                    <div className="text-[12px] text-gray-500">
+                      {hp.expiresAt
+                        ? (ko ? `${formatDate(hp.expiresAt, ko)}까지 이용 가능` : `Active until ${formatDate(hp.expiresAt, ko)}`)
+                        : (ko ? '상시 이용 가능' : 'Active')}
+                    </div>
+                  </div>
+                  <span className="ml-auto inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 flex-shrink-0">
+                    {ko ? '이용 중' : 'Active'}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        )}
+
         {/* Exam passes — purchase offers (in-season, web, not on a paid
             plan). Each pass carries its own identity color; with more
             than one offer they sit in an auto-advancing snap carousel. */}
@@ -592,27 +654,6 @@ export default function SubscriptionPage() {
               acting={acting}
               onBuy={(id, name) => void buyPass(id, name)}
             />
-          </div>
-        )}
-
-        {/* Period banner — only meaningful for a live paid subscription
-            (renews on / cancels on). Free, expired, and lapsed rows have
-            no upcoming billing date, so no banner. */}
-        {sub && !onPass && isActive && (
-          <div className="rounded-xl bg-gray-50/80 ring-1 ring-gray-200/50 px-4 py-3 text-[13.5px] text-gray-700 inline-flex items-start gap-2.5 w-full">
-            <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
-            <div className="leading-relaxed">
-              {sub.cancel_at_period_end
-                ? t('study.subscription.cancelsOn', { date: formatDate(sub.current_period_end, ko) })
-                : t('study.subscription.renewsOn', { date: formatDate(sub.current_period_end, ko) })}
-              {isActive && sub.pending_plan && (
-                <span className="block text-amber-700 mt-0.5">
-                  {ko
-                    ? `다음 갱신일에 ${planName(plans, sub.pending_plan, ko)} 플랜으로 변경돼요.`
-                    : `Switching to the ${planName(plans, sub.pending_plan, ko)} plan at your next renewal.`}
-                </span>
-              )}
-            </div>
           </div>
         )}
 

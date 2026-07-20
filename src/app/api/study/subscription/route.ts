@@ -43,6 +43,28 @@ export async function GET(req: NextRequest) {
   // recurring-plan / all-access-pass / free-trial users.
   const access = await getTestAccess(user.id)
 
+  // Passes the student actually HOLDS (from study_entitlements), with each
+  // pass's own expiry. Passes + subscriptions share one study_subscriptions
+  // row, so buying a recurring plan overwrites `plan` and hides a still-valid
+  // pass — this surfaces it independently so it stays visible (and honoured
+  // until its own expiry, e.g. after the subscription is cancelled).
+  const nowIso = new Date().toISOString()
+  const { data: entRows } = await supabaseAdmin
+    .from('study_entitlements')
+    .select('test, expires_at')
+    .eq('student_id', user.id)
+    .or(`expires_at.is.null,expires_at.gt.${nowIso}`)
+  const heldPasses = (entRows ?? []).map(r => {
+    const meta = STUDY_PASSES.find(p => p.test === r.test)
+    return {
+      test: r.test as string,
+      passId: meta?.id ?? null,
+      expiresAt: (r.expires_at as string | null) ?? null,
+      name_en: meta?.name_en ?? String(r.test).toUpperCase(),
+      name_ko: meta?.name_ko ?? String(r.test).toUpperCase(),
+    }
+  })
+
   const now = Date.now()
   const activePassId = sub?.status === 'active' && isPassPlan(sub.plan) ? sub.plan : null
   const passes = STUDY_PASSES.map(p => {
@@ -76,7 +98,7 @@ export async function GET(req: NextRequest) {
     }
   })
 
-  if (!sub) return NextResponse.json({ subscription: null, passes, access })
+  if (!sub) return NextResponse.json({ subscription: null, passes, heldPasses, access })
 
   // Enrich with the resolved tier, credit balance, and feature flags
   // so every client surface (subscription page, upsell cards, snap
@@ -100,6 +122,7 @@ export async function GET(req: NextRequest) {
       packs: CREDIT_PACKS,
     },
     passes,
+    heldPasses,
     access,
   })
 }
