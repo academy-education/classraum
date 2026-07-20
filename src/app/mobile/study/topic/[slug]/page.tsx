@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { StudyButton } from '../../_shared/StudyButton'
 import { PathMascot } from '../../_shared/PathMascot'
@@ -371,8 +371,8 @@ function TopicInner({ slug }: { slug: string }) {
         {/* Choose a section — label + chip carousel */}
         <div className="space-y-2.5">
           <SkeletonBlock className="h-2.5 w-24 rounded-full" />
-          <div className="flex gap-2.5 overflow-hidden">
-            {[0, 1, 2].map(i => <SkeletonBlock key={i} className="h-[52px] w-32 flex-shrink-0 rounded-2xl" />)}
+          <div className="flex gap-2 overflow-hidden py-2">
+            {[0, 1, 2].map(i => <SkeletonBlock key={i} className="h-11 w-28 flex-shrink-0 rounded-full" />)}
           </div>
         </div>
         {/* Progress mini-card */}
@@ -828,38 +828,33 @@ function CategoryPicker({
       <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-2.5 px-1">
         {label}
       </h2>
-      {/* Section chip carousel — a horizontally scrollable row of section
-          buttons that edge-bleeds past the page gutters, so it reads as
-          "there's more" and matches the app's other carousels. Each chip
-          carries the section's own icon tile + name; the active one lifts
-          with a primary ring + check. */}
+      {/* Section chip carousel — a horizontally scrollable row of pill
+          buttons that edge-bleeds past the page gutters. The selected
+          section fills with primary (its own colour contrast is the cue,
+          so no busy per-section tiles); icons stay monochrome and inline.
+          py-2 gives the active pill's shadow room so the scroll container
+          (overflow-x → overflow-y: auto) doesn't clip its top/bottom. */}
       <div
         ref={trackRef}
-        className="flex gap-2.5 overflow-x-auto scrollbar-hide snap-x -mx-5 px-5 scroll-px-5 pb-1"
+        className="flex gap-2 overflow-x-auto scrollbar-hide snap-x -mx-5 px-5 scroll-px-5 py-2"
       >
         {categories.map(cat => {
           const isActive = cat.id === activeId
-          const v = sectionVisual(cat.slug)
-          const Icon = v.icon
+          const Icon = sectionVisual(cat.slug).icon
           return (
             <button
               key={cat.id}
               type="button"
               aria-pressed={isActive}
               onClick={() => onSelect(cat.id)}
-              className={`snap-start flex-shrink-0 inline-flex items-center gap-2.5 pl-2 pr-4 h-[52px] rounded-2xl bg-white transition-all duration-200 active:scale-[0.97] ${
+              className={`snap-start flex-shrink-0 inline-flex items-center gap-2 h-11 pl-3.5 pr-4 rounded-full text-[14px] font-semibold whitespace-nowrap transition-all duration-200 active:scale-[0.97] ${
                 isActive
-                  ? 'ring-2 ring-primary shadow-[0_2px_10px_-2px_rgba(40,133,232,0.28)]'
-                  : 'ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30'
+                  ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_3px_10px_-2px_rgba(40,133,232,0.45)]'
+                  : 'bg-white text-gray-700 ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:text-gray-900'
               }`}
             >
-              <span className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${v.tile} transition-transform duration-200 ${isActive ? 'scale-105' : ''}`}>
-                <Icon className="w-[18px] h-[18px]" />
-              </span>
-              <span className={`text-[14.5px] font-semibold whitespace-nowrap ${isActive ? 'text-primary' : 'text-gray-800'}`}>
-                {name(cat)}
-              </span>
-              {isActive && <Check className="w-4 h-4 text-primary flex-shrink-0 -ml-0.5" />}
+              <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-white/90' : 'text-gray-400'}`} />
+              {name(cat)}
             </button>
           )
         })}
