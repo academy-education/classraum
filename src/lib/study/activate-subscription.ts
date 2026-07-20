@@ -80,15 +80,24 @@ export async function activateSubscriptionFromBillingKey(opts: {
     // billing key — a bad first charge could mean a dead card, and we
     // don't want the renewal cron to keep retrying it.
     const nowIso = new Date().toISOString()
-    await supabaseAdmin
-      .from('study_subscriptions')
-      .upsert({
-        student_id: opts.studentId,
-        status: 'past_due',
-        last_payment_attempt_at: nowIso,
-        last_payment_failure: result.message ?? 'unknown',
-        updated_at: nowIso,
-      }, { onConflict: 'student_id' })
+    if (sub?.status === 'active') {
+      // A failed NEW subscribe attempt must NOT downgrade an existing
+      // active subscription/pass — only note the failure, keep them active.
+      await supabaseAdmin
+        .from('study_subscriptions')
+        .update({ last_payment_attempt_at: nowIso, last_payment_failure: result.message ?? 'unknown', updated_at: nowIso })
+        .eq('student_id', opts.studentId)
+    } else {
+      await supabaseAdmin
+        .from('study_subscriptions')
+        .upsert({
+          student_id: opts.studentId,
+          status: 'past_due',
+          last_payment_attempt_at: nowIso,
+          last_payment_failure: result.message ?? 'unknown',
+          updated_at: nowIso,
+        }, { onConflict: 'student_id' })
+    }
     return { status: 'charge_failed', code: result.code, message: result.message }
   }
 
