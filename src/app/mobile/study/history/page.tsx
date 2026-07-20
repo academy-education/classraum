@@ -176,16 +176,14 @@ function HistoryInner() {
             </StudyButton>
           </div>
         ) : filtered.length === 0 ? (
-          <div className="rounded-2xl bg-white ring-1 ring-gray-200/70">
-            <StudyEmptyState
-              icon={HistoryIcon}
-              headline={query
-                ? (ko ? '일치하는 세션이 없어요' : 'No sessions match your search')
-                : String(t('study.history.empty'))}
-              ctaHref={query ? undefined : '/mobile/study'}
-              ctaText={query ? undefined : (ko ? '학습 시작하기' : 'Start studying')}
-            />
-          </div>
+          <StudyEmptyState
+            icon={HistoryIcon}
+            headline={query
+              ? (ko ? '일치하는 세션이 없어요' : 'No sessions match your search')
+              : String(t('study.history.empty'))}
+            ctaHref={query ? undefined : '/mobile/study'}
+            ctaText={query ? undefined : (ko ? '학습 시작하기' : 'Start studying')}
+          />
         ) : (
           <>
             <div className="space-y-6">

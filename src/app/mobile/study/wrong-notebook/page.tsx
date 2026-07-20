@@ -431,13 +431,12 @@ function WrongNotebookInner() {
                   )}
 
                   {visibleActive.length === 0 && (
-                    <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-5 py-10 text-center">
-                      <p className="text-[13.5px] text-gray-500">
-                        {query
-                          ? (ko ? '검색 결과가 없어요' : 'No entries match your search')
-                          : (ko ? '해당 조건의 문제가 없어요' : 'No entries match this filter')}
-                      </p>
-                    </div>
+                    <StudyEmptyState
+                      icon={Search}
+                      headline={query
+                        ? (ko ? '검색 결과가 없어요' : 'No entries match your search')
+                        : (ko ? '해당 조건의 문제가 없어요' : 'No entries match this filter')}
+                    />
                   )}
 
                   {totalPages > 1 && (

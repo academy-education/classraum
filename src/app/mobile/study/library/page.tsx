@@ -157,11 +157,9 @@ function PracticeBrowser({ section, ko }: { section: Section; ko: boolean }) {
       ) : failed ? (
         <ErrorCard ko={ko} />
       ) : items.length === 0 ? (
-        <div className="rounded-2xl bg-white ring-1 ring-gray-200/70">
-          <StudyEmptyState icon={ListChecks} iconColorClass="text-primary bg-primary/10"
-            headline={ko ? '문제가 없어요' : 'No questions'}
-            body={ko ? '이 영역에는 아직 문제가 없습니다.' : 'No questions in this filter yet.'} />
-        </div>
+        <StudyEmptyState icon={ListChecks} iconColorClass="text-primary bg-primary/10"
+          headline={ko ? '문제가 없어요' : 'No questions'}
+          body={ko ? '이 영역에는 아직 문제가 없습니다.' : 'No questions in this filter yet.'} />
       ) : (
         <>
           <ol className="space-y-2.5">
@@ -247,13 +245,11 @@ function FlashcardBrowser({ section, ko }: { section: Section; ko: boolean }) {
   if (failed) return <ErrorCard ko={ko} />
   if (items.length === 0) {
     return (
-      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70">
-        <StudyEmptyState icon={Layers} iconColorClass="text-primary bg-primary/10"
-          headline={ko ? '플래시카드가 없어요' : 'No flashcards'}
-          body={section === 'math'
-            ? (ko ? '수학 플래시카드는 아직 준비 중이에요.' : 'Math flashcards are not available yet.')
-            : (ko ? '이 영역의 플래시카드가 아직 없어요.' : 'No flashcards for this section yet.')} />
-      </div>
+      <StudyEmptyState icon={Layers} iconColorClass="text-primary bg-primary/10"
+        headline={ko ? '플래시카드가 없어요' : 'No flashcards'}
+        body={section === 'math'
+          ? (ko ? '수학 플래시카드는 아직 준비 중이에요.' : 'Math flashcards are not available yet.')
+          : (ko ? '이 영역의 플래시카드가 아직 없어요.' : 'No flashcards for this section yet.')} />
     )
   }
 

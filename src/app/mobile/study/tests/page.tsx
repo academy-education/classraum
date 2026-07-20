@@ -153,19 +153,17 @@ function TestsInner() {
         {loading ? (
           <SkeletonRowList count={6} />
         ) : filtered.length === 0 ? (
-          <div className="rounded-2xl bg-white ring-1 ring-gray-200/70">
-            <StudyEmptyState
-              icon={ClipboardList}
-              headline={query || filter !== 'all'
-                ? (ko ? '일치하는 시험이 없어요' : 'No tests match')
-                : (ko ? '아직 시작한 모의고사가 없어요' : "You haven't started a mock test yet")}
-              body={!query && filter === 'all'
-                ? (ko ? '첫 모의고사를 만들어 실전 감각을 길러보세요.' : 'Build your first mock test and get a feel for the real thing.')
-                : undefined}
-              ctaHref={!query && filter === 'all' ? '/mobile/study/builder' : undefined}
-              ctaText={!query && filter === 'all' ? (ko ? '시험 시작' : 'Start a test') : undefined}
-            />
-          </div>
+          <StudyEmptyState
+            icon={ClipboardList}
+            headline={query || filter !== 'all'
+              ? (ko ? '일치하는 시험이 없어요' : 'No tests match')
+              : (ko ? '아직 시작한 모의고사가 없어요' : "You haven't started a mock test yet")}
+            body={!query && filter === 'all'
+              ? (ko ? '첫 모의고사를 만들어 실전 감각을 길러보세요.' : 'Build your first mock test and get a feel for the real thing.')
+              : undefined}
+            ctaHref={!query && filter === 'all' ? '/mobile/study/builder' : undefined}
+            ctaText={!query && filter === 'all' ? (ko ? '시험 시작' : 'Start a test') : undefined}
+          />
         ) : (
           <>
             <div className="space-y-6">
