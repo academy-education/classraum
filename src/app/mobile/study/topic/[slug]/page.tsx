@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, ChevronDown, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Check, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { StudyButton } from '../../_shared/StudyButton'
 import { PathMascot } from '../../_shared/PathMascot'
@@ -368,10 +368,12 @@ function TopicInner({ slug }: { slug: string }) {
       <StudyScrollShell header={<SkeletonStickyHeader />}>
         {/* Path card */}
         <SkeletonBlock className="h-[92px] w-full rounded-2xl" />
-        {/* Choose a section — label + dropdown */}
-        <div className="space-y-2">
+        {/* Choose a section — label + chip carousel */}
+        <div className="space-y-2.5">
           <SkeletonBlock className="h-2.5 w-24 rounded-full" />
-          <SkeletonBlock className="h-12 w-full rounded-2xl" />
+          <div className="flex gap-2.5 overflow-hidden">
+            {[0, 1, 2].map(i => <SkeletonBlock key={i} className="h-[52px] w-32 flex-shrink-0 rounded-2xl" />)}
+          </div>
         </div>
         {/* Progress mini-card */}
         <SkeletonCard className="h-[72px]" />
@@ -808,93 +810,59 @@ function CategoryPicker({
   onSelect: (id: string) => void
   name: (n: { name_en: string; name_ko: string }) => string
 }) {
-  const [open, setOpen] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const selected = categories.find(c => c.id === selectedId) ?? categories[0]
+  const activeId = selectedId ?? categories[0]?.id ?? null
+  const trackRef = useRef<HTMLDivElement>(null)
 
-  // Close the dropdown when the user clicks outside, presses Escape,
-  // or scrolls — same conventions as iOS / macOS popovers.
+  // Keep the active chip centered when the selection changes — e.g. the
+  // default first-child select on load, or tapping a partly off-screen chip.
   useEffect(() => {
-    if (!open) return
-    const onDown = (e: MouseEvent) => {
-      if (!containerRef.current?.contains(e.target as Node)) setOpen(false)
-    }
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
-    document.addEventListener('mousedown', onDown)
-    document.addEventListener('keydown', onKey)
-    return () => {
-      document.removeEventListener('mousedown', onDown)
-      document.removeEventListener('keydown', onKey)
-    }
-  }, [open])
+    const track = trackRef.current
+    if (!track) return
+    const idx = categories.findIndex(c => c.id === activeId)
+    const chip = track.children[idx] as HTMLElement | undefined
+    chip?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' })
+  }, [activeId, categories])
 
   return (
-    <section ref={containerRef}>
+    <section>
       <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-2.5 px-1">
         {label}
       </h2>
-      <div className="relative">
-        <button
-          type="button"
-          onClick={() => setOpen(o => !o)}
-          aria-haspopup="listbox"
-          aria-expanded={open}
-          className={`group w-full flex items-center justify-between gap-3 px-4 h-12 rounded-2xl bg-white ring-1 transition-all duration-200 text-left ${
-            open
-              ? 'ring-primary/40 shadow-[0_2px_8px_-2px_rgba(40,133,232,0.18),0_12px_28px_-12px_rgba(40,133,232,0.22)]'
-              : 'ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/25'
-          }`}
-        >
-          <span className="flex items-center gap-2.5 min-w-0">
-            {selected && (() => {
-              const v = sectionVisual(selected.slug)
-              const Icon = v.icon
-              return (
-                <span className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center ${v.tile}`}>
-                  <Icon className="w-4 h-4" />
-                </span>
-              )
-            })()}
-            <span className="text-[15px] font-semibold text-gray-900 truncate">
-              {selected ? name(selected) : '—'}
-            </span>
-          </span>
-          <ChevronDown
-            className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180 text-primary' : ''}`}
-          />
-        </button>
-        {open && (
-          <div
-            role="listbox"
-            className="absolute left-0 right-0 top-[calc(100%+8px)] z-20 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_4px_8px_-2px_rgba(0,0,0,0.06),0_24px_48px_-12px_rgba(0,0,0,0.18)] py-1.5 max-h-[60vh] overflow-y-auto animate-card-in opacity-0 origin-top"
-          >
-            {categories.map(cat => {
-              const isSelected = cat.id === selectedId
-              const v = sectionVisual(cat.slug)
-              const Icon = v.icon
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  role="option"
-                  aria-selected={isSelected}
-                  onClick={() => { onSelect(cat.id); setOpen(false) }}
-                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-[14px] text-left transition-colors ${
-                    isSelected
-                      ? 'bg-primary/[0.06] text-primary font-semibold'
-                      : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100 font-medium'
-                  }`}
-                >
-                  <span className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center ${v.tile}`}>
-                    <Icon className="w-4 h-4" />
-                  </span>
-                  <span className="truncate flex-1">{name(cat)}</span>
-                  {isSelected && <Check className="w-4 h-4 text-primary flex-shrink-0" />}
-                </button>
-              )
-            })}
-          </div>
-        )}
+      {/* Section chip carousel — a horizontally scrollable row of section
+          buttons that edge-bleeds past the page gutters, so it reads as
+          "there's more" and matches the app's other carousels. Each chip
+          carries the section's own icon tile + name; the active one lifts
+          with a primary ring + check. */}
+      <div
+        ref={trackRef}
+        className="flex gap-2.5 overflow-x-auto scrollbar-hide snap-x -mx-5 px-5 scroll-px-5 pb-1"
+      >
+        {categories.map(cat => {
+          const isActive = cat.id === activeId
+          const v = sectionVisual(cat.slug)
+          const Icon = v.icon
+          return (
+            <button
+              key={cat.id}
+              type="button"
+              aria-pressed={isActive}
+              onClick={() => onSelect(cat.id)}
+              className={`snap-start flex-shrink-0 inline-flex items-center gap-2.5 pl-2 pr-4 h-[52px] rounded-2xl bg-white transition-all duration-200 active:scale-[0.97] ${
+                isActive
+                  ? 'ring-2 ring-primary shadow-[0_2px_10px_-2px_rgba(40,133,232,0.28)]'
+                  : 'ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30'
+              }`}
+            >
+              <span className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${v.tile} transition-transform duration-200 ${isActive ? 'scale-105' : ''}`}>
+                <Icon className="w-[18px] h-[18px]" />
+              </span>
+              <span className={`text-[14.5px] font-semibold whitespace-nowrap ${isActive ? 'text-primary' : 'text-gray-800'}`}>
+                {name(cat)}
+              </span>
+              {isActive && <Check className="w-4 h-4 text-primary flex-shrink-0 -ml-0.5" />}
+            </button>
+          )
+        })}
       </div>
     </section>
   )
