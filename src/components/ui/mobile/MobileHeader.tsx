@@ -284,7 +284,9 @@ export function MobileHeader() {
               className="relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
               aria-label={String(t("common.messages"))}
             >
-              <MessageSquare className="w-5 h-5 text-gray-700" strokeWidth={1.75} />
+              {/* Same weight override as the bell — the two sit side by
+                  side, so they must match. */}
+              <MessageSquare className="w-5 h-5 text-gray-700" weight="regular" />
               {unreadMessagesCount > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-white">
                   {unreadMessagesCount > 9 ? '9+' : unreadMessagesCount}
@@ -299,7 +301,9 @@ export function MobileHeader() {
               className="relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
               aria-label={String(t("common.notifications"))}
             >
-              <Bell className="w-5 h-5 text-gray-700" strokeWidth={1.75} />
+              {/* weight overrides the icon system's pinned "bold" — at
+                  header size the bold bell reads too heavy. */}
+              <Bell className="w-5 h-5 text-gray-700" weight="regular" />
               {unreadCount > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-white">
                   {unreadCount > 9 ? '9+' : unreadCount}
