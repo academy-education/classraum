@@ -569,7 +569,10 @@ export function StudyEmptyState({
   const gradient = gradients.find(([key]) => iconColorClass.includes(key))?.[1]
     ?? 'from-gray-300 to-gray-400 shadow-[0_6px_16px_-6px_rgba(107,114,128,0.4)]'
   return (
-    <div className="py-12 text-center">
+    // py-16 is the single source of empty-state vertical rhythm — callers
+    // must NOT add their own wrapper padding, so every empty (league,
+    // wrong-notebook, friends, history, …) sits with identical spacing.
+    <div className="py-16 text-center">
       <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3 bg-gradient-to-br text-white ${gradient}`}>
         <Icon className="w-6 h-6" />
       </div>
