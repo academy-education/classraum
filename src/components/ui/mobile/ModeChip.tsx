@@ -35,8 +35,11 @@ export function ModeChip() {
   }, [pathname])
 
   if (pathname === '/mobile/start') return null
-  if (user?.role !== 'student') return null
-  // Study-only students (no academy) have exactly one mode — a
+  // Students AND parents can hold both modes — study is a capability
+  // open to any mobile user, not a student-only role perk. Parents get
+  // the same Grades ↔ Study switch (e.g. prepping their own TOEFL).
+  if (user?.role !== 'student' && user?.role !== 'parent') return null
+  // Study-only users (no academy) have exactly one mode — a
   // switcher chip with nothing to switch to is noise.
   if ((user?.academyIds?.length ?? 0) === 0) return null
 

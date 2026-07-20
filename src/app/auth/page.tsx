@@ -330,8 +330,11 @@ export default function AuthPage() {
           console.log('[Auth] Redirecting student to', target)
           router.replace(target)
         } else if (userRole === 'parent') {
-          console.log('[Auth] Redirecting parent to mobile dashboard')
-          router.replace('/mobile')
+          // Parents default to Grades but keep their last-used mode —
+          // study is open to them too (ModeChip offers the switch).
+          const parentTarget = readStoredMode() === 'study' ? '/mobile/study' : '/mobile'
+          console.log('[Auth] Redirecting parent to', parentTarget)
+          router.replace(parentTarget)
         } else if (userRole === 'teacher') {
           console.log('[Auth] Redirecting teacher to classrooms')
           router.replace('/classrooms')

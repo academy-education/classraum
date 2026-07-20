@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { storeMode } from '@/lib/study/currentMode'
@@ -62,21 +62,36 @@ export function StudyOnlyGuard({ children }: { children: ReactNode }) {
   // academy (auth-wrapper errors otherwise), and managers/teachers
   // never render this layout.
   const studyOnly = user?.role === 'student' && user.academyIds.length === 0
-  const mustRedirect = studyOnly && isAcademyOnlyPath(pathname)
+
+  // Academy invite links land study-only users on /mobile?invite=true so
+  // the join-confirmation modal can show — redirecting there would make
+  // it impossible for a study-first account to ever join an academy.
+  // Read the query client-side (post-mount) instead of useSearchParams
+  // to avoid the Suspense-boundary requirement; until checked we hold
+  // the page behind the loading screen, so nothing flashes either way.
+  const [inviteCheck, setInviteCheck] = useState<'pending' | 'invite' | 'none'>('pending')
+  useEffect(() => {
+    const isInvite = new URLSearchParams(window.location.search).get('invite') === 'true'
+    setInviteCheck(isInvite ? 'invite' : 'none')
+  }, [pathname])
+
+  const onAcademyPath = studyOnly && isAcademyOnlyPath(pathname)
+  const mustRedirect = onAcademyPath && inviteCheck === 'none'
 
   useEffect(() => {
-    if (!studyOnly) return
+    if (!studyOnly || inviteCheck === 'pending') return
     // Pin the persisted mode so shared routes (profile, notifications)
-    // resolve the study nav instead of the 'grades' default.
-    storeMode('study')
+    // resolve the study nav instead of the 'grades' default. Skip while
+    // accepting an invite — they're about to become an academy member.
+    if (inviteCheck === 'none') storeMode('study')
     if (mustRedirect) {
       router.replace('/mobile/study')
     }
-  }, [studyOnly, mustRedirect, router])
+  }, [studyOnly, mustRedirect, inviteCheck, router])
 
-  // Hold the academy page back while the redirect lands — a brief
-  // loading screen beats flashing an empty Grades dashboard.
-  if (mustRedirect) return <LoadingScreen />
+  // Hold the academy page back while the invite check + redirect land —
+  // a brief loading screen beats flashing an empty Grades dashboard.
+  if (onAcademyPath && inviteCheck !== 'invite') return <LoadingScreen />
 
   return <>{children}</>
 }
