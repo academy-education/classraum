@@ -104,7 +104,7 @@ export default function RefundPolicyPage() {
         {sections.map(s => {
           const Icon = s.icon
           return (
-            <div key={s.title} className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+            <div key={s.title} className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
               <div className="flex items-center gap-2.5 mb-2.5">
                 <span className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
                   <Icon className="w-4 h-4" />

@@ -432,7 +432,7 @@ function TopicInner({ slug }: { slug: string }) {
                 key={mode.key}
                 aria-disabled
                 style={{ animationDelay: `${i * 60}ms` }}
-                className={`relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-left animate-card-in opacity-0`}
+                className={`relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-left animate-card-in opacity-0`}
               >
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
                 {decor}
@@ -458,7 +458,7 @@ function TopicInner({ slug }: { slug: string }) {
               onClick={() => startSession(mode.key)}
               disabled={creating !== null}
               style={{ animationDelay: `${i * 60}ms` }}
-              className={`group relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${mode.hoverRing} ${mode.hoverShadow} hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out text-left disabled:opacity-60 disabled:cursor-wait animate-card-in opacity-0`}
+              className={`group relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${mode.hoverRing} ${mode.hoverShadow} hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out text-left disabled:opacity-60 disabled:cursor-wait animate-card-in opacity-0`}
             >
               {/* Top edge highlight */}
               <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />

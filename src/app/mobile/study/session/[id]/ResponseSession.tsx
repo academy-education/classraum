@@ -212,7 +212,19 @@ export function ResponseSession({
           />
         )}
         {stage === 'error' && (
-          <ErrorScreen message={errMsg} ko={ko} onRetry={() => setStage('capture')} />
+          <ErrorScreen
+            message={errMsg}
+            ko={ko}
+            onRetry={() => {
+              // Grading failed AFTER the answer was captured (speaking: the
+              // recording is already uploaded + transcribed; writing: the
+              // text is in state). Retry the GRADE with the held answer
+              // instead of throwing it away and forcing a full re-record /
+              // re-type. Only fall back to capture if we somehow have nothing.
+              if (response) void submit(response)
+              else setStage('capture')
+            }}
+          />
         )}
       </div>
     </div>

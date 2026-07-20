@@ -12,6 +12,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudyPageHeader, StudyPageTransition } from '../_shared/primitives'
+import { studyButtonClass } from '../_shared/StudyButton'
 import { SkeletonBlock, SkeletonStickyHeader } from '../skeletons'
 import { PathMascot } from '../_shared/PathMascot'
 import { ModalPortal } from '@/components/ui/modal-portal'
@@ -270,7 +271,7 @@ function StudyPathInner() {
             </div>
             <Link
               href="/mobile/study/subscription"
-              className="inline-flex items-center justify-center gap-1.5 h-12 px-6 rounded-full bg-primary text-white text-sm font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] transition-all"
+              className={studyButtonClass({ variant: 'primary', size: 'lg' })}
             >
               <Sparkles className="w-4 h-4" />
               {ko ? '플랜 보기' : 'See plans'}

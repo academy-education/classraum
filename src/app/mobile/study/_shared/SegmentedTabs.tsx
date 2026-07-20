@@ -1,5 +1,7 @@
 "use client"
 
+import { useTranslation } from '@/hooks/useTranslation'
+
 /**
  * SegmentedTabs — the single segmented / pill-tab control for the whole
  * study experience. Replaces the two copy-pasted `Segmented` /
@@ -90,11 +92,12 @@ export function SegmentedTabs<T>({
 }
 
 function RecommendedBadge() {
+  const { language } = useTranslation()
   return (
     <span
       aria-hidden
       className="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 rounded-full bg-amber-500 text-white text-[9px] font-bold shadow ring-2 ring-white"
-      title="Recommended"
+      title={language === 'korean' ? '추천' : 'Recommended'}
     >
       ★
     </span>

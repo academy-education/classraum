@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader } from '../skeletons'
 import { StudyMetric, NumberRoll, StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
+import { StudyButton } from '../_shared/StudyButton'
 
 interface Achievement {
   key: string
@@ -114,16 +115,12 @@ function StatsInner() {
     return (
       <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14">
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-          <p className="text-sm text-gray-600">
+          <p className="text-[13.5px] text-gray-600">
             {ko ? '통계를 불러오지 못했어요.' : "We couldn't load your stats."}
           </p>
-          <button
-            type="button"
-            onClick={() => setRetryKey(k => k + 1)}
-            className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-gray-900 text-white text-[13px] font-medium hover:bg-gray-800 active:scale-[0.98] transition-all"
-          >
+          <StudyButton type="button" size="sm" onClick={() => setRetryKey(k => k + 1)}>
             {ko ? '다시 시도' : 'Retry'}
-          </button>
+          </StudyButton>
         </div>
       </div>
     )
