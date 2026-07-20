@@ -500,7 +500,7 @@ export default function SubscriptionPage() {
               {passCredits.map(pc => (
                 <span key={pc.test} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-200/70 text-[12px] text-indigo-700">
                   <GraduationCap className="w-3 h-3" />
-                  {(ko ? pc.name_ko : pc.name_en).replace(/\s*(패스|Pass)\s*$/i, '')}
+                  {passCreditLabel(pc.test, ko)}
                   <b className="tabular-nums text-indigo-900 font-semibold">{pc.remaining}</b>
                 </span>
               ))}
@@ -1000,6 +1000,14 @@ function planName(plans: CatalogPlan[], planId: string, ko: boolean): string {
 
 function formatWon(won: number): string {
   return `₩${won.toLocaleString()}`
+}
+
+/** Short "<Test> Pass" label for the scoped-credit chips. */
+function passCreditLabel(test: string, ko: boolean): string {
+  if (test === 'sat') return ko ? 'SAT 패스' : 'SAT Pass'
+  if (test === 'toefl') return ko ? 'TOEFL 패스' : 'TOEFL Pass'
+  if (test === '*') return ko ? '수능 패스' : 'All-Access Pass'
+  return `${test.toUpperCase()} ${ko ? '패스' : 'Pass'}`
 }
 
 /** Per-price unit suffix (/ month, / 3M, / yr). */

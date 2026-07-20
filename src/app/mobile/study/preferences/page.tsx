@@ -12,6 +12,7 @@ import { SegmentedTabs } from '../_shared/SegmentedTabs'
 
 interface Prefs {
   target_test: string | null
+  target_tests: string[]
   grade_level: string | null
   daily_goal_minutes: number
   goal_score: number | null
@@ -173,19 +174,29 @@ function PreferencesInner() {
         </div>
       )}
 
-      {/* Target test */}
-      <SettingGroup icon={Target} label={String(t('study.prefs.targetTest'))} saving={saving === 'target_test'}>
+      {/* Target test — multi-select. A student can prep for more than one
+          test (SAT + TOEFL), so this reflects the full target list, not just
+          the single "current focus" pointer. Case-insensitive to tolerate
+          legacy mixed-case rows ('sat' vs 'SAT'). */}
+      <SettingGroup icon={Target} label={String(t('study.prefs.targetTest'))} saving={saving === 'target_tests'}>
         <div className="grid grid-cols-2 gap-2">
           {TESTS.map(test => {
-            // Case-insensitive match tolerates legacy lowercase rows.
-            const selected = (prefs.target_test ?? '').toUpperCase() === test.value
+            const targeted = new Set((prefs.target_tests ?? []).map(s => s.toUpperCase()))
+            // Fall back to the single focus pointer for older rows that only
+            // set target_test.
+            if (targeted.size === 0 && prefs.target_test) targeted.add(prefs.target_test.toUpperCase())
+            const selected = targeted.has(test.value)
             const locked = !test.available && !selected
             return (
               <button
                 key={test.value}
                 type="button"
                 disabled={locked}
-                onClick={() => update('target_test', selected ? null : test.value)}
+                onClick={() => {
+                  const next = new Set(targeted)
+                  if (selected) next.delete(test.value); else next.add(test.value)
+                  update('target_tests', [...next])
+                }}
                 className={`relative h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
                   selected
                     ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/30'
@@ -208,8 +219,8 @@ function PreferencesInner() {
       </SettingGroup>
 
       {/* Goal score + test date — feed the predicted-score engine, which
-          is SAT-only for now, so only surface them when SAT is the target. */}
-      {(prefs.target_test ?? '').toUpperCase() === 'SAT' && (
+          is SAT-only for now, so only surface them when SAT is a target. */}
+      {([...(prefs.target_tests ?? []).map(s => s.toUpperCase()), (prefs.target_test ?? '').toUpperCase()]).includes('SAT') && (
         <>
           <SettingGroup icon={TrendingUp} label={ko ? '목표 점수' : 'Goal score'} saving={saving === 'goal_score'}>
             <div className="grid grid-cols-5 gap-2">
