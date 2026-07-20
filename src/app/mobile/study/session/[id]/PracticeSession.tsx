@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw, Sparkles } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { supabase } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
 import { ExplainMore } from '../../_shared/ExplainMore'
@@ -128,6 +129,17 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
       setVerdict({ isCorrect, aiExplanation: q.explanation })
       setResults(prev => [...prev, isCorrect])
       setPhase('feedback')
+      // The grade endpoint (which normally persists the attempt server-side)
+      // was unreachable — record the attempt client-side so a wrong answer
+      // still reaches the wrong-notebook, session summary, and mastery, and
+      // the /complete score stays in sync. Mirrors FlashcardsSession's insert.
+      void supabase.from('study_attempts').insert({
+        session_id: sessionId,
+        question: q,
+        student_answer: trimmed,
+        is_correct: isCorrect,
+        ai_explanation: q.explanation ?? null,
+      }).then(({ error }) => { if (error) console.error('[practice] soft-fail attempt insert failed', error) })
     } finally {
       setSubmitting(false)
     }
