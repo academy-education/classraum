@@ -61,6 +61,14 @@ interface HeldPass {
   test: string
   passId: string | null
   expiresAt: string | null
+  credits: number
+  name_en: string
+  name_ko: string
+}
+
+interface PassCredit {
+  test: string
+  remaining: number
   name_en: string
   name_ko: string
 }
@@ -69,10 +77,11 @@ interface SubPayload {
   subscription: Subscription | null
   tier?: 'general' | 'premium'
   planMeta?: CatalogPlan
-  credits?: { grant: number; purchased: number; total: number }
+  credits?: { grant: number; purchased: number; pass?: number; total: number }
   catalog?: { plans: CatalogPlan[]; pack: { id: string; credits: number; priceWon: number }; packs?: { id: string; credits: number; priceWon: number }[] }
   passes?: PassInfo[]
   heldPasses?: HeldPass[]
+  passCredits?: PassCredit[]
   access?: { all: boolean; tests: string[] }
 }
 
@@ -185,8 +194,12 @@ export default function SubscriptionPage() {
   const credits = data?.credits ?? {
     grant: sub?.grant_credits_remaining ?? 0,
     purchased: sub?.purchased_credits_remaining ?? 0,
+    pass: 0,
     total: (sub?.grant_credits_remaining ?? 0) + (sub?.purchased_credits_remaining ?? 0),
   }
+  // Test-scoped pass credits (spendable only on that test) — shown as
+  // their own chips so they read as distinct from generic credits.
+  const passCredits = data?.passCredits ?? []
 
   // Monthly plans only — the billing-duration toggle was removed for
   // launch, so the grid always shows the 30-day cadence (+ free).
@@ -482,10 +495,26 @@ export default function SubscriptionPage() {
                   <b className="tabular-nums text-gray-900 font-semibold">{credits.purchased}</b>
                 </span>
               )}
+              {/* Test-scoped pass credits — one chip per pass, labelled with
+                  the test so it's clear these only work on that test. */}
+              {passCredits.map(pc => (
+                <span key={pc.test} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-200/70 text-[12px] text-indigo-700">
+                  <GraduationCap className="w-3 h-3" />
+                  {(ko ? pc.name_ko : pc.name_en).replace(/\s*(패스|Pass)\s*$/i, '')}
+                  <b className="tabular-nums text-indigo-900 font-semibold">{pc.remaining}</b>
+                </span>
+              ))}
               <span className="text-[11.5px] text-gray-400 ml-auto">
                 {ko ? '모의고사 1회 = 크레딧 1~2개' : '1 mock test = 1–2 credits'}
               </span>
             </div>
+            {passCredits.length > 0 && (
+              <p className="text-[11.5px] text-gray-400 mt-1.5">
+                {ko
+                  ? '패스 크레딧은 해당 시험에만 사용되며, 그 시험에서 먼저 차감돼요.'
+                  : 'Pass credits work only on that test and are spent there first.'}
+              </p>
+            )}
             <p className="text-[11.5px] text-gray-400 mt-1.5">
               {ko ? '생성에 실패하면 크레딧은 자동으로 환불돼요.' : 'Failed generations are refunded automatically.'}
             </p>
@@ -624,9 +653,15 @@ export default function SubscriptionPage() {
                   <div className="min-w-0">
                     <div className="text-[14px] font-semibold text-gray-900 truncate">{ko ? hp.name_ko : hp.name_en}</div>
                     <div className="text-[12px] text-gray-500">
+                      {hp.credits > 0 && (
+                        <span className="text-indigo-600 font-medium">
+                          {ko ? `크레딧 ${hp.credits}개` : `${hp.credits} credits`}
+                          <span className="text-gray-300"> · </span>
+                        </span>
+                      )}
                       {hp.expiresAt
-                        ? (ko ? `${formatDate(hp.expiresAt, ko)}까지 이용 가능` : `Active until ${formatDate(hp.expiresAt, ko)}`)
-                        : (ko ? '상시 이용 가능' : 'Active')}
+                        ? (ko ? `${formatDate(hp.expiresAt, ko)}까지` : `until ${formatDate(hp.expiresAt, ko)}`)
+                        : (ko ? '상시 이용' : 'Active')}
                     </div>
                   </div>
                   <span className="ml-auto inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 flex-shrink-0">

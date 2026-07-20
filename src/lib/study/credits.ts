@@ -34,26 +34,48 @@ export interface ReserveResult {
 }
 
 /** Reserve `cost` credits for a session. All-or-nothing: on a partial
- *  failure every already-reserved slice is refunded before returning. */
-export async function reserveTestCredits(studentId: string, sessionId: string, cost: number): Promise<ReserveResult> {
+ *  failure every already-reserved slice is refunded before returning.
+ *
+ *  `testFamily` scopes spending: a student's exam-pass credits for that
+ *  test (or the all-access '*' pass) are spent FIRST — before generic
+ *  monthly/purchased credits — so a SAT pass depletes on SAT tests and its
+ *  credits are never usable on another test. Omit for non-test charges. */
+export async function reserveTestCredits(studentId: string, sessionId: string, cost: number, testFamily?: string | null): Promise<ReserveResult> {
   const reserved: string[] = []
-  let last: ReserveResult = { ok: true }
   for (let i = 0; i < cost; i++) {
     const source = creditSourceId(sessionId, i)
-    const { data, error } = await supabaseAdmin
-      .rpc('use_study_credit', { p_student: studentId, p_source: source })
-    const r = (data ?? {}) as { ok?: boolean; reason?: string; grant?: number; purchased?: number }
-    if (error || !r.ok) {
+
+    // Test-scoped pass credit first (idempotent per source; no-op reason
+    // 'no_pass_credits' when the student holds none for this test).
+    let reservedSlice = false
+    if (testFamily) {
+      const { data } = await supabaseAdmin
+        .rpc('use_study_pass_credit', { p_student: studentId, p_source: source, p_test: testFamily })
+      if ((data as { ok?: boolean } | null)?.ok) reservedSlice = true
+    }
+
+    // Fall back to generic grant → purchased.
+    let reason: string | undefined
+    if (!reservedSlice) {
+      const { data, error } = await supabaseAdmin
+        .rpc('use_study_credit', { p_student: studentId, p_source: source })
+      const r = (data ?? {}) as { ok?: boolean; reason?: string }
+      if (!error && r.ok) reservedSlice = true
+      else reason = error ? 'rpc_error' : (r.reason ?? 'no_credits')
+    }
+
+    if (!reservedSlice) {
       // Roll back the slices we did get so a failed start never eats credits.
+      // refund_study_credit restores to whichever bucket each slice used
+      // (pass / grant / purchased) via the ledger.
       for (const s of reserved) {
         await supabaseAdmin.rpc('refund_study_credit', { p_student: studentId, p_source: s }).then(() => {}, () => {})
       }
-      return { ok: false, reason: error ? 'rpc_error' : (r.reason ?? 'no_credits'), grant: r.grant, purchased: r.purchased }
+      return { ok: false, reason: reason ?? 'no_credits' }
     }
     reserved.push(source)
-    last = { ok: true, grant: r.grant, purchased: r.purchased }
   }
-  return last
+  return { ok: true }
 }
 
 /** Refund every credit slice of a session (idempotent — safe to call

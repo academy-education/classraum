@@ -174,8 +174,12 @@ export async function grantExamPass(opts: {
     return { status: 'error', httpStatus: 500, message: 'pass state write failed; support will reconcile' }
   }
 
-  const { error: creditErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
-    p_student_id: opts.studentId,
+  // Pass credits go into the TEST-SCOPED pool (spendable only on this
+  // pass's test, or any test for the '*' all-access pass) — not the
+  // generic purchased bucket.
+  const { error: creditErr } = await supabaseAdmin.rpc('increment_study_pass_credits', {
+    p_student: opts.studentId,
+    p_test: passTerms.test,
     p_delta: passTerms.credits,
   })
   if (creditErr) {
@@ -187,7 +191,7 @@ export async function grantExamPass(opts: {
   await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: opts.studentId,
     delta: passTerms.credits,
-    bucket: 'purchased',
+    bucket: `pass:${passTerms.test}`,
     kind: 'purchase',
     note: `${passPlan.id} (${opts.paymentId})`,
   })
