@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
   const protectedRoutes = [
     '/dashboard', '/students', '/classrooms', '/sessions', '/assignments',
     '/attendance', '/announcements', '/payments', '/reports', '/settings', '/teachers',
-    '/families', '/parents', '/notifications', '/upgrade', '/mobile', '/checkout',
+    '/families', '/parents', '/notifications', '/upgrade', '/mobile',
     '/archive', '/test-payment', '/order-summary', '/billing', '/messages', '/bank',
     // /exams-and-scores is the new URL; /level-tests stays in the protected
     // list so the redirect below (308) doesn't get short-circuited as
