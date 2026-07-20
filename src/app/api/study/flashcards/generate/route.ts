@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { loadStudyPromptContext } from '@/lib/study-prompt-context'
 import { drawFlashcardBank } from '@/lib/study/flashcard-bank'
+import { getPracticeQuota, cleanupAbandonedPracticeSessions } from '@/lib/study/practice-quota'
 
 /**
  * POST /api/study/flashcards/generate — serve a flashcard deck from the
@@ -73,6 +74,27 @@ export async function POST(req: NextRequest) {
     } catch {
       // Corrupt cache → redraw below.
     }
+  }
+
+  // ── Practice quota ─────────────────────────────────────────────
+  // Flashcards count against the same daily practice budget as practice
+  // questions (free: none, paid: PRACTICE_SETS_PER_DAY combined). Only a
+  // FRESH deck is checked — resumes returned above from cache. Flashcard
+  // sessions carry no pathNode/dailyChallenge, so all fresh decks count.
+  {
+    const quota = await getPracticeQuota(user.id)
+    if (quota.used >= quota.limit) {
+      await supabaseAdmin.from('study_sessions').delete().eq('id', sessionId).eq('student_id', user.id)
+      return NextResponse.json(
+        {
+          error: quota.paid ? 'daily practice limit reached' : 'practice is a premium feature',
+          reason: quota.paid ? 'daily_limit' : 'free_locked',
+          limit: quota.limit,
+        },
+        { status: quota.paid ? 429 : 403 },
+      )
+    }
+    void cleanupAbandonedPracticeSessions(user.id, sessionId)
   }
 
   // Resolve the bank section from the topic slug (SAT only for now).

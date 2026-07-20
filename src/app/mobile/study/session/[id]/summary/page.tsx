@@ -28,6 +28,7 @@ interface SessionRow {
   total_count: number | null
   /** SAT two-module adaptive: the earned Module 2 route, or null. */
   module2_route: string | null
+  config: { dailyChallenge?: string } | null
   topic: { id: string; slug: string; name_en: string; name_ko: string } | null
 }
 
@@ -84,7 +85,7 @@ function SummaryInner({ id }: { id: string }) {
         .from('study_sessions')
         .select(`
           id, mode, language, topic_id, topic_freeform, status, created_at, last_active_at,
-          score, correct_count, total_count, module2_route,
+          score, correct_count, total_count, module2_route, config,
           topic:study_topics ( id, slug, name_en, name_ko )
         `)
         .eq('id', id)
@@ -297,9 +298,11 @@ function SummaryInner({ id }: { id: string }) {
         </section>
       )}
 
-      {/* CTAs — unified h-12 rounded-2xl for both. */}
+      {/* CTAs — unified h-12 rounded-2xl for both. Daily-challenge
+          sessions skip "try this topic again": the daily set is a
+          once-a-day fixed set, not a topic the student re-enters. */}
       <section className="space-y-2 pt-2 animate-fade-in-up" style={{ animationDelay: '240ms', animationFillMode: 'both' }}>
-        {session.topic && (
+        {session.topic && !session.config?.dailyChallenge && (
           <Link
             href={`/mobile/study/topic/${session.topic.slug}`}
             className={studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })}

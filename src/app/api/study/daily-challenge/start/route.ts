@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
       topic_id: parsed.data.topicId,
       mode: 'practice',
       language,
-      config: { questionCount: 5, dailyChallenge: today },
+      config: { questionCount: 3, dailyChallenge: today },
     })
     .select('id')
     .single()

@@ -157,7 +157,7 @@ function SessionInner({ id }: { id: string }) {
       // chat tutor retired — any legacy chat session falls to the
       // "unknown mode" safety net below with a link back to study.
       case 'practice':   return <PracticeSession sessionId={session.id} language={session.language} topicId={session.topic_id} daily={!!session.config?.dailyChallenge} />
-      case 'flashcards': return <FlashcardsSession sessionId={session.id} language={session.language} />
+      case 'flashcards': return <FlashcardsSession sessionId={session.id} language={session.language} completed={session.status === 'completed'} />
       case 'full_test':  return <TestSession sessionId={session.id} language={session.language} />
       case 'response':   return <ResponseSession sessionId={session.id} language={session.language} />
       default:
