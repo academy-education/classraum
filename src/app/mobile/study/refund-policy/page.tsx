@@ -1,10 +1,9 @@
 "use client"
 
-// TODO(legal): This copy is a sensible default, NOT legal-reviewed. Before
-// launch, have the refund/billing wording reviewed for Korean e-commerce
-// compliance (전자상거래법 / 콘텐츠 이용자 보호지침) — a mid-term cancellation of a
-// continuous paid service may require a pro-rated refund and specific
-// disclosures, so avoid asserting an absolute "no refund" policy.
+// NOTE(legal): Good-faith default aligned with Korea's 전자상거래법 (7-day
+// withdrawal for unused digital content + pro-rata refund on mid-term
+// cancellation). Sensible to have counsel confirm the final wording, but it
+// is a usable policy, not a placeholder. Update support@ if it changes.
 
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
@@ -31,33 +30,34 @@ export default function RefundPolicyPage() {
           icon: CreditCard,
           title: '구독 결제',
           body: [
-            'Classraum 스터디 구독은 결제 시 등록한 카드로 매월(또는 선택한 플랜 주기마다) 자동으로 갱신·결제됩니다.',
-            '다음 결제일은 구독 페이지 상단 카드에서 확인할 수 있어요.',
+            'Classraum 스터디 유료 구독은 결제 시 등록하신 카드로 매월(또는 선택하신 플랜 주기마다) 자동으로 갱신·결제됩니다. 표시되는 모든 금액은 부가가치세(VAT)가 포함된 금액입니다.',
+            '다음 결제 예정일은 구독 페이지 상단 카드에서 확인하실 수 있습니다.',
           ],
         },
         {
           icon: Calendar,
           title: '구독 해지',
           body: [
-            '구독 페이지에서 언제든지 해지할 수 있습니다.',
-            '해지해도 현재 결제 기간이 끝날 때까지는 모든 기능을 그대로 이용할 수 있고, 기간이 끝나면 자동으로 무료 플랜으로 전환됩니다. 이후에는 추가 결제가 이루어지지 않습니다.',
-            '기간이 끝나기 전에는 언제든지 “구독 재개”를 눌러 결제를 다시 이어갈 수 있어요.',
+            '구독 페이지에서 언제든지 해지하실 수 있습니다.',
+            '해지하시더라도 현재 결제 기간이 끝날 때까지는 모든 기능을 그대로 이용하실 수 있으며, 기간이 끝나면 자동으로 무료 플랜으로 전환되고 추가 결제는 이루어지지 않습니다.',
+            '기간이 끝나기 전에는 언제든지 “구독 재개”를 눌러 결제를 다시 이어가실 수 있습니다.',
           ],
         },
         {
           icon: Info,
           title: '환불',
           body: [
-            '이미 결제가 완료된 현재 이용 기간에 대해서는, 해당 기간의 이용권이 정상적으로 제공되므로 원칙적으로 환불되지 않을 수 있습니다.',
-            '결제 오류 등 문제가 있다고 생각되시면 아래 연락처로 문의해 주세요. 관련 소비자보호 법령에 따라 확인 후 안내해 드리겠습니다.',
+            '「전자상거래 등에서의 소비자보호에 관한 법률」에 따라, 결제일로부터 7일 이내이고 유료 콘텐츠(모의고사 생성 등)를 이용하지 않으신 경우 전액 환불을 요청하실 수 있습니다.',
+            '이용을 시작하신 후 기간 중 해지·환불을 요청하시는 경우, 이미 이용하신 기간과 사용하신 크레딧에 해당하는 금액을 제외한 잔여분을 일할 계산하여 환불해 드립니다.',
+            '결제 오류 등 문제가 있다고 생각되시면 아래 연락처로 문의해 주세요. 영업일 기준 3일 이내에 확인 후 안내해 드리겠습니다.',
           ],
         },
         {
           icon: Coins,
           title: '패스 · 크레딧',
           body: [
-            '시험 패스는 구독과 별개로, 각 패스에 표시된 만료일까지 유효합니다.',
-            '구매한 크레딧은 만료되지 않습니다. 패스·크레딧 등 일회성 구매도 위 환불 기준을 따릅니다.',
+            '시험 패스와 크레딧은 일회성 상품입니다. 구매일로부터 7일 이내이고 사용하지 않으신 경우 전액 환불이 가능하며, 이미 사용하신 크레딧이나 패스 이용분은 환불되지 않습니다.',
+            '구매하신 크레딧은 만료되지 않으며, 시험 패스는 각 패스에 표시된 만료일까지 유효합니다. 시험 패스는 구독과 별개로 유지됩니다.',
           ],
         },
       ]
@@ -66,7 +66,7 @@ export default function RefundPolicyPage() {
           icon: CreditCard,
           title: 'Billing',
           body: [
-            'Classraum Study subscriptions renew and charge automatically each month (or at your plan’s interval) to the card you registered at checkout.',
+            'Paid Classraum Study subscriptions renew and charge automatically each month (or at your plan’s interval) to the card you registered at checkout. All prices shown include VAT.',
             'Your next renewal date is shown on the card at the top of the Subscription page.',
           ],
         },
@@ -83,16 +83,17 @@ export default function RefundPolicyPage() {
           icon: Info,
           title: 'Refunds',
           body: [
-            'Charges already completed for the current period generally are not refundable, since access is provided for the full period you paid for.',
-            'If you believe you were charged in error, contact us and we’ll review it in line with applicable consumer-protection law.',
+            'Under Korea’s Act on Consumer Protection in Electronic Commerce, you may request a full refund within 7 days of payment if you have not used the paid content (e.g. generating a mock test).',
+            'If you cancel mid-period after you’ve started using the service, we refund the remaining amount on a pro-rata basis, less the portion of the period and the credits you’ve already used.',
+            'If you believe you were charged in error, contact us — we’ll review and respond within 3 business days.',
           ],
         },
         {
           icon: Coins,
           title: 'Passes & credits',
           body: [
-            'Exam passes are separate from subscriptions and remain valid until the expiry date shown on each pass.',
-            'Purchased credits never expire. One-time purchases (passes, credit packs) follow the same refund terms above.',
+            'Exam passes and credits are one-time purchases. They’re fully refundable within 7 days of purchase if unused; credits or pass access you’ve already used are non-refundable.',
+            'Purchased credits never expire, and each exam pass stays valid until the expiry date shown on it, independent of any subscription.',
           ],
         },
       ]
