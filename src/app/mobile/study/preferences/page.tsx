@@ -16,6 +16,7 @@ interface Prefs {
   grade_level: string | null
   daily_goal_minutes: number
   goal_score: number | null
+  goal_scores: Record<string, number>
   test_date: string | null
   default_language: 'en' | 'ko'
   default_difficulty: 'warmup' | 'balanced' | 'challenge'
@@ -45,7 +46,14 @@ const GRADES = [
 ]
 
 const GOAL_PRESETS = [15, 30, 45, 60, 90]
-const SCORE_PRESETS = [1200, 1300, 1400, 1500, 1600]
+
+// Per-test goal-score scales. Keyed by lowercased test family (matching
+// study_user_prefs.goal_scores keys). Only tests with a scale here show
+// a goal row; others (locked) don't feed the predicted-score engine yet.
+const GOAL_SCALES: Record<string, number[]> = {
+  sat: [1200, 1300, 1400, 1500, 1600],
+  toefl: [80, 90, 100, 105, 110, 120],
+}
 
 /**
  * Study preferences page — surfaces every knob the onboarding
@@ -218,33 +226,56 @@ function PreferencesInner() {
         </div>
       </SettingGroup>
 
-      {/* Goal score + test date — feed the predicted-score engine, which
-          is SAT-only for now, so only surface them when SAT is a target. */}
-      {([...(prefs.target_tests ?? []).map(s => s.toUpperCase()), (prefs.target_test ?? '').toUpperCase()]).includes('SAT') && (
-        <>
-          <SettingGroup icon={TrendingUp} label={ko ? '목표 점수' : 'Goal score'} saving={saving === 'goal_score'}>
-            <div className="grid grid-cols-5 gap-2">
-              {SCORE_PRESETS.map(s => {
-                const selected = prefs.goal_score === s
-                return (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => update('goal_score', selected ? null : s)}
-                    className={`h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
-                      selected
-                        ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)]'
-                        : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
-                    }`}
-                  >
-                    {s}
-                  </button>
-                )
-              })}
-            </div>
-          </SettingGroup>
-        </>
-      )}
+      {/* Goal score — one row per target test that has a known scale
+          (SAT, TOEFL). Each writes into the goal_scores map; the server
+          mirrors SAT down to the legacy goal_score the predicted-score
+          engine reads. */}
+      {(() => {
+        // Unique target tests (case-insensitive), preserving order, that
+        // have a goal scale defined.
+        const seen = new Set<string>()
+        const goalTests: string[] = []
+        for (const raw of [...(prefs.target_tests ?? []), prefs.target_test ?? '']) {
+          const key = raw.toLowerCase()
+          if (key && GOAL_SCALES[key] && !seen.has(key)) { seen.add(key); goalTests.push(key) }
+        }
+        const multi = goalTests.length > 1
+        return goalTests.map(test => {
+          const scale = GOAL_SCALES[test]
+          const current = prefs.goal_scores?.[test] ?? null
+          const label = multi
+            ? `${test.toUpperCase()} ${ko ? '목표 점수' : 'goal'}`
+            : (ko ? '목표 점수' : 'Goal score')
+          return (
+            <SettingGroup key={test} icon={TrendingUp} label={label} saving={saving === 'goal_scores'}>
+              <div className={`grid gap-2 ${scale.length >= 6 ? 'grid-cols-6' : 'grid-cols-5'}`}>
+                {scale.map(s => {
+                  const selected = current === s
+                  return (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => {
+                        const next = { ...(prefs.goal_scores ?? {}) }
+                        if (selected) delete next[test]
+                        else next[test] = s
+                        void update('goal_scores', next)
+                      }}
+                      className={`h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
+                        selected
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)]'
+                          : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                      }`}
+                    >
+                      {s}
+                    </button>
+                  )
+                })}
+              </div>
+            </SettingGroup>
+          )
+        })
+      })()}
 
       {/* Grade level */}
       <SettingGroup icon={GraduationCap} label={String(t('study.prefs.gradeLevel'))} saving={saving === 'grade_level'}>

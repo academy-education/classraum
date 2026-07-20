@@ -18,7 +18,7 @@ import { ModalPortal } from '@/components/ui/modal-portal'
  * (sticky header band, rounded pill chips) visible as a "partial
  * rounded blur" before the full-screen blur finished ramping in.
  */
-export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, title, description, confirmLabel, passCredits, passLabel, source, onSourceChange }: {
+export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, title, description, confirmLabel, passCredits, passLabel, regularCredits, source, onSourceChange }: {
   open: boolean
   cost: number
   busy: boolean
@@ -35,6 +35,9 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
    *  a choice between spending those or a regular credit. Omit to hide. */
   passCredits?: number
   passLabel?: string
+  /** Generic (monthly grant + purchased) balance — shown on the Regular
+   *  option so both sides of the toggle display a count. */
+  regularCredits?: number
   source?: 'pass' | 'regular'
   onSourceChange?: (s: 'pass' | 'regular') => void
 }) {
@@ -82,11 +85,14 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
                   type="button"
                   onClick={() => onSourceChange?.('regular')}
                   disabled={busy}
-                  className={`h-10 rounded-lg text-[12.5px] font-semibold transition-all ${
+                  className={`h-10 rounded-lg text-[12.5px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                     source === 'regular' ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-500'
                   }`}
                 >
                   {ko ? '일반 크레딧' : 'Regular'}
+                  {regularCredits != null && (
+                    <span className="tabular-nums text-[11px] opacity-70">{regularCredits}</span>
+                  )}
                 </button>
               </div>
             </div>

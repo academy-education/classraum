@@ -140,6 +140,7 @@ function TopicInner({ slug }: { slug: string }) {
   // null = unknown (fetch failed) → fall through to confirm; the 402
   // path still catches any race.
   const [creditBalance, setCreditBalance] = useState<number | null>(null)
+  const [regularBalance, setRegularBalance] = useState<number | null>(null)
   // Per-test entitlements from the subscription payload. null = unknown
   // (cold load / fetch failed) → NEVER lock; only a loaded, test-scoped
   // access set that excludes this family locks the full-test entry.
@@ -168,6 +169,7 @@ function TopicInner({ slug }: { slug: string }) {
         const json = res.ok ? await res.json() : null
         const sub = subRes.ok ? await subRes.json() : null
         if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
+        if (!cancelled && sub?.credits) setRegularBalance((sub.credits.grant ?? 0) + (sub.credits.purchased ?? 0))
         if (!cancelled && sub?.access && typeof sub.access.all === 'boolean') setAccess(sub.access)
         return (json?.prefs?.target_test as string | null) ?? null
       } catch { return null }
@@ -760,6 +762,7 @@ function TopicInner({ slug }: { slug: string }) {
         ko={ko}
         passCredits={familyPassCredits}
         passLabel={passCreditLabel(parseTestSlug(effectiveTopic?.slug ?? slug).family, ko)}
+        regularCredits={regularBalance ?? undefined}
         source={creditSource}
         onSourceChange={setCreditSource}
         onCancel={() => setCreditConfirmOpen(false)}

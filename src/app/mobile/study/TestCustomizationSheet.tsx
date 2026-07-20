@@ -336,11 +336,14 @@ export function TestCustomizationSheet({
               <button
                 type="button"
                 onClick={() => setCreditSource('regular')}
-                className={`h-9 rounded-lg text-[12px] font-semibold transition-all ${
+                className={`h-9 rounded-lg text-[12px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                   creditSource === 'regular' ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-500'
                 }`}
               >
                 {ko ? '일반 크레딧' : 'Regular credit'}
+                {creditBalance != null && (
+                  <span className="tabular-nums text-[10.5px] opacity-70">{Math.max(0, creditBalance - passBalance)}</span>
+                )}
               </button>
             </div>
           )}
