@@ -857,6 +857,12 @@ export default function SubscriptionPage() {
                     ? `구독을 해지할까요? ${formatDate(sub.current_period_end, ko)}까지는 그대로 이용할 수 있고, 이후 무료 플랜으로 전환돼요.`
                     : `Cancel your subscription? You keep full access until ${formatDate(sub.current_period_end, ko)}, then you move to the free plan.`}
                 </p>
+                <p className="text-[12px] text-gray-400 leading-relaxed">
+                  {ko ? '이미 결제된 요금은 환불되지 않을 수 있어요. ' : 'Charges already made may not be refundable. '}
+                  <Link href="/mobile/study/refund-policy" className="text-primary underline underline-offset-2">
+                    {ko ? '환불 정책 보기' : 'View refund policy'}
+                  </Link>
+                </p>
                 <div className="flex gap-2.5">
                   <StudyButton
                     type="button"
