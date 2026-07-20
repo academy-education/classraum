@@ -27,7 +27,13 @@ export interface StudyUserPrefs {
   target_tests: string[]
   grade_level: string | null
   daily_goal_minutes: number
+  /** Legacy single goal, SAT-scaled. Kept in lockstep with
+   *  goal_scores.sat so the SAT-only predicted-score engine reads it
+   *  unchanged. Prefer goal_scores for new callers. */
   goal_score: number | null
+  /** Per-test goal map, keyed by lowercased test family ('sat','toefl',…)
+   *  → integer goal on that test's own scale. */
+  goal_scores: Record<string, number>
   test_date: string | null
   default_language: 'en' | 'ko'
   default_difficulty: 'warmup' | 'balanced' | 'challenge'
@@ -89,6 +95,12 @@ export async function PUT(req: NextRequest) {
     nav_tour_seen_at: isNullOrIsoDate,
     // Score-plan engine (P1): the total goal (SAT 400–1600) + exam date.
     goal_score: v => v === null || (typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 2000),
+    // Per-test goal map: { sat: 1500, toefl: 105, … }. Each value an
+    // integer 0–2000 (widest scale; per-test UI presets are tighter).
+    goal_scores: v => v !== null && typeof v === 'object' && !Array.isArray(v) &&
+      Object.entries(v as Record<string, unknown>).every(([k, val]) =>
+        typeof k === 'string' && k.length > 0 && k.length <= 64 &&
+        typeof val === 'number' && Number.isInteger(val) && val >= 0 && val <= 2000),
     test_date: v => v === null || (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) && !Number.isNaN(Date.parse(v))),
   }
   const patch: Record<string, unknown> = { updated_at: new Date().toISOString() }
@@ -136,6 +148,27 @@ export async function PUT(req: NextRequest) {
     } else if (!currentPtr || !list.includes(currentPtr)) {
       patch.target_test = list[0]
     }
+  }
+
+  // Keep goal_score (legacy, SAT-scaled) and goal_scores (per-test map)
+  // in lockstep, so either shape can be PUT and the SAT-only
+  // predicted-score engine keeps reading goal_score unchanged:
+  //   - PUT goal_scores → mirror its 'sat' entry down to goal_score
+  //   - PUT goal_score alone (onboarding) → write it into goal_scores.sat
+  if ('goal_scores' in patch) {
+    const map = patch.goal_scores as Record<string, number>
+    patch.goal_score = typeof map.sat === 'number' ? map.sat : null
+  } else if ('goal_score' in patch) {
+    const sat = patch.goal_score as number | null
+    const { data: row } = await supabaseAdmin
+      .from('study_user_prefs')
+      .select('goal_scores')
+      .eq('student_id', user.id)
+      .maybeSingle()
+    const map = { ...((row?.goal_scores as Record<string, number> | null) ?? {}) }
+    if (sat === null) delete map.sat
+    else map.sat = sat
+    patch.goal_scores = map
   }
 
   // Upsert so first-time PUT (before any GET) still works.
