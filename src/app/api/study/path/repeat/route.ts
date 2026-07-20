@@ -98,7 +98,9 @@ export async function POST(req: NextRequest) {
   const chargeId = repeatChargeId(
     `path-repeat:${user.id}:${template.testSlug}:${completedIds.join(',')}`,
   )
-  const credit = await reserveTestCredits(user.id, chargeId, PATH_REPEAT_CREDITS)
+  // Path repeats target one test family — spend that pass's credits first.
+  const repeatFamily = template.testSlug.replace(/^test-/, '').split('-')[0]?.toLowerCase() || null
+  const credit = await reserveTestCredits(user.id, chargeId, PATH_REPEAT_CREDITS, repeatFamily)
   if (!credit.ok) {
     void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits', kind: 'path_repeat' })
     return NextResponse.json(

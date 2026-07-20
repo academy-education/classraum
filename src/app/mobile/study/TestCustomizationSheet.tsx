@@ -124,19 +124,28 @@ export function TestCustomizationSheet({
     void (async () => {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user || cancelled) return
-      const { data } = await supabase
-        .from('study_subscriptions')
-        .select('grant_credits_remaining, purchased_credits_remaining')
-        .eq('student_id', user.id)
-        .maybeSingle()
+      const [{ data }, { data: passRows }] = await Promise.all([
+        supabase
+          .from('study_subscriptions')
+          .select('grant_credits_remaining, purchased_credits_remaining')
+          .eq('student_id', user.id)
+          .maybeSingle(),
+        // This test's own exam-pass credits (+ the all-access '*' pass) count
+        // toward the balance — they're spent first for this test.
+        family
+          ? supabase.from('study_pass_credits').select('remaining').eq('student_id', user.id).in('test', [family, '*'])
+          : Promise.resolve({ data: [] as { remaining: number }[] }),
+      ])
       if (cancelled) return
+      const passSum = (passRows ?? []).reduce((s, r) => s + ((r.remaining as number | undefined) ?? 0), 0)
       setCreditBalance(
         ((data?.grant_credits_remaining as number | undefined) ?? 0) +
-        ((data?.purchased_credits_remaining as number | undefined) ?? 0),
+        ((data?.purchased_credits_remaining as number | undefined) ?? 0) +
+        passSum,
       )
     })()
     return () => { cancelled = true }
-  }, [open])
+  }, [open, family])
 
   // Close on Escape.
   useEffect(() => {

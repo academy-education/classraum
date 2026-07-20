@@ -54,12 +54,32 @@ export async function GET(req: NextRequest) {
     .select('test, expires_at')
     .eq('student_id', user.id)
     .or(`expires_at.is.null,expires_at.gt.${nowIso}`)
+  // Test-scoped pass-credit balances (separate from the generic grant/
+  // purchased buckets) — a SAT pass's credits are spendable only on SAT.
+  const { data: passCreditRows } = await supabaseAdmin
+    .from('study_pass_credits')
+    .select('test, remaining')
+    .eq('student_id', user.id)
+    .gt('remaining', 0)
+  const passCredits = (passCreditRows ?? []).map(r => {
+    const meta = STUDY_PASSES.find(p => p.test === r.test)
+    return {
+      test: r.test as string,
+      remaining: (r.remaining as number) ?? 0,
+      name_en: meta?.name_en ?? String(r.test).toUpperCase(),
+      name_ko: meta?.name_ko ?? String(r.test).toUpperCase(),
+    }
+  })
+  const passCreditTotal = passCredits.reduce((s, p) => s + p.remaining, 0)
+
   const heldPasses = (entRows ?? []).map(r => {
     const meta = STUDY_PASSES.find(p => p.test === r.test)
+    const pc = passCredits.find(c => c.test === r.test)
     return {
       test: r.test as string,
       passId: meta?.id ?? null,
       expiresAt: (r.expires_at as string | null) ?? null,
+      credits: pc?.remaining ?? 0,
       name_en: meta?.name_en ?? String(r.test).toUpperCase(),
       name_ko: meta?.name_ko ?? String(r.test).toUpperCase(),
     }
@@ -101,7 +121,7 @@ export async function GET(req: NextRequest) {
     }
   })
 
-  if (!sub) return NextResponse.json({ subscription: null, passes, heldPasses, access })
+  if (!sub) return NextResponse.json({ subscription: null, passes, heldPasses, passCredits, access })
 
   // Enrich with the resolved tier, credit balance, and feature flags
   // so every client surface (subscription page, upsell cards, snap
@@ -116,7 +136,8 @@ export async function GET(req: NextRequest) {
     credits: {
       grant: sub.grant_credits_remaining ?? 0,
       purchased: sub.purchased_credits_remaining ?? 0,
-      total: (sub.grant_credits_remaining ?? 0) + (sub.purchased_credits_remaining ?? 0),
+      pass: passCreditTotal,
+      total: (sub.grant_credits_remaining ?? 0) + (sub.purchased_credits_remaining ?? 0) + passCreditTotal,
     },
     features: planFeatures(tier),
     catalog: {
@@ -126,6 +147,7 @@ export async function GET(req: NextRequest) {
     },
     passes,
     heldPasses,
+    passCredits,
     access,
   })
 }

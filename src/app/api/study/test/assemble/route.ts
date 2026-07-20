@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
   // path-node sessions are exempt — the StudyPath loop stays free.
   const creditCost = pathNode ? 0 : creditCostForTest('sat', section)
   if (creditCost > 0) {
-    const credit = await reserveTestCredits(user.id, sess.id, creditCost)
+    const credit = await reserveTestCredits(user.id, sess.id, creditCost, 'sat')
     if (!credit.ok) {
       await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
       void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits', kind: 'bank_sat' })

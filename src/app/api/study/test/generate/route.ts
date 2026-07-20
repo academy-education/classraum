@@ -408,6 +408,7 @@ export async function POST(req: NextRequest) {
   // refunds, and each debit slice is idempotent per session (a retry
   // of a previously-debited session is free).
   let creditCost = 1
+  let creditFamily: string | null = null
   if (session.topic_id) {
     const { data: topicRow } = await supabaseAdmin
       .from('study_topics').select('slug').eq('id', session.topic_id).maybeSingle()
@@ -422,12 +423,13 @@ export async function POST(req: NextRequest) {
     // we positively resolve a family AND it's not accessible — an empty/
     // unresolvable slug falls through (fail open; free/plan users always
     // pass canAccessTest).
-    const family = parts[0] ? parts[0].toLowerCase() : null
-    if (family && !(await canAccessTest(user.id, family))) {
-      return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: family }, { status: 403 })
+    creditFamily = parts[0] ? parts[0].toLowerCase() : null
+    if (creditFamily && !(await canAccessTest(user.id, creditFamily))) {
+      return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: creditFamily }, { status: 403 })
     }
   }
-  const credit = await reserveTestCredits(user.id, sessionId, creditCost)
+  // Spend this test's exam-pass credits first (scoped), then generic.
+  const credit = await reserveTestCredits(user.id, sessionId, creditCost, creditFamily)
   if (!credit.ok) {
     // Funnel: the paywall trigger — the student wanted a test but had no
     // credits. This is where an upsell converts.
