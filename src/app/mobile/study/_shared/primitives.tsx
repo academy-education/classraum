@@ -19,9 +19,12 @@ import { usePullToRefresh } from '@/app/mobile/study/_shared/usePullToRefresh'
 type LucideIcon = ComponentType<LucideProps>
 
 // ─────────────────────────────────────────────────────────────────────
-// StudyPageHeader — back link + icon tile + eyebrow + title + right slot.
-// Used on every secondary page (snap / review / league / etc.). Always
-// the same shape and spacing so navigation feels predictable.
+// StudyPageHeader — sticky, collapse-on-scroll header: back link +
+// eyebrow + title + right slot. Typography-led — the `icon` prop is
+// accepted for call-site compatibility but is intentionally NOT rendered
+// as a tile (the eyebrow + large bold title reads cleaner). Used on every
+// study page rendered inside StudyScrollShell, so navigation feels
+// predictable.
 // ─────────────────────────────────────────────────────────────────────
 export interface StudyPageHeaderProps {
   /** Omit on bottom-nav tab pages (snap / review / league) — they're
@@ -255,13 +258,16 @@ export function StudyFilterChip({ label, active, count, icon: Icon, onClick }: {
 }
 
 // ─────────────────────────────────────────────────────────────────────
-// StudySubPageHeader — non-sticky variant of StudyPageHeader for
-// pages that live inside the global mobile scroll container (stats,
-// history, preferences, subscription, topic). Identical typography +
-// shape to StudyPageHeader so users perceive every secondary page as
-// one consistent surface, but skips the sticky collapse behavior
+// StudySubPageHeader — non-sticky variant of StudyPageHeader for pages
+// that live inside the GLOBAL mobile scroll container rather than a
+// StudyScrollShell (currently the profile / account screen). Identical
+// typography + shape to StudyPageHeader so users perceive every secondary
+// page as one consistent surface, but skips the sticky collapse behavior
 // (which needs its own scroll context and would no-op here anyway).
-// Renders the back link only when backHref is provided.
+// (The other sub-pages — stats, history, preferences, subscription,
+// topic — moved to StudyScrollShell + StudyPageHeader.) Like
+// StudyPageHeader it is typography-led: `icon` is accepted but not
+// rendered. Renders the back link only when backHref is provided.
 // ─────────────────────────────────────────────────────────────────────
 export interface StudySubPageHeaderProps {
   backHref?: string
