@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Loader2, Check, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp } from '@/app/mobile/study/_shared/icons'
+import { Loader2, Check, X, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -183,10 +183,13 @@ function PreferencesInner() {
       )}
 
       {/* Target test — multi-select. A student can prep for more than one
-          test (SAT + TOEFL), so this reflects the full target list, not just
-          the single "current focus" pointer. Case-insensitive to tolerate
-          legacy mixed-case rows ('sat' vs 'SAT'). */}
-      <SettingGroup icon={Target} label={String(t('study.prefs.targetTest'))} saving={saving === 'target_tests'}>
+          test (SAT + TOEFL). Tapping a chip ADDS it (and focuses it); it
+          never removes on the same tap — that used to read as an
+          accidental cancel. Remove is a deliberate ✕ on the chip. The
+          focused test (target_test) drives the StudyPath + predicted
+          score; its goal row sits just below. Case-insensitive to
+          tolerate legacy mixed-case rows ('sat' vs 'SAT'). */}
+      <SettingGroup icon={Target} label={String(t('study.prefs.targetTest'))} saving={saving === 'target_tests' || saving === 'target_test'}>
         <div className="grid grid-cols-2 gap-2">
           {TESTS.map(test => {
             const targeted = new Set((prefs.target_tests ?? []).map(s => s.toUpperCase()))
@@ -194,33 +197,58 @@ function PreferencesInner() {
             // set target_test.
             if (targeted.size === 0 && prefs.target_test) targeted.add(prefs.target_test.toUpperCase())
             const selected = targeted.has(test.value)
+            const focused = (prefs.target_test ?? '').toUpperCase() === test.value
             const locked = !test.available && !selected
+            const remove = () => {
+              const next = [...targeted].filter(v => v !== test.value)
+              update('target_tests', next)
+            }
             return (
-              <button
-                key={test.value}
-                type="button"
-                disabled={locked}
-                onClick={() => {
-                  const next = new Set(targeted)
-                  if (selected) next.delete(test.value); else next.add(test.value)
-                  update('target_tests', [...next])
-                }}
-                className={`relative h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
-                  selected
-                    ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/30'
-                    : locked
-                      ? 'bg-gray-50 text-gray-400 ring-1 ring-gray-200/60 cursor-not-allowed'
-                      : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
-                }`}
-              >
-                {ko ? test.ko : test.en}
-                {selected && <Check className="absolute top-1.5 right-1.5 w-3 h-3" />}
-                {locked && (
-                  <span className="absolute top-1 right-1.5 text-[8.5px] font-bold uppercase tracking-wide text-gray-400">
-                    {ko ? '준비 중' : 'Soon'}
-                  </span>
+              <div key={test.value} className="relative">
+                <button
+                  type="button"
+                  disabled={locked}
+                  onClick={() => {
+                    // Selected → make it the focus (non-destructive).
+                    // Unselected → add it (route sets it as focus too).
+                    if (selected) { if (!focused) update('target_test', test.value) }
+                    else update('target_tests', [...targeted, test.value])
+                  }}
+                  className={`relative w-full h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
+                    selected
+                      ? focused
+                        ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/30'
+                        : 'bg-primary/10 text-primary ring-1 ring-primary/25 active:scale-[0.98]'
+                      : locked
+                        ? 'bg-gray-50 text-gray-400 ring-1 ring-gray-200/60 cursor-not-allowed'
+                        : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                  }`}
+                >
+                  {ko ? test.ko : test.en}
+                  {focused && (
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-bold uppercase tracking-[0.1em] text-white/80">
+                      {ko ? '주력' : 'Focus'}
+                    </span>
+                  )}
+                  {locked && (
+                    <span className="absolute top-1 right-1.5 text-[8.5px] font-bold uppercase tracking-wide text-gray-400">
+                      {ko ? '준비 중' : 'Soon'}
+                    </span>
+                  )}
+                </button>
+                {selected && (
+                  <button
+                    type="button"
+                    aria-label={ko ? `${ko ? test.ko : test.en} 제거` : `Remove ${test.en}`}
+                    onClick={remove}
+                    className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center shadow-sm ring-1 transition-transform active:scale-90 ${
+                      focused ? 'bg-white text-primary ring-primary/20' : 'bg-white text-gray-500 ring-gray-200'
+                    }`}
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
                 )}
-              </button>
+              </div>
             )
           })}
         </div>
