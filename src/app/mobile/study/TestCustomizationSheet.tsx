@@ -11,6 +11,7 @@ import { SegmentedTabs } from './_shared/SegmentedTabs'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 import { useSheetDrag } from '@/app/mobile/study/_shared/useSheetDrag'
 import { creditCostForTest } from '@/lib/study/plans'
+import { passCreditLabel } from '@/app/mobile/study/_shared/pass-label'
 
 // Per-section credit cost (2026-07 relaunch) comes from the shared
 // catalog — e.g. TOEFL Speaking/Listening 2, Reading/Writing 1.
@@ -31,6 +32,9 @@ export interface TestConfig {
    *  the actual recording (~$0.06-0.08/response, real ETS-parity
    *  pronunciation + intonation). Defaults to 'text'. */
   speakingGradeMode?: 'text' | 'audio'
+  /** Which credit to spend when the student holds test-scoped pass credits
+   *  for this test: 'pass' (default, spent first) or 'regular'. */
+  creditSource?: 'pass' | 'regular'
 }
 
 type DifficultyBias = 'warmup' | 'balanced' | 'challenge'
@@ -74,6 +78,8 @@ export function TestCustomizationSheet({
   const [recommended, setRecommended] = useState<DifficultyBias | null>(null)
   const [masteryScore, setMasteryScore] = useState<number | null>(null)
   const [creditBalance, setCreditBalance] = useState<number | null>(null)
+  const [passBalance, setPassBalance] = useState(0)
+  const [creditSource, setCreditSource] = useState<'pass' | 'regular'>('pass')
   const [starting, setStarting] = useState(false)
   const [speakingGradeMode, setSpeakingGradeMode] = useState<'text' | 'audio'>('text')
   const isSpeakingTest = family === 'toefl' && section != null && /speaking/i.test(section)
@@ -138,6 +144,7 @@ export function TestCustomizationSheet({
       ])
       if (cancelled) return
       const passSum = (passRows ?? []).reduce((s, r) => s + ((r.remaining as number | undefined) ?? 0), 0)
+      setPassBalance(passSum)
       setCreditBalance(
         ((data?.grant_credits_remaining as number | undefined) ?? 0) +
         ((data?.purchased_credits_remaining as number | undefined) ?? 0) +
@@ -174,6 +181,9 @@ export function TestCustomizationSheet({
     const config: TestConfig = {}
     if (effectiveBias !== 'balanced') config.difficultyBias = effectiveBias
     if (isSpeakingTest && speakingGradeMode === 'audio') config.speakingGradeMode = 'audio'
+    // Only meaningful when the student holds pass credits for this test —
+    // otherwise there's nothing to choose and the field is left unset.
+    if (passBalance > 0 && creditSource === 'regular') config.creditSource = 'regular'
     onStart(config)
   }
 
@@ -308,6 +318,32 @@ export function TestCustomizationSheet({
         </div>
 
         <div className="sticky bottom-0 px-5 py-4 bg-gradient-to-t from-white via-white to-white/80 border-t border-gray-100 space-y-2.5">
+          {/* Pass vs regular credit — only when the student holds pass
+              credits for this test. Pass credits are test-scoped, so let
+              them keep the general balance for other tests if they'd rather. */}
+          {passBalance > 0 && (
+            <div className="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-gray-100">
+              <button
+                type="button"
+                onClick={() => setCreditSource('pass')}
+                className={`h-9 rounded-lg text-[12px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
+                  creditSource === 'pass' ? 'bg-white text-indigo-700 shadow-sm ring-1 ring-indigo-200' : 'text-gray-500'
+                }`}
+              >
+                {passCreditLabel(family, ko)}
+                <span className="tabular-nums text-[10.5px] opacity-70">{passBalance}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setCreditSource('regular')}
+                className={`h-9 rounded-lg text-[12px] font-semibold transition-all ${
+                  creditSource === 'regular' ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-500'
+                }`}
+              >
+                {ko ? '일반 크레딧' : 'Regular credit'}
+              </button>
+            </div>
+          )}
           {/* Credit cost + balance — per-section cost from the catalog. */}
           <div className="flex items-center justify-between gap-3 text-[12.5px]">
             <span className="inline-flex items-center gap-1.5 text-gray-500">

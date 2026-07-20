@@ -26,6 +26,7 @@ import { RecommendedShelf } from '../../RecommendedShelf'
 import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
+import { passCreditLabel } from '../../_shared/pass-label'
 import type { TestFamily } from '@/lib/study-prompt-context'
 
 /**
@@ -118,6 +119,10 @@ function TopicInner({ slug }: { slug: string }) {
   // 402 from the start call → explicit "not enough credits" popup with
   // a cancel / buy-credits choice (no more silent redirect).
   const [noCreditsOpen, setNoCreditsOpen] = useState(false)
+  // Test-scoped pass credits this student holds for the current test — when
+  // > 0, the credit-spend confirm offers a Pass-vs-Regular choice.
+  const [familyPassCredits, setFamilyPassCredits] = useState(0)
+  const [creditSource, setCreditSource] = useState<'pass' | 'regular'>('pass')
   const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
     count: 20, minutes: 30,
   })
@@ -254,6 +259,23 @@ function TopicInner({ slug }: { slug: string }) {
     return () => { cancelled = true }
   }, [user?.userId, effectiveTopic])
 
+  // Pass credits the student holds for this test family (+ the all-access
+  // '*' pass) — when > 0, the credit-spend confirm offers Pass vs Regular.
+  useEffect(() => {
+    const fam = effectiveTopic ? parseTestSlug(effectiveTopic.slug).family : null
+    if (!user?.userId || !fam) { setFamilyPassCredits(0); return }
+    let cancelled = false
+    void (async () => {
+      const { data } = await supabase
+        .from('study_pass_credits')
+        .select('remaining')
+        .eq('student_id', user.userId)
+        .in('test', [fam, '*'])
+      if (!cancelled) setFamilyPassCredits((data ?? []).reduce((s, r) => s + ((r.remaining as number | undefined) ?? 0), 0))
+    })()
+    return () => { cancelled = true }
+  }, [user?.userId, effectiveTopic])
+
   // Credit cost of the bank test for the currently-selected section.
   const bankCreditCost = () => {
     const parsed = parseTestSlug(effectiveTopic?.slug ?? slug)
@@ -327,8 +349,9 @@ function TopicInner({ slug }: { slug: string }) {
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json' },
         // Two-module adaptive: assemble draws Module 1 only; Module 2 is
-        // routed + drawn after the student finishes Module 1.
-        body: JSON.stringify({ section: bankSection, adaptive: true }),
+        // routed + drawn after the student finishes Module 1. creditSource
+        // lets the student spend a regular credit instead of the SAT pass.
+        body: JSON.stringify({ section: bankSection, adaptive: true, creditSource }),
       })
       if (res.status === 402) { setBankBusy(false); setCreditConfirmOpen(false); setNoCreditsOpen(true); return }
       if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
@@ -735,6 +758,10 @@ function TopicInner({ slug }: { slug: string }) {
         })()}
         busy={bankBusy}
         ko={ko}
+        passCredits={familyPassCredits}
+        passLabel={passCreditLabel(parseTestSlug(effectiveTopic?.slug ?? slug).family, ko)}
+        source={creditSource}
+        onSourceChange={setCreditSource}
         onCancel={() => setCreditConfirmOpen(false)}
         onConfirm={() => { void startBankTest().finally(() => setCreditConfirmOpen(false)) }}
       />
