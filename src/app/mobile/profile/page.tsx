@@ -479,7 +479,9 @@ function MobileProfilePageContent() {
             <div className="p-4">
               {editingPhone ? (
                 <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-gray-500 flex-shrink-0" strokeWidth={1.75} />
+                  <span className="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-600 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4" strokeWidth={1.75} />
+                  </span>
                   <input
                     type="tel"
                     autoFocus
@@ -509,7 +511,9 @@ function MobileProfilePageContent() {
               ) : (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Phone className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                    <span className="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-600 flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-4 h-4" strokeWidth={1.75} />
+                    </span>
                     <span className="text-sm text-gray-700">{t('mobile.profile.phone')}</span>
                   </div>
                   <button
@@ -535,7 +539,9 @@ function MobileProfilePageContent() {
               return isMulti ? (
                 <div className="p-4 flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3 flex-shrink-0 pt-0.5">
-                    <BookOpen className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                    <span className="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-4 h-4" strokeWidth={1.75} />
+                    </span>
                     <span className="text-sm text-gray-700">{t('mobile.profile.academy')}</span>
                   </div>
                   <div className="flex flex-col items-end gap-1 min-w-0">
@@ -549,7 +555,9 @@ function MobileProfilePageContent() {
               ) : (
                 <div className="p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <BookOpen className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                    <span className="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-4 h-4" strokeWidth={1.75} />
+                    </span>
                     <span className="text-sm text-gray-700">{t('mobile.profile.academy')}</span>
                   </div>
                   <span className="text-sm font-medium text-gray-900 truncate ml-3">{academies[0]}</span>
@@ -559,7 +567,9 @@ function MobileProfilePageContent() {
             {profile?.student_school && (
               <div className="p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <School className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                  <span className="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-600 flex items-center justify-center flex-shrink-0">
+                    <School className="w-4 h-4" strokeWidth={1.75} />
+                  </span>
                   <span className="text-sm text-gray-700">{t('mobile.profile.school')}</span>
                 </div>
                 <span className="text-sm font-medium text-gray-900 truncate ml-3">{profile.student_school}</span>
@@ -568,7 +578,9 @@ function MobileProfilePageContent() {
             {profile?.student_grade && (
               <div className="p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <GraduationCap className="w-4 h-4 text-gray-500" strokeWidth={1.75} />
+                  <span className="w-9 h-9 rounded-xl bg-orange-500/10 text-orange-600 flex items-center justify-center flex-shrink-0">
+                    <GraduationCap className="w-4 h-4" strokeWidth={1.75} />
+                  </span>
                   <span className="text-sm text-gray-700">{t('mobile.profile.grade')}</span>
                 </div>
                 <span className="text-sm font-medium text-gray-900 truncate ml-3">{profile.student_grade}</span>
