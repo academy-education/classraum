@@ -590,8 +590,8 @@ function MobileProfilePageContent() {
               className="w-full px-5 py-6 hover:bg-gray-50 transition-colors"
             >
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                  <UserCheck className="w-4 h-4 text-emerald-700" strokeWidth={1.75} />
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                  <UserCheck className="w-4 h-4 text-emerald-600" strokeWidth={1.75} />
                 </div>
                 <div className="flex-1 min-w-0 text-left">
                   <Eyebrow className="mb-0.5">
@@ -618,8 +618,8 @@ function MobileProfilePageContent() {
           <Select value={language} onValueChange={(value) => handleLanguageChange(value as 'english' | 'korean')}>
             <SelectTrigger className="w-full h-auto p-4 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
               <div className="flex items-center gap-3 w-full">
-                <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
-                  <Globe className="w-4 h-4 text-sky-700" strokeWidth={1.75} />
+                <div className="w-9 h-9 rounded-xl bg-sky-500/10 flex items-center justify-center flex-shrink-0">
+                  <Globe className="w-4 h-4 text-sky-600" strokeWidth={1.75} />
                 </div>
                 <div className="flex-1 min-w-0 text-left">
                   <span className="text-sm font-medium text-gray-900">{t('mobile.profile.language')}</span>
@@ -648,7 +648,7 @@ function MobileProfilePageContent() {
           }}>
             <SelectTrigger className="w-full h-auto p-4 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
               <div className="flex items-center gap-3 w-full">
-                <div className="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
                   <Moon className="w-4 h-4 text-indigo-600" strokeWidth={1.75} />
                 </div>
                 <div className="flex-1 min-w-0 text-left">
@@ -680,7 +680,7 @@ function MobileProfilePageContent() {
         {/* Push Notifications — primary toggle row */}
         <Card className="p-4 mb-3">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
               <Bell className="w-4 h-4 text-amber-600" strokeWidth={1.75} />
             </div>
             <div className="flex-1 min-w-0">
@@ -716,7 +716,7 @@ function MobileProfilePageContent() {
         {academyIds.length > 0 && (
         <Card className="overflow-hidden py-0 gap-0">
           <div className="p-4 flex items-center gap-3 border-b border-gray-100">
-            <div className="w-9 h-9 rounded-lg bg-violet-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-violet-500/10 flex items-center justify-center flex-shrink-0">
               <Mail className="w-4 h-4 text-violet-600" strokeWidth={1.75} />
             </div>
             <div className="flex-1 min-w-0">
@@ -781,7 +781,7 @@ function MobileProfilePageContent() {
             onClick={() => setShowLogoutConfirm(true)}
             className="w-full p-4 flex items-center gap-3 hover:bg-gray-50 transition-colors text-left"
           >
-            <div className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-gray-500/10 flex items-center justify-center flex-shrink-0">
               <LogOut className="w-4 h-4 text-gray-600" strokeWidth={1.75} />
             </div>
             <span className="flex-1 text-sm font-medium text-gray-900">{t('mobile.profile.logout')}</span>
@@ -793,7 +793,7 @@ function MobileProfilePageContent() {
             onClick={() => setShowDeleteConfirm(true)}
             className="w-full p-4 flex items-center gap-3 hover:bg-rose-50/50 transition-colors text-left"
           >
-            <div className="w-9 h-9 rounded-lg bg-rose-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-rose-500/10 flex items-center justify-center flex-shrink-0">
               <Trash2 className="w-4 h-4 text-rose-600" strokeWidth={1.75} />
             </div>
             <div className="flex-1 min-w-0">

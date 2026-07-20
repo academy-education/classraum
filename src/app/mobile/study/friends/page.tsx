@@ -6,7 +6,7 @@ import { Users, UserPlus, Copy, Check, Search, X, Loader2, Trophy, Clock, Swords
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { StudyPageHeader, StudyScrollShell, StudyPageTransition } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell, StudyPageTransition, StudyEmptyState } from '../_shared/primitives'
 import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 
@@ -365,13 +365,12 @@ function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: bo
 
   if (friends.length === 0 && outgoing.length === 0) {
     return (
-      <section className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center">
-        <div className="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_6px_16px_-6px_rgba(251,146,60,0.45)] flex items-center justify-center mb-3">
-          <Users className="w-5 h-5" />
-        </div>
-        <p className="text-[13.5px] text-gray-600">{ko ? '아직 친구가 없어요.' : 'No friends yet.'}</p>
-        <p className="text-[12px] text-gray-400 mt-1">{ko ? '위에서 닉네임이나 코드로 친구를 추가하세요.' : 'Add friends by nickname or code above.'}</p>
-      </section>
+      <StudyEmptyState
+        icon={Users}
+        iconColorClass="text-amber-600 bg-amber-50"
+        headline={ko ? '아직 친구가 없어요' : 'No friends yet'}
+        body={ko ? '위에서 닉네임이나 코드로 친구를 추가하세요.' : 'Add friends by nickname or code above.'}
+      />
     )
   }
 

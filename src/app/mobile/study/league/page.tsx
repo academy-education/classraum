@@ -232,16 +232,14 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
   // Only the caller present → no friends yet.
   if (rows.length <= 1) {
     return (
-      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-        <div className="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_6px_16px_-6px_rgba(251,146,60,0.45)] flex items-center justify-center">
-          <Users className="w-5 h-5" />
-        </div>
-        <div>
-          <p className="text-[14px] font-semibold text-gray-900">{ko ? '친구를 추가해 경쟁하세요' : 'Add friends to compete'}</p>
-          <p className="text-[12.5px] text-gray-500 mt-1">{ko ? '친구와 이번 주 XP를 겨뤄보세요.' : "Race your friends on this week's XP."}</p>
-        </div>
-        <div className="flex justify-center pt-1">{manageBtn}</div>
-      </div>
+      <StudyEmptyState
+        icon={Users}
+        iconColorClass="text-amber-600 bg-amber-50"
+        headline={ko ? '친구를 추가해 경쟁하세요' : 'Add friends to compete'}
+        body={ko ? '친구와 이번 주 XP를 겨뤄보세요.' : "Race your friends on this week's XP."}
+        ctaHref="/mobile/study/friends"
+        ctaText={ko ? '친구 관리' : 'Manage friends'}
+      />
     )
   }
 
