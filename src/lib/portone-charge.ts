@@ -1,4 +1,5 @@
 import { getPortOneConfig } from '@/lib/portone-config'
+import { supabaseAdmin } from '@/lib/supabase-admin'
 
 /**
  * Single-charge helper against a stored PortOne v2 billing key.
@@ -208,6 +209,21 @@ export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortO
     return { ok: false, message: 'PORTONE_API_SECRET not configured' }
   }
 
+  // Inicis V2 billing-key payments REQUIRE the buyer's name/email/phone
+  // (customer.name/email/phoneNumber). Without them the charge fails with
+  // "customer.* violated the rule REQUIRED" — which silently broke every
+  // subscription first charge, renewal, and stored-card pack. Pull the
+  // contact from the users table.
+  const { data: u } = await supabaseAdmin
+    .from('users')
+    .select('name, email, phone')
+    .eq('id', input.customerId)
+    .maybeSingle()
+  const customer: Record<string, unknown> = { id: input.customerId }
+  if (u?.name) customer.fullName = u.name
+  if (u?.email) customer.email = u.email
+  if (u?.phone) customer.phoneNumber = u.phone
+
   let response: Response
   try {
     response = await fetch(`${PORTONE_API_BASE}/payments/${encodeURIComponent(input.paymentId)}/billing-key`, {
@@ -222,7 +238,7 @@ export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortO
         orderName: input.orderName,
         amount: { total: input.amount },
         currency: 'KRW',
-        customer: { id: input.customerId },
+        customer,
         // The V2 API takes customData as a string, not an object.
         customData: JSON.stringify(input.customData ?? {}),
       }),
