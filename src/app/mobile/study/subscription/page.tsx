@@ -517,7 +517,7 @@ export default function SubscriptionPage() {
             General included; card-less buyers register a card in the flow).
             Native app hides in-app purchases (App Store IAP rules). */}
         {!isNative && (
-          <div className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+          <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2.5">
                 <span className="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center flex-shrink-0">
@@ -617,7 +617,7 @@ export default function SubscriptionPage() {
             {heldPasses.map(hp => {
               const theme = PASS_THEMES[hp.passId ?? ''] ?? PASS_THEME_FALLBACK
               return (
-                <div key={hp.test} className="rounded-2xl bg-white ring-1 ring-gray-200/60 p-4 flex items-center gap-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                <div key={hp.test} className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 flex items-center gap-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
                   <span className={`w-10 h-10 rounded-xl bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center flex-shrink-0`}>
                     <GraduationCap className="w-5 h-5" />
                   </span>
@@ -673,7 +673,7 @@ export default function SubscriptionPage() {
                 className={`relative rounded-2xl p-5 flex flex-col gap-4 ring-1 transition-all ${
                   premium
                     ? 'bg-gradient-to-br from-violet-50/60 via-white to-white ring-violet-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03),0_12px_28px_-16px_rgba(124,58,237,0.22)]'
-                    : 'bg-white ring-gray-200/60 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
+                    : 'bg-white ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
                 }`}
               >
                 <div>
@@ -829,7 +829,7 @@ export default function SubscriptionPage() {
         <div className="space-y-2.5">
           <Link
             href="/mobile/study/gift"
-            className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/60 p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.98] transition-all"
+            className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.98] transition-all"
           >
             <span className="w-9 h-9 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center flex-shrink-0">
               <Gift className="w-4 h-4" />

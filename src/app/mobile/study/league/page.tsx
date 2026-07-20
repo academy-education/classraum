@@ -147,7 +147,7 @@ function LeagueInner() {
                   <SkeletonBlock className="h-2.5 w-20 rounded-full" />
                   <SkeletonBlock className="h-6 w-24 rounded-full" />
                 </div>
-                <SkeletonBlock className="w-8 h-8 rounded-lg" />
+                <SkeletonBlock className="w-8 h-8 rounded-xl" />
               </div>
               <div className="mt-6 grid grid-cols-3 gap-3">
                 {[0,1,2].map(i => (
@@ -195,6 +195,7 @@ function LeagueInner() {
 function FriendsLeaderboardView({ ko }: { ko: boolean }) {
   const [rows, setRows] = useState<LeaderboardRow[] | null>(null)
   const [failed, setFailed] = useState(false)
+  const [retryKey, setRetryKey] = useState(0)
 
   useEffect(() => {
     let cancelled = false
@@ -211,7 +212,7 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
       }
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [retryKey])
 
   const manageBtn = (
     <Link href="/mobile/study/friends"
@@ -222,8 +223,11 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
 
   if (failed) {
     return (
-      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center">
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
         <p className="text-[13.5px] text-gray-600">{ko ? '친구 순위를 불러오지 못했어요.' : "Couldn't load the friends leaderboard."}</p>
+        <StudyButton type="button" size="sm" onClick={() => setRetryKey(k => k + 1)}>
+          {ko ? '다시 시도' : 'Retry'}
+        </StudyButton>
       </div>
     )
   }
@@ -526,7 +530,7 @@ function EarnXpPanel({ ko }: { ko: boolean }) {
           return (
             <Link key={i} href={r.href}
               className="flex items-center gap-3 px-3.5 py-3 hover:bg-gray-50 transition group">
-              <div className={`flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg text-white ${r.tile}`}>
+              <div className={`flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-xl text-white ${r.tile}`}>
                 <Icon className="w-4 h-4" />
               </div>
               <div className="flex-1 min-w-0 text-[13px] text-gray-800">{ko ? r.label_ko : r.label_en}</div>
