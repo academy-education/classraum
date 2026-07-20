@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw, Sparkles } from '@/app/mobile/study/_shared/icons'
+import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { supabase } from '@/lib/supabase'
@@ -50,12 +50,13 @@ const holdForMascot = async (startedAt: number) => {
   if (left > 0) await new Promise(r => setTimeout(r, left))
 }
 
-export function PracticeSession({ sessionId, language, topicId }: { sessionId: string; language: 'en' | 'ko'; topicId?: string | null }) {
+export function PracticeSession({ sessionId, language, topicId, daily = false }: { sessionId: string; language: 'en' | 'ko'; topicId?: string | null; daily?: boolean }) {
   const { t } = useTranslation()
   const router = useRouter()
   const ko = language === 'ko'
 
-  const [phase, setPhase] = useState<'loading' | 'asking' | 'feedback' | 'done' | 'error'>('loading')
+  const [phase, setPhase] = useState<'loading' | 'asking' | 'feedback' | 'done' | 'limit' | 'error'>('loading')
+  const [limitInfo, setLimitInfo] = useState<{ limit: number } | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
   const [idx, setIdx] = useState(0)
   const [answer, setAnswer] = useState('')
@@ -85,6 +86,15 @@ export function PracticeSession({ sessionId, language, topicId }: { sessionId: s
       // still land here — send it to the summary rather than erroring.
       if (res.status === 409) {
         router.replace(`/mobile/study/session/${sessionId}/summary`)
+        return
+      }
+      // Daily practice cap hit — the just-created empty session was
+      // deleted server-side, so there's nothing to resume. Show the
+      // friendly limit screen instead of a generic error.
+      if (res.status === 429) {
+        const info = await res.json().catch(() => null)
+        setLimitInfo({ limit: typeof info?.limit === 'number' ? info.limit : 3 })
+        setPhase('limit')
         return
       }
       if (!res.ok) throw new Error()
@@ -240,42 +250,92 @@ export function PracticeSession({ sessionId, language, topicId }: { sessionId: s
     )
   }
 
+  if (phase === 'limit') {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-10 text-center gap-4">
+        <PathMascot state="idle" size={96} />
+        <div>
+          <h2 className="text-[17px] font-bold text-gray-900">
+            {ko ? '오늘의 연습을 다 했어요' : "That's all your practice for today"}
+          </h2>
+          <p className="mt-2 text-[13px] text-gray-500 leading-relaxed max-w-[300px]">
+            {ko
+              ? `하루 연습 세트는 ${limitInfo?.limit ?? 3}개까지예요. 내일 새 문제로 다시 만나요! 그동안 오답노트와 복습으로 실력을 다질 수 있어요.`
+              : `You've used all ${limitInfo?.limit ?? 3} practice sets for today. Fresh questions unlock tomorrow — meanwhile, sharpen up with your wrong notebook and daily review.`}
+          </p>
+        </div>
+        <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
+          <Link
+            href="/mobile/study/wrong-notebook"
+            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+          >
+            {ko ? '오답노트 복습' : 'Review wrong notebook'}
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/mobile/study"
+            className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
+          >
+            {t('study.practice.backToStudy')}
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   if (phase === 'done') {
     const correct = results.filter(Boolean).length
     const total = results.length
+    const pct = total > 0 ? Math.round((correct / total) * 100) : 0
+    const tone = correct === total ? 'perfect' : correct >= total / 2 ? 'good' : 'keepGoing'
     return (
-      <div className="flex-1 px-5 py-8 overflow-y-auto">
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
-            <Sparkles className="w-6 h-6" />
+      <div className="flex-1 px-5 py-8 overflow-y-auto flex flex-col items-center">
+        {/* Celebration hero — gradient card with the mascot, a big score
+            ring, and a per-question dot strip so the result reads at a
+            glance instead of a bare "3 / 5". */}
+        <div className="w-full max-w-sm rounded-3xl bg-gradient-to-br from-violet-500 via-primary to-indigo-600 text-white p-6 text-center shadow-[0_18px_40px_-16px_rgba(79,70,229,0.55)] relative overflow-hidden">
+          <div aria-hidden className="pointer-events-none absolute -top-10 -right-8 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
+          <div className="relative flex justify-center mb-2">
+            <PathMascot state={correct >= total / 2 ? 'celebrate' : 'idle'} size={84} />
           </div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">
+          <p className="relative text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
             {t('study.practice.doneEyebrow')}
           </p>
-          <h2 className="text-2xl font-semibold text-gray-900 tracking-tight">
-            {correct} / {total}
-          </h2>
-          <p className="text-sm text-gray-500 mt-1">
-            {t(`study.practice.doneMessage.${correct === total ? 'perfect' : correct >= total / 2 ? 'good' : 'keepGoing'}`)}
+          <div className="relative mt-1 flex items-end justify-center gap-1.5">
+            <span className="text-5xl font-black tracking-tight tabular-nums leading-none">{correct}</span>
+            <span className="text-2xl font-bold text-white/70 leading-none mb-0.5">/ {total}</span>
+          </div>
+          <p className="relative text-[13px] text-white/85 mt-1.5">
+            {t(`study.practice.doneMessage.${tone}`)} · {pct}%
           </p>
+          {/* Per-question result dots. */}
+          <div className="relative mt-4 flex items-center justify-center gap-1.5">
+            {results.map((ok, i) => (
+              <span
+                key={i}
+                aria-hidden
+                className={`w-2.5 h-2.5 rounded-full ${ok ? 'bg-white' : 'bg-white/35 ring-1 ring-white/40'}`}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="mt-4 flex flex-col gap-2">
-          {/* A finished set is review-only (the session page redirects
-              back here to the summary) — more practice = a NEW session
-              on the same topic, so scores and XP stay one-per-set. */}
-          {topicId && (
+        <div className="mt-5 w-full max-w-sm flex flex-col gap-2">
+          {/* Daily challenge = one attempt per day; no "more questions".
+              Regular practice: a finished set is review-only, so more
+              practice starts a NEW session (scores/XP stay one-per-set). */}
+          {!daily && topicId && (
             <button
               type="button"
               onClick={() => void startNewSet()}
               disabled={startingNew}
-              className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-medium disabled:opacity-60"
+              className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold disabled:opacity-60 active:scale-[0.98] transition"
             >
               {startingNew ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
               {t('study.practice.moreQuestions')}
             </button>
           )}
-          {results.some(r => r === false) && (
+          {!daily && results.some(r => r === false) && (
             <Link
               href={`/mobile/study/session/${sessionId}/summary`}
               className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
@@ -286,7 +346,11 @@ export function PracticeSession({ sessionId, language, topicId }: { sessionId: s
           )}
           <Link
             href="/mobile/study"
-            className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
+            className={`w-full inline-flex items-center justify-center h-11 rounded-full text-sm font-medium transition ${
+              daily
+                ? 'bg-primary text-white font-semibold active:scale-[0.98]'
+                : 'bg-white border border-gray-200 text-gray-700'
+            }`}
           >
             {t('study.practice.backToStudy')}
           </Link>

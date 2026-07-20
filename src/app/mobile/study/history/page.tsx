@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { MessageCircle, ChevronRight, ListChecks, Layers, ClipboardList, Mic, History as HistoryIcon, Search, X } from '@/app/mobile/study/_shared/icons'
+import { MessageCircle, ChevronRight, ListChecks, Layers, ClipboardList, Mic, History as HistoryIcon, Search, X, Flame } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
 import { groupByDate, formatTimeAgo } from '../_shared/dateGroups'
@@ -27,11 +27,17 @@ interface Row {
   title: string | null
   status: string
   score: number | null
-  config: { pathNode?: string } | null
+  config: { pathNode?: string; dailyChallenge?: string } | null
   last_active_at: string
   topic_freeform: string | null
   topic: { slug: string; name_en: string; name_ko: string } | null
 }
+
+/** Filter keys: the real session modes, "all", plus the "daily"
+ *  pseudo-mode (practice sessions tagged config.dailyChallenge). */
+type FilterKey = StudyMode | 'all' | 'daily'
+
+const isDaily = (r: Row) => !!r.config?.dailyChallenge
 
 const MODE_ICONS: Record<StudyMode, typeof MessageCircle> = {
   practice: ListChecks,
@@ -68,7 +74,7 @@ function HistoryInner() {
   const [loading, setLoading] = useState(true)
   const [loadFailed, setLoadFailed] = useState(false)
   const [query, setQuery] = useState('')
-  const [modeFilter, setModeFilter] = useState<StudyMode | 'all'>('all')
+  const [modeFilter, setModeFilter] = useState<FilterKey>('all')
   const [page, setPage] = useState(0)
 
   useEffect(() => {
@@ -99,15 +105,24 @@ function HistoryInner() {
   // fetched window, not the query-narrowed set, so the badges are stable
   // while typing).
   const modeCounts = useMemo(() => {
-    const c: Record<StudyMode | 'all', number> = { all: rows.length, practice: 0, flashcards: 0, full_test: 0, response: 0 }
-    for (const r of rows) c[r.mode] = (c[r.mode] ?? 0) + 1
+    const c: Record<FilterKey, number> = { all: rows.length, practice: 0, flashcards: 0, full_test: 0, response: 0, daily: 0 }
+    for (const r of rows) {
+      // Daily challenges are their own tab, kept out of the Practice
+      // count so the two chips don't double-count the same session.
+      if (isDaily(r)) { c.daily += 1; continue }
+      c[r.mode] = (c[r.mode] ?? 0) + 1
+    }
     return c
   }, [rows])
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     return rows.filter(row => {
-      if (modeFilter !== 'all' && row.mode !== modeFilter) return false
+      if (modeFilter === 'daily') { if (!isDaily(row)) return false }
+      else if (modeFilter === 'all') { /* everything */ }
+      // Non-daily mode filters exclude daily-challenge sessions so
+      // "Practice" means topic practice, not the daily set.
+      else if (row.mode !== modeFilter || isDaily(row)) return false
       if (!q) return true
       const title = row.title ?? ''
       const topicName = row.topic ? `${row.topic.name_en} ${row.topic.name_ko}` : ''
@@ -263,13 +278,14 @@ function HistoryInner() {
 // chip when the student has no sessions of that mode, so it never shows
 // an always-empty filter.
 function ModeFilter({ value, onSelect, counts, ko }: {
-  value: StudyMode | 'all'
-  onSelect: (k: StudyMode | 'all') => void
-  counts: Record<StudyMode | 'all', number>
+  value: FilterKey
+  onSelect: (k: FilterKey) => void
+  counts: Record<FilterKey, number>
   ko: boolean
 }) {
-  const items: Array<{ key: StudyMode | 'all'; label: string }> = [
+  const items: Array<{ key: FilterKey; label: string }> = [
     { key: 'all', label: ko ? '전체' : 'All' },
+    { key: 'daily', label: ko ? '데일리 챌린지' : 'Daily Challenges' },
     { key: 'practice', label: ko ? '연습 문제' : 'Practice' },
     { key: 'flashcards', label: ko ? '플래시카드' : 'Flashcards' },
     { key: 'full_test', label: ko ? '모의고사' : 'Full tests' },
@@ -282,7 +298,7 @@ function ModeFilter({ value, onSelect, counts, ko }: {
           const active = value === item.key
           const count = counts[item.key] ?? 0
           if (count === 0 && item.key !== 'all') return null
-          const Icon = item.key === 'all' ? null : MODE_ICONS[item.key]
+          const Icon = item.key === 'all' ? null : item.key === 'daily' ? Flame : MODE_ICONS[item.key]
           return (
             <button
               key={item.key}

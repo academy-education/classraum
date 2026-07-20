@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Loader2, RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Barbell } from '@/app/mobile/study/_shared/icons'
+import { RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Barbell, ListChecks, ChevronDown } from '@/app/mobile/study/_shared/icons'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -55,6 +55,9 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
   const [showHint, setShowHint] = useState(false)
   const [reviewed, setReviewed] = useState(0)
   const [marked, setMarked] = useState({ got: 0, again: 0 })
+  // Deck-cleared screen: toggle a full-deck list overview so the student
+  // can re-read every front/back at once after finishing.
+  const [showAllCards, setShowAllCards] = useState(false)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -273,27 +276,70 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
   }
 
   // Empty queue means the student reviewed every card and didn't mark
-  // any "again" — show the summary.
+  // any "again" — show the deck-cleared summary.
   if (queue.length === 0) {
+    const pct = deck.length > 0 ? Math.round((marked.got / deck.length) * 100) : 0
     return (
-      <div className="flex-1 flex flex-col items-center justify-center px-5 py-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-3">
-          <Sparkles className="w-6 h-6" />
+      <div className="flex-1 overflow-y-auto px-5 py-8 flex flex-col items-center">
+        {/* Celebration hero — violet gradient with the mascot + score. */}
+        <div className="w-full max-w-sm rounded-3xl bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 text-white p-6 text-center shadow-[0_18px_40px_-16px_rgba(124,58,237,0.55)] relative overflow-hidden">
+          <div aria-hidden className="pointer-events-none absolute -top-10 -right-8 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
+          <div className="relative flex justify-center mb-2">
+            <PathMascot state="celebrate" size={84} />
+          </div>
+          <p className="relative text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
+            {t('study.flashcards.doneEyebrow')}
+          </p>
+          <div className="relative mt-1 flex items-end justify-center gap-1.5">
+            <span className="text-5xl font-black tracking-tight tabular-nums leading-none">{marked.got}</span>
+            <span className="text-2xl font-bold text-white/70 leading-none mb-0.5">/ {deck.length}</span>
+          </div>
+          <p className="relative text-[13px] text-white/85 mt-1.5">
+            {t('study.flashcards.doneMessage', { reviews: String(reviewed) })} · {pct}%
+          </p>
+          {/* Got-it vs review stat chips. */}
+          <div className="relative mt-4 flex items-center justify-center gap-2">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/15 text-[12px] font-semibold">
+              <Check className="w-3.5 h-3.5" /> {marked.got}
+            </span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/15 text-[12px] font-semibold">
+              <RefreshCcw className="w-3.5 h-3.5" /> {marked.again}
+            </span>
+          </div>
         </div>
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">
-          {t('study.flashcards.doneEyebrow')}
-        </p>
-        <h2 className="text-2xl font-semibold text-gray-900 tracking-tight">
-          {marked.got} / {deck.length}
-        </h2>
-        <p className="text-sm text-gray-500 mt-1 max-w-xs">
-          {t('study.flashcards.doneMessage', { reviews: String(reviewed) })}
-        </p>
-        <div className="mt-6 w-full max-w-xs flex flex-col gap-2">
+
+        {/* Full-deck overview — collapsed by default, expands to a list
+            of every card's front + back so the student can re-read. */}
+        <div className="mt-4 w-full max-w-sm">
+          <button
+            type="button"
+            onClick={() => setShowAllCards(v => !v)}
+            aria-expanded={showAllCards}
+            className="w-full flex items-center justify-between gap-2 px-4 h-11 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[13.5px] font-semibold text-gray-800 hover:bg-gray-50 transition"
+          >
+            <span className="inline-flex items-center gap-2">
+              <ListChecks className="w-4 h-4 text-violet-600" />
+              {ko ? `카드 ${deck.length}장 모두 보기` : `Review all ${deck.length} cards`}
+            </span>
+            <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${showAllCards ? 'rotate-180' : ''}`} />
+          </button>
+          {showAllCards && (
+            <ul className="mt-2 flex flex-col gap-2">
+              {deck.map((c, i) => (
+                <li key={i} className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4">
+                  <p className="text-[14px] font-semibold text-gray-900 leading-snug whitespace-pre-wrap">{c.front}</p>
+                  <p className="mt-1.5 text-[13px] text-gray-600 leading-relaxed whitespace-pre-wrap border-t border-gray-100 pt-1.5">{c.back}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div className="mt-4 w-full max-w-sm flex flex-col gap-2">
           <button
             type="button"
             onClick={() => void startFreshDeck()}
-            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-medium"
+            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold active:scale-[0.98] transition"
           >
             <RefreshCw className="w-4 h-4" />
             {t('study.flashcards.newDeck')}

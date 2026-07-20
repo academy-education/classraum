@@ -38,6 +38,7 @@ interface Session {
   title: string | null
   language: 'en' | 'ko'
   status: string | null
+  config: { dailyChallenge?: string; pathNode?: string } | null
 }
 
 interface Topic {
@@ -74,7 +75,7 @@ function SessionInner({ id }: { id: string }) {
       try {
         const { data: row } = await supabase
           .from('study_sessions')
-          .select('id, topic_id, mode, title, language, status')
+          .select('id, topic_id, mode, title, language, status, config')
           .eq('id', id)
           .maybeSingle()
 
@@ -155,7 +156,7 @@ function SessionInner({ id }: { id: string }) {
     switch (session.mode) {
       // chat tutor retired — any legacy chat session falls to the
       // "unknown mode" safety net below with a link back to study.
-      case 'practice':   return <PracticeSession sessionId={session.id} language={session.language} topicId={session.topic_id} />
+      case 'practice':   return <PracticeSession sessionId={session.id} language={session.language} topicId={session.topic_id} daily={!!session.config?.dailyChallenge} />
       case 'flashcards': return <FlashcardsSession sessionId={session.id} language={session.language} />
       case 'full_test':  return <TestSession sessionId={session.id} language={session.language} />
       case 'response':   return <ResponseSession sessionId={session.id} language={session.language} />
