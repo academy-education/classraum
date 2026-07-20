@@ -914,6 +914,17 @@ export default function SubscriptionPage() {
         </div>
         )}
 
+        {/* Billing & refund policy — always visible so it's disclosed before
+            any purchase (Korean PG/merchant expectation), not only at cancel. */}
+        <div className="pt-1 pb-2 text-center">
+          <Link
+            href="/mobile/study/refund-policy"
+            className="text-[12px] text-gray-400 underline underline-offset-2 hover:text-gray-600 transition-colors"
+          >
+            {ko ? '결제 및 환불 정책' : 'Billing & refund policy'}
+          </Link>
+        </div>
+
     </StudyScrollShell>
   )
 }
