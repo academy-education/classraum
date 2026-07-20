@@ -31,6 +31,13 @@ import { PATH_STOP_QUESTION_COUNT } from '@/lib/study-path'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 30
 
+/** Topic-page practice sets allowed per KST calendar day. Path stops
+ *  and the daily challenge don't count against (or check) these. The
+ *  bank is finite (~160 items/section) and doubles as the mock-test
+ *  pool, so the ceiling protects item freshness, not revenue. */
+const PRACTICE_SETS_PER_DAY_FREE = 3
+const PRACTICE_SETS_PER_DAY_PAID = 10
+
 export async function POST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
@@ -146,6 +153,51 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: 'path stop already completed', reason: 'node_completed' },
         { status: 409 },
+      )
+    }
+  }
+
+  // ── Daily practice-set cap ─────────────────────────────────────
+  // Practice is free (bank-served, no credits), so without a ceiling a
+  // single student can page through the whole verified bank in a day —
+  // and the bank doubles as the mock-test pool. Cap NEW topic-page sets
+  // per KST calendar day; path stops and the daily challenge have their
+  // own once-per-day/terminal rules and stay exempt. Resumes never hit
+  // this: the cached-batch return above runs first.
+  if (!config.pathNode && !config.dailyChallenge) {
+    // Paid subscribers get a higher ceiling; the limit is about bank
+    // conservation, not monetization, so even free stays generous.
+    const { data: sub } = await supabaseAdmin
+      .from('study_subscriptions')
+      .select('status')
+      .eq('student_id', user.id)
+      .maybeSingle()
+    const paid = sub?.status === 'active' || sub?.status === 'trial'
+    const limit = paid ? PRACTICE_SETS_PER_DAY_PAID : PRACTICE_SETS_PER_DAY_FREE
+
+    // KST midnight — the audience's calendar day, not the server's.
+    const now = Date.now()
+    const kst = new Date(now + 9 * 3600_000)
+    kst.setUTCHours(0, 0, 0, 0)
+    const sinceIso = new Date(kst.getTime() - 9 * 3600_000).toISOString()
+
+    const { count } = await supabaseAdmin
+      .from('study_sessions')
+      .select('id', { count: 'exact', head: true })
+      .eq('student_id', user.id)
+      .eq('mode', 'practice')
+      .eq('archived', false)
+      .gte('created_at', sinceIso)
+      .is('config->>pathNode', null)
+      .is('config->>dailyChallenge', null)
+      .neq('id', session.id)
+    if ((count ?? 0) >= limit) {
+      // This session was created moments ago and never served a batch —
+      // remove it so it doesn't linger on the resumable shelf.
+      await supabaseAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
+      return NextResponse.json(
+        { error: 'daily practice limit reached', reason: 'daily_limit', limit },
+        { status: 429 },
       )
     }
   }

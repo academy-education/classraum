@@ -434,6 +434,14 @@ function TopicInner({ slug }: { slug: string }) {
     && !!access && !access.all
     && !!pageFamily && !access.tests.includes(pageFamily)
 
+  // Flashcards are drawn from a hand-authored bank that today only
+  // covers SAT Reading & Writing. For sections without cards (SAT Math,
+  // and any non-SAT topic) the deck comes back empty, so surface the
+  // card as "coming soon" instead of letting a tap dead-end on an empty
+  // deck.
+  const gridParsed = parseTestSlug(effectiveTopic?.slug ?? slug)
+  const flashcardsReady = gridParsed.family === 'sat' && !/math/i.test(gridParsed.section ?? '')
+
   // The 2x2 learning-mode grid — shared by the subject layout and the
   // test-prep "Practice" tab.
   const modeGrid = (
@@ -448,6 +456,33 @@ function TopicInner({ slug }: { slug: string }) {
           // checkmarks, Lesson → reading lines, Flashcards → stacked
           // card edges. Brilliant-style ambient texture.
           const decor = MODE_DECOR[mode.key] ?? null
+          // Flashcards coming-soon card (Math + non-SAT) — dimmed,
+          // non-navigating, with a lock badge.
+          if (mode.key === 'flashcards' && !flashcardsReady) {
+            return (
+              <div
+                key={mode.key}
+                aria-disabled
+                style={{ animationDelay: `${i * 60}ms` }}
+                className={`relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-left animate-card-in opacity-0`}
+              >
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                {decor}
+                <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] opacity-40`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div className="relative">
+                  <div className="text-[15px] font-semibold text-gray-400">
+                    {t(`study.modes.${mode.key}.title`)}
+                  </div>
+                  <span className="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white ring-1 ring-gray-200/70 text-[11px] font-semibold text-gray-400">
+                    <Lock className="w-3 h-3" />
+                    {ko ? '준비 중' : 'Coming soon'}
+                  </span>
+                </div>
+              </div>
+            )
+          }
           return (
             <button
               key={mode.key}
