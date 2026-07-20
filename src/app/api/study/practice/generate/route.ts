@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
 
   const { data: session } = await supabaseAdmin
     .from('study_sessions')
-    .select('id, student_id, mode, language, topic_id, config')
+    .select('id, student_id, mode, language, topic_id, config, status')
     .eq('id', sessionId)
     .maybeSingle()
 
@@ -65,6 +65,50 @@ export async function POST(req: NextRequest) {
   }
   if (session.mode !== 'practice') {
     return NextResponse.json({ error: 'session is not in practice mode' }, { status: 400 })
+  }
+
+  // A completed practice set is review-only — same rule as graded mock
+  // tests. Serving a fresh batch into a finished session would let the
+  // score be overwritten and per-answer XP re-earned; "practice more"
+  // starts a NEW session instead. (The session page also redirects
+  // completed sessions to the summary; this is the server-side backstop.)
+  if (session.status === 'completed') {
+    return NextResponse.json(
+      { error: 'practice set already completed', reason: 'completed' },
+      { status: 409 },
+    )
+  }
+
+  // Resume: an ACTIVE session that already served a batch returns that
+  // same batch plus the per-question verdicts so far, so a reload or a
+  // History tap lands the student exactly where they left off instead
+  // of silently drawing a new set (which orphaned their graded answers).
+  {
+    const { data: cacheRow } = await supabaseAdmin
+      .from('study_messages')
+      .select('content')
+      .eq('session_id', sessionId)
+      .like('content', `${PRACTICE_CACHE_MARKER}%`)
+      .maybeSingle()
+    if (cacheRow?.content) {
+      try {
+        const cached = JSON.parse((cacheRow.content as string).slice(PRACTICE_CACHE_MARKER.length)) as { questions?: unknown[] }
+        const questions = Array.isArray(cached.questions) ? cached.questions : []
+        if (questions.length > 0) {
+          const { data: attempts } = await supabaseAdmin
+            .from('study_attempts')
+            .select('is_correct')
+            .eq('session_id', sessionId)
+            .order('created_at', { ascending: true })
+          const results = (attempts ?? []).map(a => a.is_correct === true)
+          return NextResponse.json({
+            questions,
+            source: 'cache',
+            resume: { results: results.slice(0, questions.length) },
+          })
+        }
+      } catch { /* corrupt cache → fall through to a fresh draw */ }
+    }
   }
 
   const config = (session.config ?? {}) as {

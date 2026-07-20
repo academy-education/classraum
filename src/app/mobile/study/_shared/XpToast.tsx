@@ -76,12 +76,14 @@ export function XpToast() {
       if (tier === 'big') {
         setBigBanner(evt)
         setConfettiKey(k => k + 1)
-        setTimeout(() => setBigBanner(null), 3200)
+        // Raumi's celebration banner earns a longer hold — 3.2s read as
+        // "gone before you looked up" after finishing a set.
+        setTimeout(() => setBigBanner(null), 5200)
       } else if (tier === 'mid') {
         setConfettiKey(k => k + 1)
       }
 
-      const dwell = tier === 'big' ? 3200 : tier === 'mid' ? 2800 : 2400
+      const dwell = tier === 'big' ? 5200 : tier === 'mid' ? 2800 : 2400
       setTimeout(() => {
         setStack(prev => prev.filter(e => e.id !== id))
       }, dwell)

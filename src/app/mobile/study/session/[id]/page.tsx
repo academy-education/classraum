@@ -80,14 +80,16 @@ function SessionInner({ id }: { id: string }) {
 
         if (cancelled || !row) return
 
-        // A COMPLETED full test must not re-enter the test-taking flow.
-        // On a fresh mount (reload / back-forward / deep link) the
-        // in-memory graded result is gone and localStorage was cleared
-        // on submit, so rendering TestSession would drop the student
-        // into a blank, seemingly-reset test. Route them to the durable
-        // summary (persisted score + mistake review) instead. Keep the
-        // loader up through the navigation so the test never flashes.
-        if (row.mode === 'full_test' && row.status === 'completed') {
+        // A COMPLETED full test or practice set must not re-enter the
+        // taking flow. On a fresh mount (reload / back-forward / deep
+        // link / history row) the in-memory result is gone, so rendering
+        // the live session would drop the student into a blank restart —
+        // and for practice it would draw a NEW batch into the finished
+        // session (re-earnable XP, score overwritten). Route to the
+        // durable summary (persisted answers + mistake review) instead,
+        // exactly like a graded mock. Keep the loader up through the
+        // navigation so the live UI never flashes.
+        if ((row.mode === 'full_test' || row.mode === 'practice') && row.status === 'completed') {
           redirecting = true
           router.replace(`/mobile/study/session/${id}/summary`)
           return
@@ -153,7 +155,7 @@ function SessionInner({ id }: { id: string }) {
     switch (session.mode) {
       // chat tutor retired — any legacy chat session falls to the
       // "unknown mode" safety net below with a link back to study.
-      case 'practice':   return <PracticeSession sessionId={session.id} language={session.language} />
+      case 'practice':   return <PracticeSession sessionId={session.id} language={session.language} topicId={session.topic_id} />
       case 'flashcards': return <FlashcardsSession sessionId={session.id} language={session.language} />
       case 'full_test':  return <TestSession sessionId={session.id} language={session.language} />
       case 'response':   return <ResponseSession sessionId={session.id} language={session.language} />

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw, Sparkles } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
@@ -49,8 +50,9 @@ const holdForMascot = async (startedAt: number) => {
   if (left > 0) await new Promise(r => setTimeout(r, left))
 }
 
-export function PracticeSession({ sessionId, language }: { sessionId: string; language: 'en' | 'ko' }) {
+export function PracticeSession({ sessionId, language, topicId }: { sessionId: string; language: 'en' | 'ko'; topicId?: string | null }) {
   const { t } = useTranslation()
+  const router = useRouter()
   const ko = language === 'ko'
 
   const [phase, setPhase] = useState<'loading' | 'asking' | 'feedback' | 'done' | 'error'>('loading')
@@ -60,6 +62,7 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
   const [verdict, setVerdict] = useState<Verdict | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [results, setResults] = useState<boolean[]>([])
+  const [startingNew, setStartingNew] = useState(false)
   const startedAtRef = useRef<number>(Date.now())
 
   const fetchQuestions = useCallback(async () => {
@@ -77,18 +80,55 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
         headers,
         body: JSON.stringify({ sessionId, count: 5 }),
       })
+      // Server-side backstop: a completed set is review-only. The page
+      // router normally redirects before we mount, but a stale tab can
+      // still land here — send it to the summary rather than erroring.
+      if (res.status === 409) {
+        router.replace(`/mobile/study/session/${sessionId}/summary`)
+        return
+      }
       if (!res.ok) throw new Error()
       const json = await res.json()
       const list = (json.questions ?? []) as Question[]
       if (list.length === 0) throw new Error('empty set')
+      // Resume: the server returns the SAME batch it already served plus
+      // the graded verdicts so far, so a reload / History tap continues
+      // from the next unanswered question instead of drawing a new set.
+      const resumed: boolean[] = Array.isArray(json.resume?.results) ? json.resume.results : []
       await holdForMascot(startedAt)
       setQuestions(list)
+      if (resumed.length > 0) {
+        setResults(resumed)
+        setIdx(Math.min(resumed.length, list.length - 1))
+        if (resumed.length >= list.length) { setPhase('done'); return }
+      }
       startedAtRef.current = Date.now()
       setPhase('asking')
     } catch {
       setPhase('error')
     }
-  }, [sessionId])
+  }, [sessionId, router])
+
+  /** "Practice more" — a finished set is immutable (review-only), so
+   *  more practice means a NEW session on the same topic, exactly like
+   *  starting one from the topic page. */
+  const startNewSet = useCallback(async () => {
+    if (!topicId || startingNew) return
+    setStartingNew(true)
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) throw new Error('no user')
+      const { data, error } = await supabase
+        .from('study_sessions')
+        .insert({ student_id: user.id, topic_id: topicId, mode: 'practice', language, config: {} })
+        .select('id')
+        .single()
+      if (error || !data) throw error ?? new Error('create failed')
+      router.replace(`/mobile/study/session/${data.id}`)
+    } catch {
+      setStartingNew(false)
+    }
+  }, [topicId, language, router, startingNew])
 
   useEffect(() => { void fetchQuestions() }, [fetchQuestions])
 
@@ -221,14 +261,20 @@ export function PracticeSession({ sessionId, language }: { sessionId: string; la
         </div>
 
         <div className="mt-4 flex flex-col gap-2">
-          <button
-            type="button"
-            onClick={() => void fetchQuestions()}
-            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-medium"
-          >
-            <RefreshCw className="w-4 h-4" />
-            {t('study.practice.moreQuestions')}
-          </button>
+          {/* A finished set is review-only (the session page redirects
+              back here to the summary) — more practice = a NEW session
+              on the same topic, so scores and XP stay one-per-set. */}
+          {topicId && (
+            <button
+              type="button"
+              onClick={() => void startNewSet()}
+              disabled={startingNew}
+              className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-medium disabled:opacity-60"
+            >
+              {startingNew ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+              {t('study.practice.moreQuestions')}
+            </button>
+          )}
           {results.some(r => r === false) && (
             <Link
               href={`/mobile/study/session/${sessionId}/summary`}
