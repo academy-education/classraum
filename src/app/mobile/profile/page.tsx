@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { Capacitor } from '@capacitor/core'
 import { performLogout } from '@/lib/logout'
 import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -683,13 +684,19 @@ function MobileProfilePageContent() {
         </Card>
       </div>
 
-      {/* Notification Settings — Push toggle + Email sub-toggles in one panel */}
+      {/* Notification Settings — Push toggle + Email sub-toggles in one
+          panel. Hidden entirely when neither applies (study-only user on
+          web: no push without the native app, no academy emails). */}
+      {(Capacitor.isNativePlatform() || academyIds.length > 0) && (
       <div className="mb-6">
         <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
           {t('mobile.profile.notificationSettings')}
         </Eyebrow>
 
-        {/* Push Notifications — primary toggle row */}
+        {/* Push Notifications — primary toggle row. Native app only:
+            device push tokens are registered through Capacitor, so on
+            the web this toggle controls nothing and reads as broken. */}
+        {Capacitor.isNativePlatform() && (
         <Card className="p-4 mb-3">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
@@ -720,6 +727,7 @@ function MobileProfilePageContent() {
             </button>
           </div>
         </Card>
+        )}
 
         {/* Email Notifications — header + divide-y sub-toggles using
             switches. Academy members only: every email category here
@@ -781,6 +789,7 @@ function MobileProfilePageContent() {
         </Card>
         )}
       </div>
+      )}
 
       {/* Account actions — Logout + Delete in a single panel */}
       <div className="mb-6">
