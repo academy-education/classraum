@@ -643,7 +643,7 @@ export default function SubscriptionPage() {
             than one offer they sit in an auto-advancing snap carousel. */}
         {passOffers.length > 0 && (
           <div className="space-y-2.5">
-            {onPass && (
+            {(onPass || heldPasses.length > 0 || isActive) && (
               <p className="text-[12px] font-medium text-gray-500 px-1">
                 {ko ? '다른 시험도 추가할 수 있어요' : 'Add another test'}
               </p>

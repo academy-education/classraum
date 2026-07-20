@@ -67,6 +67,9 @@ export async function GET(req: NextRequest) {
 
   const now = Date.now()
   const activePassId = sub?.status === 'active' && isPassPlan(sub.plan) ? sub.plan : null
+  // Tests the student already holds a live pass for — those passes aren't
+  // re-offered, but every OTHER in-season pass is (see `offer` below).
+  const heldTests = new Set((entRows ?? []).map(r => r.test as string))
   const passes = STUDY_PASSES.map(p => {
     // Date-anchored passes are seasonal (offer only inside their pre-exam
     // window, show a D-<n> countdown). Rolling passes are always offered
@@ -89,11 +92,11 @@ export async function GET(req: NextRequest) {
       name_ko: p.name_ko,
       blurb_en: p.blurb_en,
       blurb_ko: p.blurb_ko,
-      // Offer only when available. Shown to non-active members and — so a
-      // pass holder can stack another test — to pass holders for any pass
-      // OTHER than the one they're already on. Recurring-plan actives
-      // (all-access) never see pass offers.
-      offer: available && (sub?.status !== 'active' || (activePassId !== null && activePassId !== p.id)),
+      // Passes are stackable add-ons: offer any in-season pass the student
+      // doesn't already hold — regardless of whether they're on another
+      // pass, a recurring plan, or nothing. Only the test they already hold
+      // a live pass for is suppressed (it's shown in the "held" section).
+      offer: available && !heldTests.has(p.test),
       onPass: activePassId === p.id,
     }
   })
