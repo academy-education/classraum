@@ -18,6 +18,7 @@ import { StudySubscriptionGate } from './SubscriptionGate'
 import { StudyButton } from './_shared/StudyButton'
 import { CreditConfirmSheet, NoCreditsSheet } from './_shared/CreditConfirmSheet'
 import { creditCostForTest } from '@/lib/study/plans'
+import { passCreditLabel } from './_shared/pass-label'
 import { StudyTodayCard } from './_shared/primitives'
 import { ResumableShelf } from './ResumableShelf'
 import { MistakeBankShelf } from './MistakeBankShelf'
@@ -1089,6 +1090,11 @@ function FirstTestActivationCard() {
   // Balance so an insufficient tap goes STRAIGHT to the no-credits
   // popup instead of confirming a spend that would fail.
   const [creditBalance, setCreditBalance] = useState<number | null>(null)
+  const [regularBalance, setRegularBalance] = useState<number | null>(null)
+  // SAT pass credits (family + all-access) — when > 0, the confirm sheet
+  // offers Pass vs Regular. Defaults to spending the pass first.
+  const [passCredits, setPassCredits] = useState(0)
+  const [creditSource, setCreditSource] = useState<'pass' | 'regular'>('pass')
   const { showError } = useStudyErrorToast()
   const cost = creditCostForTest('sat', 'reading_writing')
 
@@ -1097,9 +1103,21 @@ function FirstTestActivationCard() {
     void (async () => {
       try {
         const headers = await authHeaders()
-        const res = await fetch('/api/study/subscription', { headers })
+        const [res, { data: { user } }] = await Promise.all([
+          fetch('/api/study/subscription', { headers }),
+          supabase.auth.getUser(),
+        ])
         const sub = res.ok ? await res.json() : null
         if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
+        if (!cancelled && sub?.credits) setRegularBalance((sub.credits.grant ?? 0) + (sub.credits.purchased ?? 0))
+        if (user) {
+          const { data: pc } = await supabase
+            .from('study_pass_credits')
+            .select('remaining')
+            .eq('student_id', user.id)
+            .in('test', ['sat', '*'])
+          if (!cancelled) setPassCredits((pc ?? []).reduce((s, r) => s + ((r.remaining as number | undefined) ?? 0), 0))
+        }
       } catch { /* unknown balance → confirm flow; 402 still catches */ }
     })()
     return () => { cancelled = true }
@@ -1116,7 +1134,7 @@ function FirstTestActivationCard() {
         headers: { ...headers, 'Content-Type': 'application/json' },
         // Two-module adaptive R&W — the most representative first SAT
         // experience, and instant from the verified bank.
-        body: JSON.stringify({ section: 'reading_writing', adaptive: true }),
+        body: JSON.stringify({ section: 'reading_writing', adaptive: true, creditSource }),
       })
       if (res.status === 402) { setBusy(false); setConfirmOpen(false); setNoCreditsOpen(true); return }
       if (!res.ok) { setBusy(false); showError(startFailedMessage(ko)); return }
@@ -1135,6 +1153,11 @@ function FirstTestActivationCard() {
       cost={cost}
       busy={busy}
       ko={ko}
+      passCredits={passCredits}
+      passLabel={passCreditLabel('sat', ko)}
+      regularCredits={regularBalance ?? undefined}
+      source={creditSource}
+      onSourceChange={setCreditSource}
       onCancel={() => setConfirmOpen(false)}
       onConfirm={() => void start().finally(() => setConfirmOpen(false))}
     />
