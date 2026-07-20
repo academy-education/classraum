@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
 import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
-import { StudyButton } from '../../_shared/StudyButton'
-import { PathMascot } from '../../_shared/PathMascot'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../../skeletons'
@@ -450,34 +448,6 @@ function TopicInner({ slug }: { slug: string }) {
           // checkmarks, Lesson → reading lines, Flashcards → stacked
           // card edges. Brilliant-style ambient texture.
           const decor = MODE_DECOR[mode.key] ?? null
-          /* practice gated for launch — dimmed, non-navigating card
-             with a Coming-soon badge, matching the locked-tests
-             pattern on the study landing. */
-          if (mode.key === 'practice') {
-            return (
-              <div
-                key={mode.key}
-                aria-disabled
-                style={{ animationDelay: `${i * 60}ms` }}
-                className={`relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-left animate-card-in opacity-0`}
-              >
-                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
-                {decor}
-                <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] opacity-40`}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <div className="relative">
-                  <div className="text-[15px] font-semibold text-gray-400">
-                    {t(`study.modes.${mode.key}.title`)}
-                  </div>
-                  <span className="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white ring-1 ring-gray-200/70 text-[11px] font-semibold text-gray-400">
-                    <Lock className="w-3 h-3" />
-                    {ko ? '준비 중' : 'Coming soon'}
-                  </span>
-                </div>
-              </div>
-            )
-          }
           return (
             <button
               key={mode.key}
@@ -621,14 +591,13 @@ function TopicInner({ slug }: { slug: string }) {
               aria-label={ko ? '모드 탭' : 'Mode tabs'}
               className="bg-muted text-muted-foreground inline-flex h-10 w-full items-center justify-center rounded-lg p-[3px]"
             >
-              {/* Practice tab is gated for launch: it stays visible (so
-                  students know it's coming) but reads as locked — dimmed
-                  label + lock glyph — and selecting it shows a coming-soon
-                  panel instead of the mode list. Default tab is 'tests',
-                  so the locked tab is never the landing state. */}
+              {/* Practice tab hosts the learning-mode grid (practice
+                  questions / flashcards / lesson / chat). Default tab is
+                  'tests' — full mocks are the core loop; practice is the
+                  drill-down. */}
               {([
                 { key: 'tests' as const, label: ko ? '모의고사' : 'Full tests', locked: false },
-                { key: 'practice' as const, label: ko ? '문제 연습' : 'Practice', locked: true },
+                { key: 'practice' as const, label: ko ? '문제 연습' : 'Practice', locked: false },
               ]).map(tabDef => (
                 <button
                   key={tabDef.key}
@@ -699,28 +668,11 @@ function TopicInner({ slug }: { slug: string }) {
                 />
               </>
             ) : (
-              /* Practice tab gated for launch — the whole tab is locked,
-                 so the panel is a single coming-soon state (same mascot
-                 pattern as the review page) instead of a mode list. */
-              <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-6 py-10 flex flex-col items-center text-center">
-                <PathMascot state="locked" size={96} />
-                <h3 className="mt-4 text-[16px] font-bold text-gray-900">
-                  {ko ? '문제 연습은 준비 중이에요' : 'Practice is coming soon'}
-                </h3>
-                <p className="mt-2 text-[13px] text-gray-500 leading-relaxed max-w-[280px]">
-                  {ko
-                    ? '곧 만나요! 그동안 모의고사 탭에서 실전처럼 연습할 수 있어요.'
-                    : 'Coming soon! Meanwhile you can train with full tests in the Full tests tab.'}
-                </p>
-                <StudyButton
-                  type="button"
-                  size="sm"
-                  className="mt-6"
-                  onClick={() => setTab('tests')}
-                >
-                  {ko ? '모의고사 보러 가기' : 'Go to full tests'}
-                </StudyButton>
-              </div>
+              /* Practice tab — the 2x2 learning-mode grid (practice
+                 questions, flashcards, lesson, chat tutor). Same grid the
+                 subject layout uses; modes are topic-aware via the
+                 test-prep prompt context. */
+              modeGrid
             )}
           </>
         ) : (
