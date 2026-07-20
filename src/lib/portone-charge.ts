@@ -219,8 +219,11 @@ export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortO
     .select('name, email, phone')
     .eq('id', input.customerId)
     .maybeSingle()
+  // V2 REST CustomerInput uses a nested `name: { full }` — there is NO
+  // top-level `fullName` field, so sending fullName is silently dropped and
+  // the charge fails with "customer.name violated the rule REQUIRED".
   const customer: Record<string, unknown> = { id: input.customerId }
-  if (u?.name) customer.fullName = u.name
+  if (u?.name) customer.name = { full: u.name }
   if (u?.email) customer.email = u.email
   if (u?.phone) customer.phoneNumber = u.phone
 
