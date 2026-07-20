@@ -443,6 +443,33 @@ export default function AuthPage() {
         }
       })
 
+      // Existing account → guide to log in instead ("link, don't
+      // create"). The invite params stay in the URL through login, so
+      // the authenticated redirect forwards to /mobile?invite=… and the
+      // join modal attaches the membership to the EXISTING account —
+      // study history, credits, and billing included. A second account
+      // would fork all of that. Supabase surfaces this two ways: an
+      // explicit "already registered" error, or (with email
+      // confirmation + enumeration protection) a fake success whose
+      // user has zero identities.
+      const emailTaken =
+        (authError && /already\s*(registered|exists|been\s*registered)/i.test(authError.message)) ||
+        (!authError && authData.user != null && (authData.user.identities?.length ?? 0) === 0)
+      if (emailTaken) {
+        setActiveTab('signin')
+        setErrorMessage(
+          signupAcademyId
+            ? (language === 'korean'
+                ? '이미 이 이메일로 가입된 계정이 있어요. 로그인하시면 초대가 기존 계정에 연결돼요 (학습 기록도 그대로 유지돼요).'
+                : 'An account with this email already exists. Log in and the invite will attach to your existing account — study history and all.')
+            : (language === 'korean'
+                ? '이미 이 이메일로 가입된 계정이 있어요. 로그인해 주세요.'
+                : 'An account with this email already exists. Please log in instead.'),
+        )
+        setLoading(false)
+        return
+      }
+
       if (authError) {
         toast({ title: authError.message, variant: 'destructive' })
         setLoading(false)
