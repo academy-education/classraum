@@ -128,9 +128,9 @@ export function DailyChallengeCard() {
       title={state.sessionId
         ? (ko ? `${topicName} — 이어서 풀기` : `${topicName} — continue`)
         : (state.weak
-          ? (ko ? `${topicName} 약점 보완 5문항` : `5 questions on your weakest: ${topicName}`)
-          : (ko ? `${topicName} 5문항 풀기` : `5 questions on ${topicName}`))}
-      subtitle={ko ? '5분이면 충분해요 · +50 XP' : '~5 minutes · earn ~50 XP'}
+          ? (ko ? `${topicName} 약점 보완 3문항` : `3 questions on your weakest: ${topicName}`)
+          : (ko ? `${topicName} 3문항 풀기` : `3 questions on ${topicName}`))}
+      subtitle={ko ? '3분이면 충분해요 · +50 XP' : '~3 minutes · earn ~50 XP'}
     />
     </>
   )

@@ -36,7 +36,7 @@ const holdForMascot = async (startedAt: number) => {
   if (left > 0) await new Promise(r => setTimeout(r, left))
 }
 
-export function FlashcardsSession({ sessionId, language }: { sessionId: string; language: 'en' | 'ko' }) {
+export function FlashcardsSession({ sessionId, language, completed = false }: { sessionId: string; language: 'en' | 'ko'; completed?: boolean }) {
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const router = useRouter()
@@ -45,6 +45,11 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
   const [deck, setDeck] = useState<Card[] | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  // A completed deck is review-only: show the full-deck list, not the
+  // review queue (reopening from History must not restart / re-earn XP).
+  const reviewOnly = completed
+  // Gate outcomes: 'locked' (free plan), 'limit' (paid over daily cap).
+  const [gate, setGate] = useState<null | 'locked' | 'limit'>(null)
   const [topicId, setTopicId] = useState<string | null>(null)
   // Queue of indices into `deck`. We push "review again" cards back to
   // the end so the user keeps hitting the hard ones until they stick.
@@ -70,6 +75,10 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
         headers,
         body: JSON.stringify({ sessionId }),
       })
+      // Free plan → practice/flashcards locked; paid over daily cap → limit.
+      // The just-created empty session was deleted server-side.
+      if (res.status === 403) { setGate('locked'); setLoading(false); return }
+      if (res.status === 429) { setGate('limit'); setLoading(false); return }
       if (!res.ok) throw new Error()
       const json = await res.json()
       const cards = (json.deck as Deck).cards
@@ -216,9 +225,115 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
       .eq('student_id', user.userId)
   }, [deck, queue.length, marked.got, sessionId, user?.userId])
 
+  // "New deck" starts a FRESH flashcards session on the same topic so
+  // the bank draw serves the next unseen cards (reloading this session
+  // just returns the cached deck). Falls back to a reload if we can't
+  // spin up a new session. Defined before the early returns so the
+  // review-only and deck-cleared screens can both call it.
+  const startFreshDeck = async () => {
+    if (!user?.userId || !topicId) { void load(); return }
+    const { data, error: insErr } = await supabase
+      .from('study_sessions')
+      .insert({ student_id: user.userId, topic_id: topicId, mode: 'flashcards', language })
+      .select('id')
+      .single()
+    if (insErr || !data) { void load(); return }
+    router.push(`/mobile/study/session/${data.id}`)
+  }
+
+  if (gate === 'locked') {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-10 text-center gap-4">
+        <PathMascot state="locked" size={96} />
+        <div>
+          <h2 className="text-[17px] font-bold text-gray-900">
+            {ko ? '플래시카드는 프리미엄 기능이에요' : 'Flashcards are a Premium feature'}
+          </h2>
+          <p className="mt-2 text-[13px] text-gray-500 leading-relaxed max-w-[300px]">
+            {ko
+              ? '무료 플랜에서는 매일 데일리 챌린지를 풀 수 있어요. 프리미엄으로 업그레이드하면 연습 세트를 이용할 수 있어요.'
+              : 'On the free plan you get the Daily Challenge each day. Upgrade to Premium to unlock practice sets.'}
+          </p>
+        </div>
+        <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
+          <Link href="/mobile/study/subscription" className="w-full inline-flex items-center justify-center h-11 rounded-full bg-primary text-white text-sm font-semibold">
+            {ko ? '프리미엄 보기' : 'See Premium'}
+          </Link>
+          <Link href="/mobile/study" className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700">
+            {t('study.flashcards.backToStudy')}
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  if (gate === 'limit') {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-10 text-center gap-4">
+        <PathMascot state="idle" size={96} />
+        <div>
+          <h2 className="text-[17px] font-bold text-gray-900">
+            {ko ? '오늘의 연습을 다 했어요' : "That's all your practice for today"}
+          </h2>
+          <p className="mt-2 text-[13px] text-gray-500 leading-relaxed max-w-[300px]">
+            {ko
+              ? '연습 세트는 하루 3개까지예요 (연습 문제 + 플래시카드). 내일 다시 만나요!'
+              : "You've used all your practice sets for today (practice + flashcards combined). Come back tomorrow!"}
+          </p>
+        </div>
+        <Link href="/mobile/study" className="w-full max-w-xs inline-flex items-center justify-center h-11 rounded-full bg-primary text-white text-sm font-semibold">
+          {t('study.flashcards.backToStudy')}
+        </Link>
+      </div>
+    )
+  }
+
   if (loading) {
     return (
       <MascotLoader className="flex-1" label={t('study.flashcards.generating')} />
+    )
+  }
+
+  // Completed deck — review-only. Show the full-deck list instead of the
+  // review queue so reopening from History doesn't restart or re-earn XP.
+  if (reviewOnly && deck && deck.length > 0) {
+    return (
+      <div className="flex-1 overflow-y-auto px-5 py-6">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-10 h-10 rounded-2xl bg-violet-100 text-violet-600 flex items-center justify-center flex-shrink-0">
+            <ListChecks className="w-5 h-5" />
+          </div>
+          <div>
+            <h2 className="text-[16px] font-bold text-gray-900 leading-tight">
+              {ko ? '완료한 덱' : 'Deck cleared'}
+            </h2>
+            <p className="text-[12.5px] text-gray-500">
+              {ko ? `카드 ${deck.length}장 · 복습용` : `${deck.length} cards · review`}
+            </p>
+          </div>
+        </div>
+        <ul className="flex flex-col gap-2">
+          {deck.map((c, i) => (
+            <li key={i} className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4">
+              <p className="text-[14px] font-semibold text-gray-900 leading-snug whitespace-pre-wrap">{c.front}</p>
+              <p className="mt-1.5 text-[13px] text-gray-600 leading-relaxed whitespace-pre-wrap border-t border-gray-100 pt-1.5">{c.back}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 flex flex-col gap-2">
+          <button
+            type="button"
+            onClick={() => void startFreshDeck()}
+            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+          >
+            <RefreshCw className="w-4 h-4" />
+            {t('study.flashcards.newDeck')}
+          </button>
+          <Link href="/mobile/study" className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700">
+            {t('study.flashcards.backToStudy')}
+          </Link>
+        </div>
+      </div>
     )
   }
 
@@ -258,21 +373,6 @@ export function FlashcardsSession({ sessionId, language }: { sessionId: string; 
         </Link>
       </div>
     )
-  }
-
-  // "New deck" starts a FRESH flashcards session on the same topic so
-  // the bank draw serves the next unseen cards (reloading this session
-  // just returns the cached deck). Falls back to a reload if we can't
-  // spin up a new session.
-  const startFreshDeck = async () => {
-    if (!user?.userId || !topicId) { void load(); return }
-    const { data, error: insErr } = await supabase
-      .from('study_sessions')
-      .insert({ student_id: user.userId, topic_id: topicId, mode: 'flashcards', language })
-      .select('id')
-      .single()
-    if (insErr || !data) { void load(); return }
-    router.push(`/mobile/study/session/${data.id}`)
   }
 
   // Empty queue means the student reviewed every card and didn't mark

@@ -209,7 +209,7 @@ function StateFilter({ value, onSelect, counts, ko }: {
       {/* pt-1 gives the active chip's ring headroom — overflow-x:auto
           forces overflow-y to compute to auto, which clipped the top of
           the ring when chips sat flush against y=0. */}
-      <div className="flex gap-2 pl-5 pr-5 pt-1 pb-1">
+      <div className="flex gap-2 pl-5 pt-1 pb-1">
         {items.map(item => {
           const active = value === item.key
           const count = counts[item.key]
@@ -230,6 +230,9 @@ function StateFilter({ value, onSelect, counts, ko }: {
             </button>
           )
         })}
+        {/* Trailing spacer — overflow-x drops the row's padding-right,
+            leaving the last chip flush to the edge. */}
+        <div aria-hidden className="shrink-0 w-[15px]" />
       </div>
     </div>
   )

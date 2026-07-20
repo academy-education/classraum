@@ -139,6 +139,8 @@ function TopicInner({ slug }: { slug: string }) {
   // path still catches any race.
   const [creditBalance, setCreditBalance] = useState<number | null>(null)
   const [regularBalance, setRegularBalance] = useState<number | null>(null)
+  // Practice quota (plan-gate). null = unknown (never lock while loading).
+  const [quota, setQuota] = useState<{ paid: boolean; limit: number; used: number; remaining: number } | null>(null)
   // Per-test entitlements from the subscription payload. null = unknown
   // (cold load / fetch failed) → NEVER lock; only a loaded, test-scoped
   // access set that excludes this family locks the full-test entry.
@@ -160,15 +162,18 @@ function TopicInner({ slug }: { slug: string }) {
     const prefsPromise = (async () => {
       try {
         const headers = await authHeaders()
-        const [res, subRes] = await Promise.all([
+        const [res, subRes, quotaRes] = await Promise.all([
           fetch('/api/study/prefs', { headers }),
           fetch('/api/study/subscription', { headers }),
+          fetch('/api/study/practice/quota', { headers }),
         ])
         const json = res.ok ? await res.json() : null
         const sub = subRes.ok ? await subRes.json() : null
+        const q = quotaRes.ok ? await quotaRes.json() : null
         if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
         if (!cancelled && sub?.credits) setRegularBalance((sub.credits.grant ?? 0) + (sub.credits.purchased ?? 0))
         if (!cancelled && sub?.access && typeof sub.access.all === 'boolean') setAccess(sub.access)
+        if (!cancelled && q && typeof q.paid === 'boolean') setQuota(q)
         return (json?.prefs?.target_test as string | null) ?? null
       } catch { return null }
     })()
@@ -456,6 +461,35 @@ function TopicInner({ slug }: { slug: string }) {
           // checkmarks, Lesson → reading lines, Flashcards → stacked
           // card edges. Brilliant-style ambient texture.
           const decor = MODE_DECOR[mode.key] ?? null
+          // Free-plan lock — practice questions + flashcards are Premium;
+          // free users get the Daily Challenge instead. Card links to the
+          // plan page. Only lock once quota is KNOWN and free (never lock
+          // while loading, and never for paid users).
+          if ((mode.key === 'practice' || mode.key === 'flashcards') && quota && !quota.paid) {
+            return (
+              <Link
+                key={mode.key}
+                href="/mobile/study/subscription"
+                style={{ animationDelay: `${i * 60}ms` }}
+                className={`relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-left animate-card-in opacity-0 hover:ring-primary/30 transition`}
+              >
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                {decor}
+                <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] opacity-40`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div className="relative">
+                  <div className="text-[15px] font-semibold text-gray-400">
+                    {t(`study.modes.${mode.key}.title`)}
+                  </div>
+                  <span className="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 ring-1 ring-primary/20 text-[11px] font-semibold text-primary">
+                    <Lock className="w-3 h-3" />
+                    {ko ? '프리미엄' : 'Premium'}
+                  </span>
+                </div>
+              </Link>
+            )
+          }
           // Flashcards coming-soon card (Math + non-SAT) — dimmed,
           // non-navigating, with a lock badge.
           if (mode.key === 'flashcards' && !flashcardsReady) {

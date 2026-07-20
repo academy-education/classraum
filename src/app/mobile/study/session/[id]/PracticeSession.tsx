@@ -55,7 +55,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
   const router = useRouter()
   const ko = language === 'ko'
 
-  const [phase, setPhase] = useState<'loading' | 'asking' | 'feedback' | 'done' | 'limit' | 'error'>('loading')
+  const [phase, setPhase] = useState<'loading' | 'asking' | 'feedback' | 'done' | 'limit' | 'locked' | 'error'>('loading')
   const [limitInfo, setLimitInfo] = useState<{ limit: number } | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
   const [idx, setIdx] = useState(0)
@@ -95,6 +95,11 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
         const info = await res.json().catch(() => null)
         setLimitInfo({ limit: typeof info?.limit === 'number' ? info.limit : 3 })
         setPhase('limit')
+        return
+      }
+      // Free plan — practice is Premium; the empty session was deleted.
+      if (res.status === 403) {
+        setPhase('locked')
         return
       }
       if (!res.ok) throw new Error()
@@ -246,6 +251,39 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
           <RefreshCw className="w-4 h-4" />
           {t('study.practice.tryAgain')}
         </button>
+      </div>
+    )
+  }
+
+  if (phase === 'locked') {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-10 text-center gap-4">
+        <PathMascot state="locked" size={96} />
+        <div>
+          <h2 className="text-[17px] font-bold text-gray-900">
+            {ko ? '연습 문제는 프리미엄 기능이에요' : 'Practice is a Premium feature'}
+          </h2>
+          <p className="mt-2 text-[13px] text-gray-500 leading-relaxed max-w-[300px]">
+            {ko
+              ? '무료 플랜에서는 매일 데일리 챌린지를 풀 수 있어요. 프리미엄으로 업그레이드하면 매일 연습 세트를 이용할 수 있어요.'
+              : 'On the free plan you get the Daily Challenge each day. Upgrade to Premium to unlock daily practice sets.'}
+          </p>
+        </div>
+        <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
+          <Link
+            href="/mobile/study/subscription"
+            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+          >
+            {ko ? '프리미엄 보기' : 'See Premium'}
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/mobile/study"
+            className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
+          >
+            {t('study.practice.backToStudy')}
+          </Link>
+        </div>
       </div>
     )
   }

@@ -293,7 +293,7 @@ function ModeFilter({ value, onSelect, counts, ko }: {
   ]
   return (
     <div className="-mx-5 overflow-x-auto scrollbar-hide">
-      <div className="flex gap-2 pl-5 pr-5 pt-1 pb-1">
+      <div className="flex gap-2 pl-5 pt-1 pb-1">
         {items.map(item => {
           const active = value === item.key
           const count = counts[item.key] ?? 0
@@ -316,6 +316,10 @@ function ModeFilter({ value, onSelect, counts, ko }: {
             </button>
           )
         })}
+        {/* Trailing spacer — browsers drop the scroll container's
+            padding-right at the end of an overflow-x row, so the last
+            chip touches the edge. A shrink-0 spacer reliably reserves it. */}
+        <div aria-hidden className="shrink-0 w-[15px]" />
       </div>
     </div>
   )
