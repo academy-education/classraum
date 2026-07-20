@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
   )
   if (blocked) return blocked
 
-  let body: { section?: string; count?: number; pathNode?: string; adaptive?: boolean }
+  let body: { section?: string; count?: number; pathNode?: string; adaptive?: boolean; creditSource?: 'pass' | 'regular' }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
   const section = body.section === 'math' || body.section === 'reading_writing' ? body.section : null
   if (!section) return NextResponse.json({ error: 'section must be math or reading_writing' }, { status: 400 })
@@ -110,7 +110,8 @@ export async function POST(req: NextRequest) {
   // path-node sessions are exempt — the StudyPath loop stays free.
   const creditCost = pathNode ? 0 : creditCostForTest('sat', section)
   if (creditCost > 0) {
-    const credit = await reserveTestCredits(user.id, sess.id, creditCost, 'sat')
+    // Spend the SAT pass credits first unless the student chose 'regular'.
+    const credit = await reserveTestCredits(user.id, sess.id, creditCost, 'sat', { skipPass: body.creditSource === 'regular' })
     if (!credit.ok) {
       await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
       void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits', kind: 'bank_sat' })

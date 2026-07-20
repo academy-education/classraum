@@ -40,15 +40,16 @@ export interface ReserveResult {
  *  test (or the all-access '*' pass) are spent FIRST — before generic
  *  monthly/purchased credits — so a SAT pass depletes on SAT tests and its
  *  credits are never usable on another test. Omit for non-test charges. */
-export async function reserveTestCredits(studentId: string, sessionId: string, cost: number, testFamily?: string | null): Promise<ReserveResult> {
+export async function reserveTestCredits(studentId: string, sessionId: string, cost: number, testFamily?: string | null, opts?: { skipPass?: boolean }): Promise<ReserveResult> {
   const reserved: string[] = []
   for (let i = 0; i < cost; i++) {
     const source = creditSourceId(sessionId, i)
 
     // Test-scoped pass credit first (idempotent per source; no-op reason
-    // 'no_pass_credits' when the student holds none for this test).
+    // 'no_pass_credits' when the student holds none for this test). Skipped
+    // when the student explicitly chose to spend a regular credit instead.
     let reservedSlice = false
-    if (testFamily) {
+    if (testFamily && !opts?.skipPass) {
       const { data } = await supabaseAdmin
         .rpc('use_study_pass_credit', { p_student: studentId, p_source: source, p_test: testFamily })
       if ((data as { ok?: boolean } | null)?.ok) reservedSlice = true

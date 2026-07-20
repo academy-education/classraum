@@ -428,8 +428,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: creditFamily }, { status: 403 })
     }
   }
-  // Spend this test's exam-pass credits first (scoped), then generic.
-  const credit = await reserveTestCredits(user.id, sessionId, creditCost, creditFamily)
+  // Spend this test's exam-pass credits first (scoped), then generic —
+  // unless the student chose a regular credit in the customization sheet
+  // (stored on session.config.creditSource).
+  const wantRegular = (session.config as { creditSource?: string } | null)?.creditSource === 'regular'
+  const credit = await reserveTestCredits(user.id, sessionId, creditCost, creditFamily, { skipPass: wantRegular })
   if (!credit.ok) {
     // Funnel: the paywall trigger — the student wanted a test but had no
     // credits. This is where an upsell converts.

@@ -17,6 +17,7 @@ import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
+import { passCreditLabel } from '../_shared/pass-label'
 
 interface Subscription {
   status: 'free' | 'trial' | 'active' | 'past_due' | 'cancelled' | 'expired'
@@ -1003,13 +1004,6 @@ function formatWon(won: number): string {
 }
 
 /** Short "<Test> Pass" label for the scoped-credit chips. */
-function passCreditLabel(test: string, ko: boolean): string {
-  if (test === 'sat') return ko ? 'SAT 패스' : 'SAT Pass'
-  if (test === 'toefl') return ko ? 'TOEFL 패스' : 'TOEFL Pass'
-  if (test === '*') return ko ? '수능 패스' : 'All-Access Pass'
-  return `${test.toUpperCase()} ${ko ? '패스' : 'Pass'}`
-}
-
 /** Per-price unit suffix (/ month, / 3M, / yr). */
 function durationUnit(days: number, ko: boolean, t: (k: string) => unknown): string {
   if (days === 30) return String(t('study.subscription.month'))

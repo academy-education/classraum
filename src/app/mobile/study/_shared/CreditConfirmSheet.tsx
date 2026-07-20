@@ -18,7 +18,7 @@ import { ModalPortal } from '@/components/ui/modal-portal'
  * (sticky header band, rounded pill chips) visible as a "partial
  * rounded blur" before the full-screen blur finished ramping in.
  */
-export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, title, description, confirmLabel }: {
+export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, title, description, confirmLabel, passCredits, passLabel, source, onSourceChange }: {
   open: boolean
   cost: number
   busy: boolean
@@ -31,7 +31,14 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
   title?: string
   description?: string
   confirmLabel?: string
+  /** When the student holds test-scoped pass credits for this test, offer
+   *  a choice between spending those or a regular credit. Omit to hide. */
+  passCredits?: number
+  passLabel?: string
+  source?: 'pass' | 'regular'
+  onSourceChange?: (s: 'pass' | 'regular') => void
 }) {
+  const showSource = !!onSourceChange && (passCredits ?? 0) > 0
   if (!open) return null
   return (
     <ModalPortal>
@@ -54,6 +61,36 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
                 : `Starting this test uses ${cost} test credit${cost === 1 ? '' : 's'}. If the test fails to generate, they're refunded automatically.`)}
             </p>
           </div>
+          {showSource && (
+            <div className="mt-4">
+              <p className="text-[11.5px] font-medium text-gray-500 mb-1.5 px-0.5">
+                {ko ? '어떤 크레딧을 사용할까요?' : 'Which credit should we use?'}
+              </p>
+              <div className="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-gray-100">
+                <button
+                  type="button"
+                  onClick={() => onSourceChange?.('pass')}
+                  disabled={busy}
+                  className={`h-10 rounded-lg text-[12.5px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
+                    source === 'pass' ? 'bg-white text-indigo-700 shadow-sm ring-1 ring-indigo-200' : 'text-gray-500'
+                  }`}
+                >
+                  {passLabel ?? (ko ? '패스' : 'Pass')}
+                  <span className="tabular-nums text-[11px] opacity-70">{passCredits}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onSourceChange?.('regular')}
+                  disabled={busy}
+                  className={`h-10 rounded-lg text-[12.5px] font-semibold transition-all ${
+                    source === 'regular' ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-500'
+                  }`}
+                >
+                  {ko ? '일반 크레딧' : 'Regular'}
+                </button>
+              </div>
+            </div>
+          )}
           <div className="mt-4 grid grid-cols-2 gap-2">
             <button
               type="button"
