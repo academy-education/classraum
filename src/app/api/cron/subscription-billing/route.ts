@@ -108,6 +108,28 @@ export async function GET(req: NextRequest) {
             .eq('id', subscription.academy_id)
             .single();
 
+          // PortOne (Inicis) REQUIRES the buyer's name/email/phone on every
+          // billing-key charge. academy_subscriptions has no contact columns,
+          // so source it from the academy's manager (managers.phone) + their
+          // user record (users.name/email), mirroring the subscribe route.
+          // Omitting these fails the charge with "customer.* violated REQUIRED".
+          const { data: mgr } = await supabaseAdmin
+            .from('managers')
+            .select('user_id, phone')
+            .eq('academy_id', subscription.academy_id)
+            .limit(1)
+            .maybeSingle();
+          const { data: mgrUser } = mgr?.user_id
+            ? await supabaseAdmin
+                .from('users')
+                .select('name, email, phone')
+                .eq('id', mgr.user_id)
+                .maybeSingle()
+            : { data: null };
+          const customerName = mgrUser?.name || academy?.name || 'Academy';
+          const customerEmail = mgrUser?.email || 'no-email@example.com';
+          const customerPhone = mgr?.phone || mgrUser?.phone || '010-0000-0000';
+
           // Calculate next billing date
           const nextBillingDate = new Date(subscription.next_billing_date);
           if (subscription.billing_cycle === 'monthly') {
@@ -132,8 +154,10 @@ export async function GET(req: NextRequest) {
                 orderName: `${academy?.name || 'Academy'} - ${subscription.plan_tier} 구독`,
                 customer: {
                   name: {
-                    full: academy?.name || 'Academy',
+                    full: customerName,
                   },
+                  email: customerEmail,
+                  phoneNumber: customerPhone,
                 },
                 amount: {
                   total: subscription.monthly_amount,

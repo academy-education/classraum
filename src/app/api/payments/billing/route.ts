@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { SUBSCRIPTION_PLANS } from '@/types/subscription';
+import { chargeBillingKey } from '@/lib/portone-charge';
 
 export async function POST(request: NextRequest) {
   try {
@@ -44,38 +45,21 @@ export async function POST(request: NextRequest) {
 
     console.log('[Billing] Processing payment:', { paymentId, amount, planName });
 
-    // Make payment using billing key
-    const paymentResponse = await fetch('https://api.portone.io/v2/payments/billing-key', {
-      method: 'POST',
-      headers: {
-        'Authorization': `PortOne ${process.env.PORTONE_API_SECRET}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        storeId: process.env.PORTONE_STORE_ID,
-        billingKey: billingKey,
-        paymentId: paymentId,
-        orderName: `${planName} 구독`,
-        amount: {
-          total: amount,
-          currency: 'KRW'
-        },
-        customer: {
-          id: userId
-        },
-        customData: {
-          userId: userId,
-          planName: planName,
-          subscriptionPayment: true
-        }
-      })
+    // Charge via the shared helper: it hits the correct V2 endpoint
+    // (POST /payments/{id}/billing-key), pulls the buyer's name/email/phone
+    // (Inicis REQUIRES them), and detects success from the HTTP status.
+    const charge = await chargeBillingKey({
+      billingKey,
+      paymentId,
+      amount,
+      orderName: `${planName} 구독`,
+      customerId: userId,
+      customData: { userId, planName, subscriptionPayment: true },
     });
 
-    const paymentResult = await paymentResponse.json();
-
-    if (!paymentResponse.ok || paymentResult.status !== 'PAID') {
+    if (!charge.ok) {
       return NextResponse.json(
-        { error: 'Payment failed', details: paymentResult },
+        { error: 'Payment failed', details: charge.message ?? charge.code },
         { status: 400 }
       );
     }
