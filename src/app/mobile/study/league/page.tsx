@@ -136,7 +136,7 @@ function LeagueInner() {
         {view === 'friends' ? (
           <StudyPageTransition><FriendsLeaderboardView ko={ko} /></StudyPageTransition>
         ) : (!loading && !loadFailed && !data?.joined) ? (
-          <div className="py-10"><NotJoinedState ko={ko} /></div>
+          <NotJoinedState ko={ko} />
         ) : (
         <StudyPageTransition>
         {loading ? (
