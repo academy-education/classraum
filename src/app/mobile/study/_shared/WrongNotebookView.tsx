@@ -222,9 +222,19 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
             : `Revisit ${entries.length} wrong answers and jot down what tripped you up.`}
           rightSlot={
             <Link
-              href={selectedTopicId
-                ? `/mobile/study/wrong-notebook/print?topic_id=${encodeURIComponent(selectedTopicId)}`
-                : '/mobile/study/wrong-notebook/print'}
+              href={(() => {
+                // Forward every filter the student has set on the page so
+                // the printed 오답노트 matches exactly what they see:
+                // topic (server-side), difficulty + sort + search (client).
+                const params = new URLSearchParams()
+                if (selectedTopicId) params.set('topic_id', selectedTopicId)
+                if (difficultyFilter !== 'all') params.set('difficulty', difficultyFilter)
+                if (sortKey !== 'newest') params.set('sort', sortKey)
+                const q = query.trim()
+                if (q) params.set('q', q)
+                const qs = params.toString()
+                return qs ? `/mobile/study/wrong-notebook/print?${qs}` : '/mobile/study/wrong-notebook/print'
+              })()}
               target="_blank"
               className="inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[12.5px] font-medium text-gray-800 hover:ring-primary/40 hover:text-primary transition"
             >
