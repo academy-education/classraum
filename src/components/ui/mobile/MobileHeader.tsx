@@ -12,6 +12,7 @@ import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 import { ModeChip } from '@/components/ui/mobile/ModeChip'
+import { EnergyChip } from '@/components/ui/mobile/EnergyChip'
 
 export function MobileHeader() {
   const router = useRouter()
@@ -250,6 +251,10 @@ export function MobileHeader() {
                 or Study) with chevron. Tap opens ModeSwitcherSheet for
                 the swap. Self-hides on the hub and for parents. */}
             <ModeChip />
+
+            {/* Practice energy — regenerates over time (free +1/8h, paid
+                +1/3h). Study routes only; self-hides until loaded. */}
+            <EnergyChip />
 
             {/* Study test-generation credits. Tapping opens the plan /
                 credit store. Only rendered on study routes and once the

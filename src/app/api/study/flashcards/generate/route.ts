@@ -4,7 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { loadStudyPromptContext } from '@/lib/study-prompt-context'
 import { drawFlashcardBank } from '@/lib/study/flashcard-bank'
-import { getPracticeQuota, cleanupAbandonedPracticeSessions } from '@/lib/study/practice-quota'
+import { spendEnergy, cleanupAbandonedPracticeSessions } from '@/lib/study/practice-quota'
 
 /**
  * POST /api/study/flashcards/generate — serve a flashcard deck from the
@@ -78,15 +78,15 @@ export async function POST(req: NextRequest) {
 
   // ── Energy ─────────────────────────────────────────────────────
   // Flashcards spend from the same energy pool as practice questions
-  // (refills daily to a free/paid cap). Only a FRESH deck is checked —
+  // (regen over time to a free/paid cap). Only a FRESH deck is checked —
   // resumes returned above from cache. Flashcard sessions carry no
   // pathNode/dailyChallenge, so all fresh decks spend energy.
   {
-    const quota = await getPracticeQuota(user.id)
-    if (quota.remaining <= 0) {
+    const spend = await spendEnergy(user.id)
+    if (!spend.ok) {
       await supabaseAdmin.from('study_sessions').delete().eq('id', sessionId).eq('student_id', user.id)
       return NextResponse.json(
-        { error: 'out of energy', reason: 'no_energy', limit: quota.limit, cap: quota.cap },
+        { error: 'out of energy', reason: 'no_energy', cap: spend.state.cap, nextRefillSeconds: spend.state.nextRefillSeconds },
         { status: 429 },
       )
     }

@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins, Zap } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -139,8 +139,6 @@ function TopicInner({ slug }: { slug: string }) {
   // path still catches any race.
   const [creditBalance, setCreditBalance] = useState<number | null>(null)
   const [regularBalance, setRegularBalance] = useState<number | null>(null)
-  // Practice energy. null = unknown (never gate while loading).
-  const [quota, setQuota] = useState<{ paid: boolean; limit: number; used: number; remaining: number; cap?: number } | null>(null)
   // Per-test entitlements from the subscription payload. null = unknown
   // (cold load / fetch failed) → NEVER lock; only a loaded, test-scoped
   // access set that excludes this family locks the full-test entry.
@@ -162,18 +160,15 @@ function TopicInner({ slug }: { slug: string }) {
     const prefsPromise = (async () => {
       try {
         const headers = await authHeaders()
-        const [res, subRes, quotaRes] = await Promise.all([
+        const [res, subRes] = await Promise.all([
           fetch('/api/study/prefs', { headers }),
           fetch('/api/study/subscription', { headers }),
-          fetch('/api/study/practice/quota', { headers }),
         ])
         const json = res.ok ? await res.json() : null
         const sub = subRes.ok ? await subRes.json() : null
-        const q = quotaRes.ok ? await quotaRes.json() : null
         if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
         if (!cancelled && sub?.credits) setRegularBalance((sub.credits.grant ?? 0) + (sub.credits.purchased ?? 0))
         if (!cancelled && sub?.access && typeof sub.access.all === 'boolean') setAccess(sub.access)
-        if (!cancelled && q && typeof q.paid === 'boolean') setQuota(q)
         return (json?.prefs?.target_test as string | null) ?? null
       } catch { return null }
     })()
@@ -447,22 +442,9 @@ function TopicInner({ slug }: { slug: string }) {
   const flashcardsReady = gridParsed.family === 'sat'
 
   // The 2x2 learning-mode grid — shared by the subject layout and the
-  // test-prep "Practice" tab. An energy meter sits above it: practice
-  // questions + flashcards each spend 1 energy from a daily pool.
+  // test-prep "Practice" tab. Practice questions + flashcards spend energy
+  // (shown globally in the top bar) — no per-mode lock here anymore.
   const modeGrid = (
-    <div className="space-y-2.5">
-      {quota && (
-        <div className="flex items-center justify-end">
-          <span
-            className="inline-flex items-center gap-1 rounded-full bg-amber-50 ring-1 ring-amber-200/70 px-2.5 py-1 text-[12px] font-semibold text-amber-700 tabular-nums"
-            title={ko ? '연습·플래시카드 에너지 (매일 충전)' : 'Practice & flashcards energy (refills daily)'}
-          >
-            <Zap className="w-3.5 h-3.5" weight="fill" />
-            {quota.remaining}/{quota.cap ?? quota.limit}
-            <span className="font-medium text-amber-600/80">{ko ? '에너지' : 'energy'}</span>
-          </span>
-        </div>
-      )}
     <section className="grid grid-cols-2 gap-3">
       {STUDY_MODES
         .filter(m => m.key !== 'full_test')
@@ -536,7 +518,6 @@ function TopicInner({ slug }: { slug: string }) {
           )
         })}
     </section>
-    </div>
   )
 
   return (

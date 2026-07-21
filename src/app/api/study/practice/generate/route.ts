@@ -5,7 +5,7 @@ import { loadStudyPromptContext } from '@/lib/study-prompt-context'
 import { drawBankPractice } from '@/lib/study/assemble'
 import { requireStudyUser } from '@/lib/study/auth'
 import { canAccessTest } from '@/lib/study/entitlements'
-import { getPracticeQuota, cleanupAbandonedPracticeSessions } from '@/lib/study/practice-quota'
+import { spendEnergy, cleanupAbandonedPracticeSessions } from '@/lib/study/practice-quota'
 import { PATH_STOP_QUESTION_COUNT } from '@/lib/study-path'
 
 /**
@@ -152,17 +152,18 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Energy ─────────────────────────────────────────────────────
-  // Starting a practice or flashcards set spends 1 energy; energy refills
-  // to a daily cap (free vs paid). Path stops and the daily challenge are
-  // exempt. This runs only for a FRESH draw — resumes returned from cache.
+  // Starting a practice or flashcards set spends 1 energy; energy regens
+  // over time up to a cap (free +1/8h→3, paid +1/3h→10). Path stops and the
+  // daily challenge are exempt. This runs only for a FRESH draw — resumes
+  // returned from cache above, so the spend happens once per set.
   if (!config.pathNode && !config.dailyChallenge) {
-    const quota = await getPracticeQuota(user.id)
-    if (quota.remaining <= 0) {
+    const spend = await spendEnergy(user.id)
+    if (!spend.ok) {
       // The just-created empty session never served a batch — delete it
       // so an unused set doesn't linger on the shelf or in history.
       await supabaseAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
       return NextResponse.json(
-        { error: 'out of energy', reason: 'no_energy', limit: quota.limit, cap: quota.cap },
+        { error: 'out of energy', reason: 'no_energy', cap: spend.state.cap, nextRefillSeconds: spend.state.nextRefillSeconds },
         { status: 429 },
       )
     }

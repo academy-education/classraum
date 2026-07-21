@@ -81,6 +81,8 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
       if (res.status === 429) { setGate('limit'); setLoading(false); return }
       if (!res.ok) throw new Error()
       const json = await res.json()
+      // A fresh deck spent energy server-side — nudge the top-bar chip.
+      if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('study:energy'))
       const cards = (json.deck as Deck).cards
       await holdForMascot(startedAt)
       setDeck(cards)
