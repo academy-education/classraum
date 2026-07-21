@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock, Sparkles, Flame, Snowflake, ArrowRight, BarChart3 } from '@/app/mobile/study/_shared/icons'
+import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock, Sparkles, Flame, ArrowRight, BarChart3 } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -419,9 +419,10 @@ function StreakFreezeCard({ info, ko }: {
   info: { streak: number; freezes: number; maxStreak: number }
   ko: boolean
 }) {
+  // Freezes are disabled for now — this card shows only streak + best.
   return (
     <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4">
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         <div>
           <div className="text-[10px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
             <Flame className="w-3 h-3 text-orange-500" />{ko ? '연속' : 'Streak'}
@@ -438,20 +439,7 @@ function StreakFreezeCard({ info, ko }: {
             {info.maxStreak}<span className="text-[13px] font-medium text-gray-400 ml-0.5">{ko ? '일' : 'd'}</span>
           </div>
         </div>
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
-            <Snowflake className="w-3 h-3 text-sky-500" />{ko ? '프리즈' : 'Freezes'}
-          </div>
-          <div className="text-2xl font-bold tabular-nums leading-none mt-1 text-gray-900">
-            {info.freezes}
-          </div>
-        </div>
       </div>
-      <p className="mt-3 text-[11.5px] text-gray-500 leading-relaxed">
-        {ko
-          ? '프리즈는 하루를 놓쳐도 연속 기록을 지켜줘요. 7일마다 하나씩 받아요.'
-          : 'A freeze protects your streak if you miss a day. You earn one every 7-day milestone.'}
-      </p>
     </div>
   )
 }

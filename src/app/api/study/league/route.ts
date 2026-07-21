@@ -35,6 +35,15 @@ export async function GET(req: NextRequest) {
   const blocked = enforceRateLimit(`league:user:${user.id}`, { windowMs: 60 * 1000, max: 60 })
   if (blocked) return blocked
 
+  // The caller's own public nickname — the league page gates joining behind
+  // confirming a handle, so it needs to know whether one is set.
+  const { data: myPrefs } = await supabaseAdmin
+    .from('study_user_prefs')
+    .select('nickname')
+    .eq('student_id', user.id)
+    .maybeSingle()
+  const myNickname = (myPrefs?.nickname as string | null) ?? null
+
   // Current week start (Sunday-based ISO week — Postgres date_trunc('week') uses Monday).
   // We align to Monday-of-current-week UTC to match the SQL RPC.
   const now = new Date()
@@ -69,6 +78,7 @@ export async function GET(req: NextRequest) {
       myRank: null,
       myXp: 0,
       leaderboard: [],
+      myNickname,
     })
   }
 
@@ -175,6 +185,7 @@ export async function GET(req: NextRequest) {
     myXp: myMembership.xp_this_week,
     leaderboard,
     promotionNotice,
+    myNickname,
   })
 }
 

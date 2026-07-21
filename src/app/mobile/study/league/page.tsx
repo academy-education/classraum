@@ -2,9 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus, Award, Diamond, Shield } from '@/app/mobile/study/_shared/icons'
+import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus, Award, Diamond, Shield, Confetti, Check } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { validateNickname, NICKNAME_MAX } from '@/lib/study/nickname'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition, StudyScrollShell } from '../_shared/primitives'
 import { SkeletonCard, SkeletonBlock, SkeletonRowList } from '../skeletons'
@@ -61,6 +62,7 @@ interface LeagueData {
   myXp: number
   leaderboard: LeaderboardRow[]
   promotionNotice?: PromotionNotice | null
+  myNickname?: string | null
 }
 
 export default function LeaguePage() {
@@ -135,6 +137,8 @@ function LeagueInner() {
         </div>
         {view === 'friends' ? (
           <StudyPageTransition><FriendsLeaderboardView ko={ko} /></StudyPageTransition>
+        ) : (!loading && !loadFailed && data && !data.myNickname) ? (
+          <StudyPageTransition><NicknameJoinGate ko={ko} onConfirmed={() => { setLoading(true); setRetryKey(k => k + 1) }} /></StudyPageTransition>
         ) : (!loading && !loadFailed && !data?.joined) ? (
           <NotJoinedState ko={ko} />
         ) : (
@@ -187,6 +191,98 @@ function LeagueInner() {
         </StudyPageTransition>
         )}
     </StudyScrollShell>
+  )
+}
+
+/** Nickname confirmation gate — a student must confirm a public handle
+ *  before joining the league board (otherwise they'd appear under a masked
+ *  real name). Shown whenever the caller has no nickname set; on success it
+ *  reloads the league so the gate falls away. */
+function NicknameJoinGate({ ko, onConfirmed }: { ko: boolean; onConfirmed: () => void }) {
+  const [value, setValue] = useState('')
+  const [status, setStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'invalid'>('idle')
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  // Debounced availability check as the user types.
+  useEffect(() => {
+    const raw = value.trim()
+    if (!raw) { setStatus('idle'); return }
+    if (validateNickname(raw)) { setStatus('invalid'); return }
+    setStatus('checking')
+    const handle = setTimeout(async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch(`/api/study/nickname?check=${encodeURIComponent(raw)}`, { headers })
+        const json = await res.json()
+        setStatus(json.available ? 'available' : (json.reason === 'taken' ? 'taken' : 'invalid'))
+      } catch { setStatus('idle') }
+    }, 350)
+    return () => clearTimeout(handle)
+  }, [value])
+
+  const confirm = async () => {
+    setError(null); setSaving(true)
+    try {
+      const headers = { ...(await authHeaders()), 'Content-Type': 'application/json' }
+      const res = await fetch('/api/study/nickname', { method: 'PUT', headers, body: JSON.stringify({ nickname: value.trim() }) })
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}))
+        setError(json.code === 'taken'
+          ? (ko ? '이미 사용 중인 닉네임이에요.' : 'That nickname is taken.')
+          : (ko ? '닉네임을 저장하지 못했어요.' : "Couldn't save your nickname."))
+        setSaving(false)
+        return
+      }
+      onConfirmed()
+    } catch {
+      setError(ko ? '닉네임을 저장하지 못했어요.' : "Couldn't save your nickname.")
+      setSaving(false)
+    }
+  }
+
+  const canConfirm = status === 'available' && !saving
+
+  return (
+    <div className="rounded-3xl bg-white ring-1 ring-gray-200/70 px-5 py-7 text-center">
+      <div className="mx-auto w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center">
+        <Trophy className="w-7 h-7 text-amber-600" />
+      </div>
+      <h3 className="mt-4 text-[17px] font-bold text-gray-900">
+        {ko ? '리그에 참가하려면 닉네임을 확인하세요' : 'Confirm your nickname to join the league'}
+      </h3>
+      <p className="mt-1.5 text-[13px] text-gray-500 leading-relaxed max-w-xs mx-auto">
+        {ko ? '순위표에 표시될 공개 닉네임이에요. 한 번 정하면 나중에 한 번만 바꿀 수 있어요.'
+            : "This is the public handle shown on the leaderboard. You can change it once later."}
+      </p>
+      <div className="mt-5 max-w-xs mx-auto text-left">
+        <div className="relative">
+          <input
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            maxLength={NICKNAME_MAX}
+            placeholder={ko ? '닉네임' : 'Nickname'}
+            className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-3 text-[14px] text-gray-900 outline-none focus:border-amber-400 focus:bg-white focus:ring-2 focus:ring-amber-100"
+            autoCapitalize="off" autoCorrect="off" spellCheck={false}
+          />
+          {status === 'available' && (
+            <Check className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-500" weight="bold" />
+          )}
+        </div>
+        <div className="mt-1.5 min-h-[16px] text-[11.5px]">
+          {status === 'checking' && <span className="text-gray-400">{ko ? '확인 중…' : 'Checking…'}</span>}
+          {status === 'available' && <span className="text-emerald-600">{ko ? '사용 가능해요' : 'Available'}</span>}
+          {status === 'taken' && <span className="text-rose-500">{ko ? '이미 사용 중이에요' : 'Already taken'}</span>}
+          {status === 'invalid' && <span className="text-rose-500">{ko ? '2–16자, 문자·숫자·밑줄만' : '2–16 characters, letters/numbers/underscore'}</span>}
+        </div>
+      </div>
+      {error && <p className="mt-1 text-[12px] text-rose-500">{error}</p>}
+      <div className="mt-4 max-w-xs mx-auto">
+        <StudyButton type="button" onClick={confirm} disabled={!canConfirm} className="w-full justify-center">
+          {saving ? (ko ? '참가하는 중…' : 'Joining…') : (ko ? '확인하고 참가하기' : 'Confirm & join')}
+        </StudyButton>
+      </div>
+    </div>
   )
 }
 
@@ -334,10 +430,11 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds }: {
         ))}
       </div>
       {myRank != null && (
-        <div className={`relative mt-3 rounded-xl px-3 py-2 text-[12px] font-semibold text-center ${inPromo ? 'bg-emerald-400/25 ring-1 ring-emerald-200/40' : 'bg-white/12 ring-1 ring-white/15'}`}>
-          {inPromo
-            ? (ko ? '🎉 승급권 안에 있어요 — 계속 유지하세요!' : "🎉 You're in the promotion zone — hold your spot!")
-            : (ko ? `승급권까지 ${Math.max(0, myRank - PROMOTE_ZONE)}계단 남았어요` : `${Math.max(0, myRank - PROMOTE_ZONE)} spots from the promotion zone`)}
+        <div className={`relative mt-3 rounded-xl px-3 py-2 text-[12px] font-semibold flex items-center justify-center gap-1.5 ${inPromo ? 'bg-emerald-400/25 ring-1 ring-emerald-200/40' : 'bg-white/12 ring-1 ring-white/15'}`}>
+          {inPromo && <Confetti weight="fill" className="w-3.5 h-3.5 flex-shrink-0" />}
+          <span>{inPromo
+            ? (ko ? '승급권 안에 있어요 — 계속 유지하세요!' : "You're in the promotion zone — hold your spot!")
+            : (ko ? `승급권까지 ${Math.max(0, myRank - PROMOTE_ZONE)}계단 남았어요` : `${Math.max(0, myRank - PROMOTE_ZONE)} spots from the promotion zone`)}</span>
         </div>
       )}
     </div>

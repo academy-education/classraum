@@ -151,24 +151,19 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // ── Practice quota ─────────────────────────────────────────────
-  // FREE users get no topic-page practice (Daily Challenge only); PAID
-  // users get PRACTICE_SETS_PER_DAY/day combined across practice +
-  // flashcards. Path stops and the daily challenge are exempt. This
-  // runs only for a FRESH draw — resumes returned above from cache.
+  // ── Energy ─────────────────────────────────────────────────────
+  // Starting a practice or flashcards set spends 1 energy; energy refills
+  // to a daily cap (free vs paid). Path stops and the daily challenge are
+  // exempt. This runs only for a FRESH draw — resumes returned from cache.
   if (!config.pathNode && !config.dailyChallenge) {
     const quota = await getPracticeQuota(user.id)
-    if (quota.used >= quota.limit) {
+    if (quota.remaining <= 0) {
       // The just-created empty session never served a batch — delete it
       // so an unused set doesn't linger on the shelf or in history.
       await supabaseAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
       return NextResponse.json(
-        {
-          error: quota.paid ? 'daily practice limit reached' : 'practice is a premium feature',
-          reason: quota.paid ? 'daily_limit' : 'free_locked',
-          limit: quota.limit,
-        },
-        { status: quota.paid ? 429 : 403 },
+        { error: 'out of energy', reason: 'no_energy', limit: quota.limit, cap: quota.cap },
+        { status: 429 },
       )
     }
     // Sweep the student's other abandoned (0-attempt) practice sessions.

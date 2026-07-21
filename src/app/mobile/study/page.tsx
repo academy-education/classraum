@@ -21,10 +21,9 @@ import { creditCostForTest } from '@/lib/study/plans'
 import { passCreditLabel } from './_shared/pass-label'
 import { StudyTodayCard } from './_shared/primitives'
 import { ResumableShelf } from './ResumableShelf'
-import { MistakeBankShelf } from './MistakeBankShelf'
 import { GeneratingTestsChip } from './GeneratingTestsChip'
 import { StudyHero } from './StudyHero'
-import { WeeklyQuests } from './_shared/WeeklyQuests'
+import { WeeklyQuestsButton } from './_shared/WeeklyQuestsButton'
 import { WeekPlanCard } from './_shared/WeekPlanCard'
 import { ResumeBanner } from './ResumeBanner'
 import { DailyReviewCTA } from './DailyReviewCTA'
@@ -591,7 +590,7 @@ function StudyLandingInner() {
           </h2>
           <div className="space-y-4">
             <WeekPlanCard hideHeading />
-            <WeeklyQuests hideHeading />
+            <WeeklyQuestsButton />
           </div>
         </section>
 
@@ -769,7 +768,6 @@ function StudyLandingInner() {
             was a pure paywall section (now a compact card in Today), and
             paid users get their picks on the test-prep page. */}
         <ResumableShelf />
-        <MistakeBankShelf />
 
         {/* Free-form "Or type anything" AI creator — hidden for now.
             Flip this `false` back to re-enable the whole section. */}

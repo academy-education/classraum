@@ -76,22 +76,18 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // ── Practice quota ─────────────────────────────────────────────
-  // Flashcards count against the same daily practice budget as practice
-  // questions (free: none, paid: PRACTICE_SETS_PER_DAY combined). Only a
-  // FRESH deck is checked — resumes returned above from cache. Flashcard
-  // sessions carry no pathNode/dailyChallenge, so all fresh decks count.
+  // ── Energy ─────────────────────────────────────────────────────
+  // Flashcards spend from the same energy pool as practice questions
+  // (refills daily to a free/paid cap). Only a FRESH deck is checked —
+  // resumes returned above from cache. Flashcard sessions carry no
+  // pathNode/dailyChallenge, so all fresh decks spend energy.
   {
     const quota = await getPracticeQuota(user.id)
-    if (quota.used >= quota.limit) {
+    if (quota.remaining <= 0) {
       await supabaseAdmin.from('study_sessions').delete().eq('id', sessionId).eq('student_id', user.id)
       return NextResponse.json(
-        {
-          error: quota.paid ? 'daily practice limit reached' : 'practice is a premium feature',
-          reason: quota.paid ? 'daily_limit' : 'free_locked',
-          limit: quota.limit,
-        },
-        { status: quota.paid ? 429 : 403 },
+        { error: 'out of energy', reason: 'no_energy', limit: quota.limit, cap: quota.cap },
+        { status: 429 },
       )
     }
     void cleanupAbandonedPracticeSessions(user.id, sessionId)
