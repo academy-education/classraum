@@ -104,6 +104,8 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
       }
       if (!res.ok) throw new Error()
       const json = await res.json()
+      // A fresh set spent energy server-side — nudge the top-bar chip.
+      if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('study:energy'))
       const list = (json.questions ?? []) as Question[]
       if (list.length === 0) throw new Error('empty set')
       // Resume: the server returns the SAME batch it already served plus
