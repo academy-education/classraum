@@ -31,7 +31,6 @@ import { StreakAtRiskBanner } from './_shared/StreakAtRiskBanner'
 import { StreakSavedBanner } from './_shared/StreakSavedBanner'
 import { TestPrepDisclaimer } from './_shared/TestPrepDisclaimer'
 import { DailyChallengeCard } from './_shared/DailyChallengeCard'
-import { SearchSheet } from './_shared/SearchSheet'
 import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
@@ -340,7 +339,6 @@ function StudyLandingInner() {
     useState<'warmup' | 'balanced' | 'challenge'>('balanced')
   const [freeFormLanguage, setFreeFormLanguage] = useState<'auto' | 'en' | 'ko'>('auto')
   const { errorToast, showError } = useStudyErrorToast()
-  const [searchOpen, setSearchOpen] = useState(false)
   const { needsOnboarding, markComplete } = useOnboardingGate()
   const landingData = useLandingData()
   const targetTest = landingData?.prefs?.target_test ?? null
@@ -498,7 +496,6 @@ function StudyLandingInner() {
             (search + overflow) on a light-on-dark treatment so both
             elements share one visual layer. */}
         <StudyHero
-          onOpenSearch={() => setSearchOpen(true)}
           overflowMenu={<HeaderOverflowMenu variant="dark" />}
         />
 
@@ -885,8 +882,6 @@ function StudyLandingInner() {
           re-appears after the wizard finishes (or is skipped). */}
       {needsOnboarding && <OnboardingWizard onComplete={markComplete} />}
 
-      {/* Universal search — opens from the header search icon. */}
-      <SearchSheet open={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   )
 }
