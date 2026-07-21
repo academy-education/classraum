@@ -6,7 +6,6 @@ import { supabase } from '@/lib/supabase'
 import { ListChecks, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
-import { SkeletonCard, SkeletonBlock } from './skeletons'
 import type { StudyMode } from './modes'
 import { formatTimeAgo } from './_shared/dateGroups'
 
@@ -100,24 +99,10 @@ export function ResumableShelf() {
     return () => { cancelled = true }
   }, [user?.userId])
 
-  // Don't render the section if the student has nothing to resume —
-  // an empty shelf looks like a bug.
-  if (loading) {
-    return (
-      <section>
-        <ShelfHeader title={String(t('study.landing.resumeTitle'))} />
-        <SkeletonCard className="h-[80px] p-4 flex items-center gap-3">
-          <SkeletonBlock className="w-10 h-10 rounded-xl flex-shrink-0" />
-          <div className="flex-1 space-y-2">
-            <SkeletonBlock className="h-2.5 w-1/4 rounded-full" />
-            <SkeletonBlock className="h-3 w-3/5 rounded-full" />
-          </div>
-        </SkeletonCard>
-      </section>
-    )
-  }
-
-  if (rows.length === 0) return null
+  // Render nothing until loaded (no separate skeleton flash) so the shelf
+  // appears together with the rest of the landing rather than popping in a
+  // beat later — and self-hides when there's nothing to resume.
+  if (loading || rows.length === 0) return null
 
   const rest = rows.length - 1
   return (

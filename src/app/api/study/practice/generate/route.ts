@@ -153,10 +153,10 @@ export async function POST(req: NextRequest) {
 
   // ── Energy ─────────────────────────────────────────────────────
   // Starting a practice or flashcards set spends 1 energy; energy regens
-  // over time up to a cap (free +1/8h→3, paid +1/3h→10). Path stops and the
-  // daily challenge are exempt. This runs only for a FRESH draw — resumes
-  // returned from cache above, so the spend happens once per set.
-  if (!config.pathNode && !config.dailyChallenge) {
+  // over time up to a cap (free +1/8h→3, paid +1/3h→8). Path stops spend
+  // too; only the daily challenge is exempt. This runs only for a FRESH
+  // draw — resumes returned from cache above, so the spend is once per set.
+  if (!config.dailyChallenge) {
     const spend = await spendEnergy(user.id)
     if (!spend.ok) {
       // The just-created empty session never served a batch — delete it

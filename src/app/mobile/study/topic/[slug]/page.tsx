@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins, Zap } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -513,6 +513,12 @@ function TopicInner({ slug }: { slug: string }) {
                 <div className="text-[13px] text-gray-600 mt-1 leading-relaxed">
                   {t(`study.modes.${mode.key}.body`)}
                 </div>
+                {(mode.key === 'practice' || mode.key === 'flashcards') && (
+                  <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700 tabular-nums">
+                    <Zap className="w-3 h-3 text-amber-500" weight="fill" />
+                    {ko ? '1 에너지' : '1 energy'}
+                  </span>
+                )}
               </div>
             </button>
           )

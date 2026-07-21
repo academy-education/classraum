@@ -6,8 +6,8 @@ import { isPassPlan } from '@/lib/study/plans'
  * questions or flashcards set (the two share one pool).
  *
  * Policy (2026-07) — TIME-BASED REGEN:
- *   - FREE users:  cap 3,  +1 energy every 8 hours.
- *   - PAID users:  cap 10, +1 energy every 3 hours.
+ *   - FREE users:  cap 3, +1 energy every 8 hours.
+ *   - PAID users:  cap 8, +1 energy every 3 hours.
  *   - Starting a fresh practice/flashcards set spends 1 energy. Path-stop
  *     sessions (`config.pathNode`) and the daily challenge are exempt and
  *     don't spend.
@@ -19,7 +19,7 @@ import { isPassPlan } from '@/lib/study/plans'
  */
 
 export const FREE_ENERGY_CAP = 3
-export const PAID_ENERGY_CAP = 10
+export const PAID_ENERGY_CAP = 8
 /** Hours to regenerate 1 energy. */
 export const FREE_REFILL_HOURS = 8
 export const PAID_REFILL_HOURS = 3
