@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { Sparkles, ListOrdered, Baby, Send, Loader2 } from '@/app/mobile/study/_shared/icons'
+import { Sparkles, ListOrdered, Baby, Send, Loader2, Check } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { hapticSelection } from '@/lib/nativeHaptics'
 
@@ -22,7 +22,14 @@ interface Props {
   language: 'en' | 'ko'
 }
 
-interface Item { id: number; label: string; text: string; loading: boolean; error?: boolean }
+type Mode = 'steps' | 'simpler' | 'followup'
+interface Item { id: number; mode: Mode; label: string; text: string; loading: boolean; error?: boolean }
+
+/** Per-question cap: each canned mode is a single billed model call, so
+ *  allow it once; free-form follow-ups are capped low. Keeps a stuck or
+ *  bored student from re-tapping the same explanation and melting tokens.
+ *  A failed call doesn't count (so the student can retry). */
+const FOLLOWUP_LIMIT = 3
 
 let seq = 0
 
@@ -32,12 +39,24 @@ export function ExplainMore({ prompt, choices, correctAnswer, studentAnswer, pri
   const [followup, setFollowup] = useState('')
   const [busy, setBusy] = useState(false)
 
-  const run = async (mode: 'steps' | 'simpler' | 'followup', label: string, followupText?: string) => {
+  // A mode is "spent" once it has a non-errored item (loading counts, so a
+  // second tap can't fire mid-flight). Errors don't count → retry allowed.
+  const spent = (mode: Mode) => items.some(it => it.mode === mode && !it.error)
+  const stepsUsed = spent('steps')
+  const simplerUsed = spent('simpler')
+  const followupsUsed = items.filter(it => it.mode === 'followup' && !it.error).length
+  const followupsLeft = Math.max(0, FOLLOWUP_LIMIT - followupsUsed)
+
+  const run = async (mode: Mode, label: string, followupText?: string) => {
     if (busy) return
+    // Guard the per-question caps client-side too (buttons are disabled,
+    // but this stops any programmatic double-fire).
+    if (mode !== 'followup' && spent(mode)) return
+    if (mode === 'followup' && followupsLeft <= 0) return
     hapticSelection()
     setBusy(true)
     const id = ++seq
-    setItems(prev => [...prev, { id, label, text: '', loading: true }])
+    setItems(prev => [...prev, { id, mode, label, text: '', loading: true }])
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/explain', {
@@ -61,7 +80,7 @@ export function ExplainMore({ prompt, choices, correctAnswer, studentAnswer, pri
   const submitFollowup = (e: React.FormEvent) => {
     e.preventDefault()
     const q = followup.trim()
-    if (!q) return
+    if (!q || followupsLeft <= 0) return
     setFollowup('')
     void run('followup', q, q)
   }
@@ -77,19 +96,19 @@ export function ExplainMore({ prompt, choices, correctAnswer, studentAnswer, pri
         <button
           type="button"
           onClick={() => void run('steps', ko ? '단계별 풀이' : 'Step-by-step')}
-          disabled={busy}
-          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 transition-all"
+          disabled={busy || stepsUsed}
+          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
         >
-          <ListOrdered className="w-3.5 h-3.5" />
+          {stepsUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <ListOrdered className="w-3.5 h-3.5" />}
           {ko ? '단계별 풀이' : 'Step-by-step'}
         </button>
         <button
           type="button"
           onClick={() => void run('simpler', ko ? '더 쉽게' : 'Explain simply')}
-          disabled={busy}
-          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 transition-all"
+          disabled={busy || simplerUsed}
+          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
         >
-          <Baby className="w-3.5 h-3.5" />
+          {simplerUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Baby className="w-3.5 h-3.5" />}
           {ko ? '더 쉽게' : 'Explain simply'}
         </button>
       </div>
@@ -113,25 +132,31 @@ export function ExplainMore({ prompt, choices, correctAnswer, studentAnswer, pri
         </div>
       ))}
 
-      {/* Free-form follow-up */}
-      <form onSubmit={submitFollowup} className="relative">
-        <input
-          type="text"
-          value={followup}
-          onChange={e => setFollowup(e.target.value)}
-          disabled={busy}
-          placeholder={ko ? '이 문제에 대해 물어보기…' : 'Ask about this question…'}
-          className="w-full h-10 pl-3.5 pr-11 rounded-xl bg-white ring-1 ring-gray-200/70 text-[13.5px] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all disabled:opacity-50"
-        />
-        <button
-          type="submit"
-          disabled={busy || !followup.trim()}
-          aria-label={ko ? '보내기' : 'Send'}
-          className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg bg-primary text-white inline-flex items-center justify-center disabled:opacity-40 active:scale-95 transition-all"
-        >
-          <Send className="w-3.5 h-3.5" />
-        </button>
-      </form>
+      {/* Free-form follow-up — capped per question. */}
+      {followupsLeft > 0 ? (
+        <form onSubmit={submitFollowup} className="relative">
+          <input
+            type="text"
+            value={followup}
+            onChange={e => setFollowup(e.target.value)}
+            disabled={busy}
+            placeholder={ko ? '이 문제에 대해 물어보기…' : 'Ask about this question…'}
+            className="w-full h-10 pl-3.5 pr-11 rounded-xl bg-white ring-1 ring-gray-200/70 text-[13.5px] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all disabled:opacity-50"
+          />
+          <button
+            type="submit"
+            disabled={busy || !followup.trim()}
+            aria-label={ko ? '보내기' : 'Send'}
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg bg-primary text-white inline-flex items-center justify-center disabled:opacity-40 active:scale-95 transition-all"
+          >
+            <Send className="w-3.5 h-3.5" />
+          </button>
+        </form>
+      ) : (
+        <p className="text-[11.5px] text-gray-400 px-1">
+          {ko ? '이 문제의 추가 질문 한도에 도달했어요.' : "You've reached the follow-up limit for this question."}
+        </p>
+      )}
     </div>
   )
 }
