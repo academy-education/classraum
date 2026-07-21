@@ -46,6 +46,8 @@ interface NotebookEntry {
    *  notebook re-shows them without re-billing a model call. */
   saved_steps: string | null
   saved_simpler: string | null
+  saved_steps_lang: string | null
+  saved_simpler_lang: string | null
 }
 
 export async function GET(req: NextRequest) {
@@ -97,15 +99,17 @@ export async function GET(req: NextRequest) {
   const { data: explanations } = attemptIds.length > 0
     ? await supabaseAdmin
         .from('study_attempt_explanations')
-        .select('attempt_id, steps, simpler')
+        .select('attempt_id, steps, simpler, steps_lang, simpler_lang')
         .eq('student_id', user.id)
         .in('attempt_id', attemptIds)
     : { data: [] }
-  const explainMap = new Map<string, { steps: string | null; simpler: string | null }>()
+  const explainMap = new Map<string, { steps: string | null; simpler: string | null; stepsLang: string | null; simplerLang: string | null }>()
   for (const e of (explanations ?? [])) {
     explainMap.set(e.attempt_id as string, {
       steps: (e.steps as string | null) ?? null,
       simpler: (e.simpler as string | null) ?? null,
+      stepsLang: (e.steps_lang as string | null) ?? null,
+      simplerLang: (e.simpler_lang as string | null) ?? null,
     })
   }
 
@@ -144,6 +148,8 @@ export async function GET(req: NextRequest) {
       difficulty: (q.difficulty as string | undefined) ?? null,
       saved_steps: explainMap.get(row.id as string)?.steps ?? null,
       saved_simpler: explainMap.get(row.id as string)?.simpler ?? null,
+      saved_steps_lang: explainMap.get(row.id as string)?.stepsLang ?? null,
+      saved_simpler_lang: explainMap.get(row.id as string)?.simplerLang ?? null,
     })
   }
 
