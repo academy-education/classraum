@@ -48,6 +48,8 @@ interface Entry {
   difficulty: string | null
   saved_steps: string | null
   saved_simpler: string | null
+  saved_steps_lang: string | null
+  saved_simpler_lang: string | null
 }
 
 interface TopicSummary {
@@ -733,6 +735,8 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           attemptId={entry.attempt_id}
           savedSteps={entry.saved_steps}
           savedSimpler={entry.saved_simpler}
+          savedStepsLang={entry.saved_steps_lang}
+          savedSimplerLang={entry.saved_simpler_lang}
         />
       </div>
 

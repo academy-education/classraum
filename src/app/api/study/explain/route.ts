@@ -125,7 +125,11 @@ export async function POST(req: NextRequest) {
           await supabaseAdmin
             .from('study_attempt_explanations')
             .upsert(
-              { student_id: user.id, attempt_id: attemptId, [mode]: clean, updated_at: new Date().toISOString() },
+              {
+                student_id: user.id, attempt_id: attemptId,
+                [mode]: clean, [`${mode}_lang`]: ko ? 'ko' : 'en',
+                updated_at: new Date().toISOString(),
+              },
               { onConflict: 'student_id,attempt_id' },
             )
         }
