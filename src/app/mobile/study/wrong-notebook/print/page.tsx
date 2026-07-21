@@ -1,6 +1,7 @@
 "use client"
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useMemo, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Loader2, ArrowLeft } from '@/app/mobile/study/_shared/icons'
@@ -30,7 +31,12 @@ interface Entry {
   attempted_at: string
   topic: { name_en: string; name_ko: string } | null
   note: string
+  reviewed_at: string | null
+  difficulty: string | null
 }
+
+type SortKey = 'newest' | 'oldest' | 'hardest'
+type DifficultyKey = 'all' | 'easy' | 'medium' | 'hard'
 
 export default function PrintPage() {
   return (
@@ -43,6 +49,13 @@ export default function PrintPage() {
 function PrintInner() {
   const search = useSearchParams()
   const topicId = search.get('topic_id')
+  const difficultyFilter = (['easy', 'medium', 'hard'].includes(search.get('difficulty') ?? '')
+    ? search.get('difficulty')
+    : 'all') as DifficultyKey
+  const sortKey = (['oldest', 'hardest'].includes(search.get('sort') ?? '')
+    ? search.get('sort')
+    : 'newest') as SortKey
+  const rawQuery = (search.get('q') ?? '').trim()
   const { language } = useTranslation()
   const ko = language === 'korean'
   const [entries, setEntries] = useState<Entry[]>([])
@@ -71,6 +84,57 @@ function PrintInner() {
     })()
     return () => { cancelled = true }
   }, [topicId])
+
+  // Mirror the on-screen 오답노트 exactly: the page's primary list shows
+  // active (non-reviewed) entries, filtered by difficulty + search and
+  // ordered by the chosen sort. Topic is already scoped server-side via
+  // the topic_id query param.
+  const visible = useMemo(() => {
+    const rank = (d: string | null): number => {
+      switch ((d ?? '').toLowerCase()) {
+        case 'hard': return 3
+        case 'medium': return 2
+        case 'easy': return 1
+        default: return 0
+      }
+    }
+    const q = rawQuery.toLowerCase()
+    let list = entries.filter(e => e.reviewed_at === null)
+    if (difficultyFilter !== 'all') {
+      list = list.filter(e => (e.difficulty ?? '').toLowerCase() === difficultyFilter)
+    }
+    if (q) {
+      list = list.filter(e =>
+        [e.question.prompt, e.question.correct_answer, e.student_answer, e.note]
+          .some(p => p && p.toLowerCase().includes(q)))
+    }
+    const copy = [...list]
+    if (sortKey === 'oldest') {
+      copy.sort((a, b) => new Date(a.attempted_at).getTime() - new Date(b.attempted_at).getTime())
+    } else if (sortKey === 'hardest') {
+      copy.sort((a, b) => rank(b.difficulty) - rank(a.difficulty)
+        || new Date(b.attempted_at).getTime() - new Date(a.attempted_at).getTime())
+    }
+    return copy
+  }, [entries, difficultyFilter, sortKey, rawQuery])
+
+  // Human-readable summary of the active filters, shown under the title so
+  // the printed sheet self-documents what it was scoped to.
+  const filterLabels: string[] = []
+  if (visible[0]?.topic && topicId) filterLabels.push(ko ? visible[0].topic.name_ko : visible[0].topic.name_en)
+  if (difficultyFilter !== 'all') {
+    const diffLabel: Record<Exclude<DifficultyKey, 'all'>, [string, string]> = {
+      easy: ['쉬움', 'Easy'], medium: ['보통', 'Medium'], hard: ['어려움', 'Hard'],
+    }
+    filterLabels.push(ko ? diffLabel[difficultyFilter][0] : diffLabel[difficultyFilter][1])
+  }
+  if (sortKey !== 'newest') {
+    const sortLabel: Record<Exclude<SortKey, 'newest'>, [string, string]> = {
+      oldest: ['오래된순', 'Oldest first'], hardest: ['어려운순', 'Hardest first'],
+    }
+    filterLabels.push(ko ? sortLabel[sortKey][0] : sortLabel[sortKey][1])
+  }
+  if (rawQuery) filterLabels.push(ko ? `검색: "${rawQuery}"` : `Search: "${rawQuery}"`)
 
   if (loading) {
     return (
@@ -115,17 +179,36 @@ function PrintInner() {
           </div>
 
           <header className="border-b-2 border-black pb-4 mb-6">
+            <div className="flex items-center justify-between gap-4 mb-3">
+              <Image
+                src="/text_logo.png"
+                alt="Classraum"
+                width={180}
+                height={39}
+                priority
+                className="h-7 w-auto"
+              />
+            </div>
             <h1 className="text-[28px] font-bold tracking-tight">{ko ? '오답노트' : 'Wrong-Answer Notebook'}</h1>
-            <p className="text-[12px] text-gray-600 mt-1 tabular-nums">{today} · {entries.length} {ko ? '문항' : 'items'}</p>
+            <p className="text-[12px] text-gray-600 mt-1 tabular-nums">{today} · {visible.length} {ko ? '문항' : 'items'}</p>
+            {filterLabels.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {filterLabels.map((label, i) => (
+                  <span key={i} className="inline-flex items-center rounded-full border border-gray-300 px-2 py-0.5 text-[10.5px] font-medium text-gray-700">
+                    {label}
+                  </span>
+                ))}
+              </div>
+            )}
           </header>
 
           {loadFailed ? (
             <p className="text-gray-500">{ko ? '오답노트를 불러오지 못했습니다. 다시 시도해 주세요.' : "Couldn't load the notebook. Please try again."}</p>
-          ) : entries.length === 0 ? (
-            <p className="text-gray-500">{ko ? '틀린 문제가 없습니다.' : 'No wrong answers yet.'}</p>
+          ) : visible.length === 0 ? (
+            <p className="text-gray-500">{ko ? '해당 조건의 틀린 문제가 없습니다.' : 'No wrong answers match this filter.'}</p>
           ) : (
             <ol className="space-y-6">
-              {entries.map((e, i) => (
+              {visible.map((e, i) => (
                 <li key={e.attempt_id} className="entry">
                   <div className="flex items-baseline gap-3 mb-2">
                     <span className="text-[16px] font-bold tabular-nums">{i + 1}.</span>
