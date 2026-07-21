@@ -42,6 +42,10 @@ interface NotebookEntry {
   note_updated_at: string | null
   reviewed_at: string | null
   difficulty: string | null
+  /** Previously generated on-demand explanations, persisted so the
+   *  notebook re-shows them without re-billing a model call. */
+  saved_steps: string | null
+  saved_simpler: string | null
 }
 
 export async function GET(req: NextRequest) {
@@ -88,6 +92,23 @@ export async function GET(req: NextRequest) {
     })
   }
 
+  // Saved on-demand explanations (step-by-step / simpler), joined in the
+  // same one-round-trip style as notes.
+  const { data: explanations } = attemptIds.length > 0
+    ? await supabaseAdmin
+        .from('study_attempt_explanations')
+        .select('attempt_id, steps, simpler')
+        .eq('student_id', user.id)
+        .in('attempt_id', attemptIds)
+    : { data: [] }
+  const explainMap = new Map<string, { steps: string | null; simpler: string | null }>()
+  for (const e of (explanations ?? [])) {
+    explainMap.set(e.attempt_id as string, {
+      steps: (e.steps as string | null) ?? null,
+      simpler: (e.simpler as string | null) ?? null,
+    })
+  }
+
   const seen = new Set<string>()
   const entries: NotebookEntry[] = []
   const topicCounter = new Map<string, { slug: string; name_en: string; name_ko: string; count: number }>()
@@ -121,6 +142,8 @@ export async function GET(req: NextRequest) {
       note_updated_at: noteRow?.updated_at ?? null,
       reviewed_at: noteRow?.reviewed_at ?? null,
       difficulty: (q.difficulty as string | undefined) ?? null,
+      saved_steps: explainMap.get(row.id as string)?.steps ?? null,
+      saved_simpler: explainMap.get(row.id as string)?.simpler ?? null,
     })
   }
 
