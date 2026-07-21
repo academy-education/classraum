@@ -605,6 +605,11 @@ function StudyLandingInner() {
             subjects ship, restore a real grid; until then the tests
             grid below IS the browse surface. */}
 
+        {/* Recent sessions — pick up where you left off. Sits ABOVE Test
+            prep so resuming in-flight work is the first browse action.
+            Self-hides when there's nothing to resume. */}
+        <ResumableShelf />
+
         {/* Test Prep — flat list of standardized tests. */}
         <section>
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900 mb-3">
@@ -759,15 +764,10 @@ function StudyLandingInner() {
           <TestPrepDisclaimer ko={ko} />
         </section>
 
-        {/* History shelves — each renders its own h2 header (study.
-            landing.recommendedTitle / resumeTitle / mistakes.title), so
-            no SectionGroup wrapper (that would double-label them). They
-            close the page: act now (Today) → weekly goals → start a
-            test → pick up where you left off. */}
         {/* RecommendedShelf removed from the landing — for free users it
             was a pure paywall section (now a compact card in Today), and
-            paid users get their picks on the test-prep page. */}
-        <ResumableShelf />
+            paid users get their picks on the test-prep page. Recent
+            sessions (ResumableShelf) now sits above Test prep. */}
 
         {/* Free-form "Or type anything" AI creator — hidden for now.
             Flip this `false` back to re-enable the whole section. */}

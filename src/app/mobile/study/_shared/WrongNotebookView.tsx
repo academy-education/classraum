@@ -216,7 +216,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
           icon={BookOpen}
           iconColorClass="text-primary bg-primary/10"
           eyebrow={String(t('study.wrongNotebook.eyebrow'))}
-          title={String(t('study.wrongNotebook.title'))}
+          title={asTab ? (ko ? '복습' : 'Review') : String(t('study.wrongNotebook.title'))}
           subtitle={ko
             ? `틀린 문제 ${entries.length}개를 다시 풀어보고 메모를 남겨보세요.`
             : `Revisit ${entries.length} wrong answers and jot down what tripped you up.`}
