@@ -20,6 +20,10 @@ export interface MobileNavItem {
   label: string
   /** Section-root tab: stays active on sub-pages unless a sibling claims the path. */
   matchExact?: boolean
+  /** Extra path prefixes this tab owns, for content that lives on a
+   *  different route than the tab href (e.g. the Review tab renders the
+   *  wrong-notebook, which also has a /print sub-route). */
+  matchPrefixes?: string[]
 }
 
 export function useMobileNav() {
@@ -54,21 +58,31 @@ export function useMobileNav() {
     // Path is the core mascot-led loop — give it a permanent tab (it
     // replaces Snap, which links to a "coming soon" page).
     { href: '/mobile/study/path', icon: Route, label: String(t('mobile.navigation.path')) },
-    { href: '/mobile/study/review', icon: Shuffle, label: String(t('mobile.navigation.review')) },
+    { href: '/mobile/study/review', icon: Shuffle, label: String(t('mobile.navigation.review')), matchPrefixes: ['/mobile/study/wrong-notebook'] },
     { href: '/mobile/study/league', icon: Trophy, label: String(t('mobile.navigation.league')) },
     { href: '/mobile/profile', icon: User, label: String(t('mobile.navigation.profile')) },
   ]
 
   const navItems = inStudy ? studyNav : gradesNav
 
+  // A tab "claims" the current path if the path is (or is under) its
+  // href or any of its extra owned prefixes.
+  const claims = (n: MobileNavItem) =>
+    pathname === n.href ||
+    pathname.startsWith(`${n.href}/`) ||
+    (n.matchPrefixes ?? []).some(p => pathname === p || pathname.startsWith(`${p}/`))
+
   const isActive = (href: string) => {
     const item = navItems.find(n => n.href === href)
-    if (item?.matchExact) {
+    if (!item) return false
+    if (item.matchExact) {
       if (pathname === href) return true
+      // Section-root stays lit on its own sub-pages, but yields to any
+      // sibling that claims the path (via its href or owned prefixes).
       return pathname.startsWith(`${href}/`) &&
-        !navItems.some(n => n.href !== href && pathname.startsWith(n.href))
+        !navItems.some(n => n.href !== href && claims(n))
     }
-    return pathname.startsWith(href)
+    return claims(item)
   }
 
   // Focus mode — hide nav inside an active study session (the session
