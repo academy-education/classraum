@@ -439,13 +439,12 @@ function TopicInner({ slug }: { slug: string }) {
     && !!access && !access.all
     && !!pageFamily && !access.tests.includes(pageFamily)
 
-  // Flashcards are drawn from a hand-authored bank that today only
-  // covers SAT Reading & Writing. For sections without cards (SAT Math,
-  // and any non-SAT topic) the deck comes back empty, so surface the
-  // card as "coming soon" instead of letting a tap dead-end on an empty
-  // deck.
+  // Flashcards are drawn from a hand-authored bank. Both SAT sections
+  // (Reading & Writing = vocab + grammar recall; Math = formula/fact
+  // cards) are covered; non-SAT topics have no deck, so those still show
+  // "coming soon" instead of dead-ending on an empty deck.
   const gridParsed = parseTestSlug(effectiveTopic?.slug ?? slug)
-  const flashcardsReady = gridParsed.family === 'sat' && !/math/i.test(gridParsed.section ?? '')
+  const flashcardsReady = gridParsed.family === 'sat'
 
   // The 2x2 learning-mode grid — shared by the subject layout and the
   // test-prep "Practice" tab.
