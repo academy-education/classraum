@@ -294,20 +294,20 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
         <PathMascot state="idle" size={96} />
         <div>
           <h2 className="text-[17px] font-bold text-gray-900">
-            {ko ? '오늘의 연습을 다 했어요' : "That's all your practice for today"}
+            {ko ? '에너지를 다 썼어요' : "You're out of energy"}
           </h2>
           <p className="mt-2 text-[13px] text-gray-500 leading-relaxed max-w-[300px]">
             {ko
-              ? `하루 연습 세트는 ${limitInfo?.limit ?? 3}개까지예요. 내일 새 문제로 다시 만나요! 그동안 오답노트와 복습으로 실력을 다질 수 있어요.`
-              : `You've used all ${limitInfo?.limit ?? 3} practice sets for today. Fresh questions unlock tomorrow — meanwhile, sharpen up with your wrong notebook and daily review.`}
+              ? `연습·플래시카드는 하루 에너지 ${limitInfo?.limit ?? 3}개로 이용해요. 에너지는 내일 다시 채워져요! 그동안 복습으로 실력을 다질 수 있어요.`
+              : `Practice and flashcards run on energy — ${limitInfo?.limit ?? 3} per day. It refills tomorrow. Meanwhile, sharpen up with review.`}
           </p>
         </div>
         <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
           <Link
-            href="/mobile/study/wrong-notebook"
+            href="/mobile/study/review"
             className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
           >
-            {ko ? '오답노트 복습' : 'Review wrong notebook'}
+            {ko ? '복습하러 가기' : 'Go to review'}
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link

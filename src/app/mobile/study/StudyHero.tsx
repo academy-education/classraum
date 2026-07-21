@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from 'react'
 import Link from 'next/link'
-import { Flame, Snowflake, TrendingUp, Search as SearchIcon } from '@/app/mobile/study/_shared/icons'
+import { Flame, TrendingUp, Search as SearchIcon } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -49,8 +49,6 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
   const progress = landingData ? landingData.progress : fallbackProgress
   const loadingProgress = landingData ? landingData.loading : fallbackLoading
   const xpToday = landingData?.xpToday ?? 0
-  const freezes = landingData?.freezes ?? 0
-  const streakSaved = landingData?.streakSaved ?? false
 
   useEffect(() => {
     if (landingData) return
@@ -136,15 +134,8 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
               <Flame className="w-4 h-4 self-center text-orange-300" fill="currentColor" />
               <span className="text-[14px] font-bold tabular-nums text-white">{streak}</span>
               <span className="text-[11px] text-white/80">{ko ? '일 연속' : 'day streak'}</span>
-              {freezes > 0 && (
-                <span
-                  className="ml-1 self-center inline-flex items-center gap-0.5 rounded-full bg-sky-400/25 ring-1 ring-sky-200/30 pl-1 pr-1.5 py-0.5"
-                  title={ko ? '스트릭 프리즈' : 'Streak freeze'}
-                >
-                  <Snowflake className="w-3 h-3 text-sky-100" fill="currentColor" />
-                  <span className="text-[10.5px] font-bold tabular-nums text-sky-50">{freezes}</span>
-                </span>
-              )}
+              {/* Streak freezes are disabled for now — the badge stays hidden
+                  while the underlying freeze data continues to accrue. */}
             </Link>
           )}
         </div>

@@ -5,14 +5,15 @@ import { isPassPlan } from '@/lib/study/plans'
  * Practice-session daily quota — shared by the practice + flashcards
  * generate routes (the real enforcement points) and surfaced to the UI.
  *
- * Policy (2026-07):
- *   - FREE users get NO topic-page practice sets. Their only practice is
- *     the Daily Challenge (a `config.dailyChallenge` session, exempt).
- *   - PAID users (recurring Premium OR a live exam pass) get
- *     PRACTICE_SETS_PER_DAY sets/day, COMBINED across practice questions
- *     and flashcards.
+ * Policy (2026-07) — "energy":
+ *   - Every student has energy that refills to a daily cap (KST midnight).
+ *     FREE users get FREE_ENERGY_CAP, PAID users (recurring Premium OR a
+ *     live exam pass) get PAID_ENERGY_CAP.
+ *   - Starting a topic-page practice-questions OR flashcards set spends 1
+ *     energy; the two share the same pool.
  *   - Path-stop sessions (`config.pathNode`) and the daily challenge are
- *     exempt — they have their own once-per-day / terminal rules.
+ *     exempt — they have their own once-per-day / terminal rules and don't
+ *     spend energy.
  *
  * "Used" counts only ENGAGED sessions — a set the student actually
  * answered at least one item in (a study_attempts row). A session that
@@ -21,14 +22,23 @@ import { isPassPlan } from '@/lib/study/plans'
  * get saved").
  */
 
-/** Practice sets/day for paid users, combined across practice + flashcards. */
-export const PRACTICE_SETS_PER_DAY = 3
+/**
+ * Energy caps: practice + flashcards each spend 1 energy; energy refills to
+ * the cap once per day (KST). Free users get FREE, paid users get PAID.
+ */
+export const FREE_ENERGY_CAP = 3
+export const PAID_ENERGY_CAP = 10
+/** @deprecated alias kept for callers that imported the old name. */
+export const PRACTICE_SETS_PER_DAY = PAID_ENERGY_CAP
 
 export interface PracticeQuota {
   paid: boolean
   limit: number
   used: number
   remaining: number
+  /** Remaining energy (== remaining) and the day's cap, named for the UI. */
+  energy: number
+  cap: number
   /** ISO timestamp of the current KST day start (for the caller). */
   sinceIso: string
 }
@@ -136,8 +146,9 @@ export async function cleanupAbandonedPracticeSessions(studentId: string, except
  *  this guards a session that somehow already has attempts. */
 export async function getPracticeQuota(studentId: string): Promise<PracticeQuota> {
   const paid = await isPaidStudent(studentId)
-  const limit = paid ? PRACTICE_SETS_PER_DAY : 0
+  const limit = paid ? PAID_ENERGY_CAP : FREE_ENERGY_CAP
   const sinceIso = kstDayStartIso()
-  const used = limit === 0 ? 0 : await usedTodayEngaged(studentId, sinceIso)
-  return { paid, limit, used, remaining: Math.max(0, limit - used), sinceIso }
+  const used = await usedTodayEngaged(studentId, sinceIso)
+  const remaining = Math.max(0, limit - used)
+  return { paid, limit, used, remaining, energy: remaining, cap: limit, sinceIso }
 }

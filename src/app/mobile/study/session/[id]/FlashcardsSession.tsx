@@ -273,12 +273,12 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
         <PathMascot state="idle" size={96} />
         <div>
           <h2 className="text-[17px] font-bold text-gray-900">
-            {ko ? '오늘의 연습을 다 했어요' : "That's all your practice for today"}
+            {ko ? '에너지를 다 썼어요' : "You're out of energy"}
           </h2>
           <p className="mt-2 text-[13px] text-gray-500 leading-relaxed max-w-[300px]">
             {ko
-              ? '연습 세트는 하루 3개까지예요 (연습 문제 + 플래시카드). 내일 다시 만나요!'
-              : "You've used all your practice sets for today (practice + flashcards combined). Come back tomorrow!"}
+              ? '연습 문제와 플래시카드는 같은 에너지를 써요. 에너지는 내일 다시 채워져요!'
+              : 'Practice questions and flashcards share the same energy. It refills tomorrow!'}
           </p>
         </div>
         <Link href="/mobile/study" className="w-full max-w-xs inline-flex items-center justify-center h-11 rounded-full bg-primary text-white text-sm font-semibold">

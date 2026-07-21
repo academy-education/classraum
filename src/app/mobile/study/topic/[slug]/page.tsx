@@ -4,7 +4,7 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
-import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins } from '@/app/mobile/study/_shared/icons'
+import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins, Zap } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
 import { supabase } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -139,8 +139,8 @@ function TopicInner({ slug }: { slug: string }) {
   // path still catches any race.
   const [creditBalance, setCreditBalance] = useState<number | null>(null)
   const [regularBalance, setRegularBalance] = useState<number | null>(null)
-  // Practice quota (plan-gate). null = unknown (never lock while loading).
-  const [quota, setQuota] = useState<{ paid: boolean; limit: number; used: number; remaining: number } | null>(null)
+  // Practice energy. null = unknown (never gate while loading).
+  const [quota, setQuota] = useState<{ paid: boolean; limit: number; used: number; remaining: number; cap?: number } | null>(null)
   // Per-test entitlements from the subscription payload. null = unknown
   // (cold load / fetch failed) → NEVER lock; only a loaded, test-scoped
   // access set that excludes this family locks the full-test entry.
@@ -447,8 +447,22 @@ function TopicInner({ slug }: { slug: string }) {
   const flashcardsReady = gridParsed.family === 'sat'
 
   // The 2x2 learning-mode grid — shared by the subject layout and the
-  // test-prep "Practice" tab.
+  // test-prep "Practice" tab. An energy meter sits above it: practice
+  // questions + flashcards each spend 1 energy from a daily pool.
   const modeGrid = (
+    <div className="space-y-2.5">
+      {quota && (
+        <div className="flex items-center justify-end">
+          <span
+            className="inline-flex items-center gap-1 rounded-full bg-amber-50 ring-1 ring-amber-200/70 px-2.5 py-1 text-[12px] font-semibold text-amber-700 tabular-nums"
+            title={ko ? '연습·플래시카드 에너지 (매일 충전)' : 'Practice & flashcards energy (refills daily)'}
+          >
+            <Zap className="w-3.5 h-3.5" weight="fill" />
+            {quota.remaining}/{quota.cap ?? quota.limit}
+            <span className="font-medium text-amber-600/80">{ko ? '에너지' : 'energy'}</span>
+          </span>
+        </div>
+      )}
     <section className="grid grid-cols-2 gap-3">
       {STUDY_MODES
         .filter(m => m.key !== 'full_test')
@@ -460,35 +474,6 @@ function TopicInner({ slug }: { slug: string }) {
           // checkmarks, Lesson → reading lines, Flashcards → stacked
           // card edges. Brilliant-style ambient texture.
           const decor = MODE_DECOR[mode.key] ?? null
-          // Free-plan lock — practice questions + flashcards are Premium;
-          // free users get the Daily Challenge instead. Card links to the
-          // plan page. Only lock once quota is KNOWN and free (never lock
-          // while loading, and never for paid users).
-          if ((mode.key === 'practice' || mode.key === 'flashcards') && quota && !quota.paid) {
-            return (
-              <Link
-                key={mode.key}
-                href="/mobile/study/subscription"
-                style={{ animationDelay: `${i * 60}ms` }}
-                className={`relative overflow-hidden flex flex-col items-start gap-3.5 rounded-2xl ${mode.cardBg} p-5 min-h-[148px] ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-left animate-card-in opacity-0 hover:ring-primary/30 transition`}
-              >
-                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
-                {decor}
-                <div className={`relative w-12 h-12 rounded-2xl ${mode.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] opacity-40`}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <div className="relative">
-                  <div className="text-[15px] font-semibold text-gray-400">
-                    {t(`study.modes.${mode.key}.title`)}
-                  </div>
-                  <span className="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 ring-1 ring-primary/20 text-[11px] font-semibold text-primary">
-                    <Lock className="w-3 h-3" />
-                    {ko ? '프리미엄' : 'Premium'}
-                  </span>
-                </div>
-              </Link>
-            )
-          }
           // Flashcards coming-soon card (Math + non-SAT) — dimmed,
           // non-navigating, with a lock badge.
           if (mode.key === 'flashcards' && !flashcardsReady) {
@@ -551,6 +536,7 @@ function TopicInner({ slug }: { slug: string }) {
           )
         })}
     </section>
+    </div>
   )
 
   return (
