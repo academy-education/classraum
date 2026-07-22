@@ -39,7 +39,7 @@ interface NavigationItem {
   nameKey: string;
   descriptionKey: string;
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   permission?: keyof ReturnType<typeof getAdminPermissions>;
 }
 
@@ -139,7 +139,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
   const systemItems = filteredSuperAdminItems
 
   return (
-    <div className="w-64 h-screen bg-white border-r border-gray-200/70 flex flex-col">
+    <div className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col">
       {/* Header — logo + admin label */}
       <div className="px-5 pt-5 pb-4">
         <div className="flex items-center gap-3">
@@ -258,21 +258,22 @@ function SidebarLink({
   return (
     <Link
       href={item.href}
-      className={`group relative flex items-center gap-3 pl-4 pr-3 py-2 rounded-lg text-sm font-medium transition-all ${
+      className={`group relative flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all text-sm ${
         isActive
-          ? 'bg-[#2885e8]/8 text-[#1f6fc7]'
-          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+          ? 'bg-primary/10 text-primary font-semibold'
+          : 'text-gray-600 hover:bg-gray-50 hover:text-primary font-medium'
       }`}
       title={String(t(`admin.sidebar.${item.descriptionKey}`))}
     >
-      {/* Left indicator bar on active */}
+      {/* Left indicator bar on active — matches the manager dashboard sidebar */}
       {isActive && (
-        <span className="absolute left-0 top-1.5 bottom-1.5 w-0.5 rounded-r-full bg-[#2885e8]" />
+        <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-primary rounded-r" />
       )}
       <item.icon
-        className={`w-4 h-4 transition-colors ${
-          isActive ? 'text-[#2885e8]' : 'text-gray-400 group-hover:text-gray-600'
+        className={`w-[18px] h-[18px] transition-colors ${
+          isActive ? 'text-primary' : 'text-gray-400 group-hover:text-primary'
         }`}
+        strokeWidth={isActive ? 2.25 : 1.75}
       />
       <span className="flex-1 truncate">{String(t(`admin.sidebar.${item.nameKey}`))}</span>
       {badgeCount > 0 && (
