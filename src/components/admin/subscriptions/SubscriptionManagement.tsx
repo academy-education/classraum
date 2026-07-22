@@ -111,7 +111,7 @@ export function SubscriptionManagement() {
         }));
 
         setSubscriptions(formattedSubscriptions)
-        announce(`Loaded ${formattedSubscriptions.length} subscriptions.`);
+        announce(String(t('admin.subscriptions.loadedAnnounce', { count: formattedSubscriptions.length })));
         setMetrics(result.data.metrics);
       }
     } catch (error) {
@@ -125,10 +125,10 @@ export function SubscriptionManagement() {
   // consistent with every other admin table.
   const getStatusBadge = (status: SubscriptionData['status']) => {
     const map: Record<SubscriptionData['status'], { tone: StatusTone; icon: typeof CheckCircle; label: string }> = {
-      active:    { tone: 'active',  icon: CheckCircle, label: 'Active' },
-      past_due:  { tone: 'danger',  icon: XCircle,     label: 'Past Due' },
-      trialing:  { tone: 'pending', icon: AlertCircle, label: 'Trial' },
-      canceled:  { tone: 'muted',   icon: XCircle,     label: 'Canceled' },
+      active:    { tone: 'active',  icon: CheckCircle, label: String(t('admin.subscriptions.active')) },
+      past_due:  { tone: 'danger',  icon: XCircle,     label: String(t('admin.subscriptions.pastDueStatus')) },
+      trialing:  { tone: 'pending', icon: AlertCircle, label: String(t('admin.subscriptions.trial')) },
+      canceled:  { tone: 'muted',   icon: XCircle,     label: String(t('admin.subscriptions.cancelledStatus')) },
     }
     const entry = map[status]
     if (!entry) return null
@@ -158,7 +158,16 @@ export function SubscriptionManagement() {
   // server-side export instead.
   const handleExportCSV = () => {
     if (filteredSubscriptions.length === 0) return;
-    const headers = ['Subscription ID', 'Academy', 'Tier', 'Status', 'Monthly Amount', 'Billing Cycle', 'Next Billing', 'Total Users'];
+    const headers = [
+      String(t('admin.subscriptions.csv.subscriptionId')),
+      String(t('admin.subscriptions.csv.academy')),
+      String(t('admin.subscriptions.csv.tier')),
+      String(t('admin.subscriptions.csv.status')),
+      String(t('admin.subscriptions.csv.monthlyAmount')),
+      String(t('admin.subscriptions.csv.billingCycle')),
+      String(t('admin.subscriptions.csv.nextBilling')),
+      String(t('admin.subscriptions.csv.totalUsers')),
+    ];
     const rows = filteredSubscriptions.map(sub => [
       sub.id,
       sub.academyName,
@@ -340,7 +349,7 @@ export function SubscriptionManagement() {
                   <SortableTh sortKey="nextBilling" toggle={toggleSort} indicator={sortIndicator('nextBilling')}>{String(t('admin.subscriptions.columns.nextBilling'))}</SortableTh>
                   <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>{String(t('admin.subscriptions.columns.users'))}</SortableTh>
                   <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                    Actions
+                    {String(t('admin.common.actions'))}
                   </th>
                 </tr>
               </thead>
@@ -387,8 +396,8 @@ export function SubscriptionManagement() {
                         <div className={`text-xs ${
                           subscription.status === 'past_due' ? 'text-rose-600 font-medium' : 'text-gray-500'
                         }`}>
-                          {subscription.status === 'past_due' ? 'Overdue' : 
-                           `${Math.ceil((subscription.nextBillingDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24))} days`}
+                          {subscription.status === 'past_due' ? String(t('admin.subscriptions.overdue')) :
+                           String(t('admin.subscriptions.daysUntilBilling', { count: Math.ceil((subscription.nextBillingDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)) }))}
                         </div>
                       </div>
                     </td>
@@ -437,7 +446,7 @@ export function SubscriptionManagement() {
                             className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-t-lg"
                           >
                             <CreditCard className="mr-3 h-4 w-4" />
-                            View Details
+                            {String(t('admin.subscriptions.viewDetails'))}
                           </button>
                         </div>
                       )}
@@ -453,7 +462,7 @@ export function SubscriptionManagement() {
             <AdminEmptyState
               icon={CreditCard}
               title={String(t('admin.subscriptions.noSubscriptionsTitle'))}
-              description="Try adjusting your search or filters"
+              description={String(t('admin.subscriptions.emptyStateDescription'))}
             />
           )}
         </div>

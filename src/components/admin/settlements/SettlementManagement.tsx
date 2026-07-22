@@ -112,7 +112,7 @@ export function SettlementManagement() {
       }
 
       setSettlements(filteredItems);
-      announce(`Loaded ${filteredItems.length} settlements.`);
+      announce(String(t('admin.settlements.loadedAnnounce', { n: filteredItems.length })));
       setTotalCount(data.totalCount || 0);
     } catch (error) {
       console.error('Error loading settlements:', error);
@@ -128,12 +128,12 @@ export function SettlementManagement() {
     // Maps PortOne settlement states → semantic tones in the shared StatusBadge.
     // Lifecycle reads left → right: scheduled → in process → settled → paid out.
     const statusConfig: Record<SettlementStatus, { tone: StatusTone; label: string }> = {
-      SCHEDULED:        { tone: 'info',    label: 'Scheduled' },
-      IN_PROCESS:       { tone: 'pending', label: 'In Process' },
-      SETTLED:          { tone: 'brand',   label: 'Settled' },
-      PAYOUT_SCHEDULED: { tone: 'violet',  label: 'Payout Scheduled' },
-      PAID_OUT:         { tone: 'active',  label: 'Paid Out' },
-      CANCELED:         { tone: 'danger',  label: 'Canceled' },
+      SCHEDULED:        { tone: 'info',    label: String(t('admin.settlements.statuses.scheduled')) },
+      IN_PROCESS:       { tone: 'pending', label: String(t('admin.settlements.statuses.inProcess')) },
+      SETTLED:          { tone: 'brand',   label: String(t('admin.settlements.statuses.settled')) },
+      PAYOUT_SCHEDULED: { tone: 'violet',  label: String(t('admin.settlements.statuses.payoutScheduled')) },
+      PAID_OUT:         { tone: 'active',  label: String(t('admin.settlements.statuses.paidOut')) },
+      CANCELED:         { tone: 'danger',  label: String(t('admin.settlements.statuses.canceled')) },
     };
     const config = statusConfig[status] || { tone: 'muted' as StatusTone, label: status };
     return <StatusBadge tone={config.tone}>{config.label}</StatusBadge>;
@@ -297,15 +297,15 @@ export function SettlementManagement() {
           <table className="w-full">
             <thead className="bg-gray-50/60 border-b border-gray-100">
               <tr>
-                <SortableTh sortKey="id" toggle={toggleSort} indicator={sortIndicator('id')}>Settlement ID</SortableTh>
-                <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>Academy</SortableTh>
-                <SortableTh sortKey="type" toggle={toggleSort} indicator={sortIndicator('type')}>Type</SortableTh>
-                <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>Status</SortableTh>
-                <SortableTh sortKey="orderAmount" toggle={toggleSort} indicator={sortIndicator('orderAmount')} align="right">Order Amount</SortableTh>
-                <SortableTh sortKey="settlementAmount" toggle={toggleSort} indicator={sortIndicator('settlementAmount')} align="right">Settlement Amount</SortableTh>
-                <SortableTh sortKey="settlementDate" toggle={toggleSort} indicator={sortIndicator('settlementDate')}>Settlement Date</SortableTh>
+                <SortableTh sortKey="id" toggle={toggleSort} indicator={sortIndicator('id')}>{String(t('admin.settlements.settlementId'))}</SortableTh>
+                <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>{String(t('admin.settlements.academy'))}</SortableTh>
+                <SortableTh sortKey="type" toggle={toggleSort} indicator={sortIndicator('type')}>{String(t('admin.settlements.typeLabel'))}</SortableTh>
+                <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>{String(t('admin.settlements.status'))}</SortableTh>
+                <SortableTh sortKey="orderAmount" toggle={toggleSort} indicator={sortIndicator('orderAmount')} align="right">{String(t('admin.settlements.orderAmount'))}</SortableTh>
+                <SortableTh sortKey="settlementAmount" toggle={toggleSort} indicator={sortIndicator('settlementAmount')} align="right">{String(t('admin.settlements.settlementAmount'))}</SortableTh>
+                <SortableTh sortKey="settlementDate" toggle={toggleSort} indicator={sortIndicator('settlementDate')}>{String(t('admin.settlements.settlementDateLabel'))}</SortableTh>
                 <th className="px-6 py-3 text-center text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                  Actions
+                  {String(t('admin.common.actions'))}
                 </th>
               </tr>
             </thead>
@@ -327,7 +327,7 @@ export function SettlementManagement() {
                     <AdminEmptyState
                       icon={Search}
                       title={String(t('admin.settlements.noSettlementsFound'))}
-                      description="No settlements match your current filters. Try widening the date range or clearing filters."
+                      description={String(t('admin.settlements.noSettlementsFoundDesc'))}
                       compact
                     />
                   </td>
@@ -362,7 +362,7 @@ export function SettlementManagement() {
                         variant="ghost"
                         size="sm"
                         className="h-7 w-7 p-0 text-gray-500 hover:text-primary hover:bg-primary/10"
-                        aria-label="View settlement"
+                        aria-label={String(t('admin.settlements.viewSettlement'))}
                       >
                         <Eye className="w-4 h-4" />
                       </Button>
@@ -378,16 +378,16 @@ export function SettlementManagement() {
         {totalCount > 20 && (
           <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
             <div className="text-sm text-gray-500 tabular-nums">
-              Showing <span className="font-medium text-gray-900">{page * 20 + 1}</span>–
-              <span className="font-medium text-gray-900">{Math.min((page + 1) * 20, totalCount)}</span> of{' '}
+              {String(t('admin.settlements.showing'))} <span className="font-medium text-gray-900">{page * 20 + 1}</span>–
+              <span className="font-medium text-gray-900">{Math.min((page + 1) * 20, totalCount)}</span> {String(t('admin.common.of'))}{' '}
               <span className="font-medium text-gray-900">{totalCount.toLocaleString()}</span>
             </div>
             <div className="flex gap-2">
               <Button onClick={() => setPage(page - 1)} disabled={page === 0} variant="outline" size="sm">
-                Previous
+                {String(t('admin.common.previous'))}
               </Button>
               <Button onClick={() => setPage(page + 1)} disabled={(page + 1) * 20 >= totalCount} variant="outline" size="sm">
-                Next
+                {String(t('admin.common.next'))}
               </Button>
             </div>
           </div>

@@ -150,7 +150,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
         return {
           id: msg.id,
           senderId: msg.sender_id,
-          senderName: isSupport ? 'Classraum Support' : (msg.users?.name || 'Unknown User'),
+          senderName: isSupport ? String(t('admin.support.classraumSupport')) : (msg.users?.name || String(t('admin.common.unknownUser'))),
           senderType: isSupport ? 'admin' : 'user',
           message: msg.message,
           timestamp: new Date(msg.created_at),
@@ -199,7 +199,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
           const transformedMessage: Message = {
             id: newMsg.id,
             senderId: newMsg.sender_id,
-            senderName: userData?.name || 'Unknown User',
+            senderName: userData?.name || String(t('admin.common.unknownUser')),
             senderType: 'user',
             message: newMsg.message,
             timestamp: new Date(newMsg.created_at),

@@ -108,11 +108,11 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
     // / failed (danger) / canceled (muted). Same vocabulary as the parent
     // SettlementManagement page for visual continuity across the two screens.
     const statusConfig: Record<PayoutStatus, { tone: StatusTone; label: string }> = {
-      SCHEDULED:  { tone: 'info',    label: 'Scheduled' },
-      PROCESSING: { tone: 'pending', label: 'Processing' },
-      SUCCEEDED:  { tone: 'active',  label: 'Succeeded' },
-      FAILED:     { tone: 'danger',  label: 'Failed' },
-      CANCELED:   { tone: 'muted',   label: 'Canceled' },
+      SCHEDULED:  { tone: 'info',    label: String(t('admin.settlements.statuses.scheduled')) },
+      PROCESSING: { tone: 'pending', label: String(t('admin.settlements.statuses.processing')) },
+      SUCCEEDED:  { tone: 'active',  label: String(t('admin.settlements.statuses.succeeded')) },
+      FAILED:     { tone: 'danger',  label: String(t('admin.settlements.failed')) },
+      CANCELED:   { tone: 'muted',   label: String(t('admin.settlements.statuses.canceled')) },
     };
     const config = statusConfig[status] || { tone: 'muted' as StatusTone, label: status };
     return <StatusBadge tone={config.tone}>{config.label}</StatusBadge>;
@@ -146,7 +146,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
       footer={totalCount > 20 ? (
         <div className="w-full flex items-center justify-between">
           <div className="text-sm text-gray-700">
-            Showing {page * 20 + 1} to {Math.min((page + 1) * 20, totalCount)} of {totalCount} results
+            {String(t('admin.settlements.showingResults', { from: page * 20 + 1, to: Math.min((page + 1) * 20, totalCount), total: totalCount }))}
           </div>
           <div className="flex gap-2">
             <button
@@ -240,25 +240,25 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
             <thead className="bg-gray-50/60 border-b border-gray-100">
               <tr>
                 <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                  Payout ID
+                  {String(t('admin.settlements.payoutId'))}
                 </th>
                 <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                  Academy
+                  {String(t('admin.settlements.academy'))}
                 </th>
                 <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                  Status
+                  {String(t('admin.settlements.status'))}
                 </th>
                 <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                  Amount
+                  {String(t('admin.settlements.amount'))}
                 </th>
                 <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                  Bank Account
+                  {String(t('admin.settlements.bankAccount'))}
                 </th>
                 <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                  Scheduled At
+                  {String(t('admin.settlements.scheduledAt'))}
                 </th>
                 <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                  Payout At
+                  {String(t('admin.settlements.payoutAt'))}
                 </th>
               </tr>
             </thead>
@@ -266,7 +266,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
               {loading ? (
                 <tr>
                   <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
-                    Loading payouts...
+                    {String(t('admin.settlements.loadingPayouts'))}
                   </td>
                 </tr>
               ) : payouts.length === 0 ? (

@@ -162,14 +162,13 @@ export function SystemDashboard() {
       ) : !systemData ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <AlertTriangle className="h-10 w-10 text-rose-400 mb-3" />
-          <p className="text-sm font-medium text-gray-900">Failed to load system data</p>
+          <p className="text-sm font-medium text-gray-900">{String(t('admin.system.loadFailed'))}</p>
           <p className="text-xs text-gray-500 mt-1 max-w-sm">
-            The system endpoint didn&apos;t return any data. Try refreshing — if the issue persists,
-            check the server logs.
+            {String(t('admin.system.loadFailedHint'))}
           </p>
           <Button onClick={loadSystemData} variant="outline" className="mt-4 gap-1.5">
             <RefreshCw className="w-4 h-4" />
-            Retry
+            {String(t('admin.system.retry'))}
           </Button>
         </div>
       ) : (<>
@@ -190,13 +189,13 @@ export function SystemDashboard() {
           accent="blue"
         />
         <DashboardCard
-          title="Version"
+          title={String(t('admin.system.version'))}
           value={systemStatus.version || '—'}
           icon={<Monitor className="h-5 w-5" />}
           accent="violet"
         />
         <DashboardCard
-          title="Active Users"
+          title={String(t('admin.system.activeUsers'))}
           value={(systemData.activeUsers ?? 0).toLocaleString()}
           icon={<Users className="h-5 w-5" />}
           accent="emerald"
@@ -215,7 +214,7 @@ export function SystemDashboard() {
                   activeTab === tab ? 'text-primary' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {String(t(`admin.system.tab_${tab}`))}
                 {activeTab === tab && (
                   <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-primary rounded-full" />
                 )}
@@ -230,10 +229,10 @@ export function SystemDashboard() {
             <div className="space-y-6">
               <section>
                 <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-[0.06em] mb-3">
-                  Services
+                  {String(t('admin.system.services'))}
                 </h3>
                 {services.length === 0 ? (
-                  <p className="text-sm text-gray-500">No service data reported.</p>
+                  <p className="text-sm text-gray-500">{String(t('admin.system.noServices'))}</p>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {services.map(service => {
@@ -246,7 +245,7 @@ export function SystemDashboard() {
                             </div>
                             <div className="min-w-0">
                               <p className="text-sm font-semibold text-gray-900 truncate">{service.name}</p>
-                              <p className="text-xs text-gray-500">Uptime · {service.uptime}</p>
+                              <p className="text-xs text-gray-500">{String(t('admin.system.uptime'))} · {service.uptime}</p>
                             </div>
                           </div>
                           <StatusBadge tone={toTone(service.status)} size="sm">{service.status}</StatusBadge>
@@ -259,10 +258,10 @@ export function SystemDashboard() {
 
               <section>
                 <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-[0.06em] mb-3">
-                  Metrics
+                  {String(t('admin.system.metrics'))}
                 </h3>
                 {systemMetrics.length === 0 ? (
-                  <p className="text-sm text-gray-500">No metric data reported.</p>
+                  <p className="text-sm text-gray-500">{String(t('admin.system.noMetrics'))}</p>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     {systemMetrics.map(metric => (

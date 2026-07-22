@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { StatusBadge } from './StatusBadge';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface ActivityItem {
   id: string;

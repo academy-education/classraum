@@ -121,7 +121,15 @@ export function ErrorLogsDashboard() {
   // what they typically want for sharing with engineering.
   const exportToCSV = () => {
     if (sortedLogs.length === 0) return;
-    const headers = ['Timestamp', 'Service', 'Level', 'Message', 'Error', 'Request ID', 'User ID'];
+    const headers = [
+      String(t('admin.errorLogs.csvTimestamp')),
+      String(t('admin.errorLogs.service')),
+      String(t('admin.errorLogs.csvLevel')),
+      String(t('admin.errorLogs.csvMessage')),
+      String(t('admin.errorLogs.csvError')),
+      String(t('admin.errorLogs.requestId')),
+      String(t('admin.errorLogs.userId')),
+    ];
     const rows = sortedLogs.map(l => [
       new Date(l.created_at).toISOString(),
       l.service_name,

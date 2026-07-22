@@ -123,7 +123,7 @@ export function UserManagement() {
       });
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.error || 'Update failed');
+        throw new Error(result.error || String(t('admin.users.updateFailed')));
       }
       const { okCount, failCount } = result;
       if (failCount === 0) {
@@ -133,12 +133,12 @@ export function UserManagement() {
         });
       } else {
         toast({
-          title: 'Partial update',
-          description: `${okCount} succeeded, ${failCount} failed. Reloading list.`,
+          title: String(t('admin.users.partialUpdate')),
+          description: String(t('admin.users.partialUpdateDesc', { okCount, failCount })),
           variant: 'warning',
         });
       }
-      announce(`${description}: ${okCount} of ${ids.length}.`);
+      announce(String(t('admin.users.updateAnnounce', { description, okCount, total: ids.length })));
       setSelectedIds(new Set());
       await loadUsers();
     } catch (err: any) {

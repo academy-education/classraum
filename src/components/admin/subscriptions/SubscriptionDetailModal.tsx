@@ -225,11 +225,11 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.subscriptions.subscriptionStatus'))}</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs text-gray-600">Current Plan</p>
+                    <p className="text-xs text-gray-600">{String(t('admin.subscriptions.currentPlan'))}</p>
                     <p className="text-lg font-semibold capitalize">{subscription.tier}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-600">Status</p>
+                    <p className="text-xs text-gray-600">{String(t('admin.common.status'))}</p>
                     <div className="flex items-center space-x-2">
                       {subscription.status === 'active' && <CheckCircle className="h-4 w-4 text-emerald-600" />}
                       {subscription.status === 'past_due' && <XCircle className="h-4 w-4 text-rose-600" />}
@@ -238,11 +238,11 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                     </div>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-600">Monthly Amount</p>
+                    <p className="text-xs text-gray-600">{String(t('admin.subscriptions.monthlyAmount'))}</p>
                     <p className="text-lg font-semibold">{formatPrice(subscription.monthlyAmount)}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-600">Billing Cycle</p>
+                    <p className="text-xs text-gray-600">{String(t('admin.subscriptions.billingCycle'))}</p>
                     <p className="text-lg font-semibold capitalize">{subscription.billingCycle}</p>
                   </div>
                 </div>
@@ -251,18 +251,18 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
               {/* Billing Information */}
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900 mb-3">Billing Period</h3>
+                  <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.subscriptions.billingPeriod'))}</h3>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Current Period Start</span>
+                      <span className="text-gray-600">{String(t('admin.subscriptions.currentPeriodStartLabel'))}</span>
                       <span>{subscription.currentPeriodStart.toLocaleDateString(getDateLocale(language))}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Current Period End</span>
+                      <span className="text-gray-600">{String(t('admin.subscriptions.currentPeriodEndLabel'))}</span>
                       <span>{subscription.currentPeriodEnd.toLocaleDateString(getDateLocale(language))}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Next Billing Date</span>
+                      <span className="text-gray-600">{String(t('admin.subscriptions.nextBillingDate'))}</span>
                       <span className={subscription.status === 'past_due' ? 'text-rose-600 font-medium' : ''}>
                         {subscription.nextBillingDate.toLocaleDateString(getDateLocale(language))}
                       </span>
@@ -271,21 +271,21 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900 mb-3">Payment Information</h3>
+                  <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.subscriptions.paymentInformation'))}</h3>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Payment Method</span>
+                      <span className="text-gray-600">{String(t('admin.subscriptions.paymentMethod'))}</span>
                       <span>{subscription.paymentMethod || String(t('admin.subscriptions.notSet'))}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Auto Renew</span>
+                      <span className="text-gray-600">{String(t('admin.subscriptions.autoRenew'))}</span>
                       <span className={subscription.autoRenew ? 'text-emerald-600' : 'text-rose-600'}>
                         {subscription.autoRenew ? String(t('admin.subscriptions.enabled')) : String(t('admin.subscriptions.disabled'))}
                       </span>
                     </div>
                     {subscription.lastPaymentDate && (
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-600">Last Payment</span>
+                        <span className="text-gray-600">{String(t('admin.subscriptions.lastPayment'))}</span>
                         <span>{subscription.lastPaymentDate.toLocaleDateString(getDateLocale(language))}</span>
                       </div>
                     )}
@@ -299,18 +299,18 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
             <div className="space-y-6">
               {/* Current Billing Info */}
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-medium text-gray-900 mb-3">Current Billing Cycle</h3>
+                <h3 className="font-medium text-gray-900 mb-3">{String(t('admin.subscriptions.currentBillingCycle'))}</h3>
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600">Amount</p>
+                    <p className="text-sm text-gray-600">{String(t('admin.subscriptions.amount'))}</p>
                     <p className="text-xl font-semibold">{formatPrice(subscription.monthlyAmount)}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Next Billing</p>
+                    <p className="text-sm text-gray-600">{String(t('admin.subscriptions.columns.nextBilling'))}</p>
                     <p className="text-lg font-medium">{subscription.nextBillingDate.toLocaleDateString(getDateLocale(language))}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Days Remaining</p>
+                    <p className="text-sm text-gray-600">{String(t('admin.subscriptions.daysRemaining'))}</p>
                     <p className="text-lg font-medium">
                       {Math.max(0, Math.ceil((subscription.nextBillingDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))}
                     </p>

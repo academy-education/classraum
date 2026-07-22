@@ -154,44 +154,44 @@ export function AnalyticsDashboard() {
       ) : !data ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <AlertCircle className="h-10 w-10 text-rose-400 mb-3" />
-          <p className="text-sm font-medium text-gray-900">Failed to load analytics</p>
+          <p className="text-sm font-medium text-gray-900">{String(t('admin.analytics.loadFailed'))}</p>
           <p className="text-xs text-gray-500 mt-1 max-w-sm">
-            The analytics endpoint didn&apos;t return any data. Try refreshing.
+            {String(t('admin.analytics.loadFailedHint'))}
           </p>
           <Button onClick={loadAnalyticsData} variant="outline" className="mt-4 gap-1.5">
             <RefreshCw className="w-4 h-4" />
-            Retry
+            {String(t('admin.analytics.retry'))}
           </Button>
         </div>
       ) : (<>
       {/* Key Metrics — uses shared DashboardCard with semantic accents */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <DashboardCard
-          title="Total Revenue"
+          title={String(t('admin.analytics.totalRevenue'))}
           value={formatPrice(data.revenue.total)}
-          subtitle={`+${data.revenue.growth}% from last month`}
+          subtitle={String(t('admin.analytics.fromLastMonth', { n: data.revenue.growth }))}
           icon={<DollarSign className="h-5 w-5" />}
           accent="emerald"
           trend={{ value: data.revenue.growth, isPositive: data.revenue.growth >= 0 }}
         />
         <DashboardCard
-          title="Total Customers"
+          title={String(t('admin.analytics.totalCustomers'))}
           value={data.customers.total.toLocaleString()}
-          subtitle={`+${data.customers.new} new this month`}
+          subtitle={String(t('admin.analytics.newThisMonth', { n: data.customers.new }))}
           icon={<Building2 className="h-5 w-5" />}
           accent="blue"
         />
         <DashboardCard
-          title="Active Users"
+          title={String(t('admin.analytics.activeUsers'))}
           value={data.usage.activeUsers.toLocaleString()}
-          subtitle={`${data.usage.totalSessions.toLocaleString()} sessions`}
+          subtitle={String(t('admin.analytics.sessionsCount', { n: data.usage.totalSessions.toLocaleString() }))}
           icon={<Activity className="h-5 w-5" />}
           accent="violet"
         />
         <DashboardCard
-          title="Churn Rate"
+          title={String(t('admin.analytics.churnRate'))}
           value={`${((data.customers.churn / data.customers.total) * 100).toFixed(1)}%`}
-          subtitle={`${data.customers.churn} canceled this month`}
+          subtitle={String(t('admin.analytics.canceledThisMonth', { n: data.customers.churn }))}
           icon={<TrendingDown className="h-5 w-5" />}
           accent="rose"
         />
@@ -211,7 +211,7 @@ export function AnalyticsDashboard() {
                     : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {String(t(`admin.analytics.tab_${tab}`))}
                 {activeTab === tab && (
                   <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-primary rounded-full" />
                 )}
@@ -225,7 +225,7 @@ export function AnalyticsDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Revenue Trend Chart */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Revenue Trend</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{String(t('admin.analytics.revenueTrend'))}</h3>
                 <div className="h-64 flex items-end justify-between space-x-2">
                   {data.revenue.trend.map((item, index) => (
                     <div key={index} className="flex-1 flex flex-col items-center">
@@ -246,7 +246,7 @@ export function AnalyticsDashboard() {
 
               {/* Plan Distribution */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Revenue by Plan</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{String(t('admin.analytics.revenueByPlan'))}</h3>
                 <div className="space-y-3">
                   {data.revenue.byPlan.map((plan, index) => (
                     <div key={index} className="flex items-center justify-between">
@@ -268,7 +268,7 @@ export function AnalyticsDashboard() {
 
               {/* Geographic Distribution */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Customers by Region</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{String(t('admin.analytics.customersByRegion'))}</h3>
                 <div className="space-y-2">
                   {data.geography.byRegion.map((region, index) => (
                     <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -277,7 +277,7 @@ export function AnalyticsDashboard() {
                         <span className="font-medium">{region.region}</span>
                       </div>
                       <div className="text-right">
-                        <div className="text-sm font-semibold">{region.customers} academies</div>
+                        <div className="text-sm font-semibold">{String(t('admin.analytics.academiesCount', { n: region.customers }))}</div>
                         <div className="text-xs text-gray-500">{formatPrice(region.revenue)}</div>
                       </div>
                     </div>
@@ -287,7 +287,7 @@ export function AnalyticsDashboard() {
 
               {/* Top Features */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Feature Usage</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{String(t('admin.analytics.featureUsage'))}</h3>
                 <div className="space-y-3">
                   {data.usage.topFeatures.map((feature, index) => (
                     <div key={index} className="space-y-1">
@@ -312,19 +312,19 @@ export function AnalyticsDashboard() {
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <DashboardCard
-                  title="MRR"
+                  title={String(t('admin.analytics.mrr'))}
                   value={formatPrice(data.revenue.total)}
                   icon={<TrendingUp className="h-5 w-5" />}
                   accent="emerald"
                 />
                 <DashboardCard
-                  title="ARR"
+                  title={String(t('admin.analytics.arr'))}
                   value={formatPrice(data.revenue.total * 12)}
                   icon={<BarChart3 className="h-5 w-5" />}
                   accent="blue"
                 />
                 <DashboardCard
-                  title="Average Revenue Per User"
+                  title={String(t('admin.analytics.arpu'))}
                   value={formatPrice(Math.round(data.revenue.total / data.customers.total))}
                   icon={<DollarSign className="h-5 w-5" />}
                   accent="violet"
@@ -333,31 +333,31 @@ export function AnalyticsDashboard() {
 
               {/* Detailed Revenue Analysis */}
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-4">Revenue Breakdown</h4>
+                <h4 className="font-medium text-gray-900 mb-4">{String(t('admin.analytics.revenueBreakdown'))}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h5 className="text-sm font-medium text-gray-700 mb-3">By Billing Cycle</h5>
+                    <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.byBillingCycle'))}</h5>
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <span>Monthly subscriptions</span>
+                        <span>{String(t('admin.analytics.monthlySubscriptions'))}</span>
                         <span className="font-medium">{formatPrice(data.revenue.monthlyBreakdown.monthly)}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Annual subscriptions</span>
+                        <span>{String(t('admin.analytics.annualSubscriptions'))}</span>
                         <span className="font-medium">{formatPrice(data.revenue.monthlyBreakdown.annual)}</span>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
-                    <h5 className="text-sm font-medium text-gray-700 mb-3">Growth Metrics</h5>
+                    <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.growthMetrics'))}</h5>
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <span>Month-over-month growth</span>
+                        <span>{String(t('admin.analytics.monthOverMonthGrowth'))}</span>
                         <span className="font-medium text-emerald-600">+{data.revenue.growth}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Year-over-year growth</span>
+                        <span>{String(t('admin.analytics.yearOverYearGrowth'))}</span>
                         <span className="font-medium text-emerald-600">+{data.revenue.yearOverYearGrowth}%</span>
                       </div>
                     </div>
@@ -389,18 +389,18 @@ export function AnalyticsDashboard() {
 
               {/* Customer Acquisition Funnel */}
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-4">Customer Acquisition Funnel</h4>
+                <h4 className="font-medium text-gray-900 mb-4">{String(t('admin.analytics.acquisitionFunnel'))}</h4>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-white rounded border">
-                    <span>Website Visitors</span>
+                    <span>{String(t('admin.analytics.websiteVisitors'))}</span>
                     <span className="font-semibold">{data.customers.acquisition.websiteVisitors.toLocaleString()}</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded border ml-4">
-                    <span>Trial Signups</span>
+                    <span>{String(t('admin.analytics.trialSignups'))}</span>
                     <span className="font-semibold">{data.customers.acquisition.trialSignups.toLocaleString()} ({data.customers.acquisition.trialConversionRate}%)</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded border ml-8">
-                    <span>Paid Conversions</span>
+                    <span>{String(t('admin.analytics.paidConversions'))}</span>
                     <span className="font-semibold">{data.customers.acquisition.paidConversions} ({data.customers.acquisition.paidConversionRate}%)</span>
                   </div>
                 </div>
@@ -415,14 +415,14 @@ export function AnalyticsDashboard() {
                   Removed until the analytics API actually returns DAU. */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <DashboardCard
-                  title="Monthly Active Users"
+                  title={String(t('admin.analytics.monthlyActiveUsers'))}
                   value={data.usage.activeUsers.toLocaleString()}
                   icon={<Users className="h-5 w-5" />}
                   accent="emerald"
                 />
                 <DashboardCard
-                  title="Avg Session Duration"
-                  value={`${data.usage.avgSessionDuration} min`}
+                  title={String(t('admin.analytics.avgSessionDuration'))}
+                  value={String(t('admin.analytics.minutes', { n: data.usage.avgSessionDuration }))}
                   icon={<Clock className="h-5 w-5" />}
                   accent="violet"
                 />
@@ -430,27 +430,27 @@ export function AnalyticsDashboard() {
 
               {/* Usage Heatmap */}
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-4">Platform Health</h4>
+                <h4 className="font-medium text-gray-900 mb-4">{String(t('admin.analytics.platformHealth'))}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h5 className="text-sm font-medium text-gray-700 mb-3">System Performance</h5>
+                    <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.systemPerformance'))}</h5>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span>API Response Time</span>
+                        <span>{String(t('admin.analytics.apiResponseTime'))}</span>
                         <div className="flex items-center space-x-2">
                           <span className="text-sm font-medium">{data.performance.apiResponseTime}</span>
                           <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span>Database Performance</span>
+                        <span>{String(t('admin.analytics.databasePerformance'))}</span>
                         <div className="flex items-center space-x-2">
                           <span className="text-sm font-medium">{data.performance.databasePerformance}</span>
                           <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span>Error Rate</span>
+                        <span>{String(t('admin.analytics.errorRate'))}</span>
                         <div className="flex items-center space-x-2">
                           <span className="text-sm font-medium">{data.performance.errorRate}</span>
                           <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>

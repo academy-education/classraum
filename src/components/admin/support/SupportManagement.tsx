@@ -111,10 +111,10 @@ export function SupportManagement() {
 
   const handleDelete = async (conversation: ChatConversation) => {
     const ok = await confirm({
-      title: `Delete conversation with ${conversation.userName}?`,
+      title: String(t('admin.support.deleteConversationTitle', { name: conversation.userName })),
       description: String(t('admin.confirmDeleteConversation', { name: conversation.userName })),
       variant: 'danger',
-      confirmText: 'Delete',
+      confirmText: String(t('admin.common.delete')),
     });
     if (!ok) return;
 
@@ -234,8 +234,8 @@ export function SupportManagement() {
           closedBy: conv.closed_by,
           createdAt: new Date(conv.created_at),
           updatedAt: new Date(conv.updated_at),
-          userName: conv.users?.name || 'Unknown User',
-          userEmail: conv.users?.email || 'No email',
+          userName: conv.users?.name || String(t('admin.common.unknownUser')),
+          userEmail: conv.users?.email || String(t('admin.support.noEmail')),
           academyName: conv.academies?.name,
           messageCount: agg?.messageCount || 0,
           lastMessage: lastMessage?.message ? lastMessage.message.substring(0, 100) : undefined,
@@ -245,7 +245,7 @@ export function SupportManagement() {
       });
 
       setConversations(conversationsWithMessages)
-        announce(`Loaded ${conversationsWithMessages.length} conversations.`);
+        announce(String(t('admin.support.loadedConversations', { count: conversationsWithMessages.length })));
     } catch (error) {
       console.error('[SupportManagement] Error loading conversations:', error);
     } finally {
@@ -257,7 +257,7 @@ export function SupportManagement() {
     const isClosed = (status?.toLowerCase() || 'active') === 'closed';
     const tone: StatusTone = isClosed ? 'muted' : 'active';
     const Icon = isClosed ? XCircle : CheckCircle;
-    return <StatusBadge tone={tone} icon={Icon}>{isClosed ? 'Closed' : 'Active'}</StatusBadge>;
+    return <StatusBadge tone={tone} icon={Icon}>{isClosed ? String(t('admin.support.closed')) : String(t('admin.support.active'))}</StatusBadge>;
   };
 
   const filteredConversations = conversations.filter(conversation => {
@@ -361,22 +361,22 @@ export function SupportManagement() {
               <thead className="bg-gray-50/60 border-b border-gray-100">
                 <tr>
                   <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                    Conversation
+                    {String(t('admin.support.conversation'))}
                   </th>
                   <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                    Status
+                    {String(t('admin.common.status'))}
                   </th>
                   <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                    User
+                    {String(t('admin.support.user'))}
                   </th>
                   <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                    Last Message
+                    {String(t('admin.support.lastMessage'))}
                   </th>
                   <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                    Updated
+                    {String(t('admin.support.updated'))}
                   </th>
                   <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                    Actions
+                    {String(t('admin.common.actions'))}
                   </th>
                 </tr>
               </thead>
@@ -388,14 +388,14 @@ export function SupportManagement() {
                         <MessageSquare className="h-4 w-4 text-primary mt-0.5" />
                         <div>
                           <div className="text-sm font-medium text-gray-900">
-                            {conversation.title || 'Support Conversation'}
+                            {conversation.title || String(t('admin.support.supportConversation'))}
                           </div>
                           <div className="flex items-center mt-1 text-xs text-gray-500">
                             <MessageSquare className="mr-1 h-3 w-3" />
-                            {conversation.messageCount} messages
+                            {String(t('admin.support.messagesCount', { count: conversation.messageCount }))}
                             {conversation.unreadCount ? (
                               <span className="ml-2">
-                                <StatusBadge tone="danger" size="sm">{conversation.unreadCount} unread</StatusBadge>
+                                <StatusBadge tone="danger" size="sm">{String(t('admin.support.unreadCount', { count: conversation.unreadCount }))}</StatusBadge>
                               </span>
                             ) : null}
                           </div>
@@ -422,7 +422,7 @@ export function SupportManagement() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="text-sm text-gray-900 max-w-xs truncate">
-                        {conversation.lastMessage || 'No messages yet'}
+                        {conversation.lastMessage || String(t('admin.support.noMessagesYet'))}
                       </div>
                       {conversation.lastMessageAt && (
                         <div className="text-xs text-gray-500">
@@ -451,7 +451,7 @@ export function SupportManagement() {
                             setShowActions(showActions === conversation.id ? null : conversation.id);
                           }}
                           className="text-gray-400 hover:text-gray-600"
-                          aria-label="Row actions"
+                          aria-label={String(t('admin.support.rowActions'))}
                           aria-haspopup="menu"
                           aria-expanded={showActions === conversation.id}
                         >
@@ -475,14 +475,14 @@ export function SupportManagement() {
                               className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                               <MessageSquare className="mr-3 h-4 w-4" />
-                              View Conversation
+                              {String(t('admin.support.viewConversation'))}
                             </button>
                             <button
                               onClick={() => handleReply(conversation)}
                               className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                               <Reply className="mr-3 h-4 w-4" />
-                              Reply
+                              {String(t('admin.support.reply'))}
                             </button>
                             <hr className="my-1" />
                             <button
@@ -490,14 +490,14 @@ export function SupportManagement() {
                               className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                               <Archive className="mr-3 h-4 w-4" />
-                              {conversation.status === 'closed' ? 'Reopen' : 'Close'}
+                              {conversation.status === 'closed' ? String(t('admin.support.reopen')) : String(t('admin.common.close'))}
                             </button>
                             <button
                               onClick={() => handleDelete(conversation)}
                               className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
                             >
                               <Trash2 className="mr-3 h-4 w-4" />
-                              Delete
+                              {String(t('admin.common.delete'))}
                             </button>
                           </div>
                         )}
@@ -513,7 +513,7 @@ export function SupportManagement() {
             <AdminEmptyState
               icon={MessageSquare}
               title={String(t('admin.support.noTicketsFound'))}
-              description="Try adjusting your search or filters"
+              description={String(t('admin.support.adjustSearchOrFilters'))}
             />
           )}
         </div>
