@@ -55,6 +55,19 @@ export interface RewardBreakdown {
 /** Add credits to the purchased bucket + write an audit ledger row. */
 async function grantCredits(studentId: string, delta: number, note: string): Promise<boolean> {
   if (delta <= 0) return false
+  // Ensure a subscription row exists FIRST. increment_study_purchased_credits
+  // only UPDATEs an existing row, and a free student who has only ever studied
+  // (never bought a pack / redeemed a referral) may not have one yet — the
+  // increment would silently no-op and the reward would vanish. Create the
+  // same lazy free row the purchase/referral paths create.
+  const { data: sub } = await supabaseAdmin
+    .from('study_subscriptions').select('id').eq('student_id', studentId).maybeSingle()
+  if (!sub) {
+    await supabaseAdmin.from('study_subscriptions').insert({
+      student_id: studentId, status: 'free', plan: 'free_v1', currency: 'KRW',
+      grant_credits_remaining: 0, purchased_credits_remaining: 0,
+    }).then(() => {}, () => {}) // ignore a lost create race; the increment below still lands
+  }
   const { error } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId, p_delta: delta,
   })
