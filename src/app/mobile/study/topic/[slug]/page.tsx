@@ -244,13 +244,22 @@ function TopicInner({ slug }: { slug: string }) {
   useEffect(() => {
     const s = effectiveTopic?.slug
     const parsed = s ? parseTestSlug(s) : { family: null, section: null }
-    if (parsed.family !== 'sat') { setBankCounts(null); return }
-    const section = parsed.section && /math/i.test(parsed.section) ? 'math' : 'reading_writing'
+    // Practice banks: SAT (math + reading_writing) and TOEFL Reading.
+    let family: string | null = null
+    let section: string | null = null
+    if (parsed.family === 'sat') {
+      family = 'sat'
+      section = parsed.section && /math/i.test(parsed.section) ? 'math' : 'reading_writing'
+    } else if (parsed.family === 'toefl' && parsed.section && /reading/i.test(parsed.section)) {
+      family = 'toefl'
+      section = 'reading'
+    }
+    if (!family || !section) { setBankCounts(null); return }
     let cancelled = false
     void (async () => {
       try {
         const headers = await authHeaders()
-        const res = await fetch(`/api/study/bank-counts?section=${section}`, { headers })
+        const res = await fetch(`/api/study/bank-counts?family=${family}&section=${section}`, { headers })
         const json = res.ok ? await res.json() : null
         if (!cancelled && json) setBankCounts({ practice: json.practice ?? 0, flashcards: json.flashcards ?? 0 })
       } catch { if (!cancelled) setBankCounts(null) }
@@ -489,11 +498,13 @@ function TopicInner({ slug }: { slug: string }) {
   // "coming soon" instead of dead-ending on an empty deck.
   const gridParsed = parseTestSlug(effectiveTopic?.slug ?? slug)
   const flashcardsReady = gridParsed.family === 'sat'
-  // Practice questions are bank-backed and only SAT is banked for the
-  // flat practice UI today. Non-SAT test families (TOEFL, etc.) have no
-  // practice bank, so the mode is shown "coming soon" instead of letting
-  // a tap spend energy on a draw that returns nothing.
+  // Practice questions are bank-backed. Both SAT sections and TOEFL
+  // Reading (~500 verified MC items) are banked for the flat practice UI
+  // today. TOEFL Listening/Speaking/Writing need audio or free-response
+  // grading, so they stay "coming soon" instead of letting a tap spend
+  // energy on a draw that returns nothing.
   const practiceReady = gridParsed.family === 'sat'
+    || (gridParsed.family === 'toefl' && !!gridParsed.section && /reading/i.test(gridParsed.section))
 
   // The 2x2 learning-mode grid — shared by the subject layout and the
   // test-prep "Practice" tab. Practice questions + flashcards spend energy

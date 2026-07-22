@@ -197,7 +197,7 @@ export interface PracticeQuestion {
  */
 export async function drawBankPractice(p: {
   family?: string
-  section: 'reading_writing' | 'math'
+  section: 'reading_writing' | 'math' | 'reading'
   count: number
   seed: string
   /** Content-domain filter (study_item_bank.domain, e.g. 'Algebra').

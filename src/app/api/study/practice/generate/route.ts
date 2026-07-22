@@ -154,20 +154,30 @@ export async function POST(req: NextRequest) {
   // ── Resolve bank coverage + access FIRST (before spending energy) ─
   // Ordering matters: energy must only be charged for a draw we can
   // actually serve. Resolving coverage/access up front means a topic
-  // with no practice bank (e.g. TOEFL — only SAT is banked for practice
-  // today) never burns the student's energy or leaves a lingering
-  // 0-attempt "practice" session on the shelf / history.
+  // with no practice bank (e.g. TOEFL Listening/Speaking/Writing — only
+  // SAT + TOEFL Reading are banked for practice today) never burns the
+  // student's energy or leaves a lingering 0-attempt "practice" session
+  // on the shelf / history.
   //
   // Section comes from the locale-independent SLUG (ctx.testSection is a
   // localized display name — matching it against /math/i once served R&W
   // to Korean-language Math sessions).
   const lang = session.language as 'en' | 'ko'
-  let bankSection: 'math' | 'reading_writing' | null = null
+  let bankFamily: 'sat' | 'toefl' = 'sat'
+  let bankSection: 'math' | 'reading_writing' | 'reading' | null = null
   let accessBlockedFamily: string | null = null
   if (session.topic_id) {
     const ctx = await loadStudyPromptContext(session.topic_id, lang)
     if (ctx?.testFamily === 'sat') {
+      bankFamily = 'sat'
       bankSection = ctx.topicSlug === 'sat-math' ? 'math' : 'reading_writing'
+    } else if (ctx?.testFamily === 'toefl' && ctx.topicSlug === 'toefl-reading') {
+      // TOEFL Reading is the one non-SAT section with a practice-eligible
+      // multiple-choice bank (~500 verified items). The other TOEFL
+      // sections need audio (Listening) or free-response grading
+      // (Speaking/Writing), so they stay bank-full-test-only.
+      bankFamily = 'toefl'
+      bankSection = 'reading'
     }
     // Test-scoped access: family = topicSlug prefix before '-'. Block a
     // pass holder scoped to a different test. Fail open when the slug is
@@ -219,6 +229,7 @@ export async function POST(req: NextRequest) {
       ? `daily:${config.dailyChallenge}:${bankSection}`
       : `session:${session.id}`
     const questions = await drawBankPractice({
+      family: bankFamily,
       section: bankSection,
       count,
       seed,
