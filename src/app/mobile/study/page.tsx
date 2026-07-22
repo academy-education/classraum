@@ -342,6 +342,13 @@ function StudyLandingInner() {
   const { needsOnboarding, markComplete } = useOnboardingGate()
   const landingData = useLandingData()
   const targetTest = landingData?.prefs?.target_test ?? null
+  // The FULL set of tests the student is prepping for — target_test is
+  // only the current focus. A card is "my target" if the test is any of
+  // these, so a second goal (e.g. TOEFL alongside SAT) is badged too.
+  const targetTestSet = new Set(
+    [...((landingData?.prefs?.target_tests as string[] | undefined) ?? []), ...(targetTest ? [targetTest] : [])]
+      .map(t => t.toLowerCase()),
+  )
 
   // Invite-link capture: a friend arriving via /mobile/study?ref=CODE has
   // the code stashed + stripped from the URL here, then surfaced as a
@@ -619,7 +626,8 @@ function StudyLandingInner() {
               {sortedTests.filter(t => OPEN_TEST_SLUGS.has(t.slug)).map((test, i) => {
                 const theme = themeForTest(test.slug)
                 const Icon = theme.Icon
-                const isTarget = targetTest !== null && test.slug === `test-${targetTest.toLowerCase()}`
+                const testFamilySlug = test.slug.replace(/^test-/, '')
+                const isTarget = targetTestSet.has(testFamilySlug)
                 // SAT + TOEFL are open; everything else (KSAT, TOEIC,
                 // IELTS, ACT, AP, GRE) sits in the coming-soon strip
                 // below until we expand coverage.

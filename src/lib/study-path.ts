@@ -80,6 +80,11 @@ export const PATH_REPEAT_CREDITS = 2
  *  (launchMode 'full_test') keep their own full-length counts. */
 export const PATH_STOP_QUESTION_COUNT = 3
 
+/** How many questions a standalone practice set serves (the topic-page
+ *  "Practice questions" card). Kept here so the card's label and the
+ *  generate route's default draw the same number. */
+export const PRACTICE_SESSION_QUESTION_COUNT = 5
+
 const RW = 'sat-reading-writing'
 const MATH = 'sat-math'
 
