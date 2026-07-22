@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { useAdminFetch } from '@/components/admin/useAdminFetch'
+import { useTranslation } from '@/hooks/useTranslation'
 
 /**
  * Study admin console — two operator surfaces:
@@ -11,16 +12,18 @@ import { useAdminFetch } from '@/components/admin/useAdminFetch'
  *     dismiss, and archive the offending bank item.
  *
  * All data comes from the admin-gated /api/admin/study/* routes.
+ * All copy is localized under admin.studyConsole.*.
  */
 
 type Tab = 'lookup' | 'reports'
 
 export function StudyAdmin() {
+  const { t } = useTranslation()
   const [tab, setTab] = useState<Tab>('lookup')
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-xl font-semibold text-gray-900">Study</h1>
-      <p className="text-sm text-gray-500 mt-0.5">User lookup + question-report review.</p>
+      <h1 className="text-xl font-semibold text-gray-900">{t('admin.studyConsole.title')}</h1>
+      <p className="text-sm text-gray-500 mt-0.5">{t('admin.studyConsole.subtitle')}</p>
 
       <div className="mt-4 inline-flex rounded-lg bg-gray-100 p-0.5">
         {(['lookup', 'reports'] as Tab[]).map(k => (
@@ -31,7 +34,7 @@ export function StudyAdmin() {
               tab === k ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            {k === 'lookup' ? 'User lookup' : 'Reports'}
+            {k === 'lookup' ? t('admin.studyConsole.tabUserLookup') : t('admin.studyConsole.tabReports')}
           </button>
         ))}
       </div>
@@ -48,6 +51,7 @@ export function StudyAdmin() {
 interface SearchRow { id: string; name: string | null; email: string | null; role: string }
 
 function UserLookup() {
+  const { t } = useTranslation()
   const adminFetch = useAdminFetch()
   const [q, setQ] = useState('')
   const [results, setResults] = useState<SearchRow[]>([])
@@ -80,7 +84,7 @@ function UserLookup() {
         <input
           value={q}
           onChange={e => setQ(e.target.value)}
-          placeholder="Search name or email…"
+          placeholder={String(t('admin.studyConsole.searchPlaceholder'))}
           className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gray-400 focus:outline-none"
         />
         <div className="mt-2 divide-y divide-gray-100 rounded-lg border border-gray-100 overflow-hidden">
@@ -90,19 +94,19 @@ function UserLookup() {
               onClick={() => openUser(r.id)}
               className="block w-full text-left px-3 py-2 hover:bg-gray-50"
             >
-              <div className="text-sm font-medium text-gray-900 truncate">{r.name || '(no name)'}</div>
+              <div className="text-sm font-medium text-gray-900 truncate">{r.name || t('admin.studyConsole.noName')}</div>
               <div className="text-xs text-gray-500 truncate">{r.email}</div>
             </button>
           ))}
           {q.trim().length >= 2 && results.length === 0 && (
-            <div className="px-3 py-2 text-xs text-gray-400">No matches.</div>
+            <div className="px-3 py-2 text-xs text-gray-400">{t('admin.studyConsole.noMatches')}</div>
           )}
         </div>
       </div>
 
       <div>
-        {loading && <div className="text-sm text-gray-400">Loading…</div>}
-        {!loading && !detail && <div className="text-sm text-gray-400">Search and pick a student to see their study profile.</div>}
+        {loading && <div className="text-sm text-gray-400">{t('admin.studyConsole.loading')}</div>}
+        {!loading && !detail && <div className="text-sm text-gray-400">{t('admin.studyConsole.pickPrompt')}</div>}
         {!loading && detail && <UserDetail data={detail} />}
       </div>
     </div>
@@ -113,6 +117,7 @@ function money(n: unknown) { return typeof n === 'number' ? n.toLocaleString() :
 function when(s: unknown) { return typeof s === 'string' ? new Date(s).toLocaleString() : '—' }
 
 function UserDetail({ data }: { data: Record<string, unknown> }) {
+  const { t } = useTranslation()
   const user = data.user as { name?: string; email?: string; role?: string } | null
   const sub = data.subscription as Record<string, unknown> | null
   const counts = data.counts as { sessions: number; attempts: number }
@@ -130,44 +135,48 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
   return (
     <div className="space-y-4">
       <div>
-        <div className="text-base font-semibold text-gray-900">{user?.name || '(no name)'}</div>
+        <div className="text-base font-semibold text-gray-900">{user?.name || t('admin.studyConsole.noName')}</div>
         <div className="text-xs text-gray-500">{user?.email} · {user?.role}</div>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
-        <Stat label="Credits" value={sub ? money(sub.creditsTotal) : '0'} sub={sub ? `${money(sub.grant_credits_remaining)} grant · ${money(sub.purchased_credits_remaining)} bought` : 'no sub row'} />
-        <Stat label="Sessions" value={String(counts.sessions)} />
-        <Stat label="Attempts" value={String(counts.attempts)} />
+        <Stat
+          label={String(t('admin.studyConsole.credits'))}
+          value={sub ? money(sub.creditsTotal) : '0'}
+          sub={sub ? String(t('admin.studyConsole.creditsBreakdown', { grant: money(sub.grant_credits_remaining), bought: money(sub.purchased_credits_remaining) })) : String(t('admin.studyConsole.noSub'))}
+        />
+        <Stat label={String(t('admin.studyConsole.sessions'))} value={String(counts.sessions)} />
+        <Stat label={String(t('admin.studyConsole.attempts'))} value={String(counts.attempts)} />
       </div>
 
-      <Section title="Subscription">
+      <Section title={String(t('admin.studyConsole.subscription'))}>
         {sub ? (
           <div className="text-sm text-gray-700 space-y-0.5">
-            <div><b>{String(sub.plan)}</b> · {String(sub.status)}{sub.cancel_at_period_end ? ' · cancels at period end' : ''}</div>
-            <div className="text-xs text-gray-500">Renews {when(sub.current_period_end)}{sub.pending_plan ? ` · pending → ${String(sub.pending_plan)}` : ''}</div>
-            {sub.last_payment_failure ? <div className="text-xs text-rose-600">Last payment failure: {String(sub.last_payment_failure)}</div> : null}
+            <div><b>{String(sub.plan)}</b> · {String(sub.status)}{sub.cancel_at_period_end ? ` · ${t('admin.studyConsole.cancelsAtPeriodEnd')}` : ''}</div>
+            <div className="text-xs text-gray-500">{t('admin.studyConsole.renews', { date: when(sub.current_period_end) })}{sub.pending_plan ? ` · ${t('admin.studyConsole.pendingPlan', { plan: String(sub.pending_plan) })}` : ''}</div>
+            {sub.last_payment_failure ? <div className="text-xs text-rose-600">{t('admin.studyConsole.lastPaymentFailure', { reason: String(sub.last_payment_failure) })}</div> : null}
           </div>
-        ) : <Empty>No study subscription row (free / never purchased).</Empty>}
+        ) : <Empty>{t('admin.studyConsole.noSubscription')}</Empty>}
       </Section>
 
-      <Section title="Preferences & streak">
+      <Section title={String(t('admin.studyConsole.prefsStreak'))}>
         <div className="text-sm text-gray-700">
-          {prefs ? <>Nickname: {prefs.nickname || '—'} · Targets: {(prefs.target_tests ?? []).join(', ') || prefs.target_test || '—'}</> : <span className="text-gray-400">no prefs</span>}
-          {streak ? <> · Best streak: {String(streak.max_streak ?? 0)} · Freezes: {String(streak.freezes ?? 0)}</> : null}
+          {prefs ? <>{t('admin.studyConsole.nickname')}: {prefs.nickname || '—'} · {t('admin.studyConsole.targets')}: {(prefs.target_tests ?? []).join(', ') || prefs.target_test || '—'}</> : <span className="text-gray-400">{t('admin.studyConsole.noPrefs')}</span>}
+          {streak ? <> · {t('admin.studyConsole.bestStreak')}: {String(streak.max_streak ?? 0)} · {t('admin.studyConsole.freezes')}: {String(streak.freezes ?? 0)}</> : null}
         </div>
       </Section>
 
-      <Section title="Leagues (recent)">
+      <Section title={String(t('admin.studyConsole.leaguesRecent'))}>
         {memberships.length ? (
           <ul className="text-sm text-gray-700 space-y-0.5">
             {memberships.map((m, i) => (
-              <li key={i}>{tier(m)} · {String(m.xp_this_week ?? 0)} XP{m.final_rank ? ` · rank ${String(m.final_rank)}` : ''}{m.promotion_event ? ` · ${String(m.promotion_event)}` : ''}</li>
+              <li key={i}>{tier(m)} · {String(m.xp_this_week ?? 0)} XP{m.final_rank ? ` · ${t('admin.studyConsole.rank', { n: String(m.final_rank) })}` : ''}{m.promotion_event ? ` · ${String(m.promotion_event)}` : ''}</li>
             ))}
           </ul>
-        ) : <Empty>Never joined a league.</Empty>}
+        ) : <Empty>{t('admin.studyConsole.neverJoinedLeague')}</Empty>}
       </Section>
 
-      <Section title="Credit ledger (last 10)">
+      <Section title={String(t('admin.studyConsole.creditLedger'))}>
         {ledger.length ? (
           <table className="w-full text-xs">
             <tbody>
@@ -182,15 +191,15 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
               ))}
             </tbody>
           </table>
-        ) : <Empty>No credit ledger entries.</Empty>}
+        ) : <Empty>{t('admin.studyConsole.noLedger')}</Empty>}
       </Section>
 
-      <Section title="Question reports">
+      <Section title={String(t('admin.studyConsole.questionReports'))}>
         {reports.length ? (
           <ul className="text-sm text-gray-700 space-y-0.5">
             {reports.map((r, i) => <li key={i}>{String(r.reason)} · {String(r.status)} · {when(r.created_at)}</li>)}
           </ul>
-        ) : <Empty>No reports filed.</Empty>}
+        ) : <Empty>{t('admin.studyConsole.noReportsFiled')}</Empty>}
       </Section>
     </div>
   )
@@ -230,6 +239,7 @@ interface Report {
 }
 
 function ReportsQueue() {
+  const { t } = useTranslation()
   const adminFetch = useAdminFetch()
   const [status, setStatus] = useState('open')
   const [reports, setReports] = useState<Report[]>([])
@@ -258,6 +268,16 @@ function ReportsQueue() {
     } finally { setBusy(null) }
   }, [adminFetch, load])
 
+  const statusLabel = (s: string) => {
+    switch (s) {
+      case 'open': return t('admin.studyConsole.statusOpen')
+      case 'reviewing': return t('admin.studyConsole.statusReviewing')
+      case 'resolved': return t('admin.studyConsole.statusResolved')
+      case 'dismissed': return t('admin.studyConsole.statusDismissed')
+      default: return t('admin.studyConsole.reportsAll')
+    }
+  }
+
   return (
     <div>
       <div className="flex gap-1.5 mb-4">
@@ -269,12 +289,12 @@ function ReportsQueue() {
               status === s ? 'bg-gray-900 text-white ring-gray-900' : 'bg-white text-gray-600 ring-gray-200 hover:ring-gray-300'
             }`}
           >
-            {s}{s !== 'all' && counts[s] != null ? ` (${counts[s]})` : ''}
+            {statusLabel(s)}{s !== 'all' && counts[s] != null ? ` (${counts[s]})` : ''}
           </button>
         ))}
       </div>
 
-      {reports.length === 0 && <div className="text-sm text-gray-400">No reports in this bucket.</div>}
+      {reports.length === 0 && <div className="text-sm text-gray-400">{t('admin.studyConsole.noReportsBucket')}</div>}
 
       <div className="space-y-3">
         {reports.map(r => (
@@ -283,8 +303,8 @@ function ReportsQueue() {
               <span className="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-semibold">{r.reason}</span>
               <span className="text-gray-400">{new Date(r.created_at).toLocaleString()}</span>
               <span className="text-gray-400">·</span>
-              <span className="text-gray-500 truncate">{r.reporter?.email ?? r.reporter?.name ?? 'unknown'}</span>
-              <span className="ml-auto text-gray-400">{r.status}</span>
+              <span className="text-gray-500 truncate">{r.reporter?.email ?? r.reporter?.name ?? t('admin.studyConsole.unknownReporter')}</span>
+              <span className="ml-auto text-gray-400">{statusLabel(r.status)}</span>
             </div>
             <p className="mt-2 text-sm text-gray-900 whitespace-pre-wrap">{r.question_snapshot?.prompt}</p>
             {Array.isArray(r.question_snapshot?.choices) && (
@@ -300,9 +320,9 @@ function ReportsQueue() {
 
             {r.status !== 'resolved' && r.status !== 'dismissed' && (
               <div className="mt-3 flex flex-wrap gap-2">
-                <button disabled={busy === r.id} onClick={() => act(r.id, 'resolved', false)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white disabled:opacity-40">Resolve</button>
-                <button disabled={busy === r.id} onClick={() => act(r.id, 'resolved', true)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-600 text-white disabled:opacity-40">Resolve + archive item</button>
-                <button disabled={busy === r.id} onClick={() => act(r.id, 'dismissed', false)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 disabled:opacity-40">Dismiss</button>
+                <button disabled={busy === r.id} onClick={() => act(r.id, 'resolved', false)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white disabled:opacity-40">{t('admin.studyConsole.resolve')}</button>
+                <button disabled={busy === r.id} onClick={() => act(r.id, 'resolved', true)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-600 text-white disabled:opacity-40">{t('admin.studyConsole.resolveArchive')}</button>
+                <button disabled={busy === r.id} onClick={() => act(r.id, 'dismissed', false)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 disabled:opacity-40">{t('admin.studyConsole.dismiss')}</button>
               </div>
             )}
           </div>
