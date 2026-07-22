@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
+import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import { supabase } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
@@ -552,6 +553,16 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
               studentAnswer={answer}
               priorExplanation={verdict.aiExplanation}
               language={language}
+            />
+            <ReportQuestion
+              sessionId={sessionId}
+              question={{
+                prompt: q.prompt,
+                type: q.type,
+                choices: q.type === 'multiple_choice' ? (q.choices ?? undefined) : undefined,
+                correct_answer: q.correct_answer,
+                explanation: q.explanation,
+              }}
             />
             </>
           )}
