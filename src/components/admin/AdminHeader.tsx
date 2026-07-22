@@ -13,7 +13,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen
 } from 'lucide-react';
-import { AdminUser } from '@/lib/admin-auth';
+import { AdminUser } from '@/lib/admin-auth-shared';
 import { performLogout } from '@/lib/logout';
 import { supabase } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';

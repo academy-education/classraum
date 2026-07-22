@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase';
 import { LoadingScreen } from '@/components/ui/loading-screen';
 import { AdminSidebar } from './AdminSidebar';
 import { AdminHeader } from './AdminHeader';
-import { AdminUser } from '@/lib/admin-auth';
+import { AdminUser } from '@/lib/admin-auth-shared';
 import { ConfirmProvider } from './useConfirm';
 
 interface AdminLayoutProps {

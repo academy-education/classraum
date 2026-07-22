@@ -20,7 +20,7 @@ import { AdminPageHeader } from '../AdminPageHeader';
 import { useTranslation } from '@/hooks/useTranslation';
 import { StatusBadge } from '../StatusBadge';
 import { AdminSkeleton } from '../AdminSkeleton';
-import { getAdminPermissions } from '@/lib/admin-auth';
+import { getAdminPermissions } from '@/lib/admin-auth-shared';
 
 interface AdminProfile {
   id: string

@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import type { AdminUser } from './admin-auth-shared';
+
+// Pure, client-safe helpers live in admin-auth-shared (no createClient),
+// so client components import from there and never bundle this
+// server-only module. Re-exported here for existing server-side callers.
+export type { AdminUser } from './admin-auth-shared';
+export { isAdminRole, hasAdminPermission, getAdminPermissions } from './admin-auth-shared';
 
 // Create admin client for server-side operations.
 //
@@ -39,14 +46,6 @@ const supabaseAuth = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
-
-export interface AdminUser {
-  id: string;
-  email: string;
-  name?: string;
-  role: 'admin' | 'super_admin';
-  createdAt: Date;
-}
 
 /**
  * Verify if a user has admin privileges
@@ -229,33 +228,6 @@ export async function logAdminActivity(activity: {
 }
 
 /**
- * Check if current user has specific admin permission
- */
-export async function hasAdminPermission(
-  adminUser: AdminUser,
-  permission: 'manage_academies' | 'manage_users' | 'manage_billing' | 'manage_support' | 'manage_system'
-): Promise<boolean> {
-  // Super admin has all permissions
-  if (adminUser.role === 'super_admin') {
-    return true;
-  }
-
-  // Regular admins have all permissions except system management
-  if (adminUser.role === 'admin') {
-    return permission !== 'manage_system';
-  }
-
-  return false;
-}
-
-/**
- * Utility function to check admin role in client components
- */
-export function isAdminRole(role: string): role is 'admin' | 'super_admin' {
-  return role === 'admin' || role === 'super_admin';
-}
-
-/**
  * Generate admin session token for client-side admin authentication
  */
  
@@ -307,32 +279,4 @@ export async function revokeAdminSession(adminUserId: string): Promise<boolean> 
     console.error('Error revoking admin session:', error);
     return false;
   }
-}
-
-/**
- * Get admin dashboard permissions for a user
- */
-export function getAdminPermissions(role: 'admin' | 'super_admin') {
-  const basePermissions = {
-    viewDashboard: true,
-    manageAcademies: true,
-    viewSubscriptions: true,
-    manageBilling: true,
-    viewSupport: true,
-    manageSupport: true,
-    viewAnalytics: true,
-    manageUsers: true,
-    viewSettlements: true,
-    managePartnerSettings: true,
-  };
-
-  const superAdminPermissions = {
-    ...basePermissions,
-    manageSystem: true,
-    viewSystemLogs: true,
-    manageAdminUsers: true,
-    accessSensitiveSettings: true,
-  };
-
-  return role === 'super_admin' ? superAdminPermissions : basePermissions;
 }

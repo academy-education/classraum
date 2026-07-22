@@ -22,7 +22,7 @@ import {
   TrendingUp,
   Webhook
 } from 'lucide-react';
-import { AdminUser, getAdminPermissions } from '@/lib/admin-auth';
+import { AdminUser, getAdminPermissions } from '@/lib/admin-auth-shared';
 import { supabase } from '@/lib/supabase';
 import { performLogout } from '@/lib/logout';
 import { useTranslation } from '@/hooks/useTranslation';
