@@ -83,13 +83,22 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  // Top 20 members in the same league.
-  const { data: top } = await supabaseAdmin
-    .from('study_league_memberships')
-    .select('student_id, xp_this_week')
-    .eq('league_id', myMembership.league_id)
-    .order('xp_this_week', { ascending: false })
-    .limit(20)
+  // Top 20 members in the same league, plus the total cohort size — the
+  // promotion/relegation cutoffs are the top/bottom THIRD (see
+  // close_study_league_week), so the UI needs the member count to draw
+  // the right zone instead of a hardcoded rank.
+  const [{ data: top }, { count: memberCount }] = await Promise.all([
+    supabaseAdmin
+      .from('study_league_memberships')
+      .select('student_id, xp_this_week')
+      .eq('league_id', myMembership.league_id)
+      .order('xp_this_week', { ascending: false })
+      .limit(20),
+    supabaseAdmin
+      .from('study_league_memberships')
+      .select('id', { count: 'exact', head: true })
+      .eq('league_id', myMembership.league_id),
+  ])
 
   const ids = (top ?? []).map(r => r.student_id)
   // Two identity sources, resolved in parallel: the real name (masked for
@@ -213,6 +222,7 @@ export async function GET(req: NextRequest) {
     resetSeconds,
     myRank,
     myXp: myMembership.xp_this_week,
+    memberCount: memberCount ?? leaderboard.length,
     leaderboard,
     promotionNotice,
     seasonHigh,

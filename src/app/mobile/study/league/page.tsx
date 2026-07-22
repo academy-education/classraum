@@ -61,6 +61,7 @@ interface LeagueData {
   resetSeconds: number
   myRank: number | null
   myXp: number
+  memberCount?: number
   leaderboard: LeaderboardRow[]
   promotionNotice?: PromotionNotice | null
   seasonHigh?: string | null
@@ -184,8 +185,8 @@ function LeagueInner() {
             {data.promotionNotice && (
               <PromotionBanner notice={data.promotionNotice} ko={ko} />
             )}
-            <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} seasonHigh={data.seasonHigh ?? null} />
-            <Leaderboard rows={data.leaderboard} ko={ko} />
+            <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} seasonHigh={data.seasonHigh ?? null} promoteCount={promoteZoneFor(data.memberCount ?? data.leaderboard.length)} />
+            <Leaderboard rows={data.leaderboard} ko={ko} promoteCount={promoteZoneFor(data.memberCount ?? data.leaderboard.length)} />
             <RewardsPanel ko={ko} />
             <TierLadder activeKey={data.tier ?? 'bronze'} ko={ko} />
             <EarnXpPanel ko={ko} />
@@ -377,8 +378,10 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
   )
 }
 
-// Top 5 of each cohort advance to the next tier each week (Duolingo-style).
-const PROMOTE_ZONE = 5
+// The top THIRD of each cohort advance to the next tier each week
+// (matches close_study_league_week), so the promotion zone depends on
+// cohort size — not a fixed rank. At least 1 always advances.
+const promoteZoneFor = (memberCount: number) => Math.max(1, Math.floor(memberCount / 3))
 
 /** Deterministic initials + a stable hue from a display name. */
 function initialsOf(name: string): string {
@@ -394,12 +397,12 @@ function hueOf(id: string): string {
   return AVATAR_HUES[h % AVATAR_HUES.length]
 }
 
-function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh }: {
-  tier: typeof TIERS[number]; ko: boolean; myRank: number | null; myXp: number; resetSeconds: number; seasonHigh?: string | null
+function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh, promoteCount }: {
+  tier: typeof TIERS[number]; ko: boolean; myRank: number | null; myXp: number; resetSeconds: number; seasonHigh?: string | null; promoteCount: number
 }) {
   const idx = TIERS.findIndex(t => t.key === tier.key)
   const next = idx >= 0 && idx < TIERS.length - 1 ? TIERS[idx + 1] : null
-  const inPromo = myRank != null && myRank <= PROMOTE_ZONE
+  const inPromo = myRank != null && myRank <= promoteCount
   // Season high — a personal-best badge, shown only when the peak tier
   // is above the current one (otherwise it's just the current tier).
   const highTier = seasonHigh ? TIERS.find(t => t.key === seasonHigh) : null
@@ -427,7 +430,7 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh }: {
           {next && (
             <div className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium opacity-90">
               <TrendingUp className="w-3 h-3" />
-              {ko ? `상위 ${PROMOTE_ZONE}위 → ${next.label_ko} 승급` : `Top ${PROMOTE_ZONE} advance to ${next.label_en}`}
+              {ko ? `상위 ${promoteCount}위 → ${next.label_ko} 승급` : `Top ${promoteCount} advance to ${next.label_en}`}
             </div>
           )}
         </div>
@@ -449,7 +452,7 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh }: {
           {inPromo && <Confetti weight="fill" className="w-3.5 h-3.5 flex-shrink-0" />}
           <span>{inPromo
             ? (ko ? '승급권 안에 있어요 — 계속 유지하세요!' : "You're in the promotion zone — hold your spot!")
-            : (ko ? `승급권까지 ${Math.max(0, myRank - PROMOTE_ZONE)}계단 남았어요` : `${Math.max(0, myRank - PROMOTE_ZONE)} spots from the promotion zone`)}</span>
+            : (ko ? `승급권까지 ${Math.max(0, myRank - promoteCount)}계단 남았어요` : `${Math.max(0, myRank - promoteCount)} spots from the promotion zone`)}</span>
         </div>
       )}
     </div>
@@ -495,7 +498,7 @@ function Podium({ top, ko }: { top: LeaderboardRow[]; ko: boolean }) {
   )
 }
 
-function Leaderboard({ rows, ko }: { rows: LeaderboardRow[]; ko: boolean }) {
+function Leaderboard({ rows, ko, promoteCount }: { rows: LeaderboardRow[]; ko: boolean; promoteCount: number }) {
   const hasPodium = rows.length >= 3
   const top = hasPodium ? rows.slice(0, 3) : []
   const rest = hasPodium ? rows.slice(3) : rows
@@ -511,8 +514,8 @@ function Leaderboard({ rows, ko }: { rows: LeaderboardRow[]; ko: boolean }) {
         </div>
         <ol className="space-y-1.5">
           {rest.map((r, i) => {
-            const promo = r.rank <= PROMOTE_ZONE
-            const showDivider = hasPodium && r.rank === PROMOTE_ZONE + 1
+            const promo = r.rank <= promoteCount
+            const showDivider = hasPodium && r.rank === promoteCount + 1
             return (
               <div key={r.student_id}>
                 {showDivider && (
