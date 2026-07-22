@@ -17,6 +17,7 @@ import { STUDY_MODES, type StudyMode } from '../../modes'
 import { TestCustomizationSheet, type TestConfig } from '../../TestCustomizationSheet'
 import { TestPrepDisclaimer } from '../../_shared/TestPrepDisclaimer'
 import { TestPrepPathCard } from '../../_shared/TestPrepPathCard'
+import { PRACTICE_SESSION_QUESTION_COUNT } from '@/lib/study-path'
 import { CreditConfirmSheet, NoCreditsSheet } from '../../_shared/CreditConfirmSheet'
 import { sectionVisual } from '../../_shared/sectionVisuals'
 import { PredictedScore } from '../../_shared/PredictedScore'
@@ -587,13 +588,18 @@ function TopicInner({ slug }: { slug: string }) {
                       <Zap className="w-3 h-3 text-amber-500" weight="fill" />
                       {ko ? '1 에너지' : '1 energy'}
                     </span>
-                    {bankCounts && (
+                    {/* Practice shows the SESSION size (what one tap gives
+                        you), not the whole bank — "524 questions" read as
+                        a 524-question set. Flashcards still show deck size. */}
+                    {mode.key === 'practice' ? (
                       <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold text-gray-600 tabular-nums">
-                        {mode.key === 'practice'
-                          ? (ko ? `${bankCounts.practice}문제` : `${bankCounts.practice} questions`)
-                          : (ko ? `${bankCounts.flashcards}장` : `${bankCounts.flashcards} cards`)}
+                        {ko ? `${PRACTICE_SESSION_QUESTION_COUNT}문제` : `${PRACTICE_SESSION_QUESTION_COUNT} questions`}
                       </span>
-                    )}
+                    ) : bankCounts ? (
+                      <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold text-gray-600 tabular-nums">
+                        {ko ? `${bankCounts.flashcards}장` : `${bankCounts.flashcards} cards`}
+                      </span>
+                    ) : null}
                   </div>
                 )}
               </div>

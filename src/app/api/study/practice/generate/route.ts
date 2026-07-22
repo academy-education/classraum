@@ -6,7 +6,7 @@ import { drawBankPractice } from '@/lib/study/assemble'
 import { requireStudyUser } from '@/lib/study/auth'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { spendEnergy, cleanupAbandonedPracticeSessions } from '@/lib/study/practice-quota'
-import { PATH_STOP_QUESTION_COUNT } from '@/lib/study-path'
+import { PATH_STOP_QUESTION_COUNT, PRACTICE_SESSION_QUESTION_COUNT } from '@/lib/study-path'
 
 /**
  * POST /api/study/practice/generate — serve a batch of practice
@@ -127,7 +127,7 @@ export async function POST(req: NextRequest) {
   // /test/assemble with their full-length counts.)
   const count = config.pathNode
     ? PATH_STOP_QUESTION_COUNT
-    : Math.max(3, Math.min(10, config.questionCount ?? body.count ?? 5))
+    : Math.max(3, Math.min(10, config.questionCount ?? body.count ?? PRACTICE_SESSION_QUESTION_COUNT))
 
   // No single-stop repeats: once ANY unarchived session for this path
   // node is completed, the stop is terminal. Repeating is whole-path

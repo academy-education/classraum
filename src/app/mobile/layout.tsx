@@ -122,7 +122,13 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
           {!inSession && <MobileHeader />}
           <main className="flex-1 overflow-hidden">
             <div
-              className="h-full overflow-y-auto scroll-smooth bg-gray-50"
+              // overflow-x-hidden is deliberate: with only overflow-y set,
+              // the CSS spec computes overflow-x to `auto`, so any child a
+              // pixel wider than the viewport (decorative blur blobs, a
+              // rounding-off card) made the whole page drag/bounce
+              // sideways. Pinning x to hidden clips that and keeps scroll
+              // vertical-only.
+              className="h-full overflow-y-auto overflow-x-hidden scroll-smooth bg-gray-50"
               style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
             >
               {isLoading ? <LoadingScreen /> : <StudyOnlyGuard>{children}</StudyOnlyGuard>}
