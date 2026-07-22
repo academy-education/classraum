@@ -132,6 +132,14 @@ function TopicInner({ slug }: { slug: string }) {
   // path / diagnostic cards render on first paint instead of popping
   // in after their own fetches resolve.
   const [targetTest, setTargetTest] = useState<string | null>(null)
+  // All tests the student is prepping for (superset of target_test). The
+  // path page's target-chip strip lets them hold several at once, so a
+  // test can be a goal without being the currently-focused one.
+  const [targetTests, setTargetTests] = useState<string[]>([])
+  // How many practice questions + flashcards are available for the
+  // selected section (SAT-only banks) — shown on the mode cards. Null
+  // for families without a practice/flashcard bank.
+  const [bankCounts, setBankCounts] = useState<{ practice: number; flashcards: number } | null>(null)
   // Credit balance (grant + purchased), fetched with the page load.
   // Lets the start tap skip the confirm and go STRAIGHT to the
   // "not enough credits" popup when the balance can't cover the cost.
@@ -169,8 +177,11 @@ function TopicInner({ slug }: { slug: string }) {
         if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
         if (!cancelled && sub?.credits) setRegularBalance((sub.credits.grant ?? 0) + (sub.credits.purchased ?? 0))
         if (!cancelled && sub?.access && typeof sub.access.all === 'boolean') setAccess(sub.access)
-        return (json?.prefs?.target_test as string | null) ?? null
-      } catch { return null }
+        return {
+          target: (json?.prefs?.target_test as string | null) ?? null,
+          targets: (json?.prefs?.target_tests as string[] | undefined) ?? [],
+        }
+      } catch { return { target: null, targets: [] as string[] } }
     })()
     void (async () => {
       const { data: row } = await supabase
@@ -218,13 +229,34 @@ function TopicInner({ slug }: { slug: string }) {
       // Default-select the first child so the mode picker has a real
       // target on first paint (no "you haven't chosen a category" state).
       if (kids.length > 0) setSelectedChildId(kids[0].id)
-      const target = await prefsPromise
+      const { target, targets } = await prefsPromise
       if (cancelled) return
       setTargetTest(target)
+      setTargetTests(targets)
       setLoading(false)
     })()
     return () => { cancelled = true }
   }, [slug])
+
+  // Practice-question + flashcard counts for the selected section (SAT
+  // banks only) — shown on the mode cards. Refetches when the section
+  // (category picker) changes.
+  useEffect(() => {
+    const s = effectiveTopic?.slug
+    const parsed = s ? parseTestSlug(s) : { family: null, section: null }
+    if (parsed.family !== 'sat') { setBankCounts(null); return }
+    const section = parsed.section && /math/i.test(parsed.section) ? 'math' : 'reading_writing'
+    let cancelled = false
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch(`/api/study/bank-counts?section=${section}`, { headers })
+        const json = res.ok ? await res.json() : null
+        if (!cancelled && json) setBankCounts({ practice: json.practice ?? 0, flashcards: json.flashcards ?? 0 })
+      } catch { if (!cancelled) setBankCounts(null) }
+    })()
+    return () => { cancelled = true }
+  }, [effectiveTopic?.slug])
 
   // Per-topic progress: mastery score + session count + last activity.
   // Refetches whenever effectiveTopic changes (category picker moves).
@@ -297,14 +329,18 @@ function TopicInner({ slug }: { slug: string }) {
   const startSession = async (mode: StudyMode, config?: TestConfig, overrideLanguage?: 'en' | 'ko') => {
     const target = effectiveTopic
     if (!target || !user?.userId) return
-    // PREMADE-FIRST: SAT full tests are assembled instantly from the
-    // verified item bank, never AI-generated. Live generation is
-    // reserved for the free-form "type anything" creator.
-    if (mode === 'full_test' && parseTestSlug(target.slug).family === 'sat') {
-      // Route through the credit-spend confirm — bank SAT tests charge
-      // credits, and no start path should skip the disclosure.
-      requestBankStart()
-      return
+    // PREMADE-FIRST: SAT + TOEFL full tests are assembled instantly from
+    // the verified item bank, never AI-generated. Live generation is
+    // reserved for the free-form "type anything" creator and the
+    // not-yet-banked test families.
+    if (mode === 'full_test') {
+      const fam = parseTestSlug(target.slug).family
+      if (fam === 'sat' || fam === 'toefl') {
+        // Route through the credit-spend confirm — bank tests charge
+        // credits, and no start path should skip the disclosure.
+        requestBankStart()
+        return
+      }
     }
     setCreating(mode)
     // Full-test sessions lock language to the test's native language
@@ -333,25 +369,38 @@ function TopicInner({ slug }: { slug: string }) {
     router.push(`/mobile/study/session/${data.id}`)
   }
 
-  // Instant bank-assembled practice (SAT). No AI wait, no credit —
-  // the assemble route builds a domain-balanced test from the verified
+  // Instant bank-assembled full test (SAT + TOEFL). No AI wait — the
+  // assemble route builds a blueprint-balanced test from the verified
   // item bank and returns a ready session to route into.
   const startBankTest = async () => {
     const target = effectiveTopic
     if (!target || bankBusy) return
     const { family, section } = parseTestSlug(target.slug)
-    if (family !== 'sat') return
-    const bankSection = section && /math/i.test(section) ? 'math' : 'reading_writing'
+    if (family !== 'sat' && family !== 'toefl') return
+    // Body differs by family: SAT is two-module adaptive (assemble draws
+    // Module 1, /route draws Module 2 after grading); TOEFL is a single
+    // non-adaptive task-type draw. section keys match the bank's `section`
+    // column: SAT math|reading_writing, TOEFL reading|listening|writing|
+    // speaking (lowercased from the title-cased slug section).
+    const bankBody = family === 'sat'
+      ? {
+          family: 'sat',
+          section: section && /math/i.test(section) ? 'math' : 'reading_writing',
+          adaptive: true,
+          creditSource,
+        }
+      : {
+          family: 'toefl',
+          section: (section ?? 'reading').toLowerCase(),
+          creditSource,
+        }
     setBankBusy(true)
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/test/assemble', {
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json' },
-        // Two-module adaptive: assemble draws Module 1 only; Module 2 is
-        // routed + drawn after the student finishes Module 1. creditSource
-        // lets the student spend a regular credit instead of the SAT pass.
-        body: JSON.stringify({ section: bankSection, adaptive: true, creditSource }),
+        body: JSON.stringify(bankBody),
       })
       if (res.status === 402) { setBankBusy(false); setCreditConfirmOpen(false); setNoCreditsOpen(true); return }
       if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
@@ -440,6 +489,11 @@ function TopicInner({ slug }: { slug: string }) {
   // "coming soon" instead of dead-ending on an empty deck.
   const gridParsed = parseTestSlug(effectiveTopic?.slug ?? slug)
   const flashcardsReady = gridParsed.family === 'sat'
+  // Practice questions are bank-backed and only SAT is banked for the
+  // flat practice UI today. Non-SAT test families (TOEFL, etc.) have no
+  // practice bank, so the mode is shown "coming soon" instead of letting
+  // a tap spend energy on a draw that returns nothing.
+  const practiceReady = gridParsed.family === 'sat'
 
   // The 2x2 learning-mode grid — shared by the subject layout and the
   // test-prep "Practice" tab. Practice questions + flashcards spend energy
@@ -456,9 +510,12 @@ function TopicInner({ slug }: { slug: string }) {
           // checkmarks, Lesson → reading lines, Flashcards → stacked
           // card edges. Brilliant-style ambient texture.
           const decor = MODE_DECOR[mode.key] ?? null
-          // Flashcards coming-soon card (Math + non-SAT) — dimmed,
-          // non-navigating, with a lock badge.
-          if (mode.key === 'flashcards' && !flashcardsReady) {
+          // Coming-soon card (dimmed, non-navigating, lock badge) for
+          // modes without bank coverage on this family: Flashcards (non-
+          // SAT) and Practice questions (non-SAT).
+          const comingSoon = (mode.key === 'flashcards' && !flashcardsReady)
+            || (mode.key === 'practice' && !practiceReady)
+          if (comingSoon) {
             return (
               <div
                 key={mode.key}
@@ -514,10 +571,19 @@ function TopicInner({ slug }: { slug: string }) {
                   {t(`study.modes.${mode.key}.body`)}
                 </div>
                 {(mode.key === 'practice' || mode.key === 'flashcards') && (
-                  <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700 tabular-nums">
-                    <Zap className="w-3 h-3 text-amber-500" weight="fill" />
-                    {ko ? '1 에너지' : '1 energy'}
-                  </span>
+                  <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700 tabular-nums">
+                      <Zap className="w-3 h-3 text-amber-500" weight="fill" />
+                      {ko ? '1 에너지' : '1 energy'}
+                    </span>
+                    {bankCounts && (
+                      <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold text-gray-600 tabular-nums">
+                        {mode.key === 'practice'
+                          ? (ko ? `${bankCounts.practice}문제` : `${bankCounts.practice} questions`)
+                          : (ko ? `${bankCounts.flashcards}장` : `${bankCounts.flashcards} cards`)}
+                      </span>
+                    )}
+                  </div>
                 )}
               </div>
             </button>
@@ -546,7 +612,7 @@ function TopicInner({ slug }: { slug: string }) {
             test is already the student's goal: continue-path card if so,
             "make this your goal?" card if not. */}
         {topic.category === 'test_prep' && parseTestSlug(topic.slug).family && (
-          <TestPrepPathCard test={parseTestSlug(topic.slug).family as string} target={targetTest} />
+          <TestPrepPathCard test={parseTestSlug(topic.slug).family as string} target={targetTest} targets={targetTests} />
         )}
         {/* Diagnostic + "recommended for you" — moved here from the home
             so a student prepping for a specific test finds the baseline
@@ -802,12 +868,15 @@ function parseTestSlug(slug: string): { family: TestFamily | null; section: stri
   return { family: null, section: null }
 }
 
-/** Response (AI Speaking + Writing grader) is only meaningful on
- *  TOEFL/IELTS speaking + writing leaf topics. Other test_prep and
- *  subject topics don't have a rubric to grade against, so the mode
- *  is hidden. KSAT 영어 서답형 will be added in v2. */
+/** Response (AI Speaking + Writing grader) is the standalone open-
+ *  response practice + grader. It's kept only for IELTS speaking +
+ *  writing, which have no full-test bank — it's their only speaking/
+ *  writing practice. TOEFL is excluded: its full mock test now covers
+ *  Speaking (interview / listen-and-repeat) and Writing (email /
+ *  discussion / build-a-sentence) natively, so the standalone card was
+ *  redundant there. Other test_prep + subject topics have no rubric to
+ *  grade against. KSAT 영어 서답형 will be added in v2. */
 const RESPONSE_ELIGIBLE_SLUGS = new Set([
-  'toefl-speaking', 'toefl-writing',
   'ielts-speaking', 'ielts-writing',
 ])
 function isResponseEligible(slug: string | undefined): boolean {

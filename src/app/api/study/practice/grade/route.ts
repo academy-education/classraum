@@ -159,6 +159,21 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Idempotent league XP: only the FIRST correct answer to a given
+  // question in this session earns XP. Checked BEFORE the insert so a
+  // scripted client re-submitting a now-known correct answer for the
+  // same question can't farm 10 XP per call.
+  let alreadyCreditedThisQuestion = false
+  if (isCorrect) {
+    const { count } = await supabaseAdmin
+      .from('study_attempts')
+      .select('id', { count: 'exact', head: true })
+      .eq('session_id', sessionId)
+      .eq('is_correct', true)
+      .filter('question->>prompt', 'eq', gradedQ.prompt)
+    alreadyCreditedThisQuestion = (count ?? 0) > 0
+  }
+
   // Persist the attempt. The question payload is stored verbatim so
   // we can replay analytics later without re-generating.
   await supabaseAdmin
@@ -177,8 +192,9 @@ export async function POST(req: NextRequest) {
   // correct answers award XP — wrong attempts don't penalise but don't
   // earn either. Return the amount so the client can fire the XP toast
   // (the celebration engine was previously only wired for flashcards).
-  const xpAwarded = isCorrect ? XP_VALUES.attempt_correct : 0
-  if (isCorrect) void awardXp(user.id, 'attempt_correct', sessionId)
+  const earnsXp = isCorrect && !alreadyCreditedThisQuestion
+  const xpAwarded = earnsXp ? XP_VALUES.attempt_correct : 0
+  if (earnsXp) void awardXp(user.id, 'attempt_correct', sessionId)
 
   // Wrong answers auto-seed the spaced-repetition queue (due now) so the
   // student re-encounters the missed concept on their next review.

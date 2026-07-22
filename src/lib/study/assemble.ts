@@ -257,6 +257,114 @@ export async function drawBankPractice(p: {
   }))
 }
 
+export type ToeflSection = 'reading' | 'listening' | 'writing' | 'speaking'
+
+/**
+ * TOEFL iBT (Jan 2026) section blueprint for bank assembly. Unlike SAT
+ * (weighted by content domain), a TOEFL section is defined by its
+ * TASK-TYPE mix — the item_type column drives the draw. Counts + timing
+ * mirror TEST_SPECS.toefl (ETS Jan-21-2026 spec); `mix` is in the order
+ * ETS delivers the tasks so the assembled test reads in the right
+ * sequence (e.g. Speaking = 7 Listen-and-Repeat then 4 Interview).
+ */
+const TOEFL_META: Record<ToeflSection, {
+  title: string; minutes: number; label: string
+  mix: Array<{ type: string; n: number }>
+}> = {
+  reading:   { title: 'TOEFL iBT — Reading',   minutes: 35, label: 'Reading',
+    mix: [{ type: 'fill_in_blanks', n: 2 }, { type: 'multiple_choice', n: 48 }] },
+  listening: { title: 'TOEFL iBT — Listening', minutes: 36, label: 'Listening',
+    mix: [{ type: 'multiple_choice', n: 47 }] },
+  speaking:  { title: 'TOEFL iBT — Speaking',  minutes: 7,  label: 'Speaking',
+    mix: [{ type: 'speaking_repeat', n: 7 }, { type: 'speaking_interview', n: 4 }] },
+  writing:   { title: 'TOEFL iBT — Writing',   minutes: 29, label: 'Writing',
+    mix: [{ type: 'arrange_words', n: 10 }, { type: 'writing_email', n: 1 }, { type: 'writing_discussion', n: 1 }] },
+}
+
+/**
+ * Assemble a full TOEFL section from the pre-verified item bank —
+ * the TOEFL analogue of assembleFromBank. Draws each task type's
+ * blueprint quota (unseen-first per student), preserves ETS task order,
+ * and clusters co-drawn Reading/Listening items that share a passage so
+ * a passage renders with its questions. "Same as SAT": bank-only draw,
+ * no AI top-up — returns fewer items if a task type is thin.
+ *
+ * The bank items are already stored in the renderer's Question shape
+ * (passage/prompt/type/choices/blanks/correct_answer/…), so this is a
+ * pure draw-and-shape — no transformation. Listening items carry their
+ * transcript in item.passage ("Transcript: …"); the TestSession UI
+ * routes it through /api/study/listening/tts at play time, so no audio
+ * is stored here.
+ */
+export async function assembleToeflFromBank(
+  p: { section: ToeflSection; studentId?: string },
+  seed = 'bank',
+): Promise<AssembledTest> {
+  const meta = TOEFL_META[p.section]
+  const { data, error } = await supabaseAdmin
+    .from('study_item_bank')
+    .select('id, item_type, item')
+    .eq('family', 'toefl')
+    .eq('section', p.section)
+    .eq('verified', true)
+    .eq('archived', false)
+  if (error) throw new Error(`toefl assemble query failed: ${error.message}`)
+  const rows = (data ?? []) as Array<{ id: string; item_type: string; item: Question }>
+  if (rows.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
+
+  const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
+  type Row = { id: string; item: Question }
+  const byType = new Map<string, Row[]>()
+  for (const r of rows) {
+    const list = byType.get(r.item_type) ?? []
+    list.push({ id: r.id, item: r.item })
+    byType.set(r.item_type, list)
+  }
+
+  // Cluster items that share a passage (Reading/Listening: one passage
+  // feeds several MC questions). Ungrouped items become singletons; the
+  // first appearance of each group fixes its order so the sequence stays
+  // stable (co-drawn same-passage items land adjacent, but a partial
+  // group is fine — the passage text rides on every item).
+  const clusterByPassage = (items: Row[]): Row[] => {
+    const groups = new Map<string, Row[]>()
+    const order: string[] = []
+    for (const it of items) {
+      const key = it.item.passageGroupId ?? `__solo:${it.id}`
+      if (!groups.has(key)) { groups.set(key, []); order.push(key) }
+      groups.get(key)!.push(it)
+    }
+    return order.flatMap(k => groups.get(k)!)
+  }
+
+  const composition: Record<string, number> = {}
+  const picked: Row[] = []
+  for (const { type, n } of meta.mix) {
+    const bucket = byType.get(type) ?? []
+    const ordered = unseenFirst(bucket, exposures, seed + type).slice(0, n)
+    composition[type] = ordered.length
+    picked.push(
+      ...((p.section === 'reading' || p.section === 'listening') && type === 'multiple_choice'
+        ? clusterByPassage(ordered)
+        : ordered),
+    )
+  }
+  if (picked.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
+
+  if (p.studentId) {
+    await recordExposures(p.studentId, picked.map(r => r.id), 'full_test', seed)
+  }
+
+  return {
+    title: meta.title,
+    timeLimitMinutes: meta.minutes,
+    section: meta.label,
+    family: 'toefl',
+    questions: picked.map(r => r.item),
+    composition,
+  }
+}
+
 export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promise<AssembledTest> {
   const family = p.family ?? 'sat'
   let query = supabaseAdmin

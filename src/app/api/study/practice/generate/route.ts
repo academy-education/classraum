@@ -151,11 +151,54 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // ── Resolve bank coverage + access FIRST (before spending energy) ─
+  // Ordering matters: energy must only be charged for a draw we can
+  // actually serve. Resolving coverage/access up front means a topic
+  // with no practice bank (e.g. TOEFL — only SAT is banked for practice
+  // today) never burns the student's energy or leaves a lingering
+  // 0-attempt "practice" session on the shelf / history.
+  //
+  // Section comes from the locale-independent SLUG (ctx.testSection is a
+  // localized display name — matching it against /math/i once served R&W
+  // to Korean-language Math sessions).
+  const lang = session.language as 'en' | 'ko'
+  let bankSection: 'math' | 'reading_writing' | null = null
+  let accessBlockedFamily: string | null = null
+  if (session.topic_id) {
+    const ctx = await loadStudyPromptContext(session.topic_id, lang)
+    if (ctx?.testFamily === 'sat') {
+      bankSection = ctx.topicSlug === 'sat-math' ? 'math' : 'reading_writing'
+    }
+    // Test-scoped access: family = topicSlug prefix before '-'. Block a
+    // pass holder scoped to a different test. Fail open when the slug is
+    // missing/unresolvable (free/plan users always pass).
+    const family = ctx?.topicSlug ? ctx.topicSlug.split('-')[0]?.toLowerCase() : null
+    if (family && !(await canAccessTest(user.id, family))) accessBlockedFamily = family
+  }
+
+  // Any path that can't serve a batch deletes the just-created empty
+  // session so it never shows up as a recent/abandoned practice set, and
+  // returns WITHOUT charging energy.
+  const bailUnserveable = async (payload: object, status: number) => {
+    await supabaseAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
+    return NextResponse.json(payload, { status })
+  }
+  if (accessBlockedFamily) {
+    return bailUnserveable({ error: 'test not unlocked', code: 'test_locked', test: accessBlockedFamily }, 403)
+  }
+  // No bank coverage → no questions, no energy, no lingering session.
+  // (Previously this fell through to a paid AI generation; that path is
+  // intentionally gone.)
+  if (!bankSection) {
+    return bailUnserveable({ questions: [], reason: 'no_bank_coverage' }, 200)
+  }
+
   // ── Energy ─────────────────────────────────────────────────────
   // Starting a practice or flashcards set spends 1 energy; energy regens
   // over time up to a cap (free +1/8h→3, paid +1/3h→8). Path stops spend
   // too; only the daily challenge is exempt. This runs only for a FRESH
-  // draw — resumes returned from cache above, so the spend is once per set.
+  // draw — resumes returned from cache above, so the spend is once per set
+  // — AND only after coverage is confirmed, so a no-coverage tap is free.
   if (!config.dailyChallenge) {
     const spend = await spendEnergy(user.id)
     if (!spend.ok) {
@@ -169,32 +212,6 @@ export async function POST(req: NextRequest) {
     }
     // Sweep the student's other abandoned (0-attempt) practice sessions.
     void cleanupAbandonedPracticeSessions(user.id, session.id)
-  }
-
-  // Resolve the bank section from the topic. Section comes from the
-  // locale-independent SLUG (ctx.testSection is a localized display
-  // name — matching it against /math/i once served R&W to Korean-
-  // language Math sessions). Only SAT is banked today.
-  const lang = session.language as 'en' | 'ko'
-  let bankSection: 'math' | 'reading_writing' | null = null
-  if (session.topic_id) {
-    const ctx = await loadStudyPromptContext(session.topic_id, lang)
-    if (ctx?.testFamily === 'sat') {
-      bankSection = ctx.topicSlug === 'sat-math' ? 'math' : 'reading_writing'
-    }
-    // Test-scoped access: family = topicSlug prefix before '-'. Block a
-    // pass holder scoped to a different test before the draw. Fail open
-    // when the slug is missing/unresolvable (free/plan users always pass).
-    const family = ctx?.topicSlug ? ctx.topicSlug.split('-')[0]?.toLowerCase() : null
-    if (family && !(await canAccessTest(user.id, family))) {
-      return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: family }, { status: 403 })
-    }
-  }
-
-  // No bank coverage → no questions (previously this fell through to a
-  // paid AI generation; that path is intentionally gone).
-  if (!bankSection) {
-    return NextResponse.json({ questions: [], reason: 'no_bank_coverage' })
   }
 
   try {

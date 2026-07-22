@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { notifyStudent } from '@/lib/study/notify'
+import { grantLeagueRewards } from '@/lib/study/league-rewards'
 
 /**
  * GET /api/cron/study-league-roll — Sunday-night promotion / relegation.
@@ -61,18 +62,36 @@ export async function GET(req: NextRequest) {
     .not('closed_at', 'is', null)
 
   let notified = 0
+  let creditsAwarded = 0
   for (const m of closed ?? []) {
     const event = m.promotion_event as 'promoted' | 'held' | 'demoted' | null
     const fromTier = (Array.isArray(m.league) ? m.league[0]?.tier : (m.league as { tier: string } | null)?.tier) ?? null
     const toTier = (m.next_tier as string | null) ?? fromTier
     const rank = m.final_rank as number | null
     if (!event || !fromTier || !toTier || !rank) continue
+
+    // Grant podium / promotion / first-tier-milestone credit rewards
+    // BEFORE notifying, so the notification can mention what was earned.
+    // Idempotent — a cron re-run never double-pays.
+    const reward = await grantLeagueRewards({
+      studentId: m.student_id as string,
+      weekStart: lastWeekStart,
+      fromTier,
+      finalRank: rank,
+      promotionEvent: event,
+      nextTier: toTier,
+    })
+    creditsAwarded += reward.total
+
     const title = event === 'promoted'
       ? `승급! ${toTier} 리그로 이동`
       : event === 'demoted'
         ? `${toTier} 리그로 강등`
         : `${toTier} 리그 유지`
-    const message = `지난주 ${rank}위 — ${fromTier} → ${toTier}`
+    const base = `지난주 ${rank}위 — ${fromTier} → ${toTier}`
+    const message = reward.total > 0
+      ? `${base} · 크레딧 ${reward.total}개 획득`
+      : base
     await notifyStudent({
       studentId: m.student_id as string,
       kind: event === 'demoted' ? 'study_league_demoted' : 'study_league_promoted',
@@ -88,5 +107,6 @@ export async function GET(req: NextRequest) {
     weekStart: lastWeekStart,
     cohortsProcessed: processed ?? 0,
     notified,
+    creditsAwarded,
   })
 }

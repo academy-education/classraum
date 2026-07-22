@@ -51,6 +51,7 @@ interface PromotionNotice {
   fromTier: string
   toTier: string
   finalRank: number
+  rewardCredits?: number
 }
 
 interface LeagueData {
@@ -60,8 +61,10 @@ interface LeagueData {
   resetSeconds: number
   myRank: number | null
   myXp: number
+  memberCount?: number
   leaderboard: LeaderboardRow[]
   promotionNotice?: PromotionNotice | null
+  seasonHigh?: string | null
   myNickname?: string | null
 }
 
@@ -182,8 +185,9 @@ function LeagueInner() {
             {data.promotionNotice && (
               <PromotionBanner notice={data.promotionNotice} ko={ko} />
             )}
-            <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} />
-            <Leaderboard rows={data.leaderboard} ko={ko} />
+            <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} seasonHigh={data.seasonHigh ?? null} promoteCount={promoteZoneFor(data.memberCount ?? data.leaderboard.length)} />
+            <Leaderboard rows={data.leaderboard} ko={ko} promoteCount={promoteZoneFor(data.memberCount ?? data.leaderboard.length)} />
+            <RewardsPanel ko={ko} />
             <TierLadder activeKey={data.tier ?? 'bronze'} ko={ko} />
             <EarnXpPanel ko={ko} />
           </div>
@@ -374,8 +378,10 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
   )
 }
 
-// Top 5 of each cohort advance to the next tier each week (Duolingo-style).
-const PROMOTE_ZONE = 5
+// The top THIRD of each cohort advance to the next tier each week
+// (matches close_study_league_week), so the promotion zone depends on
+// cohort size — not a fixed rank. At least 1 always advances.
+const promoteZoneFor = (memberCount: number) => Math.max(1, Math.floor(memberCount / 3))
 
 /** Deterministic initials + a stable hue from a display name. */
 function initialsOf(name: string): string {
@@ -391,12 +397,16 @@ function hueOf(id: string): string {
   return AVATAR_HUES[h % AVATAR_HUES.length]
 }
 
-function TierBanner({ tier, ko, myRank, myXp, resetSeconds }: {
-  tier: typeof TIERS[number]; ko: boolean; myRank: number | null; myXp: number; resetSeconds: number
+function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh, promoteCount }: {
+  tier: typeof TIERS[number]; ko: boolean; myRank: number | null; myXp: number; resetSeconds: number; seasonHigh?: string | null; promoteCount: number
 }) {
   const idx = TIERS.findIndex(t => t.key === tier.key)
   const next = idx >= 0 && idx < TIERS.length - 1 ? TIERS[idx + 1] : null
-  const inPromo = myRank != null && myRank <= PROMOTE_ZONE
+  const inPromo = myRank != null && myRank <= promoteCount
+  // Season high — a personal-best badge, shown only when the peak tier
+  // is above the current one (otherwise it's just the current tier).
+  const highTier = seasonHigh ? TIERS.find(t => t.key === seasonHigh) : null
+  const showHigh = highTier && TIERS.findIndex(t => t.key === highTier.key) > idx
   return (
     <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${tier.color} text-white p-5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.40)]`}>
       <div aria-hidden className="pointer-events-none absolute -top-10 -right-8 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
@@ -408,11 +418,19 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds }: {
         </div>
         <div className="min-w-0 flex-1">
           <div className="text-[10px] font-semibold tracking-[0.16em] uppercase opacity-85">{ko ? '이번 주 리그' : 'This week · League'}</div>
-          <h2 className="text-[26px] font-bold tracking-tight leading-none mt-1">{ko ? tier.label_ko : tier.label_en}</h2>
+          <div className="flex items-center gap-2 mt-1">
+            <h2 className="text-[26px] font-bold tracking-tight leading-none">{ko ? tier.label_ko : tier.label_en}</h2>
+            {showHigh && highTier && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-white/20 ring-1 ring-white/25 px-2 py-0.5 text-[10px] font-bold">
+                <Crown className="w-3 h-3" />
+                {ko ? `최고 ${highTier.label_ko}` : `Best ${highTier.label_en}`}
+              </span>
+            )}
+          </div>
           {next && (
             <div className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium opacity-90">
               <TrendingUp className="w-3 h-3" />
-              {ko ? `상위 ${PROMOTE_ZONE}위 → ${next.label_ko} 승급` : `Top ${PROMOTE_ZONE} advance to ${next.label_en}`}
+              {ko ? `상위 ${promoteCount}위 → ${next.label_ko} 승급` : `Top ${promoteCount} advance to ${next.label_en}`}
             </div>
           )}
         </div>
@@ -434,7 +452,7 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds }: {
           {inPromo && <Confetti weight="fill" className="w-3.5 h-3.5 flex-shrink-0" />}
           <span>{inPromo
             ? (ko ? '승급권 안에 있어요 — 계속 유지하세요!' : "You're in the promotion zone — hold your spot!")
-            : (ko ? `승급권까지 ${Math.max(0, myRank - PROMOTE_ZONE)}계단 남았어요` : `${Math.max(0, myRank - PROMOTE_ZONE)} spots from the promotion zone`)}</span>
+            : (ko ? `승급권까지 ${Math.max(0, myRank - promoteCount)}계단 남았어요` : `${Math.max(0, myRank - promoteCount)} spots from the promotion zone`)}</span>
         </div>
       )}
     </div>
@@ -480,7 +498,7 @@ function Podium({ top, ko }: { top: LeaderboardRow[]; ko: boolean }) {
   )
 }
 
-function Leaderboard({ rows, ko }: { rows: LeaderboardRow[]; ko: boolean }) {
+function Leaderboard({ rows, ko, promoteCount }: { rows: LeaderboardRow[]; ko: boolean; promoteCount: number }) {
   const hasPodium = rows.length >= 3
   const top = hasPodium ? rows.slice(0, 3) : []
   const rest = hasPodium ? rows.slice(3) : rows
@@ -496,8 +514,8 @@ function Leaderboard({ rows, ko }: { rows: LeaderboardRow[]; ko: boolean }) {
         </div>
         <ol className="space-y-1.5">
           {rest.map((r, i) => {
-            const promo = r.rank <= PROMOTE_ZONE
-            const showDivider = hasPodium && r.rank === PROMOTE_ZONE + 1
+            const promo = r.rank <= promoteCount
+            const showDivider = hasPodium && r.rank === promoteCount + 1
             return (
               <div key={r.student_id}>
                 {showDivider && (
@@ -601,7 +619,50 @@ function PromotionBanner({ notice, ko }: { notice: PromotionNotice; ko: boolean 
           <div className="text-[12.5px] opacity-95 mt-0.5 leading-relaxed">
             {ko ? bodyKo : bodyEn}
           </div>
+          {(notice.rewardCredits ?? 0) > 0 && (
+            <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-sm ring-1 ring-white/25 px-2.5 py-1 text-[12px] font-bold">
+              <Sparkles className="w-3.5 h-3.5" />
+              {ko ? `크레딧 +${notice.rewardCredits}` : `+${notice.rewardCredits} credits`}
+            </div>
+          )}
         </div>
+      </div>
+    </div>
+  )
+}
+
+function RewardsPanel({ ko }: { ko: boolean }) {
+  // What the weekly close pays out. Credits land in the never-expiring
+  // purchased bucket. Keep in sync with lib/study/league-rewards.ts.
+  const rows = [
+    { Icon: Trophy, en: 'Podium finish (top 3)', ko: '포디움 (1~3위)', valEn: '+3 / +2 / +1', valKo: '+3 / +2 / +1' },
+    { Icon: TrendingUp, en: 'Promoted to a higher tier', ko: '상위 리그 승급', valEn: '+1', valKo: '+1' },
+    { Icon: Crown, en: 'First time reaching a new tier', ko: '새 리그 첫 도달', valEn: 'up to +8', valKo: '최대 +8' },
+  ]
+  return (
+    <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-4">
+      <div className="flex items-center gap-2 mb-3">
+        <span className="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+          <Sparkles className="w-4 h-4" weight="fill" />
+        </span>
+        <div>
+          <div className="text-[14px] font-semibold text-gray-900">{ko ? '주간 보상' : 'Weekly rewards'}</div>
+          <div className="text-[11.5px] text-gray-500 leading-snug">{ko ? '매주 일요일 마감 시 크레딧 지급' : 'Credits paid out when the week closes on Sunday'}</div>
+        </div>
+      </div>
+      <div className="space-y-1.5">
+        {rows.map((r, i) => (
+          <div key={i} className="flex items-center justify-between rounded-xl bg-gray-50 px-3 py-2">
+            <span className="inline-flex items-center gap-2 text-[13px] text-gray-700">
+              <r.Icon className="w-4 h-4 text-gray-400" />
+              {ko ? r.ko : r.en}
+            </span>
+            <span className="inline-flex items-center gap-1 text-[12.5px] font-bold text-amber-700 tabular-nums">
+              <Sparkles className="w-3 h-3 text-amber-500" weight="fill" />
+              {ko ? r.valKo : r.valEn}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp, type XpEventType } from '@/lib/study/xp'
 import { requireStudyUser } from '@/lib/study/auth'
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
   // claim rate to prevent a runaway tab from spamming the leagues.
   const blocked = enforceRateLimit(
     `xp-award:user:${user.id}`,
-    { windowMs: 60 * 1000, max: 60 },
+    { windowMs: 60 * 1000, max: 30 },
   )
   if (blocked) return blocked
 
@@ -46,6 +47,25 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: 'bad body' }, { status: 400 })
   if (!CLIENT_EVENT_TYPES.includes(parsed.data.eventType)) {
     return NextResponse.json({ error: 'event not allowed from client' }, { status: 403 })
+  }
+
+  // Daily flashcard-XP sub-cap. Flashcard XP is client-claimed and can't
+  // be tied to a specific served card (the bank draw returns no id), so
+  // a per-day ceiling bounds this — the single easiest-to-script vector —
+  // to a few honest sets/day, well under the global 800/day cap in
+  // award_study_xp. ~240 XP ≈ 30+ hard cards or several full decks.
+  const FLASHCARD_DAILY_XP_CAP = 240
+  const { data: todayEvents } = await supabaseAdmin
+    .from('study_xp_events')
+    .select('xp')
+    .eq('student_id', user.id)
+    .in('event_type', CLIENT_EVENT_TYPES as unknown as string[])
+    .gte('created_at', new Date(new Date().toISOString().slice(0, 10)).toISOString())
+  const todayFlashcardXp = (todayEvents ?? []).reduce((s, r) => s + ((r.xp as number) ?? 0), 0)
+  if (todayFlashcardXp >= FLASHCARD_DAILY_XP_CAP) {
+    // Silently accept but don't award — the client toast is cosmetic and
+    // we don't want to leak the cap or break the review UX.
+    return NextResponse.json({ ok: true, capped: true })
   }
 
   await awardXp(user.id, parsed.data.eventType, parsed.data.sourceId ?? null)

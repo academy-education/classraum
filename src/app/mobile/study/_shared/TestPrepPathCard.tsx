@@ -22,20 +22,26 @@ import { StudyButton } from './StudyButton'
  * Self-hides for tests without a hand-crafted path template (only SAT /
  * TOEFL today) so it never promotes an empty path.
  */
-export function TestPrepPathCard({ test, target: targetProp }: { test: string; target?: string | null }) {
+export function TestPrepPathCard({ test, target: targetProp, targets: targetsProp }: { test: string; target?: string | null; targets?: string[] }) {
   const { language } = useTranslation()
   const ko = language === 'korean'
   const router = useRouter()
   const template = getPathTemplate(test)
-  // When the parent already knows the student's target (the topic page
+  // When the parent already knows the student's targets (the topic page
   // fetches prefs with its initial load), render immediately from the
   // prop — no second fetch, no pop-in after the page paints.
   const hasProp = targetProp !== undefined
-  const [target, setTarget] = useState<string | null | undefined>(hasProp ? targetProp : undefined)
+  // `undefined` = still loading. A test counts as a goal if it's ANY of
+  // the student's targets (the full target_tests list), not only the
+  // currently-focused target_test — otherwise a second target reads as
+  // "not your goal" here even though it's on the path.
+  const [targets, setTargets] = useState<string[] | undefined>(
+    hasProp ? [...(targetsProp ?? []), ...(targetProp ? [targetProp] : [])] : undefined,
+  )
   const [setting, setSetting] = useState(false)
 
   useEffect(() => {
-    if (hasProp) { setTarget(targetProp); return }
+    if (hasProp) { setTargets([...(targetsProp ?? []), ...(targetProp ? [targetProp] : [])]); return }
     if (!template) return
     let cancelled = false
     void (async () => {
@@ -43,18 +49,20 @@ export function TestPrepPathCard({ test, target: targetProp }: { test: string; t
         const headers = await authHeaders()
         const res = await fetch('/api/study/prefs', { headers })
         const json = res.ok ? await res.json() : null
-        if (!cancelled) setTarget((json?.prefs?.target_test as string | null) ?? null)
+        const list = (json?.prefs?.target_tests as string[] | undefined) ?? []
+        const single = (json?.prefs?.target_test as string | null) ?? null
+        if (!cancelled) setTargets([...list, ...(single ? [single] : [])])
       } catch {
-        if (!cancelled) setTarget(null)
+        if (!cancelled) setTargets([])
       }
     })()
     return () => { cancelled = true }
-  }, [template, hasProp, targetProp])
+  }, [template, hasProp, targetProp, targetsProp])
 
   if (!template) return null
-  if (target === undefined) return null // loading — avoid a flash
+  if (targets === undefined) return null // loading — avoid a flash
 
-  const isGoal = (target ?? '').toUpperCase() === test.toUpperCase()
+  const isGoal = targets.some(t => (t ?? '').toUpperCase() === test.toUpperCase())
   const title = ko ? template.titleKo : template.titleEn
 
   // Already their goal → continue the path.
