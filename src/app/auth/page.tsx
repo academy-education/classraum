@@ -981,16 +981,22 @@ export default function AuthPage() {
   // Render with error boundary for hydration safety
   try {
     return (
-    <main className="relative flex min-h-screen w-full flex-col items-center justify-center bg-background sm:px-4">
-      <Squares 
+    // h-[100dvh] + overflow-y-auto makes <main> its OWN scroll container so
+    // the form scrolls even inside the Capacitor mobile shell (where the
+    // body itself doesn't scroll). `my-auto` on the child centers it when it
+    // fits and collapses to top-aligned + scrollable when it's taller than
+    // the viewport (e.g. the long sign-up form) — plain justify-center would
+    // clip the overflowing top/bottom with no way to reach it.
+    <main className="relative flex h-[100dvh] w-full flex-col items-center overflow-y-auto bg-background sm:px-4">
+      <Squares
         direction="diagonal"
         speed={0.2}
         squareSize={40}
-        borderColor="rgba(0, 0, 0, 0.01)" 
+        borderColor="rgba(0, 0, 0, 0.01)"
         hoverFillColor="rgba(0, 0, 0, 0.02)"
-        className="z-0"
+        className="z-0 pointer-events-none"
       />
-      <div className="relative z-10 w-full space-y-6 px-4 sm:max-w-md sm:px-0 pointer-events-none">
+      <div className="relative z-10 my-auto w-full space-y-6 px-4 py-8 sm:max-w-md sm:px-0 pointer-events-none">
         <div className="text-center pointer-events-none">
           <Image src="/logo.png" alt="Classraum Logo" width={256} height={256} className="mx-auto w-16 h-16" />
 
