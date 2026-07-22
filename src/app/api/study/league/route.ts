@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
+import { LEAGUE_TIERS } from '@/lib/study/league-rewards'
 
 /**
  * GET /api/study/league — current week's leaderboard for the caller.
@@ -157,23 +158,52 @@ export async function GET(req: NextRequest) {
     fromTier: string
     toTier: string
     finalRank: number
+    rewardCredits: number
   } = null
   if (lastClosed && lastClosed.closed_at) {
     const ageMs = Date.now() - new Date(lastClosed.closed_at as string).getTime()
     if (ageMs < 36 * 60 * 60 * 1000) {
-      const prevLeague = lastClosed.league as { tier: string } | { tier: string }[] | null
+      const prevLeague = lastClosed.league as { tier: string; week_start: string } | { tier: string; week_start: string }[] | null
       const fromTier = (Array.isArray(prevLeague) ? prevLeague[0]?.tier : prevLeague?.tier) ?? null
+      const closedWeek = (Array.isArray(prevLeague) ? prevLeague[0]?.week_start : prevLeague?.week_start) ?? null
       const event = lastClosed.promotion_event as 'promoted' | 'held' | 'demoted' | null
       const toTier = (lastClosed.next_tier as string | null) ?? fromTier
       if (event && fromTier && toTier) {
+        // Credits earned from that closed week's podium / promotion /
+        // milestone rewards, to show alongside the promotion banner.
+        let rewardCredits = 0
+        if (closedWeek) {
+          const { data: rewardRows } = await supabaseAdmin
+            .from('study_league_rewards')
+            .select('credits')
+            .eq('student_id', user.id)
+            .eq('week_start', closedWeek)
+          rewardCredits = (rewardRows ?? []).reduce((s, r) => s + ((r.credits as number) ?? 0), 0)
+        }
         promotionNotice = {
           event,
           fromTier,
           toTier,
           finalRank: (lastClosed.final_rank as number) ?? 0,
+          rewardCredits,
         }
       }
     }
+  }
+
+  // Season high — the highest tier the student has ever been placed in
+  // (a cosmetic "personal best" for the league page). Includes the
+  // current cohort's tier.
+  const { data: myLeagues } = await supabaseAdmin
+    .from('study_league_memberships')
+    .select('league:study_leagues!inner(tier)')
+    .eq('student_id', user.id)
+  const tierIndex = (t: string | null | undefined) => (t ? LEAGUE_TIERS.indexOf(t as typeof LEAGUE_TIERS[number]) : -1)
+  let seasonHigh: string | null = tier
+  for (const row of myLeagues ?? []) {
+    const lg = row.league as { tier: string } | { tier: string }[] | null
+    const t = Array.isArray(lg) ? lg[0]?.tier : lg?.tier
+    if (tierIndex(t) > tierIndex(seasonHigh)) seasonHigh = t ?? seasonHigh
   }
 
   return NextResponse.json({
@@ -185,6 +215,7 @@ export async function GET(req: NextRequest) {
     myXp: myMembership.xp_this_week,
     leaderboard,
     promotionNotice,
+    seasonHigh,
     myNickname,
   })
 }
