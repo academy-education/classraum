@@ -37,7 +37,7 @@ function PageHeader() {
 
 function StatCard() {
   return (
-    <div className="bg-white rounded-xl ring-1 ring-gray-200/70 p-5">
+    <div className="bg-white rounded-xl ring-1 ring-gray-100 p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-2.5 flex-1">
           <Bar className="h-2.5 w-16" />
@@ -62,7 +62,7 @@ function StatsGrid({ count = 4 }: { count?: number }) {
 
 function Filters() {
   return (
-    <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70 flex flex-col md:flex-row gap-3">
+    <div className="bg-white p-4 rounded-xl ring-1 ring-gray-100 flex flex-col md:flex-row gap-3">
       <Bar className="h-9 flex-1" />
       <div className="flex gap-2">
         <Bar className="h-9 w-32" />
@@ -75,9 +75,9 @@ function Filters() {
 
 function Table({ rows = 6, cols = 5 }: { rows?: number; cols?: number }) {
   return (
-    <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+    <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
       {/* Header */}
-      <div className="bg-gray-50/60 border-b border-gray-200/70 px-6 py-3 grid gap-4"
+      <div className="bg-gray-50/60 border-b border-gray-100 px-6 py-3 grid gap-4"
            style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
         {Array.from({ length: cols }).map((_, i) => (
           <Bar key={i} className="h-2.5 w-16" />
@@ -103,7 +103,7 @@ function Table({ rows = 6, cols = 5 }: { rows?: number; cols?: number }) {
 
 function List({ rows = 5 }: { rows?: number }) {
   return (
-    <div className="bg-white rounded-xl ring-1 ring-gray-200/70 divide-y divide-gray-100">
+    <div className="bg-white rounded-xl ring-1 ring-gray-100 divide-y divide-gray-100">
       {Array.from({ length: rows }).map((_, i) => (
         <div key={i} className="p-4 flex items-center gap-3">
           <Bar className="h-9 w-9 rounded-full" />

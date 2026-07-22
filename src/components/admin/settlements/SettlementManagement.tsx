@@ -226,7 +226,7 @@ export function SettlementManagement() {
       <LiveRegion />
 
       {/* Filters */}
-      <div className="bg-white rounded-xl p-4 ring-1 ring-gray-200/70">
+      <div className="bg-white rounded-xl p-4 ring-1 ring-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -292,10 +292,10 @@ export function SettlementManagement() {
       </div>
 
       {/* Settlements Table */}
-      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+      <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50/60 border-b border-gray-200/70">
+            <thead className="bg-gray-50/60 border-b border-gray-100">
               <tr>
                 <SortableTh sortKey="id" toggle={toggleSort} indicator={sortIndicator('id')}>Settlement ID</SortableTh>
                 <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>Academy</SortableTh>
@@ -361,7 +361,7 @@ export function SettlementManagement() {
                         onClick={() => handleViewDetails(settlement)}
                         variant="ghost"
                         size="sm"
-                        className="h-7 w-7 p-0 text-gray-500 hover:text-[#2885e8] hover:bg-[#2885e8]/10"
+                        className="h-7 w-7 p-0 text-gray-500 hover:text-primary hover:bg-primary/10"
                         aria-label="View settlement"
                       >
                         <Eye className="w-4 h-4" />

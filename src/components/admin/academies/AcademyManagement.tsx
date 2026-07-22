@@ -527,8 +527,8 @@ export function AcademyManagement() {
         {/* Bulk action bar — sticky just below the page header whenever
             the admin has selected one or more rows. */}
         {selectedIds.size > 0 && (
-          <div className="flex items-center justify-between bg-[#2885e8]/8 ring-1 ring-[#2885e8]/20 rounded-xl px-4 py-2.5">
-            <p className="text-sm font-medium text-[#1f6fc7]">
+          <div className="flex items-center justify-between bg-primary/8 ring-1 ring-primary/20 rounded-xl px-4 py-2.5">
+            <p className="text-sm font-medium text-primary">
               {selectedIds.size} selected
             </p>
             <div className="flex items-center gap-2">
@@ -605,7 +605,7 @@ export function AcademyManagement() {
         </div>
 
         {/* Filters and Actions */}
-        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
+        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-100">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -677,10 +677,10 @@ export function AcademyManagement() {
         </div>
 
         {/* Academy List */}
-        <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+        <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50/60 border-b border-gray-200/70">
+              <thead className="bg-gray-50/60 border-b border-gray-100">
                 <tr>
                   {/* Bulk-select header checkbox — toggles all visible
                       (filtered/sorted) rows. Indeterminate when partial. */}
@@ -688,7 +688,7 @@ export function AcademyManagement() {
                     <input
                       type="checkbox"
                       aria-label="Select all visible academies"
-                      className="h-4 w-4 rounded border-gray-300 text-[#2885e8] focus:ring-[#2885e8]/30"
+                      className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/30"
                       ref={el => {
                         if (!el) return;
                         const visible = sortedAcademies.length;
@@ -722,12 +722,12 @@ export function AcademyManagement() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {sortedAcademies.map((academy) => (
-                  <tr key={academy.id} className={`hover:bg-gray-50 ${selectedIds.has(academy.id) ? 'bg-[#2885e8]/[0.03]' : ''}`}>
+                  <tr key={academy.id} className={`hover:bg-gray-50 ${selectedIds.has(academy.id) ? 'bg-primary/[0.03]' : ''}`}>
                     <td className="px-4 py-4 w-8">
                       <input
                         type="checkbox"
                         aria-label={`Select ${academy.name}`}
-                        className="h-4 w-4 rounded border-gray-300 text-[#2885e8] focus:ring-[#2885e8]/30"
+                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/30"
                         checked={selectedIds.has(academy.id)}
                         onChange={(e) => {
                           const next = new Set(selectedIds);
@@ -797,7 +797,7 @@ export function AcademyManagement() {
                       </button>
 
                       {showActions === academy.id && (
-                        <div className="actions-dropdown absolute right-0 mt-2 min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-200/70 py-1 z-10">
+                        <div className="actions-dropdown absolute right-0 mt-2 min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-10">
                           <button
                             onClick={() => {
                               setSelectedAcademy(academy);

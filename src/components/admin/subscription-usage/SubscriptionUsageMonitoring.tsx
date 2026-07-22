@@ -125,7 +125,7 @@ export function SubscriptionUsageMonitoring() {
   const getProgressBarColor = (percentage: number) => {
     if (percentage >= 90) return 'bg-rose-500';
     if (percentage >= 80) return 'bg-amber-500';
-    return 'bg-[#2885e8]';
+    return 'bg-primary';
   };
 
   return (
@@ -204,13 +204,13 @@ export function SubscriptionUsageMonitoring() {
       )}
 
       {/* Usage Table */}
-      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+      <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         {!loading && usageData.length === 0 ? (
           <AdminEmptyState icon={TrendingUp} title="No usage data found" />
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50/60 border-b border-gray-200/70">
+              <thead className="bg-gray-50/60 border-b border-gray-100">
                 <tr>
                   <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Academy

@@ -198,8 +198,8 @@ export function AnalyticsDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-xl ring-1 ring-gray-200/70">
-        <div className="border-b border-gray-200/70">
+      <div className="bg-white rounded-xl ring-1 ring-gray-100">
+        <div className="border-b border-gray-100">
           <div className="flex gap-1 px-4">
             {(['overview', 'revenue', 'customers', 'usage'] as const).map((tab) => (
               <button
@@ -207,13 +207,13 @@ export function AnalyticsDashboard() {
                 onClick={() => setActiveTab(tab)}
                 className={`relative py-3 px-3 text-sm font-medium transition-colors ${
                   activeTab === tab
-                    ? 'text-[#1f6fc7]'
+                    ? 'text-primary'
                     : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
                 {activeTab === tab && (
-                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
+                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-primary rounded-full" />
                 )}
               </button>
             ))}

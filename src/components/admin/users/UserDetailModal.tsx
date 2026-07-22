@@ -128,7 +128,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
     const a = actionType.toLowerCase()
     if (a.includes('suspend')) return <XCircle className="h-4 w-4 text-rose-500" />
     if (a.includes('unsuspend') || a.includes('activate')) return <CheckCircle className="h-4 w-4 text-emerald-500" />
-    if (a.includes('user_modified') || a.includes('updated')) return <Activity className="h-4 w-4 text-[#2885e8]" />
+    if (a.includes('user_modified') || a.includes('updated')) return <Activity className="h-4 w-4 text-primary" />
     return <Activity className="h-4 w-4 text-gray-500" />
   };
 
@@ -161,12 +161,12 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`relative py-3 px-3 text-sm font-medium transition-colors ${
-                    activeTab === tab ? 'text-[#1f6fc7]' : 'text-gray-500 hover:text-gray-900'
+                    activeTab === tab ? 'text-primary' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
                   {String(t(`admin.users.tabs.${tab}`))}
                   {activeTab === tab && (
-                    <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
+                    <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-primary rounded-full" />
                   )}
                 </button>
               ))}
@@ -263,7 +263,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                   {(user.role === 'admin' || user.role === 'super_admin') && (
                     <Link
                       href={`/admin/activity-logs?actor=${user.id}`}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-[#2885e8] hover:text-[#1f6cc4] whitespace-nowrap"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-[#1f6cc4] whitespace-nowrap"
                       onClick={onClose}
                     >
                       {String(t('admin.users.viewAdminActions'))}
@@ -275,7 +275,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                 {activityLoading && (
                   <div className="space-y-2">
                     {Array.from({ length: 4 }).map((_, i) => (
-                      <div key={i} className="bg-gray-50/60 ring-1 ring-gray-200/70 rounded-lg p-4 animate-pulse">
+                      <div key={i} className="bg-gray-50/60 ring-1 ring-gray-100 rounded-lg p-4 animate-pulse">
                         <div className="h-3 w-32 rounded bg-gray-200 mb-2" />
                         <div className="h-2.5 w-64 rounded bg-gray-200" />
                       </div>
@@ -291,8 +291,8 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                 )}
 
                 {!activityLoading && !activityError && activityLogs.length === 0 && (
-                  <div className="bg-gray-50/60 ring-1 ring-gray-200/70 rounded-lg p-8 text-center">
-                    <div className="w-10 h-10 rounded-full bg-white ring-1 ring-gray-200/70 flex items-center justify-center mx-auto mb-2">
+                  <div className="bg-gray-50/60 ring-1 ring-gray-100 rounded-lg p-8 text-center">
+                    <div className="w-10 h-10 rounded-full bg-white ring-1 ring-gray-100 flex items-center justify-center mx-auto mb-2">
                       <Clock className="w-4 h-4 text-gray-400" />
                     </div>
                     <p className="text-sm font-medium text-gray-900">{String(t('admin.users.noAdminActivity'))}</p>
@@ -305,7 +305,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                 {!activityLoading && activityLogs.length > 0 && (
                   <div className="space-y-2">
                     {activityLogs.map((log) => (
-                      <div key={log.id} className="bg-gray-50/60 ring-1 ring-gray-200/70 rounded-lg p-3.5">
+                      <div key={log.id} className="bg-gray-50/60 ring-1 ring-gray-100 rounded-lg p-3.5">
                         <div className="flex items-start gap-3">
                           {getActivityIcon(log.action_type)}
                           <div className="flex-1 min-w-0">

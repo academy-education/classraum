@@ -187,7 +187,7 @@ export function SettingsDashboard() {
       />
 
       {/* Account section */}
-      <section className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+      <section className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         <header className="px-6 py-4 border-b border-gray-100">
           <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.settings.profile'))}</h2>
           <p className="text-xs text-gray-500 mt-0.5">Visible only to admins. Email and role are managed elsewhere.</p>
@@ -196,7 +196,7 @@ export function SettingsDashboard() {
         <div className="p-6 grid gap-6 sm:grid-cols-2">
           {/* Avatar */}
           <div className="sm:col-span-2 flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#2885e8] to-[#1f6fc7] flex items-center justify-center text-white font-semibold text-lg shadow-sm shadow-[#2885e8]/20">
+            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-semibold text-lg shadow-sm shadow-primary/20">
               {(profile.name || profile.email).charAt(0).toUpperCase()}
             </div>
             <div>
@@ -279,7 +279,7 @@ export function SettingsDashboard() {
       </section>
 
       {/* Permissions section */}
-      <section className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+      <section className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         <header className="px-6 py-4 border-b border-gray-100">
           <h2 className="text-sm font-semibold text-gray-900">Permissions</h2>
           <p className="text-xs text-gray-500 mt-0.5">
@@ -301,7 +301,7 @@ export function SettingsDashboard() {
       </section>
 
       {/* Sign-out section */}
-      <section className="bg-white rounded-xl ring-1 ring-gray-200/70 px-6 py-4 flex items-center justify-between gap-3">
+      <section className="bg-white rounded-xl ring-1 ring-gray-100 px-6 py-4 flex items-center justify-between gap-3">
         <div>
           <h2 className="text-sm font-semibold text-gray-900">Sign out</h2>
           <p className="text-xs text-gray-500 mt-0.5">End this admin session on this device.</p>

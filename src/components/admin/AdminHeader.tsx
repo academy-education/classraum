@@ -49,7 +49,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-200/70 bg-white/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/85 backdrop-blur-md">
       <div className="mx-auto px-6 h-14 flex items-center justify-between">
         {/* Left: sidebar toggle */}
         <button
@@ -69,11 +69,11 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
           {/* Search */}
           <div className="hidden md:block">
             <div className="relative group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none transition-colors group-focus-within:text-[#2885e8]" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none transition-colors group-focus-within:text-primary" />
               <input
                 type="text"
                 placeholder={String(t('admin.header.search'))}
-                className="w-72 pl-10 pr-3 h-9 bg-gray-50 border border-gray-200 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#2885e8] focus:ring-4 focus:ring-[#2885e8]/15 transition-all"
+                className="w-72 pl-10 pr-3 h-9 bg-gray-50 border border-gray-200 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/15 transition-all"
               />
             </div>
           </div>
@@ -110,7 +110,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
               onClick={() => setShowUserMenu(!showUserMenu)}
               className="flex items-center gap-2 pl-1.5 pr-2 h-9 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#2885e8] to-[#1f6fc7] flex items-center justify-center text-white font-semibold text-xs shadow-sm shadow-[#2885e8]/20">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-semibold text-xs shadow-sm shadow-primary/20">
                 {adminUser.name?.charAt(0) || adminUser.email.charAt(0).toUpperCase()}
               </div>
               <div className="hidden md:block text-left leading-tight">
@@ -127,13 +127,13 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
             </button>
 
             {showUserMenu && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-200/70 py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+              <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                 <div className="px-4 py-3 border-b border-gray-100">
                   <p className="text-sm font-semibold text-gray-900 truncate">
                     {adminUser.name || adminUser.email}
                   </p>
                   <p className="text-xs text-gray-500 truncate mt-0.5">{adminUser.email}</p>
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-[#2885e8]/10 text-[#1f6fc7] mt-2">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-primary/10 text-primary mt-2">
                     {adminUser.role === 'super_admin'
                       ? String(t('admin.users.roles.superAdmin'))
                       : String(t('admin.users.roles.admin'))}

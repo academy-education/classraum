@@ -237,7 +237,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
         <div className="flex-1 overflow-y-auto">
           <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50/60 border-b border-gray-200/70">
+            <thead className="bg-gray-50/60 border-b border-gray-100">
               <tr>
                 <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                   Payout ID

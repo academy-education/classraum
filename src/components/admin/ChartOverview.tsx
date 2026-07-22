@@ -127,7 +127,7 @@ export function ChartOverview() {
   // a hex value (for recharts <Bar fill="...">).
   const chartColors: Record<ChartType, { dot: string; hex: string }> = {
     revenue:   { dot: 'bg-violet-500',   hex: '#8b5cf6' },
-    academies: { dot: 'bg-[#2885e8]',    hex: '#2885e8' },
+    academies: { dot: 'bg-primary',    hex: '#2885e8' },
     users:     { dot: 'bg-emerald-500',  hex: '#10b981' },
   };
   const getChartColor = (type: ChartType) => chartColors[type].dot;
@@ -164,7 +164,7 @@ export function ChartOverview() {
 
   return (
     <>
-      <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70">
+      <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100">
         <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-2">
           <BarChart3 className="h-5 w-5 text-gray-600" />

@@ -190,7 +190,7 @@ export function RecentActivity() {
     
     switch (type) {
       case 'academy_created':
-        return <Building2 {...iconProps} className="h-5 w-5 text-[#2885e8]" />;
+        return <Building2 {...iconProps} className="h-5 w-5 text-primary" />;
       case 'subscription_created':
         return <CreditCard {...iconProps} className="h-5 w-5 text-emerald-600" />;
       case 'user_added':
@@ -238,12 +238,12 @@ export function RecentActivity() {
   };
 
   return (
-    <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70">
+    <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100">
       <div className="flex items-center justify-between mb-5">
         <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-[0.06em]">Recent Activity</h3>
         <button
           onClick={loadRecentActivities}
-          className="text-xs font-medium text-[#2885e8] hover:text-[#1f6fc7] transition-colors"
+          className="text-xs font-medium text-primary hover:text-primary transition-colors"
         >
           Refresh
         </button>

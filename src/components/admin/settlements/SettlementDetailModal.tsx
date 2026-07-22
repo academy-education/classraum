@@ -165,7 +165,7 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
               <div className="border-t border-gray-200 pt-3"></div>
               <div className="flex justify-between items-center">
                 <span className="text-base font-semibold text-gray-900">{String(t('admin.settlements.finalSettlementAmount'))}</span>
-                <span className="text-base font-bold text-[#1f6fc7]">
+                <span className="text-base font-bold text-primary">
                   {formatCurrency(settlement.amount.settlement, settlement.settlementCurrency)}
                 </span>
               </div>

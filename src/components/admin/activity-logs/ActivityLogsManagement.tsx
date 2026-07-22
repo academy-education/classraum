@@ -242,7 +242,7 @@ export function ActivityLogsManagement() {
       />
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
+      <div className="bg-white p-4 rounded-xl ring-1 ring-gray-100">
         <div className="flex items-center gap-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -361,7 +361,7 @@ export function ActivityLogsManagement() {
       </div>
 
       {/* Activity Logs Table */}
-      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+      <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         {!loading && filteredLogs.length === 0 ? (
           <div className="p-16 text-center">
             <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3">
@@ -375,7 +375,7 @@ export function ActivityLogsManagement() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50/60 border-b border-gray-200/70">
+              <thead className="bg-gray-50/60 border-b border-gray-100">
                 <tr>
                   <SortableTh sortKey="created_at" toggle={toggleSort} indicator={sortIndicator('created_at')}>
                     Timestamp

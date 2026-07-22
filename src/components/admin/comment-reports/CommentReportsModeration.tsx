@@ -234,7 +234,7 @@ export function CommentReportsModeration() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
+      <div className="bg-white p-4 rounded-xl ring-1 ring-gray-100">
         <div className="flex items-center gap-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -306,7 +306,7 @@ export function CommentReportsModeration() {
       </div>
 
       {/* Reports List */}
-      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+      <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         {loading ? (
           <AdminSkeleton.LogRows rows={6} />
         ) : filteredReports.length === 0 ? (

@@ -31,7 +31,7 @@ export function AdminPageHeader({ kicker, title, description, actions }: AdminPa
     <div className="flex items-end justify-between gap-4">
       <div className="min-w-0">
         {kicker && (
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#2885e8]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary">
             {kicker}
           </p>
         )}

@@ -191,7 +191,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
       bodyClassName="p-0"
       title={
         <span className="inline-flex items-center gap-3">
-          <Building2 className="h-6 w-6 text-[#1f6fc7]" />
+          <Building2 className="h-6 w-6 text-primary" />
           <span className="flex flex-col">
             <span className="text-xl font-semibold text-gray-900">{academy.name}</span>
             <span className="text-sm font-normal text-gray-500">ID: {academy.id}</span>
@@ -212,19 +212,19 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
         {/* Tabs — same pill-underline pattern as AnalyticsDashboard /
             SystemDashboard / UserDetailModal so all tabbed surfaces read
             the same. */}
-        <div className="border-b border-gray-200/70">
+        <div className="border-b border-gray-100">
           <div className="flex gap-1 px-4">
             {(['overview', 'users', 'billing', 'notes'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`relative py-3 px-3 text-sm font-medium transition-colors ${
-                  activeTab === tab ? 'text-[#1f6fc7]' : 'text-gray-500 hover:text-gray-900'
+                  activeTab === tab ? 'text-primary' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {String(t(`admin.academies.tabs.${tab}`))}
                 {activeTab === tab && (
-                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
+                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-primary rounded-full" />
                 )}
               </button>
             ))}
@@ -286,7 +286,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               <div className="grid grid-cols-3 gap-4">
                 <div className="bg-primary/10 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
-                    <Users className="h-8 w-8 text-[#1f6fc7]" />
+                    <Users className="h-8 w-8 text-primary" />
                     <div className="text-right">
                       <p className="text-2xl font-semibold text-gray-900">{academy.totalUsers}</p>
                       <p className="text-xs text-gray-600">Total Users</p>
@@ -389,7 +389,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       is_important: false
                     });
                   }}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-[#1f6fc7] text-white rounded-lg hover:bg-[#15487a] transition-colors text-sm"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-[#15487a] transition-colors text-sm"
                 >
                   <Plus className="w-4 h-4" />
                   Add Note
@@ -410,7 +410,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       <select
                         value={noteForm.note_type}
                         onChange={(e) => setNoteForm({ ...noteForm, note_type: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2885e8]/30 focus:border-transparent text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm"
                       >
                         <option value="general">General</option>
                         <option value="billing">Billing</option>
@@ -428,7 +428,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                         value={noteForm.content}
                         onChange={(e) => setNoteForm({ ...noteForm, content: e.target.value })}
                         rows={4}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2885e8]/30 focus:border-transparent text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm"
                         placeholder="Enter note content..."
                       />
                     </div>
@@ -439,7 +439,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                           type="checkbox"
                           checked={noteForm.is_important}
                           onChange={(e) => setNoteForm({ ...noteForm, is_important: e.target.checked })}
-                          className="rounded border-gray-300 text-[#1f6fc7] focus:ring-[#2885e8]/30"
+                          className="rounded border-gray-300 text-primary focus:ring-primary/30"
                         />
                         <Star className="w-4 h-4 text-amber-500" />
                         Mark as Important
@@ -465,7 +465,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       <button
                         onClick={handleSaveNote}
                         disabled={!noteForm.content.trim()}
-                        className="px-3 py-1.5 bg-[#1f6fc7] text-white rounded-lg text-sm font-medium hover:bg-[#15487a] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-3 py-1.5 bg-primary text-white rounded-lg text-sm font-medium hover:bg-[#15487a] disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {editingNote ? 'Update' : 'Save'} Note
                       </button>
@@ -477,7 +477,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               {/* Notes List */}
               {loadingNotes ? (
                 <div className="text-center py-8">
-                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2885e8]"></div>
+                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                   <p className="mt-2 text-sm text-gray-600">Loading notes...</p>
                 </div>
               ) : notes.length === 0 ? (

@@ -32,7 +32,7 @@ const toneMap: Record<StatusTone, string> = {
   pending: 'bg-amber-50  text-amber-700   ring-amber-200/70',
   danger:  'bg-rose-50   text-rose-700    ring-rose-200/70',
   info:    'bg-sky-50    text-sky-700     ring-sky-200/70',
-  brand:   'bg-[#2885e8]/10 text-[#1f6fc7] ring-[#2885e8]/20',
+  brand:   'bg-primary/10 text-primary ring-primary/20',
   muted:   'bg-slate-100 text-slate-700   ring-slate-200/70',
   violet:  'bg-violet-50 text-violet-700  ring-violet-200/70',
 }

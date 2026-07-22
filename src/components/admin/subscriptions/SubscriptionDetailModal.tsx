@@ -182,7 +182,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
       bodyClassName="p-0"
       title={
         <span className="inline-flex items-center gap-3">
-          <CreditCard className="h-6 w-6 text-[#1f6fc7]" />
+          <CreditCard className="h-6 w-6 text-primary" />
           <span className="flex flex-col">
             <span className="text-xl font-semibold text-gray-900">{subscription.academyName}</span>
             <span className="text-sm font-normal text-gray-500">{String(t('admin.subscriptions.subscriptionId'))}{subscription.id}</span>
@@ -197,19 +197,19 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
     >
       <>
         {/* Tabs — pill-underline pattern shared with all admin tabbed UIs. */}
-        <div className="border-b border-gray-200/70">
+        <div className="border-b border-gray-100">
           <div className="flex gap-1 px-4">
             {(['overview', 'billing', 'usage', 'history'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`relative py-3 px-3 text-sm font-medium transition-colors ${
-                  activeTab === tab ? 'text-[#1f6fc7]' : 'text-gray-500 hover:text-gray-900'
+                  activeTab === tab ? 'text-primary' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {String(t(`admin.subscriptions.tabs.${tab}`))}
                 {activeTab === tab && (
-                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-[#2885e8] rounded-full" />
+                  <span className="absolute -bottom-px left-2 right-2 h-0.5 bg-primary rounded-full" />
                 )}
               </button>
             ))}
@@ -233,7 +233,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                     <div className="flex items-center space-x-2">
                       {subscription.status === 'active' && <CheckCircle className="h-4 w-4 text-emerald-600" />}
                       {subscription.status === 'past_due' && <XCircle className="h-4 w-4 text-rose-600" />}
-                      {subscription.status === 'trialing' && <Clock className="h-4 w-4 text-[#1f6fc7]" />}
+                      {subscription.status === 'trialing' && <Clock className="h-4 w-4 text-primary" />}
                       <span className="capitalize">{subscription.status.replace('_', ' ')}</span>
                     </div>
                   </div>
@@ -324,7 +324,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 {loadingInvoices ? (
                   <div className="space-y-2">
                     {Array.from({ length: 4 }).map((_, i) => (
-                      <div key={i} className="bg-gray-50/60 ring-1 ring-gray-200/70 rounded-lg p-4 flex items-center justify-between">
+                      <div key={i} className="bg-gray-50/60 ring-1 ring-gray-100 rounded-lg p-4 flex items-center justify-between">
                         <div className="space-y-2">
                           <AdminSkeleton.Bar className="h-3.5 w-32" />
                           <AdminSkeleton.Bar className="h-2.5 w-48" />
@@ -401,7 +401,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                               href={invoice.portoneReceiptUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[#1f6fc7] hover:text-primary/90 p-1"
+                              className="text-primary hover:text-primary/90 p-1"
                               title={String(t('admin.subscriptions.viewReceipt'))}
                             >
                               <Download className="h-4 w-4" />
@@ -531,7 +531,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                         ) : isRefunded ? (
                           <Undo2 className="h-5 w-5 text-amber-600 mt-0.5" />
                         ) : (
-                          <DollarSign className="h-5 w-5 text-[#1f6fc7] mt-0.5" />
+                          <DollarSign className="h-5 w-5 text-primary mt-0.5" />
                         )}
                         <div className="flex-1">
                           <p className="text-sm font-medium text-gray-900">

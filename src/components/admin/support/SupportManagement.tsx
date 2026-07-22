@@ -326,7 +326,7 @@ export function SupportManagement() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
+        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-100">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -355,10 +355,10 @@ export function SupportManagement() {
         </div>
 
         {/* Conversations List */}
-        <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+        <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50/60 border-b border-gray-200/70">
+              <thead className="bg-gray-50/60 border-b border-gray-100">
                 <tr>
                   <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Conversation
@@ -460,7 +460,7 @@ export function SupportManagement() {
 
                         {showActions === conversation.id && menuPosition && (
                           <div
-                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-200/70 py-1 z-50 overflow-hidden"
+                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
                             style={{
                               top: `${menuPosition.top}px`,
                               right: `${menuPosition.right}px`

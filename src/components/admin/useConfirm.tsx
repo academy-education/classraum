@@ -104,7 +104,7 @@ const VARIANT_STYLES: Record<ConfirmVariant, {
 }> = {
   danger:  { icon: Trash2,         iconBg: 'bg-rose-50',  iconColor: 'text-rose-600',  confirmVariant: 'destructive' },
   warning: { icon: AlertTriangle,  iconBg: 'bg-amber-50', iconColor: 'text-amber-600', confirmVariant: 'destructive' },
-  info:    { icon: Info,           iconBg: 'bg-blue-50',  iconColor: 'text-[#2885e8]', confirmVariant: 'default' },
+  info:    { icon: Info,           iconBg: 'bg-blue-50',  iconColor: 'text-primary', confirmVariant: 'default' },
 }
 
 function ConfirmDialog({

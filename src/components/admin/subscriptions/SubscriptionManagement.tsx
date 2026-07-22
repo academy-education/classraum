@@ -276,7 +276,7 @@ export function SubscriptionManagement() {
         </div>
 
         {/* Filters and Actions */}
-        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
+        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-100">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -328,10 +328,10 @@ export function SubscriptionManagement() {
         </div>
 
         {/* Subscription List */}
-        <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+        <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50/60 border-b border-gray-200/70">
+              <thead className="bg-gray-50/60 border-b border-gray-100">
                 <tr>
                   <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>{String(t('admin.subscriptions.columns.academy'))}</SortableTh>
                   <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>{String(t('admin.subscriptions.columns.status'))}</SortableTh>
@@ -422,7 +422,7 @@ export function SubscriptionManagement() {
 
                         {showActions === subscription.id && menuPosition && (
                           <div
-                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-200/70 py-1 z-50 overflow-hidden"
+                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
                             style={{
                               top: `${menuPosition.top}px`,
                               right: `${menuPosition.right}px`

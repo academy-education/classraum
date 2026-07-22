@@ -28,10 +28,10 @@ export function CommunicationsDashboard() {
         description="Platform-wide announcements, notification templates and campaign analytics."
       />
 
-      <div className="bg-white rounded-xl ring-1 ring-gray-200/70 p-12 text-center">
+      <div className="bg-white rounded-xl ring-1 ring-gray-100 p-12 text-center">
         <div className="relative inline-block mb-5">
-          <div className="absolute inset-0 rounded-full bg-[#2885e8]/15 blur-2xl" />
-          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2885e8]/15 to-[#5ba3ff]/8 ring-1 ring-[#2885e8]/20 flex items-center justify-center text-[#2885e8]">
+          <div className="absolute inset-0 rounded-full bg-primary/15 blur-2xl" />
+          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/15 to-[#5ba3ff]/8 ring-1 ring-primary/20 flex items-center justify-center text-primary">
             <Megaphone className="w-7 h-7" />
           </div>
         </div>
@@ -51,8 +51,8 @@ export function CommunicationsDashboard() {
             { icon: Mail, title: 'Templates', body: 'Reusable email and SMS templates for transactional sends.' },
             { icon: MessageSquare, title: 'Campaigns', body: 'Targeted outreach with delivery and engagement metrics.' },
           ].map(item => (
-            <div key={item.title} className="rounded-lg ring-1 ring-gray-200/70 bg-gray-50/40 p-4">
-              <div className="w-8 h-8 rounded-lg bg-white ring-1 ring-gray-200/70 flex items-center justify-center text-gray-500 mb-2.5">
+            <div key={item.title} className="rounded-lg ring-1 ring-gray-100 bg-gray-50/40 p-4">
+              <div className="w-8 h-8 rounded-lg bg-white ring-1 ring-gray-100 flex items-center justify-center text-gray-500 mb-2.5">
                 <item.icon className="w-4 h-4" />
               </div>
               <p className="text-sm font-semibold text-gray-900">{item.title}</p>

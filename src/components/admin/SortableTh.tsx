@@ -39,7 +39,7 @@ export function SortableTh({
         aria-label={`Sort by ${typeof children === 'string' ? children : sortKey}`}
       >
         {children}
-        {indicator && <span className="text-[#2885e8]">{indicator}</span>}
+        {indicator && <span className="text-primary">{indicator}</span>}
       </button>
     </th>
   )

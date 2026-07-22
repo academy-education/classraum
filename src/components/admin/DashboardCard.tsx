@@ -22,7 +22,7 @@ interface DashboardCardProps {
 // as "white" but get a hint of categorization. Stronger color reserved for
 // the icon itself.
 const accentMap: Record<NonNullable<DashboardCardProps['accent']>, { chip: string; ring: string; icon: string; bar: string }> = {
-  blue:    { chip: 'bg-[#2885e8]/10', ring: 'ring-[#2885e8]/15', icon: 'text-[#2885e8]', bar: 'from-[#2885e8] to-[#5ba3ff]' },
+  blue:    { chip: 'bg-primary/10', ring: 'ring-primary/15', icon: 'text-primary', bar: 'from-primary to-[#5ba3ff]' },
   emerald: { chip: 'bg-emerald-50',   ring: 'ring-emerald-200/60', icon: 'text-emerald-600', bar: 'from-emerald-500 to-emerald-400' },
   amber:   { chip: 'bg-amber-50',     ring: 'ring-amber-200/60',   icon: 'text-amber-600',   bar: 'from-amber-500 to-amber-400' },
   rose:    { chip: 'bg-rose-50',      ring: 'ring-rose-200/60',    icon: 'text-rose-600',    bar: 'from-rose-500 to-rose-400' },
@@ -44,7 +44,7 @@ export function DashboardCard({
     <div
       className={cn(
         // Refined surface: thinner ring + soft shadow that escalates on hover
-        'group relative bg-white rounded-xl ring-1 ring-gray-200/70 p-5 transition-all duration-300',
+        'group relative bg-white rounded-2xl ring-1 ring-gray-100 p-5 transition-all duration-300',
         'hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] hover:-translate-y-px',
         className,
       )}

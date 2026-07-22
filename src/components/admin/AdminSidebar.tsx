@@ -206,7 +206,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
 
         <div className="mt-3 pt-3 border-t border-gray-100">
           <div className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#2885e8] to-[#1f6fc7] flex items-center justify-center text-white font-semibold text-sm shadow-sm shadow-[#2885e8]/20 flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-semibold text-sm shadow-sm shadow-primary/20 flex-shrink-0">
               {adminUser.name?.charAt(0) || adminUser.email.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">

@@ -112,7 +112,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
       size="2xl"
       title={
         <span className="inline-flex items-center gap-2">
-          <Banknote className="h-6 w-6 text-[#1f6fc7]" />
+          <Banknote className="h-6 w-6 text-primary" />
           Setup PortOne Partner
         </span>
       }

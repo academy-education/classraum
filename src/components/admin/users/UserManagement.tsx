@@ -368,7 +368,7 @@ export function UserManagement() {
         </div>
 
         {/* Controls */}
-        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-200/70">
+        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-100">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -423,7 +423,7 @@ export function UserManagement() {
 
         {/* Bulk action bar — appears once one or more rows are selected. */}
         {selectedIds.size > 0 && (
-          <div className="bg-[#2885e8]/5 border border-[#2885e8]/20 rounded-xl px-4 py-3 flex items-center justify-between">
+          <div className="bg-primary/5 border border-primary/20 rounded-xl px-4 py-3 flex items-center justify-between">
             <div className="text-sm font-medium text-[#1f6cc4]">
               {String(t('admin.users.selected', { count: selectedIds.size }))}
             </div>
@@ -501,10 +501,10 @@ export function UserManagement() {
         )}
 
         {/* Users Table */}
-        <div className="bg-white rounded-xl ring-1 ring-gray-200/70 overflow-hidden">
+        <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-100">
-              <thead className="bg-gray-50/60 border-b border-gray-200/70">
+              <thead className="bg-gray-50/60 border-b border-gray-100">
                 <tr>
                   {/* Bulk-select header checkbox — toggles all visible
                       (current page) users. Indeterminate when partial. */}
@@ -532,7 +532,7 @@ export function UserManagement() {
                         setSelectedIds(next);
                       }}
                       aria-label={String(t('admin.users.selectAllVisible'))}
-                      className="h-4 w-4 rounded border-gray-300 text-[#2885e8] focus:ring-[#2885e8]"
+                      className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                     />
                   </th>
                   <SortableTh sortKey="name" toggle={toggleSort} indicator={sortIndicator('name')}>User</SortableTh>
@@ -549,7 +549,7 @@ export function UserManagement() {
                 {paginatedUsers.map((user) => (
                   <tr
                     key={user.id}
-                    className={`hover:bg-gray-50 ${selectedIds.has(user.id) ? 'bg-[#2885e8]/[0.03]' : ''}`}
+                    className={`hover:bg-gray-50 ${selectedIds.has(user.id) ? 'bg-primary/[0.03]' : ''}`}
                   >
                     <td className="px-4 py-4 whitespace-nowrap">
                       <input
@@ -564,7 +564,7 @@ export function UserManagement() {
                           setSelectedIds(next);
                         }}
                         aria-label={`Select ${user.name}`}
-                        className="h-4 w-4 rounded border-gray-300 text-[#2885e8] focus:ring-[#2885e8] disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary disabled:opacity-40 disabled:cursor-not-allowed"
                       />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -614,7 +614,7 @@ export function UserManagement() {
                         </button>
                         
                         {showActions === user.id && (
-                          <div className="absolute right-0 mt-2 min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-200/70 py-1 z-10">
+                          <div className="absolute right-0 mt-2 min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-10">
                             <button
                               onClick={() => {
                                 setSelectedUser(user);

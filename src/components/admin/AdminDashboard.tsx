@@ -502,7 +502,7 @@ export function AdminDashboard() {
                   <button
                     onClick={() => handleResolveAlert(alert.id)}
                     disabled={resolvingAlertId === alert.id}
-                    className="text-sm font-medium text-[#2885e8] hover:text-[#1f6fc7] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="text-sm font-medium text-primary hover:text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {resolvingAlertId === alert.id ? String(t('admin.dashboard.resolving')) : String(t('admin.dashboard.resolve'))}
                   </button>
@@ -515,7 +515,7 @@ export function AdminDashboard() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.totalAcademies'))}</h3>
           </div>
@@ -546,7 +546,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.totalUsers'))}</h3>
           </div>
@@ -577,7 +577,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.monthlyRevenue'))}</h3>
           </div>
@@ -606,7 +606,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.activeSubscriptions'))}</h3>
           </div>
@@ -640,7 +640,7 @@ export function AdminDashboard() {
 
       {/* Secondary Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.supportTickets'))}</h3>
           </div>
@@ -653,7 +653,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.systemHealth'))}</h3>
           </div>
@@ -675,7 +675,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-200/70 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.growthRate'))}</h3>
           </div>
@@ -722,7 +722,7 @@ export function AdminDashboard() {
             { icon: Headphones, label: String(t('admin.dashboard.supportQueue')), desc: String(t('admin.dashboard.supportQueueDesc')), accent: 'rose' as const, href: '/admin/support' },
           ].map(action => {
             const accentMap = {
-              blue:    { iconBg: 'bg-[#2885e8]/10', iconColor: 'text-[#2885e8]', border: 'group-hover:border-[#2885e8]/40' },
+              blue:    { iconBg: 'bg-primary/10', iconColor: 'text-primary', border: 'group-hover:border-primary/40' },
               emerald: { iconBg: 'bg-emerald-50', iconColor: 'text-emerald-600', border: 'group-hover:border-emerald-300' },
               violet:  { iconBg: 'bg-violet-50', iconColor: 'text-violet-600', border: 'group-hover:border-violet-300' },
               rose:    { iconBg: 'bg-rose-50', iconColor: 'text-rose-600', border: 'group-hover:border-rose-300' },
@@ -732,7 +732,7 @@ export function AdminDashboard() {
               <button
                 key={action.label}
                 onClick={() => router.push(action.href)}
-                className={`group bg-white p-4 text-left rounded-xl ring-1 ring-gray-200/70 ${a.border} hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] hover:-translate-y-px transition-all`}
+                className={`group bg-white p-4 text-left rounded-xl ring-1 ring-gray-100 ${a.border} hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] hover:-translate-y-px transition-all`}
               >
                 <div className={`inline-flex items-center justify-center w-9 h-9 rounded-lg ${a.iconBg} mb-3 transition-transform group-hover:scale-110`}>
                   <action.icon className={`h-4.5 w-4.5 ${a.iconColor}`} />
