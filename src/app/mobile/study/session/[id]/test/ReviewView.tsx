@@ -9,6 +9,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { normalizeDisplayText, PassageParagraphs, percentToToeflBand } from './helpers'
 import { QuestionGraphicView } from './QuestionGraphicView'
 import { WritingFeedbackPanel } from './WritingPanels'
+import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals, SubmitResult, TestPayload } from './types'
 
 /**
@@ -354,6 +355,16 @@ export function ReviewView({
                       <p className="text-xs text-gray-600 leading-relaxed mt-2">
                         {normalizeDisplayText(q.explanation)}
                       </p>
+                      <ReportQuestion
+                        sessionId={sessionId}
+                        question={{
+                          prompt: q.prompt,
+                          type: q.type,
+                          choices: q.type === 'multiple_choice' ? q.choices : undefined,
+                          correct_answer: q.type === 'multiple_choice' ? q.correct_answer : verdict.correctAnswer,
+                          explanation: q.explanation,
+                        }}
+                      />
                     </div>
                   )}
                 </div>
