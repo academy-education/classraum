@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey, verifyOneTimePayment } from '@/lib/portone-charge'
 import { resolvePack } from '@/lib/study/plans'
@@ -13,10 +12,16 @@ import { grantCreditPack } from '@/lib/study/grant-purchase'
  * credit RPC only checks that credits exist, not the plan), so a free
  * user who buys a pack can spend it immediately.
  *
- * Body: { packId?, billingKey? }. packId is 5 / 15 / 40 / 3-micro;
- * defaults to the 5-pack. billingKey is optional — a buyer with a stored
- * card omits it; a card-less buyer (free user) issues one via the PortOne
- * overlay client-side and passes it here, and we store it for reuse.
+ * Body: { packId?, paymentId? }. packId is 5 / 15 / 40 / 3-micro; defaults to
+ * the 5-pack.
+ *
+ * Payment method: a credit pack is a ONE-OFF purchase, so it ALWAYS goes
+ * through a fresh one-time checkout window (the client requests a payment,
+ * the buyer enters a card, and we verify the resulting paymentId here). We
+ * deliberately do NOT reuse the subscriber's stored subscription card — that
+ * billing key is reserved for subscription renewals only. A buyer therefore
+ * gets prompted for a card on every top-up, and can use a different card
+ * from the one on their subscription.
  *
  * Idempotency: paymentId is epoch-namespaced per attempt; PortOne
  * dedups on paymentId server-side. The credit add happens only after
@@ -34,23 +39,17 @@ export async function POST(req: NextRequest) {
   try { body = await req.json() } catch { /* default pack */ }
   const pack = resolvePack(body.packId)
 
-  const { data: sub } = await supabaseAdmin
-    .from('study_subscriptions')
-    .select('status, plan, portone_subscription_id, purchased_credits_remaining')
-    .eq('student_id', user.id)
-    .maybeSingle()
-
-  // Two ways to pay. A stored billing key (subscribers) is charged
-  // server-side, invisibly. Card-less buyers now pay through a normal
-  // one-time checkout window (requestPayment) and send us the paymentId
-  // to verify — no card registration for a one-off purchase.
+  // A pack is paid via a one-time checkout window. We NEVER charge the
+  // subscription's stored card here (that key is for renewals only) — so
+  // without a verified one-time paymentId (or an explicitly-provided fresh
+  // key), we answer `no_billing_key` and the client opens the card window.
   const providedPaymentId = typeof body.paymentId === 'string' && body.paymentId ? body.paymentId : null
-  const storedKey = sub?.portone_subscription_id ?? null
   const providedKey = typeof body.billingKey === 'string' && body.billingKey ? body.billingKey : null
-  const billingKey = storedKey ?? providedKey
+  const billingKey = providedKey
 
   let paymentId: string
-  let billingKeyToPersist: string | null = null
+  // One-off pack purchases never persist a card — each top-up prompts again.
+  const billingKeyToPersist: string | null = null
   if (providedPaymentId) {
     const v = await verifyOneTimePayment({
       paymentId: providedPaymentId,
@@ -100,9 +99,7 @@ export async function POST(req: NextRequest) {
         { status: 402 },
       )
     }
-    // Persist a freshly issued card (only when the row didn't already
-    // have one) so future top-ups can charge it invisibly.
-    billingKeyToPersist = !storedKey ? providedKey : null
+    // A pack purchase never stores the card — the next top-up prompts again.
   }
 
   // Record + grant via the shared helper — the SAME code the webhook

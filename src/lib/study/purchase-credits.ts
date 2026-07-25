@@ -197,10 +197,11 @@ export async function requestOneTimePayment(opts: {
  * Client-side credit-pack purchase, shared by the subscription page and
  * the out-of-credits screen.
  *
- * The server tells us when a card is needed: we POST the pack first, and
- * only if it answers 402 `no_billing_key` (a card-less free user) do we
- * open the PortOne overlay to issue one and retry. Buyers who already
- * have a stored card never see the overlay.
+ * A pack is a one-off purchase, so EVERY buyer pays through a fresh
+ * one-time checkout window and enters a card — we never silently reuse a
+ * subscriber's stored subscription card (that's for renewals only). We POST
+ * the pack first; the server answers 402 `no_billing_key`, and we open the
+ * PortOne payment window, then redeem the resulting paymentId.
  */
 export interface BuyCreditPackResult {
   ok: boolean
