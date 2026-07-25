@@ -571,7 +571,7 @@ export function AdminDashboard() {
         ).sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
         return (
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 className="text-lg font-semibold text-gray-900 flex items-center">
                 <AlertTriangle className="mr-2 h-5 w-5 text-amber-500" />
                 {String(t('admin.dashboard.alerts'))}

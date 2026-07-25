@@ -270,8 +270,8 @@ export function ErrorLogsDashboard() {
 
       {/* Search and Filters */}
       <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
-        <div className="flex items-center gap-4">
-          <div className="flex-1 relative">
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex-1 min-w-[200px] relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <Input
               type="text"
@@ -389,9 +389,9 @@ export function ErrorLogsDashboard() {
                   className="p-4 cursor-pointer"
                   onClick={() => setExpandedLogId(expandedLogId === log.id ? null : log.id)}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-3 mb-2">
                         <StatusBadge tone={levelTone(log.level)}>
                           <span className="mr-1">{getLevelIcon(log.level)}</span>
                           {formatLogLevel(log.level)}
@@ -401,9 +401,9 @@ export function ErrorLogsDashboard() {
                           {new Date(log.created_at).toLocaleString(getDateLocale(language))}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-900">{log.message}</p>
+                      <p className="text-sm text-gray-900 break-words">{log.message}</p>
                       {log.error_message && (
-                        <p className="text-sm text-rose-600 mt-1">{log.error_message}</p>
+                        <p className="text-sm text-rose-600 mt-1 break-words">{log.error_message}</p>
                       )}
                     </div>
                     <button className="text-gray-400 hover:text-gray-600">
@@ -437,17 +437,17 @@ export function ErrorLogsDashboard() {
                         </div>
                       )}
 
-                      <div className="grid grid-cols-2 gap-3 text-xs">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                         {log.user_id && (
                           <div>
                             <span className="text-gray-600">{String(t('admin.errorLogs.userId'))}:</span>
-                            <span className="ml-2 text-gray-900 font-mono">{log.user_id}</span>
+                            <span className="ml-2 text-gray-900 font-mono break-all">{log.user_id}</span>
                           </div>
                         )}
                         {log.request_id && (
                           <div>
                             <span className="text-gray-600">{String(t('admin.errorLogs.requestId'))}:</span>
-                            <span className="ml-2 text-gray-900 font-mono">{log.request_id}</span>
+                            <span className="ml-2 text-gray-900 font-mono break-all">{log.request_id}</span>
                           </div>
                         )}
                       </div>
@@ -461,7 +461,7 @@ export function ErrorLogsDashboard() {
 
         {/* Pagination */}
         {!loading && sortedLogs.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-600">
               {String(t('admin.errorLogs.showingRange', {
                 from: page * pageSize + 1,

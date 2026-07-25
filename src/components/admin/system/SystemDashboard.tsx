@@ -207,12 +207,12 @@ export function SystemDashboard() {
       {/* Tabs */}
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         <div className="border-b border-gray-100">
-          <div className="flex gap-1 px-4">
+          <div className="flex gap-1 px-4 overflow-x-auto">
             {(['overview', 'health', 'logs'] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative py-3 px-3 text-sm font-medium transition-colors ${
+                className={`relative py-3 px-3 text-sm font-medium whitespace-nowrap transition-colors ${
                   activeTab === tab ? 'text-primary' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
@@ -306,7 +306,7 @@ export function SystemDashboard() {
           {/* LOGS */}
           {activeTab === 'logs' && (
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="text-xs text-gray-500">
                   {String(t('admin.system.showingEntriesPrefix'))}
                   {' '}<span className="font-semibold text-gray-900 tabular-nums">{filteredLogs.length}</span>
@@ -337,7 +337,7 @@ export function SystemDashboard() {
                         {log.level.toUpperCase()}
                       </StatusBadge>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-900">{log.message}</p>
+                        <p className="text-sm text-gray-900 break-words">{log.message}</p>
                         <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
                           <span>{(log.timestamp as Date).toLocaleString(getDateLocale(language))}</span>
                           <span className="text-gray-300">·</span>

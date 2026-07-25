@@ -200,12 +200,12 @@ export function AnalyticsDashboard() {
       {/* Tabs */}
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         <div className="border-b border-gray-100">
-          <div className="flex gap-1 px-4">
+          <div className="flex gap-1 px-4 overflow-x-auto">
             {(['overview', 'revenue', 'customers', 'usage'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative py-3 px-3 text-sm font-medium transition-colors ${
+                className={`relative py-3 px-3 text-sm font-medium whitespace-nowrap transition-colors ${
                   activeTab === tab
                     ? 'text-primary'
                     : 'text-gray-500 hover:text-gray-900'
@@ -231,7 +231,7 @@ export function AnalyticsDashboard() {
                     <div key={index} className="flex-1 flex flex-col items-center">
                       <div className="w-full flex justify-center mb-2">
                         <div
-                          className="w-8 bg-blue-500 rounded-t"
+                          className="w-full max-w-8 bg-blue-500 rounded-t"
                           style={{
                             height: `${(() => {
                               const peak = Math.max(0, ...data.revenue.trend.map(t => t.amount));
@@ -255,7 +255,7 @@ export function AnalyticsDashboard() {
                     <div key={index} className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         <div className={`w-3 h-3 rounded-full ${
-                          index === 0 ? 'bg-purple-500' :
+                          index === 0 ? 'bg-violet-500' :
                           index === 1 ? 'bg-blue-500' : 'bg-emerald-500'
                         }`} />
                         <span className="font-medium">{plan.plan}</span>

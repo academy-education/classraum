@@ -144,7 +144,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
               disabled={loading}
               placeholder={String(t('admin.academies.leaveEmptyAutoGenerate'))}
             />
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 break-all">
               {String(t('admin.academies.autoGenerateHint', { id: academyId }))}
             </p>
           </div>
@@ -221,7 +221,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
             <h3 className="text-sm font-medium text-gray-900 mb-4">{String(t('admin.academies.bankAccountInformation'))}</h3>
 
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">
                     {String(t('admin.academies.bank'))} <span className="text-rose-500">*</span>

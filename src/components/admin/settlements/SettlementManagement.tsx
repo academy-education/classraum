@@ -390,7 +390,7 @@ export function SettlementManagement() {
 
         {/* Pagination — uses shared Button so disabled / hover treatment matches */}
         {totalCount > 20 && (
-          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-500 tabular-nums">
               {String(t('admin.settlements.showing'))} <span className="font-medium text-gray-900">{page * 20 + 1}</span>–
               <span className="font-medium text-gray-900">{Math.min((page + 1) * 20, totalCount)}</span> {String(t('admin.common.of'))}{' '}

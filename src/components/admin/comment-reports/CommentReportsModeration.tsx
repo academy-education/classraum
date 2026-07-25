@@ -239,8 +239,8 @@ export function CommentReportsModeration() {
 
       {/* Search and Filters */}
       <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
-        <div className="flex items-center gap-4">
-          <div className="flex-1 relative">
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex-1 min-w-[200px] relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <Input
               type="text"
@@ -335,8 +335,8 @@ export function CommentReportsModeration() {
 
               return (
                 <div key={report.id} className="p-6 hover:bg-gray-50">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+                    <div className="flex flex-wrap items-center gap-3">
                       <StatusBadge tone={reportTypeTone(report.report_type)}>
                         {formatReportType(report.report_type)}
                       </StatusBadge>
@@ -344,7 +344,7 @@ export function CommentReportsModeration() {
                         {String(t('admin.commentReports.reportedOn', { date: new Date(report.created_at).toLocaleDateString(getDateLocale(language)) }))}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Button
                         variant="outline"
                         size="sm"
@@ -371,9 +371,9 @@ export function CommentReportsModeration() {
                     <div className="bg-amber-50 ring-1 ring-amber-200 rounded-lg p-4">
                       <div className="flex items-start gap-3">
                         <Flag className="w-4 h-4 text-amber-600 mt-1 flex-shrink-0" />
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium text-amber-900 mb-1">{String(t('admin.commentReports.reportReason'))}</p>
-                          <p className="text-sm text-amber-800">{report.text}</p>
+                          <p className="text-sm text-amber-800 break-words">{report.text}</p>
                           <p className="text-xs text-amber-600 mt-2">
                             {String(t('admin.commentReports.reportedBy'))}: {reporter?.name || reporter?.email || String(t('admin.common.unknownUser'))}
                           </p>
@@ -386,9 +386,9 @@ export function CommentReportsModeration() {
                       <div className="bg-gray-50 ring-1 ring-gray-100/80 rounded-lg p-4">
                         <div className="flex items-start gap-3">
                           <MessageSquare className="w-4 h-4 text-gray-600 mt-1 flex-shrink-0" />
-                          <div className="flex-1">
+                          <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-900 mb-1">{String(t('admin.commentReports.originalComment'))}</p>
-                            <p className="text-sm text-gray-700">{comment.text}</p>
+                            <p className="text-sm text-gray-700 break-words">{comment.text}</p>
                             <p className="text-xs text-gray-500 mt-2">
                               {String(t('admin.commentReports.by'))}: {commenter?.name || commenter?.email || String(t('admin.common.unknownUser'))}
                             </p>
@@ -405,7 +405,7 @@ export function CommentReportsModeration() {
 
         {/* Pagination */}
         {!loading && filteredReports.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-600">
               {String(t('admin.commentReports.showingReports', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
             </div>

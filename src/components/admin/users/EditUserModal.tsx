@@ -130,7 +130,7 @@ export function EditUserModal({ user, callerRole, isSelf, onClose, onSaved }: Ed
 
         <div className="bg-gray-50 rounded-lg p-3 space-y-1 ring-1 ring-gray-100">
           <div className="text-sm font-medium text-gray-900">{user.name}</div>
-          <div className="text-xs text-gray-500">{user.email}</div>
+          <div className="text-xs text-gray-500 break-all">{user.email}</div>
         </div>
 
         <div className="space-y-2">

@@ -186,7 +186,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
           <CreditCard className="h-6 w-6 text-primary" />
           <span className="flex flex-col">
             <span className="text-xl font-semibold text-gray-900">{subscription.academyName}</span>
-            <span className="text-sm font-normal text-gray-500">{String(t('admin.subscriptions.subscriptionId'))}{subscription.id}</span>
+            <span className="text-sm font-normal text-gray-500 break-all">{String(t('admin.subscriptions.subscriptionId'))}{subscription.id}</span>
           </span>
         </span>
       }
@@ -199,7 +199,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
       <>
         {/* Tabs — pill-underline pattern shared with all admin tabbed UIs. */}
         <div className="border-b border-gray-100">
-          <div className="flex gap-1 px-4">
+          <div className="flex gap-1 px-4 overflow-x-auto">
             {(['overview', 'billing', 'usage', 'history'] as const).map((tab) => (
               <button
                 key={tab}
@@ -224,7 +224,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
               {/* Subscription Status */}
               <div className="bg-gray-50 p-4 rounded-lg">
                 <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.subscriptions.subscriptionStatus'))}</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <p className="text-xs text-gray-600">{String(t('admin.subscriptions.currentPlan'))}</p>
                     <p className="text-lg font-semibold capitalize">{subscription.tier}</p>
@@ -250,7 +250,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
               </div>
 
               {/* Billing Information */}
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.subscriptions.billingPeriod'))}</h3>
                   <div className="space-y-2">
@@ -301,7 +301,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
               {/* Current Billing Info */}
               <div className="bg-gray-50 p-4 rounded-lg">
                 <h3 className="font-medium text-gray-900 mb-3">{String(t('admin.subscriptions.currentBillingCycle'))}</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <p className="text-sm text-gray-600">{String(t('admin.subscriptions.amount'))}</p>
                     <p className="text-xl font-semibold">{formatPrice(subscription.monthlyAmount)}</p>
@@ -344,10 +344,10 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 ) : (
                   <div className="space-y-3">
                     {billingHistory.map((invoice, index) => (
-                      <div key={index} className="flex items-center justify-between p-4 ring-1 ring-gray-100/80 rounded-lg">
-                        <div className="flex items-center space-x-3 flex-1">
+                      <div key={index} className="flex flex-wrap items-center justify-between gap-2 p-4 ring-1 ring-gray-100/80 rounded-lg">
+                        <div className="flex items-center space-x-3 flex-1 min-w-0">
                           {getStatusIcon(invoice.status)}
-                          <div className="flex-1">
+                          <div className="flex-1 min-w-0">
                             <div className="flex items-center space-x-2">
                               <p className="font-medium text-gray-900">{invoice.id.substring(0, 8)}...</p>
                               {invoice.refunded && (
@@ -385,16 +385,18 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                             )
                           })()}
                           {(invoice.status === 'paid' && !invoice.refunded) && (
-                            <button
+                            <Button
+                              variant="ghost"
+                              size="sm"
                               onClick={() => {
                                 setSelectedInvoice(invoice);
                                 setShowRefundModal(true);
                               }}
-                              className="text-rose-600 hover:text-rose-800 p-1 rounded hover:bg-rose-50"
+                              className="h-7 w-7 p-0 text-rose-600 hover:text-rose-800 hover:bg-rose-50"
                               title={String(t('admin.subscriptions.processRefund'))}
                             >
                               <Undo2 className="h-4 w-4" />
-                            </button>
+                            </Button>
                           )}
                           {invoice.portoneReceiptUrl && (
                             <a
@@ -439,7 +441,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 </div>
               ) : (
                 <>
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {Object.entries(usageData).map(([key, data]: [string, any]) => (
                       <div key={key} className="bg-gray-50 p-4 rounded-lg">
                         <div className="flex items-center justify-between mb-2">

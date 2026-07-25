@@ -306,8 +306,8 @@ export function WebhookEventViewer() {
 
       {/* Search and Filters */}
       <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
-        <div className="flex items-center gap-4">
-          <div className="flex-1 relative">
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex-1 min-w-[200px] relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <Input
               type="text"
@@ -446,9 +446,9 @@ export function WebhookEventViewer() {
                   className="p-4 cursor-pointer"
                   onClick={() => setExpandedEventId(expandedEventId === event.id ? null : event.id)}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
                         <StatusBadge tone="violet" size="sm">{event.type}</StatusBadge>
                         <StatusBadge tone={eventStatusTone(event.status)} size="sm">{event.status}</StatusBadge>
                         {event.processed ? (
@@ -461,14 +461,14 @@ export function WebhookEventViewer() {
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-3 gap-4 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-sm">
                         <div>
                           <span className="text-gray-600">{String(t('admin.webhooks.event'))}:</span>
-                          <span className="ml-2 font-medium text-gray-900">{event.event_type}</span>
+                          <span className="ml-2 font-medium text-gray-900 break-all">{event.event_type}</span>
                         </div>
                         <div>
                           <span className="text-gray-600">{String(t('admin.webhooks.entityId'))}:</span>
-                          <span className="ml-2 font-mono text-xs text-gray-900">{event.entity_id}</span>
+                          <span className="ml-2 font-mono text-xs text-gray-900 break-all">{event.entity_id}</span>
                         </div>
                         {event.amount && (
                           <div>
@@ -483,12 +483,12 @@ export function WebhookEventViewer() {
                       {event.error_message && (
                         <div className="mt-2 flex items-start gap-2 text-sm text-rose-600">
                           <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                          <span>{event.error_message}</span>
+                          <span className="break-words min-w-0">{event.error_message}</span>
                         </div>
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       <Button
                         variant="outline"
                         size="sm"
@@ -511,17 +511,17 @@ export function WebhookEventViewer() {
                 {expandedEventId === event.id && (
                   <div className="px-4 pb-4 bg-gray-50">
                     <div className="space-y-3">
-                      <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                         {event.partner_id && (
                           <div>
                             <span className="text-gray-600">{String(t('admin.webhooks.partnerId'))}:</span>
-                            <span className="ml-2 text-gray-900 font-mono text-xs">{event.partner_id}</span>
+                            <span className="ml-2 text-gray-900 font-mono text-xs break-all">{event.partner_id}</span>
                           </div>
                         )}
                         {event.webhook_id && (
                           <div>
                             <span className="text-gray-600">{String(t('admin.webhooks.webhookId'))}:</span>
-                            <span className="ml-2 text-gray-900 font-mono text-xs">{event.webhook_id}</span>
+                            <span className="ml-2 text-gray-900 font-mono text-xs break-all">{event.webhook_id}</span>
                           </div>
                         )}
                         <div>
@@ -550,7 +550,7 @@ export function WebhookEventViewer() {
 
         {/* Pagination */}
         {!loading && sortedEvents.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-600">
               {String(t('admin.webhooks.showingEvents', {
                 from: page * pageSize + 1,

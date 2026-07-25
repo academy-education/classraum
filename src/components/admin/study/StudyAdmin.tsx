@@ -44,12 +44,12 @@ export function StudyAdmin() {
         description={String(t('admin.studyConsole.subtitle'))}
       />
 
-      <div className="inline-flex rounded-lg bg-gray-100 p-0.5">
+      <div className="inline-flex max-w-full overflow-x-auto rounded-lg bg-gray-100 p-0.5">
         {(['lookup', 'subscriptions', 'payments', 'reports'] as Tab[]).map(k => (
           <button
             key={k}
             onClick={() => setTab(k)}
-            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
+            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
               tab === k ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
@@ -409,7 +409,7 @@ function RefundDialog({ payment, kindLabel, amountLabel, onClose, onDone }: {
           <Input value={reason} onChange={e => setReason(e.target.value)} placeholder={String(t('admin.studyConsole.refundReasonPlaceholder'))} className="mt-1" autoFocus />
         </label>
         {error && <p className="mt-2 text-xs text-rose-600">{error}</p>}
-        <div className="mt-5 flex justify-end gap-2">
+        <div className="mt-5 flex flex-wrap justify-end gap-2">
           <Button variant="outline" onClick={onClose} disabled={busy}>{String(t('admin.studyConsole.refundCancel'))}</Button>
           <Button variant="destructive" onClick={submit} disabled={busy || reason.trim().length === 0}>
             {busy ? String(t('admin.studyConsole.refundProcessing')) : String(t('admin.studyConsole.refundConfirm'))}
@@ -512,15 +512,15 @@ function ReportsQueue() {
 
       <div className="space-y-3">
         {reports.map(r => (
-          <div key={r.id} className="rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] p-4">
-            <div className="flex items-center gap-2 text-xs">
-              <span className="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-semibold">{r.reason}</span>
-              <span className="text-gray-400">{new Date(r.created_at).toLocaleString(locale)}</span>
+          <div key={r.id} className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] p-4">
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <span className="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-semibold whitespace-nowrap">{r.reason}</span>
+              <span className="text-gray-400 whitespace-nowrap">{new Date(r.created_at).toLocaleString(locale)}</span>
               <span className="text-gray-400">·</span>
-              <span className="text-gray-500 truncate">{r.reporter?.email ?? r.reporter?.name ?? t('admin.studyConsole.unknownReporter')}</span>
-              <span className="ml-auto text-gray-400">{statusLabel(r.status)}</span>
+              <span className="text-gray-500 truncate min-w-0">{r.reporter?.email ?? r.reporter?.name ?? t('admin.studyConsole.unknownReporter')}</span>
+              <span className="ml-auto text-gray-400 whitespace-nowrap">{statusLabel(r.status)}</span>
             </div>
-            <p className="mt-2 text-sm text-gray-900 whitespace-pre-wrap">{r.question_snapshot?.prompt}</p>
+            <p className="mt-2 text-sm text-gray-900 whitespace-pre-wrap break-words">{r.question_snapshot?.prompt}</p>
             {Array.isArray(r.question_snapshot?.choices) && (
               <ul className="mt-1.5 text-xs text-gray-600 space-y-0.5">
                 {r.question_snapshot.choices.map((c, i) => (
@@ -574,7 +574,7 @@ function subStatusMeta(status: string): string {
     case 'active': return 'bg-emerald-50 text-emerald-700 ring-emerald-200/60'
     case 'past_due': return 'bg-rose-50 text-rose-700 ring-rose-200/60'
     case 'cancelled': return 'bg-gray-100 text-gray-600 ring-gray-200/70'
-    case 'trial': return 'bg-sky-50 text-sky-700 ring-sky-200/60'
+    case 'trial': return 'bg-violet-50 text-violet-700 ring-violet-200/60'
     default: return 'bg-gray-100 text-gray-500 ring-gray-200/70' // free
   }
 }
@@ -835,7 +835,7 @@ function PaymentsList() {
 function Pager({ page, totalPages, total, onPage }: { page: number; totalPages: number; total: number; onPage: (p: number) => void }) {
   const { t } = useTranslation()
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex flex-wrap items-center justify-between gap-2">
       <span className="text-xs text-gray-500">{String(t('admin.studyConsole.pageOf', { page, totalPages, total }))}</span>
       <div className="flex gap-2">
         <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => onPage(page - 1)}>{String(t('admin.common.previous'))}</Button>

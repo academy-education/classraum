@@ -301,7 +301,7 @@ export function SubscriptionManagement() {
               </div>
             </div>
             
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Select value={filterStatus} onValueChange={setFilterStatus}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder={String(t('admin.subscriptions.allStatuses'))} />
@@ -412,7 +412,9 @@ export function SubscriptionManagement() {
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap text-right">
                       <div className="relative inline-block">
-                        <button
+                        <Button
+                          variant="ghost"
+                          size="sm"
                           onClick={(e) => {
                             e.stopPropagation();
                             const rect = e.currentTarget.getBoundingClientRect();
@@ -422,13 +424,13 @@ export function SubscriptionManagement() {
                             });
                             setShowActions(showActions === subscription.id ? null : subscription.id);
                           }}
-                          className="text-gray-400 hover:text-gray-600"
+                          className="h-7 w-7 p-0 text-gray-400 hover:text-gray-600"
                           aria-label={String(t('admin.subscriptions.rowActions'))}
                           aria-haspopup="menu"
                           aria-expanded={showActions === subscription.id}
                         >
                           <MoreVertical className="h-5 w-5" />
-                        </button>
+                        </Button>
 
                         {showActions === subscription.id && menuPosition && (
                           <div

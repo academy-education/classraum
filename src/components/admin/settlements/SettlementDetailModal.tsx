@@ -47,10 +47,10 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
           {/* Basic Information */}
           <div>
             <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase">{String(t('admin.settlements.basicInformation'))}</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <p className="text-sm text-gray-600">{String(t('admin.settlements.settlementIdLabel'))}</p>
-                <p className="text-sm font-medium text-gray-900 mt-1">{settlement.id}</p>
+                <p className="text-sm font-medium text-gray-900 mt-1 break-all">{settlement.id}</p>
               </div>
               <div>
                 <p className="text-sm text-gray-600">{String(t('admin.settlements.academyLabel'))}</p>
@@ -176,10 +176,10 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
           {settlement.payment && (
             <div>
               <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase">{String(t('admin.settlements.paymentInformation'))}</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-gray-600">{String(t('admin.settlements.paymentId'))}</p>
-                  <p className="text-sm font-medium text-gray-900 mt-1">{settlement.payment.id}</p>
+                  <p className="text-sm font-medium text-gray-900 mt-1 break-all">{settlement.payment.id}</p>
                 </div>
                 {settlement.payment.orderName && (
                   <div>

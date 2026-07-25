@@ -203,11 +203,11 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
       size="4xl"
       bodyClassName="p-0"
       title={
-        <span className="inline-flex items-center gap-3">
-          <Building2 className="h-6 w-6 text-primary" />
-          <span className="flex flex-col">
+        <span className="inline-flex items-center gap-3 min-w-0">
+          <Building2 className="h-6 w-6 text-primary flex-shrink-0" />
+          <span className="flex flex-col min-w-0">
             <span className="text-xl font-semibold text-gray-900">{academy.name}</span>
-            <span className="text-sm font-normal text-gray-500">ID: {academy.id}</span>
+            <span className="text-sm font-normal text-gray-500 break-all">ID: {academy.id}</span>
           </span>
         </span>
       }
@@ -226,12 +226,12 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
             SystemDashboard / UserDetailModal so all tabbed surfaces read
             the same. */}
         <div className="border-b border-gray-100">
-          <div className="flex gap-1 px-4">
+          <div className="flex gap-1 px-4 overflow-x-auto">
             {(['overview', 'users', 'billing', 'notes'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative py-3 px-3 text-sm font-medium transition-colors ${
+                className={`relative py-3 px-3 text-sm font-medium whitespace-nowrap transition-colors ${
                   activeTab === tab ? 'text-primary' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
@@ -249,13 +249,13 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
           {activeTab === 'overview' && (
             <div className="space-y-6">
               {/* Basic Info */}
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.academies.contactInformation'))}</h3>
                   <div className="space-y-2">
-                    <div className="flex items-center text-sm">
-                      <Mail className="mr-2 h-4 w-4 text-gray-400" />
-                      <span>{academy.email}</span>
+                    <div className="flex items-center text-sm min-w-0">
+                      <Mail className="mr-2 h-4 w-4 text-gray-400 flex-shrink-0" />
+                      <span className="break-all">{academy.email}</span>
                     </div>
                     {academy.phone && (
                       <div className="flex items-center text-sm">
@@ -296,7 +296,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="bg-primary/10 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
                     <Users className="h-8 w-8 text-primary" />
@@ -360,7 +360,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
             <div className="space-y-4">
               <div className="bg-gray-50 p-4 rounded-lg">
                 <h3 className="font-medium text-gray-900 mb-3">{String(t('admin.academies.billingOverview'))}</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <p className="text-sm text-gray-600">{String(t('admin.academies.currentPlan'))}</p>
                     <p className="text-lg font-semibold capitalize">{academy.subscriptionTier}</p>
@@ -535,8 +535,8 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
 
                       <p className="text-sm text-gray-900 mb-2">{note.content}</p>
 
-                      <div className="flex items-center justify-between text-xs text-gray-500">
-                        <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500">
+                        <div className="flex flex-wrap items-center gap-2">
                           <span>{note.users?.name || note.users?.email || String(t('admin.common.unknownUser'))}</span>
                           <span>•</span>
                           <span>{new Date(note.created_at).toLocaleDateString(getDateLocale(language))}</span>

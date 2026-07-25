@@ -138,13 +138,13 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       size="4xl"
       bodyClassName="p-0"
       title={
-        <span className="inline-flex items-center gap-3">
-          <span className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-medium">
+        <span className="inline-flex items-center gap-3 min-w-0">
+          <span className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-medium flex-shrink-0">
             {user.name.charAt(0).toUpperCase()}
           </span>
-          <span className="flex flex-col">
+          <span className="flex flex-col min-w-0">
             <span className="text-xl font-semibold text-gray-900">{user.name}</span>
-            <span className="text-sm font-normal text-gray-500">{user.email}</span>
+            <span className="text-sm font-normal text-gray-500 break-all">{user.email}</span>
           </span>
         </span>
       }
@@ -152,7 +152,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       <div>
           {/* Tabs */}
           <div className="border-b border-gray-100">
-            <div className="flex space-x-8 px-6">
+            <div className="flex space-x-8 px-6 overflow-x-auto">
               {/* Same tab styling as AnalyticsDashboard / SystemDashboard:
                   brand-blue text + a thin sliding underline pill instead of
                   a full-width border. */}
@@ -160,7 +160,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`relative py-3 px-3 text-sm font-medium transition-colors ${
+                  className={`relative py-3 px-3 text-sm font-medium whitespace-nowrap transition-colors ${
                     activeTab === tab ? 'text-primary' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
@@ -178,7 +178,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
             {activeTab === 'overview' && (
               <div className="space-y-6">
                 {/* User Info */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <h3 className="text-lg font-medium text-gray-900 mb-4">{String(t('admin.users.userInformation'))}</h3>
                     <div className="space-y-3">
@@ -189,10 +189,10 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                           <p className="text-xs text-gray-500">{String(t('admin.users.fullName'))}</p>
                         </div>
                       </div>
-                      <div className="flex items-center">
-                        <Mail className="mr-3 h-4 w-4 text-gray-400" />
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">{user.email}</p>
+                      <div className="flex items-center min-w-0">
+                        <Mail className="mr-3 h-4 w-4 text-gray-400 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium text-gray-900 break-all">{user.email}</p>
                           <p className="text-xs text-gray-500">{String(t('admin.users.emailAddress'))}</p>
                         </div>
                       </div>
@@ -249,7 +249,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
 
             {activeTab === 'activity' && (
               <div className="space-y-4">
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <h3 className="text-lg font-medium text-gray-900">{String(t('admin.users.recentAdminActivity'))}</h3>
                     <p className="text-xs text-gray-500 mt-0.5">

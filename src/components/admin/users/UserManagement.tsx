@@ -379,7 +379,7 @@ export function UserManagement() {
         {/* Controls */}
         <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
+            <div className="flex-1 min-w-[200px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
                 <Input
@@ -391,8 +391,8 @@ export function UserManagement() {
                 />
               </div>
             </div>
-            
-            <div className="flex gap-2">
+
+            <div className="flex flex-wrap gap-2">
               <Select value={filterRole} onValueChange={(value) => setFilterRole(value)}>
                 <SelectTrigger className="w-[150px]">
                   <SelectValue placeholder={String(t('admin.users.allRoles'))} />
@@ -432,11 +432,11 @@ export function UserManagement() {
 
         {/* Bulk action bar — appears once one or more rows are selected. */}
         {selectedIds.size > 0 && (
-          <div className="bg-primary/8 ring-1 ring-primary/20 rounded-xl px-4 py-3 flex items-center justify-between">
+          <div className="bg-primary/8 ring-1 ring-primary/20 rounded-xl px-4 py-3 flex flex-wrap items-center justify-between gap-2">
             <div className="text-sm font-medium text-primary">
               {String(t('admin.users.selected', { count: selectedIds.size }))}
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Button size="sm" variant="outline" onClick={handleExportCSV}>
                 <Download className="w-4 h-4" />
                 {String(t('admin.users.exportSelected'))}

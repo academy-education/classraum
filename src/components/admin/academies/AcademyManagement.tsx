@@ -543,11 +543,11 @@ export function AcademyManagement() {
         {/* Bulk action bar — sticky just below the page header whenever
             the admin has selected one or more rows. */}
         {selectedIds.size > 0 && (
-          <div className="flex items-center justify-between bg-primary/8 ring-1 ring-primary/20 rounded-xl px-4 py-2.5">
+          <div className="flex flex-wrap items-center justify-between gap-2 bg-primary/8 ring-1 ring-primary/20 rounded-xl px-4 py-2.5">
             <p className="text-sm font-medium text-primary">
               {String(t('admin.academies.selected', { count: selectedIds.size }))}
             </p>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Button
                 size="sm"
                 variant="outline"
@@ -623,7 +623,7 @@ export function AcademyManagement() {
         {/* Filters and Actions */}
         <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
+            <div className="flex-1 min-w-[200px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
                 <Input
@@ -635,8 +635,8 @@ export function AcademyManagement() {
                 />
               </div>
             </div>
-            
-            <div className="flex gap-2">
+
+            <div className="flex flex-wrap gap-2">
               <Select value={filterStatus} onValueChange={setFilterStatus}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder={String(t('admin.academies.allStatus'))} />
@@ -859,7 +859,7 @@ export function AcademyManagement() {
                               setShowPartnerSetupModal(true);
                               setShowActions(null);
                             }}
-                            className="flex items-center w-full px-4 py-2 text-sm text-blue-700 hover:bg-blue-50"
+                            className="flex items-center w-full px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50"
                           >
                             <Banknote className="mr-3 h-4 w-4" />
                             {String(t('admin.academies.setupPartner'))}

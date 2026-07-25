@@ -28,7 +28,7 @@ interface AdminPageHeaderProps {
  */
 export function AdminPageHeader({ kicker, title, description, actions }: AdminPageHeaderProps) {
   return (
-    <div className="flex items-end justify-between gap-4">
+    <div className="flex flex-wrap items-end justify-between gap-4">
       <div className="min-w-0">
         {kicker && (
           <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary">
@@ -45,7 +45,7 @@ export function AdminPageHeader({ kicker, title, description, actions }: AdminPa
         )}
       </div>
       {actions && (
-        <div className="flex-shrink-0 flex items-center gap-2">
+        <div className="flex-shrink-0 flex flex-wrap items-center gap-2">
           {actions}
         </div>
       )}

@@ -453,18 +453,26 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
       onClose={onClose}
       size="4xl"
       hideClose
-      bodyClassName="p-0 flex min-h-0"
+      bodyClassName="p-0 flex flex-col md:flex-row min-h-0"
     >
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
           {/* Header */}
-          <div className="px-6 py-4 border-b border-gray-100">
+          <div className="px-4 md:px-6 py-4 border-b border-gray-100">
             <div className="flex items-center space-x-3">
-              <MessageSquare className="h-6 w-6 text-primary" />
-              <div>
-                <h2 className="text-xl font-semibold text-gray-900">{ticket.title || String(t('admin.support.supportConversation'))}</h2>
+              <MessageSquare className="h-6 w-6 text-primary flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <h2 className="text-xl font-semibold text-gray-900 truncate">{ticket.title || String(t('admin.support.supportConversation'))}</h2>
                 <p className="text-sm text-gray-500">ID: {ticket.id.substring(0, 8)}</p>
               </div>
+              {/* Mobile-only close — the sidebar (with its close button) stacks below the fold on small screens */}
+              <button
+                onClick={onClose}
+                className="md:hidden text-gray-400 hover:text-gray-600 p-2 flex-shrink-0"
+                aria-label={String(t('admin.common.close'))}
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
           </div>
 
@@ -513,7 +521,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                           {formatKSTTime(message.timestamp, language)}
                         </span>
                       </div>
-                      <p className="text-sm whitespace-pre-wrap">{message.message}</p>
+                      <p className="text-sm whitespace-pre-wrap break-words">{message.message}</p>
                     </div>
                   </div>
                 ))}
@@ -567,10 +575,10 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
         </div>
 
         {/* Sidebar */}
-        <div className="w-80 border-l border-gray-100 bg-gray-50">
+        <div className="w-full md:w-80 flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-100 bg-gray-50">
           <div className="p-6 space-y-6">
             {/* Close Button */}
-            <div className="flex justify-end -mt-2 -mr-2">
+            <div className="hidden md:flex justify-end -mt-2 -mr-2">
               <button
                 onClick={onClose}
                 className="text-gray-400 hover:text-gray-600 p-2"
@@ -589,7 +597,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                 </div>
                 <div className="flex items-center text-sm">
                   <Mail className="mr-2 h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">{ticket.userEmail || String(t('admin.support.noEmail'))}</span>
+                  <span className="text-gray-600 break-all">{ticket.userEmail || String(t('admin.support.noEmail'))}</span>
                 </div>
                 {ticket.academyName && (
                   <div className="flex items-center text-sm">
@@ -660,7 +668,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   </div>
                 )}
                 <div className="flex items-start space-x-2">
-                  <MessageSquare className="h-4 w-4 text-purple-500 mt-0.5" />
+                  <MessageSquare className="h-4 w-4 text-violet-500 mt-0.5" />
                   <div className="text-xs">
                     <p className="font-medium">{String(t('admin.common.lastUpdated'))}</p>
                     <p className="text-gray-500">{formatKSTDateTime(ticket.updatedAt, language)}</p>

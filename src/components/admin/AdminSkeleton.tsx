@@ -64,7 +64,7 @@ function Filters() {
   return (
     <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex flex-col md:flex-row gap-3">
       <Bar className="h-9 flex-1" />
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <Bar className="h-9 w-32" />
         <Bar className="h-9 w-32" />
         <Bar className="h-9 w-24" />

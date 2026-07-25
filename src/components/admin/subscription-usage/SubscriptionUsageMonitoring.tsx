@@ -178,7 +178,7 @@ export function SubscriptionUsageMonitoring() {
             <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center">
               <AlertTriangle className="w-5 h-5 text-amber-600" />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <h3 className="text-sm font-semibold text-amber-900">
                 {String(t(
                   statistics.approaching_limits.length === 1
@@ -346,7 +346,7 @@ export function SubscriptionUsageMonitoring() {
 
         {/* Pagination */}
         {!loading && usageData.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-600">
               {String(t('admin.usage.showingAcademies', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
             </div>

@@ -252,8 +252,8 @@ export function ActivityLogsManagement() {
 
       {/* Search and Filters */}
       <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
-        <div className="flex items-center gap-4">
-          <div className="flex-1 relative">
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex-1 min-w-[200px] relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <Input
               type="text"
@@ -452,7 +452,7 @@ export function ActivityLogsManagement() {
 
         {/* Pagination */}
         {!loading && filteredLogs.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-600">
               {String(t('admin.activityLogs.showingLogs', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
             </div>

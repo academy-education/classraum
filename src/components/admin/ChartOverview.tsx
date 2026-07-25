@@ -171,9 +171,9 @@ export function ChartOverview() {
   return (
     <>
       <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
-        <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center space-x-2">
-          <BarChart3 className="h-5 w-5 text-gray-600" />
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+        <div className="flex items-center space-x-2 min-w-0">
+          <BarChart3 className="h-5 w-5 text-gray-600 flex-shrink-0" />
           <h3 className="text-lg font-semibold text-gray-900">{getChartTitle(activeChart)}</h3>
         </div>
         
@@ -291,7 +291,7 @@ export function ChartOverview() {
 
       {/* Chart Legend */}
       <div className="mt-4 pt-4 border-t border-gray-100">
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <div className={`w-3 h-3 rounded-full ${getChartColor(activeChart)}`} />

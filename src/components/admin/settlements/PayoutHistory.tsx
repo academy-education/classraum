@@ -145,7 +145,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
       className="!max-w-6xl"
       bodyClassName="p-0"
       footer={totalCount > 20 ? (
-        <div className="w-full flex items-center justify-between">
+        <div className="w-full flex flex-wrap items-center justify-between gap-2">
           <div className="text-sm text-gray-700">
             {String(t('admin.settlements.showingResults', { from: page * 20 + 1, to: Math.min((page + 1) * 20, totalCount), total: totalCount }))}
           </div>

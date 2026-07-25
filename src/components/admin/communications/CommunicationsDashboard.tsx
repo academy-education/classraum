@@ -30,7 +30,7 @@ export function CommunicationsDashboard() {
         description={String(t('admin.communications.subtitle'))}
       />
 
-      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] p-12 text-center">
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] p-6 sm:p-12 text-center">
         <div className="relative inline-block mb-5">
           <div className="absolute inset-0 rounded-full bg-primary/15 blur-2xl" />
           <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/15 to-[#5ba3ff]/8 ring-1 ring-primary/20 flex items-center justify-center text-primary">

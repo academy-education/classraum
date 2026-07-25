@@ -146,9 +146,9 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
 
           {/* Invoice Details */}
           <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">{String(t('admin.subscriptions.invoiceId'))}</span>
-              <span className="font-medium text-gray-900">{invoice.id}</span>
+            <div className="flex items-start justify-between gap-3 text-sm">
+              <span className="text-gray-600 shrink-0">{String(t('admin.subscriptions.invoiceId'))}</span>
+              <span className="font-medium text-gray-900 break-all text-right">{invoice.id}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-600">{String(t('admin.subscriptions.originalAmount'))}</span>
