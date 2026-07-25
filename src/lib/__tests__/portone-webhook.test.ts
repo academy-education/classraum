@@ -5,20 +5,27 @@ import {
   WebhookVerificationError,
 } from '../portone-webhook'
 
-const TEST_SECRET = 'whsec_test_secret_key_1234567890'
+const TEST_SECRET = 'whsec_dGVzdHNlY3JldGtleTEyMzQ1Njc4OTA='
+
+// Sign exactly like a real PortOne / Standard-Webhooks sender: id.timestamp.payload
+// with the base64-decoded secret. This must match verifyWebhookSignature — if
+// either the order or the secret decoding regresses, these tests fail.
+function sign(secret: string, webhookId: string, timestamp: string, payload: string) {
+  const secretKey = secret.startsWith('whsec_')
+    ? Buffer.from(secret.slice(6), 'base64')
+    : Buffer.from(secret, 'utf8')
+  return crypto
+    .createHmac('sha256', secretKey)
+    .update(`${webhookId}.${timestamp}.${payload}`, 'utf8')
+    .digest('base64')
+}
 
 function createValidHeaders(secret: string, payload: string) {
   const webhookId = 'wh_test_123'
   const timestamp = Math.floor(Date.now() / 1000).toString()
-  const signedContent = `${timestamp}.${webhookId}.${payload}`
-  const signature = crypto
-    .createHmac('sha256', secret)
-    .update(signedContent, 'utf8')
-    .digest('base64')
-
   return {
     'webhook-id': webhookId,
-    'webhook-signature': `v1,${signature}`,
+    'webhook-signature': `v1,${sign(secret, webhookId, timestamp, payload)}`,
     'webhook-timestamp': timestamp,
   }
 }
@@ -75,13 +82,9 @@ describe('verifyWebhookSignature', () => {
     const headers = createValidHeaders(TEST_SECRET, payload)
     // Set timestamp to 10 minutes ago (tolerance is 5 minutes)
     headers['webhook-timestamp'] = (Math.floor(Date.now() / 1000) - 600).toString()
-    // Recompute signature with the old timestamp
-    const signedContent = `${headers['webhook-timestamp']}.${headers['webhook-id']}.${payload}`
-    const signature = crypto
-      .createHmac('sha256', TEST_SECRET)
-      .update(signedContent, 'utf8')
-      .digest('base64')
-    headers['webhook-signature'] = `v1,${signature}`
+    // Recompute the signature so it's valid for the old timestamp — the
+    // rejection must come from the tolerance check, not a signature mismatch.
+    headers['webhook-signature'] = `v1,${sign(TEST_SECRET, headers['webhook-id'], headers['webhook-timestamp'], payload)}`
 
     expect(() => verifyWebhookSignature(TEST_SECRET, payload, headers))
       .toThrow('Webhook timestamp outside tolerance window')

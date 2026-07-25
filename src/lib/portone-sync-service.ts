@@ -101,11 +101,13 @@ export async function syncPayouts(options?: {
     // Process each payout
     for (const payout of response.items) {
       try {
-        await storePayout(payout);
+        const changed = await storePayout(payout);
         synced++;
 
-        // Send alert for failed payouts
-        if (payout.status === 'FAILED') {
+        // Alert only on a genuine transition into FAILED — not on every
+        // 6-hourly sync of an already-known failed payout (was spamming the
+        // dashboard with duplicate unresolved alerts).
+        if (changed && payout.status === 'FAILED') {
           await alerts.payoutFailed(
             payout.id,
             payout.partnerId,
@@ -189,7 +191,9 @@ async function storeSettlement(settlement: PlatformPartnerSettlement): Promise<v
 /**
  * Store payout in database (reusing webhook_events table)
  */
-async function storePayout(payout: PlatformPayout): Promise<void> {
+// Returns true only when this payout is NEW or has changed status — so callers
+// can alert on a genuine state transition instead of re-alerting every sync.
+async function storePayout(payout: PlatformPayout): Promise<boolean> {
   // Check if payout already exists
   const { data: existing } = await supabaseServer
     .from('webhook_events')
@@ -200,7 +204,7 @@ async function storePayout(payout: PlatformPayout): Promise<void> {
 
   // Skip if already exists with same status
   if (existing && existing.status === payout.status) {
-    return;
+    return false;
   }
 
   // Insert or update payout event
@@ -233,6 +237,7 @@ async function storePayout(payout: PlatformPayout): Promise<void> {
     payoutId: payout.id,
     status: payout.status,
   });
+  return true;
 }
 
 /**

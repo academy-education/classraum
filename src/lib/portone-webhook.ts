@@ -67,11 +67,18 @@ export function verifyWebhookSignature(
     throw new WebhookVerificationError('No valid v1 signatures found');
   }
 
-  // Compute expected signature
-  // Format: {timestamp}.{webhookId}.{payload}
-  const signedContent = `${webhookTimestamp}.${webhookId}.${payload}`;
+  // Compute expected signature per the Standard Webhooks spec.
+  // Signed content is `{webhookId}.{timestamp}.{payload}` (id first — NOT
+  // timestamp first), and the secret is `whsec_<base64>`: strip the prefix
+  // and base64-decode it to get the raw HMAC key. Both were wrong before,
+  // which rejected every legitimate PortOne webhook. Mirrors the known-good
+  // study webhook at app/api/study/subscription/webhook/route.ts.
+  const secretKey = secret.startsWith('whsec_')
+    ? Buffer.from(secret.slice(6), 'base64')
+    : Buffer.from(secret, 'utf8');
+  const signedContent = `${webhookId}.${webhookTimestamp}.${payload}`;
   const expectedSignature = crypto
-    .createHmac('sha256', secret)
+    .createHmac('sha256', secretKey)
     .update(signedContent, 'utf8')
     .digest('base64');
 
