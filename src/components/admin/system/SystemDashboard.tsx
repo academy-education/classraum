@@ -36,8 +36,9 @@ interface SystemMetric {
 }
 interface SystemService {
   name: string
-  status: 'running' | 'healthy' | 'warning' | 'error'
-  uptime: string
+  status: 'running' | 'healthy' | 'warning' | 'error' | 'down'
+  description?: string
+  responseMs?: number | null
 }
 interface SystemLog {
   id: string
@@ -245,7 +246,10 @@ export function SystemDashboard() {
                             </div>
                             <div className="min-w-0">
                               <p className="text-sm font-semibold text-gray-900 truncate">{service.name}</p>
-                              <p className="text-xs text-gray-500">{String(t('admin.system.uptime'))} · {service.uptime}</p>
+                              <p className="text-xs text-gray-500 truncate">
+                                {service.description}
+                                {typeof service.responseMs === 'number' ? ` · ${service.responseMs} ms` : ''}
+                              </p>
                             </div>
                           </div>
                           <StatusBadge tone={toTone(service.status)} size="sm">{service.status}</StatusBadge>

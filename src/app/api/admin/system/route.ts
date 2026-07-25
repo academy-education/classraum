@@ -77,70 +77,52 @@ export async function GET(request: NextRequest) {
     const activeSubscriptions = subscriptions?.filter(s => s.status === 'active').length || 0;
     const totalSubscriptions = subscriptions?.length || 0;
 
-    // Service health checks (based on successful queries)
+    // Real service health probes — measure reachability + latency instead of
+    // fabricating SLA percentages. A probe that throws marks the service down.
+    const probe = async (fn: () => PromiseLike<unknown>) => {
+      const t0 = Date.now();
+      try { await fn(); return { ok: true, ms: Date.now() - t0 }; }
+      catch { return { ok: false, ms: Date.now() - t0 }; }
+    };
+    const dbProbe = await probe(() =>
+      supabase.from('users').select('id', { head: true, count: 'exact' }).limit(1)
+    );
+    const storageProbe = await probe(() => supabase.storage.listBuckets());
+
     const services = [
-      {
-        name: 'Database',
-        status: 'running',
-        uptime: '99.9%',
-        description: 'PostgreSQL database connection'
-      },
-      {
-        name: 'Authentication',
-        status: 'running',
-        uptime: '100%',
-        description: 'Supabase Auth service'
-      },
-      {
-        name: 'API Server',
-        status: 'running',
-        uptime: '99.8%',
-        description: 'Next.js API routes'
-      },
-      {
-        name: 'File Storage',
-        status: 'running',
-        uptime: '99.5%',
-        description: 'Supabase Storage'
-      }
+      { name: 'Database',       status: dbProbe.ok ? 'running' : 'down',      responseMs: dbProbe.ms,      description: 'PostgreSQL database connection' },
+      // Auth was already exercised above via auth.admin.listUsers().
+      { name: 'Authentication', status: authData ? 'running' : 'down',        responseMs: null,            description: 'Supabase Auth service' },
+      { name: 'API Server',     status: 'running',                            responseMs: null,            description: 'Next.js API routes' },
+      { name: 'File Storage',   status: storageProbe.ok ? 'running' : 'down', responseMs: storageProbe.ms, description: 'Supabase Storage' },
     ];
 
-    // Recent activity logs (from database records)
-    const recentLogs = [
-      {
-        id: '1',
-        level: 'info',
-        message: `Active subscriptions: ${activeSubscriptions}/${totalSubscriptions}`,
-        timestamp: new Date(),
-        service: 'Database'
-      },
-      {
-        id: '2',
-        level: 'info',
-        message: `Total users: ${totalAuthUsers}, Active users (30d): ${activeUsers}`,
-        timestamp: new Date(),
-        service: 'System'
-      },
-      {
-        id: '3',
-        level: 'info',
-        message: `Database tables monitored: ${tables.length}`,
-        timestamp: new Date(),
-        service: 'Database'
-      }
-    ];
+    // Real recent activity, pulled from the admin activity log (not synthesized).
+    const { data: logRows } = await supabase
+      .from('admin_activity_logs')
+      .select('id, action_type, description, created_at')
+      .order('created_at', { ascending: false })
+      .limit(8);
+    const recentLogs = (logRows || []).map((r: { id: string; action_type: string; description: string | null; created_at: string }) => ({
+      id: r.id,
+      level: 'info',
+      message: r.description || r.action_type,
+      timestamp: r.created_at,
+      service: 'Admin',
+    }));
 
-    // Calculate uptime (from app start or use a fixed reference)
-    // In a real app, you'd track this from server start time
-    const uptimeDays = 15;
-    const uptimeHours = 6;
-    const uptime = `${uptimeDays} days, ${uptimeHours} hours`;
+    // Real process uptime for this server instance (serverless: since cold start).
+    const uptimeSec = Math.floor(process.uptime());
+    const uptime = `${Math.floor(uptimeSec / 86400)}d ${Math.floor((uptimeSec % 86400) / 3600)}h ${Math.floor((uptimeSec % 3600) / 60)}m`;
+
+    // Overall status derived from the real probes above.
+    const overall = services.every(s => s.status === 'running') ? 'healthy' : 'degraded';
 
     // System status
     const systemStatus = {
-      overall: 'healthy',
+      overall,
       uptime,
-      version: '2.4.1',
+      version: process.env.npm_package_version || process.env.NEXT_PUBLIC_APP_VERSION || 'unknown',
       environment: process.env.NODE_ENV || 'development',
       lastUpdate: new Date(),
       database: {

@@ -460,19 +460,11 @@ export function AnalyticsDashboard() {
                   </div>
                   
                   <div>
-                    <h5 className="text-sm font-medium text-gray-700 mb-3">Usage Alerts</h5>
+                    <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.peakUsageHours'))}</h5>
                     <div className="space-y-2">
-                      <div className="flex items-start space-x-2 p-2 bg-amber-50 border border-amber-200 rounded">
-                        <AlertCircle className="h-4 w-4 text-amber-600 mt-0.5" />
-                        <div className="text-sm">
-                          <p className="font-medium text-amber-900">High API Usage</p>
-                          <p className="text-amber-700">Some academies approaching API limits</p>
-                        </div>
-                      </div>
                       <div className="flex items-start space-x-2 p-2 bg-sky-50 border border-sky-200 rounded-lg">
                         <Activity className="h-4 w-4 text-sky-600 mt-0.5" />
                         <div className="text-sm">
-                          <p className="font-medium text-sky-900">Peak Usage Hours</p>
                           <p className="text-sky-700">{data.performance.peakHours}</p>
                         </div>
                       </div>
