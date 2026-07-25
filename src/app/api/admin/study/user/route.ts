@@ -58,8 +58,12 @@ export async function GET(req: NextRequest) {
     supabaseAdmin.from('study_credit_ledger')
       .select('delta, bucket, kind, note, created_at')
       .eq('student_id', id).order('created_at', { ascending: false }).limit(10),
+    // Full prefs row — the admin detail groups these into Profile / Goals /
+    // Study settings, so fetch everything the student set rather than just
+    // the nickname + targets.
     supabaseAdmin.from('study_user_prefs')
-      .select('nickname, target_test, target_tests').eq('student_id', id).maybeSingle(),
+      .select('nickname, nickname_changed, grade_level, target_test, target_tests, goal_score, goal_scores, test_date, daily_goal_minutes, default_language, default_difficulty, onboarded_at')
+      .eq('student_id', id).maybeSingle(),
     supabaseAdmin.from('study_streak_state')
       .select('max_streak, freezes, protected_days, updated_at').eq('student_id', id).maybeSingle(),
     // study_attempts links to a student via session_id (no student_id

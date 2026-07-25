@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox, Download } from 'lucide-react'
+import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox, Download, UserRound, Settings2 } from 'lucide-react'
 import { useAdminFetch } from '@/components/admin/useAdminFetch'
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader'
 import { AdminEmptyState } from '@/components/admin/AdminEmptyState'
@@ -142,6 +142,57 @@ function UserLookup() {
 function money(n: unknown) { return typeof n === 'number' ? n.toLocaleString() : '—' }
 function when(s: unknown, locale: string) { return typeof s === 'string' ? new Date(s).toLocaleString(locale) : '—' }
 
+/** Everything the student configured in study mode (study_user_prefs). */
+interface StudyPrefs {
+  nickname?: string | null
+  nickname_changed?: boolean | null
+  grade_level?: string | null
+  target_test?: string | null
+  target_tests?: string[] | null
+  goal_score?: number | null
+  /** Per-test goals, e.g. { sat: 1500, toefl: 110 } — supersedes goal_score. */
+  goal_scores?: Record<string, number> | null
+  test_date?: string | null
+  daily_goal_minutes?: number | null
+  default_language?: string | null
+  default_difficulty?: string | null
+  onboarded_at?: string | null
+}
+
+/** target_tests (multi) superseded target_test (single) — read both. */
+function targetTests(p: StudyPrefs | null): string[] {
+  const many = p?.target_tests ?? []
+  if (many.length) return many
+  return p?.target_test ? [p.target_test] : []
+}
+
+/** Prefer the per-test goal map; fall back to the legacy single score. */
+function goalScoreLabel(p: StudyPrefs | null): string {
+  const map = p?.goal_scores
+  if (map && typeof map === 'object' && Object.keys(map).length) {
+    return Object.entries(map).map(([test, score]) => `${test} ${score}`).join(' · ')
+  }
+  return typeof p?.goal_score === 'number' ? String(p.goal_score) : '—'
+}
+
+function hasGoals(p: StudyPrefs | null): boolean {
+  return !!(targetTests(p).length || p?.goal_score || p?.goal_scores || p?.test_date || p?.daily_goal_minutes)
+}
+
+/** Label/value rows — the shared shape for every grouped detail panel. */
+function FieldList({ children }: { children: React.ReactNode }) {
+  return <dl className="divide-y divide-gray-100/80 -my-1.5">{children}</dl>
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-start justify-between gap-3 py-1.5">
+      <dt className="text-xs text-gray-500 flex-shrink-0">{label}</dt>
+      <dd className="text-sm text-gray-900 text-right min-w-0 break-words">{children}</dd>
+    </div>
+  )
+}
+
 function UserDetail({ data, studentId }: { data: Record<string, unknown>; studentId: string | null }) {
   const { t, language } = useTranslation()
   const locale = getDateLocale(language)
@@ -152,7 +203,7 @@ function UserDetail({ data, studentId }: { data: Record<string, unknown>; studen
   const ledger = (data.ledger as Array<Record<string, unknown>>) ?? []
   const memberships = (data.memberships as Array<Record<string, unknown>>) ?? []
   const reports = (data.reports as Array<Record<string, unknown>>) ?? []
-  const prefs = data.prefs as { nickname?: string; target_test?: string; target_tests?: string[] } | null
+  const prefs = data.prefs as StudyPrefs | null
 
   const tier = (m: Record<string, unknown>) => {
     const lg = m.league as { tier?: string } | { tier?: string }[] | null
@@ -209,11 +260,72 @@ function UserDetail({ data, studentId }: { data: Record<string, unknown>; studen
           ) : <Empty>{t('admin.studyConsole.noSubscription')}</Empty>}
         </Panel>
 
-        <Panel title={String(t('admin.studyConsole.prefsStreak'))} icon={CalendarClock}>
-          <div className="text-sm text-gray-700 space-y-1">
-            {prefs ? <div>{t('admin.studyConsole.nickname')}: <span className="text-gray-900">{prefs.nickname || '—'}</span> · {t('admin.studyConsole.targets')}: <span className="text-gray-900">{(prefs.target_tests ?? []).join(', ') || prefs.target_test || '—'}</span></div> : <span className="text-gray-400">{t('admin.studyConsole.noPrefs')}</span>}
-            {streak ? <div className="text-xs text-gray-500">{t('admin.studyConsole.bestStreak')}: {String(streak.max_streak ?? 0)} · {t('admin.studyConsole.freezes')}: {String(streak.freezes ?? 0)}</div> : null}
-          </div>
+        {/* Profile — who they are inside study mode */}
+        <Panel title={String(t('admin.studyConsole.secProfile'))} icon={UserRound}>
+          <FieldList>
+            <Field label={String(t('admin.studyConsole.fldNickname'))}>
+              {prefs?.nickname || '—'}
+              {prefs?.nickname_changed && (
+                <span className="ml-1.5 text-[11px] text-gray-400">({String(t('admin.studyConsole.fldNicknameLocked'))})</span>
+              )}
+            </Field>
+            <Field label={String(t('admin.studyConsole.fldGradeLevel'))}>{prefs?.grade_level || '—'}</Field>
+            <Field label={String(t('admin.studyConsole.fldRole'))}>{user?.role || '—'}</Field>
+            <Field label={String(t('admin.studyConsole.fldOnboarded'))}>
+              {prefs?.onboarded_at
+                ? new Date(prefs.onboarded_at).toLocaleDateString(locale)
+                : <span className="text-amber-600">{String(t('admin.studyConsole.notOnboarded'))}</span>}
+            </Field>
+          </FieldList>
+        </Panel>
+
+        {/* Goals — what they're working toward */}
+        <Panel title={String(t('admin.studyConsole.secGoals'))} icon={Target}>
+          {hasGoals(prefs) ? (
+            <FieldList>
+              <Field label={String(t('admin.studyConsole.fldTargetTests'))}>
+                {targetTests(prefs).length
+                  ? <span className="flex flex-wrap gap-1">
+                      {targetTests(prefs).map(tt => (
+                        <span key={tt} className="inline-flex items-center h-5 px-2 rounded-full bg-primary/8 text-primary text-[11px] font-semibold ring-1 ring-primary/15">{tt}</span>
+                      ))}
+                    </span>
+                  : '—'}
+              </Field>
+              <Field label={String(t('admin.studyConsole.fldGoalScore'))}>{goalScoreLabel(prefs)}</Field>
+              <Field label={String(t('admin.studyConsole.fldTestDate'))}>
+                {prefs?.test_date ? new Date(prefs.test_date).toLocaleDateString(locale) : '—'}
+              </Field>
+              <Field label={String(t('admin.studyConsole.fldDailyGoal'))}>
+                {typeof prefs?.daily_goal_minutes === 'number'
+                  ? String(t('admin.studyConsole.fldMinutes', { n: prefs.daily_goal_minutes }))
+                  : '—'}
+              </Field>
+            </FieldList>
+          ) : <Empty>{t('admin.studyConsole.noGoals')}</Empty>}
+        </Panel>
+
+        {/* Study settings — session defaults they chose */}
+        <Panel title={String(t('admin.studyConsole.secStudySetup'))} icon={Settings2}>
+          <FieldList>
+            <Field label={String(t('admin.studyConsole.fldLanguage'))}>{prefs?.default_language || '—'}</Field>
+            <Field label={String(t('admin.studyConsole.fldDifficulty'))}>{prefs?.default_difficulty || '—'}</Field>
+          </FieldList>
+        </Panel>
+
+        {/* Streak — consistency signal */}
+        <Panel title={String(t('admin.studyConsole.secStreak'))} icon={CalendarClock}>
+          {streak ? (
+            <FieldList>
+              <Field label={String(t('admin.studyConsole.fldBestStreak'))}>
+                {String(t('admin.studyConsole.fldDays', { n: Number(streak.max_streak ?? 0) }))}
+              </Field>
+              <Field label={String(t('admin.studyConsole.fldFreezes'))}>{String(streak.freezes ?? 0)}</Field>
+              <Field label={String(t('admin.studyConsole.fldProtectedDays'))}>
+                {Array.isArray(streak.protected_days) ? streak.protected_days.length : 0}
+              </Field>
+            </FieldList>
+          ) : <Empty>{t('admin.studyConsole.noStreakYet')}</Empty>}
         </Panel>
 
         <Panel title={String(t('admin.studyConsole.leaguesRecent'))} icon={Trophy}>
