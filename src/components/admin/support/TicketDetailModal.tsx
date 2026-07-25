@@ -341,7 +341,6 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
 
       setMessages(prev => [...prev, optimisticMessage]);
       setNewMessage('');
-      setIsInternal(false);
 
       // Clear typing status
       if (typingTimeoutRef.current) {
