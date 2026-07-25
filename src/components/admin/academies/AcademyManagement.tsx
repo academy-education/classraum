@@ -135,7 +135,7 @@ export function AcademyManagement() {
         // Surface the actual error rather than swallowing as `{}`.
         console.error('[AcademyManagement] Admin API error:', body)
         toast({
-          title: 'Failed to load academies',
+          title: String(t('admin.academies.failedToLoad')),
           description: body.detail || body.error || `HTTP ${response.status}`,
           variant: 'destructive',
         })
@@ -210,12 +210,12 @@ export function AcademyManagement() {
       setAcademies(processed)
       // Announce row count to screen readers — useful when a refresh or
       // filter change updates the list silently.
-      announce(`Loaded ${processed.length} ${processed.length === 1 ? 'academy' : 'academies'}.`)
+      announce(String(t('admin.academies.announceLoaded', { count: processed.length })))
     } catch (error) {
       console.error('[AcademyManagement] Unexpected load error:', error);
       toast({
-        title: 'Failed to load academies',
-        description: error instanceof Error ? error.message : 'Unknown error',
+        title: String(t('admin.academies.failedToLoad')),
+        description: error instanceof Error ? error.message : String(t('admin.academies.unknownError')),
         variant: 'destructive',
       })
       setAcademies([]);
@@ -234,10 +234,10 @@ export function AcademyManagement() {
     const url = buildOnboardingUrl(academy.onboardingToken)
     try {
       await navigator.clipboard.writeText(url)
-      toast({ title: 'Onboarding link copied', description: url, variant: 'success' })
+      toast({ title: String(t('admin.academies.linkCopied')), description: url, variant: 'success' })
     } catch {
       toast({
-        title: 'Could not copy automatically',
+        title: String(t('admin.academies.couldNotCopy')),
         description: url,
         variant: 'destructive',
       })
@@ -252,10 +252,10 @@ export function AcademyManagement() {
   const handleRevokeOnboardingLink = async (academy: Academy) => {
     setShowActions(null)
     const ok = await confirm({
-      title: `Revoke onboarding link for "${academy.name}"?`,
-      description: 'The current link will stop working immediately. You can generate a new one later.',
+      title: String(t('admin.academies.revokeConfirmTitle', { name: academy.name })),
+      description: String(t('admin.academies.revokeConfirmDesc')),
       variant: 'warning',
-      confirmText: 'Revoke link',
+      confirmText: String(t('admin.academies.revokeConfirmBtn')),
     })
     if (!ok) return
 
@@ -269,16 +269,16 @@ export function AcademyManagement() {
       }
 
       toast({
-        title: 'Onboarding link revoked',
-        description: `"${academy.name}" no longer has a pending invite.`,
+        title: String(t('admin.academies.linkRevoked')),
+        description: String(t('admin.academies.linkRevokedDesc', { name: academy.name })),
         variant: 'success',
       })
       loadAcademies()
     } catch (err) {
       console.error('[AcademyManagement] Revoke link error:', err)
       toast({
-        title: 'Could not revoke link',
-        description: err instanceof Error ? err.message : 'Unexpected error',
+        title: String(t('admin.academies.couldNotRevoke')),
+        description: err instanceof Error ? err.message : String(t('admin.academies.unexpectedError')),
         variant: 'destructive',
       })
     }
@@ -303,13 +303,13 @@ export function AcademyManagement() {
       try {
         await navigator.clipboard.writeText(url)
         toast({
-          title: 'New onboarding link copied',
+          title: String(t('admin.academies.newLinkCopied')),
           description: url,
           variant: 'success',
         })
       } catch {
         toast({
-          title: 'New onboarding link generated',
+          title: String(t('admin.academies.newLinkGenerated')),
           description: url,
           variant: 'success',
         })
@@ -318,8 +318,8 @@ export function AcademyManagement() {
     } catch (err) {
       console.error('[AcademyManagement] Regenerate link error:', err)
       toast({
-        title: 'Could not regenerate link',
-        description: err instanceof Error ? err.message : 'Unexpected error',
+        title: String(t('admin.academies.couldNotRegenerate')),
+        description: err instanceof Error ? err.message : String(t('admin.academies.unexpectedError')),
         variant: 'destructive',
       })
     }
@@ -361,7 +361,7 @@ export function AcademyManagement() {
           .from('academies')
           .update({
             is_suspended: suspend,
-            suspension_reason: suspend ? (reason || 'Bulk-suspended by admin') : null,
+            suspension_reason: suspend ? (reason || String(t('admin.academies.bulkSuspendReason'))) : null,
             updated_at: new Date().toISOString(),
           })
           .eq('id', id);
@@ -375,13 +375,14 @@ export function AcademyManagement() {
     );
     setBulkBusy(false);
     setSelectedIds(new Set());
+    const resultTitle = fail === 0
+      ? String(t(suspend ? 'admin.academies.bulkSuspendedTitle' : 'admin.academies.bulkReactivatedTitle', { count: ok }))
+      : String(t('admin.academies.bulkPartialTitle', { ok, fail }));
     toast({
-      title: fail === 0
-        ? `${ok} ${ok === 1 ? 'academy' : 'academies'} ${suspend ? 'suspended' : 'reactivated'}`
-        : `${ok} updated, ${fail} failed`,
+      title: resultTitle,
       variant: fail === 0 ? 'success' : 'destructive',
     });
-    announce(`${ok} ${suspend ? 'suspended' : 'reactivated'}${fail ? `, ${fail} failed` : ''}.`);
+    announce(resultTitle);
     loadAcademies();
   };
 
@@ -408,13 +409,23 @@ export function AcademyManagement() {
 
   const handleExportData = () => {
     // Export academies data to CSV
-    const headers = ['Academy Name', 'Email', 'Phone', 'Status', 'Tier', 'Total Users', 'Monthly Revenue', 'Created Date', 'Last Active'];
+    const headers = [
+      String(t('admin.academies.csvAcademyName')),
+      String(t('admin.academies.csvEmail')),
+      String(t('admin.academies.csvPhone')),
+      String(t('admin.academies.csvStatus')),
+      String(t('admin.academies.csvTier')),
+      String(t('admin.academies.csvTotalUsers')),
+      String(t('admin.academies.csvMonthlyRevenue')),
+      String(t('admin.academies.csvCreatedDate')),
+      String(t('admin.academies.csvLastActive')),
+    ];
 
     const csvData = filteredAcademies.map(academy => [
       academy.name,
       academy.email,
-      academy.phone || 'N/A',
-      academy.isSuspended ? 'Suspended' : academy.status,
+      academy.phone || String(t('admin.academies.csvNA')),
+      academy.isSuspended ? String(t('admin.academies.suspended')) : academy.status,
       academy.subscriptionTier,
       academy.totalUsers,
       academy.monthlyRevenue,
@@ -445,14 +456,14 @@ export function AcademyManagement() {
   // ring treatment stay consistent across all admin tables.
   const getStatusBadge = (status: Academy['status'], isSuspended: boolean) => {
     if (isSuspended) {
-      return <StatusBadge tone="danger" icon={Ban}>Suspended</StatusBadge>
+      return <StatusBadge tone="danger" icon={Ban}>{String(t('admin.academies.suspended'))}</StatusBadge>
     }
     const map: Record<Academy['status'], { tone: StatusTone; icon: typeof CheckCircle; label: string } | null> = {
-      active:              { tone: 'active',  icon: CheckCircle, label: 'Active' },
-      suspended:           { tone: 'danger',  icon: Ban,         label: 'Suspended' },
-      trial:               { tone: 'pending', icon: AlertCircle, label: 'Trial' },
-      pending_onboarding:  { tone: 'violet',  icon: Clock,       label: 'Pending invite' },
-      inactive:            { tone: 'muted',   icon: XCircle,     label: 'Inactive' },
+      active:              { tone: 'active',  icon: CheckCircle, label: String(t('admin.academies.active')) },
+      suspended:           { tone: 'danger',  icon: Ban,         label: String(t('admin.academies.suspended')) },
+      trial:               { tone: 'pending', icon: AlertCircle, label: String(t('admin.academies.trial')) },
+      pending_onboarding:  { tone: 'violet',  icon: Clock,       label: String(t('admin.academies.pendingInvite')) },
+      inactive:            { tone: 'muted',   icon: XCircle,     label: String(t('admin.common.inactive')) },
     }
     const entry = map[status]
     if (!entry) return null
@@ -469,9 +480,16 @@ export function AcademyManagement() {
       pro:        'violet',
       enterprise: 'violet',
     }
+    const tierLabels: Record<Academy['subscriptionTier'], string> = {
+      free:       String(t('admin.academies.tierFree')),
+      individual: String(t('admin.academies.tierIndividual')),
+      basic:      String(t('admin.academies.tierBasic')),
+      pro:        String(t('admin.academies.tierPro')),
+      enterprise: String(t('admin.academies.tierEnterprise')),
+    }
     return (
       <StatusBadge tone={tones[tier] || 'muted'}>
-        {tier.charAt(0).toUpperCase() + tier.slice(1)}
+        {tierLabels[tier] || (tier.charAt(0).toUpperCase() + tier.slice(1))}
       </StatusBadge>
     )
   };
@@ -529,7 +547,7 @@ export function AcademyManagement() {
         {selectedIds.size > 0 && (
           <div className="flex items-center justify-between bg-primary/8 ring-1 ring-primary/20 rounded-xl px-4 py-2.5">
             <p className="text-sm font-medium text-primary">
-              {selectedIds.size} selected
+              {String(t('admin.academies.selected', { count: selectedIds.size }))}
             </p>
             <div className="flex items-center gap-2">
               <Button
@@ -540,7 +558,7 @@ export function AcademyManagement() {
                 className="gap-1.5"
               >
                 <CheckCircle className="w-4 h-4" />
-                Reactivate
+                {String(t('admin.academies.reactivate'))}
               </Button>
               <Button
                 size="sm"
@@ -548,17 +566,17 @@ export function AcademyManagement() {
                 disabled={bulkBusy}
                 onClick={async () => {
                   const ok = await confirm({
-                    title: `Suspend ${selectedIds.size} academies?`,
-                    description: 'Their managers will lose access immediately.',
+                    title: String(t('admin.academies.suspendManyTitle', { count: selectedIds.size })),
+                    description: String(t('admin.academies.suspendManyDesc')),
                     variant: 'danger',
-                    confirmText: 'Suspend',
+                    confirmText: String(t('admin.academies.suspend')),
                   });
                   if (ok) handleBulkSuspendChange(true);
                 }}
                 className="gap-1.5 text-rose-700 hover:text-rose-800 hover:bg-rose-50 border-rose-200"
               >
                 <Ban className="w-4 h-4" />
-                Suspend
+                {String(t('admin.academies.suspend'))}
               </Button>
               <Button
                 size="sm"
@@ -566,7 +584,7 @@ export function AcademyManagement() {
                 disabled={bulkBusy}
                 onClick={() => setSelectedIds(new Set())}
               >
-                Clear
+                {String(t('admin.academies.clear'))}
               </Button>
             </div>
           </div>
@@ -612,7 +630,7 @@ export function AcademyManagement() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
                 <Input
                   type="text"
-                  placeholder="Search academies..."
+                  placeholder={String(t('admin.academies.searchPlaceholder'))}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -623,29 +641,29 @@ export function AcademyManagement() {
             <div className="flex gap-2">
               <Select value={filterStatus} onValueChange={setFilterStatus}>
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="All Status" />
+                  <SelectValue placeholder={String(t('admin.academies.allStatus'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="trial">Trial</SelectItem>
-                  <SelectItem value="pending_onboarding">Pending invite</SelectItem>
-                  <SelectItem value="suspended">Suspended</SelectItem>
-                  <SelectItem value="inactive">Inactive</SelectItem>
+                  <SelectItem value="all">{String(t('admin.academies.allStatus'))}</SelectItem>
+                  <SelectItem value="active">{String(t('admin.academies.active'))}</SelectItem>
+                  <SelectItem value="trial">{String(t('admin.academies.trial'))}</SelectItem>
+                  <SelectItem value="pending_onboarding">{String(t('admin.academies.pendingInvite'))}</SelectItem>
+                  <SelectItem value="suspended">{String(t('admin.academies.suspended'))}</SelectItem>
+                  <SelectItem value="inactive">{String(t('admin.common.inactive'))}</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select value={filterTier} onValueChange={setFilterTier}>
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="All Tiers" />
+                  <SelectValue placeholder={String(t('admin.academies.allTiers'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Tiers</SelectItem>
-                  <SelectItem value="free">Free</SelectItem>
-                  <SelectItem value="individual">Individual</SelectItem>
-                  <SelectItem value="basic">Basic</SelectItem>
-                  <SelectItem value="pro">Pro</SelectItem>
-                  <SelectItem value="enterprise">Enterprise</SelectItem>
+                  <SelectItem value="all">{String(t('admin.academies.allTiers'))}</SelectItem>
+                  <SelectItem value="free">{String(t('admin.academies.tierFree'))}</SelectItem>
+                  <SelectItem value="individual">{String(t('admin.academies.tierIndividual'))}</SelectItem>
+                  <SelectItem value="basic">{String(t('admin.academies.tierBasic'))}</SelectItem>
+                  <SelectItem value="pro">{String(t('admin.academies.tierPro'))}</SelectItem>
+                  <SelectItem value="enterprise">{String(t('admin.academies.tierEnterprise'))}</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -654,7 +672,7 @@ export function AcademyManagement() {
                 variant="outline"
               >
                 <RefreshCw className="w-4 h-4" />
-                Refresh
+                {String(t('admin.common.refresh'))}
               </Button>
 
               <Button
@@ -662,7 +680,7 @@ export function AcademyManagement() {
                 variant="outline"
               >
                 <Download className="w-4 h-4" />
-                Export
+                {String(t('admin.common.export'))}
               </Button>
 
               <Button
@@ -670,7 +688,7 @@ export function AcademyManagement() {
                 variant="default"
               >
                 <Plus className="w-4 h-4" />
-                Add Academy
+                {String(t('admin.academies.addAcademy'))}
               </Button>
             </div>
           </div>
@@ -687,7 +705,7 @@ export function AcademyManagement() {
                   <th className="px-4 py-3 w-8">
                     <input
                       type="checkbox"
-                      aria-label="Select all visible academies"
+                      aria-label={String(t('admin.academies.ariaSelectAll'))}
                       className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/30"
                       ref={el => {
                         if (!el) return;
@@ -709,14 +727,14 @@ export function AcademyManagement() {
                   </th>
                   {/* Sortable column headers — click to cycle asc → desc → off.
                       Indicator shows current sort key + direction. */}
-                  <SortableTh sortKey="name" toggle={toggleSort} indicator={sortIndicator('name')}>Academy</SortableTh>
-                  <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>Status</SortableTh>
-                  <SortableTh sortKey="subscription" toggle={toggleSort} indicator={sortIndicator('subscription')}>Subscription</SortableTh>
-                  <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>Users</SortableTh>
-                  <SortableTh sortKey="revenue" toggle={toggleSort} indicator={sortIndicator('revenue')}>Revenue</SortableTh>
-                  <SortableTh sortKey="lastActive" toggle={toggleSort} indicator={sortIndicator('lastActive')}>Last Active</SortableTh>
+                  <SortableTh sortKey="name" toggle={toggleSort} indicator={sortIndicator('name')}>{String(t('admin.common.academy'))}</SortableTh>
+                  <SortableTh sortKey="status" toggle={toggleSort} indicator={sortIndicator('status')}>{String(t('admin.common.status'))}</SortableTh>
+                  <SortableTh sortKey="subscription" toggle={toggleSort} indicator={sortIndicator('subscription')}>{String(t('admin.academies.thSubscription'))}</SortableTh>
+                  <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>{String(t('admin.academies.thUsers'))}</SortableTh>
+                  <SortableTh sortKey="revenue" toggle={toggleSort} indicator={sortIndicator('revenue')}>{String(t('admin.academies.thRevenue'))}</SortableTh>
+                  <SortableTh sortKey="lastActive" toggle={toggleSort} indicator={sortIndicator('lastActive')}>{String(t('admin.academies.thLastActive'))}</SortableTh>
                   <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
-                    Actions
+                    {String(t('admin.common.actions'))}
                   </th>
                 </tr>
               </thead>
@@ -726,7 +744,7 @@ export function AcademyManagement() {
                     <td className="px-4 py-4 w-8">
                       <input
                         type="checkbox"
-                        aria-label={`Select ${academy.name}`}
+                        aria-label={String(t('admin.academies.ariaSelectRow', { name: academy.name }))}
                         className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/30"
                         checked={selectedIds.has(academy.id)}
                         onChange={(e) => {
@@ -775,7 +793,7 @@ export function AcademyManagement() {
                       <div className="text-sm font-medium text-gray-900">
                         {formatPrice(academy.monthlyRevenue)}
                       </div>
-                      <div className="text-xs text-gray-500">per month</div>
+                      <div className="text-xs text-gray-500">{String(t('admin.academies.perMonth'))}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
@@ -789,7 +807,7 @@ export function AcademyManagement() {
                       <button
                         onClick={() => setShowActions(showActions === academy.id ? null : academy.id)}
                         className="actions-button text-gray-400 hover:text-gray-600"
-                        aria-label="Row actions"
+                        aria-label={String(t('admin.academies.ariaRowActions'))}
                         aria-haspopup="menu"
                         aria-expanded={showActions === academy.id}
                       >
@@ -807,7 +825,7 @@ export function AcademyManagement() {
                             className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           >
                             <Eye className="mr-3 h-4 w-4" />
-                            View Details
+                            {String(t('admin.common.viewDetails'))}
                           </button>
                           {/* Show "Copy onboarding link" only while the manager hasn't
                               completed onboarding. Once they sign up the token is
@@ -819,21 +837,21 @@ export function AcademyManagement() {
                                 className="flex items-center w-full px-4 py-2 text-sm text-violet-700 hover:bg-violet-50"
                               >
                                 <Copy className="mr-3 h-4 w-4" />
-                                Copy onboarding link
+                                {String(t('admin.academies.copyOnboardingLink'))}
                               </button>
                               <button
                                 onClick={() => handleRegenerateOnboardingLink(academy)}
                                 className="flex items-center w-full px-4 py-2 text-sm text-violet-700 hover:bg-violet-50"
                               >
                                 <RefreshCw className="mr-3 h-4 w-4" />
-                                Regenerate onboarding link
+                                {String(t('admin.academies.regenerateOnboardingLink'))}
                               </button>
                               <button
                                 onClick={() => handleRevokeOnboardingLink(academy)}
                                 className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
                               >
                                 <XCircle className="mr-3 h-4 w-4" />
-                                Revoke onboarding link
+                                {String(t('admin.academies.revokeOnboardingLink'))}
                               </button>
                             </>
                           )}
@@ -846,7 +864,7 @@ export function AcademyManagement() {
                             className="flex items-center w-full px-4 py-2 text-sm text-blue-700 hover:bg-blue-50"
                           >
                             <Banknote className="mr-3 h-4 w-4" />
-                            Setup Partner
+                            {String(t('admin.academies.setupPartner'))}
                           </button>
                           {academy.isSuspended ? (
                             <button
@@ -854,7 +872,7 @@ export function AcademyManagement() {
                               className="flex items-center w-full px-4 py-2 text-sm text-emerald-700 hover:bg-green-50"
                             >
                               <CheckCircle className="mr-3 h-4 w-4" />
-                              Unsuspend
+                              {String(t('admin.academies.unsuspend'))}
                             </button>
                           ) : (
                             <button
@@ -866,7 +884,7 @@ export function AcademyManagement() {
                               className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
                             >
                               <Ban className="mr-3 h-4 w-4" />
-                              Suspend
+                              {String(t('admin.academies.suspend'))}
                             </button>
                           )}
                         </div>
@@ -925,14 +943,14 @@ export function AcademyManagement() {
               try {
                 await navigator.clipboard.writeText(created.onboardingUrl)
                 toast({
-                  title: `${created.name} created — onboarding link copied`,
+                  title: String(t('admin.academies.createdLinkCopied', { name: created.name })),
                   description: created.onboardingUrl,
                   variant: 'success',
                 })
               } catch {
                 toast({
-                  title: `${created.name} created`,
-                  description: `Onboarding link: ${created.onboardingUrl}`,
+                  title: String(t('admin.academies.created', { name: created.name })),
+                  description: String(t('admin.academies.onboardingLinkLabel', { url: created.onboardingUrl })),
                   variant: 'success',
                 })
               }
