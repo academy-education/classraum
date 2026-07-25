@@ -2,11 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { 
-  Bell, 
-  Search, 
-  Settings, 
-  LogOut, 
+import {
+  Settings,
+  LogOut,
   User,
   ChevronDown,
   RefreshCw,
@@ -49,56 +47,32 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/85 backdrop-blur-md">
-      <div className="mx-auto px-6 h-14 flex items-center justify-between">
+    <header className="flex-shrink-0 h-[57px] bg-white border-b border-gray-100 px-4 flex items-center">
+      <div className="flex items-center justify-between w-full">
         {/* Left: sidebar toggle */}
         <button
           onClick={onToggleSidebar}
-          className="p-2 -ml-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+          className="p-2 -ml-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
           aria-label={sidebarOpen ? String(t('admin.header.hideSidebar')) : String(t('admin.header.showSidebar'))}
         >
           {sidebarOpen ? (
-            <PanelLeftClose className="h-5 w-5" />
+            <PanelLeftClose className="w-4 h-4" />
           ) : (
-            <PanelLeftOpen className="h-5 w-5" />
+            <PanelLeftOpen className="w-4 h-4" />
           )}
         </button>
 
         {/* Right: actions cluster */}
-        <div className="flex items-center gap-2">
-          {/* Search */}
-          <div className="hidden md:block">
-            <div className="relative group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none transition-colors group-focus-within:text-primary" />
-              <input
-                type="text"
-                placeholder={String(t('admin.header.search'))}
-                className="w-72 pl-10 pr-3 h-9 bg-gray-50 border border-gray-200 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/15 transition-all"
-              />
-            </div>
-          </div>
-
+        <div className="flex items-center gap-1">
           {/* Refresh */}
           <button
             onClick={handleRefresh}
             disabled={isRefreshing}
-            className="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+            className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
             title={String(t('admin.header.refresh'))}
+            aria-label={String(t('admin.header.refresh'))}
           >
-            <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-          </button>
-
-          {/* Notifications */}
-          <button
-            className="relative p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-            title={String(t('admin.header.notifications'))}
-          >
-            <Bell className="h-4 w-4" />
-            {/* Unread dot with subtle ring */}
-            <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-60 animate-ping" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white" />
-            </span>
+            <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
           </button>
 
           {/* Divider */}
@@ -141,17 +115,6 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
                 </div>
 
                 <div className="py-1">
-                  <button
-                    onClick={() => {
-                      setShowUserMenu(false);
-                      router.push('/admin/profile');
-                    }}
-                    className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                  >
-                    <User className="mr-3 h-4 w-4 text-gray-400" />
-                    {String(t('admin.header.profileSettings'))}
-                  </button>
-
                   <button
                     onClick={() => {
                       setShowUserMenu(false);

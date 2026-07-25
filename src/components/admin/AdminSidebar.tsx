@@ -140,21 +140,21 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
 
   return (
     <div className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col">
-      {/* Header — logo + admin label */}
-      <div className="px-5 pt-5 pb-4">
-        <div className="flex items-center gap-3">
-          <Image
-            src="/text_logo.png"
-            alt="Classraum Logo"
-            width={150}
-            height={50}
-            className="h-9 w-auto"
-            priority
-            quality={100}
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
-        </div>
-        <div className="mt-2.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-gray-900 text-white text-[10px] font-semibold tracking-wider uppercase">
+      {/* Header — logo + admin label. Height matched to the top header
+          (h-[57px]) + bottom border so the sidebar's logo bar and the page
+          header align cleanly across the top, like the manager dashboard. */}
+      <div className="h-[57px] flex-shrink-0 px-4 flex items-center justify-between border-b border-gray-100">
+        <Image
+          src="/text_logo.png"
+          alt="Classraum Logo"
+          width={150}
+          height={50}
+          className="h-7 w-auto"
+          priority
+          quality={100}
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
+        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-gray-900 text-white text-[10px] font-semibold tracking-wider uppercase flex-shrink-0">
           <ShieldCheck className="w-3 h-3" />
           {String(t('admin.users.roles.admin'))}
         </div>
