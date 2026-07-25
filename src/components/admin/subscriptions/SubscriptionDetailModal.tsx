@@ -218,7 +218,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {activeTab === 'overview' && (
             <div className="space-y-6">
               {/* Subscription Status */}

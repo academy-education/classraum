@@ -215,25 +215,25 @@ export function SubscriptionUsageMonitoring() {
           <AdminEmptyState icon={TrendingUp} title={String(t('admin.usage.noUsageData'))} />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[720px]">
               <thead className="bg-gray-50/60">
                 <tr>
-                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em] whitespace-nowrap">
                     {String(t('admin.usage.columns.academy'))}
                   </th>
-                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em] whitespace-nowrap">
                     {String(t('admin.usage.columns.plan'))}
                   </th>
-                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em] whitespace-nowrap">
                     {String(t('admin.usage.columns.students'))}
                   </th>
-                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em] whitespace-nowrap">
                     {String(t('admin.usage.columns.teachers'))}
                   </th>
-                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em] whitespace-nowrap">
                     {String(t('admin.usage.columns.storage'))}
                   </th>
-                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em] whitespace-nowrap">
                     {String(t('admin.usage.columns.classrooms'))}
                   </th>
                 </tr>
@@ -263,8 +263,8 @@ export function SubscriptionUsageMonitoring() {
                     <tr key={usage.id} className="hover:bg-gray-50">
                       <td className="px-4 py-4">
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{academy?.name || String(t('admin.common.unknown'))}</p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-sm font-medium text-gray-900 whitespace-nowrap">{academy?.name || String(t('admin.common.unknown'))}</p>
+                          <p className="text-xs text-gray-500 whitespace-nowrap">
                             {String(t('admin.usage.lastUpdatedDate', { date: new Date(usage.calculated_at).toLocaleDateString(getDateLocale(language)) }))}
                           </p>
                         </div>
@@ -287,7 +287,7 @@ export function SubscriptionUsageMonitoring() {
                       </td>
                       <td className="px-4 py-4">
                         <div className="space-y-1">
-                          <div className="flex items-center justify-between text-sm">
+                          <div className="flex items-center justify-between gap-2 text-sm whitespace-nowrap">
                             <span className={`font-medium ${getUsageColor(studentPercentage)}`}>
                               {usage.current_student_count} / {studentLimit}
                             </span>
@@ -303,7 +303,7 @@ export function SubscriptionUsageMonitoring() {
                       </td>
                       <td className="px-4 py-4">
                         <div className="space-y-1">
-                          <div className="flex items-center justify-between text-sm">
+                          <div className="flex items-center justify-between gap-2 text-sm whitespace-nowrap">
                             <span className={`font-medium ${getUsageColor(teacherPercentage)}`}>
                               {usage.current_teacher_count} / {teacherLimit}
                             </span>
@@ -319,7 +319,7 @@ export function SubscriptionUsageMonitoring() {
                       </td>
                       <td className="px-4 py-4">
                         <div className="space-y-1">
-                          <div className="flex items-center justify-between text-sm">
+                          <div className="flex items-center justify-between gap-2 text-sm whitespace-nowrap">
                             <span className={`font-medium ${getUsageColor(storagePercentage)}`}>
                               {usage.current_storage_gb.toFixed(1)} / {storageLimit} GB
                             </span>
@@ -334,7 +334,7 @@ export function SubscriptionUsageMonitoring() {
                         </div>
                       </td>
                       <td className="px-4 py-4">
-                        <span className="text-sm text-gray-900">{usage.current_classroom_count}</span>
+                        <span className="text-sm text-gray-900 whitespace-nowrap">{usage.current_classroom_count}</span>
                       </td>
                     </tr>
                   );

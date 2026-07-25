@@ -174,7 +174,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
           </div>
 
           {/* Tab Content */}
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {activeTab === 'overview' && (
               <div className="space-y-6">
                 {/* User Info */}

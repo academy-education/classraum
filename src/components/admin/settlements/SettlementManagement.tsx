@@ -28,6 +28,7 @@ import { useDebouncedValue } from '../useDebouncedValue';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
 
 interface Filters {
   academyName: string;
@@ -218,6 +219,88 @@ export function SettlementManagement() {
     setShowDetailModal(true);
   };
 
+  // Row action, shared by the desktop table cell and the mobile card so the
+  // two can't drift apart.
+  const renderViewAction = (settlement: PortOneSettlement) => (
+    <Button
+      onClick={() => handleViewDetails(settlement)}
+      variant="ghost"
+      size="sm"
+      className="h-7 w-7 p-0 text-gray-500 hover:text-primary hover:bg-primary/10"
+      aria-label={String(t('admin.settlements.viewSettlement'))}
+    >
+      <Eye className="w-4 h-4" />
+    </Button>
+  );
+
+  // Pagination lives inside the card at both sizes. AdminTableShell only has
+  // a mobile slot and a table slot, so the same node is rendered into both —
+  // exactly one of the two is ever visible.
+  const paginationNode =
+    totalCount > 20 ? (
+      <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
+        <div className="text-sm text-gray-500 tabular-nums">
+          {String(t('admin.settlements.showing'))} <span className="font-medium text-gray-900">{page * 20 + 1}</span>–
+          <span className="font-medium text-gray-900">{Math.min((page + 1) * 20, totalCount)}</span> {String(t('admin.common.of'))}{' '}
+          <span className="font-medium text-gray-900">{totalCount.toLocaleString()}</span>
+        </div>
+        <div className="flex gap-2">
+          <Button onClick={() => setPage(page - 1)} disabled={page === 0} variant="outline" size="sm">
+            {String(t('admin.common.previous'))}
+          </Button>
+          <Button onClick={() => setPage(page + 1)} disabled={(page + 1) * 20 >= totalCount} variant="outline" size="sm">
+            {String(t('admin.common.next'))}
+          </Button>
+        </div>
+      </div>
+    ) : null;
+
+  // Below `md` the 8-column table is replaced by this card stack — dragging a
+  // 900px-wide table sideways on a phone is not a usable way to read it.
+  const mobileRows = (
+    <>
+      {loading ? (
+        <AdminSkeleton.LogRows rows={6} />
+      ) : settlements.length === 0 ? (
+        <AdminEmptyState
+          icon={Search}
+          title={String(t('admin.settlements.noSettlementsFound'))}
+          description={String(t('admin.settlements.noSettlementsFoundDesc'))}
+          compact
+        />
+      ) : (
+        sortedSettlements.map((settlement) => (
+          <AdminMobileRow
+            key={settlement.id}
+            title={settlement.academyName}
+            subtitle={`${settlement.id.substring(0, 12)}...`}
+            badge={getStatusBadge(settlement.status)}
+            actions={renderViewAction(settlement)}
+            meta={[
+              {
+                label: String(t('admin.settlements.typeLabel')),
+                value: settlement.type,
+              },
+              {
+                label: String(t('admin.settlements.settlementDateLabel')),
+                value: formatDate(settlement.settlementDate),
+              },
+              {
+                label: String(t('admin.settlements.orderAmount')),
+                value: formatCurrency(settlement.amount.order, settlement.settlementCurrency),
+              },
+              {
+                label: String(t('admin.settlements.settlementAmount')),
+                value: formatCurrency(settlement.amount.settlement, settlement.settlementCurrency),
+              },
+            ]}
+          />
+        ))
+      )}
+      {paginationNode}
+    </>
+  );
+
   return (
     <div className="space-y-6">
       <AdminPageHeader
@@ -241,7 +324,10 @@ export function SettlementManagement() {
 
       {/* Filters */}
       <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {/* 1 → 2 → 4. Going straight to 4 columns at `md` left each cell
+            ~168px once the sidebar is accounted for, too narrow for a select
+            or a date input. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               {String(t('admin.settlements.academyNameLabel'))}
@@ -306,8 +392,7 @@ export function SettlementManagement() {
       </div>
 
       {/* Settlements Table */}
-      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
-        <div className="overflow-x-auto">
+      <AdminTableShell mobile={mobileRows}>
           <table className="w-full">
             <thead className="bg-gray-50/60">
               <tr>
@@ -371,42 +456,17 @@ export function SettlementManagement() {
                       {formatDate(settlement.settlementDate)}
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap text-center">
-                      <Button
-                        onClick={() => handleViewDetails(settlement)}
-                        variant="ghost"
-                        size="sm"
-                        className="h-7 w-7 p-0 text-gray-500 hover:text-primary hover:bg-primary/10"
-                        aria-label={String(t('admin.settlements.viewSettlement'))}
-                      >
-                        <Eye className="w-4 h-4" />
-                      </Button>
+                      {renderViewAction(settlement)}
                     </td>
                   </tr>
                 ))
               )}
             </tbody>
           </table>
-        </div>
 
         {/* Pagination — uses shared Button so disabled / hover treatment matches */}
-        {totalCount > 20 && (
-          <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
-            <div className="text-sm text-gray-500 tabular-nums">
-              {String(t('admin.settlements.showing'))} <span className="font-medium text-gray-900">{page * 20 + 1}</span>–
-              <span className="font-medium text-gray-900">{Math.min((page + 1) * 20, totalCount)}</span> {String(t('admin.common.of'))}{' '}
-              <span className="font-medium text-gray-900">{totalCount.toLocaleString()}</span>
-            </div>
-            <div className="flex gap-2">
-              <Button onClick={() => setPage(page - 1)} disabled={page === 0} variant="outline" size="sm">
-                {String(t('admin.common.previous'))}
-              </Button>
-              <Button onClick={() => setPage(page + 1)} disabled={(page + 1) * 20 >= totalCount} variant="outline" size="sm">
-                {String(t('admin.common.next'))}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
+        {paginationNode}
+      </AdminTableShell>
 
       {/* Modals */}
       {showDetailModal && selectedSettlement && (

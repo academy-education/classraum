@@ -173,7 +173,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
       <div className="flex flex-col h-full">
         {/* Filters */}
         <div className="px-6 py-4 bg-white border-b border-gray-100">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {String(t('admin.settlements.academyNameLabel'))}

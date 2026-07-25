@@ -286,7 +286,7 @@ export const DateInput: React.FC<DateInputProps> = ({
           isOpen ? 'border-primary' : 'border-border focus:border-primary'
         }`}
       >
-        <span className={`whitespace-nowrap ${value ? 'text-foreground' : 'text-muted-foreground'}`}>
+        <span className={`min-w-0 truncate ${value ? 'text-foreground' : 'text-muted-foreground'}`}>
           {formatDisplayDate(value)}
         </span>
         <Calendar className="h-4 w-4 text-muted-foreground flex-shrink-0 ml-2" />

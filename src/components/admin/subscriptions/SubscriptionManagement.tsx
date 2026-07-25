@@ -32,6 +32,7 @@ import { useTableSort } from '../useTableSort';
 import { SortableTh } from '../SortableTh';
 import { useDebouncedValue } from '../useDebouncedValue';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 
@@ -217,6 +218,113 @@ export function SubscriptionManagement() {
     },
   )
 
+  // Row action menu, shared by the desktop table cell and the mobile card.
+  // Only one of the two copies is ever visible (the other sits inside a
+  // display:none breakpoint container), so the open/closed state stays sane.
+  const renderRowActions = (subscription: SubscriptionData) => (
+    <div className="relative inline-block">
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={(e) => {
+          e.stopPropagation();
+          const rect = e.currentTarget.getBoundingClientRect();
+          setMenuPosition({
+            top: rect.bottom + 8,
+            right: window.innerWidth - rect.right
+          });
+          setShowActions(showActions === subscription.id ? null : subscription.id);
+        }}
+        className="h-7 w-7 p-0 text-gray-400 hover:text-gray-600"
+        aria-label={String(t('admin.subscriptions.rowActions'))}
+        aria-haspopup="menu"
+        aria-expanded={showActions === subscription.id}
+      >
+        <MoreVertical className="h-5 w-5" />
+      </Button>
+
+      {showActions === subscription.id && menuPosition && (
+        <div
+          className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100/80 py-1 z-50 overflow-hidden"
+          style={{
+            top: `${menuPosition.top}px`,
+            right: `${menuPosition.right}px`
+          }}
+        >
+          <button
+            onClick={() => {
+              setSelectedSubscription(subscription);
+              setShowDetailModal(true);
+              setShowActions(null);
+            }}
+            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-t-lg"
+          >
+            <CreditCard className="mr-3 h-4 w-4" />
+            {String(t('admin.subscriptions.viewDetails'))}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
+  const emptyState = (
+    <AdminEmptyState
+      icon={CreditCard}
+      title={String(t('admin.subscriptions.noSubscriptionsTitle'))}
+      description={String(t('admin.subscriptions.emptyStateDescription'))}
+    />
+  );
+
+  // Below `md` the 7-column table becomes a card stack, matching how the
+  // manager dashboard's DataTable handles narrow screens.
+  const mobileRows = sortedSubscriptions.map((subscription) => (
+    <AdminMobileRow
+      key={subscription.id}
+      title={subscription.academyName}
+      subtitle={`${String(t('admin.subscriptions.idPrefix'))} ${subscription.id}`}
+      badge={getStatusBadge(subscription.status)}
+      actions={renderRowActions(subscription)}
+      meta={[
+        {
+          label: String(t('admin.subscriptions.columns.plan')),
+          value: (
+            <span className="inline-flex items-center gap-1.5">
+              {getTierBadge(subscription.tier)}
+              <span className="text-xs text-gray-500">{subscription.billingCycle}</span>
+            </span>
+          ),
+        },
+        {
+          label: String(t('admin.subscriptions.columns.revenue')),
+          value: (
+            <>
+              {formatPrice(subscription.monthlyAmount)}
+              <span className="text-xs text-gray-500 ml-1">
+                {subscription.billingCycle === 'yearly'
+                  ? String(t('admin.subscriptions.perYear'))
+                  : String(t('admin.subscriptions.perMonth'))}
+              </span>
+            </>
+          ),
+        },
+        {
+          label: String(t('admin.subscriptions.columns.nextBilling')),
+          value: subscription.nextBillingDate.toLocaleDateString(getDateLocale(language)),
+        },
+        {
+          label: String(t('admin.subscriptions.columns.users')),
+          value: (
+            <span className="inline-flex items-center">
+              <Users className="mr-1 h-3 w-3" />
+              {subscription.totalUsers}
+              {subscription.totalUserLimit && subscription.totalUserLimit > 0 ? ` / ${subscription.totalUserLimit}` : ''}
+            </span>
+          ),
+        },
+      ]}
+    />
+  ));
+
   return (
     <>
       <div className="space-y-6">
@@ -338,8 +446,14 @@ export function SubscriptionManagement() {
         </div>
 
         {/* Subscription List */}
-        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
-          <div className="overflow-x-auto">
+        <AdminTableShell
+          mobile={
+            <>
+              {mobileRows}
+              {filteredSubscriptions.length === 0 && emptyState}
+            </>
+          }
+        >
             <table className="w-full">
               <thead className="bg-gray-50/60">
                 <tr>
@@ -411,64 +525,15 @@ export function SubscriptionManagement() {
                       </div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap text-right">
-                      <div className="relative inline-block">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            const rect = e.currentTarget.getBoundingClientRect();
-                            setMenuPosition({
-                              top: rect.bottom + 8,
-                              right: window.innerWidth - rect.right
-                            });
-                            setShowActions(showActions === subscription.id ? null : subscription.id);
-                          }}
-                          className="h-7 w-7 p-0 text-gray-400 hover:text-gray-600"
-                          aria-label={String(t('admin.subscriptions.rowActions'))}
-                          aria-haspopup="menu"
-                          aria-expanded={showActions === subscription.id}
-                        >
-                          <MoreVertical className="h-5 w-5" />
-                        </Button>
-
-                        {showActions === subscription.id && menuPosition && (
-                          <div
-                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100/80 py-1 z-50 overflow-hidden"
-                            style={{
-                              top: `${menuPosition.top}px`,
-                              right: `${menuPosition.right}px`
-                            }}
-                          >
-                          <button
-                            onClick={() => {
-                              setSelectedSubscription(subscription);
-                              setShowDetailModal(true);
-                              setShowActions(null);
-                            }}
-                            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-t-lg"
-                          >
-                            <CreditCard className="mr-3 h-4 w-4" />
-                            {String(t('admin.subscriptions.viewDetails'))}
-                          </button>
-                        </div>
-                      )}
-                      </div>
+                      {renderRowActions(subscription)}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
-          
-          {filteredSubscriptions.length === 0 && (
-            <AdminEmptyState
-              icon={CreditCard}
-              title={String(t('admin.subscriptions.noSubscriptionsTitle'))}
-              description={String(t('admin.subscriptions.emptyStateDescription'))}
-            />
-          )}
-        </div>
+
+          {filteredSubscriptions.length === 0 && emptyState}
+        </AdminTableShell>
         </>)}
       </div>
 

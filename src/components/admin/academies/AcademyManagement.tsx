@@ -42,6 +42,7 @@ import { useConfirm } from '../useConfirm';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
 
 interface Academy {
   id: string;
@@ -84,6 +85,12 @@ export function AcademyManagement() {
   const [selectedAcademy, setSelectedAcademy] = useState<Academy | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
+  // The row menu renders `fixed`, positioned from the trigger's bounding
+  // rect. As an `absolute` child of the table's `overflow-x-auto` wrapper it
+  // was clipped (overflow-x:auto forces overflow-y:auto), so the bottom rows'
+  // menus were cut off and the menu drifted off its button once the table
+  // scrolled sideways. Same pattern as SupportManagement / SubscriptionManagement.
+  const [menuPosition, setMenuPosition] = useState<{ top: number; right: number } | null>(null);
   const [showSuspendModal, setShowSuspendModal] = useState(false);
   const [academyToSuspend, setAcademyToSuspend] = useState<Academy | null>(null);
   // Bulk selection — set of academy ids the admin has checked. Lives outside
@@ -112,6 +119,7 @@ export function AcademyManagement() {
         const target = event.target as HTMLElement;
         if (!target.closest('.actions-dropdown') && !target.closest('.actions-button')) {
           setShowActions(null);
+          setMenuPosition(null);
         }
       }
     };
@@ -523,6 +531,130 @@ export function AcademyManagement() {
     { defaultKey: '', defaultDir: '', getValue: academySortableValue },
   )
 
+  // Row-action trigger + menu. Shared by the desktop table cell and the
+  // mobile card stack so both surfaces stay in lock-step. The menu is
+  // `fixed` + z-50 so it escapes the table's overflow container.
+  const renderRowActions = (academy: Academy) => (
+    <div className="relative inline-block">
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          const rect = e.currentTarget.getBoundingClientRect();
+          setMenuPosition({
+            top: rect.bottom + 8,
+            right: window.innerWidth - rect.right
+          });
+          setShowActions(showActions === academy.id ? null : academy.id);
+        }}
+        className="actions-button text-gray-400 hover:text-gray-600"
+        aria-label={String(t('admin.academies.ariaRowActions'))}
+        aria-haspopup="menu"
+        aria-expanded={showActions === academy.id}
+      >
+        <MoreVertical className="h-5 w-5" />
+      </button>
+
+      {showActions === academy.id && menuPosition && (
+        <div
+          className="actions-dropdown fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
+          style={{
+            top: `${menuPosition.top}px`,
+            right: `${menuPosition.right}px`
+          }}
+        >
+          <button
+            onClick={() => {
+              setSelectedAcademy(academy);
+              setShowDetailModal(true);
+              setShowActions(null);
+            }}
+            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            <Eye className="mr-3 h-4 w-4" />
+            {String(t('admin.common.viewDetails'))}
+          </button>
+          {/* Show "Copy onboarding link" only while the manager hasn't
+              completed onboarding. Once they sign up the token is
+              cleared, so this button hides itself. */}
+          {academy.onboardingToken && !academy.onboardingCompletedAt && (
+            <>
+              <button
+                onClick={() => handleCopyOnboardingLink(academy)}
+                className="flex items-center w-full px-4 py-2 text-sm text-violet-700 hover:bg-violet-50"
+              >
+                <Copy className="mr-3 h-4 w-4" />
+                {String(t('admin.academies.copyOnboardingLink'))}
+              </button>
+              <button
+                onClick={() => handleRegenerateOnboardingLink(academy)}
+                className="flex items-center w-full px-4 py-2 text-sm text-violet-700 hover:bg-violet-50"
+              >
+                <RefreshCw className="mr-3 h-4 w-4" />
+                {String(t('admin.academies.regenerateOnboardingLink'))}
+              </button>
+              <button
+                onClick={() => handleRevokeOnboardingLink(academy)}
+                className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
+              >
+                <XCircle className="mr-3 h-4 w-4" />
+                {String(t('admin.academies.revokeOnboardingLink'))}
+              </button>
+            </>
+          )}
+          <button
+            onClick={() => {
+              setAcademyForPartnerSetup(academy);
+              setShowPartnerSetupModal(true);
+              setShowActions(null);
+            }}
+            className="flex items-center w-full px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50"
+          >
+            <Banknote className="mr-3 h-4 w-4" />
+            {String(t('admin.academies.setupPartner'))}
+          </button>
+          {academy.isSuspended ? (
+            <button
+              onClick={() => handleUnsuspendAcademy(academy.id)}
+              className="flex items-center w-full px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50"
+            >
+              <CheckCircle className="mr-3 h-4 w-4" />
+              {String(t('admin.academies.unsuspend'))}
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setAcademyToSuspend(academy);
+                setShowSuspendModal(true);
+                setShowActions(null);
+              }}
+              className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
+            >
+              <Ban className="mr-3 h-4 w-4" />
+              {String(t('admin.academies.suspend'))}
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+
+  // Bulk-select checkbox for a single row. Shared by table + card stack.
+  const renderRowCheckbox = (academy: Academy) => (
+    <input
+      type="checkbox"
+      aria-label={String(t('admin.academies.ariaSelectRow', { name: academy.name }))}
+      className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/30"
+      checked={selectedIds.has(academy.id)}
+      onChange={(e) => {
+        const next = new Set(selectedIds);
+        if (e.target.checked) next.add(academy.id);
+        else next.delete(academy.id);
+        setSelectedIds(next);
+      }}
+      onClick={(e) => e.stopPropagation()}
+    />
+  );
+
   return (
     <>
       <div className="space-y-6">
@@ -694,7 +826,34 @@ export function AcademyManagement() {
 
         {/* Academy List */}
         <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
-          <div className="overflow-x-auto">
+          {/* Below `md` the 8-column table is unusable on a phone, so
+              AdminTableShell swaps it for a card stack built from the exact
+              same filtered/sorted array. The shell's own card chrome is
+              disabled here because this outer div already provides it (the
+              empty state lives inside the same card). */}
+          <AdminTableShell
+            className="rounded-none ring-0 shadow-none bg-transparent"
+            mobile={sortedAcademies.map((academy) => (
+              <AdminMobileRow
+                key={academy.id}
+                selected={selectedIds.has(academy.id)}
+                lead={renderRowCheckbox(academy)}
+                title={academy.name}
+                subtitle={academy.email}
+                badge={getStatusBadge(academy.status, academy.isSuspended)}
+                actions={renderRowActions(academy)}
+                meta={[
+                  { label: String(t('admin.academies.thSubscription')), value: getTierBadge(academy.subscriptionTier) },
+                  { label: String(t('admin.academies.thUsers')), value: academy.totalUsers },
+                  { label: String(t('admin.academies.thRevenue')), value: formatPrice(academy.monthlyRevenue) },
+                  {
+                    label: String(t('admin.academies.thLastActive')),
+                    value: new Date(academy.lastActive).toLocaleDateString(getDateLocale(language)),
+                  },
+                ]}
+              />
+            ))}
+          >
             <table className="w-full">
               <thead className="bg-gray-50/60">
                 <tr>
@@ -740,19 +899,7 @@ export function AcademyManagement() {
                 {sortedAcademies.map((academy) => (
                   <tr key={academy.id} className={`hover:bg-gray-50 ${selectedIds.has(academy.id) ? 'bg-primary/[0.03]' : ''}`}>
                     <td className="px-4 py-4 w-8">
-                      <input
-                        type="checkbox"
-                        aria-label={String(t('admin.academies.ariaSelectRow', { name: academy.name }))}
-                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/30"
-                        checked={selectedIds.has(academy.id)}
-                        onChange={(e) => {
-                          const next = new Set(selectedIds);
-                          if (e.target.checked) next.add(academy.id);
-                          else next.delete(academy.id);
-                          setSelectedIds(next);
-                        }}
-                        onClick={(e) => e.stopPropagation()}
-                      />
+                      {renderRowCheckbox(academy)}
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div>
@@ -801,98 +948,14 @@ export function AcademyManagement() {
                         {new Date(academy.lastActive).toLocaleTimeString(getDateLocale(language))}
                       </div>
                     </td>
-                    <td className="px-4 py-4 whitespace-nowrap text-right relative">
-                      <button
-                        onClick={() => setShowActions(showActions === academy.id ? null : academy.id)}
-                        className="actions-button text-gray-400 hover:text-gray-600"
-                        aria-label={String(t('admin.academies.ariaRowActions'))}
-                        aria-haspopup="menu"
-                        aria-expanded={showActions === academy.id}
-                      >
-                        <MoreVertical className="h-5 w-5" />
-                      </button>
-
-                      {showActions === academy.id && (
-                        <div className="actions-dropdown absolute right-0 mt-2 min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-10">
-                          <button
-                            onClick={() => {
-                              setSelectedAcademy(academy);
-                              setShowDetailModal(true);
-                              setShowActions(null);
-                            }}
-                            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          >
-                            <Eye className="mr-3 h-4 w-4" />
-                            {String(t('admin.common.viewDetails'))}
-                          </button>
-                          {/* Show "Copy onboarding link" only while the manager hasn't
-                              completed onboarding. Once they sign up the token is
-                              cleared, so this button hides itself. */}
-                          {academy.onboardingToken && !academy.onboardingCompletedAt && (
-                            <>
-                              <button
-                                onClick={() => handleCopyOnboardingLink(academy)}
-                                className="flex items-center w-full px-4 py-2 text-sm text-violet-700 hover:bg-violet-50"
-                              >
-                                <Copy className="mr-3 h-4 w-4" />
-                                {String(t('admin.academies.copyOnboardingLink'))}
-                              </button>
-                              <button
-                                onClick={() => handleRegenerateOnboardingLink(academy)}
-                                className="flex items-center w-full px-4 py-2 text-sm text-violet-700 hover:bg-violet-50"
-                              >
-                                <RefreshCw className="mr-3 h-4 w-4" />
-                                {String(t('admin.academies.regenerateOnboardingLink'))}
-                              </button>
-                              <button
-                                onClick={() => handleRevokeOnboardingLink(academy)}
-                                className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
-                              >
-                                <XCircle className="mr-3 h-4 w-4" />
-                                {String(t('admin.academies.revokeOnboardingLink'))}
-                              </button>
-                            </>
-                          )}
-                          <button
-                            onClick={() => {
-                              setAcademyForPartnerSetup(academy);
-                              setShowPartnerSetupModal(true);
-                              setShowActions(null);
-                            }}
-                            className="flex items-center w-full px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50"
-                          >
-                            <Banknote className="mr-3 h-4 w-4" />
-                            {String(t('admin.academies.setupPartner'))}
-                          </button>
-                          {academy.isSuspended ? (
-                            <button
-                              onClick={() => handleUnsuspendAcademy(academy.id)}
-                              className="flex items-center w-full px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50"
-                            >
-                              <CheckCircle className="mr-3 h-4 w-4" />
-                              {String(t('admin.academies.unsuspend'))}
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => {
-                                setAcademyToSuspend(academy);
-                                setShowSuspendModal(true);
-                                setShowActions(null);
-                              }}
-                              className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
-                            >
-                              <Ban className="mr-3 h-4 w-4" />
-                              {String(t('admin.academies.suspend'))}
-                            </button>
-                          )}
-                        </div>
-                      )}
+                    <td className="px-4 py-4 whitespace-nowrap text-right">
+                      {renderRowActions(academy)}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </AdminTableShell>
           
           {filteredAcademies.length === 0 && (
             <AdminEmptyState
@@ -975,8 +1038,11 @@ export function AcademyManagement() {
       {/* Click outside to close actions menu */}
       {showActions && (
         <div
-          className="fixed inset-0 z-0"
-          onClick={() => setShowActions(null)}
+          className="fixed inset-0 z-40"
+          onClick={() => {
+            setShowActions(null);
+            setMenuPosition(null);
+          }}
         />
       )}
     </>

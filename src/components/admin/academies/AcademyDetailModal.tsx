@@ -245,7 +245,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {activeTab === 'overview' && (
             <div className="space-y-6">
               {/* Basic Info */}
@@ -389,7 +389,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
           {activeTab === 'notes' && (
             <div className="space-y-4">
               {/* Add Note Button */}
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                 <h3 className="font-medium text-gray-900">{String(t('admin.academies.academyNotes'))}</h3>
                 <Button
                   onClick={() => {
@@ -403,6 +403,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                     });
                   }}
                   size="sm"
+                  className="self-start sm:self-auto"
                 >
                   <Plus className="w-4 h-4" />
                   {String(t('admin.academies.addNote'))}

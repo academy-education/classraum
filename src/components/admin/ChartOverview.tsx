@@ -209,7 +209,7 @@ export function ChartOverview() {
           <button
             key={type}
             onClick={() => setActiveChart(type)}
-            className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors duration-150 ${
+            className={`flex-1 min-w-0 px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors duration-150 ${
               activeChart === type
                 ? 'bg-white text-gray-900 shadow-sm'
                 : 'text-gray-600 hover:text-gray-900'
@@ -221,7 +221,7 @@ export function ChartOverview() {
       </div>
 
       {/* Growth Indicator */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mb-4">
         <div className="flex items-center space-x-2">
           <span className="text-2xl font-semibold text-gray-900">
             {displayData.length > 0 ? formatValue(displayData[displayData.length - 1][activeChart], activeChart) : '0'}

@@ -32,6 +32,7 @@ import { SortableTh } from '../SortableTh';
 import { usePolling } from '../usePolling';
 import { useUrlState } from '../useUrlState';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
 
 interface ActivityLog {
   id: string;
@@ -230,6 +231,85 @@ export function ActivityLogsManagement() {
     },
   });
 
+  // Pagination has to sit inside the card at both sizes. AdminTableShell
+  // exposes a mobile slot and a table slot only, so the same node is rendered
+  // into both — exactly one of the two is ever visible.
+  const paginationNode =
+    !loading && filteredLogs.length > 0 ? (
+      <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
+        <div className="text-sm text-gray-600">
+          {String(t('admin.activityLogs.showingLogs', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage(Math.max(0, page - 1))}
+            disabled={page === 0}
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </Button>
+          <span className="text-sm text-gray-600">
+            {String(t('admin.common.page'))} {page + 1} {String(t('admin.common.of'))} {totalPages}
+          </span>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
+            disabled={page >= totalPages - 1}
+          >
+            <ChevronRight className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+    ) : null;
+
+  // Below `md` the 5-column table is replaced by a card stack. The
+  // description — capped at max-w-md in the table cell — just wraps here.
+  const mobileRows = (
+    <>
+      {loading ? (
+        <AdminSkeleton.LogRows rows={6} />
+      ) : (
+        sortedLogs.map((log) => (
+          <AdminMobileRow
+            key={log.id}
+            title={log.users.name || log.users.email}
+            subtitle={log.users.name ? log.users.email : undefined}
+            badge={
+              <StatusBadge tone={actionTypeTone(log.action_type)}>
+                <span className="mr-1">{getActionIcon(log.action_type)}</span>
+                {formatActionType(log.action_type)}
+              </StatusBadge>
+            }
+            meta={[
+              {
+                label: String(t('admin.activityLogs.columns.description')),
+                value: (
+                  <span className="block whitespace-normal break-words">
+                    {log.description}
+                    {log.target_type && (
+                      <span className="ml-2 text-xs text-gray-500">({log.target_type})</span>
+                    )}
+                  </span>
+                ),
+              },
+              {
+                label: String(t('admin.activityLogs.columns.timestamp')),
+                value: new Date(log.created_at).toLocaleString(getDateLocale(language)),
+              },
+              {
+                label: String(t('admin.activityLogs.ipAddress')),
+                value: log.ip_address || '-',
+              },
+            ]}
+          />
+        ))
+      )}
+      {paginationNode}
+    </>
+  );
+
   return (
     <div className="space-y-6">
       <AdminPageHeader
@@ -273,8 +353,10 @@ export function ActivityLogsManagement() {
           </Button>
         </div>
 
+        {/* 1 → 2 → 5. Five columns at `md` left each select ~135px wide,
+            which truncates every option label. */}
         {showFilters && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-100">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 pt-4 border-t border-gray-100">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.activityLogs.adminUser'))}</label>
               <Select
@@ -371,15 +453,16 @@ export function ActivityLogsManagement() {
       </div>
 
       {/* Activity Logs Table */}
-      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
-        {!loading && filteredLogs.length === 0 ? (
+      {!loading && filteredLogs.length === 0 ? (
+        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
           <AdminEmptyState
             icon={Clock}
             title={String(t('admin.activityLogs.noActivityLogsFound'))}
             description={String(t('admin.activityLogs.emptyDescription'))}
           />
-        ) : (
-          <div className="overflow-x-auto">
+        </div>
+      ) : (
+        <AdminTableShell mobile={mobileRows}>
             <table className="w-full">
               <thead className="bg-gray-50/60">
                 <tr>
@@ -447,39 +530,11 @@ export function ActivityLogsManagement() {
                 </>)}
               </tbody>
             </table>
-          </div>
-        )}
 
-        {/* Pagination */}
-        {!loading && filteredLogs.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
-            <div className="text-sm text-gray-600">
-              {String(t('admin.activityLogs.showingLogs', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setPage(Math.max(0, page - 1))}
-                disabled={page === 0}
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </Button>
-              <span className="text-sm text-gray-600">
-                {String(t('admin.common.page'))} {page + 1} {String(t('admin.common.of'))} {totalPages}
-              </span>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
-                disabled={page >= totalPages - 1}
-              >
-                <ChevronRight className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
+          {/* Pagination */}
+          {paginationNode}
+        </AdminTableShell>
+      )}
     </div>
   );
 }

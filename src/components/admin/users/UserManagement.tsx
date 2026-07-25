@@ -30,6 +30,7 @@ import { useTableSort } from '../useTableSort';
 import { SortableTh } from '../SortableTh';
 import { useDebouncedValue } from '../useDebouncedValue';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
 import { UserDetailModal } from './UserDetailModal';
 import { EditUserModal, type EditUserTarget } from './EditUserModal';
 import { Input } from '@/components/ui/input';
@@ -75,6 +76,13 @@ export function UserManagement() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
+  // The row menu is rendered `fixed` and positioned from the trigger's
+  // bounding rect. Rendering it `absolute` inside the table's
+  // `overflow-x-auto` wrapper clipped it (overflow-x:auto forces
+  // overflow-y:auto), so the last rows' menus were cut off and the menu
+  // drifted off its button once the table scrolled sideways. Same pattern as
+  // SupportManagement / SubscriptionManagement.
+  const [menuPosition, setMenuPosition] = useState<{ top: number; right: number } | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   // Bulk selection — set of user ids checked across pages. Bulk actions are
@@ -330,6 +338,126 @@ export function UserManagement() {
     admins: users.filter(u => ['admin', 'super_admin'].includes(u.role)).length
   };
 
+  // Row-action trigger + menu. Shared by the desktop table cell and the
+  // mobile card stack so both surfaces stay in lock-step. The menu itself is
+  // `fixed` + z-50 so it escapes the table's overflow container.
+  const renderRowActions = (user: User) => (
+    <div className="relative inline-block">
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          const rect = e.currentTarget.getBoundingClientRect();
+          setMenuPosition({
+            top: rect.bottom + 8,
+            right: window.innerWidth - rect.right
+          });
+          setShowActions(showActions === user.id ? null : user.id);
+        }}
+        className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
+        aria-label={String(t('admin.users.rowActions'))}
+        aria-haspopup="menu"
+        aria-expanded={showActions === user.id}
+      >
+        <MoreVertical className="h-4 w-4" />
+      </button>
+
+      {showActions === user.id && menuPosition && (
+        <div
+          className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
+          style={{
+            top: `${menuPosition.top}px`,
+            right: `${menuPosition.right}px`
+          }}
+        >
+          <button
+            onClick={() => {
+              setSelectedUser(user);
+              setShowDetailModal(true);
+              setShowActions(null);
+            }}
+            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            <Eye className="mr-3 h-4 w-4" />
+            {String(t('admin.users.viewDetails'))}
+          </button>
+          <button
+            onClick={() => {
+              setShowActions(null);
+              setEditTarget({
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+              });
+            }}
+            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            <UserCog className="mr-3 h-4 w-4" />
+            {String(t('admin.users.editRole'))}
+          </button>
+          <button
+            onClick={() => {
+              setShowActions(null);
+              window.location.href = `mailto:${encodeURIComponent(user.email)}`;
+            }}
+            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            <Mail className="mr-3 h-4 w-4" />
+            {String(t('admin.users.sendEmail'))}
+          </button>
+          <button
+            onClick={async () => {
+              setShowActions(null);
+              const willSuspend = user.status !== 'suspended';
+              if (willSuspend) {
+                const ok = await confirm({
+                  title: String(t('admin.users.rowSuspendConfirm', { name: user.name })),
+                  description: String(t('admin.users.bulkSuspendDescription')),
+                  variant: 'danger',
+                  confirmText: String(t('admin.users.suspend')),
+                });
+                if (!ok) return;
+              }
+              updateUsers(
+                [user.id],
+                { status: willSuspend ? 'suspended' : 'active' },
+                willSuspend ? String(t('admin.users.suspended')) : String(t('admin.users.reactivated')),
+              );
+            }}
+            disabled={bulkBusy || user.id === currentUserId}
+            title={user.id === currentUserId ? String(t('admin.users.cantSuspendSelf')) : undefined}
+            className={`flex items-center w-full px-4 py-2 text-sm hover:bg-rose-50 disabled:opacity-50 disabled:cursor-not-allowed ${user.status === 'suspended' ? 'text-emerald-700 hover:bg-emerald-50' : 'text-rose-700'}`}
+          >
+            {user.status === 'suspended' ? (
+              <><CheckCircle className="mr-3 h-4 w-4" />{String(t('admin.users.reactivateUser'))}</>
+            ) : (
+              <><Ban className="mr-3 h-4 w-4" />{String(t('admin.users.suspendUser'))}</>
+            )}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
+  // Bulk-select checkbox for a single row. Shared by table + card stack.
+  const renderRowCheckbox = (user: User) => (
+    <input
+      type="checkbox"
+      checked={selectedIds.has(user.id)}
+      disabled={user.id === currentUserId}
+      title={user.id === currentUserId ? String(t('admin.users.cantSelectSelf')) : undefined}
+      onChange={(e) => {
+        const next = new Set(selectedIds);
+        if (e.target.checked) next.add(user.id);
+        else next.delete(user.id);
+        setSelectedIds(next);
+      }}
+      onClick={(e) => e.stopPropagation()}
+      aria-label={String(t('admin.users.selectUser', { name: user.name }))}
+      className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary disabled:opacity-40 disabled:cursor-not-allowed"
+    />
+  );
+
   return (
     <>
       <div className="space-y-6">
@@ -512,7 +640,39 @@ export function UserManagement() {
 
         {/* Users Table */}
         <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
-          <div className="overflow-x-auto">
+          {/* Below `md` the 7-column table is unusable on a phone, so
+              AdminTableShell swaps it for a card stack built from the exact
+              same paginated slice. The shell's own card chrome is disabled
+              here because this outer div already provides it (the empty
+              state + pagination live inside the same card). */}
+          <AdminTableShell
+            className="rounded-none ring-0 shadow-none bg-transparent"
+            mobile={paginatedUsers.map((user) => (
+              <AdminMobileRow
+                key={user.id}
+                selected={selectedIds.has(user.id)}
+                lead={renderRowCheckbox(user)}
+                title={user.name}
+                subtitle={user.email}
+                badge={getStatusBadge(user.status)}
+                actions={renderRowActions(user)}
+                meta={[
+                  { label: String(t('admin.common.role')), value: getRoleBadge(user.role) },
+                  { label: String(t('admin.users.academy')), value: user.academyName || String(t('admin.common.na')) },
+                  {
+                    label: String(t('admin.users.lastLogin')),
+                    value: user.lastLoginAt
+                      ? user.lastLoginAt.toLocaleDateString(getDateLocale(language))
+                      : String(t('admin.common.never')),
+                  },
+                  {
+                    label: String(t('admin.users.thActivity')),
+                    value: String(t('admin.users.loginsLabel', { count: user.loginCount })),
+                  },
+                ]}
+              />
+            ))}
+          >
             <table className="min-w-full divide-y divide-gray-100">
               <thead className="bg-gray-50/60">
                 <tr>
@@ -562,20 +722,7 @@ export function UserManagement() {
                     className={`hover:bg-gray-50 ${selectedIds.has(user.id) ? 'bg-primary/[0.03]' : ''}`}
                   >
                     <td className="px-4 py-4 whitespace-nowrap">
-                      <input
-                        type="checkbox"
-                        checked={selectedIds.has(user.id)}
-                        disabled={user.id === currentUserId}
-                        title={user.id === currentUserId ? String(t('admin.users.cantSelectSelf')) : undefined}
-                        onChange={(e) => {
-                          const next = new Set(selectedIds);
-                          if (e.target.checked) next.add(user.id);
-                          else next.delete(user.id);
-                          setSelectedIds(next);
-                        }}
-                        aria-label={String(t('admin.users.selectUser', { name: user.name }))}
-                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary disabled:opacity-40 disabled:cursor-not-allowed"
-                      />
+                      {renderRowCheckbox(user)}
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center">
@@ -612,93 +759,13 @@ export function UserManagement() {
                       </div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <div className="relative">
-                        <button
-                          onClick={() => setShowActions(showActions === user.id ? null : user.id)}
-                          className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
-                          aria-label={String(t('admin.users.rowActions'))}
-                          aria-haspopup="menu"
-                          aria-expanded={showActions === user.id}
-                        >
-                          <MoreVertical className="h-4 w-4" />
-                        </button>
-                        
-                        {showActions === user.id && (
-                          <div className="absolute right-0 mt-2 min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-10">
-                            <button
-                              onClick={() => {
-                                setSelectedUser(user);
-                                setShowDetailModal(true);
-                                setShowActions(null);
-                              }}
-                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                            >
-                              <Eye className="mr-3 h-4 w-4" />
-                              {String(t('admin.users.viewDetails'))}
-                            </button>
-                            <button
-                              onClick={() => {
-                                setShowActions(null);
-                                setEditTarget({
-                                  id: user.id,
-                                  name: user.name,
-                                  email: user.email,
-                                  role: user.role,
-                                });
-                              }}
-                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                            >
-                              <UserCog className="mr-3 h-4 w-4" />
-                              {String(t('admin.users.editRole'))}
-                            </button>
-                            <button
-                              onClick={() => {
-                                setShowActions(null);
-                                window.location.href = `mailto:${encodeURIComponent(user.email)}`;
-                              }}
-                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                            >
-                              <Mail className="mr-3 h-4 w-4" />
-                              {String(t('admin.users.sendEmail'))}
-                            </button>
-                            <button
-                              onClick={async () => {
-                                setShowActions(null);
-                                const willSuspend = user.status !== 'suspended';
-                                if (willSuspend) {
-                                  const ok = await confirm({
-                                    title: String(t('admin.users.rowSuspendConfirm', { name: user.name })),
-                                    description: String(t('admin.users.bulkSuspendDescription')),
-                                    variant: 'danger',
-                                    confirmText: String(t('admin.users.suspend')),
-                                  });
-                                  if (!ok) return;
-                                }
-                                updateUsers(
-                                  [user.id],
-                                  { status: willSuspend ? 'suspended' : 'active' },
-                                  willSuspend ? String(t('admin.users.suspended')) : String(t('admin.users.reactivated')),
-                                );
-                              }}
-                              disabled={bulkBusy || user.id === currentUserId}
-                              title={user.id === currentUserId ? String(t('admin.users.cantSuspendSelf')) : undefined}
-                              className={`flex items-center w-full px-4 py-2 text-sm hover:bg-rose-50 disabled:opacity-50 disabled:cursor-not-allowed ${user.status === 'suspended' ? 'text-emerald-700 hover:bg-emerald-50' : 'text-rose-700'}`}
-                            >
-                              {user.status === 'suspended' ? (
-                                <><CheckCircle className="mr-3 h-4 w-4" />{String(t('admin.users.reactivateUser'))}</>
-                              ) : (
-                                <><Ban className="mr-3 h-4 w-4" />{String(t('admin.users.suspendUser'))}</>
-                              )}
-                            </button>
-                          </div>
-                        )}
-                      </div>
+                      {renderRowActions(user)}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </AdminTableShell>
           
           {filteredUsers.length === 0 && (
             <AdminEmptyState
@@ -777,6 +844,17 @@ export function UserManagement() {
           onSaved={() => {
             toast({ title: String(t('admin.users.userUpdated')), variant: 'success' });
             loadUsers();
+          }}
+        />
+      )}
+
+      {/* Click outside to close actions menu */}
+      {showActions && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => {
+            setShowActions(null);
+            setMenuPosition(null);
           }}
         />
       )}

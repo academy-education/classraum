@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getMonthShort } from '@/utils/dateUtils';
 import { DashboardCard } from '../DashboardCard';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { useAdminFetch } from '../useAdminFetch';
@@ -30,7 +31,9 @@ interface AnalyticsData {
     growth: number;
     yearOverYearGrowth: number;
     byPlan: { plan: string; amount: number; percentage: number }[];
-    trend: { month: string; amount: number }[];
+    // Numeric year/month so the label can be localized here — the API
+    // must not hand back a pre-formatted English month name.
+    trend: { year: number; monthIndex: number; amount: number }[];
     monthlyBreakdown: {
       monthly: number;
       annual: number;
@@ -67,7 +70,8 @@ interface AnalyticsData {
 }
 
 export function AnalyticsDashboard() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const monthLabels = getMonthShort(language);
   const adminFetch = useAdminFetch();
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -84,7 +88,7 @@ export function AnalyticsDashboard() {
   const handleExportCSV = () => {
     if (!data) return;
     const headers = [String(t('admin.analytics.csvMonth')), String(t('admin.analytics.csvRevenue'))];
-    const rows = data.revenue.trend.map(t => [t.month, t.amount]);
+    const rows = data.revenue.trend.map(r => [`${r.year}-${String(r.monthIndex + 1).padStart(2, '0')}`, r.amount]);
     const csv = [headers, ...rows]
       .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
       .join('\n');
@@ -226,24 +230,32 @@ export function AnalyticsDashboard() {
               {/* Revenue Trend Chart */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">{String(t('admin.analytics.revenueTrend'))}</h3>
-                <div className="h-64 flex items-end justify-between space-x-2">
-                  {data.revenue.trend.map((item, index) => (
-                    <div key={index} className="flex-1 flex flex-col items-center">
-                      <div className="w-full flex justify-center mb-2">
-                        <div
-                          className="w-full max-w-8 bg-blue-500 rounded-t"
-                          style={{
-                            height: `${(() => {
-                              const peak = Math.max(0, ...data.revenue.trend.map(t => t.amount));
-                              return peak > 0 ? (item.amount / peak) * 200 : 0;
-                            })()}px`,
-                            minHeight: '20px'
-                          }}
-                        />
+                {/* Horizontal scroller: with a handful of periods the bars would
+                    squash to ~17px on a phone, so we give each column a floor
+                    width and let the wrapper scroll instead. */}
+                <div className="overflow-x-auto">
+                  <div
+                    className="h-64 flex items-end justify-between space-x-2"
+                    style={{ minWidth: `${Math.max(data.revenue.trend.length, 1) * 64}px` }}
+                  >
+                    {data.revenue.trend.map((item, index) => (
+                      <div key={index} className="flex-1 flex flex-col items-center">
+                        <div className="w-full flex justify-center mb-2">
+                          <div
+                            className="w-full max-w-8 bg-blue-500 rounded-t"
+                            style={{
+                              height: `${(() => {
+                                const peak = Math.max(0, ...data.revenue.trend.map(t => t.amount));
+                                return peak > 0 ? (item.amount / peak) * 200 : 0;
+                              })()}px`,
+                              minHeight: '20px'
+                            }}
+                          />
+                        </div>
+                        <span className="text-xs text-gray-500 font-medium whitespace-nowrap">{monthLabels[item.monthIndex]}</span>
                       </div>
-                      <span className="text-xs text-gray-500 font-medium">{item.month}</span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -313,7 +325,7 @@ export function AnalyticsDashboard() {
 
           {activeTab === 'revenue' && (
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                 <DashboardCard
                   title={String(t('admin.analytics.mrr'))}
                   value={formatPrice(data.revenue.total)}

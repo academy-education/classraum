@@ -119,18 +119,27 @@ export async function GET(request: NextRequest) {
       percentage: (amount / totalRevenue) * 100
     }));
 
-    // Revenue trend (monthly)
-    const monthlyRevenue: any = {};
+    // Revenue trend (monthly).
+    //
+    // Emits a numeric year + monthIndex rather than a formatted label: the
+    // label has to be localized client-side (the admin runs in ko and en),
+    // and bucketing by the English short name alone silently merged
+    // January 2025 into January 2026 and left the buckets in insertion
+    // order rather than chronological.
+    const monthlyRevenue = new Map<string, { year: number; monthIndex: number; amount: number }>();
     subscriptions?.forEach(sub => {
-      const month = new Date(sub.created_at).toLocaleDateString('en', { month: 'short' });
-      if (!monthlyRevenue[month]) monthlyRevenue[month] = 0;
-      monthlyRevenue[month] += sub.amount || 0;
+      const d = new Date(sub.created_at);
+      const year = d.getFullYear();
+      const monthIndex = d.getMonth();
+      const key = `${year}-${monthIndex}`;
+      const bucket = monthlyRevenue.get(key) ?? { year, monthIndex, amount: 0 };
+      bucket.amount += sub.amount || 0;
+      monthlyRevenue.set(key, bucket);
     });
 
-    const trend = Object.entries(monthlyRevenue).map(([month, amount]) => ({
-      month,
-      amount
-    }));
+    const trend = Array.from(monthlyRevenue.values()).sort(
+      (a, b) => a.year - b.year || a.monthIndex - b.monthIndex,
+    );
 
     // Customer metrics
     const newCustomers = totalAcademies || 0;

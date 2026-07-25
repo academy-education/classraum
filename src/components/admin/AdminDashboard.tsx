@@ -746,7 +746,7 @@ export function AdminDashboard() {
       </div>
 
       {/* Secondary Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.supportTickets'))}</h3>
@@ -816,7 +816,7 @@ export function AdminDashboard() {
       {/* Quick Actions */}
       <div>
         <h2 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-[0.06em]">{String(t('admin.dashboard.quickActions'))}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
           {[
             // All four actions navigate to the relevant management page.
             // For "Create Academy" we land on the academies list — admins

@@ -6,6 +6,7 @@ import { useAdminFetch } from '@/components/admin/useAdminFetch'
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader'
 import { AdminEmptyState } from '@/components/admin/AdminEmptyState'
 import { DashboardCard } from '@/components/admin/DashboardCard'
+import { AdminTableShell, AdminMobileRow } from '@/components/admin/AdminTableShell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -347,10 +348,12 @@ function UserDetail({ data, studentId }: { data: Record<string, unknown>; studen
         </Panel>
       </div>
 
-      {/* Credit ledger — full width, proper table */}
+      {/* Credit ledger — full width, proper table. Only 3 short columns, so
+          horizontal scroll is fine; the gutter just has to match the Panel's
+          p-4 or the scroll edge reads as clipped. */}
       <Panel title={String(t('admin.studyConsole.creditLedger'))} icon={ReceiptText}>
         {ledger.length ? (
-          <div className="overflow-x-auto -mx-1">
+          <div className="overflow-x-auto -mx-4 px-4">
             <table className="w-full text-sm">
               <tbody className="divide-y divide-gray-100">
                 {ledger.map((l, i) => (
@@ -439,7 +442,34 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
           <div className="mb-3 text-xs text-gray-500">
             {String(t('admin.studyConsole.paymentsGross'))}: <span className="font-semibold text-gray-900 tabular-nums">{won(grossWon)}</span>
           </div>
-          <div className="overflow-x-auto -mx-1">
+          {/* Below md the row action (refund) would sit off the right edge of a
+              scrolled table, so swap to a card stack — same trade the manager
+              dashboard's DataTable makes. */}
+          <div className="md:hidden -mx-4 border-t border-gray-100 divide-y divide-gray-100">
+            {rows.map((p) => {
+              const meta = statusMeta(p.refunded)
+              return (
+                <AdminMobileRow
+                  key={p.paymentId}
+                  title={kindLabel(p.kind)}
+                  badge={
+                    <span className={`inline-flex items-center h-5 px-2 rounded-full text-[11px] font-semibold ring-1 ${meta.cls}`}>{meta.label}</span>
+                  }
+                  meta={[
+                    { label: String(t('admin.studyConsole.colAmount')), value: <span className="tabular-nums">{won(p.amountWon)}</span> },
+                    { label: String(t('admin.studyConsole.colDate')), value: p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—' },
+                  ]}
+                  actions={!p.refunded ? (
+                    <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>
+                      {String(t('admin.studyConsole.refund'))}
+                    </Button>
+                  ) : undefined}
+                />
+              )
+            })}
+          </div>
+
+          <div className="hidden md:block overflow-x-auto -mx-4 px-4">
             <table className="w-full text-sm">
               <tbody className="divide-y divide-gray-100">
                 {rows.map((p) => {
@@ -761,14 +791,43 @@ function SubscriptionsList() {
         </Button>
       </div>
 
-      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+      <AdminTableShell
+        mobile={!loading && rows.length > 0 ? rows.map((r) => (
+          <AdminMobileRow
+            key={r.studentId}
+            title={r.studentName || String(t('admin.studyConsole.noName'))}
+            subtitle={r.studentEmail}
+            badge={
+              <span className={`inline-flex items-center h-5 px-2 rounded-full text-[11px] font-semibold ring-1 ${subStatusMeta(r.status)}`}>{statusLabel(r.status)}</span>
+            }
+            meta={[
+              {
+                label: String(t('admin.studyConsole.colPlan')),
+                value: <>{r.plan}{r.pendingPlan ? ` → ${r.pendingPlan}` : ''}</>,
+              },
+              {
+                label: String(t('admin.studyConsole.colCredits')),
+                value: <span className="tabular-nums">{r.creditsTotal.toLocaleString(locale)}</span>,
+              },
+              {
+                label: String(t('admin.studyConsole.colRenews')),
+                value: (
+                  <>
+                    {when(r.currentPeriodEnd)}
+                    {r.cancelAtPeriodEnd && <span className="ml-1.5 text-[11px] text-amber-600">{String(t('admin.studyConsole.cancelsShort'))}</span>}
+                  </>
+                ),
+              },
+            ]}
+          />
+        )) : undefined}
+      >
         {loading ? (
           <div className="p-6 text-sm text-gray-400">{t('admin.studyConsole.loading')}</div>
         ) : rows.length === 0 ? (
           <AdminEmptyState icon={CreditCard} title={String(t('admin.studyConsole.subsEmpty'))} />
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+          <table className="w-full text-sm">
               <thead className="bg-gray-50/60">
                 <tr className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
                   <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colStudent'))}</th>
@@ -795,10 +854,9 @@ function SubscriptionsList() {
                   </tr>
                 ))}
               </tbody>
-            </table>
-          </div>
+          </table>
         )}
-      </div>
+      </AdminTableShell>
 
       {total > 20 && <Pager page={page} totalPages={totalPages} total={total} onPage={setPage} />}
     </div>
@@ -880,14 +938,35 @@ function PaymentsList() {
         </Button>
       </div>
 
-      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+      <AdminTableShell
+        mobile={!loading && rows.length > 0 ? rows.map((p) => {
+          const meta = statusMeta(p.refunded)
+          return (
+            <AdminMobileRow
+              key={p.paymentId}
+              title={p.studentName || String(t('admin.studyConsole.noName'))}
+              subtitle={p.studentEmail}
+              badge={
+                <span className={`inline-flex items-center h-5 px-2 rounded-full text-[11px] font-semibold ring-1 ${meta.cls}`}>{meta.label}</span>
+              }
+              meta={[
+                { label: String(t('admin.studyConsole.colKind')), value: kindLabel(p.kind) },
+                { label: String(t('admin.studyConsole.colAmount')), value: <span className="tabular-nums">{won(p.amountWon)}</span> },
+                { label: String(t('admin.studyConsole.colDate')), value: p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—' },
+              ]}
+              actions={!p.refunded ? (
+                <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>{String(t('admin.studyConsole.refund'))}</Button>
+              ) : undefined}
+            />
+          )
+        }) : undefined}
+      >
         {loading ? (
           <div className="p-6 text-sm text-gray-400">{t('admin.studyConsole.loading')}</div>
         ) : rows.length === 0 ? (
           <AdminEmptyState icon={CreditCard} title={String(t('admin.studyConsole.paymentsEmpty'))} />
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+          <table className="w-full text-sm">
               <thead className="bg-gray-50/60">
                 <tr className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
                   <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colStudent'))}</th>
@@ -922,10 +1001,9 @@ function PaymentsList() {
                   )
                 })}
               </tbody>
-            </table>
-          </div>
+          </table>
         )}
-      </div>
+      </AdminTableShell>
 
       {total > 20 && <Pager page={page} totalPages={totalPages} total={total} onPage={setPage} />}
 

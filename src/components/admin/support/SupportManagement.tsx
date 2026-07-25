@@ -37,6 +37,7 @@ import { DashboardCard } from '../DashboardCard';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
 
 interface ChatConversation {
   id: string;
@@ -282,6 +283,122 @@ export function SupportManagement() {
     unread: conversations.reduce((acc, c) => acc + (c.unreadCount || 0), 0)
   };
 
+  // Row action menu, shared by the desktop table cell and the mobile card so
+  // the two can't drift. Only one copy is visible at a time (the other lives
+  // inside a display:none breakpoint container).
+  const renderRowActions = (conversation: ChatConversation) => (
+    <div className="relative inline-block">
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          const rect = e.currentTarget.getBoundingClientRect();
+          setMenuPosition({
+            top: rect.bottom + 8,
+            right: window.innerWidth - rect.right
+          });
+          setShowActions(showActions === conversation.id ? null : conversation.id);
+        }}
+        className="text-gray-400 hover:text-gray-600"
+        aria-label={String(t('admin.support.rowActions'))}
+        aria-haspopup="menu"
+        aria-expanded={showActions === conversation.id}
+      >
+        <MoreVertical className="h-5 w-5" />
+      </button>
+
+      {showActions === conversation.id && menuPosition && (
+        <div
+          className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
+          style={{
+            top: `${menuPosition.top}px`,
+            right: `${menuPosition.right}px`
+          }}
+        >
+          <button
+            onClick={() => {
+              setSelectedConversation(conversation);
+              setShowDetailModal(true);
+              setShowActions(null);
+            }}
+            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            <MessageSquare className="mr-3 h-4 w-4" />
+            {String(t('admin.support.viewConversation'))}
+          </button>
+          <button
+            onClick={() => handleReply(conversation)}
+            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            <Reply className="mr-3 h-4 w-4" />
+            {String(t('admin.support.reply'))}
+          </button>
+          <hr className="my-1" />
+          <button
+            onClick={() => handleToggleStatus(conversation)}
+            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            <Archive className="mr-3 h-4 w-4" />
+            {conversation.status === 'closed' ? String(t('admin.support.reopen')) : String(t('admin.common.close'))}
+          </button>
+          <button
+            onClick={() => handleDelete(conversation)}
+            className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
+          >
+            <Trash2 className="mr-3 h-4 w-4" />
+            {String(t('admin.common.delete'))}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
+  const emptyState = (
+    <AdminEmptyState
+      icon={MessageSquare}
+      title={String(t('admin.support.noTicketsFound'))}
+      description={String(t('admin.support.adjustSearchOrFilters'))}
+    />
+  );
+
+  // Below `md` the 6-column table becomes a card stack instead of a sideways
+  // scroll, matching the manager dashboard's DataTable behavior.
+  const mobileRows = filteredConversations.map((conversation) => (
+    <AdminMobileRow
+      key={conversation.id}
+      title={conversation.title || String(t('admin.support.supportConversation'))}
+      subtitle={conversation.userEmail}
+      badge={getStatusBadge(conversation.status)}
+      actions={renderRowActions(conversation)}
+      meta={[
+        {
+          label: String(t('admin.support.user')),
+          value: conversation.userName,
+        },
+        {
+          label: String(t('admin.support.updated')),
+          value: conversation.updatedAt.toLocaleDateString(getDateLocale(language)),
+        },
+        {
+          label: String(t('admin.support.lastMessage')),
+          value: conversation.lastMessage || String(t('admin.support.noMessagesYet')),
+        },
+        {
+          label: String(t('admin.support.conversation')),
+          value: (
+            <span className="inline-flex items-center gap-1.5">
+              {String(t('admin.support.messagesCount', { count: conversation.messageCount }))}
+              {conversation.unreadCount ? (
+                <StatusBadge tone="danger" size="sm">
+                  {String(t('admin.support.unreadCount', { count: conversation.unreadCount }))}
+                </StatusBadge>
+              ) : null}
+            </span>
+          ),
+        },
+      ]}
+    />
+  ));
+
   return (
     <>
       <div className="space-y-6">
@@ -355,8 +472,14 @@ export function SupportManagement() {
         </div>
 
         {/* Conversations List */}
-        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
-          <div className="overflow-x-auto">
+        <AdminTableShell
+          mobile={
+            <>
+              {mobileRows}
+              {filteredConversations.length === 0 && emptyState}
+            </>
+          }
+        >
             <table className="w-full">
               <thead className="bg-gray-50/60">
                 <tr>
@@ -439,84 +562,15 @@ export function SupportManagement() {
                       </div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap text-right">
-                      <div className="relative inline-block">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            const rect = e.currentTarget.getBoundingClientRect();
-                            setMenuPosition({
-                              top: rect.bottom + 8,
-                              right: window.innerWidth - rect.right
-                            });
-                            setShowActions(showActions === conversation.id ? null : conversation.id);
-                          }}
-                          className="text-gray-400 hover:text-gray-600"
-                          aria-label={String(t('admin.support.rowActions'))}
-                          aria-haspopup="menu"
-                          aria-expanded={showActions === conversation.id}
-                        >
-                          <MoreVertical className="h-5 w-5" />
-                        </button>
-
-                        {showActions === conversation.id && menuPosition && (
-                          <div
-                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
-                            style={{
-                              top: `${menuPosition.top}px`,
-                              right: `${menuPosition.right}px`
-                            }}
-                          >
-                            <button
-                              onClick={() => {
-                                setSelectedConversation(conversation);
-                                setShowDetailModal(true);
-                                setShowActions(null);
-                              }}
-                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            >
-                              <MessageSquare className="mr-3 h-4 w-4" />
-                              {String(t('admin.support.viewConversation'))}
-                            </button>
-                            <button
-                              onClick={() => handleReply(conversation)}
-                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            >
-                              <Reply className="mr-3 h-4 w-4" />
-                              {String(t('admin.support.reply'))}
-                            </button>
-                            <hr className="my-1" />
-                            <button
-                              onClick={() => handleToggleStatus(conversation)}
-                              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            >
-                              <Archive className="mr-3 h-4 w-4" />
-                              {conversation.status === 'closed' ? String(t('admin.support.reopen')) : String(t('admin.common.close'))}
-                            </button>
-                            <button
-                              onClick={() => handleDelete(conversation)}
-                              className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
-                            >
-                              <Trash2 className="mr-3 h-4 w-4" />
-                              {String(t('admin.common.delete'))}
-                            </button>
-                          </div>
-                        )}
-                      </div>
+                      {renderRowActions(conversation)}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
 
-          {filteredConversations.length === 0 && (
-            <AdminEmptyState
-              icon={MessageSquare}
-              title={String(t('admin.support.noTicketsFound'))}
-              description={String(t('admin.support.adjustSearchOrFilters'))}
-            />
-          )}
-        </div>
+          {filteredConversations.length === 0 && emptyState}
+        </AdminTableShell>
         </>)}
       </div>
 
