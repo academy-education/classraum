@@ -123,7 +123,10 @@ describe('referral loop', () => {
       enqueue('study_referral_redemptions', { data: null })                 // not yet referred
       enqueue('study_referral_codes', { data: { student_id: 'referrer-1' } }) // code owner
       enqueue('study_referral_redemptions', { data: { id: 'redemption-1' } }) // insert
-      enqueue('study_subscriptions', { data: { student_id: 'student-1' } })   // referee has a row
+      // ensureFreeSubscription() reads the referee's row first (and skips the
+      // provisioning insert because it already exists).
+      enqueue('study_subscriptions', { data: { student_id: 'student-1' } })   // provision check
+      enqueue('study_subscriptions', { data: { student_id: 'student-1' } })   // referee grant check
       enqueue('study_credit_ledger', { error: null })                        // referee ledger
       enqueue('study_subscriptions', { data: { student_id: 'referrer-1' } })  // referrer has a row
       enqueue('study_credit_ledger', { error: null })                        // referrer ledger
@@ -185,7 +188,11 @@ describe('referral loop', () => {
       enqueue('study_referral_redemptions', { data: null })
       enqueue('study_referral_codes', { data: { student_id: 'referrer-1' } })
       enqueue('study_referral_redemptions', { data: { id: 'redemption-1' } })
-      enqueue('study_subscriptions', { data: null })                        // referee: no row
+      // ensureFreeSubscription(): no row → provisioning insert fails/no-ops,
+      // so the referee still has nothing for the credit RPC to update.
+      enqueue('study_subscriptions', { data: null })                        // provision check: none
+      enqueue('study_subscriptions', { error: { code: '23505' } })          // provision insert races
+      enqueue('study_subscriptions', { data: null })                        // referee grant check: still none
       enqueue('study_subscriptions', { data: { student_id: 'referrer-1' } }) // referrer: has a row
       enqueue('study_credit_ledger', { error: null })
       enqueue('study_referral_redemptions', { error: null })

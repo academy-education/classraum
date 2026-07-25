@@ -56,8 +56,11 @@ describe('POST /api/study/subscription/purchase-pass', () => {
     const body = await res.json()
     expect(body).toMatchObject({ success: true, creditsAdded: 30 })
     expect(chargeMock).toHaveBeenCalledWith(expect.objectContaining({ amount: 39000 }))
-    expect(rpcMock).toHaveBeenCalledWith('increment_study_purchased_credits', {
-      p_student_id: 'student-1', p_delta: 30,
+    // Pass credits land in their own per-test bucket (study_pass_credits),
+    // NOT the general purchased bucket — hence a dedicated RPC. '*' means the
+    // pass is not restricted to a single test.
+    expect(rpcMock).toHaveBeenCalledWith('increment_study_pass_credits', {
+      p_student: 'student-1', p_test: '*', p_delta: 30,
     })
   })
 

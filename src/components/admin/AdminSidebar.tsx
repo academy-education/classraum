@@ -146,7 +146,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
       <div className="h-[57px] flex-shrink-0 px-4 flex items-center justify-between gap-2 border-b border-gray-100">
         <Image
           src="/text_logo.png"
-          alt="Classraum Logo"
+          alt="Classraum logo"
           width={150}
           height={50}
           className="w-auto shrink min-w-0"

@@ -61,20 +61,44 @@ describe('estimateSectionScore (path-weighted)', () => {
     }
   })
 
-  it('a perfect hard-path test reaches the 800 ceiling; perfect easy path caps at 590', () => {
+  it('spans the full 200–800 range: perfect hard = 800, zero = 200', () => {
+    // The conversion table is a College Board-shaped curve over the whole
+    // range (flat floor, steep top) rather than the old banded cap/floor.
     expect(estimateSectionScore(54, 54, 'hard').score).toBe(800)
-    expect(estimateSectionScore(54, 54, 'easy').score).toBe(590)
+    expect(estimateSectionScore(0, 54, 'hard').score).toBe(200)
+    expect(estimateSectionScore(0, 54, 'easy').score).toBe(200)
   })
 
-  it('a zero-correct hard path floors at 400; easy path floors at 200', () => {
-    expect(estimateSectionScore(0, 54, 'hard').score).toBe(400)
-    expect(estimateSectionScore(0, 54, 'easy').score).toBe(200)
+  it('rewards the hard path: never scores below the easy path at the same raw', () => {
+    // The routing bonus is the whole point of the two-column table — taking
+    // the harder Module 2 must never be worth LESS than the easy one.
+    for (let correct = 0; correct <= 54; correct++) {
+      const easy = estimateSectionScore(correct, 54, 'easy').score
+      const hard = estimateSectionScore(correct, 54, 'hard').score
+      expect(hard).toBeGreaterThanOrEqual(easy)
+    }
+  })
+
+  it('is monotonic — more correct answers never lower the score', () => {
+    for (const route of ['easy', 'hard'] as const) {
+      let prev = -Infinity
+      for (let correct = 0; correct <= 54; correct++) {
+        const { score } = estimateSectionScore(correct, 54, route)
+        expect(score).toBeGreaterThanOrEqual(prev)
+        prev = score
+      }
+    }
+  })
+
+  it('flags the easy path as capped so the UI can caveat the estimate', () => {
+    expect(estimateSectionScore(40, 54, 'easy').capped).toBe(true)
+    expect(estimateSectionScore(40, 54, 'hard').capped).toBe(false)
   })
 
   it('clamps out-of-range correct counts', () => {
     expect(estimateSectionScore(99, 54, 'hard').score).toBe(800)
     expect(estimateSectionScore(-5, 54, 'easy').score).toBe(200)
-    expect(estimateSectionScore(5, 0, 'hard').score).toBe(400) // no questions → 0%
+    expect(estimateSectionScore(5, 0, 'hard').score).toBe(200) // no questions → 0%
   })
 })
 

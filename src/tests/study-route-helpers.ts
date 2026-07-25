@@ -27,7 +27,8 @@ export interface QueryResult {
 const CHAIN_METHODS = [
   'select', 'insert', 'update', 'upsert', 'delete',
   'eq', 'neq', 'like', 'ilike', 'in', 'is', 'gt', 'gte', 'lt', 'lte',
-  'not', 'contains', 'or', 'order', 'limit', 'range',
+  'not', 'contains', 'containedBy', 'overlaps', 'or', 'filter', 'match',
+  'textSearch', 'order', 'limit', 'range',
   'maybeSingle', 'single',
 ] as const
 

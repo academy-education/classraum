@@ -15,6 +15,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { NextRequest } from 'next/server'
+import { STUDY_PLANS } from '@/lib/study/plans'
 import { tableRouter } from '@/tests/study-route-helpers'
 
 jest.mock('@/lib/supabase-admin', () => ({
@@ -65,13 +66,15 @@ describe('study-billing cron — §4 annual grant refresh', () => {
     // No PortOne charge for a mid-year grant refresh.
     expect(chargeMock).not.toHaveBeenCalled()
 
-    // Grant reset to the annual plan's monthly allotment (8), and the
-    // ledger records the +8 grant.
+    // Grant reset to the annual plan's monthly allotment, and the ledger
+    // records the same delta. Derived from the plan definition so a pricing
+    // change can't silently invalidate this test.
+    const allotment = STUDY_PLANS.general_annual_v1!.monthlyCredits
     expect(updateChain.update).toHaveBeenCalledWith(
-      expect.objectContaining({ grant_credits_remaining: 8 }),
+      expect.objectContaining({ grant_credits_remaining: allotment }),
     )
     expect(ledgerChain.insert).toHaveBeenCalledWith(
-      expect.objectContaining({ student_id: 'stu-1', delta: 8, bucket: 'grant', kind: 'grant' }),
+      expect.objectContaining({ student_id: 'stu-1', delta: allotment, bucket: 'grant', kind: 'grant' }),
     )
   })
 
