@@ -113,7 +113,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
       title={
         <span className="inline-flex items-center gap-2">
           <Banknote className="h-6 w-6 text-primary" />
-          Setup PortOne Partner
+          {String(t('admin.academies.setupPortonePartner'))}
         </span>
       }
       description={academyName}
@@ -122,11 +122,11 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
       footer={
         <>
           <Button type="button" onClick={onClose} disabled={loading} variant="outline" className="flex-1">
-            Cancel
+            {String(t('admin.common.cancel'))}
           </Button>
           <Button type="submit" form="partner-setup-form" disabled={loading} variant="default" className="flex-1">
             <Save className="w-4 h-4" />
-            {loading ? 'Saving...' : 'Save Partner Info'}
+            {loading ? String(t('admin.common.saving')) : String(t('admin.academies.savePartnerInfo'))}
           </Button>
         </>
       }
@@ -135,24 +135,24 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
           {/* Partner ID */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">
-              Partner ID (Optional)
+              {String(t('admin.academies.partnerIdOptional'))}
             </label>
             <Input
               type="text"
               value={formData.partnerId}
               onChange={(e) => setFormData({ ...formData, partnerId: e.target.value })}
               disabled={loading}
-              placeholder="Leave empty to auto-generate"
+              placeholder={String(t('admin.academies.leaveEmptyAutoGenerate'))}
             />
             <p className="text-xs text-gray-500">
-              If empty, will be auto-generated as academy_{academyId}
+              {String(t('admin.academies.autoGenerateHint', { id: academyId }))}
             </p>
           </div>
 
           {/* Email */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">
-              Email <span className="text-rose-500">*</span>
+              {String(t('admin.common.email'))} <span className="text-rose-500">*</span>
             </label>
             <Input
               type="email"
@@ -167,7 +167,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
           {/* Contract ID */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">
-              Contract ID (Optional)
+              {String(t('admin.academies.contractIdOptional'))}
             </label>
             <Input
               type="text"
@@ -177,14 +177,14 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
               placeholder="contract_id"
             />
             <p className="text-xs text-gray-500">
-              Default contract to use for settlements
+              {String(t('admin.academies.defaultContractHint'))}
             </p>
           </div>
 
           {/* Business Registration Number */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">
-              Business Registration Number
+              {String(t('admin.academies.businessRegistrationNumber'))}
             </label>
             <Input
               type="text"
@@ -198,7 +198,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
           {/* Tax Type */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">
-              Tax Type
+              {String(t('admin.academies.taxType'))}
             </label>
             <Select
               value={formData.taxType}
@@ -206,25 +206,25 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
               disabled={loading}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select tax type" />
+                <SelectValue placeholder={String(t('admin.academies.selectTaxType'))} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="GENERAL">General (일반과세)</SelectItem>
-                <SelectItem value="SIMPLIFIED">Simplified (간이과세)</SelectItem>
-                <SelectItem value="TAX_EXEMPT">Tax Exempt (면세)</SelectItem>
+                <SelectItem value="GENERAL">{String(t('admin.academies.taxGeneral'))}</SelectItem>
+                <SelectItem value="SIMPLIFIED">{String(t('admin.academies.taxSimplified'))}</SelectItem>
+                <SelectItem value="TAX_EXEMPT">{String(t('admin.academies.taxExempt'))}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           {/* Bank Account Information */}
           <div className="border-t border-gray-100 pt-6">
-            <h3 className="text-sm font-medium text-gray-900 mb-4">Bank Account Information</h3>
+            <h3 className="text-sm font-medium text-gray-900 mb-4">{String(t('admin.academies.bankAccountInformation'))}</h3>
 
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">
-                    Bank <span className="text-rose-500">*</span>
+                    {String(t('admin.academies.bank'))} <span className="text-rose-500">*</span>
                   </label>
                   <Select
                     value={formData.bankAccount.bank}
@@ -235,27 +235,27 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
                     disabled={loading}
                   >
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select bank" />
+                      <SelectValue placeholder={String(t('admin.academies.selectBank'))} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="SHINHAN">Shinhan Bank</SelectItem>
-                      <SelectItem value="WOORI">Woori Bank</SelectItem>
-                      <SelectItem value="KB">KB Kookmin Bank</SelectItem>
-                      <SelectItem value="HANA">Hana Bank</SelectItem>
-                      <SelectItem value="NH">NH Bank</SelectItem>
-                      <SelectItem value="IBK">IBK Bank</SelectItem>
-                      <SelectItem value="SC">SC Bank</SelectItem>
-                      <SelectItem value="CITI">Citi Bank</SelectItem>
-                      <SelectItem value="KAKAO">Kakao Bank</SelectItem>
-                      <SelectItem value="TOSS">Toss Bank</SelectItem>
-                      <SelectItem value="K">K Bank</SelectItem>
+                      <SelectItem value="SHINHAN">{String(t('admin.academies.banks.SHINHAN'))}</SelectItem>
+                      <SelectItem value="WOORI">{String(t('admin.academies.banks.WOORI'))}</SelectItem>
+                      <SelectItem value="KB">{String(t('admin.academies.banks.KB'))}</SelectItem>
+                      <SelectItem value="HANA">{String(t('admin.academies.banks.HANA'))}</SelectItem>
+                      <SelectItem value="NH">{String(t('admin.academies.banks.NH'))}</SelectItem>
+                      <SelectItem value="IBK">{String(t('admin.academies.banks.IBK'))}</SelectItem>
+                      <SelectItem value="SC">{String(t('admin.academies.banks.SC'))}</SelectItem>
+                      <SelectItem value="CITI">{String(t('admin.academies.banks.CITI'))}</SelectItem>
+                      <SelectItem value="KAKAO">{String(t('admin.academies.banks.KAKAO'))}</SelectItem>
+                      <SelectItem value="TOSS">{String(t('admin.academies.banks.TOSS'))}</SelectItem>
+                      <SelectItem value="K">{String(t('admin.academies.banks.K'))}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">
-                    Currency
+                    {String(t('admin.academies.currency'))}
                   </label>
                   <Input
                     type="text"
@@ -272,7 +272,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">
-                  Account Number <span className="text-rose-500">*</span>
+                  {String(t('admin.academies.accountNumber'))} <span className="text-rose-500">*</span>
                 </label>
                 <Input
                   type="text"
@@ -289,7 +289,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">
-                  Account Holder <span className="text-rose-500">*</span>
+                  {String(t('admin.academies.accountHolder'))} <span className="text-rose-500">*</span>
                 </label>
                 <Input
                   type="text"

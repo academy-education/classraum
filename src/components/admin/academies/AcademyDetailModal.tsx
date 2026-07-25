@@ -26,6 +26,7 @@ import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { useAdminFetch } from '../useAdminFetch';
 import { ModalShell } from '../ModalShell';
 import { useConfirm } from '../useConfirm';
+import { useDedupedToast } from '../useDedupedToast';
 
 interface Academy {
   id: string;
@@ -66,6 +67,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
   const adminFetch = useAdminFetch();
   const { t } = useTranslation();
   const confirm = useConfirm();
+  const { toast } = useDedupedToast();
   const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'billing' | 'notes'>('overview');
   const [notes, setNotes] = useState<AcademyNote[]>([]);
   const [loadingNotes, setLoadingNotes] = useState(false);
@@ -99,6 +101,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
       }
     } catch (error) {
       console.error('[Academy Notes] Error loading notes:', error);
+      toast({ title: String(t('admin.academies.failedToLoadNotes')), variant: 'destructive' });
     } finally {
       setLoadingNotes(false);
     }
@@ -136,15 +139,16 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
       loadNotes();
     } catch (error) {
       console.error('[Academy Notes] Error saving note:', error);
+      toast({ title: String(t('admin.academies.failedToSaveNote')), variant: 'destructive' });
     }
   };
 
   const handleDeleteNote = async (noteId: string) => {
     const ok = await confirm({
-      title: 'Delete this note?',
+      title: String(t('admin.academies.deleteThisNote')),
       description: String(t('admin.confirmDeleteNote')),
       variant: 'danger',
-      confirmText: 'Delete',
+      confirmText: String(t('admin.common.delete')),
     });
     if (!ok) return;
 
@@ -159,6 +163,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
       loadNotes();
     } catch (error) {
       console.error('[Academy Notes] Error deleting note:', error);
+      toast({ title: String(t('admin.academies.failedToDeleteNote')), variant: 'destructive' });
     }
   };
 
@@ -183,6 +188,10 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
       default:           return 'muted';
     }
   };
+
+  // Localized label for a note category.
+  const noteTypeLabel = (type: string): string =>
+    String(t(`admin.academies.noteTypes.${type}`));
 
   return (
     <ModalShell
@@ -260,22 +269,22 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900 mb-3">Account Status</h3>
+                  <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.academies.accountStatus'))}</h3>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Status</span>
+                      <span className="text-sm text-gray-600">{String(t('admin.common.status'))}</span>
                       <StatusBadge tone={academy.isSuspended ? 'danger' : 'active'}>
-                        {academy.isSuspended ? 'Suspended' : 'Active'}
+                        {academy.isSuspended ? String(t('admin.common.suspended')) : String(t('admin.common.active'))}
                       </StatusBadge>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Subscription</span>
+                      <span className="text-sm text-gray-600">{String(t('admin.academies.thSubscription'))}</span>
                       <StatusBadge tone={(academy.subscriptionTier === 'free' ? 'muted' : 'brand') as StatusTone}>
                         {academy.subscriptionTier}
                       </StatusBadge>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Created</span>
+                      <span className="text-sm text-gray-600">{String(t('admin.academies.createdLabel'))}</span>
                       <span className="text-sm">{academy.createdAt.toLocaleDateString()}</span>
                     </div>
                   </div>
@@ -289,7 +298,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                     <Users className="h-8 w-8 text-primary" />
                     <div className="text-right">
                       <p className="text-2xl font-semibold text-gray-900">{academy.totalUsers}</p>
-                      <p className="text-xs text-gray-600">Total Users</p>
+                      <p className="text-xs text-gray-600">{String(t('admin.academies.csvTotalUsers'))}</p>
                     </div>
                   </div>
                 </div>
@@ -299,7 +308,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                     <DollarSign className="h-8 w-8 text-purple-600" />
                     <div className="text-right">
                       <p className="text-lg font-semibold text-gray-900">{formatPrice(academy.monthlyRevenue)}</p>
-                      <p className="text-xs text-gray-600">Monthly</p>
+                      <p className="text-xs text-gray-600">{String(t('admin.academies.monthly'))}</p>
                     </div>
                   </div>
                 </div>
@@ -309,9 +318,9 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                     <Clock className="h-8 w-8 text-amber-600" />
                     <div className="text-right">
                       <p className="text-sm font-semibold text-gray-900">
-                        {Math.floor((Date.now() - academy.lastActive.getTime()) / (1000 * 60 * 60))}h ago
+                        {String(t('admin.academies.hoursAgo', { hours: Math.floor((Date.now() - academy.lastActive.getTime()) / (1000 * 60 * 60)) }))}
                       </p>
-                      <p className="text-xs text-gray-600">Last Active</p>
+                      <p className="text-xs text-gray-600">{String(t('admin.academies.thLastActive'))}</p>
                     </div>
                   </div>
                 </div>
@@ -322,9 +331,9 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
           {activeTab === 'users' && (
             <div className="space-y-4">
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-medium text-gray-900 mb-3">User Statistics</h3>
+                <h3 className="font-medium text-gray-900 mb-3">{String(t('admin.academies.userStatistics'))}</h3>
                 <div>
-                  <p className="text-sm text-gray-600">Total Users</p>
+                  <p className="text-sm text-gray-600">{String(t('admin.academies.csvTotalUsers'))}</p>
                   <p className="text-2xl font-semibold">{academy.totalUsers}</p>
                 </div>
               </div>
@@ -333,9 +342,9 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                 <div className="flex items-start">
                   <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5 mr-2" />
                   <div className="text-sm">
-                    <p className="font-medium text-amber-900">User Information</p>
+                    <p className="font-medium text-amber-900">{String(t('admin.academies.userInformation'))}</p>
                     <p className="text-amber-700 mt-1">
-                      This academy has {academy.totalUsers} total users across all roles.
+                      {String(t('admin.academies.userInfoBody', { count: academy.totalUsers }))}
                     </p>
                   </div>
                 </div>
@@ -346,28 +355,28 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
           {activeTab === 'billing' && (
             <div className="space-y-4">
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-medium text-gray-900 mb-3">Billing Overview</h3>
+                <h3 className="font-medium text-gray-900 mb-3">{String(t('admin.academies.billingOverview'))}</h3>
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600">Current Plan</p>
+                    <p className="text-sm text-gray-600">{String(t('admin.academies.currentPlan'))}</p>
                     <p className="text-lg font-semibold capitalize">{academy.subscriptionTier}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Monthly Revenue</p>
+                    <p className="text-sm text-gray-600">{String(t('admin.academies.csvMonthlyRevenue'))}</p>
                     <p className="text-lg font-semibold">{formatPrice(academy.monthlyRevenue)}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Next Billing</p>
-                    <p className="text-lg font-semibold">Dec 1, 2024</p>
+                    <p className="text-sm text-gray-600">{String(t('admin.academies.nextBilling'))}</p>
+                    <p className="text-lg font-semibold text-gray-400">{String(t('admin.academies.noBillingData'))}</p>
                   </div>
                 </div>
               </div>
 
               <div className="text-center py-8">
                 <FileText className="mx-auto h-12 w-12 text-gray-400" />
-                <h3 className="mt-2 text-sm font-medium text-gray-900">No invoices yet</h3>
+                <h3 className="mt-2 text-sm font-medium text-gray-900">{String(t('admin.academies.noInvoices'))}</h3>
                 <p className="mt-1 text-sm text-gray-500">
-                  Invoice history will appear here once payments are made
+                  {String(t('admin.academies.noInvoicesDesc'))}
                 </p>
               </div>
             </div>
@@ -377,7 +386,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
             <div className="space-y-4">
               {/* Add Note Button */}
               <div className="flex justify-between items-center">
-                <h3 className="font-medium text-gray-900">Academy Notes</h3>
+                <h3 className="font-medium text-gray-900">{String(t('admin.academies.academyNotes'))}</h3>
                 <button
                   onClick={() => {
                     setShowAddNote(!showAddNote);
@@ -392,7 +401,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                   className="flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-[#15487a] transition-colors text-sm"
                 >
                   <Plus className="w-4 h-4" />
-                  Add Note
+                  {String(t('admin.academies.addNote'))}
                 </button>
               </div>
 
@@ -400,36 +409,36 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               {showAddNote && (
                 <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
                   <h4 className="font-medium text-gray-900 mb-3">
-                    {editingNote ? 'Edit Note' : 'New Note'}
+                    {editingNote ? String(t('admin.academies.editNote')) : String(t('admin.academies.newNote'))}
                   </h4>
                   <div className="space-y-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Note Type
+                        {String(t('admin.academies.noteType'))}
                       </label>
                       <select
                         value={noteForm.note_type}
                         onChange={(e) => setNoteForm({ ...noteForm, note_type: e.target.value })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm"
                       >
-                        <option value="general">General</option>
-                        <option value="billing">Billing</option>
-                        <option value="support">Support</option>
-                        <option value="compliance">Compliance</option>
-                        <option value="sales">Sales</option>
+                        <option value="general">{noteTypeLabel('general')}</option>
+                        <option value="billing">{noteTypeLabel('billing')}</option>
+                        <option value="support">{noteTypeLabel('support')}</option>
+                        <option value="compliance">{noteTypeLabel('compliance')}</option>
+                        <option value="sales">{noteTypeLabel('sales')}</option>
                       </select>
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Content
+                        {String(t('admin.academies.content'))}
                       </label>
                       <textarea
                         value={noteForm.content}
                         onChange={(e) => setNoteForm({ ...noteForm, content: e.target.value })}
                         rows={4}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm"
-                        placeholder="Enter note content..."
+                        placeholder={String(t('admin.academies.enterNoteContent'))}
                       />
                     </div>
 
@@ -442,7 +451,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                           className="rounded border-gray-300 text-primary focus:ring-primary/30"
                         />
                         <Star className="w-4 h-4 text-amber-500" />
-                        Mark as Important
+                        {String(t('admin.academies.markAsImportant'))}
                       </label>
                     </div>
 
@@ -460,14 +469,14 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                         }}
                         className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
                       >
-                        Cancel
+                        {String(t('admin.common.cancel'))}
                       </button>
                       <button
                         onClick={handleSaveNote}
                         disabled={!noteForm.content.trim()}
                         className="px-3 py-1.5 bg-primary text-white rounded-lg text-sm font-medium hover:bg-[#15487a] disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {editingNote ? 'Update' : 'Save'} Note
+                        {editingNote ? String(t('admin.academies.updateNote')) : String(t('admin.academies.saveNote'))}
                       </button>
                     </div>
                   </div>
@@ -478,14 +487,14 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               {loadingNotes ? (
                 <div className="text-center py-8">
                   <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                  <p className="mt-2 text-sm text-gray-600">Loading notes...</p>
+                  <p className="mt-2 text-sm text-gray-600">{String(t('admin.academies.loadingNotes'))}</p>
                 </div>
               ) : notes.length === 0 ? (
                 <div className="text-center py-8">
                   <StickyNote className="mx-auto h-12 w-12 text-gray-400" />
-                  <h3 className="mt-2 text-sm font-medium text-gray-900">No notes yet</h3>
+                  <h3 className="mt-2 text-sm font-medium text-gray-900">{String(t('admin.academies.noNotesYet'))}</h3>
                   <p className="mt-1 text-sm text-gray-500">
-                    Add notes to track important information about this academy
+                    {String(t('admin.academies.noNotesDesc'))}
                   </p>
                 </div>
               ) : (
@@ -498,7 +507,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-2">
                           <StatusBadge tone={noteTypeTone(note.note_type)} size="sm">
-                            {note.note_type.charAt(0).toUpperCase() + note.note_type.slice(1)}
+                            {noteTypeLabel(note.note_type)}
                           </StatusBadge>
                           {note.is_important && (
                             <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
@@ -524,7 +533,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
 
                       <div className="flex items-center justify-between text-xs text-gray-500">
                         <div className="flex items-center gap-2">
-                          <span>{note.users.name || note.users.email}</span>
+                          <span>{note.users?.name || note.users?.email || String(t('admin.common.unknownUser'))}</span>
                           <span>•</span>
                           <span>{new Date(note.created_at).toLocaleDateString()}</span>
                         </div>

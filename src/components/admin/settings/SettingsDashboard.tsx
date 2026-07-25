@@ -72,11 +72,11 @@ export function SettingsDashboard() {
         .single()
 
       if (rowError || !row) {
-        setError('Could not load your profile.')
+        setError(String(t('admin.settings.errorLoadProfile')))
         return
       }
       if (row.role !== 'admin' && row.role !== 'super_admin') {
-        setError('You don\'t have admin access.')
+        setError(String(t('admin.settings.errorNoAccess')))
         return
       }
 
@@ -91,7 +91,7 @@ export function SettingsDashboard() {
       setName(p.name)
     } catch (e) {
       console.error('[SettingsDashboard] loadProfile error:', e)
-      setError(e instanceof Error ? e.message : 'Unexpected error')
+      setError(e instanceof Error ? e.message : String(t('admin.settings.errorUnexpected')))
     } finally {
       setLoading(false)
     }
@@ -114,7 +114,7 @@ export function SettingsDashboard() {
       setTimeout(() => setSavedAt(null), 2500)
     } catch (e) {
       console.error('[SettingsDashboard] handleSaveName error:', e)
-      setError(e instanceof Error ? e.message : 'Could not save your name.')
+      setError(e instanceof Error ? e.message : String(t('admin.settings.errorSaveName')))
     } finally {
       setSaving(false)
     }
@@ -151,8 +151,8 @@ export function SettingsDashboard() {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
         <AlertCircle className="h-10 w-10 text-rose-400 mb-3" />
-        <p className="text-sm font-medium text-gray-900">{error || 'Could not load your profile.'}</p>
-        <Button onClick={loadProfile} variant="outline" className="mt-4">Retry</Button>
+        <p className="text-sm font-medium text-gray-900">{error || String(t('admin.settings.errorLoadProfile'))}</p>
+        <Button onClick={loadProfile} variant="outline" className="mt-4">{String(t('admin.settings.retry'))}</Button>
       </div>
     )
   }
@@ -160,20 +160,20 @@ export function SettingsDashboard() {
   const permissions = getAdminPermissions(profile.role)
   // Friendly labels for the permission keys.
   const permissionLabels: Record<string, string> = {
-    viewDashboard:           'View dashboard',
-    manageAcademies:         'Manage academies',
-    viewSubscriptions:       'View subscriptions',
-    manageBilling:           'Manage billing',
-    viewSupport:             'View support',
-    manageSupport:           'Manage support',
-    viewAnalytics:           'View analytics',
-    manageUsers:             'Manage users',
-    viewSettlements:         'View settlements',
-    managePartnerSettings:   'Manage partner settings',
-    manageSystem:            'Manage system',
-    viewSystemLogs:          'View system logs',
-    manageAdminUsers:        'Manage admin users',
-    accessSensitiveSettings: 'Access sensitive settings',
+    viewDashboard:           String(t('admin.settings.permViewDashboard')),
+    manageAcademies:         String(t('admin.settings.permManageAcademies')),
+    viewSubscriptions:       String(t('admin.settings.permViewSubscriptions')),
+    manageBilling:           String(t('admin.settings.permManageBilling')),
+    viewSupport:             String(t('admin.settings.permViewSupport')),
+    manageSupport:           String(t('admin.settings.permManageSupport')),
+    viewAnalytics:           String(t('admin.settings.permViewAnalytics')),
+    manageUsers:             String(t('admin.settings.permManageUsers')),
+    viewSettlements:         String(t('admin.settings.permViewSettlements')),
+    managePartnerSettings:   String(t('admin.settings.permManagePartnerSettings')),
+    manageSystem:            String(t('admin.settings.permManageSystem')),
+    viewSystemLogs:          String(t('admin.settings.permViewSystemLogs')),
+    manageAdminUsers:        String(t('admin.settings.permManageAdminUsers')),
+    accessSensitiveSettings: String(t('admin.settings.permAccessSensitiveSettings')),
   }
 
   const dirty = name.trim() !== profile.name
@@ -190,7 +190,7 @@ export function SettingsDashboard() {
       <section className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         <header className="px-6 py-4 border-b border-gray-100">
           <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.settings.profile'))}</h2>
-          <p className="text-xs text-gray-500 mt-0.5">Visible only to admins. Email and role are managed elsewhere.</p>
+          <p className="text-xs text-gray-500 mt-0.5">{String(t('admin.settings.profileNote'))}</p>
         </header>
 
         <div className="p-6 grid gap-6 sm:grid-cols-2">
@@ -203,10 +203,10 @@ export function SettingsDashboard() {
               <p className="text-base font-semibold text-gray-900">{profile.name || profile.email}</p>
               <div className="mt-1 flex items-center gap-2">
                 <StatusBadge tone="brand" icon={ShieldCheck} size="sm">
-                  {profile.role === 'super_admin' ? 'Super Admin' : 'Admin'}
+                  {profile.role === 'super_admin' ? String(t('admin.settings.roleSuperAdmin')) : String(t('admin.settings.roleAdmin'))}
                 </StatusBadge>
                 <span className="text-xs text-gray-500">
-                  Member since {new Date(profile.createdAt).toLocaleDateString()}
+                  {String(t('admin.settings.memberSinceDate', { date: new Date(profile.createdAt).toLocaleDateString() }))}
                 </span>
               </div>
             </div>
@@ -215,7 +215,7 @@ export function SettingsDashboard() {
           {/* Name */}
           <div>
             <Label htmlFor="admin-name" className="text-xs font-medium text-gray-700 tracking-wide">
-              Name
+              {String(t('admin.common.name'))}
             </Label>
             <div className="relative mt-1.5">
               <UserIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -224,7 +224,7 @@ export function SettingsDashboard() {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 disabled={saving}
-                placeholder="Your name"
+                placeholder={String(t('admin.settings.namePlaceholder'))}
                 className="pl-10 h-10"
               />
             </div>
@@ -233,7 +233,7 @@ export function SettingsDashboard() {
           {/* Email (read-only) */}
           <div>
             <Label htmlFor="admin-email" className="text-xs font-medium text-gray-700 tracking-wide">
-              Email
+              {String(t('admin.common.email'))}
             </Label>
             <div className="relative mt-1.5">
               <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -245,7 +245,7 @@ export function SettingsDashboard() {
               />
             </div>
             <p className="text-[11px] text-gray-500 mt-1">
-              Contact a super admin to change your sign-in email.
+              {String(t('admin.settings.emailChangeNote'))}
             </p>
           </div>
         </div>
@@ -261,10 +261,10 @@ export function SettingsDashboard() {
           <p className="text-xs text-gray-500">
             {savedAt && Date.now() - savedAt < 3000 ? (
               <span className="inline-flex items-center gap-1 text-emerald-600 font-medium">
-                <Check className="w-3.5 h-3.5" /> Saved
+                <Check className="w-3.5 h-3.5" /> {String(t('admin.settings.saved'))}
               </span>
             ) : dirty ? (
-              <span className="text-amber-700">Unsaved changes</span>
+              <span className="text-amber-700">{String(t('admin.settings.unsavedChanges'))}</span>
             ) : null}
           </p>
           <Button
@@ -273,7 +273,7 @@ export function SettingsDashboard() {
             size="sm"
             className="gap-1.5"
           >
-            {saving ? <><Loader2 className="w-4 h-4 animate-spin" />Saving…</> : 'Save changes'}
+            {saving ? <><Loader2 className="w-4 h-4 animate-spin" />{String(t('admin.common.saving'))}</> : String(t('admin.settings.saveChanges'))}
           </Button>
         </div>
       </section>
@@ -281,9 +281,11 @@ export function SettingsDashboard() {
       {/* Permissions section */}
       <section className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         <header className="px-6 py-4 border-b border-gray-100">
-          <h2 className="text-sm font-semibold text-gray-900">Permissions</h2>
+          <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.settings.permissions'))}</h2>
           <p className="text-xs text-gray-500 mt-0.5">
-            What your <span className="font-medium text-gray-700">{profile.role === 'super_admin' ? 'Super Admin' : 'Admin'}</span> role grants. Read-only.
+            {String(t('admin.settings.permissionsNotePrefix'))}{' '}
+            <span className="font-medium text-gray-700">{profile.role === 'super_admin' ? String(t('admin.settings.roleSuperAdmin')) : String(t('admin.settings.roleAdmin'))}</span>{' '}
+            {String(t('admin.settings.permissionsNoteSuffix'))}
           </p>
         </header>
         <ul className="divide-y divide-gray-100">
@@ -291,9 +293,9 @@ export function SettingsDashboard() {
             <li key={key} className="px-6 py-3 flex items-center justify-between text-sm">
               <span className="text-gray-700">{permissionLabels[key] || key}</span>
               {granted ? (
-                <StatusBadge tone="active" icon={Check} size="sm">Granted</StatusBadge>
+                <StatusBadge tone="active" icon={Check} size="sm">{String(t('admin.settings.granted'))}</StatusBadge>
               ) : (
-                <StatusBadge tone="muted" size="sm">Not granted</StatusBadge>
+                <StatusBadge tone="muted" size="sm">{String(t('admin.settings.notGranted'))}</StatusBadge>
               )}
             </li>
           ))}
@@ -303,8 +305,8 @@ export function SettingsDashboard() {
       {/* Sign-out section */}
       <section className="bg-white rounded-xl ring-1 ring-gray-100 px-6 py-4 flex items-center justify-between gap-3">
         <div>
-          <h2 className="text-sm font-semibold text-gray-900">Sign out</h2>
-          <p className="text-xs text-gray-500 mt-0.5">End this admin session on this device.</p>
+          <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.settings.signOut'))}</h2>
+          <p className="text-xs text-gray-500 mt-0.5">{String(t('admin.settings.signOutDescription'))}</p>
         </div>
         <Button
           onClick={handleSignOut}
@@ -314,7 +316,7 @@ export function SettingsDashboard() {
           className="gap-1.5 text-rose-700 hover:text-rose-800 hover:bg-rose-50 border-rose-200"
         >
           {signingOut ? <Loader2 className="w-4 h-4 animate-spin" /> : <LogOut className="w-4 h-4" />}
-          Sign out
+          {String(t('admin.settings.signOut'))}
         </Button>
       </section>
     </div>

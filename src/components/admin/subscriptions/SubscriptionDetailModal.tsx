@@ -320,7 +320,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
 
               {/* Recent Invoices */}
               <div>
-                <h3 className="font-medium text-gray-900 mb-4">Payment History</h3>
+                <h3 className="font-medium text-gray-900 mb-4">{String(t('admin.subscriptions.paymentHistory'))}</h3>
                 {loadingInvoices ? (
                   <div className="space-y-2">
                     {Array.from({ length: 4 }).map((_, i) => (
@@ -336,9 +336,9 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 ) : billingHistory.length === 0 ? (
                   <div className="text-center py-12">
                     <FileText className="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 className="mt-2 text-sm font-medium text-gray-900">No payment history</h3>
+                    <h3 className="mt-2 text-sm font-medium text-gray-900">{String(t('admin.subscriptions.noPaymentHistory'))}</h3>
                     <p className="mt-1 text-sm text-gray-500">
-                      No invoices found for this subscription
+                      {String(t('admin.subscriptions.noInvoicesFound'))}
                     </p>
                   </div>
                 ) : (
@@ -419,9 +419,9 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                   <div className="flex items-start">
                     <XCircle className="h-5 w-5 text-rose-600 mt-0.5 mr-2" />
                     <div>
-                      <h4 className="font-medium text-red-900">Payment Overdue</h4>
+                      <h4 className="font-medium text-red-900">{String(t('admin.subscriptions.paymentOverdue'))}</h4>
                       <p className="text-sm text-rose-700 mt-1">
-                        This subscription has an overdue payment. The service may be suspended if payment is not received soon.
+                        {String(t('admin.subscriptions.paymentOverdueDesc'))}
                       </p>
                     </div>
                   </div>
@@ -444,7 +444,9 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                       <div key={key} className="bg-gray-50 p-4 rounded-lg">
                         <div className="flex items-center justify-between mb-2">
                           <h4 className="text-sm font-medium text-gray-900 capitalize">
-                            {key}
+                            {key === 'users' ? String(t('admin.subscriptions.usageUsers')) :
+                             key === 'storage' ? String(t('admin.subscriptions.usageStorage')) :
+                             key}
                           </h4>
                           <span className="text-sm text-gray-600">
                             {data.current.toLocaleString(getDateLocale(language))} / {data.limit === -1 ? String(t('admin.subscriptions.unlimited')) : data.limit.toLocaleString(getDateLocale(language))}
@@ -460,7 +462,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                         )}
                         {data.limit !== -1 && (
                           <p className="text-xs text-gray-500 mt-1">
-                            {getUsagePercentage(data.current, data.limit).toFixed(1)}% used
+                            {String(t('admin.subscriptions.percentUsed', { percent: getUsagePercentage(data.current, data.limit).toFixed(1) }))}
                           </p>
                         )}
                       </div>
@@ -473,9 +475,9 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                       <div className="flex items-start">
                         <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5 mr-2" />
                         <div>
-                          <h4 className="font-medium text-amber-900">Usage Alert</h4>
+                          <h4 className="font-medium text-amber-900">{String(t('admin.subscriptions.usageAlert'))}</h4>
                           <p className="text-sm text-amber-700 mt-1">
-                            Some usage metrics are approaching their limits. Consider upgrading to avoid service interruption.
+                            {String(t('admin.subscriptions.usageAlertDesc'))}
                           </p>
                         </div>
                       </div>
@@ -488,7 +490,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
 
           {activeTab === 'history' && (
             <div className="space-y-4">
-              <h3 className="font-medium text-gray-900">Subscription History</h3>
+              <h3 className="font-medium text-gray-900">{String(t('admin.subscriptions.subscriptionHistory'))}</h3>
 
               {/* Real history from billingHistory + subscription lifecycle.
                   The previous version showed two hardcoded fake events with
@@ -499,7 +501,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
                   <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5" />
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">Subscription Created</p>
+                    <p className="text-sm font-medium text-gray-900">{String(t('admin.subscriptions.subscriptionCreated'))}</p>
                     <p className="text-xs text-gray-500">
                       {subscription.currentPeriodStart.toLocaleString(getDateLocale(language))}
                     </p>
@@ -514,7 +516,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                   </>
                 ) : billingHistory.length === 0 ? (
                   <p className="text-sm text-gray-500 italic px-4">
-                    No payment events recorded for this subscription yet.
+                    {String(t('admin.subscriptions.noPaymentEvents'))}
                   </p>
                 ) : (
                   billingHistory.map((invoice) => {
@@ -538,7 +540,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                             {isFailed ? String(t('admin.subscriptions.paymentFailed')) :
                              isRefunded ? String(t('admin.subscriptions.paymentRefunded')) :
                              isPaid ? String(t('admin.subscriptions.paymentSuccessful')) :
-                             `Payment ${invoice.status}`}
+                             String(t('admin.subscriptions.paymentGeneric', { status: invoice.status }))}
                           </p>
                           <p className="text-xs text-gray-500">
                             {formatPrice(invoice.amount)}

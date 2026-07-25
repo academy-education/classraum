@@ -259,14 +259,14 @@ export function ActivityLogsManagement() {
             className="flex items-center gap-2 px-3 h-9 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
           >
             <Filter className="w-4 h-4" />
-            Filters
+            {String(t('admin.activityLogs.filters'))}
           </button>
         </div>
 
         {showFilters && (
           <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-200">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Admin User</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.activityLogs.adminUser'))}</label>
               <Select
                 value={adminUserFilter || 'all'}
                 onValueChange={(value) => {
@@ -275,14 +275,14 @@ export function ActivityLogsManagement() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Admins" />
+                  <SelectValue placeholder={String(t('admin.activityLogs.allAdmins'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Admins</SelectItem>
+                  <SelectItem value="all">{String(t('admin.activityLogs.allAdmins'))}</SelectItem>
                   {/* If a deep link selected an actor not in the visible
                       page, surface the id so the value renders correctly. */}
                   {adminUserFilter && !adminOptions.some(o => o.id === adminUserFilter) && (
-                    <SelectItem value={adminUserFilter}>Selected admin</SelectItem>
+                    <SelectItem value={adminUserFilter}>{String(t('admin.activityLogs.selectedAdmin'))}</SelectItem>
                   )}
                   {adminOptions.map(o => (
                     <SelectItem key={o.id} value={o.id}>{o.label}</SelectItem>
@@ -292,7 +292,7 @@ export function ActivityLogsManagement() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Action Type</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.activityLogs.actionType'))}</label>
               <Select
                 value={actionTypeFilter || "all"}
                 onValueChange={(value) => {
@@ -301,10 +301,10 @@ export function ActivityLogsManagement() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Actions" />
+                  <SelectValue placeholder={String(t('admin.activityLogs.allActions'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Actions</SelectItem>
+                  <SelectItem value="all">{String(t('admin.activityLogs.allActions'))}</SelectItem>
                   {actionTypes.map(type => (
                     <SelectItem key={type} value={type}>{formatActionType(type)}</SelectItem>
                   ))}
@@ -313,7 +313,7 @@ export function ActivityLogsManagement() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Target Type</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.activityLogs.targetType'))}</label>
               <Select
                 value={targetTypeFilter || "all"}
                 onValueChange={(value) => {
@@ -322,10 +322,10 @@ export function ActivityLogsManagement() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Targets" />
+                  <SelectValue placeholder={String(t('admin.activityLogs.allTargets'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Targets</SelectItem>
+                  <SelectItem value="all">{String(t('admin.activityLogs.allTargets'))}</SelectItem>
                   {targetTypes.map(type => (
                     <SelectItem key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</SelectItem>
                   ))}
@@ -334,26 +334,26 @@ export function ActivityLogsManagement() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.activityLogs.startDate'))}</label>
               <DateInput
                 value={startDate}
                 onChange={(value) => {
                   setStartDate(value);
                   setPage(0);
                 }}
-                placeholder="Select start date"
+                placeholder={String(t('admin.activityLogs.selectStartDate'))}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.activityLogs.endDate'))}</label>
               <DateInput
                 value={endDate}
                 onChange={(value) => {
                   setEndDate(value);
                   setPage(0);
                 }}
-                placeholder="Select end date"
+                placeholder={String(t('admin.activityLogs.selectEndDate'))}
               />
             </div>
           </div>
@@ -367,9 +367,9 @@ export function ActivityLogsManagement() {
             <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3">
               <Clock className="w-5 h-5 text-gray-300" />
             </div>
-            <p className="text-sm font-medium text-gray-900">No activity logs found</p>
+            <p className="text-sm font-medium text-gray-900">{String(t('admin.activityLogs.noActivityLogsFound'))}</p>
             <p className="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
-              Try widening the date range or clearing filters.
+              {String(t('admin.activityLogs.emptyDescription'))}
             </p>
           </div>
         ) : (
@@ -378,19 +378,19 @@ export function ActivityLogsManagement() {
               <thead className="bg-gray-50/60 border-b border-gray-100">
                 <tr>
                   <SortableTh sortKey="created_at" toggle={toggleSort} indicator={sortIndicator('created_at')}>
-                    Timestamp
+                    {String(t('admin.activityLogs.columns.timestamp'))}
                   </SortableTh>
                   <SortableTh sortKey="admin" toggle={toggleSort} indicator={sortIndicator('admin')}>
-                    Admin User
+                    {String(t('admin.activityLogs.adminUser'))}
                   </SortableTh>
                   <SortableTh sortKey="action_type" toggle={toggleSort} indicator={sortIndicator('action_type')}>
-                    Action
+                    {String(t('admin.activityLogs.columns.action'))}
                   </SortableTh>
                   <SortableTh sortKey="description" toggle={toggleSort} indicator={sortIndicator('description')}>
-                    Description
+                    {String(t('admin.activityLogs.columns.description'))}
                   </SortableTh>
                   <SortableTh sortKey="ip_address" toggle={toggleSort} indicator={sortIndicator('ip_address')}>
-                    IP Address
+                    {String(t('admin.activityLogs.ipAddress'))}
                   </SortableTh>
                 </tr>
               </thead>
@@ -448,7 +448,7 @@ export function ActivityLogsManagement() {
         {!loading && filteredLogs.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-600">
-              Showing {page * pageSize + 1} to {Math.min((page + 1) * pageSize, total)} of {total} logs
+              {String(t('admin.activityLogs.showingLogs', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -459,7 +459,7 @@ export function ActivityLogsManagement() {
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <span className="text-sm text-gray-600">
-                Page {page + 1} of {totalPages}
+                {String(t('admin.common.page'))} {page + 1} {String(t('admin.common.of'))} {totalPages}
               </span>
               <button
                 onClick={() => setPage(Math.min(totalPages - 1, page + 1))}

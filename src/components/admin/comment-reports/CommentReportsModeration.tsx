@@ -118,10 +118,10 @@ export function CommentReportsModeration() {
 
   const handleDismissReport = async (reportId: string) => {
     const ok = await confirm({
-      title: 'Dismiss this report?',
+      title: String(t('admin.confirmDismissReport')),
       description: String(t('admin.confirmDismissReport')),
       variant: 'warning',
-      confirmText: 'Dismiss',
+      confirmText: String(t('admin.commentReports.dismiss')),
     });
     if (!ok) return;
 
@@ -140,10 +140,10 @@ export function CommentReportsModeration() {
 
   const handleRemoveComment = async (reportId: string, commentId: string) => {
     const ok = await confirm({
-      title: 'Remove this comment?',
+      title: String(t('admin.commentReports.removeCommentTitle')),
       description: String(t('admin.confirmRemoveComment')),
       variant: 'danger',
-      confirmText: 'Remove',
+      confirmText: String(t('admin.commentReports.remove')),
     });
     if (!ok) return;
 
@@ -252,14 +252,14 @@ export function CommentReportsModeration() {
             className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
           >
             <Filter className="w-4 h-4" />
-            Filters
+            {String(t('admin.commentReports.filters'))}
           </button>
         </div>
 
         {showFilters && (
           <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.commentReports.reportType'))}</label>
               <Select
                 value={reportTypeFilter || "all"}
                 onValueChange={(value) => {
@@ -268,10 +268,10 @@ export function CommentReportsModeration() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Types" />
+                  <SelectValue placeholder={String(t('admin.commentReports.allTypes'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
+                  <SelectItem value="all">{String(t('admin.commentReports.allTypes'))}</SelectItem>
                   {reportTypes.map(type => (
                     <SelectItem key={type} value={type}>{formatReportType(type)}</SelectItem>
                   ))}
@@ -280,26 +280,26 @@ export function CommentReportsModeration() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.commentReports.startDate'))}</label>
               <DateInput
                 value={startDate}
                 onChange={(value) => {
                   setStartDate(value);
                   setPage(0);
                 }}
-                placeholder="Select start date"
+                placeholder={String(t('admin.commentReports.selectStartDate'))}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.commentReports.endDate'))}</label>
               <DateInput
                 value={endDate}
                 onChange={(value) => {
                   setEndDate(value);
                   setPage(0);
                 }}
-                placeholder="Select end date"
+                placeholder={String(t('admin.commentReports.selectEndDate'))}
               />
             </div>
           </div>
@@ -313,8 +313,8 @@ export function CommentReportsModeration() {
         ) : filteredReports.length === 0 ? (
           <AdminEmptyState
             icon={MessageSquare}
-            title="No comment reports found"
-            description="Reports will appear here when users flag comments for moderation."
+            title={String(t('admin.commentReports.noCommentReportsFound'))}
+            description={String(t('admin.commentReports.emptyDescription'))}
           />
         ) : (
           <div className="divide-y divide-gray-100">
@@ -337,7 +337,7 @@ export function CommentReportsModeration() {
                         {formatReportType(report.report_type)}
                       </StatusBadge>
                       <span className="text-xs text-gray-500">
-                        Reported {new Date(report.created_at).toLocaleDateString()}
+                        {String(t('admin.commentReports.reportedOn', { date: new Date(report.created_at).toLocaleDateString() }))}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -346,14 +346,14 @@ export function CommentReportsModeration() {
                         className="flex items-center gap-1 px-3 py-1 text-xs border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         <X className="w-3 h-3" />
-                        Dismiss
+                        {String(t('admin.commentReports.dismiss'))}
                       </button>
                       <button
                         onClick={() => comment && handleRemoveComment(report.id, comment.id)}
                         className="flex items-center gap-1 px-3 py-1 text-xs bg-red-600 text-white rounded-lg hover:bg-rose-700 transition-colors"
                       >
                         <Trash2 className="w-3 h-3" />
-                        Remove Comment
+                        {String(t('admin.commentReports.removeComment'))}
                       </button>
                     </div>
                   </div>
@@ -364,10 +364,10 @@ export function CommentReportsModeration() {
                       <div className="flex items-start gap-3">
                         <Flag className="w-4 h-4 text-amber-600 mt-1 flex-shrink-0" />
                         <div className="flex-1">
-                          <p className="text-sm font-medium text-amber-900 mb-1">Report Reason</p>
+                          <p className="text-sm font-medium text-amber-900 mb-1">{String(t('admin.commentReports.reportReason'))}</p>
                           <p className="text-sm text-amber-800">{report.text}</p>
                           <p className="text-xs text-amber-600 mt-2">
-                            Reported by: {reporter?.name || reporter?.email || String(t('admin.common.unknownUser'))}
+                            {String(t('admin.commentReports.reportedBy'))}: {reporter?.name || reporter?.email || String(t('admin.common.unknownUser'))}
                           </p>
                         </div>
                       </div>
@@ -379,10 +379,10 @@ export function CommentReportsModeration() {
                         <div className="flex items-start gap-3">
                           <MessageSquare className="w-4 h-4 text-gray-600 mt-1 flex-shrink-0" />
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900 mb-1">Original Comment</p>
+                            <p className="text-sm font-medium text-gray-900 mb-1">{String(t('admin.commentReports.originalComment'))}</p>
                             <p className="text-sm text-gray-700">{comment.text}</p>
                             <p className="text-xs text-gray-500 mt-2">
-                              By: {commenter?.name || commenter?.email || 'Unknown user'}
+                              {String(t('admin.commentReports.by'))}: {commenter?.name || commenter?.email || String(t('admin.common.unknownUser'))}
                             </p>
                           </div>
                         </div>
@@ -399,7 +399,7 @@ export function CommentReportsModeration() {
         {!loading && filteredReports.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-600">
-              Showing {page * pageSize + 1} to {Math.min((page + 1) * pageSize, total)} of {total} reports
+              {String(t('admin.commentReports.showingReports', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -410,7 +410,7 @@ export function CommentReportsModeration() {
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <span className="text-sm text-gray-600">
-                Page {page + 1} of {totalPages}
+                {String(t('admin.common.page'))} {page + 1} {String(t('admin.common.of'))} {totalPages}
               </span>
               <button
                 onClick={() => setPage(Math.min(totalPages - 1, page + 1))}

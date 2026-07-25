@@ -298,7 +298,7 @@ export function WebhookEventViewer() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <Input
               type="text"
-              placeholder="Search by entity ID, event type, or partner ID..."
+              placeholder={String(t('admin.webhooks.searchPlaceholder'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -306,16 +306,16 @@ export function WebhookEventViewer() {
           </div>
           <Select value={sortBy} onValueChange={setSortBy}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Sort by" />
+              <SelectValue placeholder={String(t('admin.webhooks.sortBy'))} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="received_at:desc">Newest first</SelectItem>
-              <SelectItem value="received_at:asc">Oldest first</SelectItem>
-              <SelectItem value="amount:desc">Amount (high → low)</SelectItem>
-              <SelectItem value="amount:asc">Amount (low → high)</SelectItem>
-              <SelectItem value="status:asc">Status (A → Z)</SelectItem>
-              <SelectItem value="event_type:asc">Event type (A → Z)</SelectItem>
-              <SelectItem value="processed:asc">Unprocessed first</SelectItem>
+              <SelectItem value="received_at:desc">{String(t('admin.webhooks.sortNewest'))}</SelectItem>
+              <SelectItem value="received_at:asc">{String(t('admin.webhooks.sortOldest'))}</SelectItem>
+              <SelectItem value="amount:desc">{String(t('admin.webhooks.sortAmountDesc'))}</SelectItem>
+              <SelectItem value="amount:asc">{String(t('admin.webhooks.sortAmountAsc'))}</SelectItem>
+              <SelectItem value="status:asc">{String(t('admin.webhooks.sortStatusAsc'))}</SelectItem>
+              <SelectItem value="event_type:asc">{String(t('admin.webhooks.sortEventTypeAsc'))}</SelectItem>
+              <SelectItem value="processed:asc">{String(t('admin.webhooks.sortUnprocessed'))}</SelectItem>
             </SelectContent>
           </Select>
           <button
@@ -323,14 +323,14 @@ export function WebhookEventViewer() {
             className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
           >
             <Filter className="w-4 h-4" />
-            Filters
+            {String(t('admin.common.filter'))}
           </button>
         </div>
 
         {showFilters && (
           <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-200">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.webhooks.type'))}</label>
               <Select
                 value={typeFilter || "all"}
                 onValueChange={(value) => {
@@ -339,10 +339,10 @@ export function WebhookEventViewer() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Types" />
+                  <SelectValue placeholder={String(t('admin.webhooks.allTypes'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
+                  <SelectItem value="all">{String(t('admin.webhooks.allTypes'))}</SelectItem>
                   {webhookTypes.map(type => (
                     <SelectItem key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</SelectItem>
                   ))}
@@ -351,7 +351,7 @@ export function WebhookEventViewer() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.webhooks.eventType'))}</label>
               <Select
                 value={eventTypeFilter || "all"}
                 onValueChange={(value) => {
@@ -360,10 +360,10 @@ export function WebhookEventViewer() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Events" />
+                  <SelectValue placeholder={String(t('admin.webhooks.allEvents'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Events</SelectItem>
+                  <SelectItem value="all">{String(t('admin.webhooks.allEvents'))}</SelectItem>
                   {eventTypes.map(type => (
                     <SelectItem key={type} value={type}>{type}</SelectItem>
                   ))}
@@ -372,7 +372,7 @@ export function WebhookEventViewer() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Processed</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.webhooks.processed'))}</label>
               <Select
                 value={processedFilter || "all"}
                 onValueChange={(value) => {
@@ -381,37 +381,37 @@ export function WebhookEventViewer() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All" />
+                  <SelectValue placeholder={String(t('admin.common.all'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All</SelectItem>
-                  <SelectItem value="true">Processed</SelectItem>
-                  <SelectItem value="false">Unprocessed</SelectItem>
+                  <SelectItem value="all">{String(t('admin.common.all'))}</SelectItem>
+                  <SelectItem value="true">{String(t('admin.webhooks.processed'))}</SelectItem>
+                  <SelectItem value="false">{String(t('admin.webhooks.unprocessed'))}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.webhooks.startDate'))}</label>
               <DateInput
                 value={startDate}
                 onChange={(value) => {
                   setStartDate(value);
                   setPage(0);
                 }}
-                placeholder="Select start date"
+                placeholder={String(t('admin.webhooks.selectStartDate'))}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.webhooks.endDate'))}</label>
               <DateInput
                 value={endDate}
                 onChange={(value) => {
                   setEndDate(value);
                   setPage(0);
                 }}
-                placeholder="Select end date"
+                placeholder={String(t('admin.webhooks.selectEndDate'))}
               />
             </div>
           </div>
@@ -423,7 +423,7 @@ export function WebhookEventViewer() {
         {loading ? (
           <AdminSkeleton.LogRows rows={6} />
         ) : sortedEvents.length === 0 ? (
-          <AdminEmptyState icon={Webhook} title="No webhook events found" />
+          <AdminEmptyState icon={Webhook} title={String(t('admin.webhooks.noEventsFound'))} />
         ) : (
           <div className="divide-y divide-gray-100">
             {sortedEvents.map((event) => (
@@ -438,9 +438,9 @@ export function WebhookEventViewer() {
                         <StatusBadge tone="violet" size="sm">{event.type}</StatusBadge>
                         <StatusBadge tone={eventStatusTone(event.status)} size="sm">{event.status}</StatusBadge>
                         {event.processed ? (
-                          <StatusBadge tone="active" icon={CheckCircle2} size="sm">Processed</StatusBadge>
+                          <StatusBadge tone="active" icon={CheckCircle2} size="sm">{String(t('admin.webhooks.processed'))}</StatusBadge>
                         ) : (
-                          <StatusBadge tone="pending" icon={Clock} size="sm">Pending</StatusBadge>
+                          <StatusBadge tone="pending" icon={Clock} size="sm">{String(t('admin.webhooks.pending'))}</StatusBadge>
                         )}
                         <span className="text-xs text-gray-500">
                           {new Date(event.received_at).toLocaleString()}
@@ -449,16 +449,16 @@ export function WebhookEventViewer() {
 
                       <div className="grid grid-cols-3 gap-4 text-sm">
                         <div>
-                          <span className="text-gray-600">Event:</span>
+                          <span className="text-gray-600">{String(t('admin.webhooks.event'))}:</span>
                           <span className="ml-2 font-medium text-gray-900">{event.event_type}</span>
                         </div>
                         <div>
-                          <span className="text-gray-600">Entity ID:</span>
+                          <span className="text-gray-600">{String(t('admin.webhooks.entityId'))}:</span>
                           <span className="ml-2 font-mono text-xs text-gray-900">{event.entity_id}</span>
                         </div>
                         {event.amount && (
                           <div>
-                            <span className="text-gray-600">Amount:</span>
+                            <span className="text-gray-600">{String(t('admin.webhooks.amount'))}:</span>
                             <span className="ml-2 font-medium text-gray-900">
                               {formatCurrency(event.amount, event.currency)}
                             </span>
@@ -482,7 +482,7 @@ export function WebhookEventViewer() {
                         }}
                         className="px-3 py-1 text-xs border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                       >
-                        Mark as {event.processed ? 'Unprocessed' : 'Processed'}
+                        {event.processed ? String(t('admin.webhooks.markAsUnprocessed')) : String(t('admin.webhooks.markAsProcessed'))}
                       </button>
                       {expandedEventId === event.id ? (
                         <ChevronUp className="w-5 h-5 text-gray-400" />
@@ -499,28 +499,28 @@ export function WebhookEventViewer() {
                       <div className="grid grid-cols-2 gap-3 text-sm">
                         {event.partner_id && (
                           <div>
-                            <span className="text-gray-600">Partner ID:</span>
+                            <span className="text-gray-600">{String(t('admin.webhooks.partnerId'))}:</span>
                             <span className="ml-2 text-gray-900 font-mono text-xs">{event.partner_id}</span>
                           </div>
                         )}
                         {event.webhook_id && (
                           <div>
-                            <span className="text-gray-600">Webhook ID:</span>
+                            <span className="text-gray-600">{String(t('admin.webhooks.webhookId'))}:</span>
                             <span className="ml-2 text-gray-900 font-mono text-xs">{event.webhook_id}</span>
                           </div>
                         )}
                         <div>
-                          <span className="text-gray-600">Event Time:</span>
+                          <span className="text-gray-600">{String(t('admin.webhooks.eventTime'))}:</span>
                           <span className="ml-2 text-gray-900">{new Date(event.timestamp).toLocaleString()}</span>
                         </div>
                         <div>
-                          <span className="text-gray-600">Received At:</span>
+                          <span className="text-gray-600">{String(t('admin.webhooks.receivedAt'))}:</span>
                           <span className="ml-2 text-gray-900">{new Date(event.received_at).toLocaleString()}</span>
                         </div>
                       </div>
 
                       <div>
-                        <h4 className="text-xs font-medium text-gray-700 mb-1">Raw Webhook Data</h4>
+                        <h4 className="text-xs font-medium text-gray-700 mb-1">{String(t('admin.webhooks.rawWebhookData'))}</h4>
                         <pre className="text-xs bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto">
                           {JSON.stringify(event.raw_data, null, 2)}
                         </pre>
@@ -537,7 +537,11 @@ export function WebhookEventViewer() {
         {!loading && sortedEvents.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-600">
-              Showing {page * pageSize + 1} to {Math.min((page + 1) * pageSize, total)} of {total} events
+              {String(t('admin.webhooks.showingEvents', {
+                from: page * pageSize + 1,
+                to: Math.min((page + 1) * pageSize, total),
+                total,
+              }))}
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -548,7 +552,7 @@ export function WebhookEventViewer() {
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <span className="text-sm text-gray-600">
-                Page {page + 1} of {totalPages}
+                {String(t('admin.common.page'))} {page + 1} {String(t('admin.common.of'))} {totalPages}
               </span>
               <button
                 onClick={() => setPage(Math.min(totalPages - 1, page + 1))}

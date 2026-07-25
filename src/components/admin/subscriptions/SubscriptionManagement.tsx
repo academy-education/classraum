@@ -359,7 +359,7 @@ export function SubscriptionManagement() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{subscription.academyName}</div>
-                        <div className="text-xs text-gray-500">ID: {subscription.id}</div>
+                        <div className="text-xs text-gray-500">{String(t('admin.subscriptions.idPrefix'))} {subscription.id}</div>
                         {subscription.paymentMethod && (
                           <div className="text-xs text-gray-500 mt-1">{subscription.paymentMethod}</div>
                         )}
@@ -384,7 +384,7 @@ export function SubscriptionManagement() {
                           {formatPrice(subscription.monthlyAmount)}
                         </div>
                         <div className="text-xs text-gray-500">
-                          {subscription.billingCycle === 'yearly' ? '/year' : '/month'}
+                          {subscription.billingCycle === 'yearly' ? String(t('admin.subscriptions.perYear')) : String(t('admin.subscriptions.perMonth'))}
                         </div>
                       </div>
                     </td>

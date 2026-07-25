@@ -151,10 +151,10 @@ export function ErrorLogsDashboard() {
 
   const handleCleanup = async () => {
     const ok = await confirm({
-      title: 'Delete logs older than 30 days?',
+      title: String(t('admin.errorLogs.cleanupTitle')),
       description: String(t('admin.confirmDeleteOldLogs')),
       variant: 'danger',
-      confirmText: 'Delete',
+      confirmText: String(t('admin.common.delete')),
     });
     if (!ok) return;
 
@@ -282,14 +282,14 @@ export function ErrorLogsDashboard() {
           </div>
           <Select value={sortBy} onValueChange={setSortBy}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Sort by" />
+              <SelectValue placeholder={String(t('admin.errorLogs.sortByPlaceholder'))} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="created_at:desc">Newest first</SelectItem>
-              <SelectItem value="created_at:asc">Oldest first</SelectItem>
-              <SelectItem value="level:desc">Severity (high → low)</SelectItem>
-              <SelectItem value="level:asc">Severity (low → high)</SelectItem>
-              <SelectItem value="service_name:asc">Service (A → Z)</SelectItem>
+              <SelectItem value="created_at:desc">{String(t('admin.errorLogs.sortNewest'))}</SelectItem>
+              <SelectItem value="created_at:asc">{String(t('admin.errorLogs.sortOldest'))}</SelectItem>
+              <SelectItem value="level:desc">{String(t('admin.errorLogs.sortSeverityDesc'))}</SelectItem>
+              <SelectItem value="level:asc">{String(t('admin.errorLogs.sortSeverityAsc'))}</SelectItem>
+              <SelectItem value="service_name:asc">{String(t('admin.errorLogs.sortServiceAsc'))}</SelectItem>
             </SelectContent>
           </Select>
           <button
@@ -297,14 +297,14 @@ export function ErrorLogsDashboard() {
             className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
           >
             <Filter className="w-4 h-4" />
-            Filters
+            {String(t('admin.errorLogs.filters'))}
           </button>
         </div>
 
         {showFilters && (
           <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Log Level</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.errorLogs.logLevel'))}</label>
               <Select
                 value={levelFilter || "all"}
                 onValueChange={(value) => {
@@ -313,10 +313,10 @@ export function ErrorLogsDashboard() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Levels" />
+                  <SelectValue placeholder={String(t('admin.errorLogs.allLevels'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Levels</SelectItem>
+                  <SelectItem value="all">{String(t('admin.errorLogs.allLevels'))}</SelectItem>
                   {logLevels.map(level => (
                     <SelectItem key={level} value={level}>{formatLogLevel(level)}</SelectItem>
                   ))}
@@ -325,7 +325,7 @@ export function ErrorLogsDashboard() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Service</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.errorLogs.service'))}</label>
               <Select
                 value={serviceFilter || "all"}
                 onValueChange={(value) => {
@@ -334,10 +334,10 @@ export function ErrorLogsDashboard() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="All Services" />
+                  <SelectValue placeholder={String(t('admin.errorLogs.allServices'))} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Services</SelectItem>
+                  <SelectItem value="all">{String(t('admin.errorLogs.allServices'))}</SelectItem>
                   {services.map(service => (
                     <SelectItem key={service} value={service}>{service}</SelectItem>
                   ))}
@@ -346,26 +346,26 @@ export function ErrorLogsDashboard() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.errorLogs.startDate'))}</label>
               <DateInput
                 value={startDate}
                 onChange={(value) => {
                   setStartDate(value);
                   setPage(0);
                 }}
-                placeholder="Select start date"
+                placeholder={String(t('admin.errorLogs.selectStartDate'))}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.errorLogs.endDate'))}</label>
               <DateInput
                 value={endDate}
                 onChange={(value) => {
                   setEndDate(value);
                   setPage(0);
                 }}
-                placeholder="Select end date"
+                placeholder={String(t('admin.errorLogs.selectEndDate'))}
               />
             </div>
           </div>
@@ -378,7 +378,7 @@ export function ErrorLogsDashboard() {
           // Skeleton rows match the real log row layout for a stable feel.
           <AdminSkeleton.LogRows rows={6} />
         ) : sortedLogs.length === 0 ? (
-          <AdminEmptyState icon={Bug} title="No error logs found" />
+          <AdminEmptyState icon={Bug} title={String(t('admin.errorLogs.noLogsFound'))} />
         ) : (
           <div className="divide-y divide-gray-100">
             {sortedLogs.map((log) => (
@@ -419,7 +419,7 @@ export function ErrorLogsDashboard() {
                     <div className="space-y-3">
                       {log.error_stack && (
                         <div>
-                          <h4 className="text-xs font-medium text-gray-700 mb-1">Stack Trace</h4>
+                          <h4 className="text-xs font-medium text-gray-700 mb-1">{String(t('admin.errorLogs.stackTrace'))}</h4>
                           <pre className="text-xs bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto">
                             {log.error_stack}
                           </pre>
@@ -428,7 +428,7 @@ export function ErrorLogsDashboard() {
 
                       {log.context && Object.keys(log.context).length > 0 && (
                         <div>
-                          <h4 className="text-xs font-medium text-gray-700 mb-1">Context</h4>
+                          <h4 className="text-xs font-medium text-gray-700 mb-1">{String(t('admin.errorLogs.context'))}</h4>
                           <pre className="text-xs bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto">
                             {JSON.stringify(log.context, null, 2)}
                           </pre>
@@ -438,13 +438,13 @@ export function ErrorLogsDashboard() {
                       <div className="grid grid-cols-2 gap-3 text-xs">
                         {log.user_id && (
                           <div>
-                            <span className="text-gray-600">User ID:</span>
+                            <span className="text-gray-600">{String(t('admin.errorLogs.userId'))}:</span>
                             <span className="ml-2 text-gray-900 font-mono">{log.user_id}</span>
                           </div>
                         )}
                         {log.request_id && (
                           <div>
-                            <span className="text-gray-600">Request ID:</span>
+                            <span className="text-gray-600">{String(t('admin.errorLogs.requestId'))}:</span>
                             <span className="ml-2 text-gray-900 font-mono">{log.request_id}</span>
                           </div>
                         )}
@@ -461,7 +461,11 @@ export function ErrorLogsDashboard() {
         {!loading && sortedLogs.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-600">
-              Showing {page * pageSize + 1} to {Math.min((page + 1) * pageSize, total)} of {total} logs
+              {String(t('admin.errorLogs.showingRange', {
+                from: page * pageSize + 1,
+                to: Math.min((page + 1) * pageSize, total),
+                total,
+              }))}
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -472,7 +476,7 @@ export function ErrorLogsDashboard() {
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <span className="text-sm text-gray-600">
-                Page {page + 1} of {totalPages}
+                {String(t('admin.errorLogs.pageOf', { page: page + 1, total: totalPages }))}
               </span>
               <button
                 onClick={() => setPage(Math.min(totalPages - 1, page + 1))}

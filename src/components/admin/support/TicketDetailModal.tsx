@@ -332,7 +332,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
       const optimisticMessage: Message = {
         id: tempId,
         senderId: user.id,
-        senderName: 'Classraum Support',
+        senderName: String(t('admin.support.classraumSupport')),
         senderType: 'admin',
         message: messageText,
         timestamp: new Date(),
@@ -460,7 +460,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
             <div className="flex items-center space-x-3">
               <MessageSquare className="h-6 w-6 text-primary" />
               <div>
-                <h2 className="text-xl font-semibold text-gray-900">{ticket.title || 'Support Conversation'}</h2>
+                <h2 className="text-xl font-semibold text-gray-900">{ticket.title || String(t('admin.support.supportConversation'))}</h2>
                 <p className="text-sm text-gray-500">ID: {ticket.id.substring(0, 8)}</p>
               </div>
             </div>
@@ -472,14 +472,14 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
               <div className="flex items-center justify-center h-full">
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-                  <p className="text-sm text-gray-500 mt-2">Loading messages...</p>
+                  <p className="text-sm text-gray-500 mt-2">{String(t('admin.support.loadingMessages'))}</p>
                 </div>
               </div>
             ) : messages.length === 0 ? (
               <div className="flex items-center justify-center h-full">
                 <div className="text-center">
                   <MessageSquare className="mx-auto h-12 w-12 text-gray-400" />
-                  <p className="text-sm text-gray-500 mt-2">No messages yet</p>
+                  <p className="text-sm text-gray-500 mt-2">{String(t('admin.support.noMessagesYet'))}</p>
                 </div>
               </div>
             ) : (
@@ -503,7 +503,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                           message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-500'
                         }`}>
                           {message.senderName}
-                          {message.isInternal && ' (Internal)'}
+                          {message.isInternal && String(t('admin.support.internalMarker'))}
                         </span>
                         <span className={`text-xs whitespace-nowrap ${
                           message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-400'
@@ -520,7 +520,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   <div className="flex justify-start">
                     <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg">
                       <div className="flex items-center gap-1">
-                        <span className="text-xs text-gray-500 mr-2">{ticket.userName || 'User'} is typing</span>
+                        <span className="text-xs text-gray-500 mr-2">{String(t('admin.support.isTyping', { name: ticket.userName || String(t('admin.support.user')) }))}</span>
                         <span className="flex gap-1">
                           <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
                           <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
@@ -579,15 +579,15 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
 
             {/* Customer Info */}
             <div>
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Customer Information</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.support.customerInformation'))}</h3>
               <div className="space-y-2">
                 <div className="flex items-center text-sm">
                   <User className="mr-2 h-4 w-4 text-gray-400" />
-                  <span className="font-medium">{ticket.userName || 'Unknown User'}</span>
+                  <span className="font-medium">{ticket.userName || String(t('admin.common.unknownUser'))}</span>
                 </div>
                 <div className="flex items-center text-sm">
                   <Mail className="mr-2 h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">{ticket.userEmail || 'No email'}</span>
+                  <span className="text-gray-600">{ticket.userEmail || String(t('admin.support.noEmail'))}</span>
                 </div>
                 {ticket.academyName && (
                   <div className="flex items-center text-sm">
@@ -600,10 +600,10 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
 
             {/* Conversation Details */}
             <div>
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Conversation Details</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.support.conversationDetails'))}</h3>
               <div className="space-y-3">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">Status</label>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">{String(t('admin.common.status'))}</label>
                   <Select
                     value={newStatus}
                     onValueChange={setNewStatus}
@@ -612,17 +612,17 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                       <SelectValue placeholder={String(t('admin.support.statuses.open'))} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="closed">Closed</SelectItem>
+                      <SelectItem value="active">{String(t('admin.common.active'))}</SelectItem>
+                      <SelectItem value="closed">{String(t('admin.support.closed'))}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">Messages</label>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">{String(t('admin.support.messages'))}</label>
                   <div className="text-sm text-gray-600">
-                    {ticket.messageCount} total
-                    {ticket.unreadCount ? ` (${ticket.unreadCount} unread)` : ''}
+                    {String(t('admin.support.messagesTotal', { count: ticket.messageCount }))}
+                    {ticket.unreadCount ? ` (${String(t('admin.support.unreadCount', { count: ticket.unreadCount }))})` : ''}
                   </div>
                 </div>
               </div>
@@ -632,19 +632,19 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   onClick={handleStatusChange}
                   className="mt-4 w-full px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90"
                 >
-                  Update Status
+                  {String(t('admin.support.updateStatus'))}
                 </button>
               )}
             </div>
 
             {/* Timeline */}
             <div>
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Timeline</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.support.timeline'))}</h3>
               <div className="space-y-3">
                 <div className="flex items-start space-x-2">
                   <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5" />
                   <div className="text-xs">
-                    <p className="font-medium">Conversation Created</p>
+                    <p className="font-medium">{String(t('admin.support.conversationCreated'))}</p>
                     <p className="text-gray-500">{formatKSTDateTime(ticket.createdAt, language)}</p>
                   </div>
                 </div>
@@ -652,7 +652,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   <div className="flex items-start space-x-2">
                     <MessageSquare className="h-4 w-4 text-primary mt-0.5" />
                     <div className="text-xs">
-                      <p className="font-medium">Last Message</p>
+                      <p className="font-medium">{String(t('admin.support.lastMessage'))}</p>
                       <p className="text-gray-500">{formatKSTDateTime(ticket.lastMessageAt, language)}</p>
                     </div>
                   </div>
@@ -660,7 +660,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                 <div className="flex items-start space-x-2">
                   <MessageSquare className="h-4 w-4 text-purple-500 mt-0.5" />
                   <div className="text-xs">
-                    <p className="font-medium">Last Updated</p>
+                    <p className="font-medium">{String(t('admin.common.lastUpdated'))}</p>
                     <p className="text-gray-500">{formatKSTDateTime(ticket.updatedAt, language)}</p>
                   </div>
                 </div>
@@ -668,7 +668,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   <div className="flex items-start space-x-2">
                     <XCircle className="h-4 w-4 text-gray-500 mt-0.5" />
                     <div className="text-xs">
-                      <p className="font-medium">Closed</p>
+                      <p className="font-medium">{String(t('admin.support.closed'))}</p>
                       <p className="text-gray-500">{formatKSTDateTime(ticket.closedAt, language)}</p>
                     </div>
                   </div>
@@ -682,7 +682,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                 onClick={handleMarkAllAsRead}
                 className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
               >
-                Mark All as Read
+                {String(t('admin.support.markAllAsRead'))}
               </button>
             </div>
           </div>
