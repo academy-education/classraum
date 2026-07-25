@@ -9,7 +9,8 @@ import {
   Send,
   Building2,
   Mail,
-  XCircle
+  XCircle,
+  Loader2
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -471,7 +472,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
             {loading ? (
               <div className="flex items-center justify-center h-full">
                 <div className="text-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                  <Loader2 className="w-6 h-6 animate-spin text-primary mx-auto" />
                   <p className="text-sm text-gray-500 mt-2">{String(t('admin.support.loadingMessages'))}</p>
                 </div>
               </div>

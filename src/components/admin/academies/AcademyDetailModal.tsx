@@ -17,7 +17,8 @@ import {
   Edit2,
   Trash2,
   Tag,
-  Star
+  Star,
+  Loader2
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
 import { supabase } from '@/lib/supabase';
@@ -486,7 +487,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               {/* Notes List */}
               {loadingNotes ? (
                 <div className="text-center py-8">
-                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <Loader2 className="w-6 h-6 animate-spin text-primary" />
                   <p className="mt-2 text-sm text-gray-600">{String(t('admin.academies.loadingNotes'))}</p>
                 </div>
               ) : notes.length === 0 ? (

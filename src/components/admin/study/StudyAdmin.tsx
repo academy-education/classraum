@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { useAdminFetch } from '@/components/admin/useAdminFetch'
+import { AdminPageHeader } from '@/components/admin/AdminPageHeader'
 import { useTranslation } from '@/hooks/useTranslation'
 
 /**
@@ -21,11 +22,14 @@ export function StudyAdmin() {
   const { t } = useTranslation()
   const [tab, setTab] = useState<Tab>('lookup')
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-xl font-semibold text-gray-900">{t('admin.studyConsole.title')}</h1>
-      <p className="text-sm text-gray-500 mt-0.5">{t('admin.studyConsole.subtitle')}</p>
+    <div className="space-y-6">
+      <AdminPageHeader
+        kicker={String(t('admin.studyConsole.kicker'))}
+        title={String(t('admin.studyConsole.title'))}
+        description={String(t('admin.studyConsole.subtitle'))}
+      />
 
-      <div className="mt-4 inline-flex rounded-lg bg-gray-100 p-0.5">
+      <div className="inline-flex rounded-lg bg-gray-100 p-0.5">
         {(['lookup', 'reports'] as Tab[]).map(k => (
           <button
             key={k}
@@ -39,7 +43,7 @@ export function StudyAdmin() {
         ))}
       </div>
 
-      <div className="mt-5">
+      <div>
         {tab === 'lookup' ? <UserLookup /> : <ReportsQueue />}
       </div>
     </div>
