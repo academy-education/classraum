@@ -59,9 +59,22 @@ async function attachStudents(rows: PayRow[]) {
   return rows.map((r) => toDto(r, map.get(r.student_id)));
 }
 
-// Net revenue = paid minus refunded.
-function netRevenue(rows: PayRow[]) {
-  return rows.filter((r) => !r.refunded_at).reduce((sum, r) => sum + (r.amount_won ?? 0), 0);
+/**
+ * Exact count + net revenue straight from Postgres, so both stay correct no
+ * matter how many rows exist (a JS sum over one fetched page would silently
+ * under-report). Filters MUST mirror the list query's filters.
+ */
+async function fetchTotals(kind: string | null, studentIds: string[] | null) {
+  const { data, error } = await supabaseAdmin.rpc('admin_study_payment_totals', {
+    p_kind: kind,
+    p_student_ids: studentIds,
+  });
+  if (error) {
+    console.error('[admin/study/payments] totals', error);
+    return { total: 0, grossWon: 0 };
+  }
+  const row = (Array.isArray(data) ? data[0] : data) as { total_count?: number; net_won?: number } | undefined;
+  return { total: Number(row?.total_count ?? 0), grossWon: Number(row?.net_won ?? 0) };
 }
 
 export async function GET(req: NextRequest) {
@@ -85,7 +98,10 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'list failed' }, { status: 500 });
     }
     const rows = (data ?? []) as PayRow[];
-    return NextResponse.json({ payments: rows.map((r) => toDto(r)), grossWon: netRevenue(rows) });
+    // Revenue comes from the DB, not the fetched page, so a student with more
+    // than 100 payments still shows a correct total.
+    const { grossWon } = await fetchTotals(null, [studentId]);
+    return NextResponse.json({ payments: rows.map((r) => toDto(r)), grossWon });
   }
 
   // ── Global list ────────────────────────────────────────────────────────
@@ -109,12 +125,19 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  const kindFilter = kind && (KINDS as readonly string[]).includes(kind) ? kind : null;
+
+  // Count + revenue from Postgres; only THIS page's rows are fetched. Keeps
+  // the numbers exact and the payload flat as the table grows.
+  const { total, grossWon } = await fetchTotals(kindFilter, studentFilter);
+
+  const from = (page - 1) * PAGE_SIZE;
   let query = supabaseAdmin
     .from('study_payments')
     .select('payment_id, student_id, kind, amount_won, created_at, refunded_at')
     .order('created_at', { ascending: false })
-    .limit(1000);
-  if (kind && (KINDS as readonly string[]).includes(kind)) query = query.eq('kind', kind);
+    .range(from, from + PAGE_SIZE - 1);
+  if (kindFilter) query = query.eq('kind', kindFilter);
   if (studentFilter) query = query.in('student_id', studentFilter);
 
   const { data, error } = await query;
@@ -122,11 +145,7 @@ export async function GET(req: NextRequest) {
     console.error('[admin/study/payments] global', error);
     return NextResponse.json({ error: 'list failed' }, { status: 500 });
   }
-  const all = (data ?? []) as PayRow[];
-  const grossWon = netRevenue(all);
-  const total = all.length;
-  const pageRows = all.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-  const payments = await attachStudents(pageRows);
+  const payments = await attachStudents((data ?? []) as PayRow[]);
   return NextResponse.json({ payments, total, page, pageSize: PAGE_SIZE, grossWon });
 }
 

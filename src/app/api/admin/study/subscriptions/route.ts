@@ -56,7 +56,23 @@ export async function GET(req: NextRequest) {
   }
 
   const SELECT = 'student_id, status, plan, currency, price_cents, current_period_end, cancel_at_period_end, grant_credits_remaining, purchased_credits_remaining, pending_plan, last_payment_failure, updated_at';
-  let query = supabaseAdmin.from('study_subscriptions').select(SELECT).order('updated_at', { ascending: false }).limit(2000);
+
+  // Exact total from Postgres (head:true fetches no rows), then only this
+  // page's rows — so the count stays right as the table grows. Filters are
+  // applied to both queries and MUST stay in sync.
+  let countQuery = supabaseAdmin.from('study_subscriptions').select('student_id', { count: 'exact', head: true });
+  if (status && status !== 'all') countQuery = countQuery.eq('status', status);
+  if (plan && plan !== 'all') countQuery = countQuery.eq('plan', plan);
+  if (studentFilter) countQuery = countQuery.in('student_id', studentFilter);
+  const { count } = await countQuery;
+  const total = count ?? 0;
+
+  const from = (page - 1) * PAGE_SIZE;
+  let query = supabaseAdmin
+    .from('study_subscriptions')
+    .select(SELECT)
+    .order('updated_at', { ascending: false })
+    .range(from, from + PAGE_SIZE - 1);
   if (status && status !== 'all') query = query.eq('status', status);
   if (plan && plan !== 'all') query = query.eq('plan', plan);
   if (studentFilter) query = query.in('student_id', studentFilter);
@@ -66,9 +82,7 @@ export async function GET(req: NextRequest) {
     console.error('[admin/study/subscriptions] list', error);
     return NextResponse.json({ error: 'list failed' }, { status: 500 });
   }
-  const all = (data ?? []) as SubRow[];
-  const total = all.length;
-  const pageRows = all.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const pageRows = (data ?? []) as SubRow[];
 
   // Attach student name/email for the page.
   const ids = Array.from(new Set(pageRows.map((r) => r.student_id)));
@@ -78,10 +92,13 @@ export async function GET(req: NextRequest) {
     for (const u of users ?? []) nameMap.set(u.id as string, { name: u.name as string | null, email: u.email as string | null });
   }
 
-  // Per-status counts for the filter (whole table, ignoring the status filter).
-  const { data: statusRows } = await supabaseAdmin.from('study_subscriptions').select('status');
+  // Per-status counts for the filter (whole table, ignoring the status
+  // filter) — grouped in Postgres rather than by fetching every row.
+  const { data: statusRows } = await supabaseAdmin.rpc('admin_study_subscription_status_counts');
   const counts: Record<string, number> = {};
-  for (const r of statusRows ?? []) counts[r.status as string] = (counts[r.status as string] ?? 0) + 1;
+  for (const r of (statusRows ?? []) as Array<{ status: string; cnt: number }>) {
+    counts[r.status] = Number(r.cnt);
+  }
 
   const subscriptions = pageRows.map((r) => ({
     studentId: r.student_id,

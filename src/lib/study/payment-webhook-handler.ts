@@ -1,6 +1,7 @@
 import { getPaymentInfo } from '@/lib/portone-charge'
 import { resolvePack, resolvePass, STUDY_PLANS } from '@/lib/study/plans'
 import { grantCreditPack, grantExamPass } from '@/lib/study/grant-purchase'
+import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
 
 /**
  * Shared handler for one-time study-purchase webhooks (credit packs +
@@ -33,16 +34,18 @@ export interface StudyWebhookOutcome {
   retryable?: boolean
 }
 
-function normalize(event: Record<string, unknown>): { isPaid: boolean; paymentId: string } {
+function normalize(event: Record<string, unknown>): { isPaid: boolean; isCancelled: boolean; paymentId: string } {
   if (typeof event.type === 'string') {
     const data = (event.data ?? {}) as Record<string, unknown>
     return {
       isPaid: event.type === 'Transaction.Paid',
+      isCancelled: event.type === 'Transaction.Cancelled' || event.type === 'Transaction.PartialCancelled',
       paymentId: typeof data.paymentId === 'string' ? data.paymentId : '',
     }
   }
   return {
     isPaid: event.status === 'Paid',
+    isCancelled: event.status === 'Cancelled' || event.status === 'PartialCancelled',
     paymentId: typeof event.payment_id === 'string' ? event.payment_id : '',
   }
 }
@@ -51,8 +54,24 @@ export async function tryHandleStudyOneTimeWebhook(rawBody: string): Promise<Stu
   let event: Record<string, unknown>
   try { event = JSON.parse(rawBody) } catch { return { handled: false, reason: 'bad json' } }
 
-  const { isPaid, paymentId } = normalize(event)
+  const { isPaid, isCancelled, paymentId } = normalize(event)
   if (!paymentId) return { handled: false, reason: 'no paymentId' }
+
+  // Refunds are matched by a study_payments lookup, NOT by id prefix, so a
+  // cancellation issued straight in the PortOne console reconciles for every
+  // kind we sell — packs, passes AND subscription charges. Runs before the
+  // prefix gate below; if the payment isn't ours we fall through untouched so
+  // the academy webhook still sees it.
+  if (isCancelled) {
+    const sync = await syncStudyPaymentRefund(paymentId)
+    if (sync.status === 'marked' || sync.status === 'already_refunded') {
+      return { handled: true, applied: `refund:${sync.status}` }
+    }
+    if (sync.status === 'unverifiable') {
+      return { handled: true, retryable: true, reason: 'could not verify cancellation with PortOne' }
+    }
+    // not_ours / not_cancelled → keep going (prefix gate decides).
+  }
 
   // Only claim study one-time purchase ids (spk-/pas-). Subscription
   // first-charges (sub-*) and academy invoices (inv_*) are not ours.

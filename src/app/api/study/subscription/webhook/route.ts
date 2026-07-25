@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getBillingKeyInfo } from '@/lib/portone-charge'
 import { STUDY_PLANS } from '@/lib/study/plans'
 import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
+import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
 
 /**
  * PortOne webhook for the study subscription stream.
@@ -171,6 +172,9 @@ export async function POST(req: NextRequest) {
         updated_at: now,
       })
       .eq('id', row.id)
+    // Also reflect the refund on the charge itself so the admin payments
+    // view stops showing it as revenue. Idempotent + PortOne-verified.
+    await syncStudyPaymentRefund(paymentId)
     return NextResponse.json({ ok: true, applied: 'cancelled' })
   }
 
