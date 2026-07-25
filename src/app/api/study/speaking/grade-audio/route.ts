@@ -5,7 +5,17 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp } from '@/lib/study/xp'
 import { assessSessionMastery as _keepAlive } from '@/lib/study-mastery-assess'
-import { getRubric, GradeSchema, type ResponseTestFamily, type ResponseSkill, type ResponseTaskType } from '@/lib/study/responseRubrics'
+import { generateObject } from 'ai'
+import { createOpenAI } from '@ai-sdk/openai'
+import {
+  getRubric,
+  GradeSchema,
+  inferSpeakingTaskType,
+  type ResponseTestFamily,
+  type ResponseSkill,
+  type ResponseTaskType,
+} from '@/lib/study/responseRubrics'
+import { runStagedGrade, type QualityStageCall, type TextStageCall } from '@/lib/study/gradePipeline'
 import { resolvePlan } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -20,8 +30,12 @@ import { requireStudyUser } from '@/lib/study/auth'
  *   2. Download the student's recording from storage
  *   3. Transcode webm/mp4 → mp3 via @ffmpeg/ffmpeg (gpt-4o-audio-preview
  *      only accepts wav + mp3 as of this build)
- *   4. Send audio + rubric prompt to gpt-4o-audio-preview
- *   5. Parse structured rubric response and persist the grade
+ *   4. Run the staged ETS grader (see src/lib/study/gradePipeline.ts):
+ *      stage 1 zero gate + stage 2 relevance ladder run on the Whisper
+ *      transcript with a cheap text model; the language/delivery stage
+ *      is the audio-native call so pronunciation and pausing are heard
+ *      rather than inferred. Final band = min(language, ceiling).
+ *   5. Persist the grade
  *
  * Costs roughly $0.06-0.08 per response — 3-4x the text-only route.
  * Latency ~4-6s vs ~2s for text-only (mostly the transcode step).
@@ -43,7 +57,7 @@ const BUCKET = 'study-response-audio'
 
 const BodySchema = z.object({
   sessionId: z.string().uuid(),
-  taskType: z.enum(['email', 'academic_discussion']).nullable().optional(),
+  taskType: z.enum(['email', 'academic_discussion', 'take_interview', 'listen_repeat']).nullable().optional(),
   promptText: z.string().min(10).max(2000),
   /** Optional Whisper transcript passed through from the client. Used
    *  as a fallback + shown alongside the grade so the student can see
@@ -119,7 +133,11 @@ export async function POST(req: NextRequest) {
     }, { status: 400 })
   }
 
-  const rubric = getRubric('toefl' as ResponseTestFamily, 'speaking' as ResponseSkill, body.taskType as ResponseTaskType | undefined)
+  // Speaking task type: the session UI sends null for speaking items,
+  // so recover Take-an-Interview vs Listen-and-Repeat from the
+  // generator's prompt tag.
+  const taskType = (body.taskType ?? inferSpeakingTaskType(body.promptText)) as ResponseTaskType
+  const rubric = getRubric('toefl' as ResponseTestFamily, 'speaking' as ResponseSkill, taskType)
 
   // ── Step 0.5: re-grade dedupe ─────────────────────────────────────
   // Same session + prompt + recording already AUDIO-graded → return
@@ -184,22 +202,7 @@ export async function POST(req: NextRequest) {
     }, { status: 502 })
   }
 
-  // ── Step 3: build the rubric prompt (with all delivery signals) ──
-  // (rubric computed above, before the dedupe short-circuit)
-  const promptText = buildAudioGraderPrompt({
-    taskType: body.taskType ?? null,
-    promptText: body.promptText,
-    hintText: body.responseText ?? '',
-    wpm: body.wpm ?? null,
-    durationSec: body.durationSeconds ?? null,
-    pauseCount: body.pauseCount ?? null,
-    clarity: body.clarity ?? null,
-    scaleMax: rubric.scaleMax,
-    criteria: rubric.criteria.map(c => ({ key: c.key, label: c.label, max: c.max })),
-    language,
-  })
-
-  // ── Step 4: call gpt-4o-audio-preview ────────────────────────────
+  // ── Step 3/4: staged grading ─────────────────────────────────────
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) return NextResponse.json({ error: 'server misconfigured' }, { status: 500 })
 
@@ -212,14 +215,18 @@ export async function POST(req: NextRequest) {
   const PRIMARY_MODEL = process.env.OPENAI_AUDIO_GRADE_MODEL ?? 'gpt-4o-mini-audio-preview'
   const FALLBACK_MODEL = 'gpt-4o-audio-preview'
 
-  const callOpenAi = async (model: string) => fetch('https://api.openai.com/v1/chat/completions', {
+  let usedModel = PRIMARY_MODEL
+
+  const callOpenAi = async (model: string, prompt: string) => fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model,
       modalities: ['text'],
       response_format: { type: 'json_object' },
-      temperature: 0.2,
+      // Deterministic — the ETS bands are a classification, not a
+      // creative task, and sampling noise is pure score drift.
+      temperature: 0,
       messages: [{
         role: 'user',
         content: [
@@ -227,59 +234,108 @@ export async function POST(req: NextRequest) {
           // reuse them across requests (50 % off on cached prefix
           // tokens). Dynamic task-specific content goes LAST so it
           // never breaks the cache prefix.
-          { type: 'text', text: promptText },
+          { type: 'text', text: `${prompt}\n\n${JSON_SHAPE_INSTRUCTION}` },
           { type: 'input_audio', input_audio: { data: audioB64, format: 'mp3' } },
         ],
       }],
     }),
   })
 
-  let ttsRes = await callOpenAi(PRIMARY_MODEL)
-  let usedModel = PRIMARY_MODEL
-  if (!ttsRes.ok && ttsRes.status === 404 && PRIMARY_MODEL !== FALLBACK_MODEL) {
-    // Primary model doesn't exist under this ID — retry with the
-    // full-size model so the student still gets a grade. Log so we
-    // know to update the env var / constant.
-    console.warn('[speaking/grade-audio] primary model 404, falling back', PRIMARY_MODEL)
-    ttsRes = await callOpenAi(FALLBACK_MODEL)
-    usedModel = FALLBACK_MODEL
-  }
-  if (!ttsRes.ok) {
-    const errBody = await ttsRes.text().catch(() => '')
-    console.error('[speaking/grade-audio] openai', ttsRes.status, errBody.slice(0, 400))
-    return NextResponse.json({ error: 'audio grading failed', status: ttsRes.status }, { status: 502 })
-  }
-  const AUDIO_MODEL = usedModel
-  const completion = await ttsRes.json() as {
-    choices?: Array<{ message?: { content?: string } }>
-    usage?: { prompt_tokens?: number; completion_tokens?: number }
-  }
-  const raw = completion.choices?.[0]?.message?.content ?? ''
-  // Try to parse + validate the model's JSON rubric response. If the
-  // first parse fails (model returned prose, missing keys, wrong
-  // scale), retry the call ONCE with a follow-up "your last response
-  // wasn't valid JSON matching the schema" instruction. Only bail out
-  // if the second attempt also fails.
-  const parseGrade = (text: string) => GradeSchema.parse(JSON.parse(text))
-  let grade
-  try {
-    grade = parseGrade(raw)
-  } catch (e) {
-    console.warn('[speaking/grade-audio] parse failed, retrying with stricter prompt', e)
-    const retryRes = await callOpenAi(usedModel).then(async r => r.ok ? await r.json() : null) as {
+  // Stage 4 (language + delivery) — the audio-native call. The zero
+  // gate and the relevance ladder run on the transcript with a cheap
+  // text model; neither needs to hear the audio, and keeping them off
+  // the audio model is what makes the extra stages affordable.
+  const qualityStage: QualityStageCall = async ({ prompt }) => {
+    let res = await callOpenAi(usedModel, prompt)
+    if (!res.ok && res.status === 404 && usedModel !== FALLBACK_MODEL) {
+      // Primary model doesn't exist under this ID — retry with the
+      // full-size model so the student still gets a grade.
+      console.warn('[speaking/grade-audio] primary model 404, falling back', usedModel)
+      usedModel = FALLBACK_MODEL
+      res = await callOpenAi(usedModel, prompt)
+    }
+    if (!res.ok) {
+      const errBody = await res.text().catch(() => '')
+      console.error('[speaking/grade-audio] openai', res.status, errBody.slice(0, 400))
+      throw new AudioGradeError('audio grading failed', res.status)
+    }
+    const completion = await res.json() as {
       choices?: Array<{ message?: { content?: string } }>
       usage?: { prompt_tokens?: number; completion_tokens?: number }
-    } | null
-    const retryRaw = retryRes?.choices?.[0]?.message?.content ?? ''
+    }
+    const raw = completion.choices?.[0]?.message?.content ?? ''
+    const usage = {
+      tokensIn: completion.usage?.prompt_tokens ?? 0,
+      tokensOut: completion.usage?.completion_tokens ?? 0,
+    }
+    // The model occasionally returns prose or a near-miss shape. Retry
+    // the call once before giving up.
     try {
-      grade = parseGrade(retryRaw)
-    } catch (e2) {
-      console.error('[speaking/grade-audio] parse failed twice', e2, raw.slice(0, 300))
-      return NextResponse.json({ error: 'grade response malformed' }, { status: 502 })
+      return { object: GradeSchema.parse(JSON.parse(raw)), usage }
+    } catch (e) {
+      console.warn('[speaking/grade-audio] parse failed, retrying', e)
+      const retry = await callOpenAi(usedModel, prompt)
+      if (!retry.ok) throw new AudioGradeError('audio grading failed', retry.status)
+      const retryJson = await retry.json() as {
+        choices?: Array<{ message?: { content?: string } }>
+        usage?: { prompt_tokens?: number; completion_tokens?: number }
+      }
+      return {
+        object: GradeSchema.parse(JSON.parse(retryJson.choices?.[0]?.message?.content ?? '')),
+        usage: {
+          tokensIn: usage.tokensIn + (retryJson.usage?.prompt_tokens ?? 0),
+          tokensOut: usage.tokensOut + (retryJson.usage?.completion_tokens ?? 0),
+        },
+      }
     }
   }
 
-  // Clamp the overall band to the rubric scale defensively.
+  const openai = createOpenAI({ apiKey })
+  const textStage: TextStageCall = async ({ schema, schemaName, prompt }) => {
+    const r = await generateObject({
+      model: openai('gpt-4o-mini'),
+      schema: schema as z.ZodType<unknown>,
+      schemaName,
+      prompt,
+      temperature: 0,
+    })
+    return {
+      object: r.object as never,
+      usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
+    }
+  }
+
+  let staged
+  try {
+    staged = await runStagedGrade({
+      family: 'toefl',
+      skill: 'speaking',
+      taskType,
+      promptText: body.promptText,
+      responseText: body.responseText ?? '',
+      durationSeconds: body.durationSeconds ?? null,
+      language,
+      audioNative: true,
+      speechSignals: {
+        wpm: body.wpm ?? null,
+        pauseCount: body.pauseCount ?? null,
+        clarity: body.clarity ?? null,
+      },
+    }, { text: textStage, quality: qualityStage })
+  } catch (e) {
+    if (e instanceof AudioGradeError) {
+      return NextResponse.json({ error: e.message, status: e.status }, { status: 502 })
+    }
+    console.error('[speaking/grade-audio] staged grading failed', e)
+    return NextResponse.json({ error: 'grade response malformed' }, { status: 502 })
+  }
+  const grade = staged.grade
+  // Tag the stored model so the dedupe filter above still recognises
+  // this as an AUDIO grade (it matches on the substring "audio").
+  const AUDIO_MODEL = `${usedModel}+staged-ets`
+
+  // The pipeline already clamped + applied the relevance ceiling; this
+  // is a defensive backstop only.
   const clampedBand = Math.max(0, Math.min(rubric.scaleMax, grade.overallBand))
 
   // ── Step 5: persist ──────────────────────────────────────────────
@@ -315,8 +371,8 @@ export async function POST(req: NextRequest) {
       model_rewrite: grade.modelRewrite,
       summary: grade.summary,
       grader_model: AUDIO_MODEL,
-      tokens_in: completion.usage?.prompt_tokens ?? 0,
-      tokens_out: completion.usage?.completion_tokens ?? 0,
+      tokens_in: staged.usage.tokensIn,
+      tokens_out: staged.usage.tokensOut,
     })
   if (gradeErr) console.error('[speaking/grade-audio] insert grade', gradeErr)
 
@@ -335,73 +391,43 @@ export async function POST(req: NextRequest) {
     grade: { ...grade, overallBand: clampedBand },
     scaleMax: rubric.scaleMax,
     graderModel: AUDIO_MODEL,
+    // Diagnostics — why the band landed where it did.
+    relevance: staged.relevance ? {
+      level: staged.relevance.level,
+      ceiling: staged.relevanceCeiling,
+      applied: staged.ceilingApplied,
+      languageScore: staged.languageScore,
+    } : null,
+    zeroReasons: staged.zeroReasons,
   })
 }
 
 // ---------------------------------------------------------------------------
-// Prompt builder — audio-native variant. Emphasises listening cues over
-// transcript inference, since the model can hear the recording directly.
+// The audio route talks to OpenAI over raw fetch (the AI SDK has no
+// input_audio content part), so the JSON shape has to be spelled out
+// in the prompt instead of derived from the Zod schema. Key ORDER
+// matters: evidence before every number, overall band last.
 // ---------------------------------------------------------------------------
 
-function buildAudioGraderPrompt(input: {
-  taskType: string | null
-  promptText: string
-  hintText: string
-  wpm: number | null
-  durationSec: number | null
-  pauseCount: number | null
-  clarity: number | null
-  scaleMax: number
-  criteria: Array<{ key: string; label: string; max: number }>
-  language: 'en' | 'ko'
-}): string {
-  const criteriaList = input.criteria.map(c => `  - "${c.key}" (${c.label}, 0–${c.max})`).join('\n')
-  const paceLine = input.wpm != null ? `${input.wpm} words/min` : 'not measured'
-  const durLine = input.durationSec != null ? `${input.durationSec.toFixed(1)}s` : 'not measured'
-
-  return `You are an ETS-calibrated TOEFL Speaking rater with 10+ years of experience scoring TOEFL iBT Take-an-Interview responses.
-
-The audio attached is the student's spoken response. LISTEN to the recording — do not rely only on transcription. Score pronunciation, intonation, stress placement, and prosody DIRECTLY from what you hear.
-
-Task prompt: "${input.promptText}"
-
-Rubric (0–${input.scaleMax}, official ETS scale):
-${criteriaList}
-
-For each criterion:
-- Give a score on its own scale (integer or 0.5).
-- Cite 1-2 sentences of evidence QUOTING the response, specifically calling out:
-  * for "delivery" — the actual sounds you hear (unclear consonants, halting pace, monotone intonation, dropped word endings, filler sounds like "um"/"uh")
-  * for "language" — grammar, vocabulary range, sentence structure
-  * for "topic_development" — coherence, examples, position clarity
-
-Then give an overall band on the same scale.
-
-Annotate up to 8 specific spans the learner should fix. Categorise by grammar/vocabulary/coherence/task/pronunciation/delivery. Quote each verbatim, ≤140 chars.
-
-Finish with:
-- summary: 2-3 sentences — biggest strength + single highest-leverage fix. Do not sugarcoat.
-- modelRewrite: rewrite one weak sentence cluster at the next band up. Plain text only.
-
-Return valid JSON matching this schema:
+const JSON_SHAPE_INSTRUCTION = `Return valid JSON with the keys in exactly this order:
 {
-  "overallBand": <number>,
   "summary": "<2-3 sentences>",
-  "criteria": [{ "key": "<key>", "score": <number>, "evidence": "<1-2 sentences>" }, ...],
-  "annotations": [{ "quote": "<verbatim>", "category": "grammar|vocabulary|coherence|task|pronunciation|delivery", "severity": "nit|minor|major", "issue": "<1 sentence>", "suggestion": "<1 sentence>" }, ...],
-  "modelRewrite": "<short rewrite>"
+  "criteria": [{ "key": "<criterion key>", "evidence": "<quote the exact span, then 1 sentence of reasoning>", "score": <number> }, ...],
+  "annotations": [{ "quote": "<verbatim, ≤140 chars>", "category": "grammar|vocabulary|coherence|task|pronunciation|delivery", "severity": "nit|minor|major", "issue": "<1 sentence>", "suggestion": "<1 sentence>" }, ...],
+  "modelRewrite": "<short rewrite>",
+  "overallBand": <number>
 }
+Write each "evidence" string BEFORE deciding its "score", and decide "overallBand" last.`
 
-Response metadata (from the recording — cross-check against what you hear):
-- Duration: ${durLine}
-- Whisper-derived pace: ${paceLine}
-- Whisper-derived pauses (≥700ms): ${input.pauseCount ?? 'not measured'}
-- Whisper transcription clarity (0-1): ${input.clarity != null ? input.clarity.toFixed(2) : 'not measured'}
-${input.hintText ? `- Whisper transcript (reference only — grade what you HEAR, not this):\n${input.hintText}` : ''}
-
-Output language: ${input.language === 'ko' ? 'Korean (모든 코멘트·요약·재작성은 한국어로. quote 필드만 학습자 원문 그대로 영어 인용)' : 'English'}.
-
-Be calibrated. TOEFL Speaking band 4 = fully sustained delivery + clear pronunciation + well-controlled language. Band 3 = generally clear but with lapses. Band 2 = some ideas but pronunciation/pace impedes. Band 1 = very limited. Do NOT inflate — a "trying hard" response that pauses every 3 words is a 2, not a 3.`
+/** Signals an upstream OpenAI failure so the staged pipeline's error
+ *  surfaces as a 502 the client can fall back from (WritingPanels
+ *  retries with the text route on 5xx). */
+class AudioGradeError extends Error {
+  status: number
+  constructor(message: string, status: number) {
+    super(message)
+    this.status = status
+  }
 }
 
 async function transcodeToMp3(input: Uint8Array, sourceExt: string): Promise<Uint8Array> {

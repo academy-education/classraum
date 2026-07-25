@@ -9,22 +9,30 @@ import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { notifyStudent } from '@/lib/study/notify'
 import {
   GradeSchema,
-  buildGraderPrompt,
   getRubric,
+  inferSpeakingTaskType,
   type ResponseSkill,
   type ResponseTestFamily,
   type ResponseTaskType,
 } from '@/lib/study/responseRubrics'
+import { runStagedGrade, type QualityStageCall, type TextStageCall } from '@/lib/study/gradePipeline'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
  * POST /api/study/response/grade — runs an essay or transcribed
- * speaking response through the rubric grader, persists submission +
- * grade rows, and returns the structured rubric breakdown.
+ * speaking response through the staged ETS grader, persists submission
+ * + grade rows, and returns the structured rubric breakdown.
  *
- * v1 grades against TOEFL or IELTS rubrics. The client always sends
- * the prompt text + response text — the audio file is stored
- * separately by the transcribe route and referenced here by path.
+ * Grading is NOT a single holistic call — see
+ * `src/lib/study/gradePipeline.ts`. Stage 1 is a hard zero gate,
+ * stage 3 measures prompt echo / padding deterministically, stage 2
+ * classifies relevance into an ETS level, stage 4 scores language
+ * quality independently, and the final band is
+ * min(languageScore, relevanceCeiling).
+ *
+ * The client always sends the prompt text + response text — the audio
+ * file is stored separately by the transcribe route and referenced
+ * here by path.
  */
 
 export const dynamic = 'force-dynamic'
@@ -37,7 +45,7 @@ const BodySchema = z.object({
   /** Optional task-type discriminator. TOEFL Writing has two distinct
    *  tasks (email vs academic_discussion) that score on different
    *  criteria. When omitted, the base (family, skill) rubric applies. */
-  taskType: z.enum(['email', 'academic_discussion']).nullable().optional(),
+  taskType: z.enum(['email', 'academic_discussion', 'take_interview', 'listen_repeat']).nullable().optional(),
   promptText: z.string().min(10).max(2000),
   responseText: z.string().min(20).max(8000),
   audioPath: z.string().nullable().optional(),
@@ -82,7 +90,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'session mode does not support rubric grading' }, { status: 400 })
   }
 
-  const taskType = (body.taskType ?? undefined) as ResponseTaskType | undefined
+  // TOEFL Speaking has two rubrics (Take an Interview vs Listen and
+  // Repeat) and the session UI does not send a speaking taskType — so
+  // recover it from the generator's prompt tag. Unrecognised prompts
+  // fall back to Take an Interview, the rubric that checks relevance.
+  const taskType = (body.taskType
+    ?? (body.testFamily === 'toefl' && body.skill === 'speaking'
+      ? inferSpeakingTaskType(body.promptText)
+      : undefined)
+    ?? undefined) as ResponseTaskType | undefined
   const rubric = getRubric(body.testFamily as ResponseTestFamily, body.skill as ResponseSkill, taskType)
 
   // ── Re-grade dedupe ────────────────────────────────────────────
@@ -135,40 +151,65 @@ export async function POST(req: NextRequest) {
   const wordCount = body.responseText.trim().split(/\s+/).filter(Boolean).length
   const language = (session.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en'
 
-  const prompt = buildGraderPrompt({
-    family: body.testFamily,
-    skill: body.skill,
-    taskType,
-    promptText: body.promptText,
-    responseText: body.responseText,
-    durationSeconds: body.durationSeconds ?? null,
-    wordCount,
-    language,
-    speechSignals: body.skill === 'speaking' ? {
-      wpm: body.wpm ?? null,
-      pauseCount: body.pauseCount ?? null,
-      clarity: body.clarity ?? null,
-    } : null,
-  })
-
   const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  let grade
-  let usage
-  try {
-    const result = await generateObject({
+
+  // Stages 1 + 2 are cheap classification calls — a mini model at
+  // temperature 0 is both sufficient and more consistent than gpt-4o
+  // for a yes/no gate and a 6-way ladder. Stage 4 (language quality)
+  // keeps gpt-4o.
+  const textStage: TextStageCall = async ({ schema, schemaName, prompt }) => {
+    const r = await generateObject({
+      model: openai('gpt-4o-mini'),
+      schema: schema as z.ZodType<unknown>,
+      schemaName,
+      prompt,
+      temperature: 0,
+    })
+    return {
+      object: r.object as never,
+      usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
+    }
+  }
+  const qualityStage: QualityStageCall = async ({ prompt }) => {
+    const r = await generateObject({
       model: openai('gpt-4o'),
       schema: GradeSchema,
+      schemaName: 'rubric_grade',
       prompt,
-      temperature: 0.2,
+      temperature: 0,
     })
-    grade = result.object
-    usage = result.usage
+    return {
+      object: r.object,
+      usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
+    }
+  }
+
+  let staged
+  try {
+    staged = await runStagedGrade({
+      family: body.testFamily,
+      skill: body.skill,
+      taskType,
+      promptText: body.promptText,
+      responseText: body.responseText,
+      durationSeconds: body.durationSeconds ?? null,
+      wordCount,
+      language,
+      speechSignals: body.skill === 'speaking' ? {
+        wpm: body.wpm ?? null,
+        pauseCount: body.pauseCount ?? null,
+        clarity: body.clarity ?? null,
+      } : null,
+    }, { text: textStage, quality: qualityStage })
   } catch (err) {
     console.error('[response/grade] generation', err)
     return NextResponse.json({ error: 'grading failed' }, { status: 502 })
   }
+  const grade = staged.grade
+  const usage = staged.usage
 
-  // Clamp the overall band to the rubric scale defensively.
+  // The pipeline already clamped + applied the relevance ceiling; this
+  // is a defensive backstop only.
   const clampedBand = Math.max(0, Math.min(rubric.scaleMax, grade.overallBand))
 
   // Persist submission.
@@ -204,9 +245,9 @@ export async function POST(req: NextRequest) {
       annotations: grade.annotations,
       model_rewrite: grade.modelRewrite,
       summary: grade.summary,
-      grader_model: 'gpt-4o',
-      tokens_in: usage?.inputTokens ?? 0,
-      tokens_out: usage?.outputTokens ?? 0,
+      grader_model: 'gpt-4o+staged-ets',
+      tokens_in: usage.tokensIn,
+      tokens_out: usage.tokensOut,
     })
   if (gradeErr) {
     console.error('[response/grade] insert grade', gradeErr)
@@ -246,6 +287,15 @@ export async function POST(req: NextRequest) {
     submissionId: submission.id,
     grade: { ...grade, overallBand: clampedBand },
     scaleMax: rubric.scaleMax,
+    // Diagnostics — why the band landed where it did. Purely additive;
+    // the review panel ignores fields it doesn't know.
+    relevance: staged.relevance ? {
+      level: staged.relevance.level,
+      ceiling: staged.relevanceCeiling,
+      applied: staged.ceilingApplied,
+      languageScore: staged.languageScore,
+    } : null,
+    zeroReasons: staged.zeroReasons,
     xpAwarded: XP_VALUES.response_graded,
   })
 }

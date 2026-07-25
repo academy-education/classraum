@@ -20,6 +20,17 @@ import { trackEvent } from '@/lib/study/analytics'
  *
  * Returns a per-question verdict array + summary so the UI can
  * render the review screen without re-fetching.
+ *
+ * NOTE on TOEFL score reporting: this route deliberately does NOT emit
+ * a TOEFL band. Since January 21 2026 ETS reports 1–6 in 0.5
+ * increments per section, with the overall score being the mean of the
+ * four section bands rounded to the nearest half band — and the only
+ * published conversion is the legacy 0–30 → band concordance (see
+ * src/lib/study/toeflBands.ts). No raw-count → band table exists, so
+ * turning `weightedCorrect / weightedTotal` into a band here would be
+ * an invention. Speaking/Writing items are rubric-graded 0–5 on
+ * study_response_grades instead, and are excluded from the weighted
+ * percentage entirely (see isOpenResponse / weightedScore below).
  */
 
 export const dynamic = 'force-dynamic'
