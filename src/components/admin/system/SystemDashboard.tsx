@@ -79,7 +79,7 @@ export function SystemDashboard() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch system data');
+        throw new Error(errorData.error || String(t('admin.system.failedToFetch')));
       }
 
       const result = await response.json();
@@ -320,7 +320,7 @@ export function SystemDashboard() {
               </div>
 
               {filteredLogs.length === 0 ? (
-                <AdminEmptyState icon={Clock} title="No logs match this filter" />
+                <AdminEmptyState icon={Clock} title={String(t('admin.system.noLogsMatch'))} />
               ) : (
                 <div className="space-y-2">
                   {filteredLogs.map(log => (

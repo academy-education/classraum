@@ -94,7 +94,7 @@ export function SettlementManagement() {
       const response = await adminFetch(`/api/admin/settlements?${params.toString()}`);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch settlements');
+        throw new Error(String(t('admin.settlements.failedToFetch')));
       }
 
       const data = await response.json();
@@ -157,11 +157,19 @@ export function SettlementManagement() {
   const handleExportCSV = () => {
     // Prepare CSV data
     const csvRows = [
-      ['Settlement ID', 'Academy', 'Type', 'Status', 'Order Amount', 'Settlement Amount', 'Settlement Date'].join(','),
+      [
+        String(t('admin.settlements.csvSettlementId')),
+        String(t('admin.common.academy')),
+        String(t('admin.settlements.csvType')),
+        String(t('admin.common.status')),
+        String(t('admin.settlements.csvOrderAmount')),
+        String(t('admin.settlements.csvSettlementAmount')),
+        String(t('admin.settlements.csvSettlementDate')),
+      ].join(','),
       ...settlements.map(s =>
         [
           s.id,
-          s.academyName || 'Unknown',
+          s.academyName || String(t('admin.common.unknown')),
           s.type,
           s.status,
           s.amount.order,

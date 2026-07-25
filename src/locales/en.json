@@ -830,7 +830,14 @@
       "paymentId": "Payment ID",
       "orderName": "Order Name",
       "paymentCurrency": "Payment Currency",
-      "paidAt": "Paid At"
+      "paidAt": "Paid At",
+      "failedToFetch": "Failed to fetch settlements",
+      "failedToFetchPayouts": "Failed to fetch payouts",
+      "csvSettlementId": "Settlement ID",
+      "csvType": "Type",
+      "csvOrderAmount": "Order Amount",
+      "csvSettlementAmount": "Settlement Amount",
+      "csvSettlementDate": "Settlement Date"
     },
     "support": {
       "title": "Support",
@@ -892,7 +899,10 @@
       "subscriptionsOverTime": "Subscriptions over time",
       "growthOverTime": "Growth over time",
       "topAcademies": "Top academies by revenue",
-      "noData": "No data for the selected range"
+      "noData": "No data for the selected range",
+      "csvMonth": "Month",
+      "csvRevenue": "Revenue",
+      "failedToFetch": "Failed to fetch analytics data"
     },
     "activityLogs": {
       "title": "Activity Logs",
@@ -962,7 +972,13 @@
       "operational": "Operational",
       "degraded": "Degraded",
       "down": "Down",
-      "lastChecked": "Last checked"
+      "lastChecked": "Last checked",
+      "failedToFetch": "Failed to fetch system data",
+      "allLevels": "All levels",
+      "levelInfo": "Info",
+      "levelWarning": "Warning",
+      "levelError": "Error",
+      "noLogsMatch": "No logs match this filter"
     },
     "settings": {
       "title": "Settings",
@@ -1018,7 +1034,9 @@
       "noUsageFound": "No usage data found",
       "approachingLimit": "Approaching limit",
       "overLimit": "Over limit",
-      "withinLimit": "Within limit"
+      "withinLimit": "Within limit",
+      "failedToFetch": "Failed to fetch subscription usage",
+      "noUsageData": "No usage data found"
     },
     "academies": {
       "title": "Academies",

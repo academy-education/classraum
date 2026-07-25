@@ -83,7 +83,7 @@ export function AnalyticsDashboard() {
   // etc.) doesn't fit the spreadsheet workflow this is normally used for.
   const handleExportCSV = () => {
     if (!data) return;
-    const headers = ['Month', 'Revenue'];
+    const headers = [String(t('admin.analytics.csvMonth')), String(t('admin.analytics.csvRevenue'))];
     const rows = data.revenue.trend.map(t => [t.month, t.amount]);
     const csv = [headers, ...rows]
       .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
@@ -103,7 +103,7 @@ export function AnalyticsDashboard() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch analytics data');
+        throw new Error(errorData.error || String(t('admin.analytics.failedToFetch')));
       }
 
       const result = await response.json();

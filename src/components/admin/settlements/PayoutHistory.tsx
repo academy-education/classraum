@@ -80,7 +80,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
       const response = await adminFetch(`/api/admin/settlements/payouts?${params.toString()}`);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch payouts');
+        throw new Error(String(t('admin.settlements.failedToFetchPayouts')));
       }
 
       const data = await response.json();

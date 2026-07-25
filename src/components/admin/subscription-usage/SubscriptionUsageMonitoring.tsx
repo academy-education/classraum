@@ -93,7 +93,7 @@ export function SubscriptionUsageMonitoring() {
       const response = await adminFetch(`/api/admin/subscription-usage?${params.toString()}`);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch subscription usage');
+        throw new Error(String(t('admin.usage.failedToFetch')));
       }
 
       const result = await response.json();
@@ -206,7 +206,7 @@ export function SubscriptionUsageMonitoring() {
       {/* Usage Table */}
       <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
         {!loading && usageData.length === 0 ? (
-          <AdminEmptyState icon={TrendingUp} title="No usage data found" />
+          <AdminEmptyState icon={TrendingUp} title={String(t('admin.usage.noUsageData'))} />
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
