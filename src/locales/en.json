@@ -662,7 +662,8 @@
       "elevatedRoleNote": "Only Super Admins can grant the Admin or Super Admin role.",
       "failedToUpdate": "Failed to update user",
       "partialUpdateDesc": "{okCount} updated, {failCount} failed",
-      "updateAnnounce": "{description} — {okCount}/{total} updated"
+      "updateAnnounce": "{description} — {okCount}/{total} updated",
+      "csvUserId": "User ID"
     },
     "subscriptions": {
       "title": "Subscriptions",
@@ -1161,7 +1162,9 @@
       "eventTime": "Event Time",
       "receivedAt": "Received At",
       "rawWebhookData": "Raw Webhook Data",
-      "showingEvents": "Showing {from} to {to} of {total} events"
+      "showingEvents": "Showing {from} to {to} of {total} events",
+      "currency": "Currency",
+      "error": "Error"
     },
     "system": {
       "title": "System",

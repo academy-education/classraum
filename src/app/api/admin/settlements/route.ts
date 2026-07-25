@@ -69,6 +69,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const from = searchParams.get('from');
     const to = searchParams.get('to');
+    const academyName = searchParams.get('academyName');
 
     // Build PortOne API request body
     // PortOne requires a filter object with criteria field
@@ -99,8 +100,31 @@ export async function GET(request: NextRequest) {
     if (status) {
       requestBody.filter.statuses = [status];
     }
-    if (partnerId) {
-      requestBody.filter.partnerIds = [partnerId];
+
+    // Academy-name search is resolved SERVER-SIDE: PortOne only filters by
+    // partnerIds, so we look up the matching academies' PortOne partner ids and
+    // push them into the filter. This makes the search span all pages (the old
+    // client-side filter only matched the current 20-row page and left the
+    // pagination count wrong).
+    const partnerIds: string[] = [];
+    if (partnerId) partnerIds.push(partnerId);
+    if (academyName && academyName.trim()) {
+      const { data: matchedAcademies } = await supabase
+        .from('academies')
+        .select('portone_partner_id')
+        .ilike('name', `%${academyName.trim()}%`)
+        .not('portone_partner_id', 'is', null);
+      const ids = (matchedAcademies || [])
+        .map(a => a.portone_partner_id)
+        .filter(Boolean) as string[];
+      if (ids.length === 0) {
+        // No academy matches the search — no settlements can match either.
+        return NextResponse.json({ items: [], totalCount: 0, page, pageSize });
+      }
+      partnerIds.push(...ids);
+    }
+    if (partnerIds.length > 0) {
+      requestBody.filter.partnerIds = [...new Set(partnerIds)];
     }
 
     // Fetch settlements from PortOne Platform API

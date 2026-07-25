@@ -233,7 +233,16 @@ export function UserManagement() {
       ? filteredUsers.filter(u => selectedIds.has(u.id))
       : filteredUsers;
     if (source.length === 0) return;
-    const headers = ['User ID', 'Name', 'Email', 'Role', 'Status', 'Academy', 'Login Count', 'Created'];
+    const headers = [
+      String(t('admin.users.csvUserId')),
+      String(t('admin.common.name')),
+      String(t('admin.common.email')),
+      String(t('admin.common.role')),
+      String(t('admin.common.status')),
+      String(t('admin.common.academy')),
+      String(t('admin.users.loginCount')),
+      String(t('admin.common.createdAt')),
+    ];
     const rows = source.map(u => [
       u.id,
       u.name,

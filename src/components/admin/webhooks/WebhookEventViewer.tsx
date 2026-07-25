@@ -133,7 +133,19 @@ export function WebhookEventViewer() {
   // (vs raw events) so the file matches what's on screen.
   const exportToCSV = () => {
     if (sortedEvents.length === 0) return;
-    const headers = ['Received', 'Type', 'Event', 'Status', 'Processed', 'Entity ID', 'Partner ID', 'Amount', 'Currency', 'Webhook ID', 'Error'];
+    const headers = [
+      String(t('admin.webhooks.receivedAt')),
+      String(t('admin.webhooks.type')),
+      String(t('admin.webhooks.event')),
+      String(t('admin.common.status')),
+      String(t('admin.webhooks.processed')),
+      String(t('admin.webhooks.entityId')),
+      String(t('admin.webhooks.partnerId')),
+      String(t('admin.webhooks.amount')),
+      String(t('admin.webhooks.currency')),
+      String(t('admin.webhooks.webhookId')),
+      String(t('admin.webhooks.error')),
+    ];
     const rows = sortedEvents.map(e => [
       new Date(e.received_at).toISOString(),
       e.type,

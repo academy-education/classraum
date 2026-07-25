@@ -172,7 +172,14 @@ export function ActivityLogsManagement() {
   };
 
   const exportToCSV = () => {
-    const headers = ['Timestamp', 'Admin', 'Action Type', 'Target Type', 'Description', 'IP Address'];
+    const headers = [
+      String(t('admin.activityLogs.columns.timestamp')),
+      String(t('admin.activityLogs.adminUser')),
+      String(t('admin.activityLogs.actionType')),
+      String(t('admin.activityLogs.targetType')),
+      String(t('admin.activityLogs.columns.description')),
+      String(t('admin.activityLogs.ipAddress')),
+    ];
     const rows = logs.map(log => [
       new Date(log.created_at).toLocaleString(),
       log.users.name || log.users.email,

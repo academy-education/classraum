@@ -24,6 +24,7 @@ import { Input } from '@/components/ui/input';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { Button } from '@/components/ui/button';
 import { useDedupedToast } from '../useDedupedToast';
+import { useDebouncedValue } from '../useDebouncedValue';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 import { AdminEmptyState } from '../AdminEmptyState';
@@ -68,9 +69,20 @@ export function SettlementManagement() {
     dateTo: defaultDates.to,
   });
 
+  // Debounce the academy-name search so typing doesn't fire a PortOne call
+  // per keystroke (the search is now server-side).
+  const debouncedAcademy = useDebouncedValue(filters.academyName, 400);
+
+  // Reset to the first page whenever the filter criteria change, so a search
+  // never leaves you stranded on a page number the filtered set doesn't have.
+  useEffect(() => {
+    setPage(0);
+  }, [filters.status, filters.dateFrom, filters.dateTo, debouncedAcademy]);
+
   useEffect(() => {
     loadSettlements();
-  }, [page, filters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, filters.status, filters.dateFrom, filters.dateTo, debouncedAcademy]);
 
   const loadSettlements = async () => {
     try {
@@ -90,6 +102,11 @@ export function SettlementManagement() {
       if (filters.dateTo) {
         params.append('to', filters.dateTo);
       }
+      // Academy-name search runs SERVER-SIDE now (resolved to PortOne partner
+      // ids) so it spans every page and the totalCount stays correct.
+      if (filters.academyName.trim()) {
+        params.append('academyName', filters.academyName.trim());
+      }
 
       const response = await adminFetch(`/api/admin/settlements?${params.toString()}`);
 
@@ -99,20 +116,9 @@ export function SettlementManagement() {
 
       const data = await response.json();
 
-      // Show friendly message if API not configured or no data
-      if (data.message) {
-      }
-
-      // Filter by academy name if specified
-      let filteredItems = data.items || [];
-      if (filters.academyName) {
-        filteredItems = filteredItems.filter((s: PortOneSettlement) =>
-          s.academyName?.toLowerCase().includes(filters.academyName.toLowerCase())
-        );
-      }
-
-      setSettlements(filteredItems);
-      announce(String(t('admin.settlements.loadedAnnounce', { n: filteredItems.length })));
+      const items = data.items || [];
+      setSettlements(items);
+      announce(String(t('admin.settlements.loadedAnnounce', { n: items.length })));
       setTotalCount(data.totalCount || 0);
     } catch (error) {
       console.error('Error loading settlements:', error);
