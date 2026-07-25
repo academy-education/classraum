@@ -34,7 +34,6 @@ import { SuspendReasonModal } from './SuspendReasonModal';
 import { AddAcademyModal } from './AddAcademyModal';
 import { PartnerSetupModal } from './PartnerSetupModal';
 import { formatPrice } from '@/lib/subscription';
-import { supabase } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -329,16 +328,16 @@ export function AcademyManagement() {
     if (!academyToSuspend) return;
 
     try {
-      const { error } = await supabase
-        .from('academies')
-        .update({
-          is_suspended: true,
-          suspension_reason: reason,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', academyToSuspend.id);
-
-      if (error) throw error;
+      // Writes must go through the service-role admin API — the browser anon
+      // client is blocked by RLS on academies (same reason reads were migrated).
+      const response = await adminFetch(`/api/admin/academies/${academyToSuspend.id}/status`, {
+        method: 'PATCH',
+        body: JSON.stringify({ suspend: true, reason }),
+      });
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body.error || String(t('admin.academies.failedToSuspend')));
+      }
 
       setShowActions(null);
       loadAcademies(); // Reload the data
@@ -357,19 +356,19 @@ export function AcademyManagement() {
     let fail = 0;
     await Promise.all(
       Array.from(selectedIds).map(async id => {
-        const { error } = await supabase
-          .from('academies')
-          .update({
-            is_suspended: suspend,
-            suspension_reason: suspend ? (reason || String(t('admin.academies.bulkSuspendReason'))) : null,
-            updated_at: new Date().toISOString(),
-          })
-          .eq('id', id);
-        if (error) {
-          console.error('[Bulk] suspend update failed for', id, error);
-          fail++;
-        } else {
+        try {
+          const response = await adminFetch(`/api/admin/academies/${id}/status`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              suspend,
+              reason: suspend ? (reason || String(t('admin.academies.bulkSuspendReason'))) : undefined,
+            }),
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
           ok++;
+        } catch (err) {
+          console.error('[Bulk] suspend update failed for', id, err);
+          fail++;
         }
       }),
     );
@@ -388,16 +387,14 @@ export function AcademyManagement() {
 
   const handleUnsuspendAcademy = async (academyId: string) => {
     try {
-      const { error } = await supabase
-        .from('academies')
-        .update({
-          is_suspended: false,
-          suspension_reason: null,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', academyId);
-
-      if (error) throw error;
+      const response = await adminFetch(`/api/admin/academies/${academyId}/status`, {
+        method: 'PATCH',
+        body: JSON.stringify({ suspend: false }),
+      });
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body.error || String(t('admin.failedToUnsuspend')));
+      }
 
       setShowActions(null);
       loadAcademies(); // Reload the data
