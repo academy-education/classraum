@@ -24,6 +24,7 @@ const AdminTrendChart = dynamic(() => import('./AdminTrendChart'), {
 import { ChartOverview } from './ChartOverview';
 import { supabase } from '@/lib/supabase';
 import { AdminPageHeader } from './AdminPageHeader';
+import { useAdminFetch } from './useAdminFetch';
 import { Button } from '@/components/ui/button';
 import { AdminSkeleton } from './AdminSkeleton';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -63,20 +64,24 @@ interface SystemAlert {
 export function AdminDashboard() {
   const { t } = useTranslation();
   const router = useRouter();
+  const adminFetch = useAdminFetch();
   const [resolvingAlertId, setResolvingAlertId] = useState<string | null>(null);
   const [resolvingAll, setResolvingAll] = useState(false);
 
   // Resolve one or more alerts (a de-duplicated card can stand for several
-  // identical rows). Updates Supabase + optimistically removes them locally.
+  // identical rows). The `alerts` table has NO update RLS policy, so a browser
+  // update() silently no-ops and the alert reappears on reload — mutations MUST
+  // go through the service-role /api/admin/alerts route. Only removes locally
+  // once the server confirms the rows were actually resolved.
   const handleResolveGroup = async (ids: string[]) => {
     if (ids.length === 0) return;
     setResolvingAlertId(ids[0]);
     try {
-      const { error } = await supabase
-        .from('alerts')
-        .update({ resolved: true, resolved_at: new Date().toISOString() })
-        .in('id', ids);
-      if (error) throw error;
+      const res = await adminFetch('/api/admin/alerts', {
+        method: 'PATCH',
+        body: JSON.stringify({ ids }),
+      });
+      if (!res.ok) throw new Error(`resolve failed (${res.status})`);
       setAlerts(prev => prev.map(a => ids.includes(a.id) ? { ...a, resolved: true } : a));
     } catch (e) {
       console.error('[AdminDashboard] Failed to resolve alerts:', e);
@@ -90,11 +95,11 @@ export function AdminDashboard() {
   const handleResolveAll = async () => {
     setResolvingAll(true);
     try {
-      const { error } = await supabase
-        .from('alerts')
-        .update({ resolved: true, resolved_at: new Date().toISOString() })
-        .eq('resolved', false);
-      if (error) throw error;
+      const res = await adminFetch('/api/admin/alerts', {
+        method: 'PATCH',
+        body: JSON.stringify({ all: true }),
+      });
+      if (!res.ok) throw new Error(`resolve-all failed (${res.status})`);
       setAlerts(prev => prev.map(a => ({ ...a, resolved: true })));
     } catch (e) {
       console.error('[AdminDashboard] Failed to resolve all alerts:', e);
