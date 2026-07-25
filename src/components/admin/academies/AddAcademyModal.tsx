@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useAdminFetch } from '../useAdminFetch';
 import { ModalShell } from '../ModalShell';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface AddAcademyModalProps {
   onClose: () => void;
@@ -18,6 +19,7 @@ interface AddAcademyModalProps {
 
 export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
   const adminFetch = useAdminFetch();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -30,7 +32,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
     e.preventDefault();
 
     if (!formData.name.trim()) {
-      setError('Academy name is required');
+      setError(String(t('admin.academies.nameRequired')));
       return;
     }
 
@@ -47,7 +49,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
 
       const body = await response.json()
       if (!response.ok) {
-        throw new Error(body.detail || body.error || 'Failed to create academy')
+        throw new Error(body.detail || body.error || String(t('admin.academies.failedToCreate')))
       }
 
       // Hand off to parent: refresh the list + surface the onboarding link.
@@ -60,7 +62,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
       onClose()
     } catch (err) {
       console.error('[AddAcademyModal] Error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to create academy');
+      setError(err instanceof Error ? err.message : String(t('admin.academies.failedToCreate')));
       setIsProcessing(false);
     }
   };
@@ -71,7 +73,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
       title={
         <span className="inline-flex items-center gap-2">
           <Building2 className="h-5 w-5 text-primary" />
-          Add New Academy
+          {String(t('admin.academies.addNewAcademy'))}
         </span>
       }
       disableBackdropClose={isProcessing}
@@ -79,7 +81,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
       footer={
         <>
           <Button type="button" onClick={onClose} disabled={isProcessing} variant="outline">
-            Cancel
+            {String(t('admin.common.cancel'))}
           </Button>
           <Button
             type="submit"
@@ -90,10 +92,10 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
             {isProcessing ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Creating...
+                {String(t('admin.academies.creating'))}
               </>
             ) : (
-              'Create Academy'
+              String(t('admin.academies.createAcademy'))
             )}
           </Button>
         </>
@@ -102,7 +104,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
       <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700">
-              Academy Name <span className="text-rose-500">*</span>
+              {String(t('admin.academies.academyNameLabel'))} <span className="text-rose-500">*</span>
             </label>
             <div className="relative">
               <Building2 className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
@@ -111,7 +113,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 disabled={isProcessing}
-                placeholder="Enter academy name..."
+                placeholder={String(t('admin.academies.namePlaceholder'))}
                 className="pl-10"
                 required
               />
@@ -119,7 +121,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Address (Optional)</label>
+            <label className="text-sm font-medium text-gray-700">{String(t('admin.academies.addressOptional'))}</label>
             <div className="relative">
               <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
               <Input
@@ -127,28 +129,28 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                 disabled={isProcessing}
-                placeholder="Enter address..."
+                placeholder={String(t('admin.academies.addressPlaceholder'))}
                 className="pl-10"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Subscription Tier</label>
+            <label className="text-sm font-medium text-gray-700">{String(t('admin.academies.subscriptionTierLabel'))}</label>
             <Select
               value={formData.subscriptionTier}
               onValueChange={(value) => setFormData({ ...formData, subscriptionTier: value })}
               disabled={isProcessing}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select tier" />
+                <SelectValue placeholder={String(t('admin.academies.selectTier'))} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="free">Free</SelectItem>
-                <SelectItem value="individual">Individual</SelectItem>
-                <SelectItem value="basic">Basic</SelectItem>
-                <SelectItem value="pro">Pro</SelectItem>
-                <SelectItem value="enterprise">Enterprise</SelectItem>
+                <SelectItem value="free">{String(t('admin.academies.tierFree'))}</SelectItem>
+                <SelectItem value="individual">{String(t('admin.academies.tierIndividual'))}</SelectItem>
+                <SelectItem value="basic">{String(t('admin.academies.tierBasic'))}</SelectItem>
+                <SelectItem value="pro">{String(t('admin.academies.tierPro'))}</SelectItem>
+                <SelectItem value="enterprise">{String(t('admin.academies.tierEnterprise'))}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -156,7 +158,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
           <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 flex items-start space-x-2">
             <AlertCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
             <p className="text-xs text-primary">
-              An onboarding link will be generated and copied for you. Send it to the academy&apos;s manager so they can sign up. You can copy it again from the row&apos;s actions menu.
+              {String(t('admin.academies.onboardingHint'))}
             </p>
           </div>
 

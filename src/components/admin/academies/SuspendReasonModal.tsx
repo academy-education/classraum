@@ -5,6 +5,7 @@ import { AlertTriangle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ModalShell } from '../ModalShell';
 import { Textarea } from '@/components/ui/textarea';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface SuspendReasonModalProps {
   academyName: string;
@@ -13,13 +14,14 @@ interface SuspendReasonModalProps {
 }
 
 export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendReasonModalProps) {
+  const { t } = useTranslation();
   const [reason, setReason] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState('');
 
   const handleConfirm = async () => {
     if (!reason.trim()) {
-      setError('Please provide a reason for suspension');
+      setError(String(t('admin.academies.reasonRequired')));
       return;
     }
 
@@ -30,7 +32,7 @@ export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendR
       onClose();
     } catch (err) {
       console.error('[SuspendReasonModal] Error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to suspend academy');
+      setError(err instanceof Error ? err.message : String(t('admin.academies.failedToSuspend')));
     } finally {
       setIsProcessing(false);
     }
@@ -39,12 +41,12 @@ export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendR
   return (
     <ModalShell
       onClose={isProcessing ? () => {} : onClose}
-      title="Suspend Academy"
+      title={String(t('admin.academies.suspendModalTitle'))}
       disableBackdropClose={isProcessing}
       footer={
         <>
           <Button onClick={onClose} disabled={isProcessing} variant="outline">
-            Cancel
+            {String(t('admin.common.cancel'))}
           </Button>
           <Button
             onClick={handleConfirm}
@@ -54,10 +56,10 @@ export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendR
             {isProcessing ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                Suspending...
+                {String(t('admin.academies.suspending'))}
               </>
             ) : (
-              'Confirm Suspension'
+              String(t('admin.academies.confirmSuspension'))
             )}
           </Button>
         </>
@@ -68,26 +70,25 @@ export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendR
         <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 flex items-start space-x-3">
           <AlertTriangle className="h-5 w-5 text-rose-600 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <h3 className="text-sm font-medium text-rose-800">Warning</h3>
+            <h3 className="text-sm font-medium text-rose-800">{String(t('admin.academies.warning'))}</h3>
             <p className="text-sm text-rose-700 mt-1">
-              You are about to suspend <span className="font-semibold">{academyName}</span>.
-              This will restrict access to their account until unsuspended.
+              {String(t('admin.academies.suspendWarningBody', { name: academyName }))}
             </p>
           </div>
         </div>
 
         {/* Reason Input */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Suspension Reason *</label>
+          <label className="text-sm font-medium text-gray-700">{String(t('admin.academies.reasonLabelRequired'))}</label>
           <Textarea
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             disabled={isProcessing}
-            placeholder="Provide a detailed reason for suspension..."
+            placeholder={String(t('admin.academies.reasonPlaceholder'))}
             rows={4}
           />
           <p className="text-xs text-gray-500">
-            This reason will be recorded and may be visible to the academy
+            {String(t('admin.academies.reasonHelp'))}
           </p>
         </div>
 
