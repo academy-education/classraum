@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox } from 'lucide-react'
+import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox, Download } from 'lucide-react'
 import { useAdminFetch } from '@/components/admin/useAdminFetch'
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader'
 import { AdminEmptyState } from '@/components/admin/AdminEmptyState'
@@ -24,7 +24,14 @@ import { cn } from '@/lib/utils'
  * All copy is localized under admin.studyConsole.*.
  */
 
-type Tab = 'lookup' | 'reports'
+type Tab = 'lookup' | 'subscriptions' | 'payments' | 'reports'
+
+const TAB_LABELS: Record<Tab, string> = {
+  lookup: 'admin.studyConsole.tabUserLookup',
+  subscriptions: 'admin.studyConsole.tabSubscriptions',
+  payments: 'admin.studyConsole.tabPayments',
+  reports: 'admin.studyConsole.tabReports',
+}
 
 export function StudyAdmin() {
   const { t } = useTranslation()
@@ -38,7 +45,7 @@ export function StudyAdmin() {
       />
 
       <div className="inline-flex rounded-lg bg-gray-100 p-0.5">
-        {(['lookup', 'reports'] as Tab[]).map(k => (
+        {(['lookup', 'subscriptions', 'payments', 'reports'] as Tab[]).map(k => (
           <button
             key={k}
             onClick={() => setTab(k)}
@@ -46,13 +53,16 @@ export function StudyAdmin() {
               tab === k ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            {k === 'lookup' ? t('admin.studyConsole.tabUserLookup') : t('admin.studyConsole.tabReports')}
+            {String(t(TAB_LABELS[k]))}
           </button>
         ))}
       </div>
 
       <div>
-        {tab === 'lookup' ? <UserLookup /> : <ReportsQueue />}
+        {tab === 'lookup' && <UserLookup />}
+        {tab === 'subscriptions' && <SubscriptionsList />}
+        {tab === 'payments' && <PaymentsList />}
+        {tab === 'reports' && <ReportsQueue />}
       </div>
     </div>
   )
@@ -254,11 +264,29 @@ function UserDetail({ data, studentId }: { data: Record<string, unknown>; studen
 
 interface PaymentRow {
   paymentId: string
+  studentId?: string
+  studentName?: string | null
+  studentEmail?: string | null
   kind: string
   amountWon: number | null
   createdAt: string | null
-  portoneStatus: string
-  portoneAmount: number | null
+  refunded: boolean
+  refundedAt: string | null
+}
+
+// Shared payment helpers (used by the per-student panel and the global list).
+function usePaymentFormatters(locale: string) {
+  const { t } = useTranslation()
+  const kindLabel = (kind: string) => {
+    if (kind === 'study_exam_pass') return String(t('admin.studyConsole.paymentKindPass'))
+    if (kind === 'study_subscription') return String(t('admin.studyConsole.paymentKindSubscription'))
+    return String(t('admin.studyConsole.paymentKindPack'))
+  }
+  const statusMeta = (refunded: boolean) => refunded
+    ? { label: String(t('admin.studyConsole.payStatusCancelled')), cls: 'bg-gray-100 text-gray-600 ring-gray-200/70' }
+    : { label: String(t('admin.studyConsole.payStatusPaid')), cls: 'bg-emerald-50 text-emerald-700 ring-emerald-200/60' }
+  const won = (n: number | null) => (typeof n === 'number' ? `₩${n.toLocaleString(locale)}` : '—')
+  return { kindLabel, statusMeta, won }
 }
 
 // Student's study purchases (credit packs / exam passes) with live PortOne
@@ -267,6 +295,7 @@ interface PaymentRow {
 function PaymentsPanel({ studentId, locale }: { studentId: string; locale: string }) {
   const { t } = useTranslation()
   const adminFetch = useAdminFetch()
+  const { kindLabel, statusMeta, won } = usePaymentFormatters(locale)
   const [rows, setRows] = useState<PaymentRow[]>([])
   const [grossWon, setGrossWon] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -283,24 +312,6 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
   }, [adminFetch, studentId])
 
   useEffect(() => { void load() }, [load])
-
-  const kindLabel = (kind: string) => {
-    if (kind === 'study_exam_pass') return String(t('admin.studyConsole.paymentKindPass'))
-    if (kind === 'study_subscription') return String(t('admin.studyConsole.paymentKindSubscription'))
-    return String(t('admin.studyConsole.paymentKindPack'))
-  }
-
-  const statusMeta = (s: string): { label: string; cls: string } => {
-    switch (s) {
-      case 'PAID': return { label: String(t('admin.studyConsole.payStatusPaid')), cls: 'bg-emerald-50 text-emerald-700 ring-emerald-200/60' }
-      case 'CANCELLED': return { label: String(t('admin.studyConsole.payStatusCancelled')), cls: 'bg-gray-100 text-gray-600 ring-gray-200/70' }
-      case 'PARTIAL_CANCELLED': return { label: String(t('admin.studyConsole.payStatusPartial')), cls: 'bg-amber-50 text-amber-700 ring-amber-200/60' }
-      case 'FAILED': return { label: String(t('admin.studyConsole.payStatusFailed')), cls: 'bg-rose-50 text-rose-700 ring-rose-200/60' }
-      default: return { label: String(t('admin.studyConsole.payStatusUnknown')), cls: 'bg-gray-100 text-gray-500 ring-gray-200/70' }
-    }
-  }
-
-  const won = (n: number | null) => (typeof n === 'number' ? `₩${n.toLocaleString(locale)}` : '—')
 
   return (
     <Panel
@@ -320,7 +331,7 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
             <table className="w-full text-sm">
               <tbody className="divide-y divide-gray-100">
                 {rows.map((p) => {
-                  const meta = statusMeta(p.portoneStatus)
+                  const meta = statusMeta(p.refunded)
                   return (
                     <tr key={p.paymentId}>
                       <td className="py-2 pr-3 text-gray-700 whitespace-nowrap">{kindLabel(p.kind)}</td>
@@ -330,7 +341,7 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
                       </td>
                       <td className="py-2 pr-3 text-gray-400 text-xs whitespace-nowrap">{p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—'}</td>
                       <td className="py-2 text-right whitespace-nowrap">
-                        {p.portoneStatus === 'PAID' && (
+                        {!p.refunded && (
                           <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>
                             {String(t('admin.studyConsole.refund'))}
                           </Button>
@@ -533,4 +544,313 @@ function ReportsQueue() {
       </div>
     </div>
   )
+}
+
+/* ─────────────────────── Global subscriptions list ─────────────────────── */
+
+interface SubListRow {
+  studentId: string
+  studentName: string | null
+  studentEmail: string | null
+  status: string
+  plan: string
+  priceWon: number | null
+  currentPeriodEnd: string | null
+  cancelAtPeriodEnd: boolean
+  creditsTotal: number
+  pendingPlan: string | null
+  lastPaymentFailure: string | null
+  updatedAt: string | null
+}
+
+const SUB_STATUS_OPTIONS = ['all', 'active', 'past_due', 'cancelled', 'free', 'trial']
+const SUB_PLAN_OPTIONS = [
+  'all', 'free_v1', 'general_v1', 'premium_v1', 'premium_plus_v1',
+  'premium_3mo_v1', 'premium_6mo_v1', 'general_annual_v1', 'premium_annual_v1', 'premium_plus_annual_v1',
+]
+
+function subStatusMeta(status: string): string {
+  switch (status) {
+    case 'active': return 'bg-emerald-50 text-emerald-700 ring-emerald-200/60'
+    case 'past_due': return 'bg-rose-50 text-rose-700 ring-rose-200/60'
+    case 'cancelled': return 'bg-gray-100 text-gray-600 ring-gray-200/70'
+    case 'trial': return 'bg-sky-50 text-sky-700 ring-sky-200/60'
+    default: return 'bg-gray-100 text-gray-500 ring-gray-200/70' // free
+  }
+}
+
+function SubscriptionsList() {
+  const { t, language } = useTranslation()
+  const locale = getDateLocale(language)
+  const adminFetch = useAdminFetch()
+  const [status, setStatus] = useState('all')
+  const [plan, setPlan] = useState('all')
+  const [q, setQ] = useState('')
+  const [debouncedQ, setDebouncedQ] = useState('')
+  const [page, setPage] = useState(1)
+  const [rows, setRows] = useState<SubListRow[]>([])
+  const [total, setTotal] = useState(0)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => { const h = setTimeout(() => { setDebouncedQ(q); setPage(1) }, 300); return () => clearTimeout(h) }, [q])
+
+  const query = useCallback((pg: number) => {
+    const p = new URLSearchParams({ status, plan, page: String(pg) })
+    if (debouncedQ) p.set('q', debouncedQ)
+    return `/api/admin/study/subscriptions?${p.toString()}`
+  }, [status, plan, debouncedQ])
+
+  const load = useCallback(async () => {
+    setLoading(true)
+    try {
+      const res = await adminFetch(query(page))
+      const json = await res.json()
+      setRows(json.subscriptions ?? [])
+      setTotal(json.total ?? 0)
+    } catch { setRows([]) } finally { setLoading(false) }
+  }, [adminFetch, query, page])
+
+  useEffect(() => { void load() }, [load])
+
+  const totalPages = Math.max(1, Math.ceil(total / 20))
+  const statusLabel = (s: string) => s === 'all' ? String(t('admin.studyConsole.subAll')) : String(t(`admin.studyConsole.subStatus_${s}`))
+  const when = (s: string | null) => (s ? new Date(s).toLocaleDateString(locale) : '—')
+
+  const exportCsv = async () => {
+    // Pull every page for the current filter, then download.
+    const acc: SubListRow[] = []
+    for (let pg = 1; pg <= totalPages; pg++) {
+      const res = await adminFetch(query(pg))
+      const json = await res.json()
+      acc.push(...(json.subscriptions ?? []))
+    }
+    const header = ['name', 'email', 'plan', 'status', 'credits', 'renews', 'priceWon']
+    const lines = acc.map(r => [r.studentName ?? '', r.studentEmail ?? '', r.plan, r.status, r.creditsTotal, r.currentPeriodEnd ?? '', r.priceWon ?? ''].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','))
+    downloadCsv('study-subscriptions.csv', [header.join(','), ...lines].join('\n'))
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex flex-wrap items-center gap-3">
+        <div className="relative flex-1 min-w-[200px]">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+          <Input value={q} onChange={e => setQ(e.target.value)} placeholder={String(t('admin.studyConsole.searchPlaceholder'))} className="pl-9" />
+        </div>
+        <Select value={status} onValueChange={v => { setStatus(v); setPage(1) }}>
+          <SelectTrigger className="w-[160px]"><SelectValue /></SelectTrigger>
+          <SelectContent>{SUB_STATUS_OPTIONS.map(s => <SelectItem key={s} value={s}>{statusLabel(s)}</SelectItem>)}</SelectContent>
+        </Select>
+        <Select value={plan} onValueChange={v => { setPlan(v); setPage(1) }}>
+          <SelectTrigger className="w-[190px]"><SelectValue /></SelectTrigger>
+          <SelectContent>{SUB_PLAN_OPTIONS.map(p => <SelectItem key={p} value={p}>{p === 'all' ? String(t('admin.studyConsole.subAllPlans')) : p}</SelectItem>)}</SelectContent>
+        </Select>
+        <Button variant="outline" size="sm" onClick={exportCsv} disabled={total === 0}>
+          <Download className="w-4 h-4 mr-1.5" />{String(t('admin.studyConsole.exportCsv'))}
+        </Button>
+      </div>
+
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+        {loading ? (
+          <div className="p-6 text-sm text-gray-400">{t('admin.studyConsole.loading')}</div>
+        ) : rows.length === 0 ? (
+          <AdminEmptyState icon={CreditCard} title={String(t('admin.studyConsole.subsEmpty'))} />
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50/60">
+                <tr className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                  <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colStudent'))}</th>
+                  <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colPlan'))}</th>
+                  <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colStatus'))}</th>
+                  <th className="px-4 py-3 text-right">{String(t('admin.studyConsole.colCredits'))}</th>
+                  <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colRenews'))}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {rows.map((r) => (
+                  <tr key={r.studentId} className="hover:bg-gray-50/60">
+                    <td className="px-4 py-3">
+                      <div className="font-medium text-gray-900 truncate max-w-[220px]">{r.studentName || t('admin.studyConsole.noName')}</div>
+                      <div className="text-xs text-gray-500 truncate max-w-[220px]">{r.studentEmail}</div>
+                    </td>
+                    <td className="px-4 py-3 text-gray-700 whitespace-nowrap">{r.plan}{r.pendingPlan ? ` → ${r.pendingPlan}` : ''}</td>
+                    <td className="px-4 py-3">
+                      <span className={`inline-flex items-center h-5 px-2 rounded-full text-[11px] font-semibold ring-1 ${subStatusMeta(r.status)}`}>{statusLabel(r.status)}</span>
+                      {r.cancelAtPeriodEnd && <span className="ml-1.5 text-[11px] text-amber-600">{String(t('admin.studyConsole.cancelsShort'))}</span>}
+                    </td>
+                    <td className="px-4 py-3 text-right tabular-nums text-gray-700">{r.creditsTotal.toLocaleString(locale)}</td>
+                    <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{when(r.currentPeriodEnd)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {total > 20 && <Pager page={page} totalPages={totalPages} total={total} onPage={setPage} />}
+    </div>
+  )
+}
+
+/* ─────────────────────── Global payments list ─────────────────────── */
+
+const PAY_KIND_OPTIONS = ['all', 'study_subscription', 'study_credit_pack', 'study_exam_pass']
+
+function PaymentsList() {
+  const { t, language } = useTranslation()
+  const locale = getDateLocale(language)
+  const adminFetch = useAdminFetch()
+  const { kindLabel, statusMeta, won } = usePaymentFormatters(locale)
+  const [kind, setKind] = useState('all')
+  const [q, setQ] = useState('')
+  const [debouncedQ, setDebouncedQ] = useState('')
+  const [page, setPage] = useState(1)
+  const [rows, setRows] = useState<PaymentRow[]>([])
+  const [total, setTotal] = useState(0)
+  const [grossWon, setGrossWon] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const [refundTarget, setRefundTarget] = useState<PaymentRow | null>(null)
+
+  useEffect(() => { const h = setTimeout(() => { setDebouncedQ(q); setPage(1) }, 300); return () => clearTimeout(h) }, [q])
+
+  const query = useCallback((pg: number) => {
+    const p = new URLSearchParams({ scope: 'all', page: String(pg) })
+    if (kind !== 'all') p.set('kind', kind)
+    if (debouncedQ) p.set('q', debouncedQ)
+    return `/api/admin/study/payments?${p.toString()}`
+  }, [kind, debouncedQ])
+
+  const load = useCallback(async () => {
+    setLoading(true)
+    try {
+      const res = await adminFetch(query(page))
+      const json = await res.json()
+      setRows(json.payments ?? [])
+      setTotal(json.total ?? 0)
+      setGrossWon(json.grossWon ?? 0)
+    } catch { setRows([]) } finally { setLoading(false) }
+  }, [adminFetch, query, page])
+
+  useEffect(() => { void load() }, [load])
+
+  const totalPages = Math.max(1, Math.ceil(total / 20))
+  const kindOptLabel = (k: string) => k === 'all' ? String(t('admin.studyConsole.payAllKinds')) : kindLabel(k)
+
+  const exportCsv = async () => {
+    const acc: PaymentRow[] = []
+    for (let pg = 1; pg <= totalPages; pg++) {
+      const res = await adminFetch(query(pg))
+      const json = await res.json()
+      acc.push(...(json.payments ?? []))
+    }
+    const header = ['name', 'email', 'kind', 'amountWon', 'status', 'date', 'paymentId']
+    const lines = acc.map(r => [r.studentName ?? '', r.studentEmail ?? '', r.kind, r.amountWon ?? '', r.refunded ? 'refunded' : 'paid', r.createdAt ?? '', r.paymentId].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','))
+    downloadCsv('study-payments.csv', [header.join(','), ...lines].join('\n'))
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex flex-wrap items-center gap-3">
+        <div className="relative flex-1 min-w-[200px]">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+          <Input value={q} onChange={e => setQ(e.target.value)} placeholder={String(t('admin.studyConsole.searchPlaceholder'))} className="pl-9" />
+        </div>
+        <Select value={kind} onValueChange={v => { setKind(v); setPage(1) }}>
+          <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
+          <SelectContent>{PAY_KIND_OPTIONS.map(k => <SelectItem key={k} value={k}>{kindOptLabel(k)}</SelectItem>)}</SelectContent>
+        </Select>
+        <div className="text-xs text-gray-500 ml-auto">
+          {String(t('admin.studyConsole.paymentsGross'))}: <span className="font-semibold text-gray-900 tabular-nums">{won(grossWon)}</span>
+        </div>
+        <Button variant="outline" size="sm" onClick={exportCsv} disabled={total === 0}>
+          <Download className="w-4 h-4 mr-1.5" />{String(t('admin.studyConsole.exportCsv'))}
+        </Button>
+      </div>
+
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+        {loading ? (
+          <div className="p-6 text-sm text-gray-400">{t('admin.studyConsole.loading')}</div>
+        ) : rows.length === 0 ? (
+          <AdminEmptyState icon={CreditCard} title={String(t('admin.studyConsole.paymentsEmpty'))} />
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50/60">
+                <tr className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                  <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colStudent'))}</th>
+                  <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colKind'))}</th>
+                  <th className="px-4 py-3 text-right">{String(t('admin.studyConsole.colAmount'))}</th>
+                  <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colStatus'))}</th>
+                  <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colDate'))}</th>
+                  <th className="px-4 py-3"></th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {rows.map((p) => {
+                  const meta = statusMeta(p.refunded)
+                  return (
+                    <tr key={p.paymentId} className="hover:bg-gray-50/60">
+                      <td className="px-4 py-3">
+                        <div className="font-medium text-gray-900 truncate max-w-[220px]">{p.studentName || t('admin.studyConsole.noName')}</div>
+                        <div className="text-xs text-gray-500 truncate max-w-[220px]">{p.studentEmail}</div>
+                      </td>
+                      <td className="px-4 py-3 text-gray-700 whitespace-nowrap">{kindLabel(p.kind)}</td>
+                      <td className="px-4 py-3 text-right tabular-nums font-medium text-gray-900 whitespace-nowrap">{won(p.amountWon)}</td>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center h-5 px-2 rounded-full text-[11px] font-semibold ring-1 ${meta.cls}`}>{meta.label}</span>
+                      </td>
+                      <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">{p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—'}</td>
+                      <td className="px-4 py-3 text-right whitespace-nowrap">
+                        {!p.refunded && (
+                          <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>{String(t('admin.studyConsole.refund'))}</Button>
+                        )}
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {total > 20 && <Pager page={page} totalPages={totalPages} total={total} onPage={setPage} />}
+
+      {refundTarget && (
+        <RefundDialog
+          payment={refundTarget}
+          kindLabel={kindLabel(refundTarget.kind)}
+          amountLabel={won(refundTarget.amountWon)}
+          onClose={() => setRefundTarget(null)}
+          onDone={() => { setRefundTarget(null); void load() }}
+        />
+      )}
+    </div>
+  )
+}
+
+/* ─────────────────────── shared: pager + csv ─────────────────────── */
+
+function Pager({ page, totalPages, total, onPage }: { page: number; totalPages: number; total: number; onPage: (p: number) => void }) {
+  const { t } = useTranslation()
+  return (
+    <div className="flex items-center justify-between">
+      <span className="text-xs text-gray-500">{String(t('admin.studyConsole.pageOf', { page, totalPages, total }))}</span>
+      <div className="flex gap-2">
+        <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => onPage(page - 1)}>{String(t('admin.common.previous'))}</Button>
+        <Button variant="outline" size="sm" disabled={page >= totalPages} onClick={() => onPage(page + 1)}>{String(t('admin.common.next'))}</Button>
+      </div>
+    </div>
+  )
+}
+
+function downloadCsv(filename: string, content: string) {
+  const blob = new Blob(['﻿' + content], { type: 'text/csv;charset=utf-8;' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  a.click()
+  URL.revokeObjectURL(url)
 }

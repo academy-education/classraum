@@ -2,99 +2,132 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { supabaseAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth, logAdminActivity } from '@/lib/admin-auth';
-import { getPaymentInfo, cancelPayment } from '@/lib/portone-charge';
+import { cancelPayment } from '@/lib/portone-charge';
 
 /**
- * Admin view of a student's study-system income (the PortOne side of the
- * house) + the ability to issue a refund.
+ * Admin view of study-system income (the PortOne side) + refunds.
  *
- * GET  /api/admin/study/payments?studentId=<uuid>
- *   → the student's study_payments rows (credit packs / exam passes),
- *     each enriched with its authoritative live PortOne status so the
- *     operator sees PAID vs CANCELLED without trusting stale local state.
+ * GET /api/admin/study/payments?studentId=<uuid>   → one student's payments
+ * GET /api/admin/study/payments?scope=all&kind=&q=&page=  → all study payments
+ *   Rows: credit packs, exam passes, and subscription charges (backfilled +
+ *   recorded going forward). Refund state comes from the local `refunded_at`
+ *   column — set by our refund action — so the list is fast and doesn't need a
+ *   per-row live PortOne call. (A refund issued directly in the PortOne console,
+ *   outside this tool, won't be reflected here.)
  *
  * POST /api/admin/study/payments   { paymentId, reason }
- *   → full refund via PortOne (cancelPayment). The refund is ALWAYS
- *     operator-initiated here; we never auto-refund. Credits are NOT
- *     auto-revoked (a student may already have spent them) — the operator
- *     adjusts the balance separately if needed. Logged to activity.
+ *   → full refund via PortOne (operator-initiated only) + stamp refunded_at.
  *
  * Admin-only; study data is minors' billing info so access is gated.
  */
 
 export const dynamic = 'force-dynamic';
 
+const PAGE_SIZE = 20;
+const KINDS = ['study_credit_pack', 'study_exam_pass', 'study_subscription'] as const;
+
+interface PayRow {
+  payment_id: string;
+  student_id: string;
+  kind: string;
+  amount_won: number | null;
+  created_at: string | null;
+  refunded_at: string | null;
+}
+
+function toDto(r: PayRow, student?: { name: string | null; email: string | null }) {
+  return {
+    paymentId: r.payment_id,
+    studentId: r.student_id,
+    studentName: student?.name ?? null,
+    studentEmail: student?.email ?? null,
+    kind: r.kind,
+    amountWon: r.amount_won ?? null,
+    createdAt: r.created_at,
+    refunded: !!r.refunded_at,
+    refundedAt: r.refunded_at,
+  };
+}
+
+async function attachStudents(rows: PayRow[]) {
+  const ids = Array.from(new Set(rows.map((r) => r.student_id)));
+  const map = new Map<string, { name: string | null; email: string | null }>();
+  if (ids.length > 0) {
+    const { data: users } = await supabaseAdmin.from('users').select('id, name, email').in('id', ids);
+    for (const u of users ?? []) map.set(u.id as string, { name: u.name as string | null, email: u.email as string | null });
+  }
+  return rows.map((r) => toDto(r, map.get(r.student_id)));
+}
+
+// Net revenue = paid minus refunded.
+function netRevenue(rows: PayRow[]) {
+  return rows.filter((r) => !r.refunded_at).reduce((sum, r) => sum + (r.amount_won ?? 0), 0);
+}
+
 export async function GET(req: NextRequest) {
   const auth = await requireAdminAuth(req);
   if (!auth.success) return auth.response;
 
-  const studentId = req.nextUrl.searchParams.get('studentId');
-  if (!studentId) return NextResponse.json({ error: 'studentId required' }, { status: 400 });
+  const sp = req.nextUrl.searchParams;
+  const studentId = sp.get('studentId');
+  const scope = sp.get('scope');
 
-  const { data: rows, error } = await supabaseAdmin
+  // ── Per-student ────────────────────────────────────────────────────────
+  if (studentId) {
+    const { data, error } = await supabaseAdmin
+      .from('study_payments')
+      .select('payment_id, student_id, kind, amount_won, created_at, refunded_at')
+      .eq('student_id', studentId)
+      .order('created_at', { ascending: false })
+      .limit(100);
+    if (error) {
+      console.error('[admin/study/payments] per-student', error);
+      return NextResponse.json({ error: 'list failed' }, { status: 500 });
+    }
+    const rows = (data ?? []) as PayRow[];
+    return NextResponse.json({ payments: rows.map((r) => toDto(r)), grossWon: netRevenue(rows) });
+  }
+
+  // ── Global list ────────────────────────────────────────────────────────
+  if (scope !== 'all') return NextResponse.json({ error: 'studentId or scope=all required' }, { status: 400 });
+
+  const kind = sp.get('kind');
+  const q = sp.get('q')?.trim();
+  const page = Math.max(1, parseInt(sp.get('page') ?? '1', 10) || 1);
+
+  // Resolve a name/email search to the matching student ids first.
+  let studentFilter: string[] | null = null;
+  if (q) {
+    const { data: users } = await supabaseAdmin
+      .from('users')
+      .select('id')
+      .or(`name.ilike.%${q}%,email.ilike.%${q}%`)
+      .limit(500);
+    studentFilter = (users ?? []).map((u) => u.id as string);
+    if (studentFilter.length === 0) {
+      return NextResponse.json({ payments: [], total: 0, page, pageSize: PAGE_SIZE, grossWon: 0 });
+    }
+  }
+
+  let query = supabaseAdmin
     .from('study_payments')
-    .select('*')
-    .eq('student_id', studentId)
+    .select('payment_id, student_id, kind, amount_won, created_at, refunded_at')
     .order('created_at', { ascending: false })
-    .limit(100);
+    .limit(1000);
+  if (kind && (KINDS as readonly string[]).includes(kind)) query = query.eq('kind', kind);
+  if (studentFilter) query = query.in('student_id', studentFilter);
+
+  const { data, error } = await query;
   if (error) {
-    console.error('[admin/study/payments] list', error);
+    console.error('[admin/study/payments] global', error);
     return NextResponse.json({ error: 'list failed' }, { status: 500 });
   }
-
-  // Base list from recorded payments (packs / passes / subscription charges).
-  const base: Array<{ payment_id: string; kind: string; amount_won: number | null; created_at: string | null }> =
-    (rows ?? []).map((r) => ({
-      payment_id: r.payment_id as string,
-      kind: r.kind as string,
-      amount_won: (r.amount_won as number | null) ?? null,
-      created_at: (r.created_at as string | null) ?? null,
-    }));
-
-  // Backfill: subscription renewals only persist the LATEST id on the
-  // subscription row (older ones aren't recorded historically). Surface that
-  // latest charge even when there's no study_payments row for it yet, so the
-  // most recent subscription payment always shows.
-  const { data: sub } = await supabaseAdmin
-    .from('study_subscriptions')
-    .select('last_payment_id, last_payment_attempt_at')
-    .eq('student_id', studentId)
-    .maybeSingle();
-  const lastPaymentId = sub?.last_payment_id as string | undefined;
-  if (lastPaymentId && !base.some((b) => b.payment_id === lastPaymentId)) {
-    base.unshift({
-      payment_id: lastPaymentId,
-      kind: 'study_subscription',
-      amount_won: null, // filled from PortOne below
-      created_at: (sub?.last_payment_attempt_at as string) ?? null,
-    });
-  }
-
-  // Enrich each row with live PortOne status (in parallel, bounded by the
-  // 100-row cap). A missing/unreadable payment just yields status 'UNKNOWN'
-  // rather than failing the whole list.
-  const payments = await Promise.all(
-    base.map(async (r) => {
-      const info = await getPaymentInfo(r.payment_id).catch(() => null);
-      return {
-        paymentId: r.payment_id,
-        kind: r.kind,
-        // Fall back to PortOne's amount when we have no locally-recorded amount
-        // (the backfilled subscription row).
-        amountWon: r.amount_won ?? (info?.ok ? (info.amountTotal ?? null) : null),
-        createdAt: r.created_at,
-        // PortOne statuses: PAID, CANCELLED, PARTIAL_CANCELLED, FAILED, …
-        portoneStatus: info?.ok ? (info.status ?? 'UNKNOWN') : 'UNKNOWN',
-        portoneAmount: info?.ok ? (info.amountTotal ?? null) : null,
-      };
-    }),
-  );
-
-  const grossWon = payments
-    .filter((p) => p.portoneStatus === 'PAID')
-    .reduce((sum, p) => sum + (p.amountWon ?? 0), 0);
-
-  return NextResponse.json({ payments, grossWon });
+  const all = (data ?? []) as PayRow[];
+  const grossWon = netRevenue(all);
+  const total = all.length;
+  const pageRows = all.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const payments = await attachStudents(pageRows);
+  return NextResponse.json({ payments, total, page, pageSize: PAGE_SIZE, grossWon });
 }
 
 const RefundSchema = z.object({
@@ -110,19 +143,25 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: 'bad body' }, { status: 400 });
   const { paymentId, reason } = parsed.data;
 
-  // Only refund payments that are ours (a study_payments row). Prevents this
-  // endpoint from being used to cancel arbitrary PortOne payment IDs.
+  // Only refund payments that are ours (a study_payments row).
   const { data: row } = await supabaseAdmin
     .from('study_payments')
-    .select('payment_id, student_id, amount_won, kind')
+    .select('payment_id, student_id, amount_won, kind, refunded_at')
     .eq('payment_id', paymentId)
     .maybeSingle();
   if (!row) return NextResponse.json({ error: 'payment not found' }, { status: 404 });
+  if (row.refunded_at) return NextResponse.json({ error: 'already refunded' }, { status: 409 });
 
   const result = await cancelPayment({ paymentId, reason });
   if (!result.ok) {
     return NextResponse.json({ error: result.message ?? 'refund failed' }, { status: 502 });
   }
+
+  // Stamp the local refund so the lists reflect it without a PortOne round-trip.
+  await supabaseAdmin
+    .from('study_payments')
+    .update({ refunded_at: new Date().toISOString(), refund_reason: reason })
+    .eq('payment_id', paymentId);
 
   await logAdminActivity({
     adminUserId: auth.user.id,
