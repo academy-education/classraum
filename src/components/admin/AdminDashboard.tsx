@@ -24,6 +24,7 @@ const AdminTrendChart = dynamic(() => import('./AdminTrendChart'), {
 import { ChartOverview } from './ChartOverview';
 import { supabase } from '@/lib/supabase';
 import { AdminPageHeader } from './AdminPageHeader';
+import { Button } from '@/components/ui/button';
 import { AdminSkeleton } from './AdminSkeleton';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -63,23 +64,42 @@ export function AdminDashboard() {
   const { t } = useTranslation();
   const router = useRouter();
   const [resolvingAlertId, setResolvingAlertId] = useState<string | null>(null);
+  const [resolvingAll, setResolvingAll] = useState(false);
 
-  // Resolve a system alert. Updates Supabase + optimistically removes the
-  // alert from the local list so it disappears from the dashboard immediately.
-  const handleResolveAlert = async (alertId: string) => {
-    setResolvingAlertId(alertId);
+  // Resolve one or more alerts (a de-duplicated card can stand for several
+  // identical rows). Updates Supabase + optimistically removes them locally.
+  const handleResolveGroup = async (ids: string[]) => {
+    if (ids.length === 0) return;
+    setResolvingAlertId(ids[0]);
     try {
       const { error } = await supabase
         .from('alerts')
         .update({ resolved: true, resolved_at: new Date().toISOString() })
-        .eq('id', alertId);
+        .in('id', ids);
       if (error) throw error;
-      // Optimistic removal — the alert no longer needs admin attention.
-      setAlerts(prev => prev.map(a => a.id === alertId ? { ...a, resolved: true } : a));
+      setAlerts(prev => prev.map(a => ids.includes(a.id) ? { ...a, resolved: true } : a));
     } catch (e) {
-      console.error('[AdminDashboard] Failed to resolve alert:', e);
+      console.error('[AdminDashboard] Failed to resolve alerts:', e);
     } finally {
       setResolvingAlertId(null);
+    }
+  };
+
+  // Clear the whole backlog in one click — handy after a fixed bug that logged
+  // a batch of now-stale alerts (e.g. the webhook-verification false positives).
+  const handleResolveAll = async () => {
+    setResolvingAll(true);
+    try {
+      const { error } = await supabase
+        .from('alerts')
+        .update({ resolved: true, resolved_at: new Date().toISOString() })
+        .eq('resolved', false);
+      if (error) throw error;
+      setAlerts(prev => prev.map(a => ({ ...a, resolved: true })));
+    } catch (e) {
+      console.error('[AdminDashboard] Failed to resolve all alerts:', e);
+    } finally {
+      setResolvingAll(false);
     }
   };
 
@@ -423,11 +443,11 @@ export function AdminDashboard() {
   const getAlertBgColor = (type: SystemAlert['type']) => {
     switch (type) {
       case 'error':
-        return 'bg-red-50 border-red-200';
+        return 'bg-rose-50 ring-rose-200/70';
       case 'warning':
-        return 'bg-amber-50 border-amber-200';
+        return 'bg-amber-50 ring-amber-200/70';
       case 'info':
-        return 'bg-sky-50 border-sky-200';
+        return 'bg-sky-50 ring-sky-200/70';
     }
   };
 
@@ -476,46 +496,73 @@ export function AdminDashboard() {
         }
       />
 
-      {/* System Alerts */}
-      {alerts.filter(alert => !alert.resolved).length > 0 && (
-        <div className="space-y-3">
-          <h2 className="text-lg font-semibold text-gray-900 flex items-center">
-            <AlertTriangle className="mr-2 h-5 w-5 text-amber-500" />
-            {String(t('admin.dashboard.alerts'))}
-          </h2>
-          <div className="space-y-2">
-            {alerts.filter(alert => !alert.resolved).map((alert) => (
-              <div
-                key={alert.id}
-                className={`p-4 border rounded-lg ${getAlertBgColor(alert.type)}`}
-              >
-                <div className="flex items-start space-x-3">
-                  {getAlertIcon(alert.type)}
-                  <div className="flex-1">
-                    <h3 className="font-medium text-gray-900">{alert.title}</h3>
-                    <p className="text-sm text-gray-600 mt-1">{alert.message}</p>
-                    <p className="text-xs text-gray-500 mt-2 flex items-center">
-                      <Clock className="mr-1 h-3 w-3" />
-                      {alert.timestamp.toLocaleString()}
-                    </p>
+      {/* System Alerts — de-duplicated: identical title+message rows (e.g. a
+          batch of the same failure) collapse into one card with an ×N count,
+          and "Resolve all" clears the whole backlog at once. */}
+      {(() => {
+        const active = alerts.filter(alert => !alert.resolved);
+        if (active.length === 0) return null;
+        const groups = Array.from(
+          active.reduce((m, a) => {
+            const key = `${a.type}|${a.title}|${a.message}`;
+            const g = m.get(key);
+            if (g) { g.ids.push(a.id); if (a.timestamp > g.timestamp) g.timestamp = a.timestamp; }
+            else m.set(key, { key, type: a.type, title: a.title, message: a.message, timestamp: a.timestamp, ids: [a.id] });
+            return m;
+          }, new Map<string, { key: string; type: SystemAlert['type']; title: string; message: string; timestamp: Date; ids: string[] }>()).values()
+        ).sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+        return (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-gray-900 flex items-center">
+                <AlertTriangle className="mr-2 h-5 w-5 text-amber-500" />
+                {String(t('admin.dashboard.alerts'))}
+                <span className="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 ring-1 ring-amber-200/60">
+                  {active.length}
+                </span>
+              </h2>
+              <Button variant="outline" size="sm" onClick={handleResolveAll} disabled={resolvingAll}>
+                {resolvingAll ? String(t('admin.dashboard.resolving')) : String(t('admin.dashboard.resolveAll'))}
+              </Button>
+            </div>
+            <div className="space-y-2">
+              {groups.map((g) => (
+                <div key={g.key} className={`p-4 rounded-2xl ring-1 ${getAlertBgColor(g.type)}`}>
+                  <div className="flex items-start gap-3">
+                    {getAlertIcon(g.type)}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium text-gray-900 flex items-center gap-2">
+                        {g.title}
+                        {g.ids.length > 1 && (
+                          <span className="inline-flex items-center h-5 px-1.5 rounded-full text-[11px] font-semibold bg-white/70 text-gray-600 ring-1 ring-gray-200/70">
+                            ×{g.ids.length}
+                          </span>
+                        )}
+                      </h3>
+                      <p className="text-sm text-gray-600 mt-1">{g.message}</p>
+                      <p className="text-xs text-gray-500 mt-2 flex items-center">
+                        <Clock className="mr-1 h-3 w-3" />
+                        {g.timestamp.toLocaleString()}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleResolveGroup(g.ids)}
+                      disabled={resolvingAlertId === g.ids[0]}
+                      className="text-sm font-medium text-primary hover:text-primary/80 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+                    >
+                      {resolvingAlertId === g.ids[0] ? String(t('admin.dashboard.resolving')) : String(t('admin.dashboard.resolve'))}
+                    </button>
                   </div>
-                  <button
-                    onClick={() => handleResolveAlert(alert.id)}
-                    disabled={resolvingAlertId === alert.id}
-                    className="text-sm font-medium text-primary hover:text-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {resolvingAlertId === alert.id ? String(t('admin.dashboard.resolving')) : String(t('admin.dashboard.resolve'))}
-                  </button>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.totalAcademies'))}</h3>
           </div>
@@ -546,7 +593,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.totalUsers'))}</h3>
           </div>
@@ -577,7 +624,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.monthlyRevenue'))}</h3>
           </div>
@@ -606,7 +653,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-5 ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.activeSubscriptions'))}</h3>
           </div>
