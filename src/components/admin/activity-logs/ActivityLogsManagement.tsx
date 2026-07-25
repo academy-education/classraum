@@ -23,6 +23,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { DateInput } from '@/components/ui/common/DateInput';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { useAdminFetch } from '../useAdminFetch';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
@@ -64,7 +65,7 @@ const actionTypes = [
 const targetTypes = ['academy', 'user', 'subscription', 'notification', 'support_ticket'];
 
 export function ActivityLogsManagement() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const [logs, setLogs] = useState<ActivityLog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -182,7 +183,7 @@ export function ActivityLogsManagement() {
       String(t('admin.activityLogs.ipAddress')),
     ];
     const rows = logs.map(log => [
-      new Date(log.created_at).toLocaleString(),
+      new Date(log.created_at).toLocaleString(getDateLocale(language)),
       log.users.name || log.users.email,
       formatActionType(log.action_type),
       log.target_type || '-',
@@ -407,7 +408,7 @@ export function ActivityLogsManagement() {
                 {sortedLogs.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50">
                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
-                      {new Date(log.created_at).toLocaleString()}
+                      {new Date(log.created_at).toLocaleString(getDateLocale(language))}
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center">

@@ -203,6 +203,61 @@ export async function getPaymentInfo(paymentId: string): Promise<PaymentInfoResu
   return { ok: false, message: lastMessage }
 }
 
+export interface CancelPaymentResult {
+  ok: boolean
+  status?: string
+  cancelledAmount?: number
+  message?: string
+}
+
+/**
+ * Cancel (refund) a PortOne payment — full or partial.
+ * POST /payments/{paymentId}/cancel  https://developers.portone.io/api/rest-v2
+ *
+ * Omit `amountWon` for a full refund; pass it for a partial. `reason` is
+ * required by PortOne. Returns the resulting cancellation status.
+ * Admin-only callers (the refund is initiated by a human operator in the
+ * admin console, never automatically).
+ */
+export async function cancelPayment(input: {
+  paymentId: string
+  reason: string
+  amountWon?: number
+}): Promise<CancelPaymentResult> {
+  const cfg = getPortOneConfig()
+  if (!cfg.apiSecret) return { ok: false, message: 'PORTONE_API_SECRET not configured' }
+
+  const body: Record<string, unknown> = { reason: input.reason }
+  if (typeof input.amountWon === 'number') body.amount = input.amountWon
+
+  let response: Response
+  try {
+    response = await fetch(`${PORTONE_API_BASE}/payments/${encodeURIComponent(input.paymentId)}/cancel`, {
+      method: 'POST',
+      headers: {
+        Authorization: `PortOne ${cfg.apiSecret}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+  } catch (e) {
+    return { ok: false, message: `network: ${(e as Error).message}` }
+  }
+
+  let data: Record<string, unknown> = {}
+  try { data = await response.json() } catch { /* non-JSON */ }
+  if (!response.ok) {
+    return { ok: false, message: typeof data.message === 'string' ? data.message : `HTTP ${response.status}` }
+  }
+
+  const cancellation = (data.cancellation as { status?: string; totalAmount?: number } | undefined) ?? undefined
+  return {
+    ok: true,
+    status: cancellation?.status,
+    cancelledAmount: cancellation?.totalAmount ?? input.amountWon,
+  }
+}
+
 export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortOneChargeResult> {
   const cfg = getPortOneConfig()
   if (!cfg.apiSecret) {

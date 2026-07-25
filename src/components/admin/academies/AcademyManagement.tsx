@@ -40,6 +40,7 @@ import { Button } from '@/components/ui/button';
 import { useDedupedToast } from '../useDedupedToast';
 import { useConfirm } from '../useConfirm';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { AdminEmptyState } from '../AdminEmptyState';
 
 interface Academy {
@@ -69,7 +70,7 @@ export function AcademyManagement() {
   const confirm = useConfirm();
   const adminFetch = useAdminFetch();
   const { announce, LiveRegion } = useLiveAnnounce();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [academies, setAcademies] = useState<Academy[]>([]);
   const [loading, setLoading] = useState(true);
   // Filter state mirrored to URL params so refreshing / sharing the page
@@ -426,8 +427,8 @@ export function AcademyManagement() {
       academy.subscriptionTier,
       academy.totalUsers,
       academy.monthlyRevenue,
-      academy.createdAt.toLocaleDateString(),
-      academy.lastActive.toLocaleDateString()
+      academy.createdAt.toLocaleDateString(getDateLocale(language)),
+      academy.lastActive.toLocaleDateString(getDateLocale(language))
     ]);
 
     const csv = [
@@ -794,10 +795,10 @@ export function AcademyManagement() {
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {new Date(academy.lastActive).toLocaleDateString()}
+                        {new Date(academy.lastActive).toLocaleDateString(getDateLocale(language))}
                       </div>
                       <div className="text-xs text-gray-500">
-                        {new Date(academy.lastActive).toLocaleTimeString()}
+                        {new Date(academy.lastActive).toLocaleTimeString(getDateLocale(language))}
                       </div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap text-right relative">

@@ -16,6 +16,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { useAdminFetch } from '../useAdminFetch';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { DashboardCard } from '../DashboardCard';
@@ -63,7 +64,7 @@ interface ApproachingLimit {
 }
 
 export function SubscriptionUsageMonitoring() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const [usageData, setUsageData] = useState<UsageData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -264,7 +265,7 @@ export function SubscriptionUsageMonitoring() {
                         <div>
                           <p className="text-sm font-medium text-gray-900">{academy?.name || String(t('admin.common.unknown'))}</p>
                           <p className="text-xs text-gray-500">
-                            {String(t('admin.usage.lastUpdatedDate', { date: new Date(usage.calculated_at).toLocaleDateString() }))}
+                            {String(t('admin.usage.lastUpdatedDate', { date: new Date(usage.calculated_at).toLocaleDateString(getDateLocale(language)) }))}
                           </p>
                         </div>
                       </td>

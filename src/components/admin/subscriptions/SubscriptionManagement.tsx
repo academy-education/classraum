@@ -33,6 +33,7 @@ import { SortableTh } from '../SortableTh';
 import { useDebouncedValue } from '../useDebouncedValue';
 import { AdminEmptyState } from '../AdminEmptyState';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 
 interface SubscriptionData {
   id: string;
@@ -64,7 +65,7 @@ interface RevenueMetrics {
 }
 
 export function SubscriptionManagement() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const { announce, LiveRegion } = useLiveAnnounce();
   const [subscriptions, setSubscriptions] = useState<SubscriptionData[]>([]);
@@ -391,7 +392,7 @@ export function SubscriptionManagement() {
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm text-gray-900">
-                          {subscription.nextBillingDate.toLocaleDateString()}
+                          {subscription.nextBillingDate.toLocaleDateString(getDateLocale(language))}
                         </div>
                         <div className={`text-xs ${
                           subscription.status === 'past_due' ? 'text-rose-600 font-medium' : 'text-gray-500'

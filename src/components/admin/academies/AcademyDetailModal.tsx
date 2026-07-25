@@ -23,6 +23,7 @@ import {
 import { formatPrice } from '@/lib/subscription';
 import { supabase } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { Button } from '@/components/ui/button';
 import { AdminEmptyState } from '../AdminEmptyState';
@@ -68,7 +69,7 @@ interface AcademyNote {
 
 export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps) {
   const adminFetch = useAdminFetch();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const confirm = useConfirm();
   const { toast } = useDedupedToast();
   const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'billing' | 'notes'>('overview');
@@ -288,7 +289,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">{String(t('admin.academies.createdLabel'))}</span>
-                      <span className="text-sm">{academy.createdAt.toLocaleDateString()}</span>
+                      <span className="text-sm">{academy.createdAt.toLocaleDateString(getDateLocale(language))}</span>
                     </div>
                   </div>
                 </div>
@@ -538,7 +539,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                         <div className="flex items-center gap-2">
                           <span>{note.users?.name || note.users?.email || String(t('admin.common.unknownUser'))}</span>
                           <span>•</span>
-                          <span>{new Date(note.created_at).toLocaleDateString()}</span>
+                          <span>{new Date(note.created_at).toLocaleDateString(getDateLocale(language))}</span>
                         </div>
                         {note.tags && note.tags.length > 0 && (
                           <div className="flex items-center gap-1">

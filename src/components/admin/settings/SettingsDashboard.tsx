@@ -18,6 +18,7 @@ import { performLogout } from '@/lib/logout';
 import { useRouter } from 'next/navigation';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { StatusBadge } from '../StatusBadge';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { getAdminPermissions } from '@/lib/admin-auth-shared';
@@ -45,7 +46,7 @@ interface AdminProfile {
  * add them here as proper sections with proper API calls.
  */
 export function SettingsDashboard() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [profile, setProfile] = useState<AdminProfile | null>(null)
@@ -206,7 +207,7 @@ export function SettingsDashboard() {
                   {profile.role === 'super_admin' ? String(t('admin.settings.roleSuperAdmin')) : String(t('admin.settings.roleAdmin'))}
                 </StatusBadge>
                 <span className="text-xs text-gray-500">
-                  {String(t('admin.settings.memberSinceDate', { date: new Date(profile.createdAt).toLocaleDateString() }))}
+                  {String(t('admin.settings.memberSinceDate', { date: new Date(profile.createdAt).toLocaleDateString(getDateLocale(language)) }))}
                 </span>
               </div>
             </div>

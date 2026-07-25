@@ -22,6 +22,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useAdminFetch } from '../useAdminFetch';
 import { AdminSkeleton } from '../AdminSkeleton';
@@ -48,7 +49,7 @@ const logLevels = ['debug', 'info', 'warn', 'error', 'critical'];
 
 export function ErrorLogsDashboard() {
   const adminFetch = useAdminFetch();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const confirm = useConfirm();
   const [logs, setLogs] = useState<ErrorLog[]>([]);
   const [services, setServices] = useState<string[]>([]);
@@ -397,7 +398,7 @@ export function ErrorLogsDashboard() {
                         </StatusBadge>
                         <span className="text-sm font-medium text-gray-700">{log.service_name}</span>
                         <span className="text-xs text-gray-500">
-                          {new Date(log.created_at).toLocaleString()}
+                          {new Date(log.created_at).toLocaleString(getDateLocale(language))}
                         </span>
                       </div>
                       <p className="text-sm text-gray-900">{log.message}</p>

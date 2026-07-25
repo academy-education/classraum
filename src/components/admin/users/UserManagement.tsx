@@ -602,7 +602,7 @@ export function UserManagement() {
                         {user.lastLoginAt ? user.lastLoginAt.toLocaleDateString(getDateLocale(language)) : String(t('admin.common.never'))}
                       </div>
                       <div className="text-sm text-gray-500">
-                        {user.lastLoginAt ? user.lastLoginAt.toLocaleTimeString() : ''}
+                        {user.lastLoginAt ? user.lastLoginAt.toLocaleTimeString(getDateLocale(language)) : ''}
                       </div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">

@@ -26,6 +26,7 @@ import { supabase } from '@/lib/supabase';
 import { AdminPageHeader } from './AdminPageHeader';
 import { useAdminFetch } from './useAdminFetch';
 import { Button } from '@/components/ui/button';
+import { getDateLocale } from '@/utils/dateUtils';
 import { AdminSkeleton } from './AdminSkeleton';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -62,7 +63,8 @@ interface SystemAlert {
 }
 
 export function AdminDashboard() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const dateLocale = getDateLocale(language);
   const router = useRouter();
   const adminFetch = useAdminFetch();
   const [resolvingAlertId, setResolvingAlertId] = useState<string | null>(null);
@@ -598,7 +600,7 @@ export function AdminDashboard() {
                       <p className="text-sm text-gray-600 mt-1">{localizeAlertMessage(g.title, g.message)}</p>
                       <p className="text-xs text-gray-500 mt-2 flex items-center">
                         <Clock className="mr-1 h-3 w-3" />
-                        {g.timestamp.toLocaleString()}
+                        {g.timestamp.toLocaleString(dateLocale)}
                       </p>
                     </div>
                     <Button

@@ -23,6 +23,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { DateInput } from '@/components/ui/common/DateInput';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { useAdminFetch } from '../useAdminFetch';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { DashboardCard } from '../DashboardCard';
@@ -51,7 +52,7 @@ interface WebhookEvent {
 const webhookTypes = ['settlement', 'payout'];
 
 export function WebhookEventViewer() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const [events, setEvents] = useState<WebhookEvent[]>([]);
   const [eventTypes, setEventTypes] = useState<string[]>([]);
@@ -456,7 +457,7 @@ export function WebhookEventViewer() {
                           <StatusBadge tone="pending" icon={Clock} size="sm">{String(t('admin.webhooks.pending'))}</StatusBadge>
                         )}
                         <span className="text-xs text-gray-500">
-                          {new Date(event.received_at).toLocaleString()}
+                          {new Date(event.received_at).toLocaleString(getDateLocale(language))}
                         </span>
                       </div>
 
@@ -525,11 +526,11 @@ export function WebhookEventViewer() {
                         )}
                         <div>
                           <span className="text-gray-600">{String(t('admin.webhooks.eventTime'))}:</span>
-                          <span className="ml-2 text-gray-900">{new Date(event.timestamp).toLocaleString()}</span>
+                          <span className="ml-2 text-gray-900">{new Date(event.timestamp).toLocaleString(getDateLocale(language))}</span>
                         </div>
                         <div>
                           <span className="text-gray-600">{String(t('admin.webhooks.receivedAt'))}:</span>
-                          <span className="ml-2 text-gray-900">{new Date(event.received_at).toLocaleString()}</span>
+                          <span className="ml-2 text-gray-900">{new Date(event.received_at).toLocaleString(getDateLocale(language))}</span>
                         </div>
                       </div>
 

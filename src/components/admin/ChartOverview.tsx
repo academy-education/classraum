@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { TrendingUp, BarChart3, Calendar } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getMonthShort } from '@/utils/dateUtils';
 import {
   BarChart,
   Bar,
@@ -15,7 +16,9 @@ import {
 } from 'recharts';
 
 interface ChartData {
-  period: string;
+  /** 0-11 month index — formatted to a localized label at render time so the
+   *  x-axis follows the app language without a data refetch. */
+  monthIndex: number;
   revenue: number;
   academies: number;
   users: number;
@@ -24,7 +27,8 @@ interface ChartData {
 type ChartType = 'revenue' | 'academies' | 'users';
 
 export function ChartOverview() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const monthLabels = getMonthShort(language);
   const [activeChart, setActiveChart] = useState<ChartType>('revenue');
   const [timeRange, setTimeRange] = useState<'6m' | '12m'>('12m');
   const [chartData, setChartData] = useState<ChartData[]>([]);
@@ -44,7 +48,7 @@ export function ChartOverview() {
         date.setMonth(date.getMonth() - (11 - i));
         return {
           date,
-          period: date.toLocaleDateString('en-US', { month: 'short' }),
+          monthIndex: date.getMonth(),
           year: date.getFullYear(),
           monthStart: new Date(date.getFullYear(), date.getMonth(), 1),
           monthEnd: new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59)
@@ -78,7 +82,7 @@ export function ChartOverview() {
         const monthlyRevenue = invoices?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0;
 
         return {
-          period: month.period,
+          monthIndex: month.monthIndex,
           revenue: monthlyRevenue,
           academies: Math.max(academiesResult.count || 0, 0),
           users: Math.max(usersResult.count || 0, 0)
@@ -247,7 +251,8 @@ export function ChartOverview() {
             <BarChart data={displayData} margin={{ top: 8, right: 4, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
               <XAxis
-                dataKey="period"
+                dataKey="monthIndex"
+                tickFormatter={(i) => monthLabels[i as number] ?? ''}
                 tick={{ fontSize: 11, fill: '#6b7280' }}
                 tickLine={false}
                 axisLine={false}
@@ -270,6 +275,7 @@ export function ChartOverview() {
                   padding: '8px 12px',
                 }}
                 labelStyle={{ color: '#9ca3af', fontWeight: 500, marginBottom: 2 }}
+                labelFormatter={(i) => monthLabels[i as number] ?? ''}
                 formatter={(value) => [formatValue(value as number, activeChart), getChartTitle(activeChart)]}
               />
               <Bar

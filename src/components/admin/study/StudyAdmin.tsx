@@ -8,7 +8,9 @@ import { AdminEmptyState } from '@/components/admin/AdminEmptyState'
 import { DashboardCard } from '@/components/admin/DashboardCard'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
+import { getDateLocale } from '@/utils/dateUtils'
 import { cn } from '@/lib/utils'
 
 /**
@@ -66,6 +68,7 @@ function UserLookup() {
   const [q, setQ] = useState('')
   const [results, setResults] = useState<SearchRow[]>([])
   const [detail, setDetail] = useState<Record<string, unknown> | null>(null)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -81,7 +84,7 @@ function UserLookup() {
   }, [q, adminFetch])
 
   const openUser = useCallback(async (id: string) => {
-    setLoading(true); setDetail(null)
+    setLoading(true); setDetail(null); setSelectedId(id)
     try {
       const res = await adminFetch(`/api/admin/study/user?id=${id}`)
       setDetail(await res.json())
@@ -120,17 +123,18 @@ function UserLookup() {
       <div>
         {loading && <div className="text-sm text-gray-400">{t('admin.studyConsole.loading')}</div>}
         {!loading && !detail && <div className="text-sm text-gray-400">{t('admin.studyConsole.pickPrompt')}</div>}
-        {!loading && detail && <UserDetail data={detail} />}
+        {!loading && detail && <UserDetail data={detail} studentId={selectedId} />}
       </div>
     </div>
   )
 }
 
 function money(n: unknown) { return typeof n === 'number' ? n.toLocaleString() : '—' }
-function when(s: unknown) { return typeof s === 'string' ? new Date(s).toLocaleString() : '—' }
+function when(s: unknown, locale: string) { return typeof s === 'string' ? new Date(s).toLocaleString(locale) : '—' }
 
-function UserDetail({ data }: { data: Record<string, unknown> }) {
-  const { t } = useTranslation()
+function UserDetail({ data, studentId }: { data: Record<string, unknown>; studentId: string | null }) {
+  const { t, language } = useTranslation()
+  const locale = getDateLocale(language)
   const user = data.user as { name?: string; email?: string; role?: string } | null
   const sub = data.subscription as Record<string, unknown> | null
   const counts = data.counts as { sessions: number; attempts: number }
@@ -189,7 +193,7 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
           {sub ? (
             <div className="text-sm text-gray-700 space-y-1">
               <div><b className="text-gray-900">{String(sub.plan)}</b> · {String(sub.status)}{sub.cancel_at_period_end ? ` · ${t('admin.studyConsole.cancelsAtPeriodEnd')}` : ''}</div>
-              <div className="text-xs text-gray-500">{t('admin.studyConsole.renews', { date: when(sub.current_period_end) })}{sub.pending_plan ? ` · ${t('admin.studyConsole.pendingPlan', { plan: String(sub.pending_plan) })}` : ''}</div>
+              <div className="text-xs text-gray-500">{t('admin.studyConsole.renews', { date: when(sub.current_period_end, locale) })}{sub.pending_plan ? ` · ${t('admin.studyConsole.pendingPlan', { plan: String(sub.pending_plan) })}` : ''}</div>
               {sub.last_payment_failure ? <div className="text-xs text-rose-600">{t('admin.studyConsole.lastPaymentFailure', { reason: String(sub.last_payment_failure) })}</div> : null}
             </div>
           ) : <Empty>{t('admin.studyConsole.noSubscription')}</Empty>}
@@ -215,7 +219,7 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
         <Panel title={String(t('admin.studyConsole.questionReports'))} icon={Flag}>
           {reports.length ? (
             <ul className="text-sm text-gray-700 space-y-1">
-              {reports.map((r, i) => <li key={i}>{String(r.reason)} · {String(r.status)} · <span className="text-gray-400">{when(r.created_at)}</span></li>)}
+              {reports.map((r, i) => <li key={i}>{String(r.reason)} · {String(r.status)} · <span className="text-gray-400">{when(r.created_at, locale)}</span></li>)}
             </ul>
           ) : <Empty>{t('admin.studyConsole.noReportsFiled')}</Empty>}
         </Panel>
@@ -233,7 +237,7 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
                       {(l.delta as number) >= 0 ? '+' : ''}{String(l.delta)}
                     </td>
                     <td className="py-2 pr-3 text-gray-600">{String(l.bucket)} · {String(l.kind)}</td>
-                    <td className="py-2 text-gray-400 text-xs whitespace-nowrap text-right">{when(l.created_at)}</td>
+                    <td className="py-2 text-gray-400 text-xs whitespace-nowrap text-right">{when(l.created_at, locale)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -241,6 +245,163 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
           </div>
         ) : <Empty>{t('admin.studyConsole.noLedger')}</Empty>}
       </Panel>
+
+      {/* Payments — the PortOne income side, with refund action */}
+      {studentId && <PaymentsPanel studentId={studentId} locale={locale} />}
+    </div>
+  )
+}
+
+interface PaymentRow {
+  paymentId: string
+  kind: string
+  amountWon: number | null
+  createdAt: string | null
+  portoneStatus: string
+  portoneAmount: number | null
+}
+
+// Student's study purchases (credit packs / exam passes) with live PortOne
+// status and an operator-initiated refund. This is the study system's income
+// view — money in via PortOne, refundable from here.
+function PaymentsPanel({ studentId, locale }: { studentId: string; locale: string }) {
+  const { t } = useTranslation()
+  const adminFetch = useAdminFetch()
+  const [rows, setRows] = useState<PaymentRow[]>([])
+  const [grossWon, setGrossWon] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const [refundTarget, setRefundTarget] = useState<PaymentRow | null>(null)
+
+  const load = useCallback(async () => {
+    setLoading(true)
+    try {
+      const res = await adminFetch(`/api/admin/study/payments?studentId=${studentId}`)
+      const json = await res.json()
+      setRows(json.payments ?? [])
+      setGrossWon(json.grossWon ?? 0)
+    } catch { setRows([]) } finally { setLoading(false) }
+  }, [adminFetch, studentId])
+
+  useEffect(() => { void load() }, [load])
+
+  const kindLabel = (kind: string) =>
+    kind === 'study_exam_pass' ? String(t('admin.studyConsole.paymentKindPass')) : String(t('admin.studyConsole.paymentKindPack'))
+
+  const statusMeta = (s: string): { label: string; cls: string } => {
+    switch (s) {
+      case 'PAID': return { label: String(t('admin.studyConsole.payStatusPaid')), cls: 'bg-emerald-50 text-emerald-700 ring-emerald-200/60' }
+      case 'CANCELLED': return { label: String(t('admin.studyConsole.payStatusCancelled')), cls: 'bg-gray-100 text-gray-600 ring-gray-200/70' }
+      case 'PARTIAL_CANCELLED': return { label: String(t('admin.studyConsole.payStatusPartial')), cls: 'bg-amber-50 text-amber-700 ring-amber-200/60' }
+      case 'FAILED': return { label: String(t('admin.studyConsole.payStatusFailed')), cls: 'bg-rose-50 text-rose-700 ring-rose-200/60' }
+      default: return { label: String(t('admin.studyConsole.payStatusUnknown')), cls: 'bg-gray-100 text-gray-500 ring-gray-200/70' }
+    }
+  }
+
+  const won = (n: number | null) => (typeof n === 'number' ? `₩${n.toLocaleString(locale)}` : '—')
+
+  return (
+    <Panel
+      title={String(t('admin.studyConsole.payments'))}
+      icon={CreditCard}
+    >
+      {loading ? (
+        <Empty>{t('admin.studyConsole.paymentsLoading')}</Empty>
+      ) : rows.length === 0 ? (
+        <Empty>{t('admin.studyConsole.paymentsEmpty')}</Empty>
+      ) : (
+        <>
+          <div className="mb-3 text-xs text-gray-500">
+            {String(t('admin.studyConsole.paymentsGross'))}: <span className="font-semibold text-gray-900 tabular-nums">{won(grossWon)}</span>
+          </div>
+          <div className="overflow-x-auto -mx-1">
+            <table className="w-full text-sm">
+              <tbody className="divide-y divide-gray-100">
+                {rows.map((p) => {
+                  const meta = statusMeta(p.portoneStatus)
+                  return (
+                    <tr key={p.paymentId}>
+                      <td className="py-2 pr-3 text-gray-700 whitespace-nowrap">{kindLabel(p.kind)}</td>
+                      <td className="py-2 pr-3 tabular-nums font-medium text-gray-900 whitespace-nowrap">{won(p.amountWon)}</td>
+                      <td className="py-2 pr-3">
+                        <span className={`inline-flex items-center h-5 px-2 rounded-full text-[11px] font-semibold ring-1 ${meta.cls}`}>{meta.label}</span>
+                      </td>
+                      <td className="py-2 pr-3 text-gray-400 text-xs whitespace-nowrap">{p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—'}</td>
+                      <td className="py-2 text-right whitespace-nowrap">
+                        {p.portoneStatus === 'PAID' && (
+                          <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>
+                            {String(t('admin.studyConsole.refund'))}
+                          </Button>
+                        )}
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      {refundTarget && (
+        <RefundDialog
+          payment={refundTarget}
+          kindLabel={kindLabel(refundTarget.kind)}
+          amountLabel={won(refundTarget.amountWon)}
+          onClose={() => setRefundTarget(null)}
+          onDone={() => { setRefundTarget(null); void load() }}
+        />
+      )}
+    </Panel>
+  )
+}
+
+function RefundDialog({ payment, kindLabel, amountLabel, onClose, onDone }: {
+  payment: PaymentRow
+  kindLabel: string
+  amountLabel: string
+  onClose: () => void
+  onDone: () => void
+}) {
+  const { t } = useTranslation()
+  const adminFetch = useAdminFetch()
+  const [reason, setReason] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const submit = async () => {
+    setBusy(true); setError(null)
+    try {
+      const res = await adminFetch('/api/admin/study/payments', {
+        method: 'POST',
+        body: JSON.stringify({ paymentId: payment.paymentId, reason: reason.trim() }),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) { setError(String(t('admin.studyConsole.refundFailed', { message: json.error ?? res.status }))); return }
+      onDone()
+    } catch (e) {
+      setError(String(t('admin.studyConsole.refundFailed', { message: (e as Error).message })))
+    } finally { setBusy(false) }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={onClose}>
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-5" onClick={e => e.stopPropagation()}>
+        <h3 className="text-base font-semibold text-gray-900">{String(t('admin.studyConsole.refundTitle'))}</h3>
+        <p className="mt-2 text-sm text-gray-600">
+          {String(t('admin.studyConsole.refundBody', { kind: kindLabel, amount: amountLabel }))}
+        </p>
+        <label className="block mt-4">
+          <span className="text-xs font-medium text-gray-500">{String(t('admin.studyConsole.refundReason'))}</span>
+          <Input value={reason} onChange={e => setReason(e.target.value)} placeholder={String(t('admin.studyConsole.refundReasonPlaceholder'))} className="mt-1" autoFocus />
+        </label>
+        {error && <p className="mt-2 text-xs text-rose-600">{error}</p>}
+        <div className="mt-5 flex justify-end gap-2">
+          <Button variant="outline" onClick={onClose} disabled={busy}>{String(t('admin.studyConsole.refundCancel'))}</Button>
+          <Button variant="destructive" onClick={submit} disabled={busy || reason.trim().length === 0}>
+            {busy ? String(t('admin.studyConsole.refundProcessing')) : String(t('admin.studyConsole.refundConfirm'))}
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -274,7 +435,8 @@ interface Report {
 }
 
 function ReportsQueue() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+  const locale = getDateLocale(language)
   const adminFetch = useAdminFetch()
   const [status, setStatus] = useState('open')
   const [reports, setReports] = useState<Report[]>([])
@@ -315,18 +477,19 @@ function ReportsQueue() {
 
   return (
     <div>
-      <div className="flex gap-1.5 mb-4">
-        {['open', 'reviewing', 'resolved', 'dismissed', 'all'].map(s => (
-          <button
-            key={s}
-            onClick={() => setStatus(s)}
-            className={`px-3 py-1 rounded-full text-xs font-medium ring-1 transition-colors ${
-              status === s ? 'bg-gray-900 text-white ring-gray-900' : 'bg-white text-gray-600 ring-gray-200 hover:ring-gray-300'
-            }`}
-          >
-            {statusLabel(s)}{s !== 'all' && counts[s] != null ? ` (${counts[s]})` : ''}
-          </button>
-        ))}
+      <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] mb-4">
+        <Select value={status} onValueChange={setStatus}>
+          <SelectTrigger className="w-[200px]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {['open', 'reviewing', 'resolved', 'dismissed', 'all'].map(s => (
+              <SelectItem key={s} value={s}>
+                {statusLabel(s)}{s !== 'all' && counts[s] != null ? ` (${counts[s]})` : ''}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {reports.length === 0 && (
@@ -338,7 +501,7 @@ function ReportsQueue() {
           <div key={r.id} className="rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] p-4">
             <div className="flex items-center gap-2 text-xs">
               <span className="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-semibold">{r.reason}</span>
-              <span className="text-gray-400">{new Date(r.created_at).toLocaleString()}</span>
+              <span className="text-gray-400">{new Date(r.created_at).toLocaleString(locale)}</span>
               <span className="text-gray-400">·</span>
               <span className="text-gray-500 truncate">{r.reporter?.email ?? r.reporter?.name ?? t('admin.studyConsole.unknownReporter')}</span>
               <span className="ml-auto text-gray-400">{statusLabel(r.status)}</span>

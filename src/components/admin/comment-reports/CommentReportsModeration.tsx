@@ -19,6 +19,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useAdminFetch } from '../useAdminFetch';
 import { useConfirm } from '../useConfirm';
@@ -56,7 +57,7 @@ const reportTypes = ['spam', 'abuse', 'other'];
 
 export function CommentReportsModeration() {
   const adminFetch = useAdminFetch();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const confirm = useConfirm();
   const [reports, setReports] = useState<CommentReport[]>([]);
   const [loading, setLoading] = useState(true);
@@ -340,7 +341,7 @@ export function CommentReportsModeration() {
                         {formatReportType(report.report_type)}
                       </StatusBadge>
                       <span className="text-xs text-gray-500">
-                        {String(t('admin.commentReports.reportedOn', { date: new Date(report.created_at).toLocaleDateString() }))}
+                        {String(t('admin.commentReports.reportedOn', { date: new Date(report.created_at).toLocaleDateString(getDateLocale(language)) }))}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">

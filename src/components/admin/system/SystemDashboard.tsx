@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { useTranslation } from '@/hooks/useTranslation';
+import { getDateLocale } from '@/utils/dateUtils';
 import { DashboardCard } from '../DashboardCard';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { AdminSkeleton } from '../AdminSkeleton';
@@ -56,7 +57,7 @@ interface SystemPayload {
 }
 
 export function SystemDashboard() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
   const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'logs'>('overview');
   const [refreshing, setRefreshing] = useState(false);
@@ -338,7 +339,7 @@ export function SystemDashboard() {
                       <div className="flex-1 min-w-0">
                         <p className="text-sm text-gray-900">{log.message}</p>
                         <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
-                          <span>{(log.timestamp as Date).toLocaleString()}</span>
+                          <span>{(log.timestamp as Date).toLocaleString(getDateLocale(language))}</span>
                           <span className="text-gray-300">·</span>
                           <span className="font-medium">{log.service}</span>
                         </div>
