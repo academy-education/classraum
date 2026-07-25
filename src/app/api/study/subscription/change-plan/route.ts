@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey } from '@/lib/portone-charge'
+import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { STUDY_PLANS, resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -123,6 +124,8 @@ export async function POST(req: NextRequest) {
     kind: 'grant',
     note: `upgrade to ${target.id} (${paymentId})`,
   })
+  // Record the upgrade charge so it appears in the admin payments view / is refundable.
+  await recordSubscriptionPayment({ paymentId, studentId: user.id, amountWon: target.priceWon })
 
   return NextResponse.json({
     success: true,

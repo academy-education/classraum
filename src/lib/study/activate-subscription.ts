@@ -1,5 +1,6 @@
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey } from '@/lib/portone-charge'
+import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
 import { grantReferralConversionIfEligible } from '@/lib/study/referral-conversion'
@@ -142,6 +143,8 @@ export async function activateSubscriptionFromBillingKey(opts: {
     kind: 'grant',
     note: `initial charge ${plan.id} (${paymentId})`,
   })
+  // Record the charge so it surfaces in the admin payments view / is refundable.
+  await recordSubscriptionPayment({ paymentId, studentId: opts.studentId, amountWon: plan.priceWon })
 
   void trackEvent(opts.studentId, 'checkout_completed', { plan: plan.id, priceWon: plan.priceWon })
   // Referral stage 2: grant both sides the premium-conversion bonus once.

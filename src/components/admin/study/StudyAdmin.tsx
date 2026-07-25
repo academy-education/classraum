@@ -284,8 +284,11 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
 
   useEffect(() => { void load() }, [load])
 
-  const kindLabel = (kind: string) =>
-    kind === 'study_exam_pass' ? String(t('admin.studyConsole.paymentKindPass')) : String(t('admin.studyConsole.paymentKindPack'))
+  const kindLabel = (kind: string) => {
+    if (kind === 'study_exam_pass') return String(t('admin.studyConsole.paymentKindPass'))
+    if (kind === 'study_subscription') return String(t('admin.studyConsole.paymentKindSubscription'))
+    return String(t('admin.studyConsole.paymentKindPack'))
+  }
 
   const statusMeta = (s: string): { label: string; cls: string } => {
     switch (s) {

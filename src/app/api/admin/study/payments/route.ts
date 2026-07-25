@@ -42,18 +42,47 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'list failed' }, { status: 500 });
   }
 
+  // Base list from recorded payments (packs / passes / subscription charges).
+  const base: Array<{ payment_id: string; kind: string; amount_won: number | null; created_at: string | null }> =
+    (rows ?? []).map((r) => ({
+      payment_id: r.payment_id as string,
+      kind: r.kind as string,
+      amount_won: (r.amount_won as number | null) ?? null,
+      created_at: (r.created_at as string | null) ?? null,
+    }));
+
+  // Backfill: subscription renewals only persist the LATEST id on the
+  // subscription row (older ones aren't recorded historically). Surface that
+  // latest charge even when there's no study_payments row for it yet, so the
+  // most recent subscription payment always shows.
+  const { data: sub } = await supabaseAdmin
+    .from('study_subscriptions')
+    .select('last_payment_id, last_payment_attempt_at')
+    .eq('student_id', studentId)
+    .maybeSingle();
+  const lastPaymentId = sub?.last_payment_id as string | undefined;
+  if (lastPaymentId && !base.some((b) => b.payment_id === lastPaymentId)) {
+    base.unshift({
+      payment_id: lastPaymentId,
+      kind: 'study_subscription',
+      amount_won: null, // filled from PortOne below
+      created_at: (sub?.last_payment_attempt_at as string) ?? null,
+    });
+  }
+
   // Enrich each row with live PortOne status (in parallel, bounded by the
   // 100-row cap). A missing/unreadable payment just yields status 'UNKNOWN'
   // rather than failing the whole list.
   const payments = await Promise.all(
-    (rows ?? []).map(async (r) => {
-      const paymentId = r.payment_id as string;
-      const info = await getPaymentInfo(paymentId).catch(() => null);
+    base.map(async (r) => {
+      const info = await getPaymentInfo(r.payment_id).catch(() => null);
       return {
-        paymentId,
-        kind: r.kind as string,
-        amountWon: (r.amount_won as number) ?? null,
-        createdAt: (r.created_at as string) ?? null,
+        paymentId: r.payment_id,
+        kind: r.kind,
+        // Fall back to PortOne's amount when we have no locally-recorded amount
+        // (the backfilled subscription row).
+        amountWon: r.amount_won ?? (info?.ok ? (info.amountTotal ?? null) : null),
+        createdAt: r.created_at,
         // PortOne statuses: PAID, CANCELLED, PARTIAL_CANCELLED, FAILED, …
         portoneStatus: info?.ok ? (info.status ?? 'UNKNOWN') : 'UNKNOWN',
         portoneAmount: info?.ok ? (info.amountTotal ?? null) : null,

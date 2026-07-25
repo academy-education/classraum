@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
+import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { resolvePlan, STUDY_PLANS, GRANT_INTERVAL_DAYS, isPassPlan } from '@/lib/study/plans'
 import { notifyStudent } from '@/lib/study/notify'
 
@@ -263,6 +264,8 @@ async function chargeAndAdvance(
       kind: 'grant',
       note: `renewal ${effectivePlan.id} (${paymentId})`,
     })
+    // Record the charge so it appears in the admin payments view / is refundable.
+    await recordSubscriptionPayment({ paymentId, studentId: row.student_id, amountWon: effectivePlan.priceWon })
     summary.charged++
   } else {
     await supabaseAdmin
