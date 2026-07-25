@@ -24,6 +24,8 @@ import { formatPrice } from '@/lib/subscription';
 import { supabase } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
+import { Button } from '@/components/ui/button';
+import { AdminEmptyState } from '../AdminEmptyState';
 import { useAdminFetch } from '../useAdminFetch';
 import { ModalShell } from '../ModalShell';
 import { useConfirm } from '../useConfirm';
@@ -388,7 +390,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
               {/* Add Note Button */}
               <div className="flex justify-between items-center">
                 <h3 className="font-medium text-gray-900">{String(t('admin.academies.academyNotes'))}</h3>
-                <button
+                <Button
                   onClick={() => {
                     setShowAddNote(!showAddNote);
                     setEditingNote(null);
@@ -399,16 +401,16 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       is_important: false
                     });
                   }}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm"
+                  size="sm"
                 >
                   <Plus className="w-4 h-4" />
                   {String(t('admin.academies.addNote'))}
-                </button>
+                </Button>
               </div>
 
               {/* Add/Edit Note Form */}
               {showAddNote && (
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <div className="bg-gray-50 p-4 rounded-xl ring-1 ring-gray-100">
                   <h4 className="font-medium text-gray-900 mb-3">
                     {editingNote ? String(t('admin.academies.editNote')) : String(t('admin.academies.newNote'))}
                   </h4>
@@ -457,7 +459,9 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                     </div>
 
                     <div className="flex gap-2 justify-end">
-                      <button
+                      <Button
+                        variant="outline"
+                        size="sm"
                         onClick={() => {
                           setShowAddNote(false);
                           setEditingNote(null);
@@ -468,17 +472,16 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                             is_important: false
                           });
                         }}
-                        className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
                       >
                         {String(t('admin.common.cancel'))}
-                      </button>
-                      <button
+                      </Button>
+                      <Button
+                        size="sm"
                         onClick={handleSaveNote}
                         disabled={!noteForm.content.trim()}
-                        className="px-3 py-1.5 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {editingNote ? String(t('admin.academies.updateNote')) : String(t('admin.academies.saveNote'))}
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -491,19 +494,18 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                   <p className="mt-2 text-sm text-gray-600">{String(t('admin.academies.loadingNotes'))}</p>
                 </div>
               ) : notes.length === 0 ? (
-                <div className="text-center py-8">
-                  <StickyNote className="mx-auto h-12 w-12 text-gray-400" />
-                  <h3 className="mt-2 text-sm font-medium text-gray-900">{String(t('admin.academies.noNotesYet'))}</h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {String(t('admin.academies.noNotesDesc'))}
-                  </p>
-                </div>
+                <AdminEmptyState
+                  icon={StickyNote}
+                  title={String(t('admin.academies.noNotesYet'))}
+                  description={String(t('admin.academies.noNotesDesc'))}
+                  compact
+                />
               ) : (
                 <div className="space-y-3">
                   {notes.map((note) => (
                     <div
                       key={note.id}
-                      className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow"
+                      className="bg-white ring-1 ring-gray-100 rounded-xl p-4 hover:shadow-sm transition-shadow"
                     >
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-2">

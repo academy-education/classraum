@@ -91,7 +91,7 @@ function UserLookup() {
           placeholder={String(t('admin.studyConsole.searchPlaceholder'))}
           className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gray-400 focus:outline-none"
         />
-        <div className="mt-2 divide-y divide-gray-100 rounded-lg border border-gray-100 overflow-hidden">
+        <div className="mt-2 divide-y divide-gray-100 rounded-lg ring-1 ring-gray-100 overflow-hidden">
           {results.map(r => (
             <button
               key={r.id}
@@ -185,8 +185,8 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
           <table className="w-full text-xs">
             <tbody>
               {ledger.map((l, i) => (
-                <tr key={i} className="border-t border-gray-100">
-                  <td className="py-1 tabular-nums font-medium" style={{ color: (l.delta as number) >= 0 ? '#047857' : '#be123c' }}>
+                <tr key={i} className="">
+                  <td className={`py-1 tabular-nums font-medium ${(l.delta as number) >= 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
                     {(l.delta as number) >= 0 ? '+' : ''}{String(l.delta)}
                   </td>
                   <td className="py-1 text-gray-600">{String(l.bucket)} · {String(l.kind)}</td>
@@ -211,7 +211,7 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
 
 function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-lg border border-gray-100 p-3">
+    <div className="rounded-lg ring-1 ring-gray-100 p-3">
       <div className="text-[11px] uppercase tracking-wide text-gray-400">{label}</div>
       <div className="text-lg font-semibold text-gray-900 tabular-nums">{value}</div>
       {sub && <div className="text-[11px] text-gray-400 truncate">{sub}</div>}
@@ -302,7 +302,7 @@ function ReportsQueue() {
 
       <div className="space-y-3">
         {reports.map(r => (
-          <div key={r.id} className="rounded-xl border border-gray-200 p-4">
+          <div key={r.id} className="rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] p-4">
             <div className="flex items-center gap-2 text-xs">
               <span className="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-semibold">{r.reason}</span>
               <span className="text-gray-400">{new Date(r.created_at).toLocaleString()}</span>

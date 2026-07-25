@@ -19,6 +19,7 @@ import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { useAdminFetch } from '../useAdminFetch';
 import { ModalShell } from '../ModalShell';
 import { AdminSkeleton } from '../AdminSkeleton';
+import { AdminEmptyState } from '../AdminEmptyState';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 
@@ -334,13 +335,12 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                     ))}
                   </div>
                 ) : billingHistory.length === 0 ? (
-                  <div className="text-center py-12">
-                    <FileText className="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 className="mt-2 text-sm font-medium text-gray-900">{String(t('admin.subscriptions.noPaymentHistory'))}</h3>
-                    <p className="mt-1 text-sm text-gray-500">
-                      {String(t('admin.subscriptions.noInvoicesFound'))}
-                    </p>
-                  </div>
+                  <AdminEmptyState
+                    icon={FileText}
+                    title={String(t('admin.subscriptions.noPaymentHistory'))}
+                    description={String(t('admin.subscriptions.noInvoicesFound'))}
+                    compact
+                  />
                 ) : (
                   <div className="space-y-3">
                     {billingHistory.map((invoice, index) => (

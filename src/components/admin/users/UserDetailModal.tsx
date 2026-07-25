@@ -139,7 +139,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       bodyClassName="p-0"
       title={
         <span className="inline-flex items-center gap-3">
-          <span className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium">
+          <span className="w-12 h-12 bg-gradient-to-br from-primary to-primary rounded-full flex items-center justify-center text-white font-medium">
             {user.name.charAt(0).toUpperCase()}
           </span>
           <span className="flex flex-col">

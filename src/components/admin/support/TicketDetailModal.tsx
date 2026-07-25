@@ -51,6 +51,7 @@ interface Message {
 }
 
 import { ModalShell } from '../ModalShell';
+import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 
@@ -552,13 +553,13 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
                 <div className="flex flex-col space-y-2">
-                  <button
+                  <Button
                     onClick={handleSendMessage}
                     disabled={!newMessage.trim()}
-                    className="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                    size="icon"
                   >
                     <Send className="h-4 w-4" />
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -629,12 +630,12 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
               </div>
 
               {newStatus !== ticket.status && (
-                <button
+                <Button
                   onClick={handleStatusChange}
-                  className="mt-4 w-full px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90"
+                  className="mt-4 w-full"
                 >
                   {String(t('admin.support.updateStatus'))}
-                </button>
+                </Button>
               )}
             </div>
 
