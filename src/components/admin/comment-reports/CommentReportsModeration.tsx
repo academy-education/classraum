@@ -183,10 +183,11 @@ export function CommentReportsModeration() {
           ? report.users[0]
           : report.users;
 
+        const q = searchQuery.toLowerCase();
         return (
-          report.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          comment?.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          reporter.email.toLowerCase().includes(searchQuery.toLowerCase())
+          (report.text || '').toLowerCase().includes(q) ||
+          (comment?.text || '').toLowerCase().includes(q) ||
+          (reporter?.email || '').toLowerCase().includes(q)
         );
       })
     : reports;
@@ -366,7 +367,7 @@ export function CommentReportsModeration() {
                           <p className="text-sm font-medium text-amber-900 mb-1">Report Reason</p>
                           <p className="text-sm text-amber-800">{report.text}</p>
                           <p className="text-xs text-amber-600 mt-2">
-                            Reported by: {reporter.name || reporter.email}
+                            Reported by: {reporter?.name || reporter?.email || String(t('admin.common.unknownUser'))}
                           </p>
                         </div>
                       </div>

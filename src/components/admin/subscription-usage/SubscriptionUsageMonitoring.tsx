@@ -241,6 +241,10 @@ export function SubscriptionUsageMonitoring() {
                     ? usage.academy_subscriptions[0]
                     : usage.academy_subscriptions;
 
+                  // Guard: an academy row may carry no subscription. Without this
+                  // the `subscription.*` reads below throw and blank the whole table.
+                  if (!subscription) return null;
+
                   const studentLimit = subscription.student_limit + (subscription.additional_students || 0);
                   const teacherLimit = subscription.teacher_limit + (subscription.additional_teachers || 0);
                   const storageLimit = subscription.storage_limit_gb + (subscription.additional_storage_gb || 0);

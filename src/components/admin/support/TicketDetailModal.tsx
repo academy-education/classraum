@@ -85,7 +85,6 @@ const formatKSTDateTime = (date: Date, language: string | null | undefined) => {
 export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailModalProps) {
   const { t, language } = useTranslation();
   const [newMessage, setNewMessage] = useState('');
-  const [isInternal, setIsInternal] = useState(false);
   const [newStatus, setNewStatus] = useState(ticket.status || 'active');
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
@@ -537,20 +536,13 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
             )}
           </div>
 
-          {/* Reply Box */}
+          {/* Reply Box.
+              NOTE: an "Internal note" checkbox used to live here, but the
+              flag was never persisted (no is_internal column on chat_messages)
+              so a note marked internal was still delivered to the customer.
+              Removed until it can be backed by a real column + RLS. */}
           <div className="border-t border-gray-100 p-4">
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-sm">
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    checked={isInternal}
-                    onChange={(e) => setIsInternal(e.target.checked)}
-                    className="rounded border-gray-300 text-primary focus:ring-primary"
-                  />
-                  <span className="text-gray-700">Internal note</span>
-                </label>
-              </div>
               <div className="flex space-x-3">
                 <textarea
                   value={newMessage}

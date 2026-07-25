@@ -68,7 +68,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       setActivityError(null)
       try {
         const { data, error } = await supabase
-          .from('activity_logs')
+          .from('admin_activity_logs')
           .select('id, action_type, description, ip_address, created_at')
           .eq('target_type', 'user')
           .eq('target_id', user.id)
