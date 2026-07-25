@@ -204,7 +204,7 @@ export function SystemDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-xl ring-1 ring-gray-100">
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         <div className="border-b border-gray-100">
           <div className="flex gap-1 px-4">
             {(['overview', 'health', 'logs'] as const).map(tab => (
@@ -270,7 +270,7 @@ export function SystemDashboard() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     {systemMetrics.map(metric => (
                       <div key={metric.name} className="bg-white rounded-lg ring-1 ring-gray-100 p-3.5">
-                        <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">{metric.name}</p>
+                        <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">{metric.name}</p>
                         <div className="mt-1.5 flex items-baseline justify-between gap-2">
                           <p className="text-lg font-semibold text-gray-900 tabular-nums">{metric.value}</p>
                           <StatusBadge tone={toTone(metric.status)} size="sm">{metric.status}</StatusBadge>

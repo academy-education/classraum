@@ -620,7 +620,7 @@ export function AcademyManagement() {
         </div>
 
         {/* Filters and Actions */}
-        <div className="bg-white p-4 rounded-xl ring-1 ring-gray-100">
+        <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -692,10 +692,10 @@ export function AcademyManagement() {
         </div>
 
         {/* Academy List */}
-        <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
+        <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50/60 border-b border-gray-100">
+              <thead className="bg-gray-50/60">
                 <tr>
                   {/* Bulk-select header checkbox — toggles all visible
                       (filtered/sorted) rows. Indeterminate when partial. */}
@@ -730,7 +730,7 @@ export function AcademyManagement() {
                   <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>{String(t('admin.academies.thUsers'))}</SortableTh>
                   <SortableTh sortKey="revenue" toggle={toggleSort} indicator={sortIndicator('revenue')}>{String(t('admin.academies.thRevenue'))}</SortableTh>
                   <SortableTh sortKey="lastActive" toggle={toggleSort} indicator={sortIndicator('lastActive')}>{String(t('admin.academies.thLastActive'))}</SortableTh>
-                  <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                  <th className="px-6 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.common.actions'))}
                   </th>
                 </tr>

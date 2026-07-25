@@ -398,7 +398,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       is_important: false
                     });
                   }}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-[#15487a] transition-colors text-sm"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm"
                 >
                   <Plus className="w-4 h-4" />
                   {String(t('admin.academies.addNote'))}
@@ -474,7 +474,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       <button
                         onClick={handleSaveNote}
                         disabled={!noteForm.content.trim()}
-                        className="px-3 py-1.5 bg-primary text-white rounded-lg text-sm font-medium hover:bg-[#15487a] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-3 py-1.5 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {editingNote ? String(t('admin.academies.updateNote')) : String(t('admin.academies.saveNote'))}
                       </button>

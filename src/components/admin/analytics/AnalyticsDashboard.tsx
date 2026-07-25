@@ -198,7 +198,7 @@ export function AnalyticsDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-xl ring-1 ring-gray-100">
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         <div className="border-b border-gray-100">
           <div className="flex gap-1 px-4">
             {(['overview', 'revenue', 'customers', 'usage'] as const).map((tab) => (

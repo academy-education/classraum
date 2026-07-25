@@ -306,10 +306,10 @@ export function SettlementManagement() {
       </div>
 
       {/* Settlements Table */}
-      <div className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50/60 border-b border-gray-100">
+            <thead className="bg-gray-50/60">
               <tr>
                 <SortableTh sortKey="id" toggle={toggleSort} indicator={sortIndicator('id')}>{String(t('admin.settlements.settlementId'))}</SortableTh>
                 <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>{String(t('admin.settlements.academy'))}</SortableTh>
@@ -318,7 +318,7 @@ export function SettlementManagement() {
                 <SortableTh sortKey="orderAmount" toggle={toggleSort} indicator={sortIndicator('orderAmount')} align="right">{String(t('admin.settlements.orderAmount'))}</SortableTh>
                 <SortableTh sortKey="settlementAmount" toggle={toggleSort} indicator={sortIndicator('settlementAmount')} align="right">{String(t('admin.settlements.settlementAmount'))}</SortableTh>
                 <SortableTh sortKey="settlementDate" toggle={toggleSort} indicator={sortIndicator('settlementDate')}>{String(t('admin.settlements.settlementDateLabel'))}</SortableTh>
-                <th className="px-6 py-3 text-center text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                <th className="px-6 py-3 text-center text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.common.actions'))}
                 </th>
               </tr>

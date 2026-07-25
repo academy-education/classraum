@@ -263,7 +263,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                   {(user.role === 'admin' || user.role === 'super_admin') && (
                     <Link
                       href={`/admin/activity-logs?actor=${user.id}`}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-[#1f6cc4] whitespace-nowrap"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary whitespace-nowrap"
                       onClick={onClose}
                     >
                       {String(t('admin.users.viewAdminActions'))}

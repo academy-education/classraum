@@ -240,7 +240,7 @@ export function RecentActivity() {
   };
 
   return (
-    <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100">
+    <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
       <div className="flex items-center justify-between mb-5">
         <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-[0.06em]">{String(t('admin.dashboard.recentActivityTitle'))}</h3>
         <button

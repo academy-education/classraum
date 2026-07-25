@@ -187,7 +187,7 @@ export function SettingsDashboard() {
       />
 
       {/* Account section */}
-      <section className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
+      <section className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         <header className="px-6 py-4 border-b border-gray-100">
           <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.settings.profile'))}</h2>
           <p className="text-xs text-gray-500 mt-0.5">{String(t('admin.settings.profileNote'))}</p>
@@ -279,7 +279,7 @@ export function SettingsDashboard() {
       </section>
 
       {/* Permissions section */}
-      <section className="bg-white rounded-xl ring-1 ring-gray-100 overflow-hidden">
+      <section className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         <header className="px-6 py-4 border-b border-gray-100">
           <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.settings.permissions'))}</h2>
           <p className="text-xs text-gray-500 mt-0.5">
@@ -303,7 +303,7 @@ export function SettingsDashboard() {
       </section>
 
       {/* Sign-out section */}
-      <section className="bg-white rounded-xl ring-1 ring-gray-100 px-6 py-4 flex items-center justify-between gap-3">
+      <section className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] px-6 py-4 flex items-center justify-between gap-3">
         <div>
           <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.settings.signOut'))}</h2>
           <p className="text-xs text-gray-500 mt-0.5">{String(t('admin.settings.signOutDescription'))}</p>

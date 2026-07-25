@@ -164,7 +164,7 @@ export function ChartOverview() {
 
   return (
     <>
-      <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100">
+      <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-2">
           <BarChart3 className="h-5 w-5 text-gray-600" />

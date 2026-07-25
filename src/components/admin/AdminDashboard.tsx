@@ -640,7 +640,7 @@ export function AdminDashboard() {
 
       {/* Secondary Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.supportTickets'))}</h3>
           </div>
@@ -653,7 +653,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.systemHealth'))}</h3>
           </div>
@@ -675,7 +675,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100 hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
+        <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.growthRate'))}</h3>
           </div>
@@ -732,7 +732,7 @@ export function AdminDashboard() {
               <button
                 key={action.label}
                 onClick={() => router.push(action.href)}
-                className={`group bg-white p-4 text-left rounded-xl ring-1 ring-gray-100 ${a.border} hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] hover:-translate-y-px transition-all`}
+                className={`group bg-white p-4 text-left rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] ${a.border} hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] hover:-translate-y-px transition-all`}
               >
                 <div className={`inline-flex items-center justify-center w-9 h-9 rounded-lg ${a.iconBg} mb-3 transition-transform group-hover:scale-110`}>
                   <action.icon className={`h-4.5 w-4.5 ${a.iconColor}`} />

@@ -237,27 +237,27 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
         <div className="flex-1 overflow-y-auto">
           <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50/60 border-b border-gray-100">
+            <thead className="bg-gray-50/60">
               <tr>
-                <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.payoutId'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.academy'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.status'))}
                 </th>
-                <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                <th className="px-6 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.amount'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.bankAccount'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.scheduledAt'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.payoutAt'))}
                 </th>
               </tr>
