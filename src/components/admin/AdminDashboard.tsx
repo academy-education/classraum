@@ -545,13 +545,15 @@ export function AdminDashboard() {
                         {g.timestamp.toLocaleString()}
                       </p>
                     </div>
-                    <button
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() => handleResolveGroup(g.ids)}
                       disabled={resolvingAlertId === g.ids[0]}
-                      className="text-sm font-medium text-primary hover:text-primary/80 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+                      className="flex-shrink-0 text-primary hover:text-primary"
                     >
                       {resolvingAlertId === g.ids[0] ? String(t('admin.dashboard.resolving')) : String(t('admin.dashboard.resolve'))}
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -561,12 +563,12 @@ export function AdminDashboard() {
       })()}
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.totalAcademies'))}</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.totalAcademies'))}</h3>
           </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
             {stats.totalAcademies.toLocaleString()}
           </div>
           <div className={`flex items-center text-sm ${stats.academiesGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
@@ -595,9 +597,9 @@ export function AdminDashboard() {
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.totalUsers'))}</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.totalUsers'))}</h3>
           </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
             {stats.totalUsers.toLocaleString()}
           </div>
           <div className={`flex items-center text-sm ${stats.usersGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
@@ -626,9 +628,9 @@ export function AdminDashboard() {
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.monthlyRevenue'))}</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.monthlyRevenue'))}</h3>
           </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
             {formatCurrency(stats.monthlyRevenue)}
           </div>
           <div className="flex items-center text-sm text-emerald-600">
@@ -655,9 +657,9 @@ export function AdminDashboard() {
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.activeSubscriptions'))}</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.activeSubscriptions'))}</h3>
           </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
             {stats.activeSubscriptions.toLocaleString()}
           </div>
           <div className={`flex items-center text-sm ${stats.subscriptionsGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
@@ -686,12 +688,12 @@ export function AdminDashboard() {
       </div>
 
       {/* Secondary Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.supportTickets'))}</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.supportTickets'))}</h3>
           </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
             {stats.supportTickets}
           </div>
           <div className="flex items-center text-sm text-rose-600">
@@ -702,9 +704,9 @@ export function AdminDashboard() {
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.systemHealth'))}</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.systemHealth'))}</h3>
           </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
             {stats.systemHealth}%
           </div>
           <div className={`flex items-center text-sm ${stats.servicesOperational ? 'text-emerald-600' : 'text-amber-600'}`}>
@@ -724,9 +726,9 @@ export function AdminDashboard() {
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-600">{String(t('admin.dashboard.growthRate'))}</h3>
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.growthRate'))}</h3>
           </div>
-          <div className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
             {stats.revenueGrowth >= 0 ? '+' : ''}{stats.revenueGrowth}%
           </div>
           {/* Honest copy — describes the trend rather than asserting a

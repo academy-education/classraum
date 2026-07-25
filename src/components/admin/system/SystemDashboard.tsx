@@ -239,9 +239,9 @@ export function SystemDashboard() {
                     {services.map(service => {
                       const Icon = serviceIcon(service.name)
                       return (
-                        <div key={service.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100 p-3.5 flex items-center justify-between gap-3">
+                        <div key={service.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between gap-3">
                           <div className="flex items-center gap-3 min-w-0">
-                            <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white ring-1 ring-gray-100 flex items-center justify-center text-gray-600">
+                            <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white ring-1 ring-gray-100/80 flex items-center justify-center text-gray-600">
                               <Icon className="h-4 w-4" />
                             </div>
                             <div className="min-w-0">
@@ -269,7 +269,7 @@ export function SystemDashboard() {
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     {systemMetrics.map(metric => (
-                      <div key={metric.name} className="bg-white rounded-lg ring-1 ring-gray-100 p-3.5">
+                      <div key={metric.name} className="bg-white rounded-2xl ring-1 ring-gray-100/80 p-3.5">
                         <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">{metric.name}</p>
                         <div className="mt-1.5 flex items-baseline justify-between gap-2">
                           <p className="text-lg font-semibold text-gray-900 tabular-nums">{metric.value}</p>
@@ -290,7 +290,7 @@ export function SystemDashboard() {
                 <p className="text-sm text-gray-500">No performance metrics reported.</p>
               ) : (
                 systemMetrics.map(metric => (
-                  <div key={metric.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100 p-3.5 flex items-center justify-between">
+                  <div key={metric.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-900">{metric.name}</span>
                     <div className="flex items-center gap-3">
                       <span className="text-sm tabular-nums text-gray-700">{metric.value}</span>
@@ -328,7 +328,7 @@ export function SystemDashboard() {
               ) : (
                 <div className="space-y-2">
                   {filteredLogs.map(log => (
-                    <div key={log.id} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100 p-3.5 flex items-start gap-3">
+                    <div key={log.id} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-start gap-3">
                       <StatusBadge tone={logLevelTone(log.level)} size="sm">
                         {log.level.toUpperCase()}
                       </StatusBadge>

@@ -67,7 +67,7 @@ export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendR
     >
       <div className="space-y-4">
         {/* Warning Banner */}
-        <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 flex items-start space-x-3">
+        <div className="bg-rose-50 ring-1 ring-rose-200 rounded-lg p-4 flex items-start space-x-3">
           <AlertTriangle className="h-5 w-5 text-rose-600 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
             <h3 className="text-sm font-medium text-rose-800">{String(t('admin.academies.warning'))}</h3>
@@ -94,7 +94,7 @@ export function SuspendReasonModal({ academyName, onClose, onConfirm }: SuspendR
 
         {/* Error Message */}
         {error && (
-          <div className="bg-rose-50 border border-rose-200 rounded-lg p-3 flex items-center space-x-2">
+          <div className="bg-rose-50 ring-1 ring-rose-200 rounded-lg p-3 flex items-center space-x-2">
             <AlertTriangle className="h-4 w-4 text-rose-600 flex-shrink-0" />
             <p className="text-sm text-rose-700">{error}</p>
           </div>

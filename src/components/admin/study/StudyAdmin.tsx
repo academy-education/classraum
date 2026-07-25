@@ -1,9 +1,15 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox } from 'lucide-react'
 import { useAdminFetch } from '@/components/admin/useAdminFetch'
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader'
+import { AdminEmptyState } from '@/components/admin/AdminEmptyState'
+import { DashboardCard } from '@/components/admin/DashboardCard'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { useTranslation } from '@/hooks/useTranslation'
+import { cn } from '@/lib/utils'
 
 /**
  * Study admin console — two operator surfaces:
@@ -85,13 +91,16 @@ function UserLookup() {
   return (
     <div className="grid md:grid-cols-[280px_1fr] gap-5">
       <div>
-        <input
-          value={q}
-          onChange={e => setQ(e.target.value)}
-          placeholder={String(t('admin.studyConsole.searchPlaceholder'))}
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gray-400 focus:outline-none"
-        />
-        <div className="mt-2 divide-y divide-gray-100 rounded-lg ring-1 ring-gray-100 overflow-hidden">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+          <Input
+            value={q}
+            onChange={e => setQ(e.target.value)}
+            placeholder={String(t('admin.studyConsole.searchPlaceholder'))}
+            className="pl-9"
+          />
+        </div>
+        <div className="mt-2 divide-y divide-gray-100 rounded-lg ring-1 ring-gray-100/80 overflow-hidden">
           {results.map(r => (
             <button
               key={r.id}
@@ -136,92 +145,114 @@ function UserDetail({ data }: { data: Record<string, unknown> }) {
     return (Array.isArray(lg) ? lg[0]?.tier : lg?.tier) ?? '—'
   }
 
+  const initial = (user?.name || user?.email || '?').charAt(0).toUpperCase()
+
   return (
-    <div className="space-y-4">
-      <div>
-        <div className="text-base font-semibold text-gray-900">{user?.name || t('admin.studyConsole.noName')}</div>
-        <div className="text-xs text-gray-500">{user?.email} · {user?.role}</div>
-      </div>
-
-      <div className="grid grid-cols-3 gap-3">
-        <Stat
-          label={String(t('admin.studyConsole.credits'))}
-          value={sub ? money(sub.creditsTotal) : '0'}
-          sub={sub ? String(t('admin.studyConsole.creditsBreakdown', { grant: money(sub.grant_credits_remaining), bought: money(sub.purchased_credits_remaining) })) : String(t('admin.studyConsole.noSub'))}
-        />
-        <Stat label={String(t('admin.studyConsole.sessions'))} value={String(counts.sessions)} />
-        <Stat label={String(t('admin.studyConsole.attempts'))} value={String(counts.attempts)} />
-      </div>
-
-      <Section title={String(t('admin.studyConsole.subscription'))}>
-        {sub ? (
-          <div className="text-sm text-gray-700 space-y-0.5">
-            <div><b>{String(sub.plan)}</b> · {String(sub.status)}{sub.cancel_at_period_end ? ` · ${t('admin.studyConsole.cancelsAtPeriodEnd')}` : ''}</div>
-            <div className="text-xs text-gray-500">{t('admin.studyConsole.renews', { date: when(sub.current_period_end) })}{sub.pending_plan ? ` · ${t('admin.studyConsole.pendingPlan', { plan: String(sub.pending_plan) })}` : ''}</div>
-            {sub.last_payment_failure ? <div className="text-xs text-rose-600">{t('admin.studyConsole.lastPaymentFailure', { reason: String(sub.last_payment_failure) })}</div> : null}
-          </div>
-        ) : <Empty>{t('admin.studyConsole.noSubscription')}</Empty>}
-      </Section>
-
-      <Section title={String(t('admin.studyConsole.prefsStreak'))}>
-        <div className="text-sm text-gray-700">
-          {prefs ? <>{t('admin.studyConsole.nickname')}: {prefs.nickname || '—'} · {t('admin.studyConsole.targets')}: {(prefs.target_tests ?? []).join(', ') || prefs.target_test || '—'}</> : <span className="text-gray-400">{t('admin.studyConsole.noPrefs')}</span>}
-          {streak ? <> · {t('admin.studyConsole.bestStreak')}: {String(streak.max_streak ?? 0)} · {t('admin.studyConsole.freezes')}: {String(streak.freezes ?? 0)}</> : null}
+    <div className="space-y-5">
+      {/* Identity */}
+      <div className="flex items-center gap-3">
+        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-semibold shadow-sm shadow-primary/20 flex-shrink-0">
+          {initial}
         </div>
-      </Section>
+        <div className="min-w-0">
+          <div className="text-base font-semibold text-gray-900 truncate">{user?.name || t('admin.studyConsole.noName')}</div>
+          <div className="text-xs text-gray-500 truncate">{user?.email} · {user?.role}</div>
+        </div>
+      </div>
 
-      <Section title={String(t('admin.studyConsole.leaguesRecent'))}>
-        {memberships.length ? (
-          <ul className="text-sm text-gray-700 space-y-0.5">
-            {memberships.map((m, i) => (
-              <li key={i}>{tier(m)} · {String(m.xp_this_week ?? 0)} XP{m.final_rank ? ` · ${t('admin.studyConsole.rank', { n: String(m.final_rank) })}` : ''}{m.promotion_event ? ` · ${String(m.promotion_event)}` : ''}</li>
-            ))}
-          </ul>
-        ) : <Empty>{t('admin.studyConsole.neverJoinedLeague')}</Empty>}
-      </Section>
+      {/* Headline stats — same primitive as the manager dashboard */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <DashboardCard
+          title={String(t('admin.studyConsole.credits'))}
+          value={sub ? money(sub.creditsTotal) : '0'}
+          subtitle={sub ? String(t('admin.studyConsole.creditsBreakdown', { grant: money(sub.grant_credits_remaining), bought: money(sub.purchased_credits_remaining) })) : String(t('admin.studyConsole.noSub'))}
+          icon={<CreditCard className="w-5 h-5" strokeWidth={2} />}
+          accent="violet"
+        />
+        <DashboardCard
+          title={String(t('admin.studyConsole.sessions'))}
+          value={String(counts.sessions)}
+          icon={<Layers className="w-5 h-5" strokeWidth={2} />}
+          accent="blue"
+        />
+        <DashboardCard
+          title={String(t('admin.studyConsole.attempts'))}
+          value={String(counts.attempts)}
+          icon={<Target className="w-5 h-5" strokeWidth={2} />}
+          accent="emerald"
+        />
+      </div>
 
-      <Section title={String(t('admin.studyConsole.creditLedger'))}>
-        {ledger.length ? (
-          <table className="w-full text-xs">
-            <tbody>
-              {ledger.map((l, i) => (
-                <tr key={i} className="">
-                  <td className={`py-1 tabular-nums font-medium ${(l.delta as number) >= 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
-                    {(l.delta as number) >= 0 ? '+' : ''}{String(l.delta)}
-                  </td>
-                  <td className="py-1 text-gray-600">{String(l.bucket)} · {String(l.kind)}</td>
-                  <td className="py-1 text-gray-400">{when(l.created_at)}</td>
-                </tr>
+      {/* Detail panels — two-up so the operator sees everything without scroll */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <Panel title={String(t('admin.studyConsole.subscription'))} icon={CreditCard}>
+          {sub ? (
+            <div className="text-sm text-gray-700 space-y-1">
+              <div><b className="text-gray-900">{String(sub.plan)}</b> · {String(sub.status)}{sub.cancel_at_period_end ? ` · ${t('admin.studyConsole.cancelsAtPeriodEnd')}` : ''}</div>
+              <div className="text-xs text-gray-500">{t('admin.studyConsole.renews', { date: when(sub.current_period_end) })}{sub.pending_plan ? ` · ${t('admin.studyConsole.pendingPlan', { plan: String(sub.pending_plan) })}` : ''}</div>
+              {sub.last_payment_failure ? <div className="text-xs text-rose-600">{t('admin.studyConsole.lastPaymentFailure', { reason: String(sub.last_payment_failure) })}</div> : null}
+            </div>
+          ) : <Empty>{t('admin.studyConsole.noSubscription')}</Empty>}
+        </Panel>
+
+        <Panel title={String(t('admin.studyConsole.prefsStreak'))} icon={CalendarClock}>
+          <div className="text-sm text-gray-700 space-y-1">
+            {prefs ? <div>{t('admin.studyConsole.nickname')}: <span className="text-gray-900">{prefs.nickname || '—'}</span> · {t('admin.studyConsole.targets')}: <span className="text-gray-900">{(prefs.target_tests ?? []).join(', ') || prefs.target_test || '—'}</span></div> : <span className="text-gray-400">{t('admin.studyConsole.noPrefs')}</span>}
+            {streak ? <div className="text-xs text-gray-500">{t('admin.studyConsole.bestStreak')}: {String(streak.max_streak ?? 0)} · {t('admin.studyConsole.freezes')}: {String(streak.freezes ?? 0)}</div> : null}
+          </div>
+        </Panel>
+
+        <Panel title={String(t('admin.studyConsole.leaguesRecent'))} icon={Trophy}>
+          {memberships.length ? (
+            <ul className="text-sm text-gray-700 space-y-1">
+              {memberships.map((m, i) => (
+                <li key={i}>{tier(m)} · {String(m.xp_this_week ?? 0)} XP{m.final_rank ? ` · ${t('admin.studyConsole.rank', { n: String(m.final_rank) })}` : ''}{m.promotion_event ? ` · ${String(m.promotion_event)}` : ''}</li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+          ) : <Empty>{t('admin.studyConsole.neverJoinedLeague')}</Empty>}
+        </Panel>
+
+        <Panel title={String(t('admin.studyConsole.questionReports'))} icon={Flag}>
+          {reports.length ? (
+            <ul className="text-sm text-gray-700 space-y-1">
+              {reports.map((r, i) => <li key={i}>{String(r.reason)} · {String(r.status)} · <span className="text-gray-400">{when(r.created_at)}</span></li>)}
+            </ul>
+          ) : <Empty>{t('admin.studyConsole.noReportsFiled')}</Empty>}
+        </Panel>
+      </div>
+
+      {/* Credit ledger — full width, proper table */}
+      <Panel title={String(t('admin.studyConsole.creditLedger'))} icon={ReceiptText}>
+        {ledger.length ? (
+          <div className="overflow-x-auto -mx-1">
+            <table className="w-full text-sm">
+              <tbody className="divide-y divide-gray-100">
+                {ledger.map((l, i) => (
+                  <tr key={i}>
+                    <td className={`py-2 pr-3 tabular-nums font-semibold whitespace-nowrap ${(l.delta as number) >= 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
+                      {(l.delta as number) >= 0 ? '+' : ''}{String(l.delta)}
+                    </td>
+                    <td className="py-2 pr-3 text-gray-600">{String(l.bucket)} · {String(l.kind)}</td>
+                    <td className="py-2 text-gray-400 text-xs whitespace-nowrap text-right">{when(l.created_at)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : <Empty>{t('admin.studyConsole.noLedger')}</Empty>}
-      </Section>
-
-      <Section title={String(t('admin.studyConsole.questionReports'))}>
-        {reports.length ? (
-          <ul className="text-sm text-gray-700 space-y-0.5">
-            {reports.map((r, i) => <li key={i}>{String(r.reason)} · {String(r.status)} · {when(r.created_at)}</li>)}
-          </ul>
-        ) : <Empty>{t('admin.studyConsole.noReportsFiled')}</Empty>}
-      </Section>
+      </Panel>
     </div>
   )
 }
 
-function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
+// Canonical white panel — matches the manager dashboard card surface.
+function Panel({ title, icon: Icon, children, className }: { title: string; icon?: typeof CreditCard; children: React.ReactNode; className?: string }) {
   return (
-    <div className="rounded-lg ring-1 ring-gray-100 p-3">
-      <div className="text-[11px] uppercase tracking-wide text-gray-400">{label}</div>
-      <div className="text-lg font-semibold text-gray-900 tabular-nums">{value}</div>
-      {sub && <div className="text-[11px] text-gray-400 truncate">{sub}</div>}
-    </div>
-  )
-}
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <div className="text-[11px] uppercase tracking-wide text-gray-400 mb-1">{title}</div>
+    <div className={cn('bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] p-4', className)}>
+      <div className="flex items-center gap-2 mb-3">
+        {Icon && <Icon className="w-4 h-4 text-gray-400" strokeWidth={2} />}
+        <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{title}</h3>
+      </div>
       {children}
     </div>
   )
@@ -298,7 +329,9 @@ function ReportsQueue() {
         ))}
       </div>
 
-      {reports.length === 0 && <div className="text-sm text-gray-400">{t('admin.studyConsole.noReportsBucket')}</div>}
+      {reports.length === 0 && (
+        <AdminEmptyState icon={Inbox} title={String(t('admin.studyConsole.noReportsBucket'))} />
+      )}
 
       <div className="space-y-3">
         {reports.map(r => (
@@ -324,9 +357,9 @@ function ReportsQueue() {
 
             {r.status !== 'resolved' && r.status !== 'dismissed' && (
               <div className="mt-3 flex flex-wrap gap-2">
-                <button disabled={busy === r.id} onClick={() => act(r.id, 'resolved', false)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white disabled:opacity-40">{t('admin.studyConsole.resolve')}</button>
-                <button disabled={busy === r.id} onClick={() => act(r.id, 'resolved', true)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-600 text-white disabled:opacity-40">{t('admin.studyConsole.resolveArchive')}</button>
-                <button disabled={busy === r.id} onClick={() => act(r.id, 'dismissed', false)} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 disabled:opacity-40">{t('admin.studyConsole.dismiss')}</button>
+                <Button size="sm" disabled={busy === r.id} onClick={() => act(r.id, 'resolved', false)}>{t('admin.studyConsole.resolve')}</Button>
+                <Button size="sm" variant="destructive" disabled={busy === r.id} onClick={() => act(r.id, 'resolved', true)}>{t('admin.studyConsole.resolveArchive')}</Button>
+                <Button size="sm" variant="outline" disabled={busy === r.id} onClick={() => act(r.id, 'dismissed', false)}>{t('admin.studyConsole.dismiss')}</Button>
               </div>
             )}
           </div>

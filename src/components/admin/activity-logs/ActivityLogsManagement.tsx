@@ -30,6 +30,7 @@ import { useTableSort } from '../useTableSort';
 import { SortableTh } from '../SortableTh';
 import { usePolling } from '../usePolling';
 import { useUrlState } from '../useUrlState';
+import { AdminEmptyState } from '../AdminEmptyState';
 
 interface ActivityLog {
   id: string;
@@ -261,17 +262,18 @@ export function ActivityLogsManagement() {
               className="pl-10"
             />
           </div>
-          <button
+          <Button
+            variant="outline"
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-3 h-9 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
+            className="gap-2"
           >
             <Filter className="w-4 h-4" />
             {String(t('admin.activityLogs.filters'))}
-          </button>
+          </Button>
         </div>
 
         {showFilters && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-200">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-100">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.activityLogs.adminUser'))}</label>
               <Select
@@ -370,15 +372,11 @@ export function ActivityLogsManagement() {
       {/* Activity Logs Table */}
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         {!loading && filteredLogs.length === 0 ? (
-          <div className="p-16 text-center">
-            <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3">
-              <Clock className="w-5 h-5 text-gray-300" />
-            </div>
-            <p className="text-sm font-medium text-gray-900">{String(t('admin.activityLogs.noActivityLogsFound'))}</p>
-            <p className="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
-              {String(t('admin.activityLogs.emptyDescription'))}
-            </p>
-          </div>
+          <AdminEmptyState
+            icon={Clock}
+            title={String(t('admin.activityLogs.noActivityLogsFound'))}
+            description={String(t('admin.activityLogs.emptyDescription'))}
+          />
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -408,12 +406,12 @@ export function ActivityLogsManagement() {
 
                 {sortedLogs.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
                       {new Date(log.created_at).toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="flex-shrink-0 h-8 w-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                        <div className="flex-shrink-0 h-8 w-8 bg-primary rounded-full flex items-center justify-center">
                           <User className="w-4 h-4 text-white" />
                         </div>
                         <div className="ml-3">
@@ -424,13 +422,13 @@ export function ActivityLogsManagement() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <StatusBadge tone={actionTypeTone(log.action_type)}>
                         <span className="mr-1">{getActionIcon(log.action_type)}</span>
                         {formatActionType(log.action_type)}
                       </StatusBadge>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-4 py-4 text-sm text-gray-900">
                       <div className="max-w-md">
                         {log.description}
                         {log.target_type && (
@@ -440,7 +438,7 @@ export function ActivityLogsManagement() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
                       {log.ip_address || '-'}
                     </td>
                   </tr>
@@ -453,28 +451,30 @@ export function ActivityLogsManagement() {
 
         {/* Pagination */}
         {!loading && filteredLogs.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
             <div className="text-sm text-gray-600">
               {String(t('admin.activityLogs.showingLogs', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
             </div>
             <div className="flex items-center gap-2">
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setPage(Math.max(0, page - 1))}
                 disabled={page === 0}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
               >
                 <ChevronLeft className="w-4 h-4" />
-              </button>
+              </Button>
               <span className="text-sm text-gray-600">
                 {String(t('admin.common.page'))} {page + 1} {String(t('admin.common.of'))} {totalPages}
               </span>
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
                 disabled={page >= totalPages - 1}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
               >
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
         )}

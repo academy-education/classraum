@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { DateInput } from '@/components/ui/common/DateInput';
 import { useDedupedToast } from '../useDedupedToast';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
@@ -149,27 +150,29 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
             {String(t('admin.settlements.showingResults', { from: page * 20 + 1, to: Math.min((page + 1) * 20, totalCount), total: totalCount }))}
           </div>
           <div className="flex gap-2">
-            <button
+            <Button
               onClick={() => setPage(page - 1)}
               disabled={page === 0}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="outline"
+              size="sm"
             >
               {String(t('admin.common.previous'))}
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setPage(page + 1)}
               disabled={(page + 1) * 20 >= totalCount}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="outline"
+              size="sm"
             >
               {String(t('admin.common.next'))}
-            </button>
+            </Button>
           </div>
         </div>
       ) : undefined}
     >
       <div className="flex flex-col h-full">
         {/* Filters */}
-        <div className="px-6 py-4 bg-white border-b border-gray-200">
+        <div className="px-6 py-4 bg-white border-b border-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -239,25 +242,25 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
           <table className="w-full">
             <thead className="bg-gray-50/60">
               <tr>
-                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.payoutId'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.academy'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.status'))}
                 </th>
-                <th className="px-6 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                <th className="px-4 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.amount'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.bankAccount'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.scheduledAt'))}
                 </th>
-                <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.settlements.payoutAt'))}
                 </th>
               </tr>
@@ -265,7 +268,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
             <tbody className="bg-white divide-y divide-gray-100">
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan={7} className="px-4 py-12 text-center text-gray-500">
                     {String(t('admin.settlements.loadingPayouts'))}
                   </td>
                 </tr>
@@ -278,19 +281,19 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
               ) : (
                 payouts.map((payout) => (
                   <tr key={payout.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {payout.id.substring(0, 12)}...
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {payout.academyName}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       {getStatusBadge(payout.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-right font-medium text-gray-900">
                       {formatCurrency(payout.amount, payout.currency)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {payout.account ? (
                         <div>
                           <div>{payout.account.bank}</div>
@@ -300,10 +303,10 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
                         '-'
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {formatDate(payout.scheduledAt)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {formatDate(payout.payoutAt)}
                     </td>
                   </tr>

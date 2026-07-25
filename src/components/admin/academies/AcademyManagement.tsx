@@ -730,7 +730,7 @@ export function AcademyManagement() {
                   <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>{String(t('admin.academies.thUsers'))}</SortableTh>
                   <SortableTh sortKey="revenue" toggle={toggleSort} indicator={sortIndicator('revenue')}>{String(t('admin.academies.thRevenue'))}</SortableTh>
                   <SortableTh sortKey="lastActive" toggle={toggleSort} indicator={sortIndicator('lastActive')}>{String(t('admin.academies.thLastActive'))}</SortableTh>
-                  <th className="px-6 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.common.actions'))}
                   </th>
                 </tr>
@@ -753,7 +753,7 @@ export function AcademyManagement() {
                         onClick={(e) => e.stopPropagation()}
                       />
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{academy.name}</div>
                         <div className="text-xs text-gray-500">{academy.email}</div>
@@ -765,7 +765,7 @@ export function AcademyManagement() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       {getStatusBadge(academy.status, academy.isSuspended)}
                       {academy.suspensionReason && (
                         <p className="text-xs text-rose-600 mt-1 max-w-xs truncate">
@@ -773,26 +773,26 @@ export function AcademyManagement() {
                         </p>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div>
                         <div className="mb-1">
                           {getTierBadge(academy.subscriptionTier)}
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm flex items-center text-gray-900">
                         <Users className="mr-1 h-3 w-3" />
                         {academy.totalUsers}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
                         {formatPrice(academy.monthlyRevenue)}
                       </div>
                       <div className="text-xs text-gray-500">{String(t('admin.academies.perMonth'))}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         {new Date(academy.lastActive).toLocaleDateString()}
                       </div>
@@ -800,7 +800,7 @@ export function AcademyManagement() {
                         {new Date(academy.lastActive).toLocaleTimeString()}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right relative">
+                    <td className="px-4 py-4 whitespace-nowrap text-right relative">
                       <button
                         onClick={() => setShowActions(showActions === academy.id ? null : academy.id)}
                         className="actions-button text-gray-400 hover:text-gray-600"
@@ -866,7 +866,7 @@ export function AcademyManagement() {
                           {academy.isSuspended ? (
                             <button
                               onClick={() => handleUnsuspendAcademy(academy.id)}
-                              className="flex items-center w-full px-4 py-2 text-sm text-emerald-700 hover:bg-green-50"
+                              className="flex items-center w-full px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50"
                             >
                               <CheckCircle className="mr-3 h-4 w-4" />
                               {String(t('admin.academies.unsuspend'))}

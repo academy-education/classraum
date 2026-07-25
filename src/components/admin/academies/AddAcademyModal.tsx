@@ -155,7 +155,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
             </Select>
           </div>
 
-          <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 flex items-start space-x-2">
+          <div className="bg-primary/10 ring-1 ring-primary/20 rounded-lg p-3 flex items-start space-x-2">
             <AlertCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
             <p className="text-xs text-primary">
               {String(t('admin.academies.onboardingHint'))}
@@ -163,7 +163,7 @@ export function AddAcademyModal({ onClose, onSuccess }: AddAcademyModalProps) {
           </div>
 
           {error && (
-            <div className="bg-rose-50 border border-rose-200 rounded-lg p-3 flex items-center space-x-2">
+            <div className="bg-rose-50 ring-1 ring-rose-200 rounded-lg p-3 flex items-center space-x-2">
               <AlertCircle className="h-4 w-4 text-rose-600 flex-shrink-0" />
               <p className="text-sm text-rose-700">{error}</p>
             </div>

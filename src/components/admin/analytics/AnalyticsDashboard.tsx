@@ -394,15 +394,15 @@ export function AnalyticsDashboard() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h4 className="font-medium text-gray-900 mb-4">{String(t('admin.analytics.acquisitionFunnel'))}</h4>
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-3 bg-white rounded border">
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg ring-1 ring-gray-100/80">
                     <span>{String(t('admin.analytics.websiteVisitors'))}</span>
                     <span className="font-semibold">{data.customers.acquisition.websiteVisitors.toLocaleString()}</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-white rounded border ml-4">
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg ring-1 ring-gray-100/80 ml-4">
                     <span>{String(t('admin.analytics.trialSignups'))}</span>
                     <span className="font-semibold">{data.customers.acquisition.trialSignups.toLocaleString()} ({data.customers.acquisition.trialConversionRate}%)</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-white rounded border ml-8">
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg ring-1 ring-gray-100/80 ml-8">
                     <span>{String(t('admin.analytics.paidConversions'))}</span>
                     <span className="font-semibold">{data.customers.acquisition.paidConversions} ({data.customers.acquisition.paidConversionRate}%)</span>
                   </div>
@@ -465,7 +465,7 @@ export function AnalyticsDashboard() {
                   <div>
                     <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.peakUsageHours'))}</h5>
                     <div className="space-y-2">
-                      <div className="flex items-start space-x-2 p-2 bg-sky-50 border border-sky-200 rounded-lg">
+                      <div className="flex items-start space-x-2 p-2 bg-sky-50 ring-1 ring-sky-200 rounded-lg">
                         <Activity className="h-4 w-4 text-sky-600 mt-0.5" />
                         <div className="text-sm">
                           <p className="text-sky-700">{data.performance.peakHours}</p>

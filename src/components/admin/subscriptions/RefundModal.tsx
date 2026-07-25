@@ -134,7 +134,7 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
     >
       <div className="space-y-6">
           {/* Warning Banner */}
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-amber-50 ring-1 ring-amber-200 rounded-lg p-4 flex items-start space-x-3">
             <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h3 className="text-sm font-medium text-amber-800">{String(t('admin.subscriptions.refundWarning'))}</h3>
@@ -171,7 +171,7 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
             <label className="text-sm font-medium text-gray-700">{String(t('admin.subscriptions.refundType'))}</label>
 
             <div className="space-y-2">
-              <label className="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+              <label className="flex items-center p-3 ring-1 ring-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                 <input
                   type="radio"
                   name="refundType"
@@ -187,7 +187,7 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
                 </div>
               </label>
 
-              <label className="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+              <label className="flex items-center p-3 ring-1 ring-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                 <input
                   type="radio"
                   name="refundType"
@@ -243,7 +243,7 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
 
           {/* Refund Summary */}
           {(refundType === 'full' || (refundType === 'partial' && refundAmount > 0)) && (
-            <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
+            <div className="bg-primary/10 ring-1 ring-primary/20 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-primary">{String(t('admin.subscriptions.refundAmountSummary'))}</span>
                 <span className="text-lg font-semibold text-primary">{formatPrice(refundAmount)}</span>
@@ -261,7 +261,7 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
 
           {/* Error Message */}
           {error && (
-            <div className="bg-rose-50 border border-rose-200 rounded-lg p-3 flex items-center space-x-2">
+            <div className="bg-rose-50 ring-1 ring-rose-200 rounded-lg p-3 flex items-center space-x-2">
               <AlertTriangle className="h-4 w-4 text-rose-600 flex-shrink-0" />
               <p className="text-sm text-rose-700">{error}</p>
             </div>

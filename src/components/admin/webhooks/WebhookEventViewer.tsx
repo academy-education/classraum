@@ -330,17 +330,18 @@ export function WebhookEventViewer() {
               <SelectItem value="processed:asc">{String(t('admin.webhooks.sortUnprocessed'))}</SelectItem>
             </SelectContent>
           </Select>
-          <button
+          <Button
+            variant="outline"
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+            className="gap-2"
           >
             <Filter className="w-4 h-4" />
             {String(t('admin.common.filter'))}
-          </button>
+          </Button>
         </div>
 
         {showFilters && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-200">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-100">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.webhooks.type'))}</label>
               <Select
@@ -487,15 +488,16 @@ export function WebhookEventViewer() {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <button
+                      <Button
+                        variant="outline"
+                        size="sm"
                         onClick={(e) => {
                           e.stopPropagation();
                           toggleProcessed(event.id, event.processed);
                         }}
-                        className="px-3 py-1 text-xs border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         {event.processed ? String(t('admin.webhooks.markAsUnprocessed')) : String(t('admin.webhooks.markAsProcessed'))}
-                      </button>
+                      </Button>
                       {expandedEventId === event.id ? (
                         <ChevronUp className="w-5 h-5 text-gray-400" />
                       ) : (
@@ -547,7 +549,7 @@ export function WebhookEventViewer() {
 
         {/* Pagination */}
         {!loading && sortedEvents.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
             <div className="text-sm text-gray-600">
               {String(t('admin.webhooks.showingEvents', {
                 from: page * pageSize + 1,
@@ -556,23 +558,25 @@ export function WebhookEventViewer() {
               }))}
             </div>
             <div className="flex items-center gap-2">
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setPage(Math.max(0, page - 1))}
                 disabled={page === 0}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
               >
                 <ChevronLeft className="w-4 h-4" />
-              </button>
+              </Button>
               <span className="text-sm text-gray-600">
                 {String(t('admin.common.page'))} {page + 1} {String(t('admin.common.of'))} {totalPages}
               </span>
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
                 disabled={page >= totalPages - 1}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
               >
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
         )}

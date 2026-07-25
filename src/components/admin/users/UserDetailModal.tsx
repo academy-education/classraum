@@ -139,7 +139,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       bodyClassName="p-0"
       title={
         <span className="inline-flex items-center gap-3">
-          <span className="w-12 h-12 bg-gradient-to-br from-primary to-primary rounded-full flex items-center justify-center text-white font-medium">
+          <span className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-medium">
             {user.name.charAt(0).toUpperCase()}
           </span>
           <span className="flex flex-col">
@@ -275,7 +275,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                 {activityLoading && (
                   <div className="space-y-2">
                     {Array.from({ length: 4 }).map((_, i) => (
-                      <div key={i} className="bg-gray-50/60 ring-1 ring-gray-100 rounded-lg p-4 animate-pulse">
+                      <div key={i} className="bg-gray-50/60 ring-1 ring-gray-100/80 rounded-lg p-4 animate-pulse">
                         <div className="h-3 w-32 rounded bg-gray-200 mb-2" />
                         <div className="h-2.5 w-64 rounded bg-gray-200" />
                       </div>
@@ -284,14 +284,14 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                 )}
 
                 {!activityLoading && activityError && (
-                  <div className="rounded-lg border border-rose-100 bg-rose-50/70 px-3.5 py-2.5 flex items-start gap-2">
+                  <div className="rounded-lg ring-1 ring-rose-100 bg-rose-50/70 px-3.5 py-2.5 flex items-start gap-2">
                     <AlertTriangle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-rose-700">{activityError}</p>
                   </div>
                 )}
 
                 {!activityLoading && !activityError && activityLogs.length === 0 && (
-                  <div className="bg-gray-50/60 ring-1 ring-gray-100 rounded-lg p-8 text-center">
+                  <div className="bg-gray-50/60 ring-1 ring-gray-100/80 rounded-lg p-8 text-center">
                     <div className="w-10 h-10 rounded-full bg-white ring-1 ring-gray-100 flex items-center justify-center mx-auto mb-2">
                       <Clock className="w-4 h-4 text-gray-400" />
                     </div>
@@ -305,7 +305,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                 {!activityLoading && activityLogs.length > 0 && (
                   <div className="space-y-2">
                     {activityLogs.map((log) => (
-                      <div key={log.id} className="bg-gray-50/60 ring-1 ring-gray-100 rounded-lg p-3.5">
+                      <div key={log.id} className="bg-gray-50/60 ring-1 ring-gray-100/80 rounded-lg p-3.5">
                         <div className="flex items-start gap-3">
                           {getActivityIcon(log.action_type)}
                           <div className="flex-1 min-w-0">

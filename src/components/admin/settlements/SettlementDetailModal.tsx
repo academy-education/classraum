@@ -117,7 +117,7 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
                   </span>
                 </div>
               )}
-              <div className="border-t border-gray-200 pt-3"></div>
+              <div className="border-t border-gray-100 pt-3"></div>
               <div className="flex justify-between items-center text-rose-600">
                 <span className="text-sm">{String(t('admin.settlements.platformFee'))}</span>
                 <span className="text-sm font-medium">
@@ -162,7 +162,7 @@ export function SettlementDetailModal({ settlement, onClose }: SettlementDetailM
                   </div>
                 </>
               )}
-              <div className="border-t border-gray-200 pt-3"></div>
+              <div className="border-t border-gray-100 pt-3"></div>
               <div className="flex justify-between items-center">
                 <span className="text-base font-semibold text-gray-900">{String(t('admin.settlements.finalSettlementAmount'))}</span>
                 <span className="text-base font-bold text-primary">

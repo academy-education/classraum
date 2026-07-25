@@ -129,7 +129,7 @@ function TableRows({ rows = 6, cols = 5 }: { rows?: number; cols?: number }) {
       {Array.from({ length: rows }).map((_, r) => (
         <tr key={r}>
           {Array.from({ length: cols }).map((_, c) => (
-            <td key={c} className="px-6 py-4">
+            <td key={c} className="px-4 py-4">
               <Bar className={cn('h-3.5', c === 0 ? 'w-32' : 'w-20')} />
             </td>
           ))}

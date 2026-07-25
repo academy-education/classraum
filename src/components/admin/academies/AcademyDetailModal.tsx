@@ -211,13 +211,13 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
         </span>
       }
       footer={
-        <button
+        <Button
+          variant="outline"
           onClick={onClose}
-          className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
           aria-label={String(t('admin.common.close'))}
         >
           {String(t('admin.common.close'))}
-        </button>
+        </Button>
       }
     >
       {/* Tabs */}
@@ -306,9 +306,9 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                   </div>
                 </div>
 
-                <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="bg-violet-50 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
-                    <DollarSign className="h-8 w-8 text-purple-600" />
+                    <DollarSign className="h-8 w-8 text-violet-600" />
                     <div className="text-right">
                       <p className="text-lg font-semibold text-gray-900">{formatPrice(academy.monthlyRevenue)}</p>
                       <p className="text-xs text-gray-600">{String(t('admin.academies.monthly'))}</p>
@@ -341,7 +341,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                 </div>
               </div>
 
-              <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+              <div className="bg-amber-50 ring-1 ring-amber-200 p-4 rounded-lg">
                 <div className="flex items-start">
                   <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5 mr-2" />
                   <div className="text-sm">
@@ -422,7 +422,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                       <select
                         value={noteForm.note_type}
                         onChange={(e) => setNoteForm({ ...noteForm, note_type: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm"
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm"
                       >
                         <option value="general">{noteTypeLabel('general')}</option>
                         <option value="billing">{noteTypeLabel('billing')}</option>
@@ -440,7 +440,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                         value={noteForm.content}
                         onChange={(e) => setNoteForm({ ...noteForm, content: e.target.value })}
                         rows={4}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm"
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm"
                         placeholder={String(t('admin.academies.enterNoteContent'))}
                       />
                     </div>

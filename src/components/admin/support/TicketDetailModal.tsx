@@ -550,7 +550,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                   onChange={handleInputChange}
                   placeholder={String(t('admin.support.replyPlaceholder'))}
                   rows={3}
-                  className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
                 <div className="flex flex-col space-y-2">
                   <Button
@@ -610,7 +610,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                     value={newStatus}
                     onValueChange={setNewStatus}
                   >
-                    <SelectTrigger className="!h-9 w-full rounded-lg border border-gray-300 bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 text-sm">
+                    <SelectTrigger className="!h-9 w-full rounded-lg bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3 text-sm">
                       <SelectValue placeholder={String(t('admin.support.statuses.open'))} />
                     </SelectTrigger>
                     <SelectContent>
@@ -680,12 +680,14 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
 
             {/* Actions */}
             <div>
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={handleMarkAllAsRead}
-                className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="w-full"
               >
                 {String(t('admin.support.markAllAsRead'))}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

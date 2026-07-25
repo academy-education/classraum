@@ -31,7 +31,7 @@ export function SortableTh({
     align === 'center' ? 'text-center' :
     'text-left'
   return (
-    <th className={`px-6 py-3 ${alignClass} text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]`}>
+    <th className={`px-4 py-3 ${alignClass} text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]`}>
       <button
         type="button"
         onClick={() => toggle(sortKey)}

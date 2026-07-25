@@ -432,7 +432,7 @@ export function UserManagement() {
 
         {/* Bulk action bar — appears once one or more rows are selected. */}
         {selectedIds.size > 0 && (
-          <div className="bg-primary/5 border border-primary/20 rounded-xl px-4 py-3 flex items-center justify-between">
+          <div className="bg-primary/8 ring-1 ring-primary/20 rounded-xl px-4 py-3 flex items-center justify-between">
             <div className="text-sm font-medium text-primary">
               {String(t('admin.users.selected', { count: selectedIds.size }))}
             </div>
@@ -550,7 +550,7 @@ export function UserManagement() {
                   <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>{String(t('admin.users.academy'))}</SortableTh>
                   <SortableTh sortKey="lastLogin" toggle={toggleSort} indicator={sortIndicator('lastLogin')}>{String(t('admin.users.lastLogin'))}</SortableTh>
                   <SortableTh sortKey="created" toggle={toggleSort} indicator={sortIndicator('created')}>{String(t('admin.users.thActivity'))}</SortableTh>
-                  <th className="px-6 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     Actions
                   </th>
                 </tr>
@@ -577,9 +577,9 @@ export function UserManagement() {
                         className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary disabled:opacity-40 disabled:cursor-not-allowed"
                       />
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
+                        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-medium text-sm">
                           {user.name.charAt(0).toUpperCase()}
                         </div>
                         <div className="ml-4">
@@ -588,16 +588,16 @@ export function UserManagement() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         {getRoleBadge(user.role)}
                         {getStatusBadge(user.status)}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{user.academyName || 'N/A'}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         {user.lastLoginAt ? user.lastLoginAt.toLocaleDateString(getDateLocale(language)) : String(t('admin.common.never'))}
                       </div>
@@ -605,13 +605,13 @@ export function UserManagement() {
                         {user.lastLoginAt ? user.lastLoginAt.toLocaleTimeString() : ''}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center text-sm text-gray-500">
                         <Activity className="mr-1 h-4 w-4" />
                         {String(t('admin.users.loginsLabel', { count: user.loginCount }))}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <div className="relative">
                         <button
                           onClick={() => setShowActions(showActions === user.id ? null : user.id)}
@@ -710,7 +710,7 @@ export function UserManagement() {
 
           {/* Pagination */}
           {filteredUsers.length > 0 && totalPages > 1 && (
-            <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div className="flex items-center justify-between border-t border-gray-100 bg-white px-4 py-3 sm:px-6">
               <div className="flex flex-1 justify-between sm:hidden">
                 <Button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}

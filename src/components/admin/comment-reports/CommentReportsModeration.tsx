@@ -247,17 +247,18 @@ export function CommentReportsModeration() {
               className="pl-10"
             />
           </div>
-          <button
+          <Button
+            variant="outline"
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+            className="gap-2"
           >
             <Filter className="w-4 h-4" />
             {String(t('admin.commentReports.filters'))}
-          </button>
+          </Button>
         </div>
 
         {showFilters && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-100">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{String(t('admin.commentReports.reportType'))}</label>
               <Select
@@ -341,26 +342,30 @@ export function CommentReportsModeration() {
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button
+                      <Button
+                        variant="outline"
+                        size="sm"
                         onClick={() => handleDismissReport(report.id)}
-                        className="flex items-center gap-1 px-3 py-1 text-xs border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="gap-1"
                       >
                         <X className="w-3 h-3" />
                         {String(t('admin.commentReports.dismiss'))}
-                      </button>
-                      <button
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        size="sm"
                         onClick={() => comment && handleRemoveComment(report.id, comment.id)}
-                        className="flex items-center gap-1 px-3 py-1 text-xs bg-red-600 text-white rounded-lg hover:bg-rose-700 transition-colors"
+                        className="gap-1"
                       >
                         <Trash2 className="w-3 h-3" />
                         {String(t('admin.commentReports.removeComment'))}
-                      </button>
+                      </Button>
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     {/* Report Details */}
-                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                    <div className="bg-amber-50 ring-1 ring-amber-200 rounded-lg p-4">
                       <div className="flex items-start gap-3">
                         <Flag className="w-4 h-4 text-amber-600 mt-1 flex-shrink-0" />
                         <div className="flex-1">
@@ -375,7 +380,7 @@ export function CommentReportsModeration() {
 
                     {/* Original Comment */}
                     {comment && (
-                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                      <div className="bg-gray-50 ring-1 ring-gray-100/80 rounded-lg p-4">
                         <div className="flex items-start gap-3">
                           <MessageSquare className="w-4 h-4 text-gray-600 mt-1 flex-shrink-0" />
                           <div className="flex-1">
@@ -397,28 +402,30 @@ export function CommentReportsModeration() {
 
         {/* Pagination */}
         {!loading && filteredReports.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
             <div className="text-sm text-gray-600">
               {String(t('admin.commentReports.showingReports', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
             </div>
             <div className="flex items-center gap-2">
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setPage(Math.max(0, page - 1))}
                 disabled={page === 0}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
               >
                 <ChevronLeft className="w-4 h-4" />
-              </button>
+              </Button>
               <span className="text-sm text-gray-600">
                 {String(t('admin.common.page'))} {page + 1} {String(t('admin.common.of'))} {totalPages}
               </span>
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
                 disabled={page >= totalPages - 1}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
               >
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
         )}

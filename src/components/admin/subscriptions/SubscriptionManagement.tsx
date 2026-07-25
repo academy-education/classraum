@@ -348,7 +348,7 @@ export function SubscriptionManagement() {
                   <SortableTh sortKey="revenue" toggle={toggleSort} indicator={sortIndicator('revenue')}>{String(t('admin.subscriptions.columns.revenue'))}</SortableTh>
                   <SortableTh sortKey="nextBilling" toggle={toggleSort} indicator={sortIndicator('nextBilling')}>{String(t('admin.subscriptions.columns.nextBilling'))}</SortableTh>
                   <SortableTh sortKey="users" toggle={toggleSort} indicator={sortIndicator('users')}>{String(t('admin.subscriptions.columns.users'))}</SortableTh>
-                  <th className="px-6 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.common.actions'))}
                   </th>
                 </tr>
@@ -356,7 +356,7 @@ export function SubscriptionManagement() {
               <tbody className="divide-y divide-gray-100">
                 {sortedSubscriptions.map((subscription) => (
                   <tr key={subscription.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{subscription.academyName}</div>
                         <div className="text-xs text-gray-500">{String(t('admin.subscriptions.idPrefix'))} {subscription.id}</div>
@@ -365,10 +365,10 @@ export function SubscriptionManagement() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       {getStatusBadge(subscription.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div>
                         <div className="mb-1">
                           {getTierBadge(subscription.tier)}
@@ -378,7 +378,7 @@ export function SubscriptionManagement() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">
                           {formatPrice(subscription.monthlyAmount)}
@@ -388,7 +388,7 @@ export function SubscriptionManagement() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm text-gray-900">
                           {subscription.nextBillingDate.toLocaleDateString()}
@@ -401,7 +401,7 @@ export function SubscriptionManagement() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm">
                         <div className="flex items-center text-gray-900">
                           <Users className="mr-1 h-3 w-3" />
@@ -409,7 +409,7 @@ export function SubscriptionManagement() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right">
+                    <td className="px-4 py-4 whitespace-nowrap text-right">
                       <div className="relative inline-block">
                         <button
                           onClick={(e) => {
@@ -431,7 +431,7 @@ export function SubscriptionManagement() {
 
                         {showActions === subscription.id && menuPosition && (
                           <div
-                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
+                            className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100/80 py-1 z-50 overflow-hidden"
                             style={{
                               top: `${menuPosition.top}px`,
                               right: `${menuPosition.right}px`

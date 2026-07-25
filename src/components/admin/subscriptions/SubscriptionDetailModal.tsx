@@ -325,7 +325,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 {loadingInvoices ? (
                   <div className="space-y-2">
                     {Array.from({ length: 4 }).map((_, i) => (
-                      <div key={i} className="bg-gray-50/60 ring-1 ring-gray-100 rounded-lg p-4 flex items-center justify-between">
+                      <div key={i} className="bg-gray-50/60 ring-1 ring-gray-100/80 rounded-lg p-4 flex items-center justify-between">
                         <div className="space-y-2">
                           <AdminSkeleton.Bar className="h-3.5 w-32" />
                           <AdminSkeleton.Bar className="h-2.5 w-48" />
@@ -344,7 +344,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
                 ) : (
                   <div className="space-y-3">
                     {billingHistory.map((invoice, index) => (
-                      <div key={index} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg">
+                      <div key={index} className="flex items-center justify-between p-4 ring-1 ring-gray-100/80 rounded-lg">
                         <div className="flex items-center space-x-3 flex-1">
                           {getStatusIcon(invoice.status)}
                           <div className="flex-1">
@@ -415,11 +415,11 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
               </div>
 
               {subscription.status === 'past_due' && (
-                <div className="bg-rose-50 border border-rose-200 p-4 rounded-lg">
+                <div className="bg-rose-50 ring-1 ring-rose-200 p-4 rounded-lg">
                   <div className="flex items-start">
                     <XCircle className="h-5 w-5 text-rose-600 mt-0.5 mr-2" />
                     <div>
-                      <h4 className="font-medium text-red-900">{String(t('admin.subscriptions.paymentOverdue'))}</h4>
+                      <h4 className="font-medium text-rose-900">{String(t('admin.subscriptions.paymentOverdue'))}</h4>
                       <p className="text-sm text-rose-700 mt-1">
                         {String(t('admin.subscriptions.paymentOverdueDesc'))}
                       </p>
@@ -471,7 +471,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
 
                   {/* Usage Alerts */}
                   {Object.entries(usageData).some(([_, data]: [string, any]) => data.limit !== -1 && getUsagePercentage(data.current, data.limit) > 80) && (
-                    <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+                    <div className="bg-amber-50 ring-1 ring-amber-200 p-4 rounded-lg">
                       <div className="flex items-start">
                         <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5 mr-2" />
                         <div>

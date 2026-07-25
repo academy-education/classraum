@@ -240,7 +240,7 @@ export function SettlementManagement() {
       <LiveRegion />
 
       {/* Filters */}
-      <div className="bg-white rounded-xl p-4 ring-1 ring-gray-100">
+      <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -318,7 +318,7 @@ export function SettlementManagement() {
                 <SortableTh sortKey="orderAmount" toggle={toggleSort} indicator={sortIndicator('orderAmount')} align="right">{String(t('admin.settlements.orderAmount'))}</SortableTh>
                 <SortableTh sortKey="settlementAmount" toggle={toggleSort} indicator={sortIndicator('settlementAmount')} align="right">{String(t('admin.settlements.settlementAmount'))}</SortableTh>
                 <SortableTh sortKey="settlementDate" toggle={toggleSort} indicator={sortIndicator('settlementDate')}>{String(t('admin.settlements.settlementDateLabel'))}</SortableTh>
-                <th className="px-6 py-3 text-center text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                <th className="px-4 py-3 text-center text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                   {String(t('admin.common.actions'))}
                 </th>
               </tr>
@@ -329,7 +329,7 @@ export function SettlementManagement() {
                 Array.from({ length: 6 }).map((_, i) => (
                   <tr key={`skel-${i}`}>
                     {Array.from({ length: 8 }).map((_, c) => (
-                      <td key={c} className="px-6 py-4">
+                      <td key={c} className="px-4 py-4">
                         <AdminSkeleton.Bar className="h-3.5 w-20" />
                       </td>
                     ))}
@@ -349,28 +349,28 @@ export function SettlementManagement() {
               ) : (
                 sortedSettlements.map((settlement) => (
                   <tr key={settlement.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {settlement.id.substring(0, 12)}...
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {settlement.academyName}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {settlement.type}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       {getStatusBadge(settlement.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-right text-gray-900">
                       {formatCurrency(settlement.amount.order, settlement.settlementCurrency)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-right font-medium text-gray-900">
                       {formatCurrency(settlement.amount.settlement, settlement.settlementCurrency)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
                       {formatDate(settlement.settlementDate)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
                       <Button
                         onClick={() => handleViewDetails(settlement)}
                         variant="ghost"

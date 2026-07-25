@@ -196,7 +196,7 @@ export function SettingsDashboard() {
         <div className="p-6 grid gap-6 sm:grid-cols-2">
           {/* Avatar */}
           <div className="sm:col-span-2 flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-semibold text-lg shadow-sm shadow-primary/20">
+            <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white font-semibold text-lg shadow-sm shadow-primary/20">
               {(profile.name || profile.email).charAt(0).toUpperCase()}
             </div>
             <div>
@@ -251,7 +251,7 @@ export function SettingsDashboard() {
         </div>
 
         {error && (
-          <div className="mx-6 mb-4 rounded-lg border border-rose-100 bg-rose-50/70 px-3.5 py-2.5 flex items-start gap-2">
+          <div className="mx-6 mb-4 rounded-lg ring-1 ring-rose-100 bg-rose-50/70 px-3.5 py-2.5 flex items-start gap-2">
             <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-rose-700">{error}</p>
           </div>

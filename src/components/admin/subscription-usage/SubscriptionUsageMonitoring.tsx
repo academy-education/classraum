@@ -212,22 +212,22 @@ export function SubscriptionUsageMonitoring() {
             <table className="w-full">
               <thead className="bg-gray-50/60">
                 <tr>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     Academy
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     Plan
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     Students
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     Teachers
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     Storage
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     Classrooms
                   </th>
                 </tr>
@@ -255,7 +255,7 @@ export function SubscriptionUsageMonitoring() {
 
                   return (
                     <tr key={usage.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         <div>
                           <p className="text-sm font-medium text-gray-900">{academy?.name || 'Unknown'}</p>
                           <p className="text-xs text-gray-500">
@@ -263,7 +263,7 @@ export function SubscriptionUsageMonitoring() {
                           </p>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         {/* Same tier-tone mapping as SubscriptionManagement
                             so the same plan reads identically across pages. */}
                         {(() => {
@@ -279,7 +279,7 @@ export function SubscriptionUsageMonitoring() {
                           )
                         })()}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         <div className="space-y-1">
                           <div className="flex items-center justify-between text-sm">
                             <span className={`font-medium ${getUsageColor(studentPercentage)}`}>
@@ -295,7 +295,7 @@ export function SubscriptionUsageMonitoring() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         <div className="space-y-1">
                           <div className="flex items-center justify-between text-sm">
                             <span className={`font-medium ${getUsageColor(teacherPercentage)}`}>
@@ -311,7 +311,7 @@ export function SubscriptionUsageMonitoring() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         <div className="space-y-1">
                           <div className="flex items-center justify-between text-sm">
                             <span className={`font-medium ${getUsageColor(storagePercentage)}`}>
@@ -327,7 +327,7 @@ export function SubscriptionUsageMonitoring() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-4">
                         <span className="text-sm text-gray-900">{usage.current_classroom_count}</span>
                       </td>
                     </tr>
@@ -340,28 +340,30 @@ export function SubscriptionUsageMonitoring() {
 
         {/* Pagination */}
         {!loading && usageData.length > 0 && (
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
             <div className="text-sm text-gray-600">
               Showing {page * pageSize + 1} to {Math.min((page + 1) * pageSize, total)} of {total} academies
             </div>
             <div className="flex items-center gap-2">
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setPage(Math.max(0, page - 1))}
                 disabled={page === 0}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
               >
                 <ChevronLeft className="w-4 h-4" />
-              </button>
+              </Button>
               <span className="text-sm text-gray-600">
                 Page {page + 1} of {totalPages}
               </span>
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
                 disabled={page >= totalPages - 1}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
               >
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
         )}

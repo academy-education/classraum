@@ -360,22 +360,22 @@ export function SupportManagement() {
             <table className="w-full">
               <thead className="bg-gray-50/60">
                 <tr>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.support.conversation'))}
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.common.status'))}
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.support.user'))}
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.support.lastMessage'))}
                   </th>
-                  <th className="px-6 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.support.updated'))}
                   </th>
-                  <th className="px-6 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
+                  <th className="px-4 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.common.actions'))}
                   </th>
                 </tr>
@@ -383,7 +383,7 @@ export function SupportManagement() {
               <tbody className="divide-y divide-gray-100">
                 {filteredConversations.map((conversation) => (
                   <tr key={conversation.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-4">
                       <div className="flex items-start space-x-3">
                         <MessageSquare className="h-4 w-4 text-primary mt-0.5" />
                         <div>
@@ -402,10 +402,10 @@ export function SupportManagement() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       {getStatusBadge(conversation.status)}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-4">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{conversation.userName}</div>
                         <div className="text-xs text-gray-500 flex items-center">
@@ -420,7 +420,7 @@ export function SupportManagement() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-4">
                       <div className="text-sm text-gray-900 max-w-xs truncate">
                         {conversation.lastMessage || String(t('admin.support.noMessagesYet'))}
                       </div>
@@ -430,7 +430,7 @@ export function SupportManagement() {
                         </div>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         {conversation.updatedAt.toLocaleDateString(getDateLocale(language))}
                       </div>
@@ -438,7 +438,7 @@ export function SupportManagement() {
                         {conversation.updatedAt.toLocaleTimeString(getDateLocale(language))}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right">
+                    <td className="px-4 py-4 whitespace-nowrap text-right">
                       <div className="relative inline-block">
                         <button
                           onClick={(e) => {
