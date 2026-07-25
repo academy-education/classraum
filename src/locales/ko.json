@@ -4909,8 +4909,8 @@
       "finish": "완료"
     },
     "flashcards": {
-      "generating": "카드 덱을 만드는 중...",
-      "generateFailed": "덱을 만들지 못했습니다. 다시 시도하세요.",
+      "loading": "카드 덱을 불러오는 중...",
+      "loadFailed": "덱을 불러오지 못했습니다. 다시 시도하세요.",
       "tryAgain": "다시 시도",
       "progress": "{current} / {total} 카드",
       "frontLabel": "앞면",
@@ -4928,8 +4928,8 @@
       "backToStudy": "공부 화면으로"
     },
     "practice": {
-      "generating": "연습 문제를 만드는 중...",
-      "generateFailed": "문제를 생성하지 못했습니다. 다시 시도하세요.",
+      "loading": "연습 문제를 불러오는 중...",
+      "loadFailed": "이 주제의 문제를 불러오지 못했습니다. 다시 시도하거나 다른 주제를 선택해 보세요.",
       "tryAgain": "다시 시도",
       "progress": "{current} / {total} 문제",
       "submit": "답안 제출",
@@ -4994,7 +4994,6 @@
     "test": {
       "viewSummaryTitle": "자세한 요약 보기",
       "viewSummarySubtitle": "정답률, 틀린 문제, 다음 단계 확인",
-      "generating": "모의고사를 만드는 중...",
       "generateFailed": "모의고사를 만들지 못했습니다. 다시 시도하세요.",
       "tryAgain": "다시 시도",
       "questionN": "문제 {current} / {total}",
@@ -5043,7 +5042,8 @@
       "buildingTest": "시험을 만드는 중…",
       "progress": {
         "title": "시험을 만들고 있어요",
-        "subtitle": "보통 20-40초 정도 걸려요.",
+        "subtitle": "몇 분 정도 걸릴 수 있어요. 화면을 켜둔 채로 기다려 주세요.",
+        "loadingTitle": "시험을 불러오는 중",
         "starting": "시작 중…",
         "format": "시험 형식 불러오는 중",
         "draftingQuestions": "문항을 작성하는 중",

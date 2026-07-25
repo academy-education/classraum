@@ -29,6 +29,7 @@ interface Row {
   topic_freeform: string | null
   created_at: string
   last_active_at: string
+  config: { last_gen_started_at?: string } | null
   topic: { name_en: string; name_ko: string; slug: string } | null
   score: number | null
   correct_count: number | null
@@ -62,7 +63,7 @@ function TestsInner() {
       const { data } = await supabase
         .from('study_sessions')
         .select(`
-          id, status, generation_status, topic_freeform, created_at, last_active_at,
+          id, status, generation_status, topic_freeform, created_at, last_active_at, config,
           score, correct_count, total_count,
           topic:study_topics ( name_en, name_ko, slug )
         `)
@@ -244,10 +245,17 @@ function classify(row: Row): TestState {
   if (row.generation_status === 'failed') return 'failed'
   if (row.generation_status === 'pending') {
     // Generator's Vercel maxDuration is ~300s. Anything still pending
-    // after 8 minutes is genuinely stuck (cold-start crash, timeout,
-    // orphan). Surface it as failed so the student sees a Retry
-    // affordance via TestSession's existing fresh-attempt path.
-    const age = Date.now() - new Date(row.created_at).getTime()
+    // 8 minutes after GENERATION STARTED is genuinely stuck (cold-start
+    // crash, timeout, orphan). Surface it as failed so the student sees
+    // a Retry affordance via TestSession's existing fresh-attempt path.
+    //
+    // Measured from config.last_gen_started_at, not created_at — the row
+    // is created when the customization sheet opens and may sit unused
+    // for hours, which made a just-started test read as failed
+    // immediately. created_at is only a fallback for legacy rows with no
+    // stamp (those are stuck by definition anyway).
+    const startedAt = row.config?.last_gen_started_at ?? row.created_at
+    const age = Date.now() - new Date(startedAt).getTime()
     return age > STUCK_PENDING_MS ? 'failed' : 'generating'
   }
   if (row.status === 'completed') return 'completed'

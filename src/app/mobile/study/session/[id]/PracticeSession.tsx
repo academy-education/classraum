@@ -237,7 +237,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
 
   if (phase === 'loading') {
     return (
-      <MascotLoader className="flex-1" label={t('study.practice.generating')} />
+      <MascotLoader className="flex-1" label={t('study.practice.loading')} />
     )
   }
 
@@ -245,7 +245,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-5 text-center gap-3">
         <PathMascot state="sad" size={84} />
-        <p className="text-sm text-gray-600">{t('study.practice.generateFailed')}</p>
+        <p className="text-sm text-gray-600">{t('study.practice.loadFailed')}</p>
         <button
           type="button"
           onClick={() => void fetchQuestions()}

@@ -13,6 +13,10 @@ Global rules for every item type:
 - `correct_answer` (when used) MUST be byte-identical to one entry in `choices`.
 - 4 choices for MC; vary the correct position across A/B/C/D (don't cluster on A).
 - Ensure topical VARIETY within a batch — never reuse a scenario/topic twice.
+  EXCEPTION: `speaking_interview`. On the real exam one interview = one topic,
+  so the 4 questions of a single interview set MUST share a scenario and topic.
+  Variety applies ACROSS interview sets (each set gets its own topic), never
+  WITHIN one.
 
 The bank `section` + `item_type` per type:
 | section    | item_type            | keyed? | audio? |
@@ -115,18 +119,61 @@ no nested clauses). The student hears it and repeats it. EXEMPT from hard framin
 
 ## SPEAKING — Interview (section speaking, type speaking_interview)
 
-An open interviewer question the student answers aloud (rubric-graded, no key).
-HARD = requires a defended position, a comparison, or a hypothetical — never a
-yes/no or single biographical fact. The question is spoken via TTS (the `[Interview]`
-tag is stripped before TTS).
+Author interviews in SETS OF 4, never as loose questions — on the real exam all
+4 items are one simulated interview on one topic (rubric-graded, no key). The
+question is spoken via TTS (the `[Interview]` tag is stripped before TTS).
+
+Premise first, questions second:
+
+1. Invent ONE scenario premise — an academic/campus framing device around an
+   EVERYDAY topic, second person, 1–2 sentences, no specialist knowledge
+   ("You have agreed to take part in a university research study about how
+   students get to and from campus…").
+2. Derive exactly 4 questions from it, ALL on the premise's topic, escalating in
+   this fixed order (ETS: "difficulty increasing across the task"):
+   1. personal experience or fact about the topic
+   2. personal habit/preference about the topic, with a reason
+   3. opinion on a contested general claim about the topic
+   4. policy / prediction / institutional recommendation about the topic
+
+Every question must stand alone — answerable without having heard the earlier
+answers. It is a sequence, not a dependency chain; the section is linear, never
+branching, so never write "as you just said…". No yes/no-answerable phrasing;
+~45s of speech, 2–5 sentences each.
+
+`passage` = the scenario premise, byte-identical on all 4 items (ETS delivers
+the scenario introduction both aurally and in print). `passageGroupId` = the
+same id on all 4 (`"interview-1"`, `"interview-2"`, … one per set) — assembly
+draws and renders interviews as whole groups in authored order.
 
 ```json
-{ "type":"speaking_interview",
-  "prompt":"[Interview] Some universities are moving to fully online degrees. Do you think an online degree has the same value as an in-person one? Defend your position with two specific reasons.",
-  "passage":null, "correct_answer":"", "difficulty":"hard",
-  "explanation":"1 sentence on what a strong answer must do.",
-  "choices":[], "blanks":null, "graphic":null, "passageGroupId":null,
-  "correct_answers":null, "acceptable_answers":null, "distractor_rationales":[] }
+[
+ { "type":"speaking_interview",
+   "prompt":"[Interview] How do you usually get to campus, and how long does the trip take?",
+   "passage":"You have agreed to take part in a university research study about how students get to and from campus. The interviewer will ask you a few questions about commuting.",
+   "correct_answer":"", "difficulty":"hard",
+   "explanation":"1 sentence on what a strong answer must do.",
+   "choices":[], "blanks":null, "graphic":null, "passageGroupId":"interview-1",
+   "correct_answers":null, "acceptable_answers":null, "distractor_rationales":[] },
+ { "type":"speaking_interview",
+   "prompt":"[Interview] Which part of your commute would you change if you could, and why?",
+   "passage":"<IDENTICAL premise string>", "correct_answer":"", "difficulty":"hard",
+   "explanation":"…", "choices":[], "blanks":null, "graphic":null,
+   "passageGroupId":"interview-1",
+   "correct_answers":null, "acceptable_answers":null, "distractor_rationales":[] },
+ { "type":"speaking_interview",
+   "prompt":"[Interview] Some people say universities should discourage students from driving to campus. Do you agree? Give two reasons.",
+   "passage":"<IDENTICAL premise string>", "correct_answer":"", "difficulty":"hard",
+   "explanation":"…", "choices":[], "blanks":null, "graphic":null,
+   "passageGroupId":"interview-1",
+   "correct_answers":null, "acceptable_answers":null, "distractor_rationales":[] },
+ { "type":"speaking_interview",
+   "prompt":"[Interview] If you were advising this university, what one change to campus transportation would you recommend, and what effect would you expect it to have?",
+   "passage":"<IDENTICAL premise string>", "correct_answer":"", "difficulty":"hard",
+   "explanation":"…", "choices":[], "blanks":null, "graphic":null,
+   "passageGroupId":"interview-1",
+   "correct_answers":null, "acceptable_answers":null, "distractor_rationales":[] }
+]
 ```
 
 ---

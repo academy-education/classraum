@@ -18,6 +18,7 @@ import { StudySubscriptionGate } from './SubscriptionGate'
 import { StudyButton } from './_shared/StudyButton'
 import { CreditConfirmSheet, NoCreditsSheet } from './_shared/CreditConfirmSheet'
 import { creditCostForTest } from '@/lib/study/plans'
+import { SHIPPED_TEST_SLUGS } from '@/lib/study/shipped-tests'
 import { passCreditLabel } from './_shared/pass-label'
 import { StudyTodayCard } from './_shared/primitives'
 import { ResumableShelf } from './ResumableShelf'
@@ -202,9 +203,12 @@ function themeForSubject(slug: string, name: string): Theme {
  *   - a stat chip ("44 Q · 70 min") so the card carries useful info
  *     not just brand identity */
 /** Tests that are open for use — everything else renders in the
- *  coming-soon strip. Keep in sync with LOCKED_TOPIC_SLUGS on the
- *  topic page (that's the deep-link guard for the same gate). */
-const OPEN_TEST_SLUGS = new Set(['test-sat', 'test-toefl'])
+ *  coming-soon strip. Now sourced from @/lib/study/shipped-tests so the
+ *  API can enforce the same gate; when this was a local constant the
+ *  lock was cosmetic and a deep link still reached the live-GPT
+ *  generator. Keep in sync with LOCKED_TOPIC_SLUGS on the topic page
+ *  (that's the deep-link guard for the same gate). */
+const OPEN_TEST_SLUGS = SHIPPED_TEST_SLUGS
 
 const TEST_THEMES: Record<string, {
   Icon: LucideIcon

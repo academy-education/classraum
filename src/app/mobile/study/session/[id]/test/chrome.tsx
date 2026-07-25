@@ -102,6 +102,15 @@ export function GenerationProgress({
   // prior request, we get 'resuming' phase events. Tell the user
   // we're waiting for the existing run, not starting a new one.
   const isResuming = progress?.name === 'resuming'
+  // Cached test — the server found the stored payload and answered
+  // immediately. It emits name 'done' with the 'cached' label. Nothing
+  // is being generated, so never say "Building your test".
+  const isCached = progress?.name === 'cached'
+    || progress?.labelKey === 'study.test.progress.cached'
+  // Anything that isn't a live model run gets neutral "loading" copy
+  // and no build checklist — the checklist describes generation steps
+  // that are not happening.
+  const isLoadingOnly = isResuming || isCached
   return (
     <div className="flex-1 flex flex-col items-center justify-center px-5 py-10">
       <div className="w-full max-w-sm">
@@ -113,11 +122,15 @@ export function GenerationProgress({
             <PathMascot state="loading" size={72} />
           </div>
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
-            {String(t('study.test.progress.title'))}
+            {String(t(isLoadingOnly
+              ? 'study.test.progress.loadingTitle'
+              : 'study.test.progress.title'))}
           </h2>
-          <p className="text-[12.5px] text-gray-500 mt-1">
-            {String(t('study.test.progress.subtitle'))}
-          </p>
+          {!isLoadingOnly && (
+            <p className="text-[12.5px] text-gray-500 mt-1">
+              {String(t('study.test.progress.subtitle'))}
+            </p>
+          )}
         </div>
 
         {isResuming && (
@@ -133,6 +146,7 @@ export function GenerationProgress({
           />
         </div>
 
+        {!isLoadingOnly && (
         <ul className="space-y-2.5">
           {PROGRESS_STEPS.filter(s => s.name !== 'done').map((step, i) => {
             const done = activeStepIndex > i || percent >= 100
@@ -157,6 +171,7 @@ export function GenerationProgress({
             )
           })}
         </ul>
+        )}
       </div>
     </div>
   )

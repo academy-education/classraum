@@ -319,6 +319,11 @@ export async function assembleToeflFromBank(
     .eq('section', p.section)
     .eq('verified', true)
     .eq('archived', false)
+    // Authoring order = insertion order. A Take-an-Interview set is
+    // banked 1→N in ETS's escalation order (personal experience →
+    // policy/prediction), and nothing else in the row carries that
+    // sequence, so the draw must start from a stable authored order.
+    .order('created_at', { ascending: true })
   if (error) throw new Error(`toefl assemble query failed: ${error.message}`)
   const rows = (data ?? []) as Array<{ id: string; item_type: string; item: Question }>
   if (rows.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
@@ -348,10 +353,40 @@ export async function assembleToeflFromBank(
     return order.flatMap(k => groups.get(k)!)
   }
 
+  // Take-an-Interview draws WHOLE interviews, not loose questions: on
+  // the real exam all N items belong to one interview on one topic and
+  // must play in their authored 1→N order. Drawing item-by-item (as the
+  // other task types do) would mix two interviews and shuffle the
+  // escalation apart, so group first, rank groups unseen-first by their
+  // first item, then emit each group intact in bank order.
+  const drawInterviewGroups = (items: Row[], n: number): Row[] => {
+    const groups = new Map<string, Row[]>()
+    const order: string[] = []
+    for (const it of items) {
+      const key = it.item.passageGroupId ?? `__solo:${it.id}`
+      if (!groups.has(key)) { groups.set(key, []); order.push(key) }
+      groups.get(key)!.push(it)
+    }
+    const heads = order.map(k => ({ id: groups.get(k)![0].id, key: k }))
+    const ranked = unseenFirst(heads, exposures, seed + 'speaking_interview')
+    const out: Row[] = []
+    for (const h of ranked) {
+      if (out.length >= n) break
+      out.push(...groups.get(h.key)!)
+    }
+    return out.slice(0, n)
+  }
+
   const composition: Record<string, number> = {}
   const picked: Row[] = []
   for (const { type, n } of meta.mix) {
     const bucket = byType.get(type) ?? []
+    if (type === 'speaking_interview') {
+      const drawn = drawInterviewGroups(bucket, n)
+      composition[type] = drawn.length
+      picked.push(...drawn)
+      continue
+    }
     const ordered = unseenFirst(bucket, exposures, seed + type).slice(0, n)
     composition[type] = ordered.length
     picked.push(

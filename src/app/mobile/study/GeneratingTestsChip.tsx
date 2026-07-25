@@ -27,6 +27,7 @@ interface Row {
   topic_freeform: string | null
   topic: { name_en: string; name_ko: string } | null
   created_at: string
+  config: { last_gen_started_at?: string } | null
 }
 
 export function GeneratingTestsChip() {
@@ -43,7 +44,7 @@ export function GeneratingTestsChip() {
     const tick = async () => {
       const { data } = await supabase
         .from('study_sessions')
-        .select('id, generation_status, topic_freeform, created_at, topic:study_topics(name_en, name_ko)')
+        .select('id, generation_status, topic_freeform, created_at, config, topic:study_topics(name_en, name_ko)')
         .eq('student_id', user.userId)
         .eq('mode', 'full_test')
         // 'failed' included so generation failures surface with a
@@ -89,14 +90,23 @@ export function GeneratingTestsChip() {
 
   if (rows.length === 0) return null
 
-  // Auto-fail stuck pending rows (>8 min old). Vercel's generator
-  // maxDuration is ~300s, so pending past that is orphaned. Bucket
-  // these into failed so the student sees a Retry affordance instead
-  // of an eternal "Building your test…" spinner.
+  // Auto-fail stuck pending rows (>8 min since GENERATION started).
+  // Vercel's generator maxDuration is ~300s, so pending past that is
+  // orphaned. Bucket these into failed so the student sees a Retry
+  // affordance instead of an eternal "Building your test…" spinner.
+  //
+  // Age is measured from config.last_gen_started_at, NOT created_at: a
+  // session row is created when the student opens the customization
+  // sheet and can sit for hours before they tap Start, which made every
+  // such test read as "Generation failed" the instant it began. The
+  // created_at fallback only covers legacy rows written before the
+  // generator persisted the stamp.
   const STUCK_PENDING_MS = 8 * 60 * 1000
   const now = Date.now()
+  const genStartedAt = (r: Row) =>
+    new Date(r.config?.last_gen_started_at ?? r.created_at).getTime()
   const isStuck = (r: Row) => r.generation_status === 'pending'
-    && now - new Date(r.created_at).getTime() > STUCK_PENDING_MS
+    && now - genStartedAt(r) > STUCK_PENDING_MS
 
   // Split by state — each pending/failed row gets its own line since
   // each carries a distinct topic + action.

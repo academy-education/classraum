@@ -58,14 +58,22 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // distinct entry phases so we never flash the wrong UI on resume:
   //   detecting → blank/minimal spinner while we ask the DB whether
   //               this session already has a built test.
-  //   resuming  → server says we have a cached test; show a neutral
+  //   resuming  → DB says generation_status is 'ready'; show a neutral
   //               "Loading your test" spinner, NEVER the multi-step
   //               build checklist.
-  //   generating → server has no cached test; show full
-  //               GenerationProgress with phase events.
+  //   preparing → status is null/pending/failed, so we DON'T yet know
+  //               whether this is a build or a cache hit. The server
+  //               returns the cached payload whenever the cache row
+  //               exists, regardless of status, so committing to
+  //               "Building your test" here would flash a lie for the
+  //               ~50ms until the stream answers 'cached'. Neutral
+  //               "Loading your test" copy until the stream proves a
+  //               real model run is happening.
+  //   generating → the stream emitted a real generation phase event;
+  //               only now show the full GenerationProgress checklist.
   // taking/submitting/reviewing/error unchanged.
   const [phase, setPhase] = useState<
-    'detecting' | 'resuming' | 'generating' | 'taking' | 'submitting' | 'reviewing' | 'error'
+    'detecting' | 'resuming' | 'preparing' | 'generating' | 'taking' | 'submitting' | 'reviewing' | 'error'
   >('detecting')
   const [test, setTest] = useState<TestPayload | null>(null)
   const [answers, setAnswers] = useState<(string | null)[]>([])
@@ -184,8 +192,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     // showing any loading UI — otherwise the user sees a flash of
     // GenerationProgress ("Writing your questions…") even when the
     // test is already built and we're just fetching it from cache.
-    // Default to 'generating' on error so we don't silently hide
-    // legitimate generation progress.
+    // Anything short of a confirmed 'ready' stays in the neutral
+    // 'preparing' state; only the stream can promote us to
+    // 'generating'.
     setPhase('detecting')
     let isResume = false
     try {
@@ -198,10 +207,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // been generated yet; 'pending' = generation in flight on
       // another tab (we'll join that stream and show progress).
       // 'failed' = treat as fresh attempt so the user can retry.
+      // NOTE: a null/pending/failed status does NOT mean "no cached
+      // test" — the route serves the cache row whenever it exists —
+      // so those cases go to the neutral 'preparing' state.
       isResume = pre?.generation_status === 'ready'
       if (pre?.speaking_grade_mode === 'audio') setSpeakingGradeMode('audio')
-    } catch { /* fall through to 'generating' */ }
-    setPhase(isResume ? 'resuming' : 'generating')
+    } catch { /* fall through to 'preparing' */ }
+    setPhase(isResume ? 'resuming' : 'preparing')
     setGenError(null)
     setProgress({ name: 'starting', labelKey: 'study.test.progress.starting', percent: 0 })
     try {
@@ -231,11 +243,27 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           let event: { type: string; [k: string]: unknown }
           try { event = JSON.parse(trimmed) } catch { continue }
           if (event.type === 'phase') {
+            const name = String(event.name ?? '')
+            const labelKey = String(event.label ?? '')
             setProgress({
-              name: String(event.name ?? ''),
-              labelKey: String(event.label ?? ''),
+              name,
+              labelKey,
               percent: Math.max(0, Math.min(100, Number(event.percent ?? 0))),
             })
+            // Only the server can tell us work is actually happening.
+            // 'done' + the 'cached' label means the payload came
+            // straight out of the cache row — no model run, so stay in
+            // the neutral loading state. Everything else (format,
+            // drafting_*, verifying, assembling, and the 'resuming'
+            // poll of another in-flight run) means there IS a real
+            // generation to report on. Promote only — never demote a
+            // run we already committed to.
+            const isCacheHit = name === 'done' || labelKey === 'study.test.progress.cached'
+            if (!isCacheHit) {
+              setPhase(p => (p === 'detecting' || p === 'preparing' || p === 'resuming')
+                ? 'generating'
+                : p)
+            }
           } else if (event.type === 'result') {
             payload = event.test as TestPayload
           } else if (event.type === 'error') {
@@ -830,14 +858,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   //
   // 'detecting' — DB ping in flight. Neutral copy: don't imply we're
   //               building a test until we know we are.
-  // 'resuming'  — server has a cached test; we're just fetching it.
-  //               Explicit "loading" copy so students who bounced
-  //               back in mid-generation know they'll join the
-  //               existing run.
-  if (phase === 'detecting' || phase === 'resuming') {
-    const label = phase === 'resuming'
-      ? String(t('study.test.loadingTest'))
-      : undefined
+  // 'resuming'  — DB says the test is built; we're just fetching it.
+  //               Explicit "loading" copy.
+  // 'preparing' — request in flight, server hasn't told us yet whether
+  //               it's serving a cached test or starting a build. Same
+  //               honest "loading" copy; we upgrade to the build
+  //               checklist only once a generation phase event lands.
+  if (phase === 'detecting' || phase === 'resuming' || phase === 'preparing') {
+    const label = phase === 'detecting'
+      ? undefined
+      : String(t('study.test.loadingTest'))
     return (
       // role="status" + aria-live so screen readers announce the wait —
       // the mascot alone is decorative and says nothing about loading.

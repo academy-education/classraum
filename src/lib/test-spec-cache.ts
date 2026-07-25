@@ -102,13 +102,25 @@ export async function defaultsForTestSectionCached(
   try {
     const cached = await loadCachedSpec(family, sectionLabel)
     if (cached) {
-      const count = cached.questionsPerSection > 30
-        ? Math.ceil(cached.questionsPerSection / 2)
-        : cached.questionsPerSection
-      const minutes = cached.questionsPerSection > 30
-        ? Math.ceil(cached.minutesPerSection / 2)
-        : cached.minutesPerSection
-      return { count, minutes, choiceCount: cached.choiceCount }
+      // NOTE: this used to halve any spec with >30 questions per
+      // section ("a 54-question SAT module is too long for a practice
+      // run"), which made the cached path silently disagree with the
+      // sync fallback — the same family/section returned full counts
+      // from TEST_SPECS and half counts once study_test_specs had a
+      // row. That table is empty today, so the divergence has never
+      // fired; the moment the refresh cron populates a TOEFL row it
+      // would, and TOEFL Reading is the worst case: its 50 is a count
+      // of SCORED items, of which 20 come from just 2 Complete-the-
+      // Words paragraphs (10 blanks each). Halving 50 → 25 collapses
+      // the section to ~7 on-screen items in an 18-minute slot.
+      // Length trimming, if we ever want it, belongs in the caller
+      // that knows it's building a short practice run — not in the
+      // spec loader, whose contract is "return the real blueprint".
+      return {
+        count: cached.questionsPerSection,
+        minutes: cached.minutesPerSection,
+        choiceCount: cached.choiceCount,
+      }
     }
   } catch (err) {
     console.error('[test-spec-cache] defaults lookup failed; falling back', err)

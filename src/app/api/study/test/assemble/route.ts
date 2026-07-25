@@ -8,6 +8,7 @@ import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
+import { isShippedTestFamily } from '@/lib/study/shipped-tests'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
@@ -94,6 +95,16 @@ export async function POST(req: NextRequest) {
   // through (canAccessTest returns true for them).
   if (!(await canAccessTest(user.id, family))) {
     return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: family }, { status: 403 })
+  }
+  // Shipped-family gate — same rule the generate route enforces, so both
+  // entry points agree on what we actually support. A family without an
+  // item bank cannot be assembled anyway; failing here gives a clear
+  // reason instead of "no verified items".
+  if (!isShippedTestFamily(family)) {
+    return NextResponse.json(
+      { error: 'test not available yet', code: 'test_coming_soon', test: family },
+      { status: 403 },
+    )
   }
 
   // Adaptive tests (SAT only) draw ONLY Module 1 here (fixed module

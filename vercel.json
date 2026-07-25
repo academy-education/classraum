@@ -67,6 +67,10 @@
     {
       "path": "/api/cron/study-refund-sync",
       "schedule": "40 3 * * *"
+    },
+    {
+      "path": "/api/cron/study-reap-stuck-generations",
+      "schedule": "*/10 * * * *"
     }
   ],
   "framework": "nextjs",
@@ -74,7 +78,43 @@
     "icn1"
   ],
   "functions": {
-    "app/api/*/route.ts": {
+    "src/app/api/study/test/generate/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/study/speaking/grade-audio/route.ts": {
+      "maxDuration": 120
+    },
+    "src/app/api/study/response/grade/route.ts": {
+      "maxDuration": 90
+    },
+    "src/app/api/study/snap/solve/route.ts": {
+      "maxDuration": 90
+    },
+    "src/app/api/study/explain/route.ts": {
+      "maxDuration": 120
+    },
+    "src/app/api/reports/generate-feedback/stream/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/admin/test-specs/refresh/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/study-billing/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/study-weekly-recap/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/refresh-test-specs/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/refresh-test-spec-examples/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/study-push-reminders/route.ts": {
+      "maxDuration": 120
+    },
+    "src/app/api/**/route.ts": {
       "maxDuration": 60
     }
   }

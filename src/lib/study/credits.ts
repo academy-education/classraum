@@ -79,15 +79,42 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
   return { ok: true }
 }
 
-/** Refund every credit slice of a session (idempotent — safe to call
- *  on any failure path regardless of how many slices were reserved). */
-export async function refundTestCredits(studentId: string, sessionId: string, cost: number): Promise<void> {
+export interface RefundResult {
+  /** Slices that actually moved a credit back on THIS call. */
+  refunded: number
+  /** Slices already refunded by an earlier call (no-op, not a failure). */
+  already: number
+  /** Slices that were never debited (nothing to give back). */
+  noDebit: number
+}
+
+/** Refund every credit slice of a session.
+ *
+ *  IDEMPOTENT AT THE DATABASE LEVEL — safe to call on any failure path,
+ *  from any process, any number of times. `refund_study_credit` looks up
+ *  the debit ledger row for (student, source), returns `no_debit` when
+ *  there isn't one, and returns `already` without touching a balance when
+ *  a refund ledger row for that source already exists. So a route's
+ *  catch-path refund, its finally-path refund, and the stale-generation
+ *  reaper can all fire for the same session and the student still gets
+ *  exactly one credit back per slice.
+ *
+ *  Returns a per-slice breakdown so callers (the reaper especially) can
+ *  log whether a refund was real or a replay. */
+export async function refundTestCredits(studentId: string, sessionId: string, cost: number): Promise<RefundResult> {
+  const out: RefundResult = { refunded: 0, already: 0, noDebit: 0 }
   for (let i = 0; i < cost; i++) {
     const source = creditSourceId(sessionId, i)
     try {
-      await supabaseAdmin.rpc('refund_study_credit', { p_student: studentId, p_source: source })
+      const { data } = await supabaseAdmin
+        .rpc('refund_study_credit', { p_student: studentId, p_source: source })
+      const r = (data ?? {}) as { ok?: boolean; already?: boolean; reason?: string }
+      if (r.already) out.already++
+      else if (r.ok) out.refunded++
+      else out.noDebit++
     } catch (e) {
       console.error('[credits] refund slice failed', sessionId, i, e)
     }
   }
+  return out
 }

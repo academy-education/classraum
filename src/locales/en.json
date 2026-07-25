@@ -4852,8 +4852,8 @@
       "finish": "Done"
     },
     "flashcards": {
-      "generating": "Building your card deck...",
-      "generateFailed": "Couldn't build the deck. Try again.",
+      "loading": "Loading your card deck...",
+      "loadFailed": "Couldn't load this deck. Try again.",
       "tryAgain": "Try again",
       "progress": "Card {current} of {total}",
       "frontLabel": "Front",
@@ -4871,8 +4871,8 @@
       "backToStudy": "Back to Study"
     },
     "practice": {
-      "generating": "Building your practice set...",
-      "generateFailed": "Couldn't generate questions. Try again.",
+      "loading": "Loading your practice set...",
+      "loadFailed": "Couldn't load questions for this topic. Try again or pick another topic.",
       "tryAgain": "Try again",
       "progress": "Question {current} of {total}",
       "submit": "Submit answer",
@@ -4937,7 +4937,6 @@
     "test": {
       "viewSummaryTitle": "View detailed summary",
       "viewSummarySubtitle": "See your accuracy, mistakes, and next steps",
-      "generating": "Building your mock test...",
       "generateFailed": "Couldn't build the test. Try again.",
       "tryAgain": "Try again",
       "questionN": "Question {current} of {total}",
@@ -4986,7 +4985,8 @@
       "buildingTest": "Building your test…",
       "progress": {
         "title": "Building your test",
-        "subtitle": "This takes 20-40 seconds.",
+        "subtitle": "This can take a few minutes — you can leave this open.",
+        "loadingTitle": "Loading your test",
         "starting": "Starting…",
         "format": "Loading the test format",
         "draftingQuestions": "Writing your questions",

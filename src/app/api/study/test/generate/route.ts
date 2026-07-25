@@ -25,6 +25,7 @@ import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
+import { isShippedTestFamily } from '@/lib/study/shipped-tests'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -42,6 +43,12 @@ export const dynamic = 'force-dynamic'
 // Vercel Pro plan max is 300s. Full-section tests (SAT R&W = 54 items,
 // TOEIC Reading = 100 items) genuinely need 60-120s even with the
 // parallelized pipeline below; legacy 90s caused mid-stream timeouts.
+//
+// vercel.json's `functions` block also lists this exact source path at
+// 300 and lists it ABOVE the 60s `src/app/api/**/route.ts` catch-all
+// (first matching glob wins) — don't reorder those entries, or Vercel
+// starts killing generations at 60s. A killed invocation runs no
+// finally, which is precisely how students lost paid credits.
 export const maxDuration = 300
 
 /** Permissive schema: AI SDK does NOT use OpenAI's strict structured-
@@ -211,6 +218,17 @@ export type TestPayload = {
 }
 
 const CACHED_TEST_MARKER = '[full-test-v1]'
+
+/** How long a `generation_status = 'pending'` row can sit before we treat
+ *  the run behind it as dead. The generator's ceiling is maxDuration
+ *  (300s) plus cold start, so ~12 min is comfortably past any healthy
+ *  run while still freeing a stuck student quickly.
+ *
+ *  Kept in sync with STALE_MS in
+ *  src/app/api/cron/study-reap-stuck-generations/route.ts — the reaper
+ *  must not refund a run this route would still consider live.
+ *  (Not exported: Next.js rejects unknown exports from a route file.) */
+const GENERATION_STALE_MS = 12 * 60 * 1000
 
 /**
  * Defaults per test family. Used both to set timer + question count
@@ -389,16 +407,41 @@ export async function POST(req: NextRequest) {
   // start a second one — it'd waste tokens and race on the cache
   // insert. Stream a polling response that watches for the cache row
   // to appear (background generation is still running on the original
-  // request). Falls through to a fresh generation if the pending row
-  // is stale (no progress after the polling window).
+  // request).
+  //
+  // But a 'pending' row is NOT proof of a live run: if the invocation
+  // was killed (maxDuration, OOM, deploy mid-flight) nothing ever
+  // clears the flag, and returning the polling stream unconditionally
+  // meant the session could NEVER regenerate — the student was locked
+  // out of a test they'd already paid for. So only poll while the run
+  // is plausibly alive; past GENERATION_STALE_MS, fall through and
+  // regenerate on this request.
   if (session.generation_status === 'pending') {
-    return new Response(buildPollingStream(sessionId), {
-      headers: {
-        'Content-Type': 'application/x-ndjson; charset=utf-8',
-        'Cache-Control': 'no-cache, no-transform',
-        'X-Accel-Buffering': 'no',
-      },
-    })
+    const startedAt = Date.parse(
+      String((session.config as { last_gen_started_at?: string } | null)?.last_gen_started_at ?? '')
+    )
+    // A pending row with no start stamp is a legacy/orphan row — the
+    // generator has always written the stamp with the flag. Treat as stale.
+    const staleMs = Number.isFinite(startedAt) ? Date.now() - startedAt : Number.POSITIVE_INFINITY
+    if (staleMs <= GENERATION_STALE_MS) {
+      return new Response(buildPollingStream(sessionId), {
+        headers: {
+          'Content-Type': 'application/x-ndjson; charset=utf-8',
+          'Cache-Control': 'no-cache, no-transform',
+          'X-Accel-Buffering': 'no',
+        },
+      })
+    }
+    // Stale, and the cached-payload check above already proved no test
+    // landed. Break the deadlock and regenerate below.
+    //
+    // Deliberately NOT refunding here: every debit slice is keyed off
+    // the session id, so the reserve below is idempotent — it re-reads
+    // the existing debit and charges nothing. The credit the student
+    // already paid buys THIS run. If this run dies too, the stream's
+    // finally (or the reaper cron) hands the credit back. Refunding
+    // here as well would mean a full refund AND a free test.
+    console.warn('[test/generate] stale pending row — regenerating', { sessionId, staleMs })
   }
 
   // ── Credit reserve ──────────────────────────────────────────────
@@ -427,6 +470,18 @@ export async function POST(req: NextRequest) {
     if (creditFamily && !(await canAccessTest(user.id, creditFamily))) {
       return NextResponse.json({ error: 'test not unlocked', code: 'test_locked', test: creditFamily }, { status: 403 })
     }
+    // Shipped-family gate. canAccessTest above is exam-pass SCOPING —
+    // it says nothing about whether we actually support a family. The
+    // "coming soon" lock used to live only in the landing page
+    // component, so the card was untappable but a direct topic URL
+    // still landed here and billed a live model run for a family with
+    // no item bank behind it. Refuse before reserving credits.
+    if (!isShippedTestFamily(creditFamily)) {
+      return NextResponse.json(
+        { error: 'test not available yet', code: 'test_coming_soon', test: creditFamily },
+        { status: 403 },
+      )
+    }
   }
   // Spend this test's exam-pass credits first (scoped), then generic —
   // unless the student chose a regular credit in the customization sheet
@@ -447,9 +502,34 @@ export async function POST(req: NextRequest) {
   }
   // Funnel: an AI test generation actually started (credits reserved).
   void trackEvent(user.id, 'test_started', { kind: 'ai_generated', creditCost })
+  // Refund guard. Two layers of idempotency:
+  //   1. in-process — `refunded` stops this run from logging/replaying
+  //      a refund it already performed (catch → finally, say);
+  //   2. in-database — refund_study_credit is a no-op once a refund
+  //      ledger row exists for the slice, so the reaper cron and this
+  //      route can both fire without ever paying twice.
+  let refunded = false
   const refundCredit = async (why: string) => {
-    await refundTestCredits(user.id, sessionId, creditCost)
-    console.log('[test/generate] credit refunded', { sessionId, why, creditCost })
+    if (refunded) return
+    refunded = true
+    const r = await refundTestCredits(user.id, sessionId, creditCost)
+    console.log('[test/generate] credit refunded', { sessionId, why, creditCost, ...r })
+  }
+  /** Bail-out for every path that abandons the run: the student must
+   *  not be left holding a debit for a test that will never exist, and
+   *  the row must not be left 'pending' (which locks regeneration until
+   *  it goes stale). Used by pre-stream returns and by the stream's
+   *  finally. */
+  const failAndRefund = async (why: string) => {
+    try {
+      await supabaseAdmin
+        .from('study_sessions')
+        .update({ generation_status: 'failed' })
+        .eq('id', sessionId)
+    } catch (e) {
+      console.error('[test/generate] failed-status write failed', sessionId, e)
+    }
+    await refundCredit(why)
   }
 
   // Mark this session's generation as in-flight so the landing page
@@ -457,13 +537,31 @@ export async function POST(req: NextRequest) {
   // away knowing it'll continue server-side. last_gen_started_at lets
   // the polling stream distinguish a HEALTHY long run from a stale
   // zombie before it breaks the pending deadlock.
+  //
+  // gen_credit_cost / gen_credit_family are persisted for the reaper:
+  // when the invocation is KILLED (Vercel maxDuration, OOM) no catch
+  // and no finally runs in this process, so the refund has to happen
+  // out-of-band — and the reaper can't re-derive the price without
+  // walking the topic slug again.
   await supabaseAdmin
     .from('study_sessions')
     .update({
       generation_status: 'pending',
-      config: { ...(session.config ?? {}), last_gen_started_at: new Date().toISOString() },
+      config: {
+        ...(session.config ?? {}),
+        last_gen_started_at: new Date().toISOString(),
+        gen_credit_cost: creditCost,
+        gen_credit_family: creditFamily,
+      },
     })
     .eq('id', sessionId)
+
+  // Everything from here to the stream construction runs OUTSIDE the
+  // stream's try/catch (prompt-context loads, spec lookups — all of
+  // which hit the DB and can throw). Without this wrapper such a throw
+  // rejected the handler with the credit already debited and the row
+  // stuck on 'pending' forever.
+  try {
 
   // Build the prompt context. For test-prep we prefer the detailed
   // hand-curated spec from lib/test-specs.ts over the generic per-
@@ -506,7 +604,12 @@ export async function POST(req: NextRequest) {
       }
     }
   }
-  if (!topicName) return NextResponse.json({ error: 'session has no topic' }, { status: 400 })
+  if (!topicName) {
+    // Early return AFTER the debit and AFTER the pending flip — hand
+    // the credit back and unstick the row before bailing.
+    await failAndRefund('no topic')
+    return NextResponse.json({ error: 'session has no topic' }, { status: 400 })
+  }
 
   // Test-prep generation prefers the spec library's per-section
   // count/timing (matches the real exam) over the per-family default.
@@ -564,6 +667,12 @@ export async function POST(req: NextRequest) {
       }
       const phase = (name: string, label: string, percent: number) =>
         emit({ type: 'phase', name, label, percent })
+      // Flipped true ONLY once the test is durably persisted (cache row
+      // written + status 'ready'). Anything else — a throw, an early
+      // return, a client disconnect — leaves it false and the finally
+      // below refunds. This is the difference between "we took a credit
+      // and gave you a test" and "we took a credit".
+      let settled = false
 
   try {
     // Two-pass generation: the model collapses "hard" into "medium"
@@ -1770,8 +1879,13 @@ export async function POST(req: NextRequest) {
           ungrouped.push(q)
         }
       }
-      // Sort each group internally by difficulty.
+      // Sort each group internally by difficulty. EXCEPT a Take-an-
+      // Interview group: its authored 1→N order IS the escalation ETS
+      // specifies ("difficulty increasing across the task"), and the
+      // model's self-reported per-item difficulty labels are far too
+      // coarse to reproduce it — re-sorting would scramble the ladder.
       for (const arr of groups.values()) {
+        if (arr.every(q => q.type === 'speaking_interview')) continue
         arr.sort((a, b) => difficultyRank[a.difficulty] - difficultyRank[b.difficulty])
       }
       // Order groups by their easiest item's difficulty (ascending).
@@ -2025,6 +2139,10 @@ export async function POST(req: NextRequest) {
       .from('study_sessions')
       .update({ generation_status: 'ready' })
       .eq('id', sessionId)
+    // The student now has a test. From here the credit is EARNED — the
+    // finally must not refund it (and neither will the reaper, which
+    // only touches rows still 'pending').
+    settled = true
     void notifyTestReady(user.id, sessionId, test.title, lang)
 
     phase('done', 'study.test.progress.done', 100)
@@ -2078,6 +2196,24 @@ export async function POST(req: NextRequest) {
       : 'unknown'
     emit({ type: 'error', message: 'generation failed', reason })
   } finally {
+    // MONEY PATH. The catch above only covers throws; it does not cover
+    // an early `return` out of the try (the "too few questions" bail),
+    // and it does not cover the client hanging up mid-stream — enqueue
+    // starts throwing into emit's swallow, generation runs on, and the
+    // run can end here having produced nothing. Any unsettled run must
+    // give the credit back and leave the row 'failed' so it can be
+    // retried instead of polling a corpse.
+    //
+    // Safe to run after the catch already refunded: refundCredit is a
+    // no-op on its second call, and refund_study_credit is a no-op once
+    // the slice has a refund ledger row. Never double-refunds.
+    if (!settled) {
+      try {
+        await failAndRefund('finally: unsettled run')
+      } catch (e) {
+        console.error('[test/generate] finally refund failed', sessionId, e)
+      }
+    }
     try { controller.close() } catch { /* already closed */ }
   }
     },
@@ -2090,6 +2226,14 @@ export async function POST(req: NextRequest) {
       'X-Accel-Buffering': 'no',
     },
   })
+  } catch (setupErr) {
+    // Threw before the stream even started (spec/topic load, model
+    // construction). Credit is already debited and the row is already
+    // 'pending' — undo both.
+    console.error('[test/generate] setup failed before stream', sessionId, setupErr)
+    await failAndRefund(`setup: ${(setupErr as Error)?.name ?? 'Error'}`)
+    return NextResponse.json({ error: 'generation setup failed' }, { status: 500 })
+  }
 }
 
 /** Wrap a fixed list of events in an NDJSON Response — used for the
@@ -3211,9 +3355,17 @@ function extraGuidanceFor(
       '- "choices" must be an empty array.',
       '',
       `TASK B — "Take an Interview" (${interviewN} items, type="speaking_interview"):`,
-      '- An open interviewer question (familiar topic). The student responds in 2-5 sentences.',
-      '- "prompt" = "[Interview] " + the interviewer question (e.g., "[Interview] Tell me about a time you helped a classmate.")',
-      '- "passage" must be null, "choices" must be an empty array, "correct_answer" must be null.',
+      `CRITICAL: on the real exam these ${interviewN} items are ONE interview on ONE topic, not ${interviewN} unrelated questions. Build them premise-first:`,
+      '- STEP 1 — invent ONE scenario premise: a short academic/campus framing device wrapped around an EVERYDAY topic, written in the second person, 1-2 sentences. Example: "You have agreed to take part in a university research study about how students get to and from campus. The interviewer will ask you a few questions about commuting." Everyday subject matter, academic/campus framing, NO specialist knowledge required.',
+      `- STEP 2 — derive EXACTLY ${interviewN} questions from that premise, all on the SAME topic as the premise. Never change topic mid-interview.`,
+      '- FIXED ESCALATION ORDER (difficulty increases across the task — emit the items in this order): (1) a personal experience or a simple fact about the topic; (2) a personal habit or preference about the topic, asking for a reason; (3) an opinion on a contested general claim about the topic; (4) a policy, prediction, or institutional recommendation about the topic.',
+      `- If ${interviewN} is not 4, keep the same ordering principle: start at personal experience and end at policy/prediction, spreading the ${interviewN} rungs evenly along that ladder.`,
+      '- Each question MUST stand alone — answerable without having heard the answers to the earlier questions. It is a sequence, not a dependency chain; never write "you just mentioned…" or "building on your last answer…".',
+      '- NO yes/no-answerable phrasing. Each question targets ~45 seconds of speech (2-5 sentences).',
+      '- "prompt" = "[Interview] " + the interviewer question (e.g., "[Interview] How do you usually get to campus, and how long does the trip take?").',
+      `- "passage" = the scenario premise from STEP 1, the IDENTICAL string on ALL ${interviewN} interview items (ETS delivers the scenario introduction both aurally and in print, once per task).`,
+      `- "passageGroupId" = "interview-1" on ALL ${interviewN} interview items so they stay clustered and in order.`,
+      '- "choices" must be an empty array, "correct_answer" must be null.',
       '- The grader only checks for substantive (>20 char) response — rubric scoring routes through /api/study/response/grade.',
       '',
       universalRules,
