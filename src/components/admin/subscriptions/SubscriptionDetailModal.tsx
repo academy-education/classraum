@@ -88,7 +88,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch invoices');
+        throw new Error(errorData.error || String(t('admin.subscriptions.failedToFetchInvoices')));
       }
 
       const result = await response.json();
@@ -122,7 +122,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
       const response = await adminFetch(`/api/admin/subscriptions/usage?academyId=${subscription.academyId}`);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch usage data');
+        throw new Error(String(t('admin.subscriptions.failedToFetchUsage')));
       }
 
       const result = await response.json();
@@ -139,7 +139,7 @@ export function SubscriptionDetailModal({ subscription, onClose, onRefresh }: Su
           },
         });
       } else {
-        throw new Error('Invalid response from usage API');
+        throw new Error(String(t('admin.subscriptions.invalidUsageResponse')));
       }
     } catch (error) {
       console.error('[SubscriptionDetailModal] Error loading usage:', error);

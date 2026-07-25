@@ -95,7 +95,7 @@ export function SubscriptionManagement() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch subscriptions');
+        throw new Error(errorData.error || String(t('admin.subscriptions.failedToFetch')));
       }
 
       const result = await response.json();

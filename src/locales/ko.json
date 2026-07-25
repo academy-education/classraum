@@ -751,7 +751,15 @@
       "processing": "처리 중...",
       "processFullRefund": "전액 환불 처리",
       "processPartialRefund": "부분 환불 처리",
-      "refundReasonRequired": "환불 사유를 입력해주세요"
+      "refundReasonRequired": "환불 사유를 입력해주세요",
+      "failedToFetch": "구독 정보를 불러오지 못했습니다",
+      "failedToFetchInvoices": "인보이스를 불러오지 못했습니다",
+      "failedToFetchUsage": "사용량 데이터를 불러오지 못했습니다",
+      "invalidUsageResponse": "사용량 API의 응답이 올바르지 않습니다",
+      "invalidRefundAmount": "유효한 환불 금액을 입력하세요",
+      "refundExceedsInvoice": "환불 금액은 인보이스 금액을 초과할 수 없습니다",
+      "refundFailed": "환불에 실패했습니다",
+      "failedToProcessRefund": "환불을 처리하지 못했습니다"
     },
     "settlements": {
       "title": "정산",

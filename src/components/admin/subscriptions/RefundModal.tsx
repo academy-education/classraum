@@ -61,11 +61,11 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
     if (refundType === 'partial') {
       const amount = parseFloat(partialAmount);
       if (isNaN(amount) || amount <= 0) {
-        setError('Please enter a valid refund amount');
+        setError(String(t('admin.subscriptions.invalidRefundAmount')));
         return;
       }
       if (amount > invoice.amount) {
-        setError('Refund amount cannot exceed invoice amount');
+        setError(String(t('admin.subscriptions.refundExceedsInvoice')));
         return;
       }
     }
@@ -89,14 +89,14 @@ export function RefundModal({ invoice, onClose, onRefundSuccess }: RefundModalPr
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Refund failed');
+        throw new Error(result.error || String(t('admin.subscriptions.refundFailed')));
       }
 
       onRefundSuccess();
       onClose();
     } catch (err) {
       console.error('[RefundModal] Refund error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to process refund');
+      setError(err instanceof Error ? err.message : String(t('admin.subscriptions.failedToProcessRefund')));
     } finally {
       setIsProcessing(false);
     }

@@ -751,7 +751,15 @@
       "processing": "Processing...",
       "processFullRefund": "Process Full Refund",
       "processPartialRefund": "Process Partial Refund",
-      "refundReasonRequired": "Please provide a reason for the refund"
+      "refundReasonRequired": "Please provide a reason for the refund",
+      "failedToFetch": "Failed to fetch subscriptions",
+      "failedToFetchInvoices": "Failed to fetch invoices",
+      "failedToFetchUsage": "Failed to fetch usage data",
+      "invalidUsageResponse": "Invalid response from usage API",
+      "invalidRefundAmount": "Please enter a valid refund amount",
+      "refundExceedsInvoice": "Refund amount cannot exceed invoice amount",
+      "refundFailed": "Refund failed",
+      "failedToProcessRefund": "Failed to process refund"
     },
     "settlements": {
       "title": "Settlements",
