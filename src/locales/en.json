@@ -1554,6 +1554,14 @@
       "partnerSetupFailed": "Partner Setup Failed",
       "paymentProcessingError": "Payment Processing Error",
       "databaseError": "Database Error"
+    },
+    "alertMessages": {
+      "settlementCreationFailed": "Failed to create settlement for partner {partnerId}",
+      "payoutFailed": "Payout of {amount} {currency} to partner {partnerId} failed. Reason: {reason}",
+      "webhookVerificationFailed": "Failed to verify {webhookType} webhook signature. Possible security issue.",
+      "partnerSetupFailed": "Failed to create PortOne partner for academy \"{academyName}\"",
+      "paymentProcessingError": "Critical error during payment processing",
+      "databaseError": "Database error during {operation}"
     }
   },
   "classrooms": {

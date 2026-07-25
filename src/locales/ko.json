@@ -1554,6 +1554,14 @@
       "partnerSetupFailed": "파트너 설정 실패",
       "paymentProcessingError": "결제 처리 오류",
       "databaseError": "데이터베이스 오류"
+    },
+    "alertMessages": {
+      "settlementCreationFailed": "파트너 {partnerId}의 정산 생성에 실패했습니다",
+      "payoutFailed": "파트너 {partnerId}에게 {amount} {currency} 지급이 실패했습니다. 사유: {reason}",
+      "webhookVerificationFailed": "{webhookType} 웹훅 서명 검증에 실패했습니다. 보안 문제일 수 있습니다.",
+      "partnerSetupFailed": "학원 \"{academyName}\"의 PortOne 파트너 생성에 실패했습니다",
+      "paymentProcessingError": "결제 처리 중 심각한 오류가 발생했습니다",
+      "databaseError": "{operation} 중 데이터베이스 오류가 발생했습니다"
     }
   },
   "dashboard": {

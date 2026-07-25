@@ -472,6 +472,41 @@ export function AdminDashboard() {
     return key ? String(t(`admin.alertTitles.${key}`)) : title;
   };
 
+  // Same story for the message body: the alerting service stores English
+  // templates with interpolated data. Re-parse the known templates and render
+  // them from the localized string (dynamic values like {reason} may still be
+  // English if PortOne returned them — that's data, not UI copy). Falls back to
+  // the raw message for anything unrecognized.
+  const localizeAlertMessage = (title: string, message: string): string => {
+    let m: RegExpMatchArray | null;
+    switch (title) {
+      case 'Payout Failed':
+        m = message.match(/^Payout of (.+?) (\S+) to partner (.+?) failed\. Reason: (.+)$/);
+        if (m) return String(t('admin.alertMessages.payoutFailed', { amount: m[1], currency: m[2], partnerId: m[3], reason: m[4] }));
+        break;
+      case 'Webhook Verification Failed':
+        m = message.match(/^Failed to verify (\S+) webhook signature/);
+        if (m) return String(t('admin.alertMessages.webhookVerificationFailed', { webhookType: m[1] }));
+        break;
+      case 'Settlement Creation Failed':
+        m = message.match(/^Failed to create settlement for partner (.+)$/);
+        if (m) return String(t('admin.alertMessages.settlementCreationFailed', { partnerId: m[1] }));
+        break;
+      case 'Partner Setup Failed':
+        m = message.match(/^Failed to create PortOne partner for academy "(.+)"$/);
+        if (m) return String(t('admin.alertMessages.partnerSetupFailed', { academyName: m[1] }));
+        break;
+      case 'Payment Processing Error':
+        if (message === 'Critical error during payment processing') return String(t('admin.alertMessages.paymentProcessingError'));
+        break;
+      case 'Database Error':
+        m = message.match(/^Database error during (.+)$/);
+        if (m) return String(t('admin.alertMessages.databaseError', { operation: m[1] }));
+        break;
+    }
+    return message;
+  };
+
   if (loading) {
     // Real header stays mounted; only the body content shows skeletons.
     // AdminSkeleton.Bar uses the shimmer sweep — no outer animate-pulse needed.
@@ -560,7 +595,7 @@ export function AdminDashboard() {
                           </span>
                         )}
                       </h3>
-                      <p className="text-sm text-gray-600 mt-1">{g.message}</p>
+                      <p className="text-sm text-gray-600 mt-1">{localizeAlertMessage(g.title, g.message)}</p>
                       <p className="text-xs text-gray-500 mt-2 flex items-center">
                         <Clock className="mr-1 h-3 w-3" />
                         {g.timestamp.toLocaleString()}
