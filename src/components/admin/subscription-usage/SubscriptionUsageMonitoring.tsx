@@ -179,22 +179,27 @@ export function SubscriptionUsageMonitoring() {
             </div>
             <div className="flex-1">
               <h3 className="text-sm font-semibold text-amber-900">
-                {statistics.approaching_limits.length} {statistics.approaching_limits.length === 1 ? 'academy' : 'academies'} approaching limits
+                {String(t(
+                  statistics.approaching_limits.length === 1
+                    ? 'admin.usage.approachingOne'
+                    : 'admin.usage.approachingMany',
+                  { count: statistics.approaching_limits.length }
+                ))}
               </h3>
               <p className="text-xs text-amber-700 mt-0.5">
-                Using over 80% of their allocated resources.
+                {String(t('admin.usage.approachingDesc'))}
               </p>
               <div className="mt-3 space-y-1.5">
                 {statistics.approaching_limits.slice(0, 3).map((limit) => (
                   <div key={limit.academy_id} className="text-xs text-amber-800 flex items-center gap-2">
                     <span className="font-semibold">{limit.academy_name}</span>
                     <span className="text-amber-600">·</span>
-                    <span className="tabular-nums">Students {limit.student_usage}% · Teachers {limit.teacher_usage}% · Storage {limit.storage_usage}%</span>
+                    <span className="tabular-nums">{String(t('admin.usage.usageBreakdown', { students: limit.student_usage, teachers: limit.teacher_usage, storage: limit.storage_usage }))}</span>
                   </div>
                 ))}
                 {statistics.approaching_limits.length > 3 && (
                   <p className="text-xs font-medium text-amber-700">
-                    +{statistics.approaching_limits.length - 3} more
+                    {String(t('admin.usage.andMore', { count: statistics.approaching_limits.length - 3 }))}
                   </p>
                 )}
               </div>
@@ -213,22 +218,22 @@ export function SubscriptionUsageMonitoring() {
               <thead className="bg-gray-50/60">
                 <tr>
                   <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
-                    Academy
+                    {String(t('admin.usage.columns.academy'))}
                   </th>
                   <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
-                    Plan
+                    {String(t('admin.usage.columns.plan'))}
                   </th>
                   <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
-                    Students
+                    {String(t('admin.usage.columns.students'))}
                   </th>
                   <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
-                    Teachers
+                    {String(t('admin.usage.columns.teachers'))}
                   </th>
                   <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
-                    Storage
+                    {String(t('admin.usage.columns.storage'))}
                   </th>
                   <th className="px-4 py-3 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
-                    Classrooms
+                    {String(t('admin.usage.columns.classrooms'))}
                   </th>
                 </tr>
               </thead>
@@ -257,9 +262,9 @@ export function SubscriptionUsageMonitoring() {
                     <tr key={usage.id} className="hover:bg-gray-50">
                       <td className="px-4 py-4">
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{academy?.name || 'Unknown'}</p>
+                          <p className="text-sm font-medium text-gray-900">{academy?.name || String(t('admin.common.unknown'))}</p>
                           <p className="text-xs text-gray-500">
-                            Last updated: {new Date(usage.calculated_at).toLocaleDateString()}
+                            {String(t('admin.usage.lastUpdatedDate', { date: new Date(usage.calculated_at).toLocaleDateString() }))}
                           </p>
                         </div>
                       </td>
@@ -342,7 +347,7 @@ export function SubscriptionUsageMonitoring() {
         {!loading && usageData.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
             <div className="text-sm text-gray-600">
-              Showing {page * pageSize + 1} to {Math.min((page + 1) * pageSize, total)} of {total} academies
+              {String(t('admin.usage.showingAcademies', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
             </div>
             <div className="flex items-center gap-2">
               <Button
@@ -354,7 +359,7 @@ export function SubscriptionUsageMonitoring() {
                 <ChevronLeft className="w-4 h-4" />
               </Button>
               <span className="text-sm text-gray-600">
-                Page {page + 1} of {totalPages}
+                {String(t('admin.usage.pageOf', { page: page + 1, total: totalPages }))}
               </span>
               <Button
                 variant="outline"

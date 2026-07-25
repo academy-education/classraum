@@ -182,13 +182,13 @@ export function AcademyManagement() {
         } else if (a.subscriptionStatus === 'canceled' || a.subscriptionStatus === 'past_due') {
           status = 'suspended'
           isSuspended = true
-          suspensionReason = a.subscriptionStatus === 'past_due' ? 'Payment overdue' : 'Subscription canceled'
+          suspensionReason = a.subscriptionStatus === 'past_due' ? String(t('admin.academies.paymentOverdue')) : String(t('admin.academies.subscriptionCanceled'))
         }
 
         return {
           id: a.id,
           name: a.name,
-          email: a.email || 'No email',
+          email: a.email || String(t('admin.academies.noEmailValue')),
           phone: a.phone || undefined,
           address: a.address || undefined,
           subscriptionTier: a.subscriptionTier as Academy['subscriptionTier'],
@@ -264,7 +264,7 @@ export function AcademyManagement() {
       })
       const body = await response.json().catch(() => ({}))
       if (!response.ok) {
-        throw new Error(body.error || body.detail || 'Failed to revoke link')
+        throw new Error(body.error || body.detail || String(t('admin.academies.failedToRevokeLink')))
       }
 
       toast({
@@ -295,7 +295,7 @@ export function AcademyManagement() {
       })
       const body = await response.json()
       if (!response.ok) {
-        throw new Error(body.error || body.detail || 'Failed to regenerate link')
+        throw new Error(body.error || body.detail || String(t('admin.academies.failedToRegenerateLink')))
       }
 
       const url: string = body.academy.onboardingUrl

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, BarChart3, Calendar } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { useTranslation } from '@/hooks/useTranslation';
 import {
   BarChart,
   Bar,
@@ -23,6 +24,7 @@ interface ChartData {
 type ChartType = 'revenue' | 'academies' | 'users';
 
 export function ChartOverview() {
+  const { t } = useTranslation();
   const [activeChart, setActiveChart] = useState<ChartType>('revenue');
   const [timeRange, setTimeRange] = useState<'6m' | '12m'>('12m');
   const [chartData, setChartData] = useState<ChartData[]>([]);
@@ -135,11 +137,11 @@ export function ChartOverview() {
   const getChartTitle = (type: ChartType) => {
     switch (type) {
       case 'revenue':
-        return 'Revenue Trend';
+        return String(t('admin.chartOverview.revenueTrend'));
       case 'academies':
-        return 'Academy Growth';
+        return String(t('admin.chartOverview.academyGrowth'));
       case 'users':
-        return 'User Growth';
+        return String(t('admin.chartOverview.userGrowth'));
     }
   };
 
@@ -181,7 +183,7 @@ export function ChartOverview() {
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              6M
+              {String(t('admin.chartOverview.range6M'))}
             </button>
             <button
               onClick={() => setTimeRange('12m')}
@@ -191,7 +193,7 @@ export function ChartOverview() {
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              12M
+              {String(t('admin.chartOverview.range12M'))}
             </button>
           </div>
         </div>
@@ -227,7 +229,7 @@ export function ChartOverview() {
             {Math.abs(growth).toFixed(1)}%
           </div>
         </div>
-        <span className="text-sm text-gray-500">vs last month</span>
+        <span className="text-sm text-gray-500">{String(t('admin.chartOverview.vsLastMonth'))}</span>
       </div>
 
       {/* Bar chart — replaces the hand-rolled flex-bar version. recharts
@@ -292,7 +294,7 @@ export function ChartOverview() {
           </div>
           <div className="flex items-center text-gray-500">
             <Calendar className="h-4 w-4 mr-1" />
-            Last {timeRange === '6m' ? '6' : '12'} months
+            {String(t('admin.chartOverview.lastMonths', { n: timeRange === '6m' ? '6' : '12' }))}
           </div>
         </div>
       </div>

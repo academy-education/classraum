@@ -171,7 +171,9 @@ export function CommentReportsModeration() {
   };
 
   const formatReportType = (type: string) => {
-    return type.charAt(0).toUpperCase() + type.slice(1);
+    return reportTypes.includes(type)
+      ? String(t(`admin.commentReports.${type}`))
+      : type.charAt(0).toUpperCase() + type.slice(1);
   };
 
   const filteredReports = searchQuery

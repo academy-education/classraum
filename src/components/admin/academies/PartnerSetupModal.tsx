@@ -92,7 +92,7 @@ export function PartnerSetupModal({ academyId, academyName, onClose, onSuccess }
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to save partner info');
+        throw new Error(errorData.error || String(t('admin.failedToSavePartner')));
       }
 
       toast({ title: String(t('admin.partnerInfoSaved')), variant: 'success' });

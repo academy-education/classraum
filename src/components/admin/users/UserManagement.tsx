@@ -186,7 +186,7 @@ export function UserManagement() {
         }));
 
         setUsers(formattedUsers)
-        announce(`Loaded ${formattedUsers.length} users.`);
+        announce(String(t('admin.users.loadedUsers', { count: formattedUsers.length })));
       }
     } catch (error) {
       console.error('[UserManagement] Error loading users:', error);
@@ -221,7 +221,7 @@ export function UserManagement() {
     }
     return (
       <StatusBadge tone={map[role]}>
-        {role === 'super_admin' ? 'Super Admin' : role.charAt(0).toUpperCase() + role.slice(1)}
+        {String(t(`admin.users.roles.${role === 'super_admin' ? 'superAdmin' : role}`))}
       </StatusBadge>
     );
   };
@@ -261,7 +261,7 @@ export function UserManagement() {
     link.href = URL.createObjectURL(blob);
     link.download = `users_${new Date().toISOString().split('T')[0]}.csv`;
     link.click();
-    announce(`Exported ${source.length} ${source.length === 1 ? 'user' : 'users'} to CSV.`);
+    announce(String(t('admin.users.exportedCsv', { count: source.length })));
   };
 
   // Compose an email to all selected users via the OS mail client. Bcc keeps
@@ -274,7 +274,7 @@ export function UserManagement() {
       .filter(Boolean);
     if (emails.length === 0) return;
     window.location.href = `mailto:?bcc=${encodeURIComponent(emails.join(','))}`;
-    announce(`Opened email composer for ${emails.length} ${emails.length === 1 ? 'user' : 'users'}.`);
+    announce(String(t('admin.users.emailComposerOpened', { count: emails.length })));
   };
 
   const filteredUsers = users.filter(user => {
@@ -551,7 +551,7 @@ export function UserManagement() {
                   <SortableTh sortKey="lastLogin" toggle={toggleSort} indicator={sortIndicator('lastLogin')}>{String(t('admin.users.lastLogin'))}</SortableTh>
                   <SortableTh sortKey="created" toggle={toggleSort} indicator={sortIndicator('created')}>{String(t('admin.users.thActivity'))}</SortableTh>
                   <th className="px-4 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
-                    Actions
+                    {String(t('admin.common.actions'))}
                   </th>
                 </tr>
               </thead>
@@ -566,14 +566,14 @@ export function UserManagement() {
                         type="checkbox"
                         checked={selectedIds.has(user.id)}
                         disabled={user.id === currentUserId}
-                        title={user.id === currentUserId ? "You can't select your own account" : undefined}
+                        title={user.id === currentUserId ? String(t('admin.users.cantSelectSelf')) : undefined}
                         onChange={(e) => {
                           const next = new Set(selectedIds);
                           if (e.target.checked) next.add(user.id);
                           else next.delete(user.id);
                           setSelectedIds(next);
                         }}
-                        aria-label={`Select ${user.name}`}
+                        aria-label={String(t('admin.users.selectUser', { name: user.name }))}
                         className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary disabled:opacity-40 disabled:cursor-not-allowed"
                       />
                     </td>
@@ -595,7 +595,7 @@ export function UserManagement() {
                       </div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{user.academyName || 'N/A'}</div>
+                      <div className="text-sm text-gray-900">{user.academyName || String(t('admin.common.na'))}</div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
@@ -704,7 +704,7 @@ export function UserManagement() {
             <AdminEmptyState
               icon={Users}
               title={String(t('admin.users.noUsersFound'))}
-              description="Try adjusting your search or filter criteria."
+              description={String(t('admin.support.adjustSearchOrFilters'))}
             />
           )}
 
@@ -717,26 +717,20 @@ export function UserManagement() {
                   disabled={currentPage === 1}
                   variant="outline"
                 >
-                  Previous
+                  {String(t('admin.common.previous'))}
                 </Button>
                 <Button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   disabled={currentPage >= totalPages}
                   variant="outline"
                 >
-                  Next
+                  {String(t('admin.common.next'))}
                 </Button>
               </div>
               <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm text-gray-700">
-                    Showing
-                    <span className="font-medium"> {startIndex + 1} </span>
-                    to
-                    <span className="font-medium"> {Math.min(endIndex, filteredUsers.length)} </span>
-                    of
-                    <span className="font-medium"> {filteredUsers.length} </span>
-                    users
+                    {String(t('admin.users.showingUsers', { from: startIndex + 1, to: Math.min(endIndex, filteredUsers.length), total: filteredUsers.length }))}
                   </p>
                 </div>
                 <div className="flex gap-2">
@@ -745,14 +739,14 @@ export function UserManagement() {
                     disabled={currentPage === 1}
                     variant="outline"
                   >
-                    Previous
+                    {String(t('admin.common.previous'))}
                   </Button>
                   <Button
                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                     disabled={currentPage >= totalPages}
                     variant="outline"
                   >
-                    Next
+                    {String(t('admin.common.next'))}
                   </Button>
                 </div>
               </div>

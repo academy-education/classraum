@@ -287,7 +287,7 @@ export function SystemDashboard() {
           {activeTab === 'health' && (
             <div className="space-y-3">
               {systemMetrics.length === 0 ? (
-                <p className="text-sm text-gray-500">No performance metrics reported.</p>
+                <p className="text-sm text-gray-500">{String(t('admin.system.noMetrics'))}</p>
               ) : (
                 systemMetrics.map(metric => (
                   <div key={metric.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between">
@@ -307,18 +307,21 @@ export function SystemDashboard() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <p className="text-xs text-gray-500">
-                  Showing <span className="font-semibold text-gray-900 tabular-nums">{filteredLogs.length}</span>
-                  {' '}of <span className="font-semibold text-gray-900 tabular-nums">{allLogs.length}</span> entries
+                  {String(t('admin.system.showingEntriesPrefix'))}
+                  {' '}<span className="font-semibold text-gray-900 tabular-nums">{filteredLogs.length}</span>
+                  {' '}{String(t('admin.system.showingEntriesOf'))}
+                  {' '}<span className="font-semibold text-gray-900 tabular-nums">{allLogs.length}</span>
+                  {' '}{String(t('admin.system.showingEntriesSuffix'))}
                 </p>
                 <Select value={logLevelFilter} onValueChange={(v) => setLogLevelFilter(v as 'all' | 'info' | 'warning' | 'error')}>
                   <SelectTrigger className="h-9 w-[140px]">
-                    <SelectValue placeholder="All levels" />
+                    <SelectValue placeholder={String(t('admin.system.allLevels'))} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All levels</SelectItem>
-                    <SelectItem value="info">Info</SelectItem>
-                    <SelectItem value="warning">Warning</SelectItem>
-                    <SelectItem value="error">Error</SelectItem>
+                    <SelectItem value="all">{String(t('admin.system.allLevels'))}</SelectItem>
+                    <SelectItem value="info">{String(t('admin.system.levelInfo'))}</SelectItem>
+                    <SelectItem value="warning">{String(t('admin.system.levelWarning'))}</SelectItem>
+                    <SelectItem value="error">{String(t('admin.system.levelError'))}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

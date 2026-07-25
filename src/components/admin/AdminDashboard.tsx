@@ -456,6 +456,22 @@ export function AdminDashboard() {
     }
   };
 
+  // Alert titles are written to the DB in English by the alerting service.
+  // Map the known operational titles to localized labels at render time so the
+  // dashboard headline reads in the admin's language (unknown titles pass
+  // through verbatim — dynamic detail lives in the message body).
+  const localizeAlertTitle = (title: string) => {
+    const key = ({
+      'Settlement Creation Failed': 'settlementCreationFailed',
+      'Payout Failed': 'payoutFailed',
+      'Webhook Verification Failed': 'webhookVerificationFailed',
+      'Partner Setup Failed': 'partnerSetupFailed',
+      'Payment Processing Error': 'paymentProcessingError',
+      'Database Error': 'databaseError',
+    } as Record<string, string>)[title];
+    return key ? String(t(`admin.alertTitles.${key}`)) : title;
+  };
+
   if (loading) {
     // Real header stays mounted; only the body content shows skeletons.
     // AdminSkeleton.Bar uses the shimmer sweep — no outer animate-pulse needed.
@@ -537,7 +553,7 @@ export function AdminDashboard() {
                     {getAlertIcon(g.type)}
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-gray-900 flex items-center gap-2">
-                        {g.title}
+                        {localizeAlertTitle(g.title)}
                         {g.ids.length > 1 && (
                           <span className="inline-flex items-center h-5 px-1.5 rounded-full text-[11px] font-semibold bg-white/70 text-gray-600 ring-1 ring-gray-200/70">
                             ×{g.ids.length}

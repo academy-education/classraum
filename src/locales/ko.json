@@ -465,7 +465,8 @@
       "import": "가져오기",
       "confirm": "확인",
       "yesProceed": "예, 진행합니다",
-      "noCancel": "아니오, 취소합니다"
+      "noCancel": "아니오, 취소합니다",
+      "na": "해당 없음"
     },
     "header": {
       "search": "학원, 사용자 검색…",
@@ -665,7 +666,13 @@
       "failedToUpdate": "사용자를 업데이트하지 못했습니다",
       "partialUpdateDesc": "{okCount}명 완료, {failCount}명 실패",
       "updateAnnounce": "{description} — {okCount}/{total} 업데이트됨",
-      "csvUserId": "사용자 ID"
+      "csvUserId": "사용자 ID",
+      "loadedUsers": "사용자 {count}명을 불러왔습니다.",
+      "exportedCsv": "사용자 {count}명을 CSV로 내보냈습니다.",
+      "emailComposerOpened": "사용자 {count}명에게 이메일 작성 창을 열었습니다.",
+      "cantSelectSelf": "본인 계정은 선택할 수 없습니다",
+      "selectUser": "{name} 선택",
+      "showingUsers": "전체 {total}명 중 {from}–{to} 표시"
     },
     "subscriptions": {
       "title": "구독",
@@ -1194,7 +1201,10 @@
       "noMetrics": "보고된 성능 지표가 없습니다.",
       "noServices": "보고된 서비스가 없습니다.",
       "retry": "다시 시도",
-      "version": "버전"
+      "version": "버전",
+      "showingEntriesPrefix": "표시:",
+      "showingEntriesOf": "/",
+      "showingEntriesSuffix": "개 항목"
     },
     "settings": {
       "title": "설정",
@@ -1301,7 +1311,23 @@
       "overLimit": "한도 초과",
       "withinLimit": "한도 내",
       "failedToFetch": "구독 사용량을 불러오지 못했습니다",
-      "noUsageData": "사용량 데이터가 없습니다"
+      "noUsageData": "사용량 데이터가 없습니다",
+      "columns": {
+        "academy": "학원",
+        "plan": "요금제",
+        "students": "학생",
+        "teachers": "교사",
+        "storage": "저장 공간",
+        "classrooms": "강의실"
+      },
+      "approachingOne": "한도에 근접한 학원 1곳",
+      "approachingMany": "한도에 근접한 학원 {count}곳",
+      "approachingDesc": "할당된 자원의 80% 이상을 사용 중입니다.",
+      "usageBreakdown": "학생 {students}% · 교사 {teachers}% · 저장 공간 {storage}%",
+      "andMore": "외 {count}곳",
+      "lastUpdatedDate": "마지막 업데이트: {date}",
+      "showingAcademies": "전체 {total}개 학원 중 {from}–{to} 표시",
+      "pageOf": "{total}페이지 중 {page}페이지"
     },
     "academies": {
       "title": "학원",
@@ -1491,7 +1517,12 @@
         "KAKAO": "카카오뱅크",
         "TOSS": "토스뱅크",
         "K": "케이뱅크"
-      }
+      },
+      "paymentOverdue": "결제 연체",
+      "subscriptionCanceled": "구독 취소됨",
+      "noEmailValue": "이메일 없음",
+      "failedToRevokeLink": "링크 취소에 실패했습니다",
+      "failedToRegenerateLink": "링크 재생성에 실패했습니다"
     },
     "communications": {
       "kicker": "아웃리치",
@@ -1506,6 +1537,23 @@
       "cardCampaignsTitle": "캠페인",
       "cardCampaignsBody": "전달 및 참여 지표를 갖춘 타깃 아웃리치.",
       "backToDashboard": "대시보드로 돌아가기"
+    },
+    "chartOverview": {
+      "revenueTrend": "매출 추이",
+      "academyGrowth": "학원 성장",
+      "userGrowth": "사용자 증가",
+      "range6M": "6개월",
+      "range12M": "12개월",
+      "vsLastMonth": "전월 대비",
+      "lastMonths": "최근 {n}개월"
+    },
+    "alertTitles": {
+      "settlementCreationFailed": "정산 생성 실패",
+      "payoutFailed": "정산 지급 실패",
+      "webhookVerificationFailed": "웹훅 검증 실패",
+      "partnerSetupFailed": "파트너 설정 실패",
+      "paymentProcessingError": "결제 처리 오류",
+      "databaseError": "데이터베이스 오류"
     }
   },
   "dashboard": {

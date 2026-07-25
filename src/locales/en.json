@@ -465,7 +465,8 @@
       "import": "Import",
       "confirm": "Confirm",
       "yesProceed": "Yes, proceed",
-      "noCancel": "No, cancel"
+      "noCancel": "No, cancel",
+      "na": "N/A"
     },
     "header": {
       "search": "Search academies, users…",
@@ -665,7 +666,13 @@
       "failedToUpdate": "Failed to update user",
       "partialUpdateDesc": "{okCount} updated, {failCount} failed",
       "updateAnnounce": "{description} — {okCount}/{total} updated",
-      "csvUserId": "User ID"
+      "csvUserId": "User ID",
+      "loadedUsers": "{count} users loaded.",
+      "exportedCsv": "Exported {count} users to CSV.",
+      "emailComposerOpened": "Opened email composer for {count} users.",
+      "cantSelectSelf": "You can't select your own account",
+      "selectUser": "Select {name}",
+      "showingUsers": "Showing {from} to {to} of {total} users"
     },
     "subscriptions": {
       "title": "Subscriptions",
@@ -1194,7 +1201,10 @@
       "noMetrics": "No performance metrics reported.",
       "noServices": "No services reported.",
       "retry": "Retry",
-      "version": "Version"
+      "version": "Version",
+      "showingEntriesPrefix": "Showing",
+      "showingEntriesOf": "of",
+      "showingEntriesSuffix": "entries"
     },
     "settings": {
       "title": "Settings",
@@ -1301,7 +1311,23 @@
       "overLimit": "Over limit",
       "withinLimit": "Within limit",
       "failedToFetch": "Failed to fetch subscription usage",
-      "noUsageData": "No usage data found"
+      "noUsageData": "No usage data found",
+      "columns": {
+        "academy": "Academy",
+        "plan": "Plan",
+        "students": "Students",
+        "teachers": "Teachers",
+        "storage": "Storage",
+        "classrooms": "Classrooms"
+      },
+      "approachingOne": "1 academy approaching limits",
+      "approachingMany": "{count} academies approaching limits",
+      "approachingDesc": "Using over 80% of their allocated resources.",
+      "usageBreakdown": "Students {students}% · Teachers {teachers}% · Storage {storage}%",
+      "andMore": "+{count} more",
+      "lastUpdatedDate": "Last updated: {date}",
+      "showingAcademies": "Showing {from} to {to} of {total} academies",
+      "pageOf": "Page {page} of {total}"
     },
     "academies": {
       "title": "Academies",
@@ -1491,7 +1517,12 @@
         "KAKAO": "Kakao Bank",
         "TOSS": "Toss Bank",
         "K": "K Bank"
-      }
+      },
+      "paymentOverdue": "Payment overdue",
+      "subscriptionCanceled": "Subscription canceled",
+      "noEmailValue": "No email",
+      "failedToRevokeLink": "Failed to revoke link",
+      "failedToRegenerateLink": "Failed to regenerate link"
     },
     "communications": {
       "kicker": "Outreach",
@@ -1506,6 +1537,23 @@
       "cardCampaignsTitle": "Campaigns",
       "cardCampaignsBody": "Targeted outreach with delivery and engagement metrics.",
       "backToDashboard": "Back to Dashboard"
+    },
+    "chartOverview": {
+      "revenueTrend": "Revenue Trend",
+      "academyGrowth": "Academy Growth",
+      "userGrowth": "User Growth",
+      "range6M": "6M",
+      "range12M": "12M",
+      "vsLastMonth": "vs last month",
+      "lastMonths": "Last {n} months"
+    },
+    "alertTitles": {
+      "settlementCreationFailed": "Settlement Creation Failed",
+      "payoutFailed": "Payout Failed",
+      "webhookVerificationFailed": "Webhook Verification Failed",
+      "partnerSetupFailed": "Partner Setup Failed",
+      "paymentProcessingError": "Payment Processing Error",
+      "databaseError": "Database Error"
     }
   },
   "classrooms": {
