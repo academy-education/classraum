@@ -99,7 +99,7 @@ async function fetchAudioUrl(text: string, voice: OpenAiVoice): Promise<string |
   return result.url!
 }
 
-export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange, allowTranscriptReveal = false, maxPlays = 2, onFirstPlayEnd, autoPlay = false }: {
+export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakingChange, allowTranscriptReveal = false, maxPlays = 2, onFirstPlayEnd, autoPlay = false, paused = false }: {
   /** Stable per-passage key (e.g., "sessionId:convo-1"). Play count
    *  is stored against this key so it persists across navigation. */
   groupKey: string
@@ -121,6 +121,12 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
    *  immediately — no tap. Waits for the prefetch effect to resolve
    *  URLs before firing so we don't try to play() with an empty src. */
   autoPlay?: boolean
+  /** Mirrors the test's manual pause. The player owns the only handle
+   *  on the live HTMLAudioElement, so the parent cannot pause it —
+   *  it has to be pushed down. Without this the pause overlay froze
+   *  the clock while the lecture kept playing behind it, and since
+   *  Listening is capped at one play the student lost the recording. */
+  paused?: boolean
 }) {
   const { t } = useTranslation()
   const [state, setState] = useState<'idle' | 'loading' | 'playing' | 'error'>('idle')
@@ -140,6 +146,17 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
   // clip that starts and FINISHES within 4s would otherwise read as
   // "not speaking" and wrongly resurface the manual Play button.
   const hasStartedRef = useRef(false)
+  // Handle on the 350ms breath between dialogue turns. Pausing has to
+  // clear this too — otherwise the next segment starts mid-pause and
+  // the "paused" audio audibly continues.
+  const gapTimerRef = useRef<number | null>(null)
+  // Set when a pause lands during that gap, so resuming knows it has
+  // to restart the chain itself rather than wait for an onended that
+  // is never coming.
+  const resumeFromGapRef = useRef<(() => void) | null>(null)
+  // Mirror, because playNext() is a closure created at play() time and
+  // would otherwise capture a stale `paused`.
+  const pausedRef = useRef(paused)
 
   const cleaned = transcript.replace(/^\s*transcript:\s*/i, '').trim()
 
@@ -289,13 +306,28 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
       setProgress({ current: i + 1, total: segments.length, charsDone, charsTotal })
       const audio = new Audio(urls[i]!)
       audioRef.current = audio
+      // A live element is playing again, so any pending gap-resume is
+      // stale.
+      resumeFromGapRef.current = null
       audio.playbackRate = 1.0
+      if (pausedRef.current) {
+        // Paused between segments: hold here and let the resume effect
+        // start us. Without this the chain runs on behind the overlay.
+        resumeFromGapRef.current = playNext
+        return
+      }
       audio.onended = () => {
         charsDone += charsPerTurn[i]
         i++
         if (i < urls.length) {
           // 350 ms breath between dialogue turns.
-          window.setTimeout(playNext, segments.length > 1 ? 350 : 0)
+          resumeFromGapRef.current = playNext
+          if (pausedRef.current) return
+          gapTimerRef.current = window.setTimeout(() => {
+            gapTimerRef.current = null
+            resumeFromGapRef.current = null
+            playNext()
+          }, segments.length > 1 ? 350 : 0)
         } else {
           playNext()
         }
@@ -306,9 +338,47 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
     playNext()
   }
 
+  // Mirror the test's manual pause onto the live audio.
+  //
+  // Deliberately does NOT touch onSpeakingChange: `audioPlaying` still
+  // gates nav-lock and the countdown freeze upstream, and clearing it
+  // mid-pause would restart the clock while the student is paused.
+  // A pause is also not a replay — resume goes through the element
+  // directly rather than play(), which would burn a play count.
+  useEffect(() => {
+    pausedRef.current = paused
+    if (cancelledRef.current) return
+    if (paused) {
+      audioRef.current?.pause()
+      if (gapTimerRef.current != null) {
+        window.clearTimeout(gapTimerRef.current)
+        gapTimerRef.current = null
+        // resumeFromGapRef still holds the continuation.
+      }
+      return
+    }
+    const audio = audioRef.current
+    if (audio && !audio.ended && audio.currentTime > 0) {
+      void audio.play().catch(() => {})
+      return
+    }
+    // Paused during the inter-segment gap (or before a segment had
+    // started): nothing to un-pause, so restart the chain.
+    const resume = resumeFromGapRef.current
+    if (resume) {
+      resumeFromGapRef.current = null
+      resume()
+    }
+  }, [paused])
+
   // Cleanup: stop any playing audio + release the nav lock on unmount.
   useEffect(() => () => {
     cancelledRef.current = true
+    if (gapTimerRef.current != null) {
+      window.clearTimeout(gapTimerRef.current)
+      gapTimerRef.current = null
+    }
+    resumeFromGapRef.current = null
     if (audioRef.current) {
       audioRef.current.pause()
       audioRef.current = null

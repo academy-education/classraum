@@ -9,6 +9,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
+import { openExternalUrl } from '@/lib/nativeApp'
 import { authHeaders } from '@/lib/auth-headers'
 import { GIFT } from '@/lib/study/gifts'
 import { PortOne } from '@/lib/portone-browser'
@@ -227,15 +228,14 @@ export default function GiftPage() {
             </div>
           ) : isNative ? (
             // Native app: hide the money button, link out to web (IAP rules).
-            <a
-              href="https://app.classraum.com/mobile/study/gift"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => void openExternalUrl('https://app.classraum.com/mobile/study/gift')}
               className="mt-3.5 w-full h-11 rounded-full bg-white text-violet-600 text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all"
             >
               <ExternalLink className="w-4 h-4" />
               {ko ? '웹에서 구매하기' : 'Buy on the web'}
-            </a>
+            </button>
           ) : (
             <button
               type="button"

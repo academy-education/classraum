@@ -533,15 +533,26 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     return () => document.removeEventListener('visibilitychange', onVis)
   }, [phase, paused])
 
-  // TOEFL Speaking: freeze the test countdown from the moment a
-  // speaking question mounts until its audio has finished playing.
-  // This covers BOTH the TTS-preparation window (loading spinner)
-  // and the playback itself — neither is the student's answering
-  // time, so neither should eat into the 7 minutes. Mirrors the
-  // manual-pause freeze/flush logic. Only Speaking gets this
-  // treatment: Listening audio IS part of the timed experience.
+  // TOEFL: freeze the test countdown while section audio is playing.
+  //
+  // Speaking covers BOTH the TTS-preparation window (loading spinner)
+  // and the playback itself — neither is the student's answering time.
+  //
+  // Listening gets the same treatment, and this is real ETS behaviour,
+  // not a leniency: the official Listening directions state "The clock
+  // does not count down while you are listening. The clock counts down
+  // only while you are answering questions."
+  // (https://www.ets.org/s/toefl/free-practice/listening.html)
+  // The section's wall-clock length includes the audio, but the
+  // DISPLAYED clock is answering time only — so counting the audio
+  // against the student both misreports the exam and over-penalises
+  // them, since a multi-minute lecture can eat a large share of the
+  // budget. Reading is deliberately NOT included: there the clock runs
+  // continuously, because reading time IS the timed task.
   const isSpeakingSection = test?.family === 'toefl'
     && test?.section != null && /speaking/i.test(test.section)
+  const isListeningSection = test?.family === 'toefl'
+    && test?.section != null && /listening/i.test(test.section)
   const currentSpeakingAudioPending = (() => {
     if (!isSpeakingSection || !test) return false
     const item = test.questions[currentIdx]
@@ -555,10 +566,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // speaking freeze before resuming the clock. Without it, tab-away
   // during Speaking audio → tab-back would restart the clock while
   // audio was still playing.
-  speakingFreezeRef.current = isSpeakingSection && (audioPlaying || currentSpeakingAudioPending)
+  // Speaking freezes for prep + playback; Listening freezes for
+  // playback (there is no prep window — the student taps Play).
+  const audioFreezeActive =
+    (isSpeakingSection && (audioPlaying || currentSpeakingAudioPending))
+    || (isListeningSection && audioPlaying)
+  speakingFreezeRef.current = audioFreezeActive
   useEffect(() => {
-    if (!isSpeakingSection || phase !== 'taking') return
-    if (audioPlaying || currentSpeakingAudioPending) {
+    if ((!isSpeakingSection && !isListeningSection) || phase !== 'taking') return
+    if (audioFreezeActive) {
       // Freeze: flush accumulated time.
       if (resumedAtRef.current != null) {
         activeElapsedMsRef.current += Date.now() - resumedAtRef.current
@@ -571,7 +587,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         resumedAtRef.current = Date.now()
       }
     }
-  }, [audioPlaying, currentSpeakingAudioPending, isSpeakingSection, phase, paused])
+  }, [audioFreezeActive, isSpeakingSection, isListeningSection, phase, paused])
 
   // Manual pause / resume toggle.
   const togglePause = useCallback(() => {
@@ -1434,6 +1450,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   // real test. No replays allowed.
                   maxPlays={1}
                   onSpeakingChange={setAudioPlaying}
+                  paused={paused}
                 />
               ) : (q.type === 'writing_email' || q.type === 'writing_discussion') ? (
                 <div className="mb-4 rounded-xl border border-primary/25 bg-white px-4 py-4 text-[14px] text-gray-800 leading-relaxed shadow-[0_1px_2px_-1px_rgba(15,23,42,0.06)]">
@@ -1746,6 +1763,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   // the audio starts behind the "Start Speaking" gate.
                   autoPlay={micPrimed}
                   onSpeakingChange={setAudioPlaying}
+                  paused={paused}
                   onFirstPlayEnd={() => {
                     // Mark audio as finished. Auto-record is triggered
                     // IMMEDIATELY (no setTimeout) so we stay inside the
@@ -1929,6 +1947,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   maxPlays={1}
                   autoPlay={micPrimed}
                   onSpeakingChange={setAudioPlaying}
+                  paused={paused}
                   onFirstPlayEnd={() => setInterviewTimerState(s => ({ ...s, [timerKey]: 'started' }))}
                 />
                 <SpeakingTimer
@@ -2211,8 +2230,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             </div>
             <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
               {ko
-                ? '타이머가 멈추고 답변할 수 없습니다. 상단의 재개 버튼을 눌러 계속하세요.'
-                : 'The timer is stopped and answers are locked. Tap Resume in the header to continue.'}
+                ? '타이머와 오디오가 멈추고 답변할 수 없습니다. 재개 버튼을 눌러 계속하세요.'
+                : 'The timer and audio are stopped, and answers are locked. Tap Resume to continue.'}
             </p>
             <button
               type="button"

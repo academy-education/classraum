@@ -3,10 +3,46 @@ import { SplashScreen } from '@capacitor/splash-screen'
 import { StatusBar, Style } from '@capacitor/status-bar'
 import { App, URLOpenListenerEvent } from '@capacitor/app'
 import { Keyboard } from '@capacitor/keyboard'
+import { Browser } from '@capacitor/browser'
 
 // Check if we're running in a native app
 export function isNativeApp(): boolean {
   return Capacitor.isNativePlatform()
+}
+
+/**
+ * Open a URL outside of the app's own WebView.
+ *
+ * ALWAYS use this instead of `<a target="_blank">`, `window.open(url, '_blank')`,
+ * or `window.location.href = url` for external links. Two separate platform traps:
+ *
+ * 1. Android: Capacitor's WebView never calls `setSupportMultipleWindows(true)` and
+ *    `BridgeWebChromeClient` has no `onCreateWindow` override, so the WebView silently
+ *    DISCARDS any `target="_blank"` navigation or `window.open(url, '_blank')`.
+ *    The tap becomes a no-op with no error. (iOS works because Capacitor's
+ *    `WebViewDelegationHandler` implements `createWebViewWith` and forwards to
+ *    `UIApplication.shared.open` — the asymmetry is upstream platform behavior.)
+ *
+ * 2. Same-frame navigation is not a fix either: `capacitor.config.ts` sets
+ *    `server.allowNavigation` to our own domains, so Capacitor loads such URLs
+ *    IN PLACE inside the WebView. The user never leaves the app, lands on the same
+ *    screen with `isNativeApp()` still true, and sees the same button.
+ *
+ * The Browser plugin bypasses `shouldOverrideUrlLoading` entirely and hands the URL to
+ * the OS: Chrome Custom Tabs on Android, SFSafariViewController on iOS.
+ */
+export async function openExternalUrl(url: string): Promise<void> {
+  if (isNativeApp()) {
+    try {
+      await Browser.open({ url })
+      return
+    } catch (error) {
+      console.error('Error opening external URL:', error)
+      return
+    }
+  }
+
+  window.open(url, '_blank', 'noopener,noreferrer')
 }
 
 // Get the current platform

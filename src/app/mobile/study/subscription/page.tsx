@@ -12,6 +12,7 @@ import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
+import { openExternalUrl } from '@/lib/nativeApp'
 import { FREE_CREDITS, creditCostForTest, isPassPlan } from '@/lib/study/plans'
 import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
@@ -782,15 +783,14 @@ export default function SubscriptionPage() {
                   </div>
                 ) : isNative ? (
                   !isCurrent && (
-                    <a
-                      href="https://app.classraum.com/mobile/study/subscription"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      type="button"
+                      onClick={() => void openExternalUrl('https://app.classraum.com/mobile/study/subscription')}
                       className={studyButtonClass({ variant: 'secondary' })}
                     >
                       <ExternalLink className="w-4 h-4" />
                       {t('study.subscription.subscribeOnWeb')}
-                    </a>
+                    </button>
                   )
                 ) : isCurrent ? (
                   sub?.pending_plan ? (

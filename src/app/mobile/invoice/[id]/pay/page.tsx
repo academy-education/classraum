@@ -24,6 +24,7 @@ import {
 import * as PortOne from '@portone/browser-sdk/v2'
 import { useToast } from '@/hooks/use-toast'
 import { getPortOneConfig } from '@/lib/portone-config'
+import { openExternalUrl } from '@/lib/nativeApp'
 
 interface InvoiceDetails {
   id: string
@@ -683,33 +684,33 @@ export default function MobileInvoicePaymentPage() {
                 className="text-sm text-gray-700 leading-relaxed cursor-pointer"
               >
                 {t('mobile.payment.agreeToTerms')}{' '}
-                <a
-                  href="https://classraum.com/terms"
-                  target="_blank"
+                <button
+                  type="button"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); void openExternalUrl('https://classraum.com/terms') }}
                   className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                 >
                   {t('mobile.payment.termsOfService')}
                   <ExternalLink className="w-3 h-3" />
-                </a>
+                </button>
                 {', '}
-                <a
-                  href="https://classraum.com/privacy-policy"
-                  target="_blank"
+                <button
+                  type="button"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); void openExternalUrl('https://classraum.com/privacy-policy') }}
                   className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                 >
                   {t('mobile.payment.privacyPolicy')}
                   <ExternalLink className="w-3 h-3" />
-                </a>
+                </button>
                 {', '}
                 {t('common.and')}{' '}
-                <a
-                  href="https://classraum.com/refund-policy"
-                  target="_blank"
+                <button
+                  type="button"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); void openExternalUrl('https://classraum.com/refund-policy') }}
                   className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                 >
                   {t('mobile.payment.refundPolicy')}
                   <ExternalLink className="w-3 h-3" />
-                </a>
+                </button>
               </label>
             </div>
 
