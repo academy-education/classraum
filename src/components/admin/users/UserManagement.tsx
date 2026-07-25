@@ -144,8 +144,8 @@ export function UserManagement() {
     } catch (err: any) {
       console.error('[UserManagement] update failed:', err);
       toast({
-        title: 'Update failed',
-        description: err?.message || 'Could not update user(s).',
+        title: String(t('admin.users.updateFailed')),
+        description: err?.message || String(t('admin.users.couldNotUpdate')),
         variant: 'destructive',
       });
     } finally {
@@ -165,7 +165,7 @@ export function UserManagement() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch users');
+        throw new Error(errorData.error || String(t('admin.users.failedToFetch')));
       }
 
       const result = await response.json();
@@ -199,9 +199,9 @@ export function UserManagement() {
   // ring-1 treatment match every other admin table.
   const getStatusBadge = (status: User['status']) => {
     const map: Record<User['status'], { tone: StatusTone; icon: typeof CheckCircle; label: string } | null> = {
-      active:    { tone: 'active',  icon: CheckCircle,    label: 'Active' },
-      suspended: { tone: 'danger',  icon: XCircle,        label: 'Suspended' },
-      pending:   { tone: 'pending', icon: AlertTriangle,  label: 'Pending' },
+      active:    { tone: 'active',  icon: CheckCircle,    label: String(t('admin.users.active')) },
+      suspended: { tone: 'danger',  icon: XCircle,        label: String(t('admin.users.suspended')) },
+      pending:   { tone: 'pending', icon: AlertTriangle,  label: String(t('admin.users.pending')) },
     }
     const entry = map[status]
     if (!entry) return null
@@ -445,14 +445,15 @@ export function UserManagement() {
                 value=""
                 onValueChange={async (value) => {
                   if (!value) return;
+                  const roleLabel = String(t(`admin.users.roles.${value === 'super_admin' ? 'superAdmin' : value}`));
                   const ok = await confirm({
-                    title: `Set ${selectedIds.size} user${selectedIds.size === 1 ? '' : 's'} to "${value === 'super_admin' ? 'Super Admin' : value.charAt(0).toUpperCase() + value.slice(1)}"?`,
-                    description: 'Only Super Admins can assign Admin or Super Admin roles. Other changes will be rejected by the server.',
+                    title: String(t('admin.users.bulkRoleConfirm', { count: selectedIds.size, role: roleLabel })),
+                    description: String(t('admin.users.bulkRoleDescription')),
                     variant: value === 'admin' || value === 'super_admin' ? 'warning' : 'info',
-                    confirmText: 'Apply',
+                    confirmText: String(t('admin.users.apply')),
                   });
                   if (!ok) return;
-                  await updateUsers(Array.from(selectedIds), { role: value }, `Role set to ${value}`);
+                  await updateUsers(Array.from(selectedIds), { role: value }, String(t('admin.users.bulkRoleSetMessage', { role: roleLabel })));
                 }}
               >
                 <SelectTrigger className="h-8 w-[140px] text-xs">
@@ -482,12 +483,12 @@ export function UserManagement() {
                 disabled={bulkBusy}
                 onClick={async () => {
                   const ok = await confirm({
-                    title: `Suspend ${selectedIds.size} user${selectedIds.size === 1 ? '' : 's'}?`,
-                    description: 'They will lose access immediately.',
+                    title: String(t('admin.users.bulkSuspendConfirm', { count: selectedIds.size })),
+                    description: String(t('admin.users.bulkSuspendDescription')),
                     variant: 'danger',
-                    confirmText: 'Suspend',
+                    confirmText: String(t('admin.users.suspend')),
                   });
-                  if (ok) updateUsers(Array.from(selectedIds), { status: 'suspended' }, 'Suspended');
+                  if (ok) updateUsers(Array.from(selectedIds), { status: 'suspended' }, String(t('admin.users.suspended')));
                 }}
               >
                 <Ban className="w-4 h-4" />
@@ -535,11 +536,11 @@ export function UserManagement() {
                       className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                     />
                   </th>
-                  <SortableTh sortKey="name" toggle={toggleSort} indicator={sortIndicator('name')}>User</SortableTh>
-                  <SortableTh sortKey="role" toggle={toggleSort} indicator={sortIndicator('role')}>Role &amp; Status</SortableTh>
-                  <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>Academy</SortableTh>
-                  <SortableTh sortKey="lastLogin" toggle={toggleSort} indicator={sortIndicator('lastLogin')}>Last Login</SortableTh>
-                  <SortableTh sortKey="created" toggle={toggleSort} indicator={sortIndicator('created')}>Activity</SortableTh>
+                  <SortableTh sortKey="name" toggle={toggleSort} indicator={sortIndicator('name')}>{String(t('admin.users.thUser'))}</SortableTh>
+                  <SortableTh sortKey="role" toggle={toggleSort} indicator={sortIndicator('role')}>{String(t('admin.users.thRoleStatus'))}</SortableTh>
+                  <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>{String(t('admin.users.academy'))}</SortableTh>
+                  <SortableTh sortKey="lastLogin" toggle={toggleSort} indicator={sortIndicator('lastLogin')}>{String(t('admin.users.lastLogin'))}</SortableTh>
+                  <SortableTh sortKey="created" toggle={toggleSort} indicator={sortIndicator('created')}>{String(t('admin.users.thActivity'))}</SortableTh>
                   <th className="px-6 py-3 text-right text-[11px] font-semibold text-gray-500 uppercase tracking-[0.06em]">
                     Actions
                   </th>
@@ -598,7 +599,7 @@ export function UserManagement() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center text-sm text-gray-500">
                         <Activity className="mr-1 h-4 w-4" />
-                        {user.loginCount} logins
+                        {String(t('admin.users.loginsLabel', { count: user.loginCount }))}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -624,7 +625,7 @@ export function UserManagement() {
                               className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                             >
                               <Eye className="mr-3 h-4 w-4" />
-                              View Details
+                              {String(t('admin.users.viewDetails'))}
                             </button>
                             <button
                               onClick={() => {
@@ -639,7 +640,7 @@ export function UserManagement() {
                               className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                             >
                               <UserCog className="mr-3 h-4 w-4" />
-                              Edit Role
+                              {String(t('admin.users.editRole'))}
                             </button>
                             <button
                               onClick={() => {
@@ -649,7 +650,7 @@ export function UserManagement() {
                               className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                             >
                               <Mail className="mr-3 h-4 w-4" />
-                              Send Email
+                              {String(t('admin.users.sendEmail'))}
                             </button>
                             <button
                               onClick={async () => {
@@ -657,27 +658,27 @@ export function UserManagement() {
                                 const willSuspend = user.status !== 'suspended';
                                 if (willSuspend) {
                                   const ok = await confirm({
-                                    title: `Suspend ${user.name}?`,
-                                    description: 'They will lose access immediately.',
+                                    title: String(t('admin.users.rowSuspendConfirm', { name: user.name })),
+                                    description: String(t('admin.users.bulkSuspendDescription')),
                                     variant: 'danger',
-                                    confirmText: 'Suspend',
+                                    confirmText: String(t('admin.users.suspend')),
                                   });
                                   if (!ok) return;
                                 }
                                 updateUsers(
                                   [user.id],
                                   { status: willSuspend ? 'suspended' : 'active' },
-                                  willSuspend ? 'Suspended' : 'Reactivated',
+                                  willSuspend ? String(t('admin.users.suspended')) : String(t('admin.users.reactivated')),
                                 );
                               }}
                               disabled={bulkBusy || user.id === currentUserId}
-                              title={user.id === currentUserId ? "You can't suspend your own account" : undefined}
+                              title={user.id === currentUserId ? String(t('admin.users.cantSuspendSelf')) : undefined}
                               className={`flex items-center w-full px-4 py-2 text-sm hover:bg-rose-50 disabled:opacity-50 disabled:cursor-not-allowed ${user.status === 'suspended' ? 'text-emerald-700 hover:bg-emerald-50' : 'text-rose-700'}`}
                             >
                               {user.status === 'suspended' ? (
-                                <><CheckCircle className="mr-3 h-4 w-4" />Reactivate User</>
+                                <><CheckCircle className="mr-3 h-4 w-4" />{String(t('admin.users.reactivateUser'))}</>
                               ) : (
-                                <><Ban className="mr-3 h-4 w-4" />Suspend User</>
+                                <><Ban className="mr-3 h-4 w-4" />{String(t('admin.users.suspendUser'))}</>
                               )}
                             </button>
                           </div>
@@ -771,7 +772,7 @@ export function UserManagement() {
           isSelf={editTarget.id === currentUserId}
           onClose={() => setEditTarget(null)}
           onSaved={() => {
-            toast({ title: 'User updated', variant: 'success' });
+            toast({ title: String(t('admin.users.userUpdated')), variant: 'success' });
             loadUsers();
           }}
         />

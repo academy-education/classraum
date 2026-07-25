@@ -623,7 +623,25 @@
         "active": "Active",
         "suspended": "Suspended",
         "pending": "Pending"
-      }
+      },
+      "thUser": "User",
+      "thRoleStatus": "Role & Status",
+      "thActivity": "Activity",
+      "reactivateUser": "Reactivate User",
+      "suspendUser": "Suspend User",
+      "couldNotUpdate": "Could not update user(s).",
+      "viewDetails": "View Details",
+      "editRole": "Edit Role",
+      "sendEmail": "Send Email",
+      "rowSuspendConfirm": "Suspend {name}?",
+      "reactivated": "Reactivated",
+      "cantSuspendSelf": "You can't suspend your own account",
+      "loginsLabel": "{count} logins",
+      "editUserTitle": "Edit User",
+      "editSelfWarning": "You can't modify your own role. Ask another admin to do it.",
+      "saveChanges": "Save changes",
+      "elevatedRoleNote": "Only Super Admins can grant the Admin or Super Admin role.",
+      "failedToUpdate": "Failed to update user"
     },
     "subscriptions": {
       "title": "Subscriptions",

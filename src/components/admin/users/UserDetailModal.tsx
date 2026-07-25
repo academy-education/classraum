@@ -80,7 +80,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       } catch (e) {
         if (cancelled) return
         console.error('[UserDetailModal] activity load error:', e)
-        setActivityError(e instanceof Error ? e.message : 'Failed to load activity')
+        setActivityError(e instanceof Error ? e.message : String(t('admin.users.failedToLoadActivity')))
       } finally {
         if (!cancelled) setActivityLoading(false)
       }

@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/select'
 import { ModalShell } from '../ModalShell'
 import { useAdminFetch } from '../useAdminFetch'
+import { useTranslation } from '@/hooks/useTranslation'
 
 /**
  * EditUserModal — narrow editor for the only user field that's actually
@@ -49,6 +50,7 @@ export interface EditUserModalProps {
 
 export function EditUserModal({ user, callerRole, isSelf, onClose, onSaved }: EditUserModalProps) {
   const adminFetch = useAdminFetch()
+  const { t } = useTranslation()
   const [role, setRole] = useState(user.role)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -77,12 +79,12 @@ export function EditUserModal({ user, callerRole, isSelf, onClose, onSaved }: Ed
       })
       const result = await response.json()
       if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Update failed')
+        throw new Error(result.error || String(t('admin.users.updateFailed')))
       }
       onSaved()
       onClose()
     } catch (err: any) {
-      setError(err?.message || 'Failed to update user')
+      setError(err?.message || String(t('admin.users.failedToUpdate')))
     } finally {
       setSaving(false)
     }
@@ -94,23 +96,23 @@ export function EditUserModal({ user, callerRole, isSelf, onClose, onSaved }: Ed
       title={
         <span className="inline-flex items-center gap-2">
           <UserCog className="h-5 w-5 text-primary" />
-          Edit User
+          {String(t('admin.users.editUserTitle'))}
         </span>
       }
       disableBackdropClose={saving}
       footer={
         <>
           <Button onClick={onClose} disabled={saving} variant="outline">
-            Cancel
+            {String(t('admin.common.cancel'))}
           </Button>
           <Button onClick={handleSave} disabled={!dirty || saving || isSelf}>
             {saving ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                Saving…
+                {String(t('admin.common.saving'))}
               </>
             ) : (
-              'Save changes'
+              String(t('admin.users.saveChanges'))
             )}
           </Button>
         </>
@@ -121,7 +123,7 @@ export function EditUserModal({ user, callerRole, isSelf, onClose, onSaved }: Ed
           <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-2">
             <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-amber-800">
-              You can&apos;t modify your own role. Ask another admin to do it.
+              {String(t('admin.users.editSelfWarning'))}
             </p>
           </div>
         )}
@@ -132,7 +134,7 @@ export function EditUserModal({ user, callerRole, isSelf, onClose, onSaved }: Ed
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Role</label>
+          <label className="text-sm font-medium text-gray-700">{String(t('admin.users.roleLabel'))}</label>
           <Select value={role} onValueChange={setRole} disabled={saving || isSelf}>
             <SelectTrigger className="w-full">
               <SelectValue />
@@ -140,16 +142,14 @@ export function EditUserModal({ user, callerRole, isSelf, onClose, onSaved }: Ed
             <SelectContent>
               {visibleRoles.map(r => (
                 <SelectItem key={r} value={r}>
-                  {r === 'super_admin'
-                    ? 'Super Admin'
-                    : r.charAt(0).toUpperCase() + r.slice(1)}
+                  {String(t(`admin.users.roles.${r === 'super_admin' ? 'superAdmin' : r}`))}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
           {!canAssignElevated && (
             <p className="text-xs text-gray-500">
-              Only Super Admins can grant the Admin or Super Admin role.
+              {String(t('admin.users.elevatedRoleNote'))}
             </p>
           )}
         </div>
