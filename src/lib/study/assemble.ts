@@ -106,6 +106,10 @@ export interface AssembledTest {
   questions: Question[]
   /** Per-domain tally of what was actually drawn (for QA / logging). */
   composition: Record<string, number>
+  /** Index of the first Module-2 item. Omitted for single-module tests;
+   *  consumers fall back to a midpoint split, which is only correct when
+   *  every item is interchangeable. */
+  moduleBreakIdx?: number
 }
 
 const SECTION_META: Record<string, { title: string; minutesPerQ: number; label: string }> = {
@@ -271,8 +275,15 @@ const TOEFL_META: Record<ToeflSection, {
   title: string; minutes: number; label: string
   mix: Array<{ type: string; n: number }>
 }> = {
+  // Reading counts SCORED ITEMS, not on-screen items. Complete-the-Words
+  // (fill_in_blanks) is scored per blank — submit/route.ts returns
+  // { total: blanks.length } for it — and each paragraph carries 10
+  // blanks. So 2 CtW contribute 20 scored items, leaving 30 MC to reach
+  // the spec's 50. Drawing 48 MC shipped 68 scored items in a 35-minute
+  // section, a 36% overshoot. (The AI generator already did this
+  // arithmetic correctly; the two paths had silently diverged.)
   reading:   { title: 'TOEFL iBT — Reading',   minutes: 35, label: 'Reading',
-    mix: [{ type: 'fill_in_blanks', n: 2 }, { type: 'multiple_choice', n: 48 }] },
+    mix: [{ type: 'fill_in_blanks', n: 2 }, { type: 'multiple_choice', n: 30 }] },
   listening: { title: 'TOEFL iBT — Listening', minutes: 36, label: 'Listening',
     mix: [{ type: 'multiple_choice', n: 47 }] },
   speaking:  { title: 'TOEFL iBT — Speaking',  minutes: 7,  label: 'Speaking',
@@ -351,6 +362,31 @@ export async function assembleToeflFromBank(
   }
   if (picked.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
 
+  // Reading ships as two modules, one Complete-the-Words paragraph in
+  // each. The draw above emits both CtW first (mix order), so a naive
+  // midpoint split — which is what the client falls back to when no
+  // moduleBreakIdx is supplied — put BOTH in Module 1 and none in
+  // Module 2, directly contradicting the break banner that promises
+  // "a second Complete-the-Words paragraph" after the break.
+  // Interleave one per module and hand the client an explicit break.
+  let moduleBreakIdx: number | undefined
+  if (p.section === 'reading') {
+    const ctw = picked.filter(r => r.item.type === 'fill_in_blanks')
+    const mc = picked.filter(r => r.item.type !== 'fill_in_blanks')
+    if (ctw.length === 2) {
+      const half = Math.ceil(mc.length / 2)
+      const m1 = [ctw[0]!, ...mc.slice(0, half)]
+      const m2 = [ctw[1]!, ...mc.slice(half)]
+      picked.length = 0
+      picked.push(...m1, ...m2)
+      moduleBreakIdx = m1.length
+    } else {
+      // Thin bank (0 or 1 CtW drawn): fall back to a plain split rather
+      // than promising a paragraph that isn't there.
+      moduleBreakIdx = Math.ceil(picked.length / 2)
+    }
+  }
+
   if (p.studentId) {
     await recordExposures(p.studentId, picked.map(r => r.id), 'full_test', seed)
   }
@@ -362,6 +398,7 @@ export async function assembleToeflFromBank(
     family: 'toefl',
     questions: picked.map(r => r.item),
     composition,
+    ...(moduleBreakIdx != null ? { moduleBreakIdx } : {}),
   }
 }
 
