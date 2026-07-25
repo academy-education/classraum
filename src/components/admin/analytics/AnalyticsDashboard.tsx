@@ -190,7 +190,7 @@ export function AnalyticsDashboard() {
         />
         <DashboardCard
           title={String(t('admin.analytics.churnRate'))}
-          value={`${((data.customers.churn / data.customers.total) * 100).toFixed(1)}%`}
+          value={`${(data.customers.total > 0 ? (data.customers.churn / data.customers.total) * 100 : 0).toFixed(1)}%`}
           subtitle={String(t('admin.analytics.canceledThisMonth', { n: data.customers.churn }))}
           icon={<TrendingDown className="h-5 w-5" />}
           accent="rose"
@@ -233,7 +233,10 @@ export function AnalyticsDashboard() {
                         <div
                           className="w-8 bg-blue-500 rounded-t"
                           style={{
-                            height: `${(item.amount / Math.max(...data.revenue.trend.map(t => t.amount))) * 200}px`,
+                            height: `${(() => {
+                              const peak = Math.max(0, ...data.revenue.trend.map(t => t.amount));
+                              return peak > 0 ? (item.amount / peak) * 200 : 0;
+                            })()}px`,
                             minHeight: '20px'
                           }}
                         />
@@ -325,7 +328,7 @@ export function AnalyticsDashboard() {
                 />
                 <DashboardCard
                   title={String(t('admin.analytics.arpu'))}
-                  value={formatPrice(Math.round(data.revenue.total / data.customers.total))}
+                  value={formatPrice(data.customers.total > 0 ? Math.round(data.revenue.total / data.customers.total) : 0)}
                   icon={<DollarSign className="h-5 w-5" />}
                   accent="violet"
                 />
