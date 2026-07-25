@@ -523,7 +523,26 @@
       "viewAcademies": "학원 보기",
       "viewUsers": "사용자 보기",
       "viewSubscriptions": "구독 보기",
-      "viewAnalytics": "분석 보기"
+      "viewAnalytics": "분석 보기",
+      "recentActivityTitle": "최근 활동",
+      "showingLast7Days": "지난 7일간의 활동 표시",
+      "timeJustNow": "방금",
+      "timeMinAgo": "{n}분 전",
+      "timeHourAgo": "{n}시간 전",
+      "timeDayAgo": "{n}일 전",
+      "actNewAcademyTitle": "새 학원 생성됨",
+      "actNewAcademyDesc": "{name}이(가) 가입했습니다",
+      "actNewSubTitle": "새 구독",
+      "actNewSubDesc": "{name}이(가) {plan}을(를) 구독했습니다",
+      "actPaymentFailedTitle": "결제 실패",
+      "actPaymentFailedDesc": "{name}의 결제가 실패했습니다",
+      "actSupportTitle": "지원 대화 시작됨",
+      "actSupportDesc": "{name}의 새 지원 요청",
+      "actStudentsTitle": "학생 추가됨",
+      "actStudentsDesc": "{academy}에 학생 {count}명 추가됨",
+      "fallbackAcademy": "학원",
+      "fallbackUser": "사용자",
+      "closeSidebar": "사이드바 닫기"
     },
     "users": {
       "title": "사용자",
@@ -1137,6 +1156,20 @@
       "csvCreatedDate": "생성일",
       "csvLastActive": "최근 활동",
       "csvNA": "해당 없음"
+    },
+    "communications": {
+      "kicker": "아웃리치",
+      "title": "커뮤니케이션",
+      "subtitle": "플랫폼 전체 공지, 알림 템플릿 및 캠페인 분석.",
+      "comingSoon": "커뮤니케이션 기능이 곧 제공됩니다",
+      "comingSoonBody": "플랫폼 전체 공지 발송, 알림 템플릿 관리, 고객 캠페인 실행 기능을 준비 중입니다. 아직 제공되지 않습니다.",
+      "cardAnnouncementsTitle": "공지",
+      "cardAnnouncementsBody": "선택한 학원에 배너 및 인앱 메시지를 발송합니다.",
+      "cardTemplatesTitle": "템플릿",
+      "cardTemplatesBody": "거래 발송을 위한 재사용 가능한 이메일 및 SMS 템플릿.",
+      "cardCampaignsTitle": "캠페인",
+      "cardCampaignsBody": "전달 및 참여 지표를 갖춘 타깃 아웃리치.",
+      "backToDashboard": "대시보드로 돌아가기"
     }
   },
   "dashboard": {

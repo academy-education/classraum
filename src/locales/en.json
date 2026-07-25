@@ -523,7 +523,26 @@
       "viewAcademies": "View academies",
       "viewUsers": "View users",
       "viewSubscriptions": "View subscriptions",
-      "viewAnalytics": "View analytics"
+      "viewAnalytics": "View analytics",
+      "recentActivityTitle": "Recent Activity",
+      "showingLast7Days": "Showing last 7 days of activity",
+      "timeJustNow": "just now",
+      "timeMinAgo": "{n}m ago",
+      "timeHourAgo": "{n}h ago",
+      "timeDayAgo": "{n}d ago",
+      "actNewAcademyTitle": "New Academy Created",
+      "actNewAcademyDesc": "{name} signed up",
+      "actNewSubTitle": "New Subscription",
+      "actNewSubDesc": "{name} subscribed to {plan}",
+      "actPaymentFailedTitle": "Payment Failed",
+      "actPaymentFailedDesc": "Payment failed for {name}",
+      "actSupportTitle": "Support Conversation Started",
+      "actSupportDesc": "New support request from {name}",
+      "actStudentsTitle": "Students Added",
+      "actStudentsDesc": "{count} students added to {academy}",
+      "fallbackAcademy": "Academy",
+      "fallbackUser": "User",
+      "closeSidebar": "Close sidebar"
     },
     "users": {
       "title": "Users",
@@ -1137,6 +1156,20 @@
       "csvCreatedDate": "Created Date",
       "csvLastActive": "Last Active",
       "csvNA": "N/A"
+    },
+    "communications": {
+      "kicker": "Outreach",
+      "title": "Communications",
+      "subtitle": "Platform-wide announcements, notification templates and campaign analytics.",
+      "comingSoon": "Communications is coming soon",
+      "comingSoonBody": "We're building a way to send platform-wide announcements, manage notification templates and run customer campaigns. It isn't live yet.",
+      "cardAnnouncementsTitle": "Announcements",
+      "cardAnnouncementsBody": "Broadcast banners and in-app messages to selected academies.",
+      "cardTemplatesTitle": "Templates",
+      "cardTemplatesBody": "Reusable email and SMS templates for transactional sends.",
+      "cardCampaignsTitle": "Campaigns",
+      "cardCampaignsBody": "Targeted outreach with delivery and engagement metrics.",
+      "backToDashboard": "Back to Dashboard"
     }
   },
   "classrooms": {

@@ -8,6 +8,7 @@ import { AdminSidebar } from './AdminSidebar';
 import { AdminHeader } from './AdminHeader';
 import { AdminUser } from '@/lib/admin-auth-shared';
 import { ConfirmProvider } from './useConfirm';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ interface AdminLayoutProps {
 export function AdminLayout({ children }: AdminLayoutProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const { t } = useTranslation();
   const [isChecking, setIsChecking] = useState(true);
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authFailed, setAuthFailed] = useState(false);
@@ -146,7 +148,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           {/* Backdrop */}
           <button
             type="button"
-            aria-label="Close sidebar"
+            aria-label={String(t('admin.dashboard.closeSidebar'))}
             onClick={() => setSidebarOpen(false)}
             className="fixed inset-0 z-40 bg-gray-900/40 backdrop-blur-sm animate-in fade-in duration-200"
           />

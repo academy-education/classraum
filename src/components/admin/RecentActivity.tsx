@@ -30,6 +30,7 @@ interface ActivityItem {
 }
 
 export function RecentActivity() {
+  const { t } = useTranslation();
   const [activities, setActivities] = useState<ActivityItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -57,8 +58,8 @@ export function RecentActivity() {
         allActivities.push({
           id: `academy-${academy.id}`,
           type: 'academy_created',
-          title: 'New Academy Created',
-          description: `${academy.name} signed up`,
+          title: String(t('admin.dashboard.actNewAcademyTitle')),
+          description: String(t('admin.dashboard.actNewAcademyDesc', { name: academy.name })),
           timestamp: new Date(academy.created_at),
           status: 'success',
           metadata: { academyName: academy.name }
@@ -77,8 +78,8 @@ export function RecentActivity() {
         allActivities.push({
           id: `subscription-${sub.id}`,
           type: 'subscription_created',
-          title: 'New Subscription',
-          description: `${sub.academies?.name || 'Academy'} subscribed to ${sub.plan_name}`,
+          title: String(t('admin.dashboard.actNewSubTitle')),
+          description: String(t('admin.dashboard.actNewSubDesc', { name: sub.academies?.name || String(t('admin.dashboard.fallbackAcademy')), plan: sub.plan_name })),
           timestamp: new Date(sub.created_at),
           status: 'success',
           metadata: { academyName: sub.academies?.name }
@@ -98,8 +99,8 @@ export function RecentActivity() {
         allActivities.push({
           id: `payment-${payment.id}`,
           type: 'payment_failed',
-          title: 'Payment Failed',
-          description: `Payment failed for ${payment.academies?.name || 'Academy'}`,
+          title: String(t('admin.dashboard.actPaymentFailedTitle')),
+          description: String(t('admin.dashboard.actPaymentFailedDesc', { name: payment.academies?.name || String(t('admin.dashboard.fallbackAcademy')) })),
           timestamp: new Date(payment.created_at),
           status: 'error',
           metadata: {
@@ -121,8 +122,8 @@ export function RecentActivity() {
         allActivities.push({
           id: `support-${conv.id}`,
           type: 'support_ticket',
-          title: 'Support Conversation Started',
-          description: `New support request from ${conv.academies?.name || 'User'}`,
+          title: String(t('admin.dashboard.actSupportTitle')),
+          description: String(t('admin.dashboard.actSupportDesc', { name: conv.academies?.name || String(t('admin.dashboard.fallbackUser')) })),
           timestamp: new Date(conv.created_at),
           status: 'warning',
           metadata: {
@@ -146,7 +147,7 @@ export function RecentActivity() {
         const dayKey = `${student.academy_id}-${new Date(student.created_at).toDateString()}`;
         if (!studentsByAcademyDay.has(dayKey)) {
           studentsByAcademyDay.set(dayKey, {
-            academy: student.academies?.name || 'Academy',
+            academy: student.academies?.name || String(t('admin.dashboard.fallbackAcademy')),
             count: 1,
             timestamp: new Date(student.created_at)
           });
@@ -164,8 +165,8 @@ export function RecentActivity() {
           allActivities.push({
             id: `students-${key}`,
             type: 'user_added',
-            title: 'Students Added',
-            description: `${data.count} student${data.count > 1 ? 's' : ''} added to ${data.academy}`,
+            title: String(t('admin.dashboard.actStudentsTitle')),
+            description: String(t('admin.dashboard.actStudentsDesc', { count: data.count, academy: data.academy })),
             timestamp: data.timestamp,
             status: 'success',
             metadata: {
@@ -228,25 +229,25 @@ export function RecentActivity() {
     const now = new Date();
     const diffInMinutes = Math.floor((now.getTime() - timestamp.getTime()) / (1000 * 60));
     
-    if (diffInMinutes < 1) return 'just now';
-    if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
-    
+    if (diffInMinutes < 1) return String(t('admin.dashboard.timeJustNow'));
+    if (diffInMinutes < 60) return String(t('admin.dashboard.timeMinAgo', { n: diffInMinutes }));
+
     const diffInHours = Math.floor(diffInMinutes / 60);
-    if (diffInHours < 24) return `${diffInHours}h ago`;
-    
+    if (diffInHours < 24) return String(t('admin.dashboard.timeHourAgo', { n: diffInHours }));
+
     const diffInDays = Math.floor(diffInHours / 24);
-    return `${diffInDays}d ago`;
+    return String(t('admin.dashboard.timeDayAgo', { n: diffInDays }));
   };
 
   return (
     <div className="bg-white p-5 rounded-xl ring-1 ring-gray-100">
       <div className="flex items-center justify-between mb-5">
-        <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-[0.06em]">Recent Activity</h3>
+        <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-[0.06em]">{String(t('admin.dashboard.recentActivityTitle'))}</h3>
         <button
           onClick={loadRecentActivities}
           className="text-xs font-medium text-primary hover:text-primary transition-colors"
         >
-          Refresh
+          {String(t('admin.common.refresh'))}
         </button>
       </div>
 
@@ -265,7 +266,7 @@ export function RecentActivity() {
       ) : activities.length === 0 ? (
         <div className="text-center py-8 text-gray-500">
           <Clock className="h-12 w-12 mx-auto mb-2 text-gray-300" />
-          <p>No recent activity in the last 7 days</p>
+          <p>{String(t('admin.dashboard.noRecentActivity'))}</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -317,7 +318,7 @@ export function RecentActivity() {
       {!loading && activities.length > 0 && (
         <div className="mt-6 pt-4 border-t border-gray-100">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-500">Showing last 7 days of activity</span>
+            <span className="text-gray-500">{String(t('admin.dashboard.showingLast7Days'))}</span>
           </div>
         </div>
       )}
