@@ -306,19 +306,47 @@ const TOEFL_META: Record<ToeflSection, {
  * transcript in item.passage ("Transcript: …"); the TestSession UI
  * routes it through /api/study/listening/tts at play time, so no audio
  * is stored here.
+ *
+ * TWO-STAGE ADAPTIVE (Reading + Listening): pass `module: 1` at test
+ * start and `module: 2` + the routed `difficulties` after grading, and
+ * each call draws only that module's share of every task type. Module 2
+ * relies on `studentId` — module 1's items are already in the exposure
+ * ledger, so unseen-first ranking pushes them to the back and the two
+ * modules cannot overlap. Without a studentId there is no ledger and a
+ * module-2 draw would repeat module 1, so adaptive callers must supply
+ * one. Omitting `module` reproduces the original whole-section draw
+ * byte for byte (Writing/Speaking + every non-adaptive caller).
  */
 export async function assembleToeflFromBank(
-  p: { section: ToeflSection; studentId?: string },
+  p: {
+    section: ToeflSection
+    studentId?: string
+    /** Two-stage adaptive draw (Reading + Listening only). Omit to draw
+     *  the WHOLE section exactly as before — Writing/Speaking and every
+     *  non-adaptive caller depend on that path being untouched.
+     *  1 → draw only module 1's share of each task type.
+     *  2 → draw only module 2's share, filtered by `difficulties`. */
+    module?: 1 | 2
+    /** Bank difficulty filter for a routed module 2 (see
+     *  difficultiesForToeflModule2). Ignored when `module` is unset. */
+    difficulties?: Array<'easy' | 'medium' | 'hard'>
+  },
   seed = 'bank',
 ): Promise<AssembledTest> {
   const meta = TOEFL_META[p.section]
-  const { data, error } = await supabaseAdmin
+  let query = supabaseAdmin
     .from('study_item_bank')
     .select('id, item_type, item')
     .eq('family', 'toefl')
     .eq('section', p.section)
     .eq('verified', true)
     .eq('archived', false)
+  // Difficulty banding is a MODULE-2 concept: module 1 is the fixed
+  // mixed-difficulty form everyone takes, so it never filters.
+  if (p.module === 2 && p.difficulties?.length) {
+    query = query.in('difficulty', p.difficulties)
+  }
+  const { data, error } = await query
     // Authoring order = insertion order. A Take-an-Interview set is
     // banked 1→N in ETS's escalation order (personal experience →
     // policy/prediction), and nothing else in the row carries that
@@ -377,9 +405,21 @@ export async function assembleToeflFromBank(
     return out.slice(0, n)
   }
 
+  // Per-module share of each task type. Module 1 takes the ceiling so
+  // an odd count splits 24/23 (Listening's 47 MC) rather than 23/24,
+  // and Reading's 2 Complete-the-Words paragraphs land one per module —
+  // exactly the interleaving the whole-section path produces below.
+  const shareForModule = (n: number): number => {
+    if (!p.module) return n
+    const m1 = Math.ceil(n / 2)
+    return p.module === 1 ? m1 : n - m1
+  }
+
   const composition: Record<string, number> = {}
   const picked: Row[] = []
-  for (const { type, n } of meta.mix) {
+  for (const { type, n: fullN } of meta.mix) {
+    const n = shareForModule(fullN)
+    if (n <= 0) continue
     const bucket = byType.get(type) ?? []
     if (type === 'speaking_interview') {
       const drawn = drawInterviewGroups(bucket, n)
@@ -405,7 +445,14 @@ export async function assembleToeflFromBank(
   // "a second Complete-the-Words paragraph" after the break.
   // Interleave one per module and hand the client an explicit break.
   let moduleBreakIdx: number | undefined
-  if (p.section === 'reading') {
+  if (p.module) {
+    // Module-scoped draw: `shareForModule` already put exactly one
+    // Complete-the-Words paragraph at the head of each module (mix
+    // order), so there is nothing to interleave. Module 1 hands the
+    // client its own length as the break point — Module 2 is appended
+    // there by /api/study/test/route after grading.
+    moduleBreakIdx = p.module === 1 ? picked.length : undefined
+  } else if (p.section === 'reading') {
     const ctw = picked.filter(r => r.item.type === 'fill_in_blanks')
     const mc = picked.filter(r => r.item.type !== 'fill_in_blanks')
     if (ctw.length === 2) {

@@ -3,15 +3,16 @@ import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import {
-  TOEFL_ADAPTIVE_SECTIONS,
+  toeflAdaptiveConfig,
   computeToeflRoute,
+  difficultiesForToeflModule2,
 } from '@/lib/toefl-adaptive'
 import {
   SAT_MODULE_CONFIG,
   computeSatRoute,
   difficultiesForModule2,
 } from '@/lib/study/sat-adaptive'
-import { assembleFromBank } from '@/lib/study/assemble'
+import { assembleFromBank, assembleToeflFromBank } from '@/lib/study/assemble'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -21,8 +22,9 @@ import { requireStudyUser } from '@/lib/study/auth'
  * Called by TestSession after the student submits module 1. Reads
  * module 1 answers, grades them against the cached test payload,
  * writes module1_correct / module1_total / module2_route back to
- * study_sessions, and returns the route so the client can request a
- * module 2 generation with the correct difficulty band.
+ * study_sessions, DRAWS the routed module 2 from the item bank, appends
+ * it to the same `[full-test-v1]` cache row /submit grades against, and
+ * returns those questions so the client can continue in place.
  *
  * Grading duplicates the multiple-choice matcher from /submit
  * intentionally — we don't want /submit's full-session side effects
@@ -90,7 +92,8 @@ export async function POST(req: NextRequest) {
         questions?: Array<{ correct_answer?: string | null }>
         moduleBreakIdx?: number | null
         adaptive?: boolean
-        sectionKey?: 'reading_writing' | 'math'
+        family?: string | null
+        sectionKey?: string
       }
     | null = null
   if (cacheRows?.[0]) {
@@ -101,8 +104,12 @@ export async function POST(req: NextRequest) {
   // ── SAT bank adaptive: grade Module 1, draw the routed Module 2 ──
   // Detected from the cached payload (not the section-name string) so a
   // mislabeled client request can't skip the branch.
-  if (cached?.adaptive === true && cached.sectionKey && SAT_MODULE_CONFIG[cached.sectionKey]) {
-    const sectionKey = cached.sectionKey
+  const satSectionKey: 'reading_writing' | 'math' | null =
+    cached?.sectionKey === 'math' || cached?.sectionKey === 'reading_writing'
+      ? cached.sectionKey
+      : null
+  if (cached?.adaptive === true && satSectionKey) {
+    const sectionKey = satSectionKey
     const breakIdx = (typeof cached.moduleBreakIdx === 'number' && cached.moduleBreakIdx > 0)
       ? cached.moduleBreakIdx
       : SAT_MODULE_CONFIG[sectionKey].moduleSize
@@ -177,27 +184,39 @@ export async function POST(req: NextRequest) {
     })
   }
 
-  // ── TOEFL Reading/Listening: soft route (feedback chip only) ──
-  const config = TOEFL_ADAPTIVE_SECTIONS[sectionName]
+  // ── TOEFL Reading/Listening two-module adaptive ──────────────────
+  // Speaking and Writing are linear (ETS Jan-2026 blueprint, Note 5) →
+  // toeflAdaptiveConfig returns null and we no-op.
+  const config = toeflAdaptiveConfig(sectionName)
   if (!config) {
     return NextResponse.json({ error: 'not_adaptive', route: null }, { status: 200 })
   }
 
+  // Prefer the payload's own break point — a module-1 draw stamps its
+  // exact length there (Reading anchors it after the first
+  // Complete-the-Words block, so it is not a clean midpoint).
+  const breakIdx = (typeof cached?.moduleBreakIdx === 'number' && cached.moduleBreakIdx > 0)
+    ? cached.moduleBreakIdx
+    : config.module1Items
+
+  // Real adaptive sessions carry adaptive:true in the cache row and hold
+  // ONLY Module 1 until this route draws the rest. Legacy rows (whole
+  // section pre-drawn, no adaptive flag) keep the old soft behaviour:
+  // grade + record the verdict, but there is nothing to draw.
+  const isBankAdaptive = cached?.adaptive === true && cached.family === 'toefl'
+
   if (session.module2_route) {
+    // Idempotent replay: Module 2 is already appended to the same cache
+    // row, so hand back the identical decision AND the identical items.
     return NextResponse.json({
       route: session.module2_route,
       module1Correct: session.module1_correct ?? null,
-      module1Total: session.module1_total ?? config.module1Total,
+      module1Total: session.module1_total ?? breakIdx,
+      ...(isBankAdaptive ? { module2Questions: allQuestions.slice(breakIdx) } : {}),
       alreadyRouted: true,
     })
   }
 
-  // Prefer the payload's own break point — the generator may shift it
-  // off the nominal 10/14 split (e.g. Reading anchors it after the
-  // first Complete-the-Words block).
-  const breakIdx = (typeof cached?.moduleBreakIdx === 'number' && cached.moduleBreakIdx > 0)
-    ? cached.moduleBreakIdx
-    : config.module1Total
   const module1Questions = allQuestions.slice(0, breakIdx)
   if (module1Questions.length < Math.min(breakIdx, 3)) {
     return NextResponse.json(
@@ -212,7 +231,32 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'not_adaptive', route: null }, { status: 200 })
   }
 
-  await supabaseAdmin
+  if (!isBankAdaptive) {
+    // Legacy pre-drawn payload — record the verdict only.
+    await supabaseAdmin
+      .from('study_sessions')
+      .update({
+        module1_correct: correct,
+        module1_total: module1Questions.length,
+        module2_route: route,
+      })
+      .eq('id', sessionId)
+
+    return NextResponse.json({
+      route,
+      module1Correct: correct,
+      module1Total: module1Questions.length,
+      alreadyRouted: false,
+    })
+  }
+
+  // CLAIM-then-draw. The `module2_route IS NULL` predicate makes the
+  // write the single point of arbitration: two concurrent requests (a
+  // double-tap, or the tap racing the module-1 timeout auto-route) both
+  // read a null route above, but only one UPDATE matches — the loser
+  // gets zero rows back and replays the winner's Module 2 instead of
+  // drawing and appending a second one.
+  const { data: claimed } = await supabaseAdmin
     .from('study_sessions')
     .update({
       module1_correct: correct,
@@ -220,11 +264,85 @@ export async function POST(req: NextRequest) {
       module2_route: route,
     })
     .eq('id', sessionId)
+    .is('module2_route', null)
+    .select('id')
+  if (!claimed || claimed.length === 0) {
+    // Lost the race. Re-read the cache the winner just wrote.
+    const { data: freshRows } = await supabaseAdmin
+      .from('study_messages')
+      .select('content')
+      .eq('session_id', sessionId)
+      .eq('role', 'assistant')
+      .ilike('content', `${CACHED_TEST_MARKER}%`)
+      .limit(1)
+    let fresh: { questions?: unknown[] } | null = null
+    if (freshRows?.[0]) {
+      try { fresh = JSON.parse(freshRows[0].content.slice(CACHED_TEST_MARKER.length)) } catch { /* corrupt */ }
+    }
+    const { data: s2 } = await supabaseAdmin
+      .from('study_sessions')
+      .select('module2_route, module1_correct, module1_total')
+      .eq('id', sessionId)
+      .maybeSingle()
+    return NextResponse.json({
+      route: s2?.module2_route ?? route,
+      module1Correct: s2?.module1_correct ?? correct,
+      module1Total: s2?.module1_total ?? module1Questions.length,
+      module2Questions: (fresh?.questions ?? []).slice(breakIdx),
+      alreadyRouted: true,
+    })
+  }
+
+  // Draw Module 2 from the routed difficulty band. Module 1's items are
+  // already in the exposure ledger (recorded at assemble), so the
+  // unseen-first ranking cannot deal them a second time; seeding with
+  // the session id keeps the draw stable on retry.
+  let module2
+  try {
+    module2 = await assembleToeflFromBank(
+      {
+        section: config.bankSection,
+        module: 2,
+        difficulties: difficultiesForToeflModule2(route),
+        studentId: user.id,
+      },
+      sessionId,
+    )
+  } catch (e) {
+    // Release the claim so the student can retry once the bank is
+    // seeded, rather than being stranded with a route and no Module 2.
+    await supabaseAdmin
+      .from('study_sessions')
+      .update({ module2_route: null })
+      .eq('id', sessionId)
+    return NextResponse.json(
+      { error: 'module2_bank_empty', details: (e as Error).message }, { status: 409 },
+    )
+  }
+
+  // Append Module 2 to the cached payload — the SAME row /submit grades
+  // against. `allQuestions` is Module 1 verbatim, so this never reorders
+  // or rewrites it, and the scored-item accounting is unchanged.
+  const merged = { ...cached, questions: [...allQuestions, ...module2.questions] }
+  const { error: writeErr } = await supabaseAdmin
+    .from('study_messages')
+    .update({ content: CACHED_TEST_MARKER + JSON.stringify(merged) })
+    .eq('session_id', sessionId)
+    .eq('role', 'assistant')
+    .ilike('content', `${CACHED_TEST_MARKER}%`)
+  if (writeErr) {
+    await supabaseAdmin
+      .from('study_sessions')
+      .update({ module2_route: null })
+      .eq('id', sessionId)
+    return NextResponse.json({ error: 'module2_cache_write_failed' }, { status: 500 })
+  }
 
   return NextResponse.json({
     route,
     module1Correct: correct,
     module1Total: module1Questions.length,
+    module2Questions: module2.questions,
     alreadyRouted: false,
   })
 }

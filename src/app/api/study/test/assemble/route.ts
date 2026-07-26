@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assembleFromBank, assembleToeflFromBank, type ToeflSection } from '@/lib/study/assemble'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
+import { toeflAdaptiveConfig } from '@/lib/toefl-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
@@ -25,11 +26,13 @@ import { isShippedTestFamily } from '@/lib/study/shipped-tests'
  *   • SAT (math / reading_writing) — domain-blueprint draw, optionally
  *     two-module adaptive (Module 1 here; Module 2 via /route).
  *   • TOEFL (reading / listening / writing / speaking) — task-type
- *     blueprint draw, non-adaptive. Item types include Complete-the-
- *     Words, Build-a-Sentence, Listen-and-Repeat, Interview, Email and
- *     Academic Discussion; the cached payload is identical in shape to
- *     the live TOEFL generator's, so TestSession + submit grading serve
- *     it unchanged.
+ *     blueprint draw. Reading + Listening are two-module adaptive like
+ *     SAT (Module 1 here; the routed Module 2 via /route); Writing and
+ *     Speaking are LINEAR per ETS's Jan-2026 blueprint and draw whole.
+ *     Item types include Complete-the-Words, Build-a-Sentence,
+ *     Listen-and-Repeat, Interview, Email and Academic Discussion; the
+ *     cached payload is identical in shape to the live TOEFL
+ *     generator's, so TestSession + submit grading serve it unchanged.
  *
  * Writes the assembled payload as the same `[full-test-v1]` cache row
  * the generator emits, so the existing TestSession UI + submit grading
@@ -107,12 +110,21 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Adaptive tests (SAT only) draw ONLY Module 1 here (fixed module
-  // size, mixed difficulty); Module 2 is drawn by /api/study/test/route
-  // after the student finishes and is graded on Module 1. TOEFL is
-  // non-adaptive — the assembler draws the whole section at once from
-  // its task-type blueprint (count is ignored; see TOEFL_META).
-  const adaptive = !isToefl && body.adaptive === true
+  // Adaptive tests draw ONLY Module 1 here (fixed module size, mixed
+  // difficulty); Module 2 is drawn by /api/study/test/route after the
+  // student finishes and is graded on Module 1.
+  //   • SAT — opt-in per request (body.adaptive).
+  //   • TOEFL Reading/Listening — adaptive is the SHAPE of the section
+  //     on the real exam (two modules, module 2 branches), so it's on
+  //     by default; a caller can still opt out with adaptive:false.
+  //   • TOEFL Writing/Speaking — LINEAR per ETS's Jan-2026 blueprint
+  //     (Note 5): everyone gets the same tasks. Never adaptive; the
+  //     assembler draws the whole section at once from its task-type
+  //     blueprint (count is ignored; see TOEFL_META).
+  const toeflCfg = isToefl ? toeflAdaptiveConfig(section) : null
+  const adaptive = isToefl
+    ? (toeflCfg != null && body.adaptive !== false)
+    : body.adaptive === true
   const count = isToefl
     ? 0
     : adaptive
@@ -177,7 +189,16 @@ export async function POST(req: NextRequest) {
   let test
   try {
     test = isToefl
-      ? await assembleToeflFromBank({ section: section as ToeflSection, studentId: user.id }, sess.id)
+      ? await assembleToeflFromBank(
+          {
+            section: section as ToeflSection,
+            studentId: user.id,
+            // Module 1 only for the two adaptive sections; Writing and
+            // Speaking keep the whole-section draw.
+            ...(adaptive ? { module: 1 as const } : {}),
+          },
+          sess.id,
+        )
       // SAT Module 1 is mixed difficulty → no difficulty filter, blueprint-weighted.
       : await assembleFromBank({ section: section as 'math' | 'reading_writing', count, studentId: user.id }, sess.id)
   } catch (e) {
@@ -190,6 +211,11 @@ export async function POST(req: NextRequest) {
   // For adaptive sessions the cached payload carries the module-break
   // index (= Module 1 length) and a combined timer across both modules;
   // /route appends Module 2 to this same row after routing.
+  const perModuleMinutes = adaptive
+    ? (toeflCfg
+        ? toeflCfg.minutesPerModule
+        : SAT_MODULE_CONFIG[section as 'math' | 'reading_writing'].minutesPerModule)
+    : 0
   const payload = adaptive
     ? {
         ...test,
@@ -199,8 +225,8 @@ export async function POST(req: NextRequest) {
         totalModules: 2,
         // Per-module timing: each module gets its own countdown. The
         // combined value is kept for any legacy/whole-test reader.
-        perModuleMinutes: SAT_MODULE_CONFIG[section as 'math' | 'reading_writing'].minutesPerModule,
-        timeLimitMinutes: 2 * SAT_MODULE_CONFIG[section as 'math' | 'reading_writing'].minutesPerModule,
+        perModuleMinutes,
+        timeLimitMinutes: 2 * perModuleMinutes,
       }
     : test
 

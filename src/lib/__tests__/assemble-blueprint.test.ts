@@ -6,7 +6,7 @@
  * quota math (blueprintQuotas) and the end-to-end composition an
  * assembled test comes out to, including the thin-domain backfill.
  */
-import { blueprintQuotas, BLUEPRINT, assembleFromBank } from '@/lib/study/assemble'
+import { blueprintQuotas, BLUEPRINT, assembleFromBank, assembleToeflFromBank } from '@/lib/study/assemble'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { tableRouter } from '@/tests/study-route-helpers'
 
@@ -114,5 +114,123 @@ describe('assembleFromBank composition', () => {
     enqueue('study_item_bank', { data: [] })
     await expect(assembleFromBank({ section: 'math', count: 22 }, 'seed-3'))
       .rejects.toThrow(/no verified items/)
+  })
+})
+
+/** Build N TOEFL bank rows of one item type. */
+function toeflRows(itemType: string, n: number, difficulty = 'medium') {
+  return Array.from({ length: n }, (_, i) => ({
+    id: `${itemType}-${i}`,
+    item_type: itemType,
+    difficulty,
+    item: {
+      prompt: `${itemType} Q${i}`,
+      type: itemType,
+      choices: ['A', 'B', 'C', 'D'],
+      correct_answer: 'A',
+      difficulty,
+      explanation: '',
+      ...(itemType === 'fill_in_blanks'
+        ? { blanks: Array.from({ length: 10 }, (_, b) => ({ id: b, answer: 'x' })) }
+        : {}),
+    },
+  }))
+}
+
+describe('assembleToeflFromBank two-module adaptive draw', () => {
+  let enqueue: ReturnType<typeof tableRouter>
+  beforeEach(() => {
+    jest.clearAllMocks()
+    jest.spyOn(console, 'error').mockImplementation(() => {})
+    enqueue = tableRouter(fromMock)
+  })
+  afterEach(() => (console.error as jest.Mock).mockRestore())
+
+  const deepReading = () => [...toeflRows('fill_in_blanks', 6), ...toeflRows('multiple_choice', 80)]
+
+  it('Reading Module 1 draws 1 Complete-the-Words + 15 MC = 16 cards / 25 scored', () => {
+    enqueue('study_item_bank', { data: deepReading() })
+    return assembleToeflFromBank({ section: 'reading', module: 1 }, 'seed-m1').then(test => {
+      expect(test.questions).toHaveLength(16)
+      expect(test.composition).toEqual({ fill_in_blanks: 1, multiple_choice: 15 })
+      // Scored items: the CtW paragraph is scored per blank.
+      const scored = test.questions.reduce(
+        (n, q) => n + (q.type === 'fill_in_blanks' ? (q.blanks?.length ?? 1) : 1), 0)
+      expect(scored).toBe(25)
+      // Module 1 hands the client its own length as the break index.
+      expect(test.moduleBreakIdx).toBe(16)
+    })
+  })
+
+  it('Reading Module 2 is the same shape and carries no break index', async () => {
+    enqueue('study_item_bank', { data: deepReading() })
+    const test = await assembleToeflFromBank(
+      { section: 'reading', module: 2, difficulties: ['medium', 'hard'] }, 'seed-m2')
+    expect(test.questions).toHaveLength(16)
+    expect(test.composition).toEqual({ fill_in_blanks: 1, multiple_choice: 15 })
+    expect(test.moduleBreakIdx).toBeUndefined()
+  })
+
+  it('Listening splits 47 MC as 24 / 23', async () => {
+    enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80) })
+    const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-l1')
+    enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80) })
+    const m2 = await assembleToeflFromBank({ section: 'listening', module: 2 }, 'seed-l2')
+    expect(m1.questions).toHaveLength(24)
+    expect(m2.questions).toHaveLength(23)
+    expect(m1.questions.length + m2.questions.length).toBe(47)
+  })
+
+  it('the two modules never overlap — Module 1 exposures push its items to the back', async () => {
+    // Module 1 records exposures; Module 2's unseen-first ranking then
+    // deals from what is left, so a student cannot see a repeat.
+    const pool = toeflRows('multiple_choice', 60)
+    enqueue('study_item_bank', { data: pool })
+    enqueue('study_item_exposures', { data: [] })          // no prior exposures
+    const m1 = await assembleToeflFromBank(
+      { section: 'listening', module: 1, studentId: 'stu-1' }, 'seed-x')
+    const m1Prompts = m1.questions.map(q => q.prompt)
+
+    enqueue('study_item_bank', { data: pool })
+    enqueue('study_item_exposures', {
+      data: pool
+        .filter(r => m1Prompts.includes(r.item.prompt))
+        .map(r => ({ item_id: r.id, seen_at: '2026-01-01T00:00:00Z', session_id: 'other' })),
+    })
+    const m2 = await assembleToeflFromBank(
+      { section: 'listening', module: 2, studentId: 'stu-1' }, 'seed-x')
+
+    expect(m1Prompts).toHaveLength(24)
+    for (const p of m2.questions.map(q => q.prompt)) expect(m1Prompts).not.toContain(p)
+  })
+
+  it('module 2 filters the bank query by the routed difficulty band', async () => {
+    const bank = enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80) })
+    await assembleToeflFromBank(
+      { section: 'listening', module: 2, difficulties: ['medium', 'hard'] }, 'seed-d')
+    expect(bank.in).toHaveBeenCalledWith('difficulty', ['medium', 'hard'])
+  })
+
+  it('module 1 is NEVER difficulty-filtered — it is the fixed mixed form', async () => {
+    const bank = enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80) })
+    await assembleToeflFromBank(
+      { section: 'listening', module: 1, difficulties: ['hard'] }, 'seed-d1')
+    expect(bank.in).not.toHaveBeenCalled()
+  })
+
+  it('omitting `module` reproduces the whole-section draw unchanged', async () => {
+    // Writing / Speaking and every non-adaptive caller depend on this.
+    enqueue('study_item_bank', { data: deepReading() })
+    const whole = await assembleToeflFromBank({ section: 'reading' }, 'seed-w')
+    expect(whole.questions).toHaveLength(32)     // 2 CtW + 30 MC
+    expect(whole.composition).toEqual({ fill_in_blanks: 2, multiple_choice: 30 })
+    // One CtW interleaved into each module, break after the first half.
+    expect(whole.moduleBreakIdx).toBe(16)
+    expect(whole.questions[0].type).toBe('fill_in_blanks')
+    expect(whole.questions[16].type).toBe('fill_in_blanks')
+    const bank = enqueue('study_item_bank', { data: toeflRows('speaking_repeat', 20) })
+    const speaking = await assembleToeflFromBank({ section: 'speaking' }, 'seed-s')
+    expect(speaking.composition.speaking_repeat).toBe(7)
+    expect(bank.in).not.toHaveBeenCalled()
   })
 })

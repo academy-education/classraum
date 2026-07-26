@@ -78,16 +78,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const [test, setTest] = useState<TestPayload | null>(null)
   const [answers, setAnswers] = useState<(string | null)[]>([])
   const [currentIdx, setCurrentIdx] = useState(0)
-  // TOEFL adaptive routing (Reading/Listening). When the student
-  // crosses the module break we grade module 1 server-side and show
-  // where the real ETS test would have routed them. Content itself is
-  // pre-generated, so this is feedback + analytics, not regeneration.
+  // Two-module adaptive routing verdict (SAT R&W/Math + TOEFL
+  // Reading/Listening). Set by `routeToModule2` from the server's
+  // grading of Module 1; Module 2's items are then DRAWN from that
+  // band, so this describes what actually happened, not a hypothetical.
+  // SAT branches two ways (easy/hard), TOEFL three (easy/medium/hard).
   const [moduleRoute, setModuleRoute] = useState<{
     route: 'easy' | 'medium' | 'hard'
     correct: number | null
     total: number
   } | null>(null)
-  const moduleRouteRequested = useRef(false)
   const [gridOpen, setGridOpen] = useState(false)
   const [result, setResult] = useState<SubmitResult | null>(null)
   // TOEFL Listening audio is playing — locks Prev/Next/Grid so students
@@ -439,11 +439,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     } catch { /* quota exceeded — resume loses audio links only */ }
   }, [phase, sessionId, answerAudioPaths, answerSpeechSignals])
 
-  // SAT bank two-module adaptive: the test loads with Module 1 only.
-  // When the student finishes Module 1 they tap "Continue to Module 2",
-  // which grades M1 server-side, draws the routed Module 2 from the
-  // bank, and APPENDS it to the in-memory test — a hard gate, unlike
-  // TOEFL's fire-and-forget feedback chip.
+  // Bank two-module adaptive (SAT R&W / Math, TOEFL Reading /
+  // Listening): the test loads with Module 1 only. When the student
+  // finishes Module 1 they tap "Continue to Module 2", which grades M1
+  // server-side, draws the routed Module 2 from the bank, and APPENDS it
+  // to the in-memory test. A hard gate — the student cannot see Module 2
+  // before the routing decision exists, because it hasn't been drawn.
+  //
+  // Shared by both families deliberately: the retry + idempotency
+  // handling (server-side claim on module2_route, `module2Loading`
+  // guard here) lives in exactly one place.
   const [module2Loading, setModule2Loading] = useState(false)
   const [module2Error, setModule2Error] = useState(false)
   const routeToModule2 = useCallback(async () => {
@@ -452,19 +457,27 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     setModule2Error(false)
     try {
       const breakIdx = test.moduleBreakIdx ?? test.questions.length
+      // The server keys TOEFL's config off this name ('Reading' /
+      // 'Listening'); the payload's label is prose ('Reading'), so
+      // normalise. SAT ignores it (it detects from the cache row).
+      const sectionName = test.family === 'toefl'
+        ? (/reading/i.test(test.section ?? '') ? 'Reading'
+          : /listening/i.test(test.section ?? '') ? 'Listening'
+          : (test.section ?? ''))
+        : (test.section ?? '')
       const headers = await authHeaders()
       const res = await fetch('/api/study/test/route', {
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           sessionId,
-          sectionName: test.section ?? '',
+          sectionName,
           answers: answers.slice(0, breakIdx).map((answer, index) => ({ index, answer })),
         }),
       })
       if (!res.ok) throw new Error('route failed')
       const json = await res.json() as {
-        route?: 'easy' | 'hard'
+        route?: 'easy' | 'medium' | 'hard'
         module1Correct?: number | null
         module1Total?: number
         module2Questions?: Question[]
@@ -492,41 +505,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     }
   }, [test, module2Loading, sessionId, answers, currentElapsedMs])
 
-  // TOEFL adaptive routing: the first time the student crosses the
-  // module break in a Reading/Listening test, send module-1 answers
-  // for server-side grading. The server stores module1_correct/total
-  // + module2_route on the session; we surface the routing verdict in
-  // the Module 2 banner. Fire-and-forget — a failure here must never
-  // block the test.
-  useEffect(() => {
-    if (phase !== 'taking' || !test || moduleRouteRequested.current) return
-    if (test.family !== 'toefl' || !test.section) return
-    const sectionName = /reading/i.test(test.section) ? 'Reading'
-      : /listening/i.test(test.section) ? 'Listening' : null
-    if (!sectionName) return
-    const breakIdx = test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2)
-    if (currentIdx < breakIdx) return
-    moduleRouteRequested.current = true
-    void (async () => {
-      try {
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/test/route', {
-          method: 'POST',
-          headers: { ...headers, 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sessionId,
-            sectionName,
-            answers: answers.slice(0, breakIdx).map((answer, index) => ({ index, answer })),
-          }),
-        })
-        if (!res.ok) return
-        const json = await res.json() as { route?: 'easy' | 'medium' | 'hard' | null; module1Correct?: number | null; module1Total?: number }
-        if (json.route) {
-          setModuleRoute({ route: json.route, correct: json.module1Correct ?? null, total: json.module1Total ?? breakIdx })
-        }
-      } catch { /* non-fatal */ }
-    })()
-  }, [phase, test, currentIdx, answers, sessionId])
+  // (TOEFL Reading/Listening used to fire a soft, fire-and-forget route
+  // request here that only set a feedback chip — Module 2 had already
+  // been drawn and cached before question 1. Both sections now go
+  // through `routeToModule2` above, the same hard gate SAT uses.)
 
   // Freeze the timer when the tab is hidden, resume when visible.
   // This makes practice tests non-hostile: a student who takes a call
@@ -1252,10 +1234,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
               {t(`study.practice.difficulty.${q.difficulty}`)}
             </span>
-            {/* TOEFL adaptive-module chip (Reading + Listening).
-                Prefers the server-computed `moduleBreakIdx`; falls
-                back to a midpoint split for older cached tests. */}
-            {test.family === 'toefl' && test.section != null
+            {/* LEGACY TOEFL module chip — only for pre-adaptive cached
+                tests (whole section drawn up front, no `adaptive`
+                flag). Adaptive sessions fall through to the shared chip
+                below so the two don't render side by side. */}
+            {!test.adaptive && test.family === 'toefl' && test.section != null
               && /(reading|listening)/i.test(test.section)
               && test.questions.length >= 4 && (() => {
               const breakIdx = test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2)
@@ -1270,8 +1253,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 </span>
               )
             })()}
-            {/* SAT two-module chip — Module 1 until the routed Module 2
-                is drawn + reached. */}
+            {/* Adaptive two-module chip (SAT + TOEFL Reading/Listening)
+                — Module 1 until the routed Module 2 is drawn + reached. */}
             {test.adaptive && typeof test.moduleBreakIdx === 'number' && (() => {
               const isModule2 = currentIdx >= test.moduleBreakIdx!
               return (
@@ -1286,9 +1269,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             })()}
           </div>
         )}
-        {/* SAT "Module 2 begins" banner — shown on the first Module 2
-            question with the earned route so the student sees the
-            adaptivity happen. */}
+        {/* "Module 2 begins" banner — shown on the first Module 2
+            question with the EARNED route so the student sees the
+            adaptivity happen. The items behind this banner were drawn
+            from that band after Module 1 was graded, so the copy states
+            what happened rather than what a real exam would have done. */}
         {test.adaptive && typeof test.moduleBreakIdx === 'number'
           && moduleRoute && currentIdx === test.moduleBreakIdx && (
           <div className="mb-4 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-amber-50/40 px-4 py-3">
@@ -1303,19 +1288,27 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <p className="text-[12px] text-amber-800 leading-relaxed">
               {(() => {
                 const scored = moduleRoute.correct != null ? `${moduleRoute.correct}/${moduleRoute.total}` : null
+                const exam = test.family === 'toefl' ? 'TOEFL' : 'SAT'
                 if (ko) {
-                  const band = moduleRoute.route === 'hard' ? '더 어려운' : '더 쉬운'
-                  return `모듈 1 ${scored ? `정답 ${scored} — ` : ''}실제 SAT처럼 ${band} 모듈 2로 배정됐어요.`
+                  // TOEFL routes three ways; SAT only two.
+                  const band = moduleRoute.route === 'hard' ? '더 어려운'
+                    : moduleRoute.route === 'medium' ? '표준 난이도의'
+                    : '더 쉬운'
+                  return `모듈 1 ${scored ? `정답 ${scored} — ` : ''}실제 ${exam}처럼 ${band} 모듈 2가 배정됐어요. 아래 문제는 이 난이도에서 새로 출제된 문제입니다.`
                 }
-                const band = moduleRoute.route === 'hard' ? 'a harder' : 'an easier'
-                return `Module 1${scored ? `: ${scored} correct` : ''} — like the real SAT, you've been routed to ${band} Module 2.`
+                const band = moduleRoute.route === 'hard' ? 'a harder'
+                  : moduleRoute.route === 'medium' ? 'a standard'
+                  : 'an easier'
+                return `Module 1${scored ? `: ${scored} correct` : ''} — like the real ${exam}, you've been routed to ${band} Module 2. The questions below were selected at that level.`
               })()}
             </p>
           </div>
         )}
-        {/* "Module 2 begins" banner — shown on the FIRST question of
-            module 2 so the student registers the transition. */}
-        {test.family === 'toefl' && test.section != null
+        {/* LEGACY TOEFL "Module 2 begins" banner — pre-adaptive cached
+            tests only (the whole section was drawn up front, so no
+            routing happened). Adaptive sessions use the shared banner
+            above, which reports the route actually taken. */}
+        {!test.adaptive && test.family === 'toefl' && test.section != null
           && /(reading|listening)/i.test(test.section)
           && test.questions.length >= 4 && (() => {
           const breakIdx = test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2)
@@ -1340,23 +1333,6 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                       ? 'The remaining questions are in Module 2, including a second Complete-the-Words paragraph.'
                       : 'The remaining questions are in Module 2, including 3 Choose-a-Response items and the second half of the conversations, announcements, and talks.')}
               </p>
-              {/* Adaptive-routing verdict — where the real ETS test
-                  would branch you based on Module 1 performance. */}
-              {moduleRoute && (
-                <p className="text-[12px] text-amber-900 leading-relaxed mt-1.5 font-medium">
-                  {(() => {
-                    const scored = moduleRoute.correct != null
-                      ? `${moduleRoute.correct}/${moduleRoute.total}`
-                      : null
-                    if (ko) {
-                      const band = moduleRoute.route === 'hard' ? '더 어려운' : moduleRoute.route === 'easy' ? '더 쉬운' : '표준 난이도의'
-                      return `모듈 1 ${scored ? `정답 ${scored} — ` : ''}실제 TOEFL이라면 ${band} 모듈 2로 배정됩니다.`
-                    }
-                    const band = moduleRoute.route === 'hard' ? 'a harder' : moduleRoute.route === 'easy' ? 'an easier' : 'a standard'
-                    return `Module 1${scored ? `: ${scored} correct` : ''} — on the real TOEFL you'd be routed to ${band} Module 2.`
-                  })()}
-                </p>
-              )}
             </div>
           )
         })()}
