@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { createBulkNotifications, createNotification, sendPushNotification } from '@/lib/notifications'
+import type { NotificationType, NotificationInsert } from '@/lib/notification-types'
 
 /**
  * Unwrap a supabase joined-relation field that's typed as an array but
@@ -33,7 +34,10 @@ async function createServerNotifications(
     messageKey: string
     titleParams?: Record<string, string | number | undefined>
     messageParams?: Record<string, string | number | undefined>
-    type: string
+    /** Constrained to the values the notifications_type_check constraint
+     *  accepts (see lib/notification-types.ts). An illegal value used to
+     *  be a silent runtime rejection; it is now a compile error. */
+    type: NotificationType
     navigationData?: { page?: string; filters?: Record<string, string> }
     fallbackTitle?: string
     fallbackMessage?: string
@@ -41,7 +45,7 @@ async function createServerNotifications(
 ) {
   const adminClient = await getAdminClient()
 
-  const notifications = userIds.map(userId => ({
+  const notifications: NotificationInsert[] = userIds.map(userId => ({
     user_id: userId,
     title_key: options.titleKey,
     message_key: options.messageKey,
@@ -2100,7 +2104,7 @@ export async function triggerLevelTestSubmittedNotifications(attemptId: string) 
 
     const now = new Date().toISOString()
     const takerName = attempt.taker_name || 'Student'
-    const notifications = managerIds.map(userId => ({
+    const notifications: NotificationInsert[] = managerIds.map(userId => ({
       user_id: userId,
       title_key: 'notifications.content.levelTest.submitted.title',
       message_key: 'notifications.content.levelTest.submitted.message',

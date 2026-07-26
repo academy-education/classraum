@@ -33,13 +33,25 @@ export function verifyCronAuth(req: NextRequest): boolean {
   }
 
   // Anywhere else (production OR preview), require the Bearer token.
-  const cronSecret = process.env.CRON_SECRET_KEY
+  //
+  // CRON_SECRET is checked FIRST and is the one that actually matters:
+  // Vercel Cron only attaches `Authorization: Bearer <value>` to its
+  // scheduled requests when a project env var named exactly CRON_SECRET
+  // exists. This repo standardised on CRON_SECRET_KEY, which Vercel does
+  // not recognise — so if only that name is set, Vercel sends NO auth
+  // header at all, every cron 401s, and nothing scheduled ever runs:
+  // no weekly recap, no streak or payment reminders, no league roll, no
+  // stuck-generation reaper. Accepting both means whichever name is
+  // configured works, and adding CRON_SECRET in Vercel takes effect
+  // without a code change. CRON_SECRET_KEY is retained for manual and
+  // external callers that already use it.
+  const cronSecret = process.env.CRON_SECRET || process.env.CRON_SECRET_KEY
   if (!cronSecret) {
     // Hard-fail loud: never silently allow when the secret isn't
     // configured — that would re-introduce the bypass.
     console.error(
-      '[cron-auth] CRON_SECRET_KEY not configured but VERCEL_ENV is set ' +
-        '(env=' +
+      '[cron-auth] Neither CRON_SECRET nor CRON_SECRET_KEY is configured ' +
+        'but VERCEL_ENV is set (env=' +
         process.env.VERCEL_ENV +
         '). Rejecting cron request.'
     )

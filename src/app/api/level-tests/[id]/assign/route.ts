@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
+import type { NotificationInsert } from '@/lib/notification-types'
 
 async function isManagerForTest(userId: string, testId: string): Promise<{ ok: boolean; test?: { id: string; academy_id: string; title: string } }> {
   const { data: test } = await supabaseAdmin
@@ -59,8 +60,11 @@ export async function POST(
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    // Create in-app notifications
-    const notifications = student_ids.map((student_id: string) => ({
+    // Create in-app notifications. Typed against NotificationInsert so an
+    // illegal `type` is a compile error — this insert spent months being
+    // rejected by the notifications_type_check constraint with nobody the
+    // wiser (see lib/notification-types.ts).
+    const notifications: NotificationInsert[] = student_ids.map((student_id: string) => ({
       user_id: student_id,
       type: 'level_test',
       title: `New level test: ${test.title}`,
@@ -69,13 +73,31 @@ export async function POST(
       is_read: false,
     }))
 
-    await supabaseAdmin.from('notifications').insert(notifications)
+    // supabase-js `.insert()` RESOLVES with `{ error }` — it never throws.
+    // Read it: the outer try/catch is not a safety net for this call.
+    const { error: notifyError } = await supabaseAdmin.from('notifications').insert(notifications)
 
-    await supabaseAdmin
-      .from('level_test_assignments')
-      .update({ notification_sent: true })
-      .eq('test_id', id)
-      .in('student_id', student_ids)
+    if (notifyError) {
+      // notification_sent is a factual record of delivery, not an
+      // intention. Leave it false so a retry/backfill can find these.
+      console.error('[level-tests assign] notification insert REJECTED', {
+        testId: id,
+        students: student_ids.length,
+        code: notifyError.code,
+        message: notifyError.message,
+        details: notifyError.details,
+        hint: notifyError.hint,
+      })
+    } else {
+      const { error: markError } = await supabaseAdmin
+        .from('level_test_assignments')
+        .update({ notification_sent: true })
+        .eq('test_id', id)
+        .in('student_id', student_ids)
+      if (markError) {
+        console.error('[level-tests assign] notification_sent update failed', id, markError)
+      }
+    }
 
     return NextResponse.json({ assignments: data })
   } catch (error) {

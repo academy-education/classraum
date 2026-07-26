@@ -19,7 +19,7 @@ import {
   type Question,
   type RawQuestion,
 } from '@/lib/test-verify'
-import { sendPushNotification } from '@/lib/notifications'
+import { markTestReadyAndNotify } from '@/lib/study/test-generation-status'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
@@ -2135,15 +2135,18 @@ export async function POST(req: NextRequest) {
     // or not the client is still connected — the whole point of this
     // background-generation pattern is that the user can navigate
     // away and learn the test is ready via the inbox / push.
-    await supabaseAdmin
-      .from('study_sessions')
-      .update({ generation_status: 'ready' })
-      .eq('id', sessionId)
-    // The student now has a test. From here the credit is EARNED — the
-    // finally must not refund it (and neither will the reaper, which
-    // only touches rows still 'pending').
+    //
+    // Status write and notification are ONE shared helper (see
+    // lib/study/test-generation-status.ts) because the reaper's recovery
+    // path performs the same transition; when they were written out by
+    // hand in two places the reaper silently skipped the notification.
+    // The student now has a test (the cache row above landed). From here
+    // the credit is EARNED — the finally must not refund it (and neither
+    // will the reaper, which only touches rows still 'pending'). Set
+    // before the transition so a notification hiccup can never claw back
+    // a credit for a test the student actually received.
     settled = true
-    void notifyTestReady(user.id, sessionId, test.title, lang)
+    await markTestReadyAndNotify({ userId: user.id, sessionId, testTitle: test.title, lang })
 
     phase('done', 'study.test.progress.done', 100)
     emit({ type: 'result', test, cached: false })
@@ -3630,46 +3633,9 @@ function prettyTest(family: TestFamily | null): string {
   }
 }
 
-/** Fire-and-forget: insert in-app notification + send push when a
- *  background test generation completes. The inbox row uses the
- *  existing `notifications` table; push uses the existing Supabase
- *  Edge Function via the lib helper. Both swallow errors — the test
- *  is already cached, so notification failure shouldn't block the
- *  primary flow. */
-async function notifyTestReady(userId: string, sessionId: string, testTitle: string, lang: 'en' | 'ko'): Promise<void> {
-  const title = lang === 'ko' ? '시험 준비 완료' : 'Your test is ready'
-  const message = lang === 'ko'
-    ? `${testTitle} — 탭하여 시작하세요.`
-    : `${testTitle} — tap to start.`
-  try {
-    await supabaseAdmin.from('notifications').insert({
-      user_id: userId,
-      title_key: 'notifications.studyTestReady.title',
-      message_key: 'notifications.studyTestReady.message',
-      title_params: {},
-      message_params: { testTitle },
-      title,
-      message,
-      type: 'system',
-      navigation_data: {
-        page: 'study-session',
-        filters: { sessionId },
-      },
-      is_read: false,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    })
-  } catch (err) {
-    console.error('[test/generate] inbox insert failed', err)
-  }
-  // Push notification — separate fetch to the Supabase Edge Function.
-  try {
-    await sendPushNotification([userId], title, message, {
-      type: 'system',
-      page: 'study-session',
-      sessionId,
-    })
-  } catch (err) {
-    console.error('[test/generate] push send failed', err)
-  }
-}
+/* "mark ready + notify" now lives in lib/study/test-generation-status.ts
+ * (markTestReadyAndNotify) so this route and the stale-generation reaper
+ * share one implementation. The old local copy read no error from its
+ * `.insert()` — supabase-js resolves with `{ error }` rather than
+ * throwing, so its try/catch never fired and every rejected row (e.g. a
+ * `type` the CHECK constraint didn't allow) was lost silently. */

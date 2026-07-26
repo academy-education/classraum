@@ -19,11 +19,16 @@ import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useMobileStore, useNotifications } from '@/stores/mobileStore'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 import { augmentLocalizedTimeParams } from '@/lib/notification-format'
+import { safeNotificationPath, studyFallbackRoute } from '@/lib/study/notification-link'
 
 interface NotificationNavData {
   page?: string
   source_id?: string
   filters?: Record<string, string>
+  /** Whole-path deep link written by `notifyStudent` for study rows
+   *  (src/lib/study/notify.ts writes `{ url }`). Validated against
+   *  `safeNotificationPath` before it is ever handed to the router. */
+  url?: string
 }
 
 interface Notification {
@@ -34,6 +39,10 @@ interface Notification {
   read: boolean
   created_at: string
   db_id?: string  // Database ID if saved
+  /** Raw `notifications.type` value from the DB. `type` above is the
+   *  narrowed UI bucket (study rows all collapse to 'alert'), so the
+   *  original kind has to be carried separately for study routing. */
+  raw_type?: string
   /** Routing hint — used by the notification → destination handler so a
    *  push for "Math grade posted" lands on that grade's session/assignment
    *  instead of a 1700-row list. Populated for both synthesized rows
@@ -434,6 +443,7 @@ function MobileNotificationsPageContent() {
             title: renderedTitle,
             message: renderedMessage,
             type: uiType,
+            raw_type: rawType,
             read: !!notif.is_read,
             created_at: notif.created_at,
             db_id: notif.id,
@@ -779,6 +789,27 @@ function MobileNotificationsPageContent() {
     const filters = data?.filters || {}
     const page = data?.page
 
+    // 0. Whole-path deep link. `notifyStudent` writes study rows as
+    //    `navigation_data: { url }`, so this is the most specific hint
+    //    available and wins over both the page tag and the type
+    //    fallback. The value comes out of the database, so it is only
+    //    honoured when it validates as a same-origin app-relative path
+    //    — never as an open redirect.
+    if (data?.url !== undefined) {
+      const safeUrl = safeNotificationPath(data.url)
+      if (safeUrl) {
+        router.push(safeUrl)
+        return
+      }
+      console.warn(
+        '[Notifications] Ignoring unsafe navigation_data.url on notification',
+        notification.id,
+        data.url
+      )
+      // Fall through to the type/page fallbacks below rather than
+      // leaving the tap dead.
+    }
+
     // 1. Specific-item deep links — only when the destination has a
     //    real per-item page on mobile.
     // Study test-ready notifications carry page:'study-session' — their
@@ -826,7 +857,17 @@ function MobileNotificationsPageContent() {
       }
     }
 
-    // 3. Final fallback — type-based, matches the original behavior.
+    // 3. Study kinds — every `study_*` type collapses to the 'alert' UI
+    //    bucket, so route off the raw DB type before the generic switch
+    //    dumps them on /mobile/announcements. Only reached when the row
+    //    had no usable `url`.
+    const studyRoute = studyFallbackRoute(notification.raw_type)
+    if (studyRoute) {
+      router.push(studyRoute)
+      return
+    }
+
+    // 4. Final fallback — type-based, matches the original behavior.
     switch (notification.type) {
       case 'assignment':
       case 'grade':

@@ -3984,6 +3984,14 @@
     }
   },
   "notifications": {
+    "studyTestReady": {
+      "title": "Your test is ready",
+      "message": "{testTitle} — tap to start."
+    },
+    "studyTestFailed": {
+      "title": "Test generation failed",
+      "message": "We couldn't build your test. {credits} credit(s) have been returned — please try again."
+    },
     "title": "Notifications",
     "noNotifications": "No notifications yet",
     "noNotificationsDescription": "You'll see updates here when they arrive",

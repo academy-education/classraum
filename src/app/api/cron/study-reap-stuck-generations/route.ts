@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { refundTestCredits } from '@/lib/study/credits'
+import { markTestReadyAndNotify, notifyTestGenerationFailed } from '@/lib/study/test-generation-status'
 
 /**
  * Stale full-test generation reaper.
@@ -53,6 +54,9 @@ interface SessionRow {
   student_id: string
   created_at: string
   config: Record<string, unknown> | null
+  /** Only used to pick the fallback copy on the notification; the inbox
+   *  row is localized at render time from title_key/message_key. */
+  language: string | null
 }
 
 export async function GET(req: NextRequest) {
@@ -62,7 +66,7 @@ export async function GET(req: NextRequest) {
 
   const { data: rows, error } = await supabaseAdmin
     .from('study_sessions')
-    .select('id, student_id, created_at, config')
+    .select('id, student_id, created_at, config, language')
     .eq('mode', 'full_test')
     .eq('generation_status', 'pending')
     .order('created_at', { ascending: true })
@@ -106,10 +110,17 @@ export async function GET(req: NextRequest) {
       continue
     }
     if (cached && cached.length > 0) {
-      await supabaseAdmin
-        .from('study_sessions')
-        .update({ generation_status: 'ready' })
-        .eq('id', row.id)
+      // Mark ready AND notify — one shared helper with the generator's
+      // happy path (lib/study/test-generation-status.ts). This branch
+      // used to write the status by hand and notify nobody, so a student
+      // whose invocation was killed got a usable test sitting silently
+      // in the DB. The pair can't diverge again because neither call
+      // site writes the terminal status itself any more.
+      await markTestReadyAndNotify({
+        userId: row.student_id,
+        sessionId: row.id,
+        lang: row.language === 'ko' ? 'ko' : 'en',
+      })
       summary.recovered++
       console.warn('[cron/study-reap-stuck-generations] recovered a completed generation', {
         sessionId: row.id, ageMs: age,
@@ -135,6 +146,15 @@ export async function GET(req: NextRequest) {
       })
       .eq('id', row.id)
     const refund = await refundTestCredits(row.student_id, row.id, cost)
+    // Tell the student. Without this the refund is invisible until they
+    // reopen the app and notice the spinner became a retry button. The
+    // credit logic above is untouched — this only reports it.
+    await notifyTestGenerationFailed({
+      userId: row.student_id,
+      sessionId: row.id,
+      refundedCredits: refund.refunded,
+      lang: row.language === 'ko' ? 'ko' : 'en',
+    })
     summary.reaped++
     summary.creditsRefunded += refund.refunded
     console.warn('[cron/study-reap-stuck-generations] reaped a stuck generation', {
