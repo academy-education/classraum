@@ -5,7 +5,7 @@
  */
 
 import { LogContext } from './error-monitoring';
-import { supabaseServer } from './supabase-server';
+import { raiseAlert, type AlertSeverity as OpsSeverity } from './ops/alert';
 
 export type AlertSeverity = 'low' | 'medium' | 'high' | 'critical';
 
@@ -21,234 +21,45 @@ export interface Alert {
 /**
  * Alert manager to send notifications through various channels
  */
+/**
+ * Severity bridge. This module predates src/lib/ops/alert.ts and had its
+ * own 4-level scale, its own DB write, and an email path that was never
+ * implemented — `sendEmailAlert` only console.logged "Would send to:",
+ * so PortOne payout failures have never actually reached anyone.
+ *
+ * Rather than keep two half-working alert systems, AlertManager now
+ * delegates to raiseAlert(), which is the single path to the alerts
+ * table, Sentry, and email. The public API here is unchanged so the
+ * existing webhook call sites keep working.
+ */
+const SEVERITY_MAP: Record<AlertSeverity, OpsSeverity> = {
+  low: 'info',
+  medium: 'warning',
+  // Settlement/webhook failures are money and security events — they
+  // page. Dedupe keeps one ongoing incident to a single email.
+  high: 'critical',
+  critical: 'critical',
+}
+
 export class AlertManager {
-  /**
-   * Send alert through all configured channels
-   */
+  /** Send an alert through the shared ops pipeline. */
   static async sendAlert(alert: Alert): Promise<void> {
-    console.log('🚨 ALERT:', {
-      severity: alert.severity,
+    const ctx = (alert.context ?? {}) as Record<string, unknown>
+    await raiseAlert({
+      severity: SEVERITY_MAP[alert.severity],
       title: alert.title,
       message: alert.message,
-      context: alert.context,
-    });
-
-    // Send email alert
-    if (process.env.ALERT_EMAIL_ENABLED === 'true') {
-      await this.sendEmailAlert(alert).catch(err => {
-        console.error('Failed to send email alert:', err);
-      });
-    }
-
-    // Send Slack alert (if configured)
-    if (process.env.SLACK_WEBHOOK_URL) {
-      await this.sendSlackAlert(alert).catch(err => {
-        console.error('Failed to send Slack alert:', err);
-      });
-    }
-
-    // Store alert in database
-    await this.storeAlert(alert).catch(err => {
-      console.error('Failed to store alert:', err);
-    });
-  }
-
-  /**
-   * Send email alert
-   */
-  private static async sendEmailAlert(alert: Alert): Promise<void> {
-    const recipients = process.env.ALERT_EMAIL_RECIPIENTS?.split(',') || [];
-
-    if (recipients.length === 0) {
-      console.warn('No alert email recipients configured');
-      return;
-    }
-
-    const emailBody = this.formatEmailBody(alert);
-
-    // TODO: Integrate with email service (e.g., SendGrid, AWS SES, Resend)
-    // Example with a generic email service:
-    // await emailService.send({
-    //   to: recipients,
-    //   from: process.env.ALERT_EMAIL_FROM || 'alerts@classraum.com',
-    //   subject: `[${alert.severity.toUpperCase()}] ${alert.title}`,
-    //   html: emailBody,
-    // });
-
-    console.log('[Email Alert] Would send to:', recipients);
-    console.log('[Email Alert] Subject:', `[${alert.severity.toUpperCase()}] ${alert.title}`);
-  }
-
-  /**
-   * Send Slack alert
-   */
-  private static async sendSlackAlert(alert: Alert): Promise<void> {
-    const webhookUrl = process.env.SLACK_WEBHOOK_URL;
-
-    if (!webhookUrl) {
-      return;
-    }
-
-    const color = this.getSeverityColor(alert.severity);
-    const slackMessage = {
-      attachments: [
-        {
-          color,
-          title: `🚨 ${alert.severity.toUpperCase()}: ${alert.title}`,
-          text: alert.message,
-          fields: [
-            {
-              title: 'Timestamp',
-              value: alert.timestamp,
-              short: true,
-            },
-            {
-              title: 'Severity',
-              value: alert.severity,
-              short: true,
-            },
-            ...(alert.error ? [{
-              title: 'Error',
-              value: alert.error.message,
-              short: false,
-            }] : []),
-            ...(alert.context ? [{
-              title: 'Context',
-              value: '```' + JSON.stringify(alert.context, null, 2) + '```',
-              short: false,
-            }] : []),
-          ],
-          footer: 'Classraum Alert System',
-          ts: Math.floor(new Date(alert.timestamp).getTime() / 1000),
-        },
-      ],
-    };
-
-    await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(slackMessage),
-    });
-  }
-
-  /**
-   * Store alert in database
-   */
-  private static async storeAlert(alert: Alert): Promise<void> {
-    try {
-      const { error } = await supabaseServer.from('alerts').insert({
-        severity: alert.severity,
-        title: alert.title,
-        message: alert.message,
-        error_message: alert.error?.message || null,
-        error_stack: alert.error?.stack || null,
-        context: alert.context || {},
-        created_at: alert.timestamp,
-        acknowledged: false,
-        resolved: false,
-      });
-
-      if (error) {
-        console.error('Failed to store alert in database:', error);
-      }
-    } catch (error) {
-      console.error('Exception storing alert:', error);
-    }
-  }
-
-  /**
-   * Format email body
-   */
-  private static formatEmailBody(alert: Alert): string {
-    const contextHtml = alert.context
-      ? `
-        <h3>Context:</h3>
-        <pre style="background: #f5f5f5; padding: 10px; border-radius: 4px;">${JSON.stringify(alert.context, null, 2)}</pre>
-      `
-      : '';
-
-    const errorHtml = alert.error
-      ? `
-        <h3>Error Details:</h3>
-        <p><strong>Message:</strong> ${alert.error.message}</p>
-        <pre style="background: #f5f5f5; padding: 10px; border-radius: 4px;">${alert.error.stack || 'No stack trace available'}</pre>
-      `
-      : '';
-
-    return `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <style>
-            body {
-              font-family: Arial, sans-serif;
-              line-height: 1.6;
-              color: #333;
-            }
-            .alert-header {
-              background: ${this.getSeverityColor(alert.severity)};
-              color: white;
-              padding: 20px;
-              border-radius: 4px 4px 0 0;
-            }
-            .alert-body {
-              padding: 20px;
-              background: #fff;
-              border: 1px solid #ddd;
-              border-top: none;
-              border-radius: 0 0 4px 4px;
-            }
-            .severity-badge {
-              display: inline-block;
-              padding: 4px 12px;
-              background: rgba(255, 255, 255, 0.3);
-              border-radius: 12px;
-              font-size: 12px;
-              font-weight: bold;
-              text-transform: uppercase;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="alert-header">
-            <h1>🚨 Alert: ${alert.title}</h1>
-            <span class="severity-badge">${alert.severity}</span>
-          </div>
-          <div class="alert-body">
-            <p><strong>Timestamp:</strong> ${alert.timestamp}</p>
-            <h3>Message:</h3>
-            <p>${alert.message}</p>
-            ${contextHtml}
-            ${errorHtml}
-            <hr />
-            <p style="font-size: 12px; color: #666;">
-              This is an automated alert from the Classraum monitoring system.
-            </p>
-          </div>
-        </body>
-      </html>
-    `;
-  }
-
-  /**
-   * Get color for severity level
-   */
-  private static getSeverityColor(severity: AlertSeverity): string {
-    const colors = {
-      low: '#3498db',
-      medium: '#f39c12',
-      high: '#e67e22',
-      critical: '#e74c3c',
-    };
-    return colors[severity];
+      // Stable per title + primary id so a repeating failure updates one
+      // row instead of flooding the dashboard.
+      dedupeKey: `legacy:${alert.title}:${
+        ctx.settlementId ?? ctx.payoutId ?? ctx.webhookType ?? 'general'
+      }`,
+      error: alert.error,
+      context: { ...ctx, legacySeverity: alert.severity },
+    })
   }
 }
 
-/**
- * Predefined alert types for common scenarios
- */
 export const alerts = {
   /**
    * Settlement failure alert

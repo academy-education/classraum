@@ -65,6 +65,11 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
     console.error('[alert] sentry capture failed', e)
   }
 
+  // Only a NEWLY-raised alert emails. A watchdog running every 30
+  // minutes would otherwise send the same page 48 times a day for one
+  // ongoing outage, which trains you to ignore the channel.
+  let isNew = true
+
   try {
     // Dedupe against the OPEN alert only. Once you resolve it on the
     // dashboard, a recurrence is allowed to raise a fresh row — that is
@@ -77,6 +82,7 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
       .limit(1)
 
     if (open && open.length > 0) {
+      isNew = false
       await supabaseAdmin
         .from('alerts')
         .update({
@@ -98,7 +104,7 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
     console.error('[alert] failed to persist alert row', e)
   }
 
-  if (severity === 'critical') {
+  if (severity === 'critical' && isNew) {
     try {
       await emailOncall(title, message, ctx)
     } catch (e) {
@@ -109,22 +115,31 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
 
 /**
  * Email for critical alerts only. Deliberately best-effort and quiet
- * when unconfigured — a missing OPS_ALERT_EMAIL must not turn every
+ * when unconfigured — a missing recipient list must not turn every
  * alert into a second failure.
+ *
+ * Uses the ALERT_EMAIL_* convention that already existed for the
+ * account-deletion digest rather than inventing a parallel variable.
+ * Two env vars meaning "where alerts go" is exactly the drift that let
+ * CRON_SECRET_KEY and CRON_SECRET diverge and silently kill every cron.
  */
 async function emailOncall(
   title: string,
   message: string,
   ctx: Record<string, unknown>,
 ): Promise<void> {
-  const to = process.env.OPS_ALERT_EMAIL
-  if (!to) return
+  const to = (process.env.ALERT_EMAIL_RECIPIENTS ?? '')
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean)
+  if (to.length === 0) return
   const { sendPostmarkEmail } = await import('@/lib/postmark')
   // sendPostmarkEmail never throws; it reports {sent,error}. Surface a
   // failed page in the log — if email is down we still have the alerts
   // row and Sentry.
   const res = await sendPostmarkEmail({
     to,
+    from: process.env.ALERT_EMAIL_FROM || undefined,
     subject: `[Classraum] ${title}`,
     htmlBody:
       `<p><strong>${title}</strong></p><p>${message}</p>` +
