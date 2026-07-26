@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { sendPostmarkEmail } from '@/lib/postmark'
 import { notifyStudent } from '@/lib/study/notify'
+import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { verifyCronAuth } from '@/lib/cron-auth'
 
 /**
  * GET /api/cron/study-weekly-recap — sends a personalized last-week
@@ -29,12 +31,23 @@ interface AttemptRow {
 }
 
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get('authorization')
-  const expected = `Bearer ${process.env.CRON_SECRET_KEY}`
-  if (!process.env.CRON_SECRET_KEY || authHeader !== expected) {
+  // Shared guard: accepts CRON_SECRET (the name Vercel Cron actually
+  // requires to send its Authorization header) as well as the legacy
+  // CRON_SECRET_KEY, and allows genuinely-local dev through. This
+  // route previously inlined its own CRON_SECRET_KEY check, so the
+  // CRON_SECRET fix did not reach it and it would still 401 in prod.
+  if (!verifyCronAuth(req)) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
+  // Heartbeat sits inside the auth guard — a 401'd request never ran the
+  // job, so letting it report would mask a dead cron to the watchdog.
+  // withHeartbeat rethrows, so the route's error behaviour is unchanged.
+  const summary = await withHeartbeat('study-weekly-recap', runRecap)
+  return NextResponse.json(summary)
+}
+
+async function runRecap() {
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
 
   // 1) Find every onboarded student with activity in the last 7 days.
@@ -44,7 +57,7 @@ export async function GET(req: NextRequest) {
     .not('onboarded_at', 'is', null)
 
   if (!activeStudentIds || activeStudentIds.length === 0) {
-    return NextResponse.json({ checked: 0, sent: 0 })
+    return { checked: 0, sent: 0 }
   }
 
   let sent = 0
@@ -153,12 +166,12 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  return NextResponse.json({
+  return {
     checked: activeStudentIds.length,
     sent,
     skipped,
     failed,
-  })
+  }
 }
 
 /** Inline-styled HTML email. Postmark-friendly (no external CSS,

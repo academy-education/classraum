@@ -5,6 +5,7 @@ import { chargeBillingKey } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { resolvePlan, STUDY_PLANS, GRANT_INTERVAL_DAYS, isPassPlan } from '@/lib/study/plans'
 import { notifyStudent } from '@/lib/study/notify'
+import { withHeartbeat } from '@/lib/ops/heartbeat'
 
 const SUB_LINK = '/mobile/study/subscription'
 
@@ -77,14 +78,39 @@ interface SubscriptionRow {
 
 const SUB_COLUMNS = 'id, student_id, status, plan, pending_plan, current_period_end, cancel_at_period_end, portone_subscription_id, last_payment_attempt_at'
 
+interface RunSummary {
+  cancelled: number
+  charged: number
+  granted: number
+  failed: number
+  expired: number
+  skipped: number
+  errors: string[]
+}
+
 export async function GET(req: NextRequest) {
   if (!verifyCronAuth(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const now = new Date()
-  const summary = { cancelled: 0, charged: 0, granted: 0, failed: 0, expired: 0, skipped: 0, errors: [] as string[] }
+  const summary: RunSummary = { cancelled: 0, charged: 0, granted: 0, failed: 0, expired: 0, skipped: 0, errors: [] }
 
+  // Heartbeat sits inside the auth guard — a 401'd request never ran the
+  // job, so letting it report would mask a dead cron to the watchdog.
+  // withHeartbeat rethrows, so the route's own error behaviour is unchanged.
+  await withHeartbeat('study-billing', async () => {
+    await runBillingCycle(now, summary)
+    // Counters only. `errors` is an unbounded string list — the count is
+    // enough for the health view; the full list stays in the response.
+    const { errors, ...counts } = summary
+    return { ...counts, errorCount: errors.length }
+  })
+
+  return NextResponse.json({ ok: true, summary, ranAt: now.toISOString() })
+}
+
+async function runBillingCycle(now: Date, summary: RunSummary) {
   // ── 1. Finalize cancellations whose period just ended ───────────
   const { data: toCancel } = await supabaseAdmin
     .from('study_subscriptions')
@@ -194,8 +220,6 @@ export async function GET(req: NextRequest) {
     })
     summary.granted = (summary.granted ?? 0) + 1
   }
-
-  return NextResponse.json({ ok: true, summary, ranAt: now.toISOString() })
 }
 
 async function chargeAndAdvance(

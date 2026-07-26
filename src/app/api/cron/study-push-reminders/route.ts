@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { sendPushToStudent } from '@/lib/study/push'
 import { notifyStudent } from '@/lib/study/notify'
+import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { verifyCronAuth } from '@/lib/cron-auth'
 
 /**
  * GET /api/cron/study-push-reminders — daily evening nudge.
@@ -27,19 +29,30 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 120
 
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get('authorization')
-  const expected = `Bearer ${process.env.CRON_SECRET_KEY}`
-  if (!process.env.CRON_SECRET_KEY || authHeader !== expected) {
+  // Shared guard: accepts CRON_SECRET (the name Vercel Cron actually
+  // requires to send its Authorization header) as well as the legacy
+  // CRON_SECRET_KEY, and allows genuinely-local dev through. This
+  // route previously inlined its own CRON_SECRET_KEY check, so the
+  // CRON_SECRET fix did not reach it and it would still 401 in prod.
+  if (!verifyCronAuth(req)) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
+  // Heartbeat sits inside the auth guard — a 401'd request never ran the
+  // job, so letting it report would mask a dead cron to the watchdog.
+  // withHeartbeat rethrows, so the route's error behaviour is unchanged.
+  const summary = await withHeartbeat('study-push-reminders', runReminders)
+  return NextResponse.json(summary)
+}
+
+async function runReminders() {
   const { data: prefs } = await supabaseAdmin
     .from('study_user_prefs')
     .select('student_id, default_language')
     .not('onboarded_at', 'is', null)
 
   if (!prefs || prefs.length === 0) {
-    return NextResponse.json({ checked: 0, sent: 0 })
+    return { checked: 0, sent: 0 }
   }
 
   const nowIso = new Date().toISOString()
@@ -143,7 +156,7 @@ export async function GET(req: NextRequest) {
     else failed++
   }
 
-  return NextResponse.json({ checked: prefs.length, sent, skipped, failed })
+  return { checked: prefs.length, sent, skipped, failed }
 }
 
 /** Consecutive-day streak whose most recent day is YESTERDAY (UTC).

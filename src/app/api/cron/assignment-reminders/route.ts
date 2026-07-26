@@ -4,6 +4,7 @@ import {
   triggerAssignmentOverdueNotifications,
 } from '@/lib/notification-triggers'
 import { verifyCronAuth } from '@/lib/cron-auth'
+import { withHeartbeat } from '@/lib/ops/heartbeat'
 
 /**
  * Daily cron — pushes assignment-related reminders.
@@ -28,8 +29,15 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const dueResult = await triggerAssignmentDueReminderNotifications()
-    const overdueResult = await triggerAssignmentOverdueNotifications()
+    // Heartbeat is recorded only past the auth guard — a 401'd request
+    // never ran the job, so letting it report would mask a dead cron.
+    const { dueResult, overdueResult } = await withHeartbeat(
+      'assignment-reminders',
+      async () => ({
+        dueResult: await triggerAssignmentDueReminderNotifications(),
+        overdueResult: await triggerAssignmentOverdueNotifications(),
+      }),
+    )
 
     console.log('[CRON] Assignment reminders cron completed:', { dueResult, overdueResult })
 

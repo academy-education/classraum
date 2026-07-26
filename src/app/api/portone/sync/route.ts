@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { syncAll } from '@/lib/portone-sync-service';
 import { loggers } from '@/lib/error-monitoring';
 import { verifyCronAuth } from '@/lib/cron-auth';
+import { withHeartbeat } from '@/lib/ops/heartbeat';
 
 /**
  * POST /api/portone/sync
@@ -42,8 +43,10 @@ export async function POST(request: NextRequest) {
       limit: limitParam ? parseInt(limitParam, 10) : undefined,
     };
 
-    // Run sync
-    const result = await syncAll(options);
+    // Run sync. The heartbeat sits inside the auth guard — a 401'd
+    // request never ran the job, so letting it report would mask a
+    // dead cron. Job key is the cron path's last segment: `sync`.
+    const result = await withHeartbeat('sync', () => syncAll(options));
 
     const duration = Date.now() - startTime;
 

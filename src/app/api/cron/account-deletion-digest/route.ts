@@ -30,8 +30,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { verifyCronAuth } from '@/lib/cron-auth'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { sendPostmarkEmail } from '@/lib/postmark'
+import { recordHeartbeat } from '@/lib/ops/heartbeat'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 30
@@ -49,13 +51,32 @@ interface DigestStats {
 }
 
 export async function GET(request: NextRequest) {
-  // Auth (matches other crons in this directory)
-  const authHeader = request.headers.get('authorization') || ''
-  const expected = `Bearer ${process.env.CRON_SECRET_KEY}`
-  if (!process.env.CRON_SECRET_KEY || authHeader !== expected) {
+  // Auth (matches other crons in this directory). Nothing past this point
+  // may record a heartbeat on a 401 — a rejected request never ran the
+  // job, and letting it report would keep a dead cron looking alive.
+  // Shared guard: accepts CRON_SECRET (the name Vercel Cron actually
+  // requires in order to send its Authorization header) as well as the
+  // legacy CRON_SECRET_KEY. This route previously inlined its own
+  // CRON_SECRET_KEY check, so the CRON_SECRET fix did not reach it and
+  // it would still have 401'd in production.
+  if (!verifyCronAuth(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  const startedAt = Date.now()
+  try {
+    return await runDigest(startedAt)
+  } catch (error) {
+    await recordHeartbeat(
+      'account-deletion-digest',
+      { ok: false, detail: { error: (error as Error).message } },
+      Date.now() - startedAt,
+    )
+    throw error
+  }
+}
+
+async function runDigest(startedAt: number): Promise<NextResponse> {
   const now = new Date()
   const weekAgo = new Date(now.getTime() - SEVEN_DAYS_MS)
   const graceCutoff = new Date(now.getTime() - THIRTY_DAYS_MS)
@@ -139,6 +160,27 @@ export async function GET(request: NextRequest) {
   } else {
     console.warn('[account-deletion-digest] No ALERT_EMAIL_RECIPIENTS configured; digest:', stats)
   }
+
+  // The digest exists purely to put these numbers in front of an operator.
+  // If recipients were configured and the send failed, the run accomplished
+  // nothing even though it answers 200 — record it as a failure. No
+  // recipients configured is a deliberate tolerance (see above), not a
+  // failure, so that case still reports healthy.
+  const emailFailed = recipients.length > 0 && !emailResult.sent
+  await recordHeartbeat(
+    'account-deletion-digest',
+    {
+      ok: !emailFailed,
+      detail: {
+        ...stats,
+        critical: isCritical,
+        recipients: recipients.length,
+        emailSent: emailResult.sent,
+        ...(emailResult.error ? { emailError: emailResult.error } : {}),
+      },
+    },
+    Date.now() - startedAt,
+  )
 
   // Always return 200 with the structured summary — useful for manual
   // invocation + dashboards. Vercel's cron UI shows the response body.

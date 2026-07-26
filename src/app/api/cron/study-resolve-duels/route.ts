@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { resolveIfEnded, type ChallengeRow } from '@/lib/study/challenges'
+import { recordHeartbeat } from '@/lib/ops/heartbeat'
+import { verifyCronAuth } from '@/lib/cron-auth'
 
 /**
  * GET /api/cron/study-resolve-duels — finalize expired 1v1 XP duels.
@@ -23,11 +25,18 @@ export const maxDuration = 60
 const SELECT = 'id, challenger_id, opponent_id, status, start_at, end_at, challenger_xp, opponent_xp, winner_id'
 
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get('authorization')
-  const expected = `Bearer ${process.env.CRON_SECRET_KEY}`
-  if (!process.env.CRON_SECRET_KEY || authHeader !== expected) {
+  // Shared guard: accepts CRON_SECRET (the name Vercel Cron actually
+  // requires to send its Authorization header) as well as the legacy
+  // CRON_SECRET_KEY, and allows genuinely-local dev through. This
+  // route previously inlined its own CRON_SECRET_KEY check, so the
+  // CRON_SECRET fix did not reach it and it would still 401 in prod.
+  if (!verifyCronAuth(req)) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
+
+  // Heartbeat timing starts past the auth guard — a 401'd request never
+  // ran the job, so nothing below may report on its behalf.
+  const startedAt = Date.now()
 
   const nowIso = new Date().toISOString()
 
@@ -42,6 +51,13 @@ export async function GET(req: NextRequest) {
     .limit(200)
   if (error) {
     console.error('[cron/resolve-duels] fetch failed', error)
+    // Nothing was examined — recorded explicitly because this branch
+    // returns rather than throws, and a silent 500 would read as healthy.
+    await recordHeartbeat(
+      'study-resolve-duels',
+      { ok: false, detail: { stage: 'fetch', error: error.message } },
+      Date.now() - startedAt,
+    )
     return NextResponse.json({ error: 'fetch failed' }, { status: 500 })
   }
 
@@ -52,5 +68,8 @@ export async function GET(req: NextRequest) {
     if (settled.status === 'completed') resolved++
   }
 
-  return NextResponse.json({ examined: rows.length, resolved })
+  const summary = { examined: rows.length, resolved }
+  await recordHeartbeat('study-resolve-duels', { ok: true, detail: summary }, Date.now() - startedAt)
+
+  return NextResponse.json(summary)
 }

@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { refundTestCredits } from '@/lib/study/credits'
 import { markTestReadyAndNotify, notifyTestGenerationFailed } from '@/lib/study/test-generation-status'
+import { recordHeartbeat } from '@/lib/ops/heartbeat'
 
 /**
  * Stale full-test generation reaper.
@@ -64,6 +65,10 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
+  // Heartbeat timing starts past the auth guard — a 401'd request never
+  // ran the job, so nothing below may report on its behalf.
+  const startedAt = Date.now()
+
   const { data: rows, error } = await supabaseAdmin
     .from('study_sessions')
     .select('id, student_id, created_at, config, language')
@@ -73,6 +78,13 @@ export async function GET(req: NextRequest) {
     .limit(MAX_PER_RUN)
   if (error) {
     console.error('[cron/study-reap-stuck-generations] list failed', error)
+    // Nothing was reaped, so no student got their credit back — recorded
+    // explicitly because this branch returns rather than throws.
+    await recordHeartbeat(
+      'study-reap-stuck-generations',
+      { ok: false, detail: { stage: 'list', error: error.message } },
+      Date.now() - startedAt,
+    )
     return NextResponse.json({ error: 'list failed' }, { status: 500 })
   }
 
@@ -167,9 +179,12 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  return NextResponse.json({
-    ok: true,
-    ...summary,
-    truncated: (rows?.length ?? 0) === MAX_PER_RUN,
-  })
+  const truncated = (rows?.length ?? 0) === MAX_PER_RUN
+  await recordHeartbeat(
+    'study-reap-stuck-generations',
+    { ok: true, detail: { ...summary, truncated } },
+    Date.now() - startedAt,
+  )
+
+  return NextResponse.json({ ok: true, ...summary, truncated })
 }

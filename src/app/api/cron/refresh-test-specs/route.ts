@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { refreshTestSpec, listAllSpecTargetsFromDB } from '@/lib/test-spec-refresh'
+import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { verifyCronAuth } from '@/lib/cron-auth'
 
 /**
  * GET /api/cron/refresh-test-specs — monthly walk of every
@@ -16,22 +18,30 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 300
 
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get('authorization')
-  const expected = `Bearer ${process.env.CRON_SECRET_KEY}`
-  if (!process.env.CRON_SECRET_KEY || authHeader !== expected) {
+  // Shared guard: accepts CRON_SECRET (the name Vercel Cron actually
+  // requires to send its Authorization header) as well as the legacy
+  // CRON_SECRET_KEY, and allows genuinely-local dev through. This
+  // route previously inlined its own CRON_SECRET_KEY check, so the
+  // CRON_SECRET fix did not reach it and it would still 401 in prod.
+  if (!verifyCronAuth(req)) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
-  const targets = await listAllSpecTargetsFromDB()
-  const results = []
-  for (const t of targets) {
-    const r = await refreshTestSpec(t)
-    results.push(r)
-  }
-
-  return NextResponse.json({
-    ran: results.length,
-    ok: results.filter(r => r.ok).length,
-    failed: results.filter(r => !r.ok).length,
+  // Heartbeat sits inside the auth guard — a 401'd request never ran the
+  // job, so letting it report would mask a dead cron to the watchdog.
+  const summary = await withHeartbeat('refresh-test-specs', async () => {
+    const targets = await listAllSpecTargetsFromDB()
+    const results = []
+    for (const t of targets) {
+      const r = await refreshTestSpec(t)
+      results.push(r)
+    }
+    return {
+      ran: results.length,
+      ok: results.filter(r => r.ok).length,
+      failed: results.filter(r => !r.ok).length,
+    }
   })
+
+  return NextResponse.json(summary)
 }

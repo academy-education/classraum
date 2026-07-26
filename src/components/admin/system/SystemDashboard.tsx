@@ -27,6 +27,7 @@ import { AdminSkeleton } from '../AdminSkeleton';
 import { useAdminFetch } from '../useAdminFetch';
 import { usePolling } from '../usePolling';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
 
 // Shape of the payload from /api/admin/system. Kept loose because the real
 // backing data evolves; the UI only renders the fields that exist.
@@ -53,6 +54,21 @@ interface SystemLog {
   service: string
   timestamp: string | Date
 }
+// Mirrors JobHealth from /api/admin/system/jobs.
+type JobHealthStatus = 'healthy' | 'stale' | 'never' | 'failing'
+interface JobHealth {
+  job: string
+  label: string
+  schedule: string
+  severity: 'warning' | 'critical'
+  maxSilenceMinutes: number
+  status: JobHealthStatus
+  lastRunAt: string | null
+  lastOkAt: string | null
+  minutesSinceOk: number | null
+  failStreak: number
+  durationMs: number | null
+}
 interface SystemPayload {
   status?: { overall?: string; uptime?: string; version?: string }
   metrics?: SystemMetric[]
@@ -68,6 +84,7 @@ export function SystemDashboard() {
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [systemData, setSystemData] = useState<SystemPayload | null>(null);
+  const [jobs, setJobs] = useState<JobHealth[] | null>(null);
   const [logLevelFilter, setLogLevelFilter] = useState<'all' | 'info' | 'warning' | 'error'>('all');
 
   useEffect(() => {
@@ -78,9 +95,25 @@ export function SystemDashboard() {
   // avoid wasted server cycles. Manual Refresh still works alongside.
   usePolling(() => loadSystemData(), { intervalMs: 30_000 });
 
+  const loadJobHealth = async () => {
+    try {
+      const response = await adminFetch('/api/admin/system/jobs');
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const result = await response.json();
+      if (result.success && result.data) setJobs(result.data.jobs as JobHealth[]);
+    } catch (error) {
+      console.error('[SystemDashboard] Error loading job health:', error);
+      setJobs([]);
+    }
+  };
+
   const loadSystemData = async () => {
     try {
       setRefreshing(true);
+
+      // Job health is a separate, independent read — a failure there must not
+      // blank out the whole System page, so it settles on its own.
+      void loadJobHealth();
 
       const response = await adminFetch('/api/admin/system');
 
@@ -162,6 +195,45 @@ export function SystemDashboard() {
       default:        return level;
     }
   };
+
+  // ---- Scheduled-job health -------------------------------------------------
+  // The registry ships English labels; render the localized one keyed by the
+  // stable job id and fall back to the server's copy (same tr() pattern as
+  // services/metrics above) so a newly-added job never leaks a raw key.
+  const jobLabel = (jobHealth: JobHealth) =>
+    tr(`admin.system.job_${jobHealth.job}`, jobHealth.label);
+
+  const jobStatusLabel = (status: JobHealthStatus): string => {
+    switch (status) {
+      case 'healthy': return String(t('admin.system.jobStatus_healthy'));
+      case 'stale':   return String(t('admin.system.jobStatus_stale'));
+      case 'never':   return String(t('admin.system.jobStatus_never'));
+      case 'failing': return String(t('admin.system.jobStatus_failing'));
+    }
+  };
+
+  const jobStatusTone = (status: JobHealthStatus): StatusTone => {
+    switch (status) {
+      case 'healthy': return 'active';
+      case 'stale':   return 'pending';
+      case 'never':   return 'muted';
+      case 'failing': return 'danger';
+    }
+  };
+
+  // Coarse "how long ago" — exact timestamps live in the secondary line.
+  const jobAge = (minutes: number | null): string => {
+    if (minutes === null) return String(t('admin.system.jobNeverRan'));
+    if (minutes < 1) return String(t('admin.system.jobAgeJustNow'));
+    if (minutes < 60) return String(t('admin.system.jobAgeMinutes', { count: minutes }));
+    if (minutes < 48 * 60) return String(t('admin.system.jobAgeHours', { count: Math.floor(minutes / 60) }));
+    return String(t('admin.system.jobAgeDays', { count: Math.floor(minutes / 1440) }));
+  };
+
+  const jobLastOk = (jobHealth: JobHealth): string =>
+    jobHealth.lastOkAt
+      ? new Date(jobHealth.lastOkAt).toLocaleString(getDateLocale(language))
+      : String(t('admin.system.jobNeverRan'));
 
   const logLevelTone = (level: string): StatusTone => {
     switch (level) {
@@ -327,20 +399,135 @@ export function SystemDashboard() {
 
           {/* HEALTH: only the reported performance metrics, no hardcoded checks */}
           {activeTab === 'health' && (
-            <div className="space-y-3">
-              {systemMetrics.length === 0 ? (
-                <p className="text-sm text-gray-500">{String(t('admin.system.noMetrics'))}</p>
-              ) : (
-                systemMetrics.map(metric => (
-                  <div key={metric.id ?? metric.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-900">{metricName(metric)}</span>
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm tabular-nums text-gray-700">{metric.value}</span>
-                      <StatusBadge tone={toTone(metric.status)} size="sm">{statusLabel(metric.status)}</StatusBadge>
+            <div className="space-y-6">
+              <section className="space-y-3">
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                  {String(t('admin.system.metrics'))}
+                </h3>
+                {systemMetrics.length === 0 ? (
+                  <p className="text-sm text-gray-500">{String(t('admin.system.noMetrics'))}</p>
+                ) : (
+                  systemMetrics.map(metric => (
+                    <div key={metric.id ?? metric.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-900">{metricName(metric)}</span>
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm tabular-nums text-gray-700">{metric.value}</span>
+                        <StatusBadge tone={toTone(metric.status)} size="sm">{statusLabel(metric.status)}</StatusBadge>
+                      </div>
                     </div>
-                  </div>
-                ))
-              )}
+                  ))
+                )}
+              </section>
+
+              {/* Scheduled jobs — a dead cron should be visible here, not only
+                  in the watchdog's alert email. */}
+              <section className="space-y-3">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-[0.06em]">
+                    {String(t('admin.system.scheduledJobs'))}
+                  </h3>
+                  {jobs && jobs.length > 0 && (
+                    <p className="text-xs text-gray-500">
+                      {String(t('admin.system.jobsHealthySummary', {
+                        healthy: jobs.filter(j => j.status === 'healthy').length,
+                        total: jobs.length,
+                      }))}
+                    </p>
+                  )}
+                </div>
+                <p className="text-xs text-gray-500">{String(t('admin.system.scheduledJobsHint'))}</p>
+
+                {jobs === null ? (
+                  <AdminSkeleton.Table cols={4} rows={4} />
+                ) : jobs.length === 0 ? (
+                  <AdminEmptyState icon={Clock} title={String(t('admin.system.noJobs'))} />
+                ) : (
+                  <AdminTableShell
+                    mobile={jobs.map(jobHealth => (
+                      <AdminMobileRow
+                        key={jobHealth.job}
+                        title={jobLabel(jobHealth)}
+                        subtitle={jobHealth.schedule}
+                        badge={
+                          <StatusBadge tone={jobStatusTone(jobHealth.status)} size="sm">
+                            {jobStatusLabel(jobHealth.status)}
+                          </StatusBadge>
+                        }
+                        meta={[
+                          {
+                            label: String(t('admin.system.jobLastSuccess')),
+                            value: (
+                              <span className="tabular-nums">{jobAge(jobHealth.minutesSinceOk)}</span>
+                            ),
+                          },
+                          {
+                            label: String(t('admin.system.jobSeverity')),
+                            value: jobHealth.severity === 'critical'
+                              ? String(t('admin.system.jobSeverity_critical'))
+                              : String(t('admin.system.jobSeverity_warning')),
+                          },
+                        ]}
+                      />
+                    ))}
+                  >
+                    <table className="w-full">
+                      <thead className="bg-gray-50/80">
+                        <tr>
+                          <th className="px-4 py-2.5 text-left text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                            {String(t('admin.system.jobName'))}
+                          </th>
+                          <th className="px-4 py-2.5 text-left text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                            {String(t('admin.system.jobStatusColumn'))}
+                          </th>
+                          <th className="px-4 py-2.5 text-left text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                            {String(t('admin.system.jobSchedule'))}
+                          </th>
+                          <th className="px-4 py-2.5 text-left text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                            {String(t('admin.system.jobLastSuccess'))}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100">
+                        {jobs.map(jobHealth => (
+                          <tr key={jobHealth.job} className="hover:bg-gray-50/60 transition-colors">
+                            <td className="px-4 py-3">
+                              <p className="text-sm font-medium text-gray-900">{jobLabel(jobHealth)}</p>
+                              <p className="text-xs text-gray-500">
+                                {jobHealth.severity === 'critical'
+                                  ? String(t('admin.system.jobSeverity_critical'))
+                                  : String(t('admin.system.jobSeverity_warning'))}
+                                {jobHealth.failStreak > 0 && (
+                                  <>
+                                    {' · '}
+                                    <span className="text-rose-600 font-medium">
+                                      {String(t('admin.system.jobFailStreak', { count: jobHealth.failStreak }))}
+                                    </span>
+                                  </>
+                                )}
+                                {typeof jobHealth.durationMs === 'number' && (
+                                  <>{' · '}{String(t('admin.system.jobDuration', { ms: jobHealth.durationMs }))}</>
+                                )}
+                              </p>
+                            </td>
+                            <td className="px-4 py-3">
+                              <StatusBadge tone={jobStatusTone(jobHealth.status)} size="sm">
+                                {jobStatusLabel(jobHealth.status)}
+                              </StatusBadge>
+                            </td>
+                            <td className="px-4 py-3 text-xs text-gray-600 tabular-nums whitespace-nowrap">
+                              {jobHealth.schedule}
+                            </td>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              <p className="text-sm text-gray-900 tabular-nums">{jobAge(jobHealth.minutesSinceOk)}</p>
+                              <p className="text-xs text-gray-500 tabular-nums">{jobLastOk(jobHealth)}</p>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </AdminTableShell>
+                )}
+              </section>
             </div>
           )}
 

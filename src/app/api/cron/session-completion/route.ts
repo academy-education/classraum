@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { triggerSessionAutoCompletionNotifications } from '@/lib/notification-triggers'
 import { verifyCronAuth } from '@/lib/cron-auth'
+import { withHeartbeat } from '@/lib/ops/heartbeat'
 
 export async function GET(req: NextRequest) {
   try {
@@ -8,8 +9,12 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Run session auto-completion check
-    const result = await triggerSessionAutoCompletionNotifications()
+    // Run session auto-completion check.
+    // Heartbeat is recorded only past the auth guard — a 401'd request
+    // never ran the job, so letting it report would mask a dead cron.
+    const result = await withHeartbeat('session-completion', () =>
+      triggerSessionAutoCompletionNotifications(),
+    )
 
     // Log the result for monitoring
     console.log('[CRON] Session auto-completion cron job completed:', result)

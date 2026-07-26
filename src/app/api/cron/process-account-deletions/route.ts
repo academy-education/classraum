@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { deletePortOneBillingKey } from '@/lib/portone-billing-key'
 import { sendAccountPermanentlyDeletedEmail } from '@/lib/account-deletion-emails'
+import { recordHeartbeat } from '@/lib/ops/heartbeat'
 
 /**
  * Daily cron — processes accounts whose 30-day soft-delete window has
@@ -364,11 +365,16 @@ async function getCascadeConfirmation(userId: string): Promise<boolean> {
 }
 
 export async function GET(req: NextRequest) {
-  try {
-    if (!verifyCronAuth(req)) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+  // Auth first: a 401'd request never ran the job, so nothing below it —
+  // including any heartbeat — may report. Otherwise an unauthorized caller
+  // could keep a dead cron looking alive to the watchdog.
+  if (!verifyCronAuth(req)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
 
+  const startedAt = Date.now()
+
+  try {
     // Find every user whose grace period has expired AND who hasn't
     // already been hard-deleted (we filter the latter via a join on
     // account_deletion_log being open).
@@ -389,6 +395,13 @@ export async function GET(req: NextRequest) {
 
     if (selectError) {
       console.error('[CRON account-deletions] select failed:', selectError)
+      // Returns 500 but never throws, so the heartbeat has to be told
+      // explicitly — otherwise a job that did no work would read healthy.
+      await recordHeartbeat(
+        'process-account-deletions',
+        { ok: false, detail: { stage: 'select', error: selectError.message } },
+        Date.now() - startedAt
+      )
       return NextResponse.json(
         { success: false, error: selectError.message },
         { status: 500 }
@@ -637,6 +650,14 @@ export async function GET(req: NextRequest) {
       return acc
     }, {})
 
+    // Per-status counts only — the full `results` array (which carries a
+    // cascade summary per user) stays in the HTTP response.
+    await recordHeartbeat(
+      'process-account-deletions',
+      { ok: true, detail: { processed: results.length, ...summary } },
+      Date.now() - startedAt
+    )
+
     return NextResponse.json({
       success: true,
       timestamp: new Date().toISOString(),
@@ -646,6 +667,11 @@ export async function GET(req: NextRequest) {
     })
   } catch (error) {
     console.error('[CRON account-deletions] unhandled error:', error)
+    await recordHeartbeat(
+      'process-account-deletions',
+      { ok: false, detail: { error: (error as Error).message } },
+      Date.now() - startedAt
+    )
     return NextResponse.json(
       {
         success: false,

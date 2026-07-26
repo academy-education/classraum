@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { notifyStudent } from '@/lib/study/notify'
 import { grantLeagueRewards } from '@/lib/study/league-rewards'
+import { recordHeartbeat } from '@/lib/ops/heartbeat'
+import { verifyCronAuth } from '@/lib/cron-auth'
 
 /**
  * GET /api/cron/study-league-roll — Sunday-night promotion / relegation.
@@ -25,11 +27,18 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get('authorization')
-  const expected = `Bearer ${process.env.CRON_SECRET_KEY}`
-  if (!process.env.CRON_SECRET_KEY || authHeader !== expected) {
+  // Shared guard: accepts CRON_SECRET (the name Vercel Cron actually
+  // requires to send its Authorization header) as well as the legacy
+  // CRON_SECRET_KEY, and allows genuinely-local dev through. This
+  // route previously inlined its own CRON_SECRET_KEY check, so the
+  // CRON_SECRET fix did not reach it and it would still 401 in prod.
+  if (!verifyCronAuth(req)) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
+
+  // Heartbeat timing starts past the auth guard — a 401'd request never
+  // ran the job, so nothing below may report on its behalf.
+  const startedAt = Date.now()
 
   // Close the week that ended yesterday (Sunday → its week_start is
   // the Monday 7 days back). The cron fires Monday 00:05 UTC.
@@ -45,6 +54,13 @@ export async function GET(req: NextRequest) {
 
   if (error) {
     console.error('[study-league-roll]', error)
+    // The roll is the whole job — a failed RPC means no cohort closed.
+    // Recorded explicitly because this branch returns rather than throws.
+    await recordHeartbeat(
+      'study-league-roll',
+      { ok: false, detail: { weekStart: lastWeekStart, error: error.message } },
+      Date.now() - startedAt,
+    )
     return NextResponse.json({ error: error.message, weekStart: lastWeekStart }, { status: 500 })
   }
 
@@ -103,10 +119,13 @@ export async function GET(req: NextRequest) {
     notified++
   }
 
-  return NextResponse.json({
+  const summary = {
     weekStart: lastWeekStart,
     cohortsProcessed: processed ?? 0,
     notified,
     creditsAwarded,
-  })
+  }
+  await recordHeartbeat('study-league-roll', { ok: true, detail: summary }, Date.now() - startedAt)
+
+  return NextResponse.json(summary)
 }

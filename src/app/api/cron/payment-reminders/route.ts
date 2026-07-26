@@ -4,6 +4,7 @@ import {
   triggerPaymentOverdueNotifications,
 } from '@/lib/notification-triggers'
 import { verifyCronAuth } from '@/lib/cron-auth'
+import { withHeartbeat } from '@/lib/ops/heartbeat'
 
 /**
  * Daily cron — pushes payment-related reminders.
@@ -29,8 +30,15 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const dueResult = await triggerPaymentDueReminderNotifications()
-    const overdueResult = await triggerPaymentOverdueNotifications()
+    // Heartbeat is recorded only past the auth guard — a 401'd request
+    // never ran the job, so letting it report would mask a dead cron.
+    const { dueResult, overdueResult } = await withHeartbeat(
+      'payment-reminders',
+      async () => ({
+        dueResult: await triggerPaymentDueReminderNotifications(),
+        overdueResult: await triggerPaymentOverdueNotifications(),
+      }),
+    )
 
     console.log('[CRON] Payment reminders cron completed:', { dueResult, overdueResult })
 

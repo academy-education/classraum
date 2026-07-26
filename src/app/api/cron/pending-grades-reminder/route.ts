@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { triggerPendingGradesReminderNotifications } from '@/lib/notification-triggers'
 import { verifyCronAuth } from '@/lib/cron-auth'
+import { withHeartbeat } from '@/lib/ops/heartbeat'
 
 export async function GET(req: NextRequest) {
   try {
@@ -8,8 +9,12 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Run pending grades reminder check
-    const result = await triggerPendingGradesReminderNotifications()
+    // Run pending grades reminder check.
+    // Heartbeat is recorded only past the auth guard — a 401'd request
+    // never ran the job, so letting it report would mask a dead cron.
+    const result = await withHeartbeat('pending-grades-reminder', () =>
+      triggerPendingGradesReminderNotifications(),
+    )
 
     // Log the result for monitoring
     console.log('[CRON] Pending grades reminder cron job completed:', result)

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { getPortOneConfig } from '@/lib/portone-config';
 import { verifyCronAuth } from '@/lib/cron-auth';
+import { recordHeartbeat } from '@/lib/ops/heartbeat';
 
 // Create admin client with service role key for cron operations
 const supabaseAdmin = createClient(
@@ -16,11 +17,16 @@ const supabaseAdmin = createClient(
 );
 
 export async function GET(req: NextRequest) {
-  try {
-    if (!verifyCronAuth(req)) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  // Auth first: a 401'd request never ran the job, so nothing below it —
+  // including any heartbeat — may report. Otherwise an unauthorized caller
+  // could keep a dead cron looking alive to the watchdog.
+  if (!verifyCronAuth(req)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
+  const startedAt = Date.now();
+
+  try {
     const today = new Date().toISOString().split('T')[0];
     console.log(`[SUBSCRIPTION-BILLING] Starting billing cycle for ${today}`);
 
@@ -39,6 +45,11 @@ export async function GET(req: NextRequest) {
 
     if (!subscriptions || subscriptions.length === 0) {
       console.log(`[SUBSCRIPTION-BILLING] No subscriptions due today (${today}). Skipping processing.`);
+      await recordHeartbeat(
+        'subscription-billing',
+        { ok: true, detail: { date: today, found: 0, skipped: true } },
+        Date.now() - startedAt,
+      );
       return NextResponse.json({
         success: true,
         date: today,
@@ -399,10 +410,34 @@ export async function GET(req: NextRequest) {
 
     console.log(`[SUBSCRIPTION-BILLING] Completed processing:`, result);
 
+    // Counters only — the `errors` string list stays in the HTTP response
+    // rather than bloating the stored heartbeat detail.
+    await recordHeartbeat(
+      'subscription-billing',
+      {
+        ok: true,
+        detail: {
+          date: today,
+          found: subscriptions.length,
+          succeeded: successCount,
+          failed: failCount,
+          errorCount: errors.length,
+        },
+      },
+      Date.now() - startedAt,
+    );
+
     return NextResponse.json(result);
 
   } catch (error) {
     console.error('[SUBSCRIPTION-BILLING] Unexpected error:', error);
+    // The job aborted mid-flight — record a failure so the watchdog
+    // escalates instead of seeing a healthy-looking last run.
+    await recordHeartbeat(
+      'subscription-billing',
+      { ok: false, detail: { error: (error as Error).message } },
+      Date.now() - startedAt,
+    );
     return NextResponse.json(
       {
         success: false,

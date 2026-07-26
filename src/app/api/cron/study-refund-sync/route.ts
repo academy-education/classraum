@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
+import { recordHeartbeat } from '@/lib/ops/heartbeat'
 
 /**
  * Nightly reconcile of study_payments against PortOne.
@@ -35,6 +36,10 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
+  // Heartbeat timing starts past the auth guard — a 401'd request never
+  // ran the job, so nothing below may report on its behalf.
+  const startedAt = Date.now()
+
   const { data: rows, error } = await supabaseAdmin
     .from('study_payments')
     .select('payment_id')
@@ -43,6 +48,13 @@ export async function GET(req: NextRequest) {
     .limit(MAX_PER_RUN)
   if (error) {
     console.error('[cron/study-refund-sync] list failed', error)
+    // No row was reconciled — recorded explicitly because this branch
+    // returns rather than throws, and a silent 500 would read as healthy.
+    await recordHeartbeat(
+      'study-refund-sync',
+      { ok: false, detail: { stage: 'list', error: error.message } },
+      Date.now() - startedAt,
+    )
     return NextResponse.json({ error: 'list failed' }, { status: 500 })
   }
 
@@ -61,9 +73,12 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({
-    ok: true,
-    ...summary,
-    truncated: (rows?.length ?? 0) === MAX_PER_RUN,
-  })
+  const truncated = (rows?.length ?? 0) === MAX_PER_RUN
+  await recordHeartbeat(
+    'study-refund-sync',
+    { ok: true, detail: { ...summary, truncated } },
+    Date.now() - startedAt,
+  )
+
+  return NextResponse.json({ ok: true, ...summary, truncated })
 }
