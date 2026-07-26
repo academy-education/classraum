@@ -4,6 +4,35 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
+/**
+ * Admin analytics.
+ *
+ * Every number returned here is measured. Where the platform is not
+ * instrumented for a metric, the metric is ABSENT from the payload rather
+ * than filled in with a plausible-looking constant. Previously this route
+ * shipped, among others:
+ *
+ *   - websiteVisitors = academies * 8.5, trialSignups = academies * 0.85, and
+ *     trialConversionRate = (visitors / signups) * 100 — which is
+ *     algebraically 8.5/0.85 = exactly 1000.0% on every deployment forever.
+ *   - apiResponseTime '245ms', databasePerformance 'Good', errorRate '0.2%',
+ *     peakHours '9 AM - 11 AM, 2 PM - 4 PM' — hardcoded strings, no APM.
+ *   - monthlyBreakdown = { monthly: total*0.7, annual: total*0.3 } — a guess
+ *     rendered under the heading "Revenue breakdown / By billing cycle".
+ *   - avgSessionDuration 24.5 and five topFeatures percentages.
+ *   - totalSessions = the user count, relabelled as sessions.
+ *
+ * It also queried a `subscriptions` table and `academies.region` /
+ * `academies.city`, none of which exist in this database — those queries
+ * errored, the errors were discarded, and the resulting nulls rendered as
+ * zeroes and an empty region list. Revenue now comes from
+ * `subscription_invoices` (money that was actually collected) and the
+ * recurring run-rate from `academy_subscriptions`.
+ *
+ * Aggregates are computed in SQL (migration 052) so a total is never the sum
+ * of one PostgREST page.
+ */
+
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
@@ -66,201 +95,168 @@ export async function GET(request: NextRequest) {
         startDate.setDate(now.getDate() - 30);
     }
 
-    // Fetch data in parallel where possible
-    const [
-      { data: subscriptions },
-      { count: totalAcademies, data: academies },
-      { count: allAcademies },
-      { count: totalUsers }
-    ] = await Promise.all([
-      supabase
-        .from('subscriptions')
-        .select('id, status, amount, plan_name, academy_id, created_at')
-        .gte('created_at', startDate.toISOString()),
-      supabase
-        .from('academies')
-        .select('id, region, city, created_at', { count: 'exact' })
-        .gte('created_at', startDate.toISOString()),
-      supabase
-        .from('academies')
-        .select('*', { count: 'exact', head: true }),
-      supabase
-        .from('users')
-        .select('*', { count: 'exact', head: true }),
-    ]);
-
-    // Calculate revenue metrics
-    const activeSubscriptions = subscriptions?.filter(s => s.status === 'active') || [];
-    const totalRevenue = activeSubscriptions.reduce((sum, sub) => sum + (sub.amount || 0), 0);
-
-    // Get previous period for growth calculation
-    const previousStartDate = new Date(startDate);
-    previousStartDate.setDate(previousStartDate.getDate() - (now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
-
-    const { data: previousSubscriptions } = await supabase
-      .from('subscriptions')
-      .select('id, amount, created_at')
-      .gte('created_at', previousStartDate.toISOString())
-      .lt('created_at', startDate.toISOString());
-
-    const previousRevenue = previousSubscriptions?.reduce((sum, sub) => sum + (sub.amount || 0), 0) || 1;
-    const revenueGrowth = previousRevenue > 0 ? ((totalRevenue - previousRevenue) / previousRevenue) * 100 : 0;
-
-    // Revenue by plan
-    const planRevenue = activeSubscriptions.reduce((acc: any, sub) => {
-      const plan = sub.plan_name || 'Unknown';
-      if (!acc[plan]) acc[plan] = 0;
-      acc[plan] += sub.amount || 0;
-    }, {});
-
-    const byPlan = Object.entries(planRevenue).map(([plan, amount]: [string, any]) => ({
-      plan,
-      amount,
-      percentage: (amount / totalRevenue) * 100
-    }));
-
-    // Revenue trend (monthly).
-    //
-    // Emits a numeric year + monthIndex rather than a formatted label: the
-    // label has to be localized client-side (the admin runs in ko and en),
-    // and bucketing by the English short name alone silently merged
-    // January 2025 into January 2026 and left the buckets in insertion
-    // order rather than chronological.
-    const monthlyRevenue = new Map<string, { year: number; monthIndex: number; amount: number }>();
-    subscriptions?.forEach(sub => {
-      const d = new Date(sub.created_at);
-      const year = d.getFullYear();
-      const monthIndex = d.getMonth();
-      const key = `${year}-${monthIndex}`;
-      const bucket = monthlyRevenue.get(key) ?? { year, monthIndex, amount: 0 };
-      bucket.amount += sub.amount || 0;
-      monthlyRevenue.set(key, bucket);
-    });
-
-    const trend = Array.from(monthlyRevenue.values()).sort(
-      (a, b) => a.year - b.year || a.monthIndex - b.monthIndex,
-    );
-
-    // Customer metrics
-    const newCustomers = totalAcademies || 0;
-    const churnedCount = subscriptions?.filter(s => s.status === 'cancelled').length || 0;
-
-    // Get subscription status counts
-    const statusCounts = subscriptions?.reduce((acc: any, sub) => {
-      const status = sub.status || 'unknown';
-      acc[status] = (acc[status] || 0) + 1;
-      return acc;
-    }, {});
-
-    const byStatus = Object.entries(statusCounts || {}).map(([status, count]: [string, any]) => ({
-      status: status.charAt(0).toUpperCase() + status.slice(1),
-      count
-    }));
-
-    // Geographic distribution (by academy location/region if available)
-    const regionCounts: any = {};
-    academies?.forEach((academy: any) => {
-      const region = academy.region || academy.city || 'Other';
-      if (!regionCounts[region]) {
-        regionCounts[region] = { customers: 0, revenue: 0 };
-      }
-      regionCounts[region].customers += 1;
-
-      // Find subscription for this academy
-      const academySub = subscriptions?.find(s => s.academy_id === academy.id);
-      if (academySub) {
-        regionCounts[region].revenue += academySub.amount || 0;
-      }
-    });
-
-    const byRegion = Object.entries(regionCounts).map(([region, data]: [string, any]) => ({
-      region,
-      customers: data.customers,
-      revenue: data.revenue
-    }));
-
-    // Usage metrics — use count query instead of fetching all auth users
-    // Approximate active users from users table last activity (auth.admin.listUsers fetches ALL users into memory)
-    const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
-    const { count: activeUsers } = await supabase
-      .from('users')
-      .select('*', { count: 'exact', head: true })
-      .gte('updated_at', thirtyDaysAgo);
-
-    // Calculate year-over-year growth (compare with same period last year)
+    const windowMs = now.getTime() - startDate.getTime();
+    const prevStart = new Date(startDate.getTime() - windowMs);
     const lastYearStart = new Date(startDate);
     lastYearStart.setFullYear(lastYearStart.getFullYear() - 1);
     const lastYearEnd = new Date(now);
     lastYearEnd.setFullYear(lastYearEnd.getFullYear() - 1);
 
-    const { data: lastYearSubscriptions } = await supabase
-      .from('subscriptions')
-      .select('id, amount, created_at')
-      .gte('created_at', lastYearStart.toISOString())
-      .lt('created_at', lastYearEnd.toISOString());
+    const iso = (d: Date) => d.toISOString();
+    const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
 
-    const lastYearRevenue = lastYearSubscriptions?.reduce((sum, sub) => sum + (sub.amount || 0), 0) || 1;
-    const yearOverYearGrowth = lastYearRevenue > 0 ? ((totalRevenue - lastYearRevenue) / lastYearRevenue) * 100 : 0;
+    type RpcRow = Record<string, unknown>;
+    const first = <T = RpcRow>(res: { data: unknown }): T | null => {
+      const rows = res.data as T[] | null;
+      return Array.isArray(rows) && rows.length > 0 ? rows[0] : null;
+    };
+    const rows = <T = RpcRow>(res: { data: unknown }): T[] => {
+      const r = res.data as T[] | null;
+      return Array.isArray(r) ? r : [];
+    };
+    const num = (v: unknown): number => {
+      const n = typeof v === 'number' ? v : Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
 
-    // Calculate acquisition funnel metrics
-    const totalAcademiesEver = allAcademies || 0;
-    const websiteVisitors = Math.round(totalAcademiesEver * 8.5); // Estimated conversion rate
-    const trialSignups = Math.round(totalAcademiesEver * 0.85);
-    const paidConversions = activeSubscriptions.length;
-    const trialConversionRate = trialSignups > 0 ? ((websiteVisitors / trialSignups) * 100).toFixed(1) : '0';
-    const paidConversionRate = paidConversions > 0 && trialSignups > 0 ? ((paidConversions / trialSignups) * 100).toFixed(1) : '0';
+    const [
+      revenueTotals,
+      prevRevenueTotals,
+      lastYearTotals,
+      revenueByMonth,
+      revenueByPlan,
+      revenueByCycle,
+      subMetrics,
+      statusCounts,
+      sessionStats,
+      eventCounts,
+      { count: allAcademies },
+      { count: newAcademies },
+      { count: trialAcademies },
+      { count: activeUsers },
+    ] = await Promise.all([
+      supabase.rpc('admin_invoice_revenue_totals', { p_start: iso(startDate), p_end: iso(now) }),
+      supabase.rpc('admin_invoice_revenue_totals', { p_start: iso(prevStart), p_end: iso(startDate) }),
+      supabase.rpc('admin_invoice_revenue_totals', { p_start: iso(lastYearStart), p_end: iso(lastYearEnd) }),
+      supabase.rpc('admin_invoice_revenue_by_month', { p_start: iso(startDate), p_end: iso(now) }),
+      supabase.rpc('admin_invoice_revenue_by_plan', { p_start: iso(startDate), p_end: iso(now) }),
+      supabase.rpc('admin_invoice_revenue_by_cycle', { p_start: iso(startDate), p_end: iso(now) }),
+      supabase.rpc('admin_subscription_metrics'),
+      supabase.rpc('admin_academy_subscription_status_counts'),
+      supabase.rpc('admin_study_session_stats', { p_start: iso(startDate), p_end: iso(now) }),
+      supabase.rpc('admin_study_event_counts', { p_start: iso(startDate), p_end: iso(now) }),
+      supabase.from('academies').select('*', { count: 'exact', head: true }),
+      supabase.from('academies').select('*', { count: 'exact', head: true }).gte('created_at', iso(startDate)),
+      // Every academy that has ever been given a trial window. This is a real
+      // count of trial starts, not a multiple of the academy count.
+      supabase.from('academies').select('*', { count: 'exact', head: true }).not('trial_ends_at', 'is', null),
+      supabase.from('users').select('*', { count: 'exact', head: true }).gte('updated_at', thirtyDaysAgo),
+    ]);
 
-    // System performance metrics (estimated from database health)
-    const apiResponseTime = '245ms'; // Would need APM tool
-    const databasePerformance = 'Good'; // Based on successful queries
-    const errorRate = '0.2%'; // Would need error tracking
+    // ---- Revenue: collected (paid invoices) in the selected window ---------
+    const collected = num(first(revenueTotals)?.amount_won);
+    const previousCollected = num(first(prevRevenueTotals)?.amount_won);
+    const lastYearCollected = num(first(lastYearTotals)?.amount_won);
+
+    // Growth is null (not 0, not Infinity) when there is no baseline to grow
+    // from — the UI omits the figure instead of printing "+0%" or "+Infinity%".
+    const pctChange = (current: number, base: number): number | null =>
+      base > 0 ? Number((((current - base) / base) * 100).toFixed(1)) : null;
+
+    const trend = rows(revenueByMonth).map(r => ({
+      year: num(r.year),
+      monthIndex: num(r.month_index),
+      amount: num(r.amount_won),
+    }));
+
+    const byPlan = rows(revenueByPlan).map(r => ({
+      plan: String(r.plan_tier ?? 'unknown'),
+      amount: num(r.amount_won),
+      percentage: collected > 0 ? Number(((num(r.amount_won) / collected) * 100).toFixed(1)) : 0,
+    }));
+
+    // Real monthly/annual split, straight off each invoice's billing_cycle.
+    const cycleRows = rows(revenueByCycle);
+    const byBillingCycle = {
+      monthly: cycleRows.filter(r => r.billing_cycle !== 'annual').reduce((s, r) => s + num(r.amount_won), 0),
+      annual: cycleRows.filter(r => r.billing_cycle === 'annual').reduce((s, r) => s + num(r.amount_won), 0),
+    };
+
+    // ---- Recurring run-rate (MRR/ARR/ARPU) --------------------------------
+    // MRR is the sum of monthly_amount over subscriptions that are currently
+    // billing — NOT the sum of everything booked inside the selected window.
+    // The old MRR card showed the window total, so picking "Last 12 months"
+    // displayed a year of bookings as MRR and then multiplied it by 12 for ARR.
+    const m = first(subMetrics);
+    const mrr = num(m?.mrr_won);
+    const payingSubscriptions = num(m?.active_count) + num(m?.trialing_count);
+    const recurring = {
+      mrr,
+      arr: mrr * 12,
+      arpu: payingSubscriptions > 0 ? Math.round(mrr / payingSubscriptions) : 0,
+      payingSubscriptions,
+    };
+
+    const byStatus = rows(statusCounts).map(r => ({
+      status: String(r.status ?? 'unknown').charAt(0).toUpperCase() + String(r.status ?? 'unknown').slice(1),
+      count: num(r.cnt),
+    }));
+
+    // ---- Acquisition ------------------------------------------------------
+    // websiteVisitors is gone: nothing on the platform records them, and the
+    // previous value was the academy count times 8.5.
+    const trialSignups = trialAcademies || 0;
+    const paidConversions = num(m?.active_count);
+    const acquisition = {
+      trialSignups,
+      paidConversions,
+      paidConversionRate: trialSignups > 0
+        ? Number(((paidConversions / trialSignups) * 100).toFixed(1))
+        : null,
+    };
+
+    // ---- Usage ------------------------------------------------------------
+    // Sessions are real study sessions in the window; duration is the measured
+    // created_at → completed_at mean over sessions that actually completed, and
+    // is null when nothing completed.
+    const s = first(sessionStats);
+    const avgSessionDuration = s?.avg_duration_minutes == null
+      ? null
+      : Number(num(s.avg_duration_minutes).toFixed(1));
+
+    const eventRows = rows(eventCounts);
+    const totalEvents = eventRows.reduce((sum, r) => sum + num(r.cnt), 0);
+    const topEvents = eventRows.slice(0, 5).map(r => ({
+      event: String(r.event ?? 'unknown'),
+      count: num(r.cnt),
+      share: totalEvents > 0 ? Number(((num(r.cnt) / totalEvents) * 100).toFixed(1)) : 0,
+    }));
 
     const analyticsData = {
       revenue: {
-        total: totalRevenue,
-        growth: Number(revenueGrowth.toFixed(1)),
-        yearOverYearGrowth: Number(yearOverYearGrowth.toFixed(1)),
-        byPlan: byPlan.slice(0, 5), // Top 5 plans
-        trend: trend.slice(-5), // Last 5 periods
-        monthlyBreakdown: {
-          monthly: Math.round(totalRevenue * 0.7),
-          annual: Math.round(totalRevenue * 0.3)
-        }
+        // Collected revenue: paid invoices whose paid_at falls in the window.
+        collected,
+        growth: pctChange(collected, previousCollected),
+        yearOverYearGrowth: pctChange(collected, lastYearCollected),
+        byPlan: byPlan.slice(0, 5),
+        trend,
+        byBillingCycle,
+        recurring,
       },
       customers: {
         total: allAcademies || 0,
-        new: newCustomers,
-        churn: churnedCount,
+        new: newAcademies || 0,
+        churn: num(m?.canceled_30d),
         byStatus,
-        acquisition: {
-          websiteVisitors,
-          trialSignups,
-          trialConversionRate,
-          paidConversions,
-          paidConversionRate
-        }
+        acquisition,
       },
       usage: {
         activeUsers: activeUsers || 0,
-        totalSessions: totalUsers || 0,
-        avgSessionDuration: 24.5, // This would require session tracking
-        topFeatures: [
-          { feature: 'Student Management', usage: 89.2 },
-          { feature: 'Attendance Tracking', usage: 76.8 },
-          { feature: 'Assignment Creation', usage: 65.4 },
-          { feature: 'Payment Processing', usage: 58.9 },
-          { feature: 'Reports Generation', usage: 45.3 }
-        ] // This would require feature usage tracking
+        studySessions: num(s?.session_count),
+        completedStudySessions: num(s?.completed_count),
+        avgSessionDuration,
+        topEvents,
       },
-      geography: {
-        byRegion: byRegion.slice(0, 10) // Top 10 regions
-      },
-      performance: {
-        apiResponseTime,
-        databasePerformance,
-        errorRate,
-        peakHours: '9 AM - 11 AM, 2 PM - 4 PM'
-      }
     };
 
     return NextResponse.json({

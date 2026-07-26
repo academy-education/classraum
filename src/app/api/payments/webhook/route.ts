@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import { triggerInvoicePaymentNotifications } from '@/lib/notification-triggers';
 import { verifyWebhookSignature as verifyStandardWebhook, WebhookVerificationError } from '@/lib/portone-webhook';
 import { tryHandleStudyOneTimeWebhook } from '@/lib/study/payment-webhook-handler';
+import { raiseAlert } from '@/lib/ops/alert';
 
 export async function POST(request: NextRequest) {
   try {
@@ -272,8 +273,12 @@ export async function POST(request: NextRequest) {
             // Log but don't fail — subscription status is already updated
           }
         } else if (verification.payment.status === 'FAILED') {
-          // Mark subscription as past_due
-          await supabase
+          // Mark subscription as past_due. Unchecked, a failed write meant
+          // the route still returned processed:true, PortOne stopped
+          // retrying, and the subscription silently stayed 'active' with no
+          // dunning ever starting. Both writes are idempotent end-states, so
+          // returning 500 to force a redelivery is safe.
+          const { error: pastDueError } = await supabase
             .from('academy_subscriptions')
             .update({
               status: 'past_due',
@@ -281,8 +286,25 @@ export async function POST(request: NextRequest) {
             })
             .eq('id', subscriptionId);
 
+          if (pastDueError) {
+            await raiseAlert({
+              severity: 'critical',
+              title: 'Academy subscription not marked past_due',
+              message:
+                `A FAILED payment webhook for ${paymentId} could not move academy subscription ${subscriptionId} to past_due. ` +
+                `The subscription still reads as active and dunning will not start. Returning 500 so PortOne redelivers.`,
+              dedupeKey: `academy-sub-past-due-write:${subscriptionId}`,
+              error: pastDueError,
+              context: { subscriptionId, paymentId },
+            });
+            return NextResponse.json(
+              { error: 'Failed to mark subscription past_due' },
+              { status: 500 }
+            );
+          }
+
           // Update subscription invoice
-          await supabase
+          const { error: failedInvoiceError } = await supabase
             .from('subscription_invoices')
             .update({
               status: 'failed',
@@ -291,14 +313,49 @@ export async function POST(request: NextRequest) {
             })
             .eq('kg_transaction_id', paymentId);
 
+          if (failedInvoiceError) {
+            await raiseAlert({
+              severity: 'warning',
+              title: 'Subscription invoice not marked failed',
+              message:
+                `A FAILED payment webhook for ${paymentId} could not mark its subscription_invoices row failed. ` +
+                `Returning 500 so PortOne redelivers.`,
+              dedupeKey: `academy-sub-invoice-failed-write:${paymentId}`,
+              error: failedInvoiceError,
+              context: { subscriptionId, paymentId },
+            });
+            return NextResponse.json(
+              { error: 'Failed to update subscription invoice' },
+              { status: 500 }
+            );
+          }
+
         } else if (verification.payment.status === 'CANCELLED') {
-          // Update subscription invoice
-          await supabase
+          // Refund. If this write is lost the invoice keeps reading 'paid'
+          // and refunded money is counted as revenue — so never ack it.
+          const { error: refundError } = await supabase
             .from('subscription_invoices')
             .update({
               status: 'refunded',
             })
             .eq('kg_transaction_id', paymentId);
+
+          if (refundError) {
+            await raiseAlert({
+              severity: 'critical',
+              title: 'Refunded subscription invoice still marked paid',
+              message:
+                `A CANCELLED (refund) webhook for ${paymentId} could not mark its subscription_invoices row refunded. ` +
+                `Refunded money will keep counting as revenue. Returning 500 so PortOne redelivers.`,
+              dedupeKey: `academy-sub-invoice-refund-write:${paymentId}`,
+              error: refundError,
+              context: { subscriptionId, paymentId },
+            });
+            return NextResponse.json(
+              { error: 'Failed to record refund' },
+              { status: 500 }
+            );
+          }
 
         }
       }

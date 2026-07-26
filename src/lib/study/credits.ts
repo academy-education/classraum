@@ -1,5 +1,6 @@
 import { createHash } from 'crypto'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * Variable-cost credit reservation on top of the 1-credit
@@ -69,8 +70,34 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
       // Roll back the slices we did get so a failed start never eats credits.
       // refund_study_credit restores to whichever bucket each slice used
       // (pass / grant / purchased) via the ledger.
+      //
+      // This rollback is the ONLY thing standing between the student and lost
+      // credits: no session row is written on this path, so the stale-session
+      // reaper never sees it. The result must therefore be read (supabase-js
+      // resolves `{ error }`, it does not throw) and any failure has to page
+      // someone — the student has been debited for a test that never started.
+      const failed: string[] = []
       for (const s of reserved) {
-        await supabaseAdmin.rpc('refund_study_credit', { p_student: studentId, p_source: s }).then(() => {}, () => {})
+        try {
+          const { data, error } = await supabaseAdmin
+            .rpc('refund_study_credit', { p_student: studentId, p_source: s })
+          const r = (data ?? {}) as { ok?: boolean; already?: boolean }
+          if (error || !(r.ok || r.already)) failed.push(s)
+        } catch {
+          failed.push(s)
+        }
+      }
+      if (failed.length > 0) {
+        await raiseAlert({
+          severity: 'critical',
+          title: 'Study credits debited for a test that never started',
+          message:
+            `${failed.length} of ${reserved.length} reserved credit slice(s) could not be rolled ` +
+            `back after a partial reserve failure. The student has lost these credits and no ` +
+            `pending session exists for the reaper to clean up — refund them manually.`,
+          dedupeKey: `study-credit-rollback-failed:${studentId}`,
+          context: { studentId, sessionId, cost, testFamily: testFamily ?? null, failedSlices: failed },
+        })
       }
       return { ok: false, reason: reason ?? 'no_credits' }
     }

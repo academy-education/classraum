@@ -28,7 +28,6 @@ interface AdminUser {
   status: 'active' | 'suspended' | 'pending';
   createdAt: Date;
   lastLoginAt?: Date;
-  loginCount: number;
   academyId?: string;
   academyName?: string;
 }
@@ -231,10 +230,6 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
                         <span className="text-sm text-gray-900">
                           {user.lastLoginAt ? user.lastLoginAt.toLocaleDateString(getDateLocale(language)) : String(t('admin.common.never'))}
                         </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">{String(t('admin.users.loginCount'))}</span>
-                        <span className="text-sm text-gray-900">{user.loginCount}</span>
                       </div>
                     </div>
                   </div>

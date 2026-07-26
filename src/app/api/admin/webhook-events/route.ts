@@ -90,20 +90,43 @@ export async function GET(request: NextRequest) {
       throw eventsError;
     }
 
-    // Get unique event types for filter dropdown
-    const { data: eventTypes } = await supabase
-      .from('webhook_events')
-      .select('event_type')
-      .order('event_type');
+    // Unique event types for the filter dropdown. Previously an unbounded
+    // .select() of every row deduped in JS — PostgREST caps that at 1000 rows,
+    // so once the table grew past a thousand events the dropdown reflected only
+    // the newest slice and rare event types quietly disappeared from it.
+    const { data: eventTypeRows } = await supabase.rpc('admin_webhook_event_types');
+    const uniqueEventTypes = (Array.isArray(eventTypeRows) ? eventTypeRows : [])
+      .map((r: { event_type: string }) => r.event_type);
 
-    const uniqueEventTypes = [...new Set(eventTypes?.map(e => e.event_type) || [])];
+    // Statistics.
+    //
+    // `total` is an exact count over the whole (filtered) table, but the
+    // breakdown used to be .filter().length over the CURRENT PAGE — so the
+    // cards could never add up: "5,000 events / 43 processed / 7 unprocessed".
+    // The breakdown is now counted in SQL under exactly the same filters.
+    const { data: statRows, error: statsError } = await supabase.rpc('admin_webhook_event_stats', {
+      p_type: type || null,
+      p_event_type: eventType || null,
+      p_status: status || null,
+      p_processed: processed !== null && processed !== '' ? processed === 'true' : null,
+      p_start: startDate || null,
+      p_end: endDate || null,
+    });
+    if (statsError) {
+      console.error('[Webhook Events API] Error fetching stats:', statsError);
+      throw statsError;
+    }
+    const s = Array.isArray(statRows) && statRows.length > 0 ? statRows[0] : null;
+    const toNum = (v: unknown) => {
+      const n = typeof v === 'number' ? v : Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
 
-    // Calculate statistics
     const stats = {
-      total: count || 0,
-      processed: events?.filter(e => e.processed).length || 0,
-      unprocessed: events?.filter(e => !e.processed).length || 0,
-      errors: events?.filter(e => e.error_message).length || 0
+      total: toNum(s?.total),
+      processed: toNum(s?.processed),
+      unprocessed: toNum(s?.unprocessed),
+      errors: toNum(s?.errors)
     };
 
     return NextResponse.json({

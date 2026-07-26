@@ -2,6 +2,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { resolvePack, resolvePass, STUDY_PLANS, isPassPlan } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
 import { grantTestEntitlement, pointStudyPathAtTest } from '@/lib/study/entitlements'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * Shared grant logic for one-time study purchases (credit packs + exam
@@ -32,21 +33,56 @@ export type GrantOutcome =
   | { status: 'already_processed' }
   | { status: 'error'; httpStatus: number; message: string }
 
-/** Insert the idempotency row. 'new' = we own the grant; 'duplicate' =
- *  someone already redeemed this paymentId (no-op). */
-async function recordPayment(
+/** Insert the idempotency row.
+ *
+ *  'new'       — we own the grant.
+ *  'duplicate' — ONLY a Postgres unique violation (23505): someone already
+ *                redeemed this paymentId, so this call is a no-op.
+ *  'failed'    — any other error. supabase-js resolves errors instead of
+ *                throwing, so this used to be read as 'duplicate': the card
+ *                was charged, nothing was granted, nothing was recorded, and
+ *                BOTH the client path and the webhook backstop reported
+ *                `already_processed` — making the charge unrecoverable. A
+ *                real failure must surface so the caller can retry/alert; no
+ *                row was written, so a retry grants exactly once. */
+export async function recordPayment(
   paymentId: string,
   studentId: string,
   kind: 'study_credit_pack' | 'study_exam_pass',
   amountWon: number,
-): Promise<'new' | 'duplicate'> {
+): Promise<{ status: 'new' | 'duplicate' } | { status: 'failed'; error: unknown }> {
   const { error } = await supabaseAdmin.from('study_payments').insert({
     payment_id: paymentId,
     student_id: studentId,
     kind,
     amount_won: amountWon,
   })
-  return error ? 'duplicate' : 'new'
+  if (!error) return { status: 'new' }
+  if ((error as { code?: string }).code === '23505') return { status: 'duplicate' }
+  return { status: 'failed', error }
+}
+
+/** Shared handling for a failed idempotency insert: the money moved, we have
+ *  no record of it and granted nothing. Pages a human and tells the caller to
+ *  fail loudly so the webhook backstop can still recover the grant. */
+async function recordFailure(
+  paymentId: string,
+  studentId: string,
+  kind: 'study_credit_pack' | 'study_exam_pass',
+  error: unknown,
+): Promise<GrantOutcome> {
+  await raiseAlert({
+    severity: 'critical',
+    title: 'Study purchase could not be recorded',
+    message:
+      `The card was charged for a ${kind} but writing study_payments failed, so nothing was ` +
+      `granted. No idempotency row exists, so a retry (client or webhook backstop) will grant ` +
+      `exactly once — verify the student received their credits.`,
+    dedupeKey: `study-payment-record-failed:${paymentId}`,
+    error,
+    context: { paymentId, studentId, kind },
+  })
+  return { status: 'error', httpStatus: 500, message: 'could not record payment; please retry' }
 }
 
 export async function grantCreditPack(opts: {
@@ -60,7 +96,10 @@ export async function grantCreditPack(opts: {
   const pack = resolvePack(opts.packId)
 
   const recorded = await recordPayment(opts.paymentId, opts.studentId, 'study_credit_pack', pack.priceWon)
-  if (recorded === 'duplicate') return { status: 'already_processed' }
+  if (recorded.status === 'duplicate') return { status: 'already_processed' }
+  if (recorded.status === 'failed') {
+    return recordFailure(opts.paymentId, opts.studentId, 'study_credit_pack', recorded.error)
+  }
 
   // Ensure a subscription row exists to hold the credits, and persist a
   // freshly issued card if we were given one and the row lacks one.
@@ -127,7 +166,10 @@ export async function grantExamPass(opts: {
   if (!passPlan) return { status: 'error', httpStatus: 400, message: 'unknown pass plan' }
 
   const recorded = await recordPayment(opts.paymentId, opts.studentId, 'study_exam_pass', passPlan.priceWon)
-  if (recorded === 'duplicate') return { status: 'already_processed' }
+  if (recorded.status === 'duplicate') return { status: 'already_processed' }
+  if (recorded.status === 'failed') {
+    return recordFailure(opts.paymentId, opts.studentId, 'study_exam_pass', recorded.error)
+  }
 
   // Date-anchored passes run until a fixed exam date; rolling passes run
   // a fixed number of days from now.
@@ -207,9 +249,26 @@ export async function grantExamPass(opts: {
     }
   } catch (e) {
     // Access-grant failure shouldn't fail the (already succeeded) purchase —
-    // log for reconciliation; the entitlement can be backfilled.
-    console.error('[grant] pass credits ok but entitlement write failed', {
-      studentId: opts.studentId, paymentId: opts.paymentId, error: e,
+    // the pass is active and its credits landed, and the payment row means a
+    // retry can't re-run this. But the buyer's test STAYS LOCKED until the
+    // entitlement is backfilled, so this has to page someone rather than
+    // vanish into a serverless log.
+    await raiseAlert({
+      severity: 'critical',
+      title: 'Exam pass purchased but access not granted',
+      message:
+        `The pass was paid for and its credits were granted, but writing the study_entitlements ` +
+        `row failed — the buyer's test is still locked. Backfill the entitlement for this ` +
+        `student/test; the purchase itself is complete and must not be re-charged.`,
+      dedupeKey: `study-entitlement-write-failed:${opts.paymentId}`,
+      error: e,
+      context: {
+        studentId: opts.studentId,
+        paymentId: opts.paymentId,
+        test: passTerms.test,
+        passId: passPlan.id,
+        expiresAt: periodEnd.toISOString(),
+      },
     })
   }
 

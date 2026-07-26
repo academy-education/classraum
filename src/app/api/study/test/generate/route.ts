@@ -26,6 +26,7 @@ import { creditCostForTest } from '@/lib/study/plans'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -521,13 +522,24 @@ export async function POST(req: NextRequest) {
    *  it goes stale). Used by pre-stream returns and by the stream's
    *  finally. */
   const failAndRefund = async (why: string) => {
-    try {
-      await supabaseAdmin
-        .from('study_sessions')
-        .update({ generation_status: 'failed' })
-        .eq('id', sessionId)
-    } catch (e) {
-      console.error('[test/generate] failed-status write failed', sessionId, e)
+    // supabase-js resolves with { error } and does not throw, so the old
+    // try/catch here was dead code: a failed write left the row 'pending'
+    // and nothing said so. Check the result instead.
+    const { error } = await supabaseAdmin
+      .from('study_sessions')
+      .update({ generation_status: 'failed' })
+      .eq('id', sessionId)
+    if (error) {
+      await raiseAlert({
+        severity: 'warning',
+        title: 'Generation-failed status not written',
+        message:
+          `Test session ${sessionId} aborted generation but could not be marked failed. ` +
+          'It stays pending, which blocks regeneration until the staleness sweep clears it.',
+        dedupeKey: `test-gen-failed-status:${sessionId}`,
+        error,
+        context: { sessionId, studentId: user.id, why },
+      })
     }
     await refundCredit(why)
   }
@@ -543,7 +555,11 @@ export async function POST(req: NextRequest) {
   // and no finally runs in this process, so the refund has to happen
   // out-of-band — and the reaper can't re-derive the price without
   // walking the topic slug again.
-  await supabaseAdmin
+  //
+  // Verified: this write IS the safety net. If it silently fails and the
+  // invocation is later killed, the reaper has no cost/family to reprice
+  // the refund with, so the reserved credit is never returned.
+  const { error: pendingError } = await supabaseAdmin
     .from('study_sessions')
     .update({
       generation_status: 'pending',
@@ -555,6 +571,25 @@ export async function POST(req: NextRequest) {
       },
     })
     .eq('id', sessionId)
+  if (pendingError) {
+    await raiseAlert({
+      severity: 'critical',
+      title: 'Credit-refund metadata not persisted',
+      message:
+        `Test session ${sessionId} reserved ${creditCost} credit(s) but gen_credit_cost/` +
+        'gen_credit_family could not be written. If this invocation is killed the reaper cannot ' +
+        'reprice the refund and the credit is lost. Generation was aborted and the credit refunded now.',
+      dedupeKey: `test-gen-reaper-metadata-failed:${sessionId}`,
+      error: pendingError,
+      context: { sessionId, studentId: user.id, creditCost, creditFamily },
+    })
+    // Don't start a long generation we can't safely refund. Give the
+    // credit back immediately and let the student retry.
+    await failAndRefund('pending-write-failed')
+    return ndjsonResponse([
+      { type: 'error', message: 'could not start generation', reason: 'persist_failed' },
+    ])
+  }
 
   // Everything from here to the stream construction runs OUTSIDE the
   // stream's try/catch (prompt-context loads, spec lookups — all of

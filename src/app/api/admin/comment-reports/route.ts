@@ -94,12 +94,33 @@ export async function GET(request: NextRequest) {
       throw reportsError;
     }
 
-    // Calculate statistics
+    // Statistics.
+    //
+    // `total` was an exact count over the whole (filtered) table while the
+    // per-type counts were .filter().length over the current 50-row page, so
+    // the breakdown could never sum to the total on any table bigger than one
+    // page. Counted in SQL now, under the same filters as `total`.
+    const { data: statRows, error: statsError } = await supabase.rpc('admin_comment_report_stats', {
+      p_report_type: reportType || null,
+      p_start: startDate || null,
+      p_end: endDate || null,
+    });
+    if (statsError) {
+      console.error('[Comment Reports API] Error fetching stats:', statsError);
+      throw statsError;
+    }
+    const s = Array.isArray(statRows) && statRows.length > 0 ? statRows[0] : null;
+    const toNum = (v: unknown) => {
+      const n = typeof v === 'number' ? v : Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
+
     const stats = {
-      total: count || 0,
-      spam: reports?.filter(r => r.report_type === 'spam').length || 0,
-      abuse: reports?.filter(r => r.report_type === 'abuse').length || 0,
-      other: reports?.filter(r => r.report_type === 'other').length || 0
+      total: toNum(s?.total),
+      spam: toNum(s?.spam),
+      abuse: toNum(s?.abuse),
+      // Anything that is neither spam nor abuse, so the three always sum to total.
+      other: toNum(s?.other)
     };
 
     return NextResponse.json({

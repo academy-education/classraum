@@ -5,7 +5,8 @@ import { chargeBillingKey } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { resolvePlan, STUDY_PLANS, GRANT_INTERVAL_DAYS, isPassPlan } from '@/lib/study/plans'
 import { notifyStudent } from '@/lib/study/notify'
-import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { recordHeartbeat } from '@/lib/ops/heartbeat'
+import { raiseAlert } from '@/lib/ops/alert'
 
 const SUB_LINK = '/mobile/study/subscription'
 
@@ -98,16 +99,34 @@ export async function GET(req: NextRequest) {
 
   // Heartbeat sits inside the auth guard — a 401'd request never ran the
   // job, so letting it report would mask a dead cron to the watchdog.
-  // withHeartbeat rethrows, so the route's own error behaviour is unchanged.
-  await withHeartbeat('study-billing', async () => {
+  //
+  // NOT withHeartbeat: that helper only knows "threw / didn't throw", and
+  // every DB write here resolves with { error } rather than throwing. A
+  // run where the renewal update failed did NOT do its work, so it has to
+  // report ok:false — otherwise the watchdog shows a green cron over
+  // subscriptions that were charged but never advanced.
+  const started = Date.now()
+  try {
     await runBillingCycle(now, summary)
-    // Counters only. `errors` is an unbounded string list — the count is
-    // enough for the health view; the full list stays in the response.
-    const { errors, ...counts } = summary
-    return { ...counts, errorCount: errors.length }
-  })
+  } catch (err) {
+    await recordHeartbeat(
+      'study-billing',
+      { ok: false, detail: { error: err instanceof Error ? err.message : String(err) } },
+      Date.now() - started,
+    )
+    throw err
+  }
+  // Counters only. `errors` is an unbounded string list — the count is
+  // enough for the health view; the full list stays in the response.
+  const { errors, ...counts } = summary
+  const ok = errors.length === 0
+  await recordHeartbeat(
+    'study-billing',
+    { ok, detail: { ...counts, errorCount: errors.length, errors: errors.slice(0, 10) } },
+    Date.now() - started,
+  )
 
-  return NextResponse.json({ ok: true, summary, ranAt: now.toISOString() })
+  return NextResponse.json({ ok, summary, ranAt: now.toISOString() })
 }
 
 async function runBillingCycle(now: Date, summary: RunSummary) {
@@ -159,12 +178,7 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
     if (!row.portone_subscription_id) {
       // No key on file (e.g. first charge failed in Phase 4.6 path).
       // Flip directly to expired so the UI prompts a fresh checkout.
-      await supabaseAdmin
-        .from('study_subscriptions')
-        .update({ status: 'expired', updated_at: now.toISOString() })
-        .eq('id', row.id)
-      await notifySubscriptionExpired(row.student_id)
-      summary.expired++
+      if (await markExpired(row, now, summary)) summary.expired++
       continue
     }
     const beforeStatus = row.status
@@ -178,12 +192,7 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
         .eq('id', row.id)
         .single()
       if (after?.status === 'past_due') {
-        await supabaseAdmin
-          .from('study_subscriptions')
-          .update({ status: 'expired', updated_at: now.toISOString() })
-          .eq('id', row.id)
-        await notifySubscriptionExpired(row.student_id)
-        summary.expired++
+        if (await markExpired(row, now, summary)) summary.expired++
       }
     }
   }
@@ -203,7 +212,12 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
   for (const row of (grantRows ?? []) as { id: string; student_id: string; plan: string; next_grant_at: string }[]) {
     const plan = resolvePlan(row.plan)
     const nextGrant = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
-    await supabaseAdmin
+    // Order matters for idempotency: the subscription update is what moves
+    // next_grant_at forward, so if IT fails the row stays due and the next
+    // run retries — no double grant. If the update lands but the ledger
+    // insert fails the balance is still correct (grant_credits_remaining is
+    // the source of truth); only the audit line is missing.
+    const { error: subErr } = await supabaseAdmin
       .from('study_subscriptions')
       .update({
         grant_credits_remaining: plan.monthlyCredits,
@@ -211,21 +225,84 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
         updated_at: now.toISOString(),
       })
       .eq('id', row.id)
-    await supabaseAdmin.from('study_credit_ledger').insert({
+    if (subErr) {
+      summary.errors.push(`grant ${row.id}: ${subErr.message}`)
+      await raiseAlert({
+        severity: 'warning',
+        title: 'Monthly credit grant not applied',
+        message:
+          `The monthly credit refresh for subscription ${row.id} could not be written. ` +
+          'The subscriber is a month short of credits until the next run succeeds.',
+        dedupeKey: `study-grant-refresh-failed:${row.id}`,
+        error: subErr,
+        context: { subscriptionId: row.id, studentId: row.student_id, plan: plan.id },
+      })
+      continue
+    }
+    const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
       student_id: row.student_id,
       delta: plan.monthlyCredits,
       bucket: 'grant',
       kind: 'grant',
       note: `monthly grant refresh ${plan.id}`,
     })
+    if (ledgerErr) {
+      // Balance is right, audit trail isn't. Worth knowing, not worth
+      // withholding the grant we already applied.
+      summary.errors.push(`grant-ledger ${row.id}: ${ledgerErr.message}`)
+      await raiseAlert({
+        severity: 'warning',
+        title: 'Credit-grant ledger row missing',
+        message:
+          `The monthly grant for subscription ${row.id} was applied but its ledger row failed to insert. ` +
+          'The balance is correct; the audit trail is incomplete.',
+        dedupeKey: `study-grant-ledger-failed:${row.id}`,
+        error: ledgerErr,
+        context: { subscriptionId: row.id, studentId: row.student_id, plan: plan.id },
+      })
+    }
     summary.granted = (summary.granted ?? 0) + 1
   }
+}
+
+/**
+ * Flip a subscription to `expired` and, only if that write actually
+ * landed, tell the student. Returns true when the transition was
+ * persisted. Notifying off an unverified write told students their
+ * subscription had expired while the DB still said past_due — the
+ * support ticket that follows is unanswerable.
+ */
+async function markExpired(
+  row: SubscriptionRow,
+  now: Date,
+  summary: RunSummary,
+): Promise<boolean> {
+  const { error } = await supabaseAdmin
+    .from('study_subscriptions')
+    .update({ status: 'expired', updated_at: now.toISOString() })
+    .eq('id', row.id)
+  if (error) {
+    summary.errors.push(`expire ${row.id}: ${error.message}`)
+    await raiseAlert({
+      severity: 'warning',
+      title: 'Subscription expiry not recorded',
+      message:
+        `Subscription ${row.id} should have flipped to expired after repeated payment failures ` +
+        'but the write failed. It is still past_due and no expiry notice was sent.',
+      dedupeKey: `study-expire-failed:${row.id}`,
+      error,
+      context: { subscriptionId: row.id, studentId: row.student_id },
+    })
+    return false
+  }
+  await notifySubscriptionExpired(row.student_id)
+  return true
 }
 
 async function chargeAndAdvance(
   row: SubscriptionRow,
   now: Date,
-  summary: { charged: number; failed: number; errors: string[] }
+  summary: RunSummary
 ) {
   // Scheduled downgrades take effect NOW, at the period boundary:
   // the renewal charges the pending plan's price and the row flips
@@ -262,7 +339,7 @@ async function chargeAndAdvance(
     const base = Math.max(now.getTime(), new Date(row.current_period_end).getTime())
     const nextEnd = new Date(base + effectivePlan.intervalDays * 24 * 60 * 60 * 1000)
     const nextGrant = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
-    await supabaseAdmin
+    const { error: subErr } = await supabaseAdmin
       .from('study_subscriptions')
       .update({
         status: 'active',
@@ -281,18 +358,66 @@ async function chargeAndAdvance(
         updated_at: now.toISOString(),
       })
       .eq('id', row.id)
-    await supabaseAdmin.from('study_credit_ledger').insert({
+
+    // Money has already left the student's card at this point. If the
+    // entitlement writes didn't land, this is NOT a clean charge: the
+    // period never advanced and the monthly credits never refreshed, so
+    // the subscriber paid for a month they can't use. Page a human.
+    if (subErr) {
+      summary.errors.push(`renew-advance ${row.id}: ${subErr.message}`)
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Renewal charged but subscription not advanced',
+        message:
+          `Payment ${paymentId} succeeded at PortOne for ₩${effectivePlan.priceWon}, but the ` +
+          `study_subscriptions update for ${row.id} failed. The period was not extended and the ` +
+          'monthly credit grant was not refreshed — the student paid and got nothing. ' +
+          'Fix the row by hand or refund the charge.',
+        dedupeKey: `study-renewal-advance-failed:${row.id}`,
+        error: subErr,
+        context: {
+          subscriptionId: row.id,
+          studentId: row.student_id,
+          paymentId,
+          plan: effectivePlan.id,
+          amountWon: effectivePlan.priceWon,
+        },
+      })
+      // Still record the payment — an unrecorded charge is invisible to
+      // the admin payments view and therefore un-refundable, which is
+      // strictly worse than a charge attached to a stale subscription.
+      await recordSubscriptionPayment({ paymentId, studentId: row.student_id, amountWon: effectivePlan.priceWon })
+      summary.failed++
+      return
+    }
+
+    const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
       student_id: row.student_id,
       delta: effectivePlan.monthlyCredits,
       bucket: 'grant',
       kind: 'grant',
       note: `renewal ${effectivePlan.id} (${paymentId})`,
     })
+    if (ledgerErr) {
+      // The grant itself is on the subscription row (already written), so
+      // the student has their credits; only the audit line is missing.
+      summary.errors.push(`renew-ledger ${row.id}: ${ledgerErr.message}`)
+      await raiseAlert({
+        severity: 'warning',
+        title: 'Renewal credit-ledger row missing',
+        message:
+          `Renewal ${paymentId} advanced subscription ${row.id} and refreshed its credits, but the ` +
+          'ledger row failed to insert. Balance is correct; the audit trail is incomplete.',
+        dedupeKey: `study-renewal-ledger-failed:${row.id}`,
+        error: ledgerErr,
+        context: { subscriptionId: row.id, studentId: row.student_id, paymentId },
+      })
+    }
     // Record the charge so it appears in the admin payments view / is refundable.
     await recordSubscriptionPayment({ paymentId, studentId: row.student_id, amountWon: effectivePlan.priceWon })
     summary.charged++
   } else {
-    await supabaseAdmin
+    const { error: pastDueErr } = await supabaseAdmin
       .from('study_subscriptions')
       .update({
         status: 'past_due',
@@ -301,10 +426,28 @@ async function chargeAndAdvance(
         updated_at: now.toISOString(),
       })
       .eq('id', row.id)
-    // Dunning notice — tell the student their card failed and link them
-    // to update it. This is the single biggest involuntary-churn recovery
-    // lever; without it a dead card silently expires the subscription.
-    await notifyPaymentFailed(row.student_id)
+    if (pastDueErr) {
+      // Dunning state didn't stick: last_payment_attempt_at is unchanged,
+      // so the retry sweep will pick this row up again on the next run
+      // (safe — the paymentId is period-namespaced and PortOne dedupes).
+      // Don't send the dunning notice off a write that didn't happen.
+      summary.errors.push(`past-due ${row.id}: ${pastDueErr.message}`)
+      await raiseAlert({
+        severity: 'warning',
+        title: 'Dunning state not recorded',
+        message:
+          `The charge for subscription ${row.id} failed and the past_due transition could not be ` +
+          'written. No dunning notice was sent and the retry clock did not advance.',
+        dedupeKey: `study-past-due-failed:${row.id}`,
+        error: pastDueErr,
+        context: { subscriptionId: row.id, studentId: row.student_id, paymentId },
+      })
+    } else {
+      // Dunning notice — tell the student their card failed and link them
+      // to update it. This is the single biggest involuntary-churn recovery
+      // lever; without it a dead card silently expires the subscription.
+      await notifyPaymentFailed(row.student_id)
+    }
     summary.failed++
     if (result.code) summary.errors.push(`${row.id}: ${result.code} ${result.message ?? ''}`)
   }

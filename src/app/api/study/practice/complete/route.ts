@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * POST /api/study/practice/complete — mark a practice session finished.
@@ -60,10 +61,27 @@ export async function POST(req: NextRequest) {
 
   // Idempotent: re-finishing (e.g. "practice more" second round) keeps
   // the session completed and lets the score reflect the full ledger.
-  await supabaseAdmin
+  //
+  // Verified, not fire-and-forget: this update IS the completion. If it
+  // fails and we return anyway, the client fires the XP celebration and
+  // marks the journey node done while the session sits 'active' forever.
+  const { error: completeError } = await supabaseAdmin
     .from('study_sessions')
     .update({ status: 'completed', completed_at: new Date().toISOString(), score })
     .eq('id', session.id)
+  if (completeError) {
+    await raiseAlert({
+      severity: 'warning',
+      title: 'Practice session completion not saved',
+      message:
+        `Practice session ${session.id} finished but the completion write failed, so the session ` +
+        'is stuck active and its score was not persisted. The student saw an error instead of their result.',
+      dedupeKey: `practice-complete-write-failed:${session.id}`,
+      error: completeError,
+      context: { sessionId: session.id, studentId: user.id, score },
+    })
+    return NextResponse.json({ error: 'could not save completion' }, { status: 500 })
+  }
 
   let xpAwarded = 0
   if (!wasAlreadyComplete) {

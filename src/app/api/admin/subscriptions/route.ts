@@ -47,6 +47,14 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
+    // Past the auth gate, read with the service role like the sibling admin
+    // routes. The platform-wide aggregates below are service_role-only RPCs
+    // (migration 052) so revenue totals are not reachable with a public key.
+    const db = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+
     // Parse pagination params
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get('page') || '0');
@@ -125,37 +133,62 @@ export async function GET(req: NextRequest) {
       });
     });
 
-    // Fetch revenue metrics
-    const activeSubscriptions = subscriptions?.filter(s => s.status === 'active' || s.status === 'trialing') || [];
-    const totalMRR = activeSubscriptions.reduce((sum, sub) => sum + (sub.monthly_amount || 0), 0);
-    const totalARR = totalMRR * 12;
+    // Platform-wide subscription metrics.
+    //
+    // These used to reduce over `subscriptions` — the CURRENT PAGE (500 rows
+    // by default). With 501 subscriptions the MRR card silently understated
+    // revenue, and churnRate divided the canceled count by the page length
+    // instead of the real subscription count, so the same churn number moved
+    // whenever someone changed pageSize. The aggregate now runs in SQL over
+    // every row; the page below is only ever used for the visible list.
+    const { data: metricsRows, error: metricsError } = await db.rpc('admin_subscription_metrics');
+    if (metricsError) {
+      console.error('[Admin Subscriptions API] Error fetching metrics:', metricsError);
+      return NextResponse.json({ error: 'Failed to fetch subscription metrics' }, { status: 500 });
+    }
+    const agg = Array.isArray(metricsRows) && metricsRows.length > 0 ? metricsRows[0] : null;
+    const toNum = (v: unknown) => {
+      const n = typeof v === 'number' ? v : Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
 
-    // Calculate churn (simplified - would need historical data for accurate calculation)
-    const canceledThisMonth = subscriptions?.filter(s =>
-      s.status === 'canceled' &&
-      new Date(s.updated_at) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
-    ).length || 0;
-
-    const newThisMonth = subscriptions?.filter(s =>
-      new Date(s.created_at) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
-    ).length || 0;
-
-    const totalSubscriptions = subscriptions?.length || 1;
-    const churnRate = (canceledThisMonth / totalSubscriptions) * 100;
+    const totalMRR = toNum(agg?.mrr_won);
+    const allSubscriptionsCount = toNum(agg?.total_count);
+    const canceledThisMonth = toNum(agg?.canceled_30d);
+    const churnRate = allSubscriptionsCount > 0 ? (canceledThisMonth / allSubscriptionsCount) * 100 : 0;
 
     const metrics = {
       totalMRR,
-      totalARR,
+      totalARR: totalMRR * 12,
       growth: 0, // Would need historical data
       churnRate: Math.round(churnRate * 10) / 10,
-      newSubscriptions: newThisMonth,
+      newSubscriptions: toNum(agg?.new_30d),
       canceledSubscriptions: canceledThisMonth
     };
+
+    // Last payment actually taken for each academy on this page. `monthly_amount`
+    // was previously handed back as `lastPaymentAmount`, so a failed or partial
+    // charge still rendered as a successful payment of the full plan price.
+    const { data: paidInvoices } = await db
+      .from('subscription_invoices')
+      .select('academy_id, amount, paid_at')
+      .in('academy_id', academyIds)
+      .eq('status', 'paid')
+      .order('paid_at', { ascending: false });
+
+    const lastPaymentMap = new Map<string, { amount: number; paidAt: string | null }>();
+    for (const inv of paidInvoices ?? []) {
+      // Rows arrive newest-first, so the first hit per academy is the latest.
+      if (!lastPaymentMap.has(inv.academy_id)) {
+        lastPaymentMap.set(inv.academy_id, { amount: toNum(inv.amount), paidAt: inv.paid_at });
+      }
+    }
 
     // Format subscription data
     const formattedSubscriptions = subscriptions?.map(sub => {
       const usage = usageMap.get(sub.academy_id);
       const totalUsers = userCountMap.get(sub.academy_id) || 0;
+      const lastPayment = lastPaymentMap.get(sub.academy_id) || null;
 
       return {
         id: sub.id,
@@ -168,8 +201,11 @@ export async function GET(req: NextRequest) {
         currentPeriodStart: sub.current_period_start,
         currentPeriodEnd: sub.current_period_end,
         nextBillingDate: sub.next_billing_date,
-        lastPaymentDate: sub.last_payment_date,
-        lastPaymentAmount: sub.monthly_amount, // Could fetch from invoices
+        // Both now come from the latest PAID invoice; null when the academy
+        // has never had one, so the UI can show "—" instead of a plan price
+        // that was never charged.
+        lastPaymentDate: lastPayment?.paidAt ?? sub.last_payment_date ?? null,
+        lastPaymentAmount: lastPayment?.amount ?? null,
         autoRenew: sub.auto_renew,
         totalUsers: totalUsers,
         paymentMethod: sub.portone_billing_key ? 'Card (PortOne)' : 'Not set',

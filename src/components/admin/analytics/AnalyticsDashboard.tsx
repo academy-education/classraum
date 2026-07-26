@@ -25,18 +25,35 @@ import { DashboardCard } from '../DashboardCard';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { useAdminFetch } from '../useAdminFetch';
 
+/**
+ * Shape mirrors /api/admin/analytics. Metrics the platform does not measure
+ * are absent from both — the dashboard used to render a fabricated website
+ * visitor count, a trial conversion rate that was always exactly 1000.0%, a
+ * 70/30 monthly-vs-annual revenue "breakdown", hardcoded API latency / error
+ * rate / peak hours, and a fixed 24.5 minute session duration. None of those
+ * had a data source; an absent card beats a confident wrong one.
+ */
 interface AnalyticsData {
   revenue: {
-    total: number;
-    growth: number;
-    yearOverYearGrowth: number;
+    /** Paid invoices whose paid_at falls in the selected window. */
+    collected: number;
+    /** null when the comparison window had no revenue to grow from. */
+    growth: number | null;
+    yearOverYearGrowth: number | null;
     byPlan: { plan: string; amount: number; percentage: number }[];
     // Numeric year/month so the label can be localized here — the API
     // must not hand back a pre-formatted English month name.
     trend: { year: number; monthIndex: number; amount: number }[];
-    monthlyBreakdown: {
+    byBillingCycle: {
       monthly: number;
       annual: number;
+    };
+    /** Recurring run-rate, independent of the selected window. */
+    recurring: {
+      mrr: number;
+      arr: number;
+      arpu: number;
+      payingSubscriptions: number;
     };
   };
   customers: {
@@ -45,29 +62,26 @@ interface AnalyticsData {
     churn: number;
     byStatus: { status: string; count: number }[];
     acquisition: {
-      websiteVisitors: number;
       trialSignups: number;
-      trialConversionRate: number;
       paidConversions: number;
-      paidConversionRate: number;
+      paidConversionRate: number | null;
     };
   };
   usage: {
     activeUsers: number;
-    totalSessions: number;
-    avgSessionDuration: number;
-    topFeatures: { feature: string; usage: number }[];
-  };
-  geography: {
-    byRegion: { region: string; customers: number; revenue: number }[];
-  };
-  performance: {
-    apiResponseTime: string;
-    databasePerformance: string;
-    errorRate: string;
-    peakHours: string;
+    studySessions: number;
+    completedStudySessions: number;
+    /** null when no session in the window completed. */
+    avgSessionDuration: number | null;
+    topEvents: { event: string; count: number; share: number }[];
   };
 }
+
+/** Growth percentages are nullable — the API returns null when the comparison
+ *  window had no revenue, so there is no meaningful percentage to show. */
+const formatGrowth = (v: number | null) => (v === null ? '—' : `${v >= 0 ? '+' : ''}${v}%`);
+const growthClass = (v: number | null) =>
+  v === null ? 'text-gray-400' : v >= 0 ? 'text-emerald-600' : 'text-rose-600';
 
 export function AnalyticsDashboard() {
   const { t, language } = useTranslation();
@@ -170,13 +184,24 @@ export function AnalyticsDashboard() {
       ) : (<>
       {/* Key Metrics — uses shared DashboardCard with semantic accents */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Collected revenue — paid invoices in the window, not subscription
+            rows created in it. Growth is omitted when the prior window had no
+            revenue, rather than shown as 0% or Infinity%. */}
         <DashboardCard
           title={String(t('admin.analytics.totalRevenue'))}
-          value={formatPrice(data.revenue.total)}
-          subtitle={String(t('admin.analytics.fromLastMonth', { n: data.revenue.growth }))}
+          value={formatPrice(data.revenue.collected)}
+          subtitle={
+            data.revenue.growth === null
+              ? undefined
+              : String(t('admin.analytics.fromLastMonth', { n: data.revenue.growth }))
+          }
           icon={<DollarSign className="h-5 w-5" />}
           accent="emerald"
-          trend={{ value: data.revenue.growth, isPositive: data.revenue.growth >= 0 }}
+          trend={
+            data.revenue.growth === null
+              ? undefined
+              : { value: data.revenue.growth, isPositive: data.revenue.growth >= 0 }
+          }
         />
         <DashboardCard
           title={String(t('admin.analytics.totalCustomers'))}
@@ -188,7 +213,7 @@ export function AnalyticsDashboard() {
         <DashboardCard
           title={String(t('admin.analytics.activeUsers'))}
           value={data.usage.activeUsers.toLocaleString()}
-          subtitle={String(t('admin.analytics.sessionsCount', { n: data.usage.totalSessions.toLocaleString() }))}
+          subtitle={String(t('admin.analytics.sessionsCount', { n: data.usage.studySessions.toLocaleString() }))}
           icon={<Activity className="h-5 w-5" />}
           accent="violet"
         />
@@ -281,44 +306,36 @@ export function AnalyticsDashboard() {
                 </div>
               </div>
 
-              {/* Geographic Distribution */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{String(t('admin.analytics.customersByRegion'))}</h3>
-                <div className="space-y-2">
-                  {data.geography.byRegion.map((region, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div className="flex items-center space-x-3">
-                        <Building2 className="h-4 w-4 text-gray-400" />
-                        <span className="font-medium">{region.region}</span>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm font-semibold">{String(t('admin.analytics.academiesCount', { n: region.customers }))}</div>
-                        <div className="text-xs text-gray-500">{formatPrice(region.revenue)}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              {/* "Customers by region" was removed: academies carry no region
+                  or city column, so the API's region query always errored and
+                  every academy fell through to a literal "Other" bucket. */}
 
-              {/* Top Features */}
+              {/* Feature usage — real instrumented events from
+                  study_analytics_events for the selected window. The five
+                  hardcoded percentages this replaced ("Student Management
+                  89.2%" …) were never backed by any tracking. */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">{String(t('admin.analytics.featureUsage'))}</h3>
-                <div className="space-y-3">
-                  {data.usage.topFeatures.map((feature, index) => (
-                    <div key={index} className="space-y-1">
-                      <div className="flex justify-between text-sm">
-                        <span className="font-medium">{feature.feature}</span>
-                        <span className="text-gray-500">{feature.usage}%</span>
+                {data.usage.topEvents.length === 0 ? (
+                  <p className="text-sm text-gray-500">{String(t('admin.analytics.noData'))}</p>
+                ) : (
+                  <div className="space-y-3">
+                    {data.usage.topEvents.map((e, index) => (
+                      <div key={index} className="space-y-1">
+                        <div className="flex justify-between text-sm">
+                          <span className="font-medium break-all">{e.event}</span>
+                          <span className="text-gray-500 whitespace-nowrap">{e.count.toLocaleString()} ({e.share}%)</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-primary h-2 rounded-full"
+                            style={{ width: `${e.share}%` }}
+                          />
+                        </div>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-primary h-2 rounded-full"
-                          style={{ width: `${feature.usage}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -326,21 +343,27 @@ export function AnalyticsDashboard() {
           {activeTab === 'revenue' && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                {/* MRR/ARR/ARPU come from the recurring run-rate over all
+                    currently-billing subscriptions, so they no longer change
+                    when the time-range selector changes. Previously MRR was
+                    the window's booking total — "Last 12 months" showed a
+                    year of revenue as MRR, then ARR multiplied it by 12. */}
                 <DashboardCard
                   title={String(t('admin.analytics.mrr'))}
-                  value={formatPrice(data.revenue.total)}
+                  value={formatPrice(data.revenue.recurring.mrr)}
                   icon={<TrendingUp className="h-5 w-5" />}
                   accent="emerald"
                 />
                 <DashboardCard
                   title={String(t('admin.analytics.arr'))}
-                  value={formatPrice(data.revenue.total * 12)}
+                  value={formatPrice(data.revenue.recurring.arr)}
                   icon={<BarChart3 className="h-5 w-5" />}
                   accent="blue"
                 />
                 <DashboardCard
                   title={String(t('admin.analytics.arpu'))}
-                  value={formatPrice(data.customers.total > 0 ? Math.round(data.revenue.total / data.customers.total) : 0)}
+                  value={formatPrice(data.revenue.recurring.arpu)}
+                  subtitle={String(t('admin.analytics.academiesCount', { n: data.revenue.recurring.payingSubscriptions }))}
                   icon={<DollarSign className="h-5 w-5" />}
                   accent="violet"
                 />
@@ -353,13 +376,15 @@ export function AnalyticsDashboard() {
                   <div>
                     <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.byBillingCycle'))}</h5>
                     <div className="space-y-2">
+                      {/* Real split, summed per invoice billing_cycle — this
+                          was a hardcoded 70/30 of the window total. */}
                       <div className="flex justify-between">
                         <span>{String(t('admin.analytics.monthlySubscriptions'))}</span>
-                        <span className="font-medium">{formatPrice(data.revenue.monthlyBreakdown.monthly)}</span>
+                        <span className="font-medium">{formatPrice(data.revenue.byBillingCycle.monthly)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>{String(t('admin.analytics.annualSubscriptions'))}</span>
-                        <span className="font-medium">{formatPrice(data.revenue.monthlyBreakdown.annual)}</span>
+                        <span className="font-medium">{formatPrice(data.revenue.byBillingCycle.annual)}</span>
                       </div>
                     </div>
                   </div>
@@ -367,13 +392,16 @@ export function AnalyticsDashboard() {
                   <div>
                     <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.growthMetrics'))}</h5>
                     <div className="space-y-2">
+                      {/* null = no baseline revenue in the comparison window;
+                          show a dash rather than a made-up percentage. The
+                          sign is also no longer hardcoded to "+". */}
                       <div className="flex justify-between">
                         <span>{String(t('admin.analytics.monthOverMonthGrowth'))}</span>
-                        <span className="font-medium text-emerald-600">+{data.revenue.growth}%</span>
+                        <span className={`font-medium ${growthClass(data.revenue.growth)}`}>{formatGrowth(data.revenue.growth)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>{String(t('admin.analytics.yearOverYearGrowth'))}</span>
-                        <span className="font-medium text-emerald-600">+{data.revenue.yearOverYearGrowth}%</span>
+                        <span className={`font-medium ${growthClass(data.revenue.yearOverYearGrowth)}`}>{formatGrowth(data.revenue.yearOverYearGrowth)}</span>
                       </div>
                     </div>
                   </div>
@@ -405,18 +433,23 @@ export function AnalyticsDashboard() {
               {/* Customer Acquisition Funnel */}
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h4 className="font-medium text-gray-900 mb-4">{String(t('admin.analytics.acquisitionFunnel'))}</h4>
+                {/* The "Website visitors" step is gone — there is no web
+                    analytics source, and its value was academies * 8.5, which
+                    made the trial conversion rate below it read exactly
+                    1000.0% on every deployment. The funnel now starts at the
+                    first step the database can actually answer: academies that
+                    were given a trial. */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg ring-1 ring-gray-100/80">
-                    <span>{String(t('admin.analytics.websiteVisitors'))}</span>
-                    <span className="font-semibold">{data.customers.acquisition.websiteVisitors.toLocaleString()}</span>
+                    <span>{String(t('admin.analytics.trialSignups'))}</span>
+                    <span className="font-semibold">{data.customers.acquisition.trialSignups.toLocaleString()}</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg ring-1 ring-gray-100/80 ml-4">
-                    <span>{String(t('admin.analytics.trialSignups'))}</span>
-                    <span className="font-semibold">{data.customers.acquisition.trialSignups.toLocaleString()} ({data.customers.acquisition.trialConversionRate}%)</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-white rounded-lg ring-1 ring-gray-100/80 ml-8">
                     <span>{String(t('admin.analytics.paidConversions'))}</span>
-                    <span className="font-semibold">{data.customers.acquisition.paidConversions} ({data.customers.acquisition.paidConversionRate}%)</span>
+                    <span className="font-semibold">
+                      {data.customers.acquisition.paidConversions.toLocaleString()}
+                      {data.customers.acquisition.paidConversionRate !== null && ` (${data.customers.acquisition.paidConversionRate}%)`}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -435,58 +468,26 @@ export function AnalyticsDashboard() {
                   icon={<Users className="h-5 w-5" />}
                   accent="emerald"
                 />
-                <DashboardCard
-                  title={String(t('admin.analytics.avgSessionDuration'))}
-                  value={String(t('admin.analytics.minutes', { n: data.usage.avgSessionDuration }))}
-                  icon={<Clock className="h-5 w-5" />}
-                  accent="violet"
-                />
+                {/* Measured start→completion mean over sessions that actually
+                    completed in the window (was a fixed 24.5). Hidden entirely
+                    when nothing completed, since there is nothing to average. */}
+                {data.usage.avgSessionDuration !== null && (
+                  <DashboardCard
+                    title={String(t('admin.analytics.avgSessionDuration'))}
+                    value={String(t('admin.analytics.minutes', { n: data.usage.avgSessionDuration }))}
+                    subtitle={String(t('admin.analytics.sessionsCount', { n: data.usage.completedStudySessions.toLocaleString() }))}
+                    icon={<Clock className="h-5 w-5" />}
+                    accent="violet"
+                  />
+                )}
               </div>
 
-              {/* Usage Heatmap */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-4">{String(t('admin.analytics.platformHealth'))}</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.systemPerformance'))}</h5>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span>{String(t('admin.analytics.apiResponseTime'))}</span>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-sm font-medium">{data.performance.apiResponseTime}</span>
-                          <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span>{String(t('admin.analytics.databasePerformance'))}</span>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-sm font-medium">{data.performance.databasePerformance}</span>
-                          <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span>{String(t('admin.analytics.errorRate'))}</span>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-sm font-medium">{data.performance.errorRate}</span>
-                          <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <h5 className="text-sm font-medium text-gray-700 mb-3">{String(t('admin.analytics.peakUsageHours'))}</h5>
-                    <div className="space-y-2">
-                      <div className="flex items-start space-x-2 p-2 bg-sky-50 ring-1 ring-sky-200 rounded-lg">
-                        <Activity className="h-4 w-4 text-sky-600 mt-0.5" />
-                        <div className="text-sm">
-                          <p className="text-sky-700">{data.performance.peakHours}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* The "Platform health" panel (API response time, database
+                  performance, error rate, peak usage hours) was removed. All
+                  four were literals in the API route — '245ms', 'Good',
+                  '0.2%', '9 AM - 11 AM, 2 PM - 4 PM' — with no APM, no request
+                  timing and no hourly rollup behind them, yet each was drawn
+                  next to a green status dot. */}
             </div>
           )}
         </div>

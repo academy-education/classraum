@@ -4,6 +4,7 @@ import { getBillingKeyInfo } from '@/lib/portone-charge'
 import { STUDY_PLANS } from '@/lib/study/plans'
 import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
 import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * PortOne webhook for the study subscription stream.
@@ -24,8 +25,12 @@ import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
  * over the raw body. We re-hash with the configured webhook secret
  * and reject on mismatch. The secret lives in PORTONE_WEBHOOK_SECRET.
  *
- * No retries here — PortOne re-sends on non-2xx, so we MUST return
- * 200 for events we intentionally ignore.
+ * Retry semantics: PortOne re-sends on non-2xx, so we return 200 for
+ * events we intentionally ignore (unknown types, unmatched rows) and
+ * for signature rejections (401 is final by design). But a 2xx is a
+ * promise that the effect was persisted — when a state write fails we
+ * return 5xx on purpose so the delivery comes back. Every write here is
+ * idempotent, so redelivery is safe.
  */
 
 export const dynamic = 'force-dynamic'
@@ -147,7 +152,7 @@ export async function POST(req: NextRequest) {
     // Only flip if not already terminal — don't resurrect a
     // cancelled/expired row from a stale webhook.
     if (row.status === 'active' || row.status === 'trial') {
-      await supabaseAdmin
+      const { error } = await supabaseAdmin
         .from('study_subscriptions')
         .update({
           status: 'past_due',
@@ -155,6 +160,10 @@ export async function POST(req: NextRequest) {
           updated_at: now,
         })
         .eq('id', row.id)
+      // A 2xx here tells PortOne "handled, stop retrying". If the row never
+      // moved to past_due the charge failure is invisible and the subscriber
+      // never enters dunning — so don't ack; let PortOne redeliver.
+      if (error) return await failToPersist('past_due', row.id, paymentId, error)
     }
     return NextResponse.json({ ok: true, applied: 'past_due' })
   }
@@ -163,7 +172,7 @@ export async function POST(req: NextRequest) {
     // Refund — set period_end to now so access drops immediately,
     // and mark cancelled. Customer support follows up on partial
     // refund edge cases manually.
-    await supabaseAdmin
+    const { error } = await supabaseAdmin
       .from('study_subscriptions')
       .update({
         status: 'cancelled',
@@ -172,14 +181,59 @@ export async function POST(req: NextRequest) {
         updated_at: now,
       })
       .eq('id', row.id)
+    // Money has already gone back to the customer. Acking a failed write
+    // here leaves a refunded subscriber on Premium forever, with no retry
+    // ever coming. Non-2xx so PortOne redelivers.
+    // (Both writes below are idempotent: the update is a fixed end-state and
+    // syncStudyPaymentRefund() no-ops once refunded_at is set, so redelivery
+    // can't double-apply.)
+    if (error) return await failToPersist('cancelled', row.id, paymentId, error)
+
     // Also reflect the refund on the charge itself so the admin payments
     // view stops showing it as revenue. Idempotent + PortOne-verified.
-    await syncStudyPaymentRefund(paymentId)
+    const sync = await syncStudyPaymentRefund(paymentId)
+    if (sync.status === 'unverifiable') {
+      // Couldn't confirm/stamp the refund on the payment row — the charge
+      // would keep counting as revenue. Ask for a redelivery.
+      console.warn('[study/subscription/webhook] refund sync unverifiable', { paymentId })
+      return NextResponse.json(
+        { error: 'refund not fully recorded', retry: true },
+        { status: 503 },
+      )
+    }
     return NextResponse.json({ ok: true, applied: 'cancelled' })
   }
 
   // Paid + everything else: no-op (we already wrote the row sync).
   return NextResponse.json({ ok: true })
+}
+
+/**
+ * A state change we were told about but could not persist. Returning 5xx is
+ * the recovery mechanism: PortOne redelivers on non-2xx, and every write
+ * behind this helper is idempotent, so a later delivery simply succeeds.
+ * The alert covers the case where retries are exhausted.
+ */
+async function failToPersist(
+  intended: 'past_due' | 'cancelled',
+  subscriptionId: string,
+  paymentId: string,
+  error: unknown,
+): Promise<NextResponse> {
+  await raiseAlert({
+    severity: 'critical',
+    title: `Study subscription webhook could not apply "${intended}"`,
+    message:
+      intended === 'cancelled'
+        ? `A refund webhook arrived for payment ${paymentId} but subscription ${subscriptionId} could not be marked cancelled. ` +
+          `The subscriber keeps paid access until this is fixed. Returning 5xx so PortOne redelivers.`
+        : `A failed-charge webhook arrived for payment ${paymentId} but subscription ${subscriptionId} could not be moved to past_due. ` +
+          `Dunning will not start until this is fixed. Returning 5xx so PortOne redelivers.`,
+    dedupeKey: `study-sub-webhook-write:${intended}:${subscriptionId}`,
+    error,
+    context: { subscriptionId, paymentId, intended },
+  })
+  return NextResponse.json({ error: 'state not persisted', retry: true }, { status: 500 })
 }
 
 function parseCustomData(input: unknown): { kind?: string } | null {

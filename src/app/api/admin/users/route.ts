@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { listAllAuthUsers } from '../_lib/admin-auth';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -43,104 +44,98 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Fetch all users with their academy relationships
-    const { data: users, error: usersError } = await supabase.rpc('get_all_users_with_academies');
+    // Fetch all users, then enrich with auth state + academy membership.
+    //
+    // The `get_all_users_with_academies` RPC branch was removed. It returned
+    // raw snake_case rows straight to the client while the UI reads camelCase
+    // (`lastLoginAt`, `academyName`, …), so the moment that function shipped
+    // the whole page would have rendered blanks and zeroes. One code path now,
+    // one response shape.
+    const { data: usersData, error: queryError } = await supabase
+      .from('users')
+      .select(`
+        id,
+        name,
+        email,
+        role,
+        created_at
+      `)
+      .order('created_at', { ascending: false });
 
-    if (usersError) {
-      // If the function doesn't exist, fall back to manual query
-      console.log('[Admin Users API] RPC function not found, using manual query');
-
-      const { data: usersData, error: queryError } = await supabase
-        .from('users')
-        .select(`
-          id,
-          name,
-          email,
-          role,
-          created_at
-        `)
-        .order('created_at', { ascending: false });
-
-      if (queryError) {
-        throw queryError;
-      }
-
-      // Get auth data and academy relationships separately
-      const userIds = usersData?.map(u => u.id) || [];
-
-      // Get auth data
-      const { data: authUsers } = await supabase.auth.admin.listUsers();
-      // The supabase-js User type omits admin-only fields like `banned_until`,
-      // even though the admin REST endpoint returns them. Widen the value type
-      // here so we can read them without per-call casts.
-      type AdminAuthUser = (typeof authUsers.users)[number] & {
-        banned_until?: string | null
-      }
-      const authMap = new Map<string, AdminAuthUser>(
-        authUsers.users.map(u => [u.id, u as AdminAuthUser])
-      );
-
-      // Get academy relationships
-      const [
-        { data: managers },
-        { data: teachers },
-        { data: students },
-        { data: parents }
-      ] = await Promise.all([
-        supabase.from('managers').select('user_id, academy_id, academies(name)').in('user_id', userIds),
-        supabase.from('teachers').select('user_id, academy_id, academies(name)').in('user_id', userIds),
-        supabase.from('students').select('user_id, academy_id, academies(name)').in('user_id', userIds),
-        supabase.from('parents').select('user_id, academy_id, academies(name)').in('user_id', userIds)
-      ]);
-
-      // Create lookup maps
-      const academyMap = new Map();
-      [...(managers || []), ...(teachers || []), ...(students || []), ...(parents || [])].forEach(rel => {
-        if (rel && rel.user_id) {
-          academyMap.set(rel.user_id, {
-            id: rel.academy_id,
-            name: (rel as any).academies?.name || null
-          });
-        }
-      });
-
-      // Combine all data
-      const enrichedUsers = usersData?.map(user => {
-        const authUser = authMap.get(user.id);
-        const academy = academyMap.get(user.id);
-
-        // Determine status
-        let status = 'active';
-        if (authUser?.banned_until && new Date(authUser.banned_until) > new Date()) {
-          status = 'suspended';
-        } else if (!authUser?.email_confirmed_at) {
-          status = 'pending';
-        }
-
-        return {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-          status,
-          academyId: academy?.id || null,
-          academyName: academy?.name || null,
-          createdAt: user.created_at,
-          lastLoginAt: authUser?.last_sign_in_at || null,
-          loginCount: 0 // TODO: Implement login count tracking
-        };
-      });
-
-      return NextResponse.json({
-        success: true,
-        data: enrichedUsers || []
-      });
+    if (queryError) {
+      throw queryError;
     }
 
-    // If RPC function exists, use it
+    // Get auth data and academy relationships separately
+    const userIds = usersData?.map(u => u.id) || [];
+
+    // Auth data — MUST be paginated. `listUsers()` with no arguments returns
+    // only the first 50 users; every user missing from the resulting map then
+    // fell through to `status = 'pending'` / `lastLoginAt = null` below, which
+    // is why ~360 of 410 active users rendered as "Pending / Never logged in".
+    const authUsers = await listAllAuthUsers();
+    const authMap = new Map(authUsers.map(u => [u.id, u]));
+
+    // Get academy relationships
+    const [
+      { data: managers },
+      { data: teachers },
+      { data: students },
+      { data: parents }
+    ] = await Promise.all([
+      supabase.from('managers').select('user_id, academy_id, academies(name)').in('user_id', userIds),
+      supabase.from('teachers').select('user_id, academy_id, academies(name)').in('user_id', userIds),
+      supabase.from('students').select('user_id, academy_id, academies(name)').in('user_id', userIds),
+      supabase.from('parents').select('user_id, academy_id, academies(name)').in('user_id', userIds)
+    ]);
+
+    // Create lookup maps
+    const academyMap = new Map();
+    [...(managers || []), ...(teachers || []), ...(students || []), ...(parents || [])].forEach(rel => {
+      if (rel && rel.user_id) {
+        academyMap.set(rel.user_id, {
+          id: rel.academy_id,
+          name: (rel as any).academies?.name || null
+        });
+      }
+    });
+
+    // Combine all data
+    const enrichedUsers = usersData?.map(user => {
+      const authUser = authMap.get(user.id);
+      const academy = academyMap.get(user.id);
+
+      // Determine status. `authUser` is now guaranteed present for anyone who
+      // has an auth row; a genuinely missing row means the account only exists
+      // in `public.users`, which really is "pending".
+      let status = 'active';
+      if (authUser?.banned_until && new Date(authUser.banned_until) > new Date()) {
+        status = 'suspended';
+      } else if (!authUser?.email_confirmed_at) {
+        status = 'pending';
+      }
+
+      return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        status,
+        academyId: academy?.id || null,
+        academyName: academy?.name || null,
+        createdAt: user.created_at,
+        lastLoginAt: authUser?.last_sign_in_at || null,
+        // NOTE: there is deliberately no `loginCount` here. Supabase Auth does
+        // not expose a per-user sign-in counter and nothing in this schema
+        // records login events, so the old `loginCount: 0` was a fabricated
+        // number rendered as "0 logins" for every user and exported to CSV.
+        // `lastLoginAt` is the honest signal we actually have.
+      };
+    });
+
     return NextResponse.json({
       success: true,
-      data: users || []
+      data: enrichedUsers || []
     });
 
   } catch (error: any) {

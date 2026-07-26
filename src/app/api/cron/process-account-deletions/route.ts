@@ -4,6 +4,7 @@ import { verifyCronAuth } from '@/lib/cron-auth'
 import { deletePortOneBillingKey } from '@/lib/portone-billing-key'
 import { sendAccountPermanentlyDeletedEmail } from '@/lib/account-deletion-emails'
 import { recordHeartbeat } from '@/lib/ops/heartbeat'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * Daily cron — processes accounts whose 30-day soft-delete window has
@@ -216,18 +217,54 @@ async function runAcademyCascade(managerUserId: string): Promise<
           .select('email, role, name')
           .eq('id', memberId)
           .maybeSingle()
-        await supabaseAdmin.from('account_deletion_log').insert({
-          user_id: memberId,
-          user_email: memberRow?.email ?? null,
-          user_role: memberRow?.role ?? null,
-          user_name: memberRow?.name ?? null,
-          scheduled_at: new Date().toISOString(),
-          hard_deleted_at: new Date().toISOString(),
-          reason: JSON.stringify({
-            cascadedFromAcademyClosure: true,
-            triggeredByUserId: managerUserId,
-          }),
-        })
+        // FAIL CLOSED. This insert used to be unchecked, one statement
+        // before an irreversible cascade — an RLS/constraint/connection
+        // failure hard-deleted a user who never asked to be deleted with
+        // no audit row at all, and nothing anywhere recorded that it
+        // happened. We now require the row back from the database before
+        // touching anything destructive; if it isn't there, this member
+        // is skipped and left intact for the next run.
+        const { data: logRow, error: logInsertError } = await supabaseAdmin
+          .from('account_deletion_log')
+          .insert({
+            user_id: memberId,
+            user_email: memberRow?.email ?? null,
+            user_role: memberRow?.role ?? null,
+            user_name: memberRow?.name ?? null,
+            scheduled_at: new Date().toISOString(),
+            hard_deleted_at: new Date().toISOString(),
+            reason: JSON.stringify({
+              cascadedFromAcademyClosure: true,
+              triggeredByUserId: managerUserId,
+            }),
+          })
+          .select('id')
+          .maybeSingle()
+
+        if (logInsertError || !logRow) {
+          console.error(
+            `[CRON] audit log insert FAILED for member=${memberId} — refusing to delete`,
+            logInsertError
+          )
+          await raiseAlert({
+            severity: 'critical',
+            title: 'Deletion skipped: audit log write failed',
+            message:
+              `Could not write account_deletion_log for user ${memberId} during ` +
+              `the academy cascade triggered by ${managerUserId}. The cascade was ` +
+              `SKIPPED for this user (no data deleted) — an unlogged irreversible ` +
+              `delete is worse than a delayed one. Investigate and re-run.`,
+            dedupeKey: 'account-deletion:audit-log-write-failed',
+            error: logInsertError,
+            context: { memberId, managerUserId, stage: 'academy_cascade_member' },
+          })
+          memberResults.push({
+            id: memberId,
+            ok: false,
+            err: 'audit_log_write_failed',
+          })
+          continue
+        }
 
         // Former academy member: they didn't personally request deletion
         // but their academy is being closed by the (verified, schedule-
@@ -307,13 +344,34 @@ async function runAcademyCascade(managerUserId: string): Promise<
       }
     }
 
-    // Stamp the manager's audit row.
-    await supabaseAdmin
+    // Stamp the manager's audit row. Checked: the manager is already
+    // gone at this point so we cannot fail closed, but a missing
+    // hard_deleted_at makes the audit trail read as "deletion pending"
+    // for an account that no longer exists — someone has to backfill it.
+    const { error: managerStampError } = await supabaseAdmin
       .from('account_deletion_log')
       .update({ hard_deleted_at: new Date().toISOString() })
       .eq('user_id', managerUserId)
       .is('hard_deleted_at', null)
       .is('reactivated_at', null)
+
+    if (managerStampError) {
+      console.error(
+        `[CRON] audit stamp failed for manager=${managerUserId}:`,
+        managerStampError
+      )
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Audit trail incomplete after hard deletion',
+        message:
+          `User ${managerUserId} was permanently deleted (academy cascade) but ` +
+          `account_deletion_log.hard_deleted_at could not be stamped. The audit ` +
+          `row still reads as pending. Backfill required.`,
+        dedupeKey: 'account-deletion:audit-stamp-failed',
+        error: managerStampError,
+        context: { managerUserId, stage: 'academy_cascade_manager' },
+      })
+    }
 
     // Final confirmation email for the manager — best-effort.
     if (managerRow?.email) {
@@ -418,6 +476,48 @@ export async function GET(req: NextRequest) {
     for (const user of due) {
       const userId = user.id as string
       try {
+        // Step 0 — FAIL CLOSED: never run an irreversible delete without a
+        // durable audit row. /api/account/delete inserts one at request
+        // time, but that insert is best-effort and can fail; without this
+        // guard the cron would happily hard-delete a user with no record
+        // that the deletion was ever requested, by whom, or why. If the
+        // row isn't there we skip the user and alert — the account stays
+        // scheduled and a backfilled row lets the next run proceed.
+        const { data: openLog, error: openLogError } = await supabaseAdmin
+          .from('account_deletion_log')
+          .select('id')
+          .eq('user_id', userId)
+          .is('hard_deleted_at', null)
+          .is('reactivated_at', null)
+          .limit(1)
+
+        if (openLogError || !openLog || openLog.length === 0) {
+          console.error(
+            `[CRON account-deletions] no open audit row for user=${userId} — refusing to delete`,
+            openLogError
+          )
+          await raiseAlert({
+            severity: 'critical',
+            title: 'Deletion skipped: no audit row',
+            message:
+              `User ${userId} is past their 30-day deletion window but has no ` +
+              `open account_deletion_log row${openLogError ? ' (lookup failed)' : ''}. ` +
+              `The cascade was SKIPPED — deleting a user with no audit trail is ` +
+              `not recoverable. Backfill the log row to let the next run proceed.`,
+            dedupeKey: 'account-deletion:missing-audit-row',
+            error: openLogError,
+            context: { userId, role: user.role, stage: 'pre_cascade' },
+          })
+          results.push({
+            userId,
+            status: 'error',
+            detail: openLogError
+              ? `audit log lookup failed: ${openLogError.message}`
+              : 'missing_audit_log_row',
+          })
+          continue
+        }
+
         // Step 1: run the per-role cascade.
         const { data: cascadeResult, error: cascadeError } =
           await supabaseAdmin.rpc('delete_user_account_cascade', {
@@ -482,18 +582,45 @@ export async function GET(req: NextRequest) {
                 .maybeSingle()
 
               if (!existingAlert) {
-                await supabaseAdmin.from('alerts').insert({
-                  severity: 'warning',
-                  title: 'Account stuck in deletion grace period',
-                  message:
-                    `User ${userId} requested deletion but became sole-manager ` +
-                    `of one or more academies before the 30-day window elapsed. ` +
-                    `They did not confirm academy cascade in the original request, ` +
-                    `so the cron cannot safely proceed. Manually trigger the ` +
-                    `academy cascade (via Phase 3 admin endpoint) OR contact the ` +
-                    `user to re-confirm via a fresh deletion request.`,
-                  context: { user_id: userId, kind: 'phase_3_stuck' },
-                })
+                // Checked: this row IS the escalation. An unchecked insert
+                // here meant a GDPR right-of-erasure failure could go
+                // unnoticed forever because the notification about it also
+                // failed silently.
+                const { error: alertInsertError } = await supabaseAdmin
+                  .from('alerts')
+                  .insert({
+                    severity: 'warning',
+                    title: 'Account stuck in deletion grace period',
+                    message:
+                      `User ${userId} requested deletion but became sole-manager ` +
+                      `of one or more academies before the 30-day window elapsed. ` +
+                      `They did not confirm academy cascade in the original request, ` +
+                      `so the cron cannot safely proceed. Manually trigger the ` +
+                      `academy cascade (via Phase 3 admin endpoint) OR contact the ` +
+                      `user to re-confirm via a fresh deletion request.`,
+                    context: { user_id: userId, kind: 'phase_3_stuck' },
+                  })
+
+                if (alertInsertError) {
+                  console.error(
+                    `[CRON account-deletions] phase-3 alert insert failed for ${userId}:`,
+                    alertInsertError
+                  )
+                  // Escalate through the shared path, which also reaches
+                  // Sentry and (for critical) email — so the dashboard
+                  // row failing is not the end of the line.
+                  await raiseAlert({
+                    severity: 'warning',
+                    title: 'Could not record phase-3 stuck deletion',
+                    message:
+                      `User ${userId} is stuck mid-deletion and the alerts-table ` +
+                      `insert that would have surfaced it on the admin dashboard ` +
+                      `failed.`,
+                    dedupeKey: 'account-deletion:phase3-alert-insert-failed',
+                    error: alertInsertError,
+                    context: { userId, kind: 'phase_3_stuck' },
+                  })
+                }
               }
 
               results.push({
@@ -537,10 +664,32 @@ export async function GET(req: NextRequest) {
             // Don't leave admin accounts in a pending state forever —
             // clear the scheduled column so they re-emerge as healthy.
             // Audit log row stays for the record.
-            await supabaseAdmin
+            //
+            // Checked: if this silently fails the account stays flagged and
+            // the cron re-picks it every single day forever, logging the
+            // same error and never converging.
+            const { error: clearScheduleError } = await supabaseAdmin
               .from('users')
               .update({ deletion_scheduled_at: null })
               .eq('id', userId)
+
+            if (clearScheduleError) {
+              console.error(
+                `[CRON account-deletions] failed to clear schedule for ${userId}:`,
+                clearScheduleError
+              )
+              await raiseAlert({
+                severity: 'warning',
+                title: 'Could not clear deletion schedule for admin account',
+                message:
+                  `User ${userId} has an unsupported role for deletion and their ` +
+                  `deletion_scheduled_at could not be cleared, so this cron will ` +
+                  `retry them every day indefinitely.`,
+                dedupeKey: 'account-deletion:clear-schedule-failed',
+                error: clearScheduleError,
+                context: { userId, role: user.role },
+              })
+            }
             results.push({
               userId,
               status: 'unsupported_role',
@@ -591,11 +740,24 @@ export async function GET(req: NextRequest) {
 
         if (logError) {
           // Non-fatal: the user is gone, just the audit timestamp is
-          // missing. Log loudly so we can backfill.
+          // missing. Alert (not merely log) — an audit row that still
+          // reads "pending" for an account that no longer exists is a
+          // compliance discrepancy someone has to reconcile.
           console.error(
             `[CRON account-deletions] audit log update failed for ${userId}:`,
             logError
           )
+          await raiseAlert({
+            severity: 'critical',
+            title: 'Audit trail incomplete after hard deletion',
+            message:
+              `User ${userId} was permanently deleted but ` +
+              `account_deletion_log.hard_deleted_at could not be stamped. The ` +
+              `audit row still reads as pending. Backfill required.`,
+            dedupeKey: 'account-deletion:audit-stamp-failed',
+            error: logError,
+            context: { userId, stage: 'main_loop' },
+          })
         }
 
         results.push({

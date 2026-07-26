@@ -5,6 +5,7 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { REFERRAL_SIGNUP_CREDITS, normalizeReferralCode } from '@/lib/study/referral'
 import { FREE_CREDITS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * POST /api/study/referral/redeem — a new student redeems a friend's
@@ -24,10 +25,12 @@ import { trackEvent } from '@/lib/study/analytics'
  *
  * Credits are added to the purchased bucket via the same atomic RPC the
  * pack-purchase route uses. The RPC updates study_subscriptions by
- * student_id, so a side with no subscription row yet is a silent no-op
- * there — we therefore check each side has a row and only reward (and
- * ledger) the sides that do. `creditsAdded` reflects what the CALLER
- * (referee) received (0 if they have no subscription row yet).
+ * student_id and silently no-ops when the row is missing, so BOTH sides are
+ * provisioned a free row first. `rewarded: true` is written only after both
+ * grants are verified; if either fails the row stays rewarded=false and a
+ * critical alert carries what's needed to pay it out by hand (the referee
+ * can never re-run this endpoint). `creditsAdded` reflects what the CALLER
+ * (referee) received.
  */
 
 export const dynamic = 'force-dynamic'
@@ -95,20 +98,60 @@ export async function POST(req: NextRequest) {
   }
 
   // We own the (only) redemption row now — grant both sides exactly once.
-  // A referee redeeming straight from signup may not have visited a study
-  // page yet, so their study_subscriptions row (normally provisioned by
-  // SubscriptionGate on first visit) may not exist — and the credit RPC
-  // would silently no-op. Provision the same free row here so the signup
-  // reward actually lands.
+  // Neither side is guaranteed a study_subscriptions row: a referee
+  // redeeming straight from signup hasn't hit SubscriptionGate yet, and a
+  // referrer can own a code (minted by the referral GET) without ever having
+  // subscribed. The credit RPC keys on student_id and silently no-ops when
+  // the row is missing, so provision the free row for BOTH sides first —
+  // otherwise the referrer's reward never lands.
   await ensureFreeSubscription(user.id)
-  const refereeAdded = await grantReferralCredits(user.id, inserted.id)
-  await grantReferralCredits(referrerId, inserted.id)
+  await ensureFreeSubscription(referrerId)
+  const referee = await grantReferralCredits(user.id, inserted.id)
+  const referrer = await grantReferralCredits(referrerId, inserted.id)
 
-  await supabaseAdmin
-    .from('study_referral_redemptions')
-    .update({ rewarded: true })
-    .eq('id', inserted.id)
+  // `rewarded: true` is the permanent record that both sides were paid, and
+  // this redemption can never be retried (the referee is 409'd from here on).
+  // So only write it when the credits actually landed — otherwise alert with
+  // everything needed to pay them by hand.
+  if (referee.ok && referrer.ok) {
+    const { error: rewardedErr } = await supabaseAdmin
+      .from('study_referral_redemptions')
+      .update({ rewarded: true })
+      .eq('id', inserted.id)
+    if (rewardedErr) {
+      await raiseAlert({
+        severity: 'warning',
+        title: 'Referral rewarded flag not written',
+        message:
+          'Both referral rewards were granted but the redemption row still reads rewarded=false. ' +
+          'The credits ARE in both accounts — do not re-grant; fix the flag so stats are correct.',
+        dedupeKey: `referral-rewarded-flag-failed:${inserted.id}`,
+        error: rewardedErr,
+        context: { redemptionId: inserted.id, refereeId: user.id, referrerId },
+      })
+    }
+  } else {
+    await raiseAlert({
+      severity: 'critical',
+      title: 'Referral credits were not granted',
+      message:
+        `A referral was redeemed but ${!referee.ok && !referrer.ok ? 'neither side' : !referee.ok ? 'the referee' : 'the referrer'} ` +
+        `received the ${REFERRAL_SIGNUP_CREDITS} promised credits. The redemption row is left ` +
+        `rewarded=false and cannot be retried by the user — grant the missing credits manually.`,
+      dedupeKey: `referral-grant-failed:${inserted.id}`,
+      error: referee.error ?? referrer.error,
+      context: {
+        redemptionId: inserted.id,
+        refereeId: user.id,
+        referrerId,
+        refereeGranted: referee.ok,
+        referrerGranted: referrer.ok,
+        credits: REFERRAL_SIGNUP_CREDITS,
+      },
+    })
+  }
 
+  const refereeAdded = referee.credits
   void trackEvent(user.id, 'referral_redeemed', { referrerId, creditsAdded: refereeAdded })
   // Referrals only grant credits. Friendships are created exclusively
   // through the explicit friends system — no auto-friending here.
@@ -120,8 +163,8 @@ export async function POST(req: NextRequest) {
 }
 
 /**
- * Provision the free study_subscriptions row for a brand-new referee, if
- * they don't have one yet. Mirrors the SubscriptionGate first-visit insert
+ * Provision the free study_subscriptions row for a side that doesn't have
+ * one yet (referee OR referrer). Mirrors the SubscriptionGate first-visit insert
  * (status 'free', FREE_CREDITS one-time grant); the gate later sees the
  * existing row and lets them straight through. A concurrent gate insert
  * losing the race is fine — the unique violation is swallowed.
@@ -143,35 +186,47 @@ async function ensureFreeSubscription(studentId: string): Promise<void> {
       grant_credits_remaining: FREE_CREDITS,
     })
   if (error && !isUniqueViolation(error)) {
-    // Non-fatal: grantReferralCredits re-checks and just grants 0.
+    // Not fatal here: grantReferralCredits re-reads the row and reports a
+    // hard failure (which alerts) if it still isn't there.
     console.error('[study/referral/redeem] free-row provision failed', { studentId, error })
   }
 }
 
+interface GrantResult {
+  /** true only when the credits are provably in the student's balance. */
+  ok: boolean
+  /** Credits actually granted (0 on any failure). */
+  credits: number
+  error?: unknown
+}
+
 /**
  * Add REFERRAL_SIGNUP_CREDITS to a student's purchased bucket and write a
- * ledger row — but only if they have a subscription row for the RPC to
- * update (it keys on student_id and would otherwise silently no-op).
- * Returns the credits actually granted (0 when there's no row yet).
+ * ledger row. Requires a subscription row for the RPC to update (it keys on
+ * student_id and would otherwise silently no-op) — callers must have run
+ * ensureFreeSubscription() first; a missing row here is a real failure, not
+ * a benign skip.
  */
-async function grantReferralCredits(studentId: string, sourceId: string): Promise<number> {
-  const { data: sub } = await supabaseAdmin
+async function grantReferralCredits(studentId: string, sourceId: string): Promise<GrantResult> {
+  const { data: sub, error: subErr } = await supabaseAdmin
     .from('study_subscriptions')
     .select('student_id')
     .eq('student_id', studentId)
     .maybeSingle()
-  if (!sub) return 0
+  if (subErr || !sub) {
+    return { ok: false, credits: 0, error: subErr ?? new Error('no study_subscriptions row to credit') }
+  }
 
   const { error: rpcErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId,
     p_delta: REFERRAL_SIGNUP_CREDITS,
   })
-  if (rpcErr) {
-    console.error('[study/referral/redeem] credit grant failed', { studentId, error: rpcErr })
-    return 0
-  }
+  if (rpcErr) return { ok: false, credits: 0, error: rpcErr }
 
-  await supabaseAdmin.from('study_credit_ledger').insert({
+  // The balance moved — the grant succeeded. A failed ledger row is an
+  // audit-trail gap, not a lost reward, so it must NOT be reported as a
+  // failed grant (that would invite a manual double-grant).
+  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: studentId,
     delta: REFERRAL_SIGNUP_CREDITS,
     bucket: 'purchased',
@@ -179,7 +234,19 @@ async function grantReferralCredits(studentId: string, sourceId: string): Promis
     source_id: sourceId,
     note: 'referral reward',
   })
-  return REFERRAL_SIGNUP_CREDITS
+  if (ledgerErr) {
+    await raiseAlert({
+      severity: 'warning',
+      title: 'Referral credit ledger row missing',
+      message:
+        `${REFERRAL_SIGNUP_CREDITS} referral credits were added to a balance but the ledger ` +
+        `insert failed, so the balance no longer reconciles against the ledger. Do not re-grant.`,
+      dedupeKey: `referral-ledger-failed:${sourceId}:${studentId}`,
+      error: ledgerErr,
+      context: { studentId, redemptionId: sourceId, credits: REFERRAL_SIGNUP_CREDITS },
+    })
+  }
+  return { ok: true, credits: REFERRAL_SIGNUP_CREDITS }
 }
 
 function isUniqueViolation(error: unknown): boolean {

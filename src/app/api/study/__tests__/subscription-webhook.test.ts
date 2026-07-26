@@ -12,12 +12,20 @@ import crypto from 'crypto'
 import { POST } from '@/app/api/study/subscription/webhook/route'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
+import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
+import { raiseAlert } from '@/lib/ops/alert'
 
 jest.mock('@/lib/supabase-admin', () => ({
   supabaseAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
 }))
+jest.mock('@/lib/study/sync-refund', () => ({
+  syncStudyPaymentRefund: jest.fn(async () => ({ status: 'marked' })),
+}))
+jest.mock('@/lib/ops/alert', () => ({ raiseAlert: jest.fn(async () => {}) }))
 
 const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const syncRefundMock = syncStudyPaymentRefund as jest.Mock
+const raiseAlertMock = raiseAlert as jest.Mock
 
 const SECRET = 'test-webhook-secret'
 
@@ -52,6 +60,7 @@ describe('POST /api/study/subscription/webhook', () => {
     jest.clearAllMocks()
     jest.spyOn(console, 'warn').mockImplementation(() => {})
     enqueue = tableRouter(fromMock)
+    syncRefundMock.mockResolvedValue({ status: 'marked' })
   })
 
   afterEach(() => {
@@ -153,6 +162,98 @@ describe('POST /api/study/subscription/webhook', () => {
       const res = await POST(makeRequest(FAILED_EVENT))
       expect(res.status).toBe(200)
       expect(await res.json()).toEqual({ ok: true, applied: 'past_due' })
+    })
+  })
+
+  /**
+   * A 2xx tells PortOne "handled — stop retrying". supabase-js `.update()`
+   * resolves with { error } and never throws, so an unchecked write used to
+   * ack a state change that never happened: a refunded subscriber kept
+   * Premium forever, a failed charge never entered dunning, and no retry
+   * was ever coming. Every one of these must answer non-2xx instead.
+   */
+  describe('write failures must not be acked', () => {
+    beforeEach(() => { delete process.env.PORTONE_WEBHOOK_SECRET })
+
+    it('Transaction.Failed: past_due update fails → 500, not ok:true', async () => {
+      enqueue('study_subscriptions', {
+        data: { id: 'sub-1', status: 'active', current_period_end: null },
+      })
+      enqueue('study_subscriptions', { data: null, error: { message: 'deadlock detected' } })
+
+      const res = await POST(makeRequest(FAILED_EVENT))
+      expect(res.status).toBe(500)
+      const body = await res.json()
+      expect(body.ok).toBeUndefined()
+      expect(body.retry).toBe(true)
+      expect(raiseAlertMock).toHaveBeenCalledWith(
+        expect.objectContaining({ severity: 'critical', dedupeKey: expect.stringContaining('sub-1') }),
+      )
+    })
+
+    it('Transaction.Cancelled: cancel update fails → 500 and refund sync is not attempted', async () => {
+      const raw = JSON.stringify({
+        type: 'Transaction.Cancelled',
+        data: { paymentId: 'pay_1', customData: JSON.stringify({ kind: 'study_subscription' }) },
+      })
+      enqueue('study_subscriptions', {
+        data: { id: 'sub-9', status: 'active', current_period_end: null },
+      })
+      enqueue('study_subscriptions', { data: null, error: { message: 'connection reset' } })
+
+      const res = await POST(makeRequest(raw))
+      expect(res.status).toBe(500)
+      expect((await res.json()).ok).toBeUndefined()
+      expect(syncRefundMock).not.toHaveBeenCalled()
+      expect(raiseAlertMock).toHaveBeenCalledWith(
+        expect.objectContaining({ severity: 'critical' }),
+      )
+    })
+
+    it('Transaction.Cancelled: refund sync unverifiable → 503 so PortOne redelivers', async () => {
+      const raw = JSON.stringify({
+        type: 'Transaction.Cancelled',
+        data: { paymentId: 'pay_1', customData: JSON.stringify({ kind: 'study_subscription' }) },
+      })
+      enqueue('study_subscriptions', {
+        data: { id: 'sub-9', status: 'active', current_period_end: null },
+      })
+      enqueue('study_subscriptions', { data: null, error: null })
+      syncRefundMock.mockResolvedValue({ status: 'unverifiable', retryable: true })
+
+      const res = await POST(makeRequest(raw))
+      expect(res.status).toBe(503)
+      expect((await res.json()).retry).toBe(true)
+    })
+
+    it('Transaction.Cancelled: everything persists → 200 ok', async () => {
+      const raw = JSON.stringify({
+        type: 'Transaction.Cancelled',
+        data: { paymentId: 'pay_1', customData: JSON.stringify({ kind: 'study_subscription' }) },
+      })
+      enqueue('study_subscriptions', {
+        data: { id: 'sub-9', status: 'active', current_period_end: null },
+      })
+      const updateChain = enqueue('study_subscriptions', { data: null, error: null })
+
+      const res = await POST(makeRequest(raw))
+      expect(res.status).toBe(200)
+      expect(await res.json()).toEqual({ ok: true, applied: 'cancelled' })
+      expect(updateChain.update).toHaveBeenCalledWith(
+        expect.objectContaining({ status: 'cancelled', cancel_at_period_end: false }),
+      )
+      expect(syncRefundMock).toHaveBeenCalledWith('pay_1')
+      expect(raiseAlertMock).not.toHaveBeenCalled()
+    })
+
+    it('still 200s a terminal row it deliberately skips (no write, nothing to persist)', async () => {
+      enqueue('study_subscriptions', {
+        data: { id: 'sub-2', status: 'cancelled', current_period_end: null },
+      })
+      const res = await POST(makeRequest(FAILED_EVENT))
+      expect(res.status).toBe(200)
+      expect(await res.json()).toEqual({ ok: true, applied: 'past_due' })
+      expect(raiseAlertMock).not.toHaveBeenCalled()
     })
   })
 })

@@ -83,47 +83,54 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Calculate usage statistics
-    const totalUsage = usageData?.reduce((acc, usage) => ({
-      students: acc.students + (usage.current_student_count || 0),
-      teachers: acc.teachers + (usage.current_teacher_count || 0),
-      storage: acc.storage + (usage.current_storage_gb || 0),
-      classrooms: acc.classrooms + (usage.current_classroom_count || 0)
-    }), { students: 0, teachers: 0, storage: 0, classrooms: 0 }) || { students: 0, teachers: 0, storage: 0, classrooms: 0 };
+    // Platform-wide statistics.
+    //
+    // All three of these used to be derived from the current 50-row page:
+    //   - total_usage summed the page and was rendered as the platform total
+    //   - approaching_limits scanned only the page, so an academy at 99% of
+    //     its student limit was invisible unless it happened to land on page 1
+    //     (and a zero limit produced a division by zero → Infinity)
+    //   - total_academies was the subscription_usage row count, which is a
+    //     count of usage snapshots, not of academies
+    // They are now aggregated in SQL over every row (migration 052).
+    const [
+      { data: totalsRows, error: totalsError },
+      { data: limitRows, error: limitsError },
+    ] = await Promise.all([
+      supabase.rpc('admin_subscription_usage_totals'),
+      supabase.rpc('admin_subscription_usage_approaching_limits', { p_threshold: 0.8 }),
+    ]);
 
-    // Find academies approaching limits (>80% usage)
-    const approaching_limits = usageData?.filter(usage => {
-      const sub = Array.isArray(usage.academy_subscriptions)
-        ? usage.academy_subscriptions[0]
-        : usage.academy_subscriptions;
+    if (totalsError) {
+      console.error('[Subscription Usage API] Error fetching totals:', totalsError);
+      throw totalsError;
+    }
+    if (limitsError) {
+      console.error('[Subscription Usage API] Error fetching limit warnings:', limitsError);
+      throw limitsError;
+    }
 
-      if (!sub) return false;
+    const toNum = (v: unknown) => {
+      const n = typeof v === 'number' ? v : Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
+    const totals = Array.isArray(totalsRows) && totalsRows.length > 0 ? totalsRows[0] : null;
 
-      const studentLimit = sub.student_limit + (sub.additional_students || 0);
-      const teacherLimit = sub.teacher_limit + (sub.additional_teachers || 0);
-      const storageLimit = sub.storage_limit_gb + (sub.additional_storage_gb || 0);
+    const totalUsage = {
+      students: toNum(totals?.students),
+      teachers: toNum(totals?.teachers),
+      storage: toNum(totals?.storage_gb),
+      classrooms: toNum(totals?.classrooms),
+    };
 
-      const studentUsage = (usage.current_student_count || 0) / studentLimit;
-      const teacherUsage = (usage.current_teacher_count || 0) / teacherLimit;
-      const storageUsage = (usage.current_storage_gb || 0) / storageLimit;
-
-      return studentUsage > 0.8 || teacherUsage > 0.8 || storageUsage > 0.8;
-    }).map(usage => {
-      const sub = Array.isArray(usage.academy_subscriptions)
-        ? usage.academy_subscriptions[0]
-        : usage.academy_subscriptions;
-      const academy = Array.isArray(usage.academies)
-        ? usage.academies[0]
-        : usage.academies;
-
-      return {
-        academy_id: usage.academy_id,
-        academy_name: academy?.name || 'Unknown',
-        student_usage: ((usage.current_student_count || 0) / (sub.student_limit + (sub.additional_students || 0)) * 100).toFixed(1),
-        teacher_usage: ((usage.current_teacher_count || 0) / (sub.teacher_limit + (sub.additional_teachers || 0)) * 100).toFixed(1),
-        storage_usage: ((usage.current_storage_gb || 0) / (sub.storage_limit_gb + (sub.additional_storage_gb || 0)) * 100).toFixed(1)
-      };
-    }) || [];
+    const approaching_limits = (Array.isArray(limitRows) ? limitRows : []).map((r: any) => ({
+      academy_id: r.academy_id,
+      academy_name: r.academy_name,
+      // Kept as strings with one decimal for backward compatibility with the UI.
+      student_usage: toNum(r.student_usage).toFixed(1),
+      teacher_usage: toNum(r.teacher_usage).toFixed(1),
+      storage_usage: toNum(r.storage_usage).toFixed(1),
+    }));
 
     return NextResponse.json({
       success: true,
@@ -131,7 +138,8 @@ export async function GET(request: NextRequest) {
       statistics: {
         total_usage: totalUsage,
         approaching_limits,
-        total_academies: count || 0
+        // Distinct academies that have a usage snapshot — not the snapshot count.
+        total_academies: toNum(totals?.academies)
       },
       pagination: {
         page,

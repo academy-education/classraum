@@ -1,8 +1,49 @@
 "use client"
 
 import React, { Component, ErrorInfo, ReactNode } from 'react'
+import * as Sentry from '@sentry/nextjs'
 import { AlertCircle, RefreshCw, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+
+/**
+ * Report a crashed subtree.
+ *
+ * This is a CLIENT component, so it cannot reach `@/lib/ops/alert` —
+ * that module pulls in supabaseAdmin and the service-role key. The
+ * client-safe reporting path the app already uses is Sentry (see
+ * `src/utils/errorHandler.ts`, which pokes `window.Sentry`); we import
+ * `@sentry/nextjs` directly instead, because that is the same SDK
+ * `sentry.client.config.ts` already initialises on every page — it is
+ * typed, it is a no-op when NEXT_PUBLIC_SENTRY_DSN is unset, and it does
+ * not depend on the global happening to be present.
+ *
+ * A dedicated server route was the alternative (it would have written an
+ * `alerts` row). Rejected: a fetch from inside a crashed render path is
+ * itself unreliable, and Sentry alert rules on `boundary:payment` /
+ * `level:fatal` page admins just as well without a new unauthenticated
+ * write endpoint.
+ *
+ * Never throws — a reporter that crashes inside componentDidCatch takes
+ * the fallback UI down with it.
+ */
+function reportBoundaryError(
+  error: Error,
+  errorInfo: ErrorInfo,
+  boundary: string,
+  level: 'error' | 'fatal',
+) {
+  try {
+    Sentry.captureException(error, {
+      level,
+      tags: { boundary, errorBoundary: 'true' },
+      // componentStack tells you WHICH subtree died — without it every
+      // boundary crash looks like the same generic React error.
+      extra: { componentStack: errorInfo.componentStack },
+    })
+  } catch (e) {
+    console.error('[ErrorBoundary] failed to report error:', e)
+  }
+}
 
 interface ErrorBoundaryState {
   hasError: boolean
@@ -14,6 +55,10 @@ interface ErrorBoundaryProps {
   children: ReactNode
   fallback?: React.ComponentType<{ error?: Error; retry: () => void }>
   onError?: (error: Error, errorInfo: ErrorInfo) => void
+  /** Which boundary this is, for Sentry grouping. */
+  boundaryName?: string
+  /** `fatal` for boundaries where a crash means lost money/data. */
+  severity?: 'error' | 'fatal'
 }
 
 interface ErrorFallbackProps {
@@ -80,12 +125,22 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       console.error('ErrorBoundary caught an error:', error, errorInfo)
     }
     
+    // Report BEFORE the consumer callback: a throwing onError must not
+    // be able to swallow the report.
+    reportBoundaryError(
+      error,
+      errorInfo,
+      this.props.boundaryName ?? 'unknown',
+      this.props.severity ?? 'error',
+    )
+
     // Call custom error handler if provided
-    this.props.onError?.(error, errorInfo)
-    
-    // TODO: Send to error tracking service in production
-    // errorTrackingService.captureException(error, { extra: errorInfo })
-    
+    try {
+      this.props.onError?.(error, errorInfo)
+    } catch (e) {
+      console.error('[ErrorBoundary] onError handler threw:', e)
+    }
+
     this.setState({ error, errorInfo })
   }
 
@@ -108,6 +163,7 @@ export default ErrorBoundary
 // Specialized error boundaries for different contexts
 export const LayoutErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary
+    boundaryName="layout"
     onError={(error, errorInfo) => {
       // Layout-specific error handling
       console.error('Layout error:', error, errorInfo)
@@ -117,12 +173,15 @@ export const LayoutErrorBoundary: React.FC<{ children: ReactNode }> = ({ childre
   </ErrorBoundary>
 )
 
+// `fatal` on purpose: a crash inside the payment subtree can leave a
+// charge in an unknown state, so it must page rather than sit in the
+// error feed with the rest of the UI noise.
 export const PaymentErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary
+    boundaryName="payment"
+    severity="fatal"
     onError={(error, errorInfo) => {
-      // Payment-specific error handling - critical errors
       console.error('Payment error (CRITICAL):', error, errorInfo)
-      // TODO: Alert administrators immediately for payment errors
     }}
   >
     {children}
@@ -131,6 +190,7 @@ export const PaymentErrorBoundary: React.FC<{ children: ReactNode }> = ({ childr
 
 export const DashboardErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary
+    boundaryName="dashboard"
     onError={(error, errorInfo) => {
       // Dashboard-specific error handling
       console.error('Dashboard error:', error, errorInfo)
@@ -193,18 +253,11 @@ const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => 
 export const MobileErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary
     fallback={MobileErrorFallback}
+    boundaryName="mobile"
     onError={(error, errorInfo) => {
-      // Mobile-specific error handling
+      // Mobile-specific error handling. Telemetry itself goes through the
+      // shared Sentry report in componentDidCatch (tagged boundary:mobile).
       console.error('Mobile app error:', error, errorInfo)
-
-      // TODO: In production, send mobile-specific error telemetry
-      // mobileAnalytics.track('mobile_error', {
-      //   error: error.message,
-      //   stack: error.stack,
-      //   componentStack: errorInfo.componentStack,
-      //   userAgent: navigator.userAgent,
-      //   timestamp: Date.now()
-      // })
     }}
   >
     {children}

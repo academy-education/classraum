@@ -529,48 +529,65 @@ export default function AuthPage() {
         } else {
           console.log('[Auth] User record created, creating signupRole-specific records...')
 
-          // Create signupRole-specific record based on signupRole and academy_id
+          // Create signupRole-specific record based on signupRole and academy_id.
+          //
+          // Every insert below is CHECKED. supabase-js resolves with
+          // `{ error }` instead of throwing, so an un-destructured `await`
+          // here silently discards RLS denials and constraint violations —
+          // which is how a parent could finish signup with no family link
+          // and never see their child's data. Failures are non-fatal at
+          // this point (the verify-and-repair step below retries each one),
+          // but they must be visible in the console/Sentry breadcrumbs so a
+          // systematic breakage isn't invisible.
           if (signupAcademyId) {
-            if (signupRole === 'parent') {
-              await supabase.from('parents').insert({
+            const roleInsertTable =
+              signupRole === 'parent' ? 'parents' :
+              signupRole === 'student' ? 'students' :
+              signupRole === 'teacher' ? 'teachers' :
+              signupRole === 'manager' ? 'managers' : null
+
+            if (roleInsertTable) {
+              const roleInsertData: Record<string, unknown> = {
                 user_id: authData.user.id,
                 academy_id: signupAcademyId,
                 phone: phone || null
-              })
-            } else if (signupRole === 'student') {
-              await supabase.from('students').insert({
-                user_id: authData.user.id,
-                academy_id: signupAcademyId,
-                phone: phone || null,
-                school_name: schoolName || null
-              })
-            } else if (signupRole === 'teacher') {
-              await supabase.from('teachers').insert({
-                user_id: authData.user.id,
-                academy_id: signupAcademyId,
-                phone: phone || null
-              })
-            } else if (signupRole === 'manager') {
-              await supabase.from('managers').insert({
-                user_id: authData.user.id,
-                academy_id: signupAcademyId,
-                phone: phone || null
-              })
+              }
+              if (signupRole === 'student') {
+                roleInsertData.school_name = schoolName || null
+              }
+
+              const { error: roleCreateError } = await supabase
+                .from(roleInsertTable)
+                .insert(roleInsertData)
+
+              if (roleCreateError) {
+                console.error(`[Auth] Failed to create ${roleInsertTable} record:`, roleCreateError)
+              }
             }
           }
 
           // Create user preferences
-          await supabase.from('user_preferences').insert({
-            user_id: authData.user.id
-          })
+          const { error: prefsCreateError } = await supabase
+            .from('user_preferences')
+            .insert({ user_id: authData.user.id })
+
+          if (prefsCreateError) {
+            console.error('[Auth] Failed to create user_preferences record:', prefsCreateError)
+          }
 
           // If using standard family_id link (not family_member_id), create family_member record
           if (familyId && !familyMemberId && (signupRole === 'student' || signupRole === 'parent')) {
-            await supabase.from('family_members').insert({
-              user_id: authData.user.id,
-              family_id: familyId,
-              role: signupRole
-            })
+            const { error: familyCreateError } = await supabase
+              .from('family_members')
+              .insert({
+                user_id: authData.user.id,
+                family_id: familyId,
+                role: signupRole
+              })
+
+            if (familyCreateError) {
+              console.error('[Auth] Failed to create family_members record:', familyCreateError)
+            }
           }
 
           console.log('[Auth] User setup completed')
@@ -718,9 +735,41 @@ export default function AuthPage() {
             .is('user_id', null) // Safety check: only update if not already assigned
             .select()
 
-          if (updateError) {
-            console.error('[Auth] Error updating family member:', updateError)
-            // Don't fail the signup, but log the error
+          // A no-op UPDATE is the dangerous case and it does NOT set
+          // `error`: `.is('user_id', null)` matches zero rows when the
+          // invite was already claimed, when RLS hides the row, or when
+          // the id is stale — and the old code logged "Successfully
+          // updated" for all three. The family link is then permanently
+          // missing and the parent silently never sees their child.
+          // Treat "no row changed" exactly like a failure.
+          const linked = Array.isArray(updateData) && updateData.length > 0
+
+          if (updateError || !linked) {
+            console.error('[Auth] Failed to link family_member:', {
+              familyMemberId,
+              userId: authData.user.id,
+              error: updateError,
+              rowsUpdated: Array.isArray(updateData) ? updateData.length : 0,
+            })
+
+            // Re-read to distinguish "already linked to THIS user" (a
+            // benign retry — the trigger or a previous attempt got there
+            // first) from a genuinely unlinked invite.
+            const { data: currentMember } = await supabase
+              .from('family_members')
+              .select('user_id')
+              .eq('id', familyMemberId)
+              .maybeSingle()
+
+            if (currentMember?.user_id === authData.user.id) {
+              console.log('[Auth] family_member already linked to this user ✓')
+            } else {
+              toast({
+                title: t('auth.signup.familyAssociationFailed') as string ||
+                  'Warning: Family association could not be created. Please contact support.',
+                variant: 'warning',
+              })
+            }
           } else {
             console.log('[Auth] Successfully updated family_member:', updateData)
           }

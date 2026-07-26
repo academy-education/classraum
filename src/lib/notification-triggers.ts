@@ -1966,12 +1966,29 @@ export async function triggerSessionAutoCompletionNotifications() {
       return
     }
 
-    // Update sessions to completed
+    // Update sessions to completed. Verified before notifying: the
+    // update resolves with { error } rather than throwing, and fanning
+    // "session completed" out over a failed write tells teachers and
+    // managers about sessions that are still 'scheduled' in the DB.
     const sessionIds = expiredSessions.map(s => s.id)
-    await db
+    const { error: completeError } = await db
       .from('classroom_sessions')
       .update({ status: 'completed' })
       .in('id', sessionIds)
+    if (completeError) {
+      const { raiseAlert } = await import('@/lib/ops/alert')
+      await raiseAlert({
+        severity: 'warning',
+        title: 'Session auto-completion failed',
+        message:
+          `${sessionIds.length} expired classroom session(s) could not be marked completed. ` +
+          'They remain scheduled and no auto-completion notifications were sent.',
+        dedupeKey: 'session-auto-complete-failed',
+        error: completeError,
+        context: { sessionCount: sessionIds.length },
+      })
+      return
+    }
 
     // Group sessions by academy for notifications
     const academyGroups = new Map<string, typeof expiredSessions>()

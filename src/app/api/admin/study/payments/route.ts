@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { supabaseAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth, logAdminActivity } from '@/lib/admin-auth';
 import { cancelPayment } from '@/lib/portone-charge';
+import { raiseAlert } from '@/lib/ops/alert';
 
 /**
  * Admin view of study-system income (the PortOne side) + refunds.
@@ -177,10 +178,57 @@ export async function POST(req: NextRequest) {
   }
 
   // Stamp the local refund so the lists reflect it without a PortOne round-trip.
-  await supabaseAdmin
+  //
+  // This write is the ONLY thing backing the "already refunded" 409 guard
+  // above. If it silently fails, the guard never trips and an operator can
+  // press Refund again — cancelling the same payment twice at PortOne and
+  // sending real money out twice. So it must be checked, and a failure has
+  // to be reported as "refunded but NOT recorded", never as "refund failed".
+  const { error: stampError } = await supabaseAdmin
     .from('study_payments')
     .update({ refunded_at: new Date().toISOString(), refund_reason: reason })
     .eq('payment_id', paymentId);
+
+  if (stampError) {
+    await raiseAlert({
+      severity: 'critical',
+      title: 'Study refund succeeded at PortOne but was not recorded',
+      message:
+        `Payment ${paymentId} was cancelled at PortOne (${result.cancelledAmount ?? row.amount_won ?? '?'} KRW) ` +
+        `but the refunded_at stamp failed to write. The payment still looks refundable in admin, so a second ` +
+        `refund attempt is possible. Reconcile study_payments.refunded_at for this payment now.`,
+      dedupeKey: `study-refund-unrecorded:${paymentId}`,
+      error: stampError,
+      context: {
+        paymentId,
+        studentId: row.student_id,
+        kind: row.kind,
+        amountWon: row.amount_won,
+        cancelledAmount: result.cancelledAmount ?? null,
+        adminUserId: auth.user.id,
+        reason,
+      },
+    });
+
+    // Still record the operator action — the refund really did happen.
+    await logAdminActivity({
+      adminUserId: auth.user.id,
+      action: 'STUDY_PAYMENT_REFUND',
+      description: `Refunded study payment ${paymentId} (${row.kind}, ${row.amount_won ?? '?'} KRW) — ${reason} — WARNING: local refund stamp FAILED to write`,
+    });
+
+    return NextResponse.json(
+      {
+        error:
+          'The refund WAS issued at PortOne and the money has been returned, but it could not be recorded in the database. ' +
+          'Do NOT refund this payment again — a second attempt would refund twice. An alert has been raised for reconciliation.',
+        refundIssued: true,
+        recorded: false,
+        paymentId,
+      },
+      { status: 500 },
+    );
+  }
 
   await logAdminActivity({
     adminUserId: auth.user.id,

@@ -275,13 +275,19 @@ export default function MobileInvoicePaymentPage() {
         }
 
 
-        await supabase
+        // Checked like the pending path below: an unchecked failure here
+        // leaves the invoice stuck on 'pending' forever with nobody aware.
+        const { error: failUpdateError } = await supabase
           .from('invoices')
           .update({
             status: 'failed',
             payment_method: 'card'
           })
           .eq('id', invoiceId)
+
+        if (failUpdateError) {
+          console.error('[Payment Debug] Failed to mark invoice failed:', failUpdateError)
+        }
 
         toast({
           title: errorTitle,
@@ -412,7 +418,7 @@ export default function MobileInvoicePaymentPage() {
         router.push(`/mobile/invoice/${invoiceId}`)
       } else {
         // Verification failed - update invoice status to failed
-        await supabase
+        const { error: verifyFailUpdateError } = await supabase
           .from('invoices')
           .update({
             status: 'failed',
@@ -420,6 +426,10 @@ export default function MobileInvoicePaymentPage() {
             notes: verifyResult.error || 'Payment verification failed'
           })
           .eq('id', invoiceId)
+
+        if (verifyFailUpdateError) {
+          console.error('[Payment Debug] Failed to mark invoice failed after verification failure:', verifyFailUpdateError)
+        }
 
         toast({
           title: t('mobile.payment.toast.verifyFailedTitle') as string,
@@ -432,13 +442,17 @@ export default function MobileInvoicePaymentPage() {
       const errorMessage = (error as Error).message
 
       // Update invoice status to failed on error
-      await supabase
+      const { error: errorPathUpdateError } = await supabase
         .from('invoices')
         .update({
           status: 'failed',
           payment_method: 'card'
         })
         .eq('id', invoiceId)
+
+      if (errorPathUpdateError) {
+        console.error('[Payment Debug] Failed to mark invoice failed after payment error:', errorPathUpdateError)
+      }
 
       if (process.env.NODE_ENV === 'development') {
         console.error('Payment error:', errorMessage)

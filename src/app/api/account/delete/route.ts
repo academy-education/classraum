@@ -6,6 +6,7 @@ import {
   sendAccountScheduledForDeletionEmail,
   sendAcademyClosureNoticeEmail,
 } from '@/lib/account-deletion-emails'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * POST /api/account/delete
@@ -212,12 +213,27 @@ export async function POST(request: NextRequest) {
     })
 
   if (logError) {
-    // Don't fail the request — the user has been scheduled, the audit log
-    // is best-effort. But this should fire an alert in a healthy system.
+    // Don't fail the request — the user has been scheduled and banned
+    // already, so 500ing here would just confuse them. But this is not
+    // cosmetic: the cron REQUIRES an open account_deletion_log row before
+    // it will hard-delete, so a missing row means the deletion silently
+    // stalls at day 30. Alert rather than leaving a console line.
     console.error(
       '[account/delete] audit log insert failed (deletion still applied):',
       logError
     )
+    await raiseAlert({
+      severity: 'critical',
+      title: 'Deletion audit log not written',
+      message:
+        `User ${user.id} was scheduled for deletion but the ` +
+        `account_deletion_log row could not be written. The hard-delete cron ` +
+        `fails closed without it, so this erasure request will never complete ` +
+        `until the row is backfilled.`,
+      dedupeKey: 'account-delete:audit-log-insert-failed',
+      error: logError,
+      context: { userId: user.id, scheduledAt: now.toISOString() },
+    })
   }
 
   const hardDeletionDate = new Date(
@@ -249,21 +265,37 @@ export async function POST(request: NextRequest) {
     console.warn('[account/delete] preference lookup failed (continuing):', e)
   }
 
-  void sendAccountScheduledForDeletionEmail({
+  // AWAITED. This used to be a detached `void ….then()`. There is no
+  // waitUntil on this runtime, so a serverless invocation is free to
+  // freeze the moment we return the JSON response — the promise may
+  // never resolve and the user is never told their account is scheduled
+  // for permanent deletion. sendAccountScheduledForDeletionEmail never
+  // throws (it reports {sent,error}), so awaiting cannot fail the request.
+  const scheduledEmail = await sendAccountScheduledForDeletionEmail({
     email: userRow?.email ?? user.email ?? '',
     name: userRow?.name ?? 'there',
     language: recipientLanguage,
     hardDeletionDate,
-  }).then((res) => {
-    if (!res.sent) {
-      console.error(
-        '[account/delete] scheduled email failed:',
-        res.error,
-        'user=',
-        user.id
-      )
-    }
   })
+  if (!scheduledEmail.sent) {
+    console.error(
+      '[account/delete] scheduled email failed:',
+      scheduledEmail.error,
+      'user=',
+      user.id
+    )
+    await raiseAlert({
+      severity: 'warning',
+      title: 'Deletion-scheduled email not delivered',
+      message:
+        `User ${user.id} was scheduled for deletion on ${hardDeletionDate} but ` +
+        `the confirmation email did not send. They have no record of the ` +
+        `30-day window.`,
+      dedupeKey: 'account-delete:scheduled-email-failed',
+      error: scheduledEmail.error,
+      context: { userId: user.id, hardDeletionDate },
+    })
+  }
 
   // Academy cascade case: send heads-up to other members.
   //
@@ -272,9 +304,19 @@ export async function POST(request: NextRequest) {
   // with the scary "academy closing" email from our verified Postmark
   // sender. Skip the email blast if we sent one within the last 7 days
   // for this academy.
+  //
+  // CORRECTNESS (this block used to be a detached `void (async () => …)()`):
+  // nothing kept the invocation alive, so on a cold/serverless container the
+  // function could return before a single email went out — and the cool-down
+  // stamp below was written unconditionally, suppressing every retry for 7
+  // days. Net effect: members of a closing academy were never warned their
+  // data was about to be deleted. It is now AWAITED, sends are batched so a
+  // large academy still fits inside the 60s function budget, and the
+  // cool-down is stamped ONLY when every member email actually sent.
   const NOTICE_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000
+  const EMAIL_BATCH_SIZE = 10
   if (body.confirmCascadeAcademy === true && userRoleRow?.role === 'manager') {
-    void (async () => {
+    await (async () => {
       try {
         const { data: soleAcademies } = await supabaseAdmin.rpc(
           'user_sole_managed_academies',
@@ -337,36 +379,104 @@ export async function POST(request: NextRequest) {
             if (p.language) langByUser.set(p.user_id, p.language)
           }
 
-          for (const m of (members ?? []) as Array<{ id: string; email: string; name: string }>) {
-            if (!m.email) continue
-            const res = await sendAcademyClosureNoticeEmail({
-              email: m.email,
-              name: m.name || 'there',
-              language: langByUser.get(m.id) ?? null,
-              academyName: academy.academy_name,
-              hardDeletionDate,
-            })
-            if (!res.sent) {
-              console.error(
-                '[account/delete] academy closure email failed:',
-                res.error,
-                'member=',
-                m.id,
-                'academy=',
-                academy.academy_id
-              )
+          const recipients = (
+            (members ?? []) as Array<{ id: string; email: string; name: string }>
+          ).filter((m) => m.email)
+
+          const failed: string[] = []
+          // Batched rather than fully serial: a 200-member academy at
+          // ~300ms/email would blow the 60s function budget serially.
+          for (let i = 0; i < recipients.length; i += EMAIL_BATCH_SIZE) {
+            const batch = recipients.slice(i, i + EMAIL_BATCH_SIZE)
+            const results = await Promise.all(
+              batch.map(async (m) => ({
+                id: m.id,
+                res: await sendAcademyClosureNoticeEmail({
+                  email: m.email,
+                  name: m.name || 'there',
+                  language: langByUser.get(m.id) ?? null,
+                  academyName: academy.academy_name,
+                  hardDeletionDate,
+                }),
+              }))
+            )
+            for (const { id, res } of results) {
+              if (!res.sent) {
+                failed.push(id)
+                console.error(
+                  '[account/delete] academy closure email failed:',
+                  res.error,
+                  'member=',
+                  id,
+                  'academy=',
+                  academy.academy_id
+                )
+              }
             }
           }
 
+          if (failed.length > 0) {
+            // Do NOT stamp the cool-down: leaving it unset is what allows
+            // a retry (a second delete request, or an ops re-run) to warn
+            // the members who were missed. Stamping here would guarantee
+            // silence for 7 days — past which the 30-day window is a
+            // third gone.
+            await raiseAlert({
+              severity: 'critical',
+              title: 'Academy closure notices not delivered',
+              message:
+                `${failed.length} of ${recipients.length} members of academy ` +
+                `"${academy.academy_name}" (${academy.academy_id}) were NOT warned ` +
+                `that the academy is closing and their data will be deleted on ` +
+                `${hardDeletionDate}. Cool-down deliberately not stamped so a retry ` +
+                `can reach them.`,
+              dedupeKey: `academy-closure-notice:${academy.academy_id}`,
+              context: {
+                academyId: academy.academy_id,
+                triggeredByUserId: user.id,
+                failedMemberIds: failed.slice(0, 50),
+                totalRecipients: recipients.length,
+                hardDeletionDate,
+              },
+            })
+            continue
+          }
+
           // Stamp the cool-down so a subsequent delete/reactivate/delete
-          // cycle within 7 days won't re-spam these members.
-          await supabaseAdmin
+          // cycle within 7 days won't re-spam these members. Only reached
+          // when every notice actually sent.
+          const { error: stampError } = await supabaseAdmin
             .from('academies')
             .update({ closure_notice_sent_at: new Date().toISOString() })
             .eq('id', academy.academy_id)
+
+          if (stampError) {
+            // Not fatal — the members WERE warned. Worst case a repeat
+            // delete/reactivate cycle re-sends. Log so the spam-guard
+            // regression is visible.
+            console.error(
+              '[account/delete] closure_notice_sent_at stamp failed for academy=',
+              academy.academy_id,
+              stampError
+            )
+          }
         }
       } catch (e) {
         console.error('[account/delete] academy closure email batch failed:', e)
+        // Awaited now, so an exception here would 500 the deletion request
+        // that already succeeded. Swallow it, but never silently: this is
+        // the "members not warned" failure mode.
+        await raiseAlert({
+          severity: 'critical',
+          title: 'Academy closure notice batch crashed',
+          message:
+            `The academy-closure email blast for user ${user.id} threw before ` +
+            `completing. Some or all members of their sole-managed academies ` +
+            `were not warned about deletion on ${hardDeletionDate}.`,
+          dedupeKey: 'academy-closure-notice:batch-crashed',
+          error: e,
+          context: { triggeredByUserId: user.id, hardDeletionDate },
+        })
       }
     })()
   }

@@ -82,13 +82,14 @@ export async function GET(request: NextRequest) {
       throw logsError;
     }
 
-    // Get unique service names for filter dropdown
-    const { data: services } = await supabase
-      .from('error_logs')
-      .select('service_name')
-      .order('service_name');
-
-    const uniqueServices = [...new Set(services?.map(s => s.service_name) || [])];
+    // Unique service names for the filter dropdown, DISTINCT-ed in SQL.
+    // The previous unbounded .select() was silently capped at PostgREST's
+    // 1000-row default, so on a busy error table the dropdown listed only the
+    // services present in the newest thousand rows — and a service that had
+    // stopped erroring recently became unfilterable.
+    const { data: serviceRows } = await supabase.rpc('admin_error_log_services');
+    const uniqueServices = (Array.isArray(serviceRows) ? serviceRows : [])
+      .map((r: { service_name: string }) => r.service_name);
 
     return NextResponse.json({
       success: true,

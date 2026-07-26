@@ -1,6 +1,8 @@
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { REFERRAL_PREMIUM_CREDITS } from '@/lib/study/referral'
+import { FREE_CREDITS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * Stage 2 of the referral loop — the PREMIUM conversion bonus.
@@ -42,12 +44,40 @@ export async function grantReferralConversionIfEligible(refereeId: string): Prom
     if (!claimed) return
 
     const referrerId = claimed.referrer_id as string
-    // Reward BOTH sides. Each grant is independent + best-effort: one side
-    // lacking a subscription row (RPC no-ops) doesn't block the other.
+    // Reward BOTH sides. The credit RPC keys on student_id and silently
+    // no-ops when a side has no study_subscriptions row — a referrer who
+    // owns a code but never subscribed is exactly that case — so provision
+    // the free row for both first, mirroring the redeem route.
     await Promise.all([
+      ensureFreeSubscription(refereeId),
+      ensureFreeSubscription(referrerId),
+    ])
+    const [referee, referrer] = await Promise.all([
       grantPremiumCredits(refereeId, claimed.id),
       grantPremiumCredits(referrerId, claimed.id),
     ])
+
+    // `converted` is already flipped (it has to be, it's the race guard), so
+    // there is no retry: a failed grant is only recoverable by hand.
+    if (!referee || !referrer) {
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Referral conversion bonus was not granted',
+        message:
+          `A referred student converted to paid but ${!referee && !referrer ? 'neither side' : !referee ? 'the referee' : 'the referrer'} ` +
+          `received the ${REFERRAL_PREMIUM_CREDITS} conversion credits. The redemption is already ` +
+          `marked converted, so this cannot retry — grant the missing credits manually.`,
+        dedupeKey: `referral-conversion-grant-failed:${claimed.id}`,
+        context: {
+          redemptionId: claimed.id,
+          refereeId,
+          referrerId,
+          refereeGranted: referee,
+          referrerGranted: referrer,
+          credits: REFERRAL_PREMIUM_CREDITS,
+        },
+      })
+    }
 
     void trackEvent(refereeId, 'referral_converted', { referrerId, creditsEach: REFERRAL_PREMIUM_CREDITS })
   } catch (err) {
@@ -56,18 +86,47 @@ export async function grantReferralConversionIfEligible(refereeId: string): Prom
 }
 
 /**
- * Add REFERRAL_PREMIUM_CREDITS to a student's purchased bucket + ledger,
- * but only if they have a subscription row for the RPC to update (it keys
- * on student_id and would otherwise silently no-op). Mirrors the signup
- * grant in the redeem route.
+ * Provision the free study_subscriptions row for a student who doesn't have
+ * one, so the credit RPC (which keys on student_id) has a row to update.
+ * Mirrors ensureFreeSubscription in the redeem route; a lost race against a
+ * concurrent insert (23505) is fine.
  */
-async function grantPremiumCredits(studentId: string, sourceId: string): Promise<void> {
+async function ensureFreeSubscription(studentId: string): Promise<void> {
+  const { data: existing } = await supabaseAdmin
+    .from('study_subscriptions')
+    .select('student_id')
+    .eq('student_id', studentId)
+    .maybeSingle()
+  if (existing) return
+
+  const { error } = await supabaseAdmin
+    .from('study_subscriptions')
+    .insert({
+      student_id: studentId,
+      status: 'free',
+      plan: 'free_v1',
+      grant_credits_remaining: FREE_CREDITS,
+    })
+  if (error && (error as { code?: string }).code !== '23505') {
+    // Not fatal here: grantPremiumCredits re-reads and reports a hard
+    // failure (which alerts) if the row still isn't there.
+    console.error('[study/referral-conversion] free-row provision failed', { studentId, error })
+  }
+}
+
+/**
+ * Add REFERRAL_PREMIUM_CREDITS to a student's purchased bucket + ledger.
+ * Requires a subscription row for the RPC to update (callers run
+ * ensureFreeSubscription first), so a missing row here is a real failure.
+ * Returns true only when the credits provably landed.
+ */
+async function grantPremiumCredits(studentId: string, sourceId: string): Promise<boolean> {
   const { data: sub } = await supabaseAdmin
     .from('study_subscriptions')
     .select('student_id')
     .eq('student_id', studentId)
     .maybeSingle()
-  if (!sub) return
+  if (!sub) return false
 
   const { error: rpcErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId,
@@ -75,9 +134,11 @@ async function grantPremiumCredits(studentId: string, sourceId: string): Promise
   })
   if (rpcErr) {
     console.error('[study/referral-conversion] credit grant failed', { studentId, error: rpcErr })
-    return
+    return false
   }
-  await supabaseAdmin.from('study_credit_ledger').insert({
+  // Balance moved → the grant succeeded. A failed ledger row is an
+  // audit-trail gap, never a reason to re-grant.
+  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: studentId,
     delta: REFERRAL_PREMIUM_CREDITS,
     bucket: 'purchased',
@@ -85,4 +146,17 @@ async function grantPremiumCredits(studentId: string, sourceId: string): Promise
     source_id: sourceId,
     note: 'referral premium conversion bonus',
   })
+  if (ledgerErr) {
+    await raiseAlert({
+      severity: 'warning',
+      title: 'Referral conversion ledger row missing',
+      message:
+        `${REFERRAL_PREMIUM_CREDITS} conversion credits were added to a balance but the ledger ` +
+        `insert failed, so the balance no longer reconciles against the ledger. Do not re-grant.`,
+      dedupeKey: `referral-conversion-ledger-failed:${sourceId}:${studentId}`,
+      error: ledgerErr,
+      context: { studentId, redemptionId: sourceId, credits: REFERRAL_PREMIUM_CREDITS },
+    })
+  }
+  return true
 }

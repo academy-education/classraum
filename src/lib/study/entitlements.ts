@@ -27,7 +27,12 @@ export function passTestFor(passId: string | null | undefined): 'sat' | 'toefl' 
 }
 
 /** Record/extend a pass's test entitlement. Stackable + idempotent: one row
- *  per (student, test); a repeat purchase pushes expires_at to the later date. */
+ *  per (student, test); a repeat purchase pushes expires_at to the later date.
+ *
+ *  THROWS when the write fails. supabase-js resolves `{ error }` rather than
+ *  throwing, so discarding the result here meant "exam pass bought, test stays
+ *  locked" was reported to the buyer as a completed purchase. Callers must
+ *  treat a rejection as "access not granted". */
 export async function grantTestEntitlement(opts: {
   studentId: string
   test: 'sat' | 'toefl' | '*'
@@ -51,13 +56,20 @@ export async function grantTestEntitlement(opts: {
     else nextExp = new Date(cur) > new Date(expIso) ? cur : expIso
   }
 
-  await supabaseAdmin.from('study_entitlements').upsert({
+  const { error } = await supabaseAdmin.from('study_entitlements').upsert({
     student_id: opts.studentId,
     test: opts.test,
     source: opts.source ?? 'pass',
     expires_at: nextExp,
     updated_at: nowIso,
   }, { onConflict: 'student_id,test' })
+  if (error) {
+    throw new Error(
+      `study_entitlements upsert failed for ${opts.studentId}/${opts.test}: ` +
+      `${(error as { message?: string }).message ?? String(error)}`,
+      { cause: error },
+    )
+  }
 }
 
 interface AccessResult {
@@ -106,7 +118,8 @@ export async function getTestAccess(studentId: string): Promise<AccessResult> {
 
 /** Point the study path at a test the user just unlocked: make it the current
  *  focus (target_test) and add it to their multi-target list. Non-destructive
- *  — keeps any existing targets. */
+ *  — keeps any existing targets. THROWS when the write fails (see
+ *  grantTestEntitlement). */
 export async function pointStudyPathAtTest(studentId: string, testFamily: 'sat' | 'toefl'): Promise<void> {
   const TEST = testFamily.toUpperCase() // stored convention: 'SAT' | 'TOEFL'
   const { data: prefs } = await supabaseAdmin
@@ -116,9 +129,16 @@ export async function pointStudyPathAtTest(studentId: string, testFamily: 'sat' 
     .maybeSingle()
   const existing = ((prefs?.target_tests as string[] | null) ?? []).map(s => s.toUpperCase())
   const next = Array.from(new Set([...existing, TEST]))
-  await supabaseAdmin.from('study_user_prefs').upsert({
+  const { error } = await supabaseAdmin.from('study_user_prefs').upsert({
     student_id: studentId,
     target_test: TEST,
     target_tests: next,
   }, { onConflict: 'student_id' })
+  if (error) {
+    throw new Error(
+      `study_user_prefs upsert failed for ${studentId}/${TEST}: ` +
+      `${(error as { message?: string }).message ?? String(error)}`,
+      { cause: error },
+    )
+  }
 }

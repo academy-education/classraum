@@ -101,7 +101,12 @@ export async function tryHandleStudyOneTimeWebhook(rawBody: string): Promise<Stu
       return { handled: true, reason: 'pack/amount mismatch' }
     }
     const outcome = await grantCreditPack({ studentId, packId: pack.id, paymentId })
-    return { handled: true, applied: outcome.status }
+    // A failed grant must NOT be acked. Returning 2xx tells PortOne to
+    // stop retrying, which left "charged but no credits" recoverable
+    // only by a human noticing an alert. The grant is idempotent — a
+    // failure writes no idempotency row, and a duplicate is detected by
+    // the 23505 unique violation — so redelivery lands it exactly once.
+    return { handled: true, applied: outcome.status, retryable: outcome.status === 'error' }
   }
 
   if (cd.kind === 'study_exam_pass') {
@@ -112,7 +117,10 @@ export async function tryHandleStudyOneTimeWebhook(rawBody: string): Promise<Stu
       return { handled: true, reason: 'pass/amount mismatch' }
     }
     const outcome = await grantExamPass({ studentId, passId: passPlan.id, paymentId })
-    return { handled: true, applied: outcome.status }
+    // Same contract as the credit pack above: a failed grant is
+    // retryable, so PortOne redelivers rather than the purchase being
+    // silently lost.
+    return { handled: true, applied: outcome.status, retryable: outcome.status === 'error' }
   }
 
   return { handled: true, reason: `unexpected kind (${String(cd.kind)})` }

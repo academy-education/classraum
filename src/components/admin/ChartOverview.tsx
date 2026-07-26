@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, BarChart3, Calendar } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { useAdminFetch } from './useAdminFetch';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getMonthShort } from '@/utils/dateUtils';
 import {
@@ -29,72 +29,43 @@ type ChartType = 'revenue' | 'academies' | 'users';
 export function ChartOverview() {
   const { t, language } = useTranslation();
   const monthLabels = getMonthShort(language);
+  const adminFetch = useAdminFetch();
   const [activeChart, setActiveChart] = useState<ChartType>('revenue');
   const [timeRange, setTimeRange] = useState<'6m' | '12m'>('12m');
   const [chartData, setChartData] = useState<ChartData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     loadChartData();
   }, []);
 
+  /**
+   * Series come from /api/admin/dashboard/charts (service role, server-side).
+   *
+   * The previous implementation counted `academies` / `users` from the browser
+   * with the anon-key client. RLS-denied counts return
+   * `{ count: null, error: null }`, and `count || 0` turned that silent denial
+   * into a chart of honest-looking zeroes. Errors are now surfaced instead of
+   * being swallowed into an empty dataset.
+   */
   const loadChartData = async () => {
     try {
       setLoading(true);
+      setLoadError(null);
 
-      // Generate last 12 months
-      const months = Array.from({ length: 12 }, (_, i) => {
-        const date = new Date();
-        date.setMonth(date.getMonth() - (11 - i));
-        return {
-          date,
-          monthIndex: date.getMonth(),
-          year: date.getFullYear(),
-          monthStart: new Date(date.getFullYear(), date.getMonth(), 1),
-          monthEnd: new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59)
-        };
-      });
+      const res = await adminFetch('/api/admin/dashboard/charts');
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.detail || body?.error || `Request failed (${res.status})`);
+      }
 
-      // Fetch monthly data
-      const monthlyDataPromises = months.map(async (month, index) => {
-        const [academiesResult, usersResult] = await Promise.all([
-          // Academies count at end of month
-          supabase
-            .from('academies')
-            .select('*', { count: 'exact', head: true })
-            .lte('created_at', month.monthEnd.toISOString()),
-          
-          // Users count at end of month
-          supabase
-            .from('users')
-            .select('*', { count: 'exact', head: true })
-            .lte('created_at', month.monthEnd.toISOString())
-        ]);
-
-        // Fetch real revenue data from invoices
-        const { data: invoices } = await supabase
-          .from('invoices')
-          .select('final_amount')
-          .eq('status', 'paid')
-          .gte('paid_at', month.monthStart.toISOString())
-          .lte('paid_at', month.monthEnd.toISOString());
-
-        const monthlyRevenue = invoices?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0;
-
-        return {
-          monthIndex: month.monthIndex,
-          revenue: monthlyRevenue,
-          academies: Math.max(academiesResult.count || 0, 0),
-          users: Math.max(usersResult.count || 0, 0)
-        };
-      });
-
-      const realChartData = await Promise.all(monthlyDataPromises);
-      setChartData(realChartData);
-
+      const { series } = await res.json() as { series: ChartData[] };
+      setChartData(series);
     } catch (error) {
       console.error('Error loading chart data:', error);
-      // Data will remain empty on error
+      setChartData([]);
+      setLoadError(error instanceof Error ? error.message : String(error));
     } finally {
       setLoading(false);
     }
@@ -223,15 +194,18 @@ export function ChartOverview() {
       {/* Growth Indicator */}
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mb-4">
         <div className="flex items-center space-x-2">
+          {/* An unavailable figure renders as "—", never as a plausible 0. */}
           <span className="text-2xl font-semibold text-gray-900">
-            {displayData.length > 0 ? formatValue(displayData[displayData.length - 1][activeChart], activeChart) : '0'}
+            {displayData.length > 0 ? formatValue(displayData[displayData.length - 1][activeChart], activeChart) : '—'}
           </span>
-          <div className={`flex items-center text-sm font-medium ${
-            growth >= 0 ? 'text-emerald-600' : 'text-rose-600'
-          }`}>
-            <TrendingUp className={`h-4 w-4 mr-1 ${growth < 0 ? 'rotate-180' : ''}`} />
-            {Math.abs(growth).toFixed(1)}%
-          </div>
+          {displayData.length > 0 && (
+            <div className={`flex items-center text-sm font-medium ${
+              growth >= 0 ? 'text-emerald-600' : 'text-rose-600'
+            }`}>
+              <TrendingUp className={`h-4 w-4 mr-1 ${growth < 0 ? 'rotate-180' : ''}`} />
+              {Math.abs(growth).toFixed(1)}%
+            </div>
+          )}
         </div>
         <span className="text-sm text-gray-500">{String(t('admin.chartOverview.vsLastMonth'))}</span>
       </div>
@@ -245,6 +219,17 @@ export function ChartOverview() {
             {Array.from({ length: timeRange === '6m' ? 6 : 12 }).map((_, i) => (
               <div key={i} className="flex-1 bg-gray-100 rounded-t animate-pulse" style={{ height: `${30 + (i * 13) % 60}%` }} />
             ))}
+          </div>
+        ) : loadError ? (
+          <div className="h-full flex flex-col items-center justify-center gap-2 text-center">
+            <p className="text-sm font-medium text-gray-900">{String(t('admin.dashboard.failedToLoad'))}</p>
+            <p className="text-xs text-gray-500 max-w-xs break-words">{loadError}</p>
+            <button
+              onClick={loadChartData}
+              className="text-xs font-medium text-primary hover:text-primary transition-colors"
+            >
+              {String(t('admin.common.refresh'))}
+            </button>
           </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">

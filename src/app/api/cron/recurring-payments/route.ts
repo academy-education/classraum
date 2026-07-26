@@ -14,12 +14,26 @@ export async function GET(req: NextRequest) {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
     }
-    // Pass CRON_SECRET_KEY if available, otherwise fall back to User-Agent
-    if (process.env.CRON_SECRET_KEY) {
-      headers['Authorization'] = `Bearer ${process.env.CRON_SECRET_KEY}`
-    } else {
-      headers['User-Agent'] = 'vercel-cron/1.0'
+    // Forward the same secret the inbound guard accepts. CRON_SECRET
+    // first — that is the name Vercel Cron requires, and the one likely
+    // to be the only one set. Reading CRON_SECRET_KEY alone meant this
+    // route could authenticate INBOUND via verifyCronAuth and then
+    // forward no credential at all, so recurring invoice generation
+    // 401'd downstream and silently produced nothing.
+    //
+    // The old `else` fell back to a 'vercel-cron/1.0' User-Agent. That
+    // was always spoofable, and verifyCronAuth deliberately stopped
+    // honouring it — so the fallback could not authenticate anything.
+    // Fail loudly instead of firing a request that is certain to 401.
+    const cronSecret = process.env.CRON_SECRET || process.env.CRON_SECRET_KEY
+    if (!cronSecret) {
+      console.error('[cron/recurring-payments] no CRON_SECRET configured — cannot authenticate to the generate endpoint')
+      return NextResponse.json(
+        { error: 'CRON_SECRET not configured' },
+        { status: 500 },
+      )
     }
+    headers['Authorization'] = `Bearer ${cronSecret}`
 
     const response = await fetch(generateUrl, {
       method: 'POST',

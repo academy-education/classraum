@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { KGPaymentRequest, SubscriptionTier, BillingCycle } from '@/types/subscription';
 import crypto from 'crypto';
+import { raiseAlert } from '@/lib/ops/alert';
 
 // Initialize Supabase admin client
 const supabaseAdmin = createClient(
@@ -97,7 +98,7 @@ export async function POST(request: NextRequest) {
       console.error('Payment failed:', params.P_RMESG1);
       
       // Update invoice as failed
-      await supabaseAdmin
+      const { error: failMarkError } = await supabaseAdmin
         .from('subscription_invoices')
         .update({
           status: 'failed',
@@ -105,6 +106,19 @@ export async function POST(request: NextRequest) {
           failure_reason: params.P_RMESG1 || 'Payment failed',
         })
         .eq('kg_order_id', params.P_OID);
+
+      if (failMarkError) {
+        await raiseAlert({
+          severity: 'warning',
+          title: 'Failed subscription payment not marked failed',
+          message:
+            `Payment for order ${params.P_OID} failed at the PG but the subscription_invoices row could not be ` +
+            `marked failed, so it still reads as pending.`,
+          dedupeKey: `sub-callback-fail-mark:${params.P_OID}`,
+          error: failMarkError,
+          context: { orderId: params.P_OID, transactionId: params.P_TID },
+        });
+      }
 
       return NextResponse.json(
         { success: false, message: params.P_RMESG1 || 'Payment failed' },
@@ -233,7 +247,21 @@ export async function POST(request: NextRequest) {
             navigation_data: { page: 'settings', section: 'subscription' },
           }));
 
-          await supabaseAdmin.from('notifications').insert(errorNotifications);
+          const { error: notifyError } = await supabaseAdmin
+            .from('notifications')
+            .insert(errorNotifications);
+          if (notifyError) {
+            await raiseAlert({
+              severity: 'warning',
+              title: 'Subscription invoice missing and managers were not notified',
+              message:
+                `Subscription for academy ${academyId} activated but the subscription_invoices row could not be created ` +
+                `(transaction ${params.P_TID}), and the manager notification about it also failed to insert.`,
+              dedupeKey: `sub-callback-invoice-notify:${params.P_TID}`,
+              error: notifyError,
+              context: { academyId, tier, cycle, transactionId: params.P_TID },
+            });
+          }
         }
       } else {
         console.log('Invoice created successfully on retry');
@@ -251,8 +279,35 @@ export async function POST(request: NextRequest) {
       })
       .eq('id', academyId);
 
+    // The academy has paid. `academies.subscription_tier` is what actually
+    // gates features and un-suspends the account, so if this write is lost
+    // the customer paid and got nothing — and we used to tell the PG
+    // "success", ending the story there. Report it loudly instead.
     if (updateError) {
-      console.error('Failed to update academy tier:', updateError);
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Academy paid but subscription tier was not upgraded',
+        message:
+          `Payment ${params.P_TID} for academy ${academyId} succeeded and the subscription row is active, but ` +
+          `academies.subscription_tier could not be set to "${tier}". The academy is paying without access ` +
+          `(and any suspension was not lifted). Set the tier manually to resolve.`,
+        dedupeKey: `sub-callback-tier-write:${academyId}:${params.P_TID}`,
+        error: updateError,
+        context: { academyId, tier, cycle, transactionId: params.P_TID, amount },
+      });
+
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            'Payment was received and the subscription was created, but the academy tier could not be activated. ' +
+            'Support has been alerted and will complete the activation.',
+          transactionId: params.P_TID,
+          paymentRecorded: true,
+          tierActivated: false,
+        },
+        { status: 500 },
+      );
     }
 
     // 6. Initialize or update usage tracking
@@ -261,11 +316,24 @@ export async function POST(request: NextRequest) {
       calculated_at: new Date().toISOString(),
     };
 
-    await supabaseAdmin
+    const { error: usageError } = await supabaseAdmin
       .from('subscription_usage')
       .upsert(usageData, {
         onConflict: 'academy_id',
       });
+
+    if (usageError) {
+      // Non-fatal: the tier is live, usage rows get recalculated on the next
+      // pass. Surface it rather than dropping it on the floor.
+      await raiseAlert({
+        severity: 'warning',
+        title: 'Subscription usage row not initialized',
+        message: `Could not upsert subscription_usage for academy ${academyId} after activating "${tier}".`,
+        dedupeKey: `sub-callback-usage-write:${academyId}`,
+        error: usageError,
+        context: { academyId, tier, transactionId: params.P_TID },
+      });
+    }
 
     // 7. Create notification for academy manager
     if (managers && managers.length > 0) {
@@ -284,9 +352,23 @@ export async function POST(request: NextRequest) {
         },
       }));
 
-      await supabaseAdmin
+      const { error: activationNotifyError } = await supabaseAdmin
         .from('notifications')
         .insert(notifications);
+
+      if (activationNotifyError) {
+        // The subscription IS active — this only means nobody was told.
+        // Worth an alert (a CHECK-constraint mismatch on notifications.type
+        // has silently swallowed whole notification kinds before).
+        await raiseAlert({
+          severity: 'warning',
+          title: 'Subscription activation notification not delivered',
+          message: `Academy ${academyId} was activated on "${tier}" but the manager notification failed to insert.`,
+          dedupeKey: `sub-callback-activation-notify:${academyId}:${params.P_TID}`,
+          error: activationNotifyError,
+          context: { academyId, tier, transactionId: params.P_TID },
+        });
+      }
     }
 
     console.log('Subscription activated successfully:', {

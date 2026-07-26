@@ -4,7 +4,9 @@
  * Centralized error handling, logging, and alerting for the application
  */
 
+import * as Sentry from '@sentry/nextjs';
 import { supabaseServer } from './supabase-server';
+import { raiseAlert } from './ops/alert';
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'critical';
 
@@ -74,8 +76,13 @@ export class Logger {
    */
   critical(message: string, error?: Error, context?: LogContext) {
     this.log('critical', message, error, context);
-    // Critical errors should trigger alerts
-    this.triggerAlert(message, error, context);
+    // Critical errors should trigger alerts. triggerAlert never throws,
+    // but it IS async and un-awaited here — the .catch keeps a future
+    // regression from becoming an unhandled rejection that kills the
+    // serverless invocation mid-request.
+    this.triggerAlert(message, error, context).catch(err => {
+      console.error('Failed to trigger alert:', err);
+    });
   }
 
   /**
@@ -163,47 +170,76 @@ export class Logger {
   }
 
   /**
-   * Send error to external monitoring service (e.g., Sentry)
+   * Send error to Sentry.
+   *
+   * This was an empty function whose whole body was a commented-out
+   * example, so every `error` and `critical` log in the codebase — payout
+   * failures, webhook failures, settlement failures — reached nothing but
+   * a serverless console line. The SDK is initialised by
+   * sentry.server.config.ts / sentry.client.config.ts; when the DSN env
+   * var is unset these calls are no-ops, which is why there is no
+   * `if (SENTRY_DSN)` guard.
+   *
+   * Never throws: an error reporter that can throw turns one failure into
+   * two, and the caller only .catch()es as a backstop.
    */
   private async sendToMonitoring(log: ErrorLog): Promise<void> {
-    // TODO: Integrate with error monitoring service
-    // Example with Sentry:
-    // if (process.env.SENTRY_DSN) {
-    //   Sentry.captureException(log.error || new Error(log.message), {
-    //     level: log.level === 'critical' ? 'fatal' : 'error',
-    //     tags: {
-    //       service: this.serviceName,
-    //     },
-    //     extra: log.context,
-    //   });
-    // }
+    try {
+      // Prefer captureException — it carries the real stack and lets
+      // Sentry group by fingerprint. Only synthesise an Error when the
+      // call site logged a message with no error object.
+      const captured = log.error ?? new Error(log.message);
+      Sentry.captureException(captured, {
+        level: log.level === 'critical' ? 'fatal' : 'error',
+        tags: {
+          service: this.serviceName,
+          logLevel: log.level,
+          synthetic: log.error ? 'false' : 'true',
+        },
+        extra: {
+          ...(log.context ?? {}),
+          logMessage: log.message,
+          loggedAt: log.timestamp,
+        },
+      });
+    } catch (e) {
+      console.error('[error-monitoring] Sentry capture failed:', e);
+    }
   }
 
   /**
-   * Trigger alert for critical errors
+   * Trigger alert for critical errors.
+   *
+   * Delegates to raiseAlert() — the single alerting path (alerts table +
+   * Sentry + email for critical). This used to be a console.error with a
+   * TODO, which meant `loggers.payout.critical('Payout failed')` produced
+   * exactly one unread log line and no page.
+   *
+   * dedupeKey is derived from service + message, deliberately NOT from
+   * the context (which carries payoutId/paymentId and would defeat
+   * deduping by minting a fresh key per occurrence). One open alert per
+   * distinct failure mode per service is what the dashboard wants.
    */
   private async triggerAlert(message: string, error?: Error, context?: LogContext) {
-    // TODO: Implement alerting mechanism
-    // This could send emails, Slack messages, PagerDuty alerts, etc.
-    console.error('🚨 CRITICAL ALERT:', {
-      service: this.serviceName,
-      message,
-      error: error?.message,
-      context,
-    });
-
-    // Example: Send email alert
-    // await sendEmailAlert({
-    //   subject: `CRITICAL: ${this.serviceName} - ${message}`,
-    //   body: `
-    //     Service: ${this.serviceName}
-    //     Message: ${message}
-    //     Error: ${error?.message || 'N/A'}
-    //     Context: ${JSON.stringify(context, null, 2)}
-    //     Stack Trace: ${error?.stack || 'N/A'}
-    //   `,
-    //   recipients: process.env.ALERT_EMAILS?.split(',') || [],
-    // });
+    try {
+      await raiseAlert({
+        severity: 'critical',
+        title: `${this.serviceName}: ${message}`,
+        message: error?.message
+          ? `${message} — ${error.message}`
+          : message,
+        dedupeKey: `logger:${this.serviceName}:${message}`,
+        error,
+        context: { ...(context ?? {}), service: this.serviceName },
+      });
+    } catch (e) {
+      // raiseAlert already swallows its own failures; this is belt-and-
+      // braces so a critical log can never take down the caller.
+      console.error('[error-monitoring] raiseAlert failed:', e, {
+        service: this.serviceName,
+        message,
+      });
+    }
   }
 }
 

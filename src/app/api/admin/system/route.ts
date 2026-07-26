@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { listAllAuthUsers } from '../_lib/admin-auth';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -56,18 +57,30 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Get total users from auth
-    const { data: authData } = await supabase.auth.admin.listUsers();
-    const totalAuthUsers = authData?.users.length || 0;
+    // Get total users from auth.
+    //
+    // MUST be paginated: `listUsers()` with no arguments returns only the
+    // first page (perPage defaults to 50), so "Total Users" reported 50 for a
+    // 410-user platform and "Active Users (30d)" was counted against those
+    // same 50 rows instead of the whole population.
+    let authUsers: Awaited<ReturnType<typeof listAllAuthUsers>> | null = null;
+    try {
+      authUsers = await listAllAuthUsers();
+    } catch (e) {
+      // Auth being unreachable is a real signal for the service-health card
+      // below — surface it as "down" rather than reporting 0 users.
+      console.error('[Admin System API] listAllAuthUsers failed:', e);
+    }
+    const totalAuthUsers = authUsers?.length ?? 0;
 
     // Calculate active users (logged in within last 30 days)
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-    const activeUsers = authData?.users.filter(u => {
+    const activeUsers = authUsers?.filter(u => {
       const lastSignIn = u.last_sign_in_at ? new Date(u.last_sign_in_at) : null;
       return lastSignIn && lastSignIn > thirtyDaysAgo;
-    }).length || 0;
+    }).length ?? 0;
 
     // Get subscription metrics
     const { data: subscriptions } = await supabase
@@ -95,7 +108,7 @@ export async function GET(request: NextRequest) {
     const services = [
       { id: 'database',       name: 'Database',       status: dbProbe.ok ? 'running' : 'down',      responseMs: dbProbe.ms,      description: 'PostgreSQL database connection' },
       // Auth was already exercised above via auth.admin.listUsers().
-      { id: 'authentication', name: 'Authentication', status: authData ? 'running' : 'down',        responseMs: null,            description: 'Supabase Auth service' },
+      { id: 'authentication', name: 'Authentication', status: authUsers ? 'running' : 'down',       responseMs: null,            description: 'Supabase Auth service' },
       { id: 'api_server',     name: 'API Server',     status: 'running',                            responseMs: null,            description: 'Next.js API routes' },
       { id: 'file_storage',   name: 'File Storage',   status: storageProbe.ok ? 'running' : 'down', responseMs: storageProbe.ms, description: 'Supabase Storage' },
     ];

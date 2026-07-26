@@ -10,7 +10,7 @@ import {
   XCircle,
   Clock
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { useAdminFetch } from './useAdminFetch';
 import { StatusBadge } from './StatusBadge';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -31,133 +31,117 @@ interface ActivityItem {
 
 export function RecentActivity() {
   const { t } = useTranslation();
+  const adminFetch = useAdminFetch();
   const [activities, setActivities] = useState<ActivityItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     loadRecentActivities();
   }, []);
 
+  /**
+   * Data comes from /api/admin/dashboard/activity (service role, server-side).
+   *
+   * These reads used to run in the browser against the anon-key client, so RLS
+   * quietly filtered them to nothing and the panel showed "No recent activity"
+   * whether the platform was idle or the queries were simply denied. Failures
+   * now render as an error with a retry, distinct from a genuinely quiet week.
+   *
+   * The route returns data only; all copy is localized here.
+   */
   const loadRecentActivities = async () => {
     try {
       setLoading(true);
+      setLoadError(null);
+
+      const res = await adminFetch('/api/admin/dashboard/activity');
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.detail || body?.error || `Request failed (${res.status})`);
+      }
+
+      const payload = await res.json() as {
+        academies: { id: string; name: string; createdAt: string }[];
+        subscriptions: { id: string; planName: string | null; academyName: string | null; createdAt: string }[];
+        failedPayments: { id: string; amount: number | null; academyName: string | null; createdAt: string }[];
+        conversations: { id: string; academyName: string | null; createdAt: string }[];
+        students: { academyId: string; academyName: string | null; createdAt: string }[];
+      };
+
+      const fallbackAcademy = String(t('admin.dashboard.fallbackAcademy'));
       const allActivities: ActivityItem[] = [];
 
-      // Fetch recent academies (last 7 days)
-      const sevenDaysAgo = new Date();
-      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
-      const { data: academies } = await supabase
-        .from('academies')
-        .select('id, name, created_at')
-        .gte('created_at', sevenDaysAgo.toISOString())
-        .order('created_at', { ascending: false })
-        .limit(3);
-
-      academies?.forEach(academy => {
+      payload.academies.forEach(academy => {
         allActivities.push({
           id: `academy-${academy.id}`,
           type: 'academy_created',
           title: String(t('admin.dashboard.actNewAcademyTitle')),
           description: String(t('admin.dashboard.actNewAcademyDesc', { name: academy.name })),
-          timestamp: new Date(academy.created_at),
+          timestamp: new Date(academy.createdAt),
           status: 'success',
           metadata: { academyName: academy.name }
         });
       });
 
-      // Fetch recent subscriptions
-      const { data: subscriptions } = await supabase
-        .from('academy_subscriptions')
-        .select('id, plan_name, created_at, academies(name)')
-        .gte('created_at', sevenDaysAgo.toISOString())
-        .order('created_at', { ascending: false })
-        .limit(3);
-
-      subscriptions?.forEach((sub: any) => {
+      payload.subscriptions.forEach(sub => {
         allActivities.push({
           id: `subscription-${sub.id}`,
           type: 'subscription_created',
           title: String(t('admin.dashboard.actNewSubTitle')),
-          description: String(t('admin.dashboard.actNewSubDesc', { name: sub.academies?.name || String(t('admin.dashboard.fallbackAcademy')), plan: sub.plan_name })),
-          timestamp: new Date(sub.created_at),
+          description: String(t('admin.dashboard.actNewSubDesc', { name: sub.academyName || fallbackAcademy, plan: sub.planName ?? '' })),
+          timestamp: new Date(sub.createdAt),
           status: 'success',
-          metadata: { academyName: sub.academies?.name }
+          metadata: { academyName: sub.academyName ?? undefined }
         });
       });
 
-      // Fetch recent failed payments
-      const { data: failedPayments } = await supabase
-        .from('invoices')
-        .select('id, final_amount, created_at, academies(name)')
-        .eq('status', 'failed')
-        .gte('created_at', sevenDaysAgo.toISOString())
-        .order('created_at', { ascending: false })
-        .limit(2);
-
-      failedPayments?.forEach((payment: any) => {
+      payload.failedPayments.forEach(payment => {
         allActivities.push({
           id: `payment-${payment.id}`,
           type: 'payment_failed',
           title: String(t('admin.dashboard.actPaymentFailedTitle')),
-          description: String(t('admin.dashboard.actPaymentFailedDesc', { name: payment.academies?.name || String(t('admin.dashboard.fallbackAcademy')) })),
-          timestamp: new Date(payment.created_at),
+          description: String(t('admin.dashboard.actPaymentFailedDesc', { name: payment.academyName || fallbackAcademy })),
+          timestamp: new Date(payment.createdAt),
           status: 'error',
           metadata: {
-            academyName: payment.academies?.name,
-            amount: payment.final_amount
+            academyName: payment.academyName ?? undefined,
+            amount: payment.amount ?? undefined
           }
         });
       });
 
-      // Fetch recent support conversations
-      const { data: conversations } = await supabase
-        .from('chat_conversations')
-        .select('id, created_at, academies(name)')
-        .gte('created_at', sevenDaysAgo.toISOString())
-        .order('created_at', { ascending: false })
-        .limit(2);
-
-      conversations?.forEach((conv: any) => {
+      payload.conversations.forEach(conv => {
         allActivities.push({
           id: `support-${conv.id}`,
           type: 'support_ticket',
           title: String(t('admin.dashboard.actSupportTitle')),
-          description: String(t('admin.dashboard.actSupportDesc', { name: conv.academies?.name || String(t('admin.dashboard.fallbackUser')) })),
-          timestamp: new Date(conv.created_at),
+          description: String(t('admin.dashboard.actSupportDesc', { name: conv.academyName || String(t('admin.dashboard.fallbackUser')) })),
+          timestamp: new Date(conv.createdAt),
           status: 'warning',
           metadata: {
-            academyName: conv.academies?.name,
+            academyName: conv.academyName ?? undefined,
             ticketId: conv.id.substring(0, 8)
           }
         });
       });
 
-      // Fetch recent students added (group by academy and date)
-      const { data: students } = await supabase
-        .from('students')
-        .select('academy_id, created_at, academies(name)')
-        .gte('created_at', sevenDaysAgo.toISOString())
-        .order('created_at', { ascending: false })
-        .limit(50);
-
-      // Group students by academy and day
+      // Group new students by academy and day.
       const studentsByAcademyDay = new Map<string, { academy: string; count: number; timestamp: Date }>();
-      students?.forEach((student: any) => {
-        const dayKey = `${student.academy_id}-${new Date(student.created_at).toDateString()}`;
-        if (!studentsByAcademyDay.has(dayKey)) {
-          studentsByAcademyDay.set(dayKey, {
-            academy: student.academies?.name || String(t('admin.dashboard.fallbackAcademy')),
-            count: 1,
-            timestamp: new Date(student.created_at)
-          });
-        } else {
-          const existing = studentsByAcademyDay.get(dayKey)!;
+      payload.students.forEach(student => {
+        const dayKey = `${student.academyId}-${new Date(student.createdAt).toDateString()}`;
+        const existing = studentsByAcademyDay.get(dayKey);
+        if (existing) {
           existing.count += 1;
+        } else {
+          studentsByAcademyDay.set(dayKey, {
+            academy: student.academyName || fallbackAcademy,
+            count: 1,
+            timestamp: new Date(student.createdAt)
+          });
         }
       });
 
-      // Add top 2 student addition activities
       Array.from(studentsByAcademyDay.entries())
         .sort((a, b) => b[1].timestamp.getTime() - a[1].timestamp.getTime())
         .slice(0, 2)
@@ -176,12 +160,12 @@ export function RecentActivity() {
           });
         });
 
-      // Sort all activities by timestamp and take the most recent 8
       allActivities.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
       setActivities(allActivities.slice(0, 8));
-
     } catch (error) {
       console.error('Error loading recent activities:', error);
+      setActivities([]);
+      setLoadError(error instanceof Error ? error.message : String(error));
     } finally {
       setLoading(false);
     }
@@ -262,6 +246,12 @@ export function RecentActivity() {
               </div>
             </div>
           ))}
+        </div>
+      ) : loadError ? (
+        <div className="text-center py-8 flex flex-col items-center gap-2">
+          <AlertCircle className="h-10 w-10 text-rose-300" />
+          <p className="text-sm font-medium text-gray-900">{String(t('admin.dashboard.failedToLoad'))}</p>
+          <p className="text-xs text-gray-500 max-w-xs break-words">{loadError}</p>
         </div>
       ) : activities.length === 0 ? (
         <div className="text-center py-8 text-gray-500">

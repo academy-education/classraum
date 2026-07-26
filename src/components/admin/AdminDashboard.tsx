@@ -22,7 +22,6 @@ const AdminTrendChart = dynamic(() => import('./AdminTrendChart'), {
   loading: () => <div className="w-full h-full animate-pulse bg-gray-100 rounded" />,
 });
 import { ChartOverview } from './ChartOverview';
-import { supabase } from '@/lib/supabase';
 import { AdminPageHeader } from './AdminPageHeader';
 import { useAdminFetch } from './useAdminFetch';
 import { Button } from '@/components/ui/button';
@@ -113,10 +112,11 @@ export function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [alerts, setAlerts] = useState<SystemAlert[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     loadDashboardData();
-    
+
     // Add CSS to remove outline from all Recharts elements (matching main dashboard)
     const style = document.createElement('style')
     style.textContent = `
@@ -138,291 +138,45 @@ export function AdminDashboard() {
     }
   }, []);
 
+  /**
+   * All dashboard figures now come from /api/admin/dashboard, which runs the
+   * queries server-side with the service-role key.
+   *
+   * Previously every count was issued straight from the browser with the
+   * anon-key client. Those reads are subject to RLS, and a denied
+   * `head + count` request returns `{ count: null, error: null }` — no error
+   * at all. With `count || 0` at each call site an RLS denial was laundered
+   * into a confident zero, which is how "Total academies" read 0 against a
+   * table holding 10 rows.
+   *
+   * A failed load now sets `loadError` and renders an error state. It must
+   * never be indistinguishable from an empty platform, which is exactly what
+   * the old all-zeros fallback object produced.
+   */
   const loadDashboardData = async () => {
     try {
       setLoading(true);
+      setLoadError(null);
 
-      // Fetch real data from Supabase
-      const [
-        academiesResult,
-        usersResult,
-        subscriptionsResult,
-        studentsResult,
-        parentsResult,
-        teachersResult,
-        managersResult
-      ] = await Promise.all([
-        // Fetch total academies
-        supabase
-          .from('academies')
-          .select('*', { count: 'exact', head: true }),
-        
-        // Fetch total users
-        supabase
-          .from('users')
-          .select('*', { count: 'exact', head: true }),
-        
-        // Fetch active subscriptions from academy_subscriptions table
-        supabase
-          .from('academy_subscriptions')
-          .select('*', { count: 'exact', head: true })
-          .in('status', ['active', 'trialing']),
-        
-        // Fetch students count
-        supabase
-          .from('students')
-          .select('*', { count: 'exact', head: true })
-          .eq('active', true),
-        
-        // Fetch parents count
-        supabase
-          .from('parents')
-          .select('*', { count: 'exact', head: true })
-          .eq('active', true),
-        
-        // Fetch teachers count
-        supabase
-          .from('teachers')
-          .select('*', { count: 'exact', head: true })
-          .eq('active', true),
-        
-        // Fetch managers count
-        supabase
-          .from('managers')
-          .select('*', { count: 'exact', head: true })
-          .eq('active', true)
-      ]);
+      const res = await adminFetch('/api/admin/dashboard');
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.detail || body?.error || `Request failed (${res.status})`);
+      }
 
-      // Use the total users from the users table (the authoritative source)
-      const totalUsers = usersResult.count || 0;
-      
-      // Optionally, we can also calculate users by type for additional stats
-      const totalUsersByType = 
-        (studentsResult.count || 0) + 
-        (parentsResult.count || 0) + 
-        (teachersResult.count || 0) + 
-        (managersResult.count || 0);
-
-      // Fetch active academies (academies with active subscriptions)
-      const { data: activeAcademiesData } = await supabase
-        .from('academy_subscriptions')
-        .select('academy_id')
-        .in('status', ['active', 'trialing']);
-      
-      const uniqueActiveAcademies = new Set(activeAcademiesData?.map(s => s.academy_id) || []);
-      const activeAcademiesCount = uniqueActiveAcademies.size;
-
-      // Fetch trial academies
-      const { count: trialCount } = await supabase
-        .from('academy_subscriptions')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'trialing');
-
-      // Calculate monthly revenue (fetch paid invoices for current month)
-      const startOfMonth = new Date();
-      startOfMonth.setDate(1);
-      startOfMonth.setHours(0, 0, 0, 0);
-
-      const { data: revenueData } = await supabase
-        .from('invoices')
-        .select('final_amount')
-        .eq('status', 'paid')
-        .gte('paid_at', startOfMonth.toISOString());
-
-      const monthlyRevenue = revenueData?.reduce((sum, invoice) => sum + (invoice.final_amount || 0), 0) || 0;
-
-      // Calculate revenue growth (compare with last month)
-      const startOfLastMonth = new Date(startOfMonth);
-      startOfLastMonth.setMonth(startOfLastMonth.getMonth() - 1);
-      
-      const { data: lastMonthRevenueData } = await supabase
-        .from('invoices')
-        .select('final_amount')
-        .eq('status', 'paid')
-        .gte('paid_at', startOfLastMonth.toISOString())
-        .lt('paid_at', startOfMonth.toISOString());
-
-      const lastMonthRevenue = lastMonthRevenueData?.reduce((sum, invoice) => sum + (invoice.final_amount || 0), 0) || 0;
-      const revenueGrowth = lastMonthRevenue > 0 ? ((monthlyRevenue - lastMonthRevenue) / lastMonthRevenue) * 100 : 0;
-
-      // Fetch historical data for trends (last 10 days)
-      const last10Days = Array.from({ length: 10 }, (_, i) => {
-        const date = new Date();
-        date.setDate(date.getDate() - (9 - i));
-        return date.toISOString().split('T')[0];
-      });
-
-      // Fetch historical academies data
-      const academiesTrendPromises = last10Days.map(async (date) => {
-        const { count } = await supabase
-          .from('academies')
-          .select('*', { count: 'exact', head: true })
-          .lte('created_at', date + 'T23:59:59');
-        return count || 0;
-      });
-
-      // Fetch historical users data
-      const usersTrendPromises = last10Days.map(async (date) => {
-        const { count } = await supabase
-          .from('users')
-          .select('*', { count: 'exact', head: true })
-          .lte('created_at', date + 'T23:59:59');
-        return count || 0;
-      });
-
-      // Fetch historical subscriptions data
-      const subscriptionsTrendPromises = last10Days.map(async (date) => {
-        const { count } = await supabase
-          .from('academy_subscriptions')
-          .select('*', { count: 'exact', head: true })
-          .in('status', ['active', 'trialing'])
-          .lte('created_at', date + 'T23:59:59');
-        return count || 0;
-      });
-
-      // Fetch historical revenue data (daily revenue for last 10 days)
-      const revenueTrendPromises = last10Days.map(async (date) => {
-        const startOfDay = date + 'T00:00:00';
-        const endOfDay = date + 'T23:59:59';
-        
-        const { data: dailyRevenueData } = await supabase
-          .from('invoices')
-          .select('final_amount')
-          .eq('status', 'paid')
-          .gte('paid_at', startOfDay)
-          .lte('paid_at', endOfDay);
-          
-        return dailyRevenueData?.reduce((sum, invoice) => sum + (invoice.final_amount || 0), 0) || 0;
-      });
-
-      const [academiesTrend, usersTrend, subscriptionsTrend, revenueTrend] = await Promise.all([
-        Promise.all(academiesTrendPromises),
-        Promise.all(usersTrendPromises),
-        Promise.all(subscriptionsTrendPromises),
-        Promise.all(revenueTrendPromises)
-      ]);
-
-      // Calculate growth percentages
-      const academiesGrowth = academiesTrend.length > 1 ? 
-        ((academiesTrend[academiesTrend.length - 1] - academiesTrend[0]) / Math.max(academiesTrend[0], 1)) * 100 : 0;
-      
-      const usersGrowth = usersTrend.length > 1 ? 
-        ((usersTrend[usersTrend.length - 1] - usersTrend[0]) / Math.max(usersTrend[0], 1)) * 100 : 0;
-      
-      const subscriptionsGrowth = subscriptionsTrend.length > 1 ? 
-        ((subscriptionsTrend[subscriptionsTrend.length - 1] - subscriptionsTrend[0]) / Math.max(subscriptionsTrend[0], 1)) * 100 : 0;
-
-      // Fetch real support tickets count with priority breakdown
-      const { count: supportTicketsCount } = await supabase
-        .from('support_tickets')
-        .select('*', { count: 'exact', head: true })
-        .in('status', ['open', 'in_progress']);
-
-      const { count: urgentTicketsCount } = await supabase
-        .from('support_tickets')
-        .select('*', { count: 'exact', head: true })
-        .in('status', ['open', 'in_progress'])
-        .eq('priority', 'high');
-
-      const { count: normalTicketsCount } = await supabase
-        .from('support_tickets')
-        .select('*', { count: 'exact', head: true })
-        .in('status', ['open', 'in_progress'])
-        .in('priority', ['low', 'medium']);
-
-      const supportTickets = supportTicketsCount || 0;
-      const urgentTickets = urgentTicketsCount || 0;
-      const normalTickets = normalTicketsCount || 0;
-
-      // Calculate system health based on error rates and uptime
-      const { count: criticalAlertsCount } = await supabase
-        .from('alerts')
-        .select('*', { count: 'exact', head: true })
-        .eq('resolved', false)
-        .in('severity', ['critical', 'high']);
-
-      const { count: totalActiveAlertsCount } = await supabase
-        .from('alerts')
-        .select('*', { count: 'exact', head: true })
-        .eq('resolved', false);
-
-      // System health calculation: 100% - (critical alerts * 5%) - (other alerts * 1%)
-      const criticalImpact = (criticalAlertsCount || 0) * 5;
-      const otherAlertsImpact = Math.max(0, (totalActiveAlertsCount || 0) - (criticalAlertsCount || 0)) * 1;
-      const systemHealth = Math.max(0, Math.min(100, 100 - criticalImpact - otherAlertsImpact));
-      const servicesOperational = (criticalAlertsCount || 0) === 0;
-
-      const stats: DashboardStats = {
-        totalAcademies: academiesResult.count || 0,
-        activeAcademies: activeAcademiesCount,
-        totalUsers: totalUsers, // Use the count from the users table
-        monthlyRevenue,
-        revenueGrowth: Math.round(revenueGrowth * 10) / 10, // Round to 1 decimal
-        activeSubscriptions: subscriptionsResult.count || 0,
-        trialAcademies: trialCount || 0,
-        supportTickets,
-        urgentTickets,
-        normalTickets,
-        systemHealth: Math.round(systemHealth * 10) / 10, // Round to 1 decimal
-        servicesOperational,
-        // Trend data
-        academiesTrend,
-        usersTrend,
-        subscriptionsTrend,
-        revenueTrend,
-        academiesGrowth: Math.round(academiesGrowth * 10) / 10,
-        usersGrowth: Math.round(usersGrowth * 10) / 10,
-        subscriptionsGrowth: Math.round(subscriptionsGrowth * 10) / 10
+      const { stats, alerts } = await res.json() as {
+        stats: DashboardStats;
+        alerts: { id: string; type: SystemAlert['type']; title: string; message: string; timestamp: string; resolved: boolean }[];
       };
-
-      // Fetch real system alerts from database
-      const { data: systemAlerts } = await supabase
-        .from('alerts')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(10);
-
-      const realAlerts: SystemAlert[] = (systemAlerts || []).map((alert: any) => ({
-        id: alert.id,
-        type: alert.severity === 'critical' || alert.severity === 'high' ? 'error' :
-              alert.severity === 'medium' ? 'warning' : 'info',
-        title: alert.title,
-        message: alert.message,
-        timestamp: new Date(alert.created_at),
-        resolved: alert.resolved || false
-      }));
-
 
       setStats(stats);
-      setAlerts(realAlerts);
+      setAlerts(alerts.map(a => ({ ...a, timestamp: new Date(a.timestamp) })));
     } catch (error) {
       console.error('Error loading dashboard data:', error);
-      
-      // Set fallback values if data fetching fails
-      const fallbackStats: DashboardStats = {
-        totalAcademies: 0,
-        activeAcademies: 0,
-        totalUsers: 0,
-        monthlyRevenue: 0,
-        revenueGrowth: 0,
-        activeSubscriptions: 0,
-        trialAcademies: 0,
-        supportTickets: 0,
-        urgentTickets: 0,
-        normalTickets: 0,
-        systemHealth: 0,
-        servicesOperational: false,
-        academiesTrend: [],
-        usersTrend: [],
-        subscriptionsTrend: [],
-        revenueTrend: [],
-        academiesGrowth: 0,
-        usersGrowth: 0,
-        subscriptionsGrowth: 0
-      };
-      
-      setStats(fallbackStats);
+      // No fabricated zeros — surface the failure.
+      setStats(null);
       setAlerts([]);
+      setLoadError(error instanceof Error ? error.message : String(error));
     } finally {
       setLoading(false);
     }
@@ -529,10 +283,28 @@ export function AdminDashboard() {
     );
   }
 
+  // Explicit failure state. The old code substituted an all-zeros stats object
+  // here, so a broken load looked exactly like a brand-new empty platform.
   if (!stats) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <p className="text-gray-500">{String(t('admin.dashboard.failedToLoad'))}</p>
+      <div className="space-y-6">
+        <AdminPageHeader
+          kicker={String(t('admin.dashboard.kicker'))}
+          title={String(t('admin.dashboard.title'))}
+          description={String(t('admin.dashboard.subtitle'))}
+        />
+        <div className="bg-white p-8 rounded-2xl ring-1 ring-rose-200/70 flex flex-col items-center text-center gap-3">
+          <XCircle className="h-8 w-8 text-rose-500" />
+          <p className="text-sm font-medium text-gray-900">
+            {String(t('admin.dashboard.failedToLoad'))}
+          </p>
+          {loadError && (
+            <p className="text-xs text-gray-500 max-w-lg break-words">{loadError}</p>
+          )}
+          <Button variant="outline" size="sm" onClick={loadDashboardData}>
+            {String(t('admin.common.refresh'))}
+          </Button>
+        </div>
       </div>
     );
   }

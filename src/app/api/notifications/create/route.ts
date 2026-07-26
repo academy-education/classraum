@@ -11,9 +11,15 @@ export async function POST(request: NextRequest) {
   //   1. Bearer <user JWT> — browser callers via src/lib/notifications.ts
   //   2. x-internal-secret: CRON_SECRET_KEY — server-side loop-back from
   //      cron / webhook handlers that don't have a user context
+  //
+  // Accepts CRON_SECRET as well as the legacy CRON_SECRET_KEY. Reading
+  // only the legacy name meant that on a deployment configured with just
+  // CRON_SECRET — which is the name Vercel Cron actually requires — this
+  // loop-back failed auth and every server-originated notification (the
+  // welcome message among them) was rejected.
   const internalSecret = request.headers.get('x-internal-secret')
-  const hasInternalAuth =
-    !!process.env.CRON_SECRET_KEY && internalSecret === process.env.CRON_SECRET_KEY
+  const expectedInternal = process.env.CRON_SECRET || process.env.CRON_SECRET_KEY
+  const hasInternalAuth = !!expectedInternal && internalSecret === expectedInternal
   if (!hasInternalAuth) {
     const user = await getUserFromRequest(request)
     if (!user) {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * Academy invite acceptance — server-side, "link don't create".
@@ -140,6 +141,11 @@ export async function POST(req: NextRequest) {
   const { data: userRow } = await supabaseAdmin
     .from('users').select('role').eq('id', user.id).maybeSingle()
   const currentRole = userRow?.role as string | undefined
+
+  // Whether the caller's default surface now matches the role they
+  // joined as. Starts true because "no flip needed" is also "correct".
+  let surfaceRole = currentRole ?? role
+
   if ((currentRole === 'student' || currentRole === 'parent') && currentRole !== role) {
     let existing = supabaseAdmin
       .from(currentRole === 'student' ? 'students' : 'parents')
@@ -148,9 +154,43 @@ export async function POST(req: NextRequest) {
     if (currentRole === 'student') existing = existing.eq('active', true)
     const { count } = await existing
     if ((count ?? 0) === 0) {
-      await supabaseAdmin.from('users').update({ role }).eq('id', user.id)
+      // CHECKED. supabase-js resolves with { error } rather than
+      // throwing, so an un-destructured await here loses the failure
+      // entirely — the membership row exists but the router keeps
+      // sending the user to the wrong surface (joined as a parent,
+      // still lands on the student app) with nothing anywhere saying
+      // why. Not fatal to the join, so we don't 500 and make the client
+      // claim the invite failed; we alert and report the role the user
+      // will ACTUALLY land on.
+      const { error: roleFlipError } = await supabaseAdmin
+        .from('users').update({ role }).eq('id', user.id)
+
+      if (roleFlipError) {
+        console.error('[academy/join] users.role flip failed:', roleFlipError)
+        await raiseAlert({
+          severity: 'warning',
+          title: 'Academy join: default-surface role flip failed',
+          message:
+            `User ${user.id} joined academy ${academyId} as "${role}" but ` +
+            `users.role stayed "${currentRole}", so they will be routed to ` +
+            `the wrong surface. The membership row itself was created.`,
+          dedupeKey: 'academy-join:role-flip-failed',
+          error: roleFlipError,
+          context: { userId: user.id, academyId, joinedAs: role, currentRole },
+        })
+      } else {
+        surfaceRole = role
+      }
     }
   }
 
-  return NextResponse.json({ ok: true, academyName: name, role })
+  return NextResponse.json({
+    ok: true,
+    academyName: name,
+    role,
+    // The surface the user will actually open on — equals `role` unless
+    // the flip was skipped (they still hold memberships under the old
+    // role) or failed.
+    surfaceRole,
+  })
 }

@@ -1,5 +1,6 @@
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { isPassPlan } from '@/lib/study/plans'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * Practice "energy" — the resource spent to start a topic-page practice
@@ -157,12 +158,40 @@ export async function spendEnergy(studentId: string): Promise<{ ok: boolean; sta
   // keep the anchor advanced past already-consumed regen.
   const newAnchorMs = wasFull ? now : settled.anchor
 
-  await supabaseAdmin
+  // Verified: this upsert IS the debit. Returning ok:true over a failed
+  // write meant the session started and no energy was ever deducted —
+  // i.e. unlimited free practice for anyone whose write happened to fail.
+  const { error } = await supabaseAdmin
     .from('study_energy')
     .upsert(
       { student_id: studentId, energy: newEnergy, updated_at: new Date(newAnchorMs).toISOString() },
       { onConflict: 'student_id' },
     )
+  if (error) {
+    await raiseAlert({
+      severity: 'warning',
+      title: 'Practice energy debit failed',
+      message:
+        `Could not persist the energy spend for student ${studentId}. The practice set was ` +
+        'refused rather than started for free.',
+      dedupeKey: `energy-debit-failed:${studentId}`,
+      error,
+      context: { studentId, from: settled.energy, to: newEnergy },
+    })
+    // Refuse the spend. The caller surfaces "out of energy"; the meter
+    // still shows the un-debited balance, so a retry is the natural next
+    // action and it costs the student nothing.
+    return {
+      ok: false,
+      state: {
+        paid: plan.paid,
+        energy: settled.energy,
+        cap: plan.cap,
+        nextRefillSeconds: Math.ceil(settled.msToNext / 1000),
+        refillHours: plan.refillHours,
+      },
+    }
+  }
 
   const after = applyRegen(newEnergy, newAnchorMs, plan, now)
   return {

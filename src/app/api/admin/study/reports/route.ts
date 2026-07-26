@@ -46,10 +46,16 @@ export async function GET(req: NextRequest) {
     for (const u of users ?? []) nameMap.set(u.id as string, { name: u.name as string | null, email: u.email as string | null });
   }
 
-  // Counts per status for the tab badges.
-  const { data: allStatuses } = await supabaseAdmin.from('study_question_reports').select('status');
+  // Counts per status for the tab badges. Aggregated in SQL (migration 052)
+  // like the sibling study routes: the previous version selected every row and
+  // tallied them in JS, which PostgREST caps at 1000 rows — past that the tab
+  // badges would just stop counting, with nothing to indicate it.
+  const { data: statusRows, error: countsError } = await supabaseAdmin.rpc('admin_study_report_status_counts');
+  if (countsError) console.error('[admin/study/reports] counts', countsError);
   const counts: Record<string, number> = { open: 0, reviewing: 0, resolved: 0, dismissed: 0 };
-  for (const r of allStatuses ?? []) counts[r.status as string] = (counts[r.status as string] ?? 0) + 1;
+  for (const r of (statusRows ?? []) as { status: string; cnt: number | string }[]) {
+    counts[r.status] = Number(r.cnt) || 0;
+  }
 
   return NextResponse.json({
     reports: (reports ?? []).map(r => ({ ...r, reporter: nameMap.get(r.student_id as string) ?? null })),

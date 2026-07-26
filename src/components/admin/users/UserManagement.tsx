@@ -56,7 +56,9 @@ interface User {
   academyName?: string;
   createdAt: Date;
   lastLoginAt?: Date;
-  loginCount: number;
+  // NOTE: no `loginCount`. Neither Supabase Auth nor this schema records a
+  // per-user sign-in counter, so the API used to hardcode 0 and every user
+  // rendered "0 logins" forever. `lastLoginAt` is the real signal.
 }
 
 export function UserManagement() {
@@ -190,7 +192,6 @@ export function UserManagement() {
           academyName: user.academyName,
           createdAt: new Date(user.createdAt),
           lastLoginAt: user.lastLoginAt ? new Date(user.lastLoginAt) : undefined,
-          loginCount: user.loginCount || 0
         }));
 
         setUsers(formattedUsers)
@@ -248,7 +249,6 @@ export function UserManagement() {
       String(t('admin.common.role')),
       String(t('admin.common.status')),
       String(t('admin.common.academy')),
-      String(t('admin.users.loginCount')),
       String(t('admin.common.createdAt')),
     ];
     const rows = source.map(u => [
@@ -258,7 +258,6 @@ export function UserManagement() {
       u.role,
       u.status,
       u.academyName || '',
-      u.loginCount,
       u.createdAt.toISOString().split('T')[0],
     ]);
     const csv = [headers, ...rows]
@@ -666,8 +665,8 @@ export function UserManagement() {
                       : String(t('admin.common.never')),
                   },
                   {
-                    label: String(t('admin.users.thActivity')),
-                    value: String(t('admin.users.loginsLabel', { count: user.loginCount })),
+                    label: String(t('admin.common.createdAt')),
+                    value: user.createdAt.toLocaleDateString(getDateLocale(language)),
                   },
                 ]}
               />
@@ -709,7 +708,7 @@ export function UserManagement() {
                   <SortableTh sortKey="role" toggle={toggleSort} indicator={sortIndicator('role')}>{String(t('admin.users.thRoleStatus'))}</SortableTh>
                   <SortableTh sortKey="academy" toggle={toggleSort} indicator={sortIndicator('academy')}>{String(t('admin.users.academy'))}</SortableTh>
                   <SortableTh sortKey="lastLogin" toggle={toggleSort} indicator={sortIndicator('lastLogin')}>{String(t('admin.users.lastLogin'))}</SortableTh>
-                  <SortableTh sortKey="created" toggle={toggleSort} indicator={sortIndicator('created')}>{String(t('admin.users.thActivity'))}</SortableTh>
+                  <SortableTh sortKey="created" toggle={toggleSort} indicator={sortIndicator('created')}>{String(t('admin.common.createdAt'))}</SortableTh>
                   <th className="px-4 py-3 text-right text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">
                     {String(t('admin.common.actions'))}
                   </th>
@@ -755,7 +754,7 @@ export function UserManagement() {
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center text-sm text-gray-500">
                         <Activity className="mr-1 h-4 w-4" />
-                        {String(t('admin.users.loginsLabel', { count: user.loginCount }))}
+                        {user.createdAt.toLocaleDateString(getDateLocale(language))}
                       </div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">

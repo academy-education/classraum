@@ -8,6 +8,7 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { seedSrsFromWrongAnswer } from '@/lib/study/srs-seed'
 import { trackEvent } from '@/lib/study/analytics'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -343,7 +344,12 @@ export async function POST(req: NextRequest) {
   const persistedScore = weightedTotal > 0
     ? Math.round((10000 * weightedCorrect) / weightedTotal) / 100
     : 0
-  await supabaseAdmin
+  //
+  // Verified before the score goes back to the student: these columns ARE
+  // the test result everywhere except this response. An unchecked failure
+  // showed the student a score that then appeared nowhere in history or
+  // stats — the attempts rows exist, but nothing reads them.
+  const { error: completeError } = await supabaseAdmin
     .from('study_sessions')
     .update({
       status: 'completed',
@@ -353,6 +359,19 @@ export async function POST(req: NextRequest) {
       total_count: weightedTotal,
     })
     .eq('id', body.sessionId)
+  if (completeError) {
+    await raiseAlert({
+      severity: 'warning',
+      title: 'Test result not persisted',
+      message:
+        `Test session ${body.sessionId} was graded and its attempts saved, but the session ` +
+        'completion/score write failed. The result would not have appeared in history or stats.',
+      dedupeKey: `test-submit-complete-failed:${body.sessionId}`,
+      error: completeError,
+      context: { sessionId: body.sessionId, studentId: user.id, score: persistedScore },
+    })
+    return NextResponse.json({ error: 'could not save result' }, { status: 500 })
+  }
 
   // Fire-and-forget AI mastery assessment. The trigger already
   // updated the numeric score; this fills the qualitative
