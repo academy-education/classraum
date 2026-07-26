@@ -63,7 +63,7 @@ export async function GET(req: NextRequest) {
     const to = from + pageSize - 1;
 
     // Fetch paginated subscriptions with academy data and total count
-    const { data: subscriptions, error: subsError, count: totalCount } = await supabase
+    const { data: subscriptions, error: subsError, count: totalCount } = await db
       .from('academy_subscriptions')
       .select(`
         *,
@@ -93,14 +93,14 @@ export async function GET(req: NextRequest) {
       { count: studentCount },
       { count: parentCount }
     ] = await Promise.all([
-      supabase
+      db
         .from('subscription_usage')
         .select('*')
         .in('academy_id', academyIds),
-      supabase.from('managers').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
-      supabase.from('teachers').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
-      supabase.from('students').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
-      supabase.from('parents').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
+      db.from('managers').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
+      db.from('teachers').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
+      db.from('students').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
+      db.from('parents').select('*', { count: 'exact', head: true }).in('academy_id', academyIds),
     ]);
 
     if (usageError) {
@@ -117,10 +117,10 @@ export async function GET(req: NextRequest) {
       { data: studentsPerAcademy },
       { data: parentsPerAcademy }
     ] = await Promise.all([
-      supabase.from('managers').select('academy_id').in('academy_id', academyIds),
-      supabase.from('teachers').select('academy_id').in('academy_id', academyIds),
-      supabase.from('students').select('academy_id').in('academy_id', academyIds),
-      supabase.from('parents').select('academy_id').in('academy_id', academyIds),
+      db.from('managers').select('academy_id').in('academy_id', academyIds),
+      db.from('teachers').select('academy_id').in('academy_id', academyIds),
+      db.from('students').select('academy_id').in('academy_id', academyIds),
+      db.from('parents').select('academy_id').in('academy_id', academyIds),
     ]);
 
     // Create user count map by academy

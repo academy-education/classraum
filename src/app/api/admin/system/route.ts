@@ -43,7 +43,11 @@ export async function GET(request: NextRequest) {
     }
 
     // Get database statistics
-    const tables = ['users', 'academies', 'subscriptions', 'students', 'teachers', 'parents', 'managers'];
+    // `subscriptions` does NOT exist in this database — the real table is
+    // `academy_subscriptions`. Counting a missing table returned an error
+    // that was discarded, so it silently contributed a 0 row and inflated
+    // the "Database Tables" count by one.
+    const tables = ['users', 'academies', 'academy_subscriptions', 'students', 'teachers', 'parents', 'managers'];
     const tableStats: any[] = [];
 
     for (const table of tables) {
@@ -82,13 +86,25 @@ export async function GET(request: NextRequest) {
       return lastSignIn && lastSignIn > thirtyDaysAgo;
     }).length ?? 0;
 
-    // Get subscription metrics
-    const { data: subscriptions } = await supabase
-      .from('subscriptions')
-      .select('status');
-
-    const activeSubscriptions = subscriptions?.filter(s => s.status === 'active').length || 0;
-    const totalSubscriptions = subscriptions?.length || 0;
+    // Get subscription metrics.
+    //
+    // This queried `subscriptions`, which does not exist — the real table
+    // is `academy_subscriptions`. The error was discarded, `data` came
+    // back null, and `|| 0` turned that into a confident "0/0" on the
+    // dashboard. Counting in SQL also removes the 1000-row cap that a
+    // .select() + .filter().length would silently hit.
+    const [{ count: activeCount, error: activeErr }, { count: totalCount, error: totalErr }] =
+      await Promise.all([
+        supabase.from('academy_subscriptions')
+          .select('id', { count: 'exact', head: true }).eq('status', 'active'),
+        supabase.from('academy_subscriptions')
+          .select('id', { count: 'exact', head: true }),
+      ]);
+    if (activeErr || totalErr) {
+      console.error('[Admin System API] subscription counts failed:', activeErr || totalErr);
+    }
+    const activeSubscriptions = activeCount ?? 0;
+    const totalSubscriptions = totalCount ?? 0;
 
     // Real service health probes — measure reachability + latency instead of
     // fabricating SLA percentages. A probe that throws marks the service down.

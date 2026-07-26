@@ -197,8 +197,11 @@ export async function GET(request: NextRequest) {
       payingSubscriptions,
     };
 
+    // "past_due" → "Past due" (the old title-caser left the underscore in).
     const byStatus = rows(statusCounts).map(r => ({
-      status: String(r.status ?? 'unknown').charAt(0).toUpperCase() + String(r.status ?? 'unknown').slice(1),
+      status: String(r.status ?? 'unknown')
+        .replace(/_/g, ' ')
+        .replace(/^./, c => c.toUpperCase()),
       count: num(r.cnt),
     }));
 
