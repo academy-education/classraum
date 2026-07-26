@@ -70,7 +70,13 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
   // both kinds of consumers are correct.
   const t = useCallback((key: string, params?: Record<string, string | number | undefined>): string => {
     const translations = languages[language]
-    const raw = getNestedValue(translations, key) || key
+    // NOT `|| key`. getNestedValue already returns the path when a key is
+    // genuinely missing, so that fallback was redundant — and because ''
+    // is falsy it also replaced INTENTIONALLY EMPTY translations with the
+    // raw key, printing e.g. "admin.settings.permissionsNotePrefix" on
+    // screen. Empty is a legitimate translation: Korean word order often
+    // needs no leading fragment where English does.
+    const raw = getNestedValue(translations, key)
     let translation: string = Array.isArray(raw) ? raw.join(', ') : raw
 
     // Replace parameters in the translation string. Accept BOTH single

@@ -31,11 +31,15 @@ import { AdminEmptyState } from '../AdminEmptyState';
 // Shape of the payload from /api/admin/system. Kept loose because the real
 // backing data evolves; the UI only renders the fields that exist.
 interface SystemMetric {
+  /** Stable machine id from the API — the client maps it to a localized label. */
+  id?: string
   name: string
   value: string
   status: 'good' | 'warning' | 'critical'
 }
 interface SystemService {
+  /** Stable machine id from the API — the client maps it to a localized label. */
+  id?: string
   name: string
   status: 'running' | 'healthy' | 'warning' | 'error' | 'down'
   description?: string
@@ -45,6 +49,7 @@ interface SystemLog {
   id: string
   level: 'info' | 'warning' | 'error'
   message: string
+  serviceId?: string
   service: string
   timestamp: string | Date
 }
@@ -96,14 +101,40 @@ export function SystemDashboard() {
     }
   };
 
-  // Map service name → icon. Falls back to a generic globe.
-  const serviceIcon = (name: string): LucideIcon => {
-    if (name === 'Database') return Database;
-    if (name === 'Authentication') return Shield;
-    if (name === 'API Server') return Server;
-    if (name === 'File Storage') return HardDrive;
+  // t() returns the key itself when a translation is missing. Everything below
+  // localizes server-supplied ids, so fall back to the server's own English
+  // rather than leaking a raw `admin.…` key into the UI.
+  const tr = (key: string, fallback: string): string => {
+    const value = String(t(key));
+    return value === key ? fallback : value;
+  };
+
+  // Map service id → icon. Falls back to a generic globe.
+  const serviceIcon = (id: string): LucideIcon => {
+    if (id === 'database') return Database;
+    if (id === 'authentication') return Shield;
+    if (id === 'api_server') return Server;
+    if (id === 'file_storage') return HardDrive;
     return Globe;
   };
+
+  // The API returns display prose ("Database", "PostgreSQL database
+  // connection", "running", "good") alongside a stable machine id. Render the
+  // localized string for the id and ignore the English — same pattern as
+  // localizeAlertTitle/localizeAlertMessage in AdminDashboard.
+  const serviceName = (svc: SystemService) =>
+    tr(`admin.system.service_${svc.id ?? ''}`, svc.name);
+  const serviceDescription = (svc: SystemService) =>
+    svc.id ? tr(`admin.system.serviceDesc_${svc.id}`, svc.description ?? '') : (svc.description ?? '');
+  const metricName = (metric: SystemMetric) =>
+    tr(`admin.system.metric_${metric.id ?? ''}`, metric.name);
+  const logService = (log: SystemLog) =>
+    tr(`admin.system.logService_${log.serviceId ?? ''}`, log.service);
+
+  // running / healthy / good / warning / error / down / critical / degraded are
+  // enums, not copy — map each to a localized label.
+  const statusLabel = (status: string): string =>
+    tr(`admin.system.status_${status}`, status);
 
   // Status string → semantic tone for our shared StatusBadge.
   const toTone = (status: string): StatusTone => {
@@ -119,6 +150,16 @@ export function SystemDashboard() {
         return 'danger';
       default:
         return 'muted';
+    }
+  };
+
+  // 'info' | 'warning' | 'error' → localized badge label (was `.toUpperCase()`).
+  const logLevelLabel = (level: string): string => {
+    switch (level) {
+      case 'info':    return String(t('admin.system.levelInfo'));
+      case 'warning': return String(t('admin.system.levelWarning'));
+      case 'error':   return String(t('admin.system.levelError'));
+      default:        return level;
     }
   };
 
@@ -178,7 +219,7 @@ export function SystemDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <DashboardCard
           title={String(t('admin.system.systemStatus'))}
-          value={systemStatus.overall ? systemStatus.overall.charAt(0).toUpperCase() + systemStatus.overall.slice(1) : String(t('admin.common.unknown'))}
+          value={systemStatus.overall ? statusLabel(systemStatus.overall) : String(t('admin.common.unknown'))}
           icon={<CheckCircle className="h-5 w-5" />}
           accent={toTone(systemStatus.overall || '') === 'active' ? 'emerald'
                   : toTone(systemStatus.overall || '') === 'pending' ? 'amber'
@@ -238,22 +279,22 @@ export function SystemDashboard() {
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {services.map(service => {
-                      const Icon = serviceIcon(service.name)
+                      const Icon = serviceIcon(service.id ?? '')
                       return (
-                        <div key={service.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between gap-3">
+                        <div key={service.id ?? service.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between gap-3">
                           <div className="flex items-center gap-3 min-w-0">
                             <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white ring-1 ring-gray-100/80 flex items-center justify-center text-gray-600">
                               <Icon className="h-4 w-4" />
                             </div>
                             <div className="min-w-0">
-                              <p className="text-sm font-semibold text-gray-900 truncate">{service.name}</p>
+                              <p className="text-sm font-semibold text-gray-900 truncate">{serviceName(service)}</p>
                               <p className="text-xs text-gray-500 truncate">
-                                {service.description}
+                                {serviceDescription(service)}
                                 {typeof service.responseMs === 'number' ? ` · ${service.responseMs} ms` : ''}
                               </p>
                             </div>
                           </div>
-                          <StatusBadge tone={toTone(service.status)} size="sm">{service.status}</StatusBadge>
+                          <StatusBadge tone={toTone(service.status)} size="sm">{statusLabel(service.status)}</StatusBadge>
                         </div>
                       )
                     })}
@@ -270,11 +311,11 @@ export function SystemDashboard() {
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     {systemMetrics.map(metric => (
-                      <div key={metric.name} className="bg-white rounded-2xl ring-1 ring-gray-100/80 p-3.5">
-                        <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">{metric.name}</p>
+                      <div key={metric.id ?? metric.name} className="bg-white rounded-2xl ring-1 ring-gray-100/80 p-3.5">
+                        <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.1em]">{metricName(metric)}</p>
                         <div className="mt-1.5 flex items-baseline justify-between gap-2">
                           <p className="text-lg font-semibold text-gray-900 tabular-nums">{metric.value}</p>
-                          <StatusBadge tone={toTone(metric.status)} size="sm">{metric.status}</StatusBadge>
+                          <StatusBadge tone={toTone(metric.status)} size="sm">{statusLabel(metric.status)}</StatusBadge>
                         </div>
                       </div>
                     ))}
@@ -291,11 +332,11 @@ export function SystemDashboard() {
                 <p className="text-sm text-gray-500">{String(t('admin.system.noMetrics'))}</p>
               ) : (
                 systemMetrics.map(metric => (
-                  <div key={metric.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-900">{metric.name}</span>
+                  <div key={metric.id ?? metric.name} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-900">{metricName(metric)}</span>
                     <div className="flex items-center gap-3">
                       <span className="text-sm tabular-nums text-gray-700">{metric.value}</span>
-                      <StatusBadge tone={toTone(metric.status)} size="sm">{metric.status}</StatusBadge>
+                      <StatusBadge tone={toTone(metric.status)} size="sm">{statusLabel(metric.status)}</StatusBadge>
                     </div>
                   </div>
                 ))
@@ -334,14 +375,14 @@ export function SystemDashboard() {
                   {filteredLogs.map(log => (
                     <div key={log.id} className="bg-gray-50/60 rounded-lg ring-1 ring-gray-100/80 p-3.5 flex items-start gap-3">
                       <StatusBadge tone={logLevelTone(log.level)} size="sm">
-                        {log.level.toUpperCase()}
+                        {logLevelLabel(log.level)}
                       </StatusBadge>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm text-gray-900 break-words">{log.message}</p>
                         <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
                           <span>{(log.timestamp as Date).toLocaleString(getDateLocale(language))}</span>
                           <span className="text-gray-300">·</span>
-                          <span className="font-medium">{log.service}</span>
+                          <span className="font-medium">{logService(log)}</span>
                         </div>
                       </div>
                     </div>

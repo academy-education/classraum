@@ -89,12 +89,15 @@ export async function GET(request: NextRequest) {
     );
     const storageProbe = await probe(() => supabase.storage.listBuckets());
 
+    // `id` is the stable, machine-readable identifier the client maps to a
+    // localized label. `name`/`description` stay for backwards compatibility
+    // with any consumer that predates the ids, but the UI never renders them.
     const services = [
-      { name: 'Database',       status: dbProbe.ok ? 'running' : 'down',      responseMs: dbProbe.ms,      description: 'PostgreSQL database connection' },
+      { id: 'database',       name: 'Database',       status: dbProbe.ok ? 'running' : 'down',      responseMs: dbProbe.ms,      description: 'PostgreSQL database connection' },
       // Auth was already exercised above via auth.admin.listUsers().
-      { name: 'Authentication', status: authData ? 'running' : 'down',        responseMs: null,            description: 'Supabase Auth service' },
-      { name: 'API Server',     status: 'running',                            responseMs: null,            description: 'Next.js API routes' },
-      { name: 'File Storage',   status: storageProbe.ok ? 'running' : 'down', responseMs: storageProbe.ms, description: 'Supabase Storage' },
+      { id: 'authentication', name: 'Authentication', status: authData ? 'running' : 'down',        responseMs: null,            description: 'Supabase Auth service' },
+      { id: 'api_server',     name: 'API Server',     status: 'running',                            responseMs: null,            description: 'Next.js API routes' },
+      { id: 'file_storage',   name: 'File Storage',   status: storageProbe.ok ? 'running' : 'down', responseMs: storageProbe.ms, description: 'Supabase Storage' },
     ];
 
     // Real recent activity, pulled from the admin activity log (not synthesized).
@@ -108,6 +111,7 @@ export async function GET(request: NextRequest) {
       level: 'info',
       message: r.description || r.action_type,
       timestamp: r.created_at,
+      serviceId: 'admin',
       service: 'Admin',
     }));
 
@@ -132,26 +136,31 @@ export async function GET(request: NextRequest) {
     };
 
     // System metrics (database-based)
+    // Same contract as `services`: `id` is the stable key the client localizes.
     const systemMetrics = [
       {
+        id: 'total_users',
         name: 'Total Users',
         value: totalAuthUsers.toString(),
         status: 'good',
         description: 'Registered users in the system'
       },
       {
+        id: 'active_users_30d',
         name: 'Active Users (30d)',
         value: activeUsers.toString(),
         status: 'good',
         description: 'Users active in last 30 days'
       },
       {
+        id: 'active_subscriptions',
         name: 'Active Subscriptions',
         value: `${activeSubscriptions}/${totalSubscriptions}`,
         status: activeSubscriptions > 0 ? 'good' : 'warning',
         description: 'Currently active subscriptions'
       },
       {
+        id: 'database_tables',
         name: 'Database Tables',
         value: tables.length.toString(),
         status: 'good',
@@ -161,6 +170,11 @@ export async function GET(request: NextRequest) {
 
     const systemData = {
       status: systemStatus,
+      // The header card reads systemData.activeUsers. It was never
+      // returned here, so `systemData.activeUsers ?? 0` rendered a
+      // permanent 0 while the very same number was correct in the
+      // metrics grid below it.
+      activeUsers,
       metrics: systemMetrics,
       services,
       logs: recentLogs,
