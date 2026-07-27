@@ -1,5 +1,63 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import type { Question, QuestionType } from '@/lib/test-verify'
+import { shuffleChoices } from '@/lib/test-verify'
+
+/**
+ * Randomise choice order AT DRAW TIME, for every bank-assembled test.
+ *
+ * WHY HERE AND NOT ONLY AT INSERT
+ * -------------------------------
+ * shuffleChoices() used to be called from exactly one place — the AI
+ * generation route — so anything served from the bank went out in the order
+ * it was authored. Two separate positional defects reached production that
+ * way, both in hand-authored cohorts and both found by a blind grader
+ * rather than by a test:
+ *   - cr-v1 put the key in slot A on 73% of items
+ *   - v3-claude made each 4-question set a COMPLETE ABCD permutation on 78%
+ *     of sets, so three confident answers forced the fourth
+ * Both were repaired in the data, and the three bank helpers now shuffle on
+ * insert. But that leaves the invariant enforced at N WRITE sites and zero
+ * READ sites: any future writer — a new script, a restored backup, a manual
+ * insert — reintroduces it silently.
+ *
+ * Shuffling on the way OUT makes it structurally impossible instead of
+ * conventionally avoided. It also varies the order per session, so a
+ * student re-served a familiar item cannot answer it from "it was C".
+ *
+ * Ordering: this runs BEFORE the caller writes its [full-test-v1] cache,
+ * and submit/route.ts grades against that cache — so the student sees,
+ * and is graded on, the same order. Verified against
+ * src/app/api/study/test/assemble/route.ts.
+ *
+ * Types whose choice order carries meaning or is unused are left alone:
+ * quant_comparison (shuffleChoices already refuses it), and everything
+ * that is not scored by choosing among `choices`.
+ */
+const ORDERED_OR_UNUSED: ReadonlySet<string> = new Set([
+  'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
+  'writing_email', 'writing_discussion', 'numeric_entry', 'quant_comparison',
+])
+
+function hashSeed(s: string): number {
+  let h = 2166136261
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) }
+  return h >>> 0
+}
+
+/** Seeded per (draw seed, item identity) so a re-draw of the same session
+ *  is stable — a student who reloads must not see the choices move. */
+export function shuffleDrawnChoices<T extends { id: string; item: Question }>(
+  rows: T[], seed: string,
+): T[] {
+  return rows.map(r => {
+    // Stamp the bank row id on the way out, so an attempt can be traced
+    // back to the item. Done here because this is the one function every
+    // bank draw passes through on its way to the caller.
+    const item = { ...r.item, bankItemId: r.id }
+    if (ORDERED_OR_UNUSED.has(item.type) || item.choices.length < 2) return { ...r, item }
+    return { ...r, item: shuffleChoices(item, hashSeed(`${seed}:${r.id}`)) }
+  })
+}
 
 /**
  * ---------------------------------------------------------------------------
@@ -160,6 +218,9 @@ function readBankItem(item: unknown): Question | null {
     listeningTask: asString(b.get('listeningTask')),
     readingTask: asString(b.get('readingTask')),
     scored: b.get('scored') === false ? false : null,
+    // Filled in by the draw, not read from the column — the id lives on the
+    // ROW, not inside `item`.
+    bankItemId: null,
   }
 }
 
@@ -429,7 +490,9 @@ export async function drawBankPractice(p: {
   if (p.studentId) {
     await recordExposures(p.studentId, pickedRows.map(r => r.id), p.source ?? 'practice', p.sessionId)
   }
-  const picked = pickedRows.map(r => r.item)
+  // Practice draws shuffle too — the positional defects were in the bank,
+  // not in one code path, so every reader of the bank has to be safe.
+  const picked = shuffleDrawnChoices(pickedRows, p.seed).map(r => r.item)
   return picked.map(q => ({
     prompt: q.passage ? `${q.passage.trim()}\n\n${q.prompt.trim()}` : q.prompt,
     type: 'multiple_choice' as const,
@@ -505,6 +568,10 @@ const TOEFL_META: Record<ToeflSection, {
     type: string; n: number; task?: ToeflTask
     m1?: number; lower?: number; upper?: number
     sM1?: number; sLower?: number; sUpper?: number
+    /** Fixed difficulty spread for this task's draw. Sums to `n`. Used
+     *  where an even experience matters more than a random one — see the
+     *  speaking entry. */
+    ramp?: { easy: number; medium: number; hard: number }
   }>
 }> = {
   // Reading counts SCORED ITEMS, not on-screen items. Complete-the-Words
@@ -595,8 +662,21 @@ const TOEFL_META: Record<ToeflSection, {
       { type: 'multiple_choice', task: 'academic_talk',   n: 16, m1: 4,  lower: 0, upper: 12,
         sM1: 4, sLower: 0, sUpper: 8 },
     ] },
+  // Speaking. Listen-and-Repeat draws a deliberate RAMP rather than 7 at
+  // random.
+  //
+  // ETS does not tier this task — the spec fixes only the 8-12 word band —
+  // so the ramp is our choice, not fidelity. It exists because a random 7
+  // from a 42/40/15 bank lands anywhere from 1 to 5 easy, and a student
+  // whose first three sentences are all 12-word items reads the section as
+  // harder than it is. That was the reported complaint. A fixed
+  // 3 easy / 3 medium / 1 hard makes the experience predictable while
+  // staying inside the band on every item.
   speaking:  { title: 'TOEFL iBT — Speaking',  minutes: 7,  label: 'Speaking',
-    mix: [{ type: 'speaking_repeat', n: 7 }, { type: 'speaking_interview', n: 4 }] },
+    mix: [
+      { type: 'speaking_repeat', n: 7, ramp: { easy: 3, medium: 3, hard: 1 } },
+      { type: 'speaking_interview', n: 4 },
+    ] },
   writing:   { title: 'TOEFL iBT — Writing',   minutes: 29, label: 'Writing',
     mix: [{ type: 'arrange_words', n: 10 }, { type: 'writing_email', n: 1 }, { type: 'writing_discussion', n: 1 }] },
 }
@@ -986,9 +1066,31 @@ export async function assembleToeflFromBank(
       || ((p.section === 'reading' || p.section === 'listening') && type === 'multiple_choice')
     // Multi-question audio never ships as a fragment — see takeGroups(strict).
     const strict = !!task && MULTI_QUESTION_TASKS.has(task)
-    const ordered = grouped
-      ? drawGrouped(bucket, key, n, strict)
-      : bandPreferred(bucket, key).slice(0, n)
+    let ordered: Row[]
+    if (entry.ramp && !grouped) {
+      // Fill each difficulty band from its own pool, unseen-first within
+      // the band. A band that cannot fill its quota tops up from the rest,
+      // so a thin bank shortens the ramp rather than the section.
+      const want = entry.ramp
+      const taken: Row[] = []
+      const usedIds = new Set<string>()
+      for (const band of ['easy', 'medium', 'hard'] as const) {
+        const pool = bandPreferred(bucket.filter(r => r.difficulty === band), key + band)
+        for (const r of pool.slice(0, want[band])) { taken.push(r); usedIds.add(r.id) }
+      }
+      const shortfall = n - taken.length
+      if (shortfall > 0) {
+        for (const r of bandPreferred(bucket, key + ':topup')) {
+          if (taken.length >= n) break
+          if (!usedIds.has(r.id)) { taken.push(r); usedIds.add(r.id) }
+        }
+      }
+      ordered = taken
+    } else {
+      ordered = grouped
+        ? drawGrouped(bucket, key, n, strict)
+        : bandPreferred(bucket, key).slice(0, n)
+    }
     if (ordered.length < n) {
       console.warn('[assemble] blueprint short — bank cannot fill this task',
         { section: p.section, key, want: n, got: ordered.length })
@@ -1059,7 +1161,7 @@ export async function assembleToeflFromBank(
     timeLimitMinutes: meta.minutes,
     section: meta.label,
     family: 'toefl',
-    questions: picked.map(r => r.item),
+    questions: shuffleDrawnChoices(picked, seed).map(r => r.item),
     composition,
     ...(moduleBreakIdx != null ? { moduleBreakIdx } : {}),
   }
@@ -1153,7 +1255,7 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
     timeLimitMinutes,
     section: meta.label,
     family,
-    questions: mixed.map(r => r.item),
+    questions: shuffleDrawnChoices(mixed, seed).map(r => r.item),
     composition,
   }
 }

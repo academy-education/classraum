@@ -108,3 +108,36 @@ The AuthWrapper component includes dev auth detection - ensure dev auth is disab
 - **Zustand** stores in `src/stores/` for client state
 - **React Query** for server state management
 - Context providers for language and command palette functionality
+
+## Verification standard: break the check
+
+A passing check is evidence only if it would have failed. On 2026-07-28 three
+checks reported success for reasons unrelated to what they tested:
+
+- a submit test stayed green after the scoring rule it covered was deleted —
+  the assertion never exercised that path
+- a blind grade returned 175/175 "solved to key" because the key sat in slot
+  A on 163 of 175 items; the graders were reading position, not content
+- a verifier reported "0 problems" while reading a bank truncated at 1000
+  rows by PostgREST, so the rows containing the defect were never loaded
+
+None was caught by reading the green. Each was caught by attacking the check.
+
+So, before treating a check as evidence:
+
+1. **Revert the fix and confirm the check fails.** Not the whole feature —
+   the specific mechanism. If several mechanisms combine, revert each
+   separately; a test that only fails when all of them are gone does not tell
+   you which one matters.
+2. **Ask what the check would miss.** A green test over truncated input, a
+   grader reading a formatting tell, an assertion on a value the code no
+   longer produces — all pass loudly.
+3. **Check the count, not just the colour.** A jest suite that dies at import
+   collects zero tests and still prints the other suites' passes. `Tests: 7
+   passed` next to `Suites: 1 failed` is a failure.
+4. **Verify against real data before believing a unit test.** Twice in one day
+   the unit tests passed while the live bank was wrong — quota arithmetic that
+   could not be satisfied by real set sizes, and a draw that silently came up
+   short. `scripts/verify-*.ts` exist for this; run them.
+
+Applies to any check: tests, model graders, SQL audits, scripts.

@@ -64,6 +64,9 @@ const QuestionSchema = z.object({
   explanation: z.string(),
   /** false = unscored ETS pilot item. Absent/true = scored. */
   scored: z.boolean().nullable().optional(),
+  /** study_item_bank.id when the question came from the bank. Persisted so
+   *  per-item accuracy is computable; see migration 063. */
+  bankItemId: z.string().uuid().nullable().optional(),
   distractor_rationales: z
     .array(z.object({ choice: z.string(), reason: z.string() }))
     .nullable()
@@ -290,6 +293,10 @@ export async function POST(req: NextRequest) {
       // normalise rather than assert, so an unserialisable graphic payload
       // is caught here instead of landing in the row as `{}`.
       question: toJson(q),
+      // Trace back to the bank row. NOT derivable from `question`: choice
+      // order is randomised per session at draw time, so a content hash
+      // over the served item scatters one bank item across many keys.
+      item_id: q.bankItemId ?? null,
       student_answer: studentAnswer,
       // null = not objectively gradable (open response); true/false otherwise.
       is_correct: openResp ? null : isCorrect,

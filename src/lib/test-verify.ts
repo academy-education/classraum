@@ -117,6 +117,16 @@ export interface Question {
    *  they got it right, and it still reaches the wrong-answer notebook) —
    *  it is only excluded from the score DENOMINATOR. */
   scored: boolean | null
+  /** study_item_bank.id when this question came from the bank; null for
+   *  AI-generated questions.
+   *
+   *  Exists so an attempt can be tied back to the item that produced it.
+   *  Without it, per-item accuracy — the only thing that would turn our
+   *  difficulty labels from estimates into measurements — is not
+   *  computable. Matching on question CONTENT is not an alternative:
+   *  choice order is randomised per session at draw time, so the served
+   *  item deliberately differs from the stored one. */
+  bankItemId: string | null
 }
 
 /** Discriminated by `type`. All sub-payloads are intentionally loose
@@ -174,6 +184,7 @@ export interface RawQuestion {
   listeningTask?: string | null
   readingTask?: string | null
   scored?: boolean | null
+  bankItemId?: string | null
 }
 
 const VerifierItemSchema = z.object({
@@ -488,6 +499,7 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     readingTask: q.readingTask ? sanitize(q.readingTask) : null,
     // Absent means scored. Only an explicit `false` marks a pilot.
     scored: q.scored === false ? false : null,
+    bankItemId: q.bankItemId ?? null,
   }
 }
 

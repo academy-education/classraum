@@ -408,6 +408,7 @@ export async function refreshTestSpecExamples(
     listeningTask: null,
     readingTask: null,
     scored: null,
+    bankItemId: null,
     prompt: it.prompt,
     type: 'multiple_choice' as const,
     choices: it.choices,

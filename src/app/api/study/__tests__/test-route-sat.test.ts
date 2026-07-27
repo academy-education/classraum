@@ -128,7 +128,9 @@ describe('POST /api/study/test/route — SAT adaptive branch', () => {
     // Without the release the student is stranded: module2_route is set
     // but the cache row still holds Module 1 only, so every retry hits
     // the idempotent branch and replays an EMPTY Module 2.
-    expect(release.update).toHaveBeenCalledWith({ module2_route: null })
+    // The timestamp clears with the route: a released claim must not read
+    // as a fresh one to the abandoned-claim check.
+    expect(release.update).toHaveBeenCalledWith({ module2_route: null, module2_claimed_at: null })
   })
 
   it('claims module2_route with an IS NULL guard BEFORE drawing', async () => {

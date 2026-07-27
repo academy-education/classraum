@@ -310,6 +310,7 @@ export async function POST(req: NextRequest) {
       module1_correct: correct,
       module1_total: module1Questions.length,
       module2_route: route,
+      module2_claimed_at: new Date().toISOString(),
     })
     .eq('id', sessionId)
     .is('module2_route', null)
@@ -329,14 +330,45 @@ export async function POST(req: NextRequest) {
     }
     const { data: s2 } = await dbAdmin
       .from('study_sessions')
-      .select('module2_route, module1_correct, module1_total')
+      .select('module2_route, module1_correct, module1_total, module2_claimed_at')
       .eq('id', sessionId)
       .maybeSingle()
+
+    const module2Questions = (fresh?.questions ?? []).slice(breakIdx)
+
+    // ABANDONED CLAIM.
+    //
+    // The claim above is correct concurrency control, but it is not
+    // self-healing: if the winner died between claiming the route and
+    // writing Module 2 into the cache, this branch finds a route with no
+    // questions behind it — and returns an EMPTY module 2, forever, on
+    // every retry. The student sees a test that simply stops.
+    //
+    // A live race looks identical for a second or two, so age is what
+    // separates them. Past the window, release the claim and let the
+    // caller retry; inside it, keep waiting for the winner.
+    const RECLAIM_AFTER_MS = 90_000
+    const claimedAt = s2?.module2_claimed_at ? Date.parse(s2.module2_claimed_at) : null
+    const stale = claimedAt != null && Date.now() - claimedAt > RECLAIM_AFTER_MS
+    if (module2Questions.length === 0 && (stale || claimedAt == null)) {
+      // claimedAt == null means the claim predates this column — those are
+      // by definition old, so treat them as stale rather than stranding
+      // sessions that were already broken before the fix.
+      console.warn('[test/route] releasing an abandoned module-2 claim', {
+        sessionId, claimedAt: s2?.module2_claimed_at ?? null,
+      })
+      await releaseClaim(sessionId, 'abandoned claim with no module 2 in cache')
+      return NextResponse.json(
+        { error: 'module2_retry', details: 'the previous attempt did not finish; retry' },
+        { status: 409 },
+      )
+    }
+
     return NextResponse.json({
       route: s2?.module2_route ?? route,
       module1Correct: s2?.module1_correct ?? correct,
       module1Total: s2?.module1_total ?? module1Questions.length,
-      module2Questions: (fresh?.questions ?? []).slice(breakIdx),
+      module2Questions,
       alreadyRouted: true,
     })
   }
@@ -411,7 +443,9 @@ export async function POST(req: NextRequest) {
 async function releaseClaim(sessionId: string, why: string): Promise<void> {
   const { error } = await dbAdmin
     .from('study_sessions')
-    .update({ module2_route: null })
+    // Clear the timestamp with the route — a released claim must not look
+    // like a fresh one to the staleness check.
+    .update({ module2_route: null, module2_claimed_at: null })
     .eq('id', sessionId)
   if (error) {
     console.error(`[test/route] claim release failed after ${why}`, { sessionId, error })

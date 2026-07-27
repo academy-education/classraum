@@ -41,8 +41,24 @@ const COHORT = process.env.BANK_COHORT || 'v3-claude'
 
 // Listening dedup: transcript + prompt + choices. Writing dedup: the scenario
 // passage (prompt is a fixed instruction string, so it doesn't discriminate).
+// content_hash must be ORDER-INSENSITIVE over choices, and blind to the
+// cosmetic parts of a stem.
+//
+// It used to hash `choices` in authored order. A harvest then inserted 14
+// copies of one EXCEPT question on a single reef passage: same prompt, same
+// key, choices merely permuted — so 14 different hashes, 14 rows, and a
+// student could meet the same question 14 times on one passage. Sorting the
+// choices and stripping the "[Academic — X]" tag and the
+// "According to the passage," lead-in makes those collapse to one hash.
+//
+// This matters more now, not less: choice order is randomised per session
+// at draw time, so authored order carries no information worth hashing.
+const stripStem = t => norm(String(t || '')
+  .replace(/^\s*\[[^\]]*\]\s*/, '')
+  .replace(/^\s*(according to|based on)\s+the\s+passage\s*,?\s*/i, ''))
 const hashListening = it => createHash('md5')
-  .update([norm(it.passage), norm(it.prompt), (it.choices || []).map(norm).join('|')].join('~~')).digest('hex')
+  .update([norm(it.passage), stripStem(it.prompt),
+           (it.choices || []).map(norm).sort().join('|')].join('~~')).digest('hex')
 const hashWriting = it => createHash('md5').update(norm(it.passage)).digest('hex')
 
 /**
@@ -193,6 +209,23 @@ async function insertListening(keepPath, files) {
     if (!keep.has(id)) { console.log(`REJECT ${id} — not confirmed by grader`); rejected++; continue }
     const content_hash = hashListening(it)
     if (seen.has(content_hash)) { console.log(`DUP ${id}`); continue }
+    // Namespace the passage group id.
+    //
+    // Migration 062 had to re-key the whole harvest-v1 TOEFL bank because
+    // generated payloads use ids that are unique only WITHIN one generated
+    // test ("academic-1", "convo-2"). Harvesting many tests into one bank
+    // made them collide globally — one id ended up spanning 28 different
+    // passages, and the UI told students "question 3 of 5 in this passage"
+    // while the passage changed underneath them.
+    //
+    // 062 fixed the DATA. This fixes the CAUSE: derive the id from the
+    // passage itself, exactly as that migration did, so a second harvest
+    // cannot reintroduce the collision. Ids that are already content-derived
+    // ('pg-<md5>') are left alone, and items with no passage keep null.
+    if (it.passage && it.passageGroupId && !/^pg-[0-9a-f]{32}$/.test(it.passageGroupId)) {
+      const norm = String(it.passage).toLowerCase().replace(/\s+/g, ' ').trim()
+      it = { ...it, passageGroupId: 'pg-' + createHash('md5').update(norm).digest('hex') }
+    }
     // Shuffle BEFORE hashing-for-storage so what we store is what we serve.
     it = shuffleInPlace(it, content_hash)
     const domain = labelFrom(it.prompt, 'Listening')

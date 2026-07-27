@@ -264,6 +264,51 @@ describe('POST /api/study/test/route — TOEFL adaptive branch', () => {
     expect(assembleMock).not.toHaveBeenCalled()
   })
 
+  it('recovers a session stranded by an ABANDONED module-2 claim', async () => {
+    // The claim (UPDATE ... WHERE module2_route IS NULL) is correct
+    // concurrency control but was not self-healing. If the winner died
+    // after claiming the route and before appending Module 2 to the cache,
+    // every later request saw a non-null route, took the idempotent branch,
+    // sliced the cache past the module break — and found nothing. The
+    // student's test simply stopped, permanently, with no error.
+    //
+    // Age is what separates that from a live race, which looks identical
+    // for a second or two.
+    const stale = new Date(Date.now() - 10 * 60_000).toISOString()
+    enqueue('study_sessions', { data: { id: SID, student_id: 'student-9', module2_route: null } })
+    enqueue('study_messages', { data: [{ content: cacheContent() }] })
+    enqueue('study_sessions', { data: [] })          // claim LOST — someone holds it
+    enqueue('study_messages', { data: [{ content: cacheContent() }] })  // …but no M2 in the cache
+    enqueue('study_sessions', {
+      data: { module2_route: 'medium', module1_correct: 3, module1_total: 5, module2_claimed_at: stale },
+    })
+    const release = enqueue('study_sessions', { error: null })
+
+    const res = await POST(makeRequest(body(['A', 'B', 'C', 'D', 'E'])))
+    expect(res.status).toBe(409)
+    expect((await res.json()).error).toBe('module2_retry')
+    expect(release.update).toHaveBeenCalledWith({ module2_route: null, module2_claimed_at: null })
+  })
+
+  it('waits, rather than stealing, when the claim is recent', async () => {
+    // Same shape as above but seconds old: this is a genuine concurrent
+    // race and the winner is still working. Stealing here would draw a
+    // second Module 2 and append it twice.
+    const fresh = new Date(Date.now() - 2_000).toISOString()
+    enqueue('study_sessions', { data: { id: SID, student_id: 'student-9', module2_route: null } })
+    enqueue('study_messages', { data: [{ content: cacheContent() }] })
+    enqueue('study_sessions', { data: [] })
+    enqueue('study_messages', { data: [{ content: cacheContent() }] })
+    const release = enqueue('study_sessions', {
+      data: { module2_route: 'medium', module1_correct: 3, module1_total: 5, module2_claimed_at: fresh },
+    })
+
+    const res = await POST(makeRequest(body(['A', 'B', 'C', 'D', 'E'])))
+    expect(res.status).toBe(200)
+    expect((await res.json()).alreadyRouted).toBe(true)
+    expect(release.update).not.toHaveBeenCalled()
+  })
+
   it('releases the claim and 409s when the bank cannot fill Module 2', async () => {
     enqueue('study_sessions', { data: { id: SID, student_id: 'student-9', module2_route: null } })
     enqueue('study_messages', { data: [{ content: cacheContent() }] })
@@ -275,7 +320,9 @@ describe('POST /api/study/test/route — TOEFL adaptive branch', () => {
     expect(res.status).toBe(409)
     expect((await res.json()).error).toBe('module2_bank_empty')
     // Claim released — the student can retry once the bank is seeded.
-    expect(release.update).toHaveBeenCalledWith({ module2_route: null })
+    // The timestamp clears with the route: a released claim must not read
+    // as a fresh one to the abandoned-claim check.
+    expect(release.update).toHaveBeenCalledWith({ module2_route: null, module2_claimed_at: null })
   })
 
   it('Speaking and Writing never route — they are linear sections', async () => {

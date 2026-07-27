@@ -633,6 +633,99 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     expect(idx(a)[idx(a).length - 1]).not.toBe(a.questions.length - 1)
   })
 
+  // ── Draw-time choice shuffle ─────────────────────────────────────────
+  //
+  // Two positional defects reached production through hand-authored
+  // cohorts: cr-v1 with the key in slot A on 73% of items, and v3-claude
+  // with each 4-question set a complete ABCD permutation on 78% of sets
+  // (three confident answers force the fourth). Both were found by a blind
+  // grader, not by a test. Fixing the data and the insert helpers left the
+  // invariant enforced only at WRITE sites; shuffling on the way out makes
+  // a badly-authored bank harmless no matter who wrote it.
+
+  it('does not serve choices in the order the bank stored them', async () => {
+    // Every item keyed to its FIRST choice — the exact cr-v1 shape.
+    const rigged = listeningBank({ deep: true }).map(r => ({
+      ...r,
+      item: { ...r.item, choices: ['KEY', 'w1', 'w2', 'w3'], correct_answer: 'KEY' },
+    }))
+    enqueue('study_item_bank', { data: rigged })
+    const t = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-shuf')
+    const at = t.questions.map(q => q.choices.indexOf(q.correct_answer))
+    expect(at.every(i => i === 0)).toBe(false)
+    // The key must still BE among the choices — shuffling that loses the
+    // answer is worse than not shuffling.
+    for (const q of t.questions) expect(q.choices).toContain(q.correct_answer)
+    // …and no choice may be dropped or duplicated.
+    for (const q of t.questions) expect(new Set(q.choices).size).toBe(4)
+  })
+
+  it('shuffles the same session identically, so a reload does not move choices', async () => {
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
+    const a = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'same-seed')
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
+    const b = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'same-seed')
+    expect(a.questions.map(q => q.choices)).toEqual(b.questions.map(q => q.choices))
+  })
+
+  it('leaves choice order alone where the order carries meaning', async () => {
+    // Complete-the-Words is graded on `blanks`, not by picking a choice;
+    // reordering its choices array would be noise at best. Same for the
+    // other non-MC TOEFL types.
+    enqueue('study_item_bank', { data: deepReading() })
+    const t = await assembleToeflFromBank({ section: 'reading', module: 1 }, 'seed-ctw')
+    const ctw = t.questions.filter(q => q.type === 'fill_in_blanks')
+    expect(ctw.length).toBeGreaterThan(0)
+    for (const q of ctw) expect(q.choices).toEqual(['A', 'B', 'C', 'D'])
+  })
+
+  it('draws Listen-and-Repeat as a fixed 3/3/1 ramp, not 7 at random', async () => {
+    // The reported complaint was that the section felt too hard. Every item
+    // is now inside the 8-12 word spec band, but a random 7 from a
+    // 42/40/15 bank still lands anywhere from 1 to 5 easy, so a student
+    // whose first sentences are all 12-word items reads it as harder than
+    // it is. ETS does not tier this task, so the ramp is our choice.
+    const rep = (n: number, band: string, w: number) =>
+      Array.from({ length: n }, (_, i) => ({
+        id: `${band}-${i}`, item_type: 'speaking_repeat', difficulty: band,
+        item: {
+          prompt: '[Listen and Repeat] Repeat the sentence you hear.',
+          type: 'speaking_repeat', choices: [], correct_answer: `${band} ${i} ` + 'w '.repeat(w - 2),
+          passage: `${band} ${i} ` + 'w '.repeat(w - 2),
+          difficulty: band, explanation: '',
+        },
+      }))
+    enqueue('study_item_bank', {
+      data: [...rep(20, 'easy', 8), ...rep(20, 'medium', 10), ...rep(20, 'hard', 12),
+             ...toeflRows('speaking_interview', 10)],
+    })
+    const t = await assembleToeflFromBank({ section: 'speaking' }, 'seed-ramp')
+    const bands = t.questions.filter(q => q.type === 'speaking_repeat').map(q => q.difficulty)
+    expect(bands).toHaveLength(7)
+    expect(bands.filter(b => b === 'easy')).toHaveLength(3)
+    expect(bands.filter(b => b === 'medium')).toHaveLength(3)
+    expect(bands.filter(b => b === 'hard')).toHaveLength(1)
+  })
+
+  it('shortens the ramp rather than the section when a band is thin', async () => {
+    // A bank with no `hard` items must still deliver 7 questions — the ramp
+    // is a preference, not a quota that can starve the section.
+    const rep = (n: number, band: string) =>
+      Array.from({ length: n }, (_, i) => ({
+        id: `${band}-${i}`, item_type: 'speaking_repeat', difficulty: band,
+        item: {
+          prompt: '[Listen and Repeat] Repeat the sentence you hear.',
+          type: 'speaking_repeat', choices: [], correct_answer: `${band}${i}`,
+          passage: `${band}${i}`, difficulty: band, explanation: '',
+        },
+      }))
+    enqueue('study_item_bank', {
+      data: [...rep(20, 'easy'), ...rep(20, 'medium'), ...toeflRows('speaking_interview', 10)],
+    })
+    const t = await assembleToeflFromBank({ section: 'speaking' }, 'seed-thin')
+    expect(t.questions.filter(q => q.type === 'speaking_repeat')).toHaveLength(7)
+  })
+
   it('omitting `module` reproduces the whole-section draw unchanged', async () => {
     // Writing / Speaking and every non-adaptive caller depend on this.
     enqueue('study_item_bank', { data: deepReading() })

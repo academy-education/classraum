@@ -113,6 +113,20 @@ export type Database = {
             referencedRelation: "academies"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "academy_custom_colors_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "academy_custom_colors_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
         ]
       }
       academy_notes: {
@@ -161,6 +175,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "academy_notes_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "academy_notes_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "academy_notes_admin_user_id_fkey"
             columns: ["admin_user_id"]
             isOneToOne: false
@@ -206,6 +234,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: true
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "academy_settings_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: true
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "academy_settings_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: true
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
         ]
@@ -325,6 +367,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: true
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "academy_subscriptions_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: true
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "academy_subscriptions_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: true
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
         ]
@@ -639,6 +695,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "announcements_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "announcements_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "announcements_created_by_fkey"
             columns: ["created_by"]
             isOneToOne: false
@@ -735,6 +805,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: false
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assignment_categories_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "assignment_categories_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
           {
@@ -1004,6 +1088,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: false
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "chat_conversations_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "chat_conversations_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
           {
@@ -1299,6 +1397,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "classrooms_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "classrooms_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "classrooms_subject_id_fkey"
             columns: ["subject_id"]
             isOneToOne: false
@@ -1509,6 +1621,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: false
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "families_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "families_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
         ]
@@ -2024,6 +2150,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "level_tests_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "level_tests_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "level_tests_subject_id_fkey"
             columns: ["subject_id"]
             isOneToOne: false
@@ -2063,6 +2203,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: false
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "managers_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "managers_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
           {
@@ -2161,6 +2315,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: false
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parents_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "parents_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
           {
@@ -2338,6 +2506,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: false
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recurring_payment_templates_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "recurring_payment_templates_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
         ]
@@ -2543,6 +2725,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "students_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "students_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "students_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
@@ -2657,6 +2853,7 @@ export type Database = {
           created_at: string
           id: string
           is_correct: boolean | null
+          item_id: string | null
           position: number | null
           question: Json
           session_id: string
@@ -2669,6 +2866,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_correct?: boolean | null
+          item_id?: string | null
           position?: number | null
           question: Json
           session_id: string
@@ -2681,6 +2879,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_correct?: boolean | null
+          item_id?: string | null
           position?: number | null
           question?: Json
           session_id?: string
@@ -3612,6 +3811,7 @@ export type Database = {
           mode: string
           module1_correct: number | null
           module1_total: number | null
+          module2_claimed_at: string | null
           module2_route: string | null
           score: number | null
           speaking_grade_mode: string | null
@@ -3635,6 +3835,7 @@ export type Database = {
           mode: string
           module1_correct?: number | null
           module1_total?: number | null
+          module2_claimed_at?: string | null
           module2_route?: string | null
           score?: number | null
           speaking_grade_mode?: string | null
@@ -3658,6 +3859,7 @@ export type Database = {
           mode?: string
           module1_correct?: number | null
           module1_total?: number | null
+          module2_claimed_at?: string | null
           module2_route?: string | null
           score?: number | null
           speaking_grade_mode?: string | null
@@ -4057,6 +4259,20 @@ export type Database = {
             referencedRelation: "academies"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "subjects_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "subjects_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
         ]
       }
       subscription_invoices: {
@@ -4138,6 +4354,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "subscription_invoices_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "subscription_invoices_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "subscription_invoices_subscription_id_fkey"
             columns: ["subscription_id"]
             isOneToOne: false
@@ -4195,6 +4425,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: true
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "subscription_usage_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: true
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "subscription_usage_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: true
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
         ]
@@ -4323,6 +4567,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "support_tickets_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "support_tickets_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "support_tickets_assigned_admin_id_fkey"
             columns: ["assigned_admin_id"]
             isOneToOne: false
@@ -4428,6 +4686,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "teachers_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "teachers_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "teachers_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: true
@@ -4479,6 +4751,20 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: false
             referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_conversations_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "user_conversations_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
             referencedColumns: ["id"]
           },
           {
