@@ -5,6 +5,19 @@ import {
   validateAddonQuantities,
 } from '@/lib/addon-config';
 import { SUBSCRIPTION_PLANS, type SubscriptionTier } from '@/types/subscription';
+import type { Database } from '@/lib/database.types';
+
+const SUBSCRIPTION_TIERS: readonly string[] = ['free', 'individual', 'basic', 'pro', 'enterprise'];
+
+/**
+ * academy_subscriptions.plan_tier is plain text, so validate it instead of
+ * asserting. Anything unrecognised is treated as 'free' (ADDON_CONFIG.free is
+ * null → 0 add-on cost), matching how calculateAddonCost already handles a
+ * tier it has no config for.
+ */
+function toSubscriptionTier(value: string): SubscriptionTier {
+  return SUBSCRIPTION_TIERS.includes(value) ? (value as SubscriptionTier) : 'free';
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,7 +35,7 @@ export async function POST(req: NextRequest) {
     const token = authHeader.substring(7);
 
     // Create Supabase client with the token
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
@@ -259,7 +272,7 @@ export async function GET(req: NextRequest) {
     const token = authHeader.substring(7);
 
     // Create Supabase client with the token
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
@@ -330,9 +343,15 @@ export async function GET(req: NextRequest) {
       );
     }
 
+    // plan_tier is a plain text column, so narrow it before use. An
+    // unrecognised value falls back to 'free', whose ADDON_CONFIG entry is
+    // null — the same 0 cost calculateAddonCost already returns for a tier
+    // it doesn't know about.
+    const planTier = toSubscriptionTier(subscription.plan_tier);
+
     // Calculate current add-on cost
     const currentAddonCost = calculateAddonCost(
-      subscription.plan_tier,
+      planTier,
       subscription.additional_students || 0,
       subscription.additional_teachers || 0,
       subscription.additional_storage_gb || 0
@@ -342,7 +361,7 @@ export async function GET(req: NextRequest) {
     const pendingAddonCost =
       subscription.pending_additional_students !== null
         ? calculateAddonCost(
-            subscription.plan_tier,
+            planTier,
             subscription.pending_additional_students || 0,
             subscription.pending_additional_teachers || 0,
             subscription.pending_additional_storage_gb || 0
@@ -397,7 +416,7 @@ export async function DELETE(req: NextRequest) {
     const token = authHeader.substring(7);
 
     // Create Supabase client with the token
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {

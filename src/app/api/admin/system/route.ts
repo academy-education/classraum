@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { listAllAuthUsers } from '../_lib/admin-auth';
+import type { Database } from '@/lib/database.types';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -16,7 +17,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createClient<Database>(supabaseUrl, supabaseServiceKey);
 
     // Verify the user is an admin
     const token = authHeader.replace('Bearer ', '');
@@ -47,8 +48,11 @@ export async function GET(request: NextRequest) {
     // `academy_subscriptions`. Counting a missing table returned an error
     // that was discarded, so it silently contributed a 0 row and inflated
     // the "Database Tables" count by one.
-    const tables = ['users', 'academies', 'academy_subscriptions', 'students', 'teachers', 'parents', 'managers'];
-    const tableStats: any[] = [];
+    // `as const` keeps this a union of table-name literals; without it the
+    // array widens to string[] and `.from(table)` has to consider every table
+    // in the schema at once.
+    const tables = ['users', 'academies', 'academy_subscriptions', 'students', 'teachers', 'parents', 'managers'] as const;
+    const tableStats: { name: string; count: number }[] = [];
 
     for (const table of tables) {
       const { count } = await supabase
@@ -135,11 +139,13 @@ export async function GET(request: NextRequest) {
       .select('id, action_type, description, created_at')
       .order('created_at', { ascending: false })
       .limit(8);
-    const recentLogs = (logRows || []).map((r: { id: string; action_type: string; description: string | null; created_at: string }) => ({
+    const recentLogs = (logRows || []).map((r) => ({
       id: r.id,
       level: 'info',
       message: r.description || r.action_type,
-      timestamp: r.created_at,
+      // created_at is nullable; passing null on to the client would render as
+      // the UNIX epoch (1970) rather than an unknown time.
+      timestamp: r.created_at ?? null,
       serviceId: 'admin',
       service: 'Admin',
     }));

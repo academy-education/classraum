@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import type { Database } from '@/lib/database.types';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -15,7 +16,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createClient<Database>(supabaseUrl, supabaseServiceKey);
 
     // Verify the user is an admin
     const token = authHeader.replace('Bearer ', '');
@@ -105,12 +106,15 @@ export async function GET(request: NextRequest) {
     // cards could never add up: "5,000 events / 43 processed / 7 unprocessed".
     // The breakdown is now counted in SQL under exactly the same filters.
     const { data: statRows, error: statsError } = await supabase.rpc('admin_webhook_event_stats', {
-      p_type: type || null,
-      p_event_type: eventType || null,
-      p_status: status || null,
-      p_processed: processed !== null && processed !== '' ? processed === 'true' : null,
-      p_start: startDate || null,
-      p_end: endDate || null,
+      // Omitted params fall back to the function's DEFAULT NULL, so pass
+      // `undefined` rather than an explicit null (which the generated Args
+      // type does not allow).
+      p_type: type || undefined,
+      p_event_type: eventType || undefined,
+      p_status: status || undefined,
+      p_processed: processed !== null && processed !== '' ? processed === 'true' : undefined,
+      p_start: startDate || undefined,
+      p_end: endDate || undefined,
     });
     if (statsError) {
       console.error('[Webhook Events API] Error fetching stats:', statsError);
@@ -162,7 +166,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createClient<Database>(supabaseUrl, supabaseServiceKey);
 
     // Verify the user is a super admin
     const token = authHeader.replace('Bearer ', '');

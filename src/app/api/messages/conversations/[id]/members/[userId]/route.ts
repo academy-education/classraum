@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import type { Database, Json } from '@/lib/database.types'
 
-const supabase = createClient(
+const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
@@ -20,7 +21,7 @@ async function appendSystemMessage(
   conversationId: string,
   actorId: string,
   systemType: string,
-  systemMeta: Record<string, unknown>
+  systemMeta: Record<string, Json>
 ) {
   // Both writes resolve with { error } instead of throwing, so an unread
   // error here means the membership/rename change happened but the timeline

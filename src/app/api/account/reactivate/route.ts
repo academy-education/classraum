@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
 import { raiseAlert } from '@/lib/ops/alert'
+import type { Database } from '@/lib/database.types'
 
 /**
  * POST /api/account/reactivate
@@ -113,7 +114,7 @@ export async function POST(request: NextRequest) {
   // via an isolated anon client + signInWithPassword. Banned users get
   // an "banned" error which we treat as proof of correct credentials.
   const { createClient } = await import('@supabase/supabase-js')
-  const anonClient = createClient(
+  const anonClient = createClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     { auth: { autoRefreshToken: false, persistSession: false } }

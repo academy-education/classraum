@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { randomBytes } from 'crypto'
+import type { Database } from '@/lib/database.types'
 
-const supabase = createClient(
+const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
@@ -74,19 +75,13 @@ export async function GET(request: NextRequest) {
       supabase.from('parents').select('academy_id, updated_at').eq('active', true),
     ])
 
-    type ManagerRow = {
-      academy_id: string
-      phone?: string
-      user_id: string
-      updated_at: string
-      users: { email: string } | null
-    }
+    type ManagerRow = NonNullable<typeof managers>[number]
     const managersByAcademy = new Map<string, ManagerRow>()
-    for (const m of (managers || []) as unknown as ManagerRow[]) {
+    for (const m of managers || []) {
       if (!managersByAcademy.has(m.academy_id)) managersByAcademy.set(m.academy_id, m)
     }
 
-    const subsByAcademy = new Map((subscriptions || []).map((s: { academy_id: string }) => [s.academy_id, s]))
+    const subsByAcademy = new Map((subscriptions || []).map((s) => [s.academy_id, s]))
 
     const countByAcademy = (rows: { academy_id: string }[] | null) => {
       const map: Record<string, number> = {}
@@ -99,7 +94,7 @@ export async function GET(request: NextRequest) {
 
     // Last activity = most recent updated_at across ALL user types.
     const lastActivityByAcademy: Record<string, string> = {}
-    const collectActivity = (rows: { academy_id: string; updated_at: string }[] | null) => {
+    const collectActivity = (rows: { academy_id: string; updated_at: string | null }[] | null) => {
       for (const r of rows || []) {
         if (!r.updated_at) continue
         if (
@@ -110,20 +105,22 @@ export async function GET(request: NextRequest) {
         }
       }
     }
-    collectActivity(managers as unknown as { academy_id: string; updated_at: string }[])
+    collectActivity(managers)
     collectActivity(students)
     collectActivity(teachers)
     collectActivity(parents)
 
     const enriched = academies.map((academy) => {
-      const sub = subsByAcademy.get(academy.id) as { plan_tier?: string; status?: string; monthly_amount?: number } | undefined
+      const sub = subsByAcademy.get(academy.id)
       const manager = managersByAcademy.get(academy.id)
 
       return {
         id: academy.id,
         name: academy.name || 'Unnamed Academy',
-        email: manager?.users?.email || academy.email || null,
-        phone: manager?.phone || academy.phone || null,
+        // `academies` has no email/phone columns — the manager row is the
+        // only source for both.
+        email: manager?.users?.email || null,
+        phone: manager?.phone || null,
         address: academy.address || null,
         subscriptionTier: sub?.plan_tier || academy.subscription_tier || 'free',
         subscriptionStatus: sub?.status || (academy.is_suspended ? 'canceled' : 'active'),

@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import type { Database, Json } from '@/lib/database.types'
 
-const supabase = createClient(
+const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
@@ -24,7 +25,7 @@ async function appendSystemMessage(
   conversationId: string,
   actorId: string,
   systemType: string,
-  systemMeta: Record<string, unknown>
+  systemMeta: Record<string, Json>
 ) {
   // Both writes resolve with { error } instead of throwing, so an unread
   // error here means the membership/rename change happened but the timeline
@@ -96,7 +97,7 @@ export async function PATCH(
     }
 
     const body = await request.json()
-    const updates: Record<string, unknown> = {}
+    const updates: Database['public']['Tables']['user_conversations']['Update'] = {}
 
     // Name: trim, cap to 120 chars. Empty string → null (cleared).
     if (Object.prototype.hasOwnProperty.call(body, 'name')) {
@@ -141,7 +142,9 @@ export async function PATCH(
         actorId: user.id,
         actorName: actor?.name || null,
         oldName: existing.name,
-        newName: updates.name,
+        // `'name' in updates` above guarantees it was assigned (string or
+        // null); `?? null` only satisfies the optional-property type.
+        newName: updates.name ?? null,
       })
     }
     if ('avatar_url' in updates && updates.avatar_url !== existing.avatar_url) {

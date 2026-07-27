@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import type { Database } from '@/lib/database.types';
 
 const PORTONE_API_SECRET = process.env.PORTONE_API_SECRET;
 const PORTONE_API_URL = 'https://api.portone.io';
@@ -19,7 +20,7 @@ export async function GET(request: NextRequest) {
     const token = authHeader.substring(7);
 
     // Create Supabase client with auth header
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
@@ -164,7 +165,11 @@ export async function GET(request: NextRequest) {
 
     // Fetch academy names for partner IDs
     if (settlementsData.items && settlementsData.items.length > 0) {
-      const partnerIds = [...new Set(settlementsData.items.map((s: any) => s.partner?.id).filter(Boolean))];
+      const partnerIds = [...new Set(
+        settlementsData.items
+          .map((s: { partner?: { id?: string } }) => s.partner?.id)
+          .filter((id: string | undefined): id is string => Boolean(id))
+      )] as string[];
 
       const { data: academies } = await supabase
         .from('academies')

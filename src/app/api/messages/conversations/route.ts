@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import type { Database } from '@/lib/database.types'
 
-const supabase = createClient(
+const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
@@ -21,13 +22,22 @@ async function getAcademyIdForUser(userId: string): Promise<string | null> {
 
   if (!userData) return null
 
-  const tableByRole: Record<string, string> = {
+  // `as const` keeps the values as literal table names so `.from(table)`
+  // narrows to just these four tables (all of which have `academy_id`).
+  // Without it the value type widens to `string` and `.from()` resolves to
+  // a union of every table in the schema.
+  const tableByRole = {
     manager: 'managers',
     teacher: 'teachers',
     student: 'students',
     parent: 'parents',
-  }
-  const table = tableByRole[userData.role]
+  } as const
+  const table = tableByRole[userData.role as keyof typeof tableByRole] as
+    | 'managers'
+    | 'teachers'
+    | 'students'
+    | 'parents'
+    | undefined
   if (!table) return null
 
   const { data } = await supabase
@@ -309,7 +319,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create the conversation row.
-    const insertPayload: Record<string, unknown> = {
+    const insertPayload: Database['public']['Tables']['user_conversations']['Insert'] = {
       academy_id: academyId,
       is_group: isGroup,
       name,

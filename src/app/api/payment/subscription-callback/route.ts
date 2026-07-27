@@ -3,9 +3,10 @@ import { createClient } from '@supabase/supabase-js';
 import { KGPaymentRequest, SubscriptionTier, BillingCycle } from '@/types/subscription';
 import crypto from 'crypto';
 import { raiseAlert } from '@/lib/ops/alert';
+import type { Database } from '@/lib/database.types';
 
 // Initialize Supabase admin client
-const supabaseAdmin = createClient(
+const supabaseAdmin = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
   {

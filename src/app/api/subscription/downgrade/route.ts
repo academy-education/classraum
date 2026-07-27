@@ -129,36 +129,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Downgrade is valid - schedule it for next billing period
-    // We don't immediately downgrade to avoid service disruption
-    const { error: updateError } = await supabase
-      .from('academy_subscriptions')
-      .update({
-        pending_tier: targetTier,
-        pending_monthly_amount: targetPlan.monthlyPrice,
-        pending_change_effective_date: subscription.next_billing_date,
-        updated_at: new Date().toISOString(),
-      })
-      .eq('academy_id', academyId);
-
-    if (updateError) {
-      console.error('Error scheduling downgrade:', updateError);
-      return NextResponse.json(
-        { success: false, message: 'Failed to schedule downgrade' },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: `다운그레이드가 예약되었습니다. 다음 결제일(${new Date(subscription.next_billing_date).toLocaleDateString('ko-KR')})부터 ${targetPlan.name} 플랜으로 변경됩니다.`,
-      data: {
-        currentTier: subscription.plan_tier,
-        targetTier,
-        effectiveDate: subscription.next_billing_date,
-        newMonthlyAmount: targetPlan.monthlyPrice,
-      },
-    });
+    // Downgrade is valid — but it cannot actually be scheduled.
+    //
+    // This used to write pending_tier / pending_monthly_amount /
+    // pending_change_effective_date. academy_subscriptions has
+    // pending_change_effective_date but NOT pending_tier or
+    // pending_monthly_amount, so PostgREST rejected the whole statement
+    // (PGRST204, unknown column) and this endpoint has always answered 500.
+    // Nothing was ever persisted, and the billing cron had no pending tier
+    // to read either.
+    //
+    // We keep returning the same failure rather than writing a partial row
+    // (an effective date with no target tier) or telling the manager the
+    // downgrade is scheduled when it is not. Restoring the feature requires
+    // adding the two columns to the schema first.
+    console.error(
+      '[Downgrade API] Cannot schedule downgrade: academy_subscriptions is missing the pending_tier / pending_monthly_amount columns',
+      { academyId, currentTier: subscription.plan_tier, targetTier }
+    );
+    return NextResponse.json(
+      { success: false, message: 'Failed to schedule downgrade' },
+      { status: 500 }
+    );
 
   } catch (error) {
     console.error('Downgrade API error:', error);

@@ -5,6 +5,7 @@ import { triggerInvoicePaymentNotifications } from '@/lib/notification-triggers'
 import { verifyWebhookSignature as verifyStandardWebhook, WebhookVerificationError } from '@/lib/portone-webhook';
 import { tryHandleStudyOneTimeWebhook } from '@/lib/study/payment-webhook-handler';
 import { raiseAlert } from '@/lib/ops/alert';
+import type { Json } from '@/lib/database.types';
 
 export async function POST(request: NextRequest) {
   try {
@@ -248,29 +249,45 @@ export async function POST(request: NextRequest) {
           // Without onConflict, Supabase upsert defaults to PRIMARY KEY (id)
           // which we don't supply, so the second delivery would always try
           // to INSERT and hit the unique violation.
-          const { error: invoiceUpdateError } = await supabase
-            .from('subscription_invoices')
-            .upsert({
-              academy_id: (await supabase
-                .from('academy_subscriptions')
-                .select('academy_id')
-                .eq('id', subscriptionId)
-                .single()).data?.academy_id,
-              subscription_id: subscriptionId,
-              kg_transaction_id: paymentId,
-              status: 'paid',
-              paid_at: verification.payment.paidAt || new Date().toISOString(),
-              amount: verification.payment.amount.total,
-              currency: 'KRW',
-              metadata: {
-                payment_method: verification.payment.method?.type,
-                webhook_received_at: new Date().toISOString(),
-              },
-            }, { onConflict: 'kg_transaction_id' });
+          // subscription_invoices has NOT NULL plan_tier, billing_cycle,
+          // billing_period_start and billing_period_end. They live on the
+          // parent subscription row, so read them alongside academy_id — an
+          // upsert without them can only ever UPDATE an existing row and
+          // fails with 23502 on the INSERT branch.
+          const { data: subRow, error: subReadError } = await supabase
+            .from('academy_subscriptions')
+            .select('academy_id, plan_tier, billing_cycle, current_period_start, current_period_end')
+            .eq('id', subscriptionId)
+            .single();
 
-          if (invoiceUpdateError) {
-            console.error('Error updating subscription invoice:', invoiceUpdateError);
+          if (subReadError || !subRow) {
+            console.error('Error reading subscription for invoice upsert:', subReadError);
             // Log but don't fail — subscription status is already updated
+          } else {
+            const { error: invoiceUpdateError } = await supabase
+              .from('subscription_invoices')
+              .upsert({
+                academy_id: subRow.academy_id,
+                subscription_id: subscriptionId,
+                kg_transaction_id: paymentId,
+                status: 'paid',
+                paid_at: verification.payment.paidAt || new Date().toISOString(),
+                amount: verification.payment.amount.total,
+                currency: 'KRW',
+                plan_tier: subRow.plan_tier,
+                billing_cycle: subRow.billing_cycle,
+                billing_period_start: subRow.current_period_start,
+                billing_period_end: subRow.current_period_end,
+                metadata: {
+                  payment_method: verification.payment.method?.type ?? null,
+                  webhook_received_at: new Date().toISOString(),
+                },
+              }, { onConflict: 'kg_transaction_id' });
+
+            if (invoiceUpdateError) {
+              console.error('Error updating subscription invoice:', invoiceUpdateError);
+              // Log but don't fail — subscription status is already updated
+            }
           }
         } else if (verification.payment.status === 'FAILED') {
           // Mark subscription as past_due. Unchecked, a failed write meant
@@ -427,7 +444,9 @@ async function claimWebhookId(
     paymentId: string;
     status: string;
     amount: number | null;
-    rawData: unknown;
+    // webhook_events.raw_data is a jsonb column; typing this as `unknown`
+    // meant it couldn't be handed to .insert() honestly.
+    rawData: Json;
   }
 ): Promise<boolean> {
   if (!webhookId) return true;

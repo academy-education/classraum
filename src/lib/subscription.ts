@@ -1,15 +1,18 @@
 import { createClient } from '@supabase/supabase-js';
-import { 
-  SubscriptionTier, 
-  SubscriptionStatus, 
+import type { Database, Json } from '@/lib/database.types';
+import { jsonObject } from '@/lib/json';
+import {
+  SubscriptionTier,
+  SubscriptionStatus,
+  BillingCycle,
   AcademySubscription,
   SubscriptionUsage,
   SubscriptionLimits,
-  SUBSCRIPTION_PLANS 
+  SUBSCRIPTION_PLANS
 } from '@/types/subscription';
 
 // Create admin client for server-side operations
-const supabaseAdmin = createClient(
+const supabaseAdmin = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
   {
@@ -19,6 +22,61 @@ const supabaseAdmin = createClient(
     }
   }
 );
+
+// The three enum-ish columns below are plain `text` in Postgres, guarded by
+// CHECK constraints that happen to match these unions exactly
+// (plan_tier ⊂ SubscriptionTier, status = SubscriptionStatus,
+// billing_cycle = BillingCycle). The generated types can only say `string`,
+// so validate at the read boundary instead of asserting: if the constraint is
+// ever widened without updating the union, we log it and fail closed rather
+// than hand a bogus tier to SUBSCRIPTION_PLANS[...] (which would be undefined
+// and throw on `.limits`).
+const SUBSCRIPTION_STATUSES: readonly SubscriptionStatus[] = ['active', 'past_due', 'canceled', 'trialing'];
+const BILLING_CYCLES: readonly BillingCycle[] = ['monthly', 'yearly'];
+
+function narrowEnum<T extends string>(
+  value: string,
+  allowed: readonly T[],
+  fallback: T,
+  column: string
+): T {
+  if ((allowed as readonly string[]).includes(value)) {
+    return value as T;
+  }
+  console.warn(`[subscription] unexpected ${column} value "${value}" — falling back to "${fallback}"`);
+  return fallback;
+}
+
+function toTier(value: string): SubscriptionTier {
+  return narrowEnum(
+    value,
+    Object.keys(SUBSCRIPTION_PLANS) as SubscriptionTier[],
+    'individual',
+    'plan_tier'
+  );
+}
+
+/**
+ * `features_enabled` is a free-form jsonb column; keep only the boolean flags
+ * so callers reading `featuresEnabled[x]` can't get a string or an object.
+ */
+function toFeatureFlags(value: Json | null): Record<string, boolean> {
+  const flags: Record<string, boolean> = {};
+  for (const [key, flag] of Object.entries(jsonObject(value))) {
+    if (typeof flag === 'boolean') flags[key] = flag;
+  }
+  return flags;
+}
+
+/**
+ * Nullable timestamp → Date. All of these columns carry a `now()` default so
+ * they are populated in practice, but `new Date(null)` is the UNIX epoch —
+ * a NULL would silently read as 1970-01-01 rather than as "unknown". An
+ * Invalid Date is visibly wrong and serialises to `null` over JSON.
+ */
+function toDate(value: string | null): Date {
+  return value === null ? new Date(NaN) : new Date(value);
+}
 
 /**
  * Get current subscription for an academy
@@ -39,23 +97,24 @@ export async function getAcademySubscription(academyId: string): Promise<Academy
     return data ? {
       id: data.id,
       academyId: data.academy_id,
-      planTier: data.plan_tier,
-      status: data.status,
+      planTier: toTier(data.plan_tier),
+      status: narrowEnum(data.status, SUBSCRIPTION_STATUSES, 'canceled', 'status'),
       currentPeriodStart: new Date(data.current_period_start),
       currentPeriodEnd: new Date(data.current_period_end),
       trialEndsAt: data.trial_ends_at ? new Date(data.trial_ends_at) : undefined,
-      kgSubscriptionId: data.kg_subscription_id,
-      kgCustomerId: data.kg_customer_id,
+      kgSubscriptionId: data.kg_subscription_id ?? undefined,
+      kgCustomerId: data.kg_customer_id ?? undefined,
       lastPaymentDate: data.last_payment_date ? new Date(data.last_payment_date) : undefined,
       nextBillingDate: data.next_billing_date ? new Date(data.next_billing_date) : undefined,
       totalUserLimit: data.total_user_limit,
       storageLimitGb: data.storage_limit_gb,
-      featuresEnabled: data.features_enabled,
+      featuresEnabled: toFeatureFlags(data.features_enabled),
       monthlyAmount: data.monthly_amount,
-      billingCycle: data.billing_cycle,
-      autoRenew: data.auto_renew,
-      createdAt: new Date(data.created_at),
-      updatedAt: new Date(data.updated_at),
+      billingCycle: narrowEnum(data.billing_cycle, BILLING_CYCLES, 'monthly', 'billing_cycle'),
+      // Column default is `true`, so a NULL means "never set" — keep renewing.
+      autoRenew: data.auto_renew ?? true,
+      createdAt: toDate(data.created_at),
+      updatedAt: toDate(data.updated_at),
     } : null;
   } catch (error) {
     console.error('Error in getAcademySubscription:', error);
@@ -86,12 +145,14 @@ export async function getAcademyUsage(academyId: string): Promise<SubscriptionUs
       currentTeacherCount: data.current_teacher_count,
       currentStorageGb: data.current_storage_gb,
       currentClassroomCount: data.current_classroom_count,
-      apiCallsMonth: data.api_calls_month,
-      smsSentMonth: data.sms_sent_month,
-      emailsSentMonth: data.emails_sent_month,
-      peakStudentCount: data.peak_student_count,
-      peakTeacherCount: data.peak_teacher_count,
-      calculatedAt: new Date(data.calculated_at),
+      // All five counters are nullable with a `0` default; treat NULL as 0 so
+      // the limit comparisons below don't run against `null`.
+      apiCallsMonth: data.api_calls_month ?? 0,
+      smsSentMonth: data.sms_sent_month ?? 0,
+      emailsSentMonth: data.emails_sent_month ?? 0,
+      peakStudentCount: data.peak_student_count ?? 0,
+      peakTeacherCount: data.peak_teacher_count ?? 0,
+      calculatedAt: toDate(data.calculated_at),
     } : null;
   } catch (error) {
     console.error('Error in getAcademyUsage:', error);
@@ -374,47 +435,5 @@ export function getSubscriptionStatusMessage(status: SubscriptionStatus): {
       return { message: '구독이 취소되었습니다', type: 'error' };
     default:
       return { message: '구독 상태를 확인할 수 없습니다', type: 'warning' };
-  }
-}
-
-/**
- * Increment API call usage
- */
-export async function incrementApiUsage(academyId: string, calls: number = 1): Promise<void> {
-  try {
-    await supabaseAdmin.rpc('increment_api_usage', {
-      p_academy_id: academyId,
-      p_calls: calls
-    });
-  } catch (error) {
-    console.error('Error incrementing API usage:', error);
-  }
-}
-
-/**
- * Increment SMS usage
- */
-export async function incrementSmsUsage(academyId: string, count: number = 1): Promise<void> {
-  try {
-    await supabaseAdmin.rpc('increment_sms_usage', {
-      p_academy_id: academyId,
-      p_count: count
-    });
-  } catch (error) {
-    console.error('Error incrementing SMS usage:', error);
-  }
-}
-
-/**
- * Increment email usage
- */
-export async function incrementEmailUsage(academyId: string, count: number = 1): Promise<void> {
-  try {
-    await supabaseAdmin.rpc('increment_email_usage', {
-      p_academy_id: academyId,
-      p_count: count
-    });
-  } catch (error) {
-    console.error('Error incrementing email usage:', error);
   }
 }

@@ -3,9 +3,10 @@ import { createClient } from '@supabase/supabase-js';
 import { getPortOneConfig } from '@/lib/portone-config';
 import { verifyCronAuth } from '@/lib/cron-auth';
 import { recordHeartbeat } from '@/lib/ops/heartbeat';
+import type { Database } from '@/lib/database.types';
 
 // Create admin client with service role key for cron operations
-const supabaseAdmin = createClient(
+const supabaseAdmin = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
   {
@@ -99,7 +100,19 @@ export async function GET(req: NextRequest) {
           // creating a new one. Combined with the pre-charge check below
           // (subscription_invoices unique on kg_transaction_id), this
           // makes the whole flow safely re-runnable.
-          const billingDateKey = subscription.next_billing_date.slice(0, 10);
+          //
+          // next_billing_date is nullable in the schema. The query above
+          // filters on `.lte('next_billing_date', today)`, and Postgres
+          // drops NULLs from that comparison, so a null can't reach here —
+          // but assert it rather than letting `new Date(null)` silently
+          // become 1970-01-01 and bill against a bogus period.
+          if (!subscription.next_billing_date) {
+            console.error(`[SUBSCRIPTION-BILLING] Subscription ${subscription.id} has no next_billing_date — skipping`);
+            errors.push(`Subscription ${subscription.id}: No next_billing_date`);
+            return;
+          }
+          const billingDate = subscription.next_billing_date;
+          const billingDateKey = billingDate.slice(0, 10);
           const paymentId = `subscription_${subscription.id}_${billingDateKey}`;
 
           // Pre-charge guard: if we've already created an invoice for
@@ -146,7 +159,7 @@ export async function GET(req: NextRequest) {
           const customerPhone = mgr?.phone || mgrUser?.phone || '010-0000-0000';
 
           // Calculate next billing date
-          const nextBillingDate = new Date(subscription.next_billing_date);
+          const nextBillingDate = new Date(billingDate);
           if (subscription.billing_cycle === 'monthly') {
             nextBillingDate.setMonth(nextBillingDate.getMonth() + 1);
           } else {
@@ -187,7 +200,7 @@ export async function GET(req: NextRequest) {
             console.log(`[SUBSCRIPTION-BILLING] Payment successful for subscription: ${subscription.id}`);
 
             // Calculate billing period
-            const billingPeriodStart = new Date(subscription.next_billing_date);
+            const billingPeriodStart = new Date(billingDate);
             const billingPeriodEnd = new Date(nextBillingDate);
 
             // Create subscription invoice
@@ -227,11 +240,17 @@ export async function GET(req: NextRequest) {
               }
             }
 
-            // Check if there's a pending plan change scheduled for this billing cycle
-            const hasPendingChange = subscription.pending_tier && subscription.pending_change_effective_date;
-            const hasPendingAddons = subscription.pending_addons_effective_date !== null;
+            // NOTE: there used to be a "apply scheduled plan change" block
+            // here, keyed on subscription.pending_tier /
+            // pending_monthly_amount. Those two columns do not exist on
+            // academy_subscriptions (only pending_change_effective_date and
+            // the pending_additional_* add-on columns do), so
+            // `subscription.pending_tier` was always undefined and the block
+            // could never run. Removed rather than left as dead code that
+            // reads as a working feature. See the report/downgrade route:
+            // scheduling a tier change needs the columns to be added first.
 
-            let updateData: any = {
+            let updateData: Database['public']['Tables']['academy_subscriptions']['Update'] = {
               last_payment_date: new Date().toISOString(),
               next_billing_date: nextBillingDate.toISOString(),
               current_period_start: billingPeriodStart.toISOString(),
@@ -240,59 +259,8 @@ export async function GET(req: NextRequest) {
               updated_at: new Date().toISOString(),
             };
 
-            // If there's a pending change and today is on or after the effective date, apply it
-            if (hasPendingChange) {
-              const effectiveDate = new Date(subscription.pending_change_effective_date);
-              const todayDate = new Date();
-
-              if (todayDate >= effectiveDate) {
-                console.log(`[SUBSCRIPTION-BILLING] Applying scheduled plan change for subscription ${subscription.id}: ${subscription.plan_tier} → ${subscription.pending_tier}`);
-
-                // Get the pending plan details
-                const { SUBSCRIPTION_PLANS } = await import('@/types/subscription');
-                const pendingPlan = SUBSCRIPTION_PLANS[subscription.pending_tier as keyof typeof SUBSCRIPTION_PLANS];
-
-                if (pendingPlan) {
-                  // Apply the pending plan change
-                  updateData = {
-                    ...updateData,
-                    plan_tier: subscription.pending_tier,
-                    monthly_amount: subscription.pending_monthly_amount,
-                    student_limit: pendingPlan.limits.studentLimit,
-                    teacher_limit: pendingPlan.limits.teacherLimit,
-                    storage_limit_gb: pendingPlan.limits.storageGb,
-                    features_enabled: pendingPlan.features,
-                    // Clear pending fields
-                    pending_tier: null,
-                    pending_monthly_amount: null,
-                    pending_change_effective_date: null,
-                  };
-
-                  console.log(`[SUBSCRIPTION-BILLING] Plan change applied successfully for subscription ${subscription.id}`);
-
-                  // Update academy tier as well. Checked: academies
-                  // .subscription_tier is what the app gates features on,
-                  // so losing this write leaves a customer who just paid
-                  // for an upgrade on their old plan's limits while the
-                  // subscription row says otherwise.
-                  const { error: tierError } = await supabaseAdmin
-                    .from('academies')
-                    .update({
-                      subscription_tier: subscription.pending_tier,
-                      updated_at: new Date().toISOString(),
-                    })
-                    .eq('id', subscription.academy_id);
-                  if (tierError) {
-                    console.error(`[SUBSCRIPTION-BILLING] Error applying tier to academy ${subscription.academy_id}:`, tierError);
-                    errors.push(`Subscription ${subscription.id}: Failed to apply tier to academy`);
-                    writeFailures++;
-                  }
-                }
-              }
-            }
-
             // Check if there are pending add-ons to apply
-            if (hasPendingAddons) {
+            if (subscription.pending_addons_effective_date) {
               const effectiveDate = new Date(subscription.pending_addons_effective_date);
               const todayDate = new Date();
 
@@ -303,9 +271,8 @@ export async function GET(req: NextRequest) {
                 const { calculateAddonCost } = await import('@/lib/addon-config');
                 const { SUBSCRIPTION_PLANS } = await import('@/types/subscription');
 
-                // Get current plan (or use updated plan if tier change was also applied)
-                const currentPlanTier = updateData.plan_tier || subscription.plan_tier;
-                const currentPlan = SUBSCRIPTION_PLANS[currentPlanTier as keyof typeof SUBSCRIPTION_PLANS];
+                const currentPlanTier = subscription.plan_tier as keyof typeof SUBSCRIPTION_PLANS;
+                const currentPlan = SUBSCRIPTION_PLANS[currentPlanTier];
 
                 // Calculate new add-on cost
                 const addonCost = calculateAddonCost(
@@ -319,21 +286,37 @@ export async function GET(req: NextRequest) {
                 const basePlanPrice = currentPlan.monthlyPrice;
                 const newMonthlyAmount = basePlanPrice + addonCost;
 
-                // Calculate new limits (base limits + add-ons)
+                // Calculate new limits (base limits + add-ons).
+                // studentLimit/teacherLimit are optional on SubscriptionLimits
+                // and no plan in SUBSCRIPTION_PLANS actually defines them (the
+                // newer model uses totalUserLimit), so they are undefined at
+                // runtime. `undefined + n` is NaN, which serializes to null and
+                // would make this whole update fail against the NOT NULL
+                // student_limit/teacher_limit columns — leaving the row's
+                // next_billing_date un-advanced after a successful charge.
+                // Only write those two columns when the plan really defines them.
                 const baseStudentLimit = currentPlan.limits.studentLimit;
                 const baseTeacherLimit = currentPlan.limits.teacherLimit;
                 const baseStorageLimit = currentPlan.limits.storageGb;
 
-                const newStudentLimit = baseStudentLimit === -1 ? -1 : baseStudentLimit + (subscription.pending_additional_students || 0);
-                const newTeacherLimit = baseTeacherLimit === -1 ? -1 : baseTeacherLimit + (subscription.pending_additional_teachers || 0);
+                const newStudentLimit = baseStudentLimit === undefined
+                  ? undefined
+                  : baseStudentLimit === -1
+                    ? -1
+                    : baseStudentLimit + (subscription.pending_additional_students || 0);
+                const newTeacherLimit = baseTeacherLimit === undefined
+                  ? undefined
+                  : baseTeacherLimit === -1
+                    ? -1
+                    : baseTeacherLimit + (subscription.pending_additional_teachers || 0);
                 const newStorageLimit = baseStorageLimit === -1 ? -1 : baseStorageLimit + (subscription.pending_additional_storage_gb || 0);
 
                 // Apply the add-ons
                 updateData = {
                   ...updateData,
                   monthly_amount: newMonthlyAmount,
-                  student_limit: newStudentLimit,
-                  teacher_limit: newTeacherLimit,
+                  ...(newStudentLimit !== undefined ? { student_limit: newStudentLimit } : {}),
+                  ...(newTeacherLimit !== undefined ? { teacher_limit: newTeacherLimit } : {}),
                   storage_limit_gb: newStorageLimit,
                   // Move pending add-ons to active
                   additional_students: subscription.pending_additional_students || 0,
@@ -395,7 +378,7 @@ export async function GET(req: NextRequest) {
                   status: 'failed',
                   failed_at: new Date().toISOString(),
                   failure_reason: errorData.message || 'Payment processing failed',
-                  billing_period_start: subscription.next_billing_date,
+                  billing_period_start: billingDate,
                   billing_period_end: nextBillingDate.toISOString(),
                   plan_tier: subscription.plan_tier,
                   billing_cycle: subscription.billing_cycle,

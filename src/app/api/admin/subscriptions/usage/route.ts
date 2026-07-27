@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+import type { Database } from '@/lib/database.types';
 
 export async function GET(req: NextRequest) {
   try {
@@ -17,13 +18,13 @@ export async function GET(req: NextRequest) {
     const token = authHeader.substring(7);
 
     // Use service role key for admin operations to bypass RLS
-    const supabaseAdmin = createClient(
+    const supabaseAdmin = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
     // First verify auth with regular client
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
@@ -94,13 +95,17 @@ export async function GET(req: NextRequest) {
       .eq('academy_id', academyId)
       .maybeSingle();
 
-    console.log('[Admin Usage API] Returning data:', { totalUsers: totalUserCount, storageGb: usage ? parseFloat(usage.current_storage_gb || '0') : 0 });
+    // current_storage_gb is already numeric in the schema — it was being run
+    // through parseFloat() as if it were a string.
+    const storageGb = usage?.current_storage_gb ?? 0;
+
+    console.log('[Admin Usage API] Returning data:', { totalUsers: totalUserCount, storageGb });
 
     return NextResponse.json({
       success: true,
       data: {
         totalUsers: totalUserCount,
-        storageGb: usage ? parseFloat(usage.current_storage_gb || '0') : 0
+        storageGb
       }
     });
 

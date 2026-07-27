@@ -12,6 +12,7 @@ import {
 } from './portone-platform-api';
 import { loggers } from './error-monitoring';
 import { alerts } from './alerting';
+import { toJson } from './json';
 
 /**
  * Sync settlements from PortOne Platform API to database
@@ -182,7 +183,7 @@ async function storeSettlement(settlement: PlatformPartnerSettlement): Promise<v
       currency: settlement.settlementCurrency,
       timestamp: settlement.updatedAt,
       processed: true,
-      raw_data: settlement,
+      raw_data: toJson(settlement),
       webhook_id: null, // This is from API poll, not webhook
       received_at: new Date().toISOString(),
     },
@@ -233,7 +234,7 @@ async function storePayout(payout: PlatformPayout): Promise<boolean> {
       timestamp: payout.updatedAt,
       processed: true,
       error_message: payout.failureReason || null,
-      raw_data: payout,
+      raw_data: toJson(payout),
       webhook_id: null, // This is from API poll, not webhook
       received_at: new Date().toISOString(),
     },

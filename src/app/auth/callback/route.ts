@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { type EmailOtpType } from '@supabase/supabase-js'
+import type { Database } from '@/lib/database.types'
 
 export async function GET(request: Request) {
   const { searchParams, origin, hostname } = new URL(request.url)
@@ -25,7 +26,7 @@ export async function GET(request: Request) {
 
   const cookieStore = await cookies()
 
-  const supabase = createServerClient(
+  const supabase = createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {

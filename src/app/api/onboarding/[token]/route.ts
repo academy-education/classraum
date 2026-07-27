@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
+import type { Database } from '@/lib/database.types'
 
-const supabase = createClient(
+const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
@@ -35,7 +36,10 @@ async function resolveToken(token: string): Promise<
       id: academy.id,
       name: academy.name,
       address: academy.address,
-      subscription_tier: academy.subscription_tier,
+      // `academies.subscription_tier` is nullable. The onboarding page does
+      // `subscriptionTier.charAt(0)` on this value, so a null would throw
+      // there. Coalesce to 'free', matching /api/admin/academies.
+      subscription_tier: academy.subscription_tier ?? 'free',
     },
   }
 }

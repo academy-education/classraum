@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { enforceRateLimit, userOrIpKey } from '@/lib/rate-limit'
+import type { Database } from '@/lib/database.types'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 // Create a function to get an authenticated client for each request
 function getAuthenticatedClient(token: string) {
-  const client = createClient(supabaseUrl, supabaseAnonKey, {
+  const client = createClient<Database>(supabaseUrl, supabaseAnonKey, {
     global: {
       headers: {
         Authorization: `Bearer ${token}`

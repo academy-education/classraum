@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+import type { Database } from '@/lib/database.types';
 
 export async function GET(req: NextRequest) {
   try {
@@ -14,7 +15,7 @@ export async function GET(req: NextRequest) {
 
     const token = authHeader.substring(7);
 
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
@@ -50,7 +51,7 @@ export async function GET(req: NextRequest) {
     // Past the auth gate, read with the service role like the sibling admin
     // routes. The platform-wide aggregates below are service_role-only RPCs
     // (migration 052) so revenue totals are not reachable with a public key.
-    const db = createClient(
+    const db = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
@@ -178,6 +179,9 @@ export async function GET(req: NextRequest) {
 
     const lastPaymentMap = new Map<string, { amount: number; paidAt: string | null }>();
     for (const inv of paidInvoices ?? []) {
+      // academy_id is nullable on subscription_invoices; a null one cannot be
+      // attributed to any academy on this page.
+      if (!inv.academy_id) continue;
       // Rows arrive newest-first, so the first hit per academy is the latest.
       if (!lastPaymentMap.has(inv.academy_id)) {
         lastPaymentMap.set(inv.academy_id, { amount: toNum(inv.amount), paidAt: inv.paid_at });
@@ -208,9 +212,11 @@ export async function GET(req: NextRequest) {
         lastPaymentAmount: lastPayment?.amount ?? null,
         autoRenew: sub.auto_renew,
         totalUsers: totalUsers,
-        paymentMethod: sub.portone_billing_key ? 'Card (PortOne)' : 'Not set',
-        portoneCustomerId: sub.portone_customer_id,
-        portoneBillingKey: sub.portone_billing_key,
+        // The stored billing key / customer id live in `billing_key` and
+        // `kg_customer_id`; there are no `portone_*` columns on this table.
+        paymentMethod: sub.billing_key ? 'Card (PortOne)' : 'Not set',
+        portoneCustomerId: sub.kg_customer_id,
+        portoneBillingKey: sub.billing_key,
         totalUserLimit: sub.total_user_limit,
         storageLimitGb: sub.storage_limit_gb
       };

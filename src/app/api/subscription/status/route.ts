@@ -8,6 +8,7 @@ import {
   getSubscriptionStatusMessage
 } from '@/lib/subscription';
 import { SUBSCRIPTION_PLANS } from '@/types/subscription';
+import type { Database } from '@/lib/database.types';
 
 // Mark this route as dynamic to ensure it's not cached
 export const dynamic = 'force-dynamic';
@@ -28,7 +29,7 @@ export async function GET(request: NextRequest) {
     const token = authHeader.substring(7);
 
     // Create Supabase client with the token
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {

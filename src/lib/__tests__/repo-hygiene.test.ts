@@ -160,3 +160,51 @@ describe('supabase clients', () => {
     expect(code).not.toMatch(/export\s+const\s+\w+\s*(:\s*SupabaseClient\b|=\s*client\s+as\b)/)
   })
 })
+
+/**
+ * Every Supabase client must be constructed with the Database generic.
+ *
+ * Deleting the untyped `supabase`/`supabaseAdmin` aliases closed the
+ * shared clients, but 51 files bypassed those entirely by calling
+ * `createClient(url, key)` themselves — no generic, so no schema types,
+ * across the whole admin, subscription and payments surface. That is the
+ * same hole in a different shape: a bad column returns an error and no
+ * rows, and the caller renders a plausible zero.
+ *
+ * Typing them surfaced 78 real errors, including three RPCs
+ * (increment_api_usage / increment_sms_usage / increment_email_usage)
+ * that do not exist in the database at all.
+ */
+describe('supabase client construction', () => {
+  it('never calls createClient/createServerClient without <Database>', () => {
+    const offenders: string[] = []
+    const walk = (dir: string) => {
+      for (const e of readdirSync(dir, { withFileTypes: true })) {
+        if (e.name === 'node_modules' || e.name === '.next') continue
+        const p = join(dir, e.name)
+        if (e.isDirectory()) { walk(p); continue }
+        if (!/\.(ts|tsx)$/.test(e.name)) continue
+        if (/__tests__|\.test\./.test(p)) continue
+        // Strip comments so prose describing a call doesn't count.
+        const code = readFileSync(p, 'utf8')
+          .replace(/\/\*[\s\S]*?\*\//g, '')
+          .replace(/^\s*\/\/.*$/gm, '')
+        // Only direct constructions from the supabase packages need the
+        // generic. `createClient` imported from '@/lib/supabase/server' is
+        // our own already-typed wrapper, and its callers must NOT pass one.
+        if (!/from '@supabase\/(supabase-js|ssr)'/.test(code)) continue
+        // A CALL is the identifier followed by '('. `function createClient()`
+        // is the local wrapper's declaration, not a client construction.
+        const re = /(?<!function\s)\b(createClient|createServerClient)\s*\(/g
+        for (const m of code.matchAll(re)) {
+          const after = code.slice(m.index ?? 0)
+          if (!/^\s*(createClient|createServerClient)\s*<\s*Database\s*>/.test(after)) {
+            offenders.push(`${p.replace(ROOT + '/', '')} — ${m[1]}()`)
+          }
+        }
+      }
+    }
+    walk(join(ROOT, 'src'))
+    expect(offenders).toEqual([])
+  })
+})

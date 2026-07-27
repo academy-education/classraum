@@ -7,6 +7,7 @@ import {
   formatKRW,
 } from '@/lib/proration';
 import { raiseAlert } from '@/lib/ops/alert';
+import type { Database } from '@/lib/database.types';
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
       // Use the token from Authorization header - create a client with this token
       const token = authHeader.substring(7);
       const { createClient: createSupabaseClient } = await import('@supabase/supabase-js');
-      supabase = createSupabaseClient(
+      supabase = createSupabaseClient<Database>(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         {
@@ -197,10 +198,13 @@ export async function POST(request: NextRequest) {
             auto_renew: true,
             total_user_limit: plan.limits.totalUserLimit,
             storage_limit_gb: plan.limits.storageGb,
-            features_enabled: plan.features,
-            // Clear any pending downgrades
-            pending_tier: null,
-            pending_monthly_amount: null,
+            features_enabled: { ...plan.features },
+            // Clear any pending downgrade. NOTE: pending_tier /
+            // pending_monthly_amount were also cleared here, but those
+            // columns do not exist on academy_subscriptions — PostgREST
+            // rejects an update naming them, so this upgrade write has been
+            // failing outright (500 "Failed to update subscription") even
+            // though the customer's plan change was otherwise valid.
             pending_change_effective_date: null,
             updated_at: now.toISOString(),
           })
@@ -267,7 +271,7 @@ export async function POST(request: NextRequest) {
             auto_renew: true,
             total_user_limit: plan.limits.totalUserLimit,
             storage_limit_gb: plan.limits.storageGb,
-            features_enabled: plan.features,
+            features_enabled: { ...plan.features },
           })
           .select('id')
           .single();
@@ -383,7 +387,7 @@ export async function POST(request: NextRequest) {
                 auto_renew: true,
                 total_user_limit: plan.limits.totalUserLimit,
                 storage_limit_gb: plan.limits.storageGb,
-                features_enabled: plan.features,
+                features_enabled: { ...plan.features },
                 last_payment_date: now.toISOString(),
               })
               .select('id')

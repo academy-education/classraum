@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import type { AdminUser } from './admin-auth-shared';
+import type { Database } from '@/lib/database.types';
+import { toJson } from '@/lib/json';
 
 // Pure, client-safe helpers live in admin-auth-shared (no createClient),
 // so client components import from there and never bundle this
@@ -29,7 +31,7 @@ if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
   }
 }
 
-const supabaseAdmin = createClient(
+const supabaseAdmin = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   // Intentionally NO anon-key fallback — see comment above.
   process.env.SUPABASE_SERVICE_ROLE_KEY || '',
@@ -42,7 +44,7 @@ const supabaseAdmin = createClient(
 );
 
 // Create regular client for auth verification
-const supabaseAuth = createClient(
+const supabaseAuth = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
@@ -80,7 +82,10 @@ export async function verifyAdminUser(authToken: string): Promise<AdminUser | nu
       email: userInfo.email,
       name: userInfo.name,
       role: userInfo.role as 'admin' | 'super_admin',
-      createdAt: new Date(userInfo.created_at)
+      // users.created_at is nullable in the schema. `new Date(null)` is the
+      // UNIX epoch, so a missing timestamp would silently read as 1970-01-01;
+      // an Invalid Date is at least visibly wrong rather than plausible.
+      createdAt: userInfo.created_at ? new Date(userInfo.created_at) : new Date(NaN)
     };
 
   } catch (error) {
@@ -223,7 +228,7 @@ export async function logAdminActivity(activity: {
         target_type: activity.targetType,
         target_id: activity.targetId,
         description: activity.description,
-        metadata: activity.metadata || {},
+        metadata: toJson(activity.metadata ?? {}),
         ip_address: activity.ipAddress,
         user_agent: activity.userAgent,
       });

@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+import type { Database } from '@/lib/database.types';
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,7 +15,7 @@ export async function POST(req: NextRequest) {
 
     const token = authHeader.substring(7);
 
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
@@ -105,8 +106,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // `metadata` is an untyped Json column, so narrow it to an object before
+    // reading portone_payment_id off it.
+    const metadata =
+      invoice.metadata && typeof invoice.metadata === 'object' && !Array.isArray(invoice.metadata)
+        ? invoice.metadata
+        : null;
+    const metadataPaymentId =
+      typeof metadata?.portone_payment_id === 'string' ? metadata.portone_payment_id : null;
+
     // Check if we have a PortOne payment ID
-    if (!invoice.kg_transaction_id && !invoice.metadata?.portone_payment_id) {
+    if (!invoice.kg_transaction_id && !metadataPaymentId) {
       return NextResponse.json(
         { error: 'No PortOne payment ID found for this invoice' },
         { status: 400 }
@@ -114,7 +124,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Get payment ID (V2 from metadata, or V1 from kg_transaction_id)
-    const paymentId = (invoice.metadata as any)?.portone_payment_id || invoice.kg_transaction_id;
+    const paymentId = metadataPaymentId || invoice.kg_transaction_id;
 
     // Call PortOne refund API
     const portoneApiSecret = process.env.PORTONE_API_SECRET;
