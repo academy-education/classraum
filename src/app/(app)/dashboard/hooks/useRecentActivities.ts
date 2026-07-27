@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
 import { languages } from '@/locales'
@@ -73,7 +73,7 @@ export const useRecentActivities = (
     try {
 
       // Fetch recent notifications
-      const { data: notifications, error: notificationsError } = await supabase
+      const { data: notifications, error: notificationsError } = await db
         .from('notifications')
         .select('*')
         .eq('user_id', userId)
@@ -89,7 +89,13 @@ export const useRecentActivities = (
         return
       }
 
-      const processedActivities = notifications?.map(notification => {
+      const processedActivities = notifications?.filter(
+        // notifications.created_at is nullable, and RecentActivity.timestamp
+        // is what this list sorts and renders by. A row with no timestamp
+        // cannot be placed in a "recent" feed, so it is dropped rather than
+        // shown at an invented time.
+        (n): n is typeof n & { created_at: string } => n.created_at !== null,
+      ).map(notification => {
         const translatedContent = translateNotificationContent(
           notification.title_key,
           notification.message_key,

@@ -1,10 +1,18 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
+
+// created_at is nullable on these tables. `new Date(null)` is the UNIX
+// epoch, not an error, so a null row would silently land in the oldest
+// bucket of every month-count and cumulative trend below. A row with no
+// creation date cannot be attributed to a period, so it is excluded.
+const createdOn = (row: { created_at: string | null }): Date | null =>
+  row.created_at === null ? null : new Date(row.created_at)
+
 
 export interface DashboardStats {
   userCount: number
@@ -142,7 +150,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         fetchCachedData(
           CACHE_KEYS.DASHBOARD_CLASSROOMS(academyId),
           async () => {
-            const { data } = await supabase
+            const { data } = await db
               .from('classrooms')
               .select('id, created_at')
               .eq('academy_id', academyId)
@@ -156,7 +164,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         fetchCachedData(
           CACHE_KEYS.DASHBOARD_SESSIONS(academyId),
           async () => {
-            const { data } = await supabase
+            const { data } = await db
               .from('classroom_sessions')
               .select(`
                 id,
@@ -184,25 +192,25 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
             // Fetch all user types associated with the academy
             const [teachersData, studentsData, parentsData, managersData] = await Promise.all([
               // Teachers via classrooms they teach
-              supabase
+              db
                 .from('teachers')
                 .select('user_id, created_at')
                 .eq('academy_id', academyId),
 
               // Students enrolled in the academy
-              supabase
+              db
                 .from('students')
                 .select('user_id, created_at')
                 .eq('academy_id', academyId),
 
               // Parents of students in the academy
-              supabase
+              db
                 .from('parents')
                 .select('user_id, created_at')
                 .eq('academy_id', academyId),
 
               // Managers of the academy
-              supabase
+              db
                 .from('managers')
                 .select('user_id, created_at')
                 .eq('academy_id', academyId)
@@ -234,7 +242,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
             const now = new Date()
             const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
 
-            const { data } = await supabase
+            const { data } = await db
               .from('invoices')
               .select('final_amount, created_at, paid_at, status, academy_id')
               .eq('academy_id', academyId)
@@ -250,7 +258,7 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         fetchCachedData(
           CACHE_KEYS.DASHBOARD_PREVIOUS_SESSIONS(academyId),
           async () => {
-            const { data } = await supabase
+            const { data } = await db
               .from('classroom_sessions')
               .select(`
                 id,
@@ -279,20 +287,20 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
       const lastMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear
       
       const usersThisMonth = users.filter(user => {
-        const userDate = new Date(user.created_at)
-        return userDate.getMonth() === currentMonth && userDate.getFullYear() === currentYear
+        const userDate = createdOn(user)
+        return userDate !== null && userDate.getMonth() === currentMonth && userDate.getFullYear() === currentYear
       }).length
       
       const usersLastMonth = users.filter(user => {
-        const userDate = new Date(user.created_at)
-        return userDate.getMonth() === lastMonth && userDate.getFullYear() === lastMonthYear
+        const userDate = createdOn(user)
+        return userDate !== null && userDate.getMonth() === lastMonth && userDate.getFullYear() === lastMonthYear
       }).length
 
       // Process classrooms data
       const classrooms = classroomsResult || []
       const classroomsThisMonth = classrooms.filter(classroom => {
-        const classroomDate = new Date(classroom.created_at)
-        return classroomDate.getMonth() === currentMonth && classroomDate.getFullYear() === currentYear
+        const classroomDate = createdOn(classroom)
+        return classroomDate !== null && classroomDate.getMonth() === currentMonth && classroomDate.getFullYear() === currentYear
       }).length
 
       // Process sessions data
@@ -386,9 +394,10 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
           date.setDate(date.getDate() - i)
           
           // Calculate how many users existed at this date
-          const usersAtDate = users.filter(user => 
-            new Date(user.created_at) <= date
-          ).length
+          const usersAtDate = users.filter(user => {
+            const d = createdOn(user)
+            return d !== null && d <= date
+          }).length
           
           userTrend.push(usersAtDate)
         }
@@ -404,9 +413,10 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
           date.setDate(date.getDate() - i)
           
           // Calculate how many classrooms existed at this date
-          const classroomsAtDate = classrooms.filter(classroom => 
-            new Date(classroom.created_at) <= date
-          ).length
+          const classroomsAtDate = classrooms.filter(classroom => {
+            const d = createdOn(classroom)
+            return d !== null && d <= date
+          }).length
           
           classroomTrend.push(classroomsAtDate)
         }

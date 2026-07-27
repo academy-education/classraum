@@ -177,8 +177,12 @@ export async function createNotification(options: CreateNotificationOptions) {
  * Translates notification content using translation keys and parameters
  */
 export function translateNotificationContent(
-  titleKey: string,
-  messageKey: string,
+  // Nullable to match the DB: notifications.title_key / .message_key are
+  // nullable, and rows written before the multilingual columns existed
+  // have neither. The lookup below already degrades to the stored plain
+  // title/message in that case, so this only makes the signature honest.
+  titleKey: string | null,
+  messageKey: string | null,
   titleParams: NotificationParams,
   messageParams: NotificationParams,
   translations: Record<string, unknown>,
@@ -228,8 +232,10 @@ export function translateNotificationContent(
   }
 
   // Get translated templates
-  const titleTemplate = getNestedTranslation(translations, titleKey) || fallbackTitle || titleKey
-  const messageTemplate = getNestedTranslation(translations, messageKey) || fallbackMessage || messageKey
+  const titleTemplate =
+    getNestedTranslation(translations, titleKey ?? '') || fallbackTitle || titleKey || ''
+  const messageTemplate =
+    getNestedTranslation(translations, messageKey ?? '') || fallbackMessage || messageKey || ''
 
   // Replace parameters in templates
   const title = replaceParams(titleTemplate, processedTitleParams)
