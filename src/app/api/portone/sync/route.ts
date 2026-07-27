@@ -23,7 +23,7 @@ import { withHeartbeat } from '@/lib/ops/heartbeat';
  * Example:
  * POST /api/portone/sync?since=2025-11-01T00:00:00Z&limit=50
  */
-export async function POST(request: NextRequest) {
+async function runSync(request: NextRequest, trigger: 'cron' | 'manual') {
   const startTime = Date.now();
 
   try {
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    loggers.settlement.info('Manual sync triggered via API');
+    loggers.settlement.info('Sync triggered', { trigger });
 
     // Parse query parameters
     const searchParams = request.nextUrl.searchParams;
@@ -50,7 +50,8 @@ export async function POST(request: NextRequest) {
 
     const duration = Date.now() - startTime;
 
-    loggers.settlement.info('Manual sync completed', {
+    loggers.settlement.info('Sync completed', {
+      trigger,
       duration,
       settlementsSynced: result.settlements.synced,
       settlementsErrors: result.settlements.errors,
@@ -69,9 +70,9 @@ export async function POST(request: NextRequest) {
     const duration = Date.now() - startTime;
 
     loggers.settlement.error(
-      'Manual sync failed',
+      'Sync failed',
       error as Error,
-      { duration }
+      { duration, trigger }
     );
 
     return NextResponse.json(
@@ -87,20 +88,30 @@ export async function POST(request: NextRequest) {
 }
 
 /**
- * GET /api/portone/sync
+ * GET /api/portone/sync — the cron entry point.
  *
- * Verify that the sync endpoint is accessible
- * Returns basic info about the endpoint
+ * Vercel Cron issues GET and only GET. This route is scheduled every six
+ * hours in vercel.json, but all of its work used to live on POST while
+ * GET returned a block of documentation about the endpoint. So the
+ * schedule fired on time, every time, and reconciled nothing: no
+ * heartbeat was ever recorded for this job and not a single settlement
+ * or payout row was ever written.
+ *
+ * It read as healthy from every angle — the route existed, it was
+ * listed in vercel.json, it returned 200, and a check for "does this
+ * cron export a GET handler" passed. Only the absence of output gave it
+ * away.
  */
-export async function GET() {
-  return NextResponse.json({
-    endpoint: '/api/portone/sync',
-    method: 'POST',
-    description: 'Sync settlements and payouts from PortOne Platform API',
-    parameters: {
-      since: 'ISO 8601 date string (optional, default: 7 days ago)',
-      limit: 'number of items per request (optional, default: 100)',
-    },
-    example: 'POST /api/portone/sync?since=2025-11-01T00:00:00Z&limit=50',
-  });
+export async function GET(request: NextRequest) {
+  return runSync(request, 'cron');
+}
+
+/**
+ * POST /api/portone/sync — manual/backfill trigger.
+ *
+ * Kept because it accepts `since` and `limit`, which the cron never
+ * needs but a backfill does.
+ */
+export async function POST(request: NextRequest) {
+  return runSync(request, 'manual');
 }

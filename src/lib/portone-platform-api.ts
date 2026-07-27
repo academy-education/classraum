@@ -4,6 +4,8 @@
  * Handles API calls to PortOne Platform API for settlements and payouts
  */
 
+import { enumerateDays } from './portone-settlement-days';
+
 const PORTONE_API_BASE_URL = 'https://api.portone.io';
 const PORTONE_API_SECRET = process.env.PORTONE_API_SECRET;
 const PORTONE_STORE_ID = process.env.PORTONE_STORE_ID;
@@ -17,25 +19,38 @@ if (!PORTONE_STORE_ID) {
 }
 
 /**
- * Settlement status from PortOne Platform API
+ * Settlement status — PlatformPartnerSettlementStatus in the V2 OpenAPI
+ * schema.
+ *
+ * The previous list was invented: SCHEDULED, IN_PROCESS and SETTLED are
+ * not statuses the API defines, and CANCELED is spelled CANCELLED. The
+ * sync filtered on ['SETTLED', ...], so even once its request shape was
+ * accepted it would have filtered on a value that can never match.
  */
 export type PlatformPartnerSettlementStatus =
-  | 'SCHEDULED'
-  | 'IN_PROCESS'
-  | 'SETTLED'
   | 'PAYOUT_SCHEDULED'
+  | 'PAYOUT_PREPARED'
+  | 'PAYOUT_WITHHELD'
+  | 'PAYOUT_EXCLUDED'
+  | 'PAYOUT_FAILED'
+  | 'IN_PAYOUT'
   | 'PAID_OUT'
-  | 'CANCELED';
+  | 'CANCELLED'
+  | 'CONFIRMED';
 
 /**
- * Payout status from PortOne Platform API
+ * Payout status — PlatformPayoutStatus in the V2 OpenAPI schema.
+ * CANCELED was likewise a misspelling, and three statuses were missing.
  */
 export type PlatformPayoutStatus =
-  | 'SCHEDULED'
+  | 'CONFIRMED'
+  | 'PREPARED'
+  | 'CANCELLED'
+  | 'STOPPED'
   | 'PROCESSING'
   | 'SUCCEEDED'
   | 'FAILED'
-  | 'CANCELED';
+  | 'SCHEDULED';
 
 /**
  * Settlement data from PortOne Platform API
@@ -133,18 +148,25 @@ export class PortOnePlatformClient {
     items: PlatformPartnerSettlement[];
     page: { number: number; size: number; totalCount: number };
   }> {
+    // PlatformPartnerSettlementFilterInput has NO `criteria` field —
+    // settlements are selected by `settlementDates`, a list of
+    // yyyy-MM-dd days. The previous body sent `criteria.timestampRange`,
+    // borrowed from the payouts filter (where it IS correct), and the
+    // API rejected every call with 400 "illegal discriminator". The job
+    // is scheduled every six hours and had therefore never once
+    // succeeded.
+    const from = params?.from
+      ? new Date(params.from)
+      : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const to = params?.to ? new Date(params.to) : new Date();
+
     const requestBody: any = {
       page: {
         number: params?.page || 0,
         size: params?.limit || 100,
       },
       filter: {
-        criteria: {
-          timestampRange: {
-            from: params?.from || new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-            until: params?.to || new Date().toISOString(),
-          },
-        },
+        settlementDates: enumerateDays(from, to),
       },
     };
 

@@ -75,3 +75,64 @@ describe('JOB_REGISTRY vs vercel.json', () => {
     }
   })
 })
+
+describe('cron GET handlers do real work', () => {
+  /**
+   * Vercel Cron issues GET and only GET. A scheduled route whose GET is a
+   * documentation stub therefore runs on schedule and accomplishes
+   * nothing, while returning 200 the whole time.
+   *
+   * That is precisely what /api/portone/sync did: the settlement and
+   * payout reconciliation lived on POST, GET described the endpoint, and
+   * in the entire life of the deployment it recorded zero heartbeats and
+   * wrote zero rows.
+   *
+   * `verifyCronAuth` is the proxy for "this handler actually runs the
+   * job" — every real cron handler must gate on it, and a stub that just
+   * returns JSON has no reason to.
+   */
+  const vercel = JSON.parse(
+    readFileSync(join(process.cwd(), 'vercel.json'), 'utf8')
+  ) as { crons?: { path: string }[] }
+
+  it.each((vercel.crons ?? []).map(c => c.path))(
+    '%s: GET exists and gates on verifyCronAuth',
+    path => {
+      const src = readFileSync(
+        join(process.cwd(), 'src', 'app', `${path}`, 'route.ts'),
+        'utf8'
+      )
+      expect(src).toMatch(/export async function GET/)
+
+      // Scoped to the GET handler ON PURPOSE. Checking the whole file
+      // for `verifyCronAuth` is worthless here: the broken version of
+      // portone/sync had a fully-guarded POST doing the real work and a
+      // documentation stub on GET, so a file-wide match passed while
+      // the scheduled job did nothing. (Verified: the first draft of
+      // this test failed to catch the very bug that motivated it.)
+      const from = src.indexOf('export async function GET')
+      const rest = src.slice(from + 1)
+      const next = rest.indexOf('\nexport ')
+      const getBody = next === -1 ? rest : rest.slice(0, next)
+
+      if (/verifyCronAuth/.test(getBody)) return
+
+      // Or GET delegates to a local helper that gates — resolve one
+      // level, which is the pattern portone/sync now uses.
+      const delegates = [...getBody.matchAll(/\b([a-zA-Z_$][\w$]*)\s*\(/g)]
+        .map(m => m[1]!)
+        .filter(n => n !== 'GET')
+      const guardedByDelegate = delegates.some(name => {
+        const def = new RegExp(
+          `(?:async\\s+)?function\\s+${name}\\b|const\\s+${name}\\s*=`
+        ).exec(src)
+        if (!def) return false
+        const tail = src.slice(def.index)
+        const end = tail.slice(1).indexOf('\nexport ')
+        return /verifyCronAuth/.test(end === -1 ? tail : tail.slice(0, end))
+      })
+
+      expect(guardedByDelegate).toBe(true)
+    }
+  )
+})

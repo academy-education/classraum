@@ -35,8 +35,21 @@ export async function syncSettlements(options?: {
     const response = await portoneClient.getSettlements({
       from: since.toISOString(),
       limit,
-      // Only fetch recent status changes
-      status: ['SETTLED', 'PAYOUT_SCHEDULED', 'PAID_OUT'],
+      // Statuses worth reconciling: money scheduled to move, moving, or
+      // moved, plus the two terminal failure states — a payout that
+      // failed or was withheld is the case most worth knowing about.
+      //
+      // 'SETTLED' used to head this list and is not a status the API
+      // defines at all, so this filter could never have matched a row
+      // even once the request shape was valid.
+      status: [
+        'PAYOUT_SCHEDULED',
+        'PAYOUT_PREPARED',
+        'IN_PAYOUT',
+        'PAID_OUT',
+        'PAYOUT_FAILED',
+        'PAYOUT_WITHHELD',
+      ],
     });
 
     loggers.settlement.info(`Fetched ${response.items.length} settlements from PortOne API`);
