@@ -144,16 +144,20 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       // For teachers, first get their teacher_id from the teachers table
       let teacherId: string | null = null
       if (userRole === 'teacher' && userId) {
+        // `teachers` has no `id`; classrooms.teacher_id is a foreign key
+        // to users(id), so user_id is the value to filter on. The old
+        // select errored, teacherId stayed null, and a teacher's archive
+        // was unfiltered rather than scoped to their own classrooms.
         const { data: teacherData, error: teacherError } = await supabase
           .from('teachers')
-          .select('id')
+          .select('user_id')
           .eq('user_id', userId)
           .single()
 
         if (teacherError) {
           console.error('[Archive] Error fetching teacher ID:', teacherError)
         } else {
-          teacherId = teacherData?.id
+          teacherId = teacherData?.user_id
         }
       }
 

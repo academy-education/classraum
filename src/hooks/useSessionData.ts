@@ -206,10 +206,16 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
       let cachedTeachers = queryCache.get<Teacher[]>(cacheKey)
 
       if (!cachedTeachers) {
+        // `teachers` has no `id` column — its primary key is user_id.
+        // Selecting it errored, the throw below emptied the list, and the
+        // teacher picker on the sessions page was permanently blank with
+        // no way to assign anyone.
+        //
+        // user_id is also the correct identifier regardless:
+        // classrooms.teacher_id is a foreign key to users(id).
         const { data, error } = await supabase
           .from('teachers')
           .select(`
-            id,
             user_id,
             users!inner(
               name
@@ -221,7 +227,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
         if (error) throw error
 
         const processedTeachers = (data || []).map((teacher: Record<string, unknown>) => ({
-          id: teacher.id as string,
+          id: teacher.user_id as string,
           user_id: teacher.user_id as string,
           name: ((teacher.users as Record<string, unknown>)?.name as string) || 'Unknown Teacher'
         }))

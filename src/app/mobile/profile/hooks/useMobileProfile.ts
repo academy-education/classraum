@@ -154,59 +154,66 @@ export const useMobileProfile = (
         // Fetch role-specific data
         try {
           if (userData.role === 'student') {
-            const { data: studentData } = await supabase
+            const { data: studentData, error: studentError } = await supabase
               .from('students')
               .select('phone, school_name')
               .eq('user_id', userId)
               .single()
 
+            if (studentError) console.error('[useMobileProfile] Error fetching students row:', studentError)
             if (studentData) {
               if (studentData.phone) profileData.phone = studentData.phone
               profileData.student_school = studentData.school_name
             }
           } else if (userData.role === 'teacher') {
-            const { data: teacherData } = await supabase
+            const { data: teacherData, error: teacherError } = await supabase
               .from('teachers')
               .select('phone')
               .eq('user_id', userId)
               .single()
 
+            if (teacherError) console.error('[useMobileProfile] Error fetching teachers row:', teacherError)
             if (teacherData?.phone) {
               profileData.phone = teacherData.phone
             }
           } else if (userData.role === 'parent') {
-            const { data: parentData } = await supabase
+            const { data: parentData, error: parentError } = await supabase
               .from('parents')
               .select('phone')
               .eq('user_id', userId)
               .single()
 
+            if (parentError) console.error('[useMobileProfile] Error fetching parents row:', parentError)
             if (parentData?.phone) {
               profileData.phone = parentData.phone
             }
-          } else if (userData.role === 'academy_owner') {
-            const { data: ownerData } = await supabase
-              .from('academy_owners')
+          } else if (userData.role === 'manager') {
+            // Academy owners are 'manager' in users.role; there is no
+            // 'academy_owner' role and no academy_owners table.
+            const { data: managerData, error: managerError } = await supabase
+              .from('managers')
               .select('phone')
               .eq('user_id', userId)
               .single()
 
-            if (ownerData?.phone) {
-              profileData.phone = ownerData.phone
+            if (managerError) console.error('[useMobileProfile] Error fetching managers row:', managerError)
+            if (managerData?.phone) {
+              profileData.phone = managerData.phone
             }
           }
         } catch (roleError) {
-          console.warn('[useMobileProfile] Error fetching role-specific data:', roleError)
+          console.error('[useMobileProfile] Error fetching role-specific data:', roleError)
         }
 
         // Get academy names
         try {
           if (academyIds && academyIds.length > 0) {
-            const { data: academyData } = await supabase
+            const { data: academyData, error: academyError } = await supabase
               .from('academies')
               .select('name')
               .in('id', academyIds)
 
+            if (academyError) console.error('[useMobileProfile] Error fetching academies:', academyError)
             if (academyData && academyData.length > 0) {
               const names = academyData.map(a => a.name)
               profileData.academy_names = names
@@ -339,7 +346,7 @@ export const useMobileProfile = (
     const roleTable = data.profile.role === 'student' ? 'students' :
                       data.profile.role === 'teacher' ? 'teachers' :
                       data.profile.role === 'parent' ? 'parents' :
-                      data.profile.role === 'academy_owner' ? 'academy_owners' : null
+                      data.profile.role === 'manager' ? 'managers' : null
     if (roleTable) {
       const { error: roleError } = await supabase
         .from(roleTable)

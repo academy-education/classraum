@@ -89,20 +89,37 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
         .eq('student_id', studentId)
         .order('created_at', { ascending: false })
 
-      if (fetchError) throw fetchError
+      if (fetchError) {
+        console.error('[useMobileGrades] Failed to load assignment grades:', fetchError)
+        throw fetchError
+      }
 
-      // Fetch assignment details
+      // Fetch assignment details. Assignments have no classroom_id — the
+      // classroom is reached through classroom_sessions.
       const assignmentIds = [...new Set((data || []).map((g: any) => g.assignment_id).filter(Boolean))]
       let assignmentsMap: Record<string, any> = {}
 
       if (assignmentIds.length > 0) {
-        const { data: assignmentDetails } = await supabase
+        const { data: assignmentDetails, error: assignmentError } = await supabase
           .from('assignments')
-          .select('id, title, description, due_date, classroom_id')
+          .select('id, title, description, due_date, classroom_sessions(classroom_id)')
           .in('id', assignmentIds)
 
+        if (assignmentError) {
+          console.error('[useMobileGrades] Failed to load assignment details:', assignmentError)
+        }
+
         assignmentsMap = (assignmentDetails || []).reduce((acc: Record<string, any>, assignment: any) => {
-          acc[assignment.id] = assignment
+          const session = Array.isArray(assignment.classroom_sessions)
+            ? assignment.classroom_sessions[0]
+            : assignment.classroom_sessions
+          acc[assignment.id] = {
+            id: assignment.id,
+            title: assignment.title,
+            description: assignment.description,
+            due_date: assignment.due_date,
+            classroom_id: session?.classroom_id ?? null
+          }
           return acc
         }, {})
       }
@@ -113,10 +130,14 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
       // Fetch classroom details
       let classroomsMap: Record<string, any> = {}
       if (classroomIds.length > 0) {
-        const { data: classroomsData } = await supabase
+        const { data: classroomsData, error: classroomsError } = await supabase
           .from('classrooms')
           .select('id, name, color')
           .in('id', classroomIds)
+
+        if (classroomsError) {
+          console.error('[useMobileGrades] Failed to load classrooms:', classroomsError)
+        }
 
         classroomsMap = (classroomsData || []).reduce((acc: Record<string, any>, classroom: any) => {
           acc[classroom.id] = { id: classroom.id, name: classroom.name, color: classroom.color }

@@ -9,7 +9,8 @@ export interface Assignment {
   title: string
   description: string | null
   due_date: string | null
-  status: 'assigned' | 'submitted' | 'graded'
+  /** Per-student status from assignment_grades.status. Null when the student has no grade row yet. */
+  status: 'pending' | 'submitted' | 'not submitted' | 'overdue' | 'excused' | null
   created_at: string
   classroom: {
     id: string
@@ -89,11 +90,16 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
 
     try {
       // First get the student's enrolled classroom IDs
-      const { data: studentData } = await supabase
+      const { data: studentData, error: studentError } = await supabase
         .from('students')
         .select('classroom_students(classroom_id)')
         .eq('user_id', user.id)
         .single()
+
+      if (studentError) {
+        console.error('[useMobileAssignments] Failed to load enrolled classrooms:', studentError)
+        throw studentError
+      }
 
       const classroomIds = studentData?.classroom_students?.map((cs: any) => cs.classroom_id) || []
 
@@ -110,34 +116,63 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
           title,
           description,
           due_date,
-          status,
           created_at,
-          classroom_id,
-          classrooms!inner(
-            id,
-            name,
-            color
+          classroom_sessions!inner(
+            classroom_id,
+            classrooms!inner(
+              id,
+              name,
+              color
+            )
           )
         `)
-        .in('classroom_id', classroomIds)
+        .in('classroom_sessions.classroom_id', classroomIds)
         .is('deleted_at', null)
         .order('due_date', { ascending: true, nullsFirst: false })
         .order('created_at', { ascending: false })
 
-      if (fetchError) throw fetchError
+      if (fetchError) {
+        console.error('[useMobileAssignments] Failed to load assignments:', fetchError)
+        throw fetchError
+      }
+
+      // Per-student status lives on assignment_grades, not on assignments.
+      const assignmentIds = (data || []).map((item: any) => item.id)
+      const statusMap: Record<string, Assignment['status']> = {}
+
+      if (assignmentIds.length > 0) {
+        const { data: gradeRows, error: gradeError } = await supabase
+          .from('assignment_grades')
+          .select('assignment_id, status')
+          .eq('student_id', studentId)
+          .in('assignment_id', assignmentIds)
+
+        if (gradeError) {
+          console.error('[useMobileAssignments] Failed to load assignment statuses:', gradeError)
+        } else {
+          for (const row of gradeRows || []) {
+            statusMap[(row as any).assignment_id] = (row as any).status
+          }
+        }
+      }
 
       // Transform the data to match the Assignment type
-      const assignmentsData: Assignment[] = (data || []).map((item: any) => ({
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        due_date: item.due_date,
-        status: item.status,
-        created_at: item.created_at,
-        classroom: Array.isArray(item.classrooms) ? item.classrooms[0] : item.classrooms,
-        submissions: item.submissions,
-        grades: item.grades
-      }))
+      const assignmentsData: Assignment[] = (data || []).map((item: any) => {
+        const session = Array.isArray(item.classroom_sessions) ? item.classroom_sessions[0] : item.classroom_sessions
+        const classroom = Array.isArray(session?.classrooms) ? session.classrooms[0] : session?.classrooms
+
+        return {
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          due_date: item.due_date,
+          status: statusMap[item.id] ?? null,
+          created_at: item.created_at,
+          classroom,
+          submissions: item.submissions,
+          grades: item.grades
+        }
+      })
 
       // Cache in sessionStorage for persistence across page reloads
       try {

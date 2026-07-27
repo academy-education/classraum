@@ -119,10 +119,14 @@ export function useClassroomData(academyId: string) {
 
   const fetchTeachers = useStableCallback(async () => {
     try {
+      // `teachers` has no `id` — its primary key is user_id, which is
+      // also what classrooms.teacher_id is a foreign key to. Selecting a
+      // nonexistent column threw into the catch below, so the teacher
+      // list was permanently empty.
       const { data, error } = await supabase
         .from('teachers')
         .select(`
-          id,
+          user_id,
           users!inner(
             id,
             name
@@ -133,7 +137,7 @@ export function useClassroomData(academyId: string) {
       if (error) throw error
 
       const formattedTeachers = data?.map(teacher => ({
-        id: teacher.id,
+        id: teacher.user_id,
         name: (teacher.users as { name?: string; id?: string })?.name || 'Unknown Teacher',
         user_id: (teacher.users as { name?: string; id?: string })?.id || ''
       })) || []

@@ -158,38 +158,45 @@ export async function getAcademyIdFromRequest(request: NextRequest): Promise<str
         return academyIdHeader || null;
       }
 
-      // Get user's academy ID from database
-      const { data: userInfo, error: userError } = await supabaseAdmin
-        .from('users')
-        .select('academy_id, role')
-        .eq('id', user.id)
-        .single();
+      // Resolve the user's academy from the join tables.
+      //
+      // This used to `select('academy_id, role')` from `users`. That
+      // column does not exist — `users.role` is only a pointer to the
+      // default surface, and the academy relationship lives in the
+      // per-role join tables. So the select errored, the guard below
+      // returned null, and the managers fallback underneath it was
+      // unreachable. Every authenticated caller got null, which made all
+      // four subscription endpoints answer "학원 정보를 찾을 수 없습니다":
+      // usage, limits and invoices were unusable for everyone.
+      //
+      // Fails closed, as before — a user with no academy row still
+      // yields null and the route denies.
+      const [{ data: managerInfo }, { data: teacherInfo }] = await Promise.all([
+        supabaseAdmin.from('managers').select('academy_id').eq('user_id', user.id).maybeSingle(),
+        supabaseAdmin.from('teachers').select('academy_id').eq('user_id', user.id).maybeSingle(),
+      ]);
 
-      if (userError || !userInfo) {
-        return null;
+      const userAcademyId: string | null =
+        managerInfo?.academy_id ?? teacherInfo?.academy_id ?? null;
+
+      // The header is never trusted once we have a token — it is only
+      // ever a hint, and the resolved academy always wins.
+      if (academyIdHeader && academyIdHeader !== userAcademyId) {
+        console.warn('[subscription-middleware] ignoring x-academy-id that does not match the caller', {
+          header: academyIdHeader, resolved: userAcademyId,
+        });
       }
 
-      let userAcademyId = userInfo.academy_id;
-
-      // If no academy_id in users table, check managers table
-      if (!userAcademyId && userInfo.role === 'manager') {
-        const { data: managerInfo } = await supabaseAdmin
-          .from('managers')
-          .select('academy_id')
-          .eq('user_id', user.id)
-          .single();
-
-        userAcademyId = managerInfo?.academy_id || null;
-      }
-
-      // If x-academy-id was provided, verify it matches the user's academy
-      if (academyIdHeader && userAcademyId && academyIdHeader !== userAcademyId) {
-        console.warn(`[subscription-middleware] x-academy-id mismatch: header=${academyIdHeader}, user=${userAcademyId}`);
-        // Use the user's actual academy, not the header value
-        return userAcademyId;
-      }
-
-      return userAcademyId || academyIdHeader || null;
+      // Deliberately NOT `userAcademyId || academyIdHeader`. That fell
+      // back to the caller-supplied header whenever the academy could
+      // not be resolved — and because the resolution above was broken,
+      // it could NEVER be resolved, so any authenticated user could read
+      // any academy's subscription limits, usage and invoices by naming
+      // it in a header. That is the same cross-tenant read the no-auth
+      // branch below was hardened against (audit 2026-05-25, P1); this
+      // path kept it open. No client calls these endpoints with the
+      // header, so nothing legitimate depended on the fallback.
+      return userAcademyId;
     }
 
     // No auth header. Previously we'd fall back to the x-academy-id

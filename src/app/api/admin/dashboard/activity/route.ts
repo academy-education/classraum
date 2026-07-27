@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
           .limit(3),
         supabaseAdmin
           .from('academy_subscriptions')
-          .select('id, plan_name, created_at, academies(name)')
+          .select('id, plan_tier, created_at, academies(name)')
           .gte('created_at', since)
           .order('created_at', { ascending: false })
           .limit(3),
@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
       })),
       subscriptions: unwrap('subscriptions', subscriptionsRes).map(s => ({
         id: s.id,
-        planName: s.plan_name,
+        planName: s.plan_tier,
         academyName: academyName(s as NamedRel),
         createdAt: s.created_at,
       })),

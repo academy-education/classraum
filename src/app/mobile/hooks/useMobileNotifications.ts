@@ -11,12 +11,8 @@ export interface Notification {
   type: 'announcement' | 'assignment' | 'grade' | 'attendance' | 'payment'
   is_read: boolean
   created_at: string
-  related_id: string | null
-  classroom?: {
-    id: string
-    name: string
-    color: string
-  }
+  /** Where tapping the notification should go. Replaces the never-existing `related_id` column. */
+  navigation_data: Record<string, unknown> | null
 }
 
 interface UseMobileNotificationsReturn {
@@ -91,18 +87,16 @@ export const useMobileNotifications = (user: User | null | any, studentId: strin
           type,
           is_read,
           created_at,
-          related_id,
-          classroom:classrooms(
-            id,
-            name,
-            color
-          )
+          navigation_data
         `)
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
         .limit(50)
 
-      if (fetchError) throw fetchError
+      if (fetchError) {
+        console.error('[useMobileNotifications] Failed to load notifications:', fetchError)
+        throw fetchError
+      }
 
       // Transform the data to match the Notification type
       const notificationsData: Notification[] = (data || []).map((item: any) => ({
@@ -112,8 +106,7 @@ export const useMobileNotifications = (user: User | null | any, studentId: strin
         type: item.type,
         is_read: item.is_read,
         created_at: item.created_at,
-        related_id: item.related_id,
-        classroom: Array.isArray(item.classroom) ? item.classroom[0] : item.classroom
+        navigation_data: item.navigation_data ?? null
       }))
 
       // Cache in sessionStorage for persistence across page reloads

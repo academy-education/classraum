@@ -102,18 +102,19 @@ export async function POST(request: Request) {
     // Get user's academy_id if not provided, but don't fail if missing
     let userAcademyId = academy_id
     if (!userAcademyId) {
-      try {
-        const { data: userData } = await supabaseServer
-          .from('users')
-          .select('academy_id')
-          .eq('id', user.id)
-          .single()
-
-        userAcademyId = userData?.academy_id || null
-      } catch {
-        // If user doesn't exist in users table, just use null for academy_id
-        console.log('User not found in users table, using null for academy_id')
-        userAcademyId = null
+      // `users` has no academy_id — it is only a default-surface pointer.
+      // The academy lives in the per-role join tables. The old select
+      // errored on every call, and since supabase-js resolves rather than
+      // throws, the catch never fired: userAcademyId was silently null and
+      // every support conversation was filed against no academy.
+      const [{ data: mgr }, { data: tch }, { data: std }] = await Promise.all([
+        supabaseServer.from('managers').select('academy_id').eq('user_id', user.id).maybeSingle(),
+        supabaseServer.from('teachers').select('academy_id').eq('user_id', user.id).maybeSingle(),
+        supabaseServer.from('students').select('academy_id').eq('user_id', user.id).maybeSingle(),
+      ])
+      userAcademyId = mgr?.academy_id ?? tch?.academy_id ?? std?.academy_id ?? null
+      if (!userAcademyId) {
+        console.error('[chat/conversations] no academy row for user; filing conversation unscoped', user.id)
       }
     }
 

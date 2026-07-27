@@ -84,25 +84,44 @@ export const useUserStore = create<UserState>()(
             .single()
 
           if (error) throw error
-          
+
+          // PostgREST embeds managers/teachers/parents as a single object (their
+          // PK *is* user_id) and students as an array. Indexing [0] on the
+          // object forms silently yielded undefined, so every user resolved to
+          // 'student' with no academy_id. Normalise both shapes.
+          const firstJoin = (rel: unknown): { academy_id?: string } | undefined => {
+            if (!rel) return undefined
+            return Array.isArray(rel)
+              ? (rel[0] as { academy_id?: string } | undefined)
+              : (rel as { academy_id?: string })
+          }
+
           // Determine role and academy_id
           let role: User['role'] = 'student'
           let academy_id: string | undefined
-          
-          if (data.managers?.[0]) {
+
+          const managerJoin = firstJoin(data.managers)
+          const teacherJoin = firstJoin(data.teachers)
+          const parentJoin = firstJoin(data.parents)
+          const studentJoin = firstJoin(data.students)
+
+          if (managerJoin) {
             role = 'manager'
-            academy_id = data.managers[0].academy_id
-          } else if (data.teachers?.[0]) {
+            academy_id = managerJoin.academy_id
+          } else if (teacherJoin) {
             role = 'teacher'
-            academy_id = data.teachers[0].academy_id
-          } else if (data.parents?.[0]) {
+            academy_id = teacherJoin.academy_id
+          } else if (parentJoin) {
             role = 'parent'
-            academy_id = data.parents[0].academy_id
-          } else if (data.students?.[0]) {
+            academy_id = parentJoin.academy_id
+          } else if (studentJoin) {
             role = 'student'
-            academy_id = data.students[0].academy_id
+            academy_id = studentJoin.academy_id
+          } else if (data.role) {
+            // No join row: fall back to users.role, the default-surface pointer.
+            role = data.role as User['role']
           }
-          
+
           const user: User = {
             id: data.id,
             email: data.email,
@@ -120,9 +139,10 @@ export const useUserStore = create<UserState>()(
             set({ preferences: { ...defaultPreferences, ...JSON.parse(storedPrefs) } })
           }
         } catch (error) {
-          set({ 
+          console.error(`[useUserStore] fetchUser failed for user ${userId}:`, error)
+          set({
             error: error instanceof Error ? error.message : 'Failed to fetch user',
-            loading: false 
+            loading: false
           })
         }
       },
