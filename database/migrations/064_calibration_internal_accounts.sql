@@ -24,9 +24,15 @@ ALTER TABLE public.users
 CREATE INDEX IF NOT EXISTS idx_users_is_internal
   ON public.users (is_internal) WHERE is_internal;
 
+-- Confirmed by the account owner on 2026-07-28: every account that had
+-- study attempts at that point was internal. All 1015 existing attempts are
+-- therefore excluded, and calibration starts from zero real responses. That
+-- is the correct baseline — it is better than starting from 1015 responses
+-- that describe testers clicking through a UI.
 UPDATE public.users SET is_internal = true
 WHERE email LIKE '%@demo.classraum.com'
-   OR id = '153e9944-59f5-4c4e-9807-4d429b2539f5';
+   OR id = '153e9944-59f5-4c4e-9807-4d429b2539f5'
+   OR email IN ('raphael.student@gmail.com', 'psalm51@gmail.com', 'alexandria@gmail.com');
 
 -- View definition: see migration applied via MCP (study_item_calibration).
 -- Left out of this file to avoid two diverging copies of the SQL; query
