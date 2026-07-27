@@ -208,11 +208,44 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     for (const p of m2.questions.map(q => q.prompt)) expect(m1Prompts).not.toContain(p)
   })
 
-  it('module 2 filters the bank query by the routed difficulty band', async () => {
-    const bank = enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80) })
-    await assembleToeflFromBank(
+  it('module 2 PREFERS the routed band but never filters the query', async () => {
+    const bank = enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80, 'hard') })
+    const m2 = await assembleToeflFromBank(
       { section: 'listening', module: 2, difficulties: ['medium', 'hard'] }, 'seed-d')
-    expect(bank.in).toHaveBeenCalledWith('difficulty', ['medium', 'hard'])
+    // Filtering in SQL is what made a thin band shrink the module.
+    expect(bank.in).not.toHaveBeenCalled()
+    expect(m2.questions).toHaveLength(23)
+  })
+
+  it('module 2 is still full size when the routed band is EMPTY in the bank', async () => {
+    // The shipped bug: TOEFL is banked all-hard (Reading had 0 easy items,
+    // Listening 0 easy and 0 medium), so a student routed to `easy` got the
+    // intersection with an empty shelf — one real session served a 3-item
+    // module 2. A weak student is exactly who must not get a broken test.
+    //
+    // NOTE this one does not fail against the pre-fix code: the real
+    // narrowing happened in SQL and the bank mock ignores `.in()`. The
+    // sibling test above ("never filters the query") is what pins that.
+    // This guards the other way in — a JS-side filter that drops
+    // out-of-band items instead of ranking them.
+    enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80, 'hard') })
+    const m2 = await assembleToeflFromBank(
+      { section: 'listening', module: 2, difficulties: ['easy'] }, 'seed-e')
+    expect(m2.questions).toHaveLength(23)
+  })
+
+  it('module 2 exhausts the routed band before falling back', async () => {
+    // 5 in-band items and plenty out-of-band: all 5 must appear, so the
+    // fallback tops up rather than replacing the adaptive intent.
+    const inBand = toeflRows('multiple_choice', 5, 'medium')
+    const outBand = toeflRows('multiple_choice', 60, 'hard')
+      .map((r, i) => ({ ...r, id: `oob-${i}`, item: { ...r.item, prompt: `oob Q${i}` } }))
+    enqueue('study_item_bank', { data: [...outBand, ...inBand] })
+    const m2 = await assembleToeflFromBank(
+      { section: 'listening', module: 2, difficulties: ['medium'] }, 'seed-f')
+    const prompts = m2.questions.map(q => q.prompt)
+    expect(m2.questions).toHaveLength(23)
+    for (const r of inBand) expect(prompts).toContain(r.item.prompt)
   })
 
   it('module 1 is NEVER difficulty-filtered — it is the fixed mixed form', async () => {

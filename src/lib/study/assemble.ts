@@ -493,18 +493,28 @@ export async function assembleToeflFromBank(
   seed = 'bank',
 ): Promise<AssembledTest> {
   const meta = TOEFL_META[p.section]
-  let query = dbAdmin
+  const query = dbAdmin
     .from('study_item_bank')
-    .select('id, item_type, item')
+    .select('id, item_type, item, difficulty')
     .eq('family', 'toefl')
     .eq('section', p.section)
     .eq('verified', true)
     .eq('archived', false)
-  // Difficulty banding is a MODULE-2 concept: module 1 is the fixed
-  // mixed-difficulty form everyone takes, so it never filters.
-  if (p.module === 2 && p.difficulties?.length) {
-    query = query.in('difficulty', p.difficulties)
-  }
+  // Difficulty banding is a MODULE-2 concept (module 1 is the fixed
+  // mixed-difficulty form everyone takes), and it is applied below as a
+  // PREFERENCE, not a filter.
+  //
+  // It used to be `.in('difficulty', p.difficulties)`. The TOEFL bank is
+  // banked all-hard — on 2026-07-27 Reading held 614 usable hard items, 3
+  // medium and ZERO easy; Listening 467 hard and nothing else. So a
+  // student who routed to the `easy` module 2 got the intersection of
+  // their band with an empty shelf: one real session shipped 19 items
+  // (16 + a 3-item module 2) instead of 32, with only one of the two
+  // Complete-the-Words paragraphs. Listening would have returned nothing.
+  //
+  // A student performing badly is exactly who must not be handed a
+  // malformed test. Adaptivity we cannot materialise degrades to the
+  // correct test SHAPE, drawn from whatever the bank has.
   const { data, error } = await query
     // Authoring order = insertion order. A Take-an-Interview set is
     // banked 1→N in ETS's escalation order (personal experience →
@@ -518,17 +528,34 @@ export async function assembleToeflFromBank(
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
     }
-    return [{ id: row.id, item_type: row.item_type, item }]
+    return [{ id: row.id, item_type: row.item_type, item, difficulty: row.difficulty }]
   })
   if (rows.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
 
   const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
-  type Row = { id: string; item: Question }
+  type Row = { id: string; item: Question; difficulty: string | null }
   const byType = new Map<string, Row[]>()
   for (const r of rows) {
     const list = byType.get(r.item_type) ?? []
-    list.push({ id: r.id, item: r.item })
+    list.push({ id: r.id, item: r.item, difficulty: r.difficulty })
     byType.set(r.item_type, list)
+  }
+
+  // Routed module 2: rank the student's band first, then everything else,
+  // and only then take the blueprint's count. Preference, not filter — see
+  // the note on the query above. Returns the bucket untouched for module 1
+  // and for whole-section draws.
+  const bandPreferred = (bucket: Row[], type: string): Row[] => {
+    if (p.module !== 2 || !p.difficulties?.length) {
+      return unseenFirst(bucket, exposures, seed + type)
+    }
+    const want = new Set(p.difficulties)
+    const inBand = bucket.filter(r => r.difficulty !== null && want.has(r.difficulty as 'easy' | 'medium' | 'hard'))
+    const rest = bucket.filter(r => !(r.difficulty !== null && want.has(r.difficulty as 'easy' | 'medium' | 'hard')))
+    return [
+      ...unseenFirst(inBand, exposures, seed + type),
+      ...unseenFirst(rest, exposures, seed + type + ':fallback'),
+    ]
   }
 
   // Cluster items that share a passage (Reading/Listening: one passage
@@ -593,7 +620,7 @@ export async function assembleToeflFromBank(
       picked.push(...drawn)
       continue
     }
-    const ordered = unseenFirst(bucket, exposures, seed + type).slice(0, n)
+    const ordered = bandPreferred(bucket, type).slice(0, n)
     composition[type] = ordered.length
     picked.push(
       ...((p.section === 'reading' || p.section === 'listening') && type === 'multiple_choice'
