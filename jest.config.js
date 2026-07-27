@@ -20,6 +20,10 @@ const config = {
     '<rootDir>/node_modules/',
     '<rootDir>/src/tests/performance.test.ts',
     '<rootDir>/src/tests/performance.browser.test.ts',
+    // *.test-d.ts files are type-level assertions. `tsc --noEmit` IS the
+    // assertion — they contain no runtime tests, so jest would only
+    // report "your test suite must contain at least one test".
+    '\\.test-d\\.ts$',
   ],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
