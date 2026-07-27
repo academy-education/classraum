@@ -1,28 +1,41 @@
 #!/usr/bin/env node
 /**
- * Check every column this codebase selects against the real database.
+ * Check every supabase select in this codebase against the real database.
  *
  * PostgREST answers a query naming a nonexistent column with an error and
- * no rows. Callers overwhelmingly fall back to `[]` or `0`, so the screen
- * shows an empty list or a zero and nothing anywhere says "broken". That
- * is how `academy_subscriptions.plan_name` (the column is `plan_tier`),
- * `users.academy_id` (does not exist — it broke every subscription
- * endpoint) and a whole `student_payments` table that was never created
- * all survived in shipped code.
+ * no rows. Callers here overwhelmingly fall back to `[]` or `0`, so the
+ * screen shows an empty list or a zero and nothing anywhere says
+ * "broken". That is how `academy_subscriptions.plan_name` (the column is
+ * plan_tier), `users.academy_id` (does not exist — it broke every
+ * subscription endpoint), `teachers.id` (the PK is user_id — it emptied
+ * the sessions teacher picker) and a whole `student_payments` table that
+ * was never created all survived in shipped code.
+ *
+ * Each select is sent WHOLE, exactly as written, with limit=0. That is
+ * deliberate: an earlier version of this script checked columns one at a
+ * time and therefore could not see relationship embeds. It passed clean
+ * while `invoices.select('..., academies(name)')` was failing in
+ * production with "Could not find a relationship between 'invoices' and
+ * 'academies'" — PostgREST builds embeds from foreign keys, and that one
+ * was missing. Sending the real select catches bad columns and bad
+ * embeds together, and costs one request instead of N.
  *
  * Not a jest test on purpose: it needs real credentials, and CI must not
- * hold those. Run it by hand after schema changes, and before trusting
- * any number on a dashboard.
+ * hold those. Run it after schema changes, and before trusting any
+ * number on a dashboard.
  *
  *   node scripts/check-schema-refs.js
  *
  * Reads NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY from
  * .env.local.
  *
- * KNOWN GAP: this validates scalar columns only. A relationship embed
- * with no foreign key behind it — `notifications` selecting
- * `classroom:classrooms(...)` — fails with PGRST200 and is NOT caught
- * here. One such break was found by hand; there may be others.
+ * REMAINING BLIND SPOTS, so nobody reads a clean run as more than it is:
+ *   - selects built from template literals are skipped (unverifiable
+ *     statically)
+ *   - `.eq()` / `.order()` / `.in()` column names are not checked, only
+ *     the select list
+ *   - a passing select says the SHAPE is valid, not that RLS lets any
+ *     particular user see rows
  */
 const fs = require('node:fs')
 const path = require('node:path')
@@ -40,24 +53,9 @@ function loadEnv() {
   return env
 }
 
-/** Top-level columns of a PostgREST select string, minus embed bodies. */
-function parseSelect(sel) {
-  let depth = 0
-  let flat = ''
-  for (const ch of sel) {
-    if (ch === '(') { depth++; continue }
-    if (ch === ')') { depth--; continue }
-    if (depth === 0) flat += ch
-  }
-  return flat.split(',').map(s => s.trim()).filter(Boolean)
-    .map(s => s.replace(/!inner|!left/g, ''))
-    .map(s => (s.includes(':') ? s.split(':')[1].trim() : s))
-    .map(s => s.split('.')[0].trim())
-    .filter(s => s && s !== '*' && !s.startsWith('count') && /^[a-z_][a-z0-9_]*$/.test(s))
-}
-
+/** Every (table, select, site) triple the codebase issues. */
 function collect() {
-  const pairs = new Map()
+  const found = []
   const walk = dir => {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
       if (e.name === 'node_modules' || e.name === '.next') continue
@@ -69,23 +67,23 @@ function collect() {
       const re = /\.from\(\s*['"]([a-z_][a-z0-9_]*)['"]\s*\)([\s\S]{0,400}?)\.select\(\s*(['"`])([\s\S]*?)\3/g
       let m
       while ((m = re.exec(src))) {
-        const [, table, between, , sel] = m
+        const [, table, between, , rawSelect] = m
         if (between.includes('.from(')) continue   // a different .from intervened
-        if (sel.includes('${')) continue           // dynamic select, unverifiable
-        const line = src.slice(0, m.index).split('\n').length
-        for (const col of parseSelect(sel)) {
-          // Keyed by ref AND site: the same broken column usually appears
-          // in several files, and reporting only the first hides the rest.
-          // `teachers.id` had three call sites; an earlier version of this
-          // script deduped by column alone and showed one.
-          const key = `${table}.${col}@${p}:${line}`
-          pairs.set(key, { file: p.replace(ROOT + '/', ''), line, table, col })
-        }
+        if (rawSelect.includes('${')) continue     // dynamic, unverifiable
+        // Collapse the whitespace of multi-line template selects.
+        const select = rawSelect.replace(/\s+/g, '')
+        if (!select) continue
+        found.push({
+          file: p.replace(ROOT + '/', ''),
+          line: src.slice(0, m.index).split('\n').length,
+          table,
+          select,
+        })
       }
     }
   }
   walk(path.join(ROOT, 'src'))
-  return [...pairs.values()]
+  return found
 }
 
 ;(async () => {
@@ -97,36 +95,34 @@ function collect() {
     process.exit(2)
   }
   const headers = { apikey: KEY, Authorization: `Bearer ${KEY}` }
-  const refs = collect()
-  console.log(`Checking ${refs.length} table.column references…`)
 
-  const tableCache = new Map()
-  const isTable = async name => {
-    if (!tableCache.has(name)) {
-      const r = await fetch(`${URL}/rest/v1/${name}?limit=0`, { headers })
-      tableCache.set(name, r.ok)
-    }
-    return tableCache.get(name)
-  }
+  const selects = collect()
+  console.log(`Checking ${selects.length} selects across ` +
+    `${new Set(selects.map(s => s.table)).size} tables…`)
 
   const broken = []
-  for (const ref of refs) {
-    const r = await fetch(
-      `${URL}/rest/v1/${ref.table}?select=${encodeURIComponent(ref.col)}&limit=0`, { headers })
-    if (r.ok) continue
-    // A "column" that is itself a table is a relationship embed, not a column.
-    if (await isTable(ref.col)) continue
-    const body = await r.json().catch(() => ({}))
-    broken.push({ ...ref, message: (body.message || '').slice(0, 100) })
+  // Cache by (table, select): the same query often appears in several files,
+  // but every SITE is still reported — deduping by query alone once hid two
+  // further `teachers.id` call sites behind the first one found.
+  const seen = new Map()
+  for (const s of selects) {
+    const key = `${s.table}?${s.select}`
+    if (!seen.has(key)) {
+      const r = await fetch(
+        `${URL}/rest/v1/${s.table}?select=${encodeURIComponent(s.select)}&limit=0`, { headers })
+      seen.set(key, r.ok ? null : ((await r.json().catch(() => ({}))).message || `HTTP ${r.status}`))
+    }
+    const err = seen.get(key)
+    if (err) broken.push({ ...s, message: err })
   }
 
   if (!broken.length) {
-    console.log('OK — every column reference resolves against the live schema.')
+    console.log(`OK — all ${selects.length} selects resolve against the live schema.`)
     return
   }
-  console.error(`\n${broken.length} BROKEN reference(s):\n`)
+  console.error(`\n${broken.length} BROKEN select(s):\n`)
   for (const b of broken) {
-    console.error(`  ${b.file}:${b.line}\n    ${b.table}.${b.col} — ${b.message}`)
+    console.error(`  ${b.file}:${b.line}\n    from('${b.table}').select('${b.select.slice(0, 90)}')\n    → ${b.message}\n`)
   }
   process.exit(1)
 })()
