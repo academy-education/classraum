@@ -1,0 +1,354 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"This is an interesting direction, Priya, though I do wonder whether the second section is really earning its place.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, the second section is the longest part of the draft.",
+      "You're right that it drifts from the argument — I could fold the useful parts into section one.",
+      "Thanks — I'm glad the draft is working as it stands.",
+      "Honestly? I'll just cut the whole thing and start over."
+    ],
+    "correct_answer": "You're right that it drifts from the argument — I could fold the useful parts into section one.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The hedge \"I do wonder whether\" is a softened criticism, not a neutral musing, so the natural reply concedes the point and proposes a revision. The other replies treat the line as praise, as a request for a fact about length, or overreact."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I could sign the late-add form for you, but the registrar stopped accepting them on Friday, I'm afraid.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Great — I'll bring the late-add form by this afternoon.",
+      "Friday works for me. Should I come in the morning or the afternoon?",
+      "Then I'll look at what's still open for next term instead.",
+      "You have got to be kidding me. Somebody needs to fix that system."
+    ],
+    "correct_answer": "Then I'll look at what's still open for next term instead.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I could sign it, but...\" is a refusal wrapped in an offer, so the natural reply abandons the request and asks about the alternative. Two distractors miss the refusal entirely by echoing \"form\" and \"Friday\"; the last is far too confrontational for a service desk."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've been at that catalogue terminal a while — the subject headings in that field are a bit unusual.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, I've been here about forty minutes now.",
+      "No, the terminal itself seems to be working fine.",
+      "I am most grateful for your kind solicitude.",
+      "They really are — could you show me which heading covers coastal ecology?"
+    ],
+    "correct_answer": "They really are — could you show me which heading covers coastal ecology?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The librarian's observation is an indirect offer of help, so the natural reply accepts it and names the problem. One distractor answers the literal observation about time, one misreads the trouble as hardware, and one is absurdly formal for a help desk exchange."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The problem set is due Thursday — though I think you may be looking at last week's sheet, Tomás.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh — let me check the date on it. I may have printed the old one.",
+      "Right, Thursday. I'll have it finished by then.",
+      "Should I hand it in on paper, or upload it?",
+      "My bad. Whatever, I'll just wing it."
+    ],
+    "correct_answer": "Oh — let me check the date on it. I may have printed the old one.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The TA's \"though I think you may be\" is a face-saving correction, so the reply must take up the correction rather than the deadline. \"Right, Thursday\" echoes the date but ignores the qualifier; the submission question answers something that was never asked; the last is the wrong register with a TA."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your technique has come a long way — I'd still like to see you label the tubes before you pipette, though.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thanks — I'll keep working the same way I have been.",
+      "Which pipette should I be using for the buffer?",
+      "Understood. I'll label everything before I start from now on.",
+      "Awesome, so I'm basically done with training then?"
+    ],
+    "correct_answer": "Understood. I'll label everything before I start from now on.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The praise is only a preface; the \"though\" clause carries the actual instruction, so the reply must commit to the change. The other options drop the qualifier, ask an unrelated procedural question, or treat qualified approval as full clearance."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can see what you want to argue by the conclusion; I'm less sure the opening promises the same thing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So the introduction needs to set up the claim the conclusion actually makes.",
+      "Yes, the conclusion is the part I worked hardest on.",
+      "Do you think the essay is long enough overall?",
+      "Cool, so it's basically fine then."
+    ],
+    "correct_answer": "So the introduction needs to set up the claim the conclusion actually makes.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I'm less sure\" names a mismatch between opening and conclusion, so the natural reply restates the fix. The distractors echo \"conclusion\" without addressing the mismatch, raise a question about length that was not asked, or read a hedged criticism as approval."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I did put your name forward for the travel grant, but the committee had rather more applications than funds this year.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thank you for putting my name forward — when do they announce the results?",
+      "Great, so the grant should cover my flight.",
+      "That is deeply unjust and I insist on a formal review.",
+      "So I wasn't funded this round. Is it worth applying again in the spring?"
+    ],
+    "correct_answer": "So I wasn't funded this round. Is it worth applying again in the spring?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The administrator is delivering a rejection gently; the natural reply names the outcome and moves forward. One distractor treats the news as pending, one ignores the \"but\" entirely, and one escalates in a register no student would use with a department office."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Transcripts do go out by email, though anything going to a foreign ministry still needs the sealed paper copy.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Mine's going to a ministry, so I'll order the sealed copy.",
+      "Perfect — could you email it to me today, then?",
+      "How much does the email transcript cost?",
+      "Whatever's fastest, honestly. I really don't care which."
+    ],
+    "correct_answer": "Mine's going to a ministry, so I'll order the sealed copy.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk's \"though\" clause is the operative condition, so the reply must apply it to the student's own case. The distractors take the general rule and drop the exception, ask about a price that was not raised, and use a dismissive register at an official counter."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I read your results section twice, and I still can't tell which of the two samples the graph is showing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, there were two samples in the experiment.",
+      "Sorry — that's my labelling. I'll mark clearly which line is the treated sample.",
+      "Would you like me to add a second graph as well?",
+      "Perhaps you might read it through a third time."
+    ],
+    "correct_answer": "Sorry — that's my labelling. I'll mark clearly which line is the treated sample.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I still can't tell\" is a request for clarification framed as the supervisor's own difficulty, so the reply should take responsibility and fix the figure. The others confirm a fact already known, propose extra work nobody asked for, or push the effort back onto the supervisor."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Have you thought about whether Chapter Three might work better as an appendix?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "No, I haven't thought about that.",
+      "Chapter Three was definitely the hardest one to write.",
+      "I hadn't, but I can see the case — it is mostly supporting data.",
+      "Should the appendix come before or after the bibliography?"
+    ],
+    "correct_answer": "I hadn't, but I can see the case — it is mostly supporting data.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The question is a suggestion in disguise, so a bare \"no\" answers the surface form while ignoring the proposal. The natural reply engages with the idea; the remaining options echo the chapter number or answer a formatting question that was never asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm sorry to spring this on you, but the committee needs your revised prospectus by Monday morning.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "No problem at all — and sorry for springing it on you.",
+      "That's tight, but I can get it to you Monday if the last section stays rough.",
+      "Which committee members will actually be reading it?",
+      "Yeah, no worries — Monday's totally chill."
+    ],
+    "correct_answer": "That's tight, but I can get it to you Monday if the last section stays rough.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The apology is packaging for a request, so the reply must respond to the deadline rather than to the apology. One distractor echoes \"springing\" back at the speaker nonsensically, one asks an unrelated question, and one is too casual for a supervisor conversation."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The group rooms are meant for four or more — I notice you've had this one to yourself since nine.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry about that — I'll move to a carrel and free the room up.",
+      "Yes, I booked it at nine this morning.",
+      "How long is a group allowed to keep a room?",
+      "I regret that I am unable to accommodate that request."
+    ],
+    "correct_answer": "Sorry about that — I'll move to a carrel and free the room up.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The librarian frames a complaint as a neutral observation, so the reply should recognise it as a request to move. Confirming the booking time answers the literal remark, the policy question sidesteps it, and the formal refusal is both the wrong register and the wrong response to a rule."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I hold extra hours before the midterm — most people who come don't strictly need to, but they say it helps.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So the midterm comes before your extra hours?",
+      "I don't need help, so I won't take a spot from someone who does.",
+      "Then I'll come along, even if it's only to check I'm on the right track.",
+      "What time does the midterm itself start?"
+    ],
+    "correct_answer": "Then I'll come along, even if it's only to check I'm on the right track.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The TA's remark that attendees \"don't strictly need to\" come is an invitation that removes the stigma of attending, so accepting is the natural move. One reply misorders the events, one ignores that very qualifier and declines, and one asks about a time that was not the topic."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your presentation was clear and well-paced; I'd only say the data slide went by faster than anyone could read it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thank you — I spent a long time on that data slide.",
+      "Glad it all worked. I'll use the same slides again next week.",
+      "Fair point — I'll hold that slide longer and cut the text down.",
+      "Ugh, I knew that slide was garbage."
+    ],
+    "correct_answer": "Fair point — I'll hold that slide longer and cut the text down.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I'd only say\" marks a small but real criticism, so the reply should accept it and say what will change. The distractors echo \"data slide\" as if it were praise, ignore the reservation altogether, or self-deprecate in a register that is off for a professor."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You can count the seminar toward the minor, but not toward the language requirement — those are separate lists.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Good, so the seminar takes care of the language requirement.",
+      "I see — so I still need a language course on top of the seminar.",
+      "How many seminars can I take in a single term?",
+      "Separate lists? That is ridiculous bureaucracy."
+    ],
+    "correct_answer": "I see — so I still need a language course on top of the seminar.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The advisor is correcting a misunderstanding, and the correct reply spells out the consequence for the student's plan. One choice inverts the correction, one changes the subject to course load, and one attacks the policy in a register that fits a complaint, not an advising meeting."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm happy to work through the argument with you, though we don't correct grammar line by line here.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Great — could you start with the grammar in paragraph two?",
+      "How many sessions am I allowed to book in a week?",
+      "That's fine — the argument is what I wanted to talk through anyway.",
+      "I'd like to speak with the director of the centre about that."
+    ],
+    "correct_answer": "That's fine — the argument is what I wanted to talk through anyway.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The tutor pairs an offer with a polite refusal of proofreading, so the reply should accept the offer within the stated limit. The first choice requests exactly what was refused, the second changes topic, and the last escalates over a routine policy."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The instrument is back from repair, but calibration slots are booked solid until the middle of next week.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll push my runs back a week and do the sample prep meanwhile.",
+      "Great — I'll book the instrument for tomorrow morning.",
+      "What was actually wrong with the instrument?",
+      "Honestly, this lab is a complete disaster."
+    ],
+    "correct_answer": "Then I'll push my runs back a week and do the sample prep meanwhile.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The supervisor's \"but\" delivers the bad news that the repair does not mean availability, so the reply should adjust the schedule. One choice hears only \"back from repair\", one asks about a cause nobody raised, and one is an outburst rather than a reply."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your sources are all recent, which is fine — I did expect one of the original studies you keep describing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, everything I used was published in the last five years.",
+      "You're right, I've been citing summaries. I'll go back to the primary papers.",
+      "How many sources should the bibliography have in total?",
+      "Sure thing, I'll grab some older stuff and stick it in."
+    ],
+    "correct_answer": "You're right, I've been citing summaries. I'll go back to the primary papers.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I did expect\" is a criticism softened by an initial concession, and the point is about primary sources, not publication dates. The distractors confirm the recency the professor already granted, ask about a count that was never mentioned, or misread the point as simply adding old material."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"This form gives your name as Choi Ji-woo, but your enrolment record was opened under a different spelling.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, that's a Korean name.",
+      "Should I change the spelling that appears on my diploma?",
+      "Kindly reconcile your records at your earliest convenience.",
+      "That's the same person — I can bring my passport so you can match the two."
+    ],
+    "correct_answer": "That's the same person — I can bring my passport so you can match the two.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk is indirectly asking the student to resolve a mismatch, so the reply should confirm identity and offer proof. One choice answers a question about the name's origin that was not asked, one jumps to the diploma, and one pushes the work back on staff in a stiff register."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Would it be unreasonable of me to ask for the literature review a week earlier than we agreed?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "No, that wouldn't be unreasonable at all.",
+      "A week earlier is doable if I hand it over before the final polish.",
+      "The literature review runs to about forty pages.",
+      "You may ask, but I am afraid I shall decline."
+    ],
+    "correct_answer": "A week earlier is doable if I hand it over before the final polish.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The politeness formula is a real request, so the reply needs a commitment and a condition, not just a verdict on whether asking was reasonable. One distractor answers only the surface question, one supplies an unrequested detail, and one refuses in a stilted register."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The online system won't take a late registration, though there is a paper route most students never hear about.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll try the online system once more this evening.",
+      "How many students registered late this year?",
+      "Could you walk me through the paper route? I'd rather not lose the term.",
+      "I would be exceedingly obliged if you might expound upon that."
+    ],
+    "correct_answer": "Could you walk me through the paper route? I'd rather not lose the term.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The administrator's mention of a little-known paper route is an implicit offer, so the reply should take it up. The other options retry what was just ruled out, ask for a statistic nobody offered, or accept in a register far too ornate for a front office."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'd be glad to write for you, but I only taught you in one large lecture, so the letter would be fairly thin.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thank you — I'll list you as my main referee, then.",
+      "That's helpful to know. Perhaps I should ask Professor Okonkwo from my seminar instead.",
+      "When exactly is the deadline for the letters?",
+      "A thin letter beats nothing. Just send it in."
+    ],
+    "correct_answer": "That's helpful to know. Perhaps I should ask Professor Okonkwo from my seminar instead.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The professor agrees in form but warns the letter would be weak, which is a gentle steer toward someone else. One reply takes the yes and drops the warning, one asks about a deadline that is beside the point, and one dismisses the professor's judgement in a blunt register."
+  }
+]

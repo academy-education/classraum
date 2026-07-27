@@ -122,14 +122,15 @@ describe('assembleFromBank composition', () => {
 })
 
 /** Build N TOEFL bank rows of one item type. */
-function toeflRows(itemType: string, n: number, difficulty = 'medium') {
+function toeflRows(itemType: string, n: number, difficulty = 'medium', listeningTask?: string) {
   return Array.from({ length: n }, (_, i) => ({
-    id: `${itemType}-${i}`,
+    id: `${listeningTask ?? itemType}-${i}`,
     item_type: itemType,
     difficulty,
     item: {
-      prompt: `${itemType} Q${i}`,
+      prompt: `${listeningTask ?? itemType} Q${i}`,
       type: itemType,
+      ...(listeningTask ? { listeningTask } : {}),
       choices: ['A', 'B', 'C', 'D'],
       correct_answer: 'A',
       difficulty,
@@ -148,7 +149,7 @@ function toeflRows(itemType: string, n: number, difficulty = 'medium') {
  */
 function groupedRows(
   itemType: string,
-  o: { groups: number; size: number; prefix?: string; difficulty?: string },
+  o: { groups: number; size: number; prefix?: string; difficulty?: string; listeningTask?: string },
 ) {
   const prefix = o.prefix ?? 'psg'
   const difficulty = o.difficulty ?? 'hard'
@@ -166,9 +167,32 @@ function groupedRows(
         explanation: '',
         passage: `Passage ${prefix}-${g}`,
         passageGroupId: `${prefix}-${g}`,
+        ...(o.listeningTask ? { listeningTask: o.listeningTask } : {}),
       },
     })),
   ).flat()
+}
+
+/**
+ * A TOEFL Listening bank with the FOUR ETS Jan-2026 tasks, which is the only
+ * shape the blueprint can now draw from — an untagged listening row matches
+ * no mix entry and is never served.
+ *
+ * Set sizes mirror the real bank (conversations of 4 and 2, announcements
+ * of 4, talks of 3) so the blueprint's per-module quotas — 10/4/4/6 then
+ * 7/6/4/6 — are reachable as sums of WHOLE sets. That constraint is the
+ * whole reason the blueprint sets `m1` explicitly: halving 10 conversation
+ * items gives 5, which no combination of even-sized sets can reach.
+ */
+function listeningBank(o: { deep?: boolean } = {}) {
+  const k = o.deep ? 6 : 3
+  return [
+    ...toeflRows('multiple_choice', 40, 'hard', 'choose_response'),
+    ...groupedRows('multiple_choice', { groups: k, size: 4, prefix: 'conv4', listeningTask: 'conversation' }),
+    ...groupedRows('multiple_choice', { groups: k, size: 2, prefix: 'conv2', listeningTask: 'conversation' }),
+    ...groupedRows('multiple_choice', { groups: k, size: 4, prefix: 'ann', listeningTask: 'announcement' }),
+    ...groupedRows('multiple_choice', { groups: k * 2, size: 3, prefix: 'talk', listeningTask: 'academic_talk' }),
+  ]
 }
 
 /**
@@ -240,9 +264,9 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
   })
 
   it('Listening splits 47 MC as 24 / 23', async () => {
-    enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80) })
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
     const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-l1')
-    enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80) })
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
     const m2 = await assembleToeflFromBank({ section: 'listening', module: 2 }, 'seed-l2')
     expect(m1.questions).toHaveLength(24)
     expect(m2.questions).toHaveLength(23)
@@ -252,7 +276,7 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
   it('the two modules never overlap — Module 1 exposures push its items to the back', async () => {
     // Module 1 records exposures; Module 2's unseen-first ranking then
     // deals from what is left, so a student cannot see a repeat.
-    const pool = toeflRows('multiple_choice', 60)
+    const pool = listeningBank({ deep: true })
     enqueue('study_item_bank', { data: pool })
     enqueue('study_item_exposures', { data: [] })          // no prior exposures
     const m1 = await assembleToeflFromBank(
@@ -273,7 +297,7 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
   })
 
   it('module 2 PREFERS the routed band but never filters the query', async () => {
-    const bank = enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80, 'hard') })
+    const bank = enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
     const m2 = await assembleToeflFromBank(
       { section: 'listening', module: 2, difficulties: ['medium', 'hard'] }, 'seed-d')
     // Filtering in SQL is what made a thin band shrink the module.
@@ -292,7 +316,7 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     // sibling test above ("never filters the query") is what pins that.
     // This guards the other way in — a JS-side filter that drops
     // out-of-band items instead of ranking them.
-    enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80, 'hard') })
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
     const m2 = await assembleToeflFromBank(
       { section: 'listening', module: 2, difficulties: ['easy'] }, 'seed-e')
     expect(m2.questions).toHaveLength(23)
@@ -301,19 +325,21 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
   it('module 2 exhausts the routed band before falling back', async () => {
     // 5 in-band items and plenty out-of-band: all 5 must appear, so the
     // fallback tops up rather than replacing the adaptive intent.
-    const inBand = toeflRows('multiple_choice', 5, 'medium')
-    const outBand = toeflRows('multiple_choice', 60, 'hard')
-      .map((r, i) => ({ ...r, id: `oob-${i}`, item: { ...r.item, prompt: `oob Q${i}` } }))
-    enqueue('study_item_bank', { data: [...outBand, ...inBand] })
+    const inBand = toeflRows('multiple_choice', 5, 'medium', 'choose_response')
+      .map((r, i) => ({ ...r, id: `ib-${i}`, item: { ...r.item, prompt: `ib Q${i}` } }))
+    enqueue('study_item_bank', { data: [...listeningBank({ deep: true }), ...inBand] })
     const m2 = await assembleToeflFromBank(
       { section: 'listening', module: 2, difficulties: ['medium'] }, 'seed-f')
     const prompts = m2.questions.map(q => q.prompt)
     expect(m2.questions).toHaveLength(23)
+    // All 5 in-band items appear: the fallback TOPS UP the routed band, it
+    // does not replace it. (Module 2's choose_response quota is 8, so 5
+    // in-band + 3 out-of-band is the expected shape.)
     for (const r of inBand) expect(prompts).toContain(r.item.prompt)
   })
 
   it('module 1 is NEVER difficulty-filtered — it is the fixed mixed form', async () => {
-    const bank = enqueue('study_item_bank', { data: toeflRows('multiple_choice', 80) })
+    const bank = enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
     await assembleToeflFromBank(
       { section: 'listening', module: 1, difficulties: ['hard'] }, 'seed-d1')
     expect(bank.in).not.toHaveBeenCalled()
@@ -334,12 +360,9 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
   })
 
   it('Listening module 1 delivers WHOLE transcript sets', async () => {
-    const bank = [
-      ...groupedRows('multiple_choice', { groups: 12, size: 3 }),
-      ...groupedRows('multiple_choice', { groups: 12, size: 2, prefix: 'pair' }),
-      // Listen-and-Respond items are ungrouped by design.
-      ...toeflRows('multiple_choice', 20),
-    ]
+    // Choose-a-Response items are ungrouped by design (one question per
+    // audio); the other three tasks come in whole transcript sets.
+    const bank = listeningBank({ deep: true })
     enqueue('study_item_bank', { data: bank })
     const test = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-g2')
     expect(test.questions).toHaveLength(24)
@@ -392,7 +415,7 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     // A set is SEEN as soon as any of its items is — otherwise its
     // untouched members rank unseen-first and the same passage comes back
     // after the break.
-    const bank = groupedRows('multiple_choice', { groups: 20, size: 3 })
+    const bank = listeningBank({ deep: true })
     enqueue('study_item_bank', { data: bank })
     enqueue('study_item_exposures', { data: [] })
     const m1 = await assembleToeflFromBank(
@@ -407,8 +430,93 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     })
     const m2 = await assembleToeflFromBank(
       { section: 'listening', module: 2, studentId: 'stu-g' }, 'seed-g5')
-    const m1Groups = new Set(m1.questions.map(q => q.passageGroupId))
-    for (const q of m2.questions) expect(m1Groups.has(q.passageGroupId)).toBe(false)
+    // Grouped sets only. Choose-a-Response items carry no passageGroupId
+    // (one question per audio), so they would all collide on `undefined`;
+    // no-repeat for those is the exposure ledger's job and is pinned by
+    // "the two modules never overlap" above.
+    const m1Groups = new Set(m1.questions.map(q => q.passageGroupId).filter(Boolean))
+    expect(m1Groups.size).toBeGreaterThan(0)
+    for (const q of m2.questions) {
+      if (!q.passageGroupId) continue
+      expect(m1Groups.has(q.passageGroupId)).toBe(false)
+    }
+  })
+
+  // ── Listening task mix (ETS Jan-2026) ────────────────────────────────
+  //
+  // The shipped bug: TOEFL_META.listening was `[{ type: 'multiple_choice',
+  // n: 47 }]`. Every banked listening item is item_type='multiple_choice',
+  // so the four ETS tasks were indistinguishable and the draw was 47
+  // arbitrary items — a section could come out nearly all lectures.
+
+  it('draws the four ETS tasks to their own quotas, not 47 undifferentiated MC', async () => {
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
+    const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-mix1')
+    // Module 1 uses the blueprint's EXPLICIT m1 shares, not Math.ceil(n/2)
+    // — see the `m1` note in TOEFL_META.listening.
+    expect(m1.composition).toEqual({
+      'multiple_choice:choose_response': 10,
+      'multiple_choice:conversation': 4,
+      'multiple_choice:announcement': 4,
+      'multiple_choice:academic_talk': 6,
+    })
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
+    const m2 = await assembleToeflFromBank({ section: 'listening', module: 2 }, 'seed-mix2')
+    expect(m2.composition).toEqual({
+      'multiple_choice:choose_response': 7,
+      'multiple_choice:conversation': 6,
+      'multiple_choice:announcement': 4,
+      'multiple_choice:academic_talk': 6,
+    })
+    // And the whole section still sums to ETS's 47.
+    const total = Object.values(m1.composition).reduce((a, b) => a + b, 0)
+      + Object.values(m2.composition).reduce((a, b) => a + b, 0)
+    expect(total).toBe(47)
+  })
+
+  it('never serves a listening item the classifier did not tag', async () => {
+    // An untagged row matches no mix entry. Dropping it is deliberate:
+    // guessing a task for it would silently fill the wrong quota, and the
+    // shortfall is at least visible in `composition`.
+    const bank = [
+      ...listeningBank({ deep: true }),
+      ...toeflRows('multiple_choice', 50).map((r, i) => ({ ...r, id: `untagged-${i}` })),
+    ]
+    enqueue('study_item_bank', { data: bank })
+    const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-untag')
+    for (const q of m1.questions) expect(q.prompt).not.toMatch(/^multiple_choice Q/)
+    expect(m1.questions).toHaveLength(24)
+  })
+
+  it('skips single-question conversation/announcement/talk audios', async () => {
+    // 31 of the 171 banked audios are a full transcript with exactly ONE
+    // question — harvest casualties whose siblings were lost, not a short
+    // task type. Serving one asks the student to process a whole recording
+    // to answer a single question.
+    const orphans = groupedRows('multiple_choice',
+      { groups: 40, size: 1, prefix: 'orphan', listeningTask: 'conversation' })
+    // Orphans FIRST, so a draw that ignored the rule would take them.
+    enqueue('study_item_bank', { data: [...orphans, ...listeningBank({ deep: true })] })
+    const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-orphan')
+    for (const q of m1.questions) expect(q.passageGroupId ?? '').not.toMatch(/^orphan-/)
+    expect(m1.composition['multiple_choice:conversation']).toBe(4)
+  })
+
+  it('comes up SHORT rather than serving a fragment of an audio', async () => {
+    // Conversation quota is 5 per module; every conversation here is a
+    // 4-question set, so one fits and no whole set fills the last slot.
+    // Truncating would play a full conversation and ask 1 of its 4
+    // questions. A 4-item task is the better failure.
+    const bank = [
+      ...toeflRows('multiple_choice', 40, 'hard', 'choose_response'),
+      ...groupedRows('multiple_choice', { groups: 6, size: 4, prefix: 'c4', listeningTask: 'conversation' }),
+      ...groupedRows('multiple_choice', { groups: 6, size: 4, prefix: 'ann', listeningTask: 'announcement' }),
+      ...groupedRows('multiple_choice', { groups: 6, size: 3, prefix: 'talk', listeningTask: 'academic_talk' }),
+    ]
+    enqueue('study_item_bank', { data: bank })
+    const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-strict')
+    expect(m1.composition['multiple_choice:conversation']).toBe(4)
+    expectWholeSets(m1.questions, bank)
   })
 
   it('omitting `module` reproduces the whole-section draw unchanged', async () => {

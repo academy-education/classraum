@@ -405,6 +405,7 @@ export async function refreshTestSpecExamples(
   const asQuestions: Question[] = mcItems.map(it => ({
     passage: null,
     passageGroupId: null,
+    listeningTask: null,
     prompt: it.prompt,
     type: 'multiple_choice' as const,
     choices: it.choices,

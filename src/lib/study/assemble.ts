@@ -18,8 +18,16 @@ import type { Question, QuestionType } from '@/lib/test-verify'
  * `Question` declares, which is what `sanitizeQuestion` did on the way in —
  * pre-bank-era rows genuinely omit the metadata quartet (2217 of 4401 today).
  *
- * `item` carries exactly Question's 17 keys and nothing else (verified against
+ * `item` carries exactly Question's keys and nothing else (verified against
  * `jsonb_object_keys` over the live table), so rebuilding it loses nothing.
+ *
+ * That last sentence is a STANDING OBLIGATION, not an observation: this
+ * function rebuilds the item from a fixed key list, so any key written into
+ * `item` that is not read back here is silently dropped between the bank and
+ * the assembler. `listeningTask` was added to the column and to `Question`
+ * together for exactly that reason — writing it without reading it would have
+ * produced a bank that looked correctly classified in SQL and completely
+ * unclassified in the draw.
  */
 
 /** Every `QuestionType`. The type-level assertion below fails to compile if
@@ -149,6 +157,7 @@ function readBankItem(item: unknown): Question | null {
     subskill: asString(b.get('subskill')),
     topic_tag: asString(b.get('topic_tag')),
     word_count: asNumber(b.get('word_count')),
+    listeningTask: asString(b.get('listeningTask')),
   }
 }
 
@@ -430,9 +439,29 @@ export type ToeflSection = 'reading' | 'listening' | 'writing' | 'speaking'
  * ETS delivers the tasks so the assembled test reads in the right
  * sequence (e.g. Speaking = 7 Listen-and-Repeat then 4 Interview).
  */
+/** The four ETS Jan-2026 Listening tasks. A listening bank row carries one of
+ *  these in `item.listeningTask` (written by
+ *  scripts/classify-listening-tasks.ts). */
+export const LISTENING_TASKS = ['choose_response', 'conversation', 'announcement', 'academic_talk'] as const
+export type ListeningTask = (typeof LISTENING_TASKS)[number]
+
+/** Tasks whose audio must carry MORE THAN ONE question. ETS pairs a
+ *  conversation, an announcement or an academic talk with 2-5 questions;
+ *  only Choose-a-Response is one-question-per-audio. A single-question
+ *  conversation in the bank is not a short task type, it is an ORPHAN — a
+ *  harvested set whose siblings were lost — and serving one makes the
+ *  student read a 2,000-character transcript to answer one question. 31 of
+ *  the 171 banked audios are in that state; `isDrawableSet` excludes them. */
+const MULTI_QUESTION_TASKS: ReadonlySet<string> = new Set(['conversation', 'announcement', 'academic_talk'])
+
 const TOEFL_META: Record<ToeflSection, {
   title: string; minutes: number; label: string
-  mix: Array<{ type: string; n: number }>
+  /** `type` selects on `study_item_bank.item_type`. `task` (Listening only)
+   *  selects on `item.listeningTask` — see the listening entry below.
+   *  `m1` overrides the default `Math.ceil(n/2)` module-1 share; module 2
+   *  takes the remainder. Needed wherever the halfway point is not a
+   *  reachable sum of whole audio sets — see the listening entry. */
+  mix: Array<{ type: string; n: number; task?: ListeningTask; m1?: number }>
 }> = {
   // Reading counts SCORED ITEMS, not on-screen items. Complete-the-Words
   // (fill_in_blanks) is scored per blank — submit/route.ts returns
@@ -443,8 +472,45 @@ const TOEFL_META: Record<ToeflSection, {
   // arithmetic correctly; the two paths had silently diverged.)
   reading:   { title: 'TOEFL iBT — Reading',   minutes: 35, label: 'Reading',
     mix: [{ type: 'fill_in_blanks', n: 2 }, { type: 'multiple_choice', n: 30 }] },
+  // Listening is FOUR ETS tasks, not one bag of MC.
+  //
+  // This entry used to read `[{ type: 'multiple_choice', n: 47 }]`. Every
+  // banked listening item is item_type='multiple_choice', so that drew 47
+  // interchangeable items and the ETS task mix — which TEST_SPECS already
+  // describes correctly for the AI generator — was ignored on the bank path
+  // entirely. A student could be served a Listening section that was almost
+  // all academic lectures, or almost all conversations, at random.
+  //
+  // Counts are the midpoints of ETS's published Jan-2026 ranges
+  // (Choose-a-Response 15-19, Conversation 10 fixed, Announcement 6-10,
+  // Academic Talk 8-16), chosen to sum to the section's 47:
+  //   17 + 10 + 8 + 12 = 47
+  // ETS flexes the ranges per form — the maxima do not co-occur (they sum to
+  // 55) — so treat these as one valid form, not as the only one.
+  //
+  // Note ETS scores only 35 of the 47; the remainder are unscored pilot
+  // items. We score all 47, which is the right call for practice (a student
+  // wants feedback on every question they answered) but means our raw total
+  // is not directly comparable to an official raw total.
+  //
+  // `task` selects on item.listeningTask. Order is ETS's delivery order:
+  // the short response cues open the section, longer audio follows.
   listening: { title: 'TOEFL iBT — Listening', minutes: 36, label: 'Listening',
-    mix: [{ type: 'multiple_choice', n: 47 }] },
+    mix: [
+      // `m1` is set explicitly rather than left to Math.ceil(n/2).
+      //
+      // A task's per-module quota has to be a reachable sum of WHOLE audio
+      // sets, and halving does not respect that. Conversation is the case
+      // that caught it: 10 items halve to 5, but every conversation audio
+      // in the bank carries an even number of questions, so no combination
+      // of whole sets sums to 5 — the draw came up one short in BOTH
+      // modules and quietly shipped a 45-item section. Splitting 4/6
+      // instead is reachable from set sizes of 2 and 4.
+      { type: 'multiple_choice', task: 'choose_response', n: 17, m1: 10 },
+      { type: 'multiple_choice', task: 'conversation',    n: 10, m1: 4 },
+      { type: 'multiple_choice', task: 'announcement',    n: 8,  m1: 4 },
+      { type: 'multiple_choice', task: 'academic_talk',   n: 12, m1: 6 },
+    ] },
   speaking:  { title: 'TOEFL iBT — Speaking',  minutes: 7,  label: 'Speaking',
     mix: [{ type: 'speaking_repeat', n: 7 }, { type: 'speaking_interview', n: 4 }] },
   writing:   { title: 'TOEFL iBT — Writing',   minutes: 29, label: 'Writing',
@@ -536,11 +602,27 @@ export async function assembleToeflFromBank(
 
   const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
   type Row = { id: string; item: Question; difficulty: string | null }
+  // Bucket key. Every section but Listening keys on item_type, exactly as
+  // before. Listening ALSO keys on the ETS task, because all four of its
+  // tasks share item_type='multiple_choice' and the blueprint has to be
+  // able to ask for ten conversation questions specifically.
+  //
+  // A listening row with no listeningTask lands under a key no mix entry
+  // names, so it is simply never drawn. That is deliberate: an unclassified
+  // row has no defensible slot in a task-quota'd blueprint, and dropping it
+  // is visible in `composition` (the section comes up short) whereas
+  // guessing a task for it would not be.
+  const bucketKey = (item_type: string, item: Question): string =>
+    p.section === 'listening' ? `${item_type}:${item.listeningTask ?? 'unclassified'}` : item_type
+  const mixKey = (m: { type: string; task?: ListeningTask }): string =>
+    p.section === 'listening' ? `${m.type}:${m.task ?? 'unclassified'}` : m.type
+
   const byType = new Map<string, Row[]>()
   for (const r of rows) {
-    const list = byType.get(r.item_type) ?? []
+    const key = bucketKey(r.item_type, r.item)
+    const list = byType.get(key) ?? []
     list.push({ id: r.id, item: r.item, difficulty: r.difficulty })
-    byType.set(r.item_type, list)
+    byType.set(key, list)
   }
 
   // Routed module 2: rank the student's band first, then everything else,
@@ -642,12 +724,27 @@ export async function assembleToeflFromBank(
    *  packs exactly; the truncation only fires against sets larger than a
    *  whole module, which today only exist because `passageGroupId` is
    *  corrupt (one Reading "set" holds 108 items over 28 passages). */
-  const takeGroups = (ranked: Group[], n: number): Row[] => {
+  const takeGroups = (ranked: Group[], n: number, strict = false): Row[] => {
     const out: Row[] = []
     const leftover: Group[] = []
     for (const g of ranked) {
       if (out.length < n && g.rows.length <= n - out.length) out.push(...g.rows)
       else leftover.push(g)
+    }
+    // `strict`: come up SHORT rather than serve a fragment.
+    //
+    // The greedy pass above can leave slots that no whole set fits (sets of
+    // 4 against 5 remaining slots leaves 1). For Reading that residue is
+    // rare and the blueprint total matters more, so it truncates. For
+    // Listening's per-task quotas it is routine, and truncating means
+    // playing a student a full conversation and asking them one of its four
+    // questions — strictly worse than a 46-item section.
+    if (strict) {
+      if (out.length < n) {
+        console.warn('[assemble] task quota short — no whole audio set fits the remaining slots',
+          { section: p.section, want: n, got: out.length })
+      }
+      return out
     }
     for (const g of leftover) {
       if (out.length >= n) break
@@ -663,8 +760,8 @@ export async function assembleToeflFromBank(
    *  passage feeds several questions — and for Take-an-Interview, where
    *  all N items belong to one interview on one topic and must play in
    *  their authored 1→N order. */
-  const drawGrouped = (bucket: Row[], type: string, n: number): Row[] =>
-    takeGroups(bandPreferredGroups(groupRows(bucket), type), n)
+  const drawGrouped = (bucket: Row[], type: string, n: number, strict = false): Row[] =>
+    takeGroups(bandPreferredGroups(groupRows(bucket), type), n, strict)
 
   /** The cut nearest `want` that does not fall INSIDE a passage set.
    *  `rows` is set-contiguous (drawGrouped emits it that way), so the legal
@@ -686,24 +783,56 @@ export async function assembleToeflFromBank(
   // an odd count splits 24/23 (Listening's 47 MC) rather than 23/24,
   // and Reading's 2 Complete-the-Words paragraphs land one per module —
   // exactly the interleaving the whole-section path produces below.
-  const shareForModule = (n: number): number => {
+  const shareForModule = (n: number, m1Override?: number): number => {
     if (!p.module) return n
-    const m1 = Math.ceil(n / 2)
+    const m1 = m1Override ?? Math.ceil(n / 2)
     return p.module === 1 ? m1 : n - m1
   }
 
   const composition: Record<string, number> = {}
   const picked: Row[] = []
-  for (const { type, n: fullN } of meta.mix) {
-    const n = shareForModule(fullN)
+  for (const entry of meta.mix) {
+    const { type, task, n: fullN, m1 } = entry
+    const n = shareForModule(fullN, m1)
     if (n <= 0) continue
-    const bucket = byType.get(type) ?? []
+    const key = mixKey(entry)
+    let bucket = byType.get(key) ?? []
+    // Drop orphan sets before ranking. See MULTI_QUESTION_TASKS: a
+    // conversation/announcement/academic-talk audio carrying a single
+    // question is a harvest casualty, not a short task type, and serving it
+    // asks the student to process a whole recording for one question.
+    // Filtering here (not in the query) keeps the rule in one place and
+    // makes it visible in `composition` when it bites.
+    if (task && MULTI_QUESTION_TASKS.has(task)) {
+      const sizes = new Map<string, number>()
+      for (const r of bucket) {
+        const k = groupKeyOf(r)
+        sizes.set(k, (sizes.get(k) ?? 0) + 1)
+      }
+      const before = bucket.length
+      bucket = bucket.filter(r => (sizes.get(groupKeyOf(r)) ?? 0) >= 2)
+      if (bucket.length < before) {
+        console.warn('[assemble] skipped single-question audio sets',
+          { section: p.section, task, dropped: before - bucket.length })
+      }
+    }
     // Set-drawn task types (see drawGrouped). Everything else is a bag of
     // independent items and draws item-by-item, exactly as before.
+    // Choose-a-Response is ONE question per audio by design, so its "sets"
+    // are singletons — drawGrouped handles that identically to an item-wise
+    // draw, and routing it through the same path keeps one code path.
     const grouped = type === 'speaking_interview'
       || ((p.section === 'reading' || p.section === 'listening') && type === 'multiple_choice')
-    const ordered = grouped ? drawGrouped(bucket, type, n) : bandPreferred(bucket, type).slice(0, n)
-    composition[type] = ordered.length
+    // Multi-question audio never ships as a fragment — see takeGroups(strict).
+    const strict = !!task && MULTI_QUESTION_TASKS.has(task)
+    const ordered = grouped
+      ? drawGrouped(bucket, key, n, strict)
+      : bandPreferred(bucket, key).slice(0, n)
+    if (ordered.length < n) {
+      console.warn('[assemble] blueprint short — bank cannot fill this task',
+        { section: p.section, key, want: n, got: ordered.length })
+    }
+    composition[key] = ordered.length
     picked.push(...ordered)
   }
   if (picked.length === 0) throw new Error(`no verified items for toefl/${p.section}`)

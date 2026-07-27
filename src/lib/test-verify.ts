@@ -78,6 +78,19 @@ export interface Question {
   subskill: string | null
   topic_tag: string | null
   word_count: number | null
+  /** TOEFL Listening ONLY: which of the four ETS Jan-2026 tasks this
+   *  audio is — 'choose_response' | 'conversation' | 'announcement' |
+   *  'academic_talk'. Null everywhere else (and on any listening row
+   *  predating scripts/classify-listening-tasks.ts).
+   *
+   *  This is the dimension the Listening blueprint selects on. Without
+   *  it every banked listening item was an interchangeable
+   *  multiple_choice and TOEFL_META.listening could only ask for "47 MC",
+   *  which is why a bank-assembled Listening test ignored the ETS task
+   *  mix entirely. Kept as free-form `string | null` to match the other
+   *  bank-metadata fields; the assembler validates against its own
+   *  LISTENING_TASKS list. */
+  listeningTask: string | null
 }
 
 /** Discriminated by `type`. All sub-payloads are intentionally loose
@@ -130,6 +143,9 @@ export interface RawQuestion {
   subskill?: string | null
   topic_tag?: string | null
   word_count?: number | null
+  /** TOEFL Listening task tag — see Question. Hand-authored
+   *  Choose-a-Response batches set it; the generator does not. */
+  listeningTask?: string | null
 }
 
 const VerifierItemSchema = z.object({
@@ -436,6 +452,11 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     word_count: typeof q.word_count === 'number'
       ? q.word_count
       : (q.passage ? q.passage.trim().split(/\s+/).filter(Boolean).length : null),
+    // TOEFL Listening task tag. Passed through verbatim when an author
+    // supplies it (the hand-authored Choose-a-Response batches do) and
+    // null otherwise — sanitize must never invent a task, because a
+    // wrong tag silently fills the wrong blueprint quota.
+    listeningTask: q.listeningTask ? sanitize(q.listeningTask) : null,
   }
 }
 

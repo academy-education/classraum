@@ -1,0 +1,354 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I could probably swap shifts with you this weekend, Ji-woo, as long as it isn't the Friday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's perfect — the one I need covered is Sunday. Friday I'm already on the schedule anyway.",
+      "Amazing, thank you. I'll put you down for Friday evening, then.",
+      "Yeah, weekend shifts are definitely the worst ones to get stuck with.",
+      "I would be most grateful if you would confirm your availability in writing at your earliest convenience."
+    ],
+    "correct_answer": "That's perfect — the one I need covered is Sunday. Friday I'm already on the schedule anyway.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The cue is a conditional offer whose whole force sits in the qualifier \"as long as it isn't the Friday.\" The key accepts while explicitly respecting that limit; the Friday reply ignores the qualifier, the third only commiserates, and the fourth is far too formal for a coworker swapping shifts."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I noticed the radiator in the back bedroom has started clanking again — it's been going since Tuesday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll get the plumber round this week — would Thursday morning suit you?",
+      "Yes, radiators do tend to make that noise when the heating first comes on for the season.",
+      "Glad it's finally sorted out, then. Those things can be a real headache.",
+      "The back bedroom's the larger of the two, isn't it? About twelve square metres, I think."
+    ],
+    "correct_answer": "I'll get the plumber round this week — would Thursday morning suit you?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A tenant reports a fault as a neutral observation, but the speech act is a repair request. The key treats it as one; the second answers as if it were a general question about radiators, the third misreads an ongoing problem as resolved, and the fourth answers a question about the room that was never asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The credit card does sound useful, though I'm honestly trying not to add anything new to my plate this year.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Of course — I'll make a note on your file so nobody rings you about it again.",
+      "It is a useful card, yes — and the cashback applies to groceries and fuel as well.",
+      "So you'd never want a card with us at all. I'll close the application entirely.",
+      "Please be advised that declining this offer may affect the terms available to you in future."
+    ],
+    "correct_answer": "Of course — I'll make a note on your file so nobody rings you about it again.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Sounds useful, though...\" is a face-saving refusal, not an expression of interest. The key accepts the refusal gracefully; the second echoes \"useful\" and keeps selling, the third ignores the qualifier \"this year\" by hearing a permanent no, and the fourth is a stiff, faintly threatening script."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Everything came back within range overall — I'd just like to recheck that one liver value in about six weeks.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Six weeks is fine. Should I book that now, or will the surgery call me?",
+      "That's a relief — so there's nothing at all we need to follow up on.",
+      "Yes, my liver was always the thing my father used to worry about too.",
+      "I hereby consent to any further diagnostic procedures you deem appropriate."
+    ],
+    "correct_answer": "Six weeks is fine. Should I book that now, or will the surgery call me?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The doctor delivers mild bad news wrapped in reassurance; the actionable part is the recheck. The key takes up the follow-up, the second drops the qualifier and hears an all-clear, the third echoes \"liver\" as small talk, and the fourth uses consent-form language no patient would speak aloud."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I've been with you seven years, and I see you're offering new customers this same plan for half what I pay.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Let me see what loyalty pricing I can apply to your account before you decide anything.",
+      "That promotion is for new customers only — it's been running since April.",
+      "Seven years, that's great. Would you like to hear about our home internet bundle?",
+      "Yeah, that's kind of a rip-off when you put it like that, isn't it?"
+    ],
+    "correct_answer": "Let me see what loyalty pricing I can apply to your account before you decide anything.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The customer states two facts side by side, which functions as a demand for a better rate rather than a request for information. The key negotiates; the second answers the literal comparison and refuses the implied request, the third answers a question about upgrades that wasn't asked, and the fourth is far too casual for a service agent."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can get you onto the 9:40, though I should warn you the connection in Frankfurt is only forty minutes.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "If it's that tight, is there anything later that leaves more room between the two flights?",
+      "Great, book me on it — I'll have plenty of time to get lunch in Frankfurt.",
+      "Frankfurt is an enormous airport, isn't it? I flew through there last spring.",
+      "I should like to lodge a formal complaint regarding the scheduling of this itinerary."
+    ],
+    "correct_answer": "If it's that tight, is there anything later that leaves more room between the two flights?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Though I should warn you\" marks the forty-minute connection as a risk the agent is flagging, not a detail. The key responds to the warning; the second ignores the qualifier entirely, the third echoes \"Frankfurt\" as chat, and the fourth escalates against someone who is trying to help."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can do store credit for you today — a refund to the card really only applies to items still in their original packaging.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then store credit is fine. Does it have an expiry date I should know about?",
+      "Perfect, put it straight back on my card — the same one I paid with.",
+      "Yes, the packaging on these is very hard to get open, isn't it?",
+      "Kindly furnish me with a written statement of your returns policy for my records."
+    ],
+    "correct_answer": "Then store credit is fine. Does it have an expiry date I should know about?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk's line is a polite refusal of a card refund dressed as an offer. The key accepts the alternative offered; the second asks for exactly what was just ruled out, the third echoes \"packaging\" with no uptake of the offer, and the fourth is legalistic register for a shop counter."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"This looks lovely — I did ask for the sauce on the side, though. I can't really do dairy.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'm sorry about that — let me have the kitchen make a fresh one with the sauce separate.",
+      "The sauce is one of the most popular things on our menu — the chef makes it fresh each morning.",
+      "No problem, I'll just scrape it off for you over at the counter.",
+      "Oops. Yeah, that one's on me, honestly."
+    ],
+    "correct_answer": "I'm sorry about that — let me have the kitchen make a fresh one with the sauce separate.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The compliment softens what is really a complaint plus a dietary constraint. The key repairs the order; the second echoes \"sauce\" and defends it, the third ignores the qualifier that this is a dairy issue rather than a preference, and the fourth is too casual for a server addressing a mistake."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I don't want to make a fuss, Yusuf, but the music last night carried right through the wall until about two.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I had no idea it travelled that far — I'll keep it down after eleven from now on.",
+      "Oh, you like them too? I've had that album on all week.",
+      "Honestly, two isn't all that late for a Saturday night.",
+      "These walls are solid brick, I think — the building's from the nineteen-thirties."
+    ],
+    "correct_answer": "I had no idea it travelled that far — I'll keep it down after eleven from now on.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I don't want to make a fuss\" is a mitigating preface to a complaint, and the expected response is an apology plus a commitment. The key gives both; the second echoes the music as a shared interest, the third dismisses the complaint despite the neighbour's careful hedging, and the fourth answers a question about the building that wasn't asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Dinner on Saturday sounds great — could I let you know by Thursday? My sister may be flying in.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thursday works. I'll hold a seat for you and you can just say the word either way.",
+      "Great, I'll put you down as a yes for Saturday, then.",
+      "Your sister's very welcome to come along — where's she flying in from?",
+      "Please confirm your attendance no later than close of business on Thursday."
+    ],
+    "correct_answer": "Thursday works. I'll hold a seat for you and you can just say the word either way.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The enthusiasm is a wrapper around a request to defer answering. The key grants the deferral; the second ignores the qualifier and books a firm yes, the third answers a question about the sister that was never asked, and the fourth applies office register to a dinner invitation."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Sorry — I think that's rung up as the large. I actually asked for the medium latte.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You're right, my mistake — I'll refund the difference and remake it as a medium.",
+      "The large is only forty cents more, so it's usually the better value.",
+      "No problem at all, I'll make you another large straight away.",
+      "We regret any inconvenience and thank you for bringing this matter to our attention."
+    ],
+    "correct_answer": "You're right, my mistake — I'll refund the difference and remake it as a medium.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The apology at the front belongs to the customer softening a correction, so the reply must accept the correction and fix both the drink and the charge. The second echoes the sizes to argue the customer out of it, the third repeats the very error being corrected, and the fourth is corporate written English."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've covered the last four Sundays, Priya. That's not really how the rota is meant to work.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I know — I keep meaning to say something to Dimitri, I just didn't want to sound difficult.",
+      "Four? I make it five, if you count the bank holiday weekend.",
+      "Yes, the new rota goes up on the board every second Wednesday.",
+      "I appreciate your feedback and will take it under advisement."
+    ],
+    "correct_answer": "I know — I keep meaning to say something to Dimitri, I just didn't want to sound difficult.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The coworker is expressing concern on Priya's behalf, not asking for a count. The key responds to the concern; the second treats it as a factual claim to correct, the third echoes \"rota\" with unrelated scheduling information, and the fourth answers a sympathetic remark as if it were performance feedback."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Funny running into you here, Mateo — you're still driving out to the depot most mornings, aren't you?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I am, yes — I leave around seven. Were you after a lift out that way?",
+      "I am. It's about forty minutes once the traffic builds up.",
+      "The depot actually moved last year — it's out past the retail park now.",
+      "That is correct. May I ask the purpose of your enquiry?"
+    ],
+    "correct_answer": "I am, yes — I leave around seven. Were you after a lift out that way?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The small talk is a preamble: confirming someone's daily route is how a speaker opens a request for a ride. The key hears the request behind the question; the second answers only the literal content, the third answers a question about the depot's location, and the fourth turns a friendly opener into an interrogation."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You can take these alongside your antihistamine — just not within two hours of each other.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So if I take one at eight in the morning, the antihistamine should wait until ten?",
+      "Got it — so I'll just take them both together with breakfast.",
+      "I've been on that antihistamine since the spring, actually.",
+      "Duly noted. I shall observe the prescribed interval without deviation."
+    ],
+    "correct_answer": "So if I take one at eight in the morning, the antihistamine should wait until ten?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The pharmacist's permission is entirely governed by the spacing qualifier, so the natural reply checks the interval. The second takes the permission and drops the condition, the third echoes \"antihistamine\" as personal history, and the fourth is written formal register no one uses at a pharmacy counter."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"If you're heading to the airport on Sunday, Mei-lin, I'm driving right past it anyway — no detour at all.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll take you up on that. My flight's at noon — would nine be too early for you?",
+      "Are you sure? I'd hate for you to go so far out of your way for me.",
+      "The airport's a good hour away on a Sunday, though, isn't it?",
+      "I couldn't possibly impose upon you in that manner."
+    ],
+    "correct_answer": "Then I'll take you up on that. My flight's at noon — would nine be too early for you?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"No detour at all\" is added precisely to pre-empt a polite refusal, so the cooperative reply accepts and gets practical. The second ignores that qualifier and re-raises the objection already answered, the third treats an offer as a fact to verify, and the fourth is stiff enough to sound like a refusal of a friend."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your ticket's valid, but this service doesn't stop at Ashford after seven — you'll want the one behind us.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll get off at the next stop and wait for it, then. Do you know how far behind it is?",
+      "That's fine, I'll just stay on until Ashford.",
+      "I bought it from the machine on the platform, so it should be the right one.",
+      "I demand to speak to whoever is responsible for this timetable."
+    ],
+    "correct_answer": "I'll get off at the next stop and wait for it, then. Do you know how far behind it is?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The conductor concedes the ticket and then delivers the real news, which is that this train will not stop where the passenger wants. The key acts on it; the second ignores the qualifier about after seven, the third defends a ticket nobody challenged, and the fourth is disproportionate to a helpful warning."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've had a strong quarter, Aisha. The raise is something I'd want to take up once the budget's signed off in March.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "March is fine — could we put a note in my file now so it doesn't get lost?",
+      "Thank you so much. When will the new amount start showing up in my pay?",
+      "It was a strong quarter, though honestly the northern accounts did most of the work.",
+      "I accept your terms and consider the matter settled."
+    ],
+    "correct_answer": "March is fine — could we put a note in my file now so it doesn't get lost?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Praise plus \"once the budget's signed off\" is a deferral, not an approval. The key accepts the delay while protecting the commitment; the second ignores the condition and hears a granted raise, the third echoes the praise and changes the subject, and the fourth is contractual language in a manager's office."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can overlook the marks on the wall, but the hallway carpet is going to have to come out of the deposit.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That seems fair. Could you send me the cleaning quote before you take it off?",
+      "So you're keeping the whole deposit over a few marks on the wall?",
+      "Those marks were there when I moved in — they're in the inventory photos.",
+      "Whatever. Just keep it."
+    ],
+    "correct_answer": "That seems fair. Could you send me the cleaning quote before you take it off?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The landlord concedes one item to make the other deduction stick, so the useful reply accepts the concession and negotiates the evidence for the charge. The second ignores what was just waived, the third argues the point already conceded, and the fourth is too dismissive to serve the tenant's interest."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Have you thought about ringing them first, before you drive all the way out there?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Good point — I'll call ahead and save myself the trip if they're shut.",
+      "Yes, I have thought about it.",
+      "It's about an hour and a half each way, depending on the bridge.",
+      "Your recommendation has been noted and will be implemented accordingly."
+    ],
+    "correct_answer": "Good point — I'll call ahead and save myself the trip if they're shut.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Have you thought about...\" is a suggestion in question clothing, so a yes/no answer misfires even though it is grammatically correct. The key takes up the advice, the third answers a question about the journey that wasn't asked, and the fourth is bureaucratic register between friends."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm so sorry to do this to you, Ngozi — my train's been cancelled and I'm still forty minutes out.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Don't worry, I'll tell them we're starting late and get us both a coffee in the meantime.",
+      "That's awful — the trains on that line seem to get cancelled constantly.",
+      "No problem at all. I'll see you at two as planned, then.",
+      "Your apology is accepted. Please advise on your revised arrival time in due course."
+    ],
+    "correct_answer": "Don't worry, I'll tell them we're starting late and get us both a coffee in the meantime.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The apology is really a request to be covered for a late arrival. The key does the covering; the second sympathises without helping, the third ignores the forty-minute qualifier and keeps the original time, and the fourth answers a friend's apology in the register of a formal email."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The room itself is fine — it's just that the window looks straight out onto the loading bay.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Let me see what we have free on the quieter side of the building — one moment.",
+      "Yes, the deliveries there usually finish by about six in the morning.",
+      "I'm sorry the room isn't up to standard — I'll refund tonight's stay in full.",
+      "Yeah, that side of the building is pretty grim, isn't it?"
+    ],
+    "correct_answer": "Let me see what we have free on the quieter side of the building — one moment.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A guest frames a complaint as a neutral observation, and the implied request is a different room. The key offers one; the second echoes the loading bay with information instead of a remedy, the third ignores the qualifier that the room itself is fine and over-corrects with a refund, and the fourth is too casual for front-desk staff."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That's kind of you, but honestly — if you could just watch the bags for a minute, that would help far more.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sure, I'll sit here with them. Take your time.",
+      "No trouble at all — let me carry the big one up the stairs for you.",
+      "I don't mind at all. Which platform were you heading to?",
+      "I accept responsibility for your luggage for the duration of your absence."
+    ],
+    "correct_answer": "Sure, I'll sit here with them. Take your time.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker declines the offered help and substitutes a different, smaller favour, so the reply must switch to the new task. The second ignores the redirection and persists with the original offer, the third answers a travel question that wasn't asked, and the fourth is absurdly formal for a moment's favour."
+  }
+]

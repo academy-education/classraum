@@ -1,0 +1,354 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Ji-woo, I'm not trying to make a thing of it, but the bass from your speakers really travels through the wall.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thanks for saying something — I'll switch to headphones after ten from now on.",
+      "Right? The walls in this building are unbelievably thin.",
+      "I hereby apologize for any disturbance my audio equipment may have caused you.",
+      "If it bothers you that much, the RA's office takes noise complaints until nine."
+    ],
+    "correct_answer": "Thanks for saying something — I'll switch to headphones after ten from now on.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The \"I'm not trying to make a thing of it\" framing marks this as a complaint softened into an observation, so the natural reply accepts responsibility and offers a fix. Choice 2 echoes \"wall\" but agrees as a bystander rather than as the cause; choice 3 is absurdly formal for a roommate; choice 4 ignores the explicit hedge by escalating a deliberately low-key remark to a formal complaint."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's really kind of you to invite me to the potluck, though Fridays are when I work the late shift at the library.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "No worries at all — I'll save you a plate in case you get out early.",
+      "Wonderful, we'll see you on Friday then!",
+      "Honestly, you should just tell them you can't work Fridays anymore.",
+      "So what were you thinking of bringing?"
+    ],
+    "correct_answer": "No worries at all — I'll save you a plate in case you get out early.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"It's really kind of you... though\" is a polite refusal, not an acceptance, so the natural reply releases the speaker without pressure. Choice 2 reads the compliment as a yes; choice 3 pushes back in a register far too pushy for a casual invitation; choice 4 keyword-echoes the potluck while ignoring that the invitation was just declined."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Sorry, Nguyen, I hate to be that person, but I still haven't seen the slides you were going to send over.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's on me — give me an hour and they'll be in your inbox.",
+      "Don't apologize, you're really not that person at all.",
+      "I do apologize for the delay; please advise if further documentation is required.",
+      "The presentation isn't until next Thursday, though, right?"
+    ],
+    "correct_answer": "That's on me — give me an hour and they'll be in your inbox.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The apology is a wrapper around a chase-up, so the functional response is to commit to sending the slides. Choice 2 echoes \"that person\" and answers the apology instead of the request; choice 3 is office-memo register between group-project classmates; choice 4 deflects to the deadline and leaves the actual request unanswered."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Have you thought about taking the statistics requirement over the summer instead of piling it on this fall?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I hadn't, actually — that would take a lot of pressure off my fall term.",
+      "Yes, I've thought about statistics quite a lot lately.",
+      "The summer sessions here run for six weeks.",
+      "I would be delighted to enroll at your earliest convenience."
+    ],
+    "correct_answer": "I hadn't, actually — that would take a lot of pressure off my fall term.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Have you thought about...\" is a suggestion dressed as a question, so the reply should evaluate the proposal rather than report a mental state. Choice 2 answers the literal yes/no question and misses the advice; choice 3 supplies a true detail with no uptake of the suggestion; choice 4 accepts in a stiff, transactional register that does not fit peer advice."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The good news is your application made the shortlist — the shift you asked for, though, got filled on Monday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh — are any other shifts still open, or should I wait for the next posting?",
+      "That's wonderful, thank you so much for the good news!",
+      "Monday? That seems awfully fast for a posting that just went up.",
+      "Congratulations on filling the position so quickly."
+    ],
+    "correct_answer": "Oh — are any other shifts still open, or should I wait for the next posting?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The real content sits after \"though\": the shift is gone, so the natural reply absorbs the bad news and asks about alternatives. Choice 2 ignores the qualifier and hears only the shortlist; choice 3 echoes \"Monday\" but challenges the hiring timeline rather than responding to the outcome; choice 4 congratulates the speaker on news that is actually a setback for the listener."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I think that's the fourth-floor key — the group study room you booked is actually on the third.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ah, my mistake — could I swap it for the right one?",
+      "Yes, the fourth floor is much quieter for studying.",
+      "Eh, a room's a room. I'll just use that one.",
+      "I'd like to book a room on the third floor, please."
+    ],
+    "correct_answer": "Ah, my mistake — could I swap it for the right one?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The hedged \"I think\" softens a correction, and the natural reply accepts it and repairs the situation. Choice 2 echoes \"fourth floor\" while treating the correction as a comment on study conditions; choice 3 is too casual and brushes off a staff member's correction; choice 4 requests a booking the speaker has already made, answering a question that was not asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Aditi, I've got a spare graphing calculator in my desk if yours is still acting up before the midterm.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That would save me — could I pick it up sometime tomorrow?",
+      "Yeah, mine's been acting up for a couple of weeks now.",
+      "I would be most grateful for the loan of your instrument.",
+      "Wait, when exactly is the midterm again?"
+    ],
+    "correct_answer": "That would save me — could I pick it up sometime tomorrow?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is a conditional offer, so the natural reply takes it up and settles the logistics. Choice 2 echoes \"acting up\" and confirms the condition without ever responding to the offer; choice 3 accepts in a register no classmate would use for a calculator; choice 4 seizes on \"midterm\" and asks about a detail while leaving the offer hanging."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Interesting — that's the vegetarian line closed three days running now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I know. I'll raise it with dining services at the meeting tomorrow.",
+      "Yes, it's interesting how they schedule the serving lines.",
+      "Right, they always shut that one down on Sundays.",
+      "I regret to inform you that I have no authority over the dining hall."
+    ],
+    "correct_answer": "I know. I'll raise it with dining services at the meeting tomorrow.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Interesting\" plus a repetition count is a complaint delivered as a neutral observation, so the natural reply acknowledges the grievance and offers action. Choice 2 takes \"interesting\" at face value and treats it as idle curiosity; choice 3 ignores the qualifier \"three days running\" by explaining a single day's closure; choice 4 is a bureaucratic disclaimer in the wrong register for a peer in a lunch line."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Priya says she'll have her section finished by tonight, but, well, you've worked with her before.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Fair point — maybe I'll draft a backup version just in case.",
+      "Yes, we were in the same seminar together last spring.",
+      "Great, then it sounds like we're all set for tonight.",
+      "Insinuations like that about a fellow student are quite inappropriate."
+    ],
+    "correct_answer": "Fair point — maybe I'll draft a backup version just in case.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The trailing \"but, well, you've worked with her before\" expresses doubt without stating it, so the natural reply registers the skepticism and hedges the plan. Choice 2 echoes the shared-history clause literally and answers a biographical question; choice 3 misses the doubt entirely and hears only the promise; choice 4 is a moralizing, over-formal rebuke of an ordinary bit of shop talk."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'd normally hand my lecture notes over in a second, but Professor Alvarez was pretty firm about that this term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Understood — I'll ask her whether I can get the recording instead.",
+      "Great, I'll grab them off you after class then.",
+      "Come on, she's never going to find out.",
+      "Which professor is teaching that section this term?"
+    ],
+    "correct_answer": "Understood — I'll ask her whether I can get the recording instead.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I'd normally... but\" is a refusal that protects the relationship, so the natural reply accepts it without pressing and finds another route. Choice 2 reads the counterfactual \"I'd normally\" as consent; choice 3 pushes the speaker to break a rule, a register that ignores how carefully the refusal was framed; choice 4 picks up \"Professor Alvarez\" and asks something never in question."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"A few of us are heading to the night market later — no pressure at all if you've got reading to finish.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd actually like to come — my reading can survive another hour.",
+      "No, there's really no pressure.",
+      "I formally accept your kind invitation to the night market.",
+      "You should probably finish your reading first."
+    ],
+    "correct_answer": "I'd actually like to come — my reading can survive another hour.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The \"no pressure\" tag is a face-saving exit offered to the listener, so the natural reply either takes the exit or declines it explicitly, as the key does. Choice 2 echoes \"no pressure\" and answers nothing; choice 3 accepts in a wildly formal register for a casual evening plan; choice 4 misassigns the qualifier, advising the speaker about reading that belongs to the listener."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"About that umbrella you lent me — it's, uh, technically still on a city bus somewhere.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ah well, these things happen — let me know if lost and found turns it up.",
+      "Great, so you've still got it then.",
+      "That kind of carelessness with borrowed property is unacceptable.",
+      "I've actually never taken that bus line myself."
+    ],
+    "correct_answer": "Ah well, these things happen — let me know if lost and found turns it up.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The hedges \"uh\" and \"technically\" mark this as a confession that the umbrella is lost, so the natural reply forgives and points at the next step. Choice 2 reads \"still on a bus\" as still in the speaker's possession, ignoring the qualifier; choice 3 answers a sheepish admission with a formal reprimand; choice 4 keyword-echoes \"bus\" and responds to nothing that was said."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Not a big deal, but the recycling bin's been sitting by our door since, what, Tuesday?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry, that one's mine — I'll take it down before my first class.",
+      "Yeah, Tuesday's when they do the collection downstairs.",
+      "You're right, it really isn't a big deal.",
+      "Please submit a maintenance request through the residence portal."
+    ],
+    "correct_answer": "Sorry, that one's mine — I'll take it down before my first class.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Not a big deal, but...\" is the standard wrapper for a request a roommate does not want to sound naggy making, so the natural reply owns the chore. Choice 2 echoes \"Tuesday\" and answers a scheduling question nobody asked; choice 3 takes the politeness formula literally and refuses the implied request; choice 4 redirects a roommate to a facilities portal in an inappropriately official register."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I only ask because I got completely stuck on this same problem set last year — how's question four treating you?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Honestly? It's beating me. Did you ever find a way in?",
+      "It sounds like you had a hard time with the course last year.",
+      "Question four is the one about equilibrium constants.",
+      "It is not customary to discuss graded coursework with other students."
+    ],
+    "correct_answer": "Honestly? It's beating me. Did you ever find a way in?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "By confessing his own struggle first, the speaker offers help in a way that makes admitting difficulty safe, so the natural reply takes the opening. Choice 2 turns the self-deprecating preamble into the topic and never answers the question; choice 3 echoes \"question four\" with a content label rather than a status report; choice 4 answers a warm peer offer with a rule-quoting formality that misreads the register entirely."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can put you on the waitlist today; whether a seat actually opens before add/drop closes is another matter.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Let's do the waitlist, then — what should I line up as a backup if it doesn't clear?",
+      "Perfect, so I'm registered for the course now.",
+      "Add/drop closes on the second Friday, doesn't it?",
+      "Eh, whatever happens, happens."
+    ],
+    "correct_answer": "Let's do the waitlist, then — what should I line up as a backup if it doesn't clear?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Is another matter\" is a warning that the waitlist may not clear, so the natural reply accepts the offer while planning for failure. Choice 2 ignores the qualifier and treats a waitlist as enrollment; choice 3 echoes \"add/drop\" and pursues a date instead of the offer; choice 4 is a shrug too casual for a registrar's office and wastes the advice being given."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You may be thinking of the work-study rate — student assistants on the general payroll start a little lower.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh, I had those two mixed up. What does the general rate come out to?",
+      "Yes, work-study does pay quite well on this campus.",
+      "Are you telling me I've been overpaid all semester?",
+      "I appreciate you drawing my attention to this discrepancy."
+    ],
+    "correct_answer": "Oh, I had those two mixed up. What does the general rate come out to?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"You may be thinking of\" is a face-saving correction, and the natural reply concedes the mix-up and asks for the right figure. Choice 2 echoes \"work-study\" and endorses the very rate being ruled out; choice 3 answers a question that was not asked by inventing an overpayment; choice 4 thanks the speaker in a formal register while leaving the actual confusion unresolved."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I don't want to be unfair to Emeka — he did show up to the meeting, just, you know, at the very end.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I noticed that too. Should one of us say something before the next meeting?",
+      "Right, so he was there. That's what counts.",
+      "You're being completely unfair to him, honestly.",
+      "He got in at around four-fifteen, I think."
+    ],
+    "correct_answer": "I noticed that too. Should one of us say something before the next meeting?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I don't want to be unfair, but...\" front-loads a disclaimer so a criticism can be voiced, and the natural reply agrees and moves to what to do about it. Choice 2 hears only the concession and misses the complaint; choice 3 ignores the disclaimer and accuses the speaker of exactly what she pre-empted; choice 4 echoes the arrival detail and turns a judgment into a timestamp."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Would it be crazy to move our study session to the mornings, when the group room is actually free?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Not crazy at all — mornings suit me better anyway.",
+      "Yeah, that's a pretty crazy thing to suggest.",
+      "The group room is free most mornings, that's true.",
+      "Kindly advise which morning you would prefer, at your earliest convenience."
+    ],
+    "correct_answer": "Not crazy at all — mornings suit me better anyway.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Would it be crazy to...\" is a proposal hedged against rejection, so the natural reply reassures the speaker and answers the proposal. Choice 2 echoes \"crazy\" and rejects the idea in a needlessly blunt register; choice 3 confirms the premise without ever addressing the suggestion; choice 4 agrees in stiff correspondence register that no classmate would use out loud."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My laptop is the only thing keeping my thesis alive right now, but the department keeps loaners at the front desk.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Got it — I'll try the front desk, thanks for the tip.",
+      "Thanks, I'll swing by and pick your laptop up tonight.",
+      "When exactly is your thesis due, anyway?",
+      "The front desk is on the second floor of the science building."
+    ],
+    "correct_answer": "Got it — I'll try the front desk, thanks for the tip.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker refuses by explaining why he cannot lend the laptop and then redirects, so the natural reply accepts both halves. Choice 2 hears the redirect but not the refusal; choice 3 latches onto \"thesis\" and answers a question that was not asked; choice 4 echoes \"front desk\" and supplies directions instead of responding to the refusal."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I feel terrible about this, Aigerim, but the hot water in your building won't be back on until Thursday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's not your fault — is there another building where I could shower in the meantime?",
+      "Please, there's really no need to feel terrible about it.",
+      "Oh good, so the hot water is working again now.",
+      "This constitutes a serious breach of my housing agreement."
+    ],
+    "correct_answer": "That's not your fault — is there another building where I could shower in the meantime?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The apology is a cushion for bad news, so the natural reply absolves the messenger and moves straight to a workaround. Choice 2 echoes \"feel terrible\" and responds only to the cushion, leaving the news unaddressed; choice 3 inverts the outage; choice 4 answers a sympathetic RA with contractual language, a register mismatch that also skips the practical problem."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Eighteen credits plus the internship — I mean, people have done it, I suppose.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You think it's too much, don't you? Tell me honestly.",
+      "Yes, quite a few students have managed that load.",
+      "Eighteen is the maximum you can take without a petition.",
+      "Your reservations have been duly noted."
+    ],
+    "correct_answer": "You think it's too much, don't you? Tell me honestly.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I mean... I suppose\" turns an apparent endorsement into audible doubt, so the natural reply surfaces the reservation. Choice 2 takes \"people have done it\" as approval and discards the hedges; choice 3 supplies a registration fact with no uptake of the speaker's stance; choice 4 acknowledges the doubt in a clipped bureaucratic register that shuts the conversation down."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Someone did turn in a blue backpack this morning — I should say, though, the laptop sleeve was empty.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Let me take a look anyway — and I should probably report the laptop missing while I'm here.",
+      "That must be mine! So everything's still inside?",
+      "Was it handed in this morning, or sometime yesterday?",
+      "I trust the appropriate authorities have already been notified."
+    ],
+    "correct_answer": "Let me take a look anyway — and I should probably report the laptop missing while I'm here.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I should say, though\" flags the empty sleeve as the part that matters, so the natural reply takes in the bad news and acts on it. Choice 2 ignores that qualifier completely; choice 3 echoes \"this morning\" and chases a timing detail instead of the loss; choice 4 answers a lost-and-found clerk in formal, third-party language while doing nothing about the missing laptop."
+  }
+]

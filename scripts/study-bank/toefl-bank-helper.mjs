@@ -73,12 +73,25 @@ function labelFrom(text, fallback) {
   return (m ? m[1].trim() : fallback).slice(0, 60)
 }
 
+// The four ETS Jan-2026 Listening tasks. src/lib/study/assemble.ts draws
+// the Listening blueprint per task, and an item with no listeningTask
+// matches no quota and is NEVER served. Requiring it here is the point at
+// which that becomes impossible to get wrong: banking an untagged item
+// used to "succeed" and then silently vanish from every test.
+const LISTENING_TASKS = new Set(['choose_response', 'conversation', 'announcement', 'academic_talk'])
+
+// Only Choose-a-Response is one question per audio. The other three must
+// carry 2+ questions sharing a passageGroupId — the assembler drops
+// single-question sets for those tasks, so banking one wastes the work.
+const MULTI_QUESTION_TASKS = new Set(['conversation', 'announcement', 'academic_talk'])
+
 function listeningShapeOk(it) {
   return it.type === 'multiple_choice'
     && Array.isArray(it.choices) && it.choices.length === 4
     && it.choices.includes(it.correct_answer)
     && new Set(it.choices.map(c => String(c).trim())).size === 4
     && /^\s*transcript:/i.test(it.passage || '')
+    && LISTENING_TASKS.has(it.listeningTask)
 }
 
 function renderBlindListening(tagged) {
@@ -99,9 +112,20 @@ async function insertListening(keepPath, files) {
   const db = admin()
   const { data: existing } = await db.from('study_item_bank').select('content_hash').eq('family', 'toefl').eq('section', 'listening')
   const seen = new Set((existing || []).map(r => r.content_hash))
+  // Group sizes within this batch, so a multi-question task cannot be
+  // banked as an orphan (the assembler would refuse to serve it).
+  const groupSize = new Map()
+  for (const { it } of tagged) {
+    if (!it.passageGroupId) continue
+    groupSize.set(it.passageGroupId, (groupSize.get(it.passageGroupId) || 0) + 1)
+  }
   let inserted = 0, rejected = 0
   for (const { id, it } of tagged) {
-    if (!listeningShapeOk(it)) { console.log(`SKIP ${id} — bad shape`); rejected++; continue }
+    if (!listeningShapeOk(it)) { console.log(`SKIP ${id} — bad shape (check listeningTask)`); rejected++; continue }
+    if (MULTI_QUESTION_TASKS.has(it.listeningTask) && (groupSize.get(it.passageGroupId) || 0) < 2) {
+      console.log(`SKIP ${id} — ${it.listeningTask} audio has <2 questions; the assembler will not serve it`)
+      rejected++; continue
+    }
     if (!keep.has(id)) { console.log(`REJECT ${id} — not confirmed by grader`); rejected++; continue }
     const content_hash = hashListening(it)
     if (seen.has(content_hash)) { console.log(`DUP ${id}`); continue }
@@ -109,6 +133,7 @@ async function insertListening(keepPath, files) {
     const { error } = await db.from('study_item_bank').insert({
       family: 'toefl', section: 'listening', domain, difficulty: it.difficulty || 'hard',
       item_type: 'multiple_choice', item: it, content_hash,
+      topic_tag: it.listeningTask,
       word_count: it.passage ? it.passage.split(/\s+/).filter(Boolean).length : null,
       verified: true, archived: false, source: 'hand', cohort: COHORT,
       verify_meta: { method: 'claude-authored+claude-blind-grade', passage_needed: true },
