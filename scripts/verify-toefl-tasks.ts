@@ -41,7 +41,17 @@ const ETS = {
   },
 } as const
 
-const MULTI = ['conversation', 'announcement', 'academic_talk', 'academic_passage']
+/** Tasks whose text/audio must carry MORE THAN ONE question.
+ *
+ *  `daily_life` was absent here until 2026-07-28. The justification, written
+ *  into assemble.ts, was that a one-question campus notice is a legitimate
+ *  ETS item "by design" — evidenced by 68 of the bank's 103 daily-life texts
+ *  being that shape. That is circular: the bank's shape is evidence about our
+ *  own generator, not about ETS. TEST_SPECS in this repo already specified
+ *  "40-90w ... 2-3 questions" for Daily Life, and ETS delivers it in short
+ *  2-3 question sets. A student hit a Reading section that made them read
+ *  fifteen separate texts. */
+const MULTI = ['conversation', 'announcement', 'academic_talk', 'academic_passage', 'daily_life']
 
 async function main() {
   const { assembleToeflFromBank } = await import('../src/lib/study/assemble')

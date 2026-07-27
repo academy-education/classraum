@@ -36,9 +36,22 @@ async function selectAll(build: () => any): Promise<any[]> {
     const k = `${r.section}|${it.passageGroupId}`
     groups.set(k, [...(groups.get(k) ?? []), { id: r.id, section: r.section, it }])
   }
+  // Tasks whose texts must carry MORE THAN ONE question, so a one-question
+  // group is a repair target.
+  //
+  // `daily_life` was excluded here until 2026-07-28, on the reasoning that a
+  // campus notice with a single question is a legitimate ETS item "by
+  // design" — evidenced by 68 of the bank's 103 daily-life texts being that
+  // shape. That is circular: the bank's shape is evidence about our
+  // generator, not about ETS. TEST_SPECS in the same repo already said
+  // "2-3 MC comprehension questions per text", and ETS's Read in Daily Life
+  // does deliver short 2-3 question sets. A student reported reading ~15
+  // separate texts in one section because of it.
+  const NEEDS_SIBLINGS = [
+    'conversation', 'announcement', 'academic_talk', 'academic_passage', 'daily_life',
+  ]
   const orphans = [...groups.values()].filter(g => g.length === 1).map(g => g[0])
-    .filter(o => ['conversation','announcement','academic_talk','academic_passage']
-      .includes(o.it.listeningTask ?? o.it.readingTask))
+    .filter(o => NEEDS_SIBLINGS.includes(o.it.listeningTask ?? o.it.readingTask))
   const out = orphans.map(o => ({
     groupId: o.it.passageGroupId, section: o.section,
     task: o.it.listeningTask ?? o.it.readingTask,
