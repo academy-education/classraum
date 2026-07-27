@@ -569,6 +569,70 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     expectWholeSets(m1.questions, bank)
   })
 
+  // ── Unscored pilot items (ETS delivers 48, scores 35) ────────────────
+
+  const scoredQ = (qs: Array<{ type: string; blanks?: unknown[] | null; scored?: boolean | null }>) =>
+    qs.filter(q => q.scored !== false)
+      .reduce((n, q) => n + (q.type === 'fill_in_blanks' ? (q.blanks?.length ?? 1) : 1), 0)
+
+  it('Listening scores exactly ETS Table 1 out of the 48 it delivers', async () => {
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
+    const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-p1')
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
+    const m2 = await assembleToeflFromBank(
+      { section: 'listening', module: 2, path: 'upper' }, 'seed-p2')
+
+    // Delivered 48, scored 35 — ETS's own gap.
+    expect(m1.questions.length + m2.questions.length).toBe(48)
+    expect(scoredQ([...m1.questions, ...m2.questions])).toBe(35)
+
+    // And the scored subset is ETS's hard-path row, task by task.
+    const byTask: Record<string, number> = {}
+    for (const q of [...m1.questions, ...m2.questions]) {
+      if (q.scored === false) continue
+      byTask[q.listeningTask!] = (byTask[q.listeningTask!] ?? 0) + 1
+    }
+    expect(byTask).toEqual({
+      choose_response: 11, conversation: 8, announcement: 4, academic_talk: 12,
+    })
+  })
+
+  it('Reading keeps Complete the Words at ETS\'s 20 of 35, never a pilot', async () => {
+    // The reason the pilot mechanism exists. A CtW paragraph is quantised
+    // at 10 questions, so with all 48 scored its weight falls to 42%; ETS
+    // puts it at 20/35 = 57%. Scoring 35 of 48 restores that exactly.
+    enqueue('study_item_bank', { data: deepReading() })
+    const m1 = await assembleToeflFromBank({ section: 'reading', module: 1 }, 'seed-p3')
+    enqueue('study_item_bank', { data: deepReading() })
+    const m2 = await assembleToeflFromBank(
+      { section: 'reading', module: 2, path: 'lower' }, 'seed-p4')
+    const all = [...m1.questions, ...m2.questions]
+
+    expect(scoredQ(all)).toBe(35)
+    const ctw = all.filter(q => q.type === 'fill_in_blanks')
+    expect(ctw).toHaveLength(2)
+    // Never piloted: it is what carries the 57%.
+    for (const q of ctw) expect(q.scored).not.toBe(false)
+    expect(scoredQ(ctw)).toBe(20)
+    expect(scoredQ(ctw) / scoredQ(all)).toBeCloseTo(20 / 35, 5)
+  })
+
+  it('picks pilots by seed, not by position', async () => {
+    // "The last k of each task" would be stable across sessions, and a
+    // student who reviewed two tests could learn which questions never
+    // count and skip them.
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
+    const a = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-AAA')
+    enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
+    const b = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-BBB')
+    const idx = (t: typeof a) => t.questions.map((q, i) => (q.scored === false ? i : -1)).filter(i => i >= 0)
+    // Same count either way, different positions.
+    expect(idx(a)).toHaveLength(idx(b).length)
+    expect(idx(a)).not.toEqual(idx(b))
+    // And never the trailing run of the section.
+    expect(idx(a)[idx(a).length - 1]).not.toBe(a.questions.length - 1)
+  })
+
   it('omitting `module` reproduces the whole-section draw unchanged', async () => {
     // Writing / Speaking and every non-adaptive caller depend on this.
     enqueue('study_item_bank', { data: deepReading() })

@@ -54,7 +54,7 @@ import { config } from 'dotenv'
 import { resolve } from 'path'
 import { createClient } from '@supabase/supabase-js'
 import OpenAI from 'openai'
-import type { Database } from '../src/lib/database.types'
+import type { Database, Json } from '../src/lib/database.types'
 
 config({ path: resolve(process.cwd(), '.env.local') })
 
@@ -68,6 +68,9 @@ if (!url || !key || !openaiKey) {
 
 const APPLY = process.argv.includes('--apply')
 const SECTION = process.argv.includes('reading') ? 'reading' : 'listening'
+/** `difficulty` mode re-labels study_item_bank.difficulty instead of tagging
+ *  the task. See DIFFICULTY_SYSTEM for why it is CEFR-anchored. */
+const MODE: 'task' | 'difficulty' = process.argv.includes('difficulty') ? 'difficulty' : 'task'
 const FIELD = SECTION === 'reading' ? 'readingTask' : 'listeningTask'
 const db = createClient<Database>(url, key)
 const openai = new OpenAI({ apiKey: openaiKey })
@@ -101,13 +104,62 @@ Decide by REGISTER AND PURPOSE, not by length or topic alone: an email ABOUT a b
 
 If a passage genuinely fits neither, answer "unknown". Do not guess.`
 
-const SYSTEM = SECTION === 'reading' ? READING_SYSTEM : LISTENING_SYSTEM
+/**
+ * Difficulty re-labelling.
+ *
+ * WHY THIS IS CEFR-ANCHORED AND NOT A VIBE CHECK
+ * ----------------------------------------------
+ * All 467 banked listening items carry difficulty='hard'. That is not a
+ * calibration, it is a default: everything was authored under a
+ * "lock to max difficulty" prompt. The consequence is that the adaptive
+ * DIFFICULTY band does nothing at all — a routed module 2 prefers a band
+ * that every item already matches.
+ *
+ * Asking a model "is this easy, medium or hard?" would replace one
+ * uninformative label with a differently uninformative one. ETS publishes
+ * a real scale instead: a CEFR range PER TASK (Choose a Response A1-B2;
+ * Conversation A2-C1; Announcement A2-C1; Academic Talk A2-C2). Anchoring
+ * to that gives the model a defined construct to judge against and keeps
+ * the labels inside the range ETS says the task can occupy — a
+ * Choose-a-Response item cannot come out "hard" as a C1 lecture is hard,
+ * because ETS caps that task at B2.
+ *
+ * These are still MODEL ESTIMATES, not measured difficulty. Real
+ * calibration needs student response data; ours is contaminated with
+ * internal testing, so this is the best available proxy and should be
+ * replaced once there is clean attempt data.
+ */
+const DIFFICULTY_SYSTEM = `You estimate the CEFR level a TOEFL iBT (January 2026) Listening item requires, then map it to a three-band difficulty.
+
+ETS publishes a CEFR range per task. Stay inside it:
+  choose_response  A1-B2
+  conversation     A2-C1
+  announcement     A2-C1
+  academic_talk    A2-C2
+
+Judge the ITEM (transcript + question + choices together), not the topic's prestige. What raises the level:
+  - the answer requires pragmatic inference (an indirect refusal, a hedge, an implied next action) rather than locating stated information
+  - the key is a paraphrase with no lexical overlap with the transcript
+  - distractors restate things the speaker actually said, so elimination does not work
+  - the answer combines two non-adjacent points
+  - low-frequency or idiomatic vocabulary carries the answer
+What lowers it: the answer is stated almost verbatim; one distractor is obviously absurd; the question asks for a single concrete fact.
+
+Map CEFR to difficulty: A1/A2 -> easy, B1/B2 -> medium, C1/C2 -> hard.
+
+Answer with the CEFR level and the mapped difficulty.`
+
+const SYSTEM = MODE === 'difficulty'
+  ? DIFFICULTY_SYSTEM
+  : (SECTION === 'reading' ? READING_SYSTEM : LISTENING_SYSTEM)
 
 interface Audio {
   gid: string
   transcript: string
   ids: string[]
   qCount: number
+  /** difficulty mode only: one entry per item in this group. */
+  items?: Array<{ id: string; task: string; prompt: string; choices: string[]; answer: string }>
 }
 
 async function loadAudios(): Promise<Audio[]> {
@@ -140,13 +192,64 @@ async function loadAudios(): Promise<Audio[]> {
     if (!item) continue
     const gid = typeof item.passageGroupId === 'string' ? item.passageGroupId : `__solo_${r.id}`
     const transcript = typeof item.passage === 'string' ? item.passage : ''
-    const a = byGid.get(gid) ?? { gid, transcript, ids: [], qCount: 0 }
+    const a = byGid.get(gid) ?? { gid, transcript, ids: [], qCount: 0, items: [] }
     a.ids.push(r.id)
     a.qCount++
     if (!a.transcript) a.transcript = transcript
+    a.items!.push({
+      id: r.id,
+      task: String(item.listeningTask ?? item.readingTask ?? ''),
+      prompt: String(item.prompt ?? ''),
+      choices: Array.isArray(item.choices) ? item.choices.map(String) : [],
+      answer: String(item.correct_answer ?? ''),
+    })
     byGid.set(gid, a)
   }
   return [...byGid.values()]
+}
+
+/** Difficulty mode: one call per ITEM (the question, not the audio) —
+ *  difficulty is a property of the question against its transcript, and two
+ *  questions on the same recording routinely differ. */
+async function classifyDifficulty(
+  transcript: string,
+  it: { task: string; prompt: string; choices: string[]; answer: string },
+): Promise<'easy' | 'medium' | 'hard' | null> {
+  const res = await openai.chat.completions.create({
+    model: 'gpt-4.1',
+    temperature: 0,
+    messages: [
+      { role: 'system', content: DIFFICULTY_SYSTEM },
+      {
+        role: 'user',
+        content: [
+          `TASK: ${it.task}`,
+          `TRANSCRIPT: ${transcript.slice(0, 5000)}`,
+          `QUESTION: ${it.prompt}`,
+          ...it.choices.map((c, i) => `  (${'ABCD'[i]}) ${c}`),
+          `KEY: ${it.answer}`,
+        ].join('\n'),
+      },
+    ],
+    response_format: {
+      type: 'json_schema',
+      json_schema: {
+        name: 'item_difficulty', strict: true,
+        schema: {
+          type: 'object', additionalProperties: false,
+          required: ['cefr', 'difficulty', 'reason'],
+          properties: {
+            cefr: { type: 'string', enum: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] },
+            difficulty: { type: 'string', enum: ['easy', 'medium', 'hard'] },
+            reason: { type: 'string' },
+          },
+        },
+      },
+    },
+  })
+  const raw = res.choices[0]?.message?.content
+  if (!raw) return null
+  try { return JSON.parse(raw).difficulty ?? null } catch { return null }
 }
 
 async function classify(a: Audio): Promise<Task> {
@@ -206,7 +309,53 @@ async function mapLimit<T, R>(xs: T[], limit: number, f: (x: T) => Promise<R>): 
   return out
 }
 
-async function main() {
+async function mainDifficulty() {
+  const audios = await loadAudios()
+  const flat = audios.flatMap(a => (a.items ?? []).map(it => ({ transcript: a.transcript, it })))
+  console.log(`[${SECTION}] re-labelling difficulty for ${flat.length} items\n`)
+
+  let done = 0
+  const labels = await mapLimit(flat, 6, async x => {
+    const d = await classifyDifficulty(x.transcript, x.it)
+    if (++done % 50 === 0) console.log(`  ${done}/${flat.length}`)
+    return d
+  })
+
+  const dist = new Map<string, Map<string, number>>()
+  flat.forEach((x, i) => {
+    const d = labels[i] ?? 'unlabelled'
+    const m = dist.get(x.it.task) ?? new Map()
+    m.set(d, (m.get(d) ?? 0) + 1)
+    dist.set(x.it.task, m)
+  })
+  console.log('\n=== difficulty by task ===')
+  for (const [task, m] of dist) {
+    console.log(`  ${task.padEnd(16)} ` +
+      ['easy', 'medium', 'hard', 'unlabelled']
+        .filter(d => m.get(d)).map(d => `${d}:${m.get(d)}`).join('  '))
+  }
+
+  if (!APPLY) { console.log('\nDRY RUN — nothing written.'); return }
+  let written = 0
+  for (let i = 0; i < flat.length; i++) {
+    const d = labels[i]
+    if (!d) continue
+    // difficulty is a COLUMN, and item.difficulty is a mirror the renderer
+    // and the bank draw both read. Writing one without the other leaves the
+    // row disagreeing with itself.
+    const { data, error: readErr } = await db
+      .from('study_item_bank').select('item').eq('id', flat[i]!.it.id).single()
+    if (readErr || !data) { console.error(`  read ${flat[i]!.it.id}: ${readErr?.message}`); continue }
+    const item = { ...(data.item as Record<string, unknown>), difficulty: d } as unknown as Json
+    const { error } = await db.from('study_item_bank')
+      .update({ difficulty: d, item }).eq('id', flat[i]!.it.id)
+    if (error) console.error(`  write ${flat[i]!.it.id}: ${error.message}`)
+    else written++
+  }
+  console.log(`re-labelled ${written} rows`)
+}
+
+async function mainTask() {
   const audios = await loadAudios()
   console.log(`[${SECTION}] ${audios.length} distinct ${SECTION === 'reading' ? 'passages' : 'audios'} / ${audios.reduce((n, a) => n + a.qCount, 0)} items\n`)
 
@@ -264,7 +413,7 @@ async function main() {
       const { data, error: readErr } = await db
         .from('study_item_bank').select('item').eq('id', id).single()
       if (readErr || !data) { console.error(`  read ${id}: ${readErr?.message}`); continue }
-      const item = { ...(data.item as Record<string, unknown>), [FIELD]: t }
+      const item = { ...(data.item as Record<string, unknown>), [FIELD]: t } as unknown as Json
       // .update() RESOLVES with { error } — it does not throw. Checking
       // the returned error is the only way to know this worked.
       const { error } = await db.from('study_item_bank').update({ item }).eq('id', id)
@@ -275,4 +424,5 @@ async function main() {
   console.log(`wrote ${FIELD} on ${written} rows`)
 }
 
+const main = MODE === 'difficulty' ? mainDifficulty : mainTask
 main().catch(e => { console.error(e); process.exit(1) })

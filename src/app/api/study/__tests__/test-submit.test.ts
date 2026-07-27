@@ -104,6 +104,46 @@ describe('POST /api/study/test/submit', () => {
     expect(rows.map((r: { is_correct: boolean }) => r.is_correct)).toEqual([true, true, false])
   })
 
+  it('excludes unscored TOEFL pilot items from the score but still grades them', async () => {
+    // ETS delivers 48 Reading/Listening questions per path and scores 35;
+    // the rest are unscored pilots. Modelling that is what lets Complete
+    // the Words keep its 57% weight at a 48-question section (a CtW
+    // paragraph is quantised at 10 questions, so with everything scored
+    // the ratio is only reachable at a 35-question total).
+    //
+    // A pilot must still be GRADED — the student sees the verdict and a
+    // wrong one still reaches the wrong-answer notebook. Only the score's
+    // denominator ignores it.
+    const questions = [
+      mcQuestion('Q1', 'A'),
+      { ...mcQuestion('Q2', 'A'), scored: false },   // pilot, answered WRONG
+      { ...mcQuestion('Q3', 'A'), scored: false },   // pilot, answered right
+      mcQuestion('Q4', 'A'),
+    ]
+    enqueue('study_sessions', { data: SESSION })
+    enqueue('study_messages', { data: null })
+    enqueue('study_attempts', { data: [] })
+    const insertChain = enqueue('study_attempts', { error: null })
+    enqueue('study_sessions', { data: null })
+
+    const res = await POST(makeRequest(submitBody(questions, ['A', 'B', 'A', 'B'])))
+    expect(res.status).toBe(200)
+    const body = await res.json()
+    // Denominator is the 2 scored items only, of which 1 is right — NOT
+    // 4 questions / 2 correct.
+    expect(body).toMatchObject({ totalQuestions: 2, correctCount: 1, scorePercent: 50 })
+
+    // But all four were graded, and the wrong pilot is recorded as wrong so
+    // it still reaches review and the notebook.
+    expect(body.verdicts).toHaveLength(4)
+    expect(body.verdicts.map((v: { correct: boolean }) => v.correct))
+      .toEqual([true, false, true, false])
+    const rows = insertChain.insert.mock.calls[0][0]
+    expect(rows).toHaveLength(4)
+    expect(rows.map((r: { is_correct: boolean }) => r.is_correct))
+      .toEqual([true, false, true, false])
+  })
+
   it('grades against the SERVER cache when a [full-test-v1] row exists — client answer key is ignored', async () => {
     // Server says the correct answer is B; the doctored client payload
     // claims A is correct and answers A everywhere.

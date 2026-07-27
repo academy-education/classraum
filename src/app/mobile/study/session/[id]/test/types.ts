@@ -14,6 +14,10 @@ export interface Question {
   blanks?: { id: number; answer: string; alternates?: string[] }[]
   difficulty: 'easy' | 'medium' | 'hard'
   explanation: string
+  /** TOEFL: false = unscored ETS pilot item. Still graded and still shown
+   *  in review — just outside the score denominator. Must survive the trip
+   *  to /api/study/test/submit or the section silently scores all 48. */
+  scored?: boolean | null
   distractor_rationales?: { choice: string; reason: string }[]
   graphic?: QuestionGraphic | null
 }

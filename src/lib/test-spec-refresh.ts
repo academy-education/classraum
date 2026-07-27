@@ -407,6 +407,7 @@ export async function refreshTestSpecExamples(
     passageGroupId: null,
     listeningTask: null,
     readingTask: null,
+    scored: null,
     prompt: it.prompt,
     type: 'multiple_choice' as const,
     choices: it.choices,

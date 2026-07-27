@@ -1,0 +1,954 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, Professor. I wanted to ask about the upcoming exam. B: Sure, what would you like to know? A: I'm a bit confused about the format. Is it multiple choice or essay? B: It's a mix of both.\n\nThere will be 30 multiple choice questions and two essays. A: Thanks, that helps a lot. Also, will the essays be based on the lectures or the readings? B: Primarily on the readings, but you'll need to integrate lecture notes as well.",
+    "passageGroupId": "pg-cc95587b2d19aecfd0c795ea6b81ef73",
+    "prompt": "[Conversation — Office hours] Why has the student come to speak with the professor?",
+    "choices": [
+      "To find out how the upcoming exam will be structured.",
+      "To request extra time to complete the exam essays.",
+      "To ask whether attendance at lectures is required.",
+      "To complain that the assigned readings are too long."
+    ],
+    "correct_answer": "To find out how the upcoming exam will be structured.",
+    "difficulty": "hard",
+    "explanation": "The student's opening lines state the purpose: an ask about the exam and confusion about its format. Extra time and attendance are never raised; the readings are mentioned only as an essay source, not as a complaint.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, Professor. I wanted to ask about the upcoming exam. B: Sure, what would you like to know? A: I'm a bit confused about the format. Is it multiple choice or essay? B: It's a mix of both.\n\nThere will be 30 multiple choice questions and two essays. A: Thanks, that helps a lot. Also, will the essays be based on the lectures or the readings? B: Primarily on the readings, but you'll need to integrate lecture notes as well.",
+    "passageGroupId": "pg-cc95587b2d19aecfd0c795ea6b81ef73",
+    "prompt": "[Conversation — Office hours] Which of the following best describes the exam the professor outlines?",
+    "choices": [
+      "Two essays together with thirty selected-response items.",
+      "Thirty essay questions plus two multiple-choice sections.",
+      "A choice between taking a multiple-choice exam or an essay exam.",
+      "Thirty multiple-choice questions, with the essays offered as optional extra credit."
+    ],
+    "correct_answer": "Two essays together with thirty selected-response items.",
+    "difficulty": "hard",
+    "explanation": "The professor says 'a mix of both' and then gives 30 multiple choice and two essays. Choice 2 swaps the two numbers, choice 3 misreads 'a mix of both' as an either/or option, and choice 4 invents an optional status never stated.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, Professor. I wanted to ask about the upcoming exam. B: Sure, what would you like to know? A: I'm a bit confused about the format. Is it multiple choice or essay? B: It's a mix of both.\n\nThere will be 30 multiple choice questions and two essays. A: Thanks, that helps a lot. Also, will the essays be based on the lectures or the readings? B: Primarily on the readings, but you'll need to integrate lecture notes as well.",
+    "passageGroupId": "pg-cc95587b2d19aecfd0c795ea6b81ef73",
+    "prompt": "[Conversation — Office hours] What can be inferred about how the student should prepare for the essays?",
+    "choices": [
+      "Work primarily from the readings while drawing on lecture material to support them.",
+      "Concentrate on memorizing the lecture notes, since the essays come out of the lectures.",
+      "Study only the readings, because the lectures will not be tested at all.",
+      "Prepare the essays first, since they count for more of the grade than the multiple choice."
+    ],
+    "correct_answer": "Work primarily from the readings while drawing on lecture material to support them.",
+    "difficulty": "hard",
+    "explanation": "The answer combines 'primarily on the readings' with 'integrate lecture notes as well.' Choice 2 reverses which source is primary, choice 3 drops the qualifier 'as well,' and choice 4 assumes a weighting the professor never gives.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: \"Good afternoon, everyone. Today, we're going to discuss the impact of social media on communication.\" B: \"Is it true that social media has completely changed how we interact?\" A: \"In many ways, yes. It has altered the speed and reach of communication, but face-to-face interaction remains crucial.\"",
+    "passageGroupId": "pg-b8cb459151d9eccb6bc705d68a752d18",
+    "prompt": "[Academic Talk — Communication] Why does the speaker add that face-to-face interaction 'remains crucial'?",
+    "choices": [
+      "To limit the claim that social media has completely changed how people interact.",
+      "To argue that social media has had almost no real effect on communication.",
+      "To introduce the topic of the day's talk before giving examples.",
+      "To explain why the speed of communication has increased."
+    ],
+    "correct_answer": "To limit the claim that social media has completely changed how people interact.",
+    "difficulty": "hard",
+    "explanation": "The speaker answers 'in many ways, yes' and then adds a qualification, so the line restricts rather than rejects the questioner's premise. Choice 2 overstates the qualification into a denial, choice 3 belongs to the opening sentence, and choice 4 restates a detail the speaker gave without answering why the line appears.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: \"Good afternoon, everyone. Today, we're going to discuss the impact of social media on communication.\" B: \"Is it true that social media has completely changed how we interact?\" A: \"In many ways, yes. It has altered the speed and reach of communication, but face-to-face interaction remains crucial.\"",
+    "passageGroupId": "pg-b8cb459151d9eccb6bc705d68a752d18",
+    "prompt": "[Academic Talk — Communication] According to the speaker, in what specific respects has social media altered communication?",
+    "choices": [
+      "In how quickly messages travel and how far they spread.",
+      "In how sincere and personal everyday messages have become.",
+      "In eliminating the need for in-person conversation entirely.",
+      "In the range of topics people are willing to discuss in public."
+    ],
+    "correct_answer": "In how quickly messages travel and how far they spread.",
+    "difficulty": "hard",
+    "explanation": "The speaker names exactly two dimensions, 'the speed and reach of communication.' Choice 3 contradicts the closing qualification, while choices 2 and 4 are plausible claims about social media that this talk never makes.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: \"Good afternoon, everyone. Today, we're going to discuss the impact of social media on communication.\" B: \"Is it true that social media has completely changed how we interact?\" A: \"In many ways, yes. It has altered the speed and reach of communication, but face-to-face interaction remains crucial.\"",
+    "passageGroupId": "pg-b8cb459151d9eccb6bc705d68a752d18",
+    "prompt": "[Academic Talk — Communication] What can be inferred about the assumption behind the listener's question?",
+    "choices": [
+      "The listener treats the change as possibly total, and the speaker qualifies that view.",
+      "The listener doubts that social media has affected communication at all.",
+      "The listener is asking the speaker to define what counts as social media.",
+      "The listener agrees with the speaker's opening claim and is adding support for it."
+    ],
+    "correct_answer": "The listener treats the change as possibly total, and the speaker qualifies that view.",
+    "difficulty": "hard",
+    "explanation": "The question uses 'completely changed,' and the speaker's reply grants part of it before adding a limit — so the assumption was one of total change. Choice 2 reverses the question, choice 3 invents a request for a definition, and choice 4 misreads a question as agreement.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Attention all residents: Due to maintenance, the water supply will be shut off from 10 AM to 2 PM tomorrow. Please plan accordingly and ensure you have enough water stored for your needs.\"",
+    "passageGroupId": "pg-6809b95cd79c15cd06f14c75705ada66",
+    "prompt": "[Announcement — Residence Hall] What are residents asked to do in advance?",
+    "choices": [
+      "Set aside enough water to get through the interruption.",
+      "Report any plumbing problems to the maintenance office.",
+      "Avoid using the building's bathrooms until 2 PM.",
+      "Move to another residence hall for the day."
+    ],
+    "correct_answer": "Set aside enough water to get through the interruption.",
+    "difficulty": "hard",
+    "explanation": "The only instruction given is to 'ensure you have enough water stored for your needs.' Choice 3 is a plausible consequence of a shutoff but is never stated, and choices 2 and 4 describe actions the announcement never asks for.",
+    "section": "listening",
+    "listeningTask": "announcement"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Attention all residents: Due to maintenance, the water supply will be shut off from 10 AM to 2 PM tomorrow. Please plan accordingly and ensure you have enough water stored for your needs.\"",
+    "passageGroupId": "pg-6809b95cd79c15cd06f14c75705ada66",
+    "prompt": "[Announcement — Residence Hall] What is the main purpose of the announcement?",
+    "choices": [
+      "To give advance warning of a temporary loss of service so residents can prepare.",
+      "To apologize for an unexpected interruption that has already occurred.",
+      "To explain what caused a recent problem with the building's plumbing.",
+      "To announce a permanent change to the building's water system."
+    ],
+    "correct_answer": "To give advance warning of a temporary loss of service so residents can prepare.",
+    "difficulty": "hard",
+    "explanation": "The shutoff is scheduled for tomorrow and residents are told to 'plan accordingly,' so the notice is preparatory. Choice 2 puts the event in the past, choice 3 treats scheduled maintenance as a breakdown, and choice 4 ignores the stated 10 AM to 2 PM window.",
+    "section": "listening",
+    "listeningTask": "announcement"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Did you hear about the new recycling policy in the dorms? B: No, what’s changed? A: They’re asking everyone to separate plastics, paper, and metal now. B: That sounds like more work. A: Maybe, but they say it’ll help reduce waste on campus. B: I guess it’s worth it if it makes a difference.",
+    "passageGroupId": "pg-771ced02feae133dca0a7a85eb3023e9",
+    "prompt": "[Conversation — Residence hall] What are the speakers mainly discussing?",
+    "choices": [
+      "A change in how waste has to be sorted in the dormitories.",
+      "A campus-wide ban on plastic containers.",
+      "Whether the dormitories produce more waste than other campus buildings.",
+      "A volunteer program for cleaning up the campus grounds."
+    ],
+    "correct_answer": "A change in how waste has to be sorted in the dormitories.",
+    "difficulty": "hard",
+    "explanation": "The whole exchange concerns a new dorm policy requiring plastics, paper, and metal to be separated. Choice 2 is a plausible campus-sustainability measure that contradicts the stated policy, and choices 3 and 4 introduce topics never raised.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Did you hear about the new recycling policy in the dorms? B: No, what’s changed? A: They’re asking everyone to separate plastics, paper, and metal now. B: That sounds like more work. A: Maybe, but they say it’ll help reduce waste on campus. B: I guess it’s worth it if it makes a difference.",
+    "passageGroupId": "pg-771ced02feae133dca0a7a85eb3023e9",
+    "prompt": "[Conversation — Residence hall] According to Speaker A, what is the policy meant to accomplish?",
+    "choices": [
+      "Cutting down the amount of waste the campus produces.",
+      "Lowering the cost of trash collection in the dormitories.",
+      "Reducing the time residents spend dealing with their trash.",
+      "Ensuring that plastics are collected more often than paper."
+    ],
+    "correct_answer": "Cutting down the amount of waste the campus produces.",
+    "difficulty": "hard",
+    "explanation": "Speaker A reports that 'they say it'll help reduce waste on campus.' Choice 2 is a plausible motive never mentioned, choice 3 contradicts B's remark that it means more work, and choice 4 recombines the listed materials into a claim no one makes.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Did you hear about the new recycling policy in the dorms? B: No, what’s changed? A: They’re asking everyone to separate plastics, paper, and metal now. B: That sounds like more work. A: Maybe, but they say it’ll help reduce waste on campus. B: I guess it’s worth it if it makes a difference.",
+    "passageGroupId": "pg-771ced02feae133dca0a7a85eb3023e9",
+    "prompt": "[Conversation — Residence hall] Why does Speaker A respond with 'Maybe' before continuing?",
+    "choices": [
+      "To grant Speaker B's objection before offering a reason to accept the policy.",
+      "To admit uncertainty about whether the policy has actually changed.",
+      "To signal that Speaker A has not decided whether to follow the new rules.",
+      "To question whether separating metal is really necessary."
+    ],
+    "correct_answer": "To grant Speaker B's objection before offering a reason to accept the policy.",
+    "difficulty": "hard",
+    "explanation": "'Maybe, but they say...' concedes B's 'more work' complaint and then pivots to a justification. Choice 2 attaches the hedge to the wrong claim, choice 3 reads a compliance decision into it, and choice 4 keyword-echoes the list of materials with no functional fit.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: This is a reminder that the campus shuttle will be operating on a reduced schedule during the upcoming holiday weekend. Buses will run every 45 minutes instead of every 20 minutes, and service will end at 8 p.m. each day. Please plan your travel accordingly. For those needing transportation after hours, local taxi and ride-share services are available. Regular shuttle service will resume on Monday morning.",
+    "passageGroupId": "pg-0d443f7438f16d8a958885b52a480711",
+    "prompt": "[Announcement — Campus PA] How will holiday-weekend service differ from the normal shuttle schedule?",
+    "choices": [
+      "Buses will arrive less than half as often as they usually do.",
+      "Buses will still come every 20 minutes but will stop running earlier.",
+      "Buses will keep their usual frequency but will skip some stops.",
+      "Buses will not run at all until Monday morning."
+    ],
+    "correct_answer": "Buses will arrive less than half as often as they usually do.",
+    "difficulty": "hard",
+    "explanation": "Comparing the two intervals given — every 45 minutes instead of every 20 — shows frequency drops by more than half. Choice 2 keeps the normal interval in the holiday plan, choice 3 invents skipped stops, and choice 4 contradicts the reduced-but-running schedule while echoing 'Monday.'",
+    "section": "listening",
+    "listeningTask": "announcement"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: This is a reminder that the campus shuttle will be operating on a reduced schedule during the upcoming holiday weekend. Buses will run every 45 minutes instead of every 20 minutes, and service will end at 8 p.m. each day. Please plan your travel accordingly. For those needing transportation after hours, local taxi and ride-share services are available. Regular shuttle service will resume on Monday morning.",
+    "passageGroupId": "pg-0d443f7438f16d8a958885b52a480711",
+    "prompt": "[Announcement — Campus PA] What can be inferred about the reduced schedule?",
+    "choices": [
+      "It was arranged ahead of time rather than caused by a sudden problem.",
+      "It will stay in effect until the university announces otherwise.",
+      "It was necessary because too few drivers were available.",
+      "It applies only to routes serving off-campus housing."
+    ],
+    "correct_answer": "It was arranged ahead of time rather than caused by a sudden problem.",
+    "difficulty": "hard",
+    "explanation": "The announcement calls itself a 'reminder' about an 'upcoming' weekend and names Monday as the return to normal, so the change was planned. Choice 2 ignores that stated end point, choice 3 supplies a plausible cause never given, and choice 4 adds a restriction the announcement does not make.",
+    "section": "listening",
+    "listeningTask": "announcement"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"In the study of economics, we often assume that consumers make rational decisions. However, behavioral economics shows that this isn't always the case. For example, the 'endowment effect' suggests people value items they own more than similar items they don't own. This challenges the traditional view of rational consumer behavior.\"",
+    "passageGroupId": "pg-57ac8ab3481207f25cb598b83c91aac9",
+    "prompt": "[Academic Talk — Economics] Why does the speaker bring up the endowment effect?",
+    "choices": [
+      "As evidence that consumers do not always behave the way the standard model predicts.",
+      "To define what economists mean when they call a decision rational.",
+      "To show that ownership makes a good objectively more valuable than a similar good.",
+      "To argue that behavioral economics has replaced traditional economic theory."
+    ],
+    "correct_answer": "As evidence that consumers do not always behave the way the standard model predicts.",
+    "difficulty": "hard",
+    "explanation": "The example is introduced with 'for example' immediately after the claim that rational choice 'isn't always the case,' so it functions as supporting evidence. Choice 2 describes the opening sentence's role, choice 3 turns a claim about perceived value into one about objective worth, and choice 4 inflates 'challenges' into replacement.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"In the study of economics, we often assume that consumers make rational decisions. However, behavioral economics shows that this isn't always the case. For example, the 'endowment effect' suggests people value items they own more than similar items they don't own. This challenges the traditional view of rational consumer behavior.\"",
+    "passageGroupId": "pg-57ac8ab3481207f25cb598b83c91aac9",
+    "prompt": "[Academic Talk — Economics] According to the speaker, what does the endowment effect describe?",
+    "choices": [
+      "People rate things they already own above comparable things they do not own.",
+      "People rate scarce goods above goods that are widely available.",
+      "People are willing to pay more for an item than it is actually worth.",
+      "People would rather own many inexpensive items than a few valuable ones."
+    ],
+    "correct_answer": "People rate things they already own above comparable things they do not own.",
+    "difficulty": "hard",
+    "explanation": "The definition given turns on a comparison between owned and non-owned but similar items. Choice 2 substitutes scarcity, a real economic principle the talk never mentions; choice 3 drops the comparison qualifier entirely; choice 4 is unrelated to anything said.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"In the study of economics, we often assume that consumers make rational decisions. However, behavioral economics shows that this isn't always the case. For example, the 'endowment effect' suggests people value items they own more than similar items they don't own. This challenges the traditional view of rational consumer behavior.\"",
+    "passageGroupId": "pg-57ac8ab3481207f25cb598b83c91aac9",
+    "prompt": "[Academic Talk — Economics] What can be inferred about the assumption the speaker names at the beginning?",
+    "choices": [
+      "It is still widely used but cannot account for every observed choice.",
+      "It has been shown to be false in every consumer situation.",
+      "It was never widely accepted among economists in the first place.",
+      "It applies only to consumers who own valuable property."
+    ],
+    "correct_answer": "It is still widely used but cannot account for every observed choice.",
+    "difficulty": "hard",
+    "explanation": "Connecting 'we often assume' with 'this isn't always the case' yields a standing assumption with exceptions. Choice 2 drops the qualifier 'always,' choice 3 contradicts 'we often assume,' and choice 4 restates the endowment example without answering the question.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: I heard the campus shuttle is running late today. B: Yes, there was an announcement about delays due to roadwork. A: Oh no, I have a meeting at 10 AM. What should I do? B: You might want to catch an earlier bus or try the bike-share service.\n\nA: I didn't know about the bike-share. How does it work? B: It's pretty simple. You just need to sign up online, and then you can pick up a bike from any station. A: That sounds perfect. I'll try that. Thanks!",
+    "passageGroupId": "pg-870227eed9d793c42f52c3c5d01d5b90",
+    "prompt": "[Conversation — Campus] According to the conversation, what must someone do before using the bike-share?",
+    "choices": [
+      "Register through the service's website.",
+      "Reserve a bike at one particular station beforehand.",
+      "Pick up a pass from the campus transportation office.",
+      "Show a student ID to the shuttle driver."
+    ],
+    "correct_answer": "Register through the service's website.",
+    "difficulty": "hard",
+    "explanation": "The second speaker says you sign up online and can then take a bike from any station. Choice 2 replaces 'any station' with a reservation requirement, and choices 3 and 4 mix in an office and a driver the conversation never involves.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: I heard the campus shuttle is running late today. B: Yes, there was an announcement about delays due to roadwork. A: Oh no, I have a meeting at 10 AM. What should I do? B: You might want to catch an earlier bus or try the bike-share service.\n\nA: I didn't know about the bike-share. How does it work? B: It's pretty simple. You just need to sign up online, and then you can pick up a bike from any station. A: That sounds perfect. I'll try that. Thanks!",
+    "passageGroupId": "pg-870227eed9d793c42f52c3c5d01d5b90",
+    "prompt": "[Conversation — Campus] Why is the first speaker worried about the delay?",
+    "choices": [
+      "A commitment scheduled for that morning may be missed.",
+      "The roadwork is expected to continue for several days.",
+      "The bike-share stations are far from the campus.",
+      "The shuttle may be cancelled altogether."
+    ],
+    "correct_answer": "A commitment scheduled for that morning may be missed.",
+    "difficulty": "hard",
+    "explanation": "The alarm comes right after 'I have a meeting at 10 AM.' Choice 2 stretches the roadwork detail from another line, choice 3 contradicts the description of stations as convenient, and choice 4 upgrades a delay into a cancellation.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: I heard the campus shuttle is running late today. B: Yes, there was an announcement about delays due to roadwork. A: Oh no, I have a meeting at 10 AM. What should I do? B: You might want to catch an earlier bus or try the bike-share service.\n\nA: I didn't know about the bike-share. How does it work? B: It's pretty simple. You just need to sign up online, and then you can pick up a bike from any station. A: That sounds perfect. I'll try that. Thanks!",
+    "passageGroupId": "pg-870227eed9d793c42f52c3c5d01d5b90",
+    "prompt": "[Conversation — Campus] What can be inferred about the first speaker by the end of the conversation?",
+    "choices": [
+      "The speaker plans to use a service he had not known existed.",
+      "The speaker has decided to wait for the delayed shuttle after all.",
+      "The speaker will ask a friend for a ride to the meeting.",
+      "The speaker has used the bike-share before and prefers it to the shuttle."
+    ],
+    "correct_answer": "The speaker plans to use a service he had not known existed.",
+    "difficulty": "hard",
+    "explanation": "'I didn't know about the bike-share' followed by 'I'll try that' gives both halves of the inference. Choice 2 contradicts that decision, choice 3 introduces an option never discussed, and choice 4 reverses the explicit statement of unfamiliarity.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention all library users: Starting next Monday, the main reading room will be closed for renovations for approximately two weeks. During this period, study spaces on the second and third floors will remain open, but access to the main collection will be limited.\n\nIf you need materials from the closed area, please request them at the circulation desk, and staff will retrieve them for you. Printing and computer services will be available only on the upper floors. We apologize for any inconvenience and appreciate your patience as we improve our facilities.",
+    "passageGroupId": "pg-d2d41511ee1c0c7750ed8ad7e71ddc82",
+    "prompt": "[Announcement — Library] What should a patron do to obtain an item held in the closed area?",
+    "choices": [
+      "Ask staff at the circulation desk to bring it out.",
+      "Wait until the reading room reopens in about two weeks.",
+      "Use one of the study spaces on the second or third floor.",
+      "Request it through the library's online catalog."
+    ],
+    "correct_answer": "Ask staff at the circulation desk to bring it out.",
+    "difficulty": "hard",
+    "explanation": "The announcement directs patrons needing closed-area materials to the circulation desk, where staff will retrieve them. Choice 2 takes the timeline from a different sentence, choice 3 takes a real detail and attaches it to the wrong purpose, and choice 4 is a plausible library procedure that is never offered here.",
+    "section": "listening",
+    "listeningTask": "announcement"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention all library users: Starting next Monday, the main reading room will be closed for renovations for approximately two weeks. During this period, study spaces on the second and third floors will remain open, but access to the main collection will be limited.\n\nIf you need materials from the closed area, please request them at the circulation desk, and staff will retrieve them for you. Printing and computer services will be available only on the upper floors. We apologize for any inconvenience and appreciate your patience as we improve our facilities.",
+    "passageGroupId": "pg-d2d41511ee1c0c7750ed8ad7e71ddc82",
+    "prompt": "[Announcement — Library] What can be inferred about the second and third floors during the renovation?",
+    "choices": [
+      "They will have to absorb functions normally handled elsewhere in the building.",
+      "They will be closed to anyone not retrieving materials from the main collection.",
+      "They will temporarily house the entire main collection.",
+      "They are being renovated at the same time as the main reading room."
+    ],
+    "correct_answer": "They will have to absorb functions normally handled elsewhere in the building.",
+    "difficulty": "hard",
+    "explanation": "Two separate statements — study spaces upstairs stay open, and printing and computers will be available only on the upper floors — together imply a concentration of services there. Choices 2 and 4 contradict 'will remain open,' and choice 3 contradicts the arrangement in which staff retrieve items from the closed area.",
+    "section": "listening",
+    "listeningTask": "announcement"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"In today's lecture, we'll explore the impact of climate change on marine biodiversity. Many species are migrating to cooler waters, but this isn't the only change. Ocean acidification is affecting coral reefs, leading to bleaching events. These changes disrupt entire ecosystems, impacting fish populations and the humans who rely on them. Understanding these shifts is crucial for developing conservation strategies.\"",
+    "passageGroupId": "pg-b059c0d2bdfb4774372189cb1c1c9c54",
+    "prompt": "[Academic Talk — Biology] According to the speaker, what is causing coral bleaching?",
+    "choices": [
+      "Increasing acidity in the ocean.",
+      "Rising sea-surface temperatures.",
+      "The movement of species toward cooler waters.",
+      "The loss of fish populations that feed around the reefs."
+    ],
+    "correct_answer": "Increasing acidity in the ocean.",
+    "difficulty": "hard",
+    "explanation": "The talk attributes bleaching specifically to ocean acidification. Choice 2 is the explanation most listeners would supply from general knowledge, but it is not the cause this speaker names; choice 3 belongs to an earlier sentence, and choice 4 reverses the stated direction of harm.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"In today's lecture, we'll explore the impact of climate change on marine biodiversity. Many species are migrating to cooler waters, but this isn't the only change. Ocean acidification is affecting coral reefs, leading to bleaching events. These changes disrupt entire ecosystems, impacting fish populations and the humans who rely on them. Understanding these shifts is crucial for developing conservation strategies.\"",
+    "passageGroupId": "pg-b059c0d2bdfb4774372189cb1c1c9c54",
+    "prompt": "[Academic Talk — Biology] Why does the speaker say 'this isn't the only change'?",
+    "choices": [
+      "To signal that migration is one of several effects still to be described.",
+      "To suggest that migration matters less than it first appears.",
+      "To correct a common misunderstanding about where marine species live.",
+      "To introduce evidence that species are moving toward cooler water."
+    ],
+    "correct_answer": "To signal that migration is one of several effects still to be described.",
+    "difficulty": "hard",
+    "explanation": "The phrase is a transition: acidification and ecosystem disruption follow it. Choice 2 reads a ranking into the line, choice 3 invents a misconception being corrected, and choice 4 restates the migration point the sentence is moving away from.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"In today's lecture, we'll explore the impact of climate change on marine biodiversity. Many species are migrating to cooler waters, but this isn't the only change. Ocean acidification is affecting coral reefs, leading to bleaching events. These changes disrupt entire ecosystems, impacting fish populations and the humans who rely on them. Understanding these shifts is crucial for developing conservation strategies.\"",
+    "passageGroupId": "pg-b059c0d2bdfb4774372189cb1c1c9c54",
+    "prompt": "[Academic Talk — Biology] What does the speaker imply about human communities?",
+    "choices": [
+      "Changes that begin among marine species can eventually reach the people who depend on fishing.",
+      "Human activity is the sole cause of ocean acidification.",
+      "Coastal residents will have to relocate as nearby waters warm.",
+      "Conservation strategies have already begun to reduce bleaching events."
+    ],
+    "correct_answer": "Changes that begin among marine species can eventually reach the people who depend on fishing.",
+    "difficulty": "hard",
+    "explanation": "The chain runs from species-level change to ecosystem disruption to fish populations and 'the humans who rely on them.' Choice 2 is plausible background knowledge the talk never asserts, choice 3 is never mentioned, and choice 4 contradicts the closing point that such strategies still need developing.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: Today we’re going to discuss the concept of keystone species in ecology. A keystone species is one whose impact on its ecosystem is disproportionately large relative to its abundance. For example, sea otters in kelp forest ecosystems prey on sea urchins, which, if left unchecked, can decimate kelp forests.\n\nWhen otters are present, they keep urchin populations in check, allowing kelp to thrive. Remove the otters, and the entire ecosystem can collapse. This illustrates how a single species can shape the structure of a community, even if it isn’t the most numerous.",
+    "passageGroupId": "pg-da25c2837d75e24b1853a29ec40b88d6",
+    "prompt": "[Academic Talk — Biology] Based on the talk, what would most likely follow a sharp decline in the sea otter population?",
+    "choices": [
+      "Urchin numbers would rise and the kelp forest would be stripped away.",
+      "Kelp would grow more densely once a predator had been removed.",
+      "Urchins would starve because their main food source had disappeared.",
+      "The ecosystem would remain stable, since otters are not numerous to begin with."
+    ],
+    "correct_answer": "Urchin numbers would rise and the kelp forest would be stripped away.",
+    "difficulty": "hard",
+    "explanation": "The talk states that unchecked urchins decimate kelp and that removing otters can collapse the system. Choice 2 misreads which organism the otters prey on, choice 3 reverses the food chain, and choice 4 takes the low-abundance detail and draws the opposite of the speaker's conclusion from it.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: Today we’re going to discuss the concept of keystone species in ecology. A keystone species is one whose impact on its ecosystem is disproportionately large relative to its abundance. For example, sea otters in kelp forest ecosystems prey on sea urchins, which, if left unchecked, can decimate kelp forests.\n\nWhen otters are present, they keep urchin populations in check, allowing kelp to thrive. Remove the otters, and the entire ecosystem can collapse. This illustrates how a single species can shape the structure of a community, even if it isn’t the most numerous.",
+    "passageGroupId": "pg-da25c2837d75e24b1853a29ec40b88d6",
+    "prompt": "[Academic Talk — Biology] As the speaker uses it, 'disproportionately large' compares a species' impact with",
+    "choices": [
+      "how many individuals of that species are present.",
+      "how physically large the individual animals are.",
+      "how large the ecosystem it occupies is.",
+      "how long the species has lived in that habitat."
+    ],
+    "correct_answer": "how many individuals of that species are present.",
+    "difficulty": "hard",
+    "explanation": "The definition specifies impact 'relative to its abundance,' and the closing line repeats it as 'even if it isn't the most numerous.' Choice 2 takes the everyday sense of 'large' as body size, and choices 3 and 4 substitute comparisons the speaker never makes.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: Today we’re going to discuss the concept of keystone species in ecology. A keystone species is one whose impact on its ecosystem is disproportionately large relative to its abundance. For example, sea otters in kelp forest ecosystems prey on sea urchins, which, if left unchecked, can decimate kelp forests.\n\nWhen otters are present, they keep urchin populations in check, allowing kelp to thrive. Remove the otters, and the entire ecosystem can collapse. This illustrates how a single species can shape the structure of a community, even if it isn’t the most numerous.",
+    "passageGroupId": "pg-da25c2837d75e24b1853a29ec40b88d6",
+    "prompt": "[Academic Talk — Biology] What does the talk suggest about the most numerous species in a community?",
+    "choices": [
+      "Sheer abundance is not what determines a species' influence on community structure.",
+      "They are usually the ones that keep predator populations in check.",
+      "They are the first to disappear when an ecosystem collapses.",
+      "They are typically the species that ecologists call keystone species."
+    ],
+    "correct_answer": "Sheer abundance is not what determines a species' influence on community structure.",
+    "difficulty": "hard",
+    "explanation": "Joining the opening definition to the final sentence separates influence from numbers. Choice 2 restates what otters do but applies it to the wrong subject, choice 3 is never discussed, and choice 4 states the reverse of the keystone concept.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: Today we’re going to discuss the concept of cognitive dissonance, which is a key idea in psychology. Cognitive dissonance refers to the discomfort people feel when they hold two conflicting beliefs or when their actions contradict their beliefs. For example, imagine someone who values health but smokes cigarettes. The conflict between their behavior and their values creates dissonance. People are motivated to reduce this discomfort, often by changing their beliefs or justifying their actions.\n\nResearchers have found that when people are given insufficient justification for a behavior, they are more likely to change their attitudes to match their actions. For instance, in a classic study, participants who were paid only a small amount to lie about enjoying a boring task later convinced themselves that the task was actually enjoyable. The interesting thing is that the less external justification people have, the more they tend to adjust their internal beliefs. This theory helps explain why people sometimes rationalize decisions that seem inconsistent with their values.",
+    "passageGroupId": "pg-332651ee788eb8b4c010d76838bb8a41",
+    "prompt": "[Academic Talk — Psychology] What is the talk mainly about?",
+    "choices": [
+      "Why people revise their beliefs when their behavior conflicts with them.",
+      "How researchers measure psychological discomfort in the laboratory.",
+      "Why financial incentives are an effective way to change behavior.",
+      "How holding conflicting beliefs leads people to abandon their values."
+    ],
+    "correct_answer": "Why people revise their beliefs when their behavior conflicts with them.",
+    "difficulty": "hard",
+    "explanation": "The talk defines dissonance and then explains the motivation to reduce it by adjusting beliefs or justifying actions. Choice 2 focuses on method rather than content, choice 3 contradicts the finding about small payments, and choice 4 overstates belief adjustment as abandoning values.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: Today we’re going to discuss the concept of cognitive dissonance, which is a key idea in psychology. Cognitive dissonance refers to the discomfort people feel when they hold two conflicting beliefs or when their actions contradict their beliefs. For example, imagine someone who values health but smokes cigarettes. The conflict between their behavior and their values creates dissonance. People are motivated to reduce this discomfort, often by changing their beliefs or justifying their actions.\n\nResearchers have found that when people are given insufficient justification for a behavior, they are more likely to change their attitudes to match their actions. For instance, in a classic study, participants who were paid only a small amount to lie about enjoying a boring task later convinced themselves that the task was actually enjoyable. The interesting thing is that the less external justification people have, the more they tend to adjust their internal beliefs. This theory helps explain why people sometimes rationalize decisions that seem inconsistent with their values.",
+    "passageGroupId": "pg-332651ee788eb8b4c010d76838bb8a41",
+    "prompt": "[Academic Talk — Psychology] In the study the speaker describes, what did the participants who were paid a small amount come to believe?",
+    "choices": [
+      "That the dull task had actually been enjoyable.",
+      "That they had been underpaid for the work they did.",
+      "That lying about the task was justified by the payment they received.",
+      "That the researchers had misled them about the study's real purpose."
+    ],
+    "correct_answer": "That the dull task had actually been enjoyable.",
+    "difficulty": "hard",
+    "explanation": "The speaker says these participants 'convinced themselves that the task was actually enjoyable.' Choice 3 describes the reasoning available to well-paid participants, so it confuses the two conditions; choices 2 and 4 are plausible reactions the talk never reports.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: Today we’re going to discuss the concept of cognitive dissonance, which is a key idea in psychology. Cognitive dissonance refers to the discomfort people feel when they hold two conflicting beliefs or when their actions contradict their beliefs. For example, imagine someone who values health but smokes cigarettes. The conflict between their behavior and their values creates dissonance. People are motivated to reduce this discomfort, often by changing their beliefs or justifying their actions.\n\nResearchers have found that when people are given insufficient justification for a behavior, they are more likely to change their attitudes to match their actions. For instance, in a classic study, participants who were paid only a small amount to lie about enjoying a boring task later convinced themselves that the task was actually enjoyable. The interesting thing is that the less external justification people have, the more they tend to adjust their internal beliefs. This theory helps explain why people sometimes rationalize decisions that seem inconsistent with their values.",
+    "passageGroupId": "pg-332651ee788eb8b4c010d76838bb8a41",
+    "prompt": "[Academic Talk — Psychology] Why does the speaker mention someone who values health but smokes?",
+    "choices": [
+      "To give a concrete instance of actions and beliefs in conflict.",
+      "To argue that public health campaigns rarely change behavior.",
+      "To show that people can hold two opposed beliefs without discomfort.",
+      "To illustrate what happens when external justification is small."
+    ],
+    "correct_answer": "To give a concrete instance of actions and beliefs in conflict.",
+    "difficulty": "hard",
+    "explanation": "The example follows the definition and is introduced with 'for example,' so it illustrates the definition. Choice 3 contradicts the definition it illustrates, choice 4 belongs to the classic study described later, and choice 2 makes a claim about campaigns the talk never makes.",
+    "section": "listening",
+    "listeningTask": "academic_talk"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: \"Hey, did you finish the group project yet?\" B: \"Not yet, I still need to add the conclusion.\" A: \"Okay, but remember it's due tomorrow.\" B: \"I know, I'll work on it tonight.\" A: \"Do you need any help with it?\" B: \"I think I got it, but thanks for offering.\"",
+    "passageGroupId": "pg-3868e633741351e93c64aa7fc2ebd008",
+    "prompt": "[Conversation — Roommates] What is the conversation mainly about?",
+    "choices": [
+      "The state of an assignment that one speaker still has to finish.",
+      "A disagreement over who should write the project's conclusion.",
+      "A plan to ask the instructor to postpone the due date.",
+      "Arrangements to meet and work on the project together tonight."
+    ],
+    "correct_answer": "The state of an assignment that one speaker still has to finish.",
+    "difficulty": "hard",
+    "explanation": "Every turn concerns whether the group project is done and what remains. Choice 2 invents a dispute, choice 3 invents a request for more time, and choice 4 contradicts the point at which B turns down the offer of help.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: \"Hey, did you finish the group project yet?\" B: \"Not yet, I still need to add the conclusion.\" A: \"Okay, but remember it's due tomorrow.\" B: \"I know, I'll work on it tonight.\" A: \"Do you need any help with it?\" B: \"I think I got it, but thanks for offering.\"",
+    "passageGroupId": "pg-3868e633741351e93c64aa7fc2ebd008",
+    "prompt": "[Conversation — Roommates] What remains to be done on the project?",
+    "choices": [
+      "The closing section has not yet been written.",
+      "The project has not been started at all.",
+      "The group has not settled on a topic.",
+      "The finished draft still needs to be proofread."
+    ],
+    "correct_answer": "The closing section has not yet been written.",
+    "difficulty": "hard",
+    "explanation": "Speaker B says only that the conclusion still needs to be added. Choice 2 drops the qualifier in 'not yet ... still need to add,' choice 3 contradicts the fact that most of the work is done, and choice 4 adds a step the speakers never mention.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: \"Hey, did you finish the group project yet?\" B: \"Not yet, I still need to add the conclusion.\" A: \"Okay, but remember it's due tomorrow.\" B: \"I know, I'll work on it tonight.\" A: \"Do you need any help with it?\" B: \"I think I got it, but thanks for offering.\"",
+    "passageGroupId": "pg-3868e633741351e93c64aa7fc2ebd008",
+    "prompt": "[Conversation — Roommates] Why does Speaker A point out that the project is due tomorrow?",
+    "choices": [
+      "To press the point that very little time is left.",
+      "To inform Speaker B of a deadline B was unaware of.",
+      "To explain why Speaker A cannot help with the conclusion.",
+      "To suggest that the group should ask for an extension."
+    ],
+    "correct_answer": "To press the point that very little time is left.",
+    "difficulty": "hard",
+    "explanation": "'Okay, but remember...' functions as a prod, and B's 'I know' shows the deadline was not news. Choice 2 contradicts that reply, choice 3 reverses the direction of the offer of help, and choice 4 introduces an extension no one proposes.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hey, do you have a minute? I wanted to talk about splitting the rent for next semester. I’ve been thinking about how we should divide things up, especially since the rooms are pretty different in size. B: Sure, what’s up? Is there something in particular you’re concerned about? A: Well, since you’re taking the bigger room, I was wondering if you’d be willing to pay a bit more. The thing is, the lease says the rent is $1,200 total, but your room is almost twice the size of mine, and you get more closet space and sunlight. B: I see where you’re coming from. How much more do you think would be fair? Did you have a specific number in mind, or should we try to figure it out together? A: I was thinking maybe $650 for you and $550 for me. I looked up some suggestions online, and a lot of people recommend dividing the rent based on room size or amenities. Since your room is bigger and has that extra window, it seemed reasonable. B: I suppose that makes sense. But I’ll also be paying for the parking spot, which is $60 a month.\n\nI wanted to mention that because I know parking can be expensive around here. A: Right, I forgot about that. What do you mean by ‘paying for the parking spot’? Is it included in the lease, or is it a separate fee you have to pay to the landlord? B: It’s a separate fee. The landlord charges $60 per month for the spot, and since I’ll be the only one using it, I’ll cover the full cost myself. A: Okay, in that case, maybe we can adjust the rent split a little to make it fairer. How about $630 for you and $570 for me? That way, you’re not paying too much more overall. B: That sounds more reasonable. Should we write this into the lease addendum so everything’s clear and official? A: Yes, and we should both sign it before the deadline on Friday. That way, there won’t be any confusion later on. B: Agreed. I’ll draft something tonight and send it to you to review, just to make sure we’re both on the same page. A: Thanks, I appreciate it. Let’s make sure we’re both comfortable with the arrangement before we finalize anything.",
+    "passageGroupId": "pg-0124aa08c7997b4613379fd507c6a7be",
+    "prompt": "[Conversation — Roommates] Why do the speakers move from a $650/$550 split to a $630/$570 split?",
+    "choices": [
+      "Because one roommate will be paying a separate monthly parking fee.",
+      "Because the total rent turned out to be higher than they had expected.",
+      "Because the smaller room also has an extra window.",
+      "Because the online guides they consulted recommend an even split."
+    ],
+    "correct_answer": "Because one roommate will be paying a separate monthly parking fee.",
+    "difficulty": "hard",
+    "explanation": "The adjustment comes immediately after B discloses a $60 parking charge that B alone will cover. Choice 2 contradicts the fixed $1,200 total, choice 3 assigns the extra window to the wrong room, and choice 4 contradicts the advice A describes, which is to divide by room size and amenities.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hey, do you have a minute? I wanted to talk about splitting the rent for next semester. I’ve been thinking about how we should divide things up, especially since the rooms are pretty different in size. B: Sure, what’s up? Is there something in particular you’re concerned about? A: Well, since you’re taking the bigger room, I was wondering if you’d be willing to pay a bit more. The thing is, the lease says the rent is $1,200 total, but your room is almost twice the size of mine, and you get more closet space and sunlight. B: I see where you’re coming from. How much more do you think would be fair? Did you have a specific number in mind, or should we try to figure it out together? A: I was thinking maybe $650 for you and $550 for me. I looked up some suggestions online, and a lot of people recommend dividing the rent based on room size or amenities. Since your room is bigger and has that extra window, it seemed reasonable. B: I suppose that makes sense. But I’ll also be paying for the parking spot, which is $60 a month.\n\nI wanted to mention that because I know parking can be expensive around here. A: Right, I forgot about that. What do you mean by ‘paying for the parking spot’? Is it included in the lease, or is it a separate fee you have to pay to the landlord? B: It’s a separate fee. The landlord charges $60 per month for the spot, and since I’ll be the only one using it, I’ll cover the full cost myself. A: Okay, in that case, maybe we can adjust the rent split a little to make it fairer. How about $630 for you and $570 for me? That way, you’re not paying too much more overall. B: That sounds more reasonable. Should we write this into the lease addendum so everything’s clear and official? A: Yes, and we should both sign it before the deadline on Friday. That way, there won’t be any confusion later on. B: Agreed. I’ll draft something tonight and send it to you to review, just to make sure we’re both on the same page. A: Thanks, I appreciate it. Let’s make sure we’re both comfortable with the arrangement before we finalize anything.",
+    "passageGroupId": "pg-0124aa08c7997b4613379fd507c6a7be",
+    "prompt": "[Conversation — Roommates] Why does Speaker A ask what Speaker B means by 'paying for the parking spot'?",
+    "choices": [
+      "To establish whether that cost is already inside the rent being divided.",
+      "To object to being charged for parking that A will not use.",
+      "To propose that the two of them share the parking cost.",
+      "To question whether the landlord may charge an additional fee."
+    ],
+    "correct_answer": "To establish whether that cost is already inside the rent being divided.",
+    "difficulty": "hard",
+    "explanation": "A's follow-up spells out the issue: is it included in the lease or a separate fee. Choices 2 and 3 both contradict B's statement that B will cover the full cost alone, and choice 4 turns a clarification into a challenge to the landlord.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hey, do you have a minute? I wanted to talk about splitting the rent for next semester. I’ve been thinking about how we should divide things up, especially since the rooms are pretty different in size. B: Sure, what’s up? Is there something in particular you’re concerned about? A: Well, since you’re taking the bigger room, I was wondering if you’d be willing to pay a bit more. The thing is, the lease says the rent is $1,200 total, but your room is almost twice the size of mine, and you get more closet space and sunlight. B: I see where you’re coming from. How much more do you think would be fair? Did you have a specific number in mind, or should we try to figure it out together? A: I was thinking maybe $650 for you and $550 for me. I looked up some suggestions online, and a lot of people recommend dividing the rent based on room size or amenities. Since your room is bigger and has that extra window, it seemed reasonable. B: I suppose that makes sense. But I’ll also be paying for the parking spot, which is $60 a month.\n\nI wanted to mention that because I know parking can be expensive around here. A: Right, I forgot about that. What do you mean by ‘paying for the parking spot’? Is it included in the lease, or is it a separate fee you have to pay to the landlord? B: It’s a separate fee. The landlord charges $60 per month for the spot, and since I’ll be the only one using it, I’ll cover the full cost myself. A: Okay, in that case, maybe we can adjust the rent split a little to make it fairer. How about $630 for you and $570 for me? That way, you’re not paying too much more overall. B: That sounds more reasonable. Should we write this into the lease addendum so everything’s clear and official? A: Yes, and we should both sign it before the deadline on Friday. That way, there won’t be any confusion later on. B: Agreed. I’ll draft something tonight and send it to you to review, just to make sure we’re both on the same page. A: Thanks, I appreciate it. Let’s make sure we’re both comfortable with the arrangement before we finalize anything.",
+    "passageGroupId": "pg-0124aa08c7997b4613379fd507c6a7be",
+    "prompt": "[Conversation — Roommates] What can be inferred about the way the two roommates handle their differing positions?",
+    "choices": [
+      "Each revises an initial position after learning something the other knew.",
+      "Speaker B resists the idea of paying more for the larger room.",
+      "Speaker A holds to the original figures until Speaker B gives in.",
+      "They decide to let the landlord determine what a fair split would be."
+    ],
+    "correct_answer": "Each revises an initial position after learning something the other knew.",
+    "difficulty": "hard",
+    "explanation": "B accepts A's size-based reasoning early on, and A then lowers B's share on learning about the parking fee — two non-adjacent concessions. Choices 2 and 3 contradict 'I see where you're coming from' and A's own revised offer, and choice 4 contradicts the plan to draft a lease addendum themselves.",
+    "section": "listening",
+    "listeningTask": "conversation"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "The Amazon rainforest is a vast ecosystem that plays a critical role in regulating the Earth's climate. It absorbs large amounts of carbon dioxide, which helps mitigate climate change. However, deforestation for agriculture and logging has significantly reduced its capacity to act as a carbon sink.\n\nThe loss of trees not only releases stored carbon but also disrupts local weather patterns, leading to decreased rainfall. This reduction in rainfall can further exacerbate deforestation, creating a feedback loop that threatens the entire ecosystem. Efforts to curb deforestation through policy changes and sustainable practices are crucial to preserving the Amazon's ecological functions.",
+    "passageGroupId": "pg-b893388366a88e96d6a2a9b40e8faa44",
+    "prompt": "[Academic — Biology] In the passage, describing the Amazon as a 'carbon sink' means that it",
+    "choices": [
+      "takes in and holds more carbon than it gives off.",
+      "collects runoff water in low-lying basins.",
+      "is a region where the land is gradually subsiding.",
+      "destroys carbon permanently so that it cannot return to the air."
+    ],
+    "correct_answer": "takes in and holds more carbon than it gives off.",
+    "difficulty": "hard",
+    "explanation": "The surrounding sentences describe absorption of carbon dioxide and carbon that is 'stored' and later released, which fixes the sense as net uptake and storage. Choices 2 and 3 apply everyday meanings of 'sink' that are wrong in this context, and choice 4 confuses storage with destruction, which the reference to released stored carbon rules out.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "The Amazon rainforest is a vast ecosystem that plays a critical role in regulating the Earth's climate. It absorbs large amounts of carbon dioxide, which helps mitigate climate change. However, deforestation for agriculture and logging has significantly reduced its capacity to act as a carbon sink.\n\nThe loss of trees not only releases stored carbon but also disrupts local weather patterns, leading to decreased rainfall. This reduction in rainfall can further exacerbate deforestation, creating a feedback loop that threatens the entire ecosystem. Efforts to curb deforestation through policy changes and sustainable practices are crucial to preserving the Amazon's ecological functions.",
+    "passageGroupId": "pg-b893388366a88e96d6a2a9b40e8faa44",
+    "prompt": "[Academic — Biology] According to the passage, which two consequences follow directly from the loss of trees?",
+    "choices": [
+      "Stored carbon is released and local weather patterns are disturbed.",
+      "Soils erode and river levels fall.",
+      "Carbon absorption rises while rainfall also rises.",
+      "Agriculture expands and logging becomes more profitable."
+    ],
+    "correct_answer": "Stored carbon is released and local weather patterns are disturbed.",
+    "difficulty": "hard",
+    "explanation": "One sentence names both outcomes of tree loss. Choice 2 is plausible general knowledge about deforestation that this passage never states, choice 3 reverses both stated directions, and choice 4 lists the causes of deforestation as though they were its effects.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "The Amazon rainforest is a vast ecosystem that plays a critical role in regulating the Earth's climate. It absorbs large amounts of carbon dioxide, which helps mitigate climate change. However, deforestation for agriculture and logging has significantly reduced its capacity to act as a carbon sink.\n\nThe loss of trees not only releases stored carbon but also disrupts local weather patterns, leading to decreased rainfall. This reduction in rainfall can further exacerbate deforestation, creating a feedback loop that threatens the entire ecosystem. Efforts to curb deforestation through policy changes and sustainable practices are crucial to preserving the Amazon's ecological functions.",
+    "passageGroupId": "pg-b893388366a88e96d6a2a9b40e8faa44",
+    "prompt": "[Academic — Biology] The passage mentions all of the following EXCEPT",
+    "choices": [
+      "agriculture as a driver of forest loss.",
+      "a decline in rainfall following the loss of trees.",
+      "policy change as part of the response to deforestation.",
+      "an international agreement to fund forest protection."
+    ],
+    "correct_answer": "an international agreement to fund forest protection.",
+    "difficulty": "hard",
+    "explanation": "The first three paraphrase separate sentences: deforestation for agriculture and logging, decreased rainfall, and efforts through policy changes. No agreement or funding mechanism appears anywhere in the passage, though one would be plausible on the topic.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "The Amazon rainforest is a vast ecosystem that plays a critical role in regulating the Earth's climate. It absorbs large amounts of carbon dioxide, which helps mitigate climate change. However, deforestation for agriculture and logging has significantly reduced its capacity to act as a carbon sink.\n\nThe loss of trees not only releases stored carbon but also disrupts local weather patterns, leading to decreased rainfall. This reduction in rainfall can further exacerbate deforestation, creating a feedback loop that threatens the entire ecosystem. Efforts to curb deforestation through policy changes and sustainable practices are crucial to preserving the Amazon's ecological functions.",
+    "passageGroupId": "pg-b893388366a88e96d6a2a9b40e8faa44",
+    "prompt": "[Academic — Biology] Why does the author describe the relationship between deforestation and rainfall as a feedback loop?",
+    "choices": [
+      "Because one effect of deforestation goes on to make further deforestation more likely.",
+      "Because rainfall and carbon absorption rise and fall together from year to year.",
+      "Because policy measures must be repeated in order to remain effective.",
+      "Because the forest recovers on its own once normal rainfall returns."
+    ],
+    "correct_answer": "Because one effect of deforestation goes on to make further deforestation more likely.",
+    "difficulty": "hard",
+    "explanation": "The passage says less rainfall 'can further exacerbate deforestation,' which closes the circle. Choice 2 invents a seasonal correlation, choice 3 attaches the term to the sentence about policy instead, and choice 4 contradicts the passage's description of a self-reinforcing threat.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "[Academic — Psychology] Memory consolidation is a process by which temporary memories are transformed into a more permanent state. This process occurs during sleep, particularly in the REM stage. Research shows that sleep deprivation can severely impact this process, leading to difficulties in learning and memory retention. Interestingly, studies also suggest that naps can enhance memory consolidation, indicating that even short periods of sleep are beneficial for memory.",
+    "passageGroupId": "pg-97829ba23f982c9102f8fc25bf75aab1",
+    "prompt": "[Academic — Psychology] What is the main idea of the passage?",
+    "choices": [
+      "Sleep, including short periods of it, supports the process that makes memories durable.",
+      "REM sleep is the only stage in which learning can take place.",
+      "Sleep deprivation is the leading cause of poor academic performance.",
+      "Naps are more effective than a full night of sleep for retaining information."
+    ],
+    "correct_answer": "Sleep, including short periods of it, supports the process that makes memories durable.",
+    "difficulty": "hard",
+    "explanation": "Every sentence bears on the link between sleep and the stabilizing of temporary memories, ending with the point about naps. Choice 2 drops the qualifier 'particularly,' choice 3 is plausible but far broader than anything claimed, and choice 4 turns 'even short periods are beneficial' into a comparison the passage never makes.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "[Academic — Psychology] Memory consolidation is a process by which temporary memories are transformed into a more permanent state. This process occurs during sleep, particularly in the REM stage. Research shows that sleep deprivation can severely impact this process, leading to difficulties in learning and memory retention. Interestingly, studies also suggest that naps can enhance memory consolidation, indicating that even short periods of sleep are beneficial for memory.",
+    "passageGroupId": "pg-97829ba23f982c9102f8fc25bf75aab1",
+    "prompt": "[Academic — Psychology] As used in the passage, 'consolidation' is closest in meaning to",
+    "choices": [
+      "stabilization into a lasting form.",
+      "the merging of two organizations into one.",
+      "repeated review of material already learned.",
+      "compression of something into a smaller space."
+    ],
+    "correct_answer": "stabilization into a lasting form.",
+    "difficulty": "hard",
+    "explanation": "The first sentence defines the process as transforming temporary memories into a more permanent state. Choice 2 is the word's common business meaning and choice 4 its common physical meaning, both wrong here, and choice 3 substitutes a study technique the passage never describes.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "[Academic — Psychology] Memory consolidation is a process by which temporary memories are transformed into a more permanent state. This process occurs during sleep, particularly in the REM stage. Research shows that sleep deprivation can severely impact this process, leading to difficulties in learning and memory retention. Interestingly, studies also suggest that naps can enhance memory consolidation, indicating that even short periods of sleep are beneficial for memory.",
+    "passageGroupId": "pg-97829ba23f982c9102f8fc25bf75aab1",
+    "prompt": "[Academic — Psychology] According to the passage, what is the relationship between REM sleep and memory consolidation?",
+    "choices": [
+      "Consolidation takes place during sleep and especially during REM.",
+      "Consolidation begins only once REM sleep has ended.",
+      "REM sleep interrupts consolidation that began earlier in the night.",
+      "REM sleep is the stage in which temporary memories are first formed."
+    ],
+    "correct_answer": "Consolidation takes place during sleep and especially during REM.",
+    "difficulty": "hard",
+    "explanation": "The passage places the process in sleep, 'particularly in the REM stage.' Choices 2 and 3 reverse or contradict that timing, and choice 4 confuses the formation of memories with their consolidation, which the passage treats as a later transformation.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "[Academic — Psychology] Memory consolidation is a process by which temporary memories are transformed into a more permanent state. This process occurs during sleep, particularly in the REM stage. Research shows that sleep deprivation can severely impact this process, leading to difficulties in learning and memory retention. Interestingly, studies also suggest that naps can enhance memory consolidation, indicating that even short periods of sleep are beneficial for memory.",
+    "passageGroupId": "pg-97829ba23f982c9102f8fc25bf75aab1",
+    "prompt": "[Academic — Psychology] What can be inferred about a student who stays awake all night studying before an exam?",
+    "choices": [
+      "The lost sleep may undercut retention of the material just studied.",
+      "The student would retain more if the material were reviewed during REM sleep.",
+      "A short nap afterward would erase what had been studied earlier.",
+      "The student's memories would stay temporary but be recalled more quickly."
+    ],
+    "correct_answer": "The lost sleep may undercut retention of the material just studied.",
+    "difficulty": "hard",
+    "explanation": "Combining the definition of consolidation with the finding that sleep deprivation impairs it yields the inference. Choice 2 imagines conscious review during sleep, choice 3 contradicts the statement that naps help, and choice 4 pairs a passage term with a benefit the passage never mentions.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "[Academic — Biology] Photosynthesis is a critical process in which plants convert light energy into chemical energy. Chlorophyll, the green pigment in plants, absorbs light most efficiently in the blue and red wavelengths. This energy is then used to convert carbon dioxide and water into glucose and oxygen. Interestingly, chlorophyll reflects green light, which is why plants appear green. However, this reflection means that green light is not used efficiently in photosynthesis.",
+    "passageGroupId": "pg-741dc6056c4fe2fa452ea95db2609875",
+    "prompt": "[Academic — Biology] What does the passage imply about plants grown under green light alone?",
+    "choices": [
+      "They would fare worse than plants grown under blue or red light.",
+      "They would do especially well, since plants themselves appear green.",
+      "They would be unaffected, because all light carries usable energy.",
+      "They would gradually lose their green coloring."
+    ],
+    "correct_answer": "They would fare worse than plants grown under blue or red light.",
+    "difficulty": "hard",
+    "explanation": "Two separate statements — chlorophyll absorbs blue and red most efficiently, and green light is reflected and so not used efficiently — combine to give the inference. Choice 2 mistakes a plant's appearance for a preference, choice 3 is plausible in general but contradicts the final sentence, and choice 4 concerns pigment loss, which is never discussed.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "[Academic — Biology] Photosynthesis is a critical process in which plants convert light energy into chemical energy. Chlorophyll, the green pigment in plants, absorbs light most efficiently in the blue and red wavelengths. This energy is then used to convert carbon dioxide and water into glucose and oxygen. Interestingly, chlorophyll reflects green light, which is why plants appear green. However, this reflection means that green light is not used efficiently in photosynthesis.",
+    "passageGroupId": "pg-741dc6056c4fe2fa452ea95db2609875",
+    "prompt": "[Academic — Biology] As used in the passage, 'reflects' is closest in meaning to",
+    "choices": [
+      "throws back rather than absorbs.",
+      "thinks carefully about.",
+      "represents or stands for.",
+      "bends while passing through."
+    ],
+    "correct_answer": "throws back rather than absorbs.",
+    "difficulty": "hard",
+    "explanation": "The word explains why plants look green and is set against absorption in the surrounding sentences. Choices 2 and 3 are the everyday and figurative senses of 'reflect,' wrong in this optical context, and choice 4 describes refraction instead.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "[Academic — Biology] Photosynthesis is a critical process in which plants convert light energy into chemical energy. Chlorophyll, the green pigment in plants, absorbs light most efficiently in the blue and red wavelengths. This energy is then used to convert carbon dioxide and water into glucose and oxygen. Interestingly, chlorophyll reflects green light, which is why plants appear green. However, this reflection means that green light is not used efficiently in photosynthesis.",
+    "passageGroupId": "pg-741dc6056c4fe2fa452ea95db2609875",
+    "prompt": "[Academic — Biology] According to the passage, what does the conversion described produce?",
+    "choices": [
+      "Glucose and oxygen.",
+      "Carbon dioxide and water.",
+      "Chlorophyll and light energy.",
+      "Chemical energy and green light."
+    ],
+    "correct_answer": "Glucose and oxygen.",
+    "difficulty": "hard",
+    "explanation": "The passage names carbon dioxide and water as what is converted and glucose and oxygen as the result. Choice 2 swaps inputs for outputs, and choices 3 and 4 recombine terms drawn from other sentences into pairings the passage never asserts.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "[Academic — Biology] Photosynthesis is a critical process in which plants convert light energy into chemical energy. Chlorophyll, the green pigment in plants, absorbs light most efficiently in the blue and red wavelengths. This energy is then used to convert carbon dioxide and water into glucose and oxygen. Interestingly, chlorophyll reflects green light, which is why plants appear green. However, this reflection means that green light is not used efficiently in photosynthesis.",
+    "passageGroupId": "pg-741dc6056c4fe2fa452ea95db2609875",
+    "prompt": "[Academic — Biology] According to the passage, all of the following are true EXCEPT",
+    "choices": [
+      "Chlorophyll absorbs blue and red wavelengths efficiently.",
+      "Plants look green because chlorophyll reflects green light.",
+      "Light energy is converted into a chemical form.",
+      "Chlorophyll is stored in a plant's roots until it is needed."
+    ],
+    "correct_answer": "Chlorophyll is stored in a plant's roots until it is needed.",
+    "difficulty": "hard",
+    "explanation": "The first three paraphrase three different sentences of the passage. Roots are never mentioned at all, and the passage identifies chlorophyll as the pigment involved in absorbing light, not as something stored elsewhere.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "The Impressionist movement in art history, which emerged in late 19th-century France, is often characterized by its innovative use of light and color. Many Impressionist painters, such as Claude Monet and Pierre-Auguste Renoir, sought to capture fleeting moments by painting outdoors and employing quick, visible brushstrokes. However, not all artists associated with Impressionism adhered strictly to these techniques. For example, Edgar Degas, while often grouped with the Impressionists, preferred working indoors and focused on scenes of urban life, particularly ballet dancers.\n\nIn most cases, Degas used a more controlled and deliberate style, contrasting with the spontaneity of his contemporaries. This divergence highlights the movement’s diversity. Some art historians argue that the Impressionists’ shared interest in modern life was more significant than their stylistic similarities. On the other hand, others maintain that the technical aspects—such as the depiction of natural light—are what truly define Impressionism. The debate over what unites the Impressionists continues to influence how their work is interpreted today.",
+    "passageGroupId": "pg-ba5021ad1a7b1072e82c3c98eae9aa9a",
+    "prompt": "[Academic — Art History] Why does the author discuss Edgar Degas?",
+    "choices": [
+      "To show that painters linked to the movement did not all share one method.",
+      "To argue that Degas should not be counted as an Impressionist at all.",
+      "To identify the painter who best represents Impressionist technique.",
+      "To explain why urban subjects became popular in late 19th-century France."
+    ],
+    "correct_answer": "To show that painters linked to the movement did not all share one method.",
+    "difficulty": "hard",
+    "explanation": "Degas is introduced right after the statement that not all associated artists followed those techniques, and the paragraph closes by calling this divergence a sign of the movement's diversity. Choice 2 overstates 'often grouped with the Impressionists,' choice 3 reverses the point, and choice 4 borrows his subject matter from a different sentence and makes it the purpose.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "The Impressionist movement in art history, which emerged in late 19th-century France, is often characterized by its innovative use of light and color. Many Impressionist painters, such as Claude Monet and Pierre-Auguste Renoir, sought to capture fleeting moments by painting outdoors and employing quick, visible brushstrokes. However, not all artists associated with Impressionism adhered strictly to these techniques. For example, Edgar Degas, while often grouped with the Impressionists, preferred working indoors and focused on scenes of urban life, particularly ballet dancers.\n\nIn most cases, Degas used a more controlled and deliberate style, contrasting with the spontaneity of his contemporaries. This divergence highlights the movement’s diversity. Some art historians argue that the Impressionists’ shared interest in modern life was more significant than their stylistic similarities. On the other hand, others maintain that the technical aspects—such as the depiction of natural light—are what truly define Impressionism. The debate over what unites the Impressionists continues to influence how their work is interpreted today.",
+    "passageGroupId": "pg-ba5021ad1a7b1072e82c3c98eae9aa9a",
+    "prompt": "[Academic — Art History] How does the passage describe Degas's working method?",
+    "choices": [
+      "Measured and deliberate, and usually carried out indoors.",
+      "Quick and spontaneous, much like that of his contemporaries.",
+      "Devoted to outdoor light and momentary effects.",
+      "Concerned mainly with historical rather than modern subjects."
+    ],
+    "correct_answer": "Measured and deliberate, and usually carried out indoors.",
+    "difficulty": "hard",
+    "explanation": "The passage says he preferred working indoors and used a more controlled and deliberate style. Choices 2 and 3 transfer the characteristics of Monet and Renoir to him, and choice 4 contradicts his focus on ballet dancers and urban life.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "The Impressionist movement in art history, which emerged in late 19th-century France, is often characterized by its innovative use of light and color. Many Impressionist painters, such as Claude Monet and Pierre-Auguste Renoir, sought to capture fleeting moments by painting outdoors and employing quick, visible brushstrokes. However, not all artists associated with Impressionism adhered strictly to these techniques. For example, Edgar Degas, while often grouped with the Impressionists, preferred working indoors and focused on scenes of urban life, particularly ballet dancers.\n\nIn most cases, Degas used a more controlled and deliberate style, contrasting with the spontaneity of his contemporaries. This divergence highlights the movement’s diversity. Some art historians argue that the Impressionists’ shared interest in modern life was more significant than their stylistic similarities. On the other hand, others maintain that the technical aspects—such as the depiction of natural light—are what truly define Impressionism. The debate over what unites the Impressionists continues to influence how their work is interpreted today.",
+    "passageGroupId": "pg-ba5021ad1a7b1072e82c3c98eae9aa9a",
+    "prompt": "[Academic — Art History] The passage states all of the following EXCEPT",
+    "choices": [
+      "that Impressionism emerged in France in the late 1800s.",
+      "that some historians stress the painters' shared interest in modern life.",
+      "that others define the movement by technique, such as the treatment of natural light.",
+      "that the Impressionists exhibited together in opposition to the official Salon."
+    ],
+    "correct_answer": "that the Impressionists exhibited together in opposition to the official Salon.",
+    "difficulty": "hard",
+    "explanation": "The first three paraphrase the opening sentence and the two sides of the closing debate. Joint exhibitions and the Salon are historically real but appear nowhere in this passage, which is what makes the choice tempting.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "The Impressionist movement in art history, which emerged in late 19th-century France, is often characterized by its innovative use of light and color. Many Impressionist painters, such as Claude Monet and Pierre-Auguste Renoir, sought to capture fleeting moments by painting outdoors and employing quick, visible brushstrokes. However, not all artists associated with Impressionism adhered strictly to these techniques. For example, Edgar Degas, while often grouped with the Impressionists, preferred working indoors and focused on scenes of urban life, particularly ballet dancers.\n\nIn most cases, Degas used a more controlled and deliberate style, contrasting with the spontaneity of his contemporaries. This divergence highlights the movement’s diversity. Some art historians argue that the Impressionists’ shared interest in modern life was more significant than their stylistic similarities. On the other hand, others maintain that the technical aspects—such as the depiction of natural light—are what truly define Impressionism. The debate over what unites the Impressionists continues to influence how their work is interpreted today.",
+    "passageGroupId": "pg-ba5021ad1a7b1072e82c3c98eae9aa9a",
+    "prompt": "[Academic — Art History] As used in the passage, 'maintain' is closest in meaning to",
+    "choices": [
+      "assert.",
+      "keep in good repair.",
+      "provide financial support for.",
+      "continue without change."
+    ],
+    "correct_answer": "assert.",
+    "difficulty": "hard",
+    "explanation": "The word introduces the second side of a scholarly disagreement, parallel to 'argue' in the preceding sentence. Choices 2, 3, and 4 are all common everyday senses of 'maintain' that do not fit a sentence about what art historians claim.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "In the late 19th century, Impressionism challenged traditional art forms. Artists like Monet and Renoir focused on capturing light and movement, often painting en plein air. Critics initially dismissed their work as unfinished and chaotic. However, as the public began to appreciate the spontaneity and vivid colors, the movement gained acceptance, influencing future art styles significantly.",
+    "passageGroupId": "pg-a33b233154f492eea35a7c1a38324e68",
+    "prompt": "[Academic — Art History] In the phrase 'the movement gained acceptance,' the word 'movement' is closest in meaning to",
+    "choices": [
+      "a group of artists sharing an approach.",
+      "the physical motion of a subject.",
+      "a shift in an object's position over time.",
+      "an organized political campaign."
+    ],
+    "correct_answer": "a group of artists sharing an approach.",
+    "difficulty": "hard",
+    "explanation": "Here 'movement' names the Impressionists collectively, whose work went on to influence later styles. Choice 2 is the sense the same word carries earlier in the passage, in 'capturing light and movement,' choice 3 is its literal physical sense, and choice 4 shifts it to the wrong domain.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "In the late 19th century, Impressionism challenged traditional art forms. Artists like Monet and Renoir focused on capturing light and movement, often painting en plein air. Critics initially dismissed their work as unfinished and chaotic. However, as the public began to appreciate the spontaneity and vivid colors, the movement gained acceptance, influencing future art styles significantly.",
+    "passageGroupId": "pg-a33b233154f492eea35a7c1a38324e68",
+    "prompt": "[Academic — Art History] According to the passage, what was the critics' initial objection to this work?",
+    "choices": [
+      "It struck them as incomplete and disorderly.",
+      "Its colors were too muted and dull.",
+      "It ignored the subject of light entirely.",
+      "It imitated traditional forms too closely."
+    ],
+    "correct_answer": "It struck them as incomplete and disorderly.",
+    "difficulty": "hard",
+    "explanation": "Critics 'dismissed their work as unfinished and chaotic.' Choice 2 contradicts the later mention of vivid colors, choice 3 contradicts the artists' focus on capturing light, and choice 4 contradicts the opening claim that Impressionism challenged traditional forms.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "In the late 19th century, Impressionism challenged traditional art forms. Artists like Monet and Renoir focused on capturing light and movement, often painting en plein air. Critics initially dismissed their work as unfinished and chaotic. However, as the public began to appreciate the spontaneity and vivid colors, the movement gained acceptance, influencing future art styles significantly.",
+    "passageGroupId": "pg-a33b233154f492eea35a7c1a38324e68",
+    "prompt": "[Academic — Art History] The passage mentions all of the following EXCEPT",
+    "choices": [
+      "painting outdoors.",
+      "an initially negative critical reception.",
+      "an influence on later artistic styles.",
+      "financial hardship among the painters."
+    ],
+    "correct_answer": "financial hardship among the painters.",
+    "difficulty": "hard",
+    "explanation": "The first three paraphrase separate statements: painting en plein air, critics dismissing the work, and significant influence on future styles. Poverty among early Impressionists is a familiar idea but is never raised in this passage.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "In the late 19th century, Impressionism challenged traditional art forms. Artists like Monet and Renoir focused on capturing light and movement, often painting en plein air. Critics initially dismissed their work as unfinished and chaotic. However, as the public began to appreciate the spontaneity and vivid colors, the movement gained acceptance, influencing future art styles significantly.",
+    "passageGroupId": "pg-a33b233154f492eea35a7c1a38324e68",
+    "prompt": "[Academic — Art History] What can be inferred about the change in the movement's standing?",
+    "choices": [
+      "A shift in public taste came before its lasting influence was evident.",
+      "Critics were the first to recognize the value of the new painting.",
+      "The artists altered their techniques in order to satisfy the critics.",
+      "Acceptance arrived only after the painters had died."
+    ],
+    "correct_answer": "A shift in public taste came before its lasting influence was evident.",
+    "difficulty": "hard",
+    "explanation": "The sequence runs from critical dismissal, to the public beginning to appreciate the work, to influence on later styles. Choice 2 reverses who came first, choice 3 invents a concession the artists never make, and choice 4 is a familiar art-history narrative that this passage does not support.",
+    "section": "reading",
+    "readingTask": "academic_passage"
+  }
+]

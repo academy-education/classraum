@@ -159,6 +159,7 @@ function readBankItem(item: unknown): Question | null {
     word_count: asNumber(b.get('word_count')),
     listeningTask: asString(b.get('listeningTask')),
     readingTask: asString(b.get('readingTask')),
+    scored: b.get('scored') === false ? false : null,
   }
 }
 
@@ -388,6 +389,15 @@ export async function drawBankPractice(p: {
     .eq('verified', true)
     .eq('archived', false)
   if (p.domain) query = query.eq('domain', p.domain)
+  // NOTE this is a real SQL FILTER, unlike the TOEFL full-test draw where
+  // difficulty is only a preference. A caller asking for a band the bank
+  // does not hold gets ZERO items, not a smaller set.
+  //
+  // Live as of 2026-07-28: no TOEFL StudyPath node sets `difficulties`
+  // (only the SAT nodes do), which matters because
+  // scripts/classify-toefl-tasks.ts re-labelled every TOEFL listening item
+  // off 'hard' — a TOEFL node requesting ['medium','hard'] would now come
+  // back nearly empty. Check the bank's actual spread before adding one.
   if (p.difficulties?.length) query = query.in('difficulty', p.difficulties)
   // Stable pool order so the same seed always yields the same draw
   // (the daily challenge relies on this for its shared-set property).
@@ -486,9 +496,15 @@ const TOEFL_META: Record<ToeflSection, {
    *  `lower` / `upper` — Stage 2 count on each ETS path. These are set
    *            per-path rather than derived, because ETS's two Stage 2
    *            modules have different TASK MIXES, not just difficulties. */
+  //  `sM1` / `sLower` / `sUpper` — how many of that stage's DELIVERED
+  //            items are SCORED. ETS delivers 48 per path and scores 35
+  //            (Table 1 note: "may contain extra unscored questions"). The
+  //            rest are pilots: graded and shown in review, excluded from
+  //            the denominator. Omit to score everything.
   mix: Array<{
     type: string; n: number; task?: ToeflTask
     m1?: number; lower?: number; upper?: number
+    sM1?: number; sLower?: number; sUpper?: number
   }>
 }> = {
   // Reading counts SCORED ITEMS, not on-screen items. Complete-the-Words
@@ -519,9 +535,15 @@ const TOEFL_META: Record<ToeflSection, {
   //    and it is what the old flat `multiple_choice` blueprint destroyed.
   reading:   { title: 'TOEFL iBT — Reading',   minutes: 35, label: 'Reading',
     mix: [
-      { type: 'fill_in_blanks', n: 2, m1: 1, lower: 1, upper: 1 },
-      { type: 'multiple_choice', task: 'daily_life',       n: 9,  m1: 9, lower: 10, upper: 0 },
-      { type: 'multiple_choice', task: 'academic_passage', n: 19, m1: 9, lower: 0,  upper: 10 },
+      // Scored counts are ETS Table 1 exactly: Stage 1 = 10 CtW + 5 + 5,
+      // Stage 2 = 10 CtW + 5 of whichever MC task that path serves.
+      // Complete the Words is never a pilot — that is the whole point of
+      // the split, since it is what keeps CtW at 20/35 = 57% of the score.
+      { type: 'fill_in_blanks', n: 2, m1: 1, lower: 1, upper: 1, sM1: 1, sLower: 1, sUpper: 1 },
+      { type: 'multiple_choice', task: 'daily_life',       n: 9,  m1: 9, lower: 10, upper: 0,
+        sM1: 5, sLower: 5, sUpper: 0 },
+      { type: 'multiple_choice', task: 'academic_passage', n: 19, m1: 9, lower: 0,  upper: 10,
+        sM1: 5, sLower: 0, sUpper: 5 },
     ] },
   // Listening is FOUR ETS tasks, not one bag of MC.
   //
@@ -561,10 +583,17 @@ const TOEFL_META: Record<ToeflSection, {
       // short — which is exactly what a 5 did before the live-bank verifier
       // caught it. Academic Talk has 2/3/4-question sets, so 12 packs; 11
       // would need one of the only three 3-question talks in the bank.
-      { type: 'multiple_choice', task: 'choose_response', n: 14, m1: 11, lower: 9, upper: 3 },
-      { type: 'multiple_choice', task: 'conversation',    n: 12, m1: 6,  lower: 6, upper: 6 },
-      { type: 'multiple_choice', task: 'announcement',    n: 6,  m1: 6,  lower: 6, upper: 0 },
-      { type: 'multiple_choice', task: 'academic_talk',   n: 16, m1: 4,  lower: 0, upper: 12 },
+      // Scored counts are ETS Table 1 exactly (Stage 1 8/4/4/4 = 20;
+      // lower 7/4/4/0 = 15; upper 3/4/0/8 = 15). Delivered minus scored is
+      // 13 on either path, matching ETS's own scored-vs-delivered gap.
+      { type: 'multiple_choice', task: 'choose_response', n: 14, m1: 11, lower: 9, upper: 3,
+        sM1: 8, sLower: 7, sUpper: 3 },
+      { type: 'multiple_choice', task: 'conversation',    n: 12, m1: 6,  lower: 6, upper: 6,
+        sM1: 4, sLower: 4, sUpper: 4 },
+      { type: 'multiple_choice', task: 'announcement',    n: 6,  m1: 6,  lower: 6, upper: 0,
+        sM1: 4, sLower: 4, sUpper: 0 },
+      { type: 'multiple_choice', task: 'academic_talk',   n: 16, m1: 4,  lower: 0, upper: 12,
+        sM1: 4, sLower: 0, sUpper: 8 },
     ] },
   speaking:  { title: 'TOEFL iBT — Speaking',  minutes: 7,  label: 'Speaking',
     mix: [{ type: 'speaking_repeat', n: 7 }, { type: 'speaking_interview', n: 4 }] },
@@ -893,6 +922,18 @@ export async function assembleToeflFromBank(
   // an odd count splits 24/23 (Listening's 47 MC) rather than 23/24,
   // and Reading's 2 Complete-the-Words paragraphs land one per module —
   // exactly the interleaving the whole-section path produces below.
+  /** How many of this entry's delivered items are scored in this stage,
+   *  or null to score them all (non-TOEFL-2026 entries, and the
+   *  whole-section draw, which has no stage). */
+  const scoredForModule = (
+    e: { sM1?: number; sLower?: number; sUpper?: number },
+  ): number | null => {
+    if (!p.module) return null
+    if (p.module === 1) return e.sM1 ?? null
+    const v = stage2Path === 'lower' ? e.sLower : e.sUpper
+    return v ?? null
+  }
+
   const shareForModule = (e: { n: number; m1?: number; lower?: number; upper?: number }): number => {
     if (!p.module) return e.n
     if (p.module === 1) return e.m1 ?? Math.ceil(e.n / 2)
@@ -951,6 +992,25 @@ export async function assembleToeflFromBank(
     if (ordered.length < n) {
       console.warn('[assemble] blueprint short — bank cannot fill this task',
         { section: p.section, key, want: n, got: ordered.length })
+    }
+    // Mark pilots. `scoredShare` is how many of this stage's delivered
+    // items count; the rest are flagged scored:false and drop out of the
+    // score denominator in submit/route.ts (same path open-response items
+    // already take).
+    //
+    // WHICH items are pilots is chosen by a seeded shuffle, not by
+    // position. Taking "the last k" would be stable across sessions and a
+    // student who reviewed two tests could learn that the trailing
+    // questions of a task never count — and then skip them.
+    const scoredShare = scoredForModule(entry)
+    if (scoredShare != null && scoredShare < ordered.length) {
+      const pilots = new Set(
+        seededShuffle(ordered.map(r => r.id), seed + ':pilot:' + key)
+          .slice(0, ordered.length - scoredShare),
+      )
+      for (const r of ordered) {
+        if (pilots.has(r.id)) r.item = { ...r.item, scored: false }
+      }
     }
     composition[key] = ordered.length
     picked.push(...ordered)

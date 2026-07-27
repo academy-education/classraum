@@ -85,13 +85,24 @@ const LISTENING_TASKS = new Set(['choose_response', 'conversation', 'announcemen
 // single-question sets for those tasks, so banking one wastes the work.
 const MULTI_QUESTION_TASKS = new Set(['conversation', 'announcement', 'academic_talk'])
 
+const READING_TASKS = new Set(['daily_life', 'academic_passage'])
+
+// Section is per-item now: an orphan-repair batch mixes reading and
+// listening. Default to listening so the original hand-authored batches
+// (which carry no `section`) keep inserting exactly as before.
+const sectionOf = it => (it.section === 'reading' ? 'reading' : 'listening')
+
 function listeningShapeOk(it) {
-  return it.type === 'multiple_choice'
+  const base = it.type === 'multiple_choice'
     && Array.isArray(it.choices) && it.choices.length === 4
     && it.choices.includes(it.correct_answer)
     && new Set(it.choices.map(c => String(c).trim())).size === 4
-    && /^\s*transcript:/i.test(it.passage || '')
-    && LISTENING_TASKS.has(it.listeningTask)
+  if (!base) return false
+  return sectionOf(it) === 'reading'
+    ? READING_TASKS.has(it.readingTask)
+    // A listening item must still carry its transcript marker; a reading
+    // passage must not be forced into that shape.
+    : (/^\s*transcript:/i.test(it.passage || '') && LISTENING_TASKS.has(it.listeningTask))
 }
 
 function renderBlindListening(tagged) {
@@ -110,7 +121,9 @@ async function insertListening(keepPath, files) {
   const keep = new Set((JSON.parse(readFileSync(keepPath, 'utf8')).keep) || [])
   const tagged = loadTagged(files)
   const db = admin()
-  const { data: existing } = await db.from('study_item_bank').select('content_hash').eq('family', 'toefl').eq('section', 'listening')
+  // Dedup across BOTH sections — a mixed batch inserts into either.
+  const { data: existing } = await db.from('study_item_bank')
+    .select('content_hash').eq('family', 'toefl').in('section', ['reading', 'listening'])
   const seen = new Set((existing || []).map(r => r.content_hash))
   // Group sizes within this batch, so a multi-question task cannot be
   // banked as an orphan (the assembler would refuse to serve it).
@@ -119,11 +132,29 @@ async function insertListening(keepPath, files) {
     if (!it.passageGroupId) continue
     groupSize.set(it.passageGroupId, (groupSize.get(it.passageGroupId) || 0) + 1)
   }
+  // How many questions each group ALREADY has in the bank, so an
+  // orphan-repair sibling is not mistaken for a new orphan.
+  const { data: existingItems } = await db.from('study_item_bank')
+    .select('item').eq('family', 'toefl').in('section', ['reading', 'listening'])
+    .eq('verified', true).eq('archived', false)
+  const existingGroupCount = new Map()
+  for (const r of existingItems || []) {
+    const g = r.item?.passageGroupId
+    if (g) existingGroupCount.set(g, (existingGroupCount.get(g) || 0) + 1)
+  }
+
   let inserted = 0, rejected = 0
   for (const { id, it } of tagged) {
     if (!listeningShapeOk(it)) { console.log(`SKIP ${id} — bad shape (check listeningTask)`); rejected++; continue }
-    if (MULTI_QUESTION_TASKS.has(it.listeningTask) && (groupSize.get(it.passageGroupId) || 0) < 2) {
-      console.log(`SKIP ${id} — ${it.listeningTask} audio has <2 questions; the assembler will not serve it`)
+    // Orphan repair EXEMPTION: these items are siblings for an audio that
+    // already has one question in the bank, so the batch legitimately holds
+    // fewer than 2 for a group. Counting only within the file would reject
+    // exactly the repair we are performing.
+    const task = it.listeningTask ?? it.readingTask
+    const inBank = existingGroupCount.get(it.passageGroupId) || 0
+    if (MULTI_QUESTION_TASKS.has(task)
+        && (groupSize.get(it.passageGroupId) || 0) + inBank < 2) {
+      console.log(`SKIP ${id} — ${task} set would still have <2 questions; the assembler will not serve it`)
       rejected++; continue
     }
     if (!keep.has(id)) { console.log(`REJECT ${id} — not confirmed by grader`); rejected++; continue }
@@ -131,9 +162,9 @@ async function insertListening(keepPath, files) {
     if (seen.has(content_hash)) { console.log(`DUP ${id}`); continue }
     const domain = labelFrom(it.prompt, 'Listening')
     const { error } = await db.from('study_item_bank').insert({
-      family: 'toefl', section: 'listening', domain, difficulty: it.difficulty || 'hard',
+      family: 'toefl', section: sectionOf(it), domain, difficulty: it.difficulty || 'hard',
       item_type: 'multiple_choice', item: it, content_hash,
-      topic_tag: it.listeningTask,
+      topic_tag: it.listeningTask ?? it.readingTask,
       word_count: it.passage ? it.passage.split(/\s+/).filter(Boolean).length : null,
       verified: true, archived: false, source: 'hand', cohort: COHORT,
       verify_meta: { method: 'claude-authored+claude-blind-grade', passage_needed: true },

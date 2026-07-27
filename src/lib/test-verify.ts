@@ -102,6 +102,21 @@ export interface Question {
    *  them (which inverts between the lower and upper paths) could not be
    *  enforced at all. */
   readingTask: string | null
+  /** TOEFL only: false marks an UNSCORED PILOT item.
+   *
+   *  ETS delivers 48 questions per Reading/Listening path but scores only
+   *  35 of them ("Each module may contain extra unscored questions",
+   *  Table 1 note). Modelling that is not pedantry — it is the only way to
+   *  give a student 48 questions of practice AND keep Complete the Words
+   *  at ETS's 57% of the score. CtW is quantised at 10 questions per
+   *  paragraph, so with everything scored the only total that preserves
+   *  its weight is 35; at 48 it falls to 42%.
+   *
+   *  Absent/true = scored, so nothing outside the TOEFL bank draw changes
+   *  behaviour. A pilot item is still GRADED (the student sees whether
+   *  they got it right, and it still reaches the wrong-answer notebook) —
+   *  it is only excluded from the score DENOMINATOR. */
+  scored: boolean | null
 }
 
 /** Discriminated by `type`. All sub-payloads are intentionally loose
@@ -158,6 +173,7 @@ export interface RawQuestion {
    *  Choose-a-Response batches set it; the generator does not. */
   listeningTask?: string | null
   readingTask?: string | null
+  scored?: boolean | null
 }
 
 const VerifierItemSchema = z.object({
@@ -470,6 +486,8 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     // wrong tag silently fills the wrong blueprint quota.
     listeningTask: q.listeningTask ? sanitize(q.listeningTask) : null,
     readingTask: q.readingTask ? sanitize(q.readingTask) : null,
+    // Absent means scored. Only an explicit `false` marks a pilot.
+    scored: q.scored === false ? false : null,
   }
 }
 

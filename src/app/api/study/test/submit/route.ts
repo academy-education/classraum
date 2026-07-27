@@ -62,6 +62,8 @@ const QuestionSchema = z.object({
   })).nullable().optional(),
   difficulty: z.enum(['easy', 'medium', 'hard']),
   explanation: z.string(),
+  /** false = unscored ETS pilot item. Absent/true = scored. */
+  scored: z.boolean().nullable().optional(),
   distractor_rationales: z
     .array(z.object({ choice: z.string(), reason: z.string() }))
     .nullable()
@@ -440,6 +442,17 @@ function weightedScore(
   studentAnswer: string | null,
 ): { total: number; correct: number } {
   if (isOpenResponse(q)) return { total: 0, correct: 0 }
+  // Unscored ETS pilot item. total = 0 removes it from the denominator,
+  // exactly as open-response items already are — but unlike those it is
+  // still GRADED above, so the student sees the verdict in review and a
+  // wrong pilot still reaches the wrong-answer notebook. Only the score
+  // ignores it.
+  //
+  // This is what lets a section deliver 48 questions and score 35: it is
+  // the only arrangement where Complete the Words keeps ETS's 57% weight,
+  // because a CtW paragraph is quantised at 10 questions and the ratio is
+  // only reachable at a 35-question total.
+  if (q.scored === false) return { total: 0, correct: 0 }
   if (q.type === 'fill_in_blanks') {
     const blanks = q.blanks ?? []
     if (blanks.length === 0) return { total: 1, correct: 0 }
