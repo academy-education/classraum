@@ -6,7 +6,8 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
  * member's final_rank / promotion_event / next_tier.
  *
  * Reward currency: never-expiring PURCHASED-bucket credits
- * (increment_study_purchased_credits), same path duel wins + packs use.
+ * (increment_study_purchased_credits, an upsert since migration 055),
+ * the same path duel wins + packs use.
  * Every grant is written to study_league_rewards, which has unique
  * indexes so a cron re-run never double-pays.
  *
@@ -55,27 +56,12 @@ export interface RewardBreakdown {
 /** Add credits to the purchased bucket + write an audit ledger row. */
 async function grantCredits(studentId: string, delta: number, note: string): Promise<boolean> {
   if (delta <= 0) return false
-  // Ensure a subscription row exists FIRST. increment_study_purchased_credits
-  // only UPDATEs an existing row, and a free student who has only ever studied
-  // (never bought a pack / redeemed a referral) may not have one yet — the
-  // increment would silently no-op and the reward would vanish. Create the
-  // same lazy free row the purchase/referral paths create.
-  const { data: sub } = await supabaseAdmin
-    .from('study_subscriptions').select('id').eq('student_id', studentId).maybeSingle()
-  if (!sub) {
-    // A real create failure (not the 23505 lost race) means no row for the
-    // increment to update — the RPC would return success and the reward
-    // would vanish while study_league_rewards claims it was paid. Report
-    // the failure so the caller doesn't count credits nobody received.
-    const { error: createErr } = await supabaseAdmin.from('study_subscriptions').insert({
-      student_id: studentId, status: 'free', plan: 'free_v1', currency: 'KRW',
-      grant_credits_remaining: 0, purchased_credits_remaining: 0,
-    })
-    if (createErr && createErr.code !== '23505') {
-      console.error('[league-rewards] subscription row create failed', { studentId, delta, error: createErr })
-      return false
-    }
-  }
+  // No pre-provisioning needed: increment_study_purchased_credits is an
+  // upsert as of migration 055, so a free student who has only ever
+  // studied — never bought a pack or redeemed a referral, and therefore
+  // has no study_subscriptions row — gets one created with the reward in
+  // it. The hand-rolled create that used to live here also had to guess
+  // the row's shape, and could refuse a grant the upsert handles fine.
   const { error } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId, p_delta: delta,
   })

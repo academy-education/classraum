@@ -110,15 +110,18 @@ export async function grantCreditPack(opts: {
     .eq('student_id', opts.studentId)
     .maybeSingle()
   if (!sub) {
-    // increment_study_purchased_credits only UPDATEs an existing row, so a
-    // failed create here means the paid credits below land nowhere and the
-    // RPC reports success. Bail before granting so the caller 500s and the
-    // webhook backstop can retry (the study_payments row is already ours,
-    // so the retry path is the one that recovers this).
+    // increment_study_purchased_credits is an upsert as of migration 055,
+    // so the credits below no longer depend on this create succeeding.
+    // It stays because it is also where a freshly issued billing key gets
+    // persisted, and bailing on failure keeps the retry path intact (the
+    // study_payments row is already ours, so the webhook backstop recovers).
     const { error: createErr } = await supabaseAdmin.from('study_subscriptions').insert({
       student_id: opts.studentId,
       status: 'free',
       plan: 'free_v1',
+      // Free row: an unset price_cents used to inherit a 990000 default,
+      // which the admin subscriptions table rendered as ₩9,900.
+      price_cents: 0,
       currency: 'KRW',
       portone_subscription_id: opts.billingKeyToPersist ?? null,
       grant_credits_remaining: 0,

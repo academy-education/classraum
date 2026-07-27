@@ -127,6 +127,10 @@ async function awardDuelOutcome(row: ChallengeRow): Promise<void> {
 
     let credited = false
     if (duelCreditEligible(winnerXp)) {
+      // Safe for a winner who has no study_subscriptions row: the RPC is
+      // an upsert as of migration 055. Before that it was a bare UPDATE
+      // that matched nothing and still returned success, so the duel was
+      // recorded as won and the prize was never delivered.
       const { error } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
         p_student_id: w, p_delta: DUEL_WIN_CREDITS,
       })
