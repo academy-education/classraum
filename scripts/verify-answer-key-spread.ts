@@ -37,6 +37,18 @@ const MAX_SHARE = 0.45
     if (!data || data.length < 1000) break
   }
 
+  // Per-GROUP key structure, not just per-cohort distribution.
+  //
+  // A blind grader caught what the cohort histogram cannot see: the
+  // talk-c1 batch was authored with each 4-question set holding a COMPLETE
+  // permutation of A/B/C/D — one of each, every set. Overall that reads as
+  // a perfect 8/8/8/8 spread, which looks ideal. It is not: inside a set,
+  // three confident answers force the fourth by elimination.
+  //
+  // Any regularity a test-taker can exploit counts, and "uniform overall"
+  // is not the same as "unpredictable locally".
+  const byGroup = new Map<string, string[]>()
+
   const byCohort = new Map<string, number[]>()
   for (const r of rows) {
     const it = r.item as Record<string, unknown> | null
@@ -49,6 +61,10 @@ const MAX_SHARE = 0.45
     const arr = byCohort.get(c) ?? [0, 0, 0, 0]
     arr[pos]!++
     byCohort.set(c, arr)
+    const g = (r.item as Record<string, unknown>)?.passageGroupId
+    if (typeof g === 'string' && g) {
+      byGroup.set(g, [...(byGroup.get(g) ?? []), 'ABCD'[pos]!])
+    }
   }
 
   let bad = 0
@@ -63,6 +79,22 @@ const MAX_SHARE = 0.45
     )
     if (flag) bad++
   }
-  console.log(bad === 0 ? '\nOK — no cohort is answerable by position.' : `\n${bad} skewed cohort(s).`)
+  // A 4-item set whose keys are a complete ABCD permutation is
+  // elimination-solvable; so is one where all four share a slot.
+  const quads = [...byGroup.entries()].filter(([, v]) => v.length === 4)
+  const perms = quads.filter(([, v]) => [...v].sort().join('') === 'ABCD')
+  const uniform = quads.filter(([, v]) => new Set(v).size === 1)
+  console.log(`\n4-question sets: ${quads.length}  ` +
+    `complete-ABCD permutations: ${perms.length}  all-same-slot: ${uniform.length}`)
+  // Chance alone puts ~9.4% of random 4-key sets at a full permutation
+  // (4!/4^4). Flag only a rate far above that.
+  const rate = quads.length ? perms.length / quads.length : 0
+  if (quads.length >= 8 && rate > 0.35) {
+    console.error(`FAIL ${(rate * 100).toFixed(0)}% of 4-question sets are a complete ABCD permutation ` +
+      `(chance is 9.4%) — the fourth answer is forced by elimination`)
+    bad++
+  }
+
+  console.log(bad === 0 ? '\nOK — no cohort is answerable by position.' : `\n${bad} problem(s).`)
   process.exit(bad === 0 ? 0 : 1)
 })()
