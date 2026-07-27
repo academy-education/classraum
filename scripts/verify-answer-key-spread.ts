@@ -23,7 +23,13 @@ import { createClient } from '@supabase/supabase-js'
 config({ path: resolve(process.cwd(), '.env.local') })
 
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
-const MIN_N = 20
+// 12, not 20. A 14-item cohort inserted on 2026-07-28 landed at 50% on one
+// slot and PASSED, because the sample-size gate excused it — the check
+// reported OK on a cohort a student could exploit. A small cohort is not a
+// safe cohort; it is a cohort where one bad draw is a larger share of what
+// gets served. Below 12 the binomial noise genuinely swamps the signal, so
+// that is where the gate belongs.
+const MIN_N = 12
 const MAX_SHARE = 0.45
 
 ;(async () => {

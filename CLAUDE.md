@@ -141,3 +141,33 @@ So, before treating a check as evidence:
    short. `scripts/verify-*.ts` exist for this; run them.
 
 Applies to any check: tests, model graders, SQL audits, scripts.
+
+### Corollary: a batch built to one brief develops a cross-item tell
+
+Three distinct positional/structural tells have now reached the bank, each
+invisible to the check that was watching for the previous one:
+
+1. **Key in slot A** on 73% of a hand-authored cohort. Caught by a grader's
+   remark. Fixed by shuffling; `verify-answer-key-spread.ts` now guards it.
+2. **Every 4-question set a complete ABCD permutation** (78% of one cohort).
+   The per-cohort histogram read as a perfect 25/25/25/25 while three
+   confident answers forced the fourth. Guarded by the same script's
+   per-group check.
+3. **Identical key PROSE across lectures.** 32 items authored to a rigid
+   brief put the same option wording — "the lecturer is committed; the named
+   critic neither way" — as the key in all 8 lectures. Letters were rotated,
+   so both letter checks passed. A candidate who solves one answers eight
+   without listening.
+
+The third has no automated guard, because the tell is semantic. The lesson
+is about the brief, not the checker: **the more rigid the authoring spec,
+the more the answer becomes predictable from the spec rather than the
+content.** When commissioning a batch, require the load-bearing element to
+VARY across items — let different parties be the committed one, let the
+survivor sometimes be the critic's narrowed claim — and ask a grader
+explicitly whether the answer is guessable from the pattern across items,
+not only within one.
+
+Related: `verify-answer-key-spread.ts` gates on a minimum cohort size. A
+14-item cohort at 50%-on-one-slot passed that gate once. Small cohorts are
+not safe cohorts.
