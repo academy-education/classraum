@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { HELP_ARTICLES, localizeArticle } from '@/../content/help/articles'
 import { ArrowLeft, Eye, ThumbsUp, ThumbsDown, MessageSquare, Loader2 } from 'lucide-react'
@@ -50,7 +50,7 @@ export default function HelpAdminPage() {
   useEffect(() => {
     let cancelled = false
     void (async () => {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) {
         if (!cancelled) {
           setError('unauthorized')

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { ThumbsUp, ThumbsDown, Check } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 type Vote = 'up' | 'down'
 
@@ -47,14 +47,14 @@ export function ArticleFeedback({ slug, lang, labels }: ArticleFeedbackProps) {
     setSending(true)
     setError(false)
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) {
         // Not logged in (rare on the help center, but possible during
         // SSR-handoff) — just acknowledge so the UI doesn't get stuck.
         setDone(true)
         return
       }
-      const { error: insertError } = await supabase
+      const { error: insertError } = await db
         .from('help_article_feedback')
         .insert({
           slug,

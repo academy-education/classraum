@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { generateLevelTest, type GenerateTestParams } from '@/lib/level-test-generator'
 
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get academies this user manages
-    const { data: managerRows } = await supabaseAdmin
+    const { data: managerRows } = await dbAdmin
       .from('managers')
       .select('academy_id')
       .eq('user_id', user.id)
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ tests: [] })
     }
 
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await dbAdmin
       .from('level_tests')
       .select(`
         id, title, grade, difficulty, language, question_count,
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify user is a manager in this academy
-    const { data: managerCheck } = await supabaseAdmin
+    const { data: managerCheck } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
 
     const generated = await generateLevelTest(params)
 
-    const { data: test, error: testError } = await supabaseAdmin
+    const { data: test, error: testError } = await dbAdmin
       .from('level_tests')
       .insert({
         academy_id,
@@ -136,7 +136,7 @@ export async function POST(request: NextRequest) {
       explanation: q.explanation || null,
     }))
 
-    const { error: questionsError } = await supabaseAdmin
+    const { error: questionsError } = await dbAdmin
       .from('level_test_questions')
       .insert(questionRows)
 
@@ -144,7 +144,7 @@ export async function POST(request: NextRequest) {
       console.error('[level-tests POST] Questions insert error:', questionsError)
       // Compensating delete. If this silently fails the manager is left with a
       // test row holding zero questions that can still be shared and assigned.
-      const { error: rollbackError } = await supabaseAdmin.from('level_tests').delete().eq('id', test.id)
+      const { error: rollbackError } = await dbAdmin.from('level_tests').delete().eq('id', test.id)
       if (rollbackError) {
         console.error('[level-tests POST] Rollback delete FAILED — orphaned empty test', test.id, rollbackError)
       }

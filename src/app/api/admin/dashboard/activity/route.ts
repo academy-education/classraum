@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '../../_lib/admin-auth'
 
 /**
@@ -32,13 +32,13 @@ export async function GET(request: NextRequest) {
 
     const [academiesRes, subscriptionsRes, failedRes, conversationsRes, studentsRes] =
       await Promise.all([
-        supabaseAdmin
+        dbAdmin
           .from('academies')
           .select('id, name, created_at')
           .gte('created_at', since)
           .order('created_at', { ascending: false })
           .limit(3),
-        supabaseAdmin
+        dbAdmin
           .from('academy_subscriptions')
           .select('id, plan_tier, created_at, academies(name)')
           .gte('created_at', since)
@@ -50,20 +50,20 @@ export async function GET(request: NextRequest) {
         // the nightly deletion cron hit a constraint violation (see
         // migrations 056 and 058). The academy name is joined in
         // application code below instead.
-        supabaseAdmin
+        dbAdmin
           .from('invoices')
           .select('id, final_amount, created_at, academy_id')
           .eq('status', 'failed')
           .gte('created_at', since)
           .order('created_at', { ascending: false })
           .limit(2),
-        supabaseAdmin
+        dbAdmin
           .from('chat_conversations')
           .select('id, created_at, academies(name)')
           .gte('created_at', since)
           .order('created_at', { ascending: false })
           .limit(2),
-        supabaseAdmin
+        dbAdmin
           .from('students')
           .select('academy_id, created_at, academies(name)')
           .gte('created_at', since)
@@ -88,7 +88,7 @@ export async function GET(request: NextRequest) {
     )] as string[]
     const failedAcademyNames = new Map<string, string>()
     if (failedAcademyIds.length) {
-      const { data: named, error: namedErr } = await supabaseAdmin
+      const { data: named, error: namedErr } = await dbAdmin
         .from('academies').select('id, name').in('id', failedAcademyIds)
       // Non-fatal: the payment still shows, just without an academy name.
       if (namedErr) console.error('[admin/activity] academy name lookup failed', namedErr)

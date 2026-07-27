@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { STUDY_PLANS, resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   const target = body.plan ? STUDY_PLANS[body.plan] : undefined
   if (!target) return NextResponse.json({ error: 'unknown plan' }, { status: 400 })
 
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan, pending_plan, portone_subscription_id, purchased_credits_remaining')
     .eq('student_id', user.id)
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     // pending_plan IS the scheduled change. Reporting success on a failed
     // write told the student their downgrade was cancelled while the cron
     // still applied it at the period boundary.
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('study_subscriptions')
       .update({ pending_plan: null, updated_at: new Date().toISOString() })
       .eq('student_id', user.id)
@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
   if (target.priceWon < current.priceWon) {
     // Same: a lost write means the UI shows a scheduled downgrade that the
     // renewal cron will never see, and the student keeps paying the old price.
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('study_subscriptions')
       .update({ pending_plan: target.id, updated_at: new Date().toISOString() })
       .eq('student_id', user.id)
@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
   // grant still refreshes every 30 days via next_grant_at.
   const periodEnd = new Date(now.getTime() + target.intervalDays * 24 * 60 * 60 * 1000)
   const nextGrantAt = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
-  const { error: updateErr } = await supabaseAdmin
+  const { error: updateErr } = await dbAdmin
     .from('study_subscriptions')
     .update({
       plan: target.id,
@@ -132,7 +132,7 @@ export async function POST(req: NextRequest) {
   }
   // Grant already applied above — a lost ledger row is an audit gap, not a
   // lost grant, so it must not fail the (charged) upgrade. Log it.
-  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+  const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
     student_id: user.id,
     delta: target.monthlyCredits,
     bucket: 'grant',

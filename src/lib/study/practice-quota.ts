@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { isPassPlan } from '@/lib/study/plans'
 import { raiseAlert } from '@/lib/ops/alert'
 
@@ -54,7 +54,7 @@ export interface PracticeQuota {
 /** True when the student has a live recurring Premium plan or any live
  *  exam-pass entitlement — i.e. they've paid, so the paid cap/cadence apply. */
 async function isPaidStudent(studentId: string): Promise<boolean> {
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan')
     .eq('student_id', studentId)
@@ -65,7 +65,7 @@ async function isPaidStudent(studentId: string): Promise<boolean> {
     (status === 'active' || status === 'trial') && !!plan && plan !== 'free_v1' && !isPassPlan(plan)
   if (recurringPremium) return true
 
-  const { data: ent } = await supabaseAdmin
+  const { data: ent } = await dbAdmin
     .from('study_entitlements')
     .select('test, expires_at')
     .eq('student_id', studentId)
@@ -106,7 +106,7 @@ function applyRegen(stored: number, updatedAtMs: number, plan: PlanEnergy, now: 
 }
 
 async function readRow(studentId: string): Promise<{ energy: number; updatedAtMs: number } | null> {
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_energy')
     .select('energy, updated_at')
     .eq('student_id', studentId)
@@ -161,7 +161,7 @@ export async function spendEnergy(studentId: string): Promise<{ ok: boolean; sta
   // Verified: this upsert IS the debit. Returning ok:true over a failed
   // write meant the session started and no energy was ever deducted —
   // i.e. unlimited free practice for anyone whose write happened to fail.
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_energy')
     .upsert(
       { student_id: studentId, energy: newEnergy, updated_at: new Date(newAnchorMs).toISOString() },
@@ -224,7 +224,7 @@ export async function getPracticeQuota(studentId: string): Promise<PracticeQuota
 export async function cleanupAbandonedPracticeSessions(studentId: string, exceptId: string): Promise<void> {
   try {
     const graceIso = new Date(Date.now() - 2 * 60_000).toISOString()
-    const { data: sessions } = await supabaseAdmin
+    const { data: sessions } = await dbAdmin
       .from('study_sessions')
       .select('id, config')
       .eq('student_id', studentId)
@@ -240,7 +240,7 @@ export async function cleanupAbandonedPracticeSessions(studentId: string, except
       .map(s => s.id as string)
     if (candidateIds.length === 0) return
 
-    const { data: attempts } = await supabaseAdmin
+    const { data: attempts } = await dbAdmin
       .from('study_attempts')
       .select('session_id')
       .in('session_id', candidateIds)
@@ -250,7 +250,7 @@ export async function cleanupAbandonedPracticeSessions(studentId: string, except
     // Error intentionally ignored: a failed sweep just leaves an empty
     // session on the shelf until the next call retries it. No balance,
     // grade or entitlement depends on it.
-    await supabaseAdmin.from('study_sessions').delete().in('id', empties).eq('student_id', studentId)
+    await dbAdmin.from('study_sessions').delete().in('id', empties).eq('student_id', studentId)
   } catch (e) {
     console.error('[energy] cleanup failed', e)
   }

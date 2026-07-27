@@ -22,12 +22,12 @@ import { logAdminActivity } from '@/lib/admin-auth'
 import { raiseAlert } from '@/lib/ops/alert'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 
-// dbAdmin and supabaseAdmin are the same client in production — the
+// dbAdmin and dbAdmin are the same client in production — the
 // second is only an untyped alias — so the mock exposes one shared
 // object under both names.
 jest.mock('@/lib/supabase-admin', () => {
   const client = { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } }
-  return { dbAdmin: client, supabaseAdmin: client }
+  return { dbAdmin: client }
 })
 jest.mock('@/lib/admin-auth', () => ({
   requireAdminAuth: jest.fn(async () => ({ success: true, user: { id: 'admin-1' } })),

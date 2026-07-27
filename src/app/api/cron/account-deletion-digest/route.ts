@@ -31,7 +31,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyCronAuth } from '@/lib/cron-auth'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { sendPostmarkEmail } from '@/lib/postmark'
 import { recordHeartbeat } from '@/lib/ops/heartbeat'
 
@@ -91,26 +91,26 @@ async function runDigest(startedAt: number): Promise<NextResponse> {
     currentlyInGraceRes,
     overdueRes,
   ] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('account_deletion_log')
       .select('id', { count: 'exact', head: true })
       .gte('scheduled_at', weekAgo.toISOString()),
-    supabaseAdmin
+    dbAdmin
       .from('account_deletion_log')
       .select('id', { count: 'exact', head: true })
       .gte('reactivated_at', weekAgo.toISOString())
       .not('reactivated_at', 'is', null),
-    supabaseAdmin
+    dbAdmin
       .from('account_deletion_log')
       .select('id', { count: 'exact', head: true })
       .gte('hard_deleted_at', weekAgo.toISOString())
       .not('hard_deleted_at', 'is', null),
-    supabaseAdmin
+    dbAdmin
       .from('account_deletion_log')
       .select('id', { count: 'exact', head: true })
       .is('hard_deleted_at', null)
       .is('reactivated_at', null),
-    supabaseAdmin
+    dbAdmin
       .from('account_deletion_log')
       .select('id, scheduled_at', { count: 'exact' })
       .is('hard_deleted_at', null)

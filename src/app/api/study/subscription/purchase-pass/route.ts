@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey, verifyOneTimePayment } from '@/lib/portone-charge'
 import { STUDY_PLANS, STUDY_PASSES, resolvePass, isPassPlan } from '@/lib/study/plans'
@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'pass out of season', code: 'pass_unavailable' }, { status: 409 })
   }
 
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan, portone_subscription_id')
     .eq('student_id', user.id)

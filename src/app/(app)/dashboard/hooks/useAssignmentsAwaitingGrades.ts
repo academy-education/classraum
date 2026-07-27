@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState, useRef } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 interface UseAssignmentsAwaitingGradesReturn {
   /**
@@ -48,7 +48,7 @@ export function useAssignmentsAwaitingGrades(academyId: string | null): UseAssig
         // joined through to the academy. Distinct-count client-side: cheaper
         // than a custom RPC and avoids needing a new SQL function for one
         // chip. If this becomes hot we can move it to an RPC later.
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('assignment_grades')
           .select(`
             assignment_id,

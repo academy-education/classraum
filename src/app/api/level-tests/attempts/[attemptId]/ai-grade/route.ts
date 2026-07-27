@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { aiGradeShortAnswers, type Language } from '@/lib/level-test-generator'
 import { recomputeAttemptScore } from '@/lib/level-test-grading'
@@ -27,7 +27,7 @@ export async function POST(
     const regradeAll = body.regrade_all === true
 
     // Verify manager access + load test language
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select('id, total_questions, level_tests!inner(academy_id, language)')
       .eq('id', attemptId)
@@ -37,7 +37,7 @@ export async function POST(
     }
     const testInfo = attempt.level_tests as unknown as { academy_id: string; language: Language }
 
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -46,7 +46,7 @@ export async function POST(
     if (!mgr) return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
 
     // Pull short-answer responses (ungraded by default)
-    const { data: rows, error: rowsError } = await supabaseAdmin
+    const { data: rows, error: rowsError } = await dbAdmin
       .from('level_test_answers')
       .select(`
         question_id, answer, is_correct,
@@ -94,7 +94,7 @@ export async function POST(
     const now = new Date().toISOString()
     const failedGradeWrites: string[] = []
     for (const g of graded) {
-      const { error: gradeError } = await supabaseAdmin
+      const { error: gradeError } = await dbAdmin
         .from('level_test_answers')
         .update({ is_correct: g.is_correct, graded_at: now })
         .eq('attempt_id', attemptId)
@@ -120,7 +120,7 @@ export async function POST(
     }
 
     // Recompute attempt score
-    const { data: allAnswers } = await supabaseAdmin
+    const { data: allAnswers } = await dbAdmin
       .from('level_test_answers')
       .select('is_correct')
       .eq('attempt_id', attemptId)
@@ -128,7 +128,7 @@ export async function POST(
     const total = attempt.total_questions || (allAnswers?.length ?? 0)
     const { score, needsManualGrading, status } = recomputeAttemptScore(allAnswers || [], total)
 
-    const { data: updated, error: updateError } = await supabaseAdmin
+    const { data: updated, error: updateError } = await dbAdmin
       .from('level_test_attempts')
       .update({
         score,

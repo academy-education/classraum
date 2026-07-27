@@ -3,7 +3,7 @@
 import { useEffect, useState, use } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Loader2, Printer, X } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { Button } from '@/components/ui/button'
 
@@ -43,7 +43,7 @@ export default function LevelTestPrintPage({ params }: PageProps) {
   useEffect(() => {
     const load = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession()
+        const { data: { session } } = await db.auth.getSession()
         const headers: HeadersInit = session?.access_token
           ? { Authorization: `Bearer ${session.access_token}` }
           : {}

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { REFERRAL_SIGNUP_CREDITS, normalizeReferralCode } from '@/lib/study/referral'
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Already referred? Reject before touching any credits.
-  const { data: mine } = await supabaseAdmin
+  const { data: mine } = await dbAdmin
     .from('study_referral_redemptions')
     .select('id')
     .eq('referee_id', user.id)
@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Resolve the code to its owner.
-  const { data: owner } = await supabaseAdmin
+  const { data: owner } = await dbAdmin
     .from('study_referral_codes')
     .select('student_id')
     .eq('code', code)
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
   // concurrent request already inserted for this referee, the unique
   // constraint on referee_id rejects us and we treat it as already
   // redeemed (no reward).
-  const { data: inserted, error: insertErr } = await supabaseAdmin
+  const { data: inserted, error: insertErr } = await dbAdmin
     .from('study_referral_redemptions')
     .insert({ referrer_id: referrerId, referee_id: user.id, code, rewarded: false })
     .select('id')
@@ -114,7 +114,7 @@ export async function POST(req: NextRequest) {
   // So only write it when the credits actually landed — otherwise alert with
   // everything needed to pay them by hand.
   if (referee.ok && referrer.ok) {
-    const { error: rewardedErr } = await supabaseAdmin
+    const { error: rewardedErr } = await dbAdmin
       .from('study_referral_redemptions')
       .update({ rewarded: true })
       .eq('id', inserted.id)
@@ -170,14 +170,14 @@ export async function POST(req: NextRequest) {
  * losing the race is fine — the unique violation is swallowed.
  */
 async function ensureFreeSubscription(studentId: string): Promise<void> {
-  const { data: existing } = await supabaseAdmin
+  const { data: existing } = await dbAdmin
     .from('study_subscriptions')
     .select('student_id')
     .eq('student_id', studentId)
     .maybeSingle()
   if (existing) return
 
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_subscriptions')
     .insert({
       student_id: studentId,
@@ -208,7 +208,7 @@ interface GrantResult {
  * a benign skip.
  */
 async function grantReferralCredits(studentId: string, sourceId: string): Promise<GrantResult> {
-  const { data: sub, error: subErr } = await supabaseAdmin
+  const { data: sub, error: subErr } = await dbAdmin
     .from('study_subscriptions')
     .select('student_id')
     .eq('student_id', studentId)
@@ -217,7 +217,7 @@ async function grantReferralCredits(studentId: string, sourceId: string): Promis
     return { ok: false, credits: 0, error: subErr ?? new Error('no study_subscriptions row to credit') }
   }
 
-  const { error: rpcErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
+  const { error: rpcErr } = await dbAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId,
     p_delta: REFERRAL_SIGNUP_CREDITS,
   })
@@ -226,7 +226,7 @@ async function grantReferralCredits(studentId: string, sourceId: string): Promis
   // The balance moved — the grant succeeded. A failed ledger row is an
   // audit-trail gap, not a lost reward, so it must NOT be reported as a
   // failed grant (that would invite a manual double-grant).
-  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+  const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
     student_id: studentId,
     delta: REFERRAL_SIGNUP_CREDITS,
     bucket: 'purchased',

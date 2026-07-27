@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { raiseAlert } from '@/lib/ops/alert'
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
   if (!body.sessionId) return NextResponse.json({ error: 'missing sessionId' }, { status: 400 })
 
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, mode, status')
     .eq('id', body.sessionId)
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
 
   // Score from the attempts ledger — the grade route wrote one row per
   // answered question, so this is authoritative.
-  const { data: attempts } = await supabaseAdmin
+  const { data: attempts } = await dbAdmin
     .from('study_attempts')
     .select('is_correct')
     .eq('session_id', session.id)
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
   // Verified, not fire-and-forget: this update IS the completion. If it
   // fails and we return anyway, the client fires the XP celebration and
   // marks the journey node done while the session sits 'active' forever.
-  const { error: completeError } = await supabaseAdmin
+  const { error: completeError } = await dbAdmin
     .from('study_sessions')
     .update({ status: 'completed', completed_at: new Date().toISOString(), score })
     .eq('id', session.id)

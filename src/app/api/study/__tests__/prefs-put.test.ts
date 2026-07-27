@@ -5,16 +5,16 @@
  * from the body must never reach the upsert payload.
  */
 import { PUT } from '@/app/api/study/prefs/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 
 jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
+  dbAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
 }))
 jest.mock('@/lib/study/auth', () => ({ requireStudyUser: jest.fn() }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const requireStudyUserMock = requireStudyUser as unknown as jest.Mock
 
 describe('PUT /api/study/prefs', () => {

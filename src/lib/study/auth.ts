@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import type { User } from '@supabase/supabase-js'
 
 /**
@@ -13,7 +13,7 @@ export async function requireStudyUser(
   const auth = req.headers.get('authorization')
   const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
   if (!token) return { response: NextResponse.json({ error: 'unauthorized' }, { status: 401 }) }
-  const { data: { user }, error } = await supabaseAdmin.auth.getUser(token)
+  const { data: { user }, error } = await dbAdmin.auth.getUser(token)
   if (error || !user) return { response: NextResponse.json({ error: 'unauthorized' }, { status: 401 }) }
   return { user }
 }

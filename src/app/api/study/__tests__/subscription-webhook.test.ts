@@ -10,20 +10,20 @@
  */
 import crypto from 'crypto'
 import { POST } from '@/app/api/study/subscription/webhook/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
 import { raiseAlert } from '@/lib/ops/alert'
 
 jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
+  dbAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
 }))
 jest.mock('@/lib/study/sync-refund', () => ({
   syncStudyPaymentRefund: jest.fn(async () => ({ status: 'marked' })),
 }))
 jest.mock('@/lib/ops/alert', () => ({ raiseAlert: jest.fn(async () => {}) }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const syncRefundMock = syncStudyPaymentRefund as jest.Mock
 const raiseAlertMock = raiseAlert as jest.Mock
 

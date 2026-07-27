@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 
 // GET /api/level-tests/attempts/[attemptId]/answers
@@ -16,7 +16,7 @@ export async function GET(
     }
 
     // Verify manager access via the attempt's test's academy
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select('id, test_id, level_tests!inner(academy_id)')
       .eq('id', attemptId)
@@ -26,7 +26,7 @@ export async function GET(
     }
 
     const academyId = (attempt.level_tests as unknown as { academy_id: string })?.academy_id
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -37,7 +37,7 @@ export async function GET(
     }
 
     // Fetch answers with question data
-    const { data: answers, error } = await supabaseAdmin
+    const { data: answers, error } = await dbAdmin
       .from('level_test_answers')
       .select(`
         question_id,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { checkRateLimit } from '@/lib/rate-limit'
 import { extractTextFromFile, MAX_FILE_BYTES, MAX_EXTRACTED_CHARS } from '@/lib/file-text-extractor'
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Authorize: must be a manager for the academy
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)

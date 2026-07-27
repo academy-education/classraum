@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Shared display-identity resolution for study social surfaces (leaderboard,
@@ -32,8 +32,8 @@ export async function resolveDisplayNames(
   const out = new Map<string, string>()
   if (ids.length === 0) return out
   const [{ data: users }, { data: nickRows }] = await Promise.all([
-    supabaseAdmin.from('users').select('id, name').in('id', ids),
-    supabaseAdmin.from('study_user_prefs').select('student_id, nickname').in('student_id', ids),
+    dbAdmin.from('users').select('id, name').in('id', ids),
+    dbAdmin.from('study_user_prefs').select('student_id, nickname').in('student_id', ids),
   ])
   const nameMap = new Map<string, string>()
   for (const u of (users ?? [])) nameMap.set(u.id as string, (u.name as string | null) ?? 'Student')

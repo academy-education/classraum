@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   if (authResult.response) return authResult.response
   const user = authResult.user
 
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_subscriptions')
     .update({ cancel_at_period_end: true, updated_at: new Date().toISOString() })
     .eq('student_id', user.id)

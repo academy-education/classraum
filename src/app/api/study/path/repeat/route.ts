@@ -1,6 +1,6 @@
 import { createHash } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
   // Every unarchived path-tagged session for this student; filter to
   // this template's nodes app-side (jsonb `in` filters are awkward and
   // the row count per student is small).
-  const { data: rows, error: rowsErr } = await supabaseAdmin
+  const { data: rows, error: rowsErr } = await dbAdmin
     .from('study_sessions')
     .select('id, status, config')
     .eq('student_id', user.id)
@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
   // ── Reset — archive the whole run (completed AND stray unfinished
   // sessions) so progress derivation starts clean at node 0.
   const allIds = pathRows.map(r => r.id)
-  const { error: archiveErr } = await supabaseAdmin
+  const { error: archiveErr } = await dbAdmin
     .from('study_sessions')
     .update({ archived: true })
     .in('id', allIds)

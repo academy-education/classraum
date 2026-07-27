@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useState, useCallback, useMemo, ReactNode } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
 import { languages, getNestedValue, SupportedLanguage } from '@/locales'
 import { languageCookies } from '@/lib/cookies'
@@ -118,7 +118,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       }
 
       // First, try to get existing preferences
-      const { data: existingPreferences, error: preferencesError } = await supabase
+      const { data: existingPreferences, error: preferencesError } = await db
         .from('user_preferences')
         .select('language')
         .eq('user_id', userId)
@@ -154,7 +154,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
           // Create default preferences with error handling
           try {
-            const { data: newPreferences, error: insertError } = await supabase
+            const { data: newPreferences, error: insertError } = await db
               .from('user_preferences')
               .insert({
                 user_id: userId,
@@ -221,7 +221,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       if (user?.id) {
         try {
           // Try to update existing preferences first
-          const { error: updateError } = await supabase
+          const { error: updateError } = await db
             .from('user_preferences')
             .update({
               language: newLanguage,
@@ -231,7 +231,7 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
           // If update failed because no row exists, insert new preferences
           if (updateError?.code === 'PGRST116') {
-            const { error: insertError } = await supabase
+            const { error: insertError } = await db
               .from('user_preferences')
               .insert({
                 user_id: user.id,

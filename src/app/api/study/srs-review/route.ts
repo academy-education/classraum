@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
   const nowIso = new Date().toISOString()
 
   // Pull due cards + the joined topic name in one shot.
-  const { data: rows } = await supabaseAdmin
+  const { data: rows } = await dbAdmin
     .from('study_flashcard_reviews')
     .select(`
       student_id, topic_id, card_front, card_back, due_at,

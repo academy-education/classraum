@@ -10,12 +10,12 @@ import { blueprintQuotas, BLUEPRINT, assembleFromBank, assembleToeflFromBank } f
 import { dbAdmin } from '@/lib/supabase-admin'
 import { tableRouter } from '@/tests/study-route-helpers'
 
-// dbAdmin and supabaseAdmin are the same client in production — the
+// dbAdmin and dbAdmin are the same client in production — the
 // second is only an untyped alias — so the mock exposes one shared
 // object under both names.
 jest.mock('@/lib/supabase-admin', () => {
   const client = { from: jest.fn() }
-  return { dbAdmin: client, supabaseAdmin: client }
+  return { dbAdmin: client }
 })
 
 const fromMock = dbAdmin.from as unknown as jest.Mock

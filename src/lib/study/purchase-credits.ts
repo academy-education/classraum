@@ -1,7 +1,7 @@
 import { authHeaders } from '@/lib/auth-headers'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { resolvePack } from '@/lib/study/plans'
 
 /**
@@ -16,7 +16,7 @@ export async function billingCustomer(
   let fullName: string | undefined
   if (user?.id) {
     try {
-      const { data } = await supabase
+      const { data } = await db
         .from('users')
         .select('phone, name')
         .eq('id', user.id)

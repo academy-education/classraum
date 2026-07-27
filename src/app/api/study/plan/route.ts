@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { computeSatPrediction } from '@/lib/study/predict'
 import { buildWeekPlan, type WeakTopic } from '@/lib/study/plan'
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Weakest mastery topics first — the biggest movers to attack.
-    const { data: mastery } = await supabaseAdmin
+    const { data: mastery } = await dbAdmin
       .from('study_mastery')
       .select('score, attempts_count, topic:study_topics ( slug, name_en, name_ko )')
       .eq('student_id', user.id)

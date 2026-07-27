@@ -98,8 +98,8 @@ export default function DashboardPage() {
       if (!user?.id) return
 
       try {
-        const { supabase } = await import('@/lib/supabase')
-        const { data: userInfo, error } = await supabase
+        const { db } = await import('@/lib/supabase')
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', user.id)
@@ -122,7 +122,7 @@ export default function DashboardPage() {
         } else if (role === 'student') {
           // Study-only students (no active academy membership) go straight
           // to Study; students with an academy get the mobile hub.
-          const { count } = await supabase
+          const { count } = await db
             .from('students')
             .select('user_id', { count: 'exact', head: true })
             .eq('user_id', user.id)

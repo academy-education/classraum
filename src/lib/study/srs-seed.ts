@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Seed the spaced-repetition review queue from a missed question.
@@ -29,7 +29,7 @@ export async function seedSrsFromWrongAnswer(opts: {
   // explicitly or the missed question never enters the review queue and
   // nothing anywhere says so.
   try {
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('study_flashcard_reviews')
       .upsert(
         {

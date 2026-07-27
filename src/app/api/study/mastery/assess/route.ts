@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assessSessionMastery } from '@/lib/study-mastery-assess'
 import { requireStudyUser } from '@/lib/study/auth'
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
   // helper run — assessment writes to study_mastery and we don't
   // want a leaked sessionId to overwrite someone else's qualitative
   // mastery.
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id')
     .eq('id', sessionId)

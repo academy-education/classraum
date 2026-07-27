@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 // GET /api/test/[shareToken] - public: fetch test without correct answers
 export async function GET(
@@ -8,7 +8,7 @@ export async function GET(
 ) {
   const { shareToken } = await params
   try {
-    const { data: test, error: testError } = await supabaseAdmin
+    const { data: test, error: testError } = await dbAdmin
       .from('level_tests')
       .select('id, title, question_count, time_limit_minutes, language, share_enabled')
       .eq('share_token', shareToken)
@@ -19,7 +19,7 @@ export async function GET(
       return NextResponse.json({ error: 'Test not found or sharing disabled' }, { status: 404 })
     }
 
-    const { data: questions, error: qError } = await supabaseAdmin
+    const { data: questions, error: qError } = await dbAdmin
       .from('level_test_questions')
       .select('id, order_index, type, question, choices')
       .eq('test_id', test.id)

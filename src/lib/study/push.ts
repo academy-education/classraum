@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Push notification dispatcher for study reminders.
@@ -46,7 +46,7 @@ export async function sendPushToStudent(
     return { sent: 0, failed: 0, skipped: true, reason: 'fcm_not_configured' }
   }
 
-  const { data: tokens } = await supabaseAdmin
+  const { data: tokens } = await dbAdmin
     .from('device_tokens')
     .select('token, platform')
     .eq('user_id', studentId)
@@ -99,7 +99,7 @@ export async function sendPushToStudent(
         if (res.status === 404 || res.status === 410) {
           // If the deactivation is lost we keep pushing to a dead token on
           // every future notification, permanently inflating `failed`.
-          const { error } = await supabaseAdmin
+          const { error } = await dbAdmin
             .from('device_tokens')
             .update({ is_active: false })
             .eq('token', t.token)

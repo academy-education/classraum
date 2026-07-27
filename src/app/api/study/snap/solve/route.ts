@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp } from '@/lib/study/xp'
 import { resolvePlan, planFeatures } from '@/lib/study/plans'
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
   // Tier gate: unlimited snaps are a Premium perk; General (and
   // trial) users get a daily allowance. Counted against calendar-day
   // UTC — simple and predictable.
-  const { data: subRow } = await supabaseAdmin
+  const { data: subRow } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan')
     .eq('student_id', user.id)
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
   if (Number.isFinite(features.snapDailyLimit)) {
     const dayStart = new Date()
     dayStart.setUTCHours(0, 0, 0, 0)
-    const { count: todayCount } = await supabaseAdmin
+    const { count: todayCount } = await dbAdmin
       .from('study_snap_captures')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', user.id)
@@ -94,7 +94,7 @@ export async function POST(req: NextRequest) {
     : image.type.includes('heic') ? 'heic'
     : 'jpg'
   const imagePath = `${user.id}/${Date.now()}.${ext}`
-  const uploadRes = await supabaseAdmin.storage
+  const uploadRes = await dbAdmin.storage
     .from('study-snap-images')
     .upload(imagePath, image, { contentType: image.type || 'image/jpeg', upsert: false })
   if (uploadRes.error) {
@@ -135,7 +135,7 @@ export async function POST(req: NextRequest) {
   const out = result.object
 
   // Persist capture.
-  const { data: capture, error: insertErr } = await supabaseAdmin
+  const { data: capture, error: insertErr } = await dbAdmin
     .from('study_snap_captures')
     .insert({
       student_id: user.id,

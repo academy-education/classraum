@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { SegmentedTabs } from '@/app/mobile/study/_shared/SegmentedTabs'
 
 function PillFilter({ label, value, onChange, options }: {
@@ -107,7 +107,7 @@ export default function BankBrowserPage() {
   const pageSize = 25
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
+    db.auth.getSession().then(({ data }) => {
       const t = data.session?.access_token
       if (!t) { setAuthState('noauth'); return }
       setToken(t)

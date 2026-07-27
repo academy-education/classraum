@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { resolveDisplayNames } from '@/lib/study/identity'
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   const user = authResult.user
   const nowIso = new Date().toISOString()
 
-  const { data: raw } = await supabaseAdmin
+  const { data: raw } = await dbAdmin
     .from('study_challenges')
     .select(SELECT)
     .or(`challenger_id.eq.${user.id},opponent_id.eq.${user.id}`)
@@ -121,7 +121,7 @@ async function handleChallenge(me: string, friendId: string | undefined): Promis
     return NextResponse.json({ error: 'not friends', code: 'not_friends' }, { status: 400 })
   }
 
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_challenges')
     .insert({ challenger_id: me, opponent_id: friendId, status: 'pending' })
   if (error) {
@@ -137,7 +137,7 @@ async function handleChallenge(me: string, friendId: string | undefined): Promis
 
 async function handleAccept(me: string, id: string | undefined): Promise<NextResponse> {
   if (!id) return NextResponse.json({ error: 'missing id' }, { status: 400 })
-  const { data: row } = await supabaseAdmin
+  const { data: row } = await dbAdmin
     .from('study_challenges').select('id, opponent_id, status').eq('id', id).maybeSingle()
   if (!row || row.opponent_id !== me || row.status !== 'pending') {
     return NextResponse.json({ error: 'no such challenge', code: 'not_found' }, { status: 404 })
@@ -147,7 +147,7 @@ async function handleAccept(me: string, id: string | undefined): Promise<NextRes
   // This update IS the acceptance — start_at/end_at define the XP window
   // the duel is scored over. Returning 'active' over a failed write showed
   // both players a running duel that never started or resolved.
-  const { error } = await supabaseAdmin.from('study_challenges').update({
+  const { error } = await dbAdmin.from('study_challenges').update({
     status: 'active',
     start_at: now.toISOString(),
     end_at: end.toISOString(),
@@ -164,7 +164,7 @@ async function handleRespond(me: string, id: string | undefined, status: 'declin
   if (!id) return NextResponse.json({ error: 'missing id' }, { status: 400 })
   // A failed decline leaves the duel pending, so the partial unique index
   // keeps blocking any new duel with that friend while the UI says it's gone.
-  const { error } = await supabaseAdmin.from('study_challenges')
+  const { error } = await dbAdmin.from('study_challenges')
     .update({ status, responded_at: new Date().toISOString() })
     .eq('id', id).eq('opponent_id', me).eq('status', 'pending')
   if (error) {
@@ -178,7 +178,7 @@ async function handleCancel(me: string, id: string | undefined): Promise<NextRes
   if (!id) return NextResponse.json({ error: 'missing id' }, { status: 400 })
   // As above — a silently failed cancel keeps the pending row (and its
   // unique-index lock on the pair) alive behind a "cancelled" UI.
-  const { error } = await supabaseAdmin.from('study_challenges')
+  const { error } = await dbAdmin.from('study_challenges')
     .update({ status: 'cancelled' })
     .eq('id', id).eq('challenger_id', me).eq('status', 'pending')
   if (error) {

@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 /**
  * Send push notification via Edge Function
@@ -124,7 +124,7 @@ export async function createNotification(options: CreateNotificationOptions) {
     // Call API route to create notification (bypasses RLS).
     // Endpoint requires auth — forward the user's JWT from the current
     // Supabase session so the server's auth check passes.
-    const { data: { session } } = await supabase.auth.getSession()
+    const { data: { session } } = await db.auth.getSession()
     const response = await fetch('/api/notifications/create', {
       method: 'POST',
       headers: {

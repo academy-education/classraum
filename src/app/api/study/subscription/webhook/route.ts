@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getBillingKeyInfo } from '@/lib/portone-charge'
 import { STUDY_PLANS } from '@/lib/study/plans'
 import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
@@ -134,7 +134,7 @@ export async function POST(req: NextRequest) {
   // Match the row by either last_payment_id or by the renewal
   // paymentId prefix. Avoids losing track of charges if a race let
   // the webhook arrive before the cron's UPDATE landed.
-  const { data: row } = await supabaseAdmin
+  const { data: row } = await dbAdmin
     .from('study_subscriptions')
     .select('id, status, current_period_end')
     .eq('last_payment_id', paymentId)
@@ -152,7 +152,7 @@ export async function POST(req: NextRequest) {
     // Only flip if not already terminal — don't resurrect a
     // cancelled/expired row from a stale webhook.
     if (row.status === 'active' || row.status === 'trial') {
-      const { error } = await supabaseAdmin
+      const { error } = await dbAdmin
         .from('study_subscriptions')
         .update({
           status: 'past_due',
@@ -172,7 +172,7 @@ export async function POST(req: NextRequest) {
     // Refund — set period_end to now so access drops immediately,
     // and mark cancelled. Customer support follows up on partial
     // refund edge cases manually.
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('study_subscriptions')
       .update({
         status: 'cancelled',

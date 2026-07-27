@@ -26,8 +26,8 @@ export default function AppRootPage() {
     const roleBasedRedirect = async () => {
       try {
         // Get user role from database - this is safe because AuthWrapper has validated the user
-        const { supabase } = await import('@/lib/supabase')
-        const { data: userInfo, error } = await supabase
+        const { db } = await import('@/lib/supabase')
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', user.id)
@@ -48,7 +48,7 @@ export default function AppRootPage() {
         // Grades/Study hub only shows on a true first visit. Parents
         // go to the Grades dashboard since Study is student-only.
         if (userRole === 'student') {
-          const { count } = await supabase
+          const { count } = await db
             .from('students')
             .select('user_id', { count: 'exact', head: true })
             .eq('user_id', user.id)

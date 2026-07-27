@@ -15,7 +15,7 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 export default function AdminError({
   error,
@@ -33,7 +33,7 @@ export default function AdminError({
     // want to add a second crash on top of the first.
     ;(async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession()
+        const { data: { session } } = await db.auth.getSession()
         if (!session?.access_token) return
         await fetch('/api/admin/error-logs', {
           method: 'POST',

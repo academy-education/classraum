@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { Sidebar } from '@/components/ui/sidebar'
 import { DashboardBottomNavigation } from '@/components/ui/DashboardBottomNavigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { NotificationDropdown } from '@/components/ui/notification-dropdown'
 import { ChatWidget } from '@/components/ui/chat-widget'
@@ -112,7 +112,7 @@ export default function AppLayout({
       }
 
       try {
-        const { data: userInfo, error } = await supabase
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', user.id)
@@ -126,14 +126,14 @@ export default function AppLayout({
 
           // Fetch academy_id from managers table for managers
           if (userInfo.role === 'manager') {
-            const { data: managerData } = await supabase
+            const { data: managerData } = await db
               .from('managers')
               .select('academy_id')
               .eq('user_id', user.id)
               .single()
 
             if (managerData?.academy_id) {
-              const { data: academyData } = await supabase
+              const { data: academyData } = await db
                 .from('academies')
                 .select('logo_url')
                 .eq('id', managerData.academy_id)
@@ -143,14 +143,14 @@ export default function AppLayout({
             }
           } else if (userInfo.role === 'teacher') {
             // Teachers also belong to an academy
-            const { data: teacherData } = await supabase
+            const { data: teacherData } = await db
               .from('teachers')
               .select('academy_id')
               .eq('user_id', user.id)
               .single()
 
             if (teacherData?.academy_id) {
-              const { data: academyData } = await supabase
+              const { data: academyData } = await db
                 .from('academies')
                 .select('logo_url')
                 .eq('id', teacherData.academy_id)

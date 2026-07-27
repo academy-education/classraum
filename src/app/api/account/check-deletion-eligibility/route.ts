@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 
 /**
@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Look up the user's role.
-  const { data: userRow, error: userRowError } = await supabaseAdmin
+  const { data: userRow, error: userRowError } = await dbAdmin
     .from('users')
     .select('role')
     .eq('id', user.id)
@@ -66,7 +66,7 @@ export async function GET(request: NextRequest) {
 
   // Manager: check sole-manager status via the SECURITY DEFINER function
   // that bypasses RLS so we can read across all academies they manage.
-  const { data: soleAcademies, error: soleError } = await supabaseAdmin
+  const { data: soleAcademies, error: soleError } = await dbAdmin
     .rpc('user_sole_managed_academies', { p_user_id: user.id })
 
   if (soleError) {

@@ -1,7 +1,7 @@
 // Schedule Update Library
 // Handles updating classroom schedules with different strategies for virtual sessions
 
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { generateVirtualSessionsForDateRange } from './virtual-sessions'
 import { format, addDays } from 'date-fns'
 
@@ -40,16 +40,16 @@ export async function updateClassroomSchedule(
   try {
     switch (options.updateStrategy) {
       case 'future_only':
-        return await updateFromToday(supabase, scheduleId, newScheduleData)
+        return await updateFromToday(db, scheduleId, newScheduleData)
 
       case 'from_date':
         if (!options.effectiveDate) {
           throw new Error('effectiveDate is required for from_date strategy')
         }
-        return await updateFromDate(supabase, scheduleId, newScheduleData, options.effectiveDate)
+        return await updateFromDate(db, scheduleId, newScheduleData, options.effectiveDate)
 
       case 'materialize_existing':
-        return await materializeAndUpdate(supabase, scheduleId, newScheduleData)
+        return await materializeAndUpdate(db, scheduleId, newScheduleData)
 
       default:
         throw new Error(`Unknown update strategy: ${options.updateStrategy}`)
@@ -66,7 +66,7 @@ export async function updateClassroomSchedule(
  * - Creates new schedule starting today
  */
 async function updateFromToday(
-  supabase: any,
+  db: any,
   scheduleId: string,
   newScheduleData: Partial<ClassroomSchedule>
 ): Promise<ScheduleUpdateResult> {
@@ -74,7 +74,7 @@ async function updateFromToday(
   const yesterday = format(addDays(new Date(), -1), 'yyyy-MM-dd')
 
   // Get current schedule
-  const { data: currentSchedule, error: fetchError } = await supabase
+  const { data: currentSchedule, error: fetchError } = await db
     .from('classroom_schedules')
     .select('*')
     .eq('id', scheduleId)
@@ -85,7 +85,7 @@ async function updateFromToday(
   }
 
   // Set effective_until on old schedule (yesterday)
-  const { error: updateError } = await supabase
+  const { error: updateError } = await db
     .from('classroom_schedules')
     .update({ effective_until: yesterday })
     .eq('id', scheduleId)
@@ -95,7 +95,7 @@ async function updateFromToday(
   }
 
   // Create new schedule starting today
-  const { data: newSchedule, error: insertError } = await supabase
+  const { data: newSchedule, error: insertError } = await db
     .from('classroom_schedules')
     .insert({
       classroom_id: currentSchedule.classroom_id,
@@ -123,13 +123,13 @@ async function updateFromToday(
  * - Creates new schedule starting from effective date
  */
 async function updateFromDate(
-  supabase: any,
+  db: any,
   scheduleId: string,
   newScheduleData: Partial<ClassroomSchedule>,
   effectiveDate: string
 ): Promise<ScheduleUpdateResult> {
   // Get current schedule
-  const { data: currentSchedule, error: fetchError } = await supabase
+  const { data: currentSchedule, error: fetchError } = await db
     .from('classroom_schedules')
     .select('*')
     .eq('id', scheduleId)
@@ -144,7 +144,7 @@ async function updateFromDate(
   const dayBefore = format(addDays(effectiveDateObj, -1), 'yyyy-MM-dd')
 
   // Set effective_until on old schedule
-  const { error: updateError } = await supabase
+  const { error: updateError } = await db
     .from('classroom_schedules')
     .update({ effective_until: dayBefore })
     .eq('id', scheduleId)
@@ -154,7 +154,7 @@ async function updateFromDate(
   }
 
   // Create new schedule
-  const { data: newSchedule, error: insertError } = await supabase
+  const { data: newSchedule, error: insertError } = await db
     .from('classroom_schedules')
     .insert({
       classroom_id: currentSchedule.classroom_id,
@@ -183,7 +183,7 @@ async function updateFromDate(
  * - Then updates schedule for future dates
  */
 async function materializeAndUpdate(
-  supabase: any,
+  db: any,
   scheduleId: string,
   newScheduleData: Partial<ClassroomSchedule>
 ): Promise<ScheduleUpdateResult> {
@@ -193,7 +193,7 @@ async function materializeAndUpdate(
   endDate.setMonth(endDate.getMonth() + 6) // 6 months ahead
 
   // Get current schedule
-  const { data: currentSchedule, error: fetchError } = await supabase
+  const { data: currentSchedule, error: fetchError } = await db
     .from('classroom_schedules')
     .select('*')
     .eq('id', scheduleId)
@@ -227,7 +227,7 @@ async function materializeAndUpdate(
 
   // Batch insert real sessions (use upsert to avoid duplicates)
   if (sessionsToInsert.length > 0) {
-    const { error: insertError } = await supabase
+    const { error: insertError } = await db
       .from('classroom_sessions')
       .upsert(sessionsToInsert, {
         onConflict: 'classroom_id,date,start_time',
@@ -243,7 +243,7 @@ async function materializeAndUpdate(
   // Now update the schedule for future (close old, create new)
   const yesterday = format(addDays(today, -1), 'yyyy-MM-dd')
 
-  const { error: updateError } = await supabase
+  const { error: updateError } = await db
     .from('classroom_schedules')
     .update({ effective_until: yesterday })
     .eq('id', scheduleId)
@@ -253,7 +253,7 @@ async function materializeAndUpdate(
   }
 
   // Create new schedule starting today
-  const { data: newSchedule, error: insertNewError } = await supabase
+  const { data: newSchedule, error: insertNewError } = await db
     .from('classroom_schedules')
     .insert({
       classroom_id: currentSchedule.classroom_id,

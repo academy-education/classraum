@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import {
   resolvePlan, planFeatures, STUDY_PLANS, CREDIT_PACK, CREDIT_PACKS,
   STUDY_PASSES, isPassPlan,
@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
   if (authResult.response) return authResult.response
   const user = authResult.user
 
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan, pending_plan, price_cents, currency, trial_ends_at, current_period_start, current_period_end, cancel_at_period_end, grant_credits_remaining, purchased_credits_remaining')
     .eq('student_id', user.id)
@@ -49,14 +49,14 @@ export async function GET(req: NextRequest) {
   // pass — this surfaces it independently so it stays visible (and honoured
   // until its own expiry, e.g. after the subscription is cancelled).
   const nowIso = new Date().toISOString()
-  const { data: entRows } = await supabaseAdmin
+  const { data: entRows } = await dbAdmin
     .from('study_entitlements')
     .select('test, expires_at')
     .eq('student_id', user.id)
     .or(`expires_at.is.null,expires_at.gt.${nowIso}`)
   // Test-scoped pass-credit balances (separate from the generic grant/
   // purchased buckets) — a SAT pass's credits are spendable only on SAT.
-  const { data: passCreditRows } = await supabaseAdmin
+  const { data: passCreditRows } = await dbAdmin
     .from('study_pass_credits')
     .select('test, remaining')
     .eq('student_id', user.id)

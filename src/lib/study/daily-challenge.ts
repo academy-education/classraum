@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Compute today's daily-challenge state for a student. Shared by the
@@ -24,7 +24,7 @@ export async function computeDailyChallenge(userId: string): Promise<DailyChalle
   const today = new Date().toISOString().slice(0, 10)
 
   // Is there already a daily-challenge session for today?
-  const { data: existing } = await supabaseAdmin
+  const { data: existing } = await dbAdmin
     .from('study_sessions')
     .select('id, status, topic_id, topic:study_topics ( id, slug, name_en, name_ko )')
     .eq('student_id', userId)
@@ -38,7 +38,7 @@ export async function computeDailyChallenge(userId: string): Promise<DailyChalle
     return { date: today, sessionId: row.id as string, completed: row.status === 'completed', topic, weak: false }
   }
 
-  const { data: prefs } = await supabaseAdmin
+  const { data: prefs } = await dbAdmin
     .from('study_user_prefs')
     .select('target_tests')
     .eq('student_id', userId)
@@ -53,13 +53,13 @@ export async function computeDailyChallenge(userId: string): Promise<DailyChalle
 
   // Sections = children of the test root, in catalog order. sat-essay
   // is retired (mirrors the topic page's hidden list).
-  const { data: root } = await supabaseAdmin
+  const { data: root } = await dbAdmin
     .from('study_topics')
     .select('id')
     .eq('slug', `test-${family}`)
     .maybeSingle()
   const { data: sectionRows } = root
-    ? await supabaseAdmin
+    ? await dbAdmin
         .from('study_topics')
         .select('id, slug, name_en, name_ko')
         .eq('parent_id', root.id)

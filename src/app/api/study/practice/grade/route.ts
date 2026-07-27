@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { seedSrsFromWrongAnswer } from '@/lib/study/srs-seed'
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
   }
   const q = parsedQ.data
 
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, mode, language, topic_id')
     .eq('id', sessionId)
@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
   // predating the cache fall back to the old client-trusting path.
   let gradedQ = q
   try {
-    const { data: cachedMsg, error: cacheErr } = await supabaseAdmin
+    const { data: cachedMsg, error: cacheErr } = await dbAdmin
       .from('study_messages')
       .select('content')
       .eq('session_id', sessionId)
@@ -165,7 +165,7 @@ export async function POST(req: NextRequest) {
   // same question can't farm 10 XP per call.
   let alreadyCreditedThisQuestion = false
   if (isCorrect) {
-    const { count } = await supabaseAdmin
+    const { count } = await dbAdmin
       .from('study_attempts')
       .select('id', { count: 'exact', head: true })
       .eq('session_id', sessionId)
@@ -183,7 +183,7 @@ export async function POST(req: NextRequest) {
   // unchecked failure showed the student a verdict that then existed
   // nowhere. We still return the verdict they're waiting on — the LLM call
   // is already paid for — but the loss is no longer silent.
-  const { error: attemptErr } = await supabaseAdmin
+  const { error: attemptErr } = await dbAdmin
     .from('study_attempts')
     .insert({
       session_id: sessionId,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { createClient } from '@supabase/supabase-js';
 
 const PORTONE_API_SECRET = process.env.PORTONE_API_SECRET;
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
     // Now fetch the full invoice + academy join with the service-role
     // client (RLS-bypassing) for the partner_id read that the user
     // legitimately can't see directly.
-    const { data: invoice, error: invoiceError } = await supabase
+    const { data: invoice, error: invoiceError } = await db
       .from('invoices')
       .select(`
         id,

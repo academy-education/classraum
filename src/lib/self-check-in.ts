@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+import { db } from './supabase'
 import { format } from 'date-fns'
 import { getSessionsForDateRange, materializeSession, isVirtualSession, VirtualSession } from './virtual-sessions'
 import { triggerSelfCheckInNotifications } from './notification-triggers'
@@ -40,7 +40,7 @@ export async function findStudentsByPhoneSuffix(
     }
 
     // Query students whose phone ends with the given suffix
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('students')
       .select(`
         user_id,
@@ -84,7 +84,7 @@ export async function findTodaySessionsForStudent(
     const today = format(new Date(), 'yyyy-MM-dd')
 
     // Get student's enrolled classrooms
-    const { data: enrollments, error: enrollmentError } = await supabase
+    const { data: enrollments, error: enrollmentError } = await db
       .from('classroom_students')
       .select(`
         classroom_id,
@@ -115,7 +115,7 @@ export async function findTodaySessionsForStudent(
     }
 
     // Fetch real sessions for today
-    const { data: realSessions, error: sessionsError } = await supabase
+    const { data: realSessions, error: sessionsError } = await db
       .from('classroom_sessions')
       .select(`
         id,
@@ -261,7 +261,7 @@ export async function performCheckIn(
       const status: 'present' | 'late' = now > sessionStartTime ? 'late' : 'present'
 
       // Check if attendance record already exists
-      const { data: existing, error: existingError } = await supabase
+      const { data: existing, error: existingError } = await db
         .from('attendance')
         .select('id, status')
         .eq('classroom_session_id', actualSessionId)
@@ -291,7 +291,7 @@ export async function performCheckIn(
       }
 
       // Look up student_record_id from classroom_students
-      const { data: classroomStudent } = await supabase
+      const { data: classroomStudent } = await db
         .from('classroom_students')
         .select('student_record_id')
         .eq('classroom_id', session.classroomId)
@@ -299,7 +299,7 @@ export async function performCheckIn(
         .maybeSingle()
 
       // Create new attendance record
-      const { error: insertError } = await supabase
+      const { error: insertError } = await db
         .from('attendance')
         .insert({
           classroom_session_id: actualSessionId,

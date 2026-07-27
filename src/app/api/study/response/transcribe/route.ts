@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
   if (audio.size > 25 * 1024 * 1024) return NextResponse.json({ error: 'audio too large (max 25MB)' }, { status: 400 })
 
   // Session ownership check.
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id')
     .eq('id', sessionId)
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
   // the stored file separately if needed).
   const ext = (audio.type.includes('webm') ? 'webm' : audio.type.includes('mp4') ? 'm4a' : 'webm')
   const path = `${user.id}/${sessionId}/${Date.now()}.${ext}`
-  const uploadRes = await supabaseAdmin.storage
+  const uploadRes = await dbAdmin.storage
     .from('study-response-audio')
     .upload(path, audio, { contentType: audio.type || 'audio/webm', upsert: false })
   if (uploadRes.error) {

@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Flashcard bank draw — the flashcard analogue of drawBankPractice.
@@ -37,7 +37,7 @@ export async function drawFlashcardBank(opts: {
 }): Promise<FlashcardBankCard[]> {
   const { section, count, studentId, topicId, seed } = opts
 
-  const { data: cards } = await supabaseAdmin
+  const { data: cards } = await dbAdmin
     .from('study_flashcard_bank')
     .select('front, back, hint')
     .eq('family', 'sat')
@@ -48,7 +48,7 @@ export async function drawFlashcardBank(opts: {
   // Which fronts has this student already reviewed for this topic?
   const seenAt = new Map<string, string>() // front -> last_reviewed_at (may be '')
   if (topicId) {
-    const { data: reviews } = await supabaseAdmin
+    const { data: reviews } = await dbAdmin
       .from('study_flashcard_reviews')
       .select('card_front, last_reviewed_at')
       .eq('student_id', studentId)

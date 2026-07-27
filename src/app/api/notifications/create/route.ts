@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 
 export async function POST(request: NextRequest) {
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Insert notifications using service role (bypasses RLS)
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await dbAdmin
       .from('notifications')
       .insert(notifications)
       .select()

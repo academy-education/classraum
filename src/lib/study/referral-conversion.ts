@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { REFERRAL_PREMIUM_CREDITS } from '@/lib/study/referral'
 import { FREE_CREDITS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
@@ -23,7 +23,7 @@ import { raiseAlert } from '@/lib/ops/alert'
 export async function grantReferralConversionIfEligible(refereeId: string): Promise<void> {
   try {
     // Is this buyer a referee with a not-yet-converted referral?
-    const { data: redemption } = await supabaseAdmin
+    const { data: redemption } = await dbAdmin
       .from('study_referral_redemptions')
       .select('id, referrer_id, converted')
       .eq('referee_id', refereeId)
@@ -34,7 +34,7 @@ export async function grantReferralConversionIfEligible(refereeId: string): Prom
     // Claim the conversion atomically — only the row we flip from false→true
     // proceeds. A concurrent caller's UPDATE matches zero rows and returns
     // empty, so it grants nothing.
-    const { data: claimed } = await supabaseAdmin
+    const { data: claimed } = await dbAdmin
       .from('study_referral_redemptions')
       .update({ converted: true, converted_at: new Date().toISOString() })
       .eq('id', redemption.id)
@@ -92,14 +92,14 @@ export async function grantReferralConversionIfEligible(refereeId: string): Prom
  * concurrent insert (23505) is fine.
  */
 async function ensureFreeSubscription(studentId: string): Promise<void> {
-  const { data: existing } = await supabaseAdmin
+  const { data: existing } = await dbAdmin
     .from('study_subscriptions')
     .select('student_id')
     .eq('student_id', studentId)
     .maybeSingle()
   if (existing) return
 
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_subscriptions')
     .insert({
       student_id: studentId,
@@ -121,14 +121,14 @@ async function ensureFreeSubscription(studentId: string): Promise<void> {
  * Returns true only when the credits provably landed.
  */
 async function grantPremiumCredits(studentId: string, sourceId: string): Promise<boolean> {
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('student_id')
     .eq('student_id', studentId)
     .maybeSingle()
   if (!sub) return false
 
-  const { error: rpcErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
+  const { error: rpcErr } = await dbAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId,
     p_delta: REFERRAL_PREMIUM_CREDITS,
   })
@@ -138,7 +138,7 @@ async function grantPremiumCredits(studentId: string, sourceId: string): Promise
   }
   // Balance moved → the grant succeeded. A failed ledger row is an
   // audit-trail gap, never a reason to re-grant.
-  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+  const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
     student_id: studentId,
     delta: REFERRAL_PREMIUM_CREDITS,
     bucket: 'purchased',

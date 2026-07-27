@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: 'bad body' }, { status: 400 })
   const { attemptId, reviewed } = parsed.data
 
-  const { data: attempt } = await supabaseAdmin
+  const { data: attempt } = await dbAdmin
     .from('study_attempts')
     .select('id, session:study_sessions!inner ( student_id )')
     .eq('id', attemptId)
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
   // UPDATE-then-INSERT instead of upsert: the old upsert wrote
   // note:'' on conflict, silently erasing any note the student had
   // written on this attempt when they toggled "reviewed".
-  const { data: updated, error: updateErr } = await supabaseAdmin
+  const { data: updated, error: updateErr } = await dbAdmin
     .from('study_attempt_notes')
     .update({ reviewed_at: reviewedAt })
     .eq('student_id', user.id)
@@ -60,12 +60,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'persist failed' }, { status: 500 })
   }
   if (!updated || updated.length === 0) {
-    const { error: insertErr } = await supabaseAdmin
+    const { error: insertErr } = await dbAdmin
       .from('study_attempt_notes')
       .insert({ student_id: user.id, attempt_id: attemptId, reviewed_at: reviewedAt, note: '' })
     // A concurrent insert can race us here — retry as an update.
     if (insertErr) {
-      const { error: retryErr } = await supabaseAdmin
+      const { error: retryErr } = await dbAdmin
         .from('study_attempt_notes')
         .update({ reviewed_at: reviewedAt })
         .eq('student_id', user.id)

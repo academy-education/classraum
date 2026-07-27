@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 
 /**
  * Convert a base64 URL-safe string to a Uint8Array (for VAPID applicationServerKey)
@@ -89,7 +89,7 @@ export async function saveWebPushSubscription(
   try {
     const token = JSON.stringify(subscription.toJSON());
 
-    const { error } = await supabase.from('device_tokens').upsert(
+    const { error } = await db.from('device_tokens').upsert(
       {
         user_id: userId,
         token,
@@ -156,7 +156,7 @@ export async function cleanupWebPush(userId: string): Promise<void> {
     // token stays active the device keeps receiving the logged-out
     // account's push notifications — on a shared device that is someone
     // else's data on the lock screen.
-    const { error } = await supabase
+    const { error } = await db
       .from('device_tokens')
       .update({ is_active: false, updated_at: new Date().toISOString() })
       .eq('user_id', userId)

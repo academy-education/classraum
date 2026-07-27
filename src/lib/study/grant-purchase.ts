@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { resolvePack, resolvePass, STUDY_PLANS, isPassPlan } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
 import { grantTestEntitlement, pointStudyPathAtTest } from '@/lib/study/entitlements'
@@ -51,7 +51,7 @@ export async function recordPayment(
   kind: 'study_credit_pack' | 'study_exam_pass',
   amountWon: number,
 ): Promise<{ status: 'new' | 'duplicate' } | { status: 'failed'; error: unknown }> {
-  const { error } = await supabaseAdmin.from('study_payments').insert({
+  const { error } = await dbAdmin.from('study_payments').insert({
     payment_id: paymentId,
     student_id: studentId,
     kind,
@@ -104,7 +104,7 @@ export async function grantCreditPack(opts: {
   // Ensure a subscription row exists to hold the credits, and persist a
   // freshly issued card if we were given one and the row lacks one.
   const nowIso = new Date().toISOString()
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('portone_subscription_id')
     .eq('student_id', opts.studentId)
@@ -115,7 +115,7 @@ export async function grantCreditPack(opts: {
     // It stays because it is also where a freshly issued billing key gets
     // persisted, and bailing on failure keeps the retry path intact (the
     // study_payments row is already ours, so the webhook backstop recovers).
-    const { error: createErr } = await supabaseAdmin.from('study_subscriptions').insert({
+    const { error: createErr } = await dbAdmin.from('study_subscriptions').insert({
       student_id: opts.studentId,
       status: 'free',
       plan: 'free_v1',
@@ -138,7 +138,7 @@ export async function grantCreditPack(opts: {
   } else if (!sub.portone_subscription_id && opts.billingKeyToPersist) {
     // Card persistence is a convenience (top-ups can re-issue a key), so a
     // failure must not fail a completed purchase — but it must be visible.
-    const { error: keyErr } = await supabaseAdmin
+    const { error: keyErr } = await dbAdmin
       .from('study_subscriptions')
       .update({ portone_subscription_id: opts.billingKeyToPersist, updated_at: nowIso })
       .eq('student_id', opts.studentId)
@@ -149,7 +149,7 @@ export async function grantCreditPack(opts: {
     }
   }
 
-  const { error: updateErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
+  const { error: updateErr } = await dbAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: opts.studentId,
     p_delta: pack.credits,
   })
@@ -164,7 +164,7 @@ export async function grantCreditPack(opts: {
   }
   // Balance already moved, so a lost ledger row is an audit-trail gap, never
   // a reason to re-grant — but the balance stops reconciling, so log it.
-  const { error: packLedgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+  const { error: packLedgerErr } = await dbAdmin.from('study_credit_ledger').insert({
     student_id: opts.studentId,
     delta: pack.credits,
     bucket: 'purchased',
@@ -210,13 +210,13 @@ export async function grantExamPass(opts: {
   // Preserve an existing stored card so the buyer can still top up packs,
   // and (critically) preserve any grant-bucket credits they already have —
   // buying a pass must not wipe free/monthly credits.
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('portone_subscription_id, grant_credits_remaining')
     .eq('student_id', opts.studentId)
     .maybeSingle()
 
-  const { error: upsertError } = await supabaseAdmin
+  const { error: upsertError } = await dbAdmin
     .from('study_subscriptions')
     .upsert({
       student_id: opts.studentId,
@@ -248,7 +248,7 @@ export async function grantExamPass(opts: {
   // Pass credits go into the TEST-SCOPED pool (spendable only on this
   // pass's test, or any test for the '*' all-access pass) — not the
   // generic purchased bucket.
-  const { error: creditErr } = await supabaseAdmin.rpc('increment_study_pass_credits', {
+  const { error: creditErr } = await dbAdmin.rpc('increment_study_pass_credits', {
     p_student: opts.studentId,
     p_test: passTerms.test,
     p_delta: passTerms.credits,
@@ -261,7 +261,7 @@ export async function grantExamPass(opts: {
   }
   // As above: audit-trail only, but a silent gap makes the pass balance
   // impossible to reconcile against the ledger.
-  const { error: passLedgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+  const { error: passLedgerErr } = await dbAdmin.from('study_credit_ledger').insert({
     student_id: opts.studentId,
     delta: passTerms.credits,
     bucket: `pass:${passTerms.test}`,

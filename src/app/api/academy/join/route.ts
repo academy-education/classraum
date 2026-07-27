@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { raiseAlert } from '@/lib/ops/alert'
 
@@ -29,7 +29,7 @@ import { raiseAlert } from '@/lib/ops/alert'
 export const dynamic = 'force-dynamic'
 
 async function academyName(academyId: string): Promise<string | null> {
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('academies')
     .select('name')
     .eq('id', academyId)
@@ -51,7 +51,7 @@ export async function GET(req: NextRequest) {
   // Personalized invite → surface the pre-created family member so the
   // modal can greet them by name. Only unlinked members are claimable.
   if (familyMemberId) {
-    const { data: member } = await supabaseAdmin
+    const { data: member } = await dbAdmin
       .from('family_members')
       .select('id, user_name, role, family_id, user_id, families!inner(academy_id)')
       .eq('id', familyMemberId)
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
   // row is server-authoritative for role + family — the URL params are
   // only hints.
   if (body.familyMemberId) {
-    const { data: member } = await supabaseAdmin
+    const { data: member } = await dbAdmin
       .from('family_members')
       .select('id, role, family_id, user_id, families!inner(academy_id)')
       .eq('id', body.familyMemberId)
@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
     }
     if (member.role === 'student' || member.role === 'parent') role = member.role
     if (member.user_id === null) {
-      const { error } = await supabaseAdmin
+      const { error } = await dbAdmin
         .from('family_members')
         .update({ user_id: user.id })
         .eq('id', member.id)
@@ -112,9 +112,9 @@ export async function POST(req: NextRequest) {
     }
   } else if (body.familyId) {
     // General invite that carries a family: add the user to it.
-    const { data: u } = await supabaseAdmin
+    const { data: u } = await dbAdmin
       .from('users').select('name').eq('id', user.id).maybeSingle()
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('family_members')
       .insert({ family_id: body.familyId, user_id: user.id, user_name: u?.name ?? '', role })
     if (error && !error.message.includes('duplicate')) {
@@ -124,8 +124,8 @@ export async function POST(req: NextRequest) {
 
   // The actual academy link — one join-table row per (user, academy).
   const { error: joinError } = role === 'student'
-    ? await supabaseAdmin.from('students').insert({ user_id: user.id, academy_id: academyId, active: true })
-    : await supabaseAdmin.from('parents').insert({ user_id: user.id, academy_id: academyId })
+    ? await dbAdmin.from('students').insert({ user_id: user.id, academy_id: academyId, active: true })
+    : await dbAdmin.from('parents').insert({ user_id: user.id, academy_id: academyId })
   if (joinError && !joinError.message.includes('duplicate')) {
     return NextResponse.json({ error: 'join failed' }, { status: 500 })
   }
@@ -138,7 +138,7 @@ export async function POST(req: NextRequest) {
   // no memberships under their current role type; if they do (e.g. an
   // academy student also invited as a parent elsewhere), the current
   // surface stays and the new row simply exists.
-  const { data: userRow } = await supabaseAdmin
+  const { data: userRow } = await dbAdmin
     .from('users').select('role').eq('id', user.id).maybeSingle()
   const currentRole = userRow?.role as string | undefined
 
@@ -147,7 +147,7 @@ export async function POST(req: NextRequest) {
   let surfaceRole = currentRole ?? role
 
   if ((currentRole === 'student' || currentRole === 'parent') && currentRole !== role) {
-    let existing = supabaseAdmin
+    let existing = dbAdmin
       .from(currentRole === 'student' ? 'students' : 'parents')
       .select('user_id', { count: 'exact', head: true })
       .eq('user_id', user.id)
@@ -162,7 +162,7 @@ export async function POST(req: NextRequest) {
       // why. Not fatal to the join, so we don't 500 and make the client
       // claim the invite failed; we alert and report the role the user
       // will ACTUALLY land on.
-      const { error: roleFlipError } = await supabaseAdmin
+      const { error: roleFlipError } = await dbAdmin
         .from('users').update({ role }).eq('id', user.id)
 
       if (roleFlipError) {

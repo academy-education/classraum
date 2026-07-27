@@ -58,10 +58,10 @@ async function loadCachedSpec(family: TestFamily, sectionLabel: string | null): 
   // client component's import graph (the topic page does this via
   // loadStudyPromptContext → loadSectionSpec). The admin client throws
   // at import-time on missing service-role key in browser bundles.
-  const { supabaseAdmin } = await import('@/lib/supabase-admin')
+  const { dbAdmin } = await import('@/lib/supabase-admin')
   // Pull every row for the family — there are at most ~5 per family,
   // and we need to match by label which lives inside the jsonb.
-  const { data: rows } = await supabaseAdmin
+  const { data: rows } = await dbAdmin
     .from('study_test_specs')
     .select('section_key, spec, last_verified_at')
     .eq('family', family)

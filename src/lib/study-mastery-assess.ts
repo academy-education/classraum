@@ -1,7 +1,7 @@
 import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Post-session AI assessment that turns a list of attempt rows into
@@ -108,7 +108,7 @@ export async function assessAndPersistMastery(input: AssessInput): Promise<z.inf
     // the assessment. A silent failure leaves the recommended shelf showing
     // stale strengths/weaknesses forever while we re-pay for the same LLM
     // call on every submit, with nothing in the logs to explain it.
-    const { error: writeErr } = await supabaseAdmin
+    const { error: writeErr } = await dbAdmin
       .from('study_mastery')
       .update({
         strengths: assessment.strengths,
@@ -137,21 +137,21 @@ export async function assessAndPersistMastery(input: AssessInput): Promise<z.inf
  * run the assessment. Used by the test/submit fire-and-forget path.
  */
 export async function assessSessionMastery(sessionId: string): Promise<void> {
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('student_id, topic_id, language')
     .eq('id', sessionId)
     .maybeSingle()
   if (!session?.topic_id) return
 
-  const { data: topic } = await supabaseAdmin
+  const { data: topic } = await dbAdmin
     .from('study_topics')
     .select('name_en, name_ko')
     .eq('id', session.topic_id)
     .maybeSingle()
   if (!topic) return
 
-  const { data: attempts } = await supabaseAdmin
+  const { data: attempts } = await dbAdmin
     .from('study_attempts')
     .select('question, student_answer, is_correct, ai_explanation')
     .eq('session_id', sessionId)

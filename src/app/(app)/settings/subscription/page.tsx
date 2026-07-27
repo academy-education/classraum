@@ -12,7 +12,7 @@ import { UsageProgressBar } from '@/components/ui/usage-progress-bar'
 import { Skeleton } from '@/components/ui/skeleton'
 import * as PortOne from '@portone/browser-sdk/v2'
 import { getPortOneConfig } from '@/lib/portone-config'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { getAddonIncrement, formatAddonPricing, calculateAddonCost } from '@/lib/addon-config'
 import { SubscriptionTier, SUBSCRIPTION_PLANS } from '@/types/subscription'
@@ -108,7 +108,7 @@ export default function SubscriptionManagementPage() {
   const fetchSubscriptionData = async () => {
     try {
       // Get the current session token
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
 
       if (!session?.access_token) {
         toast({
@@ -150,7 +150,7 @@ export default function SubscriptionManagementPage() {
 
   const fetchAddonData = async () => {
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch('/api/subscription/add-ons', {
@@ -212,7 +212,7 @@ export default function SubscriptionManagementPage() {
     setUpdatingPayment(true)
     try {
       // Get current user info for customer details
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) {
         toast({
           title: String(t('subscription.toast.authError')),
@@ -224,13 +224,13 @@ export default function SubscriptionManagementPage() {
       }
 
       // Get user's name and phone from database
-      const { data: userData } = await supabase
+      const { data: userData } = await db
         .from('users')
         .select('name')
         .eq('id', user.id)
         .single()
 
-      const { data: managerData } = await supabase
+      const { data: managerData } = await db
         .from('managers')
         .select('phone')
         .eq('user_id', user.id)
@@ -285,7 +285,7 @@ export default function SubscriptionManagementPage() {
       }
 
       // Get session for authentication
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) {
         toast({
           title: String(t('subscription.toast.authError')),
@@ -366,7 +366,7 @@ export default function SubscriptionManagementPage() {
 
     setPurchasingAddons(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) {
         toast({
           title: String(t('subscription.toast.authError')),
@@ -430,7 +430,7 @@ export default function SubscriptionManagementPage() {
 
     setPurchasingAddons(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) {
         toast({
           title: String(t('subscription.toast.authError')),

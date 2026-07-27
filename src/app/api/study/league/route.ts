@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { LEAGUE_TIERS } from '@/lib/study/league-rewards'
@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
 
   // The caller's own public nickname — the league page gates joining behind
   // confirming a handle, so it needs to know whether one is set.
-  const { data: myPrefs } = await supabaseAdmin
+  const { data: myPrefs } = await dbAdmin
     .from('study_user_prefs')
     .select('nickname')
     .eq('student_id', user.id)
@@ -55,7 +55,7 @@ export async function GET(req: NextRequest) {
   const weekStartIso = weekStart.toISOString().slice(0, 10)
 
   // Find the caller's current-week membership.
-  const { data: myMembership } = await supabaseAdmin
+  const { data: myMembership } = await dbAdmin
     .from('study_league_memberships')
     .select(`
       id, league_id, xp_this_week,
@@ -88,13 +88,13 @@ export async function GET(req: NextRequest) {
   // close_study_league_week), so the UI needs the member count to draw
   // the right zone instead of a hardcoded rank.
   const [{ data: top }, { count: memberCount }] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_league_memberships')
       .select('student_id, xp_this_week')
       .eq('league_id', myMembership.league_id)
       .order('xp_this_week', { ascending: false })
       .limit(20),
-    supabaseAdmin
+    dbAdmin
       .from('study_league_memberships')
       .select('id', { count: 'exact', head: true })
       .eq('league_id', myMembership.league_id),
@@ -107,10 +107,10 @@ export async function GET(req: NextRequest) {
   // else keeps the masked real name.
   const [{ data: users }, { data: nickRows }] = await Promise.all([
     ids.length > 0
-      ? supabaseAdmin.from('users').select('id, name').in('id', ids)
+      ? dbAdmin.from('users').select('id, name').in('id', ids)
       : Promise.resolve({ data: [] as { id: string; name: string | null }[] }),
     ids.length > 0
-      ? supabaseAdmin.from('study_user_prefs').select('student_id, nickname').in('student_id', ids)
+      ? dbAdmin.from('study_user_prefs').select('student_id, nickname').in('student_id', ids)
       : Promise.resolve({ data: [] as { student_id: string; nickname: string | null }[] }),
   ])
   const nameMap = new Map<string, string>()
@@ -137,7 +137,7 @@ export async function GET(req: NextRequest) {
   // strictly more XP and add 1.
   let myRank = leaderboard.find(r => r.is_me)?.rank ?? null
   if (myRank === null) {
-    const { count } = await supabaseAdmin
+    const { count } = await dbAdmin
       .from('study_league_memberships')
       .select('id', { count: 'exact', head: true })
       .eq('league_id', myMembership.league_id)
@@ -150,7 +150,7 @@ export async function GET(req: NextRequest) {
   // surface a "you were promoted!" banner on the page. 36 hours is
   // generous enough that a student who skips Monday morning still sees
   // it Tuesday evening.
-  const { data: lastClosed } = await supabaseAdmin
+  const { data: lastClosed } = await dbAdmin
     .from('study_league_memberships')
     .select(`
       final_rank, promotion_event, next_tier, closed_at,
@@ -182,7 +182,7 @@ export async function GET(req: NextRequest) {
         // milestone rewards, to show alongside the promotion banner.
         let rewardCredits = 0
         if (closedWeek) {
-          const { data: rewardRows } = await supabaseAdmin
+          const { data: rewardRows } = await dbAdmin
             .from('study_league_rewards')
             .select('credits')
             .eq('student_id', user.id)
@@ -203,7 +203,7 @@ export async function GET(req: NextRequest) {
   // Season high — the highest tier the student has ever been placed in
   // (a cosmetic "personal best" for the league page). Includes the
   // current cohort's tier.
-  const { data: myLeagues } = await supabaseAdmin
+  const { data: myLeagues } = await dbAdmin
     .from('study_league_memberships')
     .select('league:study_leagues!inner(tier)')
     .eq('student_id', user.id)

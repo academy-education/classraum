@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
 
   // Pull target test from prefs so we can up-rank topics in the
   // student's target family before slicing the top 5.
-  const { data: prefsRow } = await supabaseAdmin
+  const { data: prefsRow } = await dbAdmin
     .from('study_user_prefs')
     .select('target_test')
     .eq('student_id', user.id)
@@ -55,7 +55,7 @@ export async function GET(req: NextRequest) {
 
   // Pull weak areas + recent sessions in parallel, then merge below.
   const [{ data: weak }, { data: recent }] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_mastery')
       .select(`
         score, attempts_count, weaknesses,
@@ -66,7 +66,7 @@ export async function GET(req: NextRequest) {
       .gte('attempts_count', 2)
       .order('score', { ascending: true })
       .limit(8),  // pull extra so the target-test rerank below has runway
-    supabaseAdmin
+    dbAdmin
       .from('study_sessions')
       .select(`
         topic_id, mode, last_active_at,
@@ -142,7 +142,7 @@ export async function GET(req: NextRequest) {
     if (!t || seenTopicIds.has(t.id)) continue
     const masteryScore = masteryByTopic.get(t.id) ?? null
     // Skip if already mastered.
-    const { data: mRow } = await supabaseAdmin
+    const { data: mRow } = await dbAdmin
       .from('study_mastery')
       .select('score')
       .eq('student_id', user.id)
@@ -170,7 +170,7 @@ export async function GET(req: NextRequest) {
   // loop: student snapped a problem → reminds them to drill it.
   // Capped at 2 to keep the carousel mixed.
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-  const { data: snaps } = await supabaseAdmin
+  const { data: snaps } = await dbAdmin
     .from('study_snap_captures')
     .select('id, image_path, ocr_text, subject_guess, created_at')
     .eq('student_id', user.id)
@@ -180,7 +180,7 @@ export async function GET(req: NextRequest) {
 
   if (snaps && snaps.length > 0) {
     const paths = snaps.map(s => s.image_path as string)
-    const { data: signed } = await supabaseAdmin.storage
+    const { data: signed } = await dbAdmin.storage
       .from('study-snap-images')
       .createSignedUrls(paths, 3600)
     const urlByPath = new Map<string, string>()

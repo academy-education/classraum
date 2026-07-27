@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { supabaseAdmin } from './supabase-admin'
+import { dbAdmin } from './supabase-admin'
 
 /**
  * Validate the Authorization header from a frontend request.
@@ -15,7 +15,7 @@ export async function getUserFromRequest(request: NextRequest) {
     return null
   }
   const token = authHeader.substring(7)
-  const { data: { user }, error } = await supabaseAdmin.auth.getUser(token)
+  const { data: { user }, error } = await dbAdmin.auth.getUser(token)
   if (error || !user) {
     return null
   }

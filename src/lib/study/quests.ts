@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Weekly Quests — three fixed weekly goals that reset every Monday
@@ -59,22 +59,22 @@ export async function computeQuests(userId: string): Promise<QuestsPayload> {
     { data: xpRows },
     { data: claims },
   ] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_sessions')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', userId)
       .gte('created_at', weekStartIso),
-    supabaseAdmin
+    dbAdmin
       .from('study_attempts')
       .select('id, session:study_sessions!inner ( student_id )', { count: 'exact', head: true })
       .eq('study_sessions.student_id', userId)
       .gte('created_at', weekStartIso),
-    supabaseAdmin
+    dbAdmin
       .from('study_xp_events')
       .select('created_at')
       .eq('student_id', userId)
       .gte('created_at', weekStartIso),
-    supabaseAdmin
+    dbAdmin
       .from('study_quest_claims')
       .select('quest_key')
       .eq('student_id', userId)
@@ -99,12 +99,12 @@ export async function computeQuests(userId: string): Promise<QuestsPayload> {
     // (student, quest, week) row is the source of truth: insert first,
     // and only award XP if the insert actually took (no race double-pay).
     if (done && !claimed.has(q.key)) {
-      const { error } = await supabaseAdmin
+      const { error } = await dbAdmin
         .from('study_quest_claims')
         .insert({ student_id: userId, quest_key: q.key, week_start: weekStartDate, reward_xp: q.rewardXp })
       if (!error) {
         earnedXp += q.rewardXp
-        await supabaseAdmin.rpc('award_study_xp', {
+        await dbAdmin.rpc('award_study_xp', {
           p_student_id: userId,
           p_event_type: 'quest_reward',
           p_xp: q.rewardXp,

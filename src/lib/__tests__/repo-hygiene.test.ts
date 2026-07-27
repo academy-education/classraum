@@ -127,3 +127,36 @@ describe('environment variables', () => {
     expect(offenders).toEqual([])
   })
 })
+
+/**
+ * The shared Supabase clients must stay typed.
+ *
+ * Both clients were untyped until 2026-07-27, and every schema bug found
+ * that day was invisible because of it: `users.academy_id`,
+ * `teachers.id`, `assignments.status`, `academy_subscriptions.plan_name`
+ * and three tables that don't exist. PostgREST answers those with an
+ * error and zero rows, callers fall back to `[]`/`0`, and the screen
+ * renders a plausible zero instead of a failure.
+ *
+ * Typing them exposed those as compile errors. The migration ran through
+ * an `as unknown as SupabaseClient` alias so files could move over in
+ * batches; both aliases are now deleted. This guards the end state — a
+ * new alias would silently re-open the whole class.
+ */
+describe('supabase clients', () => {
+  const CLIENTS = ['src/lib/supabase.ts', 'src/lib/supabase-admin.ts']
+
+  it.each(CLIENTS)('%s creates its client with the Database generic', file => {
+    const src = readFileSync(join(ROOT, file), 'utf8')
+    expect(src).toMatch(/createClient<Database>\(/)
+  })
+
+  it.each(CLIENTS)('%s exports no untyped escape hatch', file => {
+    const src = readFileSync(join(ROOT, file), 'utf8')
+    const code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '')
+    // The exact shape the migration alias used, plus any other cast that
+    // would strip the generic back off the exported client.
+    expect(code).not.toMatch(/as\s+unknown\s+as\s+SupabaseClient/)
+    expect(code).not.toMatch(/export\s+const\s+\w+\s*(:\s*SupabaseClient\b|=\s*client\s+as\b)/)
+  })
+})

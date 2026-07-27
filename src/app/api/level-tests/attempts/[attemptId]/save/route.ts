@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 
 // PATCH /api/level-tests/attempts/[attemptId]/save
@@ -23,7 +23,7 @@ export async function PATCH(
     }
 
     // Verify access (manager for the test)
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select('id, test_id, status, level_tests!inner(academy_id)')
       .eq('id', attemptId)
@@ -34,7 +34,7 @@ export async function PATCH(
     }
 
     const academyId = (attempt.level_tests as unknown as { academy_id: string })?.academy_id
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -51,7 +51,7 @@ export async function PATCH(
     }))
 
     if (rows.length > 0) {
-      const { error } = await supabaseAdmin
+      const { error } = await dbAdmin
         .from('level_test_answers')
         .upsert(rows, { onConflict: 'attempt_id,question_id' })
       if (error) {
@@ -79,7 +79,7 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select('id, test_id, taker_name, status, level_tests!inner(academy_id)')
       .eq('id', attemptId)
@@ -87,7 +87,7 @@ export async function GET(
     if (!attempt) return NextResponse.json({ error: 'Attempt not found' }, { status: 404 })
 
     const academyId = (attempt.level_tests as unknown as { academy_id: string })?.academy_id
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -95,7 +95,7 @@ export async function GET(
       .single()
     if (!mgr) return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
 
-    const { data: answers } = await supabaseAdmin
+    const { data: answers } = await dbAdmin
       .from('level_test_answers')
       .select('question_id, answer')
       .eq('attempt_id', attemptId)

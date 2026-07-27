@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-// import { supabase } from '@/lib/supabase'
+// import { db } from '@/lib/supabase'
 import {
   createPaymentNotification,
   createSessionNotification,

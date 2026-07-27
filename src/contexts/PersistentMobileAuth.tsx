@@ -92,8 +92,8 @@ export function PersistentMobileAuthProvider({ children }: { children: React.Rea
     // Get user role from Supabase to determine mobile user format
     const fetchUserRole = async () => {
       try {
-        const { supabase } = await import('@/lib/supabase')
-        const { data: userInfo, error } = await supabase
+        const { db } = await import('@/lib/supabase')
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', authUser.id)

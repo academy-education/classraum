@@ -9,14 +9,14 @@
  * `[full-test-v1]` cache row /submit grades against.
  */
 import { POST } from '@/app/api/study/test/route/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assembleToeflFromBank } from '@/lib/study/assemble'
 import { tableRouter, makeRequest, type ChainMock } from '@/tests/study-route-helpers'
 
 jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn() },
+  dbAdmin: { from: jest.fn() },
 }))
 jest.mock('@/lib/rate-limit', () => ({ enforceRateLimit: jest.fn(() => null) }))
 jest.mock('@/lib/study/auth', () => ({ requireStudyUser: jest.fn() }))
@@ -25,7 +25,7 @@ jest.mock('@/lib/study/assemble', () => ({
   assembleToeflFromBank: jest.fn(),
 }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const requireStudyUserMock = requireStudyUser as unknown as jest.Mock
 const assembleMock = assembleToeflFromBank as unknown as jest.Mock
 

@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 
 async function isManagerForTest(userId: string, testId: string): Promise<boolean> {
-  const { data: test } = await supabaseAdmin
+  const { data: test } = await dbAdmin
     .from('level_tests')
     .select('academy_id')
     .eq('id', testId)
     .single()
   if (!test) return false
-  const { data: mgr } = await supabaseAdmin
+  const { data: mgr } = await dbAdmin
     .from('managers')
     .select('user_id')
     .eq('user_id', userId)
@@ -34,7 +34,7 @@ export async function GET(
       return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
     }
 
-    const { data: test, error: testError } = await supabaseAdmin
+    const { data: test, error: testError } = await dbAdmin
       .from('level_tests')
       .select(`
         *,
@@ -48,7 +48,7 @@ export async function GET(
       return NextResponse.json({ error: 'Test not found' }, { status: 404 })
     }
 
-    const { data: questions, error: qError } = await supabaseAdmin
+    const { data: questions, error: qError } = await dbAdmin
       .from('level_test_questions')
       .select('*')
       .eq('test_id', id)
@@ -91,7 +91,7 @@ export async function PATCH(
     if (typeof body.share_enabled === 'boolean') {
       updates.share_enabled = body.share_enabled
       if (body.share_enabled) {
-        const { data: current } = await supabaseAdmin
+        const { data: current } = await dbAdmin
           .from('level_tests')
           .select('share_token')
           .eq('id', id)
@@ -111,7 +111,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'No valid updates provided' }, { status: 400 })
     }
 
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await dbAdmin
       .from('level_tests')
       .update(updates)
       .eq('id', id)
@@ -144,7 +144,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
     }
 
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('level_tests')
       .update({ deleted_at: new Date().toISOString() })
       .eq('id', id)

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
 
   const topicId = new URL(req.url).searchParams.get('topic_id')
 
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('study_attempts')
     .select(`
       id, question, student_answer, ai_explanation, created_at, topic_id,
@@ -79,7 +79,7 @@ export async function GET(req: NextRequest) {
   // Pull all notes in one round-trip and stitch on the client side.
   const attemptIds = (raw as Array<{ id: string }>).map(r => r.id)
   const { data: notes } = attemptIds.length > 0
-    ? await supabaseAdmin
+    ? await dbAdmin
         .from('study_attempt_notes')
         .select('attempt_id, note, updated_at, reviewed_at')
         .eq('student_id', user.id)
@@ -97,7 +97,7 @@ export async function GET(req: NextRequest) {
   // Saved on-demand explanations (step-by-step / simpler), joined in the
   // same one-round-trip style as notes.
   const { data: explanations } = attemptIds.length > 0
-    ? await supabaseAdmin
+    ? await dbAdmin
         .from('study_attempt_explanations')
         .select('attempt_id, steps, simpler, steps_lang, simpler_lang')
         .eq('student_id', user.id)
@@ -160,7 +160,7 @@ export async function GET(req: NextRequest) {
   // Bookmarked snap captures — surfaced as a separate section on the
   // 오답노트 page so the student can keep a personal "study these"
   // list of photographed problems alongside their wrong-answer notes.
-  const { data: snapRows } = await supabaseAdmin
+  const { data: snapRows } = await dbAdmin
     .from('study_snap_captures')
     .select('id, image_path, ocr_text, subject_guess, final_answer, bookmarked_at, created_at')
     .eq('student_id', user.id)
@@ -170,7 +170,7 @@ export async function GET(req: NextRequest) {
 
   const snapPaths = (snapRows ?? []).map(s => s.image_path as string)
   const { data: signed } = snapPaths.length > 0
-    ? await supabaseAdmin.storage.from('study-snap-images').createSignedUrls(snapPaths, 3600)
+    ? await dbAdmin.storage.from('study-snap-images').createSignedUrls(snapPaths, 3600)
     : { data: [] }
   const snapUrlByPath = new Map<string, string>()
   for (const s of (signed ?? [])) {

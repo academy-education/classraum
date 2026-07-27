@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Record a study subscription charge (first charge / renewal / upgrade) into
@@ -15,7 +15,7 @@ export async function recordSubscriptionPayment(opts: {
   studentId: string
   amountWon: number
 }): Promise<void> {
-  const { error } = await supabaseAdmin.from('study_payments').insert({
+  const { error } = await dbAdmin.from('study_payments').insert({
     payment_id: opts.paymentId,
     student_id: opts.studentId,
     kind: 'study_subscription',

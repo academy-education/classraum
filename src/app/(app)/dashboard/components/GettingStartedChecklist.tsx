@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Check, GraduationCap, Users, Calendar, BookOpen, X } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 /**
  * First-week onboarding checklist for brand-new academies.
@@ -53,10 +53,10 @@ export function GettingStartedChecklist({ academyId }: { academyId: string }) {
     let cancelled = false
     void (async () => {
       const [c, t, s, sess] = await Promise.all([
-        supabase.from('classrooms').select('id', { count: 'exact', head: true }).eq('academy_id', academyId).is('deleted_at', null),
-        supabase.from('teachers').select('user_id', { count: 'exact', head: true }).eq('academy_id', academyId),
-        supabase.from('students').select('user_id', { count: 'exact', head: true }).eq('academy_id', academyId),
-        supabase.from('classroom_sessions').select('id', { count: 'exact', head: true }).is('deleted_at', null),
+        db.from('classrooms').select('id', { count: 'exact', head: true }).eq('academy_id', academyId).is('deleted_at', null),
+        db.from('teachers').select('user_id', { count: 'exact', head: true }).eq('academy_id', academyId),
+        db.from('students').select('user_id', { count: 'exact', head: true }).eq('academy_id', academyId),
+        db.from('classroom_sessions').select('id', { count: 'exact', head: true }).is('deleted_at', null),
       ])
       if (cancelled) return
       setCounts({

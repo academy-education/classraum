@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 
 /**
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
   const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
   if (!token) return NextResponse.json({ count: 0, windowMinutes: WINDOW_MINUTES })
 
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
+  const { data: { user }, error: authError } = await dbAdmin.auth.getUser(token)
   if (authError || !user) return NextResponse.json({ count: 0, windowMinutes: WINDOW_MINUTES })
 
   const blocked = enforceRateLimit(`social-presence:${user.id}`, { windowMs: 60 * 1000, max: 30 })
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
   // students see their real peers, not the whole platform (which would
   // both leak cross-academy activity and read as noise for small
   // academies).
-  const { data: studentRow } = await supabaseAdmin
+  const { data: studentRow } = await dbAdmin
     .from('students')
     .select('academy_id')
     .eq('user_id', user.id)
@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
 
   // Peers = students in the same academy other than the caller. Count
   // distinct student_ids with any recent session activity.
-  const { data: peerRows } = await supabaseAdmin
+  const { data: peerRows } = await dbAdmin
     .from('students')
     .select('user_id')
     .eq('academy_id', academyId)
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
   const peerIds = (peerRows ?? []).map(r => r.user_id as string)
   if (peerIds.length === 0) return NextResponse.json({ count: 0, windowMinutes: WINDOW_MINUTES })
 
-  const { data: activeRows } = await supabaseAdmin
+  const { data: activeRows } = await dbAdmin
     .from('study_sessions')
     .select('student_id')
     .in('student_id', peerIds)

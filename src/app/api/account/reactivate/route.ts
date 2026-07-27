@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
 import { raiseAlert } from '@/lib/ops/alert'
 
@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
   // accounts. The response intentionally matches the "invalid credentials"
   // shape below so attackers can't distinguish "unknown email" /
   // "not banned" / "wrong password" via response timing or shape.
-  const { data: userRow, error: userRowError } = await supabaseAdmin
+  const { data: userRow, error: userRowError } = await dbAdmin
     .from('users')
     .select('id, email, deletion_scheduled_at')
     .ilike('email', email)
@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
     // Checked: returning success while the column survives tells the user
     // their account is safe, and the hard-delete cron erases them 30 days
     // later anyway. Better a 500 they can retry than a silent deletion.
-    const { error: staleClearError } = await supabaseAdmin
+    const { error: staleClearError } = await dbAdmin
       .from('users')
       .update({ deletion_scheduled_at: null })
       .eq('id', userId)
@@ -165,7 +165,7 @@ export async function POST(request: NextRequest) {
   }
 
   // Lift the ban.
-  const { error: unbanError } = await supabaseAdmin.auth.admin.updateUserById(
+  const { error: unbanError } = await dbAdmin.auth.admin.updateUserById(
     userId,
     { ban_duration: 'none' }
   )
@@ -179,7 +179,7 @@ export async function POST(request: NextRequest) {
   }
 
   // Clear the scheduled-deletion column on the users row.
-  const { error: clearError } = await supabaseAdmin
+  const { error: clearError } = await dbAdmin
     .from('users')
     .update({ deletion_scheduled_at: null })
     .eq('id', userId)
@@ -205,7 +205,7 @@ export async function POST(request: NextRequest) {
   }
 
   // Stamp open log entries as reactivated.
-  const { error: logError } = await supabaseAdmin
+  const { error: logError } = await dbAdmin
     .from('account_deletion_log')
     .update({ reactivated_at: new Date().toISOString() })
     .eq('user_id', userId)

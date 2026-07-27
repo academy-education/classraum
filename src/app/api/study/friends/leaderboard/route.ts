@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { resolveDisplayNames } from '@/lib/study/identity'
 import { listAcceptedFriendIds } from '@/lib/study/friends'
@@ -32,7 +32,7 @@ export async function GET(req: NextRequest) {
   const ids = [user.id, ...friendIds]
 
   const [{ data: memberships }, names] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_league_memberships')
       .select('student_id, xp_this_week')
       .in('student_id', ids)

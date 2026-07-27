@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createHash } from 'node:crypto'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   // out to be a real bottleneck on warm-cache plays (student clicks Play
   // and still waits ~1 s before audio starts). HEAD to the public CDN
   // is typically ~40-80 ms.
-  const { data: pub } = supabaseAdmin.storage.from(BUCKET).getPublicUrl(objectPath)
+  const { data: pub } = dbAdmin.storage.from(BUCKET).getPublicUrl(objectPath)
   try {
     const head = await fetch(pub.publicUrl, { method: 'HEAD' })
     if (head.ok) return NextResponse.json({ url: pub.publicUrl, cached: true })
@@ -94,7 +94,7 @@ export async function POST(req: NextRequest) {
   }
   const mp3 = new Uint8Array(await ttsRes.arrayBuffer())
 
-  const { error: uploadErr } = await supabaseAdmin.storage
+  const { error: uploadErr } = await dbAdmin.storage
     .from(BUCKET)
     .upload(objectPath, mp3, { contentType: 'audio/mpeg', upsert: false })
   if (uploadErr && !/duplicate|already exists/i.test(uploadErr.message)) {

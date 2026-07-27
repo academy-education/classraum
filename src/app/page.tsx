@@ -38,7 +38,7 @@ import {
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
-import { supabase } from "@/lib/supabase"
+import { db } from "@/lib/supabase"
 import "./home.css"
 
 // Set NEXT_PUBLIC_KAKAO_CHANNEL_URL to show the KakaoTalk inquiry button.
@@ -417,7 +417,7 @@ function HomeContent() {
       router.push("/auth?type=reset")
     } else if (code) {
       // Exchange code for session for other auth flows
-      supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
+      db.auth.exchangeCodeForSession(code).then(({ error }) => {
         if (error) {
           console.error("Code exchange error:", error)
           router.push("/auth?error=invalid_code")

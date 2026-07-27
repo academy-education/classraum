@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getPaymentInfo } from '@/lib/portone-charge'
 
 /**
@@ -33,7 +33,7 @@ export async function syncStudyPaymentRefund(
 ): Promise<RefundSyncResult> {
   if (!paymentId) return { status: 'not_ours' }
 
-  const { data: row } = await supabaseAdmin
+  const { data: row } = await dbAdmin
     .from('study_payments')
     .select('payment_id, refunded_at')
     .eq('payment_id', paymentId)
@@ -48,7 +48,7 @@ export async function syncStudyPaymentRefund(
     return { status: 'not_cancelled' }
   }
 
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_payments')
     .update({ refunded_at: new Date().toISOString(), refund_reason: reason })
     .eq('payment_id', paymentId)

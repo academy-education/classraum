@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { isPassPlan } from '@/lib/study/plans'
 import { normalizeGiftCode } from '@/lib/study/gifts'
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
 
   // Case-insensitive lookup. Match on lower(code) so a code typed in any
   // case resolves (the mint stores uppercase, but be forgiving on input).
-  const { data: gift, error: lookupError } = await supabaseAdmin
+  const { data: gift, error: lookupError } = await dbAdmin
     .from('study_gift_codes')
     .select('id, purchaser_id, months, credits, status')
     .ilike('code', code)
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
   // a recurring paid plan (not itself a seasonal pass) already gets
   // Premium/credits — overwriting it with a gift window would drop the
   // renewal schedule. Passes and non-active rows are safe to overwrite.
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan')
     .eq('student_id', user.id)
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
   // Atomically claim the code: only the request that flips it from
   // 'unredeemed' wins. A concurrent redeem sees 0 rows and 409s.
   const now = new Date()
-  const { data: claimed, error: claimError } = await supabaseAdmin
+  const { data: claimed, error: claimError } = await dbAdmin
     .from('study_gift_codes')
     .update({ status: 'redeemed', redeemed_by: user.id, redeemed_at: now.toISOString() })
     .eq('id', gift.id)
@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
   const months = gift.months
   const credits = gift.credits
   const periodEnd = new Date(now.getTime() + months * DAYS_PER_MONTH * 24 * 60 * 60 * 1000)
-  const { error: upsertError } = await supabaseAdmin
+  const { error: upsertError } = await dbAdmin
     .from('study_subscriptions')
     .upsert({
       student_id: user.id,
@@ -149,7 +149,7 @@ export async function POST(req: NextRequest) {
 
   // Grant the gift credits atomically into the purchased bucket (never
   // clobbers an existing purchased balance).
-  const { error: creditErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
+  const { error: creditErr } = await dbAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: user.id,
     p_delta: credits,
   })
@@ -164,7 +164,7 @@ export async function POST(req: NextRequest) {
   }
   // Credits already landed via the RPC — a lost ledger row is an audit gap
   // (balance stops reconciling), never a reason to re-grant.
-  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+  const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
     student_id: user.id,
     delta: credits,
     bucket: 'purchased',

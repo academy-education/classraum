@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { db } from '@/lib/supabase'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Recurring payment template controller.
@@ -16,11 +16,11 @@ async function authorize(req: NextRequest, templateId: string): Promise<NextResp
   const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
   if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
+  const { data: { user }, error: authError } = await dbAdmin.auth.getUser(token)
   if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   // Look up the template's academy.
-  const { data: template, error: templateError } = await supabaseAdmin
+  const { data: template, error: templateError } = await dbAdmin
     .from('recurring_payment_templates')
     .select('academy_id')
     .eq('id', templateId)
@@ -32,7 +32,7 @@ async function authorize(req: NextRequest, templateId: string): Promise<NextResp
   // The caller must be a manager of that academy. Classraum platform
   // admins (role admin/super_admin) are also allowed for support
   // operations.
-  const { data: me } = await supabaseAdmin
+  const { data: me } = await dbAdmin
     .from('users')
     .select('role')
     .eq('id', user.id)
@@ -44,7 +44,7 @@ async function authorize(req: NextRequest, templateId: string): Promise<NextResp
     return NextResponse.json({ error: 'forbidden' }, { status: 403 })
   }
 
-  const { data: manager } = await supabaseAdmin
+  const { data: manager } = await dbAdmin
     .from('managers')
     .select('academy_id')
     .eq('user_id', user.id)
@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
           } as any
 
           // Also delete all student assignments for this template
-          const { error: deleteStudentsError } = await supabase
+          const { error: deleteStudentsError } = await db
             .from('recurring_payment_template_students')
             .delete()
             .eq('template_id', templateId)
@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
           break
       }
 
-      const { error: templateError } = await supabase
+      const { error: templateError } = await db
         .from('recurring_payment_templates')
         .update(updateData)
         .eq('id', templateId)
@@ -146,7 +146,7 @@ export async function POST(req: NextRequest) {
 
         case 'deactivate':
           // Remove student from template
-          const { error: studentError } = await supabase
+          const { error: studentError } = await db
             .from('recurring_payment_template_students')
             .delete()
             .eq('template_id', templateId)
@@ -194,7 +194,7 @@ export async function GET(req: NextRequest) {
     if (denial) return denial
 
     // Get template info
-    const { data: template, error: templateError } = await supabase
+    const { data: template, error: templateError } = await db
       .from('recurring_payment_templates')
       .select('*')
       .eq('id', templateId)
@@ -204,7 +204,7 @@ export async function GET(req: NextRequest) {
     if (templateError) throw templateError
 
     // Get template students (without students!inner join which relies on student_record_id FK)
-    const { data: templateStudents, error: studentsError } = await supabase
+    const { data: templateStudents, error: studentsError } = await db
       .from('recurring_payment_template_students')
       .select('student_id, amount_override')
       .eq('template_id', templateId)
@@ -215,7 +215,7 @@ export async function GET(req: NextRequest) {
     const studentIds = templateStudents?.map(s => s.student_id).filter(Boolean) || []
     const usersMap = new Map<string, { name: string; email: string }>()
     if (studentIds.length > 0) {
-      const { data: usersData } = await supabase
+      const { data: usersData } = await db
         .from('users')
         .select('id, name, email')
         .in('id', studentIds)

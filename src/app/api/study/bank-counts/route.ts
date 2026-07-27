@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -34,14 +34,14 @@ export async function GET(req: NextRequest) {
   }
 
   const [practice, flashcards] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_item_bank')
       .select('*', { count: 'exact', head: true })
       .eq('family', family).eq('section', section)
       .eq('item_type', 'multiple_choice').eq('verified', true).eq('archived', false),
     // Flashcards are SAT-only — TOEFL has no card deck, so report 0.
     family === 'sat'
-      ? supabaseAdmin
+      ? dbAdmin
           .from('study_flashcard_bank')
           .select('*', { count: 'exact', head: true })
           .eq('family', 'sat').eq('section', section).eq('archived', false)

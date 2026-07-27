@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp, type XpEventType } from '@/lib/study/xp'
 import { requireStudyUser } from '@/lib/study/auth'
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
   // to a few honest sets/day, well under the global 800/day cap in
   // award_study_xp. ~240 XP ≈ 30+ hard cards or several full decks.
   const FLASHCARD_DAILY_XP_CAP = 240
-  const { data: todayEvents } = await supabaseAdmin
+  const { data: todayEvents } = await dbAdmin
     .from('study_xp_events')
     .select('xp')
     .eq('student_id', user.id)

@@ -1,5 +1,5 @@
 import { createHash } from 'crypto'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { raiseAlert } from '@/lib/ops/alert'
 
 /**
@@ -51,7 +51,7 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
     // when the student explicitly chose to spend a regular credit instead.
     let reservedSlice = false
     if (testFamily && !opts?.skipPass) {
-      const { data, error } = await supabaseAdmin
+      const { data, error } = await dbAdmin
         .rpc('use_study_pass_credit', { p_student: studentId, p_source: source, p_test: testFamily })
       // An RPC error is indistinguishable from "holds no pass credits" in
       // `data`, and we silently fall through to a generic credit — i.e. the
@@ -64,7 +64,7 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
     // Fall back to generic grant → purchased.
     let reason: string | undefined
     if (!reservedSlice) {
-      const { data, error } = await supabaseAdmin
+      const { data, error } = await dbAdmin
         .rpc('use_study_credit', { p_student: studentId, p_source: source })
       const r = (data ?? {}) as { ok?: boolean; reason?: string }
       if (!error && r.ok) reservedSlice = true
@@ -84,7 +84,7 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
       const failed: string[] = []
       for (const s of reserved) {
         try {
-          const { data, error } = await supabaseAdmin
+          const { data, error } = await dbAdmin
             .rpc('refund_study_credit', { p_student: studentId, p_source: s })
           const r = (data ?? {}) as { ok?: boolean; already?: boolean }
           if (error || !(r.ok || r.already)) failed.push(s)
@@ -138,7 +138,7 @@ export async function refundTestCredits(studentId: string, sessionId: string, co
   for (let i = 0; i < cost; i++) {
     const source = creditSourceId(sessionId, i)
     try {
-      const { data, error } = await supabaseAdmin
+      const { data, error } = await dbAdmin
         .rpc('refund_study_credit', { p_student: studentId, p_source: source })
       // An errored RPC leaves `data` null, which used to be counted as
       // `noDebit` — a lost credit reported to the caller (and the reaper's

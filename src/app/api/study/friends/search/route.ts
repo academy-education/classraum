@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { normalizeNickname } from '@/lib/study/nickname'
@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
 
   // Prefix match, ILIKE metachars escaped (nicknames may contain `_`).
   const pattern = q.replace(/([\\%_])/g, '\\$1') + '%'
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_user_prefs')
     .select('student_id, nickname')
     .ilike('nickname', pattern)

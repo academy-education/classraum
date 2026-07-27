@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
@@ -75,7 +75,7 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
 
     try {
       // Fetch classrooms with their sessions
-      const { data: classrooms, error: classroomsError } = await supabase
+      const { data: classrooms, error: classroomsError } = await db
         .from('classrooms')
         .select(`
           id,
@@ -93,7 +93,7 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
       if (classroomsError) throw classroomsError
 
       // Fetch active students only (exclude deactivated)
-      const { data: activeStudents, error: activeStudentsError } = await supabase
+      const { data: activeStudents, error: activeStudentsError } = await db
         .from('students')
         .select('user_id')
         .eq('academy_id', academyId)
@@ -112,7 +112,7 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
       }
 
       // Fetch assignments using join-based filtering (avoids URL length limits)
-      const { data: assignments, error: assignmentsError } = await supabase
+      const { data: assignments, error: assignmentsError } = await db
         .from('assignments')
         .select(`
           id,
@@ -135,7 +135,7 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
       if (assignmentsError) throw assignmentsError
 
       // Fetch attendance using join-based filtering
-      const { data: attendance, error: attendanceError } = await supabase
+      const { data: attendance, error: attendanceError } = await db
         .from('attendance')
         .select(`
           classroom_session_id,
@@ -245,7 +245,7 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
 
       const studentNames: Record<string, string> = {}
       if (studentIds.length > 0) {
-        const { data: students } = await supabase
+        const { data: students } = await db
           .from('students')
           .select(`
             user_id,
@@ -255,7 +255,7 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
           .eq('active', true)
 
         students?.forEach(s => {
-          // supabase joined-relation may come back as object or array; normalize.
+          // db joined-relation may come back as object or array; normalize.
           const raw = s.users as unknown as { name: string } | { name: string }[] | null
           const user = Array.isArray(raw) ? raw[0] : raw
           if (user) {

@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 export type ThemeChoice = 'light' | 'dark' | 'system'
 
@@ -19,7 +19,7 @@ export async function saveThemeToAccount(userId: string, theme: ThemeChoice): Pr
     // catch below never fired. Best-effort still means visible — an RLS
     // denial here silently un-syncs theme across the user's devices and
     // looks like the setting "not saving" with nothing in the logs.
-    const { error } = await supabase
+    const { error } = await db
       .from('user_preferences')
       .upsert({ user_id: userId, theme }, { onConflict: 'user_id' })
     if (error) console.error('[theme-account] save rejected', error)
@@ -32,7 +32,7 @@ export async function saveThemeToAccount(userId: string, theme: ThemeChoice): Pr
 export async function fetchThemeFromAccount(userId: string): Promise<ThemeChoice | null> {
   if (!userId) return null
   try {
-    const { data } = await supabase
+    const { data } = await db
       .from('user_preferences')
       .select('theme')
       .eq('user_id', userId)

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { loadStudyPromptContext } from '@/lib/study-prompt-context'
 import { drawBankPractice } from '@/lib/study/assemble'
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'missing sessionId' }, { status: 400 })
   }
 
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, mode, language, topic_id, config, status')
     .eq('id', sessionId)
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
   // History tap lands the student exactly where they left off instead
   // of silently drawing a new set (which orphaned their graded answers).
   {
-    const { data: cacheRow } = await supabaseAdmin
+    const { data: cacheRow } = await dbAdmin
       .from('study_messages')
       .select('content')
       .eq('session_id', sessionId)
@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
         const cached = JSON.parse((cacheRow.content as string).slice(PRACTICE_CACHE_MARKER.length)) as { questions?: unknown[] }
         const questions = Array.isArray(cached.questions) ? cached.questions : []
         if (questions.length > 0) {
-          const { data: attempts } = await supabaseAdmin
+          const { data: attempts } = await dbAdmin
             .from('study_attempts')
             .select('is_correct')
             .eq('session_id', sessionId)
@@ -134,7 +134,7 @@ export async function POST(req: NextRequest) {
   // only (POST /api/study/path/repeat archives the old run's sessions,
   // which is what un-blocks this check for the new run).
   if (config.pathNode) {
-    const { data: done } = await supabaseAdmin
+    const { data: done } = await dbAdmin
       .from('study_sessions')
       .select('id')
       .eq('student_id', user.id)
@@ -193,7 +193,7 @@ export async function POST(req: NextRequest) {
     // Error intentionally ignored: no energy or credit was spent on this
     // path, so a failed delete only leaves an empty session for the
     // abandoned-session sweep to pick up.
-    await supabaseAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
+    await dbAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
     return NextResponse.json(payload, { status })
   }
   if (accessBlockedFamily) {
@@ -219,7 +219,7 @@ export async function POST(req: NextRequest) {
       // so an unused set doesn't linger on the shelf or in history.
       // Error intentionally ignored: the spend was refused, so nothing is
       // owed; the sweep collects the row if this misses.
-      await supabaseAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
+      await dbAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
       return NextResponse.json(
         { error: 'out of energy', reason: 'no_energy', cap: spend.state.cap, nextRefillSeconds: spend.state.nextRefillSeconds },
         { status: 429 },
@@ -267,12 +267,12 @@ async function cacheServedBatch(sessionId: string, questions: unknown[]): Promis
     // Error intentionally ignored: the grade route reads the NEWEST cache
     // row (order by created_at desc, limit 1), so a stale row left behind
     // by a failed delete is never graded against.
-    await supabaseAdmin
+    await dbAdmin
       .from('study_messages')
       .delete()
       .eq('session_id', sessionId)
       .like('content', `${PRACTICE_CACHE_MARKER}%`)
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('study_messages')
       .insert({
         session_id: sessionId,

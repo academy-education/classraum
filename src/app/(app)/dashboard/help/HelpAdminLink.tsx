@@ -3,11 +3,11 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { BarChart3 } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 /**
  * Tiny gate around the "View analytics" pill on the help index. Reads
- * the current user's role through the client supabase singleton (the
+ * the current user's role through the client db singleton (the
  * server-side cookie path was unreliable here, same as the admin page
  * itself) and only renders the link for manager/admin/super_admin.
  */
@@ -17,9 +17,9 @@ export function HelpAdminLink({ label }: { label: string }) {
   useEffect(() => {
     let cancelled = false
     void (async () => {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) return
-      const { data: me } = await supabase
+      const { data: me } = await db
         .from('users')
         .select('role')
         .eq('id', user.id)

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
   const blocked = enforceRateLimit(`snap-history:user:${user.id}`, { windowMs: 60 * 1000, max: 60 })
   if (blocked) return blocked
 
-  const { data: rows } = await supabaseAdmin
+  const { data: rows } = await dbAdmin
     .from('study_snap_captures')
     .select('id, image_path, ocr_text, subject_guess, final_answer, solution_steps, created_at')
     .eq('student_id', user.id)
@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
   // Batch signed URLs. 1-hour expiry — long enough for a session
   // without leaking the path beyond it.
   const paths = rows.map(r => r.image_path as string)
-  const { data: signed } = await supabaseAdmin.storage
+  const { data: signed } = await dbAdmin.storage
     .from('study-snap-images')
     .createSignedUrls(paths, 3600)
 

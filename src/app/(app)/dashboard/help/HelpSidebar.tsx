@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { HELP_ARTICLES, getArticlesForRole, localizeArticle, type HelpArticleMeta } from '@/../content/help/articles'
 import { BookOpen } from 'lucide-react'
 
@@ -27,7 +27,7 @@ export function HelpSidebar() {
   useEffect(() => {
     if (!user?.id) return
     let cancelled = false
-    supabase
+    db
       .from('users')
       .select('role')
       .eq('id', user.id)

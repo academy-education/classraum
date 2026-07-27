@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
   if (authResult.response) return authResult.response
   const user = authResult.user
 
-  const { data: existing } = await supabaseAdmin
+  const { data: existing } = await dbAdmin
     .from('study_user_prefs')
     .select('*')
     .eq('student_id', user.id)
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
   // Auto-create default row. On failure we return prefs:null, which the
   // onboarding gate reads as "no prefs yet" — the wizard reappears on every
   // load — so the cause must not be invisible.
-  const { data: created, error: createErr } = await supabaseAdmin
+  const { data: created, error: createErr } = await dbAdmin
     .from('study_user_prefs')
     .insert({ student_id: user.id })
     .select()
@@ -125,7 +125,7 @@ export async function PUT(req: NextRequest) {
     const current = patch.target_test as string | null
     // Merge into the array. Read the existing list off the DB so we don't
     // clobber other targets the student has already added.
-    const { data: row } = await supabaseAdmin
+    const { data: row } = await dbAdmin
       .from('study_user_prefs')
       .select('target_tests')
       .eq('student_id', user.id)
@@ -140,7 +140,7 @@ export async function PUT(req: NextRequest) {
     }
   } else if ('target_tests' in patch) {
     const list = (patch.target_tests as string[] | undefined) ?? []
-    const { data: row } = await supabaseAdmin
+    const { data: row } = await dbAdmin
       .from('study_user_prefs')
       .select('target_test')
       .eq('student_id', user.id)
@@ -163,7 +163,7 @@ export async function PUT(req: NextRequest) {
     patch.goal_score = typeof map.sat === 'number' ? map.sat : null
   } else if ('goal_score' in patch) {
     const sat = patch.goal_score as number | null
-    const { data: row } = await supabaseAdmin
+    const { data: row } = await dbAdmin
       .from('study_user_prefs')
       .select('goal_scores')
       .eq('student_id', user.id)
@@ -175,7 +175,7 @@ export async function PUT(req: NextRequest) {
   }
 
   // Upsert so first-time PUT (before any GET) still works.
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await dbAdmin
     .from('study_user_prefs')
     .upsert({ student_id: user.id, ...patch }, { onConflict: 'student_id' })
     .select()

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { isPassPlan } from '@/lib/study/plans'
 
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   if (authResult.response) return authResult.response
   const user = authResult.user
 
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('plan')
     .eq('student_id', user.id)
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'pass cannot be reactivated', code: 'pass_no_reactivate' }, { status: 409 })
   }
 
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_subscriptions')
     .update({ cancel_at_period_end: false, updated_at: new Date().toISOString() })
     .eq('student_id', user.id)

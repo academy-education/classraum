@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { sendPushToStudent } from '@/lib/study/push'
 import { safeNotificationPath } from '@/lib/study/notification-link'
 
@@ -54,7 +54,7 @@ export async function notifyStudent({
     console.error('[notify] dropping unsafe link', link)
   }
   try {
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('notifications')
       .insert({
         user_id: studentId,

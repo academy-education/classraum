@@ -17,19 +17,19 @@
  * human, never as `already_processed`.
  */
 import { grantCreditPack, grantExamPass } from '@/lib/study/grant-purchase'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { raiseAlert } from '@/lib/ops/alert'
 import { CREDIT_PACK, resolvePass } from '@/lib/study/plans'
 import { tableRouter } from '@/tests/study-route-helpers'
 
 jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
+  dbAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
 }))
 jest.mock('@/lib/ops/alert', () => ({ raiseAlert: jest.fn(async () => {}) }))
 jest.mock('@/lib/study/analytics', () => ({ trackEvent: jest.fn(async () => {}) }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
-const rpcMock = supabaseAdmin.rpc as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
+const rpcMock = dbAdmin.rpc as unknown as jest.Mock
 const alertMock = raiseAlert as unknown as jest.Mock
 
 const UNIQUE_VIOLATION = { code: '23505', message: 'duplicate key value violates unique constraint' }

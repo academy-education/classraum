@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 // Cumulative platform counts for the homepage stats strip.
 // Cached for an hour — these only ever grow, freshness is not critical.
@@ -8,9 +8,9 @@ export const revalidate = 3600
 export async function GET() {
   try {
     const [attendance, grades, notifications] = await Promise.all([
-      supabaseAdmin.from('attendance').select('*', { count: 'exact', head: true }),
-      supabaseAdmin.from('assignment_grades').select('*', { count: 'exact', head: true }),
-      supabaseAdmin.from('notifications').select('*', { count: 'exact', head: true }),
+      dbAdmin.from('attendance').select('*', { count: 'exact', head: true }),
+      dbAdmin.from('assignment_grades').select('*', { count: 'exact', head: true }),
+      dbAdmin.from('notifications').select('*', { count: 'exact', head: true }),
     ])
 
     const counts = {

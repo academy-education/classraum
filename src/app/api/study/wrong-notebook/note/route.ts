@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
   // Ownership check — the attempt must belong to a session owned by
   // this user. RLS would block cross-user writes anyway but we want
   // a clean 404 instead of a silent RLS failure.
-  const { data: attempt } = await supabaseAdmin
+  const { data: attempt } = await dbAdmin
     .from('study_attempts')
     .select('id, session:study_sessions!inner ( student_id )')
     .eq('id', attemptId)
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
   if (trimmed.length === 0) {
     // Reporting deleted:true over a failed delete cleared the note in the
     // UI while it survived in the database and came back on reload.
-    const { error: deleteErr } = await supabaseAdmin
+    const { error: deleteErr } = await dbAdmin
       .from('study_attempt_notes')
       .delete()
       .eq('student_id', user.id)
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ note: '', deleted: true })
   }
 
-  const { error: upsertErr } = await supabaseAdmin
+  const { error: upsertErr } = await dbAdmin
     .from('study_attempt_notes')
     .upsert(
       { student_id: user.id, attempt_id: attemptId, note: trimmed },

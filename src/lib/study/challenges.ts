@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { notifyStudent } from '@/lib/study/notify'
 import { trackEvent } from '@/lib/study/analytics'
 
@@ -53,7 +53,7 @@ export interface ChallengeRow {
 
 /** Sum a student's XP in [start, end). */
 export async function sumXpInWindow(studentId: string, startIso: string, endIso: string): Promise<number> {
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_xp_events')
     .select('xp')
     .eq('student_id', studentId)
@@ -78,7 +78,7 @@ export async function resolveIfEnded(row: ChallengeRow, nowIso: string): Promise
       sumXpInWindow(row.opponent_id, row.start_at, row.end_at),
     ])
     const winner = decideDuelWinner(row.challenger_id, row.opponent_id, cxp, oxp)
-    const { data } = await supabaseAdmin
+    const { data } = await dbAdmin
       .from('study_challenges')
       .update({
         status: 'completed',
@@ -131,7 +131,7 @@ async function awardDuelOutcome(row: ChallengeRow): Promise<void> {
       // an upsert as of migration 055. Before that it was a bare UPDATE
       // that matched nothing and still returned success, so the duel was
       // recorded as won and the prize was never delivered.
-      const { error } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
+      const { error } = await dbAdmin.rpc('increment_study_purchased_credits', {
         p_student_id: w, p_delta: DUEL_WIN_CREDITS,
       })
       if (error) console.error('[study/challenges] credit grant failed', { id: row.id, error })

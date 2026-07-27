@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin, countRows } from '../../_lib/admin-auth'
 
 /**
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
         const [academies, users] = await Promise.all([
           countRows(
             () =>
-              supabaseAdmin
+              dbAdmin
                 .from('academies')
                 .select('*', { count: 'exact', head: true })
                 .lte('created_at', endIso),
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
           ),
           countRows(
             () =>
-              supabaseAdmin
+              dbAdmin
                 .from('users')
                 .select('*', { count: 'exact', head: true })
                 .lte('created_at', endIso),
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
           ),
         ])
 
-        const { data: invoices, error } = await supabaseAdmin
+        const { data: invoices, error } = await dbAdmin
           .from('invoices')
           .select('final_amount')
           .eq('status', 'paid')

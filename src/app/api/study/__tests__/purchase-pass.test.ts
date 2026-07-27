@@ -10,21 +10,21 @@
  * in-season path); after it, the route returns 409 pass_unavailable.
  */
 import { POST } from '@/app/api/study/subscription/purchase-pass/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 
 jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
+  dbAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
 }))
 jest.mock('@/lib/rate-limit', () => ({ enforceRateLimit: jest.fn(() => null) }))
 jest.mock('@/lib/study/auth', () => ({ requireStudyUser: jest.fn() }))
 jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn() }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
-const rpcMock = supabaseAdmin.rpc as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
+const rpcMock = dbAdmin.rpc as unknown as jest.Mock
 const requireStudyUserMock = requireStudyUser as unknown as jest.Mock
 const enforceRateLimitMock = enforceRateLimit as unknown as jest.Mock
 const chargeMock = chargeBillingKey as unknown as jest.Mock

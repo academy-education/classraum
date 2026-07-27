@@ -1,7 +1,7 @@
 import { createHash } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp } from '@/lib/study/xp'
 import { assessSessionMastery as _keepAlive } from '@/lib/study-mastery-assess'
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
   const body = parsed.data
 
   // Session ownership + mode gate.
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, mode, language, speaking_grade_mode')
     .eq('id', body.sessionId)
@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
 
   // Audio-native grading is a Premium capability (it costs 3-4× the
   // text route per response). Trial rows get General entitlements.
-  const { data: subRow } = await supabaseAdmin
+  const { data: subRow } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan')
     .eq('student_id', user.id)
@@ -145,7 +145,7 @@ export async function POST(req: NextRequest) {
   // Filters on grader_model containing "audio" so a text-mode grade
   // for the same prompt (e.g. the 5xx fallback path) never masks a
   // real audio grade. Mirrors the dedupe in /api/study/response/grade.
-  const { data: priorSubs } = await supabaseAdmin
+  const { data: priorSubs } = await dbAdmin
     .from('study_response_submissions')
     .select('id, audio_path, study_response_grades(overall_band, rubric_scores, annotations, model_rewrite, summary, grader_model)')
     .eq('session_id', body.sessionId)
@@ -174,7 +174,7 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Step 1: download the audio ────────────────────────────────────
-  const { data: audioBlob, error: dlErr } = await supabaseAdmin.storage
+  const { data: audioBlob, error: dlErr } = await dbAdmin.storage
     .from(BUCKET)
     .download(body.audioPath)
   if (dlErr || !audioBlob) {
@@ -340,7 +340,7 @@ export async function POST(req: NextRequest) {
 
   // ── Step 5: persist ──────────────────────────────────────────────
   const wordCount = (body.responseText ?? '').trim().split(/\s+/).filter(Boolean).length
-  const { data: submission, error: submissionErr } = await supabaseAdmin
+  const { data: submission, error: submissionErr } = await dbAdmin
     .from('study_response_submissions')
     .insert({
       student_id: user.id,
@@ -360,7 +360,7 @@ export async function POST(req: NextRequest) {
     console.error('[speaking/grade-audio] insert submission', submissionErr)
     return NextResponse.json({ error: 'persist failed' }, { status: 500 })
   }
-  const { error: gradeErr } = await supabaseAdmin
+  const { error: gradeErr } = await dbAdmin
     .from('study_response_grades')
     .insert({
       submission_id: submission.id,

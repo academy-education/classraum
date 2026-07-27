@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 
 // POST /api/level-tests/[id]/attempts/in-person
@@ -25,7 +25,7 @@ export async function POST(
     }
 
     // Verify manager access
-    const { data: test } = await supabaseAdmin
+    const { data: test } = await dbAdmin
       .from('level_tests')
       .select('id, academy_id, question_count')
       .eq('id', testId)
@@ -33,7 +33,7 @@ export async function POST(
       .single()
     if (!test) return NextResponse.json({ error: 'Test not found' }, { status: 404 })
 
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -41,7 +41,7 @@ export async function POST(
       .single()
     if (!mgr) return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
 
-    const { data: attempt, error } = await supabaseAdmin
+    const { data: attempt, error } = await dbAdmin
       .from('level_test_attempts')
       .insert({
         test_id: testId,

@@ -1,4 +1,4 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 import type { Database } from './database.types'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -33,19 +33,10 @@ const client = createClient<Database>(supabaseUrl, supabaseServiceKey, {
  * PostgREST answers those with an error and no rows, callers fall back
  * to [] or 0, and the screen shows a plausible zero. Under `dbAdmin`
  * they are compile errors instead.
+ *
+ * There is no untyped escape hatch any more: the `supabaseAdmin` alias
+ * that let files opt out was deleted on 2026-07-27 once the last of
+ * ~145 call sites moved over. Reintroducing one would re-open the
+ * class of bug above, so widen `database.types.ts` instead.
  */
 export const dbAdmin = client
-
-/**
- * UNTYPED alias, for files not yet migrated.
- *
- * Same single client instance — this is a view, not a second
- * connection. Typing all call sites at once produced 1312 errors, so
- * files move over area by area; each migration is one import change
- * plus whatever real bugs the types then expose.
- *
- * Shrinking to zero is the goal. Do not add new uses.
- *
- * ⚠️ SECURITY: server-side only, bypasses RLS (see below).
- */
-export const supabaseAdmin = client as unknown as SupabaseClient

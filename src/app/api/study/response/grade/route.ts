@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { notifyStudent } from '@/lib/study/notify'
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
   const body = parsed.data
 
   // Session ownership + mode check.
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, mode, language')
     .eq('id', body.sessionId)
@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
   // Identical prompt + response already graded in this session →
   // return the stored grade instead of paying for a fresh gpt-4o
   // call that would land on the same band anyway.
-  const { data: prior } = await supabaseAdmin
+  const { data: prior } = await dbAdmin
     .from('study_response_submissions')
     .select('id, response_text, study_response_grades(overall_band, rubric_scores, annotations, model_rewrite, summary)')
     .eq('session_id', body.sessionId)
@@ -213,7 +213,7 @@ export async function POST(req: NextRequest) {
   const clampedBand = Math.max(0, Math.min(rubric.scaleMax, grade.overallBand))
 
   // Persist submission.
-  const { data: submission, error: submissionErr } = await supabaseAdmin
+  const { data: submission, error: submissionErr } = await dbAdmin
     .from('study_response_submissions')
     .insert({
       student_id: user.id,
@@ -235,7 +235,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Persist grade.
-  const { error: gradeErr } = await supabaseAdmin
+  const { error: gradeErr } = await dbAdmin
     .from('study_response_grades')
     .insert({
       submission_id: submission.id,
@@ -265,7 +265,7 @@ export async function POST(req: NextRequest) {
   // Deliberately off the response path (the grade is already persisted and
   // returned), but a failure leaves the session stuck "in progress" in
   // history with no score chip, so it can't be silent.
-  void supabaseAdmin
+  void dbAdmin
     .from('study_sessions')
     .update({
       status: 'completed',

@@ -9,16 +9,16 @@
  * not be able to mark real revenue as refunded.
  */
 import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getPaymentInfo } from '@/lib/portone-charge'
 import { tableRouter } from '@/tests/study-route-helpers'
 
 jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn(), rpc: jest.fn() },
+  dbAdmin: { from: jest.fn(), rpc: jest.fn() },
 }))
 jest.mock('@/lib/portone-charge', () => ({ getPaymentInfo: jest.fn() }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const getPaymentInfoMock = getPaymentInfo as unknown as jest.Mock
 
 const OURS = { payment_id: 'study-pack-1', refunded_at: null }

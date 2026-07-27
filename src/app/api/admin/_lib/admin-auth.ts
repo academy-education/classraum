@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Shared admin-route helpers.
@@ -23,10 +23,10 @@ export async function requireAdmin(
   if (!authHeader?.startsWith('Bearer ')) return null
 
   const token = authHeader.substring(7)
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
+  const { data: { user }, error: authError } = await dbAdmin.auth.getUser(token)
   if (authError || !user) return null
 
-  const { data: userInfo } = await supabaseAdmin
+  const { data: userInfo } = await dbAdmin
     .from('users')
     .select('role')
     .eq('id', user.id)
@@ -70,7 +70,7 @@ export async function listAllAuthUsers(
   const all: AdminAuthUser[] = []
 
   for (let page = 1; page <= maxPages; page++) {
-    const { data, error } = await supabaseAdmin.auth.admin.listUsers({ page, perPage })
+    const { data, error } = await dbAdmin.auth.admin.listUsers({ page, perPage })
     if (error) {
       throw new Error(`listUsers page ${page} failed: ${error.message}`)
     }

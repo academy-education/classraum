@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { triggerLevelTestSubmittedNotifications } from '@/lib/notification-triggers'
 
 // POST /api/test/[shareToken]/submit - submit answers, auto-grade MC/TF
@@ -20,7 +20,7 @@ export async function POST(
     }
 
     // Verify test exists and share is enabled
-    const { data: test, error: testError } = await supabaseAdmin
+    const { data: test, error: testError } = await dbAdmin
       .from('level_tests')
       .select('id, share_enabled')
       .eq('share_token', shareToken)
@@ -32,7 +32,7 @@ export async function POST(
     }
 
     // Fetch questions with correct answers for grading
-    const { data: questions } = await supabaseAdmin
+    const { data: questions } = await dbAdmin
       .from('level_test_questions')
       .select('id, type, correct_answer')
       .eq('test_id', test.id)
@@ -86,7 +86,7 @@ export async function POST(
       : null
 
     // Create attempt
-    const { data: attempt, error: attemptError } = await supabaseAdmin
+    const { data: attempt, error: attemptError } = await dbAdmin
       .from('level_test_attempts')
       .insert({
         test_id: test.id,
@@ -115,7 +115,7 @@ export async function POST(
       is_correct: a.is_correct,
     }))
 
-    const { error: answerError } = await supabaseAdmin
+    const { error: answerError } = await dbAdmin
       .from('level_test_answers')
       .insert(answerRows)
 

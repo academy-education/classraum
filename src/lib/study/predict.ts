@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { project, type Prediction, type SectionInput } from './projection'
 
 /**
@@ -24,7 +24,7 @@ export async function computeSatPrediction(userId: string): Promise<SatPredictio
     goalScore: null, gap: null, onTrack: null, weeksToTest: null, sections: [],
   })
 
-  const { data: prefs } = await supabaseAdmin
+  const { data: prefs } = await dbAdmin
     .from('study_user_prefs')
     .select('target_test, goal_score, test_date, daily_goal_minutes')
     .eq('student_id', userId)
@@ -39,10 +39,10 @@ export async function computeSatPrediction(userId: string): Promise<SatPredictio
     return { ...empty(false, target || null, testDate, dailyGoalMinutes), goalScore }
   }
 
-  const { data: root } = await supabaseAdmin
+  const { data: root } = await dbAdmin
     .from('study_topics').select('id').eq('slug', 'test-sat').maybeSingle()
   const { data: sectionRows } = root
-    ? await supabaseAdmin
+    ? await dbAdmin
         .from('study_topics')
         .select('id, slug, name_en, name_ko')
         .eq('parent_id', root.id)
@@ -53,7 +53,7 @@ export async function computeSatPrediction(userId: string): Promise<SatPredictio
   let inputs: SectionInput[] = []
   if (sections.length > 0) {
     const ids = sections.map(s => s.id)
-    const { data: testSessions } = await supabaseAdmin
+    const { data: testSessions } = await dbAdmin
       .from('study_sessions')
       .select('score, completed_at, topic_id')
       .eq('student_id', userId)

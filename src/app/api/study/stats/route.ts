@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { resolvePlan } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
     { count: snapCount },
     { count: responseCount },
   ] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_sessions')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', user.id)
@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
     // Archived sessions (and every question answered inside them) are
     // excluded from all aggregates — matching the history page, which
     // hides archived sessions entirely.
-    supabaseAdmin
+    dbAdmin
       .from('study_attempts')
       .select(`
         id, is_correct, time_spent_seconds, created_at,
@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
       `)
       .eq('session.student_id', user.id)
       .eq('session.archived', false),
-    supabaseAdmin
+    dbAdmin
       .from('study_mastery')
       .select(`
         score, attempts_count,
@@ -61,11 +61,11 @@ export async function GET(req: NextRequest) {
       `)
       .eq('student_id', user.id)
       .order('score', { ascending: false }),
-    supabaseAdmin
+    dbAdmin
       .from('study_snap_captures')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', user.id),
-    supabaseAdmin
+    dbAdmin
       .from('study_response_submissions')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', user.id),
@@ -111,7 +111,7 @@ export async function GET(req: NextRequest) {
   // section identity, e.g. toefl-reading), oldest→newest so the client
   // can draw "42% → 61% over 3 attempts" trend lines. Only topics with
   // 2+ completed tests are returned (one point isn't a trend).
-  const { data: testSessions } = await supabaseAdmin
+  const { data: testSessions } = await dbAdmin
     .from('study_sessions')
     .select(`
       score, completed_at,
@@ -149,7 +149,7 @@ export async function GET(req: NextRequest) {
   // Score analytics are a Premium capability. General/trial users get
   // an empty trend + a locked flag so the stats page renders an
   // upsell card instead of the chart.
-  const { data: subRow } = await supabaseAdmin
+  const { data: subRow } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan')
     .eq('student_id', user.id)
@@ -187,12 +187,12 @@ export async function GET(req: NextRequest) {
 
   // Weekly XP, active days, and league rank — for the "This week" panel.
   const [{ data: weekXpEvents }, { data: membership }] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_xp_events')
       .select('xp, created_at')
       .eq('student_id', user.id)
       .gte('created_at', weekStartIso),
-    supabaseAdmin
+    dbAdmin
       .from('study_league_memberships')
       .select(`
         xp_this_week, league_id,
@@ -218,7 +218,7 @@ export async function GET(req: NextRequest) {
 
   let leagueRank: number | null = null
   if (membership?.league_id) {
-    const { count: ahead } = await supabaseAdmin
+    const { count: ahead } = await dbAdmin
       .from('study_league_memberships')
       .select('id', { count: 'exact', head: true })
       .eq('league_id', membership.league_id)

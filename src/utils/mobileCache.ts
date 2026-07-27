@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useMobileStore } from '@/stores/mobileStore'
 
 // UI update notification system
@@ -56,7 +56,7 @@ export const getTeacherNamesWithCache = async (teacherIds: string[]): Promise<Ma
   // Fetch uncached names
   if (uncachedIds.length > 0) {
     try {
-      const { data: teacherData } = await supabase
+      const { data: teacherData } = await db
         .from('users')
         .select('id, name')
         .in('id', uncachedIds)
@@ -208,7 +208,7 @@ export const fetchDashboardDataOptimized = async (user: { userId: string; academ
   const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   
   const [todaySessionsResult, , ] = await Promise.all([
-    supabase
+    db
       .from('classroom_sessions')
       .select(`
         id,
@@ -223,7 +223,7 @@ export const fetchDashboardDataOptimized = async (user: { userId: string; academ
       .eq('classrooms.academy_id', user.academyId)
       .eq('classrooms.classroom_students.student_id', user.userId),
 
-    supabase
+    db
       .from('classroom_sessions')
       .select(`
         id,
@@ -248,7 +248,7 @@ export const fetchDashboardDataOptimized = async (user: { userId: string; academ
       .order('start_time', { ascending: true })
       .limit(5),
 
-    supabase
+    db
       .from('classroom_students')
       .select(`
         classroom_id,

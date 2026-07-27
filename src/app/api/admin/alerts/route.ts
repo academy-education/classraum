@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { supabaseAdmin } from '@/lib/supabase-admin';
+import { dbAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth, logAdminActivity } from '@/lib/admin-auth';
 
 /**
@@ -31,7 +31,7 @@ export async function PATCH(req: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: 'bad body' }, { status: 400 });
 
   const resolvedAt = new Date().toISOString();
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('alerts')
     .update({ resolved: true, resolved_at: resolvedAt })
     .eq('resolved', false);

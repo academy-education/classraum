@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createHash } from 'crypto'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
 
   // Insert; a duplicate (same student + same question) is a no-op so the
   // student sees the same "thanks" state without a unique-violation error.
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await dbAdmin
     .from('study_question_reports')
     .upsert(
       {

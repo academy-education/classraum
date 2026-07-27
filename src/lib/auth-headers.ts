@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 /**
  * Bearer-token + JSON headers for fetch() calls from client components
@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase'
  * `supabaseAdmin.auth.getUser(token)` server-side.
  */
 export async function authHeaders(): Promise<HeadersInit> {
-  const { data: { session } } = await supabase.auth.getSession()
+  const { data: { session } } = await db.auth.getSession()
   return {
     'Content-Type': 'application/json',
     ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),

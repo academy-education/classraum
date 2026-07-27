@@ -1,5 +1,5 @@
 import { getPortOneConfig } from '@/lib/portone-config'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Single-charge helper against a stored PortOne v2 billing key.
@@ -269,7 +269,7 @@ export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortO
   // "customer.* violated the rule REQUIRED" — which silently broke every
   // subscription first charge, renewal, and stored-card pack. Pull the
   // contact from the users table.
-  const { data: u } = await supabaseAdmin
+  const { data: u } = await dbAdmin
     .from('users')
     .select('name, email, phone')
     .eq('id', input.customerId)

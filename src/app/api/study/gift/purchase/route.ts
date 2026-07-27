@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { GIFT, generateGiftCode } from '@/lib/study/gifts'
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
   let lastError: unknown = null
   for (let attempt = 0; attempt < MAX_CODE_ATTEMPTS; attempt++) {
     const code = generateGiftCode()
-    const { error: insertError } = await supabaseAdmin
+    const { error: insertError } = await dbAdmin
       .from('study_gift_codes')
       .insert({
         code,

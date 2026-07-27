@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import type { User, Session } from '@supabase/supabase-js'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 
@@ -92,15 +92,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log('🔐 [AuthContext] Starting auth initialization')
       try {
         // Get initial session
-        console.log('🔐 [AuthContext] Calling supabase.auth.getSession()')
-        const { data: { session }, error } = await supabase.auth.getSession()
+        console.log('🔐 [AuthContext] Calling db.auth.getSession()')
+        const { data: { session }, error } = await db.auth.getSession()
         console.log('🔐 [AuthContext] getSession result:', { session: !!session, error: !!error })
 
         if (mounted) {
           // Handle stale/invalid refresh token: clear bad tokens and treat as logged out
           if (error && error.message?.includes('Refresh Token')) {
             console.warn('🔐 [AuthContext] Stale refresh token detected, clearing session')
-            await supabase.auth.signOut().catch(() => {})
+            await db.auth.signOut().catch(() => {})
             // Clear any leftover Supabase keys from localStorage
             if (typeof window !== 'undefined') {
               Object.keys(localStorage).forEach(key => {
@@ -141,7 +141,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initializeAuth()
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+    const { data: { subscription } } = db.auth.onAuthStateChange(
       (event, session) => {
         if (mounted) {
           setSession(session)

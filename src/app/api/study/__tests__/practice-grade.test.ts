@@ -5,14 +5,14 @@
  * never the client's correct_answer.
  */
 import { POST } from '@/app/api/study/practice/grade/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp } from '@/lib/study/xp'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 
 jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
+  dbAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
 }))
 jest.mock('@/lib/rate-limit', () => ({ enforceRateLimit: jest.fn(() => null) }))
 jest.mock('@/lib/study/auth', () => ({ requireStudyUser: jest.fn() }))
@@ -24,7 +24,7 @@ jest.mock('@/lib/study/xp', () => ({
 jest.mock('ai', () => ({ generateObject: jest.fn() }))
 jest.mock('@ai-sdk/openai', () => ({ createOpenAI: jest.fn(() => jest.fn(() => 'mock-model')) }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const requireStudyUserMock = requireStudyUser as unknown as jest.Mock
 const enforceRateLimitMock = enforceRateLimit as unknown as jest.Mock
 

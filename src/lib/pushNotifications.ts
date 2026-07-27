@@ -1,6 +1,6 @@
 import { Capacitor } from '@capacitor/core';
 import { PushNotifications, Token, PushNotificationSchema, ActionPerformed } from '@capacitor/push-notifications';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 
 export interface DeviceToken {
   id: string;
@@ -161,7 +161,7 @@ export async function saveDeviceToken(userId: string, token: string): Promise<bo
         const platform = getPlatform();
 
     // Upsert the token (insert or update if exists)
-    const { error } = await supabase
+    const { error } = await db
       .from('device_tokens')
       .upsert(
         {
@@ -194,7 +194,7 @@ export async function saveDeviceToken(userId: string, token: string): Promise<bo
 export async function removeDeviceToken(userId: string, token: string): Promise<boolean> {
   try {
     
-    const { error } = await supabase
+    const { error } = await db
       .from('device_tokens')
       .update({ is_active: false, updated_at: new Date().toISOString() })
       .eq('user_id', userId)
@@ -217,7 +217,7 @@ export async function removeDeviceToken(userId: string, token: string): Promise<
 export async function deleteAllDeviceTokens(userId: string): Promise<boolean> {
   try {
     
-    const { error } = await supabase
+    const { error } = await db
       .from('device_tokens')
       .delete()
       .eq('user_id', userId);

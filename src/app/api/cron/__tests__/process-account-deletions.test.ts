@@ -10,14 +10,14 @@
  * with no record that the deletion was ever requested.
  */
 import { GET } from '@/app/api/cron/process-account-deletions/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { raiseAlert } from '@/lib/ops/alert'
 import { tableRouter } from '@/tests/study-route-helpers'
 import type { NextRequest } from 'next/server'
 
 jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: {
+  dbAdmin: {
     from: jest.fn(),
     rpc: jest.fn(),
     auth: { admin: { deleteUser: jest.fn() } },
@@ -33,9 +33,9 @@ jest.mock('@/lib/account-deletion-emails', () => ({
   sendAccountPermanentlyDeletedEmail: jest.fn(async () => ({ sent: true })),
 }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
-const rpcMock = supabaseAdmin.rpc as unknown as jest.Mock
-const deleteUserMock = supabaseAdmin.auth.admin.deleteUser as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
+const rpcMock = dbAdmin.rpc as unknown as jest.Mock
+const deleteUserMock = dbAdmin.auth.admin.deleteUser as unknown as jest.Mock
 const verifyCronAuthMock = verifyCronAuth as unknown as jest.Mock
 const raiseAlertMock = raiseAlert as unknown as jest.Mock
 

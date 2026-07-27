@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
@@ -43,7 +43,7 @@ export async function activateSubscriptionFromBillingKey(opts: {
 }): Promise<ActivateOutcome> {
   const plan = resolvePlan(opts.planId)
 
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('status, portone_subscription_id')
     .eq('student_id', opts.studentId)
@@ -88,13 +88,13 @@ export async function activateSubscriptionFromBillingKey(opts: {
     if (sub?.status === 'active') {
       // A failed NEW subscribe attempt must NOT downgrade an existing
       // active subscription/pass — only note the failure, keep them active.
-      const { error } = await supabaseAdmin
+      const { error } = await dbAdmin
         .from('study_subscriptions')
         .update({ last_payment_attempt_at: nowIso, last_payment_failure: result.message ?? 'unknown', updated_at: nowIso })
         .eq('student_id', opts.studentId)
       failureWriteErr = error
     } else {
-      const { error } = await supabaseAdmin
+      const { error } = await dbAdmin
         .from('study_subscriptions')
         .upsert({
           student_id: opts.studentId,
@@ -120,7 +120,7 @@ export async function activateSubscriptionFromBillingKey(opts: {
   const now = new Date()
   const periodEnd = new Date(now.getTime() + plan.intervalDays * 24 * 60 * 60 * 1000)
   const nextGrantAt = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
-  const { error: upsertError } = await supabaseAdmin
+  const { error: upsertError } = await dbAdmin
     .from('study_subscriptions')
     .upsert({
       student_id: opts.studentId,
@@ -149,7 +149,7 @@ export async function activateSubscriptionFromBillingKey(opts: {
 
   // The grant is already on the row above — a lost ledger row is an audit
   // gap (balance no longer reconciles), never a reason to re-grant.
-  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+  const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
     student_id: opts.studentId,
     delta: plan.monthlyCredits,
     bucket: 'grant',

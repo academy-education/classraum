@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { validateNickname, normalizeNickname } from '@/lib/study/nickname'
@@ -59,7 +59,7 @@ export async function PUT(req: NextRequest) {
 
   // Current state — decides the change-once rule. A first pick is free; a
   // second distinct value uses the one allowed change; a third is locked.
-  const { data: current } = await supabaseAdmin
+  const { data: current } = await dbAdmin
     .from('study_user_prefs')
     .select('nickname, nickname_changed')
     .eq('student_id', user.id)
@@ -84,7 +84,7 @@ export async function PUT(req: NextRequest) {
   }
 
   // Changing an existing handle (not the first pick) consumes the one change.
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await dbAdmin
     .from('study_user_prefs')
     .upsert({
       student_id: user.id,
@@ -114,7 +114,7 @@ export async function PUT(req: NextRequest) {
  *  in ILIKE, so an unescaped "a_b" would spuriously match "axb". */
 async function nicknameTakenByOther(nickname: string, selfId: string): Promise<boolean> {
   const pattern = nickname.replace(/([\\%_])/g, '\\$1')
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_user_prefs')
     .select('student_id')
     .ilike('nickname', pattern)

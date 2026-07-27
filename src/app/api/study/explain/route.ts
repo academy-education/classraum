@@ -3,7 +3,7 @@ import { generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * POST /api/study/explain — on-demand, follow-up explanations for a
@@ -114,7 +114,7 @@ export async function POST(req: NextRequest) {
     const attemptId = (body.attemptId ?? '').trim()
     if (attemptId && (mode === 'steps' || mode === 'simpler') && clean) {
       try {
-        const { data: attempt } = await supabaseAdmin
+        const { data: attempt } = await dbAdmin
           .from('study_attempts')
           .select('id, session:study_sessions!inner ( student_id )')
           .eq('id', attemptId)
@@ -125,7 +125,7 @@ export async function POST(req: NextRequest) {
           // The catch below can't see a rejected write (supabase-js
           // resolves with { error }), so a failed save silently cost the
           // student their explanation on the next notebook reload.
-          const { error: saveErr } = await supabaseAdmin
+          const { error: saveErr } = await dbAdmin
             .from('study_attempt_explanations')
             .upsert(
               {

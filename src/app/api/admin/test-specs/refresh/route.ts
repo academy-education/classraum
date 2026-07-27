@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import {
   refreshTestSpec,
   refreshTestSpecExamples,
@@ -36,10 +36,10 @@ export async function POST(req: NextRequest) {
   const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
   if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
+  const { data: { user }, error: authError } = await dbAdmin.auth.getUser(token)
   if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  const { data: me } = await supabaseAdmin
+  const { data: me } = await dbAdmin
     .from('users')
     .select('role')
     .eq('id', user.id)

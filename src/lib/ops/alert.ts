@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/nextjs'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * The single way server code reports "something is wrong".
@@ -74,7 +74,7 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
     // Dedupe against the OPEN alert only. Once you resolve it on the
     // dashboard, a recurrence is allowed to raise a fresh row — that is
     // how you learn the problem came back.
-    const { data: open } = await supabaseAdmin
+    const { data: open } = await dbAdmin
       .from('alerts')
       .select('id')
       .eq('resolved', false)
@@ -90,7 +90,7 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
     let writeError: unknown = null
     if (open && open.length > 0) {
       isNew = false
-      const { error: updateError } = await supabaseAdmin
+      const { error: updateError } = await dbAdmin
         .from('alerts')
         .update({
           message,
@@ -101,7 +101,7 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
         .eq('id', open[0]!.id)
       writeError = updateError
     } else {
-      const { error: insertError } = await supabaseAdmin.from('alerts').insert({
+      const { error: insertError } = await dbAdmin.from('alerts').insert({
         severity, title, message,
         error_message: errText(error),
         error_stack: errStack(error),

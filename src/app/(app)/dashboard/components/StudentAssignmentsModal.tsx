@@ -16,7 +16,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { getDateLocale } from '@/utils/dateUtils'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 interface Assignment {
   id: string
@@ -54,7 +54,7 @@ export function StudentAssignmentsModal({
 
     setLoading(true)
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignment_grades')
         .select(`
           id,

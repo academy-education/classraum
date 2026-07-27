@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assembleFromBank, assembleToeflFromBank, type ToeflSection } from '@/lib/study/assemble'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
@@ -139,7 +139,7 @@ export async function POST(req: NextRequest) {
   // whole-path repeat (POST /api/study/path/repeat), which archives
   // the old run's sessions and thereby clears this check.
   if (pathNode) {
-    const { data: done } = await supabaseAdmin
+    const { data: done } = await dbAdmin
       .from('study_sessions')
       .select('id')
       .eq('student_id', user.id)
@@ -157,7 +157,7 @@ export async function POST(req: NextRequest) {
 
   // Assemble from the bank. Seed with the (not-yet-created) session id so
   // the shuffle is stable per session; fall back to a fresh session first.
-  const { data: sess, error: sessErr } = await supabaseAdmin
+  const { data: sess, error: sessErr } = await dbAdmin
     .from('study_sessions')
     .insert({
       student_id: user.id, topic_id: SECTION_TOPIC[family][section], mode: 'full_test',
@@ -180,7 +180,7 @@ export async function POST(req: NextRequest) {
       // Error intentionally ignored on all three rollback deletes below:
       // credits are reserved/refunded independently, so a failed delete
       // only leaves an empty, question-less session in history.
-      await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
+      await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
       void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits', kind: `bank_${family}` })
       return NextResponse.json(
         { error: 'no test credits remaining', reason: credit.reason === 'no_subscription' ? 'no_subscription' : 'no_credits' },
@@ -210,7 +210,7 @@ export async function POST(req: NextRequest) {
     // the worst case is an empty session row that carries no questions and
     // gets swept by cleanupAbandonedPracticeSessions.
     if (creditCost > 0) await refundTestCredits(user.id, sess.id, creditCost)
-    await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
+    await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
     return NextResponse.json({ error: (e as Error).message, reason: 'bank_empty' }, { status: 409 })
   }
 
@@ -236,7 +236,7 @@ export async function POST(req: NextRequest) {
       }
     : test
 
-  const { error: cacheErr } = await supabaseAdmin
+  const { error: cacheErr } = await dbAdmin
     .from('study_messages')
     .insert({
       session_id: sess.id, role: 'assistant',
@@ -246,12 +246,12 @@ export async function POST(req: NextRequest) {
     // Same rollback as above — delete error intentionally ignored, since
     // the credits are already refunded and the leftover row holds no test.
     if (creditCost > 0) await refundTestCredits(user.id, sess.id, creditCost)
-    await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
+    await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
     return NextResponse.json({ error: 'cache write failed' }, { status: 500 })
   }
   // Error intentionally ignored: the title is cosmetic (the cached payload
   // carries the authoritative one) and the test is already fully usable.
-  await supabaseAdmin.from('study_sessions').update({ title: test.title }).eq('id', sess.id)
+  await dbAdmin.from('study_sessions').update({ title: test.title }).eq('id', sess.id)
 
   // Funnel: a bank-assembled test started — the usual first test for a
   // new user, so key for activation.

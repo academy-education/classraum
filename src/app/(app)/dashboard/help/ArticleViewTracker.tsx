@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 /**
  * Fire-and-forget view ping for help articles. Mounted on the article
@@ -19,12 +19,12 @@ export function ArticleViewTracker({ slug, lang }: { slug: string; lang: 'en' | 
     if (sent.current) return
     sent.current = true
     void (async () => {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) return
       // Error intentionally ignored, per the note above: a dropped view
       // row costs one analytics record and must never make the article
       // feel broken.
-      await supabase.from('help_article_views').insert({
+      await db.from('help_article_views').insert({
         slug,
         lang,
         user_id: user.id,

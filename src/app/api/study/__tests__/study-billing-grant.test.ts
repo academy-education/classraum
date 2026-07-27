@@ -18,12 +18,12 @@ import { NextRequest } from 'next/server'
 import { STUDY_PLANS } from '@/lib/study/plans'
 import { tableRouter } from '@/tests/study-route-helpers'
 
-// dbAdmin and supabaseAdmin are the same client in production — the
+// dbAdmin and dbAdmin are the same client in production — the
 // second is only an untyped alias — so the mock exposes one shared
 // object under both names. Routes keep passing as they migrate.
 jest.mock('@/lib/supabase-admin', () => {
   const client = { from: jest.fn() }
-  return { dbAdmin: client, supabaseAdmin: client }
+  return { dbAdmin: client }
 })
 jest.mock('@/lib/cron-auth', () => ({ verifyCronAuth: jest.fn(() => true) }))
 jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn() }))

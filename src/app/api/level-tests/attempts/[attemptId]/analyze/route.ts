@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import {
   analyzeAttempt,
@@ -50,7 +50,7 @@ export async function POST(
       ? (body.analysis_language as Language)
       : undefined
 
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select(`
         id, test_id, taker_name, status, score, ai_analysis,
@@ -76,7 +76,7 @@ export async function POST(
       subjects?: { name: string }
     }
 
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -85,7 +85,7 @@ export async function POST(
     if (!mgr) return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
 
     // Collect questions + student answers
-    const { data: answers } = await supabaseAdmin
+    const { data: answers } = await dbAdmin
       .from('level_test_answers')
       .select(`
         answer, is_correct,
@@ -137,7 +137,7 @@ export async function POST(
       tone: toneOpt,
     })
 
-    const { error: persistError } = await supabaseAdmin
+    const { error: persistError } = await dbAdmin
       .from('level_test_attempts')
       .update({
         ai_analysis: analysis,
@@ -172,7 +172,7 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select('id, ai_analysis, ai_analysis_generated_at, level_tests!inner(academy_id)')
       .eq('id', attemptId)
@@ -180,7 +180,7 @@ export async function GET(
     if (!attempt) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 
     const academyId = (attempt.level_tests as unknown as { academy_id: string })?.academy_id
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { enforceRateLimit, userOrIpKey } from '@/lib/rate-limit'
 import {
@@ -81,14 +81,14 @@ export async function POST(request: NextRequest) {
   // the sole manager of any academy AND they didn't opt-in to the cascade
   // confirmation, reject with a structured error so the client can prompt
   // for the extra confirmation.
-  const { data: userRoleRow } = await supabaseAdmin
+  const { data: userRoleRow } = await dbAdmin
     .from('users')
     .select('role')
     .eq('id', user.id)
     .single()
 
   if (userRoleRow?.role === 'manager') {
-    const { data: soleAcademies, error: soleErr } = await supabaseAdmin
+    const { data: soleAcademies, error: soleErr } = await dbAdmin
       .rpc('user_sole_managed_academies', { p_user_id: user.id })
     if (soleErr) {
       console.error('[account/delete] sole-manager check failed:', soleErr)
@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
   // Look up the public.users row to capture audit metadata before anything
   // mutates. If the row is missing, we still proceed — but log it loud since
   // it shouldn't happen in normal flows.
-  const { data: userRow, error: userRowError } = await supabaseAdmin
+  const { data: userRow, error: userRowError } = await dbAdmin
     .from('users')
     .select('id, email, name, role, deletion_scheduled_at')
     .eq('id', user.id)
@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
   banUntil.setFullYear(banUntil.getFullYear() + 100)
 
   // Step 1: mark the public.users row scheduled.
-  const { error: updateError } = await supabaseAdmin
+  const { error: updateError } = await dbAdmin
     .from('users')
     .update({ deletion_scheduled_at: now.toISOString() })
     .eq('id', user.id)
@@ -166,7 +166,7 @@ export async function POST(request: NextRequest) {
   // Step 2: ban the auth identity. If this fails, roll back the users update
   // so we don't leave the user in a half-state (DB says deleted, can still
   // sign in).
-  const { error: banError } = await supabaseAdmin.auth.admin.updateUserById(
+  const { error: banError } = await dbAdmin.auth.admin.updateUserById(
     user.id,
     { ban_duration: '876000h' } // 100 years in hours (100 * 365 * 24)
   )
@@ -177,7 +177,7 @@ export async function POST(request: NextRequest) {
     // as "nothing happened", while deletion_scheduled_at stays set — and
     // the daily cron hard-deletes them 30 days later. A failed rollback
     // is a scheduled erasure nobody knows about.
-    const { error: rollbackError } = await supabaseAdmin
+    const { error: rollbackError } = await dbAdmin
       .from('users')
       .update({ deletion_scheduled_at: null })
       .eq('id', user.id)
@@ -218,7 +218,7 @@ export async function POST(request: NextRequest) {
     confirmCascadeAcademy: body.confirmCascadeAcademy === true,
   })
 
-  const { error: logError } = await supabaseAdmin
+  const { error: logError } = await dbAdmin
     .from('account_deletion_log')
     .insert({
       user_id: user.id,
@@ -274,7 +274,7 @@ export async function POST(request: NextRequest) {
   // if missing; defensive — never block on a preference lookup.
   let recipientLanguage: string | null = null
   try {
-    const { data: pref } = await supabaseAdmin
+    const { data: pref } = await dbAdmin
       .from('user_preferences')
       .select('language')
       .eq('user_id', user.id)
@@ -337,7 +337,7 @@ export async function POST(request: NextRequest) {
   if (body.confirmCascadeAcademy === true && userRoleRow?.role === 'manager') {
     await (async () => {
       try {
-        const { data: soleAcademies } = await supabaseAdmin.rpc(
+        const { data: soleAcademies } = await dbAdmin.rpc(
           'user_sole_managed_academies',
           { p_user_id: user.id }
         )
@@ -347,7 +347,7 @@ export async function POST(request: NextRequest) {
         }>
         for (const academy of academies) {
           // Cool-down check: skip if a notice went out recently.
-          const { data: academyRow } = await supabaseAdmin
+          const { data: academyRow } = await dbAdmin
             .from('academies')
             .select('closure_notice_sent_at')
             .eq('id', academy.academy_id)
@@ -371,7 +371,7 @@ export async function POST(request: NextRequest) {
           const tables = ['students', 'parents', 'teachers', 'managers'] as const
           const userIds = new Set<string>()
           for (const table of tables) {
-            const { data } = await supabaseAdmin
+            const { data } = await dbAdmin
               .from(table)
               .select('user_id')
               .eq('academy_id', academy.academy_id)
@@ -385,11 +385,11 @@ export async function POST(request: NextRequest) {
 
           // Fetch emails/names/language preferences in two batches.
           const idArray = Array.from(userIds)
-          const { data: members } = await supabaseAdmin
+          const { data: members } = await dbAdmin
             .from('users')
             .select('id, email, name')
             .in('id', idArray)
-          const { data: prefs } = await supabaseAdmin
+          const { data: prefs } = await dbAdmin
             .from('user_preferences')
             .select('user_id, language')
             .in('user_id', idArray)
@@ -464,7 +464,7 @@ export async function POST(request: NextRequest) {
           // Stamp the cool-down so a subsequent delete/reactivate/delete
           // cycle within 7 days won't re-spam these members. Only reached
           // when every notice actually sent.
-          const { error: stampError } = await supabaseAdmin
+          const { error: stampError } = await dbAdmin
             .from('academies')
             .update({ closure_notice_sent_at: new Date().toISOString() })
             .eq('id', academy.academy_id)

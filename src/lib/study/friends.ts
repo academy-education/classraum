@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Friendship-graph helpers shared across the friends + leaderboard routes.
@@ -15,7 +15,7 @@ export interface FriendshipRow {
 
 /** All accepted friends' user ids (the OTHER party on each accepted edge). */
 export async function listAcceptedFriendIds(userId: string): Promise<string[]> {
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_friendships')
     .select('requester_id, addressee_id')
     .eq('status', 'accepted')
@@ -27,7 +27,7 @@ export async function listAcceptedFriendIds(userId: string): Promise<string[]> {
 
 /** The existing friendship row between two users (either direction), or null. */
 export async function findFriendship(a: string, b: string): Promise<FriendshipRow | null> {
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_friendships')
     .select('id, requester_id, addressee_id, status')
     .or(`and(requester_id.eq.${a},addressee_id.eq.${b}),and(requester_id.eq.${b},addressee_id.eq.${a})`)
@@ -52,7 +52,7 @@ export async function ensureAcceptedFriendship(a: string, b: string): Promise<vo
     const existing = await findFriendship(a, b)
     if (existing) {
       if (existing.status !== 'accepted') {
-        const { error } = await supabaseAdmin
+        const { error } = await dbAdmin
           .from('study_friendships')
           .update({ status: 'accepted', responded_at: new Date().toISOString() })
           .eq('id', existing.id)
@@ -60,7 +60,7 @@ export async function ensureAcceptedFriendship(a: string, b: string): Promise<vo
       }
       return
     }
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('study_friendships')
       .insert({ requester_id: a, addressee_id: b, status: 'accepted', responded_at: new Date().toISOString() })
     // 23505 = the unordered-pair unique index under a race — already friends.

@@ -10,7 +10,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 // =====================================================================
 // Onboarding wizard — full-bleed split layout.
@@ -350,7 +350,7 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
         document.cookie = `classraum_language=${value}; path=/; max-age=${oneYear}; SameSite=Lax`
       } catch { /* cookie set is best-effort */ }
 
-      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
+      const { error: signInError } = await db.auth.signInWithPassword({ email, password })
       if (signInError) {
         console.error('[Onboarding] Auto sign-in failed:', signInError)
         router.replace('/auth')

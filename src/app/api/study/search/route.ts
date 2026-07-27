@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -43,12 +43,12 @@ export async function GET(req: NextRequest) {
   const pattern = `%${q.replace(/[%_\\]/g, m => '\\' + m)}%`
 
   const [topics, sessions, snaps, mistakes] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_topics')
       .select('id, slug, name_en, name_ko, category')
       .or(`name_en.ilike.${pattern},name_ko.ilike.${pattern}`)
       .limit(5),
-    supabaseAdmin
+    dbAdmin
       .from('study_sessions')
       .select(`
         id, title, mode, topic_freeform, last_active_at,
@@ -58,7 +58,7 @@ export async function GET(req: NextRequest) {
       .or(`title.ilike.${pattern},topic_freeform.ilike.${pattern}`)
       .order('last_active_at', { ascending: false })
       .limit(5),
-    supabaseAdmin
+    dbAdmin
       .from('study_snap_captures')
       .select('id, ocr_text, subject_guess, created_at')
       .eq('student_id', user.id)
@@ -67,7 +67,7 @@ export async function GET(req: NextRequest) {
       .limit(5),
     // Mistakes — search inside the jsonb `question` column's prompt
     // via Postgres jsonb operator. Cast to text for ilike.
-    supabaseAdmin
+    dbAdmin
       .from('study_attempts')
       .select(`
         id, question, created_at,

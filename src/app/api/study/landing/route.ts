@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { computeDailyChallenge } from '@/lib/study/daily-challenge'
 import { requireStudyUser } from '@/lib/study/auth'
@@ -78,7 +78,7 @@ export async function GET(req: NextRequest) {
     // Streak + freeze: derives the count, auto-consumes freezes to bridge a
     // missed day, grants milestone freezes, and persists study_streak_state.
     evaluateStreak(user.id),
-    supabaseAdmin
+    dbAdmin
       .from('study_sessions')
       .select(`
         id, mode, title, last_active_at, topic_freeform,
@@ -90,7 +90,7 @@ export async function GET(req: NextRequest) {
       .order('last_active_at', { ascending: false })
       .limit(1)
       .maybeSingle(),
-    supabaseAdmin
+    dbAdmin
       .from('study_sessions')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', user.id)
@@ -100,7 +100,7 @@ export async function GET(req: NextRequest) {
       .eq('generation_status', 'ready'),
     // Archived sessions' questions don't count toward today's totals —
     // consistent with the stats page and history.
-    supabaseAdmin
+    dbAdmin
       .from('study_attempts')
       .select(`
         time_spent_seconds, created_at,
@@ -109,19 +109,19 @@ export async function GET(req: NextRequest) {
       .eq('session.student_id', user.id)
       .eq('session.archived', false)
       .gte('created_at', todayIso),
-    supabaseAdmin
+    dbAdmin
       .from('study_user_prefs')
       .select('*')
       .eq('student_id', user.id)
       .maybeSingle(),
-    supabaseAdmin
+    dbAdmin
       .from('study_subscriptions')
       .select('status')
       .eq('student_id', user.id)
       .maybeSingle(),
     // Today's XP — the hero stat row shows this instead of repeating
     // the streak (already shown in the hero chip).
-    supabaseAdmin
+    dbAdmin
       .from('study_xp_events')
       .select('xp')
       .eq('student_id', user.id)
@@ -130,7 +130,7 @@ export async function GET(req: NextRequest) {
     // Activation: has the student ever COMPLETED a test? Drives the
     // first-test nudge for brand-new users (first-test completion is the
     // key activation signal).
-    supabaseAdmin
+    dbAdmin
       .from('study_sessions')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', user.id)
@@ -165,7 +165,7 @@ export async function GET(req: NextRequest) {
   // /api/study/prefs's insert-on-miss behavior.
   let prefs = prefsRow
   if (!prefs) {
-    const { data: created, error: createErr } = await supabaseAdmin
+    const { data: created, error: createErr } = await dbAdmin
       .from('study_user_prefs')
       .insert({ student_id: user.id })
       .select()

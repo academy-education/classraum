@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { computeDailyChallenge } from '@/lib/study/daily-challenge'
 import { requireStudyUser } from '@/lib/study/auth'
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Idempotency — if today's session already exists, return it.
-  const { data: existing } = await supabaseAdmin
+  const { data: existing } = await dbAdmin
     .from('study_sessions')
     .select('id')
     .eq('student_id', user.id)
@@ -53,14 +53,14 @@ export async function POST(req: NextRequest) {
   }
 
   // Language: respect prefs. Default to en.
-  const { data: prefs } = await supabaseAdmin
+  const { data: prefs } = await dbAdmin
     .from('study_user_prefs')
     .select('default_language')
     .eq('student_id', user.id)
     .maybeSingle()
   const language = (prefs?.default_language as string | null) === 'ko' ? 'ko' : 'en'
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await dbAdmin
     .from('study_sessions')
     .insert({
       student_id: user.id,

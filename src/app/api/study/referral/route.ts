@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { REFERRAL_SIGNUP_CREDITS, REFERRAL_PREMIUM_CREDITS, generateReferralCode } from '@/lib/study/referral'
 
@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
   const user = authResult.user
 
   // Existing code wins — a student's code is stable for sharing.
-  const { data: existing } = await supabaseAdmin
+  const { data: existing } = await dbAdmin
     .from('study_referral_codes')
     .select('code')
     .eq('student_id', user.id)
@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
   if (!code) {
     for (let attempt = 0; attempt < MAX_CODE_ATTEMPTS && !code; attempt++) {
       const candidate = generateReferralCode()
-      const { data: inserted, error } = await supabaseAdmin
+      const { data: inserted, error } = await dbAdmin
         .from('study_referral_codes')
         .insert({ student_id: user.id, code: candidate })
         .select('code')
@@ -52,7 +52,7 @@ export async function GET(req: NextRequest) {
       // request already minted this student's code — re-read it. On the
       // UNIQUE(code) index it's a code collision — try a fresh code.
       if (isUniqueViolation(error)) {
-        const { data: raced } = await supabaseAdmin
+        const { data: raced } = await dbAdmin
           .from('study_referral_codes')
           .select('code')
           .eq('student_id', user.id)
@@ -69,7 +69,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'could not create referral code' }, { status: 500 })
   }
 
-  const { data: redemptions } = await supabaseAdmin
+  const { data: redemptions } = await dbAdmin
     .from('study_referral_redemptions')
     .select('rewarded, converted')
     .eq('referrer_id', user.id)

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { loadStudyPromptContext } from '@/lib/study-prompt-context'
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
   const sessionId = body.sessionId
   if (!sessionId) return NextResponse.json({ error: 'missing sessionId' }, { status: 400 })
 
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, mode, language, topic_id')
     .eq('id', sessionId)
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Resume: return the cached deck if this session already has one.
-  const { data: existingRows } = await supabaseAdmin
+  const { data: existingRows } = await dbAdmin
     .from('study_messages')
     .select('content')
     .eq('session_id', sessionId)
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
       // Error intentionally ignored: no energy was spent, so the worst case
       // is an empty session lingering until cleanupAbandonedPracticeSessions
       // sweeps it.
-      await supabaseAdmin.from('study_sessions').delete().eq('id', sessionId).eq('student_id', user.id)
+      await dbAdmin.from('study_sessions').delete().eq('id', sessionId).eq('student_id', user.id)
       return NextResponse.json(
         { error: 'out of energy', reason: 'no_energy', cap: spend.state.cap, nextRefillSeconds: spend.state.nextRefillSeconds },
         { status: 429 },
@@ -120,7 +120,7 @@ export async function POST(req: NextRequest) {
   // Energy was already spent above and this row is what a resume reads. If
   // it silently fails the deck is a ghost — gone on refresh — and the
   // student pays a second energy for the redraw.
-  const { error: cacheErr } = await supabaseAdmin
+  const { error: cacheErr } = await dbAdmin
     .from('study_messages')
     .insert({
       session_id: sessionId,

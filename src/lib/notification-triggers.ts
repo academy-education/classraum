@@ -38,7 +38,7 @@ function recipientIds(ids: Array<string | null | undefined>): string[] {
 }
 
 /**
- * Unwrap a supabase joined-relation field that's typed as an array but
+ * Unwrap a db joined-relation field that's typed as an array but
  * carries a single object at runtime. Foreign-key joins where the parent
  * has exactly one related row come back as `{...}` but the generated TS
  * type is `{...}[]`. Returns the first element of an array, or the value
@@ -1383,7 +1383,7 @@ async function getAssignmentRemindRecipients(
   const recipients = new Set<string>()
   for (const studentId of studentIds) {
     // Reuse the same family-fan-out helper used by every other trigger.
-    // Cron is a server context but supabase (anon-key) here works because
+    // Cron is a server context but db (anon-key) here works because
     // family_members has a permissive read policy; if that ever tightens,
     // swap in a db.from(...) call here.
     const familyMembers = await getStudentFamilyMembers(studentId)

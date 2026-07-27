@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { cleanupWebPush } from '@/lib/webPushNotifications'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
@@ -30,7 +30,7 @@ export async function performLogout() {
   // Generous timeout because the auth check + cleanup involves the
   // service worker + a Supabase write.
   try {
-    const userResult = await withTimeout(supabase.auth.getUser(), 3000, 'auth.getUser')
+    const userResult = await withTimeout(db.auth.getUser(), 3000, 'auth.getUser')
     const user = userResult?.data?.user
     if (user) {
       await withTimeout(cleanupWebPush(user.id), 2000, 'cleanupWebPush')
@@ -41,7 +41,7 @@ export async function performLogout() {
 
   // Sign out — also timed out so a hung network request can't block forever.
   try {
-    const result = await withTimeout(supabase.auth.signOut(), 3000, 'auth.signOut')
+    const result = await withTimeout(db.auth.signOut(), 3000, 'auth.signOut')
     if (result?.error) {
       console.error('Logout error:', result.error)
     }
@@ -52,7 +52,7 @@ export async function performLogout() {
   if (typeof window !== 'undefined') {
     // Clear all Supabase auth keys from localStorage
     Object.keys(localStorage).forEach(key => {
-      if (key.startsWith('supabase.auth.token') || key.startsWith('sb-')) {
+      if (key.startsWith('db.auth.token') || key.startsWith('sb-')) {
         localStorage.removeItem(key)
       }
     })

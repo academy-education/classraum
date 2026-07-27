@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -41,7 +41,7 @@ export async function GET(req: NextRequest) {
 
   // Pull the last 60 wrong attempts (we'll dedupe down). 60 is plenty
   // — most students won't have that many distinct mistakes.
-  const { data: raw } = await supabaseAdmin
+  const { data: raw } = await dbAdmin
     .from('study_attempts')
     .select(`
       id, question, student_answer, ai_explanation, created_at, topic_id,

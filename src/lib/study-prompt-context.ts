@@ -63,8 +63,8 @@ export async function loadStudyPromptContext(
   // into a client component's import graph. The admin client throws at
   // module-init when the service-role key is missing (always true in
   // the browser).
-  const { supabaseAdmin } = await import('@/lib/supabase-admin')
-  const { data: topic } = await supabaseAdmin
+  const { dbAdmin } = await import('@/lib/supabase-admin')
+  const { data: topic } = await dbAdmin
     .from('study_topics')
     .select('id, parent_id, slug, name_en, name_ko, level, category, grade_min, grade_max')
     .eq('id', topicId)
@@ -82,8 +82,8 @@ export async function loadStudyPromptContext(
     // to it; if we ARE at level 1, this is the test root itself.
     let rootSlug = t.slug
     if (t.level === 2 && t.parent_id) {
-      const { supabaseAdmin } = await import('@/lib/supabase-admin')
-      const { data: parent } = await supabaseAdmin
+      const { dbAdmin } = await import('@/lib/supabase-admin')
+      const { data: parent } = await dbAdmin
         .from('study_topics')
         .select('slug')
         .eq('id', t.parent_id)

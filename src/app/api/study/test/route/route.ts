@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import {
   toeflAdaptiveConfig,
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
   }
   const { sessionId, sectionName, answers } = parsed.data
 
-  const { data: session, error: sessErr } = await supabaseAdmin
+  const { data: session, error: sessErr } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, module2_route, module1_correct, module1_total')
     .eq('id', sessionId)
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
   // The authoritative payload lives in the marker-prefixed assistant
   // message (same row /submit grades against) — study_sessions has no
   // cached_test column.
-  const { data: cacheRows } = await supabaseAdmin
+  const { data: cacheRows } = await dbAdmin
     .from('study_messages')
     .select('content')
     .eq('session_id', sessionId)
@@ -160,7 +160,7 @@ export async function POST(req: NextRequest) {
 
     // Append Module 2 to the cached payload (same row /submit reads).
     const merged = { ...cached, questions: [...allQuestions, ...module2.questions] }
-    const { error: writeErr } = await supabaseAdmin
+    const { error: writeErr } = await dbAdmin
       .from('study_messages')
       .update({ content: CACHED_TEST_MARKER + JSON.stringify(merged) })
       .eq('session_id', sessionId)
@@ -175,7 +175,7 @@ export async function POST(req: NextRequest) {
     // SECOND Module 2 to the same payload. The student already has their
     // questions, so don't fail the response — but make the corruption risk
     // visible rather than silent.
-    const { error: routeErr } = await supabaseAdmin
+    const { error: routeErr } = await dbAdmin
       .from('study_sessions')
       .update({ module1_correct: correct, module1_total: module1Questions.length, module2_route: route })
       .eq('id', sessionId)
@@ -243,7 +243,7 @@ export async function POST(req: NextRequest) {
     // Legacy pre-drawn payload — record the verdict only. Nothing is drawn
     // here, so a lost write just means the adaptive verdict never reaches
     // history/analytics; log it rather than 500 a working test.
-    const { error: legacyErr } = await supabaseAdmin
+    const { error: legacyErr } = await dbAdmin
       .from('study_sessions')
       .update({
         module1_correct: correct,
@@ -269,7 +269,7 @@ export async function POST(req: NextRequest) {
   // read a null route above, but only one UPDATE matches — the loser
   // gets zero rows back and replays the winner's Module 2 instead of
   // drawing and appending a second one.
-  const { data: claimed } = await supabaseAdmin
+  const { data: claimed } = await dbAdmin
     .from('study_sessions')
     .update({
       module1_correct: correct,
@@ -281,7 +281,7 @@ export async function POST(req: NextRequest) {
     .select('id')
   if (!claimed || claimed.length === 0) {
     // Lost the race. Re-read the cache the winner just wrote.
-    const { data: freshRows } = await supabaseAdmin
+    const { data: freshRows } = await dbAdmin
       .from('study_messages')
       .select('content')
       .eq('session_id', sessionId)
@@ -292,7 +292,7 @@ export async function POST(req: NextRequest) {
     if (freshRows?.[0]) {
       try { fresh = JSON.parse(freshRows[0].content.slice(CACHED_TEST_MARKER.length)) } catch { /* corrupt */ }
     }
-    const { data: s2 } = await supabaseAdmin
+    const { data: s2 } = await dbAdmin
       .from('study_sessions')
       .select('module2_route, module1_correct, module1_total')
       .eq('id', sessionId)
@@ -326,7 +326,7 @@ export async function POST(req: NextRequest) {
     // seeded, rather than being stranded with a route and no Module 2.
     // If the release itself fails they ARE stranded — the replay path will
     // hand back an empty Module 2 forever — so it must not be silent.
-    const { error: releaseErr } = await supabaseAdmin
+    const { error: releaseErr } = await dbAdmin
       .from('study_sessions')
       .update({ module2_route: null })
       .eq('id', sessionId)
@@ -342,7 +342,7 @@ export async function POST(req: NextRequest) {
   // against. `allQuestions` is Module 1 verbatim, so this never reorders
   // or rewrites it, and the scored-item accounting is unchanged.
   const merged = { ...cached, questions: [...allQuestions, ...module2.questions] }
-  const { error: writeErr } = await supabaseAdmin
+  const { error: writeErr } = await dbAdmin
     .from('study_messages')
     .update({ content: CACHED_TEST_MARKER + JSON.stringify(merged) })
     .eq('session_id', sessionId)
@@ -350,7 +350,7 @@ export async function POST(req: NextRequest) {
     .ilike('content', `${CACHED_TEST_MARKER}%`)
   if (writeErr) {
     // Same stranding risk as the bank-empty path above.
-    const { error: releaseErr } = await supabaseAdmin
+    const { error: releaseErr } = await dbAdmin
       .from('study_sessions')
       .update({ module2_route: null })
       .eq('id', sessionId)

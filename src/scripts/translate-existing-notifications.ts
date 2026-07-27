@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 // Translation mapping for existing notifications
 const notificationTranslations = [
@@ -85,7 +85,7 @@ export async function translateExistingNotifications() {
   
   for (const translation of notificationTranslations) {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('notifications')
         .update({
           title_key: translation.title_key,

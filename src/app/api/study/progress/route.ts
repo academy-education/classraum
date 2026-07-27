@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
   // Pull attempts started today via the join to sessions (RLS
   // enforces ownership). time_spent_seconds may be null on some
   // rows; coalesce to 0.
-  const { data: attempts } = await supabaseAdmin
+  const { data: attempts } = await dbAdmin
     .from('study_attempts')
     .select(`
       time_spent_seconds, created_at,
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
   }
 
   // Daily goal — read from prefs, default 30 min.
-  const { data: prefs } = await supabaseAdmin
+  const { data: prefs } = await dbAdmin
     .from('study_user_prefs')
     .select('daily_goal_minutes')
     .eq('student_id', user.id)

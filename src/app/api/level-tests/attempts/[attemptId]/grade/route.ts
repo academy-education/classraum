@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { recomputeAttemptScore } from '@/lib/level-test-grading'
 
 // Helper: recompute attempt score and status based on current answer is_correct values
 async function recomputeAttempt(attemptId: string) {
-  const { data: attempt } = await supabaseAdmin
+  const { data: attempt } = await dbAdmin
     .from('level_test_attempts')
     .select('id, test_id, total_questions')
     .eq('id', attemptId)
     .single()
   if (!attempt) return
 
-  const { data: answers } = await supabaseAdmin
+  const { data: answers } = await dbAdmin
     .from('level_test_answers')
     .select('is_correct')
     .eq('attempt_id', attemptId)
@@ -22,7 +22,7 @@ async function recomputeAttempt(attemptId: string) {
   const total = attempt.total_questions || answers.length
   const { score, needsManualGrading, status } = recomputeAttemptScore(answers, total)
 
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('level_test_attempts')
     .update({
       score,
@@ -60,7 +60,7 @@ export async function PATCH(
     }
 
     // Verify manager access via attempt's test
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select('id, level_tests!inner(academy_id)')
       .eq('id', attemptId)
@@ -69,7 +69,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'Attempt not found' }, { status: 404 })
     }
     const academyId = (attempt.level_tests as unknown as { academy_id: string })?.academy_id
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -78,7 +78,7 @@ export async function PATCH(
     if (!mgr) return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
 
     // Update the answer
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('level_test_answers')
       .update({
         is_correct,
@@ -94,7 +94,7 @@ export async function PATCH(
     await recomputeAttempt(attemptId)
 
     // Return fresh attempt
-    const { data: updated } = await supabaseAdmin
+    const { data: updated } = await dbAdmin
       .from('level_test_attempts')
       .select('id, score, status, needs_manual_grading')
       .eq('id', attemptId)

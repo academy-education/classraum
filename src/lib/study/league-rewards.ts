@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * League reward payouts — granted by the weekly roll cron
@@ -62,13 +62,13 @@ async function grantCredits(studentId: string, delta: number, note: string): Pro
   // has no study_subscriptions row — gets one created with the reward in
   // it. The hand-rolled create that used to live here also had to guess
   // the row's shape, and could refuse a grant the upsert handles fine.
-  const { error } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
+  const { error } = await dbAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId, p_delta: delta,
   })
   if (error) { console.error('[league-rewards] credit grant failed', { studentId, delta, error }); return false }
   // Balance already moved — a lost ledger row is an audit gap, never a
   // reason to re-pay, but it breaks reconciliation so it must be visible.
-  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+  const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
     student_id: studentId, delta, bucket: 'purchased', kind: 'league_reward', note,
   })
   if (ledgerErr) console.error('[league-rewards] ledger row missing', { studentId, delta, note, error: ledgerErr })
@@ -79,7 +79,7 @@ async function grantCredits(studentId: string, delta: number, note: string): Pro
  *  (a unique-violation → already granted → false, so credits aren't
  *  double-paid on a cron re-run). */
 async function recordReward(row: { student_id: string; week_start: string; kind: string; tier?: string | null; rank?: number | null; credits: number }): Promise<boolean> {
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await dbAdmin
     .from('study_league_rewards')
     .insert(row)
     .select('id')
@@ -96,7 +96,7 @@ async function recordReward(row: { student_id: string; week_start: string; kind:
  *  the "first time reaching a tier" milestone (a re-promotion into a
  *  tier you once held doesn't re-pay). */
 async function hasReachedTier(studentId: string, tier: string): Promise<boolean> {
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_league_memberships')
     .select('id, league:study_leagues!inner(tier)')
     .eq('student_id', studentId)

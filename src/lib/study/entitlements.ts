@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { isPassPlan, resolvePass } from '@/lib/study/plans'
 
 /**
@@ -41,7 +41,7 @@ export async function grantTestEntitlement(opts: {
 }): Promise<void> {
   const nowIso = new Date().toISOString()
   const expIso = opts.expiresAt ? opts.expiresAt.toISOString() : null
-  const { data: existing } = await supabaseAdmin
+  const { data: existing } = await dbAdmin
     .from('study_entitlements')
     .select('expires_at')
     .eq('student_id', opts.studentId)
@@ -56,7 +56,7 @@ export async function grantTestEntitlement(opts: {
     else nextExp = new Date(cur) > new Date(expIso) ? cur : expIso
   }
 
-  const { error } = await supabaseAdmin.from('study_entitlements').upsert({
+  const { error } = await dbAdmin.from('study_entitlements').upsert({
     student_id: opts.studentId,
     test: opts.test,
     source: opts.source ?? 'pass',
@@ -81,7 +81,7 @@ interface AccessResult {
 }
 
 async function resolveAccess(studentId: string): Promise<AccessResult> {
-  const { data: sub } = await supabaseAdmin
+  const { data: sub } = await dbAdmin
     .from('study_subscriptions')
     .select('status, plan')
     .eq('student_id', studentId)
@@ -90,7 +90,7 @@ async function resolveAccess(studentId: string): Promise<AccessResult> {
   if (RECURRING_PREMIUM(sub?.status, sub?.plan)) return { all: true, tests: [] }
 
   const nowIso = new Date().toISOString()
-  const { data: rows } = await supabaseAdmin
+  const { data: rows } = await dbAdmin
     .from('study_entitlements')
     .select('test, expires_at')
     .eq('student_id', studentId)
@@ -122,14 +122,14 @@ export async function getTestAccess(studentId: string): Promise<AccessResult> {
  *  grantTestEntitlement). */
 export async function pointStudyPathAtTest(studentId: string, testFamily: 'sat' | 'toefl'): Promise<void> {
   const TEST = testFamily.toUpperCase() // stored convention: 'SAT' | 'TOEFL'
-  const { data: prefs } = await supabaseAdmin
+  const { data: prefs } = await dbAdmin
     .from('study_user_prefs')
     .select('target_tests')
     .eq('student_id', studentId)
     .maybeSingle()
   const existing = ((prefs?.target_tests as string[] | null) ?? []).map(s => s.toUpperCase())
   const next = Array.from(new Set([...existing, TEST]))
-  const { error } = await supabaseAdmin.from('study_user_prefs').upsert({
+  const { error } = await dbAdmin.from('study_user_prefs').upsert({
     student_id: studentId,
     target_test: TEST,
     target_tests: next,

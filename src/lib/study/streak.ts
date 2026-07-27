@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { notifyStudent } from '@/lib/study/notify'
 
 /**
@@ -123,14 +123,14 @@ export async function evaluateStreak(studentId: string): Promise<StreakResult> {
   const cutoff = new Date(Date.now() - WINDOW_DAYS * 86_400_000).toISOString()
 
   const [{ data: sessRows }, { data: stateRow }] = await Promise.all([
-    supabaseAdmin
+    dbAdmin
       .from('study_sessions')
       .select('last_active_at')
       .eq('student_id', studentId)
       .gte('last_active_at', cutoff)
       .order('last_active_at', { ascending: false })
       .limit(500),
-    supabaseAdmin
+    dbAdmin
       .from('study_streak_state')
       .select('*')
       .eq('student_id', studentId)
@@ -198,7 +198,7 @@ export async function evaluateStreak(studentId: string): Promise<StreakResult> {
   // failure hands back a streak/freeze count the database never stored —
   // the next read re-evaluates from stale state and can re-consume or
   // re-grant a freeze, and the "streak saved" push repeats.
-  const { error: stateErr } = await supabaseAdmin
+  const { error: stateErr } = await dbAdmin
     .from('study_streak_state')
     .upsert({
       student_id: studentId,

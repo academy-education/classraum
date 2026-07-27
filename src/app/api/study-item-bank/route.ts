@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Read-only browser for the `study_item_bank` table (SAT question bank).
@@ -24,13 +24,13 @@ export async function GET(req: Request) {
   const token = auth?.startsWith('Bearer ') ? auth.slice(7) : null
   if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
+  const { data: { user }, error: authError } = await dbAdmin.auth.getUser(token)
   if (authError || !user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const emailOk = user.email ? ALLOWED_EMAILS.has(user.email.toLowerCase()) : false
   let roleOk = false
   if (!emailOk) {
-    const { data: me } = await supabaseAdmin.from('users').select('role').eq('id', user.id).single()
+    const { data: me } = await dbAdmin.from('users').select('role').eq('id', user.id).single()
     roleOk = me?.role === 'admin' || me?.role === 'super_admin'
   }
   if (!emailOk && !roleOk) return NextResponse.json({ error: 'forbidden' }, { status: 403 })
@@ -50,7 +50,7 @@ export async function GET(req: Request) {
   const verified = p.get('verified') ?? 'true'  // true | false | all
   const q = cleanSearch(p.get('q') || '')
 
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('study_item_bank')
     .select('id, section, domain, subskill, difficulty, topic_tag, cohort, archived, verified, source, created_at, item', { count: 'exact' })
     .eq('family', 'sat')

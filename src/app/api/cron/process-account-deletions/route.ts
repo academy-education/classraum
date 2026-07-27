@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { deletePortOneBillingKey } from '@/lib/portone-billing-key'
 import { sendAccountPermanentlyDeletedEmail } from '@/lib/account-deletion-emails'
@@ -81,7 +81,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
   | { success: false; error: string }
 > {
   try {
-    const { data: soleAcademies, error: soleError } = await supabaseAdmin
+    const { data: soleAcademies, error: soleError } = await dbAdmin
       .rpc('user_sole_managed_academies', { p_user_id: managerUserId })
     if (soleError) {
       return { success: false, error: `sole lookup: ${soleError.message}` }
@@ -101,7 +101,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
       // The manager's own deletion request IS schedule-gated — they
       // requested deletion + 30 days have elapsed, that's why we're
       // here — so the default schedule check is fine.
-      const { error: userErr } = await supabaseAdmin.rpc(
+      const { error: userErr } = await dbAdmin.rpc(
         'delete_user_account_cascade',
         { p_user_id: managerUserId }
       )
@@ -110,7 +110,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
       // with { error } rather than rejecting, so a failed auth delete was
       // reported as a completed erasure while the identity — and the
       // ability to sign in with it — still existed.
-      const { error: authErr } = await supabaseAdmin.auth.admin.deleteUser(
+      const { error: authErr } = await dbAdmin.auth.admin.deleteUser(
         managerUserId
       )
       if (
@@ -141,7 +141,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
     for (const a of academies) {
       // Look up the academy's billing_key from academy_subscriptions
       // BEFORE the cascade runs (otherwise the row will be gone).
-      const { data: subRow } = await supabaseAdmin
+      const { data: subRow } = await dbAdmin
         .from('academy_subscriptions')
         .select('billing_key, billing_key_cancelled_at')
         .eq('academy_id', a.academy_id)
@@ -164,7 +164,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
           // deleted by the cascade a few lines below, so a failed write
           // costs nothing; the authoritative record that the key was
           // released is the PortOne-side cancellation plus the log line.
-          await supabaseAdmin
+          await dbAdmin
             .from('academy_subscriptions')
             .update({ billing_key_cancelled_at: new Date().toISOString() })
             .eq('academy_id', a.academy_id)
@@ -197,7 +197,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
         })
       }
 
-      const { data: result, error: cascadeErr } = await supabaseAdmin.rpc(
+      const { data: result, error: cascadeErr } = await dbAdmin.rpc(
         'delete_academy_cascade',
         { p_academy_id: a.academy_id }
       )
@@ -223,7 +223,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
         // (Best-effort — we don't have email/role/name handy without an
         // extra lookup. The cron context "cascaded from academy" is
         // captured in the reason.)
-        const { data: memberRow } = await supabaseAdmin
+        const { data: memberRow } = await dbAdmin
           .from('users')
           .select('email, role, name')
           .eq('id', memberId)
@@ -235,7 +235,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
         // happened. We now require the row back from the database before
         // touching anything destructive; if it isn't there, this member
         // is skipped and left intact for the next run.
-        const { data: logRow, error: logInsertError } = await supabaseAdmin
+        const { data: logRow, error: logInsertError } = await dbAdmin
           .from('account_deletion_log')
           .insert({
             user_id: memberId,
@@ -281,13 +281,13 @@ async function runAcademyCascade(managerUserId: string): Promise<
         // but their academy is being closed by the (verified, schedule-
         // gated) sole-manager cascade flow. Pass p_skip_schedule_check
         // so the function doesn't reject them with `not_scheduled`.
-        const { error: ucErr } = await supabaseAdmin.rpc(
+        const { error: ucErr } = await dbAdmin.rpc(
           'delete_user_account_cascade',
           { p_user_id: memberId, p_skip_schedule_check: true }
         )
         if (ucErr) throw new Error(ucErr.message)
 
-        const { error: aErr } = await supabaseAdmin.auth.admin.deleteUser(
+        const { error: aErr } = await dbAdmin.auth.admin.deleteUser(
           memberId
         )
         if (
@@ -329,20 +329,20 @@ async function runAcademyCascade(managerUserId: string): Promise<
     // Step 5: finally clean up the manager. Capture their email + name
     // BEFORE the cascade nukes the users row so we can send the final
     // confirmation email after delete succeeds.
-    const { data: managerRow } = await supabaseAdmin
+    const { data: managerRow } = await dbAdmin
       .from('users')
       .select('email, name')
       .eq('id', managerUserId)
       .maybeSingle()
 
-    const { error: managerCascadeErr } = await supabaseAdmin.rpc(
+    const { error: managerCascadeErr } = await dbAdmin.rpc(
       'delete_user_account_cascade',
       { p_user_id: managerUserId }
     )
     if (managerCascadeErr) {
       return { success: false, error: `manager cascade: ${managerCascadeErr.message}` }
     }
-    const { error: managerAuthErr } = await supabaseAdmin.auth.admin.deleteUser(
+    const { error: managerAuthErr } = await dbAdmin.auth.admin.deleteUser(
       managerUserId
     )
     if (
@@ -359,7 +359,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
     // gone at this point so we cannot fail closed, but a missing
     // hard_deleted_at makes the audit trail read as "deletion pending"
     // for an account that no longer exists — someone has to backfill it.
-    const { error: managerStampError } = await supabaseAdmin
+    const { error: managerStampError } = await dbAdmin
       .from('account_deletion_log')
       .update({ hard_deleted_at: new Date().toISOString() })
       .eq('user_id', managerUserId)
@@ -414,7 +414,7 @@ async function runAcademyCascade(managerUserId: string): Promise<
 }
 
 async function getCascadeConfirmation(userId: string): Promise<boolean> {
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await dbAdmin
     .from('account_deletion_log')
     .select('reason')
     .eq('user_id', userId)
@@ -455,7 +455,7 @@ export async function GET(req: NextRequest) {
       Date.now() - GRACE_PERIOD_DAYS * 24 * 60 * 60 * 1000
     ).toISOString()
 
-    const { data: dueUsers, error: selectError } = await supabaseAdmin
+    const { data: dueUsers, error: selectError } = await dbAdmin
       .from('users')
       .select('id, email, role, name, deletion_scheduled_at')
       .not('deletion_scheduled_at', 'is', null)
@@ -494,7 +494,7 @@ export async function GET(req: NextRequest) {
         // that the deletion was ever requested, by whom, or why. If the
         // row isn't there we skip the user and alert — the account stays
         // scheduled and a backfilled row lets the next run proceed.
-        const { data: openLog, error: openLogError } = await supabaseAdmin
+        const { data: openLog, error: openLogError } = await dbAdmin
           .from('account_deletion_log')
           .select('id')
           .eq('user_id', userId)
@@ -531,7 +531,7 @@ export async function GET(req: NextRequest) {
 
         // Step 1: run the per-role cascade.
         const { data: cascadeResult, error: cascadeError } =
-          await supabaseAdmin.rpc('delete_user_account_cascade', {
+          await dbAdmin.rpc('delete_user_account_cascade', {
             p_user_id: userId,
           })
 
@@ -583,7 +583,7 @@ export async function GET(req: NextRequest) {
                   `Surfacing alert for admin remediation.`
               )
 
-              const { data: existingAlert } = await supabaseAdmin
+              const { data: existingAlert } = await dbAdmin
                 .from('alerts')
                 .select('id')
                 .eq('severity', 'warning')
@@ -597,7 +597,7 @@ export async function GET(req: NextRequest) {
                 // here meant a GDPR right-of-erasure failure could go
                 // unnoticed forever because the notification about it also
                 // failed silently.
-                const { error: alertInsertError } = await supabaseAdmin
+                const { error: alertInsertError } = await dbAdmin
                   .from('alerts')
                   .insert({
                     severity: 'warning',
@@ -679,7 +679,7 @@ export async function GET(req: NextRequest) {
             // Checked: if this silently fails the account stays flagged and
             // the cron re-picks it every single day forever, logging the
             // same error and never converging.
-            const { error: clearScheduleError } = await supabaseAdmin
+            const { error: clearScheduleError } = await dbAdmin
               .from('users')
               .update({ deletion_scheduled_at: null })
               .eq('id', userId)
@@ -717,7 +717,7 @@ export async function GET(req: NextRequest) {
         // the next cron run (the auth_admin call is idempotent enough that
         // a retry won't break anything).
         const { error: authDeleteError } =
-          await supabaseAdmin.auth.admin.deleteUser(userId)
+          await dbAdmin.auth.admin.deleteUser(userId)
 
         if (authDeleteError) {
           // Some scenarios are fine — e.g. "User not found" if the auth
@@ -742,7 +742,7 @@ export async function GET(req: NextRequest) {
 
         // Step 3: stamp the audit log row. We update ALL open rows for
         // this user (typically just one).
-        const { error: logError } = await supabaseAdmin
+        const { error: logError } = await dbAdmin
           .from('account_deletion_log')
           .update({ hard_deleted_at: new Date().toISOString() })
           .eq('user_id', userId)

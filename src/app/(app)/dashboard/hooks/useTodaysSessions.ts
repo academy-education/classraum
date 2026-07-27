@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 import { useStableCallback } from '@/hooks/useStableCallback'
 
@@ -79,7 +79,7 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
         .toISOString()
         .split('T')[0]
 
-      const { data: todaySessions, error: sessionsError } = await supabase
+      const { data: todaySessions, error: sessionsError } = await db
         .from('classroom_sessions')
         .select(`
           id,
@@ -115,7 +115,7 @@ export const useTodaysSessions = (academyId: string | null): UseTodaysSessionsRe
       const sessionIds = (todaySessions || []).map(s => s.id)
       const pendingCounts = new Map<string, number>()
       if (sessionIds.length > 0) {
-        const { data: pendingRows, error: pendingError } = await supabase
+        const { data: pendingRows, error: pendingError } = await db
           .from('attendance')
           .select('classroom_session_id')
           .in('classroom_session_id', sessionIds)

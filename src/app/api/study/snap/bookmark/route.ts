@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   const parsed = BodySchema.safeParse(await req.json().catch(() => null))
   if (!parsed.success) return NextResponse.json({ error: 'bad body' }, { status: 400 })
 
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_snap_captures')
     .update({ bookmarked_at: parsed.data.bookmarked ? new Date().toISOString() : null })
     .eq('id', parsed.data.captureId)
