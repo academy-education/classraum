@@ -1,16 +1,17 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
+// Mirrors the columns fetchAcademy actually selects from 'academies'.
+// 'academies' has no email/phone column, so those fields are gone: an
+// optional field that is *never* populated is indistinguishable from one
+// that happens to be missing, and reads as "we might have a phone number".
+// address/created_at are nullable in the database and typed to match.
 interface Academy {
   id: string
   name: string
-  // 'academies' has no email/phone column — these are always undefined from
-  // fetchAcademy. Optional so callers cannot treat them as present.
-  email?: string
-  phone?: string
-  address?: string
-  created_at: string
+  address: string | null
+  created_at: string | null
 }
 
 // A field is `null` when its underlying query failed. Never coerce a failed
@@ -62,7 +63,7 @@ async function fetchInvoiceTotals(academyId: string): Promise<{
 
   for (let page = 0; ; page++) {
     const from = page * INVOICE_PAGE_SIZE
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('invoices')
       .select('amount, final_amount')
       .eq('academy_id', academyId)
@@ -81,7 +82,7 @@ async function fetchInvoiceTotals(academyId: string): Promise<{
     if (rows.length < INVOICE_PAGE_SIZE) break
   }
 
-  const { count, error } = await supabase
+  const { count, error } = await db
     .from('invoices')
     .select('id', { count: 'exact', head: true })
     .eq('academy_id', academyId)
@@ -117,9 +118,11 @@ export const useAcademyStore = create<AcademyState>()(
         set({ loading: true, error: null })
         
         try {
-          const { data, error } = await supabase
+          // Select the columns Academy declares rather than '*', so a column
+          // that is renamed or dropped upstream is a compile error here.
+          const { data, error } = await db
             .from('academies')
-            .select('*')
+            .select('id, name, address, created_at')
             .eq('id', academyId)
             .single()
 
@@ -154,31 +157,31 @@ export const useAcademyStore = create<AcademyState>()(
           ] = await Promise.all([
             // Student counts. Counted server-side rather than by filtering a
             // fetched page, which the 1000-row response cap would truncate.
-            supabase
+            db
               .from('students')
               .select('id', { count: 'exact', head: true })
               .eq('academy_id', academyId),
 
-            supabase
+            db
               .from('students')
               .select('id', { count: 'exact', head: true })
               .eq('academy_id', academyId)
               .eq('active', true),
 
             // Teacher counts ('teachers' is keyed by user_id and has no 'id' column)
-            supabase
+            db
               .from('teachers')
               .select('user_id', { count: 'exact', head: true })
               .eq('academy_id', academyId),
 
-            supabase
+            db
               .from('teachers')
               .select('user_id', { count: 'exact', head: true })
               .eq('academy_id', academyId)
               .eq('active', true),
 
             // Classroom count
-            supabase
+            db
               .from('classrooms')
               .select('id', { count: 'exact', head: true })
               .eq('academy_id', academyId)
@@ -193,7 +196,7 @@ export const useAcademyStore = create<AcademyState>()(
 
             // Upcoming sessions. 'classroom_sessions' has no academy_id; it is
             // scoped through its classroom.
-            supabase
+            db
               .from('classroom_sessions')
               .select('id, classrooms!inner(academy_id)', { count: 'exact', head: true })
               .eq('classrooms.academy_id', academyId)

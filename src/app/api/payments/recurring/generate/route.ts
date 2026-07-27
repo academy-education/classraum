@@ -1,15 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { triggerInvoiceCreatedNotifications } from '@/lib/notification-triggers'
 import { verifyCronAuth } from '@/lib/cron-auth'
 
 // Calculate the next due date based on recurrence pattern
+// Mirrors the nullable columns on `recurring_payment_templates`. These were
+// declared optional (`?: string`) while the DB has them NULLABLE — a
+// difference the untyped client could not see. The body below already tests
+// for null, so only the declaration was wrong.
 interface Template {
   start_date: string;
-  end_date?: string;
+  end_date: string | null;
   recurrence_type: string;
-  day_of_month?: number;
-  day_of_week?: number;
+  day_of_month: number | null;
+  day_of_week: number | null;
   next_due_date: string;
 }
 
@@ -78,7 +82,7 @@ export async function POST(req: NextRequest) {
     console.log(`[RECURRING] Starting automated invoice generation for ${today}`)
 
     // 🚀 SMART EARLY EXIT: Quick check if any templates are due
-    const { count: dueTemplatesCount, error: countError } = await supabase
+    const { count: dueTemplatesCount, error: countError } = await dbAdmin
       .from('recurring_payment_templates')
       .select('id', { count: 'exact', head: true })
       .eq('is_active', true)
@@ -106,7 +110,7 @@ export async function POST(req: NextRequest) {
     console.log(`[RECURRING] Found ${dueTemplatesCount} templates due for processing`)
 
     // Get all active recurring payment templates that are due today or overdue
-    const { data: templates, error: templatesError } = await supabase
+    const { data: templates, error: templatesError } = await dbAdmin
       .from('recurring_payment_templates')
       .select('*')
       .eq('is_active', true)
@@ -127,7 +131,7 @@ export async function POST(req: NextRequest) {
           console.log(`[RECURRING] Processing template: ${template.name} (${template.id})`)
 
           // Get all students for this template (without students!inner join which relies on student_record_id FK)
-          const { data: rawTemplateStudents, error: studentsError } = await supabase
+          const { data: rawTemplateStudents, error: studentsError } = await dbAdmin
             .from('recurring_payment_template_students')
             .select('student_id, amount_override')
             .eq('template_id', template.id)
@@ -145,7 +149,7 @@ export async function POST(req: NextRequest) {
 
           // Filter to only active students by checking the students table
           const studentIds = rawTemplateStudents.map(s => s.student_id).filter(Boolean)
-          const { data: activeStudents } = await supabase
+          const { data: activeStudents } = await dbAdmin
             .from('students')
             .select('user_id')
             .in('user_id', studentIds)
@@ -172,7 +176,7 @@ export async function POST(req: NextRequest) {
           // have an invoice for this (template_id, due_date). If a
           // previous run got partway, the next run resumes where it
           // stopped instead of duplicating.
-          const { data: existingForPeriod } = await supabase
+          const { data: existingForPeriod } = await dbAdmin
             .from('invoices')
             .select('student_id')
             .eq('template_id', template.id)
@@ -189,7 +193,7 @@ export async function POST(req: NextRequest) {
             // next_due_date so the template doesn't keep matching the
             // "due today" query forever.
             const nextDueDate = calculateNextDueDate(template)
-            const { error: rollForwardError } = await supabase
+            const { error: rollForwardError } = await dbAdmin
               .from('recurring_payment_templates')
               .update({ next_due_date: nextDueDate })
               .eq('id', template.id)
@@ -209,6 +213,12 @@ export async function POST(req: NextRequest) {
           const invoices = studentsToInvoice.map((templateStudent) => {
             const finalAmount = templateStudent.amount_override || template.amount
             return {
+              // academy_id and invoice_name are NOT NULL on `invoices` with no
+              // default. They were missing here, so every insert this cron
+              // attempted was rejected by Postgres — see the note above the
+              // insert below.
+              academy_id: template.academy_id,
+              invoice_name: template.name,
               student_id: templateStudent.student_id,
               template_id: template.id,
               amount: finalAmount,
@@ -220,8 +230,16 @@ export async function POST(req: NextRequest) {
             }
           })
 
-          // Insert the invoices
-          const { data: createdInvoices, error: invoiceError } = await supabase
+          // Insert the invoices.
+          //
+          // REAL BUG (found by typing the client, 2026-07-27): this insert
+          // omitted `academy_id` and `invoice_name`, both NOT NULL with no
+          // default. Postgres rejected every row, supabase-js RESOLVED with
+          // { error } rather than throwing, and the handler pushed the message
+          // into `errors` and moved on — so the cron reported success with
+          // totalInvoicesCreated stuck at 0 and no recurring invoice was ever
+          // generated. Both columns are now populated from the template.
+          const { data: createdInvoices, error: invoiceError } = await dbAdmin
             .from('invoices')
             .insert(invoices)
             .select('id')
@@ -251,7 +269,7 @@ export async function POST(req: NextRequest) {
           // Update template's next_due_date to the next occurrence
           const nextDueDate = calculateNextDueDate(template)
           
-          const { error: updateError } = await supabase
+          const { error: updateError } = await dbAdmin
             .from('recurring_payment_templates')
             .update({ next_due_date: nextDueDate })
             .eq('id', template.id)
@@ -284,7 +302,7 @@ export async function POST(req: NextRequest) {
 
       for (const failedAcademyId of failedAcademyIds) {
         try {
-          const { data: managers } = await supabase
+          const { data: managers } = await dbAdmin
             .from('managers')
             .select('user_id')
             .eq('academy_id', failedAcademyId)
@@ -309,7 +327,7 @@ export async function POST(req: NextRequest) {
             // { error }. This notification is the only signal a manager gets
             // that their invoices did not go out — losing it silently means
             // students are never billed and nobody finds out.
-            const { error: notifyInsertError } = await supabase.from('notifications').insert(notifications)
+            const { error: notifyInsertError } = await dbAdmin.from('notifications').insert(notifications)
             if (notifyInsertError) {
               console.error(
                 `[RECURRING] Failed to insert failure notifications for academy ${failedAcademyId}:`,
@@ -355,7 +373,7 @@ export async function GET() {
     const today = new Date().toISOString().split('T')[0]
 
     // Get all active templates (both due and upcoming)
-    const { data: allTemplates, error: allError } = await supabase
+    const { data: allTemplates, error: allError } = await dbAdmin
       .from('recurring_payment_templates')
       .select('*')
       .eq('is_active', true)
@@ -364,7 +382,7 @@ export async function GET() {
     if (allError) throw allError
 
     // Get templates due today
-    const { data: dueTemplates, error: dueError } = await supabase
+    const { data: dueTemplates, error: dueError } = await dbAdmin
       .from('recurring_payment_templates')
       .select('*')
       .eq('is_active', true)

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { gradeSubmission, type GradableQuestion } from '@/lib/level-test-grading'
 import { triggerLevelTestSubmittedNotifications } from '@/lib/notification-triggers'
@@ -17,7 +17,7 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select('id, test_id, status, total_questions, level_tests!inner(academy_id)')
       .eq('id', attemptId)
@@ -28,7 +28,7 @@ export async function POST(
     }
 
     const academyId = (attempt.level_tests as unknown as { academy_id: string })?.academy_id
-    const { data: mgr } = await supabaseAdmin
+    const { data: mgr } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('user_id', user.id)
@@ -37,12 +37,12 @@ export async function POST(
     if (!mgr) return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
 
     // Fetch questions and saved answers to grade
-    const { data: questions } = await supabaseAdmin
+    const { data: questions } = await dbAdmin
       .from('level_test_questions')
       .select('id, type, correct_answer')
       .eq('test_id', attempt.test_id)
 
-    const { data: savedAnswers } = await supabaseAdmin
+    const { data: savedAnswers } = await dbAdmin
       .from('level_test_answers')
       .select('question_id, answer')
       .eq('attempt_id', attemptId)
@@ -54,13 +54,17 @@ export async function POST(
     const { answers: updates, correctCount, autoGradedCount, needsManualGrading, score, status } =
       gradeSubmission(
         questions as GradableQuestion[],
-        (savedAnswers || []).map(a => ({ question_id: a.question_id, answer: a.answer }))
+        // level_test_answers.answer is nullable — a saved row with no text is
+        // an unanswered question. gradeSubmission already treats a MISSING
+        // row as '' (`answerMap.get(q.id) ?? ''`), so a null answer must take
+        // the same path rather than being dropped.
+        (savedAnswers || []).map(a => ({ question_id: a.question_id, answer: a.answer ?? '' }))
       )
 
     // Update is_correct on existing answer rows.
     const failedAnswerWrites: string[] = []
     for (const u of updates) {
-      const { error: answerError } = await supabaseAdmin
+      const { error: answerError } = await dbAdmin
         .from('level_test_answers')
         .update({ is_correct: u.is_correct })
         .eq('attempt_id', attemptId)
@@ -86,7 +90,7 @@ export async function POST(
       )
     }
 
-    const { data: updatedAttempt, error: updateError } = await supabaseAdmin
+    const { data: updatedAttempt, error: updateError } = await dbAdmin
       .from('level_test_attempts')
       .update({
         submitted_at: new Date().toISOString(),

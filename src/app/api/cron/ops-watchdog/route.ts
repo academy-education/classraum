@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { raiseAlert } from '@/lib/ops/alert'
 import { JOB_REGISTRY } from '@/lib/ops/jobs'
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
-  const { data: beats, error } = await supabaseAdmin
+  const { data: beats, error } = await dbAdmin
     .from('job_heartbeats')
     .select('job, last_ok_at, ok, fail_streak')
   if (error) {
@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'heartbeat read failed' }, { status: 500 })
   }
 
-  const byJob = new Map((beats ?? []).map(b => [b.job as string, b]))
+  const byJob = new Map((beats ?? []).map(b => [b.job, b]))
   const now = Date.now()
   const stale: string[] = []
   const neverRan: string[] = []
@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
 
   for (const spec of JOB_REGISTRY) {
     const beat = byJob.get(spec.job)
-    const lastOk = beat?.last_ok_at ? new Date(beat.last_ok_at as string).getTime() : null
+    const lastOk = beat?.last_ok_at ? new Date(beat.last_ok_at).getTime() : null
 
     if (lastOk == null) {
       // No successful run has EVER been recorded. Until the first run of
@@ -111,7 +111,7 @@ async function resolveOpen(dedupeKey: string): Promise<void> {
     // throws, so the catch below is only for transport faults. A dropped
     // auto-resolve leaves a recovered job showing red on the dashboard
     // forever, which is how an alert channel gets tuned out.
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('alerts')
       .update({ resolved: true, resolved_at: new Date().toISOString() })
       .eq('resolved', false)

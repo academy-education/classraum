@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { resolveIfEnded, type ChallengeRow } from '@/lib/study/challenges'
 import { recordHeartbeat } from '@/lib/ops/heartbeat'
 import { verifyCronAuth } from '@/lib/cron-auth'
@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
 
   // Active duels whose window has already closed. Cap the batch so a
   // backlog can't blow maxDuration; the next tick picks up the rest.
-  const { data: raw, error } = await supabaseAdmin
+  const { data: raw, error } = await dbAdmin
     .from('study_challenges')
     .select(SELECT)
     .eq('status', 'active')
@@ -61,7 +61,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'fetch failed' }, { status: 500 })
   }
 
-  const rows = (raw as ChallengeRow[] | null) ?? []
+  // study_challenges.status is plain text in Postgres, so the generated
+  // row type widens it to `string` while ChallengeRow uses a literal
+  // union. Every row here matched `.eq('status', 'active')` in the query
+  // above, so re-attaching that literal is justified by the filter — no
+  // assertion over the row's other fields is involved.
+  const rows: ChallengeRow[] = (raw ?? []).map(r => ({ ...r, status: 'active' as const }))
   let resolved = 0
   for (const r of rows) {
     const settled = await resolveIfEnded(r, nowIso)

@@ -1,6 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin, countRows } from '../_lib/admin-auth'
+import type { Database } from '@/lib/database.types'
+
+/**
+ * The `head()` helper below takes a table name dynamically. Under the typed
+ * client a bare `string` is not a table name, so it is constrained to the
+ * real set — a typo like `student_payments` (a table that never existed) is
+ * now a compile error instead of a PostgREST 404 that renders as a zero.
+ */
+/**
+ * Only the tables this route counts — NOT the full
+ * `keyof Database['public']['Tables']`.
+ *
+ * The wide union made TypeScript instantiate a query builder for all 96
+ * tables at each call site and it gave up with TS2589 ("type
+ * instantiation is excessively deep"). Narrowing keeps the guarantee
+ * that matters — a table name that does not exist is still a compile
+ * error, which is what would have caught `student_payments` — while
+ * staying cheap to check. Add a name here when this route counts a new
+ * table.
+ */
+type TableName = Extract<
+  keyof Database['public']['Tables'],
+  'academies' | 'users' | 'academy_subscriptions' | 'support_tickets' | 'alerts'
+>
 
 /**
  * GET /api/admin/dashboard
@@ -31,8 +55,8 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const head = (table: string) =>
-      supabaseAdmin.from(table).select('*', { count: 'exact', head: true })
+    const head = (table: TableName) =>
+      dbAdmin.from(table).select('*', { count: 'exact', head: true })
 
     const [
       totalAcademies,
@@ -75,7 +99,7 @@ export async function GET(request: NextRequest) {
     ])
 
     // Distinct academies carrying an active/trialing subscription.
-    const { data: activeAcademyRows, error: activeAcademyErr } = await supabaseAdmin
+    const { data: activeAcademyRows, error: activeAcademyErr } = await dbAdmin
       .from('academy_subscriptions')
       .select('academy_id')
       .in('status', ['active', 'trialing'])
@@ -90,7 +114,7 @@ export async function GET(request: NextRequest) {
     startOfLastMonth.setMonth(startOfLastMonth.getMonth() - 1)
 
     const sumPaid = async (fromIso: string, toIso?: string) => {
-      let q = supabaseAdmin
+      let q = dbAdmin
         .from('invoices')
         .select('final_amount')
         .eq('status', 'paid')
@@ -113,7 +137,7 @@ export async function GET(request: NextRequest) {
       return d.toISOString().split('T')[0]
     })
 
-    const cumulativeTrend = (table: string, apply?: (q: ReturnType<typeof head>) => ReturnType<typeof head>) =>
+    const cumulativeTrend = (table: TableName, apply?: (q: ReturnType<typeof head>) => ReturnType<typeof head>) =>
       Promise.all(
         last10Days.map(date =>
           countRows(() => {
@@ -125,7 +149,7 @@ export async function GET(request: NextRequest) {
 
     const revenueTrendPromise = Promise.all(
       last10Days.map(async date => {
-        const { data, error } = await supabaseAdmin
+        const { data, error } = await dbAdmin
           .from('invoices')
           .select('final_amount')
           .eq('status', 'paid')
@@ -154,7 +178,7 @@ export async function GET(request: NextRequest) {
     const systemHealth = Math.max(0, Math.min(100, 100 - criticalImpact - otherAlertsImpact))
 
     // ---- Alerts feed ----
-    const { data: alertRows, error: alertErr } = await supabaseAdmin
+    const { data: alertRows, error: alertErr } = await dbAdmin
       .from('alerts')
       .select('id, severity, title, message, created_at, resolved')
       .order('created_at', { ascending: false })

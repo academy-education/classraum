@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { notifyStudent } from '@/lib/study/notify'
 import { grantLeagueRewards } from '@/lib/study/league-rewards'
 import { recordHeartbeat } from '@/lib/ops/heartbeat'
@@ -26,6 +26,18 @@ import { verifyCronAuth } from '@/lib/cron-auth'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
+type PromotionEvent = 'promoted' | 'held' | 'demoted'
+
+/**
+ * study_league_memberships.promotion_event is plain nullable text, so the
+ * typed row hands us `string | null`. close_study_league_week only ever
+ * writes these three values; this guard turns that expectation into a
+ * checked one so a stray value is skipped rather than propagated.
+ */
+function isPromotionEvent(v: string | null): v is PromotionEvent {
+  return v === 'promoted' || v === 'held' || v === 'demoted'
+}
+
 export async function GET(req: NextRequest) {
   // Shared guard: accepts CRON_SECRET (the name Vercel Cron actually
   // requires to send its Authorization header) as well as the legacy
@@ -49,7 +61,7 @@ export async function GET(req: NextRequest) {
   ))
   const lastWeekStart = lastMonday.toISOString().slice(0, 10)
 
-  const { data: processed, error } = await supabaseAdmin
+  const { data: processed, error } = await dbAdmin
     .rpc('close_study_league_week', { p_week_start: lastWeekStart })
 
   if (error) {
@@ -68,7 +80,7 @@ export async function GET(req: NextRequest) {
   // notifications inbox alongside system events. The league page also
   // surfaces it as a banner for 36h — the inbox row stays around as
   // a permanent record.
-  const { data: closed } = await supabaseAdmin
+  const { data: closed } = await dbAdmin
     .from('study_league_memberships')
     .select(`
       student_id, promotion_event, next_tier, final_rank,
@@ -80,17 +92,21 @@ export async function GET(req: NextRequest) {
   let notified = 0
   let creditsAwarded = 0
   for (const m of closed ?? []) {
-    const event = m.promotion_event as 'promoted' | 'held' | 'demoted' | null
-    const fromTier = (Array.isArray(m.league) ? m.league[0]?.tier : (m.league as { tier: string } | null)?.tier) ?? null
-    const toTier = (m.next_tier as string | null) ?? fromTier
-    const rank = m.final_rank as number | null
+    // promotion_event is a plain nullable text column in Postgres, so the
+    // typed row gives us `string | null`. Narrow it with a real runtime
+    // guard rather than asserting — an unexpected value from the RPC now
+    // skips the row instead of being force-fed to grantLeagueRewards.
+    const event = isPromotionEvent(m.promotion_event) ? m.promotion_event : null
+    const fromTier = m.league?.tier ?? null
+    const toTier = m.next_tier ?? fromTier
+    const rank = m.final_rank
     if (!event || !fromTier || !toTier || !rank) continue
 
     // Grant podium / promotion / first-tier-milestone credit rewards
     // BEFORE notifying, so the notification can mention what was earned.
     // Idempotent — a cron re-run never double-pays.
     const reward = await grantLeagueRewards({
-      studentId: m.student_id as string,
+      studentId: m.student_id,
       weekStart: lastWeekStart,
       fromTier,
       finalRank: rank,
@@ -109,7 +125,7 @@ export async function GET(req: NextRequest) {
       ? `${base} · 크레딧 ${reward.total}개 획득`
       : base
     await notifyStudent({
-      studentId: m.student_id as string,
+      studentId: m.student_id,
       kind: event === 'demoted' ? 'study_league_demoted' : 'study_league_promoted',
       title,
       message,

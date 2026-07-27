@@ -11,7 +11,7 @@
  * refreshed, and nothing anywhere says so.
  */
 import { GET } from '@/app/api/cron/study-billing/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { raiseAlert } from '@/lib/ops/alert'
@@ -19,9 +19,13 @@ import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payme
 import { NextRequest } from 'next/server'
 import { tableRouter } from '@/tests/study-route-helpers'
 
-jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn() },
-}))
+// dbAdmin and supabaseAdmin are the same client in production — the
+// second is only an untyped alias — so the mock exposes one shared
+// object under both names. Routes keep passing as they migrate.
+jest.mock('@/lib/supabase-admin', () => {
+  const client = { from: jest.fn() }
+  return { dbAdmin: client, supabaseAdmin: client }
+})
 jest.mock('@/lib/cron-auth', () => ({ verifyCronAuth: jest.fn(() => true) }))
 jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn() }))
 jest.mock('@/lib/ops/alert', () => ({ raiseAlert: jest.fn(async () => {}) }))
@@ -30,7 +34,7 @@ jest.mock('@/lib/study/record-subscription-payment', () => ({
 }))
 jest.mock('@/lib/study/notify', () => ({ notifyStudent: jest.fn(async () => {}) }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const chargeMock = chargeBillingKey as unknown as jest.Mock
 const alertMock = raiseAlert as unknown as jest.Mock
 const recordPaymentMock = recordSubscriptionPayment as unknown as jest.Mock

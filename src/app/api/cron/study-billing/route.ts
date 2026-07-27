@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
+import type { Database } from '@/lib/database.types'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
@@ -65,17 +66,24 @@ export const maxDuration = 300
 
 const PAST_DUE_RETRY_DAYS = 3
 
-interface SubscriptionRow {
-  id: string
-  student_id: string
-  status: 'trial' | 'active' | 'past_due' | 'cancelled' | 'expired'
-  plan: string | null
-  pending_plan: string | null
-  current_period_end: string
-  cancel_at_period_end: boolean
-  portone_subscription_id: string | null
-  last_payment_attempt_at: string | null
-}
+/**
+ * Exactly the columns SUB_COLUMNS selects, derived from the generated
+ * schema type so the two can never drift apart. Written by hand this
+ * previously claimed `plan: string | null` (it is NOT null in Postgres)
+ * and a narrow status union the column does not actually enforce.
+ */
+type SubscriptionRow = Pick<
+  Database['public']['Tables']['study_subscriptions']['Row'],
+  | 'id'
+  | 'student_id'
+  | 'status'
+  | 'plan'
+  | 'pending_plan'
+  | 'current_period_end'
+  | 'cancel_at_period_end'
+  | 'portone_subscription_id'
+  | 'last_payment_attempt_at'
+>
 
 const SUB_COLUMNS = 'id, student_id, status, plan, pending_plan, current_period_end, cancel_at_period_end, portone_subscription_id, last_payment_attempt_at'
 
@@ -131,14 +139,14 @@ export async function GET(req: NextRequest) {
 
 async function runBillingCycle(now: Date, summary: RunSummary) {
   // ── 1. Finalize cancellations whose period just ended ───────────
-  const { data: toCancel } = await supabaseAdmin
+  const { data: toCancel } = await dbAdmin
     .from('study_subscriptions')
     .select('id')
     .in('status', ['active', 'trial'])
     .eq('cancel_at_period_end', true)
     .lte('current_period_end', now.toISOString())
   for (const row of toCancel ?? []) {
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('study_subscriptions')
       .update({ status: 'cancelled', updated_at: now.toISOString() })
       .eq('id', row.id)
@@ -147,13 +155,13 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
   }
 
   // ── 2. Renewal charges for active subscriptions due today ──────
-  const { data: dueRows } = await supabaseAdmin
+  const { data: dueRows } = await dbAdmin
     .from('study_subscriptions')
     .select(SUB_COLUMNS)
     .eq('status', 'active')
     .eq('cancel_at_period_end', false)
     .lte('current_period_end', now.toISOString())
-  for (const row of (dueRows ?? []) as SubscriptionRow[]) {
+  for (const row of dueRows ?? []) {
     // Seasonal passes are cancel_at_period_end=true so they shouldn't
     // reach here, but never charge a renewal for one as defense-in-depth.
     if (isPassPlan(row.plan)) {
@@ -169,12 +177,12 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
 
   // ── 3. Past-due retries that have aged out ─────────────────────
   const retryCutoff = new Date(now.getTime() - PAST_DUE_RETRY_DAYS * 24 * 60 * 60 * 1000)
-  const { data: pastDueRows } = await supabaseAdmin
+  const { data: pastDueRows } = await dbAdmin
     .from('study_subscriptions')
     .select(SUB_COLUMNS)
     .eq('status', 'past_due')
     .lt('last_payment_attempt_at', retryCutoff.toISOString())
-  for (const row of (pastDueRows ?? []) as SubscriptionRow[]) {
+  for (const row of pastDueRows ?? []) {
     if (!row.portone_subscription_id) {
       // No key on file (e.g. first charge failed in Phase 4.6 path).
       // Flip directly to expired so the UI prompts a fresh checkout.
@@ -186,7 +194,7 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
     // If the retry failed again, expire the row instead of leaving it
     // stuck on past_due forever.
     if (beforeStatus === 'past_due') {
-      const { data: after } = await supabaseAdmin
+      const { data: after } = await dbAdmin
         .from('study_subscriptions')
         .select('status')
         .eq('id', row.id)
@@ -202,14 +210,14 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
   // due yet (i.e. annual plans mid-year) get their monthly grant reset
   // without a charge. Monthly plans refresh via the renewal charge, so
   // their next_grant_at moves forward there and this rarely fires.
-  const { data: grantRows } = await supabaseAdmin
+  const { data: grantRows } = await dbAdmin
     .from('study_subscriptions')
     .select('id, student_id, plan, next_grant_at')
     .eq('status', 'active')
     .not('next_grant_at', 'is', null)
     .lte('next_grant_at', now.toISOString())
     .gt('current_period_end', now.toISOString()) // charge not due → handled by §2 otherwise
-  for (const row of (grantRows ?? []) as { id: string; student_id: string; plan: string; next_grant_at: string }[]) {
+  for (const row of grantRows ?? []) {
     const plan = resolvePlan(row.plan)
     const nextGrant = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
     // Order matters for idempotency: the subscription update is what moves
@@ -217,7 +225,7 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
     // run retries — no double grant. If the update lands but the ledger
     // insert fails the balance is still correct (grant_credits_remaining is
     // the source of truth); only the audit line is missing.
-    const { error: subErr } = await supabaseAdmin
+    const { error: subErr } = await dbAdmin
       .from('study_subscriptions')
       .update({
         grant_credits_remaining: plan.monthlyCredits,
@@ -239,7 +247,7 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
       })
       continue
     }
-    const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+    const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
       student_id: row.student_id,
       delta: plan.monthlyCredits,
       bucket: 'grant',
@@ -277,7 +285,7 @@ async function markExpired(
   now: Date,
   summary: RunSummary,
 ): Promise<boolean> {
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_subscriptions')
     .update({ status: 'expired', updated_at: now.toISOString() })
     .eq('id', row.id)
@@ -339,7 +347,7 @@ async function chargeAndAdvance(
     const base = Math.max(now.getTime(), new Date(row.current_period_end).getTime())
     const nextEnd = new Date(base + effectivePlan.intervalDays * 24 * 60 * 60 * 1000)
     const nextGrant = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
-    const { error: subErr } = await supabaseAdmin
+    const { error: subErr } = await dbAdmin
       .from('study_subscriptions')
       .update({
         status: 'active',
@@ -391,7 +399,7 @@ async function chargeAndAdvance(
       return
     }
 
-    const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
+    const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
       student_id: row.student_id,
       delta: effectivePlan.monthlyCredits,
       bucket: 'grant',
@@ -417,7 +425,7 @@ async function chargeAndAdvance(
     await recordSubscriptionPayment({ paymentId, studentId: row.student_id, amountWon: effectivePlan.priceWon })
     summary.charged++
   } else {
-    const { error: pastDueErr } = await supabaseAdmin
+    const { error: pastDueErr } = await dbAdmin
       .from('study_subscriptions')
       .update({
         status: 'past_due',

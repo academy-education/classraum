@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { sendPushToStudent } from '@/lib/study/push'
 import { notifyStudent } from '@/lib/study/notify'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
 }
 
 async function runReminders() {
-  const { data: prefs } = await supabaseAdmin
+  const { data: prefs } = await dbAdmin
     .from('study_user_prefs')
     .select('student_id, default_language')
     .not('onboarded_at', 'is', null)
@@ -64,10 +64,10 @@ async function runReminders() {
   let failed = 0
 
   for (const row of prefs) {
-    const studentId = row.student_id as string
-    const lang = (row.default_language as string | null) === 'ko' ? 'ko' : 'en'
+    const studentId = row.student_id
+    const lang = row.default_language === 'ko' ? 'ko' : 'en'
 
-    const { count: todayXp } = await supabaseAdmin
+    const { count: todayXp } = await dbAdmin
       .from('study_xp_events')
       .select('id', { count: 'exact', head: true })
       .eq('student_id', studentId)
@@ -94,7 +94,7 @@ async function runReminders() {
     }
 
     // 2. SRS backlog.
-    const { count: dueCount } = await supabaseAdmin
+    const { count: dueCount } = await dbAdmin
       .from('study_flashcard_reviews')
       .select('student_id', { count: 'exact', head: true })
       .eq('student_id', studentId)
@@ -120,7 +120,7 @@ async function runReminders() {
 
     // 3. Daily challenge not done → point at it specifically. The
     // challenge session is tagged config.dailyChallenge = 'YYYY-MM-DD'.
-    const { data: challengeDone } = await supabaseAdmin
+    const { data: challengeDone } = await dbAdmin
       .from('study_sessions')
       .select('id')
       .eq('student_id', studentId)
@@ -164,7 +164,7 @@ async function runReminders() {
  *  yesterday was idle (streak already broken — nothing to save). */
 async function currentStreakEndingYesterday(studentId: string): Promise<number> {
   const cutoff = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString()
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_sessions')
     .select('last_active_at')
     .eq('student_id', studentId)
@@ -174,7 +174,7 @@ async function currentStreakEndingYesterday(studentId: string): Promise<number> 
 
   const days = new Set<string>()
   for (const row of data ?? []) {
-    if (row.last_active_at) days.add((row.last_active_at as string).slice(0, 10))
+    if (row.last_active_at) days.add(row.last_active_at.slice(0, 10))
   }
 
   const dayKey = (d: Date) => d.toISOString().slice(0, 10)

@@ -1,17 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
-import type { NotificationInsert } from '@/lib/notification-types'
+import type { NotificationType } from '@/lib/notification-types'
+import type { Database } from '@/lib/database.types'
+
+/**
+ * A `notifications` insert as the TYPED client wants it, with `type` narrowed
+ * to the legal CHECK-constraint values.
+ *
+ * `NotificationInsert` (lib/notification-types.ts) declares `navigation_data`
+ * as `Record<string, unknown>`, which is not assignable to the generated
+ * `Json` column type. Intersecting the generated Insert with the narrowed
+ * `type` keeps the compile-time guarantee that motivated NotificationInsert
+ * — an illegal `type` is still a compile error — while matching the real
+ * column types exactly.
+ */
+type NotificationRow = Database['public']['Tables']['notifications']['Insert'] & {
+  type: NotificationType
+}
 
 async function isManagerForTest(userId: string, testId: string): Promise<{ ok: boolean; test?: { id: string; academy_id: string; title: string } }> {
-  const { data: test } = await supabaseAdmin
+  const { data: test } = await dbAdmin
     .from('level_tests')
     .select('id, academy_id, title')
     .eq('id', testId)
     .is('deleted_at', null)
     .single()
   if (!test) return { ok: false }
-  const { data: mgr } = await supabaseAdmin
+  const { data: mgr } = await dbAdmin
     .from('managers')
     .select('user_id')
     .eq('user_id', userId)
@@ -50,7 +66,7 @@ export async function POST(
       due_date: due_date || null,
     }))
 
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await dbAdmin
       .from('level_test_assignments')
       .upsert(assignments, { onConflict: 'test_id,student_id' })
       .select()
@@ -64,7 +80,7 @@ export async function POST(
     // illegal `type` is a compile error — this insert spent months being
     // rejected by the notifications_type_check constraint with nobody the
     // wiser (see lib/notification-types.ts).
-    const notifications: NotificationInsert[] = student_ids.map((student_id: string) => ({
+    const notifications: NotificationRow[] = student_ids.map((student_id: string) => ({
       user_id: student_id,
       type: 'level_test',
       title: `New level test: ${test.title}`,
@@ -75,7 +91,7 @@ export async function POST(
 
     // supabase-js `.insert()` RESOLVES with `{ error }` — it never throws.
     // Read it: the outer try/catch is not a safety net for this call.
-    const { error: notifyError } = await supabaseAdmin.from('notifications').insert(notifications)
+    const { error: notifyError } = await dbAdmin.from('notifications').insert(notifications)
 
     if (notifyError) {
       // notification_sent is a factual record of delivery, not an
@@ -89,7 +105,7 @@ export async function POST(
         hint: notifyError.hint,
       })
     } else {
-      const { error: markError } = await supabaseAdmin
+      const { error: markError } = await dbAdmin
         .from('level_test_assignments')
         .update({ notification_sent: true })
         .eq('test_id', id)
@@ -122,7 +138,7 @@ export async function GET(
       return NextResponse.json({ error: 'Not authorized' }, { status: 403 })
     }
 
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await dbAdmin
       .from('level_test_assignments')
       .select(`
         id, student_id, assigned_at, due_date,

@@ -1,4 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+import type { Database } from './database.types'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -11,7 +12,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 // const isProduction = process.env.NODE_ENV === 'production' ||
 //   (typeof window !== 'undefined' && window.location.hostname.includes('classraum.com'))
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+const client = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
@@ -41,3 +42,16 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     }
   }
 })
+
+/**
+ * TYPED browser client — prefer this in new code. See supabase-admin.ts
+ * for why (every schema bug on 2026-07-27 was invisible without it).
+ */
+export const db = client
+
+/**
+ * UNTYPED alias for files not yet migrated. Same instance, not a second
+ * connection. Migrating is one import change plus whatever real bugs the
+ * types expose. Do not add new uses.
+ */
+export const supabase = client as unknown as SupabaseClient

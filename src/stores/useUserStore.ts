@@ -1,14 +1,21 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+
+const USER_ROLES = ['admin', 'manager', 'teacher', 'parent', 'student'] as const
+type UserRole = (typeof USER_ROLES)[number]
+
+const isKnownRole = (value: string): value is UserRole =>
+  (USER_ROLES as readonly string[]).includes(value)
 
 interface User {
   id: string
   email: string
   name: string
-  role: 'admin' | 'manager' | 'teacher' | 'parent' | 'student'
+  role: UserRole
+  // users.created_at is nullable in the database.
   academy_id?: string
-  created_at: string
+  created_at: string | null
 }
 
 interface UserPreferences {
@@ -71,10 +78,10 @@ export const useUserStore = create<UserState>()(
         set({ loading: true, error: null })
         
         try {
-          const { data, error } = await supabase
+          const { data, error } = await db
             .from('users')
             .select(`
-              *,
+              id, email, name, role, created_at,
               managers(academy_id),
               teachers(academy_id),
               parents(academy_id),
@@ -85,25 +92,20 @@ export const useUserStore = create<UserState>()(
 
           if (error) throw error
 
-          // PostgREST embeds managers/teachers/parents as a single object (their
-          // PK *is* user_id) and students as an array. Indexing [0] on the
-          // object forms silently yielded undefined, so every user resolved to
-          // 'student' with no academy_id. Normalise both shapes.
-          const firstJoin = (rel: unknown): { academy_id?: string } | undefined => {
-            if (!rel) return undefined
-            return Array.isArray(rel)
-              ? (rel[0] as { academy_id?: string } | undefined)
-              : (rel as { academy_id?: string })
-          }
+          // managers/teachers/parents have user_id as their PRIMARY KEY, so
+          // PostgREST embeds each as a single object (or null); students has
+          // its own `id` PK, so it embeds as an array. Indexing [0] on the
+          // object forms used to silently yield undefined, which made every
+          // user resolve to 'student' with no academy_id. The typed client now
+          // infers both shapes, so they are read directly and correctly.
+          const managerJoin = data.managers
+          const teacherJoin = data.teachers
+          const parentJoin = data.parents
+          const studentJoin = data.students[0]
 
           // Determine role and academy_id
           let role: User['role'] = 'student'
           let academy_id: string | undefined
-
-          const managerJoin = firstJoin(data.managers)
-          const teacherJoin = firstJoin(data.teachers)
-          const parentJoin = firstJoin(data.parents)
-          const studentJoin = firstJoin(data.students)
 
           if (managerJoin) {
             role = 'manager'
@@ -117,9 +119,12 @@ export const useUserStore = create<UserState>()(
           } else if (studentJoin) {
             role = 'student'
             academy_id = studentJoin.academy_id
-          } else if (data.role) {
-            // No join row: fall back to users.role, the default-surface pointer.
-            role = data.role as User['role']
+          } else {
+            // No join row: fall back to users.role, the default-surface
+            // pointer. It is a plain text column in the database, so validate
+            // it rather than asserting — an unrecognised value stays 'student'
+            // (the least-privileged surface) instead of being trusted blindly.
+            if (isKnownRole(data.role)) role = data.role
           }
 
           const user: User = {
@@ -154,13 +159,25 @@ export const useUserStore = create<UserState>()(
         set({ loading: true, error: null })
         
         try {
-          const { error } = await supabase
-            .from('users')
-            .update(updates)
-            .eq('id', user.id)
+          // Only forward columns that actually exist on `users`. `academy_id`
+          // is NOT one of them — it lives on the managers/teachers/parents/
+          // students join rows — and `id`/`created_at` must never be rewritten.
+          // Spreading `updates` wholesale sent academy_id to PostgREST, which
+          // rejects the whole statement, so any update carrying it failed.
+          const payload: { name?: string; email?: string; role?: UserRole } = {}
+          if (updates.name !== undefined) payload.name = updates.name
+          if (updates.email !== undefined) payload.email = updates.email
+          if (updates.role !== undefined) payload.role = updates.role
 
-          if (error) throw error
-          
+          if (Object.keys(payload).length > 0) {
+            const { error } = await db
+              .from('users')
+              .update(payload)
+              .eq('id', user.id)
+
+            if (error) throw error
+          }
+
           set({ 
             user: { ...user, ...updates },
             loading: false 

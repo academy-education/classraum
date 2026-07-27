@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
 import { recordHeartbeat } from '@/lib/ops/heartbeat'
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
   // ran the job, so nothing below may report on its behalf.
   const startedAt = Date.now()
 
-  const { data: rows, error } = await supabaseAdmin
+  const { data: rows, error } = await dbAdmin
     .from('study_payments')
     .select('payment_id')
     .is('refunded_at', null)
@@ -62,7 +62,7 @@ export async function GET(req: NextRequest) {
   for (const r of rows ?? []) {
     summary.checked++
     const result = await syncStudyPaymentRefund(
-      r.payment_id as string,
+      r.payment_id,
       'nightly PortOne reconcile',
     )
     if (result.status === 'marked') {

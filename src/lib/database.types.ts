@@ -1555,6 +1555,76 @@ export type Database = {
           },
         ]
       }
+      help_article_feedback: {
+        Row: {
+          comment: string | null
+          created_at: string
+          id: string
+          lang: string
+          slug: string
+          user_id: string | null
+          vote: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          id?: string
+          lang: string
+          slug: string
+          user_id?: string | null
+          vote: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          id?: string
+          lang?: string
+          slug?: string
+          user_id?: string | null
+          vote?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "help_article_feedback_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      help_article_views: {
+        Row: {
+          id: string
+          lang: string
+          slug: string
+          user_id: string | null
+          viewed_at: string
+        }
+        Insert: {
+          id?: string
+          lang: string
+          slug: string
+          user_id?: string | null
+          viewed_at?: string
+        }
+        Update: {
+          id?: string
+          lang?: string
+          slug?: string
+          user_id?: string | null
+          viewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "help_article_views_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       invoices: {
         Row: {
           academy_id: string
@@ -1655,6 +1725,36 @@ export type Database = {
           },
         ]
       }
+      job_heartbeats: {
+        Row: {
+          detail: Json | null
+          duration_ms: number | null
+          fail_streak: number
+          job: string
+          last_ok_at: string | null
+          last_run_at: string
+          ok: boolean
+        }
+        Insert: {
+          detail?: Json | null
+          duration_ms?: number | null
+          fail_streak?: number
+          job: string
+          last_ok_at?: string | null
+          last_run_at?: string
+          ok?: boolean
+        }
+        Update: {
+          detail?: Json | null
+          duration_ms?: number | null
+          fail_streak?: number
+          job?: string
+          last_ok_at?: string | null
+          last_run_at?: string
+          ok?: boolean
+        }
+        Relationships: []
+      }
       level_test_answers: {
         Row: {
           answer: string | null
@@ -1729,6 +1829,13 @@ export type Database = {
           test_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "level_test_assignments_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "level_test_assignments_test_id_fkey"
             columns: ["test_id"]
@@ -2438,6 +2545,1482 @@ export type Database = {
           },
         ]
       }
+      study_analytics_events: {
+        Row: {
+          created_at: string
+          event: string
+          id: string
+          props: Json | null
+          student_id: string
+        }
+        Insert: {
+          created_at?: string
+          event: string
+          id?: string
+          props?: Json | null
+          student_id: string
+        }
+        Update: {
+          created_at?: string
+          event?: string
+          id?: string
+          props?: Json | null
+          student_id?: string
+        }
+        Relationships: []
+      }
+      study_attempt_explanations: {
+        Row: {
+          attempt_id: string
+          simpler: string | null
+          simpler_lang: string | null
+          steps: string | null
+          steps_lang: string | null
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          attempt_id: string
+          simpler?: string | null
+          simpler_lang?: string | null
+          steps?: string | null
+          steps_lang?: string | null
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          attempt_id?: string
+          simpler?: string | null
+          simpler_lang?: string | null
+          steps?: string | null
+          steps_lang?: string | null
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_attempt_explanations_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "study_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_attempt_notes: {
+        Row: {
+          attempt_id: string
+          created_at: string
+          id: string
+          note: string
+          reviewed_at: string | null
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          attempt_id: string
+          created_at?: string
+          id?: string
+          note?: string
+          reviewed_at?: string | null
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          attempt_id?: string
+          created_at?: string
+          id?: string
+          note?: string
+          reviewed_at?: string | null
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_attempt_notes_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "study_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_attempts: {
+        Row: {
+          ai_explanation: string | null
+          created_at: string
+          id: string
+          is_correct: boolean | null
+          position: number | null
+          question: Json
+          session_id: string
+          student_answer: string | null
+          time_spent_seconds: number | null
+          topic_id: string | null
+        }
+        Insert: {
+          ai_explanation?: string | null
+          created_at?: string
+          id?: string
+          is_correct?: boolean | null
+          position?: number | null
+          question: Json
+          session_id: string
+          student_answer?: string | null
+          time_spent_seconds?: number | null
+          topic_id?: string | null
+        }
+        Update: {
+          ai_explanation?: string | null
+          created_at?: string
+          id?: string
+          is_correct?: boolean | null
+          position?: number | null
+          question?: Json
+          session_id?: string
+          student_answer?: string | null
+          time_spent_seconds?: number | null
+          topic_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_attempts_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "study_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_attempts_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "study_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_challenges: {
+        Row: {
+          challenger_id: string
+          challenger_xp: number
+          created_at: string
+          end_at: string | null
+          id: string
+          opponent_id: string
+          opponent_xp: number
+          resolved_at: string | null
+          responded_at: string | null
+          start_at: string | null
+          status: string
+          winner_id: string | null
+        }
+        Insert: {
+          challenger_id: string
+          challenger_xp?: number
+          created_at?: string
+          end_at?: string | null
+          id?: string
+          opponent_id: string
+          opponent_xp?: number
+          resolved_at?: string | null
+          responded_at?: string | null
+          start_at?: string | null
+          status?: string
+          winner_id?: string | null
+        }
+        Update: {
+          challenger_id?: string
+          challenger_xp?: number
+          created_at?: string
+          end_at?: string | null
+          id?: string
+          opponent_id?: string
+          opponent_xp?: number
+          resolved_at?: string | null
+          responded_at?: string | null
+          start_at?: string | null
+          status?: string
+          winner_id?: string | null
+        }
+        Relationships: []
+      }
+      study_credit_ledger: {
+        Row: {
+          bucket: string
+          created_at: string
+          delta: number
+          id: string
+          kind: string
+          note: string | null
+          source_id: string | null
+          student_id: string
+        }
+        Insert: {
+          bucket: string
+          created_at?: string
+          delta: number
+          id?: string
+          kind: string
+          note?: string | null
+          source_id?: string | null
+          student_id: string
+        }
+        Update: {
+          bucket?: string
+          created_at?: string
+          delta?: number
+          id?: string
+          kind?: string
+          note?: string | null
+          source_id?: string | null
+          student_id?: string
+        }
+        Relationships: []
+      }
+      study_energy: {
+        Row: {
+          energy: number
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          energy?: number
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          energy?: number
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      study_entitlements: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          id: string
+          source: string
+          student_id: string
+          test: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          source?: string
+          student_id: string
+          test: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          source?: string
+          student_id?: string
+          test?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_entitlements_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_flashcard_bank: {
+        Row: {
+          archived: boolean
+          back: string
+          cohort: string | null
+          content_hash: string | null
+          created_at: string
+          difficulty: string
+          domain: string | null
+          family: string
+          front: string
+          hint: string | null
+          id: string
+          section: string
+          verified: boolean
+        }
+        Insert: {
+          archived?: boolean
+          back: string
+          cohort?: string | null
+          content_hash?: string | null
+          created_at?: string
+          difficulty?: string
+          domain?: string | null
+          family?: string
+          front: string
+          hint?: string | null
+          id?: string
+          section: string
+          verified?: boolean
+        }
+        Update: {
+          archived?: boolean
+          back?: string
+          cohort?: string | null
+          content_hash?: string | null
+          created_at?: string
+          difficulty?: string
+          domain?: string | null
+          family?: string
+          front?: string
+          hint?: string | null
+          id?: string
+          section?: string
+          verified?: boolean
+        }
+        Relationships: []
+      }
+      study_flashcard_reviews: {
+        Row: {
+          card_back: string
+          card_front: string
+          created_at: string
+          due_at: string
+          ease_factor: number
+          interval_days: number
+          last_quality: number | null
+          last_reviewed_at: string | null
+          repetitions: number
+          student_id: string
+          topic_id: string
+          updated_at: string
+        }
+        Insert: {
+          card_back: string
+          card_front: string
+          created_at?: string
+          due_at?: string
+          ease_factor?: number
+          interval_days?: number
+          last_quality?: number | null
+          last_reviewed_at?: string | null
+          repetitions?: number
+          student_id: string
+          topic_id: string
+          updated_at?: string
+        }
+        Update: {
+          card_back?: string
+          card_front?: string
+          created_at?: string
+          due_at?: string
+          ease_factor?: number
+          interval_days?: number
+          last_quality?: number | null
+          last_reviewed_at?: string | null
+          repetitions?: number
+          student_id?: string
+          topic_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_flashcard_reviews_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "study_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_friendships: {
+        Row: {
+          addressee_id: string
+          created_at: string
+          id: string
+          requester_id: string
+          responded_at: string | null
+          status: string
+        }
+        Insert: {
+          addressee_id: string
+          created_at?: string
+          id?: string
+          requester_id: string
+          responded_at?: string | null
+          status?: string
+        }
+        Update: {
+          addressee_id?: string
+          created_at?: string
+          id?: string
+          requester_id?: string
+          responded_at?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      study_gift_codes: {
+        Row: {
+          code: string
+          created_at: string
+          credits: number
+          id: string
+          months: number
+          paid_amount_cents: number | null
+          payment_id: string | null
+          purchaser_id: string
+          redeemed_at: string | null
+          redeemed_by: string | null
+          status: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          credits?: number
+          id?: string
+          months?: number
+          paid_amount_cents?: number | null
+          payment_id?: string | null
+          purchaser_id: string
+          redeemed_at?: string | null
+          redeemed_by?: string | null
+          status?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          credits?: number
+          id?: string
+          months?: number
+          paid_amount_cents?: number | null
+          payment_id?: string | null
+          purchaser_id?: string
+          redeemed_at?: string | null
+          redeemed_by?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      study_item_bank: {
+        Row: {
+          archived: boolean
+          cohort: string | null
+          content_hash: string | null
+          created_at: string
+          difficulty: string
+          domain: string
+          family: string
+          id: string
+          item: Json
+          item_type: string
+          passage_group_id: string | null
+          section: string
+          source: string
+          subskill: string | null
+          topic_tag: string | null
+          updated_at: string
+          verified: boolean
+          verify_meta: Json | null
+          word_count: number | null
+        }
+        Insert: {
+          archived?: boolean
+          cohort?: string | null
+          content_hash?: string | null
+          created_at?: string
+          difficulty?: string
+          domain: string
+          family?: string
+          id?: string
+          item: Json
+          item_type?: string
+          passage_group_id?: string | null
+          section: string
+          source?: string
+          subskill?: string | null
+          topic_tag?: string | null
+          updated_at?: string
+          verified?: boolean
+          verify_meta?: Json | null
+          word_count?: number | null
+        }
+        Update: {
+          archived?: boolean
+          cohort?: string | null
+          content_hash?: string | null
+          created_at?: string
+          difficulty?: string
+          domain?: string
+          family?: string
+          id?: string
+          item?: Json
+          item_type?: string
+          passage_group_id?: string | null
+          section?: string
+          source?: string
+          subskill?: string | null
+          topic_tag?: string | null
+          updated_at?: string
+          verified?: boolean
+          verify_meta?: Json | null
+          word_count?: number | null
+        }
+        Relationships: []
+      }
+      study_item_exposures: {
+        Row: {
+          id: string
+          item_id: string
+          seen_at: string
+          session_id: string | null
+          source: string
+          student_id: string
+        }
+        Insert: {
+          id?: string
+          item_id: string
+          seen_at?: string
+          session_id?: string | null
+          source: string
+          student_id: string
+        }
+        Update: {
+          id?: string
+          item_id?: string
+          seen_at?: string
+          session_id?: string | null
+          source?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_item_exposures_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_league_memberships: {
+        Row: {
+          closed_at: string | null
+          final_rank: number | null
+          id: string
+          joined_at: string
+          league_id: string
+          next_tier: string | null
+          promotion_event: string | null
+          student_id: string
+          xp_this_week: number
+        }
+        Insert: {
+          closed_at?: string | null
+          final_rank?: number | null
+          id?: string
+          joined_at?: string
+          league_id: string
+          next_tier?: string | null
+          promotion_event?: string | null
+          student_id: string
+          xp_this_week?: number
+        }
+        Update: {
+          closed_at?: string | null
+          final_rank?: number | null
+          id?: string
+          joined_at?: string
+          league_id?: string
+          next_tier?: string | null
+          promotion_event?: string | null
+          student_id?: string
+          xp_this_week?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_league_memberships_league_id_fkey"
+            columns: ["league_id"]
+            isOneToOne: false
+            referencedRelation: "study_leagues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_league_rewards: {
+        Row: {
+          created_at: string
+          credits: number
+          id: string
+          kind: string
+          rank: number | null
+          student_id: string
+          tier: string | null
+          week_start: string
+        }
+        Insert: {
+          created_at?: string
+          credits?: number
+          id?: string
+          kind: string
+          rank?: number | null
+          student_id: string
+          tier?: string | null
+          week_start: string
+        }
+        Update: {
+          created_at?: string
+          credits?: number
+          id?: string
+          kind?: string
+          rank?: number | null
+          student_id?: string
+          tier?: string | null
+          week_start?: string
+        }
+        Relationships: []
+      }
+      study_leagues: {
+        Row: {
+          capacity: number
+          created_at: string
+          id: string
+          tier: string
+          week_start: string
+        }
+        Insert: {
+          capacity?: number
+          created_at?: string
+          id?: string
+          tier: string
+          week_start: string
+        }
+        Update: {
+          capacity?: number
+          created_at?: string
+          id?: string
+          tier?: string
+          week_start?: string
+        }
+        Relationships: []
+      }
+      study_mastery: {
+        Row: {
+          attempts_count: number
+          id: string
+          last_assessed_at: string
+          score: number
+          strengths: Json
+          student_id: string
+          topic_id: string
+          updated_at: string
+          weaknesses: Json
+        }
+        Insert: {
+          attempts_count?: number
+          id?: string
+          last_assessed_at?: string
+          score?: number
+          strengths?: Json
+          student_id: string
+          topic_id: string
+          updated_at?: string
+          weaknesses?: Json
+        }
+        Update: {
+          attempts_count?: number
+          id?: string
+          last_assessed_at?: string
+          score?: number
+          strengths?: Json
+          student_id?: string
+          topic_id?: string
+          updated_at?: string
+          weaknesses?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_mastery_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_mastery_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "study_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          model: string | null
+          role: string
+          session_id: string
+          tokens_in: number
+          tokens_out: number
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          model?: string | null
+          role: string
+          session_id: string
+          tokens_in?: number
+          tokens_out?: number
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          model?: string | null
+          role?: string
+          session_id?: string
+          tokens_in?: number
+          tokens_out?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_messages_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "study_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_pass_credits: {
+        Row: {
+          created_at: string
+          id: string
+          remaining: number
+          student_id: string
+          test: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          remaining?: number
+          student_id: string
+          test: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          remaining?: number
+          student_id?: string
+          test?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      study_payments: {
+        Row: {
+          amount_won: number
+          created_at: string
+          kind: string
+          payment_id: string
+          refund_reason: string | null
+          refunded_at: string | null
+          student_id: string
+        }
+        Insert: {
+          amount_won: number
+          created_at?: string
+          kind: string
+          payment_id: string
+          refund_reason?: string | null
+          refunded_at?: string | null
+          student_id: string
+        }
+        Update: {
+          amount_won?: number
+          created_at?: string
+          kind?: string
+          payment_id?: string
+          refund_reason?: string | null
+          refunded_at?: string | null
+          student_id?: string
+        }
+        Relationships: []
+      }
+      study_quest_claims: {
+        Row: {
+          claimed_at: string
+          id: string
+          quest_key: string
+          reward_xp: number
+          student_id: string
+          week_start: string
+        }
+        Insert: {
+          claimed_at?: string
+          id?: string
+          quest_key: string
+          reward_xp?: number
+          student_id: string
+          week_start: string
+        }
+        Update: {
+          claimed_at?: string
+          id?: string
+          quest_key?: string
+          reward_xp?: number
+          student_id?: string
+          week_start?: string
+        }
+        Relationships: []
+      }
+      study_question_reports: {
+        Row: {
+          created_at: string
+          id: string
+          note: string | null
+          question_hash: string
+          question_snapshot: Json
+          reason: string
+          resolved_at: string | null
+          session_id: string | null
+          status: string
+          student_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note?: string | null
+          question_hash: string
+          question_snapshot: Json
+          reason: string
+          resolved_at?: string | null
+          session_id?: string | null
+          status?: string
+          student_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note?: string | null
+          question_hash?: string
+          question_snapshot?: Json
+          reason?: string
+          resolved_at?: string | null
+          session_id?: string | null
+          status?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_question_reports_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "study_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_question_reports_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_referral_codes: {
+        Row: {
+          code: string
+          created_at: string
+          student_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          student_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          student_id?: string
+        }
+        Relationships: []
+      }
+      study_referral_redemptions: {
+        Row: {
+          code: string
+          converted: boolean
+          converted_at: string | null
+          created_at: string
+          id: string
+          referee_id: string
+          referrer_id: string
+          rewarded: boolean
+        }
+        Insert: {
+          code: string
+          converted?: boolean
+          converted_at?: string | null
+          created_at?: string
+          id?: string
+          referee_id: string
+          referrer_id: string
+          rewarded?: boolean
+        }
+        Update: {
+          code?: string
+          converted?: boolean
+          converted_at?: string | null
+          created_at?: string
+          id?: string
+          referee_id?: string
+          referrer_id?: string
+          rewarded?: boolean
+        }
+        Relationships: []
+      }
+      study_response_grades: {
+        Row: {
+          annotations: Json
+          created_at: string
+          grader_model: string
+          id: string
+          model_rewrite: string | null
+          overall_band: number
+          rubric_scores: Json
+          student_id: string
+          submission_id: string
+          summary: string | null
+          tokens_in: number | null
+          tokens_out: number | null
+        }
+        Insert: {
+          annotations?: Json
+          created_at?: string
+          grader_model: string
+          id?: string
+          model_rewrite?: string | null
+          overall_band: number
+          rubric_scores: Json
+          student_id: string
+          submission_id: string
+          summary?: string | null
+          tokens_in?: number | null
+          tokens_out?: number | null
+        }
+        Update: {
+          annotations?: Json
+          created_at?: string
+          grader_model?: string
+          id?: string
+          model_rewrite?: string | null
+          overall_band?: number
+          rubric_scores?: Json
+          student_id?: string
+          submission_id?: string
+          summary?: string | null
+          tokens_in?: number | null
+          tokens_out?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_response_grades_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "study_response_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_response_submissions: {
+        Row: {
+          audio_path: string | null
+          created_at: string
+          duration_seconds: number | null
+          id: string
+          language: string
+          prompt_text: string
+          response_text: string
+          session_id: string
+          skill: string
+          student_id: string
+          test_family: string
+          word_count: number | null
+        }
+        Insert: {
+          audio_path?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          id?: string
+          language?: string
+          prompt_text: string
+          response_text: string
+          session_id: string
+          skill: string
+          student_id: string
+          test_family: string
+          word_count?: number | null
+        }
+        Update: {
+          audio_path?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          id?: string
+          language?: string
+          prompt_text?: string
+          response_text?: string
+          session_id?: string
+          skill?: string
+          student_id?: string
+          test_family?: string
+          word_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_response_submissions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "study_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_sessions: {
+        Row: {
+          archived: boolean
+          completed_at: string | null
+          config: Json
+          correct_count: number | null
+          created_at: string
+          generation_status: string | null
+          id: string
+          language: string
+          last_active_at: string
+          mode: string
+          module1_correct: number | null
+          module1_total: number | null
+          module2_route: string | null
+          score: number | null
+          speaking_grade_mode: string | null
+          status: string
+          student_id: string
+          title: string | null
+          topic_freeform: string | null
+          topic_id: string | null
+          total_count: number | null
+        }
+        Insert: {
+          archived?: boolean
+          completed_at?: string | null
+          config?: Json
+          correct_count?: number | null
+          created_at?: string
+          generation_status?: string | null
+          id?: string
+          language?: string
+          last_active_at?: string
+          mode: string
+          module1_correct?: number | null
+          module1_total?: number | null
+          module2_route?: string | null
+          score?: number | null
+          speaking_grade_mode?: string | null
+          status?: string
+          student_id: string
+          title?: string | null
+          topic_freeform?: string | null
+          topic_id?: string | null
+          total_count?: number | null
+        }
+        Update: {
+          archived?: boolean
+          completed_at?: string | null
+          config?: Json
+          correct_count?: number | null
+          created_at?: string
+          generation_status?: string | null
+          id?: string
+          language?: string
+          last_active_at?: string
+          mode?: string
+          module1_correct?: number | null
+          module1_total?: number | null
+          module2_route?: string | null
+          score?: number | null
+          speaking_grade_mode?: string | null
+          status?: string
+          student_id?: string
+          title?: string | null
+          topic_freeform?: string | null
+          topic_id?: string | null
+          total_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_sessions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_sessions_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "study_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_snap_captures: {
+        Row: {
+          bookmarked_at: string | null
+          created_at: string
+          final_answer: string | null
+          id: string
+          image_path: string
+          language: string
+          model: string
+          ocr_text: string | null
+          solution_steps: Json
+          student_id: string
+          subject_guess: string | null
+          tokens_in: number | null
+          tokens_out: number | null
+          topic_id: string | null
+        }
+        Insert: {
+          bookmarked_at?: string | null
+          created_at?: string
+          final_answer?: string | null
+          id?: string
+          image_path: string
+          language?: string
+          model?: string
+          ocr_text?: string | null
+          solution_steps?: Json
+          student_id: string
+          subject_guess?: string | null
+          tokens_in?: number | null
+          tokens_out?: number | null
+          topic_id?: string | null
+        }
+        Update: {
+          bookmarked_at?: string | null
+          created_at?: string
+          final_answer?: string | null
+          id?: string
+          image_path?: string
+          language?: string
+          model?: string
+          ocr_text?: string | null
+          solution_steps?: Json
+          student_id?: string
+          subject_guess?: string | null
+          tokens_in?: number | null
+          tokens_out?: number | null
+          topic_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_snap_captures_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "study_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_streak_state: {
+        Row: {
+          freezes: number
+          last_milestone_awarded: number
+          last_saved_notified_on: string | null
+          max_streak: number
+          protected_days: string[]
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          freezes?: number
+          last_milestone_awarded?: number
+          last_saved_notified_on?: string | null
+          max_streak?: number
+          protected_days?: string[]
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          freezes?: number
+          last_milestone_awarded?: number
+          last_saved_notified_on?: string | null
+          max_streak?: number
+          protected_days?: string[]
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      study_subscriptions: {
+        Row: {
+          cancel_at_period_end: boolean
+          created_at: string
+          currency: string
+          current_period_end: string
+          current_period_start: string
+          grant_credits_remaining: number
+          id: string
+          last_payment_attempt_at: string | null
+          last_payment_failure: string | null
+          last_payment_id: string | null
+          next_grant_at: string | null
+          pending_plan: string | null
+          plan: string
+          portone_subscription_id: string | null
+          price_cents: number
+          purchased_credits_remaining: number
+          status: string
+          student_id: string
+          trial_ends_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          cancel_at_period_end?: boolean
+          created_at?: string
+          currency?: string
+          current_period_end?: string
+          current_period_start?: string
+          grant_credits_remaining?: number
+          id?: string
+          last_payment_attempt_at?: string | null
+          last_payment_failure?: string | null
+          last_payment_id?: string | null
+          next_grant_at?: string | null
+          pending_plan?: string | null
+          plan?: string
+          portone_subscription_id?: string | null
+          price_cents?: number
+          purchased_credits_remaining?: number
+          status: string
+          student_id: string
+          trial_ends_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          cancel_at_period_end?: boolean
+          created_at?: string
+          currency?: string
+          current_period_end?: string
+          current_period_start?: string
+          grant_credits_remaining?: number
+          id?: string
+          last_payment_attempt_at?: string | null
+          last_payment_failure?: string | null
+          last_payment_id?: string | null
+          next_grant_at?: string | null
+          pending_plan?: string | null
+          plan?: string
+          portone_subscription_id?: string | null
+          price_cents?: number
+          purchased_credits_remaining?: number
+          status?: string
+          student_id?: string
+          trial_ends_at?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_subscriptions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_test_specs: {
+        Row: {
+          created_at: string
+          family: string
+          last_attempted_at: string | null
+          last_verified_at: string | null
+          section_key: string
+          sources: string[]
+          spec: Json
+          updated_at: string
+          verifier_notes: string | null
+        }
+        Insert: {
+          created_at?: string
+          family: string
+          last_attempted_at?: string | null
+          last_verified_at?: string | null
+          section_key: string
+          sources?: string[]
+          spec: Json
+          updated_at?: string
+          verifier_notes?: string | null
+        }
+        Update: {
+          created_at?: string
+          family?: string
+          last_attempted_at?: string | null
+          last_verified_at?: string | null
+          section_key?: string
+          sources?: string[]
+          spec?: Json
+          updated_at?: string
+          verifier_notes?: string | null
+        }
+        Relationships: []
+      }
+      study_topics: {
+        Row: {
+          category: string
+          created_at: string
+          description_en: string | null
+          description_ko: string | null
+          grade_max: number | null
+          grade_min: number | null
+          id: string
+          level: number
+          name_en: string
+          name_ko: string
+          parent_id: string | null
+          slug: string
+          sort_order: number
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description_en?: string | null
+          description_ko?: string | null
+          grade_max?: number | null
+          grade_min?: number | null
+          id?: string
+          level: number
+          name_en: string
+          name_ko: string
+          parent_id?: string | null
+          slug: string
+          sort_order?: number
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description_en?: string | null
+          description_ko?: string | null
+          grade_max?: number | null
+          grade_min?: number | null
+          id?: string
+          level?: number
+          name_en?: string
+          name_ko?: string
+          parent_id?: string | null
+          slug?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_topics_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "study_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_user_prefs: {
+        Row: {
+          created_at: string
+          daily_goal_minutes: number | null
+          default_difficulty: string | null
+          default_language: string | null
+          goal_score: number | null
+          goal_scores: Json
+          grade_level: string | null
+          nav_tour_seen_at: string | null
+          nickname: string | null
+          nickname_changed: boolean
+          onboarded_at: string | null
+          student_id: string
+          target_test: string | null
+          target_tests: string[]
+          test_date: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          daily_goal_minutes?: number | null
+          default_difficulty?: string | null
+          default_language?: string | null
+          goal_score?: number | null
+          goal_scores?: Json
+          grade_level?: string | null
+          nav_tour_seen_at?: string | null
+          nickname?: string | null
+          nickname_changed?: boolean
+          onboarded_at?: string | null
+          student_id: string
+          target_test?: string | null
+          target_tests?: string[]
+          test_date?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          daily_goal_minutes?: number | null
+          default_difficulty?: string | null
+          default_language?: string | null
+          goal_score?: number | null
+          goal_scores?: Json
+          grade_level?: string | null
+          nav_tour_seen_at?: string | null
+          nickname?: string | null
+          nickname_changed?: boolean
+          onboarded_at?: string | null
+          student_id?: string
+          target_test?: string | null
+          target_tests?: string[]
+          test_date?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      study_xp_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          source_id: string | null
+          student_id: string
+          xp: number
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          source_id?: string | null
+          student_id: string
+          xp: number
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          source_id?: string | null
+          student_id?: string
+          xp?: number
+        }
+        Relationships: []
+      }
       subjects: {
         Row: {
           academy_id: string
@@ -3035,6 +4618,7 @@ export type Database = {
           email: string
           id: string
           name: string
+          phone: string | null
           role: string
           updated_at: string | null
         }
@@ -3044,6 +4628,7 @@ export type Database = {
           email: string
           id?: string
           name: string
+          phone?: string | null
           role: string
           updated_at?: string | null
         }
@@ -3053,6 +4638,7 @@ export type Database = {
           email?: string
           id?: string
           name?: string
+          phone?: string | null
           role?: string
           updated_at?: string | null
         }
@@ -3117,9 +4703,165 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_academy_subscription_status_counts: {
+        Args: never
+        Returns: {
+          cnt: number
+          status: string
+        }[]
+      }
+      admin_comment_report_stats: {
+        Args: { p_end?: string; p_report_type?: string; p_start?: string }
+        Returns: {
+          abuse: number
+          other: number
+          spam: number
+          total: number
+        }[]
+      }
+      admin_error_log_services: {
+        Args: never
+        Returns: {
+          service_name: string
+        }[]
+      }
+      admin_invoice_revenue_by_cycle: {
+        Args: { p_end: string; p_start: string }
+        Returns: {
+          amount_won: number
+          billing_cycle: string
+        }[]
+      }
+      admin_invoice_revenue_by_month: {
+        Args: { p_end: string; p_start: string }
+        Returns: {
+          amount_won: number
+          month_index: number
+          year: number
+        }[]
+      }
+      admin_invoice_revenue_by_plan: {
+        Args: { p_end: string; p_start: string }
+        Returns: {
+          amount_won: number
+          plan_tier: string
+        }[]
+      }
+      admin_invoice_revenue_totals: {
+        Args: { p_end: string; p_start: string }
+        Returns: {
+          amount_won: number
+          invoice_count: number
+        }[]
+      }
+      admin_study_event_counts: {
+        Args: { p_end: string; p_start: string }
+        Returns: {
+          cnt: number
+          event: string
+        }[]
+      }
+      admin_study_payment_totals: {
+        Args: { p_kind?: string; p_student_ids?: string[] }
+        Returns: {
+          net_won: number
+          total_count: number
+        }[]
+      }
+      admin_study_report_status_counts: {
+        Args: never
+        Returns: {
+          cnt: number
+          status: string
+        }[]
+      }
+      admin_study_session_stats: {
+        Args: { p_end: string; p_start: string }
+        Returns: {
+          avg_duration_minutes: number
+          completed_count: number
+          session_count: number
+        }[]
+      }
+      admin_study_subscription_status_counts: {
+        Args: never
+        Returns: {
+          cnt: number
+          status: string
+        }[]
+      }
+      admin_subscription_metrics: {
+        Args: never
+        Returns: {
+          active_count: number
+          annual_mrr_won: number
+          canceled_30d: number
+          canceled_count: number
+          monthly_mrr_won: number
+          mrr_won: number
+          new_30d: number
+          total_count: number
+          trialing_count: number
+        }[]
+      }
+      admin_subscription_usage_approaching_limits: {
+        Args: { p_threshold?: number }
+        Returns: {
+          academy_id: string
+          academy_name: string
+          storage_usage: number
+          student_usage: number
+          teacher_usage: number
+        }[]
+      }
+      admin_subscription_usage_totals: {
+        Args: never
+        Returns: {
+          academies: number
+          classrooms: number
+          storage_gb: number
+          students: number
+          teachers: number
+        }[]
+      }
+      admin_webhook_event_stats: {
+        Args: {
+          p_end?: string
+          p_event_type?: string
+          p_processed?: boolean
+          p_start?: string
+          p_status?: string
+          p_type?: string
+        }
+        Returns: {
+          errors: number
+          processed: number
+          total: number
+          unprocessed: number
+        }[]
+      }
+      admin_webhook_event_types: {
+        Args: never
+        Returns: {
+          event_type: string
+        }[]
+      }
+      award_study_xp: {
+        Args: {
+          p_event_type: string
+          p_source_id?: string
+          p_student_id: string
+          p_xp: number
+        }
+        Returns: string
+      }
       can_access_assignment_grade: {
         Args: { assignment_id_param: string; user_id_param: string }
         Returns: boolean
+      }
+      close_study_league_week: {
+        Args: { p_week_start: string }
+        Returns: number
       }
       complete_user_registration: {
         Args: { p_academy_id: string; p_phone?: string; p_school_name?: string }
@@ -3418,6 +5160,14 @@ export type Database = {
           name: string
         }[]
       }
+      increment_study_pass_credits: {
+        Args: { p_delta: number; p_student: string; p_test: string }
+        Returns: undefined
+      }
+      increment_study_purchased_credits: {
+        Args: { p_delta: number; p_student_id: string }
+        Returns: undefined
+      }
       is_parent_of_student: {
         Args: { parent_user_id: string; student_user_id: string }
         Returns: boolean
@@ -3430,6 +5180,10 @@ export type Database = {
         Args: { parent_user_id: string; student_user_id: string }
         Returns: boolean
       }
+      refund_study_credit: {
+        Args: { p_source: string; p_student: string }
+        Returns: Json
+      }
       student_in_classroom: {
         Args: { student_user_id: string; target_classroom_id: string }
         Returns: boolean
@@ -3438,6 +5192,15 @@ export type Database = {
         Args: { target_classroom_id: string; teacher_user_id: string }
         Returns: boolean
       }
+      use_study_credit: {
+        Args: { p_source: string; p_student: string }
+        Returns: Json
+      }
+      use_study_pass_credit: {
+        Args: { p_source: string; p_student: string; p_test: string }
+        Returns: Json
+      }
+      user_academy_id: { Args: { uid: string }; Returns: string }
       user_enrolled_classrooms: {
         Args: { user_uuid: string }
         Returns: {

@@ -11,20 +11,24 @@
  * ledger row written — WITHOUT any PortOne charge.
  */
 import { GET } from '@/app/api/cron/study-billing/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { NextRequest } from 'next/server'
 import { STUDY_PLANS } from '@/lib/study/plans'
 import { tableRouter } from '@/tests/study-route-helpers'
 
-jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn() },
-}))
+// dbAdmin and supabaseAdmin are the same client in production — the
+// second is only an untyped alias — so the mock exposes one shared
+// object under both names. Routes keep passing as they migrate.
+jest.mock('@/lib/supabase-admin', () => {
+  const client = { from: jest.fn() }
+  return { dbAdmin: client, supabaseAdmin: client }
+})
 jest.mock('@/lib/cron-auth', () => ({ verifyCronAuth: jest.fn(() => true) }))
 jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn() }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const chargeMock = chargeBillingKey as unknown as jest.Mock
 
 describe('study-billing cron — §4 annual grant refresh', () => {

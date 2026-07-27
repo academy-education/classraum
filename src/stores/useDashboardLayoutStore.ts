@@ -1,9 +1,10 @@
 import { create } from 'zustand'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import type { Json } from '@/lib/database.types'
 // react-grid-layout's bundled .d.ts exports `Layout` and `ResponsiveLayouts`
 // (the latter is what older docs call `Layouts`). Alias here so the rest of
 // the file can keep using the simpler name.
-import type { Layout, ResponsiveLayouts as Layouts } from 'react-grid-layout'
+import type { LayoutItem, ResponsiveLayouts as Layouts } from 'react-grid-layout'
 
 export interface DashboardCard {
   id: string
@@ -120,6 +121,125 @@ const DEFAULT_LAYOUTS: Layouts = {
   ],
 }
 
+// ---------------------------------------------------------------------------
+// jsonb <-> typed model bridge
+//
+// user_preferences.dashboard_layout is a `jsonb` column, so what crosses the
+// wire is `Json` — structurally unrelated to DashboardLayoutPreferences.
+// These functions are the ONLY bridge between the two. Everything written goes
+// through cardsToJson/layoutsToJson; everything read back is validated by
+// parseCards/parseLayouts. A field that is not named in both directions does
+// not survive the round trip, which is deliberate: the alternative is trusting
+// whatever shape happens to be sitting in the column.
+// ---------------------------------------------------------------------------
+
+type JsonObject = { [key: string]: Json | undefined }
+
+const isJsonObject = (v: Json | undefined): v is JsonObject =>
+  typeof v === 'object' && v !== null && !Array.isArray(v)
+
+const asString = (v: Json | undefined): string | undefined =>
+  typeof v === 'string' ? v : undefined
+const asNumber = (v: Json | undefined): number | undefined =>
+  typeof v === 'number' && Number.isFinite(v) ? v : undefined
+const asBoolean = (v: Json | undefined): boolean | undefined =>
+  typeof v === 'boolean' ? v : undefined
+
+function cardsToJson(cards: DashboardCard[]): Json {
+  return cards.map((c): JsonObject => ({
+    id: c.id,
+    visible: c.visible,
+    minW: c.minW,
+    minH: c.minH,
+    maxW: c.maxW,
+    maxH: c.maxH,
+    section: c.section,
+  }))
+}
+
+function layoutsToJson(layouts: Layouts): Json {
+  const out: JsonObject = {}
+  for (const [breakpoint, items] of Object.entries(layouts)) {
+    if (!items) continue
+    out[breakpoint] = items.map((it): JsonObject => ({
+      i: it.i,
+      x: it.x,
+      y: it.y,
+      w: it.w,
+      h: it.h,
+      minW: it.minW,
+      minH: it.minH,
+      maxW: it.maxW,
+      maxH: it.maxH,
+      static: it.static,
+    }))
+  }
+  return out
+}
+
+// Returns null when the stored value is not a usable card list, so the caller
+// can fall back to DEFAULT_CARDS rather than render a broken dashboard.
+function parseCards(value: Json | undefined): DashboardCard[] | null {
+  if (!Array.isArray(value)) return null
+
+  const cards: DashboardCard[] = []
+  for (const raw of value) {
+    if (!isJsonObject(raw)) return null
+    const id = asString(raw.id)
+    if (id === undefined) return null
+    cards.push({
+      id,
+      // A stored card missing a boolean `visible` defaults to VISIBLE. The
+      // opposite default would silently hide a card the user never hid.
+      visible: asBoolean(raw.visible) ?? true,
+      minW: asNumber(raw.minW),
+      minH: asNumber(raw.minH),
+      maxW: asNumber(raw.maxW),
+      maxH: asNumber(raw.maxH),
+      section: asString(raw.section),
+    })
+  }
+  return cards
+}
+
+function parseLayouts(value: Json | undefined): Layouts | null {
+  if (!isJsonObject(value)) return null
+
+  const layouts: Layouts = {}
+  for (const [breakpoint, items] of Object.entries(value)) {
+    if (!Array.isArray(items)) return null
+
+    const parsed: LayoutItem[] = []
+    for (const raw of items) {
+      if (!isJsonObject(raw)) return null
+      const i = asString(raw.i)
+      const x = asNumber(raw.x)
+      const y = asNumber(raw.y)
+      const w = asNumber(raw.w)
+      const h = asNumber(raw.h)
+      // i/x/y/w/h are required by react-grid-layout. Defaulting a missing one
+      // to 0 would place the card on top of another; reject the whole stored
+      // layout instead so the caller falls back to DEFAULT_LAYOUTS.
+      if (
+        i === undefined || x === undefined || y === undefined ||
+        w === undefined || h === undefined
+      ) {
+        return null
+      }
+      parsed.push({
+        i, x, y, w, h,
+        minW: asNumber(raw.minW),
+        minH: asNumber(raw.minH),
+        maxW: asNumber(raw.maxW),
+        maxH: asNumber(raw.maxH),
+        static: asBoolean(raw.static),
+      })
+    }
+    layouts[breakpoint] = parsed
+  }
+  return layouts
+}
+
 export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) => ({
   // Initial state
   isEditMode: false,
@@ -149,7 +269,7 @@ export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) =
     set({ loading: true, error: null })
 
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('user_preferences')
         .select('dashboard_layout')
         .eq('user_id', userId)
@@ -159,20 +279,23 @@ export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) =
         throw error
       }
 
-      if (data?.dashboard_layout) {
-        const { cards, layouts } = data.dashboard_layout
+      const stored = data?.dashboard_layout
+      if (isJsonObject(stored)) {
+        const cards = parseCards(stored.cards)
+        const layouts = parseLayouts(stored.layouts)
+
         // Migrate stored card records that predate the `section` field —
         // overlay the canonical section by id from DEFAULT_CARDS so the
         // visibility panel groups them correctly without forcing the user
         // to reset their layout.
         const sectionById = new Map(DEFAULT_CARDS.map(c => [c.id, c.section]))
-        const migratedCards: DashboardCard[] = (cards || DEFAULT_CARDS).map((c: DashboardCard) => ({
+        const migratedCards: DashboardCard[] = (cards ?? DEFAULT_CARDS).map(c => ({
           ...c,
           section: c.section ?? sectionById.get(c.id),
         }))
         set({
           cards: migratedCards,
-          layouts: layouts || DEFAULT_LAYOUTS,
+          layouts: layouts ?? DEFAULT_LAYOUTS,
           loading: false
         })
       } else {
@@ -197,17 +320,15 @@ export const useDashboardLayoutStore = create<DashboardLayoutState>((set, get) =
     set({ saving: true, error: null })
 
     try {
-      const layoutData: DashboardLayoutPreferences = {
-        cards,
-        layouts,
-        version: 2
-      }
-
-      const { error } = await supabase
+      const { error } = await db
         .from('user_preferences')
         .upsert({
           user_id: userId,
-          dashboard_layout: layoutData,
+          dashboard_layout: {
+            cards: cardsToJson(cards),
+            layouts: layoutsToJson(layouts),
+            version: 2
+          },
           updated_at: new Date().toISOString()
         }, {
           onConflict: 'user_id'

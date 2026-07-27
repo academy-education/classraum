@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
+import type { Json } from '@/lib/database.types'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { refundTestCredits } from '@/lib/study/credits'
 import { markTestReadyAndNotify, notifyTestGenerationFailed } from '@/lib/study/test-generation-status'
@@ -50,15 +51,8 @@ const CACHED_TEST_MARKER = '[full-test-v1]'
  *  never starve the genuinely stuck rows. */
 const MAX_PER_RUN = 100
 
-interface SessionRow {
-  id: string
-  student_id: string
-  created_at: string
-  config: Record<string, unknown> | null
-  /** Only used to pick the fallback copy on the notification; the inbox
-   *  row is localized at render time from title_key/message_key. */
-  language: string | null
-}
+/** The object form of a jsonb value — `Json` itself also admits scalars. */
+type JsonObject = { [key: string]: Json | undefined }
 
 export async function GET(req: NextRequest) {
   if (!verifyCronAuth(req)) {
@@ -69,7 +63,7 @@ export async function GET(req: NextRequest) {
   // ran the job, so nothing below may report on its behalf.
   const startedAt = Date.now()
 
-  const { data: rows, error } = await supabaseAdmin
+  const { data: rows, error } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, created_at, config, language')
     .eq('mode', 'full_test')
@@ -91,12 +85,15 @@ export async function GET(req: NextRequest) {
   const now = Date.now()
   const summary = { pending: rows?.length ?? 0, stale: 0, recovered: 0, reaped: 0, creditsRefunded: 0, failedToMark: 0 }
 
-  for (const row of (rows ?? []) as SessionRow[]) {
-    const cfg = (row.config ?? {}) as {
-      last_gen_started_at?: string
-      gen_credit_cost?: number
-      gen_credit_family?: string | null
-    }
+  for (const row of rows ?? []) {
+    // config is a jsonb column, so the generated type is `Json` — a union
+    // that also admits scalars and arrays. Narrow to the object case
+    // before reading keys or spreading it below; previously a scalar
+    // config would have been spread character-by-character.
+    const cfg: JsonObject =
+      row.config && typeof row.config === 'object' && !Array.isArray(row.config)
+        ? row.config
+        : {}
     // Fall back to created_at only when the stamp is missing (legacy
     // rows written before the generator persisted it). Never the other
     // way round: a session can be created hours before generation
@@ -109,7 +106,7 @@ export async function GET(req: NextRequest) {
     // Did the test actually land? A run can die AFTER writing the cache
     // row but before the status update — refunding that student would
     // give away a test they received.
-    const { data: cached, error: cacheErr } = await supabaseAdmin
+    const { data: cached, error: cacheErr } = await dbAdmin
       .from('study_messages')
       .select('id')
       .eq('session_id', row.id)
@@ -152,12 +149,12 @@ export async function GET(req: NextRequest) {
     // the same row again — re-sending the "generation failed" push every
     // 10 minutes forever. Skip the refund/notify pair until the status
     // sticks; refundTestCredits is idempotent so nothing is lost.
-    const { error: failErr } = await supabaseAdmin
+    const { error: failErr } = await dbAdmin
       .from('study_sessions')
       .update({
         generation_status: 'failed',
         config: {
-          ...(row.config ?? {}),
+          ...cfg,
           last_error: 'generation invocation died (reaped): no test produced, credit refunded',
           last_error_at: new Date().toISOString(),
         },
