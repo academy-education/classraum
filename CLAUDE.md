@@ -88,7 +88,18 @@ The build process requires special handling for route groups with client compone
 - Custom build command in `vercel.json`
 - Function timeouts configured for API routes
 - ICN1 region deployment
-- Cron job configured for recurring payments
+- 19 cron jobs in `vercel.json`. They are enumerated in `JOB_REGISTRY`
+  (`src/lib/ops/jobs.ts`) and a test fails if the two disagree, so that
+  list is the source of truth — not this file.
+- **Recurring student invoicing is NOT scheduled.** `/api/cron/recurring-payments`
+  and `/api/payments/recurring/generate` exist but neither is in
+  `vercel.json`; the cron was dropped by "Remove cron jobs from
+  vercel.json - may require paid plan" and never restored. This file
+  claimed it was configured, which was wrong. Invoices are currently
+  created through the payments UI instead. The generate route's insert
+  was also broken from Sept 2025 until 2026-07-27 (it omitted the
+  NOT NULL `academy_id` and `invoice_name`), so restoring the schedule
+  before that fix would have produced nothing.
 
 ### Development Auth Flow
 The AuthWrapper component includes dev auth detection - ensure dev auth is disabled in production environments.
