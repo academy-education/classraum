@@ -54,13 +54,33 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
   if (severity === 'critical') console.error(line, ctx, error ?? '')
   else console.warn(line, ctx, error ?? '')
 
+  // Group by the KIND of alert, not the entity it happened to.
+  //
+  // dedupeKey is `<kind>:<entity-id>` (e.g.
+  // `academy-sub-past-due-write:9f3c…`). Sentry groups by message text by
+  // default, and the message interpolates ids — so without a fingerprint
+  // every affected subscription becomes its own Sentry issue. A billing
+  // outage hitting 200 academies would open 200 issues, and any "notify
+  // on new issue" rule would send 200 pages for one incident.
+  //
+  // Fingerprinting on the kind means one issue per condition, with the
+  // affected entities as its events. Per-entity detail stays searchable
+  // via the full dedupeKey tag.
+  const alertKind = dedupeKey.split(':')[0] || dedupeKey
   try {
     Sentry.captureMessage(`${title}: ${message}`, {
       level: severity === 'critical' ? 'error' : severity === 'warning' ? 'warning' : 'info',
-      tags: { dedupeKey, alertSeverity: severity },
+      tags: { dedupeKey, alertKind, alertSeverity: severity },
       extra: ctx,
+      fingerprint: ['ops-alert', alertKind],
     })
-    if (error) Sentry.captureException(error, { tags: { dedupeKey }, extra: ctx })
+    if (error) {
+      Sentry.captureException(error, {
+        tags: { dedupeKey, alertKind, alertSeverity: severity },
+        extra: ctx,
+        fingerprint: ['ops-alert-error', alertKind],
+      })
+    }
   } catch (e) {
     console.error('[alert] sentry capture failed', e)
   }

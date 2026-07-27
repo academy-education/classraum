@@ -6,8 +6,26 @@
 import * as Sentry from '@sentry/nextjs'
 import { scrubPii, scrubConsoleBreadcrumb } from '@/lib/sentry-scrubbing'
 
+const dsn = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
+
+// `Sentry.init({ dsn: undefined })` does not throw — it silently disables
+// the SDK. Every capture then becomes a no-op, including all ~50
+// raiseAlert() sites in src/lib/ops/alert.ts, whose whole job is to make
+// a silent failure loud. Losing the alerting channel silently is exactly
+// the failure mode this codebase keeps getting bitten by, so say so.
+//
+// raiseAlert still reaches the `alerts` table and (for critical) email
+// without Sentry, so this is degraded, not blind.
+if (!dsn && process.env.VERCEL_ENV === 'production') {
+  console.error(
+    '[sentry] No SENTRY_DSN or NEXT_PUBLIC_SENTRY_DSN in production — ' +
+    'Sentry is DISABLED and every captureMessage/captureException is a ' +
+    'no-op. Ops alerts will not reach Sentry. See docs/SENTRY_SETUP.md.',
+  )
+}
+
 Sentry.init({
-  dsn: process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN,
+  dsn,
 
   environment: process.env.VERCEL_ENV || process.env.NODE_ENV,
   release: process.env.VERCEL_GIT_COMMIT_SHA,
