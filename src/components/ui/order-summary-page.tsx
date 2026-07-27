@@ -20,6 +20,15 @@ import {
 } from '@/lib/proration'
 import { isIOSApp } from '@/lib/nativeApp'
 
+/** Authorization header for API routes. This app's session lives in
+ *  localStorage, so no auth cookie is ever sent — routes authenticate by
+ *  Bearer token and a cookie-only call 401s. */
+async function authHeader(): Promise<Record<string, string>> {
+  const { data: { session } } = await db.auth.getSession()
+  return session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}
+}
+
+
 interface OrderSummaryPageProps {
   academyId?: string
   selectedPlan?: {
@@ -268,6 +277,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            ...(await authHeader()),
           },
           body: JSON.stringify({
             targetTier: planTier,

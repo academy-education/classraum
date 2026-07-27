@@ -18,6 +18,15 @@ import { getAddonIncrement, formatAddonPricing, calculateAddonCost } from '@/lib
 import { SubscriptionTier, SUBSCRIPTION_PLANS } from '@/types/subscription'
 import { isIOSApp } from '@/lib/nativeApp'
 
+/** Authorization header for API routes. This app's session lives in
+ *  localStorage, so no auth cookie is ever sent — routes authenticate by
+ *  Bearer token and a cookie-only call 401s. */
+async function authHeader(): Promise<Record<string, string>> {
+  const { data: { session } } = await db.auth.getSession()
+  return session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}
+}
+
+
 interface SubscriptionData {
   subscription: {
     id: string
@@ -179,6 +188,7 @@ export default function SubscriptionManagementPage() {
     try {
       const response = await fetch('/api/subscription/cancel', {
         method: 'POST',
+        headers: { ...(await authHeader()) },
       })
 
       const result = await response.json()

@@ -123,37 +123,62 @@ export async function getAcademySubscription(academyId: string): Promise<Academy
 }
 
 /**
- * Get current usage for an academy
+ * Get current usage for an academy.
+ *
+ * The headcounts are COUNTED LIVE rather than read from subscription_usage.
+ * That table is a snapshot nothing ever writes — it held zero rows for every
+ * academy on 2026-07-27 — and this used `.single()`, which errors on no rows.
+ * So this returned null for every academy, and every caller that treats null
+ * as fatal broke. /api/subscription/downgrade did exactly that: it answered
+ * 500 "Could not fetch usage data" before it could validate anything, which
+ * was a third independent reason downgrades could not be scheduled (after
+ * the missing pending_* columns and the cookie-only auth check).
+ *
+ * Counting live also means the limit checks below reflect reality instead of
+ * whenever a snapshot was last taken. The snapshot row is still read when it
+ * exists, for the metered counters (api/sms/email) that have no live source.
  */
 export async function getAcademyUsage(academyId: string): Promise<SubscriptionUsage | null> {
   try {
-    const { data, error } = await supabaseAdmin
-      .from('subscription_usage')
-      .select('*')
-      .eq('academy_id', academyId)
-      .single();
+    const [snapshot, students, teachers, classrooms] = await Promise.all([
+      supabaseAdmin.from('subscription_usage').select('*').eq('academy_id', academyId).maybeSingle(),
+      supabaseAdmin.from('students').select('user_id', { count: 'exact', head: true })
+        .eq('academy_id', academyId).eq('active', true),
+      supabaseAdmin.from('teachers').select('user_id', { count: 'exact', head: true })
+        .eq('academy_id', academyId).eq('active', true),
+      supabaseAdmin.from('classrooms').select('id', { count: 'exact', head: true })
+        .eq('academy_id', academyId).is('deleted_at', null),
+    ]);
 
-    if (error) {
-      console.error('Error fetching usage:', error);
-      return null;
+    // A failed COUNT would silently read as 0 and could wave through a
+    // downgrade that breaches the target plan's limits, so fail closed.
+    for (const [label, res] of [['students', students], ['teachers', teachers], ['classrooms', classrooms]] as const) {
+      if (res.error) {
+        console.error(`Error counting ${label} for academy ${academyId}:`, res.error);
+        return null;
+      }
     }
 
-    return data ? {
-      id: data.id,
-      academyId: data.academy_id,
-      currentStudentCount: data.current_student_count,
-      currentTeacherCount: data.current_teacher_count,
-      currentStorageGb: data.current_storage_gb,
-      currentClassroomCount: data.current_classroom_count,
-      // All five counters are nullable with a `0` default; treat NULL as 0 so
-      // the limit comparisons below don't run against `null`.
-      apiCallsMonth: data.api_calls_month ?? 0,
-      smsSentMonth: data.sms_sent_month ?? 0,
-      emailsSentMonth: data.emails_sent_month ?? 0,
-      peakStudentCount: data.peak_student_count ?? 0,
-      peakTeacherCount: data.peak_teacher_count ?? 0,
-      calculatedAt: toDate(data.calculated_at),
-    } : null;
+    const data = snapshot.data;
+    if (snapshot.error) console.error('Error fetching usage snapshot:', snapshot.error);
+
+    return {
+      id: data?.id ?? academyId,
+      academyId,
+      currentStudentCount: students.count ?? 0,
+      currentTeacherCount: teachers.count ?? 0,
+      currentStorageGb: data?.current_storage_gb ?? 0,
+      currentClassroomCount: classrooms.count ?? 0,
+      // Metered counters have no live source — they come from the snapshot
+      // when one exists, else 0. All are nullable with a `0` default, so
+      // treat NULL as 0 rather than comparing limits against `null`.
+      apiCallsMonth: data?.api_calls_month ?? 0,
+      smsSentMonth: data?.sms_sent_month ?? 0,
+      emailsSentMonth: data?.emails_sent_month ?? 0,
+      peakStudentCount: data?.peak_student_count ?? 0,
+      peakTeacherCount: data?.peak_teacher_count ?? 0,
+      calculatedAt: toDate(data?.calculated_at ?? null),
+    };
   } catch (error) {
     console.error('Error in getAcademyUsage:', error);
     return null;
