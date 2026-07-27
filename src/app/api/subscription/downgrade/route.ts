@@ -129,28 +129,66 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Downgrade is valid — but it cannot actually be scheduled.
+    // Downgrade is valid — schedule it for the next billing date rather
+    // than applying it now. The academy has already paid through the end of
+    // the current period, so their limits must not drop mid-cycle; the
+    // billing cron reads pending_tier at renewal, charges the new lower
+    // amount, and clears these three columns.
     //
-    // This used to write pending_tier / pending_monthly_amount /
-    // pending_change_effective_date. academy_subscriptions has
-    // pending_change_effective_date but NOT pending_tier or
-    // pending_monthly_amount, so PostgREST rejected the whole statement
-    // (PGRST204, unknown column) and this endpoint has always answered 500.
-    // Nothing was ever persisted, and the billing cron had no pending tier
-    // to read either.
+    // pending_tier / pending_monthly_amount only exist as of migration 060.
+    // Before that they were referenced but never created, so PostgREST
+    // rejected this whole statement (PGRST204) and every downgrade attempt
+    // answered 500 with nothing persisted.
     //
-    // We keep returning the same failure rather than writing a partial row
-    // (an effective date with no target tier) or telling the manager the
-    // downgrade is scheduled when it is not. Restoring the feature requires
-    // adding the two columns to the schema first.
-    console.error(
-      '[Downgrade API] Cannot schedule downgrade: academy_subscriptions is missing the pending_tier / pending_monthly_amount columns',
-      { academyId, currentTier: subscription.plan_tier, targetTier }
-    );
-    return NextResponse.json(
-      { success: false, message: 'Failed to schedule downgrade' },
-      { status: 500 }
-    );
+    // next_billing_date is nullable. Unguarded it would be written straight
+    // into pending_change_effective_date and formatted into the message
+    // below, where `new Date(null)` is the UNIX epoch rather than an error —
+    // so the manager would be told their downgrade takes effect in 1970 and
+    // the cron would apply it on the next run.
+    if (!subscription.next_billing_date) {
+      console.error(
+        '[Downgrade API] Subscription has no next_billing_date; cannot schedule',
+        { academyId, currentTier: subscription.plan_tier, targetTier }
+      );
+      return NextResponse.json(
+        {
+          success: false,
+          message: '다음 결제일이 설정되어 있지 않아 다운그레이드를 예약할 수 없습니다. 고객지원에 문의해주세요.',
+        },
+        { status: 409 }
+      );
+    }
+
+    const effectiveDate = subscription.next_billing_date;
+
+    const { error: updateError } = await supabase
+      .from('academy_subscriptions')
+      .update({
+        pending_tier: targetTier,
+        pending_monthly_amount: targetPlan.monthlyPrice,
+        pending_change_effective_date: effectiveDate,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('academy_id', academyId);
+
+    if (updateError) {
+      console.error('Error scheduling downgrade:', updateError);
+      return NextResponse.json(
+        { success: false, message: 'Failed to schedule downgrade' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: `다운그레이드가 예약되었습니다. 다음 결제일(${new Date(effectiveDate).toLocaleDateString('ko-KR')})부터 ${targetPlan.name} 플랜으로 변경됩니다.`,
+      data: {
+        currentTier: subscription.plan_tier,
+        targetTier,
+        effectiveDate,
+        newMonthlyAmount: targetPlan.monthlyPrice,
+      },
+    });
 
   } catch (error) {
     console.error('Downgrade API error:', error);

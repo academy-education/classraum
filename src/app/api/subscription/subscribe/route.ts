@@ -199,12 +199,15 @@ export async function POST(request: NextRequest) {
             total_user_limit: plan.limits.totalUserLimit,
             storage_limit_gb: plan.limits.storageGb,
             features_enabled: { ...plan.features },
-            // Clear any pending downgrade. NOTE: pending_tier /
-            // pending_monthly_amount were also cleared here, but those
-            // columns do not exist on academy_subscriptions — PostgREST
-            // rejects an update naming them, so this upgrade write has been
-            // failing outright (500 "Failed to update subscription") even
-            // though the customer's plan change was otherwise valid.
+            // Clear any pending downgrade — upgrading now supersedes a
+            // change the manager booked earlier, and leaving it set would
+            // have the billing cron quietly drop them back down at renewal.
+            // These two columns only exist as of migration 060; before it
+            // they were named here but never created, so PostgREST rejected
+            // the whole statement and every upgrade returned 500 (ahead of
+            // the charge, so no money moved — but the path was dead).
+            pending_tier: null,
+            pending_monthly_amount: null,
             pending_change_effective_date: null,
             updated_at: now.toISOString(),
           })

@@ -259,6 +259,77 @@ export async function GET(req: NextRequest) {
               updated_at: new Date().toISOString(),
             };
 
+            // Apply a scheduled plan change (a downgrade booked earlier via
+            // /api/subscription/downgrade) now that its effective date has
+            // arrived. Restored with migration 060: pending_tier and
+            // pending_monthly_amount did not exist before it, so this whole
+            // block was unreachable and scheduled downgrades never applied.
+            if (subscription.pending_tier && subscription.pending_change_effective_date) {
+              const changeEffective = new Date(subscription.pending_change_effective_date);
+
+              if (new Date() >= changeEffective) {
+                const pendingTier = subscription.pending_tier;
+                console.log(`[SUBSCRIPTION-BILLING] Applying scheduled plan change for subscription ${subscription.id}: ${subscription.plan_tier} → ${pendingTier}`);
+
+                const { SUBSCRIPTION_PLANS } = await import('@/types/subscription');
+                const pendingPlan = SUBSCRIPTION_PLANS[pendingTier as keyof typeof SUBSCRIPTION_PLANS];
+
+                if (subscription.pending_monthly_amount === null) {
+                  // Half-written schedule: a target tier with no price.
+                  // monthly_amount is NOT NULL, so applying this would fail
+                  // the whole update after the charge already succeeded.
+                  // Leave it scheduled and page a human instead.
+                  console.error(`[SUBSCRIPTION-BILLING] Subscription ${subscription.id} has pending_tier "${pendingTier}" but no pending_monthly_amount; leaving the change scheduled`);
+                  errors.push(`Subscription ${subscription.id}: pending_tier without pending_monthly_amount`);
+                } else if (!pendingPlan) {
+                  // The CHECK constraint on pending_tier makes this
+                  // unreachable, but a plan removed from the code while a
+                  // change is booked must not silently apply a partial row.
+                  console.error(`[SUBSCRIPTION-BILLING] Unknown pending_tier "${pendingTier}" on subscription ${subscription.id}; leaving the change scheduled`);
+                  errors.push(`Subscription ${subscription.id}: Unknown pending_tier ${pendingTier}`);
+                } else {
+                  // student_limit / teacher_limit are NOT NULL, and
+                  // SubscriptionLimits no longer defines studentLimit /
+                  // teacherLimit — the model moved to totalUserLimit. Writing
+                  // them unconditionally (as this did originally) produced
+                  // `undefined + n` → NaN → null and failed the whole update
+                  // AFTER a successful charge, leaving next_billing_date
+                  // un-advanced and the customer exposed to a re-charge.
+                  updateData = {
+                    ...updateData,
+                    plan_tier: pendingTier,
+                    monthly_amount: subscription.pending_monthly_amount,
+                    ...(pendingPlan.limits.totalUserLimit !== undefined
+                      ? { total_user_limit: pendingPlan.limits.totalUserLimit }
+                      : {}),
+                    ...(pendingPlan.limits.storageGb !== undefined
+                      ? { storage_limit_gb: pendingPlan.limits.storageGb }
+                      : {}),
+                    features_enabled: { ...pendingPlan.features },
+                    pending_tier: null,
+                    pending_monthly_amount: null,
+                    pending_change_effective_date: null,
+                  };
+
+                  // academies.subscription_tier is what the app gates
+                  // features on. Losing this write leaves the academy on the
+                  // old plan's limits while the subscription row disagrees.
+                  const { error: tierError } = await supabaseAdmin
+                    .from('academies')
+                    .update({
+                      subscription_tier: pendingTier,
+                      updated_at: new Date().toISOString(),
+                    })
+                    .eq('id', subscription.academy_id);
+                  if (tierError) {
+                    console.error(`[SUBSCRIPTION-BILLING] Error applying tier to academy ${subscription.academy_id}:`, tierError);
+                    errors.push(`Subscription ${subscription.id}: Failed to apply tier to academy`);
+                    writeFailures++;
+                  }
+                }
+              }
+            }
+
             // Check if there are pending add-ons to apply
             if (subscription.pending_addons_effective_date) {
               const effectiveDate = new Date(subscription.pending_addons_effective_date);

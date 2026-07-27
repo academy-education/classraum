@@ -236,6 +236,8 @@ export type Database = {
           pending_additional_teachers: number | null
           pending_addons_effective_date: string | null
           pending_change_effective_date: string | null
+          pending_monthly_amount: number | null
+          pending_tier: string | null
           plan_tier: string
           status: string
           storage_limit_gb: number
@@ -270,6 +272,8 @@ export type Database = {
           pending_additional_teachers?: number | null
           pending_addons_effective_date?: string | null
           pending_change_effective_date?: string | null
+          pending_monthly_amount?: number | null
+          pending_tier?: string | null
           plan_tier: string
           status: string
           storage_limit_gb?: number
@@ -304,6 +308,8 @@ export type Database = {
           pending_additional_teachers?: number | null
           pending_addons_effective_date?: string | null
           pending_change_effective_date?: string | null
+          pending_monthly_amount?: number | null
+          pending_tier?: string | null
           plan_tier?: string
           status?: string
           storage_limit_gb?: number

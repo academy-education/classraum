@@ -243,17 +243,29 @@ export async function POST(request: NextRequest) {
               { status: 500 }
             );
           }
-          // Update or create subscription_invoices record. The table has a
-          // UNIQUE (kg_transaction_id) constraint — pass it as onConflict so
-          // retries UPDATE the existing row instead of failing with 23505.
-          // Without onConflict, Supabase upsert defaults to PRIMARY KEY (id)
-          // which we don't supply, so the second delivery would always try
-          // to INSERT and hit the unique violation.
-          // subscription_invoices has NOT NULL plan_tier, billing_cycle,
-          // billing_period_start and billing_period_end. They live on the
-          // parent subscription row, so read them alongside academy_id — an
-          // upsert without them can only ever UPDATE an existing row and
-          // fails with 23502 on the INSERT branch.
+          // Create the subscription_invoices row ONLY IF nobody else did.
+          //
+          // This webhook is a backstop, not an author. Both authoritative
+          // writers — the billing cron and the client-side payment callback
+          // — already insert this row with status 'paid' and a correctly
+          // COMPUTED billing period. So there is nothing here worth
+          // updating, and updating is actively harmful: the cron charges
+          // before it advances academy_subscriptions.current_period_*, so a
+          // webhook that wins that race would overwrite the cron's correct
+          // period with the PREVIOUS one. Hence ignoreDuplicates (ON
+          // CONFLICT DO NOTHING) rather than a real upsert.
+          //
+          // onConflict must still name kg_transaction_id: that's the UNIQUE
+          // constraint. Supabase otherwise defaults to the PRIMARY KEY (id),
+          // which we don't supply, so a redelivery would hit 23505.
+          //
+          // The insert needs plan_tier, billing_cycle, billing_period_start
+          // and billing_period_end — all NOT NULL with no default. They live
+          // on the parent subscription, so read them alongside academy_id;
+          // omitting them (as this did until 2026-07-27) meant the INSERT
+          // branch always failed 23502 and the backstop never worked. In the
+          // only case this row is now written — neither other writer ran —
+          // current_period_* is the best available approximation.
           const { data: subRow, error: subReadError } = await supabase
             .from('academy_subscriptions')
             .select('academy_id, plan_tier, billing_cycle, current_period_start, current_period_end')
@@ -282,7 +294,7 @@ export async function POST(request: NextRequest) {
                   payment_method: verification.payment.method?.type ?? null,
                   webhook_received_at: new Date().toISOString(),
                 },
-              }, { onConflict: 'kg_transaction_id' });
+              }, { onConflict: 'kg_transaction_id', ignoreDuplicates: true });
 
             if (invoiceUpdateError) {
               console.error('Error updating subscription invoice:', invoiceUpdateError);
