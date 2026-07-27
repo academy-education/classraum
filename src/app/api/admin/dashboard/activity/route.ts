@@ -44,9 +44,15 @@ export async function GET(request: NextRequest) {
           .gte('created_at', since)
           .order('created_at', { ascending: false })
           .limit(3),
+        // No `academies(name)` embed here. invoices.academy_id has no
+        // foreign key to academies, and adding one broke academy
+        // deletion — delete_academy_cascade() never clears invoices, so
+        // the nightly deletion cron hit a constraint violation (see
+        // migrations 056 and 058). The academy name is joined in
+        // application code below instead.
         supabaseAdmin
           .from('invoices')
-          .select('id, final_amount, created_at, academies(name)')
+          .select('id, final_amount, created_at, academy_id')
           .eq('status', 'failed')
           .gte('created_at', since)
           .order('created_at', { ascending: false })
@@ -73,6 +79,22 @@ export async function GET(request: NextRequest) {
       return one?.name ?? null
     }
 
+    // Failed invoices carry only academy_id (no FK to embed through), so
+    // their names are resolved with one extra lookup over the handful of
+    // ids actually returned.
+    const failedRows = unwrap('failed_invoices', failedRes)
+    const failedAcademyIds = [...new Set(
+      failedRows.map(p => (p as { academy_id?: string }).academy_id).filter(Boolean)
+    )] as string[]
+    const failedAcademyNames = new Map<string, string>()
+    if (failedAcademyIds.length) {
+      const { data: named, error: namedErr } = await supabaseAdmin
+        .from('academies').select('id, name').in('id', failedAcademyIds)
+      // Non-fatal: the payment still shows, just without an academy name.
+      if (namedErr) console.error('[admin/activity] academy name lookup failed', namedErr)
+      for (const a of named ?? []) failedAcademyNames.set(a.id, a.name)
+    }
+
     return NextResponse.json({
       academies: unwrap('academies', academiesRes).map(a => ({
         id: a.id,
@@ -85,10 +107,10 @@ export async function GET(request: NextRequest) {
         academyName: academyName(s as NamedRel),
         createdAt: s.created_at,
       })),
-      failedPayments: unwrap('failed_invoices', failedRes).map(p => ({
+      failedPayments: failedRows.map(p => ({
         id: p.id,
         amount: p.final_amount,
-        academyName: academyName(p as NamedRel),
+        academyName: failedAcademyNames.get((p as { academy_id: string }).academy_id) ?? null,
         createdAt: p.created_at,
       })),
       conversations: unwrap('conversations', conversationsRes).map(c => ({
