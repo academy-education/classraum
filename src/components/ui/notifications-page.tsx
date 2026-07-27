@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import { parseNotificationRow, type NotificationRow } from '@/components/ui/common/notification-row'
 import { useTranslation } from '@/hooks/useTranslation'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -27,29 +28,9 @@ import {
 } from 'lucide-react'
 import { BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
 
-interface Notification {
-  id: string
-  user_id: string
-  title: string
-  message: string
-  title_key?: string
-  message_key?: string
-  title_params?: NotificationParams
-  message_params?: NotificationParams
-  type: string
-  is_read: boolean
-  navigation_data?: {
-    page?: string
-    filters?: {
-      classroomId?: string
-      sessionId?: string
-      studentId?: string
-    }
-    action?: string
-  }
-  created_at: string
-  updated_at: string
-}
+// The notifications table's jsonb columns cannot be typed precisely by the
+// generated types, so the row shape and its runtime parser live in one place.
+type Notification = NotificationRow
 
 interface NotificationsPageProps {
   userId: string
@@ -109,7 +90,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
     
     setLoading(true)
     try {
-      let query = supabase
+      let query = db
         .from('notifications')
         .select('*', { count: 'exact' })
         .eq('user_id', userId)
@@ -134,7 +115,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
 
       if (error) throw error
 
-      setNotifications(data || [])
+      setNotifications((data || []).map(parseNotificationRow))
       setTotalCount(count || 0)
       setLoadError(false)
     } catch (error) {
@@ -168,7 +149,9 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   }
 
   // Format date
-  const formatDate = (dateString: string) => {
+  // notifications.created_at is nullable — group undated rows under "Unknown".
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return String(t('common.fallbacks.unknown'))
     const date = new Date(dateString)
     const now = new Date()
     const diffInMs = now.getTime() - date.getTime()
@@ -186,7 +169,8 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
   }
 
   // Format time
-  const formatTime = (dateString: string) => {
+  const formatTime = (dateString: string | null) => {
+    if (!dateString) return ''
     return new Date(dateString).toLocaleTimeString(getDateLocale(language), {
       hour: 'numeric',
       minute: '2-digit',
@@ -245,7 +229,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       setSelectedNotifications([])
 
       // Update database first
-      const { error } = await supabase
+      const { error } = await db
         .from('notifications')
         .update({ is_read: true, updated_at: new Date().toISOString() })
         .in('id', notificationIds)
@@ -294,7 +278,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
         })
 
         // Update database first
-        const { error } = await supabase
+        const { error } = await db
           .from('notifications')
           .update({ is_read: true, updated_at: new Date().toISOString() })
           .eq('id', notification.id)

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
+import { toJson } from '@/lib/json'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assessSessionMastery } from '@/lib/study-mastery-assess'
 import { estimateSectionScore } from '@/lib/study/sat-adaptive'
@@ -105,7 +106,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'answers/questions length mismatch' }, { status: 400 })
   }
 
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, mode, topic_id, module2_route, topic:study_topics(slug)')
     .eq('id', body.sessionId)
@@ -147,7 +148,7 @@ export async function POST(req: NextRequest) {
   // only used for legacy sessions that predate payload caching.
   let gradingQuestions = body.questions
   try {
-    const { data: cachedMsg, error: cacheErr } = await supabaseAdmin
+    const { data: cachedMsg, error: cacheErr } = await dbAdmin
       .from('study_messages')
       .select('content')
       .eq('session_id', body.sessionId)
@@ -197,7 +198,7 @@ export async function POST(req: NextRequest) {
   // ids are gen_random_uuid() so ordering by id scrambled the verdict
   // order on replay. nullsFirst:false keeps legacy NULL-position rows
   // in a stable (if arbitrary) tail order via the id tiebreak.
-  const { data: prior } = await supabaseAdmin
+  const { data: prior } = await dbAdmin
     .from('study_attempts')
     .select('id, is_correct, student_answer, question, position')
     .eq('session_id', body.sessionId)
@@ -282,7 +283,11 @@ export async function POST(req: NextRequest) {
       // (session_id, position) turns a double-submit race into a
       // clean insert failure handled below.
       position: i,
-      question: q,
+      // `study_attempts.question` is jsonb. The Zod-parsed question carries
+      // `graphic: unknown`, which the `Json` column type cannot accept —
+      // normalise rather than assert, so an unserialisable graphic payload
+      // is caught here instead of landing in the row as `{}`.
+      question: toJson(q),
       student_answer: studentAnswer,
       // null = not objectively gradable (open response); true/false otherwise.
       is_correct: openResp ? null : isCorrect,
@@ -291,7 +296,7 @@ export async function POST(req: NextRequest) {
     }
   })
 
-  const { error: insertError } = await supabaseAdmin
+  const { error: insertError } = await dbAdmin
     .from('study_attempts')
     .insert(rows)
   if (insertError) {
@@ -301,7 +306,7 @@ export async function POST(req: NextRequest) {
     // rows are entirely the winner's — replay them as the idempotent
     // result instead of erroring.
     if (insertError.code === '23505') {
-      const { data: raced } = await supabaseAdmin
+      const { data: raced } = await dbAdmin
         .from('study_attempts')
         .select('is_correct, student_answer, question')
         .eq('session_id', body.sessionId)
@@ -349,7 +354,7 @@ export async function POST(req: NextRequest) {
   // the test result everywhere except this response. An unchecked failure
   // showed the student a score that then appeared nowhere in history or
   // stats — the attempts rows exist, but nothing reads them.
-  const { error: completeError } = await supabaseAdmin
+  const { error: completeError } = await dbAdmin
     .from('study_sessions')
     .update({
       status: 'completed',

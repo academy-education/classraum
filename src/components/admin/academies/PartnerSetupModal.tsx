@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Save, Banknote } from 'lucide-react';
 import { TaxType, BankAccount } from '@/types/subscription';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';

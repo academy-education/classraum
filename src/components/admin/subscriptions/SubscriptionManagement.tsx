@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
 import { SubscriptionDetailModal } from './SubscriptionDetailModal';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';

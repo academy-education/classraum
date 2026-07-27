@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
 
 export interface Assignment {
@@ -90,7 +90,7 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
 
     try {
       // First get the student's enrolled classroom IDs
-      const { data: studentData, error: studentError } = await supabase
+      const { data: studentData, error: studentError } = await db
         .from('students')
         .select('classroom_students(classroom_id)')
         .eq('user_id', user.id)
@@ -109,7 +109,7 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
         return
       }
 
-      const { data, error: fetchError } = await supabase
+      const { data, error: fetchError } = await db
         .from('assignments')
         .select(`
           id,
@@ -141,7 +141,7 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
       const statusMap: Record<string, Assignment['status']> = {}
 
       if (assignmentIds.length > 0) {
-        const { data: gradeRows, error: gradeError } = await supabase
+        const { data: gradeRows, error: gradeError } = await db
           .from('assignment_grades')
           .select('assignment_id, status')
           .eq('student_id', studentId)

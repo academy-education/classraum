@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Loader2, AlertTriangle, ArrowRight } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 
@@ -42,7 +42,7 @@ export function GeneratingTestsChip() {
     let timer: ReturnType<typeof setTimeout> | null = null
 
     const tick = async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select('id, generation_status, topic_freeform, created_at, config, topic:study_topics(name_en, name_ko)')
         .eq('student_id', user.userId)

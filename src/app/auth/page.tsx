@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/AuthContext"
-import { supabase } from "@/lib/supabase"
+import { db } from "@/lib/supabase"
 import Image from "next/image"
 import { LoadingScreen } from "@/components/ui/loading-screen"
 import { Input } from "@/components/ui/input"
@@ -95,7 +95,7 @@ export default function AuthPage() {
       // Handle password reset with tokens IMMEDIATELY
       if (typeParam === 'reset' && accessToken && refreshToken) {
         // Set session synchronously to prevent redirects
-        supabase.auth.setSession({
+        db.auth.setSession({
           access_token: accessToken,
           refresh_token: refreshToken
         }).then(({ data, error }) => {
@@ -182,7 +182,7 @@ export default function AuthPage() {
 
         try {
           // Fetch family member data to pre-fill form
-          const { data: memberData, error: memberError } = await supabase
+          const { data: memberData, error: memberError } = await db
             .from('family_members')
             .select(`
               id,
@@ -290,7 +290,7 @@ export default function AuthPage() {
 
       try {
         // Fetch user role from database
-        const { data: userInfo, error } = await supabase
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', user.id)
@@ -313,7 +313,7 @@ export default function AuthPage() {
         // /mobile/start hub only shows on a true first visit. Parents
         // skip the hub since Study is a student-only experience.
         if (userRole === 'student') {
-          const { count } = await supabase
+          const { count } = await db
             .from('students')
             .select('user_id', { count: 'exact', head: true })
             .eq('user_id', user.id)
@@ -437,7 +437,7 @@ export default function AuthPage() {
       // Step 1: Sign up the user with Supabase Auth with metadata
       // Note: If using family_member_id (personalized link), don't pass family_id
       // because we'll update the existing family_member record instead of creating a new one
-      const { data: authData, error: authError } = await supabase.auth.signUp({
+      const { data: authData, error: authError } = await db.auth.signUp({
         email,
         password,
         options: {
@@ -504,7 +504,7 @@ export default function AuthPage() {
       await new Promise(resolve => setTimeout(resolve, 1000))
 
       // Fallback: Check if user was created by trigger, create manually if not
-      const { data: existingUser, error: checkError } = await supabase
+      const { data: existingUser, error: checkError } = await db
         .from('users')
         .select('id')
         .eq('id', authData.user.id)
@@ -514,7 +514,7 @@ export default function AuthPage() {
         console.log('[Auth] Trigger did not create user, creating manually...')
 
         // Create user record manually
-        const { error: userInsertError } = await supabase
+        const { error: userInsertError } = await db
           .from('users')
           .insert({
             id: authData.user.id,
@@ -540,25 +540,28 @@ export default function AuthPage() {
           // but they must be visible in the console/Sentry breadcrumbs so a
           // systematic breakage isn't invisible.
           if (signupAcademyId) {
+            // Each branch names a literal table so the typed client can check
+            // the row shape. parents/teachers/managers share the same columns;
+            // `students` is the only one that also carries school_name.
+            const roleBase = {
+              user_id: authData.user.id,
+              academy_id: signupAcademyId,
+              phone: phone || null
+            }
             const roleInsertTable =
               signupRole === 'parent' ? 'parents' :
               signupRole === 'student' ? 'students' :
               signupRole === 'teacher' ? 'teachers' :
               signupRole === 'manager' ? 'managers' : null
 
-            if (roleInsertTable) {
-              const roleInsertData: Record<string, unknown> = {
-                user_id: authData.user.id,
-                academy_id: signupAcademyId,
-                phone: phone || null
-              }
-              if (signupRole === 'student') {
-                roleInsertData.school_name = schoolName || null
-              }
+            const roleCreate =
+              roleInsertTable === 'parents' ? db.from('parents').insert(roleBase) :
+              roleInsertTable === 'students' ? db.from('students').insert({ ...roleBase, school_name: schoolName || null }) :
+              roleInsertTable === 'teachers' ? db.from('teachers').insert(roleBase) :
+              roleInsertTable === 'managers' ? db.from('managers').insert(roleBase) : null
 
-              const { error: roleCreateError } = await supabase
-                .from(roleInsertTable)
-                .insert(roleInsertData)
+            if (roleCreate) {
+              const { error: roleCreateError } = await roleCreate
 
               if (roleCreateError) {
                 console.error(`[Auth] Failed to create ${roleInsertTable} record:`, roleCreateError)
@@ -567,7 +570,7 @@ export default function AuthPage() {
           }
 
           // Create user preferences
-          const { error: prefsCreateError } = await supabase
+          const { error: prefsCreateError } = await db
             .from('user_preferences')
             .insert({ user_id: authData.user.id })
 
@@ -577,7 +580,7 @@ export default function AuthPage() {
 
           // If using standard family_id link (not family_member_id), create family_member record
           if (familyId && !familyMemberId && (signupRole === 'student' || signupRole === 'parent')) {
-            const { error: familyCreateError } = await supabase
+            const { error: familyCreateError } = await db
               .from('family_members')
               .insert({
                 user_id: authData.user.id,
@@ -609,7 +612,7 @@ export default function AuthPage() {
 
         if (roleTable) {
           // Check if signupRole record exists
-          const { data: roleRecord, error: roleCheckError } = await supabase
+          const { data: roleRecord, error: roleCheckError } = await db
             .from(roleTable)
             .select('user_id')
             .eq('user_id', authData.user.id)
@@ -618,21 +621,21 @@ export default function AuthPage() {
           if (roleCheckError || !roleRecord) {
             console.log(`[Auth] ${roleTable} record missing, creating...`)
 
-            // Create the missing signupRole record
-            const roleData: any = {
+            // Create the missing signupRole record. Same literal-table
+            // branching as the first-pass insert above.
+            const roleData = {
               user_id: authData.user.id,
               academy_id: signupAcademyId,
               phone: phone || null
             }
 
-            // Add student-specific fields
-            if (signupRole === 'student') {
-              roleData.school_name = schoolName || null
-            }
+            const roleInsert =
+              roleTable === 'parents' ? db.from('parents').insert(roleData) :
+              roleTable === 'students' ? db.from('students').insert({ ...roleData, school_name: schoolName || null }) :
+              roleTable === 'teachers' ? db.from('teachers').insert(roleData) :
+              db.from('managers').insert(roleData)
 
-            const { error: roleInsertError } = await supabase
-              .from(roleTable)
-              .insert(roleData)
+            const { error: roleInsertError } = await roleInsert
 
             if (roleInsertError) {
               console.error(`[Auth] Failed to create ${roleTable} record:`, roleInsertError)
@@ -649,7 +652,7 @@ export default function AuthPage() {
       // Step 2.5b: Create family_member record if needed (standard family_id flow)
       if (familyId && !familyMemberId && (signupRole === 'student' || signupRole === 'parent')) {
         // Check if family_member record exists
-        const { data: familyMemberRecord, error: familyMemberCheckError } = await supabase
+        const { data: familyMemberRecord, error: familyMemberCheckError } = await db
           .from('family_members')
           .select('id')
           .eq('user_id', authData.user.id)
@@ -663,7 +666,7 @@ export default function AuthPage() {
             signupRole
           })
 
-          const { error: familyMemberError } = await supabase
+          const { error: familyMemberError } = await db
             .from('family_members')
             .insert({
               user_id: authData.user.id,
@@ -683,7 +686,7 @@ export default function AuthPage() {
       }
 
       // Step 2.5c: Ensure user_preferences exists
-      const { data: prefsRecord, error: prefsCheckError } = await supabase
+      const { data: prefsRecord, error: prefsCheckError } = await db
         .from('user_preferences')
         .select('user_id')
         .eq('user_id', authData.user.id)
@@ -692,7 +695,7 @@ export default function AuthPage() {
       if (prefsCheckError || !prefsRecord) {
         console.log('[Auth] user_preferences record missing, creating...')
 
-        const { error: prefsInsertError } = await supabase
+        const { error: prefsInsertError } = await db
           .from('user_preferences')
           .insert({ user_id: authData.user.id })
 
@@ -709,7 +712,7 @@ export default function AuthPage() {
       console.log('[Auth] Verification complete - all required records exist')
 
       // Step 2: Attempt to sign in immediately (works if email confirmation is disabled)
-      const { error: signInError } = await supabase.auth.signInWithPassword({
+      const { error: signInError } = await db.auth.signInWithPassword({
         email,
         password,
       })
@@ -728,7 +731,7 @@ export default function AuthPage() {
             userId: authData.user.id
           })
 
-          const { data: updateData, error: updateError } = await supabase
+          const { data: updateData, error: updateError } = await db
             .from('family_members')
             .update({ user_id: authData.user.id })
             .eq('id', familyMemberId)
@@ -755,7 +758,7 @@ export default function AuthPage() {
             // Re-read to distinguish "already linked to THIS user" (a
             // benign retry — the trigger or a previous attempt got there
             // first) from a genuinely unlinked invite.
-            const { data: currentMember } = await supabase
+            const { data: currentMember } = await db
               .from('family_members')
               .select('user_id')
               .eq('id', familyMemberId)
@@ -828,9 +831,9 @@ export default function AuthPage() {
       // stored refresh token was already revoked elsewhere, surfacing a raw
       // AuthApiError on the auth page.
       try {
-        const { data: preLoginSession } = await supabase.auth.getSession()
+        const { data: preLoginSession } = await db.auth.getSession()
         if (preLoginSession.session) {
-          await supabase.auth.signOut({ scope: 'local' })
+          await db.auth.signOut({ scope: 'local' })
           // Wait briefly for cleanup
           await new Promise(resolve => setTimeout(resolve, 200))
         }
@@ -844,7 +847,7 @@ export default function AuthPage() {
         sessionStorage.clear()
       }
 
-      const { error: signInError } = await supabase.auth.signInWithPassword({
+      const { error: signInError } = await db.auth.signInWithPassword({
         email,
         password,
       })
@@ -932,7 +935,7 @@ export default function AuthPage() {
         redirectUrl = `${protocol}//app.${baseDomain}/auth/callback`
       }
 
-      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+      const { error } = await db.auth.resetPasswordForEmail(resetEmail, {
         redirectTo: redirectUrl,
       })
 
@@ -955,7 +958,7 @@ export default function AuthPage() {
     setLoading(true)
 
     // Validate user session exists
-    const { data: currentSession } = await supabase.auth.getSession()
+    const { data: currentSession } = await db.auth.getSession()
     if (!currentSession.session) {
       toast({ title: t('auth.resetPassword.sessionExpired') as string || 'Session expired. Please sign in again.', variant: 'destructive' })
       setLoading(false)
@@ -977,7 +980,7 @@ export default function AuthPage() {
     }
 
     try {
-      const { error } = await supabase.auth.updateUser({
+      const { error } = await db.auth.updateUser({
         password: newPassword
       })
 
@@ -1000,7 +1003,7 @@ export default function AuthPage() {
       // catch below doesn't toast a raw AuthApiError.
       let signOutError: unknown = null
       try {
-        ({ error: signOutError } = await supabase.auth.signOut({ scope: 'global' }))
+        ({ error: signOutError } = await db.auth.signOut({ scope: 'global' }))
       } catch (e) {
         signOutError = e
       }

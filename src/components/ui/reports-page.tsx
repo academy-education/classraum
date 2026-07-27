@@ -2,7 +2,30 @@
 
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import type { Database, Json } from '@/lib/database.types'
+
+/** student_reports.status is a real Postgres enum, so this union is exact. */
+type ReportStatus = Database['public']['Enums']['report_status']
+type StudentReportUpdate = Database['public']['Tables']['student_reports']['Update']
+
+function isReportStatus(value: string): value is ReportStatus {
+  return (
+    value === 'Draft' || value === 'Finished' || value === 'Approved' ||
+    value === 'Sent' || value === 'Viewed' || value === 'Error'
+  )
+}
+
+/**
+ * student_reports.selected_subjects / _classrooms / _assignment_categories are
+ * jsonb, so the generated type is `Json`. Read them back as the string arrays
+ * the UI expects, discarding anything that is not a string rather than
+ * asserting a shape the database does not enforce.
+ */
+function jsonStringArray(value: Json | undefined): string[] {
+  if (!Array.isArray(value)) return []
+  return value.filter((entry): entry is string => typeof entry === 'string')
+}
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { TableCheckbox, BulkActionBar } from '@/components/ui/dashboard'
@@ -525,7 +548,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const fetchStudents = useCallback(async () => {
     if (!academyId) return
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('students')
         .select(`
           user_id,
@@ -584,7 +607,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       const from = (currentPage - 1) * itemsPerPage
       const to = from + itemsPerPage - 1
 
-      let query = supabase
+      let query = db
         .from('student_reports')
         .select(`
           id,
@@ -672,7 +695,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const fetchAssignmentCategories = useCallback(async () => {
     if (!academyId) return
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignment_categories')
         .select('id, name, subject_id')
         .eq('academy_id', academyId)
@@ -688,7 +711,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const fetchStudentClassrooms = useCallback(async (studentId: string) => {
     if (!studentId) return
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_students')
         .select(`
           classrooms!inner(
@@ -718,7 +741,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     if (!academyId) return
     setLoadingSubjects(true)
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('subjects')
         .select('id, name')
         .eq('academy_id', academyId)
@@ -737,7 +760,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) return
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classrooms')
         .select(`
           id, 
@@ -928,7 +951,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     setLoadingReportData(true)
     try {
       // Build assignments query with optional filtering and performance optimizations
-      let assignmentsQuery = supabase
+      let assignmentsQuery = db
         .from('assignment_grades')
         .select(`
           id,
@@ -986,7 +1009,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       }
 
       // Build attendance query with optional classroom filtering and performance optimizations
-      let attendanceQuery = supabase
+      let attendanceQuery = db
         .from('attendance')
         .select(`
           id,
@@ -1021,7 +1044,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       try {
         // Call get_student_grade_statistics RPC for aggregated stats from ALL assignments
-        const { data: statsData, error: statsError } = await supabase
+        const { data: statsData, error: statsError } = await db
           .rpc('get_student_grade_statistics', {
             p_student_id: studentId,
             p_start_date: startDate,
@@ -1035,7 +1058,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         }
 
         // Call get_priority_grades_for_student RPC for curated samples
-        const { data: priorityData, error: priorityError } = await supabase
+        const { data: priorityData, error: priorityError } = await db
           .rpc('get_priority_grades_for_student', {
             p_student_id: studentId,
             p_start_date: startDate,
@@ -1231,7 +1254,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           if (classroom) {
             try {
               // Get all students in this classroom
-              const { data: classroomStudents, error: studentsError } = await supabase
+              const { data: classroomStudents, error: studentsError } = await db
                 .from('classroom_students')
                 .select('student_id')
                 .eq('classroom_id', classroomId)
@@ -1249,7 +1272,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
               // Get assignment grades for all students in this classroom within date range
               const studentIds = classroomStudents.map(cs => cs.student_id)
               
-              const { data: allGrades, error: gradesError } = await supabase
+              const { data: allGrades, error: gradesError } = await db
                 .from('assignment_grades')
                 .select(`
                   student_id,
@@ -1406,7 +1429,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     if (reportData) {
       // Opening preview for existing report (from triple dot menu)
       // Fetch fresh data from database to ensure we have the latest (including AI feedback)
-      const { data: freshReportData, error } = await supabase
+      const { data: freshReportData, error } = await db
         .from('student_reports')
         .select('*')
         .eq('id', reportData.id)
@@ -1502,7 +1525,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       if (currentReportId) {
         // Update existing report using currentReportId
         const sanitizedFeedback = sanitizeRichText(editableFeedback)
-        const { error: updateError } = await supabase
+        const { error: updateError } = await db
           .from('student_reports')
           .update({
             feedback: sanitizedFeedback,
@@ -1686,7 +1709,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       const isExistingReport = currentReportId && currentReportId.length === 36 && currentReportId.includes('-')
       if (isExistingReport) {
         try {
-          const { data: updateData, error: saveError } = await supabase
+          const { data: updateData, error: saveError } = await db
             .from('student_reports')
             .update({
               feedback: sanitizeRichText(fullContent),
@@ -1836,7 +1859,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       if (isExistingReport) {
         try {
-          const { error: saveError } = await supabase
+          const { error: saveError } = await db
             .from('student_reports')
             .update({
               feedback: result.feedback,
@@ -1977,7 +2000,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
     setIsCreating(true)
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('student_reports')
         .insert({
           student_id: formData.student_id,
@@ -2021,7 +2044,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
     setIsSaving(true)
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('student_reports')
         .insert({
           student_id: formData.student_id,
@@ -2064,10 +2087,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser()
+        const { data: { user } } = await db.auth.getUser()
         if (!user) return
 
-        const { data: userInfo, error } = await supabase
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', user.id)
@@ -2235,7 +2258,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
     setIsSaving(true)
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('student_reports')
         .delete()
         .eq('id', reportToDelete.id)
@@ -2264,14 +2287,17 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   // ===== Bulk actions =====
   const handleBulkStatusUpdate = async (newStatus: string) => {
     if (selectedRows.length === 0) return
+    // The Select only offers valid statuses, but its onValueChange hands back a
+    // plain string — verify before writing to the enum column.
+    if (!isReportStatus(newStatus)) return
     setBulkUpdating(true)
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('student_reports')
         .update({ status: newStatus, updated_at: new Date().toISOString() })
         .in('id', selectedRows)
       if (error) throw error
-      setReports(prev => prev.map(r => selectedRows.includes(r.id) ? { ...r, status: newStatus as ReportData['status'] } : r))
+      setReports(prev => prev.map(r => selectedRows.includes(r.id) ? { ...r, status: newStatus } : r))
       showSuccessToast(t('reports.bulkStatusSuccess', { count: selectedRows.length }) as string)
       invalidateReportsCache(academyId)
     } catch (err) {
@@ -2286,7 +2312,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     if (selectedRows.length === 0) return
     setBulkUpdating(true)
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('student_reports')
         .delete()
         .in('id', selectedRows)
@@ -2779,7 +2805,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                 e.preventDefault()
                                 e.stopPropagation()
                                 // Fetch fresh data for this specific report
-                                const { data: freshReportData } = await supabase
+                                const { data: freshReportData } = await db
                                   .from('student_reports')
                                   .select(`
                                     id,
@@ -2811,9 +2837,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                   report_name: reportToEdit.report_name || '',
                                   start_date: reportToEdit.start_date || '',
                                   end_date: reportToEdit.end_date || '',
-                                  selected_subjects: reportToEdit.selected_subjects || [],
-                                  selected_classrooms: reportToEdit.selected_classrooms || [],
-                                  selected_assignment_categories: reportToEdit.selected_assignment_categories || [],
+                                  selected_subjects: jsonStringArray(reportToEdit.selected_subjects),
+                                  selected_classrooms: jsonStringArray(reportToEdit.selected_classrooms),
+                                  selected_assignment_categories: jsonStringArray(reportToEdit.selected_assignment_categories),
                                   ai_feedback_enabled: reportToEdit.ai_feedback_enabled ?? false,
                                   feedback: reportToEdit.feedback ?? '',
                                   status: reportToEdit.status || 'Draft',
@@ -3568,7 +3594,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
                     setIsSaving(true)
                     try {
-                      const updateData = {
+                      const updateData: StudentReportUpdate = {
                         report_name: formData.report_name,
                         start_date: formData.start_date,
                         end_date: formData.end_date,
@@ -3582,7 +3608,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         show_percentile_ranking: formData.show_percentile_ranking
                       }
 
-                      const { error } = await supabase
+                      const { error } = await db
                         .from('student_reports')
                         .update(updateData)
                         .eq('id', editingReport.id)
@@ -3626,7 +3652,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
                     setIsCreating(true)
                     try {
-                      const updateData = {
+                      const updateData: StudentReportUpdate = {
                         report_name: formData.report_name,
                         start_date: formData.start_date,
                         end_date: formData.end_date,
@@ -3640,7 +3666,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                         show_percentile_ranking: formData.show_percentile_ranking
                       }
 
-                      const { error } = await supabase
+                      const { error } = await db
                         .from('student_reports')
                         .update(updateData)
                         .eq('id', editingReport.id)
@@ -4599,7 +4625,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                         // Save to database
                                         const sanitizedFeedback = sanitizeRichText(editableFeedback)
                                         if (!currentReportId) throw new Error('No report selected')
-                                        const { error: saveError } = await supabase
+                                        const { error: saveError } = await db
                                           .from('student_reports')
                                           .update({
                                             feedback: sanitizedFeedback,

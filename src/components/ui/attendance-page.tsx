@@ -5,7 +5,8 @@ import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { AttendanceStatusPills, statusFromShortcut } from '@/components/ui/attendance/AttendanceStatusPills'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import { toAttendanceStatus, toSessionLocation } from '@/components/ui/common/db-enums'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -53,13 +54,14 @@ interface AttendanceRecord {
   session_id: string
   classroom_id?: string
   classroom_name?: string
-  classroom_color?: string
+  // classrooms.color is nullable, as are classroom_sessions' timestamps.
+  classroom_color?: string | null
   teacher_name?: string
   session_date?: string
   session_time?: string
   location: 'offline' | 'online'
-  created_at: string
-  updated_at: string
+  created_at: string | null
+  updated_at: string | null
   student_count?: number
   present_count?: number
   absent_count?: number
@@ -78,8 +80,9 @@ interface StudentAttendance {
   student_id: string
   student_name: string
   status: 'pending' | 'present' | 'absent' | 'late' | 'excused'
-  created_at: string
-  updated_at: string
+  // attendance.created_at / updated_at are nullable.
+  created_at: string | null
+  updated_at: string | null
   note?: string
 }
 
@@ -100,7 +103,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const [viewModalLoading, setViewModalLoading] = useState(false)
   const [missingStudents, setMissingStudents] = useState<{id: string; name: string}[]>([])
   const [showPendingOnly, setShowPendingOnly] = useState(false)
-  const [classrooms, setClassrooms] = useState<{ id: string; name: string; color?: string }[]>([])
+  // classrooms.color and .paused are nullable columns.
+  const [classrooms, setClassrooms] = useState<{ id: string; name: string; color?: string | null; paused?: boolean | null }[]>([])
   const [showCheckInModal, setShowCheckInModal] = useState(false)
 
   // Initialize classroom filter from URL parameter
@@ -174,7 +178,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       }
 
       // Cache miss - fetch from database
-      const { data: classroomsList, error: classroomsError } = await supabase
+      const { data: classroomsList, error: classroomsError } = await db
         .from('classrooms')
         .select('id, name, color, paused')
         .eq('academy_id', academyId)
@@ -240,7 +244,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
       // Classroom filter will be applied client-side
-      let sessionsQuery = supabase
+      let sessionsQuery = db
         .from('classroom_sessions')
         .select(`
           *,
@@ -276,14 +280,17 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       // OPTIMIZED: Extract IDs for parallel queries
       const sessionIds = sessions.map(s => s.id)
-      const teacherIds = [...new Set(sessions.map(s => s.classrooms?.teacher_id).filter(Boolean))]
+      // classrooms.teacher_id is nullable — drop unassigned classrooms.
+      const teacherIds = [...new Set(
+        sessions.map(s => s.classrooms?.teacher_id).filter((id): id is string => !!id)
+      )]
 
       // OPTIMIZED: Execute teacher names and attendance data queries in parallel
       // NOTE: Attendance uses RPC function to avoid RLS timeout issues
       const [teachersResult, attendanceResult] = await Promise.all([
         // Teacher names
         teacherIds.length > 0
-          ? supabase
+          ? db
               .from('users')
               .select('id, name')
               .in('id', teacherIds)
@@ -298,7 +305,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             let hasMore = true
 
             while (hasMore) {
-              const { data, error } = await supabase
+              const { data, error } = await db
                 .rpc('get_attendance_counts_for_academy', { p_academy_id: academyId })
                 .range(offset, offset + BATCH_SIZE - 1)
 
@@ -369,7 +376,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           teacher_name: teacherName || String(t('common.unknownTeacher')),
           session_date: session.date,
           session_time: `${session.start_time} - ${session.end_time}`,
-          location: session.location as 'offline' | 'online',
+          // location is a CHECK-constrained text column; narrow at runtime.
+          location: toSessionLocation(session.location),
           created_at: session.created_at,
           updated_at: session.updated_at,
           student_count: attendanceCounts.total,
@@ -467,7 +475,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
   const loadSessionAttendance = async (sessionId: string) => {
     try {
       // Get attendance records
-      const { data: attendanceData, error } = await supabase
+      const { data: attendanceData, error } = await db
         .from('attendance')
         .select('id, classroom_session_id, student_id, status, created_at, updated_at')
         .eq('classroom_session_id', sessionId)
@@ -482,7 +490,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       // Get student IDs and their user details
       const studentIds = attendanceData.map(att => att.student_id)
 
-      const { data: studentsData, error: studentsError } = await supabase
+      const { data: studentsData, error: studentsError } = await db
         .from('students')
         .select('user_id')
         .in('user_id', studentIds)
@@ -491,7 +499,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       const userIds = studentsData?.map(s => s.user_id) || []
 
-      const { data: usersData, error: usersError } = await supabase
+      const { data: usersData, error: usersError } = await db
         .from('users')
         .select('id, name')
         .in('id', userIds)
@@ -506,7 +514,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           classroom_session_id: att.classroom_session_id,
           student_id: att.student_id,
           student_name: user?.name || t('common.unknownStudent'),
-          status: att.status as 'pending' | 'present' | 'absent' | 'late' | 'excused',
+          status: toAttendanceStatus(att.status),
           created_at: att.created_at,
           updated_at: att.updated_at
         }
@@ -538,7 +546,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     // Fetch attendance data for this session
     try {
       // Get attendance records
-      const { data: attendanceData, error } = await supabase
+      const { data: attendanceData, error } = await db
         .from('attendance')
         .select('id, classroom_session_id, student_id, status, note, created_at, updated_at')
         .eq('classroom_session_id', record.session_id)
@@ -546,7 +554,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       if (error) throw error
 
       // Get classroom info to find classroom_id
-      const { data: sessionData } = await supabase
+      const { data: sessionData } = await db
         .from('classroom_sessions')
         .select('classroom_id')
         .eq('id', record.session_id)
@@ -555,7 +563,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       if (!sessionData) throw new Error('Session not found')
 
       // Get all students in the classroom
-      const { data: classroomStudents } = await supabase
+      const { data: classroomStudents } = await db
         .from('classroom_students')
         .select('student_id')
         .eq('classroom_id', sessionData.classroom_id)
@@ -563,7 +571,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       const allStudentIds = classroomStudents?.map(cs => cs.student_id) || []
       
       // Get user details for all students in classroom
-      const { data: allUsersData, error: allUsersError } = await supabase
+      const { data: allUsersData, error: allUsersError } = await db
         .from('users')
         .select('id, name')
         .in('id', allStudentIds)
@@ -593,7 +601,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           classroom_session_id: att.classroom_session_id,
           student_id: att.student_id,
           student_name: user?.name || t('common.unknownStudent'),
-          status: att.status as 'pending' | 'present' | 'absent' | 'late' | 'excused',
+          status: toAttendanceStatus(att.status),
           note: att.note || '',
           created_at: att.created_at,
           updated_at: att.updated_at
@@ -664,13 +672,13 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       // Update existing attendance records
       for (const attendance of existingRecords) {
         // Get the old status before updating
-        const { data: oldRecord } = await supabase
+        const { data: oldRecord } = await db
           .from('attendance')
           .select('status')
           .eq('id', attendance.id)
           .single()
 
-        const { error } = await supabase
+        const { error } = await db
           .from('attendance')
           .update({
             status: attendance.status,
@@ -709,7 +717,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           note: attendance.note || null
         }))
 
-        const { error: insertError } = await supabase
+        const { error: insertError } = await db
           .from('attendance')
           .insert(insertData)
 
@@ -1423,8 +1431,10 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
           footer={
             <ModalShell.Footer justify="between">
               <div className="text-sm text-gray-500">
-                {t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString(getDateLocale(language))}
-                {viewingRecord.updated_at !== viewingRecord.created_at && (
+                {viewingRecord.created_at && (
+                  <>{t('common.created')}: {new Date(viewingRecord.created_at).toLocaleDateString(getDateLocale(language))}</>
+                )}
+                {viewingRecord.updated_at && viewingRecord.updated_at !== viewingRecord.created_at && (
                   <span className="ml-4">
                     {t('common.updated')}: {new Date(viewingRecord.updated_at).toLocaleDateString(getDateLocale(language))}
                   </span>

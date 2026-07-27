@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -47,27 +47,29 @@ interface Teacher {
   user_id: string
   name: string
   email: string
-  phone?: string
+  // teachers.phone / active / created_at are nullable columns.
+  phone?: string | null
   academy_id: string
-  active: boolean
-  created_at: string
+  active: boolean | null
+  created_at: string | null
   classroom_count?: number
   classrooms?: string[]
 }
 
+// Mirrors public.classrooms: everything except id/name/academy_id is nullable.
 interface Classroom {
   id: string
   name: string
-  grade?: string
-  subject?: string
-  teacher_id?: string
+  grade?: string | null
+  subject?: string | null
+  teacher_id?: string | null
   teacher_name?: string
-  color?: string
-  notes?: string
+  color?: string | null
+  notes?: string | null
   academy_id?: string
-  created_at?: string
-  updated_at?: string
-  enrolled_students?: { name: string; school_name?: string }[]
+  created_at?: string | null
+  updated_at?: string | null
+  enrolled_students?: { name: string; school_name?: string | null }[]
   student_count?: number
 }
 
@@ -176,7 +178,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       const to = from + itemsPerPage - 1
 
       // Build the base query with status filter
-      let teachersQuery = supabase
+      let teachersQuery = db
         .from('teachers')
         .select('user_id, phone, academy_id, active, created_at', { count: 'exact' })
         .eq('academy_id', academyId)
@@ -196,13 +198,13 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       const [teachersResult, activeCountResult, inactiveCountResult] = await Promise.all([
         teachersQuery,
         // Count active teachers
-        supabase
+        db
           .from('teachers')
           .select('*', { count: 'exact', head: true })
           .eq('academy_id', academyId)
           .eq('active', true),
         // Count inactive teachers
-        supabase
+        db
           .from('teachers')
           .select('*', { count: 'exact', head: true })
           .eq('academy_id', academyId)
@@ -229,7 +231,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       // Get user details
       const teacherIds = teachersData.map(t => t.user_id)
-      const { data: usersData, error: usersError } = await supabase
+      const { data: usersData, error: usersError } = await db
         .from('users')
         .select('id, name, email')
         .in('id', teacherIds)
@@ -241,7 +243,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       
       if (teacherIds.length > 0) {
         // Use database aggregation to count classrooms per teacher
-        const { data: classroomCountData, error: classroomError } = await supabase
+        const { data: classroomCountData, error: classroomError } = await db
           .rpc('count_classrooms_by_teacher', {
             teacher_ids: teacherIds,
             academy_id_param: academyId
@@ -250,7 +252,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         if (classroomError) {
           // Fallback to the previous method if RPC fails
           console.warn('RPC failed, using fallback method:', classroomError)
-          const { data: classroomData, error: fallbackError } = await supabase
+          const { data: classroomData, error: fallbackError } = await db
             .from('classrooms')
             .select('teacher_id')
             .in('teacher_id', teacherIds)
@@ -259,6 +261,9 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
           if (!fallbackError && classroomData) {
             classroomData.forEach(classroom => {
+              // classrooms.teacher_id is nullable — an unassigned classroom
+              // counts towards no teacher.
+              if (!classroom.teacher_id) return
               classroomCounts[classroom.teacher_id] = (classroomCounts[classroom.teacher_id] || 0) + 1
             })
           }
@@ -314,7 +319,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     if (!academyId) return
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classrooms')
         .select('id, name, grade, subject')
         .eq('academy_id', academyId)
@@ -411,8 +416,10 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         bVal = b.active ? 'active' : 'inactive'
         break
       case 'created_at':
-        aVal = new Date(a.created_at).getTime()
-        bVal = new Date(b.created_at).getTime()
+        // created_at is nullable; sort rows without one to the epoch so the
+        // comparison stays total instead of producing NaN.
+        aVal = a.created_at ? new Date(a.created_at).getTime() : 0
+        bVal = b.created_at ? new Date(b.created_at).getTime() : 0
         break
       default:
         return 0
@@ -543,7 +550,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     setDropdownOpen(null)
 
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classrooms')
         .select('id, name, grade, subject, color, notes, created_at, updated_at')
         .eq('teacher_id', teacher.user_id)
@@ -561,7 +568,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       const classroomIds = data.map(c => c.id)
 
       // Get enrolled students and student details in parallel
-      const { data: classroomStudentsData, error: studentsError } = await supabase
+      const { data: classroomStudentsData, error: studentsError } = await db
         .from('classroom_students')
         .select('classroom_id, student_id')
         .in('classroom_id', classroomIds)
@@ -577,8 +584,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       // Fetch student details and user names in parallel
       const [studentsResult, usersResult] = await Promise.all([
-        supabase.from('students').select('user_id, school_name').in('user_id', studentIds),
-        supabase.from('users').select('id, name').in('id', studentIds)
+        db.from('students').select('user_id, school_name').in('user_id', studentIds),
+        db.from('users').select('id, name').in('id', studentIds)
       ])
 
       if (studentsResult.error) throw studentsResult.error
@@ -587,7 +594,8 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       const studentMap = Object.fromEntries((studentsResult.data || []).map(s => [s.user_id, s]))
       const userMap = Object.fromEntries((usersResult.data || []).map(u => [u.id, u]))
 
-      const studentsByClassroom: { [key: string]: Array<{ name: string; school_name?: string }> } = {}
+      // students.school_name is nullable.
+      const studentsByClassroom: { [key: string]: Array<{ name: string; school_name?: string | null }> } = {}
       classroomStudentsData.forEach(enrollment => {
         if (!studentsByClassroom[enrollment.classroom_id]) studentsByClassroom[enrollment.classroom_id] = []
         studentsByClassroom[enrollment.classroom_id].push({
@@ -620,7 +628,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     const newStatus = !teacherToDelete.active
     
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('teachers')
         .update({ active: newStatus })
         .eq('user_id', teacherToDelete.user_id)
@@ -647,7 +655,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     if (selectedTeachers.size === 0) return
     
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('teachers')
         .update({ active })
         .in('user_id', Array.from(selectedTeachers))

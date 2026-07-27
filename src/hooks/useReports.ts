@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 import { triggerStudentReportCompletedNotifications } from '@/lib/notification-triggers'
 
@@ -58,7 +58,7 @@ export function useReports(academyId: string) {
       let cachedStudents = queryCache.get<Student[]>(cacheKey)
 
       if (!cachedStudents) {
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('students')
           .select(`
             user_id,
@@ -101,7 +101,7 @@ export function useReports(academyId: string) {
     
     setLoading(true)
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('student_reports')
         .select(`
           id,
@@ -165,7 +165,7 @@ export function useReports(academyId: string) {
       let cachedCategories = queryCache.get<AssignmentCategory[]>(cacheKey)
 
       if (!cachedCategories) {
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('assignment_categories')
           .select('id, name')
           .eq('academy_id', academyId)
@@ -198,7 +198,7 @@ export function useReports(academyId: string) {
       let cachedClassrooms = queryCache.get<Classroom[]>(cacheKey)
 
       if (!cachedClassrooms) {
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('classroom_students')
           .select(`
             classrooms!inner(
@@ -226,7 +226,14 @@ export function useReports(academyId: string) {
   // Create report
   const createReport = useCallback(async (reportData: Partial<ReportData>) => {
     try {
-      const { error } = await supabase
+      // student_reports.student_id is NOT NULL with no default, but the
+      // argument is a Partial — reject early rather than letting PostgREST
+      // fail with an opaque constraint violation.
+      if (!reportData.student_id) {
+        throw new Error('createReport requires student_id')
+      }
+
+      const { error } = await db
         .from('student_reports')
         .insert({
           student_id: reportData.student_id,
@@ -255,13 +262,13 @@ export function useReports(academyId: string) {
   const updateReport = useCallback(async (reportId: string, updates: Partial<ReportData>) => {
     try {
       // Get the old status before updating
-      const { data: oldRecord } = await supabase
+      const { data: oldRecord } = await db
         .from('student_reports')
         .select('status')
         .eq('id', reportId)
         .single()
 
-      const { error } = await supabase
+      const { error } = await db
         .from('student_reports')
         .update(updates)
         .eq('id', reportId)
@@ -291,7 +298,7 @@ export function useReports(academyId: string) {
   // Delete report
   const deleteReport = useCallback(async (reportId: string) => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('student_reports')
         .delete()
         .eq('id', reportId)
@@ -311,7 +318,7 @@ export function useReports(academyId: string) {
   // Bulk delete reports
   const bulkDeleteReports = useCallback(async (reportIds: string[]) => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('student_reports')
         .delete()
         .in('id', reportIds)

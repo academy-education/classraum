@@ -7,14 +7,18 @@
  * assembled test comes out to, including the thin-domain backfill.
  */
 import { blueprintQuotas, BLUEPRINT, assembleFromBank, assembleToeflFromBank } from '@/lib/study/assemble'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { tableRouter } from '@/tests/study-route-helpers'
 
-jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn() },
-}))
+// dbAdmin and supabaseAdmin are the same client in production — the
+// second is only an untyped alias — so the mock exposes one shared
+// object under both names.
+jest.mock('@/lib/supabase-admin', () => {
+  const client = { from: jest.fn() }
+  return { dbAdmin: client, supabaseAdmin: client }
+})
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 
 const sum = (o: Record<string, number>) => Object.values(o).reduce((a, b) => a + b, 0)
 

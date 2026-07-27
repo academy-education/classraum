@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { triggerClassroomCreatedNotifications } from '@/lib/notification-triggers'
 import type { Classroom, Schedule } from './useClassroomData'
 
@@ -23,7 +23,7 @@ export function useClassroomActions() {
   ) => {
     try {
       // Step 1: Create the classroom in the database
-      const { data: classroomData, error: classroomError } = await supabase
+      const { data: classroomData, error: classroomError } = await db
         .from('classrooms')
         .insert({
           name: formData.name,
@@ -50,7 +50,7 @@ export function useClassroomActions() {
           end_time: schedule.end_time
         }))
 
-        const { error: scheduleError } = await supabase
+        const { error: scheduleError } = await db
           .from('classroom_schedules')
           .insert(schedulesToInsert)
 
@@ -63,7 +63,7 @@ export function useClassroomActions() {
       // Step 3: Enroll selected students
       if (selectedStudents.length > 0) {
         // Look up student_record_ids for all students
-        const { data: studentRecords } = await supabase
+        const { data: studentRecords } = await db
           .from('students')
           .select('id, user_id')
           .eq('academy_id', academyId)
@@ -79,7 +79,7 @@ export function useClassroomActions() {
           student_record_id: studentRecordMap.get(studentId)
         }))
 
-        const { error: enrollmentError } = await supabase
+        const { error: enrollmentError } = await db
           .from('classroom_students')
           .insert(enrollmentsToInsert)
 
@@ -112,7 +112,7 @@ export function useClassroomActions() {
   ) => {
     try {
       // Step 1: Update the classroom
-      const { error: classroomError } = await supabase
+      const { error: classroomError } = await db
         .from('classrooms')
         .update({
           name: formData.name,
@@ -130,7 +130,7 @@ export function useClassroomActions() {
       // Step 2: Update schedules - delete existing and insert new ones. This is
       // a replace, so a silently dropped delete doubles up the schedule rows
       // and the removed slots stay on the timetable.
-      const { error: scheduleDeleteError } = await supabase
+      const { error: scheduleDeleteError } = await db
         .from('classroom_schedules')
         .delete()
         .eq('classroom_id', classroom.id)
@@ -145,7 +145,7 @@ export function useClassroomActions() {
           end_time: schedule.end_time
         }))
 
-        const { error: scheduleError } = await supabase
+        const { error: scheduleError } = await db
           .from('classroom_schedules')
           .insert(schedulesToInsert)
 
@@ -157,7 +157,7 @@ export function useClassroomActions() {
       // Step 3: Update student enrollments - delete existing and insert new
       // ones. Same replace pattern: a dropped delete keeps students the manager
       // just unenrolled in the classroom while the save reports success.
-      const { error: enrollmentDeleteError } = await supabase
+      const { error: enrollmentDeleteError } = await db
         .from('classroom_students')
         .delete()
         .eq('classroom_id', classroom.id)
@@ -166,7 +166,7 @@ export function useClassroomActions() {
 
       if (selectedStudents.length > 0) {
         // Look up student_record_ids for all students
-        const { data: studentRecords } = await supabase
+        const { data: studentRecords } = await db
           .from('students')
           .select('id, user_id')
           .eq('academy_id', classroom.academy_id)
@@ -182,7 +182,7 @@ export function useClassroomActions() {
           student_record_id: studentRecordMap.get(studentId)
         }))
 
-        const { error: enrollmentError } = await supabase
+        const { error: enrollmentError } = await db
           .from('classroom_students')
           .insert(enrollmentsToInsert)
 
@@ -203,16 +203,16 @@ export function useClassroomActions() {
       // First, delete related data. A failure here surfaces later as an opaque
       // FK violation on the classroom delete, so check it directly instead.
       const childResults = await Promise.all([
-        supabase.from('classroom_schedules').delete().eq('classroom_id', classroomId),
-        supabase.from('classroom_students').delete().eq('classroom_id', classroomId),
-        supabase.from('sessions').delete().eq('classroom_id', classroomId)
+        db.from('classroom_schedules').delete().eq('classroom_id', classroomId),
+        db.from('classroom_students').delete().eq('classroom_id', classroomId),
+        db.from('classroom_sessions').delete().eq('classroom_id', classroomId)
       ])
 
       const childError = childResults.find(result => result.error)?.error
       if (childError) throw childError
 
       // Then delete the classroom
-      const { error } = await supabase
+      const { error } = await db
         .from('classrooms')
         .delete()
         .eq('id', classroomId)

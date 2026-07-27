@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { generateObject, generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
+import { jsonObject } from '@/lib/json'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import {
   loadStudyPromptContext,
@@ -370,7 +371,7 @@ export async function POST(req: NextRequest) {
   const sessionId = body.sessionId
   if (!sessionId) return NextResponse.json({ error: 'missing sessionId' }, { status: 400 })
 
-  const { data: session } = await supabaseAdmin
+  const { data: session } = await dbAdmin
     .from('study_sessions')
     .select('id, student_id, mode, language, topic_id, topic_freeform, config, generation_status')
     .eq('id', sessionId)
@@ -385,7 +386,7 @@ export async function POST(req: NextRequest) {
   // Idempotency / resume — return cached payload if present so a
   // refresh mid-test doesn't blow the student's progress (timer is
   // handled by the client and stored in localStorage).
-  const { data: existingRows } = await supabaseAdmin
+  const { data: existingRows } = await dbAdmin
     .from('study_messages')
     .select('content')
     .eq('session_id', sessionId)
@@ -454,7 +455,7 @@ export async function POST(req: NextRequest) {
   let creditCost = 1
   let creditFamily: string | null = null
   if (session.topic_id) {
-    const { data: topicRow } = await supabaseAdmin
+    const { data: topicRow } = await dbAdmin
       .from('study_topics').select('slug').eq('id', session.topic_id).maybeSingle()
     const slug = (topicRow?.slug as string | undefined) ?? ''
     // Slugs look like 'test-toefl-speaking' / 'test-sat-reading-writing':
@@ -525,7 +526,7 @@ export async function POST(req: NextRequest) {
     // supabase-js resolves with { error } and does not throw, so the old
     // try/catch here was dead code: a failed write left the row 'pending'
     // and nothing said so. Check the result instead.
-    const { error } = await supabaseAdmin
+    const { error } = await dbAdmin
       .from('study_sessions')
       .update({ generation_status: 'failed' })
       .eq('id', sessionId)
@@ -559,12 +560,12 @@ export async function POST(req: NextRequest) {
   // Verified: this write IS the safety net. If it silently fails and the
   // invocation is later killed, the reaper has no cost/family to reprice
   // the refund with, so the reserved credit is never returned.
-  const { error: pendingError } = await supabaseAdmin
+  const { error: pendingError } = await dbAdmin
     .from('study_sessions')
     .update({
       generation_status: 'pending',
       config: {
-        ...(session.config ?? {}),
+        ...jsonObject(session.config),
         last_gen_started_at: new Date().toISOString(),
         gen_credit_cost: creditCost,
         gen_credit_family: creditFamily,
@@ -2091,7 +2092,7 @@ export async function POST(req: NextRequest) {
       // causes (every chunk call failed vs. the pipeline filtered
       // everything out) and the difference is invisible without the
       // generated/verified counts and the per-chunk error messages.
-      const { data: existingCfg } = await supabaseAdmin
+      const { data: existingCfg } = await dbAdmin
         .from('study_sessions')
         .select('config')
         .eq('id', sessionId)
@@ -2099,12 +2100,12 @@ export async function POST(req: NextRequest) {
       // Diagnostics only — the `finally` below still runs failAndRefund,
       // which alerts if the status write fails. But losing THIS write loses
       // the only record of why the run produced nothing.
-      const { error: diagErr } = await supabaseAdmin
+      const { error: diagErr } = await dbAdmin
         .from('study_sessions')
         .update({
           generation_status: 'failed',
           config: {
-            ...(existingCfg?.config ?? {}),
+            ...jsonObject(existingCfg?.config),
             last_error: `too few questions: final=${questions.length}/${count} (min ${minShip}) generated=${allQuestions.length} verified=${verifyResult.kept.length} subtaskFailures=${subtaskErrors.length}`,
             last_error_cause: subtaskErrors.slice(0, 4).join(' | ').slice(0, 800) || null,
             last_error_at: new Date().toISOString(),
@@ -2154,7 +2155,7 @@ export async function POST(req: NextRequest) {
     // forgery), and the polling stream watches for it. If this insert
     // fails, the streamed test would be a ghost — visible once, gone
     // on refresh — so fail the run instead of shipping it.
-    const { error: cacheErr } = await supabaseAdmin
+    const { error: cacheErr } = await dbAdmin
       .from('study_messages')
       .insert({
         session_id: sessionId,
@@ -2208,13 +2209,13 @@ export async function POST(req: NextRequest) {
     const bodyStr = errBody ? String(errBody).slice(0, 800) : null
     const valueStr = errValue ? JSON.stringify(errValue).slice(0, 800) : null
     const issuesStr = errIssues ? JSON.stringify(errIssues).slice(0, 800) : null
-    const { data: existing } = await supabaseAdmin
+    const { data: existing } = await dbAdmin
       .from('study_sessions')
       .select('config')
       .eq('id', sessionId)
       .maybeSingle()
     const nextConfig = {
-      ...(existing?.config ?? {}),
+      ...jsonObject(existing?.config),
       last_error: `${errName}: ${errMsg}`.slice(0, 500),
       last_error_cause: causeStr,
       last_error_body: bodyStr,
@@ -2225,7 +2226,7 @@ export async function POST(req: NextRequest) {
     // As in the too-few-questions bail: the status transition is re-run by
     // failAndRefund in the `finally`, but the post-mortem config written
     // here has no second chance.
-    const { error: postMortemErr } = await supabaseAdmin
+    const { error: postMortemErr } = await dbAdmin
       .from('study_sessions')
       .update({ generation_status: 'failed', config: nextConfig })
       .eq('id', sessionId)
@@ -2320,7 +2321,7 @@ function buildPollingStream(sessionId: string): ReadableStream<Uint8Array> {
           const pct = Math.min(90, 30 + Math.round(attempts * 0.5))
           if (attempts % 5 === 0) emit({ type: 'phase', name: 'resuming', label: 'study.test.progress.resuming', percent: pct })
 
-          const { data: rows } = await supabaseAdmin
+          const { data: rows } = await dbAdmin
             .from('study_messages')
             .select('content')
             .eq('session_id', sessionId)
@@ -2341,7 +2342,7 @@ function buildPollingStream(sessionId: string): ReadableStream<Uint8Array> {
           }
 
           // Also bail if the other side marked the session failed.
-          const { data: sess } = await supabaseAdmin
+          const { data: sess } = await dbAdmin
             .from('study_sessions')
             .select('generation_status')
             .eq('id', sessionId)
@@ -2360,7 +2361,7 @@ function buildPollingStream(sessionId: string): ReadableStream<Uint8Array> {
         // into a session already flagged failed). Only break the
         // pending deadlock when the run is genuinely stale: no cache
         // row AND the generation started >10 minutes ago.
-        const { data: staleCheck } = await supabaseAdmin
+        const { data: staleCheck } = await dbAdmin
           .from('study_sessions')
           .select('config')
           .eq('id', sessionId)
@@ -2371,7 +2372,7 @@ function buildPollingStream(sessionId: string): ReadableStream<Uint8Array> {
           // This is the only thing that breaks the pending deadlock for a
           // killed run: if it fails silently the session stays 'pending'
           // forever and the student can never regenerate that test.
-          const { error: staleErr } = await supabaseAdmin
+          const { error: staleErr } = await dbAdmin
             .from('study_sessions')
             .update({ generation_status: 'failed' })
             .eq('id', sessionId)

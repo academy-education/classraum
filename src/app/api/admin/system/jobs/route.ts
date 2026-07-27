@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase-admin';
+import { dbAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth } from '@/lib/admin-auth';
 import { JOB_REGISTRY } from '@/lib/ops/jobs';
 
@@ -57,7 +57,7 @@ export async function GET(req: NextRequest) {
   const auth = await requireAdminAuth(req);
   if (!auth.success) return auth.response;
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await dbAdmin
     .from('job_heartbeats')
     .select('job, last_run_at, last_ok_at, ok, duration_ms, fail_streak');
 

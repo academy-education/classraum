@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { triggerWelcomeNotifications, triggerUserDeactivatedNotifications } from '@/lib/notification-triggers'
 
 export interface StudentFormData {
@@ -39,7 +39,7 @@ export function useStudentActions() {
       }
 
       // First create the user account
-      const { data: userData, error: userError } = await supabase
+      const { data: userData, error: userError } = await db
         .from('users')
         .insert({
           name: formData.name,
@@ -52,7 +52,7 @@ export function useStudentActions() {
       if (userError) throw userError
 
       // Then create the student record
-      const { data: studentData, error: studentError } = await supabase
+      const { data: studentData, error: studentError } = await db
         .from('students')
         .insert({
           user_id: userData.id,
@@ -89,7 +89,7 @@ export function useStudentActions() {
   ) => {
     try {
       // Update the user record
-      const { error: userError } = await supabase
+      const { error: userError } = await db
         .from('users')
         .update({
           name: formData.name,
@@ -100,7 +100,7 @@ export function useStudentActions() {
       if (userError) throw userError
 
       // Update the student record (use both user_id and academy_id for multi-academy support)
-      const { data: studentData, error: studentError } = await supabase
+      const { data: studentData, error: studentError } = await db
         .from('students')
         .update({
           phone: formData.phone,
@@ -125,7 +125,7 @@ export function useStudentActions() {
   const deleteStudent = useCallback(async (studentId: string, academyId: string) => {
     try {
       // Get the student record id for this academy
-      const { data: studentRecord } = await supabase
+      const { data: studentRecord } = await db
         .from('students')
         .select('id')
         .eq('user_id', studentId)
@@ -135,19 +135,22 @@ export function useStudentActions() {
       if (studentRecord) {
         // Cascading deletes — must check each one. If any fails, abort with a
         // clear error rather than silently orphaning the dependent rows.
-        const { error: csError } = await supabase
+        const { error: csError } = await db
           .from('classroom_students')
           .delete()
           .eq('student_record_id', studentRecord.id)
         if (csError) throw csError
 
-        const { error: asError } = await supabase
-          .from('assignment_submissions')
+        // Grades live in assignment_grades (there is no assignment_submissions
+        // table). Scope by student_record_id like the sibling deletes above and
+        // below, so we only remove this academy's rows.
+        const { error: asError } = await db
+          .from('assignment_grades')
           .delete()
-          .eq('student_id', studentId)
+          .eq('student_record_id', studentRecord.id)
         if (asError) throw asError
 
-        const { error: attError } = await supabase
+        const { error: attError } = await db
           .from('attendance')
           .delete()
           .eq('student_record_id', studentRecord.id)
@@ -155,7 +158,7 @@ export function useStudentActions() {
       }
 
       // Delete the student record for this academy
-      const { error: studentError } = await supabase
+      const { error: studentError } = await db
         .from('students')
         .delete()
         .eq('user_id', studentId)
@@ -164,7 +167,7 @@ export function useStudentActions() {
       if (studentError) throw studentError
 
       // Check if user has any other student records in other academies
-      const { data: otherStudentRecords } = await supabase
+      const { data: otherStudentRecords } = await db
         .from('students')
         .select('id')
         .eq('user_id', studentId)
@@ -172,7 +175,7 @@ export function useStudentActions() {
 
       // Only delete the user account if no other student records exist
       if (!otherStudentRecords || otherStudentRecords.length === 0) {
-        const { error: userError } = await supabase
+        const { error: userError } = await db
           .from('users')
           .delete()
           .eq('id', studentId)
@@ -193,7 +196,7 @@ export function useStudentActions() {
   ) => {
     try {
       // Get the classroom's academy_id to look up student_record_id
-      const { data: classroom } = await supabase
+      const { data: classroom } = await db
         .from('classrooms')
         .select('academy_id')
         .eq('id', classroomId)
@@ -201,7 +204,7 @@ export function useStudentActions() {
 
       let studentRecordId: string | undefined
       if (classroom?.academy_id) {
-        const { data: studentRecord } = await supabase
+        const { data: studentRecord } = await db
           .from('students')
           .select('id')
           .eq('user_id', studentId)
@@ -210,7 +213,7 @@ export function useStudentActions() {
         studentRecordId = studentRecord?.id
       }
 
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_students')
         .insert({
           student_id: studentId,
@@ -234,7 +237,7 @@ export function useStudentActions() {
     classroomId: string
   ) => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('classroom_students')
         .delete()
         .eq('student_id', studentId)
@@ -255,7 +258,7 @@ export function useStudentActions() {
     active: boolean
   ) => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('students')
         .update({ active })
         .eq('user_id', studentId)
@@ -292,7 +295,7 @@ export function useStudentActions() {
         if (active !== undefined) updateData.active = active
         if (family_id !== undefined) updateData.family_id = family_id
 
-        return supabase
+        return db
           .from('students')
           .update(updateData)
           .eq('user_id', studentId)

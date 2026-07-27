@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
@@ -47,7 +47,7 @@ const inputStyles = 'h-10 rounded-lg border border-border bg-transparent focus:b
 const selectStyles = '!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3'
 
 async function authHeaders(): Promise<HeadersInit> {
-  const { data: { session } } = await supabase.auth.getSession()
+  const { data: { session } } = await db.auth.getSession()
   return {
     'Content-Type': 'application/json',
     ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
@@ -108,7 +108,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
   }, [t])
 
   const loadSubjects = useCallback(async () => {
-    const { data } = await supabase
+    const { data } = await db
       .from('subjects')
       .select('id, name')
       .eq('academy_id', academyId)

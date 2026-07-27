@@ -13,7 +13,7 @@ import { Eyebrow } from '@/components/ui/eyebrow'
 import { Button } from '@/components/ui/button'
 import { InvoiceDetailSkeleton } from '@/components/ui/skeleton'
 import { ErrorState } from '@/components/ui/common/ErrorState'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import {
   ArrowLeft,
   Receipt,
@@ -62,7 +62,7 @@ export default function MobileInvoiceDetailsPage() {
     
     try {
       // Get invoice with academy details
-      const { data: invoiceData, error: invoiceError} = await supabase
+      const { data: invoiceData, error: invoiceError} = await db
         .from('invoices')
         .select(`
           id,
@@ -129,7 +129,7 @@ export default function MobileInvoiceDetailsPage() {
       if (invoiceData.invoice_name) {
         invoiceDescription = invoiceData.invoice_name
       } else if (invoiceData.recurring_payment_templates) {
-        // supabase joined-relation shape varies — single FK can come back as
+        // Supabase joined-relation shape varies — single FK can come back as
         // either an array or an object depending on inferred cardinality.
         // Cast to the union and let the runtime check pick the right branch.
         const templates = invoiceData.recurring_payment_templates as
@@ -152,8 +152,8 @@ export default function MobileInvoiceDetailsPage() {
         description: invoiceDescription,
         studentName: studentName,
         academyName,
-        paymentMethod: invoiceData.payment_method,
-        notes: invoiceData.discount_reason || invoiceData.transaction_id
+        paymentMethod: invoiceData.payment_method ?? undefined,
+        notes: invoiceData.discount_reason ?? invoiceData.transaction_id ?? undefined
       }
 
       return formattedInvoice

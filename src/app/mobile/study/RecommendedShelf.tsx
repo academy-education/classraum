@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Lightbulb, AlertTriangle, History, ArrowRight, Loader2, Camera } from '@/app/mobile/study/_shared/icons'
 import { SkeletonCard, SkeletonBlock } from './skeletons'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -107,7 +107,7 @@ export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean 
           }
         : null
     if (!insertBody) { setCreating(null); return }
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('study_sessions')
       .insert(insertBody)
       .select('id')

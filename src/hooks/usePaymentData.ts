@@ -1,25 +1,83 @@
 import { useState, useCallback, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
+
+// Mirrors invoices_status_check.
+const INVOICE_STATUSES = ['pending', 'paid', 'failed', 'refunded'] as const
+type InvoiceStatus = (typeof INVOICE_STATUSES)[number]
+
+function toInvoiceStatus(v: string): InvoiceStatus {
+  if ((INVOICE_STATUSES as readonly string[]).includes(v)) {
+    return v as InvoiceStatus
+  }
+  console.warn(`Unexpected invoice status from DB: ${v}`)
+  return 'pending'
+}
+
+// Mirrors recurring_payment_templates_recurrence_type_check.
+const RECURRENCE_TYPES = ['monthly', 'weekly', 'semesterly'] as const
+type RecurrenceType = (typeof RECURRENCE_TYPES)[number]
+
+function toRecurrenceType(v: string): RecurrenceType {
+  if ((RECURRENCE_TYPES as readonly string[]).includes(v)) {
+    return v as RecurrenceType
+  }
+  console.warn(`Unexpected recurrence_type from DB: ${v}`)
+  return 'monthly'
+}
 
 interface Invoice {
   id: string
-  student_id: string
+  student_id: string | null
   student_name: string
   student_email: string
-  template_id?: string
-  invoice_name?: string
+  template_id: string | null
+  invoice_name: string
   amount: number
-  discount_amount: number
+  // Money columns are nullable in the DB; null means "not set", which is not
+  // the same as zero, so it is preserved rather than defaulted.
+  discount_amount: number | null
   final_amount: number
-  discount_reason?: string
+  discount_reason: string | null
   due_date: string
-  status: 'pending' | 'paid' | 'failed' | 'refunded'
-  paid_at?: string
-  payment_method?: string
-  transaction_id?: string
-  refunded_amount: number
+  status: InvoiceStatus
+  paid_at: string | null
+  payment_method: string | null
+  transaction_id: string | null
+  refunded_amount: number | null
   created_at: string
+}
+
+// Insert payloads: every NOT NULL column without a default is required here,
+// and joined display fields (student_name/student_email, student_count) are
+// excluded because they are not columns.
+export interface NewInvoice {
+  academy_id: string
+  student_id: string
+  invoice_name: string
+  amount: number
+  final_amount: number
+  due_date: string
+  // NOT NULL with no default — the caller must choose it.
+  status: InvoiceStatus
+  template_id?: string | null
+  discount_amount?: number | null
+  discount_reason?: string | null
+  notes?: string | null
+}
+
+export interface NewPaymentTemplate {
+  name: string
+  amount: number
+  recurrence_type: RecurrenceType
+  next_due_date: string
+  start_date: string
+  day_of_month?: number | null
+  day_of_week?: number | null
+  interval_weeks?: number | null
+  semester_months?: number | null
+  end_date?: string | null
+  is_active?: boolean
 }
 
 interface PaymentTemplate {
@@ -27,14 +85,14 @@ interface PaymentTemplate {
   academy_id: string
   name: string
   amount: number
-  recurrence_type: 'monthly' | 'weekly'
-  day_of_month?: number
-  day_of_week?: number
-  interval_weeks?: number
-  semester_months?: number
+  recurrence_type: RecurrenceType
+  day_of_month: number | null
+  day_of_week: number | null
+  interval_weeks: number | null
+  semester_months: number | null
   next_due_date: string
   start_date: string
-  end_date?: string
+  end_date: string | null
   is_active: boolean
   created_at: string
   student_count?: number
@@ -59,7 +117,7 @@ export function usePaymentData(academyId: string) {
       let cachedInvoices = queryCache.get<Invoice[]>(cacheKey)
 
       if (!cachedInvoices) {
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('invoices')
           .select(`
             *,
@@ -75,27 +133,9 @@ export function usePaymentData(academyId: string) {
 
         if (error) throw error
 
-        const invoicesWithStudentInfo = (data || []).map((invoice: {
-          id: string;
-          student_id: string;
-          template_id?: string;
-          amount: number;
-          discount_amount: number;
-          final_amount: number;
-          discount_reason?: string;
-          due_date: string;
-          status: string;
-          paid_at?: string;
-          payment_method?: string;
-          transaction_id?: string;
-          refunded_amount: number;
-          created_at: string;
-          students?: {
-            users?: { name?: string; email?: string }
-          }
-        }) => ({
+        const invoicesWithStudentInfo: Invoice[] = (data || []).map((invoice) => ({
           ...invoice,
-          status: invoice.status as 'failed' | 'pending' | 'paid' | 'refunded',
+          status: toInvoiceStatus(invoice.status),
           student_name: invoice.students?.users?.name || 'Unknown Student',
           student_email: invoice.students?.users?.email || ''
         }))
@@ -126,8 +166,8 @@ export function usePaymentData(academyId: string) {
       let cachedTemplates = queryCache.get<PaymentTemplate[]>(cacheKey)
 
       if (!cachedTemplates) {
-        const { data, error } = await supabase
-          .from('payment_templates')
+        const { data, error } = await db
+          .from('recurring_payment_templates')
           .select('*')
           .eq('academy_id', academyId)
           .order('created_at', { ascending: false })
@@ -137,14 +177,15 @@ export function usePaymentData(academyId: string) {
         // Get student counts for each template
         const templatesWithCounts = await Promise.all(
           (data || []).map(async (template) => {
-            const { count } = await supabase
-              .from('recurring_payment_students')
+            const { count } = await db
+              .from('recurring_payment_template_students')
               .select('*', { count: 'exact', head: true })
               .eq('template_id', template.id)
               .eq('status', 'active')
 
             return {
               ...template,
+              recurrence_type: toRecurrenceType(template.recurrence_type),
               student_count: count || 0
             }
           })
@@ -163,10 +204,12 @@ export function usePaymentData(academyId: string) {
     }
   }, [academyId])
 
-  // Create invoice
-  const createInvoice = useCallback(async (invoiceData: Partial<Invoice>) => {
+  // Create invoice. The payload is spelled out rather than Partial<Invoice>:
+  // student_name/student_email are joined display fields, not columns, and
+  // academy_id/invoice_name/final_amount are NOT NULL with no default.
+  const createInvoice = useCallback(async (invoiceData: NewInvoice) => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('invoices')
         .insert([invoiceData])
         .select()
@@ -189,7 +232,7 @@ export function usePaymentData(academyId: string) {
   // Update invoice
   const updateInvoice = useCallback(async (invoiceId: string, updates: Partial<Invoice>) => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('invoices')
         .update(updates)
         .eq('id', invoiceId)
@@ -213,7 +256,7 @@ export function usePaymentData(academyId: string) {
   // Delete invoice
   const deleteInvoice = useCallback(async (invoiceId: string) => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('invoices')
         .delete()
         .eq('id', invoiceId)
@@ -232,10 +275,10 @@ export function usePaymentData(academyId: string) {
   }, [academyId, fetchInvoices])
 
   // Create payment template
-  const createPaymentTemplate = useCallback(async (templateData: Partial<PaymentTemplate>) => {
+  const createPaymentTemplate = useCallback(async (templateData: NewPaymentTemplate) => {
     try {
-      const { data, error } = await supabase
-        .from('payment_templates')
+      const { data, error } = await db
+        .from('recurring_payment_templates')
         .insert([{ ...templateData, academy_id: academyId }])
         .select()
 
@@ -257,8 +300,8 @@ export function usePaymentData(academyId: string) {
   // Update payment template
   const updatePaymentTemplate = useCallback(async (templateId: string, updates: Partial<PaymentTemplate>) => {
     try {
-      const { data, error } = await supabase
-        .from('payment_templates')
+      const { data, error } = await db
+        .from('recurring_payment_templates')
         .update(updates)
         .eq('id', templateId)
         .select()
@@ -281,8 +324,8 @@ export function usePaymentData(academyId: string) {
   // Delete payment template
   const deletePaymentTemplate = useCallback(async (templateId: string) => {
     try {
-      const { error } = await supabase
-        .from('payment_templates')
+      const { error } = await db
+        .from('recurring_payment_templates')
         .delete()
         .eq('id', templateId)
 
@@ -308,7 +351,7 @@ export function usePaymentData(academyId: string) {
         updates.paid_at = new Date().toISOString()
       }
 
-      const { error } = await supabase
+      const { error } = await db
         .from('invoices')
         .update(updates)
         .in('id', invoiceIds)

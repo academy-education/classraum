@@ -6,7 +6,7 @@ import { ClipboardList, ChevronRight, CheckCircle2, Loader2, AlertTriangle, Play
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -60,7 +60,7 @@ function TestsInner() {
     if (!user?.userId) return
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select(`
           id, status, generation_status, topic_freeform, created_at, last_active_at, config,

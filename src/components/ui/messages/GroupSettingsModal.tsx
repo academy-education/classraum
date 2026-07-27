@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Button } from '@/components/ui/button'
@@ -91,7 +91,7 @@ export function GroupSettingsModal({
   }, [isOpen, conversation.id, conversation.name])
 
   const authedFetch = async (url: string, init?: RequestInit) => {
-    const { data: { session } } = await supabase.auth.getSession()
+    const { data: { session } } = await db.auth.getSession()
     if (!session?.access_token) throw new Error('Not authenticated')
     const headers = new Headers(init?.headers)
     headers.set('Authorization', `Bearer ${session.access_token}`)
@@ -141,12 +141,12 @@ export function GroupSettingsModal({
     try {
       const ext = file.name.split('.').pop()?.toLowerCase() || 'png'
       const path = `${conversation.id}/avatar-${Date.now()}.${ext}`
-      const { error: uploadError } = await supabase.storage
+      const { error: uploadError } = await db.storage
         .from('conversation-avatars')
         .upload(path, file, { cacheControl: '3600', upsert: true })
       if (uploadError) throw uploadError
 
-      const { data: { publicUrl } } = supabase.storage
+      const { data: { publicUrl } } = db.storage
         .from('conversation-avatars')
         .getPublicUrl(path)
 

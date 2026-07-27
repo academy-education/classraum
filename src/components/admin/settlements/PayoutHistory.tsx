@@ -5,7 +5,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 import { Search } from 'lucide-react';
 import { PortOnePayout, PayoutStatus } from '@/types/subscription';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import {
   Select,
   SelectContent,

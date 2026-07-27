@@ -10,7 +10,7 @@ import {
   AlertCircle,
   LogOut,
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,7 +28,8 @@ interface AdminProfile {
   email: string
   name: string
   role: 'admin' | 'super_admin'
-  createdAt: string
+  /** users.created_at is nullable in the schema, so this can be absent. */
+  createdAt: string | null
 }
 
 /**
@@ -63,10 +64,10 @@ export function SettingsDashboard() {
   const loadProfile = async () => {
     try {
       setLoading(true)
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) return
 
-      const { data: row, error: rowError } = await supabase
+      const { data: row, error: rowError } = await db
         .from('users')
         .select('id, email, name, role, created_at')
         .eq('id', user.id)
@@ -104,7 +105,7 @@ export function SettingsDashboard() {
     setSaving(true)
     setError(null)
     try {
-      const { error: updateError } = await supabase
+      const { error: updateError } = await db
         .from('users')
         .update({ name: name.trim() })
         .eq('id', profile.id)
@@ -128,7 +129,7 @@ export function SettingsDashboard() {
       router.replace('/auth')
     } catch (e) {
       console.error('[SettingsDashboard] sign out error:', e)
-      try { await supabase.auth.signOut() } catch { /* ignore */ }
+      try { await db.auth.signOut() } catch { /* ignore */ }
       router.replace('/auth')
     }
   }
@@ -206,9 +207,11 @@ export function SettingsDashboard() {
                 <StatusBadge tone="brand" icon={ShieldCheck} size="sm">
                   {profile.role === 'super_admin' ? String(t('admin.settings.roleSuperAdmin')) : String(t('admin.settings.roleAdmin'))}
                 </StatusBadge>
-                <span className="text-xs text-gray-500">
-                  {String(t('admin.settings.memberSinceDate', { date: new Date(profile.createdAt).toLocaleDateString(getDateLocale(language)) }))}
-                </span>
+                {profile.createdAt && (
+                  <span className="text-xs text-gray-500">
+                    {String(t('admin.settings.memberSinceDate', { date: new Date(profile.createdAt).toLocaleDateString(getDateLocale(language)) }))}
+                  </span>
+                )}
               </div>
             </div>
           </div>

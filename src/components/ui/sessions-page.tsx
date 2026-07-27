@@ -7,7 +7,20 @@ import { useConfirm } from '@/hooks/useConfirm'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import type { Json } from '@/lib/database.types'
+import {
+  isSessionStatus,
+  isSessionLocation,
+  toSessionStatus,
+  toSessionLocation,
+  toAttendanceStatus,
+  toAssignmentType,
+  type SessionStatus,
+  type SessionLocation,
+  type AttendanceStatus,
+  type AssignmentType,
+} from '@/components/ui/common/db-enums'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -105,17 +118,19 @@ interface Session {
   classroom_name?: string
   classroom_color?: string
   teacher_name?: string
-  status: 'scheduled' | 'completed' | 'cancelled'
+  // status/location are CHECK-constrained text columns; narrowed via db-enums.
+  status: SessionStatus
   date: string
   start_time: string
   end_time: string
-  location: 'offline' | 'online'
-  room_number?: string
-  notes?: string
-  substitute_teacher?: string
-  substitute_teacher_name?: string
-  created_at: string
-  updated_at: string
+  location: SessionLocation
+  // Nullable columns on classroom_sessions.
+  room_number?: string | null
+  notes?: string | null
+  substitute_teacher?: string | null
+  substitute_teacher_name?: string | null
+  created_at: string | null
+  updated_at: string | null
   student_count?: number
   assignment_count?: number
   is_virtual?: boolean // True for virtual sessions (not yet materialized)
@@ -130,14 +145,15 @@ interface SessionsPageProps {
   onNavigateToAttendance?: (sessionId: string) => void
 }
 
+// Mirrors public.classrooms; every column below except id/name is nullable.
 interface Classroom {
   id: string
   name: string
-  color?: string
-  teacher_id?: string
+  color?: string | null
+  teacher_id?: string | null
   teacher_name?: string
-  subject_id?: string
-  paused?: boolean
+  subject_id?: string | null
+  paused?: boolean | null
 }
 
 interface Teacher {
@@ -146,7 +162,10 @@ interface Teacher {
   user_id: string
 }
 
-interface AttachmentFile {
+// Declared as a `type` (not an `interface`) on purpose: only type aliases get
+// an implicit index signature, which is what makes these assignable to the
+// generated `Json` type when written to session_templates.assignments_data.
+type AttachmentFile = {
   id?: string
   name: string
   url: string
@@ -158,19 +177,21 @@ interface AttachmentFile {
 interface Assignment {
   id: string
   title: string
-  description?: string
-  assignment_type: 'quiz' | 'homework' | 'test' | 'project'
-  due_date?: string
-  created_at: string
-  category_name?: string
+  description?: string | null
+  assignment_type: AssignmentType
+  due_date?: string | null
+  created_at: string | null
+  category_name?: string | null
   attachments?: AttachmentFile[]
 }
 
-interface ModalAssignment {
+// `type`, not `interface`, so it keeps an implicit index signature and can be
+// written straight into session_templates.assignments_data (jsonb).
+type ModalAssignment = {
   id: string
   title: string
   description: string
-  assignment_type: 'quiz' | 'homework' | 'test' | 'project'
+  assignment_type: AssignmentType
   due_date: string // Required field
   assignment_categories_id: string
   attachments?: AttachmentFile[]
@@ -181,8 +202,9 @@ interface Attendance {
   classroom_session_id: string
   student_id: string
   student_name?: string
-  status: 'pending' | 'present' | 'absent' | 'excused' | 'late'
-  note?: string
+  // CHECK-constrained text column; narrowed via db-enums.
+  status: AttendanceStatus
+  note?: string | null
 }
 
 interface Student {
@@ -205,10 +227,86 @@ interface SessionTemplate {
     notes?: string
     substitute_teacher?: string
   }
-  include_assignments: boolean
+  include_assignments: boolean | null
   assignments_data?: ModalAssignment[]
-  created_at: string
-  updated_at: string
+  created_at: string | null
+  updated_at: string | null
+}
+
+/**
+ * session_templates.template_data / assignments_data are jsonb, so the generated
+ * types can only say `Json`. These readers validate the blob at runtime instead
+ * of asserting a shape that the database does not enforce — anything malformed
+ * is dropped rather than flowing into the form as an impossible value.
+ */
+function jsonRecord(value: Json): Record<string, Json | undefined> | null {
+  return typeof value === 'object' && value !== null && !Array.isArray(value) ? value : null
+}
+
+function jsonString(value: Json | undefined): string | undefined {
+  return typeof value === 'string' ? value : undefined
+}
+
+function parseTemplateData(value: Json): SessionTemplate['template_data'] {
+  const record = jsonRecord(value)
+  if (!record) return {}
+  const status = jsonString(record.status)
+  const location = jsonString(record.location)
+  return {
+    classroom_id: jsonString(record.classroom_id),
+    status: status !== undefined && isSessionStatus(status) ? status : undefined,
+    start_time: jsonString(record.start_time),
+    end_time: jsonString(record.end_time),
+    location: location !== undefined && isSessionLocation(location) ? location : undefined,
+    room_number: jsonString(record.room_number),
+    notes: jsonString(record.notes),
+    substitute_teacher: jsonString(record.substitute_teacher),
+  }
+}
+
+function parseTemplateAssignments(value: Json): ModalAssignment[] | undefined {
+  if (!Array.isArray(value)) return undefined
+  const parsed: ModalAssignment[] = []
+  for (const entry of value) {
+    const record = jsonRecord(entry)
+    if (!record) continue
+    const id = jsonString(record.id)
+    const title = jsonString(record.title)
+    if (id === undefined || title === undefined) continue
+    const type = jsonString(record.assignment_type)
+    parsed.push({
+      id,
+      title,
+      description: jsonString(record.description) ?? '',
+      assignment_type: toAssignmentType(type ?? ''),
+      due_date: jsonString(record.due_date) ?? '',
+      assignment_categories_id: jsonString(record.assignment_categories_id) ?? '',
+      attachments: parseTemplateAttachments(record.attachments),
+    })
+  }
+  return parsed
+}
+
+function parseTemplateAttachments(value: Json | undefined): AttachmentFile[] {
+  if (!Array.isArray(value)) return []
+  const parsed: AttachmentFile[] = []
+  for (const entry of value) {
+    const record = jsonRecord(entry)
+    if (!record) continue
+    const name = jsonString(record.name)
+    const url = jsonString(record.url)
+    const type = jsonString(record.type)
+    if (name === undefined || url === undefined || type === undefined) continue
+    parsed.push({
+      id: jsonString(record.id),
+      name,
+      url,
+      size: typeof record.size === 'number' ? record.size : 0,
+      type,
+      uploaded: typeof record.uploaded === 'boolean' ? record.uploaded : undefined,
+    })
+  }
+  return parsed
 }
 
 export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavigateToAssignments, onNavigateToAttendance }: SessionsPageProps) {
@@ -419,7 +517,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Check if current user is a manager or teacher for this academy
   const checkUserRole = useCallback(async () => {
     try {
-      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      const { data: { user }, error: authError } = await db.auth.getUser()
 
 
       if (authError) {
@@ -441,7 +539,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setCurrentUserId(user.id)
 
       // Check if user is a manager
-      const { data: managerData, error: managerError } = await supabase
+      const { data: managerData, error: managerError } = await db
         .from('managers')
         .select('user_id')
         .eq('academy_id', academyId)
@@ -454,7 +552,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // Check if user is a teacher
-      const { data: teacherData, error: teacherError } = await supabase
+      const { data: teacherData, error: teacherError } = await db
         .from('teachers')
         .select('user_id')
         .eq('academy_id', academyId)
@@ -586,7 +684,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           assignment_categories_id: assignment.assignment_categories_id || null
         }
 
-        const { error } = await supabase
+        const { error } = await db
           .from('assignments')
           .update(updateData)
           .eq('id', assignment.id)
@@ -636,7 +734,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       if (assignmentRecords.length === 0) return { success: true, newAssignments: [] }
 
-      const { data: createdAssignments, error } = await supabase
+      const { data: createdAssignments, error } = await db
         .from('assignments')
         .insert(assignmentRecords)
         .select()
@@ -648,7 +746,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Handle attachments for new assignments
       if (createdAssignments) {
-        const { data: { user } } = await supabase.auth.getUser()
+        const { data: { user } } = await db.auth.getUser()
         const validModalAssignments = added.filter(assignment =>
           assignment.title.trim() !== '' && assignment.due_date.trim() !== ''
         )
@@ -686,7 +784,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Delete assignment grades first. If this is dropped the grades outlive
       // the soft-deleted assignment and keep showing up in student grade lists.
-      const { error: gradesError } = await supabase
+      const { error: gradesError } = await db
         .from('assignment_grades')
         .delete()
         .in('assignment_id', assignmentIds)
@@ -697,7 +795,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // Soft-delete the assignments
-      const { error } = await supabase
+      const { error } = await db
         .from('assignments')
         .update({ deleted_at: new Date().toISOString() })
         .in('id', assignmentIds)
@@ -723,7 +821,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     // Delete existing attachments and insert new ones. A dropped delete leaves
     // the old rows in place, so the assignment ends up with duplicated (and
     // un-removed) attachments even though the save reported success.
-    const { error } = await supabase
+    const { error } = await db
       .from('assignment_attachments')
       .delete()
       .eq('assignment_id', assignmentId)
@@ -734,7 +832,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
 
     if (attachments.length > 0) {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       await insertAssignmentAttachmentsEfficient(assignmentId, attachments, user?.id)
     }
   }
@@ -753,7 +851,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       uploaded_by: userId
     }))
 
-    const { error } = await supabase
+    const { error } = await db
       .from('assignment_attachments')
       .insert(attachmentRecords)
 
@@ -778,7 +876,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           note: attendance.note || null
         }
 
-        const { error } = await supabase
+        const { error } = await db
           .from('attendance')
           .update(updateData)
           .eq('id', attendance.id)
@@ -809,7 +907,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Look up student_record_ids for all students
       const studentIds = added.map(a => a.student_id)
-      const { data: studentRecords } = await supabase
+      const { data: studentRecords } = await db
         .from('students')
         .select('id, user_id')
         .eq('academy_id', academyId)
@@ -827,7 +925,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         note: attendance.note || null
       }))
 
-      const { error } = await supabase
+      const { error } = await db
         .from('attendance')
         .insert(attendanceRecords)
 
@@ -839,7 +937,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Also create assignment grades for all assignments in this session
       // This ensures new students have grade records for existing assignments
-      const { data: sessionAssignments, error: assignmentsError } = await supabase
+      const { data: sessionAssignments, error: assignmentsError } = await db
         .from('assignments')
         .select('id')
         .eq('classroom_session_id', sessionId)
@@ -852,7 +950,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         // Look up student_record_ids for all students
         const studentIds = added.map(a => a.student_id)
-        const { data: studentRecords } = await supabase
+        const { data: studentRecords } = await db
           .from('students')
           .select('id, user_id')
           .eq('academy_id', academyId)
@@ -875,7 +973,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         }
 
         if (gradeRecords.length > 0) {
-          const { error: gradesError } = await supabase
+          const { error: gradesError } = await db
             .from('assignment_grades')
             .insert(gradeRecords)
 
@@ -908,7 +1006,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       if (attendanceIds.length === 0) return true
 
-      const { error } = await supabase
+      const { error } = await db
         .from('attendance')
         .delete()
         .in('id', attendanceIds)
@@ -953,7 +1051,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     setIsCreatingCategory(true)
     try {
       // Verify authentication before creating
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) {
         toast({ title: String(t('categories.loginRequired')), variant: 'warning' })
         return
@@ -1027,7 +1125,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // If sessionId is provided, fetch existing attendance records from database
       if (sessionId) {
-        const { data: attendanceData, error: attendanceError } = await supabase
+        const { data: attendanceData, error: attendanceError } = await db
           .from('attendance')
           .select('id, student_id, status, note, created_at')
           .eq('classroom_session_id', sessionId)
@@ -1049,7 +1147,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           attendanceData.map(async (attendance) => {
             let student_name = String(t('sessions.unknownStudent'))
             if (attendance.student_id) {
-              const { data: userData } = await supabase
+              const { data: userData } = await db
                 .from('users')
                 .select('name')
                 .eq('id', attendance.student_id)
@@ -1062,7 +1160,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               classroom_session_id: sessionId,
               student_id: attendance.student_id,
               student_name,
-              status: attendance.status,
+              status: toAttendanceStatus(attendance.status),
               note: attendance.note || ''
             }
           })
@@ -1072,7 +1170,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // If no sessionId, create new attendance objects for enrolled students (new session)
-      const { data: enrollmentData, error: enrollmentError } = await supabase
+      const { data: enrollmentData, error: enrollmentError } = await db
         .from('classroom_students')
         .select('student_id')
         .eq('classroom_id', classroomId)
@@ -1087,7 +1185,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       if (enrollmentData && enrollmentData.length > 0) {
         const studentsWithNames = await Promise.all(
           enrollmentData.map(async (enrollment) => {
-            const { data: userData } = await supabase
+            const { data: userData } = await db
               .from('users')
               .select('name')
               .eq('id', enrollment.student_id)
@@ -1150,7 +1248,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           if (viewMode === 'calendar') {
             try {
               // Get classrooms for virtual session generation
-              const { data: academyClassrooms } = await supabase
+              const { data: academyClassrooms } = await db
                 .from('classrooms')
                 .select('id, name, teacher_id, color, paused')
                 .eq('academy_id', academyId)
@@ -1184,8 +1282,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
                 // Create classroom and teacher maps
                 const classroomMap = new Map(academyClassrooms.map(c => [c.id, c]))
-                const teacherIds = [...new Set(academyClassrooms.map(c => c.teacher_id).filter(Boolean))]
-                const { data: teachersData } = await supabase
+                // classrooms.teacher_id is nullable — drop unassigned classrooms.
+                const teacherIds = [...new Set(
+                  academyClassrooms.map(c => c.teacher_id).filter((id): id is string => !!id)
+                )]
+                const { data: teachersData } = await db
                   .from('users')
                   .select('id, name')
                   .in('id', teacherIds)
@@ -1239,7 +1340,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setInitialized(true)
 
       // First get classrooms for this academy
-      const { data: academyClassrooms } = await supabase
+      const { data: academyClassrooms } = await db
         .from('classrooms')
         .select('id, name, teacher_id, color, paused')
         .eq('academy_id', academyId)
@@ -1255,7 +1356,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       // Build query with server-side filters only
       // Client-side filters (classroom, teacher, status, today/upcoming) will be applied after fetch
-      let query = supabase
+      let query = db
         .from('classroom_sessions')
         .select('*', { count: 'exact' })
         .in('classroom_id', classroomIds)
@@ -1307,7 +1408,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Optimized: Batch queries to avoid N+1 pattern
       const sessionIds = data.map(session => session.id)
       const sessionClassroomIds = [...new Set(data.map(session => session.classroom_id).filter(Boolean))]
-      const allTeacherIds = new Set()
+      const allTeacherIds = new Set<string>()
       
       // Collect teacher IDs from sessions (substitute teachers)
       data.forEach(session => {
@@ -1319,13 +1420,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Execute queries in parallel to get classroom data first
       const [classroomsData, assignmentsData] = await Promise.all([
         // Get all classroom details
-        sessionClassroomIds.length > 0 ? supabase
+        sessionClassroomIds.length > 0 ? db
           .from('classrooms')
           .select('id, name, color, teacher_id')
           .in('id', sessionClassroomIds) : Promise.resolve({ data: [] }),
         
         // Get assignment counts for all sessions
-        sessionIds.length > 0 ? supabase
+        sessionIds.length > 0 ? db
           .from('assignments')
           .select('classroom_session_id')
           .in('classroom_session_id', sessionIds)
@@ -1340,7 +1441,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       })
 
       // Get all teacher names in one query
-      const { data: teachersData } = allTeacherIds.size > 0 ? await supabase
+      const { data: teachersData } = allTeacherIds.size > 0 ? await db
         .from('users')
         .select('id, name')
         .in('id', Array.from(allTeacherIds)) : { data: [] }
@@ -1373,6 +1474,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         
         return {
           ...session,
+          // status/location are CHECK-constrained text columns.
+          status: toSessionStatus(session.status),
+          location: toSessionLocation(session.location),
           classroom_name: classroom?.name || t('sessions.unknownClassroom'),
           classroom_color: classroom?.color || '#6B7280',
           teacher_name,
@@ -1482,7 +1586,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     }
 
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classrooms')
         .select('*')
         .eq('academy_id', academyId)
@@ -1496,11 +1600,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
       
       // OPTIMIZED: Batch fetch all teacher names in one query
-      const teacherIds = [...new Set((data || []).map(c => c.teacher_id).filter(Boolean))]
+      // classrooms.teacher_id is nullable — drop unassigned classrooms.
+      const teacherIds = [...new Set(
+        (data || []).map(c => c.teacher_id).filter((id): id is string => !!id)
+      )]
       let teacherNameMap = new Map<string, string>()
 
       if (teacherIds.length > 0) {
-        const { data: teachersData } = await supabase
+        const { data: teachersData } = await db
           .from('users')
           .select('id, name')
           .in('id', teacherIds)
@@ -1515,7 +1622,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         name: classroom.name,
         color: classroom.color,
         teacher_id: classroom.teacher_id,
-        teacher_name: teacherNameMap.get(classroom.teacher_id) || t('sessions.unknownTeacher'),
+        teacher_name: (classroom.teacher_id ? teacherNameMap.get(classroom.teacher_id) : undefined) || t('sessions.unknownTeacher'),
         subject_id: classroom.subject_id,
         paused: classroom.paused
       }))
@@ -1531,7 +1638,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     try {
       // Get both teachers and managers for this academy in parallel
       const [teachersResult, managersResult] = await Promise.all([
-        supabase
+        db
           .from('teachers')
           .select(`
             user_id,
@@ -1542,7 +1649,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           `)
           .eq('academy_id', academyId)
           .eq('active', true),
-        supabase
+        db
           .from('managers')
           .select(`
             user_id,
@@ -1600,7 +1707,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     if (!currentUserId) return
 
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('session_templates')
         .select('*')
         .eq('user_id', currentUserId)
@@ -1612,7 +1719,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         return
       }
 
-      setTemplates(data || [])
+      setTemplates((data || []).map(row => ({
+        ...row,
+        template_data: parseTemplateData(row.template_data),
+        assignments_data: row.assignments_data === null
+          ? undefined
+          : parseTemplateAssignments(row.assignments_data),
+      })))
     } catch (error) {
       console.error('Error loading templates:', error)
       setTemplates([])
@@ -1629,7 +1742,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const handleSaveTemplateClick = useCallback(async (session: Session) => {
     // Fetch session's assignments if includeAssignments will be checked
     try {
-      const { data: assignmentsData } = await supabase
+      const { data: assignmentsData } = await db
         .from('assignments')
         .select('*')
         .eq('classroom_session_id', session.id)
@@ -1666,7 +1779,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Fetch assignments if needed
       let assignmentsData = null
       if (saveTemplateFormData.includeAssignments) {
-        const { data: assignments } = await supabase
+        const { data: assignments } = await db
           .from('assignments')
           .select('*')
           .eq('classroom_session_id', templateToSave.id)
@@ -1678,7 +1791,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           const attachmentsMap = new Map<string, AttachmentFile[]>()
 
           if (assignmentIds.length > 0) {
-            const { data: attachmentData } = await supabase
+            const { data: attachmentData } = await db
               .from('assignment_attachments')
               .select('assignment_id, file_name, file_url, file_size, file_type')
               .in('assignment_id', assignmentIds)
@@ -1714,7 +1827,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // Log template data before saving for debugging
 
       // Save template to database
-      const { error } = await supabase
+      const { error } = await db
         .from('session_templates')
         .insert({
           user_id: currentUserId,
@@ -1883,7 +1996,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         for (const templateId of selectedTemplates) {
           const template = templates.find(t => t.id === templateId)
           if (template) {
-            const { error } = await supabase
+            const { error } = await db
               .from('session_templates')
               .update({ deleted_at: new Date().toISOString() })
               .eq('id', templateId)
@@ -1898,7 +2011,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         setSelectedTemplates(new Set())
       } else {
         // Single delete
-        const { error } = await supabase
+        const { error } = await db
           .from('session_templates')
           .update({ deleted_at: new Date().toISOString() })
           .eq('id', templateToDelete!.id)
@@ -1997,7 +2110,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // Fetch all sessions without any filters
-      const { data: academyClassrooms } = await supabase
+      const { data: academyClassrooms } = await db
         .from('classrooms')
         .select('id, name, teacher_id, color')
         .eq('academy_id', academyId)
@@ -2010,7 +2123,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       const classroomIds = academyClassrooms.map(c => c.id)
 
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_sessions')
         .select('*')
         .in('classroom_id', classroomIds)
@@ -2030,11 +2143,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // Get teacher IDs
-      const teacherIds = [...new Set(academyClassrooms.map(c => c.teacher_id).filter(Boolean))]
+      // classrooms.teacher_id is nullable — drop unassigned classrooms.
+      const teacherIds = [...new Set(
+        academyClassrooms.map(c => c.teacher_id).filter((id): id is string => !!id)
+      )]
       let teacherNameMap = new Map<string, string>()
 
       if (teacherIds.length > 0) {
-        const { data: teachersData } = await supabase
+        const { data: teachersData } = await db
           .from('users')
           .select('id, name')
           .in('id', teacherIds)
@@ -2051,7 +2167,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           {
             name: c.name,
             color: c.color,
-            teacher_name: teacherNameMap.get(c.teacher_id) || t('sessions.unknownTeacher')
+            teacher_name: (c.teacher_id ? teacherNameMap.get(c.teacher_id) : undefined) || t('sessions.unknownTeacher')
           }
         ])
       )
@@ -2060,6 +2176,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         const classroom = classroomMap.get(session.classroom_id)
         return {
           ...session,
+          // status/location are CHECK-constrained text columns.
+          status: toSessionStatus(session.status),
+          location: toSessionLocation(session.location),
           classroom_name: classroom?.name || t('sessions.unknownClassroom'),
           classroom_color: classroom?.color || '#9CA3AF',
           teacher_name: classroom?.teacher_name || t('sessions.unknownTeacher')
@@ -2258,7 +2377,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         const prevEndTime = editingSession.end_time
 
         // Update existing session
-        const { error } = await supabase
+        const { error } = await db
           .from('classroom_sessions')
           .update({
             classroom_id: formData.classroom_id,
@@ -2312,7 +2431,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         // OPTIMIZED: Fetch enrollment data once and pass to efficient save
         // This avoids redundant query if new assignments are being created
-        const { data: enrollmentData } = await supabase
+        const { data: enrollmentData } = await db
           .from('classroom_students')
           .select('student_id')
           .eq('classroom_id', formData.classroom_id)
@@ -2353,7 +2472,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         const datesToCreate = multipleSessions ? selectedDates : [formData.date]
 
         // Fetch students once for all sessions
-        const { data: enrollmentData, error: enrollmentError } = await supabase
+        const { data: enrollmentData, error: enrollmentError } = await db
           .from('classroom_students')
           .select('student_id')
           .eq('classroom_id', formData.classroom_id)
@@ -2368,7 +2487,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         // Create all sessions in parallel
         const sessionPromises = datesToCreate.map(async (date) => {
 
-          const { data: sessionData, error } = await supabase
+          const { data: sessionData, error } = await db
             .from('classroom_sessions')
             .insert({
               classroom_id: formData.classroom_id,
@@ -2404,7 +2523,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               note: null
             }))
 
-            const { error: attendanceError, data: attendanceData } = await supabase
+            const { error: attendanceError, data: attendanceData } = await db
               .from('attendance')
               .insert(attendanceRecords)
               .select()
@@ -2455,7 +2574,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // Save attendance records (only for new sessions - edit sessions use efficient approach above)
-      if (modalAttendance.length > 0 && !editingSession) {
+      // currentSessionId is null when session creation returned no row; without
+      // it these writes would target `classroom_session_id = null`, which
+      // matches nothing on update and violates NOT NULL on insert.
+      if (modalAttendance.length > 0 && !editingSession && currentSessionId) {
         // For new sessions: Update the auto-created records if user made changes
         const modifiedAttendance = modalAttendance.filter(attendance =>
           attendance.status !== 'pending' || (attendance.note && attendance.note.trim() !== '')
@@ -2464,7 +2586,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         if (modifiedAttendance.length > 0) {
           // Update all attendance records in parallel
           const updatePromises = modifiedAttendance.map(async (attendance) => {
-            const { error: updateError } = await supabase
+            const { error: updateError } = await db
               .from('attendance')
               .update({
                 status: attendance.status,
@@ -2484,7 +2606,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // Save assignment records (only for new sessions - edit sessions use efficient approach above)
-      if (modalAssignments.length > 0 && !editingSession) {
+      if (modalAssignments.length > 0 && !editingSession && currentSessionId) {
         // Insert new assignments
         const assignmentRecords = modalAssignments
           .filter(assignment => assignment.title.trim() !== '' && assignment.due_date.trim() !== '')
@@ -2498,7 +2620,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           }))
 
         if (assignmentRecords.length > 0) {
-          const { data: createdAssignments, error: assignmentError } = await supabase
+          const { data: createdAssignments, error: assignmentError } = await db
             .from('assignments')
             .insert(assignmentRecords)
             .select()
@@ -2507,7 +2629,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             console.error('Error saving assignments:', assignmentError)
           } else if (createdAssignments) {
             // Get current user ID once
-            const { data: { user } } = await supabase.auth.getUser()
+            const { data: { user } } = await db.auth.getUser()
 
             // Save attachments for all assignments in parallel
             const validModalAssignments = modalAssignments
@@ -2528,7 +2650,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 }))
 
 
-                const { error: attachmentError } = await supabase
+                const { error: attachmentError } = await db
                   .from('assignment_attachments')
                   .insert(attachmentRecords)
 
@@ -2546,7 +2668,17 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             await Promise.all(attachmentPromises)
 
             // Create assignment grades for each student in the classroom
-            await createAssignmentGradesForAssignments(createdAssignments, formData.classroom_id)
+            await createAssignmentGradesForAssignments(
+              createdAssignments.map(a => ({
+                id: a.id,
+                title: a.title,
+                description: a.description ?? '',
+                assignment_type: toAssignmentType(a.assignment_type),
+                due_date: a.due_date ?? '',
+                assignment_categories_id: a.assignment_categories_id ?? '',
+              })),
+              formData.classroom_id
+            )
 
             // Invalidate assignments cache so new assignments appear immediately
             invalidateAssignmentsCache(academyId)
@@ -2603,7 +2735,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       setIsSaving(true)
 
       // Update existing session
-      const { error } = await supabase
+      const { error } = await db
         .from('classroom_sessions')
         .update({
           classroom_id: formData.classroom_id,
@@ -2625,7 +2757,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       }
 
       // OPTIMIZED: Fetch enrollment data once and pass to efficient save
-      const { data: enrollmentData } = await supabase
+      const { data: enrollmentData } = await db
         .from('classroom_students')
         .select('student_id')
         .eq('classroom_id', formData.classroom_id)
@@ -2753,7 +2885,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
     // Load attendance and assignments in background
     try {
-      const { data: attendanceData, error: attendanceError } = await supabase
+      const { data: attendanceData, error: attendanceError } = await db
         .from('attendance')
         .select('id, student_id, status, note')
         .eq('classroom_session_id', sessionToEdit.id)
@@ -2763,7 +2895,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         await loadClassroomStudentsForAttendance(sessionToEdit.classroom_id)
       } else if (attendanceData && attendanceData.length > 0) {
         const studentIds = attendanceData.map(a => a.student_id)
-        const { data: studentsData } = await supabase
+        const { data: studentsData } = await db
           .from('users')
           .select('id, name')
           .in('id', studentIds)
@@ -2774,6 +2906,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         const attendanceWithNames = attendanceData.map(attendance => ({
           ...attendance,
+          status: toAttendanceStatus(attendance.status),
           classroom_session_id: sessionToEdit.id,
           student_name: studentNameMap.get(attendance.student_id) || t('sessions.unknownStudent')
         }))
@@ -2796,7 +2929,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     // Load existing assignments for the session
     try {
 
-      const { data: assignmentData, error: assignmentError } = await supabase
+      const { data: assignmentData, error: assignmentError } = await db
         .from('assignments')
         .select('id, title, description, assignment_type, due_date, assignment_categories_id')
         .eq('classroom_session_id', sessionToEdit.id)
@@ -2815,7 +2948,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       if (assignmentIds.length > 0) {
         try {
-          const { data: attachmentData } = await supabase
+          const { data: attachmentData } = await db
             .from('assignment_attachments')
             .select('assignment_id, file_name, file_url, file_size, file_type')
             .in('assignment_id', assignmentIds)
@@ -2846,7 +2979,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         id: assignment.id,
         title: assignment.title || '',
         description: assignment.description || '',
-        assignment_type: assignment.assignment_type,
+        assignment_type: toAssignmentType(assignment.assignment_type),
         due_date: assignment.due_date || '',
         assignment_categories_id: assignment.assignment_categories_id || '',
         attachments: attachmentsByAssignment.get(assignment.id) || []
@@ -2868,7 +3001,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const loadAvailableStudentsForAttendance = async (classroomId: string, excludeStudentIds: string[] = []) => {
     try {
-      const { data: enrollmentData, error: enrollmentError } = await supabase
+      const { data: enrollmentData, error: enrollmentError } = await db
         .from('classroom_students')
         .select('student_id')
         .eq('classroom_id', classroomId)
@@ -2888,7 +3021,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         const studentsWithNames = await Promise.all(
           availableEnrollments.map(async (enrollment) => {
-            const { data: userData } = await supabase
+            const { data: userData } = await db
               .from('users')
               .select('name')
               .eq('id', enrollment.student_id)
@@ -2937,7 +3070,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     // Load and copy assignments from the session
     try {
 
-      const { data: assignmentData, error: assignmentError } = await supabase
+      const { data: assignmentData, error: assignmentError } = await db
         .from('assignments')
         .select('id, title, description, assignment_type, due_date, assignment_categories_id')
         .eq('classroom_session_id', session.id)
@@ -2953,7 +3086,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
         if (assignmentIds.length > 0) {
           try {
-            const { data: attachmentData } = await supabase
+            const { data: attachmentData } = await db
               .from('assignment_attachments')
               .select('assignment_id, file_name, file_url, file_size, file_type')
               .in('assignment_id', assignmentIds)
@@ -2983,7 +3116,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           id: 'temp-' + crypto.randomUUID(),
           title: assignment.title,
           description: assignment.description || '',
-          assignment_type: assignment.assignment_type,
+          assignment_type: toAssignmentType(assignment.assignment_type),
           due_date: assignment.due_date || '',
           assignment_categories_id: assignment.assignment_categories_id || '',
           attachments: attachmentMap.get(assignment.id) || []
@@ -3007,7 +3140,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     setBulkUpdating(true)
     try {
       const ids = Array.from(selectedSessionIds)
-      const { error } = await supabase
+      const { error } = await db
         .from('classroom_sessions')
         .update({ deleted_at: new Date().toISOString() })
         .in('id', ids)
@@ -3024,7 +3157,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         t('sessions.bulkDeleteSuccess', { count: ids.length }) as string,
         t('common.undo') as string,
         async () => {
-          const { error: restoreError } = await supabase
+          const { error: restoreError } = await db
             .from('classroom_sessions')
             .update({ deleted_at: null })
             .in('id', ids)
@@ -3056,7 +3189,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       // that were already cancelled, to avoid duplicate pushes).
       const sessionsBeforeUpdate = sessions.filter(s => selectedSessionIds.has(s.id))
 
-      const { error } = await supabase
+      const { error } = await db
         .from('classroom_sessions')
         .update({ status: newStatus, updated_at: new Date().toISOString() })
         .in('id', ids)
@@ -3112,7 +3245,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const loadSessionAssignments = async (sessionId: string) => {
     try {
-      const { data: assignmentData, error: assignmentError } = await supabase
+      const { data: assignmentData, error: assignmentError } = await db
         .from('assignments')
         .select('id, title, description, assignment_type, due_date, created_at, assignment_categories_id')
         .eq('classroom_session_id', sessionId)
@@ -3133,7 +3266,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             assignmentData.map(async (assignment) => {
               let category_name = null
               if (assignment.assignment_categories_id) {
-                const { data: categoryData } = await supabase
+                const { data: categoryData } = await db
                   .from('assignment_categories')
                   .select('name')
                   .eq('id', assignment.assignment_categories_id)
@@ -3145,7 +3278,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 id: assignment.id,
                 title: assignment.title,
                 description: assignment.description,
-                assignment_type: assignment.assignment_type,
+                assignment_type: toAssignmentType(assignment.assignment_type),
                 due_date: assignment.due_date,
                 created_at: assignment.created_at,
                 category_name
@@ -3163,7 +3296,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   const loadSessionAttendance = async (sessionId: string) => {
     try {
-      const { data: attendanceData, error: attendanceError } = await supabase
+      const { data: attendanceData, error: attendanceError } = await db
         .from('attendance')
         .select('id, student_id, status, note, created_at')
         .eq('classroom_session_id', sessionId)
@@ -3182,7 +3315,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             attendanceData.map(async (attendance) => {
               let student_name = String(t('sessions.unknownStudent'))
               if (attendance.student_id) {
-                const { data: userData } = await supabase
+                const { data: userData } = await db
                   .from('users')
                   .select('name')
                   .eq('id', attendance.student_id)
@@ -3195,7 +3328,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 classroom_session_id: sessionId,
                 student_id: attendance.student_id,
                 student_name,
-                status: attendance.status,
+                status: toAttendanceStatus(attendance.status),
                 note: attendance.note,
                 created_at: attendance.created_at
               }
@@ -3338,7 +3471,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     try {
 
       // Look up student_record_id from students table
-      const { data: studentRecord, error: studentError } = await supabase
+      const { data: studentRecord, error: studentError } = await db
         .from('students')
         .select('id')
         .eq('user_id', studentId)
@@ -3351,7 +3484,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       const studentRecordId = studentRecord?.id
 
       // Get all assignments for this session
-      const { data: assignments, error: assignmentsError } = await supabase
+      const { data: assignments, error: assignmentsError } = await db
         .from('assignments')
         .select('id')
         .eq('classroom_session_id', sessionId)
@@ -3364,7 +3497,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       if (assignments && assignments.length > 0) {
         // Check which assignments do not already have grades for this student
-        const { data: existingGrades } = await supabase
+        const { data: existingGrades } = await db
           .from('assignment_grades')
           .select('assignment_id')
           .eq('student_id', studentId)
@@ -3381,7 +3514,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           }))
 
         if (missingGrades.length > 0) {
-          const { error: gradesError } = await supabase
+          const { error: gradesError } = await db
             .from('assignment_grades')
             .insert(missingGrades)
 
@@ -3398,7 +3531,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   const createAssignmentGradesForAssignments = async (
     assignments: ModalAssignment[],
     classroomId: string,
-    cachedEnrollmentData?: Array<{ student_id: string; student_record_id?: string }>
+    // classroom_students.student_record_id is nullable.
+    cachedEnrollmentData?: Array<{ student_id: string; student_record_id?: string | null }>
   ) => {
     try {
 
@@ -3406,7 +3540,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       let enrollmentData = cachedEnrollmentData
 
       if (!enrollmentData) {
-        const { data, error: enrollmentError } = await supabase
+        const { data, error: enrollmentError } = await db
           .from('classroom_students')
           .select('student_id, student_record_id')
           .eq('classroom_id', classroomId)
@@ -3436,7 +3570,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         if (gradeRecords.length > 0) {
           // Check for existing grades to prevent duplicates
           const assignmentIds = assignments.map(a => a.id)
-          const { data: existingGrades } = await supabase
+          const { data: existingGrades } = await db
             .from('assignment_grades')
             .select('assignment_id, student_id')
             .in('assignment_id', assignmentIds)
@@ -3447,7 +3581,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           )
 
           if (filteredGradeRecords.length > 0) {
-            const { error: gradeError } = await supabase
+            const { error: gradeError } = await db
               .from('assignment_grades')
               .insert(filteredGradeRecords)
 
@@ -3476,7 +3610,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
     try {
       setIsSaving(true)
-      const { error } = await supabase
+      const { error } = await db
         .from('classroom_sessions')
         .update({ deleted_at: new Date().toISOString() })
         .eq('id', sessionToDelete.id)
@@ -3512,7 +3646,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         t('sessions.deletedSuccessfully') as string,
         t('common.undo') as string,
         async () => {
-          const { error: restoreError } = await supabase
+          const { error: restoreError } = await db
             .from('classroom_sessions')
             .update({ deleted_at: null })
             .eq('id', deletedSession.id)
@@ -6417,10 +6551,10 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           }
           footer={
             <div className="flex flex-col gap-3">
-              {!viewingSession.is_virtual && (
+              {!viewingSession.is_virtual && viewingSession.created_at && (
                 <div className="text-sm text-gray-500">
                   {t("common.created")}: {new Date(viewingSession.created_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
-                  {viewingSession.updated_at !== viewingSession.created_at && (
+                  {viewingSession.updated_at && viewingSession.updated_at !== viewingSession.created_at && (
                     <span className="ml-4">
                       {t("sessions.updatedColon")} {new Date(viewingSession.updated_at).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US')}
                     </span>

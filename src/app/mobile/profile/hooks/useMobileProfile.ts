@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import type { Json } from '@/lib/database.types'
 import { useStableCallback } from '@/hooks/useStableCallback'
 
 export interface UserProfile {
@@ -126,8 +127,8 @@ export const useMobileProfile = (
 
       // Fetch profile and preferences in parallel
       const [userDataResult, preferencesResult] = await Promise.all([
-        supabase.from('users').select('*').eq('id', userId).single(),
-        supabase.from('user_preferences').select('*').eq('user_id', userId).single()
+        db.from('users').select('*').eq('id', userId).single(),
+        db.from('user_preferences').select('*').eq('user_id', userId).single()
       ])
 
       // Build profile data
@@ -154,7 +155,7 @@ export const useMobileProfile = (
         // Fetch role-specific data
         try {
           if (userData.role === 'student') {
-            const { data: studentData, error: studentError } = await supabase
+            const { data: studentData, error: studentError } = await db
               .from('students')
               .select('phone, school_name')
               .eq('user_id', userId)
@@ -163,10 +164,10 @@ export const useMobileProfile = (
             if (studentError) console.error('[useMobileProfile] Error fetching students row:', studentError)
             if (studentData) {
               if (studentData.phone) profileData.phone = studentData.phone
-              profileData.student_school = studentData.school_name
+              profileData.student_school = studentData.school_name ?? undefined
             }
           } else if (userData.role === 'teacher') {
-            const { data: teacherData, error: teacherError } = await supabase
+            const { data: teacherData, error: teacherError } = await db
               .from('teachers')
               .select('phone')
               .eq('user_id', userId)
@@ -177,7 +178,7 @@ export const useMobileProfile = (
               profileData.phone = teacherData.phone
             }
           } else if (userData.role === 'parent') {
-            const { data: parentData, error: parentError } = await supabase
+            const { data: parentData, error: parentError } = await db
               .from('parents')
               .select('phone')
               .eq('user_id', userId)
@@ -190,7 +191,7 @@ export const useMobileProfile = (
           } else if (userData.role === 'manager') {
             // Academy owners are 'manager' in users.role; there is no
             // 'academy_owner' role and no academy_owners table.
-            const { data: managerData, error: managerError } = await supabase
+            const { data: managerData, error: managerError } = await db
               .from('managers')
               .select('phone')
               .eq('user_id', userId)
@@ -208,7 +209,7 @@ export const useMobileProfile = (
         // Get academy names
         try {
           if (academyIds && academyIds.length > 0) {
-            const { data: academyData, error: academyError } = await supabase
+            const { data: academyData, error: academyError } = await db
               .from('academies')
               .select('name')
               .in('id', academyIds)
@@ -229,7 +230,14 @@ export const useMobileProfile = (
       let preferencesData = { ...defaultPreferences }
 
       if (preferencesResult.data && !preferencesResult.error) {
-        const emailNotifs = preferencesResult.data.email_notifications || {}
+        // user_preferences.email_notifications is jsonb, so it arrives as
+        // `Json`. Narrow it to a plain object before reading the flags —
+        // an absent flag still defaults to opted-in (!== false).
+        const rawEmailNotifs = preferencesResult.data.email_notifications
+        const emailNotifs: Record<string, Json | undefined> =
+          rawEmailNotifs && typeof rawEmailNotifs === 'object' && !Array.isArray(rawEmailNotifs)
+            ? rawEmailNotifs
+            : {}
         preferencesData = {
           push_notifications: preferencesResult.data.push_notifications || false,
           email_notifications: {
@@ -296,7 +304,7 @@ export const useMobileProfile = (
     setPreferencesLoading(true)
 
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('user_preferences')
         .upsert({
           user_id: userId,
@@ -332,7 +340,7 @@ export const useMobileProfile = (
     const phone = rawPhone.trim() || null
 
     // users.phone always (the only home for academy-less study accounts).
-    const { error: usersError } = await supabase
+    const { error: usersError } = await db
       .from('users')
       .update({ phone })
       .eq('id', userId)
@@ -348,7 +356,7 @@ export const useMobileProfile = (
                       data.profile.role === 'parent' ? 'parents' :
                       data.profile.role === 'manager' ? 'managers' : null
     if (roleTable) {
-      const { error: roleError } = await supabase
+      const { error: roleError } = await db
         .from(roleTable)
         .update({ phone })
         .eq('user_id', userId)

@@ -7,7 +7,7 @@ import { CheckCircle2, XCircle, Loader2, ArrowRight, RefreshCw } from '@/app/mob
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader } from '../../_shared/MascotLoader'
 import { ExplainMore } from '../../_shared/ExplainMore'
@@ -134,9 +134,9 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
     if (!topicId || startingNew) return
     setStartingNew(true)
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) throw new Error('no user')
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('study_sessions')
         .insert({ student_id: user.id, topic_id: topicId, mode: 'practice', language, config: {} })
         .select('id')
@@ -191,9 +191,18 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
       // was unreachable — record the attempt client-side so a wrong answer
       // still reaches the wrong-notebook, session summary, and mastery, and
       // the /complete score stays in sync. Mirrors FlashcardsSession's insert.
-      void supabase.from('study_attempts').insert({
+      void db.from('study_attempts').insert({
         session_id: sessionId,
-        question: q,
+        // `question` is a jsonb column, so it takes a plain JSON object;
+        // spelled out field-by-field (an interface has no index signature).
+        question: {
+          prompt: q.prompt,
+          type: q.type,
+          choices: q.choices,
+          correct_answer: q.correct_answer,
+          difficulty: q.difficulty,
+          explanation: q.explanation,
+        },
         student_answer: trimmed,
         is_correct: isCorrect,
         ai_explanation: q.explanation ?? null,

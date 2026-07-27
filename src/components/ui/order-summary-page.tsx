@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Check, ArrowLeft, Info, ExternalLink } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { getDateLocale } from '@/utils/dateUtils'
 import { useRouter } from 'next/navigation'
@@ -44,7 +44,8 @@ interface ExistingSubscription {
   monthly_amount: number
   current_period_start: string
   current_period_end: string
-  next_billing_date: string
+  /** academy_subscriptions.next_billing_date is nullable. */
+  next_billing_date: string | null
   billing_key: string | null
 }
 
@@ -107,29 +108,46 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser()
+        const { data: { user } } = await db.auth.getUser()
         if (!user) return
 
-        const { data: userData } = await supabase
+        const { data: userData } = await db
           .from('users')
           .select('name, email, role')
           .eq('id', user.id)
           .single()
 
-        const roleTable = `${userData?.role}s`
-        const { data: roleData } = await supabase
-          .from(roleTable)
-          .select('phone, academy_id')
-          .eq('user_id', user.id)
-          .single()
+        // The membership row lives in a per-role table. Only these four
+        // exist: the old `${userData?.role}s` template also produced
+        // 'admins' / 'super_admins' for admin roles, which are not tables —
+        // that request 404'd and the phone/academy fell back to empty.
+        const roleTable =
+          userData?.role === 'manager' ? 'managers' as const :
+          userData?.role === 'teacher' ? 'teachers' as const :
+          userData?.role === 'parent' ? 'parents' as const :
+          userData?.role === 'student' ? 'students' as const :
+          null
+
+        const roleData = roleTable
+          ? (await db
+              .from(roleTable)
+              .select('phone, academy_id')
+              .eq('user_id', user.id)
+              .single()).data
+          : null
 
         const currentAcademyId = roleData?.academy_id || academyId
 
-        const { data: academyData } = await supabase
-          .from('academies')
-          .select('address')
-          .eq('id', currentAcademyId)
-          .single()
+        // academyId is an optional prop and the role row may be missing, so
+        // currentAcademyId can be undefined — skip the lookup rather than
+        // sending `id=eq.undefined`.
+        const academyData = currentAcademyId
+          ? (await db
+              .from('academies')
+              .select('address')
+              .eq('id', currentAcademyId)
+              .single()).data
+          : null
 
         setUserInfo({
           name: userData?.name || '',
@@ -141,7 +159,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         // Check for existing subscription to calculate proration
         if (currentAcademyId && selectedPlan) {
 
-          const { data: subscription, error: subError } = await supabase
+          const { data: subscription, error: subError } = await db
             .from('academy_subscriptions')
             .select('plan_tier, monthly_amount, current_period_start, current_period_end, next_billing_date, billing_key')
             .eq('academy_id', currentAcademyId)
@@ -178,7 +196,9 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                     isDowngrade: false,
                     proratedAmount: proration.proratedAmount,
                     daysRemaining: proration.daysRemaining,
-                    nextBillingDate: subscription.next_billing_date,
+                    // next_billing_date is nullable; the current period's end
+                    // IS the next billing date when it has not been stamped yet.
+                    nextBillingDate: subscription.next_billing_date ?? subscription.current_period_end,
                   })
                 }
               } else if (changeType === 'downgrade') {
@@ -189,7 +209,8 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
                   isDowngrade: true,
                   proratedAmount: 0,
                   daysRemaining: 0,
-                  nextBillingDate: subscription.next_billing_date,
+                  // See above: fall back to the end of the current period.
+                  nextBillingDate: subscription.next_billing_date ?? subscription.current_period_end,
                 })
               }
             }
@@ -237,7 +258,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         return
       }
 
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
 
 
       // SCENARIO 1: DOWNGRADE - Just schedule the change, no payment needed
@@ -388,7 +409,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         const billingKey = response.billingKey
 
         // Get session token for authentication
-        const { data: { session: authSession } } = await supabase.auth.getSession()
+        const { data: { session: authSession } } = await db.auth.getSession()
         const accessToken = authSession?.access_token
 
         if (!accessToken) {
@@ -518,7 +539,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       // Create subscription and make initial payment via billing key
 
       // Get the current session token for API authentication
-      const { data: { session: authSession2 } } = await supabase.auth.getSession()
+      const { data: { session: authSession2 } } = await db.auth.getSession()
       const accessToken = authSession2?.access_token
 
       if (!accessToken) {

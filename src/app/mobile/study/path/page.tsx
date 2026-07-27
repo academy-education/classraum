@@ -7,7 +7,7 @@ import {
   Sparkles, CheckCircle2, Lock, Play, Trophy, Target,
   Zap, ChevronRight, Repeat, X, Plus, Loader2,
 } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -131,13 +131,13 @@ function StudyPathInner() {
       // create sessions directly when a node is launched.
       const slugs = Array.from(new Set(tpl.nodes.map(n => n.subtopicSlug)))
       const [{ data: topics }, { data: sessionRows }] = await Promise.all([
-        supabase
+        db
           .from('study_topics')
           .select('id, slug')
           .in('slug', slugs),
         // Per-node progress: every session this student launched from
         // the path carries config.pathNode = node id.
-        supabase
+        db
           .from('study_sessions')
           .select('id, status, score, config')
           .eq('student_id', user.userId)
@@ -658,7 +658,7 @@ function PathList({
       if (node.launchMode === 'practice') {
         const topicId = topicIdBySlug[node.subtopicSlug]
         if (!topicId || !user?.userId) throw new Error('missing topic')
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('study_sessions')
           .insert({
             student_id: user.userId,

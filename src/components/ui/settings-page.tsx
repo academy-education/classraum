@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import type { Json } from '@/lib/database.types'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -49,27 +50,25 @@ import {
 import { useToast } from '@/hooks/use-toast'
 import { resetWelcomeSeen } from '@/components/ui/welcome-modal'
 
+// Mirrors public.user_preferences: every column except user_id is nullable,
+// and the three settings blobs are jsonb (Json), not narrower shapes.
 interface UserPreferences {
   user_id: string
-  push_notifications: boolean
-  language: string
-  theme: string
-  email_notifications: {
-    session_updates: boolean
-    attendance_alerts: boolean
-    family_activities: boolean
-    billing_updates: boolean
-  }
-  timezone: string
-  date_format: string
-  login_notifications: boolean
-  two_factor_enabled: boolean
-  display_density: string
-  auto_logout_minutes: number
-  dashboard_widgets: string[]
-  default_view: string
-  created_at: string
-  updated_at: string
+  push_notifications: boolean | null
+  language: string | null
+  theme: string | null
+  email_notifications: Json
+  timezone: string | null
+  date_format: string | null
+  login_notifications: boolean | null
+  two_factor_enabled: boolean | null
+  display_density: string | null
+  auto_logout_minutes: number | null
+  dashboard_widgets: Json
+  dashboard_layout: Json
+  default_view: string | null
+  created_at: string | null
+  updated_at: string | null
 }
 
 interface UserData {
@@ -79,9 +78,11 @@ interface UserData {
   role: string
   academy_id?: string
   academyId?: string  // In case the column is camelCase
-  phone?: string
-  created_at?: string
-  updated_at?: string
+  // users.phone / created_at / updated_at and the role tables' phone are all
+  // nullable columns, so these are `| null`, not merely optional.
+  phone?: string | null
+  created_at?: string | null
+  updated_at?: string | null
   [key: string]: unknown  // Allow any other fields from the database
 }
 
@@ -162,10 +163,10 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     try {
       // Check all 4 role tables in parallel
       const [managersResult, teachersResult, parentsResult, studentsResult] = await Promise.all([
-        supabase.from('managers').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
-        supabase.from('teachers').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
-        supabase.from('parents').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
-        supabase.from('students').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single()
+        db.from('managers').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
+        db.from('teachers').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
+        db.from('parents').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single(),
+        db.from('students').select('user_id, phone').eq('phone', phone).neq('user_id', currentUserId).single()
       ])
 
       // If any query returned data (not PGRST116 "not found" error), phone exists
@@ -266,7 +267,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     let cancelled = false
     ;(async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession()
+        const { data: { session } } = await db.auth.getSession()
         if (!session?.access_token) return
         const res = await fetch('/api/account/check-deletion-eligibility', {
           headers: { Authorization: `Bearer ${session.access_token}` },
@@ -308,7 +309,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     setDeletingAccount(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) {
         toast({ title: String(t('settings.dataStorage.deleteAccountError')), variant: 'destructive' })
         setDeletingAccount(false)
@@ -353,7 +354,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         try { sessionStorage.clear() } catch {}
       }
 
-      await supabase.auth.signOut()
+      await db.auth.signOut()
       window.location.href = '/account/goodbye'
     } catch (error) {
       console.error('Error deleting account:', error)
@@ -369,7 +370,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     }
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('users')
         .select('*')
         .eq('id', userId)
@@ -390,7 +391,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       // Also fetch additional role-specific data (like phone)
       if (data.role === 'teacher') {
-        const { data: teacherData, error: teacherError } = await supabase
+        const { data: teacherData, error: teacherError } = await db
           .from('teachers')
           .select('phone')
           .eq('user_id', userId)
@@ -402,7 +403,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           setOriginalUserData(updatedData)
         }
       } else if (data.role === 'parent') {
-        const { data: parentData, error: parentError } = await supabase
+        const { data: parentData, error: parentError } = await db
           .from('parents')
           .select('phone')
           .eq('user_id', userId)
@@ -414,7 +415,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           setOriginalUserData(updatedData)
         }
       } else if (data.role === 'student') {
-        const { data: studentData, error: studentError } = await supabase
+        const { data: studentData, error: studentError } = await db
           .from('students')
           .select('phone')
           .eq('user_id', userId)
@@ -426,7 +427,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
           setOriginalUserData(updatedData)
         }
       } else if (data.role === 'manager') {
-        const { data: managerData, error: managerError } = await supabase
+        const { data: managerData, error: managerError } = await db
           .from('managers')
           .select('phone, academy_id')
           .eq('user_id', userId)
@@ -450,7 +451,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       return
     }
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('user_preferences')
         .select('*')
         .eq('user_id', userId)
@@ -462,7 +463,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         setPreferences(data)
       } else {
         // Create default preferences if none exist
-        const { data: newPrefs, error: createError } = await supabase
+        const { data: newPrefs, error: createError } = await db
           .from('user_preferences')
           .insert({
             user_id: userId,
@@ -545,7 +546,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       }
 
       // Update main users table
-      const { error: userError } = await supabase
+      const { error: userError } = await db
         .from('users')
         .update(updateData)
         .eq('id', userId)
@@ -553,9 +554,20 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       if (userError) throw userError
 
       // Update phone number in the appropriate role table
-      if (userData.role) {
-        const roleTable = `${userData.role.toLowerCase()}s` // managers, teachers, parents, students
-        const { error: phoneError } = await supabase
+      // Only these four per-role tables exist. The old
+      // `${userData.role.toLowerCase()}s` template also produced 'admins' /
+      // 'super_admins' for admin roles, which are not tables — that write
+      // silently 404'd instead of saving the phone number.
+      const role = userData.role.toLowerCase()
+      const roleTable =
+        role === 'manager' ? 'managers' as const :
+        role === 'teacher' ? 'teachers' as const :
+        role === 'parent' ? 'parents' as const :
+        role === 'student' ? 'students' as const :
+        null
+
+      if (roleTable) {
+        const { error: phoneError } = await db
           .from(roleTable)
           .update({
             phone: userData.phone || null,
@@ -608,7 +620,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     setSaving(true)
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('user_preferences')
         .update({
           ...updates,
@@ -635,11 +647,11 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
   // Fetch academy logo
   const fetchAcademyLogo = useCallback(async () => {
-    if (!userData?.academy_id && !userData?.academyId) return
+    const academyId = userData?.academy_id || userData?.academyId
+    if (!academyId) return
 
-    const academyId = userData.academy_id || userData.academyId
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('academies')
         .select('logo_url')
         .eq('id', academyId)
@@ -687,24 +699,24 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       if (academyLogo) {
         const oldPath = academyLogo.split('/academy-logos/')[1]
         if (oldPath) {
-          await supabase.storage.from('academy-logos').remove([oldPath])
+          await db.storage.from('academy-logos').remove([oldPath])
         }
       }
 
       // Upload new logo
-      const { error: uploadError } = await supabase.storage
+      const { error: uploadError } = await db.storage
         .from('academy-logos')
         .upload(filePath, file, { upsert: true })
 
       if (uploadError) throw uploadError
 
       // Get public URL
-      const { data: { publicUrl } } = supabase.storage
+      const { data: { publicUrl } } = db.storage
         .from('academy-logos')
         .getPublicUrl(filePath)
 
       // Update academy record
-      const { error: updateError } = await supabase
+      const { error: updateError } = await db
         .from('academies')
         .update({ logo_url: publicUrl })
         .eq('id', academyId)
@@ -739,11 +751,11 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       // Extract file path from URL
       const pathMatch = academyLogo.split('/academy-logos/')[1]
       if (pathMatch) {
-        await supabase.storage.from('academy-logos').remove([pathMatch])
+        await db.storage.from('academy-logos').remove([pathMatch])
       }
 
       // Clear logo_url in database
-      const { error: updateError } = await supabase
+      const { error: updateError } = await db
         .from('academies')
         .update({ logo_url: null })
         .eq('id', academyId)

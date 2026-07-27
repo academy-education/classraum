@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import { parseNotificationRow, type NotificationRow } from '@/components/ui/common/notification-row'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { translateNotificationContent, NotificationParams } from '@/lib/notifications'
@@ -27,29 +28,9 @@ export const invalidateNotificationCache = (userId: string) => {
   sessionStorage.removeItem(`${cacheKey}-timestamp`)
 }
 
-interface Notification {
-  id: string
-  user_id: string
-  title: string
-  message: string
-  title_key?: string
-  message_key?: string
-  title_params?: NotificationParams
-  message_params?: NotificationParams
-  type: string
-  is_read: boolean
-  navigation_data?: {
-    page?: string
-    filters?: {
-      classroomId?: string
-      sessionId?: string
-      studentId?: string
-    }
-    action?: string
-  }
-  created_at: string
-  updated_at: string
-}
+// The notifications table's jsonb columns cannot be typed precisely by the
+// generated types, so the row shape and its runtime parser live in one place.
+type Notification = NotificationRow
 
 interface NotificationDropdownProps {
   userId: string
@@ -133,7 +114,7 @@ export function NotificationDropdown({
 
     setLoading(true)
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('notifications')
         .select('*')
         .eq('user_id', userId)
@@ -142,7 +123,7 @@ export function NotificationDropdown({
 
       if (error) throw error
 
-      setNotifications(data || [])
+      setNotifications((data || []).map(parseNotificationRow))
 
       // PERFORMANCE: Cache the results
       try {
@@ -187,7 +168,7 @@ export function NotificationDropdown({
       })
 
       // Update database first
-      const { error } = await supabase
+      const { error } = await db
         .from('notifications')
         .update({ is_read: true, updated_at: new Date().toISOString() })
         .eq('id', notificationId)
@@ -221,7 +202,9 @@ export function NotificationDropdown({
   }
 
   // Format time ago
-  const formatTimeAgo = (dateString: string) => {
+  // notifications.created_at is nullable — show nothing rather than "NaN ago".
+  const formatTimeAgo = (dateString: string | null) => {
+    if (!dateString) return ''
     const now = new Date()
     const past = new Date(dateString)
     const diffInMs = now.getTime() - past.getTime()

@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import { toRecurrenceType } from '@/components/ui/common/db-enums'
 import { authHeaders } from '@/lib/auth-headers'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -390,7 +391,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       try {
         // Update invoice statuses
-        const { error } = await supabase
+        const { error } = await db
           .from('invoices')
           .update({ status })
           .in('id', selectedIds)
@@ -411,7 +412,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       try {
         // Update recurring student statuses
-        const { error } = await supabase
+        const { error } = await db
           .from('recurring_payment_template_students')
           .update({ status })
           .in('id', selectedIds)
@@ -440,7 +441,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       try {
         // Soft delete: Set deleted_at timestamp
-        const { error } = await supabase
+        const { error } = await db
           .from('invoices')
           .update({ deleted_at: new Date().toISOString() })
           .in('id', selectedIds)
@@ -474,7 +475,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         // the enrollment goes away but the pending invoices survive, so the
         // student keeps getting billed for a plan the manager cancelled.
         for (const enrollment of enrollmentsToDelete) {
-          const { error: invoiceError } = await supabase
+          const { error: invoiceError } = await db
             .from('invoices')
             .update({ deleted_at: new Date().toISOString() })
             .eq('student_id', enrollment.student_id)
@@ -486,7 +487,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         }
 
         // Delete recurring payment enrollments
-        const { error } = await supabase
+        const { error } = await db
           .from('recurring_payment_template_students')
           .delete()
           .in('id', selectedIds)
@@ -518,7 +519,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     try {
       // Update template payment statuses
-      const { error } = await supabase
+      const { error } = await db
         .from('invoices')
         .update({ status: templateBulkStatus })
         .in('id', selectedIds)
@@ -608,7 +609,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     try {
       // Soft delete: Set deleted_at timestamp instead of hard delete
-      const { error } = await supabase
+      const { error } = await db
         .from('invoices')
         .update({ deleted_at: new Date().toISOString() })
         .eq('id', invoiceToDelete.id)
@@ -645,7 +646,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       // Also soft-delete any pending invoices for this student+template. If
       // this is dropped the enrollment disappears but the pending invoices
       // survive, so the student keeps getting billed for a cancelled plan.
-      const { error: invoiceError } = await supabase
+      const { error: invoiceError } = await db
         .from('invoices')
         .update({ deleted_at: new Date().toISOString() })
         .eq('student_id', recurringToDelete.student_id)
@@ -655,7 +656,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (invoiceError) throw invoiceError
 
-      const { error } = await supabase
+      const { error } = await db
         .from('recurring_payment_template_students')
         .delete()
         .eq('id', recurringToDelete.id)
@@ -683,7 +684,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     
     try {
       // Fetch the template info
-      const { data: template, error: templateError } = await supabase
+      const { data: template, error: templateError } = await db
         .from('recurring_payment_templates')
         .select('*')
         .eq('id', templateId)
@@ -691,14 +692,18 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         .single()
 
       if (templateError) throw templateError
-      
-      setSelectedTemplate(template)
+
+      setSelectedTemplate({
+        ...template,
+        // recurrence_type is a CHECK-constrained text column.
+        recurrence_type: toRecurrenceType(template.recurrence_type),
+      })
       setShowTemplatePaymentsModal(true)
       setTemplatePaymentsLoading(true)
       
       
       // Fetch all invoices for this specific student in this template WITH academy filtering for security
-      const { data: invoices, error: invoicesError } = await supabase
+      const { data: invoices, error: invoicesError } = await db
         .from('invoices')
         .select(`
           id,
@@ -765,7 +770,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   // const handleViewTemplatePayments = useCallback(async (templateId: string) => {
   //   // First fetch the template info
   //   try {
-  //     const { data: template, error: templateError } = await supabase
+  //     const { data: template, error: templateError } = await db
   //       .from('recurring_payment_templates')
   //       .select('*')
   //       .eq('id', templateId)
@@ -778,7 +783,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   //     setTemplatePaymentsLoading(true)
   //     
   //     // Fetch all students enrolled in this template
-  //     const { data: templateStudents, error: studentsError } = await supabase
+  //     const { data: templateStudents, error: studentsError } = await db
   //       .from('recurring_payment_template_students')
   //       .select(`
   //         student_id,
@@ -798,7 +803,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   //     if (studentsError) throw studentsError
   //
   //     // Fetch all invoices for this template
-  //     const { data: invoices, error: invoicesError } = await supabase
+  //     const { data: invoices, error: invoicesError } = await db
   //       .from('invoices')
   //       .select(`
   //         id,
@@ -911,7 +916,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const handlePauseResumeTemplate = async (templateId: string, currentlyActive: boolean) => {
     try {
       
-      const { error } = await supabase
+      const { error } = await db
         .from('recurring_payment_templates')
         .update({ is_active: !currentlyActive })
         .eq('id', templateId)
@@ -1245,7 +1250,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           }
         })
 
-        const { error: invoiceError } = await supabase
+        const { error: invoiceError } = await db
           .from('invoices')
           .insert(invoices)
 
@@ -1271,7 +1276,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         }
 
         // Look up student record IDs for the selected students
-        const { data: studentRecords } = await supabase
+        const { data: studentRecords } = await db
           .from('students')
           .select('id, user_id')
           .in('user_id', paymentFormData.selected_students)
@@ -1292,7 +1297,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           }
         })
 
-        const { error: templateStudentError } = await supabase
+        const { error: templateStudentError } = await db
           .from('recurring_payment_template_students')
           .upsert(templateStudentEntries, { onConflict: 'template_id,student_id' })
 
@@ -1301,7 +1306,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         // Create initial invoices for each selected student with individual amounts
         // First check for existing pending invoices to avoid duplicates
         const templateDueDate = calculateNextDueDate(selectedTemplate)
-        const { data: existingInvoices } = await supabase
+        const { data: existingInvoices } = await db
           .from('invoices')
           .select('student_id')
           .eq('template_id', paymentFormData.recurring_template_id)
@@ -1340,7 +1345,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             }
           })
 
-          const { error: invoiceError } = await supabase
+          const { error: invoiceError } = await db
             .from('invoices')
             .insert(initialInvoices)
 
@@ -1411,7 +1416,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
 
       // Update the invoice in the database
-      const { error } = await supabase
+      const { error } = await db
         .from('invoices')
         .update(updateData)
         .eq('id', editingInvoice.id)
@@ -1459,7 +1464,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       }
 
       // Update the recurring_payment_template_students record
-      const { error } = await supabase
+      const { error } = await db
         .from('recurring_payment_template_students')
         .update(updateData)
         .eq('id', editingRecurringStudent.id)
@@ -1502,7 +1507,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     setIsCreating(true)
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('recurring_payment_templates')
         .insert([{
           academy_id: academyId,
@@ -1553,7 +1558,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
     setIsSaving(true)
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('recurring_payment_templates')
         .update({
           name: planFormData.name,
@@ -2964,7 +2969,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                               recurringStudent.status === 'paused' ? 'bg-amber-50 text-amber-700' :
                               'bg-gray-50 text-gray-700'
                             }`}>
-                              {t(`payments.${recurringStudent.status}`)}
+                              {recurringStudent.status
+                                ? t(`payments.${recurringStudent.status}`)
+                                : String(t('common.fallbacks.unknown'))}
                             </div>
                           </div>
                         </td>
@@ -3002,7 +3009,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                     setEditingRecurringStudent(recurringStudent)
                                     setHasAmountOverride(!!recurringStudent.amount_override)
                                     setRecurringOverrideAmount(recurringStudent.amount_override?.toString() || '')
-                                    setRecurringStatus(recurringStudent.status)
+                                    // status is nullable; the edit form needs a
+                                    // selected option, and 'active' is the only
+                                    // state an unset enrollment can be in.
+                                    setRecurringStatus(recurringStudent.status ?? 'active')
                                     setShowEditRecurringModal(true)
                                     setOpenInvoiceDropdownId(null)
                                   }}

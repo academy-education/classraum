@@ -1,4 +1,5 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
+import { toJson } from '@/lib/json'
 import { raiseAlert } from '@/lib/ops/alert'
 import { jobSpec } from '@/lib/ops/jobs'
 
@@ -27,7 +28,7 @@ export async function recordHeartbeat(
   try {
     // Read the streak so a flapping job escalates rather than logging
     // the same warning forever.
-    const { data: prev } = await supabaseAdmin
+    const { data: prev } = await dbAdmin
       .from('job_heartbeats')
       .select('fail_streak')
       .eq('job', job)
@@ -40,14 +41,14 @@ export async function recordHeartbeat(
     // the watchdog reads last_ok_at going stale and pages for a cron that
     // is in fact perfectly healthy — or, worse, the row keeps a *stale
     // successful* last_ok_at and a genuinely dead job stays green.
-    const { error: upsertError } = await supabaseAdmin.from('job_heartbeats').upsert(
+    const { error: upsertError } = await dbAdmin.from('job_heartbeats').upsert(
       {
         job,
         last_run_at: now,
         ...(result.ok ? { last_ok_at: now } : {}),
         ok: result.ok,
         duration_ms: durationMs ?? null,
-        detail: result.detail ?? null,
+        detail: result.detail ? toJson(result.detail) : null,
         fail_streak: failStreak,
       },
       { onConflict: 'job' },

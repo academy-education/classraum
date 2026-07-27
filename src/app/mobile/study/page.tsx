@@ -11,7 +11,7 @@ import {
   MoreHorizontal, Lock, Target as TargetIcon, Lightbulb,
   Gift, X, Check, Loader2, Coins,
 } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from './SubscriptionGate'
@@ -364,7 +364,7 @@ function StudyLandingInner() {
   }, [])
 
   const loadTopics = useCallback(async () => {
-    const { data } = await supabase
+    const { data } = await db
       .from('study_topics')
       .select('id, slug, name_en, name_ko, level, parent_id, category')
       .in('level', [0, 1])
@@ -431,7 +431,7 @@ function StudyLandingInner() {
     const q = freeFormQuery.trim()
     if (!q || creatingFreeForm || !user?.userId) return
     setCreatingFreeForm(true)
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('study_sessions')
       .insert({
         student_id: user.userId,
@@ -1110,13 +1110,13 @@ function FirstTestActivationCard() {
         const headers = await authHeaders()
         const [res, { data: { user } }] = await Promise.all([
           fetch('/api/study/subscription', { headers }),
-          supabase.auth.getUser(),
+          db.auth.getUser(),
         ])
         const sub = res.ok ? await res.json() : null
         if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
         if (!cancelled && sub?.credits) setRegularBalance((sub.credits.grant ?? 0) + (sub.credits.purchased ?? 0))
         if (user) {
-          const { data: pc } = await supabase
+          const { data: pc } = await db
             .from('study_pass_credits')
             .select('remaining')
             .eq('student_id', user.id)

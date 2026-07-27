@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Mic, Square, RotateCcw, Sparkles, AlertCircle,
   ArrowRight, Clock, Pencil, Volume2, Award, ChevronRight, Info,
 } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { PathMascot } from '../../_shared/PathMascot'
 import { authHeaders } from '@/lib/auth-headers'
@@ -73,13 +73,13 @@ export function ResponseSession({
   useEffect(() => {
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select('topic_id')
         .eq('id', sessionId)
         .maybeSingle()
       if (!data?.topic_id || cancelled) return
-      const { data: topic } = await supabase
+      const { data: topic } = await db
         .from('study_topics')
         .select('slug')
         .eq('id', data.topic_id)

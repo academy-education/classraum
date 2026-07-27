@@ -12,7 +12,7 @@ import { EmptyState } from '@/components/ui/common/EmptyState'
 import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw, School, UserCheck } from 'lucide-react'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { getWeekdayShort } from '@/utils/dateUtils'
@@ -41,26 +41,6 @@ interface Session {
   teacher_name?: string // Additional field for UI display
   academy_name?: string // Additional field for UI display
   attendance_status?: 'present' | 'late' | 'absent' | 'excused' | 'pending' | null // Student's attendance status
-}
-
-interface DbSessionData {
-  id: string
-  date: string
-  start_time: string
-  end_time: string
-  status: string
-  location?: string
-  classroom_id: string
-  classrooms?: {
-    id: string
-    name: string
-    color: string
-    academy_id: string
-    teacher_id: string
-    classroom_students?: {
-      student_id: string
-    }[]
-  }[]
 }
 
 function MobileSchedulePageContent() {
@@ -142,7 +122,7 @@ function MobileSchedulePageContent() {
 
       // OPTIMIZATION: Combined query to get sessions for student's enrolled classrooms from all academies
       // This eliminates the need for separate student enrollment check
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_sessions')
         .select(`
           id,
@@ -176,26 +156,20 @@ function MobileSchedulePageContent() {
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
       const teacherIds = Array.from(new Set(filteredData.map((s) => {
-        const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
-        if (Array.isArray(classrooms)) {
-          return classrooms[0]?.teacher_id
-        } else if (classrooms && 'teacher_id' in classrooms) {
-          return classrooms.teacher_id
-        }
-        return null
+        // classroom_sessions.classroom_id is a to-one FK, so `classrooms`
+        // embeds as a single object (not an array).
+        return s.classrooms?.teacher_id ?? null
       }).filter(Boolean) as string[]))
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
 
       // Fetch academy names for all unique academy IDs
       const sessionAcademyIds = Array.from(new Set(filteredData.map((s) => {
-        const classrooms = s.classrooms as any
-        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
-        return classroom?.academy_id
+        return s.classrooms?.academy_id
       }).filter(Boolean))) as string[]
 
       const academyNamesMap = new Map<string, string>()
       if (sessionAcademyIds.length > 0) {
-        const { data: academies } = await supabase
+        const { data: academies } = await db
           .from('academies')
           .select('id, name')
           .in('id', sessionAcademyIds)
@@ -212,7 +186,7 @@ function MobileSchedulePageContent() {
       const attendanceMap = new Map<string, string>()
 
       if (sessionIds.length > 0) {
-        const { data: attendanceRecords } = await supabase
+        const { data: attendanceRecords } = await db
           .from('attendance')
           .select('classroom_session_id, status')
           .in('classroom_session_id', sessionIds)
@@ -224,10 +198,9 @@ function MobileSchedulePageContent() {
       }
 
       const formattedSessions: Session[] = filteredData.map((session) => {
-        const classrooms = session.classrooms as any
-        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
+        const classroom = session.classrooms
         const teacherName = teacherMap.get(classroom?.teacher_id || '') || String(t('mobile.fallbacks.unknownTeacher'))
-        const academyName = academyNamesMap.get(classroom?.academy_id) || String(t('mobile.fallbacks.academy'))
+        const academyName = academyNamesMap.get(classroom?.academy_id || '') || String(t('mobile.fallbacks.academy'))
         
         // Calculate duration
         const startTime = new Date(`2000-01-01T${session.start_time}`)
@@ -288,7 +261,7 @@ function MobileSchedulePageContent() {
       
       
       // OPTIMIZATION: Single query with all filters applied directly
-      const { data: sessions, error } = await supabase
+      const { data: sessions, error } = await db
         .from('classroom_sessions')
         .select(`
           id,
@@ -325,27 +298,21 @@ function MobileSchedulePageContent() {
       const studentSessions = sessions || []
       
       // OPTIMIZATION: Use cached teacher names with batch fetching
-      const teacherIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
-        const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
-        if (Array.isArray(classrooms)) {
-          return classrooms[0]?.teacher_id
-        } else if (classrooms && 'teacher_id' in classrooms) {
-          return classrooms.teacher_id
-        }
-        return null
+      const teacherIds = Array.from(new Set(studentSessions.map((s) => {
+        // classroom_sessions.classroom_id is a to-one FK, so `classrooms`
+        // embeds as a single object (not an array).
+        return s.classrooms?.teacher_id ?? null
       }).filter(Boolean) as string[]))
       const teacherMap = await getTeacherNamesWithCache(teacherIds)
 
       // Fetch academy names for all unique academy IDs
-      const monthlyAcademyIds = Array.from(new Set(studentSessions.map((s: DbSessionData) => {
-        const classrooms = s.classrooms as any
-        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
-        return classroom?.academy_id
+      const monthlyAcademyIds = Array.from(new Set(studentSessions.map((s) => {
+        return s.classrooms?.academy_id
       }).filter(Boolean))) as string[]
 
       const academyNamesMap = new Map<string, string>()
       if (monthlyAcademyIds.length > 0) {
-        const { data: academies } = await supabase
+        const { data: academies } = await db
           .from('academies')
           .select('id, name')
           .in('id', monthlyAcademyIds)
@@ -358,11 +325,11 @@ function MobileSchedulePageContent() {
       }
 
       // Fetch attendance records for all sessions in this month
-      const allSessionIds = studentSessions.map((s: DbSessionData) => s.id)
+      const allSessionIds = studentSessions.map((s) => s.id)
       const attendanceMap = new Map<string, string>()
 
       if (allSessionIds.length > 0) {
-        const { data: attendanceRecords } = await supabase
+        const { data: attendanceRecords } = await db
           .from('attendance')
           .select('classroom_session_id, status')
           .in('classroom_session_id', allSessionIds)
@@ -377,11 +344,10 @@ function MobileSchedulePageContent() {
       const newScheduleCache: Record<string, Session[]> = {}
       const sessionDates = new Set<string>()
 
-      studentSessions.forEach((session: DbSessionData) => {
-        const classrooms = session.classrooms as any
-        const classroom = Array.isArray(classrooms) ? classrooms[0] : classrooms
+      studentSessions.forEach((session) => {
+        const classroom = session.classrooms
         const teacherName = teacherMap.get(classroom?.teacher_id || '') || String(t('mobile.fallbacks.unknownTeacher'))
-        const academyName = academyNamesMap.get(classroom?.academy_id) || String(t('mobile.fallbacks.academy'))
+        const academyName = academyNamesMap.get(classroom?.academy_id || '') || String(t('mobile.fallbacks.academy'))
         
         // Calculate duration
         const startTime = new Date(`2000-01-01T${session.start_time}`)

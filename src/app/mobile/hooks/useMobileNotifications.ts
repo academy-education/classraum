@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
 
 export interface Notification {
@@ -78,7 +78,7 @@ export const useMobileNotifications = (user: User | null | any, studentId: strin
     setError(null)
 
     try {
-      const { data, error: fetchError } = await supabase
+      const { data, error: fetchError } = await db
         .from('notifications')
         .select(`
           id,
@@ -131,7 +131,7 @@ export const useMobileNotifications = (user: User | null | any, studentId: strin
 
   const markAsRead = useCallback(async (notificationId: string) => {
     try {
-      const { error: updateError } = await supabase
+      const { error: updateError } = await db
         .from('notifications')
         .update({ is_read: true })
         .eq('id', notificationId)
@@ -163,7 +163,7 @@ export const useMobileNotifications = (user: User | null | any, studentId: strin
     if (!user) return
 
     try {
-      const { error: updateError } = await supabase
+      const { error: updateError } = await db
         .from('notifications')
         .update({ is_read: true })
         .eq('user_id', user.id)

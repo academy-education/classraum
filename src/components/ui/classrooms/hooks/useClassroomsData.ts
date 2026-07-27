@@ -1,27 +1,28 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { useTranslation } from '@/hooks/useTranslation'
 
 // ---- Interfaces (re-exported for consumers) ----
 
+// Mirrors public.classrooms: only id / name / academy_id are NOT NULL.
 export interface Classroom {
   id: string
   name: string
-  grade?: string
-  subject_id?: string
+  grade?: string | null
+  subject_id?: string | null
   subject_name?: string
-  teacher_id: string
+  teacher_id: string | null
   teacher_name?: string
-  color?: string
-  notes?: string
+  color?: string | null
+  notes?: string | null
   academy_id: string
-  created_at: string
-  updated_at: string
-  paused?: boolean
+  created_at: string | null
+  updated_at: string | null
+  paused?: boolean | null
   enrolled_students?: { user_id?: string; name: string; school_name?: string }[]
   student_count?: number
   schedules?: { id: string; day: string; start_time: string; end_time: string }[]
@@ -66,7 +67,7 @@ export function useClassroomsData(academyId: string) {
   // Check if current user is a manager or teacher for this academy
   const checkUserRole = useCallback(async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) {
         setUserRole(null)
         setCurrentUserId(null)
@@ -81,7 +82,7 @@ export function useClassroomsData(academyId: string) {
       setCurrentUserId(user.id)
 
       // Check if user is a manager
-      const { data: managerData, error: managerError } = await supabase
+      const { data: managerData, error: managerError } = await db
         .from('managers')
         .select('user_id')
         .eq('academy_id', academyId)
@@ -95,7 +96,7 @@ export function useClassroomsData(academyId: string) {
       }
 
       // Check if user is a teacher
-      const { data: teacherData, error: teacherError } = await supabase
+      const { data: teacherData, error: teacherError } = await db
         .from('teachers')
         .select('user_id')
         .eq('academy_id', academyId)
@@ -144,7 +145,7 @@ export function useClassroomsData(academyId: string) {
 
     try {
       // Fetch all classrooms (no server-side pagination)
-      const { data, error, count } = await supabase
+      const { data, error, count } = await db
         .from('classrooms')
         .select('*', { count: 'exact' })
         .eq('academy_id', academyId)
@@ -164,19 +165,24 @@ export function useClassroomsData(academyId: string) {
 
       // Batch queries to avoid N+1 pattern
       const classroomIds = data.map(classroom => classroom.id)
-      const teacherIds = [...new Set(data.map(classroom => classroom.teacher_id).filter(Boolean))]
-      const subjectIds = [...new Set(data.map(classroom => classroom.subject_id).filter(Boolean))]
+      // teacher_id / subject_id are nullable — drop the unset ones.
+      const teacherIds = [...new Set(
+        data.map(classroom => classroom.teacher_id).filter((id): id is string => !!id)
+      )]
+      const subjectIds = [...new Set(
+        data.map(classroom => classroom.subject_id).filter((id): id is string => !!id)
+      )]
 
       // Execute all queries in parallel
       const [teachersData, studentsData, schedulesData, subjectsData] = await Promise.all([
         // Get all teacher names at once
-        teacherIds.length > 0 ? supabase
+        teacherIds.length > 0 ? db
           .from('users')
           .select('id, name')
           .in('id', teacherIds) : Promise.resolve({ data: [] }),
 
         // Get all enrolled students for all classrooms
-        classroomIds.length > 0 ? supabase
+        classroomIds.length > 0 ? db
           .from('classroom_students')
           .select(`
             classroom_id,
@@ -191,14 +197,14 @@ export function useClassroomsData(academyId: string) {
           .in('classroom_id', classroomIds) : Promise.resolve({ data: [] }),
 
         // Get all schedules for all classrooms
-        classroomIds.length > 0 ? supabase
+        classroomIds.length > 0 ? db
           .from('classroom_schedules')
           .select('*')
           .in('classroom_id', classroomIds)
           .order('day') : Promise.resolve({ data: [] }),
 
         // Get all subject names at once
-        subjectIds.length > 0 ? supabase
+        subjectIds.length > 0 ? db
           .from('subjects')
           .select('id, name')
           .in('id', subjectIds) : Promise.resolve({ data: [] })
@@ -238,7 +244,7 @@ export function useClassroomsData(academyId: string) {
         const studentData = studentsMap.get(classroom.id) || []
         return {
           ...classroom,
-          teacher_name: teacherMap.get(classroom.teacher_id) || 'Unknown Teacher',
+          teacher_name: (classroom.teacher_id ? teacherMap.get(classroom.teacher_id) : undefined) || 'Unknown Teacher',
           subject_name: classroom.subject_id ? subjectMap.get(classroom.subject_id) : undefined,
           enrolled_students: studentData,
           student_count: studentData.length,
@@ -275,7 +281,7 @@ export function useClassroomsData(academyId: string) {
       // Fetch both teachers and managers for this academy
       const [teachersResult, managersResult] = await Promise.all([
         // Get teachers
-        supabase
+        db
           .from('teachers')
           .select(`
             user_id,
@@ -288,7 +294,7 @@ export function useClassroomsData(academyId: string) {
           .eq('active', true),
 
         // Get managers
-        supabase
+        db
           .from('managers')
           .select(`
             user_id,
@@ -338,7 +344,7 @@ export function useClassroomsData(academyId: string) {
 
   const fetchStudents = useCallback(async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('students')
         .select(`
           user_id,
@@ -362,7 +368,7 @@ export function useClassroomsData(academyId: string) {
       // Get family information for all students
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const studentUserIds = data?.map((s: any) => s.user_id) || []
-      const { data: familyData } = await supabase
+      const { data: familyData } = await db
         .from('family_members')
         .select(`
           user_id,
@@ -377,7 +383,7 @@ export function useClassroomsData(academyId: string) {
       // Get parent names for each family
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const familyIds = [...new Set(familyData?.map((fm: any) => fm.families.id) || [])]
-      const { data: parentData } = await supabase
+      const { data: parentData } = await db
         .from('family_members')
         .select(`
           family_id,

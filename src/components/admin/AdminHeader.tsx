@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { AdminUser } from '@/lib/admin-auth-shared';
 import { performLogout } from '@/lib/logout';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface AdminHeaderProps {
@@ -35,7 +35,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
       router.replace('/auth');
     } catch (error) {
       console.error('Error signing out:', error);
-      try { await supabase.auth.signOut(); } catch { /* ignore */ }
+      try { await db.auth.signOut(); } catch { /* ignore */ }
       router.replace('/auth');
     }
   };

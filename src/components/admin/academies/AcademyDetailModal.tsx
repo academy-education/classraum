@@ -21,7 +21,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 import { StatusBadge, type StatusTone } from '../StatusBadge';

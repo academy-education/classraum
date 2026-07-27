@@ -7,7 +7,7 @@ import { Send, Loader2, MessageSquare, User, Users, Settings } from 'lucide-reac
 import { useTranslation } from '@/hooks/useTranslation'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { cn } from '@/lib/utils'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Conversation, Message, SystemMessageType } from './MessagesPage'
 import { GroupSettingsModal } from './GroupSettingsModal'
 
@@ -32,7 +32,7 @@ interface ChatPanelProps {
   onLeftConversation: () => void
 }
 
-type SupabaseChannel = ReturnType<typeof supabase.channel>
+type SupabaseChannel = ReturnType<typeof db.channel>
 
 interface TypingUser {
   userId: string
@@ -65,7 +65,7 @@ export function ChatPanel({
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   // Hold the SUBSCRIBED presence channel so handleInputChange can reuse it
   // for `track()` calls. Previously the input handler called
-  // `supabase.channel(...)` per keystroke, which (a) created an unsubscribed
+  // `db.channel(...)` per keystroke, which (a) created an unsubscribed
   // channel object per character and (b) silently dropped every track()
   // because the channel was never .subscribe()'d — so the typing indicator
   // didn't actually fire AND we leaked channel objects.
@@ -91,7 +91,7 @@ export function ChatPanel({
     if (!conversation || !currentUserId) return
 
     const channelName = `typing:conversation:${conversation.id}`
-    const channel = supabase.channel(channelName, {
+    const channel = db.channel(channelName, {
       config: { presence: { key: currentUserId } }
     })
 
@@ -117,7 +117,7 @@ export function ChatPanel({
 
     return () => {
       typingChannelRef.current = null
-      supabase.removeChannel(channel)
+      db.removeChannel(channel)
     }
   }, [conversation, currentUserId])
 
@@ -129,7 +129,7 @@ export function ChatPanel({
     if (!conversation || !currentUserId) return
 
     const channelName = `messages:conversation:${conversation.id}`
-    const channel = supabase
+    const channel = db
       .channel(channelName)
       .on(
         'postgres_changes',
@@ -174,7 +174,7 @@ export function ChatPanel({
           if (row.sender_id !== currentUserId && !row.system_type && !row.is_read) {
             // Don't fire the badge-refresh event on a failed write — that would
             // show a decremented count that snaps back on the next poll.
-            const { error } = await supabase
+            const { error } = await db
               .from('user_messages')
               .update({ is_read: true })
               .eq('id', row.id)
@@ -189,13 +189,13 @@ export function ChatPanel({
       .subscribe()
 
     return () => {
-      supabase.removeChannel(channel)
+      db.removeChannel(channel)
     }
   }, [conversation, currentUserId, onMessagesAppend, onConversationsChanged])
 
   // ---- Typing indicator outbound — track on input ----
   // Reuses the SUBSCRIBED channel from the presence effect above (held in
-  // typingChannelRef). Calling supabase.channel(name) here would create a
+  // typingChannelRef). Calling db.channel(name) here would create a
   // brand-new unsubscribed channel object per keystroke — every track()
   // would silently no-op AND we'd leak channels.
   const handleInputChange = (value: string) => {

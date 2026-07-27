@@ -10,7 +10,7 @@ import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import {
   ArrowLeft,
   CreditCard,
@@ -57,7 +57,7 @@ export default function MobileInvoicePaymentPage() {
     if (!invoiceId || !user?.userId) return null
     
     try {
-      const { data: invoiceData, error: invoiceError } = await supabase
+      const { data: invoiceData, error: invoiceError } = await db
         .from('invoices')
         .select(`
           id,
@@ -123,8 +123,8 @@ export default function MobileInvoicePaymentPage() {
         description: studentName,
         studentName: studentName,
         academyName,
-        paymentMethod: invoiceData.payment_method,
-        notes: invoiceData.discount_reason || invoiceData.transaction_id
+        paymentMethod: invoiceData.payment_method ?? undefined,
+        notes: invoiceData.discount_reason ?? invoiceData.transaction_id ?? undefined
       }
 
       return formattedInvoice
@@ -221,7 +221,7 @@ export default function MobileInvoicePaymentPage() {
       let payerName: string | undefined
       let payerEmail: string | undefined
       try {
-        const { data: payer } = await supabase
+        const { data: payer } = await db
           .from('users')
           .select('phone, name, email')
           .eq('id', user!.userId)
@@ -277,7 +277,7 @@ export default function MobileInvoicePaymentPage() {
 
         // Checked like the pending path below: an unchecked failure here
         // leaves the invoice stuck on 'pending' forever with nobody aware.
-        const { error: failUpdateError } = await supabase
+        const { error: failUpdateError } = await db
           .from('invoices')
           .update({
             status: 'failed',
@@ -331,7 +331,7 @@ export default function MobileInvoicePaymentPage() {
 
           try {
             // Get auth token for settlement API
-            const { data: { session: settlementSession } } = await supabase.auth.getSession();
+            const { data: { session: settlementSession } } = await db.auth.getSession();
             const settlementHeaders: Record<string, string> = {
               'Content-Type': 'application/json',
             };
@@ -372,7 +372,7 @@ export default function MobileInvoicePaymentPage() {
           }
 
           // Update invoice with payment and settlement info
-          const { error: updateError } = await supabase
+          const { error: updateError } = await db
             .from('invoices')
             .update({
               status: 'paid',
@@ -396,7 +396,7 @@ export default function MobileInvoicePaymentPage() {
         } else if (verifyResult.status === 'pending') {
           // Handle pending status (test mode or virtual account)
 
-          const { error: updateError } = await supabase
+          const { error: updateError } = await db
             .from('invoices')
             .update({
               status: 'pending',
@@ -418,7 +418,7 @@ export default function MobileInvoicePaymentPage() {
         router.push(`/mobile/invoice/${invoiceId}`)
       } else {
         // Verification failed - update invoice status to failed
-        const { error: verifyFailUpdateError } = await supabase
+        const { error: verifyFailUpdateError } = await db
           .from('invoices')
           .update({
             status: 'failed',
@@ -442,7 +442,7 @@ export default function MobileInvoicePaymentPage() {
       const errorMessage = (error as Error).message
 
       // Update invoice status to failed on error
-      const { error: errorPathUpdateError } = await supabase
+      const { error: errorPathUpdateError } = await db
         .from('invoices')
         .update({
           status: 'failed',

@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Loader2 } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { MascotLoader, useMascotGate } from './_shared/MascotLoader'
@@ -54,7 +54,7 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
       try {
       // Look up existing subscription. RLS lets the student read their
       // own row; service-role isn't needed here.
-      const { data: existing, error: readError } = await supabase
+      const { data: existing, error: readError } = await db
         .from('study_subscriptions')
         .select('status, current_period_end')
         .eq('student_id', user.id)
@@ -76,7 +76,7 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
       // confusingly showed "Cancel subscription" to people who never
       // subscribed). Free rows never expire, so no period fields.
       if (!existing) {
-        const { error: insertError } = await supabase
+        const { error: insertError } = await db
           .from('study_subscriptions')
           .insert({
             student_id: user.id,

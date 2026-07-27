@@ -42,7 +42,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 
@@ -102,11 +102,11 @@ export function UserManagement() {
   const [callerRole, setCallerRole] = useState<string>('admin');
   useEffect(() => {
     (async () => {
-      const { data } = await supabase.auth.getUser();
+      const { data } = await db.auth.getUser();
       const id = data.user?.id ?? null;
       setCurrentUserId(id);
       if (!id) return;
-      const { data: row } = await supabase
+      const { data: row } = await db
         .from('users')
         .select('role')
         .eq('id', id)

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 
 interface RoleBasedAuthWrapperProps {
@@ -38,7 +38,7 @@ export function RoleBasedAuthWrapper({
       }
 
       try {
-        const { data: userInfo, error } = await supabase
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', user.id)

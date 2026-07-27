@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import { toAttendanceStatus, type AttendanceStatus } from '@/components/ui/common/db-enums'
 import { triggerAssignmentGradedNotifications } from '@/lib/notification-triggers'
 import { useAssignmentsData } from '@/components/ui/assignments/hooks/useAssignmentsData'
 import { Button } from '@/components/ui/button'
@@ -286,7 +287,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     setIsCreatingCategory(true)
     try {
       // Verify authentication before creating
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) {
         toast({ title: String(t('categories.loginRequired')), variant: 'destructive' })
         return
@@ -354,11 +355,11 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     }
 
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (editingAssignment) {
         setIsSaving(true)
         // Update existing assignment
-        const { error } = await supabase
+        const { error } = await db
           .from('assignments')
           .update({
             title: formData.title,
@@ -378,7 +379,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         // Handle attachments for existing assignment update
         if (attachmentFiles.length > 0) {
           // First, delete existing attachments for this assignment
-          const { error: deleteError } = await supabase
+          const { error: deleteError } = await db
             .from('assignment_attachments')
             .delete()
             .eq('assignment_id', editingAssignment.id)
@@ -397,7 +398,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             uploaded_by: user?.id
           }))
           
-          const { error: attachmentError } = await supabase
+          const { error: attachmentError } = await db
             .from('assignment_attachments')
             .insert(attachmentRecords)
             
@@ -409,7 +410,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         } else {
           // If no attachments, delete any existing ones. Swallowing this would
           // leave the removed files attached while we toast "updated".
-          const { error: attachmentDeleteError } = await supabase
+          const { error: attachmentDeleteError } = await db
             .from('assignment_attachments')
             .delete()
             .eq('assignment_id', editingAssignment.id)
@@ -425,7 +426,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       } else {
         setIsCreating(true)
         // Create new assignment
-        const { data: assignmentData, error } = await supabase
+        const { data: assignmentData, error } = await db
           .from('assignments')
           .insert({
             classroom_session_id: formData.classroom_session_id,
@@ -446,7 +447,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         // Create assignment grades for all students in the classroom
         if (assignmentData) {
           // Get classroom from session
-          const { data: sessionData } = await supabase
+          const { data: sessionData } = await db
             .from('classroom_sessions')
             .select('classroom_id')
             .eq('id', formData.classroom_session_id)
@@ -454,7 +455,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
           if (sessionData) {
             // Get all students in the classroom (with student_record_id for FK)
-            const { data: enrollmentData } = await supabase
+            const { data: enrollmentData } = await db
               .from('classroom_students')
               .select('student_id, student_record_id')
               .eq('classroom_id', sessionData.classroom_id)
@@ -462,7 +463,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             if (enrollmentData && enrollmentData.length > 0) {
               try {
                 // Check if grades already exist for this assignment to prevent duplicates
-                const { data: existingGrades } = await supabase
+                const { data: existingGrades } = await db
                   .from('assignment_grades')
                   .select('student_id')
                   .eq('assignment_id', assignmentData.id)
@@ -481,7 +482,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                     status: 'pending'
                   }))
 
-                  const { error: gradeError } = await supabase
+                  const { error: gradeError } = await db
                     .from('assignment_grades')
                     .insert(gradeRecords)
 
@@ -503,7 +504,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         // Save attachments for new assignment
         if (attachmentFiles.length > 0) {
           // Get current user ID
-          const { data: { user } } = await supabase.auth.getUser()
+          const { data: { user } } = await db.auth.getUser()
           
           const attachmentRecords = attachmentFiles.map(file => ({
             assignment_id: assignmentData.id,
@@ -514,7 +515,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             uploaded_by: user?.id
           }))
           
-          const { error: attachmentError } = await supabase
+          const { error: attachmentError } = await db
             .from('assignment_attachments')
             .insert(attachmentRecords)
             
@@ -624,7 +625,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
 
     try {
       setIsSaving(true)
-      const { error } = await supabase
+      const { error } = await db
         .from('assignments')
         .update({ deleted_at: new Date().toISOString() })
         .eq('id', assignmentToDelete.id)
@@ -650,7 +651,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         t('assignments.deletedSuccessfully') as string,
         t('common.undo') as string,
         async () => {
-          const { error: restoreError } = await supabase
+          const { error: restoreError } = await db
             .from('assignments')
             .update({ deleted_at: null })
             .eq('id', deletedAssignment.id)
@@ -679,7 +680,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     setBulkUpdating(true)
     try {
       const ids = Array.from(selectedAssignmentIds)
-      const { error } = await supabase
+      const { error } = await db
         .from('assignments')
         .update({ deleted_at: new Date().toISOString() })
         .in('id', ids)
@@ -697,7 +698,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         t('assignments.bulkDeleteSuccess', { count: ids.length }) as string,
         t('common.undo') as string,
         async () => {
-          const { error: restoreError } = await supabase
+          const { error: restoreError } = await db
             .from('assignments')
             .update({ deleted_at: null })
             .in('id', ids)
@@ -736,7 +737,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     setBulkUpdating(true)
     try {
       const ids = Array.from(selectedAssignmentIds)
-      const { error } = await supabase
+      const { error } = await db
         .from('assignments')
         .update({ assignment_type: newType, updated_at: new Date().toISOString() })
         .in('id', ids)
@@ -760,7 +761,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     setShowViewModal(true)
 
     try {
-      const { data: grades, error } = await supabase
+      const { data: grades, error } = await db
         .from('assignment_grades')
         .select(`
           id,
@@ -809,7 +810,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     try {
       // Fetch grades and attendance in parallel
       const [gradesResult, attendanceResult] = await Promise.all([
-        supabase
+        db
           .from('assignment_grades')
           .select(`
             id,
@@ -825,7 +826,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           `)
           .eq('assignment_id', assignment.id),
         assignment.classroom_session_id
-          ? supabase
+          ? db
               .from('attendance')
               .select('student_id, status')
               .eq('classroom_session_id', assignment.classroom_session_id)
@@ -838,11 +839,12 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         return
       }
 
-      type AttendanceStatus = 'present' | 'late' | 'absent' | 'pending' | 'excused'
+      // attendance.status is a CHECK-constrained text column, so narrow it at
+      // runtime rather than assuming the literal set.
       const attendanceMap = new Map<string, AttendanceStatus>()
       if (attendanceResult.data) {
-        attendanceResult.data.forEach((record: { student_id: string, status: AttendanceStatus }) => {
-          attendanceMap.set(record.student_id, record.status)
+        attendanceResult.data.forEach((record) => {
+          attendanceMap.set(record.student_id, toAttendanceStatus(record.status))
         })
       }
 
@@ -926,7 +928,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setIsSaving(true)
 
       // Check authentication first
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) {
         showErrorToast(t('assignments.errorUpdatingSubmissions') as string, t('assignments.errors.mustBeLoggedIn') as string)
         return
@@ -964,7 +966,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             // Use a simpler update with a timeout wrapper
             const updateWithTimeout = () => {
               return Promise.race([
-                supabase
+                db
                   .from('assignment_grades')
                   .update(updateData)
                   .eq('id', grade.id),

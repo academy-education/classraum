@@ -1,5 +1,20 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
+
+// NOT migrated to the typed `db` client — deliberately left on `supabase`.
+//
+// Like the sibling files already removed in "chore: delete the dead hooks/api
+// query layer", this module queries a schema that does not exist:
+//   - `.from('profiles')` — there is no profiles table (it is `users`).
+//   - notifications has no `read` column (it is `is_read`), and no `category`
+//     or `action_url` column at all.
+//   - user_preferences has no `id`, `notifications`, `calendar_view` or
+//     `auto_refresh` column, so the UserPreferences interface is fiction.
+//
+// Nothing imports from '@/hooks/api', so none of this has ever run. Typing it
+// would mean inventing a User / UserPreferences / UserNotification contract
+// with no consumer to validate against; the file should most likely just be
+// deleted alongside its siblings.
 import { showSuccessToast, showErrorToast } from '@/stores'
 
 // Query key factory for user-related queries

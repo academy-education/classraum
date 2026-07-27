@@ -9,7 +9,7 @@ import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Search, Check, Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { authHeaders } from '../hooks/authHeaders'
 import type { Student } from '../types'
 
@@ -29,7 +29,7 @@ export function AssignModal({ isOpen, onClose, academyId, testId }: AssignModalP
   const [assigning, setAssigning] = useState(false)
 
   const loadStudents = useCallback(async () => {
-    const { data } = await supabase
+    const { data } = await db
       .from('students')
       .select('user_id, users(name, email)')
       .eq('academy_id', academyId)

@@ -1,6 +1,41 @@
-import { supabase } from '@/lib/supabase'
+import { db as anonDb } from '@/lib/supabase'
 import { createBulkNotifications, createNotification, sendPushNotification } from '@/lib/notifications'
-import type { NotificationType, NotificationInsert } from '@/lib/notification-types'
+import type { NotificationType } from '@/lib/notification-types'
+import type { Database } from '@/lib/database.types'
+
+/**
+ * A `notifications` insert as the TYPED client wants it, with `type` narrowed
+ * to the legal CHECK-constraint values.
+ *
+ * `NotificationInsert` (lib/notification-types.ts) declares `navigation_data`
+ * as `Record<string, unknown>`, which is not assignable to the generated
+ * `Json` column type. Intersecting the generated Insert with the narrowed
+ * `type` keeps the compile-time guarantee that motivated NotificationInsert —
+ * an illegal `type` is still a compile error — while matching the real column
+ * types exactly. Same shape used by api/level-tests/[id]/assign.
+ */
+type NotificationRow = Database['public']['Tables']['notifications']['Insert'] & {
+  type: NotificationType
+}
+
+/**
+ * Drop null/blank user ids from a notification recipient list.
+ *
+ * `notifications.user_id` is NOT NULL and these lists are written with ONE
+ * bulk insert, so a single null recipient makes Postgres reject the entire
+ * batch (23502) — every other recipient silently loses the notification too.
+ *
+ * The nulls are real, not theoretical:
+ *  - `family_members.user_id` is nullable because a family member can be
+ *    invited by name/email before they ever create an account (13 of 362
+ *    rows are null today);
+ *  - `classrooms.teacher_id` is nullable for an unassigned classroom.
+ *
+ * Both used to flow straight into the recipient array.
+ */
+function recipientIds(ids: Array<string | null | undefined>): string[] {
+  return ids.filter((id): id is string => typeof id === 'string' && id.length > 0)
+}
 
 /**
  * Unwrap a supabase joined-relation field that's typed as an array but
@@ -19,8 +54,8 @@ function one<T>(value: T | T[] | null | undefined): T | undefined {
  * Uses dynamic import so client-side code that imports this module isn't broken
  */
 async function getAdminClient() {
-  const { supabaseAdmin } = await import('@/lib/supabase-admin')
-  return supabaseAdmin
+  const { dbAdmin } = await import('@/lib/supabase-admin')
+  return dbAdmin
 }
 
 /**
@@ -45,7 +80,7 @@ async function createServerNotifications(
 ) {
   const adminClient = await getAdminClient()
 
-  const notifications: NotificationInsert[] = userIds.map(userId => ({
+  const notifications: NotificationRow[] = userIds.map(userId => ({
     user_id: userId,
     title_key: options.titleKey,
     message_key: options.messageKey,
@@ -102,7 +137,7 @@ async function getReadClient() {
   if (typeof window === 'undefined') {
     return await getAdminClient()
   }
-  return supabase
+  return anonDb
 }
 
 /**
@@ -132,7 +167,7 @@ export async function getStudentFamilyMembers(studentId: string): Promise<string
 
     // Dedupe: a user can belong to multiple families (split-household), which
     // would otherwise produce one notification row per family membership.
-    const ids = allFamilyMembers?.map(fm => fm.user_id) ?? []
+    const ids = recipientIds((allFamilyMembers ?? []).map(fm => fm.user_id))
     const unique = Array.from(new Set(ids))
     return unique.length > 0 ? unique : [studentId]
   } catch (error) {
@@ -172,7 +207,7 @@ export async function getStudentParents(studentId: string): Promise<string[]> {
 
     // Dedupe: a parent can be in the same family list twice if the student
     // is split across multiple family rows.
-    const familyMemberIds = Array.from(new Set(allFamilyMembers.map(fm => fm.user_id)))
+    const familyMemberIds = Array.from(new Set(recipientIds(allFamilyMembers.map(fm => fm.user_id))))
 
     // Filter to only include parents (users with role 'parent')
     const { data: parents } = await db
@@ -193,7 +228,7 @@ export async function getStudentParents(studentId: string): Promise<string[]> {
  */
 export async function getAcademyManagers(academyId: string): Promise<string[]> {
   try {
-    const { data: managers } = await supabase
+    const { data: managers } = await anonDb
       .from('managers')
       .select('user_id')
       .eq('academy_id', academyId)
@@ -211,7 +246,7 @@ export async function getAcademyManagers(academyId: string): Promise<string[]> {
  */
 export async function getAcademyTeachers(academyId: string): Promise<string[]> {
   try {
-    const { data: teachers } = await supabase
+    const { data: teachers } = await anonDb
       .from('teachers')
       .select('user_id')
       .eq('academy_id', academyId)
@@ -230,7 +265,7 @@ export async function getAcademyTeachers(academyId: string): Promise<string[]> {
 export async function triggerAssignmentCreatedNotifications(assignmentId: string) {
   try {
     // Get assignment details with classroom and session info
-    const { data: assignment } = await supabase
+    const { data: assignment } = await anonDb
       .from('assignments')
       .select(`
         id,
@@ -315,7 +350,7 @@ export async function triggerAttendanceChangedNotifications(attendanceId: string
     }
 
     // Get attendance details
-    const { data: attendance } = await supabase
+    const { data: attendance } = await anonDb
       .from('attendance')
       .select(`
         id,
@@ -352,7 +387,7 @@ export async function triggerAttendanceChangedNotifications(attendanceId: string
     }
 
     // Get student name
-    const { data: student } = await supabase
+    const { data: student } = await anonDb
       .from('users')
       .select('name')
       .eq('id', attendance.student_id)
@@ -446,7 +481,7 @@ export async function triggerSelfCheckInNotifications(
 export async function triggerInvoiceCreatedNotifications(invoiceId: string) {
   try {
     const isServer = typeof window === 'undefined'
-    const db = isServer ? await getAdminClient() : supabase
+    const db = isServer ? await getAdminClient() : anonDb
 
     // Get invoice details (don't use students!inner - FK points to users not students)
     const { data: invoice } = await db
@@ -460,11 +495,20 @@ export async function triggerInvoiceCreatedNotifications(invoiceId: string) {
       return
     }
 
+    // invoices.student_id is nullable. A notification cannot be addressed
+    // without it, and notifications.user_id is NOT NULL, so bail loudly
+    // rather than build a batch Postgres will reject.
+    if (!invoice.student_id) {
+      console.error('Invoice has no student_id; cannot notify:', invoiceId)
+      return
+    }
+    const studentId = invoice.student_id
+
     // Get student name from users table (invoices.student_id FK points to users.id)
     const { data: userData } = await db
       .from('users')
       .select('name')
-      .eq('id', invoice.student_id)
+      .eq('id', studentId)
       .single()
 
     const studentName = userData?.name || 'Student'
@@ -476,20 +520,23 @@ export async function triggerInvoiceCreatedNotifications(invoiceId: string) {
       const { data: studentFamily } = await db
         .from('family_members')
         .select('family_id')
-        .eq('user_id', invoice.student_id)
+        .eq('user_id', studentId)
 
       if (studentFamily && studentFamily.length > 0) {
-        const familyIds = studentFamily.map((sf: { family_id: string }) => sf.family_id)
+        const familyIds = studentFamily.map(sf => sf.family_id)
         const { data: allFamilyMembers } = await db
           .from('family_members')
           .select('user_id')
           .in('family_id', familyIds)
-        familyMembers = allFamilyMembers?.map((fm: { user_id: string }) => fm.user_id) || [invoice.student_id]
+        // Nullable user_id — see recipientIds.
+        familyMembers = allFamilyMembers
+          ? recipientIds(allFamilyMembers.map(fm => fm.user_id))
+          : [studentId]
       } else {
-        familyMembers = [invoice.student_id]
+        familyMembers = [studentId]
       }
     } else {
-      familyMembers = await getStudentFamilyMembers(invoice.student_id)
+      familyMembers = await getStudentFamilyMembers(studentId)
     }
 
     if (familyMembers.length === 0) {
@@ -514,7 +561,7 @@ export async function triggerInvoiceCreatedNotifications(invoiceId: string) {
         page: 'payments',
         // invoiceId enables the mobile notification handler to deep-link
         // straight to /mobile/invoice/[id] instead of the invoices list.
-        filters: { studentId: invoice.student_id, invoiceId: invoice.id }
+        filters: { studentId, invoiceId: invoice.id }
       },
       fallbackTitle: 'New Invoice',
       fallbackMessage: `New invoice for ${studentName}: ${invoice.final_amount.toLocaleString()} won`
@@ -553,11 +600,20 @@ export async function triggerInvoicePaymentNotifications(invoiceId: string) {
       return
     }
 
+    // invoices.student_id is nullable. A notification cannot be addressed
+    // without it, and notifications.user_id is NOT NULL, so bail loudly
+    // rather than build a batch Postgres will reject.
+    if (!invoice.student_id) {
+      console.error('Invoice has no student_id; cannot notify:', invoiceId)
+      return
+    }
+    const studentId = invoice.student_id
+
     // Get student name from users table (invoices.student_id FK points to users.id)
     const { data: userData } = await db
       .from('users')
       .select('name')
-      .eq('id', invoice.student_id)
+      .eq('id', studentId)
       .single()
 
     const studentName = userData?.name || 'Student'
@@ -566,7 +622,7 @@ export async function triggerInvoicePaymentNotifications(invoiceId: string) {
     const { data: studentRecord } = await db
       .from('students')
       .select('academy_id')
-      .eq('user_id', invoice.student_id)
+      .eq('user_id', studentId)
       .limit(1)
       .single()
 
@@ -603,7 +659,7 @@ export async function triggerInvoicePaymentNotifications(invoiceId: string) {
       type: 'billing',
       navigationData: {
         page: 'payments',
-        filters: { invoiceId: invoice.id, studentId: invoice.student_id },
+        filters: { invoiceId: invoice.id, studentId },
       },
       fallbackTitle: 'Payment Received',
       fallbackMessage: `Payment received from ${studentName}: ${invoice.final_amount.toLocaleString()} won`
@@ -621,7 +677,7 @@ export async function triggerInvoicePaymentNotifications(invoiceId: string) {
 export async function triggerStudentReportCompletedNotifications(reportId: string) {
   try {
     // Get report details
-    const { data: report } = await supabase
+    const { data: report } = await anonDb
       .from('student_reports')
       .select(`
         id,
@@ -688,7 +744,7 @@ export async function triggerStudentReportCompletedNotifications(reportId: strin
 export async function triggerUserDeactivatedNotifications(userId: string) {
   try {
     // Get user details
-    const { data: user } = await supabase
+    const { data: user } = await anonDb
       .from('users')
       .select('id, name, email, role')
       .eq('id', userId)
@@ -723,7 +779,7 @@ export async function triggerUserDeactivatedNotifications(userId: string) {
 export async function triggerClassroomCreatedNotifications(classroomId: string) {
   try {
     // Get classroom details
-    const { data: classroom } = await supabase
+    const { data: classroom } = await anonDb
       .from('classrooms')
       .select(`
         id,
@@ -747,8 +803,9 @@ export async function triggerClassroomCreatedNotifications(classroomId: string) 
 
     // Get managers and teacher
     const managers = await getAcademyManagers(classroom.academy_id)
-    // Use Set to deduplicate recipients (teacher might also be a manager)
-    const allRecipients = [...new Set([...managers, classroom.teacher_id])]
+    // Use Set to deduplicate recipients (teacher might also be a manager).
+    // teacher_id is nullable for an unassigned classroom — see recipientIds.
+    const allRecipients = [...new Set(recipientIds([...managers, classroom.teacher_id]))]
 
     if (allRecipients.length === 0) {
       console.log('No recipients found for classroom creation notification')
@@ -790,7 +847,7 @@ export async function triggerClassroomCreatedNotifications(classroomId: string) 
 export async function triggerSessionCreatedNotifications(sessionId: string) {
   try {
     // Get session details
-    const { data: session } = await supabase
+    const { data: session } = await anonDb
       .from('classroom_sessions')
       .select(`
         id,
@@ -829,8 +886,9 @@ export async function triggerSessionCreatedNotifications(sessionId: string) {
       sessionClassroom.teacher_id,
       ...(session.substitute_teacher ? [session.substitute_teacher] : [])
     ]
-    // Use Set to deduplicate recipients (teacher/substitute might also be a manager)
-    const recipients = [...new Set(recipientList)]
+    // Use Set to deduplicate recipients (teacher/substitute might also be a
+    // manager). teacher_id is nullable — see recipientIds.
+    const recipients = [...new Set(recipientIds(recipientList))]
 
     if (recipients.length === 0) {
       console.log('No recipients found for session creation notification')
@@ -840,7 +898,7 @@ export async function triggerSessionCreatedNotifications(sessionId: string) {
     // Get substitute teacher name if exists
     let substituteTeacherName = ''
     if (session.substitute_teacher) {
-      const { data: subTeacher } = await supabase
+      const { data: subTeacher } = await anonDb
         .from('users')
         .select('name')
         .eq('id', session.substitute_teacher)
@@ -896,7 +954,7 @@ async function getSessionChangeRecipients(sessionId: string): Promise<{
   teacherName: string
   recipients: string[]
 } | null> {
-  const { data: session } = await supabase
+  const { data: session } = await anonDb
     .from('classroom_sessions')
     .select(`
       id,
@@ -1096,7 +1154,7 @@ export async function triggerSessionRescheduledNotifications(
  */
 export async function triggerAssignmentGradedNotifications(gradeId: string) {
   try {
-    const { data: grade } = await supabase
+    const { data: grade } = await anonDb
       .from('assignment_grades')
       .select(`
         id,
@@ -1255,7 +1313,7 @@ export async function triggerSessionReminderNotifications() {
           continue
         }
 
-        // Use createServerNotifications (direct supabaseAdmin insert) instead
+        // Use createServerNotifications (direct dbAdmin insert) instead
         // of createBulkNotifications. The latter does a relative-URL fetch
         // to /api/notifications/create which fails server-side in cron
         // context. createServerNotifications throws on failure so the
@@ -1404,7 +1462,7 @@ export async function triggerAssignmentDueReminderNotifications() {
           continue
         }
 
-        // createServerNotifications: direct supabaseAdmin insert, throws
+        // createServerNotifications: direct dbAdmin insert, throws
         // on failure (vs createBulkNotifications which uses relative-URL
         // fetch and silently returns success: false in server contexts).
         await createServerNotifications(ctx.recipients, {
@@ -1590,14 +1648,26 @@ export async function triggerPaymentDueReminderNotifications() {
       try {
         // Get the student's name for the message — parents see "Payment
         // for 민준 is due..." rather than just an opaque amount.
+        // invoices.student_id is nullable; without it there is nobody to
+        // address. Mark it reminded so the cron doesn't retry it forever.
+        if (!invoice.student_id) {
+          console.error('[Payment due reminder] Invoice has no student_id:', invoice.id)
+          await db
+            .from('invoices')
+            .update({ due_reminder_sent_at: new Date().toISOString() })
+            .eq('id', invoice.id)
+          continue
+        }
+        const studentId = invoice.student_id
+
         const { data: student } = await db
           .from('users')
           .select('name')
-          .eq('id', invoice.student_id)
+          .eq('id', studentId)
           .single()
         const studentName = student?.name || 'Student'
 
-        const recipients = await getStudentFamilyMembers(invoice.student_id)
+        const recipients = await getStudentFamilyMembers(studentId)
         if (recipients.length === 0) {
           await db
             .from('invoices')
@@ -1621,7 +1691,7 @@ export async function triggerPaymentDueReminderNotifications() {
           type: 'billing',
           navigationData: {
             page: 'payments',
-            filters: { studentId: invoice.student_id, invoiceId: invoice.id },
+            filters: { studentId, invoiceId: invoice.id },
           },
           fallbackTitle: 'Payment Reminder',
           fallbackMessage: `Payment of ${formattedAmount} for ${studentName} is due on ${invoice.due_date}.`,
@@ -1690,16 +1760,28 @@ export async function triggerPaymentOverdueNotifications() {
 
     for (const invoice of invoices) {
       try {
+        // invoices.student_id is nullable; without it there is nobody to
+        // address. Mark it notified so the cron doesn't retry it forever.
+        if (!invoice.student_id) {
+          console.error('[Payment overdue] Invoice has no student_id:', invoice.id)
+          await db
+            .from('invoices')
+            .update({ overdue_notification_sent_at: new Date().toISOString() })
+            .eq('id', invoice.id)
+          continue
+        }
+        const studentId = invoice.student_id
+
         const { data: student } = await db
           .from('users')
           .select('name')
-          .eq('id', invoice.student_id)
+          .eq('id', studentId)
           .single()
         const studentName = student?.name || 'Student'
 
         // Family + academy managers. Managers get the same message; the
         // navigation data takes them to the right invoice.
-        const familyRecipients = await getStudentFamilyMembers(invoice.student_id)
+        const familyRecipients = await getStudentFamilyMembers(studentId)
         const managerRecipients = invoice.academy_id
           ? await getAcademyManagers(invoice.academy_id)
           : []
@@ -1727,7 +1809,7 @@ export async function triggerPaymentOverdueNotifications() {
           type: 'billing',
           navigationData: {
             page: 'payments',
-            filters: { studentId: invoice.student_id, invoiceId: invoice.id },
+            filters: { studentId, invoiceId: invoice.id },
           },
           fallbackTitle: 'Payment Overdue',
           fallbackMessage: `Payment of ${formattedAmount} for ${studentName} is now overdue. Please settle immediately.`,
@@ -1758,7 +1840,7 @@ export async function triggerPaymentOverdueNotifications() {
 export async function triggerWelcomeNotifications(userId: string) {
   try {
     // Get user details
-    const { data: user } = await supabase
+    const { data: user } = await anonDb
       .from('users')
       .select('id, name, email, role')
       .eq('id', userId)
@@ -1857,7 +1939,12 @@ export async function triggerPendingGradesReminderNotifications() {
       const session = one(assignment.classroom_sessions)
       const classroom = one(session?.classrooms)
       if (!classroom) continue
-      const key = `${classroom.academy_id}-${classroom.teacher_id}`
+      // classrooms.teacher_id is nullable (unassigned classroom). The whole
+      // point of this digest is to nudge the teacher, and a null recipient
+      // would make Postgres reject the entire batch — skip it instead.
+      if (!classroom.teacher_id) continue
+      const teacherId = classroom.teacher_id
+      const key = `${classroom.academy_id}-${teacherId}`
       const pendingGrades = assignment.assignment_grades.filter(
         (g: { status: string }) => g.status === 'pending' || g.status === 'not submitted'
       )
@@ -1866,7 +1953,7 @@ export async function triggerPendingGradesReminderNotifications() {
         if (!academyTeacherMap.has(key)) {
           academyTeacherMap.set(key, {
             academyId: classroom.academy_id,
-            teacherId: classroom.teacher_id,
+            teacherId,
             pendingCount: 0,
             classrooms: new Set()
           })
@@ -2054,19 +2141,19 @@ export async function triggerSessionAutoCompletionNotifications() {
  * link or the in-person completion flow). Notifies every manager of the
  * academy that owns the test.
  *
- * Inserts directly via supabaseAdmin rather than going through
+ * Inserts directly via dbAdmin rather than going through
  * createBulkNotifications(), because that helper relies on a relative fetch
  * to /api/notifications/create which doesn't resolve from server-side
- * contexts. supabaseAdmin bypasses RLS cleanly.
+ * contexts. dbAdmin bypasses RLS cleanly.
  *
  * All errors are swallowed — notifications are best-effort and must never
  * cause the submit flow to fail.
  */
 export async function triggerLevelTestSubmittedNotifications(attemptId: string) {
   try {
-    const { supabaseAdmin } = await import('@/lib/supabase-admin')
+    const { dbAdmin } = await import('@/lib/supabase-admin')
 
-    const { data: attempt } = await supabaseAdmin
+    const { data: attempt } = await dbAdmin
       .from('level_test_attempts')
       .select(`
         id,
@@ -2097,9 +2184,9 @@ export async function triggerLevelTestSubmittedNotifications(attemptId: string) 
       return
     }
 
-    // Find managers of the academy. Using supabaseAdmin so this works even
+    // Find managers of the academy. Using dbAdmin so this works even
     // when called from the public (unauthed) submit path.
-    const { data: managerRows } = await supabaseAdmin
+    const { data: managerRows } = await dbAdmin
       .from('managers')
       .select('user_id')
       .eq('academy_id', test.academy_id)
@@ -2121,7 +2208,7 @@ export async function triggerLevelTestSubmittedNotifications(attemptId: string) 
 
     const now = new Date().toISOString()
     const takerName = attempt.taker_name || 'Student'
-    const notifications: NotificationInsert[] = managerIds.map(userId => ({
+    const notifications: NotificationRow[] = managerIds.map(userId => ({
       user_id: userId,
       title_key: 'notifications.content.levelTest.submitted.title',
       message_key: 'notifications.content.levelTest.submitted.message',
@@ -2139,7 +2226,7 @@ export async function triggerLevelTestSubmittedNotifications(attemptId: string) 
       updated_at: now,
     }))
 
-    const { error: insertError } = await supabaseAdmin
+    const { error: insertError } = await dbAdmin
       .from('notifications')
       .insert(notifications)
 

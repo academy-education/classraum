@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { triggerAssignmentCreatedNotifications } from '@/lib/notification-triggers'
 
 export interface AssignmentFormData {
@@ -18,7 +18,7 @@ export function useAssignmentActions() {
     formData: AssignmentFormData
   ) => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignments')
         .insert({
           title: formData.title,
@@ -54,7 +54,7 @@ export function useAssignmentActions() {
     formData: AssignmentFormData
   ) => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignments')
         .update({
           title: formData.title,
@@ -80,17 +80,17 @@ export function useAssignmentActions() {
 
   const deleteAssignment = useCallback(async (assignmentId: string) => {
     try {
-      // First delete related submissions. Reporting success after only half of
-      // a two-step delete leaves orphaned submissions behind, so fail loudly.
-      const { error: submissionsError } = await supabase
-        .from('assignment_submissions')
+      // First delete related grades. Reporting success after only half of
+      // a two-step delete leaves orphaned grades behind, so fail loudly.
+      const { error: submissionsError } = await db
+        .from('assignment_grades')
         .delete()
         .eq('assignment_id', assignmentId)
 
       if (submissionsError) throw submissionsError
 
       // Then delete the assignment
-      const { error } = await supabase
+      const { error } = await db
         .from('assignments')
         .delete()
         .eq('id', assignmentId)
@@ -110,13 +110,17 @@ export function useAssignmentActions() {
     feedback?: string
   ) => {
     try {
-      const { data, error } = await supabase
-        .from('assignment_submissions')
+      // The table is assignment_grades: the column is `score`, not `grade`,
+      // there is no `graded_at` (it is `updated_at`), and 'graded' is not a
+      // legal status — assignment_grades_status_check allows only
+      // pending | submitted | not submitted | excused | overdue — so recording
+      // a score leaves the status alone.
+      const { data, error } = await db
+        .from('assignment_grades')
         .update({
-          grade,
+          score: grade,
           feedback,
-          status: 'graded',
-          graded_at: new Date().toISOString()
+          updated_at: new Date().toISOString()
         })
         .eq('id', submissionId)
         .select()
@@ -136,7 +140,7 @@ export function useAssignmentActions() {
     name: string
   ) => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignment_categories')
         .insert({
           name: name.trim(),
@@ -159,13 +163,12 @@ export function useAssignmentActions() {
   ) => {
     try {
       const updates = grades.map(({ submissionId, grade, feedback }) =>
-        supabase
-          .from('assignment_submissions')
+        db
+          .from('assignment_grades')
           .update({
-            grade,
+            score: grade,
             feedback,
-            status: 'graded',
-            graded_at: new Date().toISOString()
+            updated_at: new Date().toISOString()
           })
           .eq('id', submissionId)
       )

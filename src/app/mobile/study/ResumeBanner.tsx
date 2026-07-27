@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Play } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudyTodayCard } from './_shared/primitives'
@@ -50,7 +50,7 @@ export function ResumeBanner() {
     if (!user?.userId) return
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select(`
           id, mode, title, last_active_at, topic_freeform, config,

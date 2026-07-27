@@ -28,7 +28,7 @@ import {
   type GroupedFamily,
   type FamilyMember
 } from '@/lib/csv-parser'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 interface FamilyImportModalProps {
   isOpen: boolean
@@ -169,7 +169,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
         try {
 
           // Create family record
-          const { data: familyData, error: familyError } = await supabase
+          const { data: familyData, error: familyError } = await db
             .from('families')
             .insert({
               academy_id: academyId,
@@ -200,7 +200,7 @@ export function FamilyImportModal({ isOpen, onClose, academyId, onSuccess }: Fam
           }))
 
 
-          const { error: membersError } = await supabase
+          const { error: membersError } = await db
             .from('family_members')
             .insert(memberRecords)
 

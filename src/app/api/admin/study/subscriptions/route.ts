@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase-admin';
+import { dbAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth } from '@/lib/admin-auth';
 
 /**
@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
   // Name/email search → matching student ids first.
   let studentFilter: string[] | null = null;
   if (q) {
-    const { data: users } = await supabaseAdmin
+    const { data: users } = await dbAdmin
       .from('users')
       .select('id')
       .or(`name.ilike.%${q}%,email.ilike.%${q}%`)
@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
   // Exact total from Postgres (head:true fetches no rows), then only this
   // page's rows — so the count stays right as the table grows. Filters are
   // applied to both queries and MUST stay in sync.
-  let countQuery = supabaseAdmin.from('study_subscriptions').select('student_id', { count: 'exact', head: true });
+  let countQuery = dbAdmin.from('study_subscriptions').select('student_id', { count: 'exact', head: true });
   if (status && status !== 'all') countQuery = countQuery.eq('status', status);
   if (plan && plan !== 'all') countQuery = countQuery.eq('plan', plan);
   if (studentFilter) countQuery = countQuery.in('student_id', studentFilter);
@@ -68,7 +68,7 @@ export async function GET(req: NextRequest) {
   const total = count ?? 0;
 
   const from = (page - 1) * PAGE_SIZE;
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('study_subscriptions')
     .select(SELECT)
     .order('updated_at', { ascending: false })
@@ -88,13 +88,13 @@ export async function GET(req: NextRequest) {
   const ids = Array.from(new Set(pageRows.map((r) => r.student_id)));
   const nameMap = new Map<string, { name: string | null; email: string | null }>();
   if (ids.length > 0) {
-    const { data: users } = await supabaseAdmin.from('users').select('id, name, email').in('id', ids);
+    const { data: users } = await dbAdmin.from('users').select('id, name, email').in('id', ids);
     for (const u of users ?? []) nameMap.set(u.id as string, { name: u.name as string | null, email: u.email as string | null });
   }
 
   // Per-status counts for the filter (whole table, ignoring the status
   // filter) — grouped in Postgres rather than by fetching every row.
-  const { data: statusRows } = await supabaseAdmin.rpc('admin_study_subscription_status_counts');
+  const { data: statusRows } = await dbAdmin.rpc('admin_study_subscription_status_counts');
   const counts: Record<string, number> = {};
   for (const r of (statusRows ?? []) as Array<{ status: string; cnt: number }>) {
     counts[r.status] = Number(r.cnt);

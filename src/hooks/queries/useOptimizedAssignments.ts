@@ -1,6 +1,18 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { usePerformanceMonitor } from '../performance/usePerformanceMonitor'
+
+// Mirrors assignments_assignment_type_check.
+const ASSIGNMENT_TYPES = ['quiz', 'homework', 'test', 'project'] as const
+type AssignmentType = (typeof ASSIGNMENT_TYPES)[number]
+
+function toAssignmentType(v: string): AssignmentType {
+  if ((ASSIGNMENT_TYPES as readonly string[]).includes(v)) {
+    return v as AssignmentType
+  }
+  console.warn(`Unexpected assignment_type from DB: ${v}`)
+  return 'homework'
+}
 
 interface Assignment {
   id: string
@@ -39,7 +51,7 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
   
   try {
     // OPTIMIZED: Single query with all joins to get assignments with full context
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('assignments')
       .select(`
         *,
@@ -69,15 +81,15 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
     if (!data || data.length === 0) return { assignments: [], grades: [] }
 
     // OPTIMIZED: Extract IDs for parallel batch queries
-    const assignmentClassroomIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.id).filter(Boolean))]
-    const teacherIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.teacher_id).filter(Boolean))]
+    const assignmentClassroomIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.id).filter((id): id is string => Boolean(id)))]
+    const teacherIds = [...new Set(data.map(a => a.classroom_sessions?.classrooms?.teacher_id).filter((id): id is string => Boolean(id)))]
     const assignmentIds = data.map(a => a.id)
 
     // OPTIMIZED: Execute all supplementary queries in parallel
     const [studentCountsResult, submissionCountsResult, attachmentsResult, allGradesResult, teachersResult] = await Promise.all([
       // Student counts per classroom
       assignmentClassroomIds.length > 0 
-        ? supabase
+        ? db
             .from('classroom_students')
             .select('classroom_id')
             .in('classroom_id', assignmentClassroomIds)
@@ -85,7 +97,7 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
       
       // Submission counts per assignment
       assignmentIds.length > 0
-        ? supabase
+        ? db
             .from('assignment_grades')
             .select('assignment_id')
             .in('assignment_id', assignmentIds)
@@ -94,7 +106,7 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
       
       // Attachments per assignment
       assignmentIds.length > 0
-        ? supabase
+        ? db
             .from('assignment_attachments')
             .select('assignment_id, file_name, file_url, file_size, file_type')
             .in('assignment_id', assignmentIds)
@@ -102,7 +114,7 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
       
       // All grades for pending count
       assignmentIds.length > 0
-        ? supabase
+        ? db
             .from('assignment_grades')
             .select('*')
             .in('assignment_id', assignmentIds)
@@ -110,7 +122,7 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
       
       // Teacher names
       teacherIds.length > 0
-        ? supabase
+        ? db
             .from('users')
             .select('id, name')
             .in('id', teacherIds)
@@ -170,7 +182,14 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
 
       return {
         ...assignment,
-        assignment_categories_id: assignment.assignment_categories_id,
+        assignment_categories_id: assignment.assignment_categories_id ?? undefined,
+        // These columns are nullable in the DB; the local type models "absent"
+        // as undefined rather than null.
+        description: assignment.description ?? undefined,
+        due_date: assignment.due_date ?? undefined,
+        created_at: assignment.created_at ?? '',
+        updated_at: assignment.updated_at ?? '',
+        assignment_type: toAssignmentType(assignment.assignment_type),
         classroom_name: classroom?.name || 'Unknown Classroom',
         classroom_color: classroom?.color || '#6B7280',
         teacher_name: teacherName || 'Unknown Teacher',
@@ -178,7 +197,7 @@ async function fetchOptimizedAssignments(academyId: string, onQueryCount?: (coun
         session_time: `${session?.start_time} - ${session?.end_time}`,
         category_name: assignment.assignment_categories?.name,
         attachments: attachmentMap.get(assignment.id) || [],
-        student_count: studentCountMap.get(classroom?.id) || 0,
+        student_count: (classroom?.id ? studentCountMap.get(classroom.id) : 0) || 0,
         submitted_count: submissionCountMap.get(assignment.id) || 0
       }
     })

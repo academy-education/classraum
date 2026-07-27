@@ -4,7 +4,7 @@ import { use, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Sparkles, HelpCircle, ArrowLeft } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../../SubscriptionGate'
 import { STUDY_MODES, type StudyMode } from '../../modes'
@@ -73,7 +73,7 @@ function SessionInner({ id }: { id: string }) {
       // skeleton — fall through to the not-found state, which has a
       // back link, instead of spinning forever.
       try {
-        const { data: row } = await supabase
+        const { data: row } = await db
           .from('study_sessions')
           .select('id, topic_id, mode, title, language, status, config')
           .eq('id', id)
@@ -99,7 +99,7 @@ function SessionInner({ id }: { id: string }) {
         setSession(row as Session)
 
         if (row.topic_id) {
-          const { data: t } = await supabase
+          const { data: t } = await db
             .from('study_topics')
             .select('slug, name_en, name_ko')
             .eq('id', row.topic_id)

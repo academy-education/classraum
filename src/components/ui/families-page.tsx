@@ -5,7 +5,7 @@ import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { useDirtyState } from '@/hooks/useDirtyState'
 import { useConfirm } from '@/hooks/useConfirm'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -51,10 +51,11 @@ export { invalidateFamiliesCache }
 
 interface Family {
   id: string
-  name?: string
+  // families.name / created_at / deleted_at are all nullable.
+  name?: string | null
   academy_id: string
-  created_at: string
-  deleted_at?: string
+  created_at: string | null
+  deleted_at?: string | null
   member_count: number
   signed_up_count?: number
   total_member_count?: number
@@ -243,7 +244,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       const from = (currentPage - 1) * itemsPerPage
       const to = from + itemsPerPage - 1
 
-      const { data: familiesData, error: familiesError, count } = await supabase
+      const { data: familiesData, error: familiesError, count } = await db
         .from('families')
         .select('id, name, academy_id, created_at, deleted_at', { count: 'exact' })
         .eq('academy_id', academyId)
@@ -261,7 +262,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       const familyMembers: { [key: string]: FamilyMember[] } = {}
 
       if (familyIds.length > 0) {
-        const { data: membersData, error: membersError } = await supabase
+        const { data: membersData, error: membersError } = await db
           .from('family_members')
           .select(`
             id,
@@ -282,39 +283,41 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
         if (!membersError && membersData) {
           // Get phone numbers for members with user_id from their respective role tables
-          const membersWithUserId = membersData.filter((member: { user_id: string | null }) => member.user_id !== null)
-          const allMemberIds = membersWithUserId.map((member: { user_id: string }) => member.user_id)
+          // family_members.user_id is nullable; only linked members have phones.
+          const allMemberIds = membersData
+            .map(member => member.user_id)
+            .filter((id): id is string => id !== null)
           const phoneMap: { [key: string]: string | null } = {}
 
           if (allMemberIds.length > 0) {
             // Fetch from parents table
-            const { data: parentPhones } = await supabase
+            const { data: parentPhones } = await db
               .from('parents')
               .select('user_id, phone')
               .in('user_id', allMemberIds)
 
-            parentPhones?.forEach((p: { user_id: string; phone: string }) => {
+            parentPhones?.forEach((p) => {
               phoneMap[p.user_id] = p.phone
             })
 
             // Fetch from students table
-            const { data: studentPhones } = await supabase
+            const { data: studentPhones } = await db
               .from('students')
               .select('user_id, phone')
               .in('user_id', allMemberIds)
 
-            studentPhones?.forEach((s: { user_id: string; phone: string }) => {
+            studentPhones?.forEach((s) => {
               phoneMap[s.user_id] = s.phone
             })
 
             // Fetch from teachers table
-            const { data: teacherPhones } = await supabase
+            const { data: teacherPhones } = await db
               .from('teachers')
               .select('user_id, phone')
               .in('user_id', allMemberIds)
 
-            teacherPhones?.forEach((t: { user_id: string; phone?: string }) => {
-              phoneMap[t.user_id] = t.phone || null
+            teacherPhones?.forEach((teacherRow) => {
+              phoneMap[teacherRow.user_id] = teacherRow.phone || null
             })
           }
 
@@ -444,7 +447,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
     try {
       // Get all users in the academy (students and parents)
-      const { data: studentsData, error: studentsError } = await supabase
+      const { data: studentsData, error: studentsError } = await db
         .from('students')
         .select(`
           user_id,
@@ -458,7 +461,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         .eq('academy_id', academyId)
         .eq('active', true)
 
-      const { data: parentsData, error: parentsError } = await supabase
+      const { data: parentsData, error: parentsError } = await db
         .from('parents')
         .select(`
           user_id,
@@ -473,7 +476,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         .eq('active', true)
 
       // Get users already in families within this academy (excluding current family if editing)
-      let assignedUsersQuery = supabase
+      let assignedUsersQuery = db
         .from('family_members')
         .select(`
           user_id,
@@ -606,8 +609,10 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
         bVal = b.student_count
         break
       case 'created_at':
-        aVal = new Date(a.created_at).getTime()
-        bVal = new Date(b.created_at).getTime()
+        // families.created_at is nullable; sort those rows to the epoch so the
+        // comparison stays total instead of producing NaN.
+        aVal = a.created_at ? new Date(a.created_at).getTime() : 0
+        bVal = b.created_at ? new Date(b.created_at).getTime() : 0
         break
       default:
         return 0
@@ -703,7 +708,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     setSubmitting(true)
     try {
       // Create family first
-      const { data: familyData, error: familyError } = await supabase
+      const { data: familyData, error: familyError } = await db
         .from('families')
         .insert({
           name: formData.name.trim(),
@@ -723,7 +728,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
         // Server-side validation: Check if any selected users are already in families
         if (existingUserMembers.length > 0) {
-          const { data: existingMembers, error: checkError } = await supabase
+          const { data: existingMembers, error: checkError } = await db
             .from('family_members')
             .select(`
               user_id,
@@ -742,7 +747,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           }
 
           // Get user roles for selected members
-          const { data: usersData, error: usersError } = await supabase
+          const { data: usersData, error: usersError } = await db
             .from('users')
             .select('id, role')
             .in('id', existingUserMembers.map(m => m.user_id!))
@@ -758,7 +763,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             }
           })
 
-          const { error: existingMembersError } = await supabase
+          const { error: existingMembersError } = await db
             .from('family_members')
             .insert(existingUserInserts)
 
@@ -779,7 +784,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             phone: member.phone || null
           }))
 
-          const { error: manualMembersError } = await supabase
+          const { error: manualMembersError } = await db
             .from('family_members')
             .insert(manualMemberInserts)
 
@@ -853,7 +858,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
     setSubmitting(true)
     try {
       // Update family name
-      const { error: familyError } = await supabase
+      const { error: familyError } = await db
         .from('families')
         .update({ name: formData.name.trim() })
         .eq('id', editingFamily.id)
@@ -863,7 +868,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       // Remove all existing family members. This is a delete-then-reinsert, so
       // a silently dropped delete duplicates every member (and keeps members
       // the user just removed) while the UI reports the family was updated.
-      const { error: membersDeleteError } = await supabase
+      const { error: membersDeleteError } = await db
         .from('family_members')
         .delete()
         .eq('family_id', editingFamily.id)
@@ -878,7 +883,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
         // Server-side validation: Check if any selected users are already in OTHER families
         if (existingUserMembers.length > 0) {
-          const { data: existingMembers, error: checkError } = await supabase
+          const { data: existingMembers, error: checkError } = await db
             .from('family_members')
             .select(`
               user_id,
@@ -898,7 +903,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           }
 
           // Get user roles for selected members
-          const { data: usersData, error: usersError } = await supabase
+          const { data: usersData, error: usersError } = await db
             .from('users')
             .select('id, role')
             .in('id', existingUserMembers.map(m => m.user_id!))
@@ -914,7 +919,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             }
           })
 
-          const { error: existingMembersError } = await supabase
+          const { error: existingMembersError } = await db
             .from('family_members')
             .insert(existingUserInserts)
 
@@ -935,7 +940,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             phone: member.phone || null
           }))
 
-          const { error: manualMembersError } = await supabase
+          const { error: manualMembersError } = await db
             .from('family_members')
             .insert(manualMemberInserts)
 
@@ -983,7 +988,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
     try {
       // Soft delete family (set deleted_at timestamp)
-      const { error } = await supabase
+      const { error } = await db
         .from('families')
         .update({ deleted_at: new Date().toISOString() })
         .eq('id', familyToDelete.id)
@@ -1008,7 +1013,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
       const familyIds = Array.from(selectedFamilies)
 
       // Soft delete families (set deleted_at timestamp)
-      const { error } = await supabase
+      const { error } = await db
         .from('families')
         .update({ deleted_at: new Date().toISOString() })
         .in('id', familyIds)
@@ -1482,7 +1487,9 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                   </td>
                   <td className="p-3 sm:p-4">
                     <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-600">
-                      {language === 'korean'
+                      {!family.created_at
+                        ? String(t('common.fallbacks.unknown'))
+                        : language === 'korean'
                         ? new Date(family.created_at).toLocaleDateString('ko-KR', {
                             year: 'numeric',
                             month: '2-digit',

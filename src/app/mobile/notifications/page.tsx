@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
 import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Button } from '@/components/ui/button'
@@ -20,6 +20,7 @@ import { useMobileStore, useNotifications } from '@/stores/mobileStore'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 import { augmentLocalizedTimeParams } from '@/lib/notification-format'
 import { safeNotificationPath, studyFallbackRoute } from '@/lib/study/notification-link'
+import type { Database, Json } from '@/lib/database.types'
 
 interface NotificationNavData {
   page?: string
@@ -51,18 +52,41 @@ interface Notification {
   navigation_data?: NotificationNavData
 }
 
-interface DbNotification {
-  id: string
-  type: string
-  title: string | null
-  message: string | null
-  is_read: boolean
-  created_at: string
-  navigation_data?: NotificationNavData | null
-  title_key?: string | null
-  message_key?: string | null
-  title_params?: Record<string, unknown> | null
-  message_params?: Record<string, unknown> | null
+/** Exact `notifications` row shape as returned by PostgREST. The jsonb
+ *  columns arrive as `Json`, so they are narrowed by the helpers below
+ *  rather than being assumed to already have the UI's shape. */
+type DbNotification = Database['public']['Tables']['notifications']['Row']
+
+/** Narrow the jsonb `navigation_data` column to the routing shape the UI
+ *  reads. Anything that is not a plain object, or whose fields are not the
+ *  expected primitives, is dropped rather than trusted. */
+function toNavData(raw: Json | null | undefined): NotificationNavData | undefined {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return undefined
+  const obj: Record<string, Json | undefined> = raw
+  const nav: NotificationNavData = {}
+  if (typeof obj.page === 'string') nav.page = obj.page
+  if (typeof obj.source_id === 'string') nav.source_id = obj.source_id
+  if (typeof obj.url === 'string') nav.url = obj.url
+  const rawFilters = obj.filters
+  if (rawFilters && typeof rawFilters === 'object' && !Array.isArray(rawFilters)) {
+    const filters: Record<string, string> = {}
+    for (const [key, value] of Object.entries(rawFilters)) {
+      if (typeof value === 'string') filters[key] = value
+    }
+    nav.filters = filters
+  }
+  return nav
+}
+
+/** Narrow a jsonb params column to the `{ key: string | number }` map the
+ *  translation function accepts. Non-primitive values are dropped. */
+function toParams(raw: Json | null | undefined): Record<string, string | number> {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return {}
+  const out: Record<string, string | number> = {}
+  for (const [key, value] of Object.entries(raw)) {
+    if (typeof value === 'string' || typeof value === 'number') out[key] = value
+  }
+  return out
 }
 
 
@@ -149,13 +173,13 @@ function MobileNotificationsPageContent() {
 
     try {
       // Get authenticated session first
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.user?.id) {
         return []
       }
       
       // First, fetch existing notifications from database
-      const { data: dbNotifications, error: fetchError } = await supabase
+      const { data: dbNotifications, error: fetchError } = await db
         .from('notifications')
         .select('*')
         .eq('user_id', session.user.id)
@@ -166,13 +190,13 @@ function MobileNotificationsPageContent() {
         // Continue without database notifications
       }
       
-      const existingNotificationIds = new Set()
-      const dbNotificationMap = new Map()
+      const existingNotificationIds = new Set<string>()
+      const dbNotificationMap = new Map<string, DbNotification>()
       
       if (dbNotifications) {
         dbNotifications.forEach((notif: DbNotification) => {
           // Store the unique identifier to avoid duplicates
-          const sourceId = notif.navigation_data?.source_id
+          const sourceId = toNavData(notif.navigation_data)?.source_id
           const uniqueId = sourceId ? `${notif.type}-${sourceId}` : notif.id
           existingNotificationIds.add(uniqueId)
           dbNotificationMap.set(uniqueId, notif)
@@ -188,7 +212,7 @@ function MobileNotificationsPageContent() {
       // notifications entirely, leaving the page permanently empty.
       if (hasAcademyIds && academyIds.length > 0) await (async () => {
       // OPTIMIZATION: First get enrolled classrooms
-      const { data: enrolledClassrooms } = await supabase
+      const { data: enrolledClassrooms } = await db
         .from('classroom_students')
         .select(`
           classroom_id,
@@ -208,7 +232,7 @@ function MobileNotificationsPageContent() {
       const classroomIds = enrolledClassrooms.map(ec => ec.classroom_id)
       
       // OPTIMIZATION: Get sessions for enrolled classrooms
-      const { data: sessions } = await supabase
+      const { data: sessions } = await db
         .from('classroom_sessions')
         .select('id, classroom_id, date, start_time')
         .in('classroom_id', classroomIds)
@@ -228,7 +252,7 @@ function MobileNotificationsPageContent() {
       // OPTIMIZATION: Parallel fetch with simplified queries
       const [assignmentNotifs, gradeNotifs, upcomingSessionNotifs] = await Promise.all([
         // Assignments (simplified)
-        supabase
+        db
           .from('assignments')
           .select('id, title, due_date, created_at, classroom_session_id')
           .in('classroom_session_id', sessionIds)
@@ -237,7 +261,7 @@ function MobileNotificationsPageContent() {
           .limit(15),
         
         // Grades (simplified)
-        supabase
+        db
           .from('assignment_grades')
           .select('id, assignment_id, score, updated_at')
           .eq('student_id', effectiveUserId)
@@ -247,7 +271,7 @@ function MobileNotificationsPageContent() {
           .limit(15),
         
         // Upcoming sessions (simplified)
-        supabase
+        db
           .from('classroom_sessions')
           .select('id, date, start_time, classroom_id')
           .in('classroom_id', classroomIds)
@@ -262,7 +286,7 @@ function MobileNotificationsPageContent() {
       const assignmentMap = new Map()
       if (gradeNotifs.data && gradeNotifs.data.length > 0) {
         const gradeAssignmentIds = gradeNotifs.data.map((g) => g.assignment_id)
-        const { data: gradeAssignments } = await supabase
+        const { data: gradeAssignments } = await db
           .from('assignments')
           .select('id, title, classroom_session_id')
           .in('id', gradeAssignmentIds)
@@ -285,13 +309,18 @@ function MobileNotificationsPageContent() {
           const session = sessionMap.get(assignment.classroom_session_id)
           if (!session) return
           
-          const dueDate = new Date(assignment.due_date)
+          // assignments.due_date is nullable — an assignment without a due
+          // date can only ever be announced as "newly created".
+          const dueDate = assignment.due_date ? new Date(assignment.due_date) : null
           const now = new Date()
-          const timeDiff = dueDate.getTime() - now.getTime()
-          const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24))
-          
+          const daysDiff = dueDate
+            ? Math.ceil((dueDate.getTime() - now.getTime()) / (1000 * 3600 * 24))
+            : null
+
           let message = ''
-          if (daysDiff <= 1) {
+          if (daysDiff === null) {
+            message = String(t('mobile.notifications.newAssignmentCreated', { title: assignment.title }))
+          } else if (daysDiff <= 1) {
             message = String(t('mobile.notifications.assignmentDueSoon', { title: assignment.title }))
           } else if (daysDiff <= 3) {
             message = String(t('mobile.notifications.assignmentDueIn', { title: assignment.title, days: daysDiff }))
@@ -308,7 +337,9 @@ function MobileNotificationsPageContent() {
             message,
             type: 'assignment',
             read: existingNotif?.is_read || false,
-            created_at: assignment.created_at,
+            // Non-null: the assignments query above filters with
+            // .gte('created_at', ...), which excludes null created_at.
+            created_at: assignment.created_at!,
             db_id: existingNotif?.id,
             navigation_data: {
               page: 'assignment',
@@ -328,7 +359,9 @@ function MobileNotificationsPageContent() {
           const assignment = assignmentMap.get(gradeRecord.assignment_id)
           if (!assignment) return
 
-          const grade = typeof gradeRecord.score === 'number' ? `${gradeRecord.score}%` : gradeRecord.score
+          // Non-null: the grades query above filters with
+          // .not('score', 'is', null), so score is always present here.
+          const grade = `${gradeRecord.score!}%`
           const uniqueId = `grade-${gradeRecord.id}`
           const existingNotif = dbNotificationMap.get(uniqueId)
 
@@ -341,7 +374,9 @@ function MobileNotificationsPageContent() {
             })),
             type: 'grade',
             read: existingNotif?.is_read || false,
-            created_at: gradeRecord.updated_at,
+            // Non-null: the grades query above filters with
+            // .gte('updated_at', ...), which excludes null updated_at.
+            created_at: gradeRecord.updated_at!,
             db_id: existingNotif?.id,
             navigation_data: {
               page: 'grade',
@@ -419,10 +454,10 @@ function MobileNotificationsPageContent() {
           if (synthesizedDbIds.has(notif.id)) return
 
           const lang = language === 'korean' ? 'korean' : 'english'
-          const titleParams = (notif.title_params || {}) as Record<string, string | number>
+          const titleParams = toParams(notif.title_params)
           // Inject locale-formatted {when} / {oldWhen} / {newWhen} from raw
           // ISO fields stored by the trigger (e.g. "2026-05-07" + "09:00").
-          const messageParams = augmentLocalizedTimeParams(notif.message_params, lang)
+          const messageParams = augmentLocalizedTimeParams(toParams(notif.message_params), lang)
           const renderedTitle = notif.title_key
             ? String(t(notif.title_key, titleParams))
             : (notif.title || '')
@@ -445,12 +480,14 @@ function MobileNotificationsPageContent() {
             type: uiType,
             raw_type: rawType,
             read: !!notif.is_read,
-            created_at: notif.created_at,
+            // Non-null: the notifications query above filters with
+            // .gte('created_at', ...), which excludes null created_at.
+            created_at: notif.created_at!,
             db_id: notif.id,
             // Carry the trigger's navigation_data through so the routing
             // handler can land the user on the specific item (session,
             // invoice, report) instead of the section's list page.
-            navigation_data: notif.navigation_data || undefined,
+            navigation_data: toNavData(notif.navigation_data),
           })
         })
       }
@@ -487,7 +524,7 @@ function MobileNotificationsPageContent() {
               }
               
               try {
-                const { data: insertResult, error } = await supabase
+                const { data: insertResult, error } = await db
                   .from('notifications')
                   .insert([notificationData])
                   .select()
@@ -693,7 +730,7 @@ function MobileNotificationsPageContent() {
   const markAsRead = async (notificationId: string, shouldNavigate: boolean = false) => {
     try {
       // Get current auth session
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
 
       // Find the notification first
       const notification = localNotifications.find(n => n.id === notificationId)
@@ -737,7 +774,7 @@ function MobileNotificationsPageContent() {
 
       // Update in database if it has a db_id
       if (notification?.db_id) {
-        const { error } = await supabase
+        const { error } = await db
           .from('notifications')
           .update({ is_read: true, updated_at: new Date().toISOString() })
           .eq('id', notification.db_id)
@@ -751,7 +788,7 @@ function MobileNotificationsPageContent() {
         const sourceId = notificationId.split('-').slice(1).join('-')
 
         // First try to find the notification
-        const { data: existingNotifs, error: findError } = await supabase
+        const { data: existingNotifs, error: findError } = await db
           .from('notifications')
           .select('id')
           .eq('user_id', session.user.id)
@@ -765,7 +802,7 @@ function MobileNotificationsPageContent() {
 
         // If found, update it
         if (existingNotifs && existingNotifs.length > 0) {
-          const { error: updateError } = await supabase
+          const { error: updateError } = await db
             .from('notifications')
             .update({ is_read: true, updated_at: new Date().toISOString() })
             .eq('id', existingNotifs[0].id)
@@ -885,11 +922,11 @@ function MobileNotificationsPageContent() {
   const markAllAsRead = async () => {
     try {
       // Get current auth session
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
 
       if (session?.user?.id) {
         // Update all notifications in database for this user
-        const { error } = await supabase
+        const { error } = await db
           .from('notifications')
           .update({ is_read: true })
           .eq('user_id', session.user.id)

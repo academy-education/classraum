@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Flame } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudyTodayCard } from './primitives'
@@ -44,7 +44,7 @@ export function StreakAtRiskBanner() {
     let cancelled = false
     void (async () => {
       const cutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select('last_active_at')
         .eq('student_id', user.userId)

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
 import { useStableCallback } from './useStableCallback'
 
@@ -57,7 +57,7 @@ export function useClassroomData(academyId: string) {
         return
       }
 
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classrooms')
         .select(`
           *,
@@ -123,7 +123,7 @@ export function useClassroomData(academyId: string) {
       // also what classrooms.teacher_id is a foreign key to. Selecting a
       // nonexistent column threw into the catch below, so the teacher
       // list was permanently empty.
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('teachers')
         .select(`
           user_id,
@@ -151,7 +151,7 @@ export function useClassroomData(academyId: string) {
 
   const fetchStudents = useStableCallback(async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('students')
         .select(`
           user_id,
@@ -168,9 +168,9 @@ export function useClassroomData(academyId: string) {
 
       const formattedStudents = data?.map(student => ({
         id: student.user_id,
-        name: (student.users as { name?: string })?.name || 'Unknown Student',
+        name: student.users?.name || 'Unknown Student',
         user_id: student.user_id,
-        school_name: student.school_name
+        school_name: student.school_name ?? undefined
       })) || []
 
       setStudents(formattedStudents)

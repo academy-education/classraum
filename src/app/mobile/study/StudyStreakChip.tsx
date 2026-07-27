@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Flame } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 
@@ -36,7 +36,7 @@ export function StudyStreakChip() {
       // Pull the last 60 days of activity — generous enough that
       // even a 30-day streak comfortably fits with room to spare.
       const cutoff = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString()
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select('created_at, last_active_at')
         .eq('student_id', user.userId)

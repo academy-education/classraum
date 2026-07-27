@@ -6,7 +6,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { ErrorState } from '@/components/ui/common/ErrorState'
@@ -51,7 +51,7 @@ export default function AnnouncementsPage() {
     }
 
     try {
-      const { data: announcementsData, error } = await supabase
+      const { data: announcementsData, error } = await db
         .from('announcements')
         .select('id, title, content, academy_id, created_at')
         .in('academy_id', academyIds)
@@ -68,7 +68,7 @@ export default function AnnouncementsPage() {
       let academiesMap: Record<string, { name: string; logo: string | null }> = {}
 
       if (uniqueAcademyIds.length > 0) {
-        const { data: academiesData } = await supabase
+        const { data: academiesData } = await db
           .from('academies')
           .select('id, name, logo_url')
           .in('id', uniqueAcademyIds)

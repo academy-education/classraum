@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
@@ -59,7 +59,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
 
     const checkParentAndLoadStudents = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession()
+        const { data: { session } } = await db.auth.getSession()
 
         if (!isMounted) return
 
@@ -68,7 +68,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
           return
         }
 
-        const { data: userInfo } = await supabase
+        const { data: userInfo } = await db
           .from('users')
           .select('*')
           .eq('id', session.user.id)
@@ -95,7 +95,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
         if (isMounted) setParentId(session.user.id)
 
         // Get the parent's family
-        const { data: familyMember } = await supabase
+        const { data: familyMember } = await db
           .from('family_members')
           .select('family_id')
           .eq('user_id', session.user.id)
@@ -114,7 +114,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
         }
 
         // Get all family members with user details using the security definer function
-        const { data: familyUsers, error: _familyError } = await supabase
+        const { data: familyUsers, error: _familyError } = await db
           .rpc('get_users_for_family', { user_uuid: session.user.id })
 
         if (!isMounted) return

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import type { Subject } from './useSubjectData'
 
 export interface CreateSubjectData {
@@ -29,7 +29,7 @@ export function useSubjectActions() {
   ): Promise<SubjectActionResult> => {
     try {
       // Check for duplicate subject names in the same academy
-      const { data: existingSubject, error: checkError } = await supabase
+      const { data: existingSubject, error: checkError } = await db
         .from('subjects')
         .select('id')
         .eq('academy_id', subjectData.academy_id)
@@ -46,7 +46,7 @@ export function useSubjectActions() {
       }
 
       // Create the subject
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('subjects')
         .insert({
           name: subjectData.name.trim(),
@@ -78,7 +78,7 @@ export function useSubjectActions() {
   ): Promise<SubjectActionResult> => {
     try {
       // Get the academy_id of the subject being updated
-      const { data: currentSubject, error: fetchError } = await supabase
+      const { data: currentSubject, error: fetchError } = await db
         .from('subjects')
         .select('academy_id')
         .eq('id', subjectId)
@@ -89,7 +89,7 @@ export function useSubjectActions() {
       }
 
       // Check for duplicate subject names in the same academy (excluding current subject)
-      const { data: existingSubject, error: checkError } = await supabase
+      const { data: existingSubject, error: checkError } = await db
         .from('subjects')
         .select('id')
         .eq('academy_id', currentSubject.academy_id)
@@ -106,7 +106,7 @@ export function useSubjectActions() {
       }
 
       // Update the subject
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('subjects')
         .update({
           name: updateData.name.trim(),
@@ -136,7 +136,7 @@ export function useSubjectActions() {
   const deleteSubject = useCallback(async (subjectId: string): Promise<SubjectActionResult> => {
     try {
       // Check if subject is being used by classrooms
-      const { data: classroomsUsing, error: classroomError } = await supabase
+      const { data: classroomsUsing, error: classroomError } = await db
         .from('classrooms')
         .select('id, name')
         .eq('subject_id', subjectId)
@@ -151,7 +151,7 @@ export function useSubjectActions() {
       }
 
       // Check if subject is being used by assignment categories
-      const { data: categoriesUsing, error: categoryError } = await supabase
+      const { data: categoriesUsing, error: categoryError } = await db
         .from('assignment_categories')
         .select('id, name')
         .eq('subject_id', subjectId)
@@ -166,7 +166,7 @@ export function useSubjectActions() {
       }
 
       // Delete the subject
-      const { error } = await supabase
+      const { error } = await db
         .from('subjects')
         .delete()
         .eq('id', subjectId)
@@ -192,7 +192,7 @@ export function useSubjectActions() {
     subjectId: string
   ): Promise<SubjectActionResult> => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('assignment_categories')
         .update({
           subject_id: subjectId,
@@ -220,7 +220,7 @@ export function useSubjectActions() {
     categoryId: string
   ): Promise<SubjectActionResult> => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('assignment_categories')
         .update({
           subject_id: null,
@@ -248,7 +248,7 @@ export function useSubjectActions() {
     categoryData: CreateAssignmentCategoryData
   ): Promise<SubjectActionResult> => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignment_categories')
         .insert({
           name: categoryData.name.trim(),
@@ -299,7 +299,7 @@ export function useSubjectActions() {
       const trimmed = name.trim()
       if (!trimmed) throw new Error('Name is required')
 
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignment_categories')
         .update({ name: trimmed, updated_at: new Date().toISOString() })
         .eq('id', categoryId)
@@ -333,7 +333,7 @@ export function useSubjectActions() {
     categoryId: string
   ): Promise<SubjectActionResult> => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('assignment_categories')
         .update({
           deleted_at: new Date().toISOString(),
@@ -369,7 +369,7 @@ export function useSubjectActions() {
       // N is small (a classroom's categories — usually < 20) so this is fine.
       const results = await Promise.all(
         orderedIds.map((id, index) =>
-          supabase
+          db
             .from('assignment_categories')
             .update({ display_order: index, updated_at: new Date().toISOString() })
             .eq('id', id)

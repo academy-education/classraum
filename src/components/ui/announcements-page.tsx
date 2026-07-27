@@ -5,7 +5,7 @@ import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { useDirtyState } from '@/hooks/useDirtyState'
 import { useConfirm } from '@/hooks/useConfirm'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -122,7 +122,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) return
 
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('classrooms')
       .select('id, name')
       .eq('academy_id', academyId)
@@ -142,7 +142,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
 
     try {
       // Build base query
-      let query = supabase
+      let query = db
         .from('announcements')
         .select(`
           id,
@@ -367,7 +367,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
     try {
       if (isEditing && selectedAnnouncement) {
         // Update existing announcement
-        const { error: updateError } = await supabase
+        const { error: updateError } = await db
           .from('announcements')
           .update({
             title: formTitle.trim(),
@@ -381,7 +381,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         // Update classrooms - delete old and insert new. If the delete is
         // dropped the old links survive alongside the new ones, so the
         // announcement stays visible to classrooms the user just unselected.
-        const { error: classroomsDeleteError } = await supabase
+        const { error: classroomsDeleteError } = await db
           .from('announcement_classrooms')
           .delete()
           .eq('announcement_id', selectedAnnouncement.id)
@@ -389,7 +389,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         if (classroomsDeleteError) throw classroomsDeleteError
 
         if (selectedClassroomIds.length > 0) {
-          const { error: classroomsError } = await supabase
+          const { error: classroomsError } = await db
             .from('announcement_classrooms')
             .insert(
               selectedClassroomIds.map(classroomId => ({
@@ -402,14 +402,18 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         }
 
         // Handle attachments - delete removed, add new
-        const existingIds = selectedAnnouncement.attachments.map(a => a.id).filter(Boolean)
+        // AttachmentFile.id is optional (unsaved uploads have none), so filter
+        // to the persisted ids before handing them to `.in()`.
+        const existingIds = selectedAnnouncement.attachments
+          .map(a => a.id)
+          .filter((id): id is string => !!id)
         const currentIds = attachments.filter(a => a.id).map(a => a.id)
         const idsToDelete = existingIds.filter(id => !currentIds.includes(id))
 
         if (idsToDelete.length > 0) {
           // A dropped delete leaves attachments the user removed still
           // attached, while the success toast says the edit was saved.
-          const { error: attachmentsDeleteError } = await supabase
+          const { error: attachmentsDeleteError } = await db
             .from('announcement_attachments')
             .delete()
             .in('id', idsToDelete)
@@ -420,7 +424,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         // Insert new attachments
         const newAttachments = attachments.filter(a => !a.id && a.uploaded)
         if (newAttachments.length > 0) {
-          const { error: attachmentsError } = await supabase
+          const { error: attachmentsError } = await db
             .from('announcement_attachments')
             .insert(
               newAttachments.map(att => ({
@@ -439,7 +443,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         showSuccessToast(t('announcements.announcementUpdated'))
       } else {
         // Create new announcement
-        const { data: newAnnouncement, error: insertError } = await supabase
+        const { data: newAnnouncement, error: insertError } = await db
           .from('announcements')
           .insert({
             academy_id: academyId,
@@ -454,7 +458,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
 
         // Insert classroom links
         if (selectedClassroomIds.length > 0) {
-          const { error: classroomsError } = await supabase
+          const { error: classroomsError } = await db
             .from('announcement_classrooms')
             .insert(
               selectedClassroomIds.map(classroomId => ({
@@ -469,7 +473,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         // Insert attachments
         const uploadedAttachments = attachments.filter(a => a.uploaded)
         if (uploadedAttachments.length > 0) {
-          const { error: attachmentsError } = await supabase
+          const { error: attachmentsError } = await db
             .from('announcement_attachments')
             .insert(
               uploadedAttachments.map(att => ({
@@ -522,7 +526,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         if (attachment.url) {
           const path = attachment.url.split('/announcement-attachments/')[1]
           if (path) {
-            await supabase.storage
+            await db.storage
               .from('announcement-attachments')
               .remove([path])
           }
@@ -530,7 +534,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
       }
 
       // Delete announcement (cascade will handle classrooms and attachments)
-      const { error } = await supabase
+      const { error } = await db
         .from('announcements')
         .delete()
         .eq('id', selectedAnnouncement.id)
@@ -561,7 +565,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
             const path = attachment.url.split('/announcement-attachments/')[1]
             if (path) {
               try {
-                await supabase.storage.from('announcement-attachments').remove([path])
+                await db.storage.from('announcement-attachments').remove([path])
               } catch {
                 // Ignore storage errors — DB delete still proceeds
               }
@@ -570,7 +574,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         }
       }
 
-      const { error } = await supabase
+      const { error } = await db
         .from('announcements')
         .delete()
         .in('id', selectedRows)

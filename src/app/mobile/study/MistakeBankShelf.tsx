@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { XCircle, CheckCircle2, RotateCcw, Loader2, ArrowRight } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -74,7 +74,7 @@ export function MistakeBankShelf() {
     if (!user?.userId || creating) return
     if (!m.topic) return
     setCreating(m.attempt_id)
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('study_sessions')
       .insert({
         student_id: user.userId,

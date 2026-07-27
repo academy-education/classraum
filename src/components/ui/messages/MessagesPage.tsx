@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import {
@@ -122,10 +122,10 @@ export function MessagesPage() {
   // presence payload so other clients can show "Alice is typing…").
   useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (user) {
         setCurrentUserId(user.id)
-        const { data } = await supabase
+        const { data } = await db
           .from('users')
           .select('name')
           .eq('id', user.id)
@@ -141,7 +141,7 @@ export function MessagesPage() {
   // conversation without depending on the stale `conversations` closure.
   const fetchConversations = useCallback(async (): Promise<Conversation[]> => {
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return []
 
       const response = await fetch('/api/messages/conversations', {
@@ -216,7 +216,7 @@ export function MessagesPage() {
   useEffect(() => {
     if (!currentUserId) return
 
-    const channel = supabase
+    const channel = db
       .channel(`messages-page:${currentUserId}`)
       .on(
         'postgres_changes',
@@ -298,7 +298,7 @@ export function MessagesPage() {
       .subscribe()
 
     return () => {
-      supabase.removeChannel(channel)
+      db.removeChannel(channel)
     }
   }, [currentUserId, fetchConversations, selectedConversation?.id])
 
@@ -306,7 +306,7 @@ export function MessagesPage() {
   const fetchMessages = useCallback(async (conversationId: string) => {
     setMessagesLoading(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch(`/api/messages/${conversationId}`, {
@@ -352,7 +352,7 @@ export function MessagesPage() {
 
     setSendingMessage(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch(`/api/messages/${selectedConversation.id}`, {

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { isDevAuthEnabled } from '@/lib/dev-auth'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 
@@ -61,7 +61,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
       try {
 
         // Get additional user info from database
-        const { data: userInfo, error: userError } = await supabase
+        const { data: userInfo, error: userError } = await db
           .from('users')
           .select('name, email, role')
           .eq('id', user.id)
@@ -104,7 +104,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         // For academy-based roles, fetch academy_id from appropriate table
         if (userRole === 'manager') {
           try {
-            const { data: managerInfo } = await supabase
+            const { data: managerInfo } = await db
               .from('managers')
               .select('academy_id')
               .eq('user_id', user.id)
@@ -118,7 +118,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           }
         } else if (userRole === 'teacher') {
           try {
-            const { data: teacherInfo } = await supabase
+            const { data: teacherInfo } = await db
               .from('teachers')
               .select('academy_id')
               .eq('user_id', user.id)
@@ -133,7 +133,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         } else if (userRole === 'student') {
           try {
             // Fetch ALL academies for multi-academy support
-            const { data: studentAcademies } = await supabase
+            const { data: studentAcademies } = await db
               .from('students')
               .select('academy_id')
               .eq('user_id', user.id)
@@ -195,7 +195,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           }
         } else if (userRole === 'parent') {
           try {
-            const { data: parentInfo } = await supabase
+            const { data: parentInfo } = await db
               .from('parents')
               .select('academy_id')
               .eq('user_id', user.id)
@@ -217,15 +217,15 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         // Validate academy access
         if (!fetchedAcademyId || fetchedAcademyId === 'null' || fetchedAcademyId === '') {
           console.warn('[AuthWrapper] User has no academy access')
-          // For admins, this is normal - they don't need academy access
-          if (userRole !== 'admin' && userRole !== 'super_admin') {
-            console.error('[AuthWrapper] Non-admin user missing academy_id')
-            setAuthError('No academy access - please contact support')
-          }
+          // admin/super_admin already returned above (see the early return on
+          // userRole), and the else branch rejects unknown roles, so anything
+          // reaching here is a manager/teacher/parent that genuinely has no academy.
+          console.error('[AuthWrapper] Non-admin user missing academy_id')
+          setAuthError('No academy access - please contact support')
         } else {
           // Validate academy exists (optional check, don't fail if it doesn't)
           try {
-            const { data: academyInfo, error: academyError } = await supabase
+            const { data: academyInfo, error: academyError } = await db
               .from('academies')
               .select('id, name')
               .eq('id', fetchedAcademyId)

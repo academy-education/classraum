@@ -12,7 +12,7 @@ import {
   XCircle,
   Loader2
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface ChatConversation {
@@ -23,8 +23,9 @@ interface ChatConversation {
   status?: string;
   closedAt?: Date;
   closedBy?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  // chat_conversations.created_at / updated_at are nullable in the schema.
+  createdAt?: Date;
+  updatedAt?: Date;
   userName?: string;
   userEmail?: string;
   academyName?: string;
@@ -46,7 +47,8 @@ interface Message {
   senderName: string;
   senderType: 'user' | 'admin';
   message: string;
-  timestamp: Date;
+  /** chat_messages.created_at is nullable, so a message may have no timestamp. */
+  timestamp: Date | null;
   isInternal?: boolean;
 }
 
@@ -107,7 +109,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
   // Get current user ID
   useEffect(() => {
     const getCurrentUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const { data: { user } } = await db.auth.getUser();
       if (user) {
         setCurrentUserId(user.id);
       }
@@ -130,7 +132,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
 
 
       // Fetch all messages for this conversation
-      const { data: messagesData, error: messagesError } = await supabase
+      const { data: messagesData, error: messagesError } = await db
         .from('chat_messages')
         .select(`
           *,
@@ -154,7 +156,9 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
           senderName: isSupport ? String(t('admin.support.classraumSupport')) : (msg.users?.name || String(t('admin.common.unknownUser'))),
           senderType: isSupport ? 'admin' : 'user',
           message: msg.message,
-          timestamp: new Date(msg.created_at),
+          // chat_messages.created_at is nullable; fall back to null so the
+          // renderer shows "unknown" rather than an Invalid Date.
+          timestamp: msg.created_at ? new Date(msg.created_at) : null,
           isInternal: false
         };
       });
@@ -172,7 +176,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
   useEffect(() => {
     if (!ticket.id) return;
 
-    const channel = supabase
+    const channel = db
       .channel(`chat_messages_${ticket.id}`)
       .on(
         'postgres_changes',
@@ -191,7 +195,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
           }
 
           // Fetch user info for the message
-          const { data: userData } = await supabase
+          const { data: userData } = await db
             .from('users')
             .select('name, email')
             .eq('id', newMsg.sender_id)
@@ -219,17 +223,17 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      db.removeChannel(channel);
     };
   }, [ticket.id]);
 
   // Presence-based typing indicators (no database writes)
-  const presenceChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+  const presenceChannelRef = useRef<ReturnType<typeof db.channel> | null>(null);
 
   useEffect(() => {
     if (!ticket.id || !currentUserId) return;
 
-    const channel = supabase.channel(`chat_presence:${ticket.id}`, {
+    const channel = db.channel(`chat_presence:${ticket.id}`, {
       config: {
         presence: {
           key: currentUserId,
@@ -323,7 +327,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
     try {
 
       // Get current user (admin)
-      const { data: { user } } = await supabase.auth.getUser();
+      const { data: { user } } = await db.auth.getUser();
 
       if (!user) {
         console.error('[TicketDetailModal] No authenticated user found');
@@ -351,7 +355,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
       updateTypingStatus(false);
 
       // Insert the new message - try 'support' as sender_type
-      const { error } = await supabase
+      const { error } = await db
         .from('chat_messages')
         .insert({
           conversation_id: ticket.id,
@@ -375,7 +379,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
       // Update conversation's updated_at timestamp. The message itself already
       // landed, so don't fail the send — but a stale timestamp mis-sorts the
       // ticket list, so it needs to be visible.
-      const { error: touchError } = await supabase
+      const { error: touchError } = await db
         .from('chat_conversations')
         .update({ updated_at: new Date().toISOString() })
         .eq('id', ticket.id);
@@ -399,7 +403,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
   const handleStatusChange = async () => {
     try {
 
-      const { error } = await supabase
+      const { error } = await db
         .from('chat_conversations')
         .update({
           status: newStatus,
@@ -429,7 +433,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
   const handleMarkAllAsRead = async () => {
     try {
 
-      const { error } = await supabase
+      const { error } = await db
         .from('chat_messages')
         .update({ is_read: true })
         .eq('conversation_id', ticket.id)
@@ -521,11 +525,13 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                           {message.senderName}
                           {message.isInternal && String(t('admin.support.internalMarker'))}
                         </span>
-                        <span className={`text-xs whitespace-nowrap ${
-                          message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-400'
-                        }`}>
-                          {formatKSTTime(message.timestamp, language)}
-                        </span>
+                        {message.timestamp && (
+                          <span className={`text-xs whitespace-nowrap ${
+                            message.senderType === 'admin' && !message.isInternal ? 'text-primary-foreground/80' : 'text-gray-400'
+                          }`}>
+                            {formatKSTTime(message.timestamp, language)}
+                          </span>
+                        )}
                       </div>
                       <p className="text-sm whitespace-pre-wrap break-words">{message.message}</p>
                     </div>
@@ -657,13 +663,15 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
             <div>
               <h3 className="text-sm font-medium text-gray-900 mb-3">{String(t('admin.support.timeline'))}</h3>
               <div className="space-y-3">
-                <div className="flex items-start space-x-2">
-                  <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5" />
-                  <div className="text-xs">
-                    <p className="font-medium">{String(t('admin.support.conversationCreated'))}</p>
-                    <p className="text-gray-500">{formatKSTDateTime(ticket.createdAt, language)}</p>
+                {ticket.createdAt && (
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5" />
+                    <div className="text-xs">
+                      <p className="font-medium">{String(t('admin.support.conversationCreated'))}</p>
+                      <p className="text-gray-500">{formatKSTDateTime(ticket.createdAt, language)}</p>
+                    </div>
                   </div>
-                </div>
+                )}
                 {ticket.lastMessageAt && (
                   <div className="flex items-start space-x-2">
                     <MessageSquare className="h-4 w-4 text-primary mt-0.5" />
@@ -673,13 +681,15 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
                     </div>
                   </div>
                 )}
-                <div className="flex items-start space-x-2">
-                  <MessageSquare className="h-4 w-4 text-violet-500 mt-0.5" />
-                  <div className="text-xs">
-                    <p className="font-medium">{String(t('admin.common.lastUpdated'))}</p>
-                    <p className="text-gray-500">{formatKSTDateTime(ticket.updatedAt, language)}</p>
+                {ticket.updatedAt && (
+                  <div className="flex items-start space-x-2">
+                    <MessageSquare className="h-4 w-4 text-violet-500 mt-0.5" />
+                    <div className="text-xs">
+                      <p className="font-medium">{String(t('admin.common.lastUpdated'))}</p>
+                      <p className="text-gray-500">{formatKSTDateTime(ticket.updatedAt, language)}</p>
+                    </div>
                   </div>
-                </div>
+                )}
                 {ticket.closedAt && (
                   <div className="flex items-start space-x-2">
                     <XCircle className="h-4 w-4 text-gray-500 mt-0.5" />

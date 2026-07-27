@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 export function useUnreadMessages() {
   const [unreadCount, setUnreadCount] = useState(0)
 
   const fetchUnreadCount = useCallback(async () => {
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) {
         setUnreadCount(0)
         return
@@ -63,7 +63,7 @@ export function useUnreadMessages() {
     // Listen for message read events from MessagesPage
     const handleMessageRead = () => {
       // Invalidate cache and refetch
-      supabase.auth.getSession().then(({ data: { session } }) => {
+      db.auth.getSession().then(({ data: { session } }) => {
         if (session?.user?.id) {
           const cacheKey = `messages-unread-${session.user.id}`
           sessionStorage.removeItem(cacheKey)
@@ -76,7 +76,7 @@ export function useUnreadMessages() {
     window.addEventListener('messageRead', handleMessageRead)
 
     // Real-time subscription for new messages
-    const channel = supabase
+    const channel = db
       .channel('sidebar_unread_messages')
       .on(
         'postgres_changes',
@@ -87,7 +87,7 @@ export function useUnreadMessages() {
         },
         () => {
           // Invalidate cache and refetch on new message
-          supabase.auth.getSession().then(({ data: { session } }) => {
+          db.auth.getSession().then(({ data: { session } }) => {
             if (session?.user?.id) {
               const cacheKey = `messages-unread-${session.user.id}`
               sessionStorage.removeItem(cacheKey)
@@ -106,7 +106,7 @@ export function useUnreadMessages() {
         },
         () => {
           // Refetch when messages are marked as read
-          supabase.auth.getSession().then(({ data: { session } }) => {
+          db.auth.getSession().then(({ data: { session } }) => {
             if (session?.user?.id) {
               const cacheKey = `messages-unread-${session.user.id}`
               sessionStorage.removeItem(cacheKey)
@@ -120,7 +120,7 @@ export function useUnreadMessages() {
 
     return () => {
       window.removeEventListener('messageRead', handleMessageRead)
-      supabase.removeChannel(channel)
+      db.removeChannel(channel)
     }
   }, [fetchUnreadCount])
 

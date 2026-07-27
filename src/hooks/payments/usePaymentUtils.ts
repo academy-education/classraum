@@ -227,9 +227,13 @@ export const usePaymentCalculations = () => {
     }, 0)
   }, [])
 
+  // 'overdue' is not a storable invoice status (invoices_status_check allows
+  // only pending | paid | failed | refunded), so it must be derived: an
+  // invoice is overdue when it is still pending and its due date has passed.
   const calculateOverdueAmount = useCallback((invoices: Invoice[]): number => {
+    const today = new Date().toISOString().slice(0, 10)
     return invoices.reduce((total, invoice) => {
-      if (invoice.status === 'overdue') {
+      if (invoice.status === 'pending' && invoice.due_date < today) {
         return total + (invoice.final_amount || 0)
       }
       return total

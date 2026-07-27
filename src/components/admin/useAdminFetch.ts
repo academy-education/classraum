@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 /**
  * useAdminFetch — small helper hook that wraps `fetch` with the
@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabase'
  *
  * Replaces the boilerplate that was repeated in ~30 admin callsites:
  *
- *   const { data: { session } } = await supabase.auth.getSession()
+ *   const { data: { session } } = await db.auth.getSession()
  *   const response = await fetch('/api/admin/...', {
  *     headers: {
  *       'Authorization': `Bearer ${session?.access_token}`,
@@ -30,7 +30,7 @@ import { supabase } from '@/lib/supabase'
  */
 export function useAdminFetch() {
   return useCallback(async (input: RequestInfo | URL, init: RequestInit = {}) => {
-    const { data: { session } } = await supabase.auth.getSession()
+    const { data: { session } } = await db.auth.getSession()
     if (!session?.access_token) {
       throw new Error('Not authenticated. Please reload and sign in again.')
     }

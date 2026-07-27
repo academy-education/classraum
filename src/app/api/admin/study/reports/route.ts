@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { supabaseAdmin } from '@/lib/supabase-admin';
+import { dbAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth, logAdminActivity } from '@/lib/admin-auth';
 
 /**
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
   if (!auth.success) return auth.response;
 
   const status = req.nextUrl.searchParams.get('status') ?? 'open';
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('study_question_reports')
     .select('id, student_id, session_id, question_hash, question_snapshot, reason, note, status, created_at, resolved_at')
     .order('created_at', { ascending: false })
@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
   const ids = Array.from(new Set((reports ?? []).map(r => r.student_id as string)));
   const nameMap = new Map<string, { name: string | null; email: string | null }>();
   if (ids.length > 0) {
-    const { data: users } = await supabaseAdmin.from('users').select('id, name, email').in('id', ids);
+    const { data: users } = await dbAdmin.from('users').select('id, name, email').in('id', ids);
     for (const u of users ?? []) nameMap.set(u.id as string, { name: u.name as string | null, email: u.email as string | null });
   }
 
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
   // like the sibling study routes: the previous version selected every row and
   // tallied them in JS, which PostgREST caps at 1000 rows — past that the tab
   // badges would just stop counting, with nothing to indicate it.
-  const { data: statusRows, error: countsError } = await supabaseAdmin.rpc('admin_study_report_status_counts');
+  const { data: statusRows, error: countsError } = await dbAdmin.rpc('admin_study_report_status_counts');
   if (countsError) console.error('[admin/study/reports] counts', countsError);
   const counts: Record<string, number> = { open: 0, reviewing: 0, resolved: 0, dismissed: 0 };
   for (const r of (statusRows ?? []) as { status: string; cnt: number | string }[]) {
@@ -78,7 +78,7 @@ export async function PATCH(req: NextRequest) {
   const { id, status, archiveItem } = parsed.data;
 
   const terminal = status === 'resolved' || status === 'dismissed';
-  const { data: updated, error } = await supabaseAdmin
+  const { data: updated, error } = await dbAdmin
     .from('study_question_reports')
     .update({ status, resolved_at: terminal ? new Date().toISOString() : null })
     .eq('id', id)
@@ -96,7 +96,7 @@ export async function PATCH(req: NextRequest) {
   if (archiveItem) {
     const prompt = (updated?.question_snapshot as { prompt?: string } | null)?.prompt;
     if (prompt) {
-      const { data: rows, error: archErr } = await supabaseAdmin
+      const { data: rows, error: archErr } = await dbAdmin
         .from('study_item_bank')
         .update({ archived: true })
         .eq('item->>prompt', prompt)

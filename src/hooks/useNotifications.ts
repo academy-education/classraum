@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useStableCallback } from './useStableCallback'
 
 export function useNotifications(userId?: string) {
@@ -25,7 +25,7 @@ export function useNotifications(userId?: string) {
     }
 
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('notifications')
         .select('id')
         .eq('user_id', userId)

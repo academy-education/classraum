@@ -4,7 +4,7 @@ import { use, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Clock, RotateCcw, Sparkles, BookOpen, RefreshCw } from '@/app/mobile/study/_shared/icons'
 import { hapticImpact, hapticNotification } from '@/lib/nativeHaptics'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../../../SubscriptionGate'
@@ -81,7 +81,7 @@ function SummaryInner({ id }: { id: string }) {
     let cancelled = false
     void (async () => {
       try {
-      const { data: sess } = await supabase
+      const { data: sess } = await db
         .from('study_sessions')
         .select(`
           id, mode, language, topic_id, topic_freeform, status, created_at, last_active_at,
@@ -94,7 +94,7 @@ function SummaryInner({ id }: { id: string }) {
       if (cancelled) return
       setSession((sess as unknown as SessionRow | null))
 
-      const { data: atts } = await supabase
+      const { data: atts } = await db
         .from('study_attempts')
         .select('id, is_correct, time_spent_seconds, question, student_answer')
         .eq('session_id', id)

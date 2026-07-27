@@ -34,7 +34,7 @@ import {
 } from '@/components/ui/select'
 import { StaggeredListSkeleton, AnimatedStatSkeleton } from '@/components/ui/skeleton'
 import { hapticTap, hapticSelection, hapticImpact } from '@/lib/nativeHaptics'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Calendar, ChevronRight, AlertCircle, MessageCircle, BookOpen, ChevronLeft, RefreshCw, Search, School, Paperclip, FileText, Image, Eye, CalendarDays, Clock, ArrowUpDown, ArrowDown, ArrowUp, TrendingUp, CheckCircle2 } from 'lucide-react'
 import { CommentBottomSheet } from '@/components/ui/mobile/CommentBottomSheet'
 import { FileViewerBottomSheet } from '@/components/ui/mobile/FileViewerBottomSheet'
@@ -148,7 +148,7 @@ const fetchAssignmentComments = async (assignmentIds: string[]): Promise<Map<str
     // console.log('🔄 [COMMENTS] Fetching for', assignmentIds.length, 'assignments using RPC')
 
     // Use RPC function to bypass expensive RLS policies
-    const { data: comments, error } = await supabase
+    const { data: comments, error } = await db
       .rpc('get_assignment_comments', {
         assignment_uuids: assignmentIds
       })
@@ -208,7 +208,7 @@ const fetchAssignmentAttachments = async (assignmentIds: string[]): Promise<Map<
     // console.log('🔄 [ATTACHMENTS] Fetching for', assignmentIds.length, 'assignments using RPC')
 
     // Use RPC function to bypass expensive RLS policies
-    const { data: attachments, error } = await supabase
+    const { data: attachments, error } = await db
       .rpc('get_assignment_attachments', {
         assignment_uuids: assignmentIds
       })
@@ -442,7 +442,7 @@ function MobileAssignmentsPageContent() {
       // OPTIMIZATION: Break down complex queries into simpler ones
       // Step 1: Get student's enrolled classrooms from all academies
       // FIXED: Use RPC function to avoid Supabase client query issues
-      const { data: initialEnrolledClassrooms, error: classroomError } = await supabase
+      const { data: initialEnrolledClassrooms, error: classroomError } = await db
         .rpc('get_student_classrooms', {
           student_uuid: effectiveUserId,
           academy_uuids: user?.academyIds || []
@@ -497,7 +497,7 @@ function MobileAssignmentsPageContent() {
       })
 
       // Step 2: Get sessions for enrolled classrooms - FIXED: Use RPC to bypass RLS
-      const { data: sessions, error: sessionsError } = await supabase
+      const { data: sessions, error: sessionsError } = await db
         .rpc('get_classroom_sessions', {
           classroom_uuids: classroomIds
         })
@@ -553,7 +553,7 @@ function MobileAssignmentsPageContent() {
       })
       
       // Step 3: Get assignments first - FIXED: Use RPC to bypass RLS
-      const { data: assignments, error: assignmentsError } = await supabase
+      const { data: assignments, error: assignmentsError } = await db
         .rpc('get_assignments_for_sessions', {
           session_uuids: sessionIds
         })
@@ -613,15 +613,15 @@ function MobileAssignmentsPageContent() {
       const fetchGradesParallel = async (): Promise<Array<{
         assignment_id: string
         status: string
-        score?: number
-        submitted_date?: string
+        score: number | null
+        submitted_date: string | null
       }>> => {
         if (useGradesCache) {
           return cachedGrades.data as Array<{
             assignment_id: string
             status: string
-            score?: number
-            submitted_date?: string
+            score: number | null
+            submitted_date: string | null
           }>
         }
 
@@ -636,7 +636,7 @@ function MobileAssignmentsPageContent() {
         // Execute all batches in parallel
         const batchResults = await Promise.all(
           batches.map(batch =>
-            supabase
+            db
               .from('assignment_grades')
               .select('assignment_id, status, score, submitted_date')
               .eq('student_id', effectiveUserId)
@@ -659,7 +659,7 @@ function MobileAssignmentsPageContent() {
         const academyNamesMap = new Map<string, string>()
         if (assignmentAcademyIds.length === 0) return academyNamesMap
 
-        const { data: academies } = await supabase
+        const { data: academies } = await db
           .from('academies')
           .select('id, name')
           .in('id', assignmentAcademyIds)
@@ -682,8 +682,8 @@ function MobileAssignmentsPageContent() {
       const userGradesMap = new Map<string, {
         assignment_id: string
         status: string
-        score?: number
-        submitted_date?: string
+        score: number | null
+        submitted_date: string | null
       }>()
       gradesData.forEach((grade) => {
         userGradesMap.set(grade.assignment_id, grade)
@@ -826,7 +826,7 @@ function MobileAssignmentsPageContent() {
     try {
       // OPTIMIZATION: Break down the complex query into simpler parallel queries
       // Step 1: Get student's enrolled classrooms - FIXED to use same RPC function
-      const { data: enrolledClassrooms, error: enrollmentError } = await supabase
+      const { data: enrolledClassrooms, error: enrollmentError } = await db
         .rpc('get_student_classrooms', {
           student_uuid: effectiveUserId,
           academy_uuids: user?.academyIds || []
@@ -857,7 +857,7 @@ function MobileAssignmentsPageContent() {
       })
 
       // Step 2: Get sessions for enrolled classrooms - FIXED: Use RPC to bypass RLS
-      const { data: sessions } = await supabase
+      const { data: sessions } = await db
         .rpc('get_classroom_sessions', {
           classroom_uuids: classroomIds
         })
@@ -878,7 +878,7 @@ function MobileAssignmentsPageContent() {
       })
 
       // Step 3: Get assignments for those sessions - FIXED: Use RPC to bypass RLS
-      const { data: assignments } = await supabase
+      const { data: assignments } = await db
         .rpc('get_assignments_for_sessions', {
           session_uuids: sessionIds
         })
@@ -900,11 +900,11 @@ function MobileAssignmentsPageContent() {
         id: string
         assignment_id: string
         student_id: string
-        score?: number
+        score: number | null
         status: string
-        submitted_date?: string
-        feedback?: string
-        updated_at?: string
+        submitted_date: string | null
+        feedback: string | null
+        updated_at: string | null
       }> = []
       let error = null
       
@@ -919,11 +919,11 @@ function MobileAssignmentsPageContent() {
             id: string
             assignment_id: string
             student_id: string
-            score?: number
+            score: number | null
             status: string
-            submitted_date?: string
-            feedback?: string
-            updated_at?: string
+            submitted_date: string | null
+            feedback: string | null
+            updated_at: string | null
           }>
           error = null
         } else {
@@ -939,7 +939,7 @@ function MobileAssignmentsPageContent() {
             const maxRetries = 2
             
             while (retryCount <= maxRetries) {
-              const gradesResult = await supabase
+              const gradesResult = await db
                 .from('assignment_grades')
                 .select('id, assignment_id, student_id, submitted_date, score, feedback, status, updated_at')
                 .eq('student_id', effectiveUserId)
@@ -1030,9 +1030,9 @@ function MobileAssignmentsPageContent() {
           academy_id: classroom.academy_id || '',
           status: gradeRecord.status || 'not submitted',
           due_date: assignment.due_date || '',
-          submitted_date: gradeRecord.submitted_date,
+          submitted_date: gradeRecord.submitted_date ?? undefined,
           comment_count: 0,
-          teacher_comment: gradeRecord.feedback,
+          teacher_comment: gradeRecord.feedback ?? undefined,
           classroom_color: classroom.color || '#3B82F6',
           attachments: [], // Will be populated separately
           session_date: session.date || '',
@@ -1070,7 +1070,7 @@ function MobileAssignmentsPageContent() {
     if (!effectiveUserId || !hasAcademyIds) return
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classrooms')
         .select(`
           id,
@@ -1411,7 +1411,7 @@ function MobileAssignmentsPageContent() {
       if (!academyIds || academyIds.length === 0) return
 
       try {
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('academies')
           .select('id, name')
           .in('id', academyIds)
@@ -1600,7 +1600,7 @@ function MobileAssignmentsPageContent() {
 
     try {
       // Save comment to database
-      const { data: savedComment, error } = await supabase
+      const { data: savedComment, error } = await db
         .from('assignment_comments')
         .insert({
           assignment_id: commentBottomSheet.assignment.id,
@@ -1629,7 +1629,9 @@ function MobileAssignmentsPageContent() {
         user_name: user?.userName || 'You',
         user_initials: user?.userName?.charAt(0) || 'Y',
         content: savedComment.text,
-        created_at: savedComment.created_at
+        // created_at is nullable in the schema but defaults to now() on insert;
+        // fall back to the local clock only if PostgREST omitted it.
+        created_at: savedComment.created_at ?? new Date().toISOString()
       }
 
       // Update assignments with new comment

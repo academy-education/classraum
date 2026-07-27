@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Capacitor } from '@capacitor/core'
 import { performLogout } from '@/lib/logout'
 import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
@@ -158,7 +158,7 @@ function MobileProfilePageContent() {
       console.error('Logout failed:', error)
       // Last-resort fallback so the user is never trapped on a logout failure.
       try {
-        await supabase.auth.signOut()
+        await db.auth.signOut()
       } catch {
         // ignore
       }
@@ -177,7 +177,7 @@ function MobileProfilePageContent() {
     let cancelled = false
     ;(async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession()
+        const { data: { session } } = await db.auth.getSession()
         if (!session?.access_token) return
         const res = await fetch('/api/account/check-deletion-eligibility', {
           headers: { Authorization: `Bearer ${session.access_token}` },
@@ -217,7 +217,7 @@ function MobileProfilePageContent() {
 
     setDeletingAccount(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) {
         toast({ title: String(t('common.failedToDeleteAccount')), variant: 'destructive' })
         setDeletingAccount(false)
@@ -257,7 +257,7 @@ function MobileProfilePageContent() {
         try { sessionStorage.clear() } catch {}
       }
 
-      await supabase.auth.signOut()
+      await db.auth.signOut()
       router.push('/account/goodbye')
     } catch (error) {
       console.error('Delete account failed:', error)

@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * Study XP awarding — wraps the award_study_xp Postgres function.
@@ -46,11 +46,13 @@ export async function awardXp(
 ): Promise<void> {
   const xp = XP_VALUES[eventType]
   try {
-    const { error } = await supabaseAdmin.rpc('award_study_xp', {
+    const { error } = await dbAdmin.rpc('award_study_xp', {
       p_student_id: studentId,
       p_event_type: eventType,
       p_xp: xp,
-      p_source_id: sourceId ?? null,
+      // `p_source_id uuid DEFAULT NULL` — omitting the key is the same call
+      // as passing SQL NULL, and matches the generated (optional) arg type.
+      ...(sourceId != null ? { p_source_id: sourceId } : {}),
     })
     if (error) console.error('[xp] award_study_xp failed', error)
   } catch (e) {

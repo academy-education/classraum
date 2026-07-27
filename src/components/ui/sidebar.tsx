@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import { supabase } from "@/lib/supabase"
+import { db } from "@/lib/supabase"
 import { performLogout } from "@/lib/logout"
 import { useTranslation } from "@/hooks/useTranslation"
 import { useAuth } from "@/contexts/AuthContext"
@@ -88,7 +88,7 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
       }
 
       try {
-        const { data: userInfo, error } = await supabase
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', user.id)
@@ -163,7 +163,7 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
       router.replace('/auth')
     } catch (error) {
       console.error('Logout failed:', error)
-      try { await supabase.auth.signOut() } catch { /* ignore */ }
+      try { await db.auth.signOut() } catch { /* ignore */ }
       router.replace('/auth')
     } finally {
       setLoading(false)

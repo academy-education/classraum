@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { LoadingScreen } from '@/components/ui/loading-screen';
 import { AdminSidebar } from './AdminSidebar';
 import { AdminHeader } from './AdminHeader';
@@ -44,7 +44,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     const checkAdminAuth = async () => {
       try {
 
-        const { data: { session } } = await supabase.auth.getSession();
+        const { data: { session } } = await db.auth.getSession();
 
         if (!isMounted) return;
 
@@ -57,7 +57,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
 
         // Get user info directly from database
-        const { data: userInfo, error: userError } = await supabase
+        const { data: userInfo, error: userError } = await db
           .from('users')
           .select('*')
           .eq('id', session.user.id)
@@ -96,7 +96,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           email: userInfo.email,
           name: userInfo.name,
           role: userInfo.role as 'admin' | 'super_admin',
-          createdAt: new Date(userInfo.created_at)
+          // users.created_at is nullable in the schema (it only has a now()
+          // default); fall back to the auth record's created_at, which is
+          // always present, rather than inventing a date.
+          createdAt: new Date(userInfo.created_at ?? session.user.created_at)
         };
 
         setAdminUser(adminUserData);

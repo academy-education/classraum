@@ -16,7 +16,7 @@ import { EmptyState } from '@/components/ui/common/EmptyState'
 import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Button } from '@/components/ui/button'
 import { SessionDetailSkeleton } from '@/components/ui/skeleton'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import {
   ArrowLeft,
   School,
@@ -87,7 +87,7 @@ export default function MobileSessionDetailsPage() {
     try {
 
       // Step 1: Get student's enrolled classrooms using RPC to bypass RLS
-      const { data: enrolledClassrooms } = await supabase
+      const { data: enrolledClassrooms } = await db
         .rpc('get_student_classrooms', {
           student_uuid: effectiveUserId,
           academy_uuids: academyIds
@@ -101,7 +101,7 @@ export default function MobileSessionDetailsPage() {
 
 
       // Step 2: Get all sessions for enrolled classrooms using direct query to get room_number
-      const { data: sessions, error: sessionError } = await supabase
+      const { data: sessions, error: sessionError } = await db
         .from('classroom_sessions')
         .select(`
           id,
@@ -144,7 +144,7 @@ export default function MobileSessionDetailsPage() {
       const classroom = Array.isArray(sessionData.classrooms) ? sessionData.classrooms[0] : sessionData.classrooms as any
 
       // Get the total count of students in the classroom using our RLS-bypassing function
-      const { data: studentCountResult, error: countError } = await supabase
+      const { data: studentCountResult, error: countError } = await db
         .rpc('get_classroom_student_count', { classroom_uuid: classroom.id })
 
       if (countError) {
@@ -160,7 +160,7 @@ export default function MobileSessionDetailsPage() {
       // Fetch academy name separately
       let academyName = String(t('mobile.fallbacks.academy'))
       if (classroom.academy_id) {
-        const { data: academyData } = await supabase
+        const { data: academyData } = await db
           .from('academies')
           .select('name')
           .eq('id', classroom.academy_id)
@@ -178,7 +178,7 @@ export default function MobileSessionDetailsPage() {
         start_time: sessionData.start_time.slice(0, 5), // Format HH:MM
         end_time: sessionData.end_time.slice(0, 5), // Format HH:MM
         location: sessionData.location,
-        room_number: sessionData.room_number,
+        room_number: sessionData.room_number ?? undefined,
         status: sessionData.status,
         academy_name: academyName,
         classroom: {

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { RefreshCw, RotateCw, Check, RefreshCcw, Sparkles, Lightbulb, X, Barbell, ListChecks, ChevronDown } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -104,7 +104,7 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
   // need topic_id from the session row alongside the deck.
   useEffect(() => {
     void (async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select('topic_id')
         .eq('id', sessionId)
@@ -125,7 +125,7 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
 
     // Persist the review as a study_attempts row (for mastery + stats).
     void (async () => {
-      const { error } = await supabase.from('study_attempts').insert({
+      const { error } = await db.from('study_attempts').insert({
         session_id: sessionId,
         question: {
           prompt: card.front,
@@ -145,19 +145,23 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
     // SRS update — load existing state (if any), compute next, persist.
     // Fire-and-forget so the UI advances immediately; the next-due
     // calculation only matters for the NEXT session, not this card.
-    void (async () => {
-      const { data: existing } = await supabase
+    // study_flashcard_reviews.topic_id is NOT NULL and part of the
+    // (student_id, topic_id, card_front) conflict target, so a topic-less
+    // session has no SRS row to keep. Writing one would fail the NOT NULL
+    // constraint, and `.eq('topic_id', null)` never matched anything anyway.
+    if (topicId) void (async () => {
+      const { data: existing } = await db
         .from('study_flashcard_reviews')
         .select('ease_factor, interval_days, repetitions')
         .eq('student_id', user.userId)
-        .eq('topic_id', topicId ?? null)
+        .eq('topic_id', topicId)
         .eq('card_front', card.front)
         .maybeSingle()
 
       const prev = existing ?? INITIAL_SRS
       const next = scheduleNext(prev, quality)
 
-      const { error: srsError } = await supabase.from('study_flashcard_reviews').upsert({
+      const { error: srsError } = await db.from('study_flashcard_reviews').upsert({
         student_id: user.userId,
         topic_id: topicId,
         card_front: card.front,
@@ -222,7 +226,7 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
     const score = Math.round((marked.got / deck.length) * 100)
     // If this write is dropped the session is stuck at 'in_progress' in history
     // forever — the exact bug this effect exists to fix — so make it visible.
-    void supabase
+    void db
       .from('study_sessions')
       .update({ status: 'completed', completed_at: new Date().toISOString(), score })
       .eq('id', sessionId)
@@ -237,7 +241,7 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
   // review-only and deck-cleared screens can both call it.
   const startFreshDeck = async () => {
     if (!user?.userId || !topicId) { void load(); return }
-    const { data, error: insErr } = await supabase
+    const { data, error: insErr } = await db
       .from('study_sessions')
       .insert({ student_id: user.userId, topic_id: topicId, mode: 'flashcards', language })
       .select('id')

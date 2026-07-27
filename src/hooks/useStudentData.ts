@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useStableCallback } from './useStableCallback'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
@@ -80,7 +80,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       const to = from + itemsPerPage - 1
 
       // Build the base query with status filter
-      let studentsQuery = supabase
+      let studentsQuery = db
         .from('students')
         .select(`
           user_id,
@@ -113,14 +113,14 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         studentsQuery,
 
         // Get active students count
-        supabase
+        db
           .from('students')
           .select('user_id', { count: 'exact', head: true })
           .eq('academy_id', academyId)
           .eq('active', true),
 
         // Get inactive students count
-        supabase
+        db
           .from('students')
           .select('user_id', { count: 'exact', head: true })
           .eq('academy_id', academyId)
@@ -152,7 +152,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       
       if (studentIds.length > 0) {
         // Get family memberships
-        const { data: familyMembers, error: familyError } = await supabase
+        const { data: familyMembers, error: familyError } = await db
           .from('family_members')
           .select(`
             user_id,
@@ -173,7 +173,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         }
 
         // Get classroom counts using database aggregation
-        const { data: classroomCountData, error: classroomError } = await supabase
+        const { data: classroomCountData, error: classroomError } = await db
           .rpc('count_classrooms_by_student', {
             student_ids: studentIds
           })
@@ -181,7 +181,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         if (classroomError) {
           // Fallback to the previous method if RPC fails
           console.warn('RPC failed, using fallback method:', classroomError)
-          const { data: classroomData, error: fallbackError } = await supabase
+          const { data: classroomData, error: fallbackError } = await db
             .from('classroom_students')
             .select('student_id')
             .in('student_id', studentIds)
@@ -245,7 +245,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
     }
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('families')
         .select('id, academy_id, created_at')
         .eq('academy_id', academyId)
@@ -268,7 +268,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
 
   const fetchClassrooms = useStableCallback(async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classrooms')
         .select(`
           id,
@@ -299,7 +299,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
 
   const getStudentClassrooms = useCallback(async (studentId: string): Promise<Classroom[]> => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_students')
         .select(`
           classrooms!inner(
@@ -342,7 +342,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
   const fetchFamilyDetails = useCallback(async (familyId: string) => {
     try {
       // Get family details and members
-      const { data: familyData, error: familyError } = await supabase
+      const { data: familyData, error: familyError } = await db
         .from('families')
         .select('*')
         .eq('id', familyId)
@@ -350,7 +350,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
 
       if (familyError) throw familyError
 
-      const { data: membersData, error: membersError } = await supabase
+      const { data: membersData, error: membersError } = await db
         .from('family_members')
         .select(`
           user_id,
@@ -366,50 +366,65 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       if (membersError) throw membersError
 
       // Get phone numbers for family members from their respective role tables
-      const memberIds = membersData?.map((member: Record<string, unknown>) => member.user_id as string) || []
+      // family_members.user_id is NULLABLE (a member can be invited before
+      // they have an account — 13 of 362 rows are null today), so unlinked
+      // rows are dropped rather than keyed under the string "null", which
+      // silently merged unrelated families together.
+      //
+      // No `Record<string, unknown>` annotation here on purpose: it erased
+      // the inferred row type and collapsed `members` to `{ phone }[]`.
+      const linkedMembers = (membersData ?? []).filter(
+        (m): m is typeof m & { user_id: string } => m.user_id !== null,
+      )
+      const memberIds = linkedMembers.map(m => m.user_id)
       const phoneMap: { [key: string]: string | null } = {}
 
       if (memberIds.length > 0) {
         // Fetch from parents table
-        const { data: parentPhones } = await supabase
+        const { data: parentPhones } = await db
           .from('parents')
           .select('user_id, phone')
           .in('user_id', memberIds)
         
-        parentPhones?.forEach((p: { user_id: string; phone: string }) => {
+        parentPhones?.forEach((p) => {
           phoneMap[p.user_id] = p.phone
         })
 
         // Fetch from students table  
-        const { data: studentPhones } = await supabase
+        const { data: studentPhones } = await db
           .from('students')
           .select('user_id, phone')
           .in('user_id', memberIds)
         
-        studentPhones?.forEach((s: { user_id: string; phone: string }) => {
+        studentPhones?.forEach((s) => {
           phoneMap[s.user_id] = s.phone
         })
 
         // Fetch from teachers table
-        const { data: teacherPhones } = await supabase
+        const { data: teacherPhones } = await db
           .from('teachers')
           .select('user_id, phone')
           .in('user_id', memberIds)
         
-        teacherPhones?.forEach((t: { user_id: string; phone: string }) => {
+        teacherPhones?.forEach((t) => {
           phoneMap[t.user_id] = t.phone
         })
       }
 
       // Add phone data to members
-      const enrichedMembers = membersData?.map((member: Record<string, unknown>) => ({
+      const enrichedMembers = linkedMembers.map(member => ({
         ...member,
-        phone: phoneMap[member.user_id as string] || null
-      })) || []
+        // `undefined`, not null, to match the consumer's optional-field
+        // convention — the phone is absent, not known-to-be-empty.
+        phone: phoneMap[member.user_id] ?? undefined,
+      }))
 
       return {
         ...familyData,
-        members: enrichedMembers
+        // families.name is nullable in the DB; the consumer's state type is
+        // `name?: string`, so a missing name is absent rather than null.
+        name: familyData.name ?? undefined,
+        members: enrichedMembers,
       }
     } catch (error) {
       console.error('Error fetching family details:', error)
@@ -436,7 +451,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
   }>> => {
     try {
       // Get classrooms where this student is enrolled
-      const { data: enrollmentData, error: enrollmentError } = await supabase
+      const { data: enrollmentData, error: enrollmentError } = await db
         .from('classroom_students')
         .select(`
           classroom_id,
@@ -465,7 +480,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       const teacherIds = classrooms.map(c => c.teacher_id as string).filter(Boolean)
 
       // Batch query for all enrolled students across all classrooms
-      const { data: allEnrolledStudents, error: studentsError } = await supabase
+      const { data: allEnrolledStudents, error: studentsError } = await db
         .from('classroom_students')
         .select(`
           classroom_id,
@@ -484,7 +499,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
       // Batch query for all teacher names
       const teacherNames: { [key: string]: string } = {}
       if (teacherIds.length > 0) {
-        const { data: teachersData, error: teachersError } = await supabase
+        const { data: teachersData, error: teachersError } = await db
           .from('users')
           .select('id, name')
           .in('id', teacherIds)

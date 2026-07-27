@@ -1,4 +1,5 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
+import { toJson } from '@/lib/json'
 
 /**
  * Study funnel analytics — a lightweight, vendor-free event log written to
@@ -61,10 +62,10 @@ export async function trackEvent(
     // Intentionally ignores the resolved { error }: a dropped funnel event
     // costs a row in a reporting table and nothing else, and every caller
     // is a `void` on a hot request path.
-    await supabaseAdmin.from('study_analytics_events').insert({
+    await dbAdmin.from('study_analytics_events').insert({
       student_id: studentId,
       event,
-      props: props ?? null,
+      props: props ? toJson(props) : null,
     })
   } catch (e) {
     console.error('[analytics] track failed', event, e)

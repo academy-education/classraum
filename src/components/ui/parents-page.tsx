@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -41,10 +41,11 @@ interface Parent {
   user_id: string
   name: string
   email: string
-  phone?: string
+  phone?: string | null
   academy_id: string
-  active: boolean
-  created_at: string
+  // parents.active / created_at are nullable columns.
+  active: boolean | null
+  created_at: string | null
   family_id?: string
   family_name?: string
   children_count?: number
@@ -160,7 +161,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       const to = from + itemsPerPage - 1
 
       // Build the base query with status filter
-      let parentsQuery = supabase
+      let parentsQuery = db
         .from('parents')
         .select('user_id, phone, academy_id, active, created_at', { count: 'exact' })
         .eq('academy_id', academyId)
@@ -180,13 +181,13 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       const [parentsResult, activeCountResult, inactiveCountResult] = await Promise.all([
         parentsQuery,
         // Count active parents
-        supabase
+        db
           .from('parents')
           .select('*', { count: 'exact', head: true })
           .eq('academy_id', academyId)
           .eq('active', true),
         // Count inactive parents
-        supabase
+        db
           .from('parents')
           .select('*', { count: 'exact', head: true })
           .eq('academy_id', academyId)
@@ -211,7 +212,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       // Get user details for parents
       const parentIds = parentsData.map(p => p.user_id)
-      const { data: usersData, error: usersError } = await supabase
+      const { data: usersData, error: usersError } = await db
         .from('users')
         .select('id, name, email')
         .in('id', parentIds)
@@ -224,7 +225,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       
       if (parentIds.length > 0) {
         // Get family memberships
-        const { data: familyMembers, error: familyError } = await supabase
+        const { data: familyMembers, error: familyError } = await db
           .from('family_members')
           .select('user_id, family_id')
           .in('user_id', parentIds)
@@ -232,7 +233,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         if (!familyError && familyMembers && familyMembers.length > 0) {
           // Get family details
           const familyIds = [...new Set(familyMembers.map(fm => fm.family_id))]
-          const { data: familiesData, error: familiesError } = await supabase
+          const { data: familiesData, error: familiesError } = await db
             .from('families')
             .select('id, name')
             .in('id', familyIds)
@@ -241,6 +242,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
             const familiesMap = Object.fromEntries(familiesData.map(f => [f.id, f]))
             
             familyMembers.forEach(member => {
+              // family_members.user_id is nullable; a row with no user cannot
+              // be attributed to a parent, so skip it rather than keying on null.
+              if (!member.user_id) return
               const family = familiesMap[member.family_id]
               familyData[member.user_id] = {
                 family_id: family?.id || member.family_id,
@@ -254,15 +258,18 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         const familyIds = Object.values(familyData).map(f => f.family_id).filter(Boolean)
         if (familyIds.length > 0) {
           // Get family members (children)
-          const { data: familyMembersChildren, error: childrenError } = await supabase
+          const { data: familyMembersChildren, error: childrenError } = await db
             .from('family_members')
             .select('user_id, family_id, role')
             .in('family_id', familyIds)
           
           if (!childrenError && familyMembersChildren && familyMembersChildren.length > 0) {
             // Get user details for family members
-            const memberUserIds = familyMembersChildren.map(fm => fm.user_id)
-            const { data: memberUsersData, error: memberUsersError } = await supabase
+            // family_members.user_id is nullable — drop unlinked rows.
+            const memberUserIds = familyMembersChildren
+              .map(fm => fm.user_id)
+              .filter((id): id is string => id !== null)
+            const { data: memberUsersData, error: memberUsersError } = await db
               .from('users')
               .select('id, name, role')
               .in('id', memberUserIds)
@@ -275,6 +282,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
               // Group children by family_id
               const childrenByFamily: { [familyId: string]: { name: string }[] } = {}
               familyMembersChildren.forEach(member => {
+                if (!member.user_id) return
                 const user = studentUsersMap[member.user_id]
                 if (user && user.role === 'student') {
                   if (!childrenByFamily[member.family_id]) {
@@ -344,7 +352,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     if (!academyId) return
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('families')
         .select('id, academy_id, created_at')
         .eq('academy_id', academyId)
@@ -451,8 +459,10 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         bVal = b.active ? 'active' : 'inactive'
         break
       case 'created_at':
-        aVal = new Date(a.created_at).getTime()
-        bVal = new Date(b.created_at).getTime()
+        // created_at is nullable; sort rows without one to the epoch so the
+        // comparison stays total instead of producing NaN.
+        aVal = a.created_at ? new Date(a.created_at).getTime() : 0
+        bVal = b.created_at ? new Date(b.created_at).getTime() : 0
         break
       default:
         return 0
@@ -579,8 +589,8 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     try {
       // Get family details and members in parallel
       const [familyResult, membersResult] = await Promise.all([
-        supabase.from('families').select('id, name, created_at').eq('id', parent.family_id).single(),
-        supabase.from('family_members').select('user_id, role').eq('family_id', parent.family_id)
+        db.from('families').select('id, name, created_at').eq('id', parent.family_id).single(),
+        db.from('family_members').select('user_id, role').eq('family_id', parent.family_id)
       ])
 
       if (familyResult.error) throw familyResult.error
@@ -591,40 +601,47 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         return
       }
 
-      const memberIds = membersResult.data.map(member => member.user_id)
+      // family_members.user_id is nullable — drop unlinked rows.
+      const memberIds = membersResult.data
+        .map(member => member.user_id)
+        .filter((id): id is string => id !== null)
 
       // Fetch user details and all phone numbers in parallel
       const [memberUsersResult, parentPhonesResult, studentPhonesResult, teacherPhonesResult] = await Promise.all([
-        supabase.from('users').select('id, name, email, role').in('id', memberIds),
-        supabase.from('parents').select('user_id, phone').in('user_id', memberIds),
-        supabase.from('students').select('user_id, phone').in('user_id', memberIds),
-        supabase.from('teachers').select('user_id, phone').in('user_id', memberIds)
+        db.from('users').select('id, name, email, role').in('id', memberIds),
+        db.from('parents').select('user_id, phone').in('user_id', memberIds),
+        db.from('students').select('user_id, phone').in('user_id', memberIds),
+        db.from('teachers').select('user_id, phone').in('user_id', memberIds)
       ])
 
       if (memberUsersResult.error) throw memberUsersResult.error
 
       // Build phone map from all role tables
       const phoneMap: { [key: string]: string | null } = {}
-      parentPhonesResult.data?.forEach((p: { user_id: string; phone?: string }) => { phoneMap[p.user_id] = p.phone || null })
-      studentPhonesResult.data?.forEach((s: { user_id: string; phone?: string }) => { phoneMap[s.user_id] = s.phone || null })
-      teacherPhonesResult.data?.forEach((t: { user_id: string; phone?: string }) => { phoneMap[t.user_id] = t.phone || null })
+      parentPhonesResult.data?.forEach((p) => { phoneMap[p.user_id] = p.phone || null })
+      studentPhonesResult.data?.forEach((s) => { phoneMap[s.user_id] = s.phone || null })
+      teacherPhonesResult.data?.forEach((tRow) => { phoneMap[tRow.user_id] = tRow.phone || null })
 
       // Map family members with user data and phone
       const userMap = Object.fromEntries((memberUsersResult.data || []).map(u => [u.id, u]))
-      const enrichedFamilyMembers = membersResult.data.map(member => {
-        const user = userMap[member.user_id]
-        return {
-          user_id: member.user_id,
-          role: member.role,
-          users: {
-            id: user?.id || member.user_id,
-            name: user?.name || String(t('common.fallbacks.unknown')),
-            email: user?.email || '',
-            role: user?.role || member.role
-          },
-          phone: phoneMap[member.user_id] || null
-        }
-      })
+      const enrichedFamilyMembers = membersResult.data
+        // family_members.user_id is nullable; rows with no user have nothing
+        // to display.
+        .filter((member): member is typeof member & { user_id: string } => member.user_id !== null)
+        .map(member => {
+          const user = userMap[member.user_id]
+          return {
+            user_id: member.user_id,
+            role: member.role,
+            users: {
+              id: user?.id || member.user_id,
+              name: user?.name || String(t('common.fallbacks.unknown')),
+              email: user?.email || '',
+              role: user?.role || member.role
+            },
+            phone: phoneMap[member.user_id] || null
+          }
+        })
 
       setParentFamily({ ...familyResult.data, family_members: enrichedFamilyMembers } as unknown as { family_id: string; family_name: string })
     } catch (error: unknown) {
@@ -651,7 +668,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
     try {
       // Get all children for this parent's family
-      const { data: familyMembersData, error: membersError } = await supabase
+      const { data: familyMembersData, error: membersError } = await db
         .from('family_members')
         .select('user_id, role')
         .eq('family_id', parent.family_id)
@@ -664,8 +681,11 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       }
 
       // Get user details for family members (students only)
-      const memberIds = familyMembersData.map(fm => fm.user_id)
-      const { data: memberUsersData, error: usersError } = await supabase
+      // family_members.user_id is nullable — drop unlinked rows.
+      const memberIds = familyMembersData
+        .map(fm => fm.user_id)
+        .filter((id): id is string => id !== null)
+      const { data: memberUsersData, error: usersError } = await db
         .from('users')
         .select('id, name, email, role')
         .in('id', memberIds)
@@ -678,11 +698,12 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       if (studentIds.length > 0) {
         // Fetch student details and classroom enrollments in parallel
         const [studentsResult, classroomResult] = await Promise.all([
-          supabase.from('students').select('user_id, school_name, active').in('user_id', studentIds),
-          supabase.from('classroom_students').select('student_id, classrooms(name)').in('student_id', studentIds)
+          db.from('students').select('user_id, school_name, active').in('user_id', studentIds),
+          db.from('classroom_students').select('student_id, classrooms(name)').in('student_id', studentIds)
         ])
 
-        const studentsData: { [key: string]: { school_name: string; active: boolean } } = {}
+        // students.school_name and students.active are both nullable columns.
+        const studentsData: { [key: string]: { school_name: string | null; active: boolean | null } } = {}
         studentsResult.data?.forEach(student => {
           studentsData[student.user_id] = { school_name: student.school_name, active: student.active }
         })
@@ -729,7 +750,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     const newStatus = !parentToDelete.active
     
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('parents')
         .update({ active: newStatus })
         .eq('user_id', parentToDelete.user_id)
@@ -753,7 +774,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
     if (selectedParents.size === 0) return
     
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('parents')
         .update({ active })
         .in('user_id', Array.from(selectedParents))

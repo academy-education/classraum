@@ -8,14 +8,15 @@ import { Label } from '@/components/ui/label'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Loader2 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { DatePicker } from '@/components/ui/date-picker'
 
 interface Classroom {
   id: string
   name: string
-  color?: string
+  // classrooms.color is nullable.
+  color?: string | null
 }
 
 interface ScheduleBreaksModalProps {
@@ -50,7 +51,7 @@ export function ScheduleBreaksModal({
   const fetchClassrooms = async () => {
     try {
       setLoadingClassrooms(true)
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classrooms')
         .select('id, name, color')
         .eq('academy_id', academyId)
@@ -112,7 +113,7 @@ export function ScheduleBreaksModal({
         reason: reason || null
       }))
 
-      const { error } = await supabase
+      const { error } = await db
         .from('schedule_breaks')
         .insert(breaks)
 

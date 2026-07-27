@@ -29,7 +29,7 @@ import {
   Zap,
   LogOut
 } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { performLogout } from '@/lib/logout'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
@@ -72,7 +72,7 @@ export function DashboardBottomNavigation({ userRole, onHelpClick }: DashboardBo
     } catch (error) {
       console.error('Logout error:', error)
       // Last-resort fallback so the user is never trapped.
-      try { await supabase.auth.signOut() } catch { /* ignore */ }
+      try { await db.auth.signOut() } catch { /* ignore */ }
       router.replace('/auth')
     } finally {
       setLoggingOut(false)

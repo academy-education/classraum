@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { ArrowRight, Sparkles, ChevronDown, Check } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -87,7 +87,7 @@ function BuilderInner() {
   useEffect(() => {
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_topics')
         .select('id, slug, name_en, name_ko, parent_id, category, children:study_topics!parent_id(id)')
         .not('parent_id', 'is', null)
@@ -96,7 +96,7 @@ function BuilderInner() {
       // Parent rows (for family filtering + labels) in one extra query —
       // PostgREST can't embed both directions of a self-FK reliably.
       const parentIds = [...new Set((data ?? []).map(r => r.parent_id as string).filter(Boolean))]
-      const { data: parentRows } = await supabase
+      const { data: parentRows } = await db
         .from('study_topics')
         .select('id, slug, name_en, name_ko')
         .in('id', parentIds)

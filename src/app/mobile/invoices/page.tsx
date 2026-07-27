@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button'
 import { MobileBackButton } from '@/components/ui/mobile/MobileBackButton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { CardSkeleton } from '@/components/ui/skeleton'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
@@ -105,7 +105,7 @@ function MobileInvoicesPageContent() {
       const to = from + itemsPerPage - 1
 
       // Build query with status filter
-      let query = supabase
+      let query = db
         .from('invoices')
         .select(`
           id,
@@ -159,7 +159,7 @@ function MobileInvoicesPageContent() {
       }
 
       const formattedInvoices: Invoice[] = invoicesData.map((invoice) => {
-        // Extract academy_id from invoice structure. supabase joined-relation
+        // Extract academy_id from invoice structure. Supabase joined-relation
         // shape varies: single FK can come back as object or array depending
         // on inferred cardinality, so we handle both at runtime.
         let academyId: string | undefined
@@ -180,11 +180,11 @@ function MobileInvoicesPageContent() {
           amount: invoice.final_amount || invoice.amount || 0,
           status: invoice.status || 'pending',
           dueDate: invoice.due_date || '',
-          paidDate: invoice.paid_at || null,
+          paidDate: invoice.paid_at ?? undefined,
           description: getInvoiceDescription(invoice),
           academyName: getAcademyName(invoice),
           academyId,
-          paymentMethod: invoice.payment_method || null,
+          paymentMethod: invoice.payment_method ?? undefined,
           notes: '',
           created_at: invoice.created_at || new Date().toISOString()
         }
@@ -275,6 +275,10 @@ function MobileInvoicesPageContent() {
 
   // Fallback fetch strategy with simplified queries
   const fetchInvoicesSimplified = useCallback(async (): Promise<Invoice[]> => {
+    if (!effectiveUserId) {
+      return []
+    }
+
     try {
 
       // Calculate pagination range
@@ -282,7 +286,7 @@ function MobileInvoicesPageContent() {
       const to = from + itemsPerPage - 1
 
       // Step 1: Build query with status filter and pagination
-      let query = supabase
+      let query = db
         .from('invoices')
         .select(`
           id,
@@ -325,7 +329,7 @@ function MobileInvoicesPageContent() {
       }
 
       // Step 2: Get student info to find academy
-      const { data: studentData } = await supabase
+      const { data: studentData } = await db
         .from('students')
         .select('academy_id')
         .eq('user_id', effectiveUserId)
@@ -333,7 +337,7 @@ function MobileInvoicesPageContent() {
 
       let academyName = String(t('mobile.fallbacks.academy'))
       if (studentData?.academy_id) {
-        const { data: academyData } = await supabase
+        const { data: academyData } = await db
           .from('academies')
           .select('name')
           .eq('id', studentData.academy_id)
@@ -350,10 +354,10 @@ function MobileInvoicesPageContent() {
         amount: invoice.final_amount || invoice.amount || 0,
         status: invoice.status || 'pending',
         dueDate: invoice.due_date || '',
-        paidDate: invoice.paid_at || null,
+        paidDate: invoice.paid_at ?? undefined,
         description: String(t('mobile.invoices.invoice')),
         academyName,
-        paymentMethod: invoice.payment_method || null,
+        paymentMethod: invoice.payment_method ?? undefined,
         notes: '',
         created_at: invoice.created_at || new Date().toISOString()
       }))

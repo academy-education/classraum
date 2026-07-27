@@ -7,21 +7,25 @@
  */
 import { NextResponse } from 'next/server'
 import { POST } from '@/app/api/study/test/submit/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 
-jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
-}))
+// dbAdmin and supabaseAdmin are the same client in production — the
+// second is only an untyped alias — so the mock exposes one shared
+// object under both names.
+jest.mock('@/lib/supabase-admin', () => {
+  const client = { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } }
+  return { dbAdmin: client, supabaseAdmin: client }
+})
 jest.mock('@/lib/rate-limit', () => ({ enforceRateLimit: jest.fn(() => null) }))
 jest.mock('@/lib/study/auth', () => ({ requireStudyUser: jest.fn() }))
 jest.mock('@/lib/study-mastery-assess', () => ({
   assessSessionMastery: jest.fn(async () => undefined),
 }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const requireStudyUserMock = requireStudyUser as unknown as jest.Mock
 const enforceRateLimitMock = enforceRateLimit as unknown as jest.Mock
 

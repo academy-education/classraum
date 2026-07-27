@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useStableCallback } from './useStableCallback'
 
 export interface Subject {
@@ -41,7 +41,7 @@ export function useSubjectData(academyId: string) {
     try {
       setError(null)
       
-      const { data: subjectsData, error: subjectsError } = await supabase
+      const { data: subjectsData, error: subjectsError } = await db
         .from('subjects')
         .select('*')
         .eq('academy_id', academyId)
@@ -69,7 +69,7 @@ export function useSubjectData(academyId: string) {
       // rows from the hub and dropdowns. Historical assignments still display
       // the category name because they join the row directly by FK (which is
       // unaffected by the filter here).
-      const { data: categoriesData, error: categoriesError } = await supabase
+      const { data: categoriesData, error: categoriesError } = await db
         .from('assignment_categories')
         .select(`
           *,

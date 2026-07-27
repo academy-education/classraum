@@ -1,5 +1,5 @@
 import { format, addDays, isWithinInterval, parseISO } from 'date-fns'
-import { supabase } from './supabase'
+import { db } from './supabase'
 
 // Virtual session interface extending the regular Session
 export interface VirtualSession {
@@ -24,8 +24,10 @@ export interface ScheduleBreak {
   start_date: string // YYYY-MM-DD
   end_date: string // YYYY-MM-DD
   reason: string | null
-  created_at: string
-  updated_at: string
+  // Nullable in the database (schedule_breaks.created_at / .updated_at have
+  // no NOT NULL) — the interface previously claimed non-null.
+  created_at: string | null
+  updated_at: string | null
 }
 
 export interface ClassroomSchedule {
@@ -221,7 +223,7 @@ export async function materializeSession(
 
     // Check if session already exists (materialized)
     // Use LIKE to match HH:MM regardless of whether seconds are stored
-    const { data: existing } = await supabase
+    const { data: existing } = await db
       .from('classroom_sessions')
       .select('id')
       .eq('classroom_id', sessionData.classroom_id)
@@ -232,7 +234,7 @@ export async function materializeSession(
 
     // If already exists, return it
     if (existing) {
-      const { data: existingFull, error: fetchError } = await supabase
+      const { data: existingFull, error: fetchError } = await db
         .from('classroom_sessions')
         .select('*')
         .eq('id', existing.id)
@@ -242,7 +244,7 @@ export async function materializeSession(
     }
 
     // Insert new session
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('classroom_sessions')
       .insert(sessionData)
       .select()
@@ -271,7 +273,7 @@ export async function fetchScheduleBreaks(
   classroom_id: string
 ): Promise<{ data: ScheduleBreak[] | null; error: any }> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('schedule_breaks')
       .select('*')
       .eq('classroom_id', classroom_id)
@@ -297,7 +299,7 @@ export async function fetchClassroomSchedules(
   forDate?: Date
 ): Promise<{ data: ClassroomSchedule[] | null; error: any }> {
   try {
-    let query = supabase
+    let query = db
       .from('classroom_schedules')
       .select('*')
       .eq('classroom_id', classroom_id)
@@ -349,7 +351,7 @@ export async function getSessionsForDateRange(
   const startDateStr = format(startDate, 'yyyy-MM-dd')
   const endDateStr = format(endDate, 'yyyy-MM-dd')
 
-  const { data: schedules, error: schedulesError } = await supabase
+  const { data: schedules, error: schedulesError } = await db
     .from('classroom_schedules')
     .select('*')
     .eq('classroom_id', classroom_id)

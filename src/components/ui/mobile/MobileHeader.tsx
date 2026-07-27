@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { Bell, User, MessageSquare, ChevronDown, Coins } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -106,7 +106,7 @@ export function MobileHeader() {
     document.addEventListener('visibilitychange', handleVisibilityChange)
 
     // Real-time subscription for new messages
-    const channel = supabase
+    const channel = db
       .channel('mobile_header_messages')
       .on(
         'postgres_changes',
@@ -142,7 +142,7 @@ export function MobileHeader() {
       window.removeEventListener('notificationRead', handleNotificationRead)
       window.removeEventListener('messageRead', handleMessageRead)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
-      supabase.removeChannel(channel)
+      db.removeChannel(channel)
     }
   }, [])
 
@@ -154,13 +154,13 @@ export function MobileHeader() {
       setIsLoading(true)
       lastFetchTimeRef.current = Date.now()
 
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) {
         return
       }
 
       // Fetch unread notifications count (only recent ones, matching notifications page)
-      const { count, error } = await supabase
+      const { count, error } = await db
         .from('notifications')
         .select('*', { count: 'exact', head: true })
         .eq('user_id', user.id)
@@ -183,7 +183,7 @@ export function MobileHeader() {
     try {
       lastMessagesFetchTimeRef.current = Date.now()
 
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) {
         setUnreadMessagesCount(0)
         return

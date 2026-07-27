@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { MobileBackButton } from '@/components/ui/mobile/MobileBackButton'
 import { Card } from '@/components/ui/card'
@@ -131,7 +131,7 @@ function MobileMessagesPageContent() {
   // Get current user
   useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (user) {
         setCurrentUserId(user.id)
       }
@@ -142,7 +142,7 @@ function MobileMessagesPageContent() {
   // Fetch conversations
   const fetchConversations = useCallback(async () => {
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch('/api/messages/conversations', {
@@ -191,7 +191,7 @@ function MobileMessagesPageContent() {
     window.dispatchEvent(new CustomEvent('messageRead'))
 
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch(`/api/messages/${conversationId}`, {
@@ -218,7 +218,7 @@ function MobileMessagesPageContent() {
   const fetchContacts = useCallback(async () => {
     setContactsLoading(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch('/api/messages/contacts', {
@@ -257,7 +257,7 @@ function MobileMessagesPageContent() {
 
     setSendingMessage(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch(`/api/messages/${selectedConversation.id}`, {
@@ -310,7 +310,7 @@ function MobileMessagesPageContent() {
       // supabase-js resolves with { error } rather than throwing, so the catch
       // below never sees a failed update. Unchecked, the header unread badge
       // keeps counting a message the student is currently reading.
-      const { error } = await supabase
+      const { error } = await db
         .from('user_messages')
         .update({ is_read: true })
         .eq('id', messageId)
@@ -344,7 +344,7 @@ function MobileMessagesPageContent() {
     if (!currentUserId) return
 
 
-    const channel = supabase
+    const channel = db
       .channel('mobile_messages_realtime')
       .on(
         'postgres_changes',
@@ -408,7 +408,7 @@ function MobileMessagesPageContent() {
       })
 
     return () => {
-      supabase.removeChannel(channel)
+      db.removeChannel(channel)
     }
   }, [currentUserId, fetchConversations, markMessageAsRead])
 
@@ -417,12 +417,12 @@ function MobileMessagesPageContent() {
   // can reuse it. Calling supabase.channel(name) per keystroke creates a
   // brand-new unsubscribed channel object — every track() silently no-ops
   // AND each call leaks a channel.
-  const typingChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null)
+  const typingChannelRef = useRef<ReturnType<typeof db.channel> | null>(null)
   useEffect(() => {
     if (!selectedConversation || !currentUserId) return
 
     const channelName = `typing:conversation:${selectedConversation.id}`
-    const channel = supabase.channel(channelName, {
+    const channel = db.channel(channelName, {
       config: { presence: { key: currentUserId } }
     })
 
@@ -440,7 +440,7 @@ function MobileMessagesPageContent() {
 
     return () => {
       typingChannelRef.current = null
-      supabase.removeChannel(channel)
+      db.removeChannel(channel)
     }
   }, [selectedConversation, currentUserId])
 
@@ -499,7 +499,7 @@ function MobileMessagesPageContent() {
   const handleCreateConversation = async (contact: Contact) => {
     setCreatingConversation(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch('/api/messages/conversations', {

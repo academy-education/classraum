@@ -1,6 +1,18 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { sendPushNotification } from '@/lib/notifications'
 import type { NotificationInsert } from '@/lib/notification-types'
+import type { Json } from '@/lib/database.types'
+
+/**
+ * `notifications.navigation_data` is a `jsonb` column. NotificationInsert
+ * types it loosely (`Record<string, unknown>`) for the convenience of the
+ * ~40 call sites that build it; narrow it to `Json` at the one place these
+ * rows actually reach Postgres, so a non-serialisable value is a compile
+ * error rather than a row that silently stores `{}`.
+ */
+type InboxRow = Omit<NotificationInsert, 'navigation_data'> & {
+  navigation_data?: Json | null
+}
 
 /**
  * Terminal-state transitions for a background full-test generation.
@@ -38,9 +50,9 @@ type Lang = 'en' | 'ko'
  * CHECK-constraint rejection on `notifications.type` stayed invisible since
  * launch. Always read `error`.
  */
-async function insertInboxRow(row: NotificationInsert, tag: string): Promise<boolean> {
+async function insertInboxRow(row: InboxRow, tag: string): Promise<boolean> {
   try {
-    const { error } = await supabaseAdmin.from('notifications').insert(row)
+    const { error } = await dbAdmin.from('notifications').insert(row)
     if (error) {
       console.error(`[${tag}] inbox insert REJECTED`, {
         userId: row.user_id,
@@ -63,7 +75,7 @@ async function insertInboxRow(row: NotificationInsert, tag: string): Promise<boo
 /** Best-effort title of the generated test, read back from the cache row.
  *  The reaper never held the payload in memory, so it can't pass one. */
 async function readCachedTestTitle(sessionId: string): Promise<string | null> {
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await dbAdmin
     .from('study_messages')
     .select('content')
     .eq('session_id', sessionId)
@@ -101,7 +113,7 @@ export async function markTestReadyAndNotify({
   testTitle?: string
   lang?: Lang
 }): Promise<void> {
-  const { error: statusErr } = await supabaseAdmin
+  const { error: statusErr } = await dbAdmin
     .from('study_sessions')
     .update({ generation_status: 'ready' })
     .eq('id', sessionId)

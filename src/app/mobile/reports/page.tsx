@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
@@ -114,9 +114,11 @@ function MobileReportsPageContent() {
 
       // Get student reports for the effective user (selected student for parents, current user for students)
       // Note: RPC doesn't support pagination/count, so we use direct query with pagination
-      const allowedStatuses = ['Finished', 'Approved', 'Sent', 'Viewed']
+      // `as const` keeps these narrowed to the student_reports.status enum
+      // so a typo would be caught at compile time.
+      const allowedStatuses = ['Finished', 'Approved', 'Sent', 'Viewed'] as const
 
-      const query = supabase
+      const query = db
         .from('student_reports')
         .select('*', { count: 'exact' })
         .eq('student_id', effectiveUserId)
@@ -154,7 +156,7 @@ function MobileReportsPageContent() {
       const studentIds = [...new Set(reportsData.map((report: any) => report.student_id))]
 
       // Get student names and emails
-      const { data: studentsData, error: studentsError } = await supabase
+      const { data: studentsData, error: studentsError } = await db
         .from('students')
         .select(`
           user_id,

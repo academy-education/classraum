@@ -7,7 +7,7 @@ import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '
 import { StudyButton } from '../_shared/StudyButton'
 import { groupByDate, formatTimeAgo } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -81,7 +81,7 @@ function HistoryInner() {
     if (!user?.userId) return
     let cancelled = false
     void (async () => {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('study_sessions')
         .select(`
           id, mode, language, title, status, score, config, last_active_at, topic_freeform,

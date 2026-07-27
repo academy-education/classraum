@@ -5,6 +5,25 @@ import { useToast } from '@/hooks/use-toast'
 import { triggerInvoiceCreatedNotifications } from '@/lib/notification-triggers'
 import type { Invoice, PaymentTemplate } from './usePaymentData'
 
+// NOT migrated to the typed `db` client — deliberately left on `supabase`.
+//
+// This module's data contract does not match the database and cannot be made
+// to typecheck without redesigning it:
+//   - createInvoice omits invoices.final_amount and invoices.invoice_name,
+//     both NOT NULL with no default, so the insert can never succeed.
+//   - createTemplate omits recurring_payment_templates.recurrence_type,
+//     .next_due_date and .start_date (all NOT NULL, no default) and sends
+//     `billing_cycle` + `description`, which are not columns.
+//   - invoices has no `description`, no `updated_at` and no `reminder_sent_at`
+//     column (the reminder column is `due_reminder_sent_at`).
+//   - UpdateInvoiceData.status allows 'overdue' | 'cancelled', which
+//     invoices_status_check forbids (pending | paid | failed | refunded).
+//
+// The hook is currently dead code — only re-exported from ./index.ts, with no
+// consumer — which is consistent with every one of its writes being broken.
+// Deciding what invoice_name / next_due_date should contain is a design
+// decision, not a type migration, so it is left for a follow-up.
+
 export interface PaymentActionsState {
   loading: boolean
   submitting: boolean

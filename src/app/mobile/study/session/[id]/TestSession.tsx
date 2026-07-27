@@ -12,7 +12,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
 import type { Question, SpeechSignals, SubmitResult, TestPayload } from './test/types'
@@ -198,7 +198,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     setPhase('detecting')
     let isResume = false
     try {
-      const { data: pre } = await supabase
+      const { data: pre } = await db
         .from('study_sessions')
         .select('generation_status, speaking_grade_mode')
         .eq('id', sessionId)

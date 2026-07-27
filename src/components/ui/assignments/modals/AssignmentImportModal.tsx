@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { DateInput } from '@/components/ui/common/DateInput'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { showErrorToast } from '@/stores'
 import type { ParsedAssignmentDraft, AssignmentType } from '@/lib/assignment-parser'
 // Re-exported from the standalone types module so consumers wanting only
@@ -97,7 +97,7 @@ export function AssignmentImportModal({
   const [extractingFile, setExtractingFile] = useState(false)
 
   const extractViaServer = async (file: File): Promise<string | null> => {
-    const { data: { session } } = await supabase.auth.getSession()
+    const { data: { session } } = await db.auth.getSession()
     const token = session?.access_token
     if (!token) {
       showErrorToast(
@@ -266,7 +266,7 @@ export function AssignmentImportModal({
     if (!text.trim()) return
     setParsing(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       const token = session?.access_token
       if (!token) {
         showErrorToast(

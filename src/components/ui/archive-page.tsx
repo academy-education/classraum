@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ModalShell } from "@/components/ui/common/ModalShell"
-import { supabase } from "@/lib/supabase"
+import { db } from "@/lib/supabase"
 import { Search, RotateCcw, Trash2, Calendar, ClipboardList, School, DollarSign, Undo2, X, CheckCircle, AlertCircle, FileText, Users, Layout } from "lucide-react"
 import { EmptyState } from "@/components/ui/common/EmptyState"
 // All sibling-page invalidate helpers from the shared module — keeps the
@@ -53,6 +53,32 @@ interface DeletedItem {
   includeAssignments?: boolean
 }
 
+/**
+ * The archive restores/deletes rows across seven soft-deletable tables. Mapping
+ * the item type to a table-name *union* (rather than a bare string) is what lets
+ * the typed client check `deleted_at` actually exists on the target table.
+ */
+type ArchiveTable =
+  | 'classrooms'
+  | 'classroom_sessions'
+  | 'assignments'
+  | 'recurring_payment_templates'
+  | 'invoices'
+  | 'families'
+  | 'session_templates'
+
+function archiveTableFor(type: DeletedItem['type']): ArchiveTable {
+  switch (type) {
+    case 'classroom': return 'classrooms'
+    case 'session': return 'classroom_sessions'
+    case 'assignment': return 'assignments'
+    case 'payment_plan': return 'recurring_payment_templates'
+    case 'invoice': return 'invoices'
+    case 'family': return 'families'
+    case 'template': return 'session_templates'
+  }
+}
+
 export function ArchivePage({ academyId }: ArchivePageProps) {
   const { t, language } = useTranslation()
   const searchInputRef = useRef<HTMLInputElement | null>(null)
@@ -90,10 +116,10 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser()
+        const { data: { user } } = await db.auth.getUser()
         if (!user) return
 
-        const { data: userInfo, error } = await supabase
+        const { data: userInfo, error } = await db
           .from('users')
           .select('role')
           .eq('id', user.id)
@@ -148,7 +174,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
         // to users(id), so user_id is the value to filter on. The old
         // select errored, teacherId stayed null, and a teacher's archive
         // was unfiltered rather than scoped to their own classrooms.
-        const { data: teacherData, error: teacherError } = await supabase
+        const { data: teacherData, error: teacherError } = await db
           .from('teachers')
           .select('user_id')
           .eq('user_id', userId)
@@ -162,7 +188,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       }
 
       // Fetch deleted classrooms
-      let classroomsQuery = supabase
+      let classroomsQuery = db
         .from('classrooms')
         .select(`
           id,
@@ -198,7 +224,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       const teacherClassroomIds = typedClassrooms?.map(c => c.id) || []
 
       // Fetch deleted sessions
-      let sessionsQuery = supabase
+      let sessionsQuery = db
         .from('classroom_sessions')
         .select(`
           id,
@@ -241,7 +267,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       const teacherSessionIds = typedSessions?.map(s => s.id) || []
 
       // Fetch deleted assignments
-      let assignmentsQuery = supabase
+      let assignmentsQuery = db
         .from('assignments')
         .select(`
           id,
@@ -289,7 +315,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       let paymentPlansError = null
 
       if (userRole !== 'teacher') {
-        const result = await supabase
+        const result = await db
           .from('recurring_payment_templates')
           .select(`
             id,
@@ -323,7 +349,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       let invoicesError = null
 
       if (userRole !== 'teacher') {
-        const result = await supabase
+        const result = await db
           .from('invoices')
           .select(`
             id,
@@ -361,7 +387,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       let familiesError = null
 
       if (userRole !== 'teacher') {
-        const result = await supabase
+        const result = await db
           .from('families')
           .select(`
             id,
@@ -391,7 +417,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       let templatesError = null
 
       if (userId) {
-        const result = await supabase
+        const result = await db
           .from('session_templates')
           .select(`
             id,
@@ -692,32 +718,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
   const handleRestore = async (item: DeletedItem) => {
     try {
-      let tableName = ''
-      switch (item.type) {
-        case 'classroom':
-          tableName = 'classrooms'
-          break
-        case 'session':
-          tableName = 'classroom_sessions'
-          break
-        case 'assignment':
-          tableName = 'assignments'
-          break
-        case 'payment_plan':
-          tableName = 'recurring_payment_templates'
-          break
-        case 'invoice':
-          tableName = 'invoices'
-          break
-        case 'family':
-          tableName = 'families'
-          break
-        case 'template':
-          tableName = 'session_templates'
-          break
-      }
+      const tableName = archiveTableFor(item.type)
 
-      const { error } = await supabase
+      const { error } = await db
         .from(tableName)
         .update({ deleted_at: null })
         .eq('id', item.id)
@@ -776,32 +779,9 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
     if (!itemToDelete) return
 
     try {
-      let tableName = ''
-      switch (itemToDelete.type) {
-        case 'classroom':
-          tableName = 'classrooms'
-          break
-        case 'session':
-          tableName = 'classroom_sessions'
-          break
-        case 'assignment':
-          tableName = 'assignments'
-          break
-        case 'payment_plan':
-          tableName = 'recurring_payment_templates'
-          break
-        case 'invoice':
-          tableName = 'invoices'
-          break
-        case 'family':
-          tableName = 'families'
-          break
-        case 'template':
-          tableName = 'session_templates'
-          break
-      }
+      const tableName = archiveTableFor(itemToDelete.type)
 
-      const { error } = await supabase
+      const { error } = await db
         .from(tableName)
         .delete()
         .eq('id', itemToDelete.id)
@@ -853,44 +833,22 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
     try {
       // Group items by table for batch operations
-      const itemsByTable: { [key: string]: DeletedItem[] } = {}
+      const itemsByTable = new Map<ArchiveTable, DeletedItem[]>()
 
       itemsToRecover.forEach(item => {
-        let tableName = ''
-        switch (item.type) {
-          case 'classroom':
-            tableName = 'classrooms'
-            break
-          case 'session':
-            tableName = 'classroom_sessions'
-            break
-          case 'assignment':
-            tableName = 'assignments'
-            break
-          case 'payment_plan':
-            tableName = 'recurring_payment_templates'
-            break
-          case 'invoice':
-            tableName = 'invoices'
-            break
-          case 'family':
-            tableName = 'families'
-            break
-          case 'template':
-            tableName = 'session_templates'
-            break
+        const tableName = archiveTableFor(item.type)
+        const bucket = itemsByTable.get(tableName)
+        if (bucket) {
+          bucket.push(item)
+        } else {
+          itemsByTable.set(tableName, [item])
         }
-
-        if (!itemsByTable[tableName]) {
-          itemsByTable[tableName] = []
-        }
-        itemsByTable[tableName].push(item)
       })
 
       // Execute batch updates for each table
-      const updatePromises = Object.entries(itemsByTable).map(async ([tableName, items]) => {
+      const updatePromises = Array.from(itemsByTable, async ([tableName, items]) => {
         const ids = items.map(item => item.id)
-        return supabase
+        return db
           .from(tableName)
           .update({ deleted_at: null })
           .in('id', ids)
@@ -973,44 +931,22 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
 
     try {
       // Group items by table for batch operations
-      const itemsByTable: { [key: string]: DeletedItem[] } = {}
+      const itemsByTable = new Map<ArchiveTable, DeletedItem[]>()
 
       itemsToDelete.forEach(item => {
-        let tableName = ''
-        switch (item.type) {
-          case 'classroom':
-            tableName = 'classrooms'
-            break
-          case 'session':
-            tableName = 'classroom_sessions'
-            break
-          case 'assignment':
-            tableName = 'assignments'
-            break
-          case 'payment_plan':
-            tableName = 'recurring_payment_templates'
-            break
-          case 'invoice':
-            tableName = 'invoices'
-            break
-          case 'family':
-            tableName = 'families'
-            break
-          case 'template':
-            tableName = 'session_templates'
-            break
+        const tableName = archiveTableFor(item.type)
+        const bucket = itemsByTable.get(tableName)
+        if (bucket) {
+          bucket.push(item)
+        } else {
+          itemsByTable.set(tableName, [item])
         }
-
-        if (!itemsByTable[tableName]) {
-          itemsByTable[tableName] = []
-        }
-        itemsByTable[tableName].push(item)
       })
 
       // Execute batch deletes for each table
-      const deletePromises = Object.entries(itemsByTable).map(async ([tableName, items]) => {
+      const deletePromises = Array.from(itemsByTable, async ([tableName, items]) => {
         const ids = items.map(item => item.id)
-        return supabase
+        return db
           .from(tableName)
           .delete()
           .in('id', ids)

@@ -16,15 +16,19 @@
  *   - already      → 409 before PortOne is ever called.
  */
 import { POST } from '@/app/api/admin/study/payments/route'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { cancelPayment } from '@/lib/portone-charge'
 import { logAdminActivity } from '@/lib/admin-auth'
 import { raiseAlert } from '@/lib/ops/alert'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 
-jest.mock('@/lib/supabase-admin', () => ({
-  supabaseAdmin: { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } },
-}))
+// dbAdmin and supabaseAdmin are the same client in production — the
+// second is only an untyped alias — so the mock exposes one shared
+// object under both names.
+jest.mock('@/lib/supabase-admin', () => {
+  const client = { from: jest.fn(), rpc: jest.fn(), auth: { getUser: jest.fn() } }
+  return { dbAdmin: client, supabaseAdmin: client }
+})
 jest.mock('@/lib/admin-auth', () => ({
   requireAdminAuth: jest.fn(async () => ({ success: true, user: { id: 'admin-1' } })),
   logAdminActivity: jest.fn(async () => {}),
@@ -32,7 +36,7 @@ jest.mock('@/lib/admin-auth', () => ({
 jest.mock('@/lib/portone-charge', () => ({ cancelPayment: jest.fn() }))
 jest.mock('@/lib/ops/alert', () => ({ raiseAlert: jest.fn(async () => {}) }))
 
-const fromMock = supabaseAdmin.from as unknown as jest.Mock
+const fromMock = dbAdmin.from as unknown as jest.Mock
 const cancelPaymentMock = cancelPayment as jest.Mock
 const raiseAlertMock = raiseAlert as jest.Mock
 const logAdminActivityMock = logAdminActivity as jest.Mock

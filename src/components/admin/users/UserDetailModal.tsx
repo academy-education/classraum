@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { ModalShell } from '../ModalShell';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 
@@ -66,7 +66,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       setActivityLoading(true)
       setActivityError(null)
       try {
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('admin_activity_logs')
           .select('id, action_type, description, ip_address, created_at')
           .eq('target_type', 'user')

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 export interface FileUploadResult {
   success: boolean
@@ -59,7 +59,7 @@ export function useFileUpload() {
 
     try {
       // Check authentication
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+      const { data: { session }, error: sessionError } = await db.auth.getSession()
       if (sessionError) {
         console.error('Session error during upload:', sessionError)
         throw new Error('Authentication error: ' + sessionError.message)
@@ -104,7 +104,7 @@ export function useFileUpload() {
 
 
       // Upload file to Supabase Storage
-      const { data, error } = await supabase.storage
+      const { data, error } = await db.storage
         .from(bucket)
         .upload(filePath, file, {
           cacheControl: '3600',
@@ -123,7 +123,7 @@ export function useFileUpload() {
 
 
       // Get public URL
-      const { data: { publicUrl } } = supabase.storage
+      const { data: { publicUrl } } = db.storage
         .from(bucket)
         .getPublicUrl(data.path)
 
@@ -186,7 +186,7 @@ export function useFileUpload() {
         path = filePath.split(`/${bucket}/`)[1]
       }
 
-      const { error } = await supabase.storage
+      const { error } = await db.storage
         .from(bucket)
         .remove([path])
 

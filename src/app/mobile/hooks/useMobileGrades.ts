@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
 import { useStableCallback } from '@/hooks/useStableCallback'
 
@@ -83,7 +83,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
     setError(null)
 
     try {
-      const { data, error: fetchError } = await supabase
+      const { data, error: fetchError } = await db
         .from('assignment_grades')
         .select('id, score, feedback, created_at, assignment_id')
         .eq('student_id', studentId)
@@ -100,7 +100,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
       let assignmentsMap: Record<string, any> = {}
 
       if (assignmentIds.length > 0) {
-        const { data: assignmentDetails, error: assignmentError } = await supabase
+        const { data: assignmentDetails, error: assignmentError } = await db
           .from('assignments')
           .select('id, title, description, due_date, classroom_sessions(classroom_id)')
           .in('id', assignmentIds)
@@ -130,7 +130,7 @@ export const useMobileGrades = (user: User | null | any, studentId: string | nul
       // Fetch classroom details
       let classroomsMap: Record<string, any> = {}
       if (classroomIds.length > 0) {
-        const { data: classroomsData, error: classroomsError } = await supabase
+        const { data: classroomsData, error: classroomsError } = await db
           .from('classrooms')
           .select('id, name, color')
           .in('id', classroomIds)

@@ -54,8 +54,10 @@ export function ClassroomDetailsModal({
       footer={
         <ModalShell.Footer justify="between">
           <div className="text-sm text-gray-500">
-            {t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString(getDateLocale(language))}
-            {selectedClassroom.updated_at !== selectedClassroom.created_at && (
+            {selectedClassroom.created_at && (
+              <>{t("classrooms.created")}: {new Date(selectedClassroom.created_at).toLocaleDateString(getDateLocale(language))}</>
+            )}
+            {selectedClassroom.updated_at && selectedClassroom.updated_at !== selectedClassroom.created_at && (
               <span className="ml-4">
                 {t("classrooms.updated")}: {new Date(selectedClassroom.updated_at).toLocaleDateString(getDateLocale(language))}
               </span>

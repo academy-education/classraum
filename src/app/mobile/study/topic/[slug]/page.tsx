@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
 import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins, Zap } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../../skeletons'
 
@@ -27,6 +27,7 @@ import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
 import { passCreditLabel } from '../../_shared/pass-label'
 import type { TestFamily } from '@/lib/study-prompt-context'
+import type { Json } from '@/lib/database.types'
 
 /**
  * /mobile/study/topic/[slug] — topic page with mode picker.
@@ -50,6 +51,26 @@ interface Topic {
   name_ko: string
   level: number
   category: 'subject' | 'test_prep'
+}
+
+/** `study_topics.category` is text guarded by a CHECK constraint
+ *  (`category = ANY (ARRAY['subject','test_prep'])`), so the generated
+ *  type is a plain string. Narrow it instead of assuming. */
+function toTopic(row: {
+  id: string
+  parent_id: string | null
+  slug: string
+  name_en: string
+  name_ko: string
+  level: number
+  category: string
+} | null | undefined): Topic | null {
+  if (!row) return null
+  if (row.category !== 'subject' && row.category !== 'test_prep') {
+    console.warn('[study/topic] Unrecognised study_topics.category:', row.category)
+    return null
+  }
+  return { ...row, category: row.category }
 }
 
 // Slugs that have been hidden behind a "Coming soon" lock on the
@@ -185,7 +206,7 @@ function TopicInner({ slug }: { slug: string }) {
       } catch { return { target: null, targets: [] as string[] } }
     })()
     void (async () => {
-      const { data: row } = await supabase
+      const { data: row } = await db
         .from('study_topics')
         .select('id, parent_id, slug, name_en, name_ko, level, category')
         .eq('slug', slug)
@@ -195,20 +216,25 @@ function TopicInner({ slug }: { slug: string }) {
         setLoading(false)
         return
       }
-      setTopic(row)
+      const topicRow = toTopic(row)
+      if (!topicRow) {
+        setLoading(false)
+        return
+      }
+      setTopic(topicRow)
 
       // Parent breadcrumb (subject for a branch, branch for a leaf).
       // Children list for branches (level 1) to surface leaves.
       const [{ data: parentRow }, { data: childRows }] = await Promise.all([
         row.parent_id
-          ? supabase
+          ? db
               .from('study_topics')
               .select('id, parent_id, slug, name_en, name_ko, level, category')
               .eq('id', row.parent_id)
               .maybeSingle()
           : Promise.resolve({ data: null }),
         row.level === 1
-          ? supabase
+          ? db
               .from('study_topics')
               .select('id, parent_id, slug, name_en, name_ko, level, category')
               .eq('parent_id', row.id)
@@ -223,9 +249,13 @@ function TopicInner({ slug }: { slug: string }) {
       // DB so it's easy to re-enable later, just filtering it out of
       // the category picker.
       const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay'])
-      const kids = ((childRows ?? []) as Topic[])
+      const kids = (childRows ?? [])
+        .flatMap(c => {
+          const kid = toTopic(c)
+          return kid ? [kid] : []
+        })
         .filter(c => !HIDDEN_SUBTOPIC_SLUGS.has(c.slug))
-      setParent(parentRow ?? null)
+      setParent(toTopic(parentRow))
       setChildren(kids)
       // Default-select the first child so the mode picker has a real
       // target on first paint (no "you haven't chosen a category" state).
@@ -275,13 +305,13 @@ function TopicInner({ slug }: { slug: string }) {
     let cancelled = false
     void (async () => {
       const [{ data: mastery }, { data: sessions }] = await Promise.all([
-        supabase
+        db
           .from('study_mastery')
           .select('score')
           .eq('student_id', user.userId)
           .eq('topic_id', effectiveTopic.id)
           .maybeSingle(),
-        supabase
+        db
           .from('study_sessions')
           .select('last_active_at', { count: 'exact' })
           .eq('student_id', user.userId)
@@ -308,7 +338,7 @@ function TopicInner({ slug }: { slug: string }) {
     if (!user?.userId || !fam) { setFamilyPassCredits(0); return }
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_pass_credits')
         .select('remaining')
         .eq('student_id', user.userId)
@@ -357,14 +387,21 @@ function TopicInner({ slug }: { slug: string }) {
     // (KSAT → ko, everything else → en) via overrideLanguage. Other
     // modes default to the UI language at session-start time.
     const sessionLanguage = overrideLanguage ?? (ko ? 'ko' : 'en')
-    const { data, error } = await supabase
+    // `config` is a jsonb column, so it takes a plain JSON object. TestConfig
+    // is an interface (no index signature), so copy the set keys across —
+    // unset options stay absent, exactly as before.
+    const configJson: { [key: string]: Json | undefined } = {}
+    if (config?.difficultyBias) configJson.difficultyBias = config.difficultyBias
+    if (config?.speakingGradeMode) configJson.speakingGradeMode = config.speakingGradeMode
+    if (config?.creditSource) configJson.creditSource = config.creditSource
+    const { data, error } = await db
       .from('study_sessions')
       .insert({
         student_id: user.userId,
         topic_id: target.id,
         mode,
         language: sessionLanguage,
-        config: config ?? {},
+        config: configJson,
         // TOEFL Speaking grade mode toggle. 'text' is the default set
         // by the DB column; only insert 'audio' when explicitly picked.
         speaking_grade_mode: config?.speakingGradeMode === 'audio' ? 'audio' : 'text',
@@ -1199,7 +1236,7 @@ function RecentTestsList({ topicIds, studentId, ko }: {
     if (!studentId || topicIds.length === 0) return
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select('id, title, score, completed_at')
         .eq('student_id', studentId)

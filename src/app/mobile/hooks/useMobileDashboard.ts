@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
 import { getTodayLocal, getDateOffsetLocal } from '@/utils/dateUtils'
 import { useStableCallback } from '@/hooks/useStableCallback'
@@ -181,7 +181,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       const fourteenDaysAgo = getDateOffsetLocal(-14)
 
       // First get the student's enrolled classroom IDs
-      const { data: studentData } = await supabase
+      const { data: studentData } = await db
         .from('students')
         .select('classroom_students(classroom_id)')
         .eq('user_id', user.userId)
@@ -192,12 +192,12 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
 
       // Fetch invoices and pending grades ALWAYS (not dependent on classroom enrollment)
       // Fetch sessions/assignments/grades ONLY if student has classrooms.
-      // Typed as any[] because the array holds supabase PostgrestBuilder
+      // Typed as any[] because the array holds Supabase PostgrestBuilder
       // queries with different return shapes; downstream extraction already
       // uses `as any` to narrow each slot.
       const fetchPromises: any[] = [
         // Recent invoices - ALWAYS fetch
-        supabase
+        db
           .from('invoices')
           .select(`
             id,
@@ -214,7 +214,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           .limit(5),
 
         // Pending assignment grades - ALWAYS fetch
-        supabase
+        db
           .from('assignment_grades')
           .select('id, assignment_id, status')
           .eq('student_id', studentId)
@@ -225,7 +225,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       if (hasClassrooms) {
         fetchPromises.push(
           // Upcoming sessions (next 7 days, excluding today)
-          supabase
+          db
             .from('classroom_sessions')
             .select(`
               id,
@@ -246,7 +246,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
             .limit(5),
 
           // Today's sessions
-          supabase
+          db
             .from('classroom_sessions')
             .select(`
               id,
@@ -265,7 +265,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
             .order('date', { ascending: true }),
 
           // Upcoming assignments - get via classroom_session_id
-          supabase
+          db
             .from('assignments')
             .select(`
               id,
@@ -280,7 +280,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
             .limit(100),
 
           // Recent grades (last 14 days)
-          supabase
+          db
             .from('assignment_grades')
             .select('id, score, created_at, assignment_id')
             .eq('student_id', studentId)
@@ -313,7 +313,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       const invoiceAcademyIds = [...new Set(invoicesData.map((inv: any) => inv.academy_id).filter(Boolean))]
 
       // Also get the student's academy IDs directly from students table
-      const { data: studentAcademyData } = await supabase
+      const { data: studentAcademyData } = await db
         .from('students')
         .select('academy_id')
         .eq('user_id', studentId)
@@ -326,7 +326,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       // Fetch academy names and logos if we have any
       let academiesMap: Record<string, { name: string; logo: string | null }> = {}
       if (academyIds.length > 0) {
-        const { data: academiesData } = await supabase
+        const { data: academiesData } = await db
           .from('academies')
           .select('id, name, logo_url')
           .in('id', academyIds)
@@ -341,7 +341,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       let announcementsData: any[] = []
       if (academyIds.length > 0) {
         const sevenDaysAgo = getDateOffsetLocal(-7)
-        const { data: announcements } = await supabase
+        const { data: announcements } = await db
           .from('announcements')
           .select('id, title, content, academy_id, created_at')
           .in('academy_id', academyIds)
@@ -361,7 +361,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       let sessionClassroomMap: Record<string, string> = {}
 
       if (assignmentSessionIds.length > 0) {
-        const { data: sessionDetails } = await supabase
+        const { data: sessionDetails } = await db
           .from('classroom_sessions')
           .select('id, classroom_id')
           .in('id', assignmentSessionIds)
@@ -383,7 +383,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       let assignmentsMap: Record<string, any> = {}
 
       if (gradeAssignmentIds.length > 0) {
-        const { data: assignmentDetails } = await supabase
+        const { data: assignmentDetails } = await db
           .from('assignments')
           .select('id, title, classroom_session_id')
           .in('id', gradeAssignmentIds)
@@ -406,7 +406,7 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
 
       let classroomsMap: Record<string, any> = {}
       if (detailClassroomIds.length > 0) {
-        const { data: classroomsData } = await supabase
+        const { data: classroomsData } = await db
           .from('classrooms')
           .select('id, name, color')
           .in('id', detailClassroomIds)

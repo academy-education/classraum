@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import { toRecurrenceType, type RecurrenceType } from '@/components/ui/common/db-enums'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
@@ -32,14 +33,15 @@ export interface PaymentTemplate {
   academy_id: string
   name: string
   amount: number
-  recurrence_type: 'monthly' | 'weekly'
-  day_of_month?: number
-  day_of_week?: number
-  interval_weeks?: number
-  semester_months?: number
+  // The CHECK constraint also permits 'semesterly'.
+  recurrence_type: RecurrenceType
+  day_of_month?: number | null
+  day_of_week?: number | null
+  interval_weeks?: number | null
+  semester_months?: number | null
   next_due_date: string
   start_date: string
-  end_date?: string
+  end_date?: string | null
   is_active: boolean
   created_at: string
   student_count?: number
@@ -53,11 +55,14 @@ export interface RecurringStudent {
   student_email: string
   template_name: string
   template_amount: number
-  amount_override?: number
+  // recurring_payment_template_students.amount_override is a nullable money
+  // column: null means "no override", which is NOT the same as an override of 0.
+  amount_override?: number | null
   final_amount: number
-  status: string
+  // ...and .status is nullable too (the CHECK only constrains non-null values).
+  status: string | null
   template_active: boolean
-  recurrence_type: 'monthly' | 'weekly'
+  recurrence_type: RecurrenceType
 }
 
 // ---- Cache invalidation (standalone export, used by other pages) ----
@@ -112,7 +117,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
     if (!academyId) return
     setStudentsLoading(true)
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('students')
         .select(`
           user_id,
@@ -134,7 +139,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
 
       // Get family information for all students
       const studentUserIds = data?.map((s: any) => s.user_id) || []
-      const { data: familyData } = await supabase
+      const { data: familyData } = await db
         .from('family_members')
         .select(`
           user_id,
@@ -148,7 +153,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
 
       // Get parent names for each family
       const familyIds = [...new Set(familyData?.map((fm: any) => fm.families.id) || [])]
-      const { data: parentData } = await supabase
+      const { data: parentData } = await db
         .from('family_members')
         .select(`
           family_id,
@@ -228,7 +233,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       const to = from + itemsPerPage - 1
 
       // Build query with tab-specific filtering
-      let query = supabase
+      let query = db
         .from('invoices')
         .select(`
           id,
@@ -271,7 +276,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       const fetchAggregates = async () => {
         try {
           // Get total paid amount
-          const { data: paidData } = await supabase
+          const { data: paidData } = await db
             .from('invoices')
             .select('final_amount')
             .eq('academy_id', academyId)
@@ -279,7 +284,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
             .is('deleted_at', null)
 
           // Get total pending amount
-          const { data: pendingData } = await supabase
+          const { data: pendingData } = await db
             .from('invoices')
             .select('final_amount')
             .eq('academy_id', academyId)
@@ -319,10 +324,13 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       }
 
       // Get unique student IDs to fetch their information
-      const studentIds = [...new Set(invoiceData.map(invoice => invoice.student_id))]
+      // invoices.student_id is nullable — skip invoices with no student link.
+      const studentIds = [...new Set(
+        invoiceData.map(invoice => invoice.student_id).filter((id): id is string => id !== null)
+      )]
 
       // Fetch student data separately with proper join to users table
-      const { data: studentsData, error: studentsError } = await supabase
+      const { data: studentsData, error: studentsError } = await db
         .from('students')
         .select(`
           user_id,
@@ -410,7 +418,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       // Get recurring payment template students for this academy
       // Join through recurring_payment_templates (which has academy_id) instead of students
       // because student_record_id FK may be NULL
-      const { data: recurringData, error: recurringError } = await supabase
+      const { data: recurringData, error: recurringError } = await db
         .from('recurring_payment_template_students')
         .select(`
           *,
@@ -446,7 +454,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
 
       // Fetch all students and templates in two queries instead of 2N queries
       const [studentsResult, templatesResult] = await Promise.all([
-        supabase
+        db
           .from('students')
           .select(`
             user_id,
@@ -459,7 +467,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
           `)
           .in('user_id', studentIds)
           .eq('academy_id', academyId),
-        supabase
+        db
           .from('recurring_payment_templates')
           .select('id, name, amount, recurrence_type, is_active, academy_id')
           .in('id', templateIds)
@@ -494,13 +502,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       const templatesMap = new Map(templatesResult.data?.map(t => [t.id, t]) || [])
 
       // Format the data using the lookup maps
-      const formattedData = recurringData.map((item: {
-        id: string;
-        template_id: string;
-        student_id: string;
-        amount_override?: number;
-        status: string;
-      }) => {
+      const formattedData = recurringData.map((item) => {
         const studentData = studentsMap.get(item.student_id)
         const templateData = templatesMap.get(item.template_id)
 
@@ -516,12 +518,14 @@ export function usePaymentsData(academyId: string, activeTab: string) {
           student_name: ((studentData.users as unknown as Record<string, unknown>)?.name as string) || 'Unknown Student',
           student_email: ((studentData.users as unknown as Record<string, unknown>)?.email as string) || 'Unknown Email',
           template_name: templateData.name || 'Template',
-          template_amount: templateData.amount || 0,
+          template_amount: templateData.amount,
+          // null amount_override means "no override" — fall through to the
+          // template amount rather than collapsing the charge to 0.
           amount_override: item.amount_override,
-          final_amount: item.amount_override || templateData.amount || 0,
+          final_amount: item.amount_override ?? templateData.amount,
           status: item.status,
           template_active: templateData.is_active,
-          recurrence_type: templateData.recurrence_type
+          recurrence_type: toRecurrenceType(templateData.recurrence_type)
         }
       })
 
@@ -563,7 +567,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
     setTemplatesLoading(true)
     try {
 
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('recurring_payment_templates')
         .select('*')
         .eq('academy_id', academyId)
@@ -589,7 +593,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       // Get student count for each template
       const templatesWithCounts = await Promise.all(
         (validatedData || []).map(async (template) => {
-          const { count } = await supabase
+          const { count } = await db
             .from('recurring_payment_template_students')
             .select('*', { count: 'exact', head: true })
             .eq('template_id', template.id)
@@ -597,6 +601,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
 
           return {
             ...template,
+            recurrence_type: toRecurrenceType(template.recurrence_type),
             student_count: count || 0
           }
         })

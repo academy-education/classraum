@@ -1,5 +1,156 @@
-import { supabaseAdmin } from '@/lib/supabase-admin'
-import type { Question } from '@/lib/test-verify'
+import { dbAdmin } from '@/lib/supabase-admin'
+import type { Question, QuestionType } from '@/lib/test-verify'
+
+/**
+ * ---------------------------------------------------------------------------
+ * Reading `study_item_bank.item` back as a Question
+ * ---------------------------------------------------------------------------
+ * The column is `jsonb`, so the typed client hands it back as `Json`. Nothing
+ * relates `Json` to `Question` — `Question` is an `interface` (no implicit
+ * index signature) carrying `unknown`-typed escape hatches on `graphic` — so
+ * the shape has to be re-established on read. It is re-established by
+ * CHECKING, not asserting.
+ *
+ * Six fields are load-bearing (prompt, type, choices, correct_answer,
+ * explanation, difficulty); a row missing any of them cannot be rendered or
+ * graded, so it is skipped with a loud log rather than reaching the UI as a
+ * half-empty card. Every other field is NORMALISED to the concrete default
+ * `Question` declares, which is what `sanitizeQuestion` did on the way in —
+ * pre-bank-era rows genuinely omit the metadata quartet (2217 of 4401 today).
+ *
+ * `item` carries exactly Question's 17 keys and nothing else (verified against
+ * `jsonb_object_keys` over the live table), so rebuilding it loses nothing.
+ */
+
+/** Every `QuestionType`. The type-level assertion below fails to compile if
+ *  lib/test-verify.ts adds a variant this list misses. */
+const QUESTION_TYPES = [
+  'multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison',
+  'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
+  'writing_email', 'writing_discussion',
+] as const
+export type _AllQuestionTypesListed =
+  QuestionType extends (typeof QUESTION_TYPES)[number] ? true : never
+
+const DIFFICULTIES = ['easy', 'medium', 'hard'] as const
+
+function isQuestionType(v: unknown): v is QuestionType {
+  return typeof v === 'string' && (QUESTION_TYPES as readonly string[]).includes(v)
+}
+function isDifficulty(v: unknown): v is Question['difficulty'] {
+  return typeof v === 'string' && (DIFFICULTIES as readonly string[]).includes(v)
+}
+
+/** `Object.entries` rather than an index-signature assertion: it is the only
+ *  way to read arbitrary keys off an `object` without widening its type. */
+function bagOf(value: object): Map<string, unknown> {
+  return new Map<string, unknown>(Object.entries(value))
+}
+
+const asString = (v: unknown): string | null => (typeof v === 'string' ? v : null)
+const asNumber = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null)
+const asStrings = (v: unknown): string[] | null =>
+  Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : null
+
+/** QuestionGraphic is deliberately permissive (most fields `unknown`), so this
+ *  keeps whatever is there and only enforces the few fields it does type. */
+function readGraphic(v: unknown): Question['graphic'] {
+  if (v === null || typeof v !== 'object' || Array.isArray(v)) return null
+  const g = bagOf(v)
+  const arr = (k: string): unknown[] | null => {
+    const x = g.get(k)
+    return Array.isArray(x) ? x : null
+  }
+  return {
+    type: asString(g.get('type')),
+    xLabel: asString(g.get('xLabel')),
+    yLabel: asString(g.get('yLabel')),
+    points: arr('points'),
+    series: arr('series'),
+    bestFit: g.get('bestFit'),
+    bars: arr('bars'),
+    values: arr('values'),
+    rowLabels: asStrings(g.get('rowLabels')),
+    colLabels: asStrings(g.get('colLabels')),
+    cells: (() => {
+      const rows = arr('cells')
+      return rows ? rows.map(r => (Array.isArray(r) ? r : [])) : null
+    })(),
+    shape: asString(g.get('shape')),
+    spec: g.get('spec'),
+    labels: g.get('labels'),
+    svg: asString(g.get('svg')),
+    caption: asString(g.get('caption')),
+  }
+}
+
+function readRationales(v: unknown): Question['distractor_rationales'] {
+  if (!Array.isArray(v)) return []
+  const out: Question['distractor_rationales'] = []
+  for (const entry of v) {
+    if (entry === null || typeof entry !== 'object' || Array.isArray(entry)) continue
+    const e = bagOf(entry)
+    const choice = e.get('choice')
+    const reason = e.get('reason')
+    if (typeof choice === 'string' && typeof reason === 'string') out.push({ choice, reason })
+  }
+  return out
+}
+
+function readBlanks(v: unknown): Question['blanks'] {
+  if (!Array.isArray(v)) return null
+  const out: NonNullable<Question['blanks']> = []
+  for (const entry of v) {
+    if (entry === null || typeof entry !== 'object' || Array.isArray(entry)) continue
+    const e = bagOf(entry)
+    const id = e.get('id')
+    const answer = e.get('answer')
+    if (typeof id !== 'number' || typeof answer !== 'string') continue
+    out.push({ id, answer, alternates: asStrings(e.get('alternates')) })
+  }
+  return out
+}
+
+/**
+ * Validate one stored bank item (a `Json` column value), or null if it cannot
+ * be used. Takes `unknown` rather than `Json` so the narrowing yields a plain
+ * object type instead of an intersection with `Json`'s scalar members.
+ */
+function readBankItem(item: unknown): Question | null {
+  if (item === null || typeof item !== 'object' || Array.isArray(item)) return null
+  const b = bagOf(item)
+
+  const prompt = b.get('prompt')
+  const type = b.get('type')
+  const choices = b.get('choices')
+  const correctAnswer = b.get('correct_answer')
+  const difficulty = b.get('difficulty')
+  if (typeof prompt !== 'string' || !prompt) return null
+  if (!isQuestionType(type)) return null
+  if (!isDifficulty(difficulty)) return null
+  if (typeof correctAnswer !== 'string') return null
+  if (!Array.isArray(choices) || !choices.every((c: unknown) => typeof c === 'string')) return null
+
+  return {
+    passage: asString(b.get('passage')),
+    passageGroupId: asString(b.get('passageGroupId')),
+    prompt,
+    type,
+    choices,
+    correct_answer: correctAnswer,
+    correct_answers: asStrings(b.get('correct_answers')),
+    acceptable_answers: asStrings(b.get('acceptable_answers')),
+    difficulty,
+    explanation: asString(b.get('explanation')) ?? '',
+    distractor_rationales: readRationales(b.get('distractor_rationales')),
+    blanks: readBlanks(b.get('blanks')),
+    graphic: readGraphic(b.get('graphic')),
+    domain: asString(b.get('domain')),
+    subskill: asString(b.get('subskill')),
+    topic_tag: asString(b.get('topic_tag')),
+    word_count: asNumber(b.get('word_count')),
+  }
+}
 
 /**
  * Assemble a test from the pre-verified item bank (study_item_bank),
@@ -35,7 +186,7 @@ export interface AssembleParams {
  *  re-drawing its own questions (practice re-mount) must get the same
  *  set back, not treat its own draw as "already seen". */
 async function loadExposures(studentId: string, excludeSessionId?: string): Promise<Map<string, string>> {
-  const { data } = await supabaseAdmin
+  const { data } = await dbAdmin
     .from('study_item_exposures')
     .select('item_id, seen_at, session_id')
     .eq('student_id', studentId)
@@ -55,7 +206,7 @@ async function recordExposures(studentId: string, itemIds: string[], source: str
   // true, recycled items kept their original timestamp and the
   // oldest-first recycler dealt the identical set in the identical
   // order every time a pool ran dry.
-  const { error } = await supabaseAdmin
+  const { error } = await dbAdmin
     .from('study_item_exposures')
     .upsert(
       itemIds.map(item_id => ({
@@ -219,7 +370,7 @@ export async function drawBankPractice(p: {
   sessionId?: string
 }): Promise<PracticeQuestion[]> {
   const family = p.family ?? 'sat'
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('study_item_bank')
     .select('id, item')
     .eq('family', family)
@@ -233,7 +384,15 @@ export async function drawBankPractice(p: {
   const { data, error } = await query.order('id', { ascending: true })
   if (error) throw new Error(`bank practice query failed: ${error.message}`)
 
-  const pool = ((data ?? []) as Array<{ id: string; item: Question }>)
+  const pool = (data ?? [])
+    .flatMap(row => {
+      const item = readBankItem(row.item)
+      if (!item) {
+        console.error('[assemble] skipping malformed study_item_bank row', row.id)
+        return []
+      }
+      return [{ id: row.id, item }]
+    })
     .filter(({ item: q }) =>
       q.type === 'multiple_choice' &&
       !q.graphic &&
@@ -334,7 +493,7 @@ export async function assembleToeflFromBank(
   seed = 'bank',
 ): Promise<AssembledTest> {
   const meta = TOEFL_META[p.section]
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('study_item_bank')
     .select('id, item_type, item')
     .eq('family', 'toefl')
@@ -353,7 +512,14 @@ export async function assembleToeflFromBank(
     // sequence, so the draw must start from a stable authored order.
     .order('created_at', { ascending: true })
   if (error) throw new Error(`toefl assemble query failed: ${error.message}`)
-  const rows = (data ?? []) as Array<{ id: string; item_type: string; item: Question }>
+  const rows = (data ?? []).flatMap(row => {
+    const item = readBankItem(row.item)
+    if (!item) {
+      console.error('[assemble] skipping malformed study_item_bank row', row.id)
+      return []
+    }
+    return [{ id: row.id, item_type: row.item_type, item }]
+  })
   if (rows.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
 
   const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
@@ -486,7 +652,7 @@ export async function assembleToeflFromBank(
 
 export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promise<AssembledTest> {
   const family = p.family ?? 'sat'
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('study_item_bank')
     .select('id, domain, difficulty, item')
     .eq('family', family)
@@ -497,7 +663,14 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
 
   const { data, error } = await query
   if (error) throw new Error(`assemble query failed: ${error.message}`)
-  const rows = (data ?? []) as Array<{ id: string; domain: string; difficulty: string; item: Question }>
+  const rows = (data ?? []).flatMap(row => {
+    const item = readBankItem(row.item)
+    if (!item) {
+      console.error('[assemble] skipping malformed study_item_bank row', row.id)
+      return []
+    }
+    return [{ id: row.id, domain: row.domain, difficulty: row.difficulty, item }]
+  })
   if (rows.length === 0) throw new Error(`no verified items for ${family}/${p.section}`)
 
   // Bucket by domain; within each bucket unseen items come first (in

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { normalizeDisplayText } from './helpers'
 import type { GradeResponse, RubricGrade, SpeechSignals } from './types'
 
@@ -419,7 +419,7 @@ export function WritingFeedbackPanel({
     if (!audioPath) { setAudioUrl(null); return }
     let cancelled = false
     ;(async () => {
-      const { data } = await supabase.storage.from('study-response-audio').createSignedUrl(audioPath, 60 * 60)
+      const { data } = await db.storage.from('study-response-audio').createSignedUrl(audioPath, 60 * 60)
       if (!cancelled) setAudioUrl(data?.signedUrl ?? null)
     })()
     return () => { cancelled = true }

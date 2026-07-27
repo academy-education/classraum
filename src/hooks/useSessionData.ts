@@ -1,25 +1,44 @@
 import { useState, useCallback, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 import { triggerSessionCreatedNotifications } from '@/lib/notification-triggers'
 
-interface RawSession {
-  id: string
-  classroom_id: string
-  classrooms?: {
-    name?: string
-    color?: string
-    teacher_id?: string
+// Both unions mirror classroom_sessions_status_check / _location_check.
+const SESSION_STATUSES = ['scheduled', 'completed', 'cancelled'] as const
+type SessionStatus = (typeof SESSION_STATUSES)[number]
+
+const SESSION_LOCATIONS = ['offline', 'online'] as const
+type SessionLocation = (typeof SESSION_LOCATIONS)[number]
+
+function toSessionStatus(v: string): SessionStatus {
+  if ((SESSION_STATUSES as readonly string[]).includes(v)) {
+    return v as SessionStatus
   }
-  substitute_teacher?: string
-  status: 'scheduled' | 'completed' | 'cancelled'
+  console.warn(`Unexpected session status from DB: ${v}`)
+  return 'scheduled'
+}
+
+function toSessionLocation(v: string): SessionLocation {
+  if ((SESSION_LOCATIONS as readonly string[]).includes(v)) {
+    return v as SessionLocation
+  }
+  console.warn(`Unexpected session location from DB: ${v}`)
+  return 'offline'
+}
+
+// Columns required to insert a classroom_session. Session (below) also carries
+// joined display fields (classroom_name, teacher_name, ...) which are not
+// columns, so Partial<Session> is not a valid insert payload.
+export interface NewSession {
+  classroom_id: string
+  status: SessionStatus
   date: string
   start_time: string
   end_time: string
-  location: 'offline' | 'online'
-  notes?: string
-  created_at: string
-  updated_at: string
+  location: SessionLocation
+  notes?: string | null
+  substitute_teacher?: string | null
+  room_number?: string | null
 }
 
 interface Session {
@@ -29,11 +48,11 @@ interface Session {
   classroom_color?: string
   teacher_name?: string
   substitute_teacher_name?: string
-  status: 'scheduled' | 'completed' | 'cancelled'
+  status: SessionStatus
   date: string
   start_time: string
   end_time: string
-  location: 'offline' | 'online'
+  location: SessionLocation
   notes?: string
   substitute_teacher?: string
   created_at: string
@@ -45,8 +64,9 @@ interface Session {
 interface Classroom {
   id: string
   name: string
-  color?: string
-  teacher_id: string
+  // Both nullable in the DB: a classroom may have no colour and no teacher.
+  color: string | null
+  teacher_id: string | null
 }
 
 interface Teacher {
@@ -75,7 +95,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
       if (!cachedSessions) {
         // Build query with filters
-        let query = supabase
+        let query = db
           .from('classroom_sessions')
           .select(`
             *,
@@ -105,7 +125,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
         // Get all unique teacher IDs (including substitutes)
         const teacherIds = new Set<string>()
-        ;(data || []).forEach((session: { classrooms?: { teacher_id?: string }; substitute_teacher?: string }) => {
+        ;(data || []).forEach((session) => {
           if (session.classrooms?.teacher_id) {
             teacherIds.add(session.classrooms.teacher_id)
           }
@@ -115,7 +135,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
         })
 
         // Fetch all teacher names in one query
-        const { data: teachersData } = teacherIds.size > 0 ? await supabase
+        const { data: teachersData } = teacherIds.size > 0 ? await db
           .from('users')
           .select('id, name')
           .in('id', Array.from(teacherIds)) : { data: [] }
@@ -126,7 +146,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
 
         // Get assignment counts for all sessions in one query
         const sessionIds = (data || []).map(session => session.id)
-        const { data: assignmentsData } = sessionIds.length > 0 ? await supabase
+        const { data: assignmentsData } = sessionIds.length > 0 ? await db
           .from('assignments')
           .select('classroom_session_id')
           .in('classroom_session_id', sessionIds)
@@ -139,13 +159,23 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
         })
 
         // Process sessions with all related data
-        const processedSessions = (data || []).map((session: RawSession) => ({
+        const processedSessions = (data || []).map((session): Session => ({
           ...session,
           classroom_name: session.classrooms?.name || 'Unknown Classroom',
-          classroom_color: session.classrooms?.color,
-          teacher_name: teacherMap.get(session.classrooms?.teacher_id) || 'Unknown Teacher',
-          substitute_teacher_name: session.substitute_teacher ? 
+          classroom_color: session.classrooms?.color ?? undefined,
+          // classrooms.teacher_id is nullable, so an unassigned classroom has
+          // no teacher to look up.
+          teacher_name: (session.classrooms?.teacher_id
+            ? teacherMap.get(session.classrooms.teacher_id)
+            : undefined) || 'Unknown Teacher',
+          substitute_teacher_name: session.substitute_teacher ?
             teacherMap.get(session.substitute_teacher) : undefined,
+          status: toSessionStatus(session.status),
+          location: toSessionLocation(session.location),
+          notes: session.notes ?? undefined,
+          substitute_teacher: session.substitute_teacher ?? undefined,
+          created_at: session.created_at ?? '',
+          updated_at: session.updated_at ?? '',
           assignment_count: assignmentCounts.get(session.id) || 0
         }))
 
@@ -174,7 +204,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
       let cachedClassrooms = queryCache.get<Classroom[]>(cacheKey)
 
       if (!cachedClassrooms) {
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('classrooms')
           .select('id, name, color, teacher_id')
           .eq('academy_id', academyId)
@@ -213,7 +243,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
         //
         // user_id is also the correct identifier regardless:
         // classrooms.teacher_id is a foreign key to users(id).
-        const { data, error } = await supabase
+        const { data, error } = await db
           .from('teachers')
           .select(`
             user_id,
@@ -244,9 +274,9 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
   }, [academyId])
 
   // Create session
-  const createSession = useCallback(async (sessionData: Partial<Session>) => {
+  const createSession = useCallback(async (sessionData: NewSession) => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_sessions')
         .insert([sessionData])
         .select()
@@ -279,7 +309,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
   // Update session
   const updateSession = useCallback(async (sessionId: string, updates: Partial<Session>) => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_sessions')
         .update(updates)
         .eq('id', sessionId)
@@ -303,7 +333,7 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
   // Delete session
   const deleteSession = useCallback(async (sessionId: string) => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('classroom_sessions')
         .delete()
         .eq('id', sessionId)

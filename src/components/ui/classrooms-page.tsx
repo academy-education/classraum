@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useClassroomsData } from '@/components/ui/classrooms/hooks/useClassroomsData'
 import type { Classroom, Schedule } from '@/components/ui/classrooms/hooks/useClassroomsData'
 import { Button } from '@/components/ui/button'
@@ -342,7 +342,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   // Load custom colors from database
   const loadCustomColors = useCallback(async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('academy_custom_colors')
         .select('color')
         .eq('academy_id', academyId)
@@ -470,9 +470,9 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     }
 
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
 
-      const { error } = await supabase
+      const { error } = await db
         .from('academy_custom_colors')
         .upsert({
           academy_id: academyId,
@@ -499,7 +499,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const removeCustomColor = async (color: string) => {
     try {
       // Check if color is being used by any classroom
-      const { count, error: countError } = await supabase
+      const { count, error: countError } = await db
         .from('classrooms')
         .select('*', { count: 'exact', head: true })
         .eq('academy_id', academyId)
@@ -523,7 +523,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       }
 
       // Safe to delete
-      const { error: deleteError } = await supabase
+      const { error: deleteError } = await db
         .from('academy_custom_colors')
         .delete()
         .eq('academy_id', academyId)
@@ -647,7 +647,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       const teacherId = formData.teacher_id
 
       // Create the classroom in the database
-      const { data: classroomData, error: classroomError } = await supabase
+      const { data: classroomData, error: classroomError } = await db
         .from('classrooms')
         .insert({
           name: formData.name,
@@ -677,7 +677,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           end_time: schedule.end_time
         }))
 
-        const { error: scheduleError } = await supabase
+        const { error: scheduleError } = await db
           .from('classroom_schedules')
           .insert(scheduleInserts)
 
@@ -690,7 +690,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       // Step 3: Create classroom-student relationships if any students are selected
       if (selectedStudents.length > 0) {
         // Look up student_record_ids for all students
-        const { data: studentRecords } = await supabase
+        const { data: studentRecords } = await db
           .from('students')
           .select('id, user_id')
           .eq('academy_id', academyId)
@@ -706,7 +706,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           student_record_id: studentRecordMap.get(studentId)
         }))
 
-        const { error: studentError } = await supabase
+        const { error: studentError } = await db
           .from('classroom_students')
           .insert(studentInserts)
 
@@ -768,7 +768,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   // Helper function to apply schedule updates (direct delete/insert)
   const applyScheduleUpdates = async (classroomId: string, newSchedules: Schedule[]) => {
     // Delete existing schedules
-    const { error: deleteScheduleError } = await supabase
+    const { error: deleteScheduleError } = await db
       .from('classroom_schedules')
       .delete()
       .eq('classroom_id', classroomId)
@@ -787,7 +787,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         end_time: schedule.end_time
       }))
 
-      const { error: scheduleError } = await supabase
+      const { error: scheduleError } = await db
         .from('classroom_schedules')
         .insert(scheduleInserts)
 
@@ -835,7 +835,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           }
         } else if (!oldSchedule) {
           // New schedule added - just insert it
-          const { error } = await supabase
+          const { error } = await db
             .from('classroom_schedules')
             .insert({
               classroom_id: editingClassroom.id,
@@ -855,7 +855,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       for (const oldSchedule of oldSchedules) {
         const stillExists = newSchedules.find(s => s.day === oldSchedule.day)
         if (!stillExists) {
-          const { error } = await supabase
+          const { error } = await db
             .from('classroom_schedules')
             .update({ deleted_at: new Date().toISOString() })
             .eq('id', oldSchedule.id)
@@ -868,7 +868,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       }
 
       // Update classroom-student relationships (same as before)
-      const { error: deleteStudentError } = await supabase
+      const { error: deleteStudentError } = await db
         .from('classroom_students')
         .delete()
         .eq('classroom_id', editingClassroom.id)
@@ -880,7 +880,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       if (selectedStudents.length > 0) {
         // Look up student_record_ids for all students
-        const { data: studentRecords } = await supabase
+        const { data: studentRecords } = await db
           .from('students')
           .select('id, user_id')
           .eq('academy_id', academyId)
@@ -896,7 +896,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           student_record_id: studentRecordMap.get(studentId)
         }))
 
-        const { error: studentError } = await supabase
+        const { error: studentError } = await db
           .from('classroom_students')
           .insert(studentInserts)
 
@@ -965,7 +965,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       const teacherId = formData.teacher_id
 
       // Update the classroom in the database
-      const { error: classroomError } = await supabase
+      const { error: classroomError } = await db
         .from('classrooms')
         .update({
           name: formData.name,
@@ -989,7 +989,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       }
 
       // Step 2: Fetch existing schedules and check if they changed
-      const { data: existingSchedules, error: fetchScheduleError } = await supabase
+      const { data: existingSchedules, error: fetchScheduleError } = await db
         .from('classroom_schedules')
         .select('*')
         .eq('classroom_id', editingClassroom.id)
@@ -1047,7 +1047,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       await applyScheduleUpdates(editingClassroom.id, schedules)
 
       // Step 3: Update classroom-student relationships
-      const { error: deleteStudentError } = await supabase
+      const { error: deleteStudentError } = await db
         .from('classroom_students')
         .delete()
         .eq('classroom_id', editingClassroom.id)
@@ -1059,7 +1059,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       if (selectedStudents.length > 0) {
         // Look up student_record_ids for all students
-        const { data: studentRecords } = await supabase
+        const { data: studentRecords } = await db
           .from('students')
           .select('id, user_id')
           .eq('academy_id', academyId)
@@ -1075,7 +1075,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           student_record_id: studentRecordMap.get(studentId)
         }))
 
-        const { error: studentError } = await supabase
+        const { error: studentError } = await db
           .from('classroom_students')
           .insert(studentInserts)
 
@@ -1219,7 +1219,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
     try {
       // Update database in background
-      const { error } = await supabase
+      const { error } = await db
         .from('classrooms')
         .update({ paused: newPausedState })
         .eq('id', classroom.id)
@@ -1252,7 +1252,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     setBulkUpdating(true)
     try {
       const ids = Array.from(selectedClassroomIds)
-      const { error } = await supabase
+      const { error } = await db
         .from('classrooms')
         .update({ deleted_at: new Date().toISOString() })
         .in('id', ids)
@@ -1273,7 +1273,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         t('classrooms.bulkDeleteSuccess', { count: ids.length }) as string,
         t('common.undo') as string,
         async () => {
-          const { error: restoreError } = await supabase
+          const { error: restoreError } = await db
             .from('classrooms')
             .update({ deleted_at: null })
             .in('id', ids)
@@ -1303,7 +1303,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     setBulkUpdating(true)
     try {
       const ids = Array.from(selectedClassroomIds)
-      const { error } = await supabase
+      const { error } = await db
         .from('classrooms')
         .update({ paused })
         .in('id', ids)
@@ -1368,7 +1368,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       name: classroom.name,
       grade: classroom.grade || '',
       subject_id: classroom.subject_id || '',
-      teacher_id: classroom.teacher_id,
+      // classrooms.teacher_id is nullable; the form models "no teacher" as ''.
+      teacher_id: classroom.teacher_id || '',
       teacher_name: classroom.teacher_name || '',
       color: classroom.color || '#3B82F6',
       notes: classroom.notes || ''
@@ -1386,7 +1387,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
     // Fetch schedules in background
     try {
-      const { data: existingSchedules, error } = await supabase
+      const { data: existingSchedules, error } = await db
         .from('classroom_schedules')
         .select('*')
         .eq('classroom_id', classroom.id)
@@ -1421,7 +1422,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     }
 
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('classrooms')
         .update({ deleted_at: new Date().toISOString() })
         .eq('id', classroomToDelete.id)
@@ -1451,7 +1452,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         String(t('classrooms.deletedSuccessfully')),
         String(t('common.undo')),
         async () => {
-          const { error: restoreError } = await supabase
+          const { error: restoreError } = await db
             .from('classrooms')
             .update({ deleted_at: null })
             .eq('id', deletedClassroom.id)
@@ -1825,7 +1826,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               }}
               mobileRender={(c) => (
                 <DashboardCard
-                  paused={c.paused}
+                  paused={c.paused ?? false}
                   accentColor={c.color || '#6B7280'}
                   statusLabel={c.paused ? t('classrooms.paused') : t('classrooms.active')}
                   statusToneClass={c.paused ? 'text-amber-600' : 'text-emerald-600'}

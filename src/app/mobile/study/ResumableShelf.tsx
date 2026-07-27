@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { ListChecks, Layers, ClipboardList, Mic, ArrowRight, Clock, type LucideIcon } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -71,7 +71,7 @@ export function ResumableShelf() {
     if (!user?.userId) return
     let cancelled = false
     void (async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from('study_sessions')
         .select(`
           id, mode, title, status, last_active_at, topic_freeform, config,

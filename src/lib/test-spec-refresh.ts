@@ -23,7 +23,7 @@
 import { generateObject, generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { dbAdmin } from '@/lib/supabase-admin'
 import { TEST_SPECS, type SectionSpec } from '@/lib/test-specs'
 import { verifyAndCorrect, type Question } from '@/lib/test-verify'
 
@@ -120,7 +120,7 @@ export async function refreshTestSpec(
   const { family, sectionKey } = target
 
   if (!opts.force) {
-    const { data: existing } = await supabaseAdmin
+    const { data: existing } = await dbAdmin
       .from('study_test_specs')
       .select('last_verified_at')
       .eq('family', family)
@@ -212,7 +212,7 @@ export async function refreshTestSpec(
 
   // Preserve hardItemExamples from any prior refresh — they're a
   // separate (slower) pass and shouldn't be wiped on format refresh.
-  const { data: priorRow } = await supabaseAdmin
+  const { data: priorRow } = await dbAdmin
     .from('study_test_specs')
     .select('spec')
     .eq('family', family)
@@ -227,12 +227,16 @@ export async function refreshTestSpec(
   // unchecked write returned ok:true to the cron, which counted it as a
   // verified spec, so last_verified_at never moved and the same section
   // was re-researched (and re-billed) every month with nothing to show.
-  const { error: upsertError } = await supabaseAdmin
+  const { error: upsertError } = await dbAdmin
     .from('study_test_specs')
     .upsert({
       family,
       section_key: sectionKey,
-      spec,
+      // Spread copy, not `spec`: `SectionSpec` is an `interface`, which does
+      // not get TypeScript's implicit index signature, so it will not satisfy
+      // the column's `Json` type directly. Every field on it is already
+      // JSON-representable — this is a no-op at runtime.
+      spec: { ...spec },
       sources: citedUrls,
       last_verified_at: now,
       last_attempted_at: now,
@@ -322,7 +326,7 @@ export async function refreshTestSpecExamples(
   const targetCount = opts.targetCount ?? 8
 
   if (!opts.force) {
-    const { data: existing } = await supabaseAdmin
+    const { data: existing } = await dbAdmin
       .from('study_test_specs')
       .select('spec, last_verified_at')
       .eq('family', family)
@@ -458,7 +462,7 @@ Why hard: ${q.explanation}`
   }
 
   // Step 5: merge into the cached spec
-  const { data: priorRow } = await supabaseAdmin
+  const { data: priorRow } = await dbAdmin
     .from('study_test_specs')
     .select('spec')
     .eq('family', family)
@@ -476,7 +480,7 @@ Why hard: ${q.explanation}`
   // place the exemplars are persisted, and the quarterly samples pass is
   // the expensive one. Reporting examplesAdded off an unverified write
   // means paying for research that never reached the generator.
-  const { error: updateError } = await supabaseAdmin
+  const { error: updateError } = await dbAdmin
     .from('study_test_specs')
     .update({
       spec: mergedSpec,
@@ -530,7 +534,7 @@ async function markAttempt(family: string, sectionKey: string, notes: string) {
   // sources. We're only recording that we tried and failed. The old
   // upsert was clobbering a successful format refresh whenever the
   // samples pass failed.
-  const { data: existing } = await supabaseAdmin
+  const { data: existing } = await dbAdmin
     .from('study_test_specs')
     .select('family')
     .eq('family', family)
@@ -541,7 +545,7 @@ async function markAttempt(family: string, sectionKey: string, notes: string) {
   // hopeless target every month. If the write is dropped too, the
   // failure leaves no trace anywhere.
   const { error: markError } = existing
-    ? await supabaseAdmin
+    ? await dbAdmin
         .from('study_test_specs')
         .update({
           last_attempted_at: now,
@@ -550,7 +554,7 @@ async function markAttempt(family: string, sectionKey: string, notes: string) {
         })
         .eq('family', family)
         .eq('section_key', sectionKey)
-    : await supabaseAdmin
+    : await dbAdmin
         .from('study_test_specs')
         .insert({
           family,
@@ -585,7 +589,7 @@ const SKIP_FAMILIES_IN_CRON = new Set<string>(['sat'])
 
 export async function listAllSpecTargetsFromDB(opts: { includeSkipped?: boolean } = {}): Promise<RefreshTarget[]> {
   // Test-prep leaves are topics whose parent is a "test-*" root.
-  const { data: leaves } = await supabaseAdmin
+  const { data: leaves } = await dbAdmin
     .from('study_topics')
     .select('id, slug, name_en, name_ko, parent_id')
     .eq('category', 'test_prep')
@@ -594,7 +598,7 @@ export async function listAllSpecTargetsFromDB(opts: { includeSkipped?: boolean 
 
   // Pull parents in one shot to derive family + display name.
   const parentIds = [...new Set(leaves.map(l => l.parent_id).filter((p): p is string => !!p))]
-  const { data: parents } = await supabaseAdmin
+  const { data: parents } = await dbAdmin
     .from('study_topics')
     .select('id, slug, name_en, name_ko')
     .in('id', parentIds)

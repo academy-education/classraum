@@ -14,7 +14,7 @@ import { StatusPill } from '@/components/ui/status-pill'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { AnimatedStatSkeleton, StaggeredListSkeleton } from '@/components/ui/skeleton'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { hapticImpact } from '@/lib/nativeHaptics'
 import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, School, User, ChevronLeft, MapPin, DoorOpen, Megaphone, X } from 'lucide-react'
@@ -268,7 +268,7 @@ export default function MobilePage() {
 
     try {
       // First get the student's enrolled classrooms
-      const { data: enrolledClassrooms } = await supabase
+      const { data: enrolledClassrooms } = await db
         .rpc('get_student_classrooms', {
           student_uuid: effectiveUserId,
           academy_uuids: academyIds
@@ -285,7 +285,7 @@ export default function MobilePage() {
       }
 
       // Query real sessions for the date
-      const result = await supabase
+      const result = await db
         .from('classroom_sessions')
         .select(`
           id,
@@ -318,7 +318,7 @@ export default function MobilePage() {
       const realSessions = data?.filter((session: any) => session.date === dateKey) || []
 
       // Fetch classroom data for all classrooms to populate virtual sessions
-      const { data: classroomsData } = await supabase
+      const { data: classroomsData } = await db
         .from('classrooms')
         .select('id, name, color, academy_id, teacher_id')
         .in('id', classroomIds)
@@ -375,7 +375,7 @@ export default function MobilePage() {
           // console.log('Fetching attendance for sessions:', sessionIds)
         }
 
-        const { data: attendanceData } = await supabase
+        const { data: attendanceData } = await db
           .from('attendance')
           .select('classroom_session_id, status, student_id')
           .in('classroom_session_id', sessionIds)
@@ -407,7 +407,7 @@ export default function MobilePage() {
 
       const academyNamesMap = new Map<string, string>()
       if (sessionAcademyIds.length > 0) {
-        const { data: academies } = await supabase
+        const { data: academies } = await db
           .from('academies')
           .select('id, name')
           .in('id', sessionAcademyIds)
@@ -485,7 +485,7 @@ export default function MobilePage() {
     setIsLoadingMonthlyData(true)
     try {
       // First get the student's enrolled classrooms
-      const { data: enrolledClassrooms } = await supabase
+      const { data: enrolledClassrooms } = await db
         .rpc('get_student_classrooms', {
           student_uuid: effectiveUserId,
           academy_uuids: academyIds
@@ -517,7 +517,7 @@ export default function MobilePage() {
       const endDate = formatDateKST(lastDay)
 
       // Query real sessions for the month
-      const result = await supabase
+      const result = await db
         .from('classroom_sessions')
         .select(`
           id,
@@ -557,7 +557,7 @@ export default function MobilePage() {
       ) || []
 
       // Fetch classroom data for all classrooms to populate virtual sessions
-      const { data: classroomsData } = await supabase
+      const { data: classroomsData } = await db
         .from('classrooms')
         .select('id, name, color, academy_id, teacher_id')
         .in('id', classroomIds)
@@ -629,7 +629,7 @@ export default function MobilePage() {
 
       const academyNamesMap = new Map<string, string>()
       if (sessionAcademyIds.length > 0) {
-        const { data: academies } = await supabase
+        const { data: academies } = await db
           .from('academies')
           .select('id, name')
           .in('id', sessionAcademyIds)
@@ -646,7 +646,7 @@ export default function MobilePage() {
       const attendanceMap = new Map()
       if (studentSessions.length > 0) {
         const sessionIds = studentSessions.map((session: any) => session.id)
-        const { data: attendanceData } = await supabase
+        const { data: attendanceData } = await db
           .from('attendance')
           .select('classroom_session_id, status, student_id')
           .in('classroom_session_id', sessionIds)
@@ -869,7 +869,7 @@ export default function MobilePage() {
           const sessionIds = cachedSessions.map((s: Session) => s.id).filter((id: string) => !id.startsWith('virtual-'))
 
           if (sessionIds.length > 0) {
-            const { data: freshAttendance } = await supabase
+            const { data: freshAttendance } = await db
               .from('attendance')
               .select('classroom_session_id, status')
               .in('classroom_session_id', sessionIds)

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { X, Clock, Hash, Sparkles, Award, Coins } from '@/app/mobile/study/_shared/icons'
 import type { LucideIcon } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { SegmentedTabs } from './_shared/SegmentedTabs'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 import { useSheetDrag } from '@/app/mobile/study/_shared/useSheetDrag'
@@ -98,9 +98,9 @@ export function TestCustomizationSheet({
     let cancelled = false
     void (async () => {
       if (!topicId) { setRecommended('balanced'); setMasteryScore(null); return }
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) { setRecommended('balanced'); return }
-      const { data } = await supabase
+      const { data } = await db
         .from('study_mastery')
         .select('score, attempts_count')
         .eq('student_id', user.id)
@@ -128,10 +128,10 @@ export function TestCustomizationSheet({
     if (!open) return
     let cancelled = false
     void (async () => {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user || cancelled) return
       const [{ data }, { data: passRows }] = await Promise.all([
-        supabase
+        db
           .from('study_subscriptions')
           .select('grant_credits_remaining, purchased_credits_remaining')
           .eq('student_id', user.id)
@@ -139,7 +139,7 @@ export function TestCustomizationSheet({
         // This test's own exam-pass credits (+ the all-access '*' pass) count
         // toward the balance — they're spent first for this test.
         family
-          ? supabase.from('study_pass_credits').select('remaining').eq('student_id', user.id).in('test', [family, '*'])
+          ? db.from('study_pass_credits').select('remaining').eq('student_id', user.id).in('test', [family, '*'])
           : Promise.resolve({ data: [] as { remaining: number }[] }),
       ])
       if (cancelled) return

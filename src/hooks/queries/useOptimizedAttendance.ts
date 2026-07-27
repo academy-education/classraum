@@ -1,6 +1,18 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { usePerformanceMonitor } from '../performance/usePerformanceMonitor'
+
+// Mirrors classroom_sessions_location_check.
+const SESSION_LOCATIONS = ['offline', 'online'] as const
+type SessionLocation = (typeof SESSION_LOCATIONS)[number]
+
+function toSessionLocation(v: string): SessionLocation {
+  if ((SESSION_LOCATIONS as readonly string[]).includes(v)) {
+    return v as SessionLocation
+  }
+  console.warn(`Unexpected session location from DB: ${v}`)
+  return 'offline'
+}
 
 interface AttendanceRecord {
   id: string
@@ -27,7 +39,7 @@ async function fetchOptimizedAttendance(academyId: string, t: (key: string) => s
 
   try {
     // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
-    const { data: sessions, error: sessionsError } = await supabase
+    const { data: sessions, error: sessionsError } = await db
       .from('classroom_sessions')
       .select(`
         *,
@@ -51,13 +63,13 @@ async function fetchOptimizedAttendance(academyId: string, t: (key: string) => s
 
     // OPTIMIZED: Extract IDs for parallel queries
     const sessionIds = sessions.map(s => s.id)
-    const teacherIds = [...new Set(sessions.map(s => s.classrooms?.teacher_id).filter(Boolean))]
+    const teacherIds = [...new Set(sessions.map(s => s.classrooms?.teacher_id).filter((id): id is string => Boolean(id)))]
 
     // OPTIMIZED: Execute teacher names and attendance data queries in parallel
     const [teachersResult, attendanceResult] = await Promise.all([
       // Teacher names
       teacherIds.length > 0
-        ? supabase
+        ? db
             .from('users')
             .select('id, name')
             .in('id', teacherIds)
@@ -65,7 +77,7 @@ async function fetchOptimizedAttendance(academyId: string, t: (key: string) => s
       
       // Attendance data
       sessionIds.length > 0
-        ? supabase
+        ? db
             .from('attendance')
             .select('classroom_session_id, status')
             .in('classroom_session_id', sessionIds)
@@ -101,13 +113,13 @@ async function fetchOptimizedAttendance(academyId: string, t: (key: string) => s
         id: session.id,
         session_id: session.id,
         classroom_name: classroom?.name || t('common.unknownClassroom'),
-        classroom_color: classroom?.color,
+        classroom_color: classroom?.color ?? undefined,
         teacher_name: teacherName || t('common.unknownTeacher'),
         session_date: session.date,
         session_time: `${session.start_time} - ${session.end_time}`,
-        location: session.location as 'offline' | 'online',
-        created_at: session.created_at,
-        updated_at: session.updated_at,
+        location: toSessionLocation(session.location),
+        created_at: session.created_at ?? '',
+        updated_at: session.updated_at ?? '',
         student_count: attendanceCounts.total || 0,
         present_count: attendanceCounts.present || 0,
         absent_count: attendanceCounts.absent || 0,

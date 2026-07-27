@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 // Import directly from the shared cache module rather than through the
@@ -40,7 +40,7 @@ export interface Assignment {
   student_count?: number
   submitted_count?: number
   pending_count?: number
-  // Joined data from the supabase query in fetchAssignments — present on
+  // Joined data from the db query in fetchAssignments — present on
   // every assignment when fetched, used by the page-level classroom filter.
   classroom_sessions?: {
     id: string
@@ -56,7 +56,8 @@ export interface Session {
   id: string
   classroom_name: string
   classroom_id: string
-  subject_id?: string
+  // classrooms.subject_id is nullable.
+  subject_id?: string | null
   date: string
   start_time: string
   end_time: string
@@ -79,7 +80,15 @@ export interface AssignmentGrade {
 // Cache version constant - increment when changing data fetch logic
 const CACHE_VERSION = 'v6'
 
-type Classroom = { id: string; name: string; subject_id?: string; color?: string; teacher_id?: string; paused?: boolean }
+// Mirrors public.classrooms: every column except id/name is nullable.
+type Classroom = {
+  id: string
+  name: string
+  subject_id?: string | null
+  color?: string | null
+  teacher_id?: string | null
+  paused?: boolean | null
+}
 
 export function useAssignmentsData(academyId: string, filterSessionId?: string) {
   const [assignments, setAssignments] = useState<Assignment[]>([])
@@ -126,7 +135,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       }
 
       // Cache miss - fetch from database
-      const { data: allClassrooms, error: classroomsError } = await supabase
+      const { data: allClassrooms, error: classroomsError } = await db
         .from('classrooms')
         .select('id, name, subject_id, color, teacher_id, paused')
         .eq('academy_id', academyId)
@@ -162,7 +171,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
   // Check if current user is a manager for this academy
   const checkUserRole = useCallback(async () => {
     try {
-      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      const { data: { user }, error: authError } = await db.auth.getUser()
 
 
       if (authError) {
@@ -180,7 +189,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
         return false
       }
 
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('managers')
         .select('user_id')
         .eq('academy_id', academyId)
@@ -252,7 +261,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
         let from = 0
         // Safety bound so a pathological loop can't run forever.
         for (let page = 0; page < 100; page++) {
-          let query = supabase
+          let query = db
             .from('assignments')
             .select(`
               *,
@@ -287,7 +296,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       }
 
       const [classroomsResult, assignmentsResult] = await Promise.all([
-        supabase
+        db
           .from('classrooms')
           .select('id, name, subject_id, color, teacher_id, paused')
           .eq('academy_id', academyId)
@@ -356,7 +365,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       // Batch fetch sessions
       const sessionBatches = batchIds(sessionIdsNeeded)
       const sessionPromises = sessionBatches.map(batch =>
-        supabase
+        db
           .from('classroom_sessions')
           .select('id, date, start_time, end_time, classroom_id')
           .in('id', batch)
@@ -364,7 +373,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
 
       // Fetch categories (usually small, no need to batch)
       const categoriesPromise = categoryIdsNeeded.length > 0
-        ? supabase
+        ? db
             .from('assignment_categories')
             .select('id, name')
             .in('id', categoryIdsNeeded)
@@ -429,7 +438,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
           let hasMore = true
 
           while (hasMore) {
-            const { data, error } = await supabase
+            const { data, error } = await db
               .rpc('get_assignment_grade_counts_for_academy', { p_academy_id: academyId })
               .range(offset, offset + BATCH_SIZE - 1)
 
@@ -471,7 +480,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
         }
 
         try {
-          const { data, error } = await supabase
+          const { data, error } = await db
             .from('assignment_attachments')
             .select('assignment_id, file_name, file_url, file_size, file_type')
             .in('assignment_id', assignmentIds)
@@ -501,7 +510,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
 
         // Teacher names
         teacherIds.length > 0
-          ? supabase
+          ? db
               .from('users')
               .select('id, name')
               .in('id', teacherIds)
@@ -619,7 +628,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       let classroomsLocal = classroomsCache.current
 
       if (!classroomsLocal) {
-        const { data } = await supabase
+        const { data } = await db
           .from('classrooms')
           .select('id, name, subject_id, color, teacher_id')
           .eq('academy_id', academyId)
@@ -638,7 +647,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       const classroomMap = Object.fromEntries(classroomsLocal.map(c => [c.id, c]))
 
       // Get sessions for these classrooms (including past sessions for editing existing assignments)
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_sessions')
         .select('id, date, start_time, end_time, classroom_id')
         .in('classroom_id', classroomIds)

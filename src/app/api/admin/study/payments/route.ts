@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { supabaseAdmin } from '@/lib/supabase-admin';
+import { dbAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth, logAdminActivity } from '@/lib/admin-auth';
 import { cancelPayment } from '@/lib/portone-charge';
 import { raiseAlert } from '@/lib/ops/alert';
@@ -54,7 +54,7 @@ async function attachStudents(rows: PayRow[]) {
   const ids = Array.from(new Set(rows.map((r) => r.student_id)));
   const map = new Map<string, { name: string | null; email: string | null }>();
   if (ids.length > 0) {
-    const { data: users } = await supabaseAdmin.from('users').select('id, name, email').in('id', ids);
+    const { data: users } = await dbAdmin.from('users').select('id, name, email').in('id', ids);
     for (const u of users ?? []) map.set(u.id as string, { name: u.name as string | null, email: u.email as string | null });
   }
   return rows.map((r) => toDto(r, map.get(r.student_id)));
@@ -66,9 +66,12 @@ async function attachStudents(rows: PayRow[]) {
  * under-report). Filters MUST mirror the list query's filters.
  */
 async function fetchTotals(kind: string | null, studentIds: string[] | null) {
-  const { data, error } = await supabaseAdmin.rpc('admin_study_payment_totals', {
-    p_kind: kind,
-    p_student_ids: studentIds,
+  const { data, error } = await dbAdmin.rpc('admin_study_payment_totals', {
+    // Both args are `DEFAULT NULL` in Postgres, meaning "no filter"; omitting
+    // the key is the same call as passing SQL NULL and matches the generated
+    // (optional, non-nullable) arg types.
+    ...(kind !== null ? { p_kind: kind } : {}),
+    ...(studentIds !== null ? { p_student_ids: studentIds } : {}),
   });
   if (error) {
     console.error('[admin/study/payments] totals', error);
@@ -88,7 +91,7 @@ export async function GET(req: NextRequest) {
 
   // ── Per-student ────────────────────────────────────────────────────────
   if (studentId) {
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await dbAdmin
       .from('study_payments')
       .select('payment_id, student_id, kind, amount_won, created_at, refunded_at')
       .eq('student_id', studentId)
@@ -115,7 +118,7 @@ export async function GET(req: NextRequest) {
   // Resolve a name/email search to the matching student ids first.
   let studentFilter: string[] | null = null;
   if (q) {
-    const { data: users } = await supabaseAdmin
+    const { data: users } = await dbAdmin
       .from('users')
       .select('id')
       .or(`name.ilike.%${q}%,email.ilike.%${q}%`)
@@ -133,7 +136,7 @@ export async function GET(req: NextRequest) {
   const { total, grossWon } = await fetchTotals(kindFilter, studentFilter);
 
   const from = (page - 1) * PAGE_SIZE;
-  let query = supabaseAdmin
+  let query = dbAdmin
     .from('study_payments')
     .select('payment_id, student_id, kind, amount_won, created_at, refunded_at')
     .order('created_at', { ascending: false })
@@ -164,7 +167,7 @@ export async function POST(req: NextRequest) {
   const { paymentId, reason } = parsed.data;
 
   // Only refund payments that are ours (a study_payments row).
-  const { data: row } = await supabaseAdmin
+  const { data: row } = await dbAdmin
     .from('study_payments')
     .select('payment_id, student_id, amount_won, kind, refunded_at')
     .eq('payment_id', paymentId)
@@ -184,7 +187,7 @@ export async function POST(req: NextRequest) {
   // press Refund again — cancelling the same payment twice at PortOne and
   // sending real money out twice. So it must be checked, and a failure has
   // to be reported as "refunded but NOT recorded", never as "refund failed".
-  const { error: stampError } = await supabaseAdmin
+  const { error: stampError } = await dbAdmin
     .from('study_payments')
     .update({ refunded_at: new Date().toISOString(), refund_reason: reason })
     .eq('payment_id', paymentId);

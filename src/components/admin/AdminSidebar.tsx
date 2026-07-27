@@ -24,7 +24,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { AdminUser, getAdminPermissions } from '@/lib/admin-auth-shared';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { performLogout } from '@/lib/logout';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -84,7 +84,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
   const loadCounts = async () => {
     try {
       // Load alert count
-      const { count: alertsCount } = await supabase
+      const { count: alertsCount } = await db
         .from('alerts')
         .select('*', { count: 'exact', head: true })
         .eq('resolved', false)
@@ -93,7 +93,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
       setAlertCount(alertsCount || 0);
 
       // Load open support ticket count
-      const { count: ticketsCount } = await supabase
+      const { count: ticketsCount } = await db
         .from('support_tickets')
         .select('*', { count: 'exact', head: true })
         .in('status', ['open', 'in_progress']);
@@ -125,7 +125,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
       router.replace('/auth');
     } catch (error) {
       console.error('Logout failed:', error);
-      try { await supabase.auth.signOut(); } catch { /* ignore */ }
+      try { await db.auth.signOut(); } catch { /* ignore */ }
       router.replace('/auth');
     } finally {
       setLoading(false);

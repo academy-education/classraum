@@ -19,7 +19,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showErrorToast } from '@/stores'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { authHeaders } from '../hooks/authHeaders'
 import { useAnalysisOptions } from '../hooks/useAnalysisOptions'
 import { AnalysisOptions } from '../components/AnalysisOptions'
@@ -85,7 +85,7 @@ export function InPersonMode({
   const [aiGrading, setAiGrading] = useState(false)
 
   const loadStudents = useCallback(async () => {
-    const { data } = await supabase
+    const { data } = await db
       .from('students')
       .select('user_id, users(name, email)')
       .eq('academy_id', academyId)

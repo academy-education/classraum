@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, Camera, Image as ImageIcon, RefreshCw, Sparkles, CheckCircle2, X, AlertCircle, ListChecks, Bookmark, BookmarkCheck, Lock } from '@/app/mobile/study/_shared/icons'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
@@ -426,7 +426,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
     const topicFreeform = ko
       ? `${subjectLabel} 사진 문제 후속: ${snippet}`
       : `${subjectLabel} snap follow-up: ${snippet}`
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from('study_sessions')
       .insert({
         student_id: user.userId,

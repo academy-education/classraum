@@ -12,7 +12,7 @@ import { SortableTh } from '../SortableTh';
 import { PortOneSettlement, SettlementStatus } from '@/types/subscription';
 import { SettlementDetailModal } from './SettlementDetailModal';
 import { PayoutHistory } from './PayoutHistory';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import {
   Select,
   SelectContent,

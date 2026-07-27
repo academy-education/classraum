@@ -7,7 +7,7 @@ import { Button } from './button'
 import { Textarea } from './textarea'
 import { ChatMessage } from './chat-message'
 import { useTranslation } from '@/hooks/useTranslation'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 
 interface Message {
   id: string
@@ -63,7 +63,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
 
   const loadMessages = useCallback(async (convId: string) => {
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       
       if (!session?.access_token) {
         throw new Error('No authentication token available')
@@ -103,7 +103,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
   const initializeConversation = useCallback(async () => {
     try {
       // Get the current session token
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       
       if (!session?.access_token) {
         throw new Error('No authentication token available')
@@ -180,7 +180,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
   // Get current user ID
   useEffect(() => {
     const getCurrentUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (user) {
         setCurrentUserId(user.id)
       }
@@ -207,7 +207,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
   useEffect(() => {
     if (!conversationId) return
 
-    const channel = supabase
+    const channel = db
       .channel('chat_messages')
       .on(
         'postgres_changes',
@@ -221,7 +221,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
           const newDbMessage = payload.new as DbMessage
           
           // Fetch the complete message with user info
-          const { data: { session } } = await supabase.auth.getSession()
+          const { data: { session } } = await db.auth.getSession()
           if (!session?.access_token) return
           
           const response = await fetch(`/api/chat/messages?conversation_id=${conversationId}`, {
@@ -248,17 +248,17 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
       .subscribe()
 
     return () => {
-      supabase.removeChannel(channel)
+      db.removeChannel(channel)
     }
   }, [conversationId, convertDbMessageToMessage])
 
   // Presence-based typing indicators (no database writes)
-  const presenceChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null)
+  const presenceChannelRef = useRef<ReturnType<typeof db.channel> | null>(null)
 
   useEffect(() => {
     if (!conversationId || !currentUserId) return
 
-    const channel = supabase.channel(`chat_presence:${conversationId}`, {
+    const channel = db.channel(`chat_presence:${conversationId}`, {
       config: {
         presence: {
           key: currentUserId,
@@ -339,7 +339,7 @@ export function ChatWindow({ userName, onClose, onMinimize }: ChatWindowProps) {
     updateTypingStatus(false)
 
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       
       if (!session?.access_token) {
         throw new Error('No authentication token available')

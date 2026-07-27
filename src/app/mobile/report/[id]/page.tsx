@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { ErrorState } from '@/components/ui/common/ErrorState'
 import { ArrowLeft, BookOpen, Users, Clock } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -16,9 +16,85 @@ import { useStableCallback } from '@/hooks/useStableCallback'
 import DOMPurify from 'dompurify'
 import {
   type ReportAssignmentGrade,
+  type ReportAssignmentJoin,
+  type ReportSubjectJoin,
   getReportSubjectName,
 } from '@/types/queries'
 import type { AssignmentGradeStatus, AttendanceStatus } from '@/types/db-enums'
+import { isAssignmentGradeStatus } from '@/types/db-enums'
+import type { Json } from '@/lib/database.types'
+
+/* ── jsonb narrowing helpers ────────────────────────────────────────────
+ * `student_reports.selected_*` and the RPC's `assignment_data` are jsonb
+ * columns, so PostgREST hands them over as `Json`. These validate the
+ * payload instead of assuming its shape. */
+
+const isJsonObject = (v: Json | null | undefined): v is { [key: string]: Json | undefined } =>
+  !!v && typeof v === 'object' && !Array.isArray(v)
+
+const jsonString = (v: Json | undefined): string | null => (typeof v === 'string' ? v : null)
+
+/** jsonb array of text → string[]. Non-string entries are dropped. */
+function toStringArray(raw: Json | null | undefined): string[] | undefined {
+  if (!Array.isArray(raw)) return undefined
+  return raw.filter((item): item is string => typeof item === 'string')
+}
+
+function toSubjectsJoin(raw: Json | undefined): ReportSubjectJoin {
+  const one = (item: Json | undefined): { id: string; name: string } | null => {
+    if (!isJsonObject(item)) return null
+    const id = jsonString(item.id)
+    const name = jsonString(item.name)
+    return id !== null && name !== null ? { id, name } : null
+  }
+  if (Array.isArray(raw)) {
+    return raw.flatMap(item => {
+      const subject = one(item)
+      return subject ? [subject] : []
+    })
+  }
+  return one(raw)
+}
+
+/** `get_student_assignment_grades.assignment_data` (jsonb_build_object) →
+ *  the nested assignment payload the report renders. */
+function toAssignmentJoin(raw: Json | null | undefined): ReportAssignmentJoin | null {
+  if (!isJsonObject(raw)) return null
+  const id = jsonString(raw.id)
+  const title = jsonString(raw.title)
+  const classroomSessionId = jsonString(raw.classroom_session_id)
+  if (id === null || title === null || classroomSessionId === null) return null
+
+  const session = isJsonObject(raw.classroom_sessions) ? raw.classroom_sessions : null
+  if (!session) return null
+  const sessionClassroomId = jsonString(session.classroom_id)
+  const classroom = isJsonObject(session.classrooms) ? session.classrooms : null
+  if (sessionClassroomId === null || !classroom) return null
+  const classroomId = jsonString(classroom.id)
+  const classroomName = jsonString(classroom.name)
+  if (classroomId === null || classroomName === null) return null
+
+  return {
+    id,
+    title,
+    assignment_type: jsonString(raw.assignment_type) ?? '',
+    // assignments.due_date is nullable in the DB, but ReportAssignmentJoin
+    // (src/types/queries.ts, out of scope here) declares it non-null and
+    // every consumer already renders it as `due_date || ''`.
+    due_date: jsonString(raw.due_date) ?? '',
+    assignment_categories_id: jsonString(raw.assignment_categories_id),
+    classroom_session_id: classroomSessionId,
+    classroom_sessions: {
+      classroom_id: sessionClassroomId,
+      classrooms: {
+        id: classroomId,
+        name: classroomName,
+        grade: jsonString(classroom.grade),
+        subjects: toSubjectsJoin(classroom.subjects),
+      },
+    },
+  }
+}
 
 interface ReportData {
   id: string
@@ -251,17 +327,39 @@ export default function MobileReportDetailsPage() {
 
     try {
       // Use RPC function to fetch assignment grades (bypasses RLS for parents)
-      let { data: assignmentGrades, error: assignmentsError } = await supabase
+      const { data: rpcGrades, error: rpcError } = await db
         .rpc('get_student_assignment_grades', {
           target_student_id: studentId,
           start_date: startDate,
           end_date: endDate
         })
 
+      let assignmentsError = rpcError
+      // Transform RPC data to match expected structure. The RPC returns
+      // `assignment_data` (a jsonb_build_object payload); we rename it to
+      // `assignments` so downstream code sees a single normalised shape.
+      let assignments: ReportAssignmentGrade[] = (rpcGrades ?? []).flatMap(ag => {
+        // assignment_grades.status has a CHECK constraint listing exactly the
+        // AssignmentGradeStatus values, so an unknown value means the data is
+        // corrupt — skip it rather than inventing a bucket for it.
+        if (!isAssignmentGradeStatus(ag.status)) {
+          console.warn('[report] Unrecognised assignment_grades.status, row skipped:', ag.status)
+          return []
+        }
+        return [{
+          id: ag.id,
+          status: ag.status,
+          score: ag.score,
+          updated_at: ag.updated_at,
+          submitted_date: ag.submitted_date,
+          feedback: null,
+          assignments: toAssignmentJoin(ag.assignment_data),
+        }]
+      })
 
       // Fallback to direct query if RPC fails
-      if (assignmentsError || !assignmentGrades || assignmentGrades.length === 0) {
-        const result = await supabase
+      if (rpcError || assignments.length === 0) {
+        const result = await db
           .from('assignment_grades')
           .select(`
             id,
@@ -294,34 +392,41 @@ export default function MobileReportDetailsPage() {
           .gte('submitted_date', startDate)
           .lte('submitted_date', endDate)
 
-        const directData = result.data
         assignmentsError = result.error
 
-        // Transform direct query data to match RPC structure
-        assignmentGrades = directData?.map(ag => ({
-          id: ag.id,
-          status: ag.status,
-          score: ag.score,
-          updated_at: ag.updated_at,
-          submitted_date: ag.submitted_date,
-          assignment_data: ag.assignments
-        })) || []
-      }
-
-      // Transform RPC data to match expected structure. The RPC returns
-      // `assignment_data` (a jsonb_build_object payload); we rename it to
-      // `assignments` so downstream code sees a single normalised shape.
-      const assignments: ReportAssignmentGrade[] = (assignmentGrades ?? []).map(
-        (ag: { id: string; status: AssignmentGradeStatus; score: number | null; updated_at: string; submitted_date: string | null; assignment_data: ReportAssignmentGrade['assignments']; feedback?: string | null }) => ({
-          id: ag.id,
-          status: ag.status,
-          score: ag.score,
-          updated_at: ag.updated_at,
-          submitted_date: ag.submitted_date,
-          feedback: ag.feedback ?? null,
-          assignments: ag.assignment_data,
+        assignments = (result.data ?? []).flatMap(ag => {
+          // See the note above: an unrecognised status means corrupt data.
+          if (!isAssignmentGradeStatus(ag.status)) {
+            console.warn('[report] Unrecognised assignment_grades.status, row skipped:', ag.status)
+            return []
+          }
+          const a = ag.assignments
+          return [{
+            id: ag.id,
+            status: ag.status,
+            score: ag.score,
+            // updated_at is nullable; the submission timestamp is the next
+            // best "when was this graded" signal, and '' is filtered out by
+            // the chart builder rather than being charted as epoch 0.
+            updated_at: ag.updated_at ?? ag.submitted_date ?? '',
+            submitted_date: ag.submitted_date,
+            feedback: null,
+            assignments: {
+              id: a.id,
+              title: a.title,
+              assignment_type: a.assignment_type,
+              // See toAssignmentJoin: due_date is nullable in the DB.
+              due_date: a.due_date ?? '',
+              assignment_categories_id: a.assignment_categories_id,
+              classroom_session_id: a.classroom_session_id,
+              classroom_sessions: {
+                classroom_id: a.classroom_sessions.classroom_id,
+                classrooms: a.classroom_sessions.classrooms,
+              },
+            },
+          }]
         })
-      )
+      }
 
       if (assignmentsError) {
         console.error('Error fetching assignments:', assignmentsError)
@@ -471,7 +576,7 @@ export default function MobileReportDetailsPage() {
         for (const classroomId of selectedClassrooms) {
           try {
             // Fetch all students' grades for this classroom in the date range
-            const { data: allStudentGrades, error: gradesError } = await supabase
+            const { data: allStudentGrades, error: gradesError } = await db
               .from('assignment_grades')
               .select(`
                 student_id,
@@ -504,7 +609,8 @@ export default function MobileReportDetailsPage() {
               if (!studentAverages[grade.student_id]) {
                 studentAverages[grade.student_id] = { total: 0, count: 0 }
               }
-              studentAverages[grade.student_id].total += grade.score
+              // Non-null: the query above filters with .not('score', 'is', null).
+              studentAverages[grade.student_id].total += grade.score!
               studentAverages[grade.student_id].count += 1
             })
 
@@ -551,7 +657,7 @@ export default function MobileReportDetailsPage() {
       }
 
       // Use RPC function to fetch attendance data (bypasses RLS for parents)
-      const { data: attendanceRpcData, error: attendanceError } = await supabase
+      const { data: attendanceRpcData, error: attendanceError } = await db
         .rpc('get_student_attendance', {
           target_student_id: studentId,
           start_date: startDate,
@@ -623,7 +729,7 @@ export default function MobileReportDetailsPage() {
       setLoading(true)
 
       // Fetch report details
-      const { data: reportData, error: reportError } = await supabase
+      const { data: reportData, error: reportError } = await db
         .from('student_reports')
         .select('*')
         .eq('id', reportId)
@@ -636,7 +742,7 @@ export default function MobileReportDetailsPage() {
       }
 
       // Fetch student name
-      const { data: studentData, error: studentError } = await supabase
+      const { data: studentData, error: studentError } = await db
         .from('students')
         .select(`
           user_id,
@@ -649,17 +755,38 @@ export default function MobileReportDetailsPage() {
         console.error('Error fetching student:', studentError)
       }
 
-      const reportDetails = {
-        ...reportData,
-        student_name: (studentData?.users as any)?.name || String(t('mobile.fallbacks.unknownStudent')),
-        student_email: (studentData?.users as any)?.email || ''
+      // students.user_id is the PK of the embedded `users` row, so PostgREST
+      // returns it as a single object (not an array).
+      const studentUser = studentData?.users
+      const reportDetails: ReportData = {
+        id: reportData.id,
+        student_id: reportData.student_id,
+        student_name: studentUser?.name || String(t('mobile.fallbacks.unknownStudent')),
+        student_email: studentUser?.email || '',
+        report_name: reportData.report_name ?? undefined,
+        start_date: reportData.start_date ?? undefined,
+        end_date: reportData.end_date ?? undefined,
+        selected_subjects: toStringArray(reportData.selected_subjects),
+        selected_classrooms: toStringArray(reportData.selected_classrooms),
+        selected_assignment_categories: toStringArray(reportData.selected_assignment_categories),
+        ai_feedback_enabled: reportData.ai_feedback_enabled ?? undefined,
+        feedback: reportData.feedback ?? undefined,
+        ai_feedback_created_by: reportData.ai_feedback_created_by ?? undefined,
+        ai_feedback_created_at: reportData.ai_feedback_created_at ?? undefined,
+        ai_feedback_template: reportData.ai_feedback_template ?? undefined,
+        status: reportData.status,
+        show_category_average: reportData.show_category_average ?? undefined,
+        show_individual_grades: reportData.show_individual_grades ?? undefined,
+        show_percentile_ranking: reportData.show_percentile_ranking ?? undefined,
+        created_at: reportData.created_at,
+        updated_at: reportData.updated_at,
       }
 
       setReport(reportDetails)
 
       // Fetch assignment categories if we have selected categories
       if (reportDetails.selected_assignment_categories && reportDetails.selected_assignment_categories.length > 0) {
-        const { data: categories, error: categoriesError } = await supabase
+        const { data: categories, error: categoriesError } = await db
           .from('assignment_categories')
           .select('id, name')
           .in('id', reportDetails.selected_assignment_categories)

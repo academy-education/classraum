@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { useStableCallback } from './useStableCallback'
 import { type AssignmentGradeStatus, isAssignmentGradeStatus } from '@/types/db-enums'
 
@@ -21,6 +21,22 @@ export interface Assignment {
   updated_at: string
   student_count?: number
   submitted_count?: number
+}
+
+// assignments.assignment_type is a plain text column guarded by a CHECK
+// constraint (quiz | homework | test | project), so the generated types widen
+// it to string. Narrow it back at the boundary.
+const ASSIGNMENT_TYPES = ['quiz', 'homework', 'test', 'project'] as const
+type AssignmentType = (typeof ASSIGNMENT_TYPES)[number]
+
+function toAssignmentType(v: string): AssignmentType {
+  if ((ASSIGNMENT_TYPES as readonly string[]).includes(v)) {
+    return v as AssignmentType
+  }
+  // Unreachable while assignments_assignment_type_check is in place; surface it
+  // rather than silently mislabelling the row as some arbitrary type.
+  console.warn(`Unexpected assignment_type from DB: ${v}`)
+  return 'homework'
 }
 
 export interface AssignmentCategory {
@@ -64,7 +80,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
     try {
       setLoading(true)
       
-      let query = supabase
+      let query = db
         .from('assignments')
         .select(`
           *,
@@ -102,49 +118,24 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
         throw error
       }
 
-      const formattedAssignments: Assignment[] = (data || []).map((item: {
-        id: string;
-        classroom_session_id: string;
-        title: string;
-        description?: string;
-        assignment_type: 'quiz' | 'homework' | 'test' | 'project';
-        due_date?: string;
-        assignment_categories_id?: string;
-        created_at: string;
-        updated_at: string;
-        classroom_sessions?: {
-          date?: string;
-          start_time?: string;
-          end_time?: string;
-          classrooms?: {
-            name?: string;
-            color?: string;
-            teachers?: {
-              users?: {
-                name?: string;
-              };
-            };
-          };
-        };
-        assignment_categories?: {
-          name?: string;
-        };
-      }) => ({
+      const formattedAssignments: Assignment[] = (data || []).map((item) => ({
         id: item.id,
         classroom_session_id: item.classroom_session_id,
         classroom_name: item.classroom_sessions?.classrooms?.name,
-        classroom_color: item.classroom_sessions?.classrooms?.color,
-        teacher_name: item.classroom_sessions?.classrooms?.teachers?.users?.name,
+        classroom_color: item.classroom_sessions?.classrooms?.color ?? undefined,
+        // The teacher is embedded directly on classrooms via
+        // users!classrooms_teacher_id_fkey — there is no nested `teachers` hop.
+        teacher_name: item.classroom_sessions?.classrooms?.users?.name,
         session_date: item.classroom_sessions?.date,
         session_time: `${item.classroom_sessions?.start_time} - ${item.classroom_sessions?.end_time}`,
         title: item.title,
-        description: item.description,
-        assignment_type: item.assignment_type,
-        due_date: item.due_date,
-        assignment_categories_id: item.assignment_categories_id,
+        description: item.description ?? undefined,
+        assignment_type: toAssignmentType(item.assignment_type),
+        due_date: item.due_date ?? undefined,
+        assignment_categories_id: item.assignment_categories_id ?? undefined,
         category_name: item.assignment_categories?.name,
-        created_at: item.created_at,
-        updated_at: item.updated_at,
+        created_at: item.created_at ?? '',
+        updated_at: item.updated_at ?? '',
         student_count: 0, // This would need additional query
         submitted_count: 0 // This would need additional query
       }))
@@ -160,7 +151,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
 
   const fetchCategories = useStableCallback(async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignment_categories')
         .select('*')
         .eq('academy_id', academyId)
@@ -177,7 +168,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
 
   const fetchSessions = useStableCallback(async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('classroom_sessions')
         .select(`
           id,
@@ -221,7 +212,7 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
 
   const fetchSubmissionGrades = useCallback(async (assignmentId: string): Promise<SubmissionGrade[]> => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('assignment_grades')
         .select(`
           id,

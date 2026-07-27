@@ -19,7 +19,7 @@ import {
   Mail
 } from 'lucide-react';
 import { TicketDetailModal } from './TicketDetailModal';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/lib/supabase';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -47,8 +47,10 @@ interface ChatConversation {
   status?: string;
   closedAt?: Date;
   closedBy?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  // chat_conversations.created_at / updated_at are nullable (now() default
+  // only), so these can legitimately be absent.
+  createdAt?: Date;
+  updatedAt?: Date;
   userName?: string;
   userEmail?: string;
   academyName?: string;
@@ -87,7 +89,7 @@ export function SupportManagement() {
       const newStatus = conversation.status === 'closed' ? 'active' : 'closed';
 
 
-      const { error } = await supabase
+      const { error } = await db
         .from('chat_conversations')
         .update({
           status: newStatus,
@@ -122,7 +124,7 @@ export function SupportManagement() {
     try {
 
       // First delete all messages in the conversation
-      const { error: messagesError } = await supabase
+      const { error: messagesError } = await db
         .from('chat_messages')
         .delete()
         .eq('conversation_id', conversation.id);
@@ -133,7 +135,7 @@ export function SupportManagement() {
       }
 
       // Then delete the conversation
-      const { error: conversationError } = await supabase
+      const { error: conversationError } = await db
         .from('chat_conversations')
         .delete()
         .eq('id', conversation.id);
@@ -157,7 +159,7 @@ export function SupportManagement() {
       setLoading(true);
 
       // Fetch all chat conversations with related data.
-      const { data: conversationsData, error: conversationsError } = await supabase
+      const { data: conversationsData, error: conversationsError } = await db
         .from('chat_conversations')
         .select(`
           *,
@@ -190,7 +192,7 @@ export function SupportManagement() {
 
       let allMessages: AggMessage[] = [];
       if (conversationIds.length > 0) {
-        const { data, error: messagesError } = await supabase
+        const { data, error: messagesError } = await db
           .from('chat_messages')
           .select('id, conversation_id, message, created_at, sender_type, is_read')
           .in('conversation_id', conversationIds)
@@ -228,13 +230,13 @@ export function SupportManagement() {
         return {
           id: conv.id,
           userId: conv.user_id,
-          academyId: conv.academy_id,
-          title: conv.title,
+          academyId: conv.academy_id ?? undefined,
+          title: conv.title ?? undefined,
           status: conv.status || 'active',
           closedAt: conv.closed_at ? new Date(conv.closed_at) : undefined,
-          closedBy: conv.closed_by,
-          createdAt: new Date(conv.created_at),
-          updatedAt: new Date(conv.updated_at),
+          closedBy: conv.closed_by ?? undefined,
+          createdAt: conv.created_at ? new Date(conv.created_at) : undefined,
+          updatedAt: conv.updated_at ? new Date(conv.updated_at) : undefined,
           userName: conv.users?.name || String(t('admin.common.unknownUser')),
           userEmail: conv.users?.email || String(t('admin.support.noEmail')),
           academyName: conv.academies?.name,
@@ -376,7 +378,9 @@ export function SupportManagement() {
         },
         {
           label: String(t('admin.support.updated')),
-          value: conversation.updatedAt.toLocaleDateString(getDateLocale(language)),
+          value: conversation.updatedAt
+            ? conversation.updatedAt.toLocaleDateString(getDateLocale(language))
+            : String(t('admin.common.unknown')),
         },
         {
           label: String(t('admin.support.lastMessage')),
@@ -554,12 +558,18 @@ export function SupportManagement() {
                       )}
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
-                        {conversation.updatedAt.toLocaleDateString(getDateLocale(language))}
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        {conversation.updatedAt.toLocaleTimeString(getDateLocale(language))}
-                      </div>
+                      {conversation.updatedAt ? (
+                        <>
+                          <div className="text-sm text-gray-900">
+                            {conversation.updatedAt.toLocaleDateString(getDateLocale(language))}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {conversation.updatedAt.toLocaleTimeString(getDateLocale(language))}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="text-sm text-gray-900">{String(t('admin.common.unknown'))}</div>
+                      )}
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap text-right">
                       {renderRowActions(conversation)}

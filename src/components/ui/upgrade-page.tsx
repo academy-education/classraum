@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import * as PortOne from '@portone/browser-sdk/v2'
 import { getPortOneConfig } from '@/lib/portone-config'
 import { useToast } from '@/hooks/use-toast'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import type { SubscriptionTier } from '@/types/subscription'
 import { isIOSApp } from '@/lib/nativeApp'
 import { ExternalLink, ArrowLeft } from 'lucide-react'
@@ -83,7 +83,7 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
   useEffect(() => {
     const fetchCurrentSubscription = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession()
+        const { data: { session } } = await db.auth.getSession()
         if (!session) {
           setLoading(false)
           return
@@ -175,7 +175,7 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
       }
 
       // Get user data for billing key
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await db.auth.getUser()
       if (!user) {
         toast({
           title: 'Authentication Error',
@@ -188,19 +188,25 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
       // non-null narrow (TS sometimes widens locals after async boundaries).
       const authedUser = user!
 
-      const { data: userData } = await supabase
+      const { data: userData } = await db
         .from('users')
         .select('name')
         .eq('id', authedUser.id)
         .single()
 
-      const { data: managerData } = await supabase
+      const { data: managerData } = await db
         .from('managers')
         .select('phone')
         .eq('user_id', authedUser.id)
         .single()
 
-      if (!managerData?.phone) {
+      // managers.phone is nullable and PortOne rejects a billing-key request
+      // without a phone number, so bail out with the existing localized message.
+      // Collapsed to '' rather than relying on control-flow narrowing: the
+      // early `return` at the top of handleUpgradeClick makes this whole block
+      // unreachable, and TypeScript does not narrow inside unreachable code.
+      const managerPhone: string = managerData?.phone ?? ''
+      if (!managerPhone) {
         toast({
           title: t('upgrade.phoneRequiredTitle') as string,
           description: t('upgrade.phoneRequiredDescription') as string,
@@ -225,7 +231,7 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
         customer: {
           customerId: `academy_${academyId || Date.now()}`,
           email: authedUser.email || '',
-          phoneNumber: managerData!.phone,
+          phoneNumber: managerPhone,
           fullName: userData?.name || '',
         },
       })

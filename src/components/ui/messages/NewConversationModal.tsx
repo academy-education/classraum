@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { Button } from '@/components/ui/button'
@@ -47,7 +47,7 @@ export function NewConversationModal({
   const fetchContacts = useCallback(async () => {
     setLoading(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch('/api/messages/contacts', {
@@ -120,7 +120,7 @@ export function NewConversationModal({
 
     setCreating(true)
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const { data: { session } } = await db.auth.getSession()
       if (!session?.access_token) return
 
       const response = await fetch('/api/messages/conversations', {
