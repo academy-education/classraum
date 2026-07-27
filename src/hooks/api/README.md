@@ -1,5 +1,23 @@
 # React Query API Hooks
 
+> **STATUS: mostly removed, and what remains is unused.**
+>
+> `useAcademyQueries.ts`, `useDashboardQueries.ts` and
+> `useMaterializedViews.ts` were deleted on 2026-07-27. All 25 hooks they
+> exported had zero call sites, and they queried tables and columns that
+> do not exist in this database — `profiles`, `sessions`,
+> `student_payments`, `pg_stat_user_tables`, `classrooms.description`,
+> `classrooms.capacity`. Because PostgREST answers an unknown column with
+> an error and no rows, wiring any of them up would have rendered empty
+> lists and zeroes rather than failing loudly.
+>
+> `useUserQueries.ts` survives but is also unreferenced: nothing outside
+> this directory imports from `@/hooks/api`.
+>
+> **Everything below describes the removed layer and is kept only as a
+> record of the intended patterns. Do not treat it as a description of
+> the running app.**
+
 This directory contains React Query hooks for efficient server state management in the Classraum application. These hooks provide caching, background refetching, optimistic updates, and comprehensive error handling for all API operations.
 
 ## 🏗 Architecture Overview
@@ -17,9 +35,7 @@ This directory contains React Query hooks for efficient server state management 
 
 ```
 src/hooks/api/
-├── useAcademyQueries.ts    # Academy data and statistics
 ├── useUserQueries.ts       # User profile and preferences
-├── useDashboardQueries.ts  # Dashboard metrics and analytics
 ├── index.ts               # Centralized exports
 └── README.md             # This file
 ```
