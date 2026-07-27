@@ -166,8 +166,56 @@ export async function GET(req: NextRequest) {
             nextBillingDate.setFullYear(nextBillingDate.getFullYear() + 1);
           }
 
+          // Resolve which plan THIS cycle is billed at, before charging.
+          //
+          // Billing is in advance: this charge pays for billingDate →
+          // nextBillingDate. So if a scheduled downgrade is due now, the
+          // customer holds the new tier for the whole period being paid
+          // for, and must be charged the new price. Applying the change
+          // after the charge (as this did originally) billed them the old
+          // higher amount for a month of the lower tier's limits — they
+          // paid Pro and got Basic. Nobody hit that, because pending_tier
+          // did not exist until migration 060 and no downgrade ever
+          // applied, but the ordering was wrong the moment it worked.
+          const changeDue =
+            subscription.pending_tier !== null &&
+            subscription.pending_change_effective_date !== null &&
+            new Date() >= new Date(subscription.pending_change_effective_date);
+
+          const { SUBSCRIPTION_PLANS } = await import('@/types/subscription');
+          const pendingTier = subscription.pending_tier;
+          const pendingPlan = changeDue && pendingTier
+            ? SUBSCRIPTION_PLANS[pendingTier as keyof typeof SUBSCRIPTION_PLANS]
+            : null;
+
+          // Only apply — and only re-price — when the schedule is complete.
+          // A partial schedule is reported and left in place rather than
+          // half-applied; the cycle then bills at the current plan.
+          let applyPendingChange = false;
+          if (changeDue) {
+            if (!pendingPlan) {
+              // The CHECK on pending_tier makes this unreachable unless a
+              // plan is deleted from the code while a change is booked.
+              console.error(`[SUBSCRIPTION-BILLING] Unknown pending_tier "${pendingTier}" on subscription ${subscription.id}; leaving the change scheduled`);
+              errors.push(`Subscription ${subscription.id}: Unknown pending_tier ${pendingTier}`);
+            } else if (subscription.pending_monthly_amount === null) {
+              console.error(`[SUBSCRIPTION-BILLING] Subscription ${subscription.id} has pending_tier "${pendingTier}" but no pending_monthly_amount; leaving the change scheduled`);
+              errors.push(`Subscription ${subscription.id}: pending_tier without pending_monthly_amount`);
+            } else {
+              applyPendingChange = true;
+            }
+          }
+
+          const effectiveTier = applyPendingChange && pendingTier ? pendingTier : subscription.plan_tier;
+          const effectiveAmount = applyPendingChange && subscription.pending_monthly_amount !== null
+            ? subscription.pending_monthly_amount
+            : subscription.monthly_amount;
+
           // Call PortOne billing key payment API
-          console.log(`[SUBSCRIPTION-BILLING] Charging billing key for subscription: ${subscription.id}, amount: ${subscription.monthly_amount}`);
+          console.log(
+            `[SUBSCRIPTION-BILLING] Charging billing key for subscription: ${subscription.id}, amount: ${effectiveAmount}` +
+            (applyPendingChange ? ` (scheduled change ${subscription.plan_tier} → ${effectiveTier} applies this cycle)` : '')
+          );
 
           const paymentResponse = await fetch(
             `https://api.portone.io/payments/${encodeURIComponent(paymentId)}/billing-key`,
@@ -179,7 +227,7 @@ export async function GET(req: NextRequest) {
               },
               body: JSON.stringify({
                 billingKey: subscription.billing_key,
-                orderName: `${academy?.name || 'Academy'} - ${subscription.plan_tier} 구독`,
+                orderName: `${academy?.name || 'Academy'} - ${effectiveTier} 구독`,
                 customer: {
                   name: {
                     full: customerName,
@@ -188,7 +236,7 @@ export async function GET(req: NextRequest) {
                   phoneNumber: customerPhone,
                 },
                 amount: {
-                  total: subscription.monthly_amount,
+                  total: effectiveAmount,
                 },
                 currency: 'KRW',
               }),
@@ -210,13 +258,13 @@ export async function GET(req: NextRequest) {
                 academy_id: subscription.academy_id,
                 subscription_id: subscription.id,
                 kg_transaction_id: paymentId,
-                amount: subscription.monthly_amount,
+                amount: effectiveAmount,
                 currency: 'KRW',
                 status: 'paid',
                 paid_at: new Date().toISOString(),
                 billing_period_start: billingPeriodStart.toISOString(),
                 billing_period_end: billingPeriodEnd.toISOString(),
-                plan_tier: subscription.plan_tier,
+                plan_tier: effectiveTier,
                 billing_cycle: subscription.billing_cycle,
                 metadata: {
                   payment_method: paymentData.method?.type || 'CARD',
@@ -240,16 +288,6 @@ export async function GET(req: NextRequest) {
               }
             }
 
-            // NOTE: there used to be a "apply scheduled plan change" block
-            // here, keyed on subscription.pending_tier /
-            // pending_monthly_amount. Those two columns do not exist on
-            // academy_subscriptions (only pending_change_effective_date and
-            // the pending_additional_* add-on columns do), so
-            // `subscription.pending_tier` was always undefined and the block
-            // could never run. Removed rather than left as dead code that
-            // reads as a working feature. See the report/downgrade route:
-            // scheduling a tier change needs the columns to be added first.
-
             let updateData: Database['public']['Tables']['academy_subscriptions']['Update'] = {
               last_payment_date: new Date().toISOString(),
               next_billing_date: nextBillingDate.toISOString(),
@@ -259,74 +297,49 @@ export async function GET(req: NextRequest) {
               updated_at: new Date().toISOString(),
             };
 
-            // Apply a scheduled plan change (a downgrade booked earlier via
-            // /api/subscription/downgrade) now that its effective date has
-            // arrived. Restored with migration 060: pending_tier and
-            // pending_monthly_amount did not exist before it, so this whole
-            // block was unreachable and scheduled downgrades never applied.
-            if (subscription.pending_tier && subscription.pending_change_effective_date) {
-              const changeEffective = new Date(subscription.pending_change_effective_date);
+            // Apply the scheduled plan change resolved BEFORE the charge.
+            // The decision (and its error reporting) lives up there because
+            // it also determines what we bill; here we only persist it.
+            if (applyPendingChange && pendingPlan) {
+              console.log(`[SUBSCRIPTION-BILLING] Applying scheduled plan change for subscription ${subscription.id}: ${subscription.plan_tier} → ${effectiveTier}`);
 
-              if (new Date() >= changeEffective) {
-                const pendingTier = subscription.pending_tier;
-                console.log(`[SUBSCRIPTION-BILLING] Applying scheduled plan change for subscription ${subscription.id}: ${subscription.plan_tier} → ${pendingTier}`);
+              // student_limit / teacher_limit are NOT NULL, and
+              // SubscriptionLimits no longer defines studentLimit /
+              // teacherLimit — the model moved to totalUserLimit. Writing
+              // them unconditionally (as this did originally) produced
+              // `undefined + n` → NaN → null and failed the whole update
+              // AFTER a successful charge, leaving next_billing_date
+              // un-advanced and the customer exposed to a re-charge.
+              updateData = {
+                ...updateData,
+                plan_tier: effectiveTier,
+                monthly_amount: effectiveAmount,
+                ...(pendingPlan.limits.totalUserLimit !== undefined
+                  ? { total_user_limit: pendingPlan.limits.totalUserLimit }
+                  : {}),
+                ...(pendingPlan.limits.storageGb !== undefined
+                  ? { storage_limit_gb: pendingPlan.limits.storageGb }
+                  : {}),
+                features_enabled: { ...pendingPlan.features },
+                pending_tier: null,
+                pending_monthly_amount: null,
+                pending_change_effective_date: null,
+              };
 
-                const { SUBSCRIPTION_PLANS } = await import('@/types/subscription');
-                const pendingPlan = SUBSCRIPTION_PLANS[pendingTier as keyof typeof SUBSCRIPTION_PLANS];
-
-                if (subscription.pending_monthly_amount === null) {
-                  // Half-written schedule: a target tier with no price.
-                  // monthly_amount is NOT NULL, so applying this would fail
-                  // the whole update after the charge already succeeded.
-                  // Leave it scheduled and page a human instead.
-                  console.error(`[SUBSCRIPTION-BILLING] Subscription ${subscription.id} has pending_tier "${pendingTier}" but no pending_monthly_amount; leaving the change scheduled`);
-                  errors.push(`Subscription ${subscription.id}: pending_tier without pending_monthly_amount`);
-                } else if (!pendingPlan) {
-                  // The CHECK constraint on pending_tier makes this
-                  // unreachable, but a plan removed from the code while a
-                  // change is booked must not silently apply a partial row.
-                  console.error(`[SUBSCRIPTION-BILLING] Unknown pending_tier "${pendingTier}" on subscription ${subscription.id}; leaving the change scheduled`);
-                  errors.push(`Subscription ${subscription.id}: Unknown pending_tier ${pendingTier}`);
-                } else {
-                  // student_limit / teacher_limit are NOT NULL, and
-                  // SubscriptionLimits no longer defines studentLimit /
-                  // teacherLimit — the model moved to totalUserLimit. Writing
-                  // them unconditionally (as this did originally) produced
-                  // `undefined + n` → NaN → null and failed the whole update
-                  // AFTER a successful charge, leaving next_billing_date
-                  // un-advanced and the customer exposed to a re-charge.
-                  updateData = {
-                    ...updateData,
-                    plan_tier: pendingTier,
-                    monthly_amount: subscription.pending_monthly_amount,
-                    ...(pendingPlan.limits.totalUserLimit !== undefined
-                      ? { total_user_limit: pendingPlan.limits.totalUserLimit }
-                      : {}),
-                    ...(pendingPlan.limits.storageGb !== undefined
-                      ? { storage_limit_gb: pendingPlan.limits.storageGb }
-                      : {}),
-                    features_enabled: { ...pendingPlan.features },
-                    pending_tier: null,
-                    pending_monthly_amount: null,
-                    pending_change_effective_date: null,
-                  };
-
-                  // academies.subscription_tier is what the app gates
-                  // features on. Losing this write leaves the academy on the
-                  // old plan's limits while the subscription row disagrees.
-                  const { error: tierError } = await supabaseAdmin
-                    .from('academies')
-                    .update({
-                      subscription_tier: pendingTier,
-                      updated_at: new Date().toISOString(),
-                    })
-                    .eq('id', subscription.academy_id);
-                  if (tierError) {
-                    console.error(`[SUBSCRIPTION-BILLING] Error applying tier to academy ${subscription.academy_id}:`, tierError);
-                    errors.push(`Subscription ${subscription.id}: Failed to apply tier to academy`);
-                    writeFailures++;
-                  }
-                }
+              // academies.subscription_tier is what the app gates features
+              // on. Losing this write leaves the academy on the old plan's
+              // limits while the subscription row disagrees.
+              const { error: tierError } = await supabaseAdmin
+                .from('academies')
+                .update({
+                  subscription_tier: effectiveTier,
+                  updated_at: new Date().toISOString(),
+                })
+                .eq('id', subscription.academy_id);
+              if (tierError) {
+                console.error(`[SUBSCRIPTION-BILLING] Error applying tier to academy ${subscription.academy_id}:`, tierError);
+                errors.push(`Subscription ${subscription.id}: Failed to apply tier to academy`);
+                writeFailures++;
               }
             }
 
@@ -342,7 +355,9 @@ export async function GET(req: NextRequest) {
                 const { calculateAddonCost } = await import('@/lib/addon-config');
                 const { SUBSCRIPTION_PLANS } = await import('@/types/subscription');
 
-                const currentPlanTier = subscription.plan_tier as keyof typeof SUBSCRIPTION_PLANS;
+                // Price add-ons at the tier in force for THIS cycle — a
+                // scheduled change applied above is already effective.
+                const currentPlanTier = effectiveTier as keyof typeof SUBSCRIPTION_PLANS;
                 const currentPlan = SUBSCRIPTION_PLANS[currentPlanTier];
 
                 // Calculate new add-on cost
@@ -444,14 +459,14 @@ export async function GET(req: NextRequest) {
                   academy_id: subscription.academy_id,
                   subscription_id: subscription.id,
                   kg_transaction_id: paymentId,
-                  amount: subscription.monthly_amount,
+                  amount: effectiveAmount,
                   currency: 'KRW',
                   status: 'failed',
                   failed_at: new Date().toISOString(),
                   failure_reason: errorData.message || 'Payment processing failed',
                   billing_period_start: billingDate,
                   billing_period_end: nextBillingDate.toISOString(),
-                  plan_tier: subscription.plan_tier,
+                  plan_tier: effectiveTier,
                   billing_cycle: subscription.billing_cycle,
                 }),
             ]);
