@@ -45,6 +45,38 @@ const hashListening = it => createHash('md5')
   .update([norm(it.passage), norm(it.prompt), (it.choices || []).map(norm).join('|')].join('~~')).digest('hex')
 const hashWriting = it => createHash('md5').update(norm(it.passage)).digest('hex')
 
+/**
+ * Deterministic choice shuffle applied at INSERT.
+ *
+ * Nothing downstream reorders a banked item's choices: shuffleChoices() in
+ * src/lib/test-verify.ts is called ONLY by the AI generation route, so the
+ * bank draw (assembleFromBank / assembleToeflFromBank / drawBankPractice)
+ * serves choices in exactly the order they were authored.
+ *
+ * That is fine for generated cohorts, which were shuffled before banking.
+ * It is not fine for hand-authored ones: an author writing the key first
+ * every time produces a bank where "always pick A" scores ~100%. The
+ * TOEFL cr-v1 batch landed at 73% key-at-A and was caught by a blind
+ * grader, not by any test.
+ *
+ * Seeded by the content hash so it is stable — re-running an insert
+ * produces the same order, and the same item never shuffles two ways.
+ */
+function shuffleInPlace(it, seedHex) {
+  if (!Array.isArray(it.choices) || it.choices.length < 2) return it
+  if (!it.choices.includes(it.correct_answer)) return it   // caller validates
+  let s = parseInt(seedHex.slice(0, 8), 16) >>> 0
+  const rnd = () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296)
+  const out = it.choices.slice()
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1))
+    ;[out[i], out[j]] = [out[j], out[i]]
+  }
+  // correct_answer is matched by VALUE, so it needs no remapping — but the
+  // per-choice rationales are keyed by text and must survive untouched.
+  return { ...it, choices: out }
+}
+
 function loadEnv() {
   const raw = readFileSync(process.cwd() + '/.env.local', 'utf8')
   return Object.fromEntries(raw.split('\n')
@@ -144,7 +176,8 @@ async function insertListening(keepPath, files) {
   }
 
   let inserted = 0, rejected = 0
-  for (const { id, it } of tagged) {
+  for (const { id, it: raw } of tagged) {
+    let it = raw
     if (!listeningShapeOk(it)) { console.log(`SKIP ${id} — bad shape (check listeningTask)`); rejected++; continue }
     // Orphan repair EXEMPTION: these items are siblings for an audio that
     // already has one question in the bank, so the batch legitimately holds
@@ -160,6 +193,8 @@ async function insertListening(keepPath, files) {
     if (!keep.has(id)) { console.log(`REJECT ${id} — not confirmed by grader`); rejected++; continue }
     const content_hash = hashListening(it)
     if (seen.has(content_hash)) { console.log(`DUP ${id}`); continue }
+    // Shuffle BEFORE hashing-for-storage so what we store is what we serve.
+    it = shuffleInPlace(it, content_hash)
     const domain = labelFrom(it.prompt, 'Listening')
     const { error } = await db.from('study_item_bank').insert({
       family: 'toefl', section: sectionOf(it), domain, difficulty: it.difficulty || 'hard',
