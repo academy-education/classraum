@@ -6,6 +6,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { db } from '@/lib/supabase'
 import { normalizeDisplayText } from './helpers'
 import type { GradeResponse, RubricGrade, SpeechSignals } from './types'
+import { parseDiscussionSpeakers } from './discussion-speakers'
 
 /** TOEFL Writing scenario renderer — makes Email + Academic Discussion
  *  passages easier to scan than a wall of prose. Email: bold the
@@ -178,66 +179,16 @@ export function WritingScenario({ text, kind }: { text: string; kind: 'email' | 
  *  by "<optional last name>: ". We deliberately require the first
  *  letter to be uppercase so we don't accidentally match "e.g.:" or
  *  "note:" inside prose. */
+/** Renders each speaker as a distinct card with a role tag + name header
+ *  so two classmates' opinions never run together as one post. */
 export function DiscussionScenario({ normalized }: { normalized: string }) {
-  // Match: optional role prefix + capitalized name (up to two words)
-  // + colon. Requires at least 2-char first-word and a space or
-  // newline (or start-of-string) beforehand so we don't cut prose in
-  // the middle of a sentence like "the goal: X".
-  const speakerRegex =
-    /(?:^|(?<=[\s\n]))((?:Professor|Prof\.?|Dr\.?|Student|Mr\.?|Ms\.?|Mrs\.?)\s+[A-Z][A-Za-zÀ-ÿ'’.-]{1,30}(?:\s+[A-Z][A-Za-zÀ-ÿ'’.-]{1,30})?|[A-Z][a-zÀ-ÿ'’.-]{1,20}(?:\s+[A-Z][a-zÀ-ÿ'’.-]{1,20})?)\s*:\s*/g
-
-  interface Block { role: 'professor' | 'student'; name: string; body: string }
-  interface Match { start: number; end: number; header: string }
-
-  const matches: Match[] = []
-  let m: RegExpExecArray | null
-  while ((m = speakerRegex.exec(normalized)) != null) {
-    matches.push({
-      start: m.index + (m[0].length - m[0].trimStart().length),
-      end: m.index + m[0].length,
-      header: m[1]!.trim(),
-    })
-  }
-
-  // Drop false positives — a "match" whose body is only a few chars
-  // is almost certainly a bad hit (e.g., "Aisha: yes" mid-sentence).
-  // We keep it only if the following body is >= 15 chars OR it's the
-  // first/last match (they define the structural bounds).
-  const trimmed: Match[] = []
-  for (let i = 0; i < matches.length; i++) {
-    const cur = matches[i]!
-    const next = matches[i + 1]
-    const bodyLen = (next ? next.start : normalized.length) - cur.end
-    if (i === 0 || i === matches.length - 1 || bodyLen >= 15) trimmed.push(cur)
-  }
-
-  if (trimmed.length < 2) {
-    // Structure not detected — fall back to plain text so the student
-    // still sees the passage instead of an empty card.
+  const blocks = parseDiscussionSpeakers(normalized)
+  if (blocks.length === 0) {
     return (
       <div className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">
         {normalized}
       </div>
     )
-  }
-
-  const blocks: Block[] = []
-  for (let i = 0; i < trimmed.length; i++) {
-    const h = trimmed[i]!
-    const next = trimmed[i + 1]
-    const body = normalized
-      .slice(h.end, next ? next.start : undefined)
-      .replace(/^\s+|\s+$/g, '')
-    // First speaker whose header starts with Professor/Prof/Dr is the
-    // professor. Any speaker AFTER a professor is a student unless
-    // their name is also role-prefixed with Professor/Prof/Dr.
-    const isProf =
-      /^(Professor|Prof\.?|Dr\.?)\b/i.test(h.header) ||
-      (i === 0 && !blocks.some(b => b.role === 'professor') && /\?/.test(body))
-    const cleanName = h.header
-      .replace(/^(?:Professor|Prof\.?|Dr\.?|Student|Mr\.?|Ms\.?|Mrs\.?)\s+/i, '')
-      .trim() || h.header
-    blocks.push({ role: isProf ? 'professor' : 'student', name: cleanName, body })
   }
 
   // Number the students 1, 2, 3… so the "which classmate" reference
@@ -621,3 +572,6 @@ export function WritingFeedbackPanel({
     </div>
   )
 }
+
+export type { DiscussionBlock } from './discussion-speakers'
+export { parseDiscussionSpeakers } from './discussion-speakers'
