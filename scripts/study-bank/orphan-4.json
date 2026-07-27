@@ -1,0 +1,410 @@
+[
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "Photosynthesis is the process by which green plants convert sunlight into chemical energy. This process occurs in the chloroplasts of plant cells, where chlorophyll captures light energy. The energy is then used to convert carbon dioxide and water into glucose and oxygen. This process is essential for plant growth and provides oxygen for other living organisms.",
+    "passageGroupId": "pg-103fdc8c4d3104dacc5e053722513f2d",
+    "prompt": "[Academic — Biology] What is the main idea of the passage?",
+    "choices": [
+      "Chlorophyll is the only pigment found inside plant cells.",
+      "Glucose is more valuable to a plant than the oxygen it releases.",
+      "Photosynthesis converts sunlight into chemical energy in a way that sustains both plants and other organisms.",
+      "Plants compete with other living organisms for a limited supply of sunlight."
+    ],
+    "correct_answer": "Photosynthesis converts sunlight into chemical energy in a way that sustains both plants and other organisms.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage defines the process, locates it, names its inputs and outputs, and closes by saying it feeds plant growth and supplies oxygen to others — that whole arc is the main idea. \"Only pigment\" and \"compete for sunlight\" are never claimed, and ranking glucose above oxygen imposes a comparison the passage never makes."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "Photosynthesis is the process by which green plants convert sunlight into chemical energy. This process occurs in the chloroplasts of plant cells, where chlorophyll captures light energy. The energy is then used to convert carbon dioxide and water into glucose and oxygen. This process is essential for plant growth and provides oxygen for other living organisms.",
+    "passageGroupId": "pg-103fdc8c4d3104dacc5e053722513f2d",
+    "prompt": "[Academic — Biology] In the passage, the word \"captures\" is closest in meaning to",
+    "choices": [
+      "absorbs",
+      "takes prisoner",
+      "photographs",
+      "gives off"
+    ],
+    "correct_answer": "absorbs",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Chlorophyll \"captures light energy\" that is then used in a chemical conversion, so it takes light in — absorbs it. \"Takes prisoner\" and \"photographs\" are the everyday senses of capture and make no sense for light energy; \"gives off\" reverses the direction of the transfer."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "Photosynthesis is the process by which green plants convert sunlight into chemical energy. This process occurs in the chloroplasts of plant cells, where chlorophyll captures light energy. The energy is then used to convert carbon dioxide and water into glucose and oxygen. This process is essential for plant growth and provides oxygen for other living organisms.",
+    "passageGroupId": "pg-103fdc8c4d3104dacc5e053722513f2d",
+    "prompt": "[Academic — Biology] Which of the following can be inferred from the passage?",
+    "choices": [
+      "Plants release carbon dioxide as a product of photosynthesis.",
+      "A plant cell lacking chloroplasts could not carry out the light-capturing step described.",
+      "Animals generate their own glucose directly from sunlight.",
+      "Chlorophyll converts glucose back into light energy at night."
+    ],
+    "correct_answer": "A plant cell lacking chloroplasts could not carry out the light-capturing step described.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage places the process in the chloroplasts and says chlorophyll there captures the light, so a cell without chloroplasts has no site for that step. Carbon dioxide is named as an input, not a product; the passage credits green plants, not animals, with the process; and it never describes any reverse conversion."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Psychology] Memory consolidation is a process where recent experiences are transformed into long-term memories. This transformation occurs during sleep, particularly during the REM stage. Research suggests that sleep deprivation can impair this process, leading to difficulties in memory retention. Conversely, adequate sleep enhances the ability to recall information. While the exact mechanisms remain unclear, it is believed that neural connections are strengthened during sleep, facilitating memory consolidation.",
+    "passageGroupId": "pg-168e4fad82a27251c17ad53a32e6f887",
+    "prompt": "What is the primary purpose of the passage?",
+    "choices": [
+      "To argue that REM sleep is the only stage of sleep that matters.",
+      "To recommend a specific number of hours of sleep for students.",
+      "To compare human memory consolidation with that of other species.",
+      "To explain how sleep is involved in turning recent experiences into long-term memories."
+    ],
+    "correct_answer": "To explain how sleep is involved in turning recent experiences into long-term memories.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Every sentence develops the link between sleep and the conversion of recent experience into lasting memory. The passage names REM as a particularly active stage rather than the only one that matters, gives no hour recommendation, and never mentions other species."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Psychology] Memory consolidation is a process where recent experiences are transformed into long-term memories. This transformation occurs during sleep, particularly during the REM stage. Research suggests that sleep deprivation can impair this process, leading to difficulties in memory retention. Conversely, adequate sleep enhances the ability to recall information. While the exact mechanisms remain unclear, it is believed that neural connections are strengthened during sleep, facilitating memory consolidation.",
+    "passageGroupId": "pg-168e4fad82a27251c17ad53a32e6f887",
+    "prompt": "In the passage, the word \"facilitating\" is closest in meaning to",
+    "choices": [
+      "leading a discussion about",
+      "making easier",
+      "postponing",
+      "requiring"
+    ],
+    "correct_answer": "making easier",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Strengthened neural connections are said to assist consolidation, so \"facilitating\" means making it easier. \"Leading a discussion about\" is the everyday workplace sense of a facilitator; \"postponing\" reverses the effect; \"requiring\" turns a supporting condition into a necessary one the passage never asserts."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Psychology] Memory consolidation is a process where recent experiences are transformed into long-term memories. This transformation occurs during sleep, particularly during the REM stage. Research suggests that sleep deprivation can impair this process, leading to difficulties in memory retention. Conversely, adequate sleep enhances the ability to recall information. While the exact mechanisms remain unclear, it is believed that neural connections are strengthened during sleep, facilitating memory consolidation.",
+    "passageGroupId": "pg-168e4fad82a27251c17ad53a32e6f887",
+    "prompt": "Why does the author mention sleep deprivation?",
+    "choices": [
+      "To show that consolidation depends on getting sufficient sleep.",
+      "To identify the leading cause of memory loss in older adults.",
+      "To explain what causes the REM stage of sleep to begin.",
+      "To demonstrate that the mechanisms of consolidation are now fully understood."
+    ],
+    "correct_answer": "To show that consolidation depends on getting sufficient sleep.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Sleep deprivation appears as the negative case that, paired with the following sentence on adequate sleep, shows consolidation rises and falls with sleep. The passage says nothing about older adults or about what triggers REM, and its final sentence states the mechanisms remain unclear."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Psychology] Cognitive dissonance is a psychological phenomenon where individuals experience discomfort due to conflicting beliefs or behaviors. This discomfort often leads to an alteration in one of the beliefs or behaviors to reduce the dissonance. For example, a person who values health but smokes may quit smoking or downplay the health risks associated with smoking to resolve the conflict. The theory suggests that humans have an innate drive to maintain cognitive consistency.",
+    "passageGroupId": "pg-cfce6ee79f86f00a58ba027d235e0ead",
+    "prompt": "Why does the author mention a person who values health but smokes?",
+    "choices": [
+      "To illustrate the different ways a person may reduce dissonance.",
+      "To argue that smoking is more dangerous than most people realize.",
+      "To show that health-conscious people rarely experience dissonance.",
+      "To suggest that the drive for consistency was discovered only recently."
+    ],
+    "correct_answer": "To illustrate the different ways a person may reduce dissonance.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The example is introduced with \"For example\" and then offers two outcomes — quitting or downplaying the risk — so it illustrates the routes to reducing dissonance. The passage makes no claim about how dangerous smoking is, never says health-conscious people feel less dissonance, and gives no date for the theory."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Psychology] Cognitive dissonance is a psychological phenomenon where individuals experience discomfort due to conflicting beliefs or behaviors. This discomfort often leads to an alteration in one of the beliefs or behaviors to reduce the dissonance. For example, a person who values health but smokes may quit smoking or downplay the health risks associated with smoking to resolve the conflict. The theory suggests that humans have an innate drive to maintain cognitive consistency.",
+    "passageGroupId": "pg-cfce6ee79f86f00a58ba027d235e0ead",
+    "prompt": "In the passage, the word \"drive\" is closest in meaning to",
+    "choices": [
+      "a trip taken by car",
+      "an organized campaign to collect donations",
+      "a natural urge",
+      "a mechanical part that transmits power"
+    ],
+    "correct_answer": "a natural urge",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage calls the drive \"innate\" and says it pushes humans toward cognitive consistency, so it is an inborn urge. The other three are ordinary senses of \"drive\" — a car trip, a fundraising drive, a machine component — none of which fits a psychological trait."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Psychology] Cognitive dissonance is a psychological phenomenon where individuals experience discomfort due to conflicting beliefs or behaviors. This discomfort often leads to an alteration in one of the beliefs or behaviors to reduce the dissonance. For example, a person who values health but smokes may quit smoking or downplay the health risks associated with smoking to resolve the conflict. The theory suggests that humans have an innate drive to maintain cognitive consistency.",
+    "passageGroupId": "pg-cfce6ee79f86f00a58ba027d235e0ead",
+    "prompt": "What can be inferred about a smoker who insists that the health risks of smoking are exaggerated?",
+    "choices": [
+      "The person has stopped valuing health in any form.",
+      "The person feels no discomfort and therefore experiences no dissonance.",
+      "The person will eventually give up smoking.",
+      "The person has eased the conflict by adjusting a belief rather than the behavior."
+    ],
+    "correct_answer": "The person has eased the conflict by adjusting a belief rather than the behavior.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage says the discomfort leads to altering one of the conflicting beliefs or behaviors, and downplaying the risks is the belief-side option. \"Stopped valuing health\" overstates a hedge, the discomfort is what starts the process rather than something absent, and the passage never predicts that such a person quits."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "The theory of plate tectonics revolutionized geology by explaining the movement of Earth's lithospheric plates. These plates float on the semi-fluid asthenosphere and shift due to mantle convection. This movement causes earthquakes, volcanic activity, and the formation of mountain ranges. While the theory is widely accepted, some aspects, such as the exact mechanisms driving plate motion, remain under investigation.",
+    "passageGroupId": "pg-92489c9c1a7c23d16635f58fbe13ef43",
+    "prompt": "[Academic — Geology] What is the main idea of the passage?",
+    "choices": [
+      "Earthquakes and volcanoes were unexplained until the asthenosphere was discovered.",
+      "Plate tectonics accounts for major geological activity, though parts of it are still being studied.",
+      "Mantle convection has been proven to be the sole cause of plate motion.",
+      "Geologists disagree about whether Earth's plates move at all."
+    ],
+    "correct_answer": "Plate tectonics accounts for major geological activity, though parts of it are still being studied.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage credits the theory with explaining plate movement and its geological effects, then adds that some mechanisms remain under investigation — both halves together. The passage attributes motion to convection without calling it proven or sole, never claims earthquakes were previously unexplained, and says the theory is widely accepted."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "The theory of plate tectonics revolutionized geology by explaining the movement of Earth's lithospheric plates. These plates float on the semi-fluid asthenosphere and shift due to mantle convection. This movement causes earthquakes, volcanic activity, and the formation of mountain ranges. While the theory is widely accepted, some aspects, such as the exact mechanisms driving plate motion, remain under investigation.",
+    "passageGroupId": "pg-92489c9c1a7c23d16635f58fbe13ef43",
+    "prompt": "[Academic — Geology] In the passage, the word \"float\" is closest in meaning to",
+    "choices": [
+      "drift on the surface of an ocean",
+      "stay motionless above",
+      "sink gradually into",
+      "rest upon and move across"
+    ],
+    "correct_answer": "rest upon and move across",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The plates sit on the semi-fluid asthenosphere and shift across it, so \"float\" means rest upon and move over. \"Drift on an ocean\" imports the everyday water sense, \"stay motionless\" contradicts the shifting described in the same sentence, and \"sink into\" describes a downward motion the passage never mentions."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "The theory of plate tectonics revolutionized geology by explaining the movement of Earth's lithospheric plates. These plates float on the semi-fluid asthenosphere and shift due to mantle convection. This movement causes earthquakes, volcanic activity, and the formation of mountain ranges. While the theory is widely accepted, some aspects, such as the exact mechanisms driving plate motion, remain under investigation.",
+    "passageGroupId": "pg-92489c9c1a7c23d16635f58fbe13ef43",
+    "prompt": "[Academic — Geology] Which of the following can be inferred from the passage?",
+    "choices": [
+      "Most geologists now reject the theory of plate tectonics.",
+      "Earthquakes occur only in places where mountain ranges are forming.",
+      "A theory can be widely accepted even while some of its details remain unsettled.",
+      "Mantle convection has been shown to play no part in plate motion."
+    ],
+    "correct_answer": "A theory can be widely accepted even while some of its details remain unsettled.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The last sentence pairs \"widely accepted\" with mechanisms still under investigation, which together imply acceptance does not require every detail to be settled. The passage states the opposite of rejection and of convection's irrelevance, and it lists earthquakes and mountain building as separate effects rather than linking them exclusively."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "The development of early human language is a complex process that involved both biological and cultural evolution. Researchers believe that the capacity for language arose when certain anatomical changes in the brain and vocal tract allowed for more complex vocalizations. The Broca's area, a region in the frontal lobe of the brain, is crucial for speech production and is significantly larger in humans than in other primates.\n\nAdditionally, the larynx descended in the human throat, allowing for a wider range of sounds. However, language is not solely a biological phenomenon. Cultural factors, such as the need for social cooperation and communication in increasingly complex societies, played a significant role in shaping language. The interplay between these biological and cultural factors makes the study of language origins particularly challenging. Despite various theories, the exact timeline and process of language evolution remain subjects of ongoing research.",
+    "passageGroupId": "pg-4e6d1c6637dc2cd950f2545db527d439",
+    "prompt": "[Academic — Linguistics] What is the main idea of the passage?",
+    "choices": [
+      "Broca's area is the single feature that separates human language from primate calls.",
+      "Cultural pressures shaped human language long before any anatomical changes occurred.",
+      "Language emerged from a combination of biological and cultural developments that is still difficult to reconstruct.",
+      "Researchers have now established a reliable timeline for the evolution of language."
+    ],
+    "correct_answer": "Language emerged from a combination of biological and cultural developments that is still difficult to reconstruct.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage opens by naming both biological and cultural evolution, devotes a paragraph to each, and closes on the difficulty of the study. Broca's area and the larynx are two examples rather than the single cause, culture is not said to come first, and the final sentence denies that the timeline is settled."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "The development of early human language is a complex process that involved both biological and cultural evolution. Researchers believe that the capacity for language arose when certain anatomical changes in the brain and vocal tract allowed for more complex vocalizations. The Broca's area, a region in the frontal lobe of the brain, is crucial for speech production and is significantly larger in humans than in other primates.\n\nAdditionally, the larynx descended in the human throat, allowing for a wider range of sounds. However, language is not solely a biological phenomenon. Cultural factors, such as the need for social cooperation and communication in increasingly complex societies, played a significant role in shaping language. The interplay between these biological and cultural factors makes the study of language origins particularly challenging. Despite various theories, the exact timeline and process of language evolution remain subjects of ongoing research.",
+    "passageGroupId": "pg-4e6d1c6637dc2cd950f2545db527d439",
+    "prompt": "[Academic — Linguistics] In the passage, the word \"descended\" is closest in meaning to",
+    "choices": [
+      "moved to a lower position",
+      "was inherited from earlier ancestors",
+      "became less important over time",
+      "appeared at a later stage"
+    ],
+    "correct_answer": "moved to a lower position",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The larynx \"descended in the human throat,\" a change of physical position that widened the range of producible sounds. \"Inherited from ancestors\" is the everyday genealogical sense of descent, while \"became less important\" and \"appeared later\" substitute decline or timing for the anatomical movement described."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "The development of early human language is a complex process that involved both biological and cultural evolution. Researchers believe that the capacity for language arose when certain anatomical changes in the brain and vocal tract allowed for more complex vocalizations. The Broca's area, a region in the frontal lobe of the brain, is crucial for speech production and is significantly larger in humans than in other primates.\n\nAdditionally, the larynx descended in the human throat, allowing for a wider range of sounds. However, language is not solely a biological phenomenon. Cultural factors, such as the need for social cooperation and communication in increasingly complex societies, played a significant role in shaping language. The interplay between these biological and cultural factors makes the study of language origins particularly challenging. Despite various theories, the exact timeline and process of language evolution remain subjects of ongoing research.",
+    "passageGroupId": "pg-4e6d1c6637dc2cd950f2545db527d439",
+    "prompt": "[Academic — Linguistics] Why does the author mention other primates?",
+    "choices": [
+      "To argue that cultural factors matter more than biological ones.",
+      "To provide a comparison that shows how enlarged the human Broca's area is.",
+      "To explain why the larynx descended in the human throat.",
+      "To suggest that primates also form increasingly complex societies."
+    ],
+    "correct_answer": "To provide a comparison that shows how enlarged the human Broca's area is.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Primates appear only in the clause stating that Broca's area is significantly larger in humans than in them, so the reference supplies a point of comparison. The larynx is discussed in a separate paragraph, complex societies are attributed to humans, and the passage weighs biology and culture as an interplay rather than ranking them."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "Studying the migration patterns of birds provides insight into their behavioral adaptations and environmental interactions. Birds often travel thousands of miles between breeding and wintering grounds, guided by a combination of instinct, environmental cues, and learned behavior. Recent studies have revealed that changes in climate and habitat loss are affecting these migrations, sometimes leading to altered routes or timings.\n\nUnderstanding these shifts is crucial for conservation efforts, as it helps identify critical habitats and the challenges faced by different species. Moreover, the study of bird migration contributes to broader ecological knowledge, illustrating the interconnectedness of global ecosystems.",
+    "passageGroupId": "pg-5097f2e40cb656da63083aa7a94953a9",
+    "prompt": "[Academic — Biology] What is the primary purpose of the passage?",
+    "choices": [
+      "To describe the physical route taken by one migrating species.",
+      "To argue that conservation programs have failed to protect migratory birds.",
+      "To explain how birds navigate over long distances.",
+      "To show why studying bird migration matters for both conservation and ecology."
+    ],
+    "correct_answer": "To show why studying bird migration matters for both conservation and ecology.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage opens by saying migration study yields insight and closes with its value for conservation and for broader ecological knowledge. Navigation and the effects of climate are supporting details, no single species or route is traced, and the passage never judges conservation programs as failures."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "Studying the migration patterns of birds provides insight into their behavioral adaptations and environmental interactions. Birds often travel thousands of miles between breeding and wintering grounds, guided by a combination of instinct, environmental cues, and learned behavior. Recent studies have revealed that changes in climate and habitat loss are affecting these migrations, sometimes leading to altered routes or timings.\n\nUnderstanding these shifts is crucial for conservation efforts, as it helps identify critical habitats and the challenges faced by different species. Moreover, the study of bird migration contributes to broader ecological knowledge, illustrating the interconnectedness of global ecosystems.",
+    "passageGroupId": "pg-5097f2e40cb656da63083aa7a94953a9",
+    "prompt": "[Academic — Biology] In the passage, the word \"critical\" is closest in meaning to",
+    "choices": [
+      "expressing disapproval",
+      "carefully analytical",
+      "essential",
+      "dangerously ill"
+    ],
+    "correct_answer": "essential",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The phrase \"critical habitats\" names the places species cannot do without, so \"critical\" means essential. Disapproval, careful analysis, and grave medical condition are all common senses of the word that cannot apply to a habitat here."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "Studying the migration patterns of birds provides insight into their behavioral adaptations and environmental interactions. Birds often travel thousands of miles between breeding and wintering grounds, guided by a combination of instinct, environmental cues, and learned behavior. Recent studies have revealed that changes in climate and habitat loss are affecting these migrations, sometimes leading to altered routes or timings.\n\nUnderstanding these shifts is crucial for conservation efforts, as it helps identify critical habitats and the challenges faced by different species. Moreover, the study of bird migration contributes to broader ecological knowledge, illustrating the interconnectedness of global ecosystems.",
+    "passageGroupId": "pg-5097f2e40cb656da63083aa7a94953a9",
+    "prompt": "[Academic — Biology] Why does the author state that the study of bird migration contributes to broader ecological knowledge?",
+    "choices": [
+      "To indicate that the value of this research reaches beyond birds themselves.",
+      "To explain why birds travel thousands of miles each year.",
+      "To claim that migration is the most important subject in ecology.",
+      "To show that conservation efforts have already identified every critical habitat."
+    ],
+    "correct_answer": "To indicate that the value of this research reaches beyond birds themselves.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The closing sentence extends the payoff of migration research to the interconnectedness of global ecosystems, widening its relevance past birds. The reason birds travel is given earlier, \"most important subject\" overstates the claim, and the passage presents habitat identification as an ongoing aim rather than a completed one."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "In the late 19th century, Impressionism emerged as a revolutionary art movement in France, challenging traditional artistic norms. Artists such as Claude Monet and Edgar Degas focused on capturing the effects of light and movement, often painting en plein air, or outdoors.\n\nThis approach contrasted sharply with the detailed, historical scenes favored by the established Paris Salon. The Impressionists' use of vivid colors and loose brushwork initially faced harsh criticism, but they gradually gained acceptance and have since been celebrated for their innovative contributions to art.",
+    "passageGroupId": "pg-a077a1614434a58ad43b5355c1240816",
+    "prompt": "[Academic — Art History] What is the main idea of the passage?",
+    "choices": [
+      "Monet and Degas were the only painters to work outdoors in 19th-century France.",
+      "Impressionism broke with established French artistic conventions and was eventually celebrated for doing so.",
+      "The Paris Salon lost its influence as soon as Impressionist works appeared.",
+      "Vivid color was more important to the Impressionists than the depiction of light."
+    ],
+    "correct_answer": "Impressionism broke with established French artistic conventions and was eventually celebrated for doing so.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage traces Impressionism from its challenge to tradition, through harsh criticism, to eventual celebration. It names two painters as examples rather than the only ones, never says the Salon lost influence, and treats color and light as parts of one approach rather than ranking them."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "In the late 19th century, Impressionism emerged as a revolutionary art movement in France, challenging traditional artistic norms. Artists such as Claude Monet and Edgar Degas focused on capturing the effects of light and movement, often painting en plein air, or outdoors.\n\nThis approach contrasted sharply with the detailed, historical scenes favored by the established Paris Salon. The Impressionists' use of vivid colors and loose brushwork initially faced harsh criticism, but they gradually gained acceptance and have since been celebrated for their innovative contributions to art.",
+    "passageGroupId": "pg-a077a1614434a58ad43b5355c1240816",
+    "prompt": "[Academic — Art History] In the phrase \"a revolutionary art movement,\" the word \"movement\" is closest in meaning to",
+    "choices": [
+      "a change of physical position",
+      "a section of a longer musical work",
+      "a journey from one country to another",
+      "a shared trend pursued by a group of artists"
+    ],
+    "correct_answer": "a shared trend pursued by a group of artists",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Here \"movement\" names the collective tendency that Monet, Degas, and their peers belonged to. Physical motion is the sense the passage uses later, when it describes capturing light and movement; the musical and travel senses are ordinary meanings that do not fit this phrase."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "In the late 19th century, Impressionism emerged as a revolutionary art movement in France, challenging traditional artistic norms. Artists such as Claude Monet and Edgar Degas focused on capturing the effects of light and movement, often painting en plein air, or outdoors.\n\nThis approach contrasted sharply with the detailed, historical scenes favored by the established Paris Salon. The Impressionists' use of vivid colors and loose brushwork initially faced harsh criticism, but they gradually gained acceptance and have since been celebrated for their innovative contributions to art.",
+    "passageGroupId": "pg-a077a1614434a58ad43b5355c1240816",
+    "prompt": "[Academic — Art History] Why does the author mention the Paris Salon?",
+    "choices": [
+      "To contrast established artistic taste with the Impressionists' new approach.",
+      "To identify the venue where Monet and Degas first exhibited their work.",
+      "To explain what led the Impressionists to begin painting outdoors.",
+      "To show that the Salon later adopted loose brushwork of its own."
+    ],
+    "correct_answer": "To contrast established artistic taste with the Impressionists' new approach.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The Salon is introduced as the preferrer of detailed historical scenes, with which the Impressionists' approach \"contrasted sharply.\" The passage never names it as an exhibition venue for these painters, never gives it as the cause of plein air work, and never says it changed its own style."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Biology] Photosynthesis is a process used by plants and other organisms to convert light energy into chemical energy. This energy is stored in the form of glucose, which is used by the plant for growth and development. The process occurs in chloroplasts, which contain chlorophyll.\n\nChlorophyll absorbs light most efficiently in the blue and red wavelengths. During photosynthesis, carbon dioxide and water are converted into glucose and oxygen. This process is crucial for life on Earth, as it provides the oxygen we breathe and forms the base of the food chain.",
+    "passageGroupId": "pg-a02db3971beef1a4ddfe0ede9e6aff77",
+    "prompt": "What is the main idea of the passage?",
+    "choices": [
+      "Chloroplasts are the largest structures inside a plant cell.",
+      "Plants require more oxygen than they are able to produce.",
+      "Photosynthesis stores light energy as glucose and underpins life on Earth.",
+      "The color of light reaching a plant has no effect on its growth."
+    ],
+    "correct_answer": "Photosynthesis stores light energy as glucose and underpins life on Earth.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage defines photosynthesis, describes where and how it stores energy as glucose, and ends by tying it to the oxygen supply and the food chain. Chloroplast size is never discussed, the passage says plants produce oxygen rather than needing more of it, and the wavelength sentence implies light color does matter."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Biology] Photosynthesis is a process used by plants and other organisms to convert light energy into chemical energy. This energy is stored in the form of glucose, which is used by the plant for growth and development. The process occurs in chloroplasts, which contain chlorophyll.\n\nChlorophyll absorbs light most efficiently in the blue and red wavelengths. During photosynthesis, carbon dioxide and water are converted into glucose and oxygen. This process is crucial for life on Earth, as it provides the oxygen we breathe and forms the base of the food chain.",
+    "passageGroupId": "pg-a02db3971beef1a4ddfe0ede9e6aff77",
+    "prompt": "In the passage, the word \"base\" is closest in meaning to",
+    "choices": [
+      "a substance that neutralizes an acid",
+      "the foundation",
+      "the lowest physical part of a plant",
+      "a site used by an organization as its headquarters"
+    ],
+    "correct_answer": "the foundation",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "Photosynthesis \"forms the base of the food chain,\" meaning it is the foundation on which the rest of the chain rests. The chemical sense is a trap in a biology passage, and neither a plant's lower stem nor a headquarters fits a food chain."
+  },
+  {
+    "type": "multiple_choice",
+    "section": "reading",
+    "passage": "[Academic — Biology] Photosynthesis is a process used by plants and other organisms to convert light energy into chemical energy. This energy is stored in the form of glucose, which is used by the plant for growth and development. The process occurs in chloroplasts, which contain chlorophyll.\n\nChlorophyll absorbs light most efficiently in the blue and red wavelengths. During photosynthesis, carbon dioxide and water are converted into glucose and oxygen. This process is crucial for life on Earth, as it provides the oxygen we breathe and forms the base of the food chain.",
+    "passageGroupId": "pg-a02db3971beef1a4ddfe0ede9e6aff77",
+    "prompt": "Which of the following can be inferred from the passage?",
+    "choices": [
+      "Plants can take in glucose directly from the air around them.",
+      "Only plants are capable of carrying out photosynthesis.",
+      "Chloroplasts begin producing chlorophyll whenever carbon dioxide is scarce.",
+      "A plant kept in darkness would lack the glucose it needs for growth."
+    ],
+    "correct_answer": "A plant kept in darkness would lack the glucose it needs for growth.",
+    "difficulty": "medium",
+    "readingTask": "academic_passage",
+    "explanation": "The passage says light energy is stored as glucose and that glucose is what the plant uses for growth, so removing light removes that supply. Glucose is produced rather than absorbed from the air, the first sentence credits \"plants and other organisms,\" and no link between chlorophyll production and carbon dioxide levels is stated."
+  }
+]
