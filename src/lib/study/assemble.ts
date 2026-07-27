@@ -621,17 +621,11 @@ const TOEFL_META: Record<ToeflSection, {
   // entirely. A student could be served a Listening section that was almost
   // all academic lectures, or almost all conversations, at random.
   //
-  // Counts are the midpoints of ETS's published Jan-2026 ranges
-  // (Choose-a-Response 15-19, Conversation 10 fixed, Announcement 6-10,
-  // Academic Talk 8-16), chosen to sum to the section's 47:
-  //   17 + 10 + 8 + 12 = 47
-  // ETS flexes the ranges per form — the maxima do not co-occur (they sum to
-  // 55) — so treat these as one valid form, not as the only one.
-  //
-  // Note ETS scores only 35 of the 47; the remainder are unscored pilot
-  // items. We score all 47, which is the right call for practice (a student
-  // wants feedback on every question they answered) but means our raw total
-  // is not directly comparable to an official raw total.
+  // Counts sit inside ETS's published Jan-2026 ranges (Choose-a-Response
+  // 15-19, Conversation 10 fixed, Announcement 6-10, Academic Talk 8-16)
+  // and sum to 48 DELIVERED per path, of which 35 are scored. ETS flexes
+  // the ranges per form — the maxima do not co-occur (they sum to 55) — so
+  // treat this as one valid form, not as the only one.
   //
   // `task` selects on item.listeningTask. Order is ETS's delivery order:
   // the short response cues open the section, longer audio follows.
@@ -679,6 +673,74 @@ const TOEFL_META: Record<ToeflSection, {
     ] },
   writing:   { title: 'TOEFL iBT — Writing',   minutes: 29, label: 'Writing',
     mix: [{ type: 'arrange_words', n: 10 }, { type: 'writing_email', n: 1 }, { type: 'writing_discussion', n: 1 }] },
+}
+
+/** A Complete-the-Words paragraph carries exactly ten blanks and each blank
+ *  is scored separately (submit/route.ts returns `{ total: blanks.length }`
+ *  for fill_in_blanks). So ONE CtW bank row is TEN questions in ETS's
+ *  Table 1 units, and the blueprint's `n` — which counts bank rows — has to
+ *  be multiplied by this before it can be compared to a question count.
+ *  Holds for all 93 banked paragraphs; scripts/verify-toefl-tasks.ts fails
+ *  if one drifts. */
+export const BLANKS_PER_CTW = 10
+
+/** The three counts a TOEFL section has, which are NOT interchangeable and
+ *  were being conflated across three files until 2026-07-28:
+ *   - `cards`     — how many screens the student paginates through.
+ *   - `delivered` — how many QUESTIONS they answer (a CtW card is ten).
+ *                   This is the number to show them.
+ *   - `scored`    — how many count toward the score. ETS delivers 48 and
+ *                   scores 35 per section; the rest are unscored pilots. */
+export interface ToeflStageShape { cards: number; delivered: number; scored: number }
+
+const EMPTY_SHAPE = (): ToeflStageShape => ({ cards: 0, delivered: 0, scored: 0 })
+
+/**
+ * Derive a section's shape FROM THE BLUEPRINT that actually draws it.
+ *
+ * WHY THIS EXISTS
+ * ---------------
+ * These counts previously lived independently in three places —
+ * TOEFL_META here (what ships), TEST_SPECS.questionsPerSection (the label
+ * the student sees, and the AI generator's target) and
+ * TOEFL_ADAPTIVE_SECTIONS (the module split). Reading was 48 / 50 / 50 and
+ * Listening 48 / 47 / 47: the customization sheet promised 50 Reading
+ * questions and the session served 48.
+ *
+ * A test already asserted the second and third agreed. They did — with each
+ * other, and with nothing that ships. So the numbers are computed here now
+ * and the other two are checked against this, not against each other.
+ */
+export function toeflSectionShape(
+  section: ToeflSection, path: ToeflStage2Path = 'upper',
+): { stage1: ToeflStageShape; stage2: ToeflStageShape; total: ToeflStageShape } {
+  const stage1 = EMPTY_SHAPE()
+  const stage2 = EMPTY_SHAPE()
+
+  for (const m of TOEFL_META[section].mix) {
+    // Questions per bank row: ten for Complete the Words, one otherwise.
+    const perRow = m.type === 'fill_in_blanks' ? BLANKS_PER_CTW : 1
+    // Linear sections (Speaking, Writing) carry no module split — the whole
+    // draw is `n` and it all lands in stage 1.
+    const adaptive = m.m1 !== undefined
+    const rows1 = adaptive ? (m.m1 ?? 0) : m.n
+    const rows2 = adaptive ? (path === 'lower' ? (m.lower ?? 0) : (m.upper ?? 0)) : 0
+    // `sM1`/`sLower`/`sUpper` omitted means "score everything in this task".
+    const scored1 = m.sM1 ?? rows1
+    const scored2 = adaptive ? (path === 'lower' ? (m.sLower ?? rows2) : (m.sUpper ?? rows2)) : 0
+
+    stage1.cards += rows1; stage1.delivered += rows1 * perRow; stage1.scored += scored1 * perRow
+    stage2.cards += rows2; stage2.delivered += rows2 * perRow; stage2.scored += scored2 * perRow
+  }
+
+  return {
+    stage1, stage2,
+    total: {
+      cards: stage1.cards + stage2.cards,
+      delivered: stage1.delivered + stage2.delivered,
+      scored: stage1.scored + stage2.scored,
+    },
+  }
 }
 
 /**

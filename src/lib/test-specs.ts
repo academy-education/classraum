@@ -454,13 +454,26 @@ Why hard: 4 events all in 1920s within 2-3 years of each other. 물산장려운�
       {
         name_en: 'Reading',
         name_ko: '리딩',
-        // ETS Jan 21, 2026 spec: up to 50 questions across 2 adaptive
-        // modules. ETS's base time is ~30 minutes; we allot 35 to
-        // include the between-module transition + review headroom for
-        // the 2 Complete-the-Words paragraphs (letter-typing is slower
-        // than MC clicking). Module boundary is set server-side via
-        // moduleBreakIdx.
-        questionsPerSection: 50,
+        // ETS Jan 21, 2026 spec: 48 questions DELIVERED across 2 adaptive
+        // modules, of which 35 are scored (Table 1: "may contain extra
+        // unscored questions"). ETS's base time is ~30 minutes; we allot
+        // 35 to include the between-module transition + review headroom
+        // for the 2 Complete-the-Words paragraphs (letter-typing is
+        // slower than MC clicking). Module boundary is set server-side
+        // via moduleBreakIdx.
+        //
+        // DELIVERED, not scored: this is the number the student is shown
+        // before starting and the number of items the AI generator
+        // targets, so it has to be what they actually answer. The scored
+        // total (35) is the review denominator and lives in the
+        // blueprint's sM1/sLower/sUpper.
+        //
+        // Was 50 until 2026-07-28, while the bank blueprint served 48 —
+        // the customization sheet promised two questions that never came.
+        // toeflSectionShape() in lib/study/assemble.ts now derives this
+        // from the blueprint that does the drawing, and the test in
+        // __tests__/toefl-adaptive.test.ts fails if they diverge again.
+        questionsPerSection: 48,
         minutesPerSection: 35,
         choiceCount: 4,
         patterns_en: 'JANUARY 2026 FORMAT — a Reading module mixes THREE task types: two multiple-choice types below plus ONE Complete-the-Words paragraph (type="fill_in_blanks", one ~70-100 word academic paragraph whose 2nd-3rd sentences contain 10 inline [N] letter-blanks; each blank is separately scored). Full-length tests generate Complete-the-Words through a dedicated pass; if you are asked for it here, emit exactly ONE such item. Generate MC items in this mix per 20-question module:\n  • TASK A — "Read in Daily Life" (40% of items): 4-7 short, non-academic visual texts (a campus notice, a club flyer, a social-media post, an email, a job ad, a course-registration page). Each text is 40-90 words, written in plain everyday register. Render the text plainly inside the prompt (no images). 2-3 MC comprehension questions per text: literal detail ("What time does the event start?"), purpose ("Why was this notice posted?"), inference about the writer\'s situation, or what a recipient should do next.\n  • TASK B — "Read an Academic Passage" (60% of items): SHORT academic passages, 150-180 words each (NOT 700 like the legacy iBT). One passage feeds 5 questions: (1) main idea, (2) vocabulary in context, (3) factual detail, (4) negative factual (EXCEPT/NOT), (5) rhetorical purpose OR inference. Topics: intro-level biology, art history, psychology, geology, business, linguistics — accessible to a first-year undergraduate.\nMark each item with a brief tag in the prompt so the student knows the task type (e.g., "[Daily Life — Campus notice]" or "[Academic — Biology]"). Do NOT generate "insert sentence" or "prose summary" items — those are legacy iBT formats removed in the redesign.',
@@ -527,14 +540,17 @@ Reyes 교수가 '연장을 고려할 의향이 있다'고 한 것은 무슨 뜻�
       {
         name_en: 'Listening',
         name_ko: '리스닝',
-        // ETS Jan 21, 2026 spec: up to 47 questions across 2 adaptive
-        // modules. ETS lists ~29 minutes as the base speaking/listening
+        // ETS Jan 21, 2026 spec: 48 questions DELIVERED across 2 adaptive
+        // modules, of which 35 are scored — same delivered/scored split
+        // as Reading. ETS lists ~29 minutes as the base speaking/listening
         // time; we allot 36 minutes to include the between-module
         // transition + full audio playback for CtW candidates that
         // may replay. ETS lists 4 task types — we split
         // "announcements" and "academic talks" into separate tasks
         // (was one bundled task in the previous draft).
-        questionsPerSection: 47,
+        //
+        // Was 47 (see the Reading note above — same drift, same fix).
+        questionsPerSection: 48,
         minutesPerSection: 36,
         choiceCount: 4,
         patterns_en: 'JANUARY 2026 FORMAT — a Listening module mixes FOUR task types. Without audio playback in our app, render every transcript inline in the prompt (label it "Transcript:") so the student reads what they would have heard, then ask the question. Per 47-question module, approximate distribution:\n  • TASK A — "Listen and Choose a Response" (~21 items, 45%): A single utterance (a question, statement, or short request) is read aloud. The student picks the most natural conversational reply. Transcript = ONE short line of 8-25 words from one speaker (e.g., "I can\'t believe how heavy this box is — can you give me a hand?"). 4 choices, each a plausible spoken reply; the correct one is the most natural register/function match. Topics: everyday campus, work, travel, social.\n  • TASK B — "Listen to a Conversation" (~10 items, 21%): A short 8-12 turn dialogue (~150-220 words total) between 2 speakers — student↔advisor, student↔librarian, roommates, professor↔student during office hours. 2-3 MC questions per conversation: gist, detail, function ("Why does the man say X?"), attitude.\n  • TASK C — "Listen to an Announcement" (~8 items, 17%): A short announcement (~120-180 words: campus PA, transit, museum, library, residence hall, dining hall). 2-3 MC per announcement: purpose, key detail, what a listener should do next, inference about the announcer\'s situation.\n  • TASK D — "Listen to an Academic Talk" (~8 items, 17%): A short academic mini-lecture (~180-260 words) on intro-level biology, history, psychology, business, geology, linguistics. 2-3 MC per talk: main idea, key detail, speaker purpose, inference connecting two distant points.\nMark each item\'s prompt with a tag like "[Choose a Response]", "[Conversation — Office hours]", "[Announcement — Campus PA]", or "[Academic Talk — Biology]" so the student knows the task type.',

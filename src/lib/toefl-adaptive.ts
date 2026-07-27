@@ -49,9 +49,18 @@ export interface ToeflAdaptiveConfig {
   module1Items: number
   /** On-screen item count of module 2. */
   module2Items: number
-  /** SCORED item count of module 1 (TEST_SPECS units). */
+  /** DELIVERED question count of module 1 — what the student answers,
+   *  counting a Complete-the-Words card as its ten blanks. Summed across
+   *  modules this is TEST_SPECS.questionsPerSection. */
+  module1Delivered: number
+  /** Delivered question count of module 2. */
+  module2Delivered: number
+  /** SCORED question count of module 1 — the subset that counts toward
+   *  the score. ETS delivers 48 per section and scores 35; the gap is
+   *  unscored pilot items, which are still shown and still graded in
+   *  review, just excluded from the denominator. */
   module1Scored: number
-  /** Scored item count of module 2. */
+  /** Scored question count of module 2. */
   module2Scored: number
   /** Minutes on each module's own clock. 2× this is the section total
    *  in TEST_SPECS (Reading 35, Listening 36). */
@@ -64,32 +73,42 @@ export interface ToeflAdaptiveConfig {
 }
 
 /**
- * Module sizes reconciled to TEST_SPECS (the spec is the single source
- * of truth; the old 10/14 placeholders here were stale).
+ * Module sizes, derived by hand from the TOEFL blueprint in
+ * lib/study/assemble.ts and pinned against `toeflSectionShape()` by
+ * __tests__/toefl-adaptive.test.ts.
  *
- * Reading — 50 SCORED items, split 25/25. Scored ≠ on-screen: the
- * blueprint is 2 Complete-the-Words (fill_in_blanks, 10 blanks each =
- * 20 scored) + 30 MC = 50 scored across 32 cards. One CtW paragraph
- * rides in each module, so a module is 1 CtW + 15 MC = 16 cards / 25
- * scored items.
+ * These were "reconciled to TEST_SPECS (the spec is the single source of
+ * truth)" — and that was the bug. TEST_SPECS is a description of the
+ * section; TOEFL_META in assemble.ts is the thing that DRAWS it. When the
+ * blueprint moved to ETS's 48-delivered/35-scored shape on 2026-07-27,
+ * these numbers and TEST_SPECS stayed at 50/47 and kept agreeing with each
+ * other. The test that checked them passed throughout. Both are now
+ * checked against the blueprint instead.
  *
- * Listening — 47 scored MC, split 24/23 (odd total; module 1 takes the
- * extra item, matching `Math.ceil(n/2)` in the assembler's split).
+ * Reading — 48 delivered / 35 scored / 30 cards. Cards ≠ questions: a
+ * Complete-the-Words paragraph is one card worth ten questions. Module 1
+ * is 1 CtW + 9 Daily + 9 Academic = 19 cards, 28 delivered, 20 scored;
+ * Module 2 is 1 CtW + 10 MC = 11 cards, 20 delivered, 15 scored.
+ *
+ * Listening — 48 delivered / 35 scored / 48 cards (all MC, one question
+ * each). Split 27 / 21, the same on both Stage 2 paths.
  */
 export const TOEFL_ADAPTIVE_SECTIONS: Record<string, ToeflAdaptiveConfig> = {
   Reading: {
     bankSection: 'reading',
-    module1Items: 16, module2Items: 16,
-    module1Scored: 25, module2Scored: 25,
+    module1Items: 19, module2Items: 11,
+    module1Delivered: 28, module2Delivered: 20,
+    module1Scored: 20, module2Scored: 15,
     minutesPerModule: 17.5,
-    module1Total: 25, module2Total: 25,
+    module1Total: 28, module2Total: 20,
   },
   Listening: {
     bankSection: 'listening',
-    module1Items: 24, module2Items: 23,
-    module1Scored: 24, module2Scored: 23,
+    module1Items: 27, module2Items: 21,
+    module1Delivered: 27, module2Delivered: 21,
+    module1Scored: 20, module2Scored: 15,
     minutesPerModule: 18,
-    module1Total: 24, module2Total: 23,
+    module1Total: 27, module2Total: 21,
   },
 }
 
