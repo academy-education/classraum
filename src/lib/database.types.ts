@@ -4706,7 +4706,22 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      admin_academy_usage: {
+        Row: {
+          academy_id: string | null
+          academy_name: string | null
+          calculated_at: string | null
+          current_classroom_count: number | null
+          current_storage_gb: number | null
+          current_student_count: number | null
+          current_teacher_count: number | null
+          id: string | null
+          peak_student_count: number | null
+          peak_teacher_count: number | null
+          subscription_tier: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       admin_academy_subscription_status_counts: {

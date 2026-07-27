@@ -47,18 +47,39 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '0');
     const pageSize = parseInt(searchParams.get('pageSize') || '50');
 
-    // Fetch subscription usage with academy info
-    const { data: usageData, error: usageError, count } = await supabase
-      .from('subscription_usage')
-      .select(`
-        *,
-        academies!subscription_usage_academy_id_fkey(
-          id,
-          name,
-          subscription_tier
-        )
-      `, { count: 'exact' })
-      .order('calculated_at', { ascending: false })
+    // Read the LIVE per-academy view, not subscription_usage.
+    //
+    // subscription_usage is a snapshot table nothing populates — zero rows
+    // for every academy on 2026-07-27, while the platform had 173 active
+    // students, 8 teachers and 55 classrooms across 10 academies. This page
+    // therefore reported 0 for everything: not an empty state, a wrong
+    // answer on the screen you'd use to spot an academy about to breach its
+    // limits. admin_academy_usage (migration 061) counts live and keeps the
+    // same column names, so the response shape below is unchanged.
+    //
+    // Ordering is by academy name: `calculated_at` is now() for every row
+    // once it is computed live, so sorting on it is meaningless.
+    // Restrict the list to academies that HAVE a subscription. This page
+    // measures usage against plan limits, and the table renderer skips any
+    // row with no subscription — so listing all academies made the footer
+    // claim "1–10 of 10" while only the 2 subscribed ones rendered.
+    // Counting what we don't show is worse than not counting it.
+    const { data: subscribedRows, error: subscribedError } = await supabase
+      .from('academy_subscriptions')
+      .select('academy_id');
+    if (subscribedError) {
+      console.error('[Subscription Usage API] Error listing subscribed academies:', subscribedError);
+      throw subscribedError;
+    }
+    const subscribedIds = (subscribedRows ?? [])
+      .map(r => r.academy_id)
+      .filter((id): id is string => id !== null);
+
+    const { data: usageRows, error: usageError, count } = await supabase
+      .from('admin_academy_usage')
+      .select('*', { count: 'exact' })
+      .in('academy_id', subscribedIds)
+      .order('academy_name', { ascending: true })
       .range(page * pageSize, (page + 1) * pageSize - 1);
 
     if (usageError) {
@@ -66,9 +87,27 @@ export async function GET(request: NextRequest) {
       throw usageError;
     }
 
+    // The view carries the academy columns flat; the UI expects them nested
+    // under `academies` (previously a PostgREST FK embed, which a view has
+    // no foreign key to provide).
+    const usageData = (usageRows ?? []).map(row => ({
+      ...row,
+      academies: {
+        id: row.academy_id,
+        name: row.academy_name,
+        subscription_tier: row.subscription_tier,
+      },
+    }));
+
     // Fetch subscription data separately and merge
     if (usageData && usageData.length > 0) {
-      const academyIds = usageData.map(u => u.academy_id);
+      // academy_id is nullable on the view (every view column is), but it is
+      // the academies PK so it can never actually be null — filter rather
+      // than assert, so a surprise null narrows the lookup instead of
+      // throwing.
+      const academyIds = usageData
+        .map(u => u.academy_id)
+        .filter((id): id is string => id !== null);
       const { data: subscriptions } = await supabase
         .from('academy_subscriptions')
         .select('*')
