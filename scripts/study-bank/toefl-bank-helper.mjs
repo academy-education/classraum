@@ -210,6 +210,59 @@ async function insertListening(keepPath, files) {
   console.log(`\nListening: inserted ${inserted}, rejected ${rejected}`)
 }
 
+/**
+ * Listen-and-Repeat insert.
+ *
+ * Deliberately NOT routed through insertListening: a speaking_repeat item
+ * has no choices and no distractors, so the MC shape check would reject
+ * every one of them. Its quality gate is different in kind — there is no
+ * answer key to blind-grade, only the sentence itself, and TEST_SPECS
+ * states the rule in checkable terms (8-12 words, one main clause, no
+ * nested clauses). scripts/verify-listen-repeat.ts is that gate; this
+ * function re-applies the two rules that would corrupt DATA rather than
+ * merely quality, so a bad batch cannot reach the bank even if the
+ * verifier was skipped.
+ */
+async function insertRepeat(files) {
+  const tagged = loadTagged(files)
+  const db = admin()
+  const { data: existing } = await db.from('study_item_bank')
+    .select('content_hash').eq('family', 'toefl').eq('section', 'speaking')
+  const seen = new Set((existing || []).map(r => r.content_hash))
+  const wordsOf = t => String(t || '').trim().split(/\s+/).filter(Boolean).length
+  const bandFor = n => (n >= 8 && n <= 9 ? 'easy' : n >= 10 && n <= 11 ? 'medium' : n === 12 ? 'hard' : null)
+
+  let inserted = 0, rejected = 0
+  for (const { id, it } of tagged) {
+    if (it.type !== 'speaking_repeat' || !it.passage) { console.log(`SKIP ${id} — bad shape`); rejected++; continue }
+    // The student's transcription is compared against correct_answer, so a
+    // drift between the two makes the item ungradeable. 58 live items had
+    // exactly this, because the passage carried an 'Audio script: "' prefix
+    // that the key did not — and that prefix is READ ALOUD by the TTS.
+    if (it.passage !== it.correct_answer) { console.log(`SKIP ${id} — passage !== correct_answer`); rejected++; continue }
+    if (/^\s*(audio script|transcript)\s*:/i.test(it.passage)) {
+      console.log(`SKIP ${id} — scaffolding prefix would be spoken aloud`); rejected++; continue
+    }
+    const n = wordsOf(it.passage)
+    const band = bandFor(n)
+    if (!band) { console.log(`SKIP ${id} — ${n} words, outside the 8-12 spec band`); rejected++; continue }
+    if (it.difficulty && it.difficulty !== band) {
+      console.log(`SKIP ${id} — ${n} words is '${band}', labelled '${it.difficulty}'`); rejected++; continue
+    }
+    const content_hash = createHash('md5').update(norm(it.passage)).digest('hex')
+    if (seen.has(content_hash)) { console.log(`DUP ${id}`); continue }
+    const { error } = await db.from('study_item_bank').insert({
+      family: 'toefl', section: 'speaking', domain: 'Listen and Repeat', difficulty: band,
+      item_type: 'speaking_repeat', item: { ...it, difficulty: band }, content_hash,
+      word_count: n, verified: true, archived: false, source: 'hand', cohort: COHORT,
+      verify_meta: { method: 'claude-authored+spec-rule-check', band_by: 'word_count' },
+    })
+    if (error) { console.log(`ERR ${id}: ${error.message}`); continue }
+    seen.add(content_hash); inserted++
+  }
+  console.log(`\nListen-and-Repeat: inserted ${inserted}, rejected ${rejected}`)
+}
+
 async function insertWriting(flaggedPath, files) {
   const flagged = new Set((JSON.parse(readFileSync(flaggedPath, 'utf8')).archive) || [])
   const tagged = loadTagged(files)
@@ -240,8 +293,9 @@ async function main() {
   const [cmd, ...rest] = process.argv.slice(2)
   if (cmd === 'blind-listening') { process.stdout.write(renderBlindListening(loadTagged(rest))); return }
   if (cmd === 'insert-listening') { await insertListening(rest[0], rest.slice(1)); return }
+  if (cmd === 'insert-repeat') { await insertRepeat(rest); return }
   if (cmd === 'insert-writing') { await insertWriting(rest[0], rest.slice(1)); return }
-  console.error('usage:\n  toefl-bank-helper.mjs blind-listening <file...>\n  toefl-bank-helper.mjs insert-listening <votes.json> <file...>\n  toefl-bank-helper.mjs insert-writing <flagged.json> <file...>')
+  console.error('usage:\n  toefl-bank-helper.mjs blind-listening <file...>\n  toefl-bank-helper.mjs insert-listening <votes.json> <file...>\n  toefl-bank-helper.mjs insert-repeat <file...>\n  toefl-bank-helper.mjs insert-writing <flagged.json> <file...>')
   process.exit(1)
 }
 main().catch(e => { console.error(e); process.exit(1) })
