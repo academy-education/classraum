@@ -24,8 +24,12 @@ export async function seedSrsFromWrongAnswer(opts: {
   const back = opts.back.trim().slice(0, 2000)
   if (!front || !back) return
   const nowIso = new Date().toISOString()
+  // The try/catch below only covers transport faults — the upsert resolves
+  // with { error }, so a rejected write (constraint, RLS) has to be read
+  // explicitly or the missed question never enters the review queue and
+  // nothing anywhere says so.
   try {
-    await supabaseAdmin
+    const { error } = await supabaseAdmin
       .from('study_flashcard_reviews')
       .upsert(
         {
@@ -40,6 +44,7 @@ export async function seedSrsFromWrongAnswer(opts: {
         },
         { onConflict: 'student_id,topic_id,card_front' },
       )
+    if (error) console.error('[srs-seed] upsert rejected', { studentId: opts.studentId, topicId: opts.topicId, error })
   } catch (e) {
     // Best-effort — never fail the grade/submit response over a review seed.
     console.error('[srs-seed] failed', e)

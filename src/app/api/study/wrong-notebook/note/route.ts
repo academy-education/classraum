@@ -51,11 +51,17 @@ export async function POST(req: NextRequest) {
 
   const trimmed = note.trim()
   if (trimmed.length === 0) {
-    await supabaseAdmin
+    // Reporting deleted:true over a failed delete cleared the note in the
+    // UI while it survived in the database and came back on reload.
+    const { error: deleteErr } = await supabaseAdmin
       .from('study_attempt_notes')
       .delete()
       .eq('student_id', user.id)
       .eq('attempt_id', attemptId)
+    if (deleteErr) {
+      console.error('[wrong-notebook/note]', deleteErr)
+      return NextResponse.json({ error: 'persist failed' }, { status: 500 })
+    }
     return NextResponse.json({ note: '', deleted: true })
   }
 

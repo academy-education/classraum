@@ -45,19 +45,28 @@ export async function findFriendship(a: string, b: string): Promise<FriendshipRo
 export async function ensureAcceptedFriendship(a: string, b: string): Promise<void> {
   if (a === b) return
   try {
+    // The catch below never sees a rejected write (supabase-js resolves
+    // with { error }), so the "swallow the unique-pair collision" story
+    // only held because nothing was checked at all — a genuine failure left
+    // the two accounts un-friended with no trace.
     const existing = await findFriendship(a, b)
     if (existing) {
       if (existing.status !== 'accepted') {
-        await supabaseAdmin
+        const { error } = await supabaseAdmin
           .from('study_friendships')
           .update({ status: 'accepted', responded_at: new Date().toISOString() })
           .eq('id', existing.id)
+        if (error) console.error('[study/friends] promote to accepted failed', { a, b, error })
       }
       return
     }
-    await supabaseAdmin
+    const { error } = await supabaseAdmin
       .from('study_friendships')
       .insert({ requester_id: a, addressee_id: b, status: 'accepted', responded_at: new Date().toISOString() })
+    // 23505 = the unordered-pair unique index under a race — already friends.
+    if (error && error.code !== '23505') {
+      console.error('[study/friends] auto-friend insert failed', { a, b, error })
+    }
   } catch (err) {
     // Unique-pair collision under a race, or a transient error — the
     // friendship is best-effort here (auto-add on redeem), never fatal.

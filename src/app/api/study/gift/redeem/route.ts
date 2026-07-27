@@ -162,13 +162,20 @@ export async function POST(req: NextRequest) {
       code: 'credit_failed',
     }, { status: 500 })
   }
-  await supabaseAdmin.from('study_credit_ledger').insert({
+  // Credits already landed via the RPC — a lost ledger row is an audit gap
+  // (balance stops reconciling), never a reason to re-grant.
+  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: user.id,
     delta: credits,
     bucket: 'purchased',
     kind: 'purchase',
     note: `gift redeem ${gift.id}`,
   })
+  if (ledgerErr) {
+    console.error('[study/gift/redeem] ledger row missing', {
+      userId: user.id, giftId: gift.id, credits, error: ledgerErr,
+    })
+  }
 
   return NextResponse.json({
     success: true,

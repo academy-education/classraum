@@ -2096,7 +2096,10 @@ export async function POST(req: NextRequest) {
         .select('config')
         .eq('id', sessionId)
         .maybeSingle()
-      await supabaseAdmin
+      // Diagnostics only — the `finally` below still runs failAndRefund,
+      // which alerts if the status write fails. But losing THIS write loses
+      // the only record of why the run produced nothing.
+      const { error: diagErr } = await supabaseAdmin
         .from('study_sessions')
         .update({
           generation_status: 'failed',
@@ -2108,6 +2111,7 @@ export async function POST(req: NextRequest) {
           },
         })
         .eq('id', sessionId)
+      if (diagErr) console.error('[test/generate] diagnosis write failed', sessionId, diagErr)
       await refundCredit('too few questions')
       {
         const joined = subtaskErrors.join(' ').toLowerCase()
@@ -2218,10 +2222,14 @@ export async function POST(req: NextRequest) {
       last_error_issues: issuesStr,
       last_error_at: new Date().toISOString(),
     }
-    await supabaseAdmin
+    // As in the too-few-questions bail: the status transition is re-run by
+    // failAndRefund in the `finally`, but the post-mortem config written
+    // here has no second chance.
+    const { error: postMortemErr } = await supabaseAdmin
       .from('study_sessions')
       .update({ generation_status: 'failed', config: nextConfig })
       .eq('id', sessionId)
+    if (postMortemErr) console.error('[test/generate] post-mortem write failed', sessionId, postMortemErr)
     // Failed run — the student keeps their credit. (Idempotent: only
     // refunds if this session actually holds an unrefunded debit.)
     await refundCredit(`catch: ${errName}`)
@@ -2360,10 +2368,14 @@ function buildPollingStream(sessionId: string): ReadableStream<Uint8Array> {
         const startedAt = Date.parse(String((staleCheck?.config as { last_gen_started_at?: string } | null)?.last_gen_started_at ?? ''))
         const staleMs = Number.isFinite(startedAt) ? Date.now() - startedAt : Number.POSITIVE_INFINITY
         if (staleMs > 10 * 60 * 1000) {
-          await supabaseAdmin
+          // This is the only thing that breaks the pending deadlock for a
+          // killed run: if it fails silently the session stays 'pending'
+          // forever and the student can never regenerate that test.
+          const { error: staleErr } = await supabaseAdmin
             .from('study_sessions')
             .update({ generation_status: 'failed' })
             .eq('id', sessionId)
+          if (staleErr) console.error('[test/generate] stale-run status write failed', sessionId, staleErr)
           emit({ type: 'error', message: 'generation timed out — please retry', reason: 'timeout' })
         } else {
           // Original run is plausibly still working — leave status

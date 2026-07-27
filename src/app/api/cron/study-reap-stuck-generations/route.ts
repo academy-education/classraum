@@ -89,7 +89,7 @@ export async function GET(req: NextRequest) {
   }
 
   const now = Date.now()
-  const summary = { pending: rows?.length ?? 0, stale: 0, recovered: 0, reaped: 0, creditsRefunded: 0 }
+  const summary = { pending: rows?.length ?? 0, stale: 0, recovered: 0, reaped: 0, creditsRefunded: 0, failedToMark: 0 }
 
   for (const row of (rows ?? []) as SessionRow[]) {
     const cfg = (row.config ?? {}) as {
@@ -146,7 +146,13 @@ export async function GET(req: NextRequest) {
     const cost = typeof cfg.gen_credit_cost === 'number' && cfg.gen_credit_cost > 0
       ? cfg.gen_credit_cost
       : 1 // pre-fix rows didn't persist the cost; 1 is the floor price
-    await supabaseAdmin
+    // Checked: marking the row 'failed' is what takes it out of this
+    // query. If the write is dropped the student keeps the eternal
+    // spinner this job exists to clear, and every subsequent run reaps
+    // the same row again — re-sending the "generation failed" push every
+    // 10 minutes forever. Skip the refund/notify pair until the status
+    // sticks; refundTestCredits is idempotent so nothing is lost.
+    const { error: failErr } = await supabaseAdmin
       .from('study_sessions')
       .update({
         generation_status: 'failed',
@@ -157,6 +163,11 @@ export async function GET(req: NextRequest) {
         },
       })
       .eq('id', row.id)
+    if (failErr) {
+      console.error('[cron/study-reap-stuck-generations] fail-mark rejected', row.id, failErr)
+      summary.failedToMark++
+      continue
+    }
     const refund = await refundTestCredits(row.student_id, row.id, cost)
     // Tell the student. Without this the refund is invisible until they
     // reopen the app and notice the spinner became a retry button. The
@@ -180,11 +191,15 @@ export async function GET(req: NextRequest) {
   }
 
   const truncated = (rows?.length ?? 0) === MAX_PER_RUN
+  // A run that couldn't mark any row did none of its work, and the route
+  // still answers 200 — so the flag has to say so or the watchdog reads
+  // green over students stuck on a spinner with a spent credit.
+  const ok = summary.failedToMark === 0
   await recordHeartbeat(
     'study-reap-stuck-generations',
-    { ok: true, detail: { ...summary, truncated } },
+    { ok, detail: { ...summary, truncated } },
     Date.now() - startedAt,
   )
 
-  return NextResponse.json({ ok: true, ...summary, truncated })
+  return NextResponse.json({ ok, ...summary, truncated })
 }

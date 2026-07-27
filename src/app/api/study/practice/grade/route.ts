@@ -176,7 +176,14 @@ export async function POST(req: NextRequest) {
 
   // Persist the attempt. The question payload is stored verbatim so
   // we can replay analytics later without re-generating.
-  await supabaseAdmin
+  //
+  // This row IS the graded answer everywhere except this response: the
+  // session score (/practice/complete counts attempts), progress, mastery
+  // (via the bump trigger) and the wrong-answer notebook all read it. An
+  // unchecked failure showed the student a verdict that then existed
+  // nowhere. We still return the verdict they're waiting on — the LLM call
+  // is already paid for — but the loss is no longer silent.
+  const { error: attemptErr } = await supabaseAdmin
     .from('study_attempts')
     .insert({
       session_id: sessionId,
@@ -187,6 +194,11 @@ export async function POST(req: NextRequest) {
       ai_explanation: aiExplanation,
       time_spent_seconds: typeof timeSpentSeconds === 'number' ? timeSpentSeconds : null,
     })
+  if (attemptErr) {
+    console.error('[practice/grade] attempt not recorded', {
+      sessionId, studentId: user.id, prompt: gradedQ.prompt.slice(0, 120), isCorrect, error: attemptErr,
+    })
+  }
 
   // Fire-and-forget XP award for the weekly league (Phase 6e). Only
   // correct answers award XP — wrong attempts don't penalise but don't

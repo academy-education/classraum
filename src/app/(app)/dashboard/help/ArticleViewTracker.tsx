@@ -21,6 +21,9 @@ export function ArticleViewTracker({ slug, lang }: { slug: string; lang: 'en' | 
     void (async () => {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
+      // Error intentionally ignored, per the note above: a dropped view
+      // row costs one analytics record and must never make the article
+      // feel broken.
       await supabase.from('help_article_views').insert({
         slug,
         lang,

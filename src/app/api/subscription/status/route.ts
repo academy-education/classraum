@@ -83,6 +83,11 @@ export async function GET(request: NextRequest) {
     ]);
 
     // If RPC function doesn't exist, fall back to 0
+    if (storageResult.error) {
+      // Falling back to 0 makes the account look like it uses no storage at
+      // all, which both hides the real usage bar and lets limit checks pass.
+      console.error('[subscription/status] storage usage RPC failed:', storageResult.error);
+    }
     const totalStorageBytes = storageResult.data || 0;
     const totalStorageGb = totalStorageBytes / (1024 * 1024 * 1024); // Convert bytes to GB
 

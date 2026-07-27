@@ -81,9 +81,16 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
       .contains('context', { dedupeKey })
       .limit(1)
 
+    // Both writes are error-checked rather than left to the catch below:
+    // supabase-js resolves with { error } instead of throwing, so the
+    // catch only ever sees a transport-level fault. An unchecked insert
+    // here is the worst possible silent failure — the alerting path
+    // itself going quiet is exactly how the bugs this module exists for
+    // stayed hidden.
+    let writeError: unknown = null
     if (open && open.length > 0) {
       isNew = false
-      await supabaseAdmin
+      const { error: updateError } = await supabaseAdmin
         .from('alerts')
         .update({
           message,
@@ -92,13 +99,18 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
           context: { ...ctx, lastSeenAt: new Date().toISOString() },
         })
         .eq('id', open[0]!.id)
+      writeError = updateError
     } else {
-      await supabaseAdmin.from('alerts').insert({
+      const { error: insertError } = await supabaseAdmin.from('alerts').insert({
         severity, title, message,
         error_message: errText(error),
         error_stack: errStack(error),
         context: ctx,
       })
+      writeError = insertError
+    }
+    if (writeError) {
+      console.error('[alert] alerts row write rejected', dedupeKey, writeError)
     }
   } catch (e) {
     console.error('[alert] failed to persist alert row', e)

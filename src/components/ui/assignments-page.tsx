@@ -407,11 +407,18 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
             return
           }
         } else {
-          // If no attachments, delete any existing ones
-          await supabase
+          // If no attachments, delete any existing ones. Swallowing this would
+          // leave the removed files attached while we toast "updated".
+          const { error: attachmentDeleteError } = await supabase
             .from('assignment_attachments')
             .delete()
             .eq('assignment_id', editingAssignment.id)
+
+          if (attachmentDeleteError) {
+            console.error('Error deleting attachments:', attachmentDeleteError)
+            showErrorToast(t('assignments.errorUpdating') as string, t('assignments.errors.attachmentsSaveError') as string)
+            return
+          }
         }
         
         showSuccessToast(t('assignments.updatedSuccessfully') as string)

@@ -247,6 +247,9 @@ export async function cleanupAbandonedPracticeSessions(studentId: string, except
     const engaged = new Set((attempts ?? []).map(a => a.session_id as string))
     const empties = candidateIds.filter(id => !engaged.has(id))
     if (empties.length === 0) return
+    // Error intentionally ignored: a failed sweep just leaves an empty
+    // session on the shelf until the next call retries it. No balance,
+    // grade or entitlement depends on it.
     await supabaseAdmin.from('study_sessions').delete().in('id', empties).eq('student_id', studentId)
   } catch (e) {
     console.error('[energy] cleanup failed', e)

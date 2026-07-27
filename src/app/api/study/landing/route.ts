@@ -165,11 +165,14 @@ export async function GET(req: NextRequest) {
   // /api/study/prefs's insert-on-miss behavior.
   let prefs = prefsRow
   if (!prefs) {
-    const { data: created } = await supabaseAdmin
+    const { data: created, error: createErr } = await supabaseAdmin
       .from('study_user_prefs')
       .insert({ student_id: user.id })
       .select()
       .single()
+    // Same as /api/study/prefs: a failed create leaves prefs null and the
+    // onboarding wizard re-triggers on every landing load.
+    if (createErr) console.error('[study/landing] default prefs create failed', { studentId: user.id, error: createErr })
     prefs = created
   }
 

@@ -107,11 +107,18 @@ export async function GET(req: NextRequest) {
 /** Auto-resolve an alert whose condition has cleared. */
 async function resolveOpen(dedupeKey: string): Promise<void> {
   try {
-    await supabaseAdmin
+    // Checked explicitly — the update resolves with { error } and never
+    // throws, so the catch below is only for transport faults. A dropped
+    // auto-resolve leaves a recovered job showing red on the dashboard
+    // forever, which is how an alert channel gets tuned out.
+    const { error } = await supabaseAdmin
       .from('alerts')
       .update({ resolved: true, resolved_at: new Date().toISOString() })
       .eq('resolved', false)
       .contains('context', { dedupeKey })
+    if (error) {
+      console.error('[ops-watchdog] auto-resolve rejected', dedupeKey, error)
+    }
   } catch (e) {
     console.error('[ops-watchdog] auto-resolve failed', dedupeKey, e)
   }

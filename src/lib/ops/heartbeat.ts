@@ -35,7 +35,12 @@ export async function recordHeartbeat(
 
     const failStreak = result.ok ? 0 : ((prev?.fail_streak as number | undefined) ?? 0) + 1
 
-    await supabaseAdmin.from('job_heartbeats').upsert(
+    // Checked, not because we can do anything about it here, but because
+    // a dropped upsert is indistinguishable from a job that never ran:
+    // the watchdog reads last_ok_at going stale and pages for a cron that
+    // is in fact perfectly healthy — or, worse, the row keeps a *stale
+    // successful* last_ok_at and a genuinely dead job stays green.
+    const { error: upsertError } = await supabaseAdmin.from('job_heartbeats').upsert(
       {
         job,
         last_run_at: now,
@@ -47,6 +52,9 @@ export async function recordHeartbeat(
       },
       { onConflict: 'job' },
     )
+    if (upsertError) {
+      console.error('[heartbeat] upsert rejected for', job, upsertError)
+    }
 
     if (!result.ok) {
       const spec = jobSpec(job)

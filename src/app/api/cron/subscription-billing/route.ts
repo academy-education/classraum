@@ -66,6 +66,10 @@ export async function GET(req: NextRequest) {
     const config = getPortOneConfig();
     let successCount = 0;
     let failCount = 0;
+    // Tracked separately from failCount: a declined card is a normal
+    // business outcome and must not page anyone, but a rejected DB write
+    // means the job did not do its job and the heartbeat has to say so.
+    let writeFailures = 0;
     const errors: string[] = [];
 
     // Process subscriptions in parallel batches of 5 to avoid overwhelming the payment API
@@ -219,6 +223,7 @@ export async function GET(req: NextRequest) {
               } else {
                 console.error(`[SUBSCRIPTION-BILLING] Error creating invoice for subscription ${subscription.id}:`, invoiceError.message);
                 errors.push(`Subscription ${subscription.id}: Failed to create invoice`);
+                writeFailures++;
               }
             }
 
@@ -265,14 +270,23 @@ export async function GET(req: NextRequest) {
 
                   console.log(`[SUBSCRIPTION-BILLING] Plan change applied successfully for subscription ${subscription.id}`);
 
-                  // Update academy tier as well
-                  await supabaseAdmin
+                  // Update academy tier as well. Checked: academies
+                  // .subscription_tier is what the app gates features on,
+                  // so losing this write leaves a customer who just paid
+                  // for an upgrade on their old plan's limits while the
+                  // subscription row says otherwise.
+                  const { error: tierError } = await supabaseAdmin
                     .from('academies')
                     .update({
                       subscription_tier: subscription.pending_tier,
                       updated_at: new Date().toISOString(),
                     })
                     .eq('id', subscription.academy_id);
+                  if (tierError) {
+                    console.error(`[SUBSCRIPTION-BILLING] Error applying tier to academy ${subscription.academy_id}:`, tierError);
+                    errors.push(`Subscription ${subscription.id}: Failed to apply tier to academy`);
+                    writeFailures++;
+                  }
                 }
               }
             }
@@ -345,6 +359,7 @@ export async function GET(req: NextRequest) {
             if (updateError) {
               console.error(`[SUBSCRIPTION-BILLING] Error updating subscription ${subscription.id}:`, updateError);
               errors.push(`Subscription ${subscription.id}: Failed to update subscription`);
+              writeFailures++;
             } else {
               console.log(`[SUBSCRIPTION-BILLING] Updated subscription ${subscription.id} next_billing_date to: ${nextBillingDate.toISOString()}`);
             }
@@ -356,8 +371,12 @@ export async function GET(req: NextRequest) {
             const errorData = await paymentResponse.json();
             console.error(`[SUBSCRIPTION-BILLING] Payment failed for subscription ${subscription.id}:`, errorData);
 
-            // Mark subscription as past_due and create failed invoice in parallel
-            await Promise.all([
+            // Mark subscription as past_due and create failed invoice in
+            // parallel. Both results are inspected: dropping the past_due
+            // flip leaves a non-paying academy with full access and no
+            // dunning, and dropping the failed invoice means the decline
+            // never appears in the admin billing view at all.
+            const [pastDueResult, failedInvoiceResult] = await Promise.all([
               supabaseAdmin
                 .from('academy_subscriptions')
                 .update({
@@ -382,6 +401,17 @@ export async function GET(req: NextRequest) {
                   billing_cycle: subscription.billing_cycle,
                 }),
             ]);
+
+            if (pastDueResult.error) {
+              console.error(`[SUBSCRIPTION-BILLING] Error marking ${subscription.id} past_due:`, pastDueResult.error);
+              errors.push(`Subscription ${subscription.id}: Failed to mark past_due`);
+              writeFailures++;
+            }
+            if (failedInvoiceResult.error) {
+              console.error(`[SUBSCRIPTION-BILLING] Error recording failed invoice for ${subscription.id}:`, failedInvoiceResult.error);
+              errors.push(`Subscription ${subscription.id}: Failed to record failed invoice`);
+              writeFailures++;
+            }
 
             failCount++;
             errors.push(`Subscription ${subscription.id}: Payment failed - ${errorData.message}`);
@@ -412,15 +442,21 @@ export async function GET(req: NextRequest) {
 
     // Counters only — the `errors` string list stays in the HTTP response
     // rather than bloating the stored heartbeat detail.
+    //
+    // ok reflects writeFailures, not declines: this route swallows every
+    // per-subscription write error to keep the batch going and then
+    // answers 200, so an unconditional ok:true would show a green cron
+    // over academies that were charged but never advanced.
     await recordHeartbeat(
       'subscription-billing',
       {
-        ok: true,
+        ok: writeFailures === 0,
         detail: {
           date: today,
           found: subscriptions.length,
           succeeded: successCount,
           failed: failCount,
+          writeFailures,
           errorCount: errors.length,
         },
       },

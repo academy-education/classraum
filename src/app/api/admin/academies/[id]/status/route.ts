@@ -71,19 +71,24 @@ export async function PATCH(
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  // Best-effort audit trail — never block the action on a logging failure.
-  try {
-    await supabase.from('admin_activity_logs').insert({
-      admin_id: auth.userId,
-      action_type: body.suspend ? 'ACADEMY_SUSPEND' : 'ACADEMY_UNSUSPEND',
-      target_type: 'academy',
-      target_id: id,
-      description: body.suspend
-        ? `Suspended academy "${data?.name ?? id}"${body.reason ? `: ${body.reason}` : ''}`
-        : `Reactivated academy "${data?.name ?? id}"`,
-    })
-  } catch {
-    /* ignore logging errors */
+  // Audit trail. It does not block the suspension, but it IS checked:
+  // this insert has never once succeeded. The column is `admin_user_id`
+  // (NOT NULL), not `admin_id`, and action_type carries a CHECK
+  // constraint allowing 'academy_suspended'/'academy_unsuspended' — the
+  // screaming-case values were rejected on every call. The try/catch was
+  // decorative (.insert() resolves with { error }, it does not throw), so
+  // suspending an academy has been an unaudited privileged action.
+  const { error: logError } = await supabase.from('admin_activity_logs').insert({
+    admin_user_id: auth.userId,
+    action_type: body.suspend ? 'academy_suspended' : 'academy_unsuspended',
+    target_type: 'academy',
+    target_id: id,
+    description: body.suspend
+      ? `Suspended academy "${data?.name ?? id}"${body.reason ? `: ${body.reason}` : ''}`
+      : `Reactivated academy "${data?.name ?? id}"`,
+  })
+  if (logError) {
+    console.error('[Admin academies API] Audit log insert failed:', logError)
   }
 
   return NextResponse.json({ academy: data })

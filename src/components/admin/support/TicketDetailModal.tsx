@@ -372,11 +372,17 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
       }
 
 
-      // Update conversation's updated_at timestamp
-      await supabase
+      // Update conversation's updated_at timestamp. The message itself already
+      // landed, so don't fail the send — but a stale timestamp mis-sorts the
+      // ticket list, so it needs to be visible.
+      const { error: touchError } = await supabase
         .from('chat_conversations')
         .update({ updated_at: new Date().toISOString() })
         .eq('id', ticket.id);
+
+      if (touchError) {
+        console.error('[TicketDetailModal] Error bumping conversation timestamp:', touchError);
+      }
 
       // Reload messages to get the real ID from database
       await loadMessages();

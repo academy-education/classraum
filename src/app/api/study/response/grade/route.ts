@@ -262,6 +262,9 @@ export async function POST(req: NextRequest) {
   // Mark the session completed with a 0-100 score (band / scaleMax) so it
   // stops showing "in progress" in history and gets a score chip — the
   // response mode never flipped its session status before.
+  // Deliberately off the response path (the grade is already persisted and
+  // returned), but a failure leaves the session stuck "in progress" in
+  // history with no score chip, so it can't be silent.
   void supabaseAdmin
     .from('study_sessions')
     .update({
@@ -271,6 +274,9 @@ export async function POST(req: NextRequest) {
     })
     .eq('id', session.id)
     .eq('student_id', user.id)
+    .then(({ error }) => {
+      if (error) console.error('[response/grade] session completion write failed', { sessionId: session.id, error })
+    })
   // Inbox row — useful for the student to revisit their graded
   // response later from the bell icon without scrolling history.
   const skillLabel = body.skill === 'speaking' ? '말하기' : '작문'

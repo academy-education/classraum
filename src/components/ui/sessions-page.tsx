@@ -684,11 +684,17 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       if (assignmentIds.length === 0) return true
 
-      // Delete assignment grades first
-      await supabase
+      // Delete assignment grades first. If this is dropped the grades outlive
+      // the soft-deleted assignment and keep showing up in student grade lists.
+      const { error: gradesError } = await supabase
         .from('assignment_grades')
         .delete()
         .in('assignment_id', assignmentIds)
+
+      if (gradesError) {
+        console.error('[Assignment Delete] Error deleting assignment grades:', gradesError)
+        throw gradesError
+      }
 
       // Soft-delete the assignments
       const { error } = await supabase
@@ -714,11 +720,18 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
   // Helper functions for attachment handling
   const updateAssignmentAttachmentsEfficient = async (assignmentId: string, attachments: AttachmentFile[]) => {
-    // Delete existing attachments and insert new ones
-    await supabase
+    // Delete existing attachments and insert new ones. A dropped delete leaves
+    // the old rows in place, so the assignment ends up with duplicated (and
+    // un-removed) attachments even though the save reported success.
+    const { error } = await supabase
       .from('assignment_attachments')
       .delete()
       .eq('assignment_id', assignmentId)
+
+    if (error) {
+      console.error('[Attachment Delete] Error clearing attachments:', error)
+      throw error
+    }
 
     if (attachments.length > 0) {
       const { data: { user } } = await supabase.auth.getUser()

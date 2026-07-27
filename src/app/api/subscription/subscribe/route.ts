@@ -6,6 +6,7 @@ import {
   calculateUpgradeProration,
   formatKRW,
 } from '@/lib/proration';
+import { raiseAlert } from '@/lib/ops/alert';
 
 export async function POST(request: NextRequest) {
   try {
@@ -441,13 +442,29 @@ export async function POST(request: NextRequest) {
 
           // Update subscription with payment info (only if not newly created with last_payment_date)
           if (!shouldCreateSubscriptionAfterPayment) {
-            await supabase
+            const { error: paymentStampError } = await supabase
               .from('academy_subscriptions')
               .update({
                 last_payment_date: now.toISOString(),
                 kg_subscription_id: subscriptionId!, // Using our subscription ID
               })
               .eq('id', subscriptionId!);
+
+            if (paymentStampError) {
+              // The card was already charged. Without last_payment_date the
+              // subscription looks unpaid to every downstream job and the
+              // customer can be billed a second time for this period.
+              await raiseAlert({
+                severity: 'critical',
+                title: 'Charged subscription not stamped as paid',
+                message:
+                  `Payment ${paymentId} for ${formatKRW(amountToCharge)} succeeded but academy_subscriptions ${subscriptionId} ` +
+                  `could not be updated with last_payment_date. The customer is at risk of being charged twice.`,
+                dedupeKey: `subscribe-payment-stamp-write:${subscriptionId}`,
+                error: paymentStampError,
+                context: { subscriptionId, academyId, paymentId, amountToCharge },
+              });
+            }
           }
 
           initialPaymentResult = {

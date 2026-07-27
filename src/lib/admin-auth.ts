@@ -208,7 +208,14 @@ export async function logAdminActivity(activity: {
                       activity.action.toLowerCase().includes('ticket') ? 'support_ticket_updated' :
                       'bulk_operation';
 
-    await supabaseAdmin
+    // Checked explicitly: .insert() resolves with { error } rather than
+    // throwing, so the catch below never saw a rejected row. This is the
+    // audit trail for privileged actions — refunds, bans, report
+    // resolutions — and admin_activity_logs.action_type carries a CHECK
+    // constraint, so a value outside its allowed set is dropped exactly
+    // the way the notification-kind CHECK was. ('academy_modified' above
+    // is NOT in that set; the log line below is how you find out.)
+    const { error: insertError } = await supabaseAdmin
       .from('admin_activity_logs')
       .insert({
         admin_user_id: activity.adminUserId,
@@ -220,6 +227,10 @@ export async function logAdminActivity(activity: {
         ip_address: activity.ipAddress,
         user_agent: activity.userAgent,
       });
+
+    if (insertError) {
+      console.error('Admin activity log rejected:', actionType, insertError);
+    }
 
   } catch (error) {
     console.error('Error logging admin activity:', error);

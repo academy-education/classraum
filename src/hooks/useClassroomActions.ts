@@ -127,11 +127,15 @@ export function useClassroomActions() {
 
       if (classroomError) throw classroomError
 
-      // Step 2: Update schedules - delete existing and insert new ones
-      await supabase
+      // Step 2: Update schedules - delete existing and insert new ones. This is
+      // a replace, so a silently dropped delete doubles up the schedule rows
+      // and the removed slots stay on the timetable.
+      const { error: scheduleDeleteError } = await supabase
         .from('classroom_schedules')
         .delete()
         .eq('classroom_id', classroom.id)
+
+      if (scheduleDeleteError) throw scheduleDeleteError
 
       if (schedules.length > 0) {
         const schedulesToInsert = schedules.map(schedule => ({
@@ -150,11 +154,15 @@ export function useClassroomActions() {
         }
       }
 
-      // Step 3: Update student enrollments - delete existing and insert new ones
-      await supabase
+      // Step 3: Update student enrollments - delete existing and insert new
+      // ones. Same replace pattern: a dropped delete keeps students the manager
+      // just unenrolled in the classroom while the save reports success.
+      const { error: enrollmentDeleteError } = await supabase
         .from('classroom_students')
         .delete()
         .eq('classroom_id', classroom.id)
+
+      if (enrollmentDeleteError) throw enrollmentDeleteError
 
       if (selectedStudents.length > 0) {
         // Look up student_record_ids for all students
@@ -192,12 +200,16 @@ export function useClassroomActions() {
 
   const deleteClassroom = useCallback(async (classroomId: string) => {
     try {
-      // First, delete related data
-      await Promise.all([
+      // First, delete related data. A failure here surfaces later as an opaque
+      // FK violation on the classroom delete, so check it directly instead.
+      const childResults = await Promise.all([
         supabase.from('classroom_schedules').delete().eq('classroom_id', classroomId),
         supabase.from('classroom_students').delete().eq('classroom_id', classroomId),
         supabase.from('sessions').delete().eq('classroom_id', classroomId)
       ])
+
+      const childError = childResults.find(result => result.error)?.error
+      if (childError) throw childError
 
       // Then delete the classroom
       const { error } = await supabase

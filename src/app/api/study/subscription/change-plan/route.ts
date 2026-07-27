@@ -45,19 +45,32 @@ export async function POST(req: NextRequest) {
 
   // Same plan → treat as "cancel scheduled change".
   if (target.id === current.id) {
-    await supabaseAdmin
+    // pending_plan IS the scheduled change. Reporting success on a failed
+    // write told the student their downgrade was cancelled while the cron
+    // still applied it at the period boundary.
+    const { error } = await supabaseAdmin
       .from('study_subscriptions')
       .update({ pending_plan: null, updated_at: new Date().toISOString() })
       .eq('student_id', user.id)
+    if (error) {
+      console.error('[study/change-plan] clearing pending plan failed', { studentId: user.id, error })
+      return NextResponse.json({ error: 'could not cancel scheduled change' }, { status: 500 })
+    }
     return NextResponse.json({ success: true, plan: current.id, pending_plan: null })
   }
 
   // DOWNGRADE — schedule for the period boundary.
   if (target.priceWon < current.priceWon) {
-    await supabaseAdmin
+    // Same: a lost write means the UI shows a scheduled downgrade that the
+    // renewal cron will never see, and the student keeps paying the old price.
+    const { error } = await supabaseAdmin
       .from('study_subscriptions')
       .update({ pending_plan: target.id, updated_at: new Date().toISOString() })
       .eq('student_id', user.id)
+    if (error) {
+      console.error('[study/change-plan] scheduling downgrade failed', { studentId: user.id, target: target.id, error })
+      return NextResponse.json({ error: 'could not schedule plan change' }, { status: 500 })
+    }
     return NextResponse.json({ success: true, plan: current.id, pending_plan: target.id })
   }
 
@@ -117,13 +130,20 @@ export async function POST(req: NextRequest) {
       paymentId,
     }, { status: 500 })
   }
-  await supabaseAdmin.from('study_credit_ledger').insert({
+  // Grant already applied above — a lost ledger row is an audit gap, not a
+  // lost grant, so it must not fail the (charged) upgrade. Log it.
+  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: user.id,
     delta: target.monthlyCredits,
     bucket: 'grant',
     kind: 'grant',
     note: `upgrade to ${target.id} (${paymentId})`,
   })
+  if (ledgerErr) {
+    console.error('[study/change-plan] ledger row missing', {
+      studentId: user.id, paymentId, credits: target.monthlyCredits, error: ledgerErr,
+    })
+  }
   // Record the upgrade charge so it appears in the admin payments view / is refundable.
   await recordSubscriptionPayment({ paymentId, studentId: user.id, amountWon: target.priceWon })
 

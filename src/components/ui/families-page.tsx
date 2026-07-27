@@ -860,11 +860,15 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       if (familyError) throw familyError
 
-      // Remove all existing family members
-      await supabase
+      // Remove all existing family members. This is a delete-then-reinsert, so
+      // a silently dropped delete duplicates every member (and keeps members
+      // the user just removed) while the UI reports the family was updated.
+      const { error: membersDeleteError } = await supabase
         .from('family_members')
         .delete()
         .eq('family_id', editingFamily.id)
+
+      if (membersDeleteError) throw membersDeleteError
 
       // Add updated family members (if any)
       if (formData.selectedMembers.length > 0) {

@@ -351,8 +351,20 @@ export async function POST(request: NextRequest) {
 
     if (partError) {
       console.error('[Messages API] Error inserting participants:', partError)
-      // Roll back: delete the conversation we just created.
-      await supabase.from('user_conversations').delete().eq('id', newConv.id)
+      // Roll back: delete the conversation we just created. If the rollback
+      // itself fails we're left with a conversation nobody is a member of —
+      // invisible in every list, impossible to join, and permanently orphaned.
+      const { error: rollbackError } = await supabase
+        .from('user_conversations')
+        .delete()
+        .eq('id', newConv.id)
+      if (rollbackError) {
+        console.error(
+          '[Messages API] Rollback FAILED — orphaned conversation with no participants:',
+          newConv.id,
+          rollbackError
+        )
+      }
       return NextResponse.json({
         error: 'Failed to add participants',
         detail: partError.message,

@@ -378,11 +378,15 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
 
         if (updateError) throw updateError
 
-        // Update classrooms - delete old and insert new
-        await supabase
+        // Update classrooms - delete old and insert new. If the delete is
+        // dropped the old links survive alongside the new ones, so the
+        // announcement stays visible to classrooms the user just unselected.
+        const { error: classroomsDeleteError } = await supabase
           .from('announcement_classrooms')
           .delete()
           .eq('announcement_id', selectedAnnouncement.id)
+
+        if (classroomsDeleteError) throw classroomsDeleteError
 
         if (selectedClassroomIds.length > 0) {
           const { error: classroomsError } = await supabase
@@ -403,10 +407,14 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         const idsToDelete = existingIds.filter(id => !currentIds.includes(id))
 
         if (idsToDelete.length > 0) {
-          await supabase
+          // A dropped delete leaves attachments the user removed still
+          // attached, while the success toast says the edit was saved.
+          const { error: attachmentsDeleteError } = await supabase
             .from('announcement_attachments')
             .delete()
             .in('id', idsToDelete)
+
+          if (attachmentsDeleteError) throw attachmentsDeleteError
         }
 
         // Insert new attachments

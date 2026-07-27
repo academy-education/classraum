@@ -189,10 +189,17 @@ export async function POST(req: NextRequest) {
             // next_due_date so the template doesn't keep matching the
             // "due today" query forever.
             const nextDueDate = calculateNextDueDate(template)
-            await supabase
+            const { error: rollForwardError } = await supabase
               .from('recurring_payment_templates')
               .update({ next_due_date: nextDueDate })
               .eq('id', template.id)
+            if (rollForwardError) {
+              // Without the roll-forward the template keeps matching the
+              // "due today" query on every subsequent cron run, forever.
+              console.error(`[RECURRING] Error rolling forward next_due_date for template ${template.id}:`, rollForwardError)
+              errors.push(`Template ${template.name} roll-forward: ${rollForwardError.message}`)
+              continue
+            }
             console.log(`[RECURRING] All students already invoiced; rolled forward to ${nextDueDate}`)
             templatesProcessed++
             continue
@@ -298,7 +305,17 @@ export async function POST(req: NextRequest) {
               },
             }))
 
-            await supabase.from('notifications').insert(notifications)
+            // The enclosing try/catch cannot see this: insert resolves with
+            // { error }. This notification is the only signal a manager gets
+            // that their invoices did not go out — losing it silently means
+            // students are never billed and nobody finds out.
+            const { error: notifyInsertError } = await supabase.from('notifications').insert(notifications)
+            if (notifyInsertError) {
+              console.error(
+                `[RECURRING] Failed to insert failure notifications for academy ${failedAcademyId}:`,
+                notifyInsertError
+              )
+            }
           }
         } catch (notifyError) {
           console.error(`[RECURRING] Failed to notify managers for academy ${failedAcademyId}:`, notifyError)

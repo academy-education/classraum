@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * POST /api/account/reactivate
@@ -146,10 +147,20 @@ export async function POST(request: NextRequest) {
     // success without exposing the inconsistency.
     await anonClient.auth.signOut().catch(() => {})
     // Clear the stale deletion_scheduled_at column to bring DB into sync.
-    await supabaseAdmin
+    // Checked: returning success while the column survives tells the user
+    // their account is safe, and the hard-delete cron erases them 30 days
+    // later anyway. Better a 500 they can retry than a silent deletion.
+    const { error: staleClearError } = await supabaseAdmin
       .from('users')
       .update({ deletion_scheduled_at: null })
       .eq('id', userId)
+    if (staleClearError) {
+      console.error('[account/reactivate] stale schedule clear failed:', staleClearError)
+      return NextResponse.json(
+        { error: 'Failed to reactivate' },
+        { status: 500 }
+      )
+    }
     return NextResponse.json({ success: true })
   }
 
@@ -175,9 +186,22 @@ export async function POST(request: NextRequest) {
 
   if (clearError) {
     console.error('[account/reactivate] users clear failed:', clearError)
-    // Don't fail — auth ban is already lifted. Log loudly so we can
-    // backfill if needed: the cron checks deletion_scheduled_at + 30d
-    // so a stale value past the cutoff could re-trigger deletion.
+    // Don't fail — auth ban is already lifted. But a console line is not
+    // enough: the cron checks deletion_scheduled_at + 30d, so a stale
+    // value past the cutoff hard-deletes a user who explicitly asked to
+    // keep their account. That needs a durable, in-product signal.
+    await raiseAlert({
+      severity: 'critical',
+      title: 'Reactivated account still scheduled for deletion',
+      message:
+        `User ${userId} reactivated successfully (ban lifted) but ` +
+        `users.deletion_scheduled_at could not be cleared. The hard-delete ` +
+        `cron will erase this live account once the 30-day cutoff passes. ` +
+        `Clear the column now.`,
+      dedupeKey: 'account-reactivate:clear-schedule-failed',
+      error: clearError,
+      context: { userId },
+    })
   }
 
   // Stamp open log entries as reactivated.

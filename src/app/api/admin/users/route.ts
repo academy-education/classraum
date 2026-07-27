@@ -251,8 +251,12 @@ export async function PATCH(request: NextRequest) {
     }
 
     // Best-effort audit log — don't fail the request if logging fails.
+    // The result IS inspected though: .insert() resolves with { error }
+    // and never throws, so this catch only covered transport faults and
+    // a rejected row (constraint, RLS) silently lost the record of who
+    // banned or re-roled which accounts.
     try {
-      await supabase.from('admin_activity_logs').insert({
+      const { error: auditError } = await supabase.from('admin_activity_logs').insert({
         admin_user_id: user.id,
         action_type: 'user_modified',
         target_type: 'user',
@@ -262,6 +266,9 @@ export async function PATCH(request: NextRequest) {
           (role ? ` role→${role}` : ''),
         metadata: { ids, status, role, results },
       });
+      if (auditError) {
+        console.error('[Admin Users PATCH] Audit log rejected:', auditError);
+      }
     } catch (logErr) {
       console.warn('[Admin Users PATCH] Audit log failed:', logErr);
     }

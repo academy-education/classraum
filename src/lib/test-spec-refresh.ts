@@ -223,7 +223,11 @@ export async function refreshTestSpec(
   if (priorSpec.hardItemExamples_ko) spec.hardItemExamples_ko = priorSpec.hardItemExamples_ko
 
   const now = new Date().toISOString()
-  await supabaseAdmin
+  // The upsert IS the refresh — everything above it is just research. An
+  // unchecked write returned ok:true to the cron, which counted it as a
+  // verified spec, so last_verified_at never moved and the same section
+  // was re-researched (and re-billed) every month with nothing to show.
+  const { error: upsertError } = await supabaseAdmin
     .from('study_test_specs')
     .upsert({
       family,
@@ -235,6 +239,10 @@ export async function refreshTestSpec(
       verifier_notes: `format verified via ${citedUrls.length} source(s)`,
       updated_at: now,
     }, { onConflict: 'family,section_key' })
+  if (upsertError) {
+    console.error('[test-spec-refresh] spec upsert rejected', { family, sectionKey, error: upsertError })
+    return { family, sectionKey, ok: false, notes: `spec upsert failed: ${upsertError.message}`, sources: citedUrls }
+  }
 
   return { family, sectionKey, ok: true, notes: 'format verified', sources: citedUrls }
 }
@@ -464,7 +472,11 @@ Why hard: ${q.explanation}`
   }
 
   const now = new Date().toISOString()
-  await supabaseAdmin
+  // Checked for the same reason as the format upsert: this is the only
+  // place the exemplars are persisted, and the quarterly samples pass is
+  // the expensive one. Reporting examplesAdded off an unverified write
+  // means paying for research that never reached the generator.
+  const { error: updateError } = await supabaseAdmin
     .from('study_test_specs')
     .update({
       spec: mergedSpec,
@@ -474,6 +486,10 @@ Why hard: ${q.explanation}`
     })
     .eq('family', family)
     .eq('section_key', sectionKey)
+  if (updateError) {
+    console.error('[test-spec-refresh] examples update rejected', { family, sectionKey, error: updateError })
+    return { family, sectionKey, ok: false, notes: `examples update failed: ${updateError.message}`, sources: citedUrls, examplesAdded: 0 }
+  }
 
   return { family, sectionKey, ok: true, notes: `added ${exemplarsEn.length} hard examples`, sources: citedUrls, examplesAdded: exemplarsEn.length }
 }
@@ -520,28 +536,33 @@ async function markAttempt(family: string, sectionKey: string, notes: string) {
     .eq('family', family)
     .eq('section_key', sectionKey)
     .maybeSingle()
-  if (existing) {
-    await supabaseAdmin
-      .from('study_test_specs')
-      .update({
-        last_attempted_at: now,
-        verifier_notes: notes,
-        updated_at: now,
-      })
-      .eq('family', family)
-      .eq('section_key', sectionKey)
-  } else {
-    await supabaseAdmin
-      .from('study_test_specs')
-      .insert({
-        family,
-        section_key: sectionKey,
-        spec: {},
-        sources: [],
-        last_attempted_at: now,
-        verifier_notes: notes,
-        updated_at: now,
-      })
+  // This row is the ONLY record that a refresh was attempted and why it
+  // failed — last_attempted_at is what stops the cron re-running a
+  // hopeless target every month. If the write is dropped too, the
+  // failure leaves no trace anywhere.
+  const { error: markError } = existing
+    ? await supabaseAdmin
+        .from('study_test_specs')
+        .update({
+          last_attempted_at: now,
+          verifier_notes: notes,
+          updated_at: now,
+        })
+        .eq('family', family)
+        .eq('section_key', sectionKey)
+    : await supabaseAdmin
+        .from('study_test_specs')
+        .insert({
+          family,
+          section_key: sectionKey,
+          spec: {},
+          sources: [],
+          last_attempted_at: now,
+          verifier_notes: notes,
+          updated_at: now,
+        })
+  if (markError) {
+    console.error('[test-spec-refresh] markAttempt write rejected', { family, sectionKey, error: markError })
   }
 }
 

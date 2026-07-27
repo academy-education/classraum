@@ -22,7 +22,7 @@ async function recomputeAttempt(attemptId: string) {
   const total = attempt.total_questions || answers.length
   const { score, needsManualGrading, status } = recomputeAttemptScore(answers, total)
 
-  await supabaseAdmin
+  const { error } = await supabaseAdmin
     .from('level_test_attempts')
     .update({
       score,
@@ -30,6 +30,13 @@ async function recomputeAttempt(attemptId: string) {
       needs_manual_grading: needsManualGrading,
     })
     .eq('id', attemptId)
+
+  if (error) {
+    // The answer row was already graded; if this write is lost the attempt
+    // keeps its pre-grading score and stays flagged needs_manual_grading
+    // forever, so the grading queue never empties.
+    console.error('[attempt grade] score recompute write failed', attemptId, error)
+  }
 }
 
 // PATCH /api/level-tests/attempts/[attemptId]/grade

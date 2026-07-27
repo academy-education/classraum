@@ -142,7 +142,12 @@ export async function POST(request: NextRequest) {
 
     if (questionsError) {
       console.error('[level-tests POST] Questions insert error:', questionsError)
-      await supabaseAdmin.from('level_tests').delete().eq('id', test.id)
+      // Compensating delete. If this silently fails the manager is left with a
+      // test row holding zero questions that can still be shared and assigned.
+      const { error: rollbackError } = await supabaseAdmin.from('level_tests').delete().eq('id', test.id)
+      if (rollbackError) {
+        console.error('[level-tests POST] Rollback delete FAILED — orphaned empty test', test.id, rollbackError)
+      }
       return NextResponse.json({ error: questionsError.message }, { status: 500 })
     }
 

@@ -106,9 +106,19 @@ async function runAcademyCascade(managerUserId: string): Promise<
         { p_user_id: managerUserId }
       )
       if (userErr) return { success: false, error: userErr.message }
-      await supabaseAdmin.auth.admin
-        .deleteUser(managerUserId)
-        .catch((e) => console.warn('[CRON] manager auth delete:', e))
+      // The `.catch()` this replaces was decorative: deleteUser resolves
+      // with { error } rather than rejecting, so a failed auth delete was
+      // reported as a completed erasure while the identity — and the
+      // ability to sign in with it — still existed.
+      const { error: authErr } = await supabaseAdmin.auth.admin.deleteUser(
+        managerUserId
+      )
+      if (
+        authErr &&
+        !(authErr.message || '').toLowerCase().includes('not found')
+      ) {
+        return { success: false, error: `manager auth delete: ${authErr.message}` }
+      }
       return { success: true, summary: { note: 'no_longer_sole_manager' } }
     }
 
@@ -150,9 +160,10 @@ async function runAcademyCascade(managerUserId: string): Promise<
           error: cancelResult.error,
         })
         if (cancelResult.cancelled) {
-          // Best-effort stamp — the row is about to be deleted by the
-          // cascade anyway, but recording it now means a partial failure
-          // (PortOne ok, cascade not yet run) leaves a meaningful trail.
+          // Best-effort stamp — error deliberately unchecked. The row is
+          // deleted by the cascade a few lines below, so a failed write
+          // costs nothing; the authoritative record that the key was
+          // released is the PortOne-side cancellation plus the log line.
           await supabaseAdmin
             .from('academy_subscriptions')
             .update({ billing_key_cancelled_at: new Date().toISOString() })
@@ -814,9 +825,19 @@ export async function GET(req: NextRequest) {
 
     // Per-status counts only — the full `results` array (which carries a
     // cascade summary per user) stays in the HTTP response.
+    //
+    // ok is NOT unconditionally true: every per-user failure above is
+    // caught and pushed as status 'error' so the batch can continue, and
+    // the route still returns 200. Reporting ok:true anyway would tell
+    // the watchdog that erasure requests are being honoured on a run
+    // where none of them were.
+    const errorCount = results.filter((r) => r.status === 'error').length
     await recordHeartbeat(
       'process-account-deletions',
-      { ok: true, detail: { processed: results.length, ...summary } },
+      {
+        ok: errorCount === 0,
+        detail: { processed: results.length, errorCount, ...summary },
+      },
       Date.now() - startedAt
     )
 

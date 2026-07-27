@@ -51,8 +51,13 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
     // when the student explicitly chose to spend a regular credit instead.
     let reservedSlice = false
     if (testFamily && !opts?.skipPass) {
-      const { data } = await supabaseAdmin
+      const { data, error } = await supabaseAdmin
         .rpc('use_study_pass_credit', { p_student: studentId, p_source: source, p_test: testFamily })
+      // An RPC error is indistinguishable from "holds no pass credits" in
+      // `data`, and we silently fall through to a generic credit — i.e. the
+      // student spends a credit they didn't mean to. Not worth failing the
+      // start over, but it must not be invisible.
+      if (error) console.error('[credits] pass-credit reserve errored, falling back to generic', { studentId, sessionId, testFamily, error })
       if ((data as { ok?: boolean } | null)?.ok) reservedSlice = true
     }
 
@@ -133,8 +138,15 @@ export async function refundTestCredits(studentId: string, sessionId: string, co
   for (let i = 0; i < cost; i++) {
     const source = creditSourceId(sessionId, i)
     try {
-      const { data } = await supabaseAdmin
+      const { data, error } = await supabaseAdmin
         .rpc('refund_study_credit', { p_student: studentId, p_source: source })
+      // An errored RPC leaves `data` null, which used to be counted as
+      // `noDebit` — a lost credit reported to the caller (and the reaper's
+      // logs) as "there was nothing to give back". Never conflate the two.
+      if (error) {
+        console.error('[credits] refund slice failed', { studentId, sessionId, slice: i, error })
+        continue
+      }
       const r = (data ?? {}) as { ok?: boolean; already?: boolean; reason?: string }
       if (r.already) out.already++
       else if (r.ok) out.refunded++

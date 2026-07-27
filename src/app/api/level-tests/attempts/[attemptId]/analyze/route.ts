@@ -137,13 +137,20 @@ export async function POST(
       tone: toneOpt,
     })
 
-    await supabaseAdmin
+    const { error: persistError } = await supabaseAdmin
       .from('level_test_attempts')
       .update({
         ai_analysis: analysis,
         ai_analysis_generated_at: new Date().toISOString(),
       })
       .eq('id', attemptId)
+
+    if (persistError) {
+      // The analysis is returned below either way, but if it wasn't stored the
+      // GET route reports "no analysis" and the manager pays for another
+      // OpenAI generation every time they reopen the attempt.
+      console.error('[attempt analyze] failed to persist analysis', attemptId, persistError)
+    }
 
     return NextResponse.json({ analysis })
   } catch (error) {

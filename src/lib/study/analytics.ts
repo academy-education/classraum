@@ -58,6 +58,9 @@ export async function trackEvent(
 ): Promise<void> {
   if (!studentId) return
   try {
+    // Intentionally ignores the resolved { error }: a dropped funnel event
+    // costs a row in a reporting table and nothing else, and every caller
+    // is a `void` on a hot request path.
     await supabaseAdmin.from('study_analytics_events').insert({
       student_id: studentId,
       event,

@@ -190,6 +190,9 @@ export async function POST(req: NextRequest) {
   // session so it never shows up as a recent/abandoned practice set, and
   // returns WITHOUT charging energy.
   const bailUnserveable = async (payload: object, status: number) => {
+    // Error intentionally ignored: no energy or credit was spent on this
+    // path, so a failed delete only leaves an empty session for the
+    // abandoned-session sweep to pick up.
     await supabaseAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
     return NextResponse.json(payload, { status })
   }
@@ -214,6 +217,8 @@ export async function POST(req: NextRequest) {
     if (!spend.ok) {
       // The just-created empty session never served a batch — delete it
       // so an unused set doesn't linger on the shelf or in history.
+      // Error intentionally ignored: the spend was refused, so nothing is
+      // owed; the sweep collects the row if this misses.
       await supabaseAdmin.from('study_sessions').delete().eq('id', session.id).eq('student_id', user.id)
       return NextResponse.json(
         { error: 'out of energy', reason: 'no_energy', cap: spend.state.cap, nextRefillSeconds: spend.state.nextRefillSeconds },
@@ -259,6 +264,9 @@ const PRACTICE_CACHE_MARKER = '[practice-v1]'
  *  — the grade route falls back to legacy behavior when no row exists. */
 async function cacheServedBatch(sessionId: string, questions: unknown[]): Promise<void> {
   try {
+    // Error intentionally ignored: the grade route reads the NEWEST cache
+    // row (order by created_at desc, limit 1), so a stale row left behind
+    // by a failed delete is never graded against.
     await supabaseAdmin
       .from('study_messages')
       .delete()

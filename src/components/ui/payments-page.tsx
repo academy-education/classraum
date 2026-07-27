@@ -470,15 +470,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         // Get the student_id and template_id for each enrollment before deleting
         const enrollmentsToDelete = recurringStudents.filter(s => selectedIds.includes(s.id))
 
-        // Soft-delete pending invoices for each enrollment
+        // Soft-delete pending invoices for each enrollment. If this is dropped
+        // the enrollment goes away but the pending invoices survive, so the
+        // student keeps getting billed for a plan the manager cancelled.
         for (const enrollment of enrollmentsToDelete) {
-          await supabase
+          const { error: invoiceError } = await supabase
             .from('invoices')
             .update({ deleted_at: new Date().toISOString() })
             .eq('student_id', enrollment.student_id)
             .eq('template_id', enrollment.template_id)
             .eq('status', 'pending')
             .is('deleted_at', null)
+
+          if (invoiceError) throw invoiceError
         }
 
         // Delete recurring payment enrollments
@@ -638,14 +642,18 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     if (!recurringToDelete) return
 
     try {
-      // Also soft-delete any pending invoices for this student+template
-      await supabase
+      // Also soft-delete any pending invoices for this student+template. If
+      // this is dropped the enrollment disappears but the pending invoices
+      // survive, so the student keeps getting billed for a cancelled plan.
+      const { error: invoiceError } = await supabase
         .from('invoices')
         .update({ deleted_at: new Date().toISOString() })
         .eq('student_id', recurringToDelete.student_id)
         .eq('template_id', recurringToDelete.template_id)
         .eq('status', 'pending')
         .is('deleted_at', null)
+
+      if (invoiceError) throw invoiceError
 
       const { error } = await supabase
         .from('recurring_payment_template_students')

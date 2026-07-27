@@ -152,11 +152,20 @@ export async function cleanupWebPush(userId: string): Promise<void> {
 
     const token = JSON.stringify(subscription.toJSON());
 
-    await supabase
+    // Checked: .update() resolves with { error } and never throws. If the
+    // token stays active the device keeps receiving the logged-out
+    // account's push notifications — on a shared device that is someone
+    // else's data on the lock screen.
+    const { error } = await supabase
       .from('device_tokens')
       .update({ is_active: false, updated_at: new Date().toISOString() })
       .eq('user_id', userId)
       .eq('token', token);
+
+    if (error) {
+      console.error('Error deactivating web push token:', error);
+      return;
+    }
 
     console.log('Web push token deactivated');
   } catch (error) {

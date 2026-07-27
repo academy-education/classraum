@@ -170,10 +170,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'module2_cache_write_failed' }, { status: 500 })
     }
 
-    await supabaseAdmin
+    // module2_route is the replay guard: the cache row now holds Module 2,
+    // so if this write is lost a re-entry reads a null route and appends a
+    // SECOND Module 2 to the same payload. The student already has their
+    // questions, so don't fail the response — but make the corruption risk
+    // visible rather than silent.
+    const { error: routeErr } = await supabaseAdmin
       .from('study_sessions')
       .update({ module1_correct: correct, module1_total: module1Questions.length, module2_route: route })
       .eq('id', sessionId)
+    if (routeErr) {
+      console.error('[test/route] SAT route verdict not persisted', { sessionId, route, error: routeErr })
+    }
 
     return NextResponse.json({
       route,
@@ -232,8 +240,10 @@ export async function POST(req: NextRequest) {
   }
 
   if (!isBankAdaptive) {
-    // Legacy pre-drawn payload — record the verdict only.
-    await supabaseAdmin
+    // Legacy pre-drawn payload — record the verdict only. Nothing is drawn
+    // here, so a lost write just means the adaptive verdict never reaches
+    // history/analytics; log it rather than 500 a working test.
+    const { error: legacyErr } = await supabaseAdmin
       .from('study_sessions')
       .update({
         module1_correct: correct,
@@ -241,6 +251,9 @@ export async function POST(req: NextRequest) {
         module2_route: route,
       })
       .eq('id', sessionId)
+    if (legacyErr) {
+      console.error('[test/route] legacy route verdict not persisted', { sessionId, route, error: legacyErr })
+    }
 
     return NextResponse.json({
       route,
@@ -311,10 +324,15 @@ export async function POST(req: NextRequest) {
   } catch (e) {
     // Release the claim so the student can retry once the bank is
     // seeded, rather than being stranded with a route and no Module 2.
-    await supabaseAdmin
+    // If the release itself fails they ARE stranded — the replay path will
+    // hand back an empty Module 2 forever — so it must not be silent.
+    const { error: releaseErr } = await supabaseAdmin
       .from('study_sessions')
       .update({ module2_route: null })
       .eq('id', sessionId)
+    if (releaseErr) {
+      console.error('[test/route] claim release failed after empty bank', { sessionId, error: releaseErr })
+    }
     return NextResponse.json(
       { error: 'module2_bank_empty', details: (e as Error).message }, { status: 409 },
     )
@@ -331,10 +349,14 @@ export async function POST(req: NextRequest) {
     .eq('role', 'assistant')
     .ilike('content', `${CACHED_TEST_MARKER}%`)
   if (writeErr) {
-    await supabaseAdmin
+    // Same stranding risk as the bank-empty path above.
+    const { error: releaseErr } = await supabaseAdmin
       .from('study_sessions')
       .update({ module2_route: null })
       .eq('id', sessionId)
+    if (releaseErr) {
+      console.error('[test/route] claim release failed after cache write failure', { sessionId, error: releaseErr })
+    }
     return NextResponse.json({ error: 'module2_cache_write_failed' }, { status: 500 })
   }
 

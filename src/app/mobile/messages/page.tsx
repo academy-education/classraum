@@ -307,10 +307,18 @@ function MobileMessagesPageContent() {
   // Mark message as read
   const markMessageAsRead = useCallback(async (messageId: string) => {
     try {
-      await supabase
+      // supabase-js resolves with { error } rather than throwing, so the catch
+      // below never sees a failed update. Unchecked, the header unread badge
+      // keeps counting a message the student is currently reading.
+      const { error } = await supabase
         .from('user_messages')
         .update({ is_read: true })
         .eq('id', messageId)
+
+      if (error) {
+        console.error('Error marking message as read:', error)
+        return
+      }
 
       // Dispatch event to update header unread count
       window.dispatchEvent(new CustomEvent('messageRead'))

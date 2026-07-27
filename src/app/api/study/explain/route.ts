@@ -122,7 +122,10 @@ export async function POST(req: NextRequest) {
         const session = attempt?.session as { student_id: string } | { student_id: string }[] | null
         const owner = Array.isArray(session) ? session[0]?.student_id : session?.student_id
         if (attempt && owner === user.id) {
-          await supabaseAdmin
+          // The catch below can't see a rejected write (supabase-js
+          // resolves with { error }), so a failed save silently cost the
+          // student their explanation on the next notebook reload.
+          const { error: saveErr } = await supabaseAdmin
             .from('study_attempt_explanations')
             .upsert(
               {
@@ -132,6 +135,7 @@ export async function POST(req: NextRequest) {
               },
               { onConflict: 'student_id,attempt_id' },
             )
+          if (saveErr) console.error('[study/explain] save failed', { attemptId, mode, error: saveErr })
         }
       } catch (e) {
         console.error('[study/explain] save failed', e)

@@ -22,7 +22,10 @@ async function appendSystemMessage(
   systemType: string,
   systemMeta: Record<string, unknown>
 ) {
-  await supabase.from('user_messages').insert({
+  // Both writes resolve with { error } instead of throwing, so an unread
+  // error here means the membership/rename change happened but the timeline
+  // never shows it — the group silently changes under the members' feet.
+  const { error: insertError } = await supabase.from('user_messages').insert({
     conversation_id: conversationId,
     sender_id: actorId,
     message: null,
@@ -30,10 +33,16 @@ async function appendSystemMessage(
     system_meta: systemMeta,
     is_read: true,
   })
-  await supabase
+  if (insertError) {
+    console.error('[Messages API] Error inserting system message:', systemType, conversationId, insertError)
+  }
+  const { error: bumpError } = await supabase
     .from('user_conversations')
     .update({ updated_at: new Date().toISOString() })
     .eq('id', conversationId)
+  if (bumpError) {
+    console.error('[Messages API] Error bumping conversation updated_at:', conversationId, bumpError)
+  }
 }
 
 // POST /api/messages/conversations/[id]/members

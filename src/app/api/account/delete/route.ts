@@ -173,10 +173,29 @@ export async function POST(request: NextRequest) {
 
   if (banError) {
     console.error('[account/delete] auth ban failed, rolling back:', banError)
-    await supabaseAdmin
+    // Checked: if the rollback is dropped we return a 500 the user reads
+    // as "nothing happened", while deletion_scheduled_at stays set — and
+    // the daily cron hard-deletes them 30 days later. A failed rollback
+    // is a scheduled erasure nobody knows about.
+    const { error: rollbackError } = await supabaseAdmin
       .from('users')
       .update({ deletion_scheduled_at: null })
       .eq('id', user.id)
+    if (rollbackError) {
+      console.error('[account/delete] rollback failed:', rollbackError)
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Deletion rollback failed — account still scheduled',
+        message:
+          `User ${user.id} could not be banned so their deletion request was ` +
+          `rejected, but clearing users.deletion_scheduled_at failed. They were ` +
+          `told the request did not go through, yet the hard-delete cron will ` +
+          `erase them in 30 days. Clear the column now.`,
+        dedupeKey: 'account-delete:rollback-failed',
+        error: rollbackError,
+        context: { userId: user.id },
+      })
+    }
     return NextResponse.json(
       { error: 'Failed to schedule deletion (auth)' },
       { status: 500 }

@@ -57,13 +57,33 @@ export async function POST(
         (savedAnswers || []).map(a => ({ question_id: a.question_id, answer: a.answer }))
       )
 
-    // Update is_correct on existing answer rows
+    // Update is_correct on existing answer rows.
+    const failedAnswerWrites: string[] = []
     for (const u of updates) {
-      await supabaseAdmin
+      const { error: answerError } = await supabaseAdmin
         .from('level_test_answers')
         .update({ is_correct: u.is_correct })
         .eq('attempt_id', attemptId)
         .eq('question_id', u.question_id)
+      if (answerError) {
+        console.error('[attempt submit] answer grade write failed', {
+          attemptId,
+          questionId: u.question_id,
+          error: answerError,
+        })
+        failedAnswerWrites.push(u.question_id)
+      }
+    }
+
+    if (failedAnswerWrites.length > 0) {
+      // Stop before flipping the attempt to submitted. The score below is
+      // computed in memory; persisting it on top of half-written answer rows
+      // would show a score the per-question results can't account for.
+      // Leaving the attempt 'in_progress' keeps the submit retryable.
+      return NextResponse.json(
+        { error: 'Failed to save graded answers', questions: failedAnswerWrites },
+        { status: 500 }
+      )
     }
 
     const { data: updatedAttempt, error: updateError } = await supabaseAdmin

@@ -15,9 +15,14 @@ function isThemeChoice(v: unknown): v is ThemeChoice {
 export async function saveThemeToAccount(userId: string, theme: ThemeChoice): Promise<void> {
   if (!userId) return
   try {
-    await supabase
+    // Checked: .upsert() resolves with { error } and never throws, so the
+    // catch below never fired. Best-effort still means visible — an RLS
+    // denial here silently un-syncs theme across the user's devices and
+    // looks like the setting "not saving" with nothing in the logs.
+    const { error } = await supabase
       .from('user_preferences')
       .upsert({ user_id: userId, theme }, { onConflict: 'user_id' })
+    if (error) console.error('[theme-account] save rejected', error)
   } catch (e) {
     console.error('[theme-account] save failed', e)
   }

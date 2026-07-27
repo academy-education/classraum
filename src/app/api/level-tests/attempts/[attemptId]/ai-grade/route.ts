@@ -92,12 +92,31 @@ export async function POST(
 
     // Apply grades
     const now = new Date().toISOString()
+    const failedGradeWrites: string[] = []
     for (const g of graded) {
-      await supabaseAdmin
+      const { error: gradeError } = await supabaseAdmin
         .from('level_test_answers')
         .update({ is_correct: g.is_correct, graded_at: now })
         .eq('attempt_id', attemptId)
         .eq('question_id', g.question_id)
+      if (gradeError) {
+        console.error('[ai-grade] grade write failed', {
+          attemptId,
+          questionId: g.question_id,
+          error: gradeError,
+        })
+        failedGradeWrites.push(g.question_id)
+      }
+    }
+
+    if (failedGradeWrites.length > 0) {
+      // The score below is recomputed from the answer rows we just tried to
+      // write. Returning `graded` after a lost write would show the manager
+      // grades the database doesn't have, against a score that ignores them.
+      return NextResponse.json(
+        { error: 'Failed to save AI grades', questions: failedGradeWrites },
+        { status: 500 }
+      )
     }
 
     // Recompute attempt score

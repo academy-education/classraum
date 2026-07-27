@@ -220,11 +220,14 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
     if (!user?.userId || !deck || deck.length === 0 || queue.length !== 0) return
     completedRef.current = true
     const score = Math.round((marked.got / deck.length) * 100)
+    // If this write is dropped the session is stuck at 'in_progress' in history
+    // forever — the exact bug this effect exists to fix — so make it visible.
     void supabase
       .from('study_sessions')
       .update({ status: 'completed', completed_at: new Date().toISOString(), score })
       .eq('id', sessionId)
       .eq('student_id', user.userId)
+      .then(({ error }) => { if (error) console.error('[flashcards] session complete update failed', error) })
   }, [deck, queue.length, marked.got, sessionId, user?.userId])
 
   // "New deck" starts a FRESH flashcards session on the same topic so

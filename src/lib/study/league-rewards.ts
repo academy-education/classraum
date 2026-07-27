@@ -63,18 +63,29 @@ async function grantCredits(studentId: string, delta: number, note: string): Pro
   const { data: sub } = await supabaseAdmin
     .from('study_subscriptions').select('id').eq('student_id', studentId).maybeSingle()
   if (!sub) {
-    await supabaseAdmin.from('study_subscriptions').insert({
+    // A real create failure (not the 23505 lost race) means no row for the
+    // increment to update — the RPC would return success and the reward
+    // would vanish while study_league_rewards claims it was paid. Report
+    // the failure so the caller doesn't count credits nobody received.
+    const { error: createErr } = await supabaseAdmin.from('study_subscriptions').insert({
       student_id: studentId, status: 'free', plan: 'free_v1', currency: 'KRW',
       grant_credits_remaining: 0, purchased_credits_remaining: 0,
-    }).then(() => {}, () => {}) // ignore a lost create race; the increment below still lands
+    })
+    if (createErr && createErr.code !== '23505') {
+      console.error('[league-rewards] subscription row create failed', { studentId, delta, error: createErr })
+      return false
+    }
   }
   const { error } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
     p_student_id: studentId, p_delta: delta,
   })
   if (error) { console.error('[league-rewards] credit grant failed', { studentId, delta, error }); return false }
-  await supabaseAdmin.from('study_credit_ledger').insert({
+  // Balance already moved — a lost ledger row is an audit gap, never a
+  // reason to re-pay, but it breaks reconciliation so it must be visible.
+  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: studentId, delta, bucket: 'purchased', kind: 'league_reward', note,
-  }).then(() => {}, () => {})
+  })
+  if (ledgerErr) console.error('[league-rewards] ledger row missing', { studentId, delta, note, error: ledgerErr })
   return true
 }
 

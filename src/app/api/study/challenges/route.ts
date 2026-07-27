@@ -144,27 +144,46 @@ async function handleAccept(me: string, id: string | undefined): Promise<NextRes
   }
   const now = new Date()
   const end = new Date(now.getTime() + DUEL_DAYS * 24 * 60 * 60 * 1000)
-  await supabaseAdmin.from('study_challenges').update({
+  // This update IS the acceptance — start_at/end_at define the XP window
+  // the duel is scored over. Returning 'active' over a failed write showed
+  // both players a running duel that never started or resolved.
+  const { error } = await supabaseAdmin.from('study_challenges').update({
     status: 'active',
     start_at: now.toISOString(),
     end_at: end.toISOString(),
     responded_at: now.toISOString(),
   }).eq('id', id).eq('status', 'pending')
+  if (error) {
+    console.error('[study/challenges] accept failed', { id, error })
+    return NextResponse.json({ error: 'could not accept challenge' }, { status: 500 })
+  }
   return NextResponse.json({ status: 'active', ends_at: end.toISOString() })
 }
 
 async function handleRespond(me: string, id: string | undefined, status: 'declined'): Promise<NextResponse> {
   if (!id) return NextResponse.json({ error: 'missing id' }, { status: 400 })
-  await supabaseAdmin.from('study_challenges')
+  // A failed decline leaves the duel pending, so the partial unique index
+  // keeps blocking any new duel with that friend while the UI says it's gone.
+  const { error } = await supabaseAdmin.from('study_challenges')
     .update({ status, responded_at: new Date().toISOString() })
     .eq('id', id).eq('opponent_id', me).eq('status', 'pending')
+  if (error) {
+    console.error('[study/challenges] decline failed', { id, error })
+    return NextResponse.json({ error: 'could not decline challenge' }, { status: 500 })
+  }
   return NextResponse.json({ status })
 }
 
 async function handleCancel(me: string, id: string | undefined): Promise<NextResponse> {
   if (!id) return NextResponse.json({ error: 'missing id' }, { status: 400 })
-  await supabaseAdmin.from('study_challenges')
+  // As above — a silently failed cancel keeps the pending row (and its
+  // unique-index lock on the pair) alive behind a "cancelled" UI.
+  const { error } = await supabaseAdmin.from('study_challenges')
     .update({ status: 'cancelled' })
     .eq('id', id).eq('challenger_id', me).eq('status', 'pending')
+  if (error) {
+    console.error('[study/challenges] cancel failed', { id, error })
+    return NextResponse.json({ error: 'could not cancel challenge' }, { status: 500 })
+  }
   return NextResponse.json({ status: 'cancelled' })
 }

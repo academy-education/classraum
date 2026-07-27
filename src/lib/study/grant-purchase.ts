@@ -110,7 +110,12 @@ export async function grantCreditPack(opts: {
     .eq('student_id', opts.studentId)
     .maybeSingle()
   if (!sub) {
-    await supabaseAdmin.from('study_subscriptions').insert({
+    // increment_study_purchased_credits only UPDATEs an existing row, so a
+    // failed create here means the paid credits below land nowhere and the
+    // RPC reports success. Bail before granting so the caller 500s and the
+    // webhook backstop can retry (the study_payments row is already ours,
+    // so the retry path is the one that recovers this).
+    const { error: createErr } = await supabaseAdmin.from('study_subscriptions').insert({
       student_id: opts.studentId,
       status: 'free',
       plan: 'free_v1',
@@ -120,11 +125,25 @@ export async function grantCreditPack(opts: {
       purchased_credits_remaining: 0,
       updated_at: nowIso,
     })
+    // 23505 = a concurrent create won; the row exists either way.
+    if (createErr && (createErr as { code?: string }).code !== '23505') {
+      console.error('[grant] pack recorded but subscription row create failed', {
+        studentId: opts.studentId, paymentId: opts.paymentId, error: createErr,
+      })
+      return { status: 'error', httpStatus: 500, message: 'could not provision account; support will reconcile' }
+    }
   } else if (!sub.portone_subscription_id && opts.billingKeyToPersist) {
-    await supabaseAdmin
+    // Card persistence is a convenience (top-ups can re-issue a key), so a
+    // failure must not fail a completed purchase — but it must be visible.
+    const { error: keyErr } = await supabaseAdmin
       .from('study_subscriptions')
       .update({ portone_subscription_id: opts.billingKeyToPersist, updated_at: nowIso })
       .eq('student_id', opts.studentId)
+    if (keyErr) {
+      console.error('[grant] billing key not persisted', {
+        studentId: opts.studentId, paymentId: opts.paymentId, error: keyErr,
+      })
+    }
   }
 
   const { error: updateErr } = await supabaseAdmin.rpc('increment_study_purchased_credits', {
@@ -140,13 +159,20 @@ export async function grantCreditPack(opts: {
     })
     return { status: 'error', httpStatus: 500, message: 'credit write failed; support will reconcile' }
   }
-  await supabaseAdmin.from('study_credit_ledger').insert({
+  // Balance already moved, so a lost ledger row is an audit-trail gap, never
+  // a reason to re-grant — but the balance stops reconciling, so log it.
+  const { error: packLedgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: opts.studentId,
     delta: pack.credits,
     bucket: 'purchased',
     kind: 'purchase',
     note: `${pack.id} (${opts.paymentId})`,
   })
+  if (packLedgerErr) {
+    console.error('[grant] pack credits granted but ledger row missing', {
+      studentId: opts.studentId, paymentId: opts.paymentId, credits: pack.credits, error: packLedgerErr,
+    })
+  }
 
   void trackEvent(opts.studentId, 'pack_purchased', {
     packId: pack.id, credits: pack.credits, priceWon: pack.priceWon,
@@ -230,13 +256,20 @@ export async function grantExamPass(opts: {
     })
     return { status: 'error', httpStatus: 500, message: 'pass active but credit grant failed; support will reconcile' }
   }
-  await supabaseAdmin.from('study_credit_ledger').insert({
+  // As above: audit-trail only, but a silent gap makes the pass balance
+  // impossible to reconcile against the ledger.
+  const { error: passLedgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: opts.studentId,
     delta: passTerms.credits,
     bucket: `pass:${passTerms.test}`,
     kind: 'purchase',
     note: `${passPlan.id} (${opts.paymentId})`,
   })
+  if (passLedgerErr) {
+    console.error('[grant] pass credits granted but ledger row missing', {
+      studentId: opts.studentId, paymentId: opts.paymentId, credits: passTerms.credits, error: passLedgerErr,
+    })
+  }
 
   // Test-scoped access: record the entitlement (stackable — a SAT pass and a
   // TOEFL pass coexist) so this pass unlocks its test until the period ends,

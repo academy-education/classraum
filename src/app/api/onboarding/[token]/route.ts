@@ -176,7 +176,15 @@ export async function POST(
     // Helper: delete the auth user we just made if a downstream step fails.
     const rollback = async (reason: string) => {
       console.error('[Onboarding] Rolling back auth user', userId, ':', reason)
-      try { await supabase.auth.admin.deleteUser(userId) } catch (e) {
+      // deleteUser resolves with { error } rather than throwing, so the
+      // try/catch alone would let a failed rollback pass unnoticed — and an
+      // orphaned auth user squats on the email, blocking every retry.
+      try {
+        const { error: deleteError } = await supabase.auth.admin.deleteUser(userId)
+        if (deleteError) {
+          console.error('[Onboarding] Rollback delete failed — orphaned auth user', userId, email, deleteError)
+        }
+      } catch (e) {
         console.error('[Onboarding] Rollback delete failed:', e)
       }
     }
@@ -216,8 +224,13 @@ export async function POST(
       .insert({ user_id: userId, academy_id: academy.id, phone, active: true })
     if (managersError) {
       await rollback(managersError.message)
-      // Best-effort: also delete the public users row we just created.
-      await supabase.from('users').delete().eq('id', userId)
+      // Best-effort: also delete the public users row we just created. If this
+      // is lost, a users row with role='manager' outlives its deleted auth
+      // user and its unique email blocks the manager from onboarding again.
+      const { error: userCleanupError } = await supabase.from('users').delete().eq('id', userId)
+      if (userCleanupError) {
+        console.error('[Onboarding] Cleanup of public users row FAILED — orphaned row', userId, email, userCleanupError)
+      }
       return NextResponse.json({
         error: 'Failed to create manager record',
         detail: managersError.message,

@@ -84,6 +84,9 @@ export async function POST(req: NextRequest) {
   {
     const spend = await spendEnergy(user.id)
     if (!spend.ok) {
+      // Error intentionally ignored: no energy was spent, so the worst case
+      // is an empty session lingering until cleanupAbandonedPracticeSessions
+      // sweeps it.
       await supabaseAdmin.from('study_sessions').delete().eq('id', sessionId).eq('student_id', user.id)
       return NextResponse.json(
         { error: 'out of energy', reason: 'no_energy', cap: spend.state.cap, nextRefillSeconds: spend.state.nextRefillSeconds },
@@ -114,7 +117,10 @@ export async function POST(req: NextRequest) {
   })
   const deck: Deck = { cards }
 
-  await supabaseAdmin
+  // Energy was already spent above and this row is what a resume reads. If
+  // it silently fails the deck is a ghost — gone on refresh — and the
+  // student pays a second energy for the redraw.
+  const { error: cacheErr } = await supabaseAdmin
     .from('study_messages')
     .insert({
       session_id: sessionId,
@@ -122,6 +128,9 @@ export async function POST(req: NextRequest) {
       content: CACHED_DECK_MARKER + JSON.stringify(deck),
       model: 'flashcard-bank',
     })
+  if (cacheErr) {
+    console.error('[flashcards/generate] deck cache write failed', { sessionId, studentId: user.id, error: cacheErr })
+  }
 
   return NextResponse.json({ deck, cached: false })
 }

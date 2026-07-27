@@ -73,6 +73,8 @@ export async function GET(
 
     // Mark every unread message NOT sent by the current user as read. Works
     // identically for 1:1 (one other participant) and group chats (many).
+    // Fire-and-forget on purpose: a lost read-receipt write just means the
+    // badge clears on the next open, and it must never fail the message fetch.
     await supabase
       .from('user_messages')
       .update({ is_read: true })
@@ -149,10 +151,17 @@ export async function POST(
       return NextResponse.json({ error: 'Failed to send message' }, { status: 500 })
     }
 
-    await supabase
+    const { error: bumpError } = await supabase
       .from('user_conversations')
       .update({ updated_at: new Date().toISOString() })
       .eq('id', conversationId)
+
+    if (bumpError) {
+      // The message is already sent, so don't fail the request — but a lost
+      // bump leaves the conversation sorted by a stale timestamp, so new
+      // messages stop surfacing at the top of everyone's list.
+      console.error('[Messages API] Error bumping conversation updated_at:', conversationId, bumpError)
+    }
 
     return NextResponse.json({
       message: {

@@ -97,10 +97,13 @@ export async function sendPushToStudent(
         failed++
         // 404/410 means the token is dead — deactivate.
         if (res.status === 404 || res.status === 410) {
-          await supabaseAdmin
+          // If the deactivation is lost we keep pushing to a dead token on
+          // every future notification, permanently inflating `failed`.
+          const { error } = await supabaseAdmin
             .from('device_tokens')
             .update({ is_active: false })
             .eq('token', t.token)
+          if (error) console.error('[push] dead-token deactivation failed', error)
         }
       }
     } catch (err) {

@@ -172,11 +172,17 @@ export function ChatPanel({
           // literally reading it. Skip system messages (no read state) and
           // self messages (already read).
           if (row.sender_id !== currentUserId && !row.system_type && !row.is_read) {
-            await supabase
+            // Don't fire the badge-refresh event on a failed write — that would
+            // show a decremented count that snaps back on the next poll.
+            const { error } = await supabase
               .from('user_messages')
               .update({ is_read: true })
               .eq('id', row.id)
-            window.dispatchEvent(new CustomEvent('messageRead'))
+            if (error) {
+              console.error('[ChatPanel] Error marking message as read:', error)
+            } else {
+              window.dispatchEvent(new CustomEvent('messageRead'))
+            }
           }
         }
       )

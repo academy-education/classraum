@@ -193,7 +193,12 @@ export async function evaluateStreak(studentId: string): Promise<StreakResult> {
   const consumedThisEval = evalResult.newlyProtected.length > 0
   const notify = consumedThisEval && streak > 0 && lastSavedOn !== todayKey
 
-  await supabaseAdmin
+  // This upsert IS the streak state: freeze inventory, the consumed-day
+  // list, the milestone ratchet and the once-a-day notify guard. A silent
+  // failure hands back a streak/freeze count the database never stored —
+  // the next read re-evaluates from stale state and can re-consume or
+  // re-grant a freeze, and the "streak saved" push repeats.
+  const { error: stateErr } = await supabaseAdmin
     .from('study_streak_state')
     .upsert({
       student_id: studentId,
@@ -204,6 +209,9 @@ export async function evaluateStreak(studentId: string): Promise<StreakResult> {
       last_saved_notified_on: notify ? todayKey : lastSavedOn,
       updated_at: new Date().toISOString(),
     }, { onConflict: 'student_id' })
+  if (stateErr) {
+    console.error('[streak] state write failed', { studentId, streak, freezes, error: stateErr })
+  }
 
   if (notify) {
     await notifyStudent({

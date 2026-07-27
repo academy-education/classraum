@@ -80,11 +80,14 @@ export function useAssignmentActions() {
 
   const deleteAssignment = useCallback(async (assignmentId: string) => {
     try {
-      // First delete related submissions
-      await supabase
+      // First delete related submissions. Reporting success after only half of
+      // a two-step delete leaves orphaned submissions behind, so fail loudly.
+      const { error: submissionsError } = await supabase
         .from('assignment_submissions')
         .delete()
         .eq('assignment_id', assignmentId)
+
+      if (submissionsError) throw submissionsError
 
       // Then delete the assignment
       const { error } = await supabase

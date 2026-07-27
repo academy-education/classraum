@@ -124,10 +124,17 @@ async function handleRequest(
     // A pending edge exists. If THEY requested ME, accept it now; otherwise
     // I already have an outstanding request out.
     if (existing.addressee_id === me) {
-      await supabaseAdmin
+      // Reporting 'accepted' over a failed write left the edge pending:
+      // neither side appears in the other's friend list, and challenges to
+      // this friend keep failing with 'not_friends'.
+      const { error } = await supabaseAdmin
         .from('study_friendships')
         .update({ status: 'accepted', responded_at: new Date().toISOString() })
         .eq('id', existing.id)
+      if (error) {
+        console.error('[study/friends] implicit accept failed', { id: existing.id, error })
+        return NextResponse.json({ error: 'could not accept request' }, { status: 500 })
+      }
       return NextResponse.json({ status: 'accepted' })
     }
     return NextResponse.json({ status: 'pending_out' })
@@ -157,26 +164,50 @@ async function handleRespond(me: string, id: string | undefined, kind: 'accept' 
     return NextResponse.json({ error: 'no such request', code: 'not_found' }, { status: 404 })
   }
   if (kind === 'accept') {
-    await supabaseAdmin.from('study_friendships')
+    // The status flip IS the friendship — see handleAdd.
+    const { error } = await supabaseAdmin.from('study_friendships')
       .update({ status: 'accepted', responded_at: new Date().toISOString() }).eq('id', id)
+    if (error) {
+      console.error('[study/friends] accept failed', { id, error })
+      return NextResponse.json({ error: 'could not accept request' }, { status: 500 })
+    }
     return NextResponse.json({ status: 'accepted' })
   }
-  await supabaseAdmin.from('study_friendships').delete().eq('id', id)
+  // A failed decline leaves the request in the inbox after the UI removed it.
+  const { error } = await supabaseAdmin.from('study_friendships').delete().eq('id', id)
+  if (error) {
+    console.error('[study/friends] decline failed', { id, error })
+    return NextResponse.json({ error: 'could not decline request' }, { status: 500 })
+  }
   return NextResponse.json({ status: 'declined' })
 }
 
 async function handleCancel(me: string, id: string | undefined): Promise<NextResponse> {
   if (!id) return NextResponse.json({ error: 'missing id' }, { status: 400 })
   // Only the REQUESTER may withdraw their own pending request.
-  await supabaseAdmin.from('study_friendships')
+  // A failed delete keeps the pending edge (and its unique-pair lock), so
+  // re-adding the same person afterwards silently reports 'pending_out'.
+  const { error } = await supabaseAdmin.from('study_friendships')
     .delete().eq('id', id).eq('requester_id', me).eq('status', 'pending')
+  if (error) {
+    console.error('[study/friends] cancel failed', { id, error })
+    return NextResponse.json({ error: 'could not cancel request' }, { status: 500 })
+  }
   return NextResponse.json({ status: 'cancelled' })
 }
 
 async function handleRemove(me: string, friendId: string | undefined): Promise<NextResponse> {
   if (!friendId) return NextResponse.json({ error: 'missing friendId' }, { status: 400 })
   const edge = await findFriendship(me, friendId)
-  if (edge) await supabaseAdmin.from('study_friendships').delete().eq('id', edge.id)
+  if (edge) {
+    // 'removed' over a failed delete is a privacy-visible lie: the friend
+    // keeps seeing the caller on their leaderboard and can still duel them.
+    const { error } = await supabaseAdmin.from('study_friendships').delete().eq('id', edge.id)
+    if (error) {
+      console.error('[study/friends] remove failed', { id: edge.id, error })
+      return NextResponse.json({ error: 'could not remove friend' }, { status: 500 })
+    }
+  }
   return NextResponse.json({ status: 'removed' })
 }
 

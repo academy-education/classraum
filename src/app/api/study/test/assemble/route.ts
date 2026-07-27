@@ -177,6 +177,9 @@ export async function POST(req: NextRequest) {
     // Spend this test's exam-pass credits first unless the student chose 'regular'.
     const credit = await reserveTestCredits(user.id, sess.id, creditCost, family, { skipPass: body.creditSource === 'regular' })
     if (!credit.ok) {
+      // Error intentionally ignored on all three rollback deletes below:
+      // credits are reserved/refunded independently, so a failed delete
+      // only leaves an empty, question-less session in history.
       await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
       void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits', kind: `bank_${family}` })
       return NextResponse.json(
@@ -203,6 +206,9 @@ export async function POST(req: NextRequest) {
       : await assembleFromBank({ section: section as 'math' | 'reading_writing', count, studentId: user.id }, sess.id)
   } catch (e) {
     // Not enough verified items for this section — roll back the session.
+    // Delete error intentionally ignored: the credits are already back, so
+    // the worst case is an empty session row that carries no questions and
+    // gets swept by cleanupAbandonedPracticeSessions.
     if (creditCost > 0) await refundTestCredits(user.id, sess.id, creditCost)
     await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
     return NextResponse.json({ error: (e as Error).message, reason: 'bank_empty' }, { status: 409 })
@@ -237,10 +243,14 @@ export async function POST(req: NextRequest) {
       content: CACHED_TEST_MARKER + JSON.stringify(payload), model: 'bank-assembled',
     })
   if (cacheErr) {
+    // Same rollback as above — delete error intentionally ignored, since
+    // the credits are already refunded and the leftover row holds no test.
     if (creditCost > 0) await refundTestCredits(user.id, sess.id, creditCost)
     await supabaseAdmin.from('study_sessions').delete().eq('id', sess.id)
     return NextResponse.json({ error: 'cache write failed' }, { status: 500 })
   }
+  // Error intentionally ignored: the title is cosmetic (the cached payload
+  // carries the authoritative one) and the test is already fully usable.
   await supabaseAdmin.from('study_sessions').update({ title: test.title }).eq('id', sess.id)
 
   // Funnel: a bank-assembled test started — the usual first test for a

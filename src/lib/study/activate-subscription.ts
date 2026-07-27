@@ -81,15 +81,20 @@ export async function activateSubscriptionFromBillingKey(opts: {
     // billing key — a bad first charge could mean a dead card, and we
     // don't want the renewal cron to keep retrying it.
     const nowIso = new Date().toISOString()
+    // The charge already failed, so these writes only record WHY. Losing
+    // them leaves the management UI with no failure reason (and, in the
+    // past_due branch, no dunning state), so log rather than swallow.
+    let failureWriteErr: unknown = null
     if (sub?.status === 'active') {
       // A failed NEW subscribe attempt must NOT downgrade an existing
       // active subscription/pass — only note the failure, keep them active.
-      await supabaseAdmin
+      const { error } = await supabaseAdmin
         .from('study_subscriptions')
         .update({ last_payment_attempt_at: nowIso, last_payment_failure: result.message ?? 'unknown', updated_at: nowIso })
         .eq('student_id', opts.studentId)
+      failureWriteErr = error
     } else {
-      await supabaseAdmin
+      const { error } = await supabaseAdmin
         .from('study_subscriptions')
         .upsert({
           student_id: opts.studentId,
@@ -98,6 +103,12 @@ export async function activateSubscriptionFromBillingKey(opts: {
           last_payment_failure: result.message ?? 'unknown',
           updated_at: nowIso,
         }, { onConflict: 'student_id' })
+      failureWriteErr = error
+    }
+    if (failureWriteErr) {
+      console.error('[study/activate-subscription] payment-failure state write failed', {
+        studentId: opts.studentId, paymentId, error: failureWriteErr,
+      })
     }
     return { status: 'charge_failed', code: result.code, message: result.message }
   }
@@ -136,13 +147,20 @@ export async function activateSubscriptionFromBillingKey(opts: {
     return { status: 'error', httpStatus: 500, message: 'charge ok but state write failed; support will reconcile', paymentId }
   }
 
-  await supabaseAdmin.from('study_credit_ledger').insert({
+  // The grant is already on the row above — a lost ledger row is an audit
+  // gap (balance no longer reconciles), never a reason to re-grant.
+  const { error: ledgerErr } = await supabaseAdmin.from('study_credit_ledger').insert({
     student_id: opts.studentId,
     delta: plan.monthlyCredits,
     bucket: 'grant',
     kind: 'grant',
     note: `initial charge ${plan.id} (${paymentId})`,
   })
+  if (ledgerErr) {
+    console.error('[study/activate-subscription] ledger row missing', {
+      studentId: opts.studentId, paymentId, credits: plan.monthlyCredits, error: ledgerErr,
+    })
+  }
   // Record the charge so it surfaces in the admin payments view / is refundable.
   await recordSubscriptionPayment({ paymentId, studentId: opts.studentId, amountWon: plan.priceWon })
 

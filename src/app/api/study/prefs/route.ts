@@ -58,12 +58,15 @@ export async function GET(req: NextRequest) {
 
   if (existing) return NextResponse.json({ prefs: existing })
 
-  // Auto-create default row.
-  const { data: created } = await supabaseAdmin
+  // Auto-create default row. On failure we return prefs:null, which the
+  // onboarding gate reads as "no prefs yet" — the wizard reappears on every
+  // load — so the cause must not be invisible.
+  const { data: created, error: createErr } = await supabaseAdmin
     .from('study_user_prefs')
     .insert({ student_id: user.id })
     .select()
     .single()
+  if (createErr) console.error('[study/prefs] default row create failed', { studentId: user.id, error: createErr })
   return NextResponse.json({ prefs: created })
 }
 

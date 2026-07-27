@@ -104,7 +104,11 @@ export async function assessAndPersistMastery(input: AssessInput): Promise<z.inf
     // Merge with the existing row. The trigger
     // bump_study_mastery_from_attempt already created/updated the
     // numeric score; we're only filling the qualitative fields.
-    await supabaseAdmin
+    // Checked, not swallowed: this update is the only thing that persists
+    // the assessment. A silent failure leaves the recommended shelf showing
+    // stale strengths/weaknesses forever while we re-pay for the same LLM
+    // call on every submit, with nothing in the logs to explain it.
+    const { error: writeErr } = await supabaseAdmin
       .from('study_mastery')
       .update({
         strengths: assessment.strengths,
@@ -114,6 +118,12 @@ export async function assessAndPersistMastery(input: AssessInput): Promise<z.inf
       })
       .eq('student_id', input.studentId)
       .eq('topic_id', input.topicId)
+    if (writeErr) {
+      console.error('[study-mastery-assess] mastery write failed', {
+        studentId: input.studentId, topicId: input.topicId, error: writeErr,
+      })
+      return null
+    }
 
     return assessment
   } catch (err) {
