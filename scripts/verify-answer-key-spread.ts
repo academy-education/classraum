@@ -101,6 +101,47 @@ const MAX_SHARE = 0.45
     bad++
   }
 
-  console.log(bad === 0 ? '\nOK — no cohort is answerable by position.' : `\n${bad} problem(s).`)
+
+  // ── Option-shape tell ────────────────────────────────────────────────
+  //
+  // The third failure mode of this kind, after key-in-slot-A and
+  // complete-ABCD-per-set. A grader on the C2 pilot: "the key is the ONLY
+  // option carrying a qualifying/conceding second clause while all three
+  // distractors are flat maximal statements. Over 30 items a solver learns
+  // 'pick the option that concedes' and never listens."
+  //
+  // It is a property of a BRIEF that asks for narrowed/qualified answers:
+  // the key inherits the hedging and the distractors do not. Measured on
+  // 2026-07-28 the C2 cohort sat at 28.6% while every older cohort was
+  // under 8% — i.e. roughly the base rate, since careful writing does hedge
+  // true statements more often.
+  //
+  // Flagged, not failed, below a high threshold: some correlation here is
+  // natural and unavoidable. It becomes a tell when it is the RULE.
+  const HEDGE = /\b(unless|except|provided|only if|so long as|insofar|although|though|while|but not|rather than|holding|assuming)\b/i
+  const byCohortHedge = new Map<string, { n: number; tell: number }>()
+  for (const r of rows) {
+    const it = r.item as Record<string, unknown> | null
+    const choices = it?.choices as string[] | undefined
+    const key = it?.correct_answer as string | undefined
+    if (!Array.isArray(choices) || choices.length !== 4 || !key) continue
+    const c = r.cohort ?? '(none)'
+    const acc = byCohortHedge.get(c) ?? { n: 0, tell: 0 }
+    acc.n++
+    if (HEDGE.test(key) && !choices.some(ch => ch !== key && HEDGE.test(ch))) acc.tell++
+    byCohortHedge.set(c, acc)
+  }
+  console.log('\noption-shape (key is the only hedged choice):')
+  for (const [cohort, a] of [...byCohortHedge].sort()) {
+    const pct = (100 * a.tell) / a.n
+    const flag = a.n >= 12 && pct > 25
+    console.log(`  ${flag ? 'WARN' : ' ok '} ${cohort.padEnd(14)} ${a.tell}/${a.n}  ${pct.toFixed(1)}%`)
+    if (flag) {
+      console.error(`       ^ a solver can learn "pick the option that concedes"`)
+      bad++
+    }
+  }
+
+  console.log(bad === 0 ? '\nOK — no cohort is answerable by position or option shape.' : `\n${bad} problem(s).`)
   process.exit(bad === 0 ? 0 : 1)
 })()
