@@ -1,5 +1,6 @@
 /**
- * Give the TOEFL Listening bank the task-type dimension it never had.
+ * Give the TOEFL Reading and Listening banks the task-type dimension
+ * neither ever had.
  *
  * WHY
  * ---
@@ -38,9 +39,15 @@
  * NOTHING. Pass --apply to write. Only ever sets `listeningTask`; every
  * other key in `item` is preserved.
  *
+ * READING has the same defect, found the same way: all 524 reading MC rows
+ * carry domain='multiple_choice' — a placeholder, not a task — so "Read in
+ * Daily Life" and "Read an Academic Passage" were indistinguishable and the
+ * ETS ratio between them could never be enforced. Reading writes
+ * item.readingTask; listening writes item.listeningTask.
+ *
  * Usage:
- *   npx tsx scripts/classify-listening-tasks.ts            # dry run
- *   npx tsx scripts/classify-listening-tasks.ts --apply     # write
+ *   npx tsx scripts/classify-toefl-tasks.ts listening [--apply]
+ *   npx tsx scripts/classify-toefl-tasks.ts reading   [--apply]
  */
 
 import { config } from 'dotenv'
@@ -60,14 +67,20 @@ if (!url || !key || !openaiKey) {
 }
 
 const APPLY = process.argv.includes('--apply')
+const SECTION = process.argv.includes('reading') ? 'reading' : 'listening'
+const FIELD = SECTION === 'reading' ? 'readingTask' : 'listeningTask'
 const db = createClient<Database>(url, key)
 const openai = new OpenAI({ apiKey: openaiKey })
 
-/** The four ETS Jan-2026 Listening tasks, plus an explicit escape. */
-const TASKS = ['choose_response', 'conversation', 'announcement', 'academic_talk'] as const
-type Task = (typeof TASKS)[number] | 'unknown'
+/** The ETS Jan-2026 task types, plus an explicit escape. Complete the Words
+ *  is not listed for reading: it is item_type='fill_in_blanks' and already
+ *  selectable without a tag. */
+const LISTENING_TASKS = ['choose_response', 'conversation', 'announcement', 'academic_talk'] as const
+const READING_TASKS = ['daily_life', 'academic_passage'] as const
+const TASKS: readonly string[] = SECTION === 'reading' ? READING_TASKS : LISTENING_TASKS
+type Task = string
 
-const SYSTEM = `You classify TOEFL iBT (January 2026 format) Listening audio transcripts into exactly one of four ETS task types.
+const LISTENING_SYSTEM = `You classify TOEFL iBT (January 2026 format) Listening audio transcripts into exactly one of four ETS task types.
 
 choose_response — a SINGLE short utterance (one speaker, roughly 8-25 words), the kind a test-taker must reply to. Not a dialogue with a resolution; just one cue line.
 conversation   — a dialogue between TWO speakers, several turns, campus/service/office-hours context.
@@ -77,6 +90,18 @@ academic_talk  — a MONOLOGUE that teaches subject matter. A lecture or mini-ta
 The hardest distinction is announcement vs academic_talk: both are monologues and both often open "Good afternoon, everyone." Decide by PURPOSE, not by the opening. Practical/logistical information the listener acts on => announcement. Explanatory subject content the listener learns => academic_talk.
 
 If a transcript genuinely fits none of these, answer "unknown". Do not guess.`
+
+const READING_SYSTEM = `You classify TOEFL iBT (January 2026 format) Reading passages into exactly one of two ETS task types.
+
+daily_life — "Read in Daily Life". A short NON-ACADEMIC practical text of the kind a student encounters day to day: a campus notice, a club flyer, a social-media post, an email, a job ad, a course-registration page, a schedule, a policy update. Plain everyday register. The reader's job is to act on it or understand someone's situation.
+
+academic_passage — "Read an Academic Passage". A short expository passage from an academic subject — biology, art history, psychology, geology, business, linguistics, economics, history. Written in textbook register, explaining a concept, process, or scholarly debate. The reader's job is to understand subject matter.
+
+Decide by REGISTER AND PURPOSE, not by length or topic alone: an email ABOUT a biology course is daily_life; a textbook paragraph about email etiquette is academic_passage.
+
+If a passage genuinely fits neither, answer "unknown". Do not guess.`
+
+const SYSTEM = SECTION === 'reading' ? READING_SYSTEM : LISTENING_SYSTEM
 
 interface Audio {
   gid: string
@@ -95,7 +120,12 @@ async function loadAudios(): Promise<Audio[]> {
       .from('study_item_bank')
       .select('id, item')
       .eq('family', 'toefl')
-      .eq('section', 'listening')
+      .eq('section', SECTION)
+      // Reading: MC only. Complete the Words is item_type='fill_in_blanks'
+      // and is already selectable by type, so tagging it would add a field
+      // nothing reads — and a stray tag on a CtW row invites a future
+      // bucketing bug where a paragraph lands in an MC task quota.
+      .eq('item_type', SECTION === 'reading' ? 'multiple_choice' : 'multiple_choice')
       .eq('verified', true)
       .eq('archived', false)
       .range(from, from + PAGE - 1)
@@ -128,14 +158,14 @@ async function classify(a: Audio): Promise<Task> {
       {
         role: 'user',
         content:
-          `Transcript (${a.qCount} question(s) are asked about it):\n\n` +
+          `${SECTION === 'reading' ? 'Passage' : 'Transcript'} (${a.qCount} question(s) are asked about it):\n\n` +
           a.transcript.slice(0, 6000),
       },
     ],
     response_format: {
       type: 'json_schema',
       json_schema: {
-        name: 'listening_task',
+        name: 'task',
         strict: true,
         schema: {
           type: 'object',
@@ -178,7 +208,7 @@ async function mapLimit<T, R>(xs: T[], limit: number, f: (x: T) => Promise<R>): 
 
 async function main() {
   const audios = await loadAudios()
-  console.log(`${audios.length} distinct audios / ${audios.reduce((n, a) => n + a.qCount, 0)} items\n`)
+  console.log(`[${SECTION}] ${audios.length} distinct ${SECTION === 'reading' ? 'passages' : 'audios'} / ${audios.reduce((n, a) => n + a.qCount, 0)} items\n`)
 
   let done = 0
   const tasks = await mapLimit(audios, 6, async a => {
@@ -202,7 +232,7 @@ async function main() {
   }
 
   console.log('\n=== questions-per-audio by task ===')
-  for (const t of [...TASKS, 'unknown' as const]) {
+  for (const t of [...TASKS, 'unknown']) {
     const qs = audios.filter((_, i) => tasks[i] === t).map(a => a.qCount)
     if (!qs.length) continue
     const hist = new Map<number, number>()
@@ -211,7 +241,7 @@ async function main() {
   }
 
   console.log('\n=== samples ===')
-  for (const t of [...TASKS, 'unknown' as const]) {
+  for (const t of [...TASKS, 'unknown']) {
     const i = tasks.indexOf(t)
     if (i < 0) continue
     console.log(`  [${t}] ${audios[i]!.transcript.replace(/\s+/g, ' ').slice(0, 130)}`)
@@ -222,7 +252,7 @@ async function main() {
     return
   }
 
-  console.log('\nwriting listeningTask…')
+  console.log(`\nwriting ${FIELD}…`)
   let written = 0
   for (let i = 0; i < audios.length; i++) {
     const t = tasks[i]!
@@ -234,7 +264,7 @@ async function main() {
       const { data, error: readErr } = await db
         .from('study_item_bank').select('item').eq('id', id).single()
       if (readErr || !data) { console.error(`  read ${id}: ${readErr?.message}`); continue }
-      const item = { ...(data.item as Record<string, unknown>), listeningTask: t }
+      const item = { ...(data.item as Record<string, unknown>), [FIELD]: t }
       // .update() RESOLVES with { error } — it does not throw. Checking
       // the returned error is the only way to know this worked.
       const { error } = await db.from('study_item_bank').update({ item }).eq('id', id)
@@ -242,7 +272,7 @@ async function main() {
       else written++
     }
   }
-  console.log(`wrote listeningTask on ${written} rows`)
+  console.log(`wrote ${FIELD} on ${written} rows`)
 }
 
 main().catch(e => { console.error(e); process.exit(1) })

@@ -19,6 +19,27 @@
 
 export type ToeflModule2Route = 'easy' | 'medium' | 'hard'
 
+/** Which of ETS's two Stage 2 modules a student routes into.
+ *
+ *  ETS Table 1 makes this a CONTENT decision, not only a difficulty one:
+ *  the lower module serves no Academic Talk (Listening) and no Academic
+ *  Passage (Reading); the upper module serves no Announcement and no Daily
+ *  Life. So the path has to be decided and passed separately from the
+ *  difficulty band — a student can be on the upper path and still be served
+ *  easier items when the bank is thin, which is the correct degradation.
+ *
+ *  Threshold: ETS does not publish one. Multiple prep sources converge on
+ *  ~60% of Stage 1 correct routing to the upper module, and that is what
+ *  this uses. It is UNCONFIRMED against ETS and should be revisited if they
+ *  publish the real cut. */
+export function computeToeflStage2Path(
+  module1Correct: number,
+  module1Total: number,
+): 'lower' | 'upper' {
+  if (module1Total <= 0) return 'lower'
+  return module1Correct / module1Total >= 0.60 ? 'upper' : 'lower'
+}
+
 export interface ToeflAdaptiveConfig {
   /** Bank section key (study_item_bank.section / assembler section). */
   bankSection: 'reading' | 'listening'

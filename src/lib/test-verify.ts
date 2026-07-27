@@ -91,6 +91,17 @@ export interface Question {
    *  bank-metadata fields; the assembler validates against its own
    *  LISTENING_TASKS list. */
   listeningTask: string | null
+  /** TOEFL Reading ONLY: 'daily_life' | 'academic_passage' — which of the
+   *  two ETS Jan-2026 multiple-choice reading tasks this passage is.
+   *  Complete the Words is NOT tagged: it is item_type='fill_in_blanks'
+   *  and already selectable by type.
+   *
+   *  Same story as listeningTask. Every reading MC row carried
+   *  domain='multiple_choice' — a placeholder, not a task — so Daily Life
+   *  and Academic Passage were indistinguishable and the ETS ratio between
+   *  them (which inverts between the lower and upper paths) could not be
+   *  enforced at all. */
+  readingTask: string | null
 }
 
 /** Discriminated by `type`. All sub-payloads are intentionally loose
@@ -146,6 +157,7 @@ export interface RawQuestion {
   /** TOEFL Listening task tag — see Question. Hand-authored
    *  Choose-a-Response batches set it; the generator does not. */
   listeningTask?: string | null
+  readingTask?: string | null
 }
 
 const VerifierItemSchema = z.object({
@@ -457,6 +469,7 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     // null otherwise — sanitize must never invent a task, because a
     // wrong tag silently fills the wrong blueprint quota.
     listeningTask: q.listeningTask ? sanitize(q.listeningTask) : null,
+    readingTask: q.readingTask ? sanitize(q.readingTask) : null,
   }
 }
 

@@ -158,6 +158,7 @@ function readBankItem(item: unknown): Question | null {
     topic_tag: asString(b.get('topic_tag')),
     word_count: asNumber(b.get('word_count')),
     listeningTask: asString(b.get('listeningTask')),
+    readingTask: asString(b.get('readingTask')),
   }
 }
 
@@ -445,6 +446,19 @@ export type ToeflSection = 'reading' | 'listening' | 'writing' | 'speaking'
 export const LISTENING_TASKS = ['choose_response', 'conversation', 'announcement', 'academic_talk'] as const
 export type ListeningTask = (typeof LISTENING_TASKS)[number]
 
+/** The two ETS Jan-2026 Reading MC tasks. Complete the Words is the third
+ *  reading task but needs no tag — it is item_type='fill_in_blanks'. */
+export const READING_TASKS = ['daily_life', 'academic_passage'] as const
+export type ReadingTask = (typeof READING_TASKS)[number]
+
+export type ToeflTask = ListeningTask | ReadingTask
+
+/** ETS's Stage 2 is ONE of two modules, not a difficulty tint on a fixed
+ *  one: the lower and upper modules carry DIFFERENT TASK MIXES. Listening
+ *  lower drops Academic Talk entirely; upper drops Announcement entirely.
+ *  Reading lower drops Academic Passage; upper drops Daily Life. */
+export type ToeflStage2Path = 'lower' | 'upper'
+
 /** Tasks whose audio must carry MORE THAN ONE question. ETS pairs a
  *  conversation, an announcement or an academic talk with 2-5 questions;
  *  only Choose-a-Response is one-question-per-audio. A single-question
@@ -452,16 +466,30 @@ export type ListeningTask = (typeof LISTENING_TASKS)[number]
  *  harvested set whose siblings were lost — and serving one makes the
  *  student read a 2,000-character transcript to answer one question. 31 of
  *  the 171 banked audios are in that state; `isDrawableSet` excludes them. */
-const MULTI_QUESTION_TASKS: ReadonlySet<string> = new Set(['conversation', 'announcement', 'academic_talk'])
+const MULTI_QUESTION_TASKS: ReadonlySet<string> = new Set([
+  'conversation', 'announcement', 'academic_talk',
+  // Reading: an academic passage feeds ~5 questions in ETS's design, and 22
+  // of ours carry exactly one — harvest casualties. Daily Life is NOT here:
+  // a campus notice with a single question is a legitimate ETS item, and 68
+  // of the bank's 103 daily-life texts are that shape by design.
+  'academic_passage',
+])
 
 const TOEFL_META: Record<ToeflSection, {
   title: string; minutes: number; label: string
-  /** `type` selects on `study_item_bank.item_type`. `task` (Listening only)
-   *  selects on `item.listeningTask` — see the listening entry below.
-   *  `m1` overrides the default `Math.ceil(n/2)` module-1 share; module 2
-   *  takes the remainder. Needed wherever the halfway point is not a
-   *  reachable sum of whole audio sets — see the listening entry. */
-  mix: Array<{ type: string; n: number; task?: ListeningTask; m1?: number }>
+  /** `type` selects on `study_item_bank.item_type`; `task` selects on
+   *  item.listeningTask / item.readingTask for multiple_choice rows.
+   *
+   *  `n`     — whole-section draw (no `module` passed). Equals m1 + upper,
+   *            i.e. the hard path, which is the fuller of the two.
+   *  `m1`    — Stage 1 count.
+   *  `lower` / `upper` — Stage 2 count on each ETS path. These are set
+   *            per-path rather than derived, because ETS's two Stage 2
+   *            modules have different TASK MIXES, not just difficulties. */
+  mix: Array<{
+    type: string; n: number; task?: ToeflTask
+    m1?: number; lower?: number; upper?: number
+  }>
 }> = {
   // Reading counts SCORED ITEMS, not on-screen items. Complete-the-Words
   // (fill_in_blanks) is scored per blank — submit/route.ts returns
@@ -470,8 +498,31 @@ const TOEFL_META: Record<ToeflSection, {
   // the spec's 50. Drawing 48 MC shipped 68 scored items in a 35-minute
   // section, a 36% overshoot. (The AI generator already did this
   // arithmetic correctly; the two paths had silently diverged.)
+  // Reading — three ETS tasks, 48 questions per path.
+  //
+  // Counts are SCORED QUESTIONS in ETS's own convention (Table 1): a
+  // Complete-the-Words paragraph is TEN questions, not one. `n` here counts
+  // BANK ROWS, so fill_in_blanks n=2 means two paragraphs = 20 questions.
+  //   Stage 1      : 1 CtW (10) + 9 daily + 9 academic = 28 questions
+  //   Stage 2 lower: 1 CtW (10) + 10 daily + 0 academic = 20
+  //   Stage 2 upper: 1 CtW (10) + 0 daily + 10 academic = 20
+  //   easy path 48, hard path 48; 30 on-screen cards either way.
+  //
+  // Two deviations from ETS's ratios, both forced:
+  //  - Complete the Words is 57% of ETS's scored Reading but cannot scale:
+  //    a paragraph is exactly 10 questions and ETS delivers one per stage.
+  //    Holding 1/stage at 48 questions puts it at 42%. Adding a third
+  //    paragraph would break the one-per-stage symmetry, so it stays.
+  //  - The Daily/Academic inversion between paths is ETS's, kept exactly:
+  //    the lower path reads notices and emails, the upper path reads
+  //    academic prose. That inversion is the whole point of the routing,
+  //    and it is what the old flat `multiple_choice` blueprint destroyed.
   reading:   { title: 'TOEFL iBT — Reading',   minutes: 35, label: 'Reading',
-    mix: [{ type: 'fill_in_blanks', n: 2 }, { type: 'multiple_choice', n: 30 }] },
+    mix: [
+      { type: 'fill_in_blanks', n: 2, m1: 1, lower: 1, upper: 1 },
+      { type: 'multiple_choice', task: 'daily_life',       n: 9,  m1: 9, lower: 10, upper: 0 },
+      { type: 'multiple_choice', task: 'academic_passage', n: 19, m1: 9, lower: 0,  upper: 10 },
+    ] },
   // Listening is FOUR ETS tasks, not one bag of MC.
   //
   // This entry used to read `[{ type: 'multiple_choice', n: 47 }]`. Every
@@ -497,19 +548,23 @@ const TOEFL_META: Record<ToeflSection, {
   // the short response cues open the section, longer audio follows.
   listening: { title: 'TOEFL iBT — Listening', minutes: 36, label: 'Listening',
     mix: [
-      // `m1` is set explicitly rather than left to Math.ceil(n/2).
+      // Per-path Stage 2 counts, straight from ETS Table 1's ratios scaled
+      // to 48. Note what inverts: the lower path serves NO Academic Talk and
+      // the upper path serves NO Announcement.
+      //   Stage 1      : 11 / 6 / 6 / 4  = 27
+      //   Stage 2 lower:  9 / 6 / 6 / 0  = 21   (easy path total 48)
+      //   Stage 2 upper:  3 / 6 / 0 / 12 = 21   (hard path total 48)
       //
-      // A task's per-module quota has to be a reachable sum of WHOLE audio
-      // sets, and halving does not respect that. Conversation is the case
-      // that caught it: 10 items halve to 5, but every conversation audio
-      // in the bank carries an even number of questions, so no combination
-      // of whole sets sums to 5 — the draw came up one short in BOTH
-      // modules and quietly shipped a 45-item section. Splitting 4/6
-      // instead is reachable from set sizes of 2 and 4.
-      { type: 'multiple_choice', task: 'choose_response', n: 17, m1: 10 },
-      { type: 'multiple_choice', task: 'conversation',    n: 10, m1: 4 },
-      { type: 'multiple_choice', task: 'announcement',    n: 8,  m1: 4 },
-      { type: 'multiple_choice', task: 'academic_talk',   n: 12, m1: 6 },
+      // Every conversation and announcement count is EVEN on purpose. Those
+      // audios exist in the bank only in sets of 2 and 4, so an odd quota is
+      // not a reachable sum of whole sets and the draw silently comes up
+      // short — which is exactly what a 5 did before the live-bank verifier
+      // caught it. Academic Talk has 2/3/4-question sets, so 12 packs; 11
+      // would need one of the only three 3-question talks in the bank.
+      { type: 'multiple_choice', task: 'choose_response', n: 14, m1: 11, lower: 9, upper: 3 },
+      { type: 'multiple_choice', task: 'conversation',    n: 12, m1: 6,  lower: 6, upper: 6 },
+      { type: 'multiple_choice', task: 'announcement',    n: 6,  m1: 6,  lower: 6, upper: 0 },
+      { type: 'multiple_choice', task: 'academic_talk',   n: 16, m1: 4,  lower: 0, upper: 12 },
     ] },
   speaking:  { title: 'TOEFL iBT — Speaking',  minutes: 7,  label: 'Speaking',
     mix: [{ type: 'speaking_repeat', n: 7 }, { type: 'speaking_interview', n: 4 }] },
@@ -557,6 +612,15 @@ export async function assembleToeflFromBank(
     /** Bank difficulty filter for a routed module 2 (see
      *  difficultiesForToeflModule2). Ignored when `module` is unset. */
     difficulties?: Array<'easy' | 'medium' | 'hard'>
+    /** Which ETS Stage 2 module to build — they carry DIFFERENT TASK
+     *  MIXES, not just different difficulty (see ToeflStage2Path).
+     *  Ignored unless `module === 2`.
+     *
+     *  Falls back to deriving from `difficulties` for callers that predate
+     *  the split: a student routed to the easy band gets the lower module.
+     *  That default is a compatibility shim, not the intended contract —
+     *  callers should pass `path` explicitly. */
+    path?: ToeflStage2Path
   },
   seed = 'bank',
 ): Promise<AssembledTest> {
@@ -612,10 +676,20 @@ export async function assembleToeflFromBank(
   // row has no defensible slot in a task-quota'd blueprint, and dropping it
   // is visible in `composition` (the section comes up short) whereas
   // guessing a task for it would not be.
+  //
+  // Only multiple_choice is task-keyed. Complete the Words is its own
+  // item_type and needs no tag; suffixing it would put a paragraph in an MC
+  // task's bucket.
+  const taskOf = (item: Question): string | null =>
+    p.section === 'listening' ? item.listeningTask
+    : p.section === 'reading' ? item.readingTask
+    : null
+  const taskKeyed = (type: string) =>
+    type === 'multiple_choice' && (p.section === 'listening' || p.section === 'reading')
   const bucketKey = (item_type: string, item: Question): string =>
-    p.section === 'listening' ? `${item_type}:${item.listeningTask ?? 'unclassified'}` : item_type
-  const mixKey = (m: { type: string; task?: ListeningTask }): string =>
-    p.section === 'listening' ? `${m.type}:${m.task ?? 'unclassified'}` : m.type
+    taskKeyed(item_type) ? `${item_type}:${taskOf(item) ?? 'unclassified'}` : item_type
+  const mixKey = (m: { type: string; task?: ToeflTask }): string =>
+    taskKeyed(m.type) ? `${m.type}:${m.task ?? 'unclassified'}` : m.type
 
   const byType = new Map<string, Row[]>()
   for (const r of rows) {
@@ -731,6 +805,42 @@ export async function assembleToeflFromBank(
       if (out.length < n && g.rows.length <= n - out.length) out.push(...g.rows)
       else leftover.push(g)
     }
+    // Exact-fit swap before giving up.
+    //
+    // The greedy pass takes sets in RANK order, which is right for
+    // unseen-first fairness but blind to arithmetic: against a quota of 9 it
+    // happily takes 4+4 and strands a slack of 1 that no whole set can fill,
+    // when 5+4 was sitting in the leftovers. Reading's Academic Passage hit
+    // this on the live bank — 8 of 9, then 9 of 10 — while Listening did not,
+    // because its sets are uniform enough that rank order packs cleanly.
+    //
+    // So: if we are short by k, look for one taken set T and one leftover L
+    // with |L| = |T| + k, and swap them. One swap, no search explosion, and
+    // every other set keeps its rank-ordered place.
+    if (out.length < n && leftover.length > 0) {
+      const k = n - out.length
+      const takenGroups: Group[] = []
+      {
+        let i = 0
+        while (i < out.length) {
+          const key = groupKeyOf(out[i]!)
+          let j = i
+          while (j < out.length && groupKeyOf(out[j]!) === key) j++
+          takenGroups.push({ key, rows: out.slice(i, j) })
+          i = j
+        }
+      }
+      outer: for (const L of leftover) {
+        for (const T of takenGroups) {
+          if (L.rows.length !== T.rows.length + k) continue
+          const swapped = takenGroups.flatMap(g => (g.key === T.key ? L.rows : g.rows))
+          out.length = 0
+          out.push(...swapped)
+          break outer
+        }
+      }
+    }
+
     // `strict`: come up SHORT rather than serve a fragment.
     //
     // The greedy pass above can leave slots that no whole set fits (sets of
@@ -783,17 +893,27 @@ export async function assembleToeflFromBank(
   // an odd count splits 24/23 (Listening's 47 MC) rather than 23/24,
   // and Reading's 2 Complete-the-Words paragraphs land one per module —
   // exactly the interleaving the whole-section path produces below.
-  const shareForModule = (n: number, m1Override?: number): number => {
-    if (!p.module) return n
-    const m1 = m1Override ?? Math.ceil(n / 2)
-    return p.module === 1 ? m1 : n - m1
+  const shareForModule = (e: { n: number; m1?: number; lower?: number; upper?: number }): number => {
+    if (!p.module) return e.n
+    if (p.module === 1) return e.m1 ?? Math.ceil(e.n / 2)
+    const perPath = stage2Path === 'lower' ? e.lower : e.upper
+    // No per-path count declared (non-TOEFL-2026 entries): fall back to the
+    // old "remainder after stage 1" behaviour so nothing else shifts.
+    return perPath ?? e.n - (e.m1 ?? Math.ceil(e.n / 2))
   }
+
+  // Which Stage 2 module this is. `difficulties` is a difficulty
+  // PREFERENCE and is orthogonal to the path — keeping them separate means
+  // a student on the upper path can still be served easier items when the
+  // bank is thin, without silently changing which TASKS they see.
+  const stage2Path: ToeflStage2Path =
+    p.path ?? (p.difficulties?.length === 1 && p.difficulties[0] === 'easy' ? 'lower' : 'upper')
 
   const composition: Record<string, number> = {}
   const picked: Row[] = []
   for (const entry of meta.mix) {
-    const { type, task, n: fullN, m1 } = entry
-    const n = shareForModule(fullN, m1)
+    const { type, task } = entry
+    const n = shareForModule(entry)
     if (n <= 0) continue
     const key = mixKey(entry)
     let bucket = byType.get(key) ?? []

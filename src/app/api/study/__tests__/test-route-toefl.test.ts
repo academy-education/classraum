@@ -90,11 +90,15 @@ describe('POST /api/study/test/route — TOEFL adaptive branch', () => {
     expect(json.module1Total).toBe(5)
     expect(json.module2Questions).toHaveLength(2)
     expect(json.alreadyRouted).toBe(false)
+    // `path` and `difficulties` are passed as SEPARATE decisions: the path
+    // picks which ETS Stage 2 module (different task mixes), the band is a
+    // difficulty preference inside it. 5/5 is ≥60%, so the upper module.
     expect(assembleMock).toHaveBeenCalledWith(
       {
         section: 'reading',
         module: 2,
         difficulties: ['medium', 'hard'],
+        path: 'upper',
         studentId: 'student-9',
       },
       SID,

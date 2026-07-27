@@ -6,6 +6,7 @@ import {
   toeflAdaptiveConfig,
   computeToeflRoute,
   difficultiesForToeflModule2,
+  computeToeflStage2Path,
 } from '@/lib/toefl-adaptive'
 import {
   SAT_MODULE_CONFIG,
@@ -340,10 +341,21 @@ export async function POST(req: NextRequest) {
     })
   }
 
-  // Draw Module 2 from the routed difficulty band. Module 1's items are
-  // already in the exposure ledger (recorded at assemble), so the
-  // unseen-first ranking cannot deal them a second time; seeding with
-  // the session id keeps the draw stable on retry.
+  // Draw Module 2. TWO independent decisions are passed here:
+  //
+  //  - `path` picks WHICH ETS Stage 2 module to build. Lower and upper carry
+  //    different TASK MIXES (ETS Table 1): lower serves no Academic Talk /
+  //    Academic Passage, upper serves no Announcement / Daily Life.
+  //  - `difficulties` is a difficulty PREFERENCE within whatever tasks the
+  //    path selected, and never filters the query.
+  //
+  // They are deliberately not collapsed into one value. Doing so would mean
+  // a thin bank in one difficulty band silently changed which task types the
+  // student saw, which is a content change dressed up as a difficulty one.
+  //
+  // Module 1's items are already in the exposure ledger (recorded at
+  // assemble), so the unseen-first ranking cannot deal them a second time;
+  // seeding with the session id keeps the draw stable on retry.
   let module2
   try {
     module2 = await assembleToeflFromBank(
@@ -351,6 +363,7 @@ export async function POST(req: NextRequest) {
         section: config.bankSection,
         module: 2,
         difficulties: difficultiesForToeflModule2(route),
+        path: computeToeflStage2Path(correct, module1Questions.length),
         studentId: user.id,
       },
       sessionId,
