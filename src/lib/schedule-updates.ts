@@ -13,7 +13,11 @@ export interface ScheduleUpdateOptions {
 export interface ClassroomSchedule {
   id: string
   classroom_id: string
-  day: number | string
+  // Weekday NAME ('Monday'…'Saturday'), matching the text column. This was
+  // `number | string`, which no caller and no row ever justified — every
+  // classroom_schedules row stores a name — and the number half was what
+  // made the three inserts below fail to type-check against the schema.
+  day: string
   start_time: string
   end_time: string
   effective_from?: string | null
@@ -40,16 +44,16 @@ export async function updateClassroomSchedule(
   try {
     switch (options.updateStrategy) {
       case 'future_only':
-        return await updateFromToday(db, scheduleId, newScheduleData)
+        return await updateFromToday(scheduleId, newScheduleData)
 
       case 'from_date':
         if (!options.effectiveDate) {
           throw new Error('effectiveDate is required for from_date strategy')
         }
-        return await updateFromDate(db, scheduleId, newScheduleData, options.effectiveDate)
+        return await updateFromDate(scheduleId, newScheduleData, options.effectiveDate)
 
       case 'materialize_existing':
-        return await materializeAndUpdate(db, scheduleId, newScheduleData)
+        return await materializeAndUpdate(scheduleId, newScheduleData)
 
       default:
         throw new Error(`Unknown update strategy: ${options.updateStrategy}`)
@@ -66,7 +70,6 @@ export async function updateClassroomSchedule(
  * - Creates new schedule starting today
  */
 async function updateFromToday(
-  db: any,
   scheduleId: string,
   newScheduleData: Partial<ClassroomSchedule>
 ): Promise<ScheduleUpdateResult> {
@@ -123,7 +126,6 @@ async function updateFromToday(
  * - Creates new schedule starting from effective date
  */
 async function updateFromDate(
-  db: any,
   scheduleId: string,
   newScheduleData: Partial<ClassroomSchedule>,
   effectiveDate: string
@@ -183,7 +185,6 @@ async function updateFromDate(
  * - Then updates schedule for future dates
  */
 async function materializeAndUpdate(
-  db: any,
   scheduleId: string,
   newScheduleData: Partial<ClassroomSchedule>
 ): Promise<ScheduleUpdateResult> {
@@ -221,7 +222,12 @@ async function materializeAndUpdate(
     start_time: vs.start_time,
     end_time: vs.end_time,
     status: 'scheduled',
-    location: vs.location,
+    // classroom_sessions.location is NOT NULL and
+    // generateVirtualSessionsForDateRange always emits null, so passing
+    // it straight through made every upsert here fail on the constraint
+    // — and a multi-row upsert is one statement, so one null killed the
+    // whole batch. 'offline' is the same default materializeSession uses.
+    location: vs.location || 'offline',
     notes: 'Auto-created from schedule change (preserving old schedule)'
   }))
 
