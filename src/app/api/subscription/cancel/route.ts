@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { getAuthedClient } from '@/lib/api-auth';
 import { deletePortOneBillingKey } from '@/lib/portone-billing-key';
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient();
-
-    // Get authenticated user
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
+    // Bearer first, cookies second — this app stores its session in
+    // localStorage, so a cookie-only check 401s every real caller. Without
+    // this, no manager could cancel their subscription at all.
+    const { user, supabase } = await getAuthedClient(request);
+    if (!user || !supabase) {
       return NextResponse.json(
         { success: false, message: 'Unauthorized' },
         { status: 401 }

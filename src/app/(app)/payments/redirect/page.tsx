@@ -6,6 +6,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/useTranslation';
+import { db } from '@/lib/supabase'
+
+/** Authorization header for API routes, from the localStorage session. */
+async function authHeader(): Promise<Record<string, string>> {
+  const { data: { session } } = await db.auth.getSession()
+  return session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}
+}
+
 
 export default function PaymentRedirectPage() {
   const searchParams = useSearchParams();
@@ -39,6 +47,9 @@ export default function PaymentRedirectPage() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            // The verify route authenticates by Bearer token: this app's
+            // session lives in localStorage, so no auth cookie is ever sent.
+            ...(await authHeader()),
           },
           body: JSON.stringify({ paymentId }),
         });

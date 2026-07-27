@@ -1,25 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { getAuthedClient } from '@/lib/api-auth';
 import { SUBSCRIPTION_PLANS } from '@/types/subscription';
 import { getAcademyUsage } from '@/lib/subscription';
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient();
-
-    // Get authenticated user
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    console.log('[Downgrade API] Auth check:', {
-      hasUser: !!user,
-      userId: user?.id,
-      authError: authError?.message,
-    });
-
-    if (authError || !user) {
+    // Bearer first, cookies second — this app stores its session in
+    // localStorage, so a cookie-only check 401s every real caller.
+    const { user, supabase, error: authError } = await getAuthedClient(request);
+    if (!user || !supabase) {
       console.error('[Downgrade API] Authentication failed:', authError);
       return NextResponse.json(
-        { success: false, message: 'Unauthorized', debug: authError?.message },
+        { success: false, message: 'Unauthorized', debug: authError },
         { status: 401 }
       );
     }

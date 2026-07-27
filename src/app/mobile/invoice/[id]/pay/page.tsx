@@ -26,6 +26,13 @@ import { useToast } from '@/hooks/use-toast'
 import { getPortOneConfig } from '@/lib/portone-config'
 import { openExternalUrl } from '@/lib/nativeApp'
 
+/** Authorization header for API routes, from the localStorage session. */
+async function authHeader(): Promise<Record<string, string>> {
+  const { data: { session } } = await db.auth.getSession()
+  return session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}
+}
+
+
 interface InvoiceDetails {
   id: string
   amount: number
@@ -303,6 +310,9 @@ export default function MobileInvoicePaymentPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          // The verify route authenticates by Bearer token: this app's
+          // session lives in localStorage, so no auth cookie is ever sent.
+          ...(await authHeader()),
         },
         body: JSON.stringify({
           paymentId: response?.paymentId,

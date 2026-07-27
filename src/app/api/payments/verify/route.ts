@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyPayment } from '@/lib/portone';
-import { createClient } from '@/lib/supabase/server';
+import { getAuthedClient } from '@/lib/api-auth';
 import { enforceRateLimit, userOrIpKey } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient();
-
-    // Check authentication
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
+    // Bearer first, cookies second. This app keeps its session in
+    // localStorage, so a cookie-only check 401s every real caller — which
+    // here meant the card was charged and the UI never confirmed it.
+    const { user, error: authError } = await getAuthedClient(request);
+    if (!user) {
       console.error('[Verify API] Authentication failed:', authError);
       return NextResponse.json(
         { error: 'Unauthorized' },

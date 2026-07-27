@@ -7,6 +7,14 @@ import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Loader2 } from 'lucide-react';
 import { getPortOneConfig } from '@/lib/portone-config';
+import { db } from '@/lib/supabase'
+
+/** Authorization header for API routes, from the localStorage session. */
+async function authHeader(): Promise<Record<string, string>> {
+  const { data: { session } } = await db.auth.getSession()
+  return session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}
+}
+
 
 interface PaymentButtonProps {
   orderName: string;
@@ -89,6 +97,9 @@ export function PaymentButton({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          // The verify route authenticates by Bearer token: this app's
+          // session lives in localStorage, so no auth cookie is ever sent.
+          ...(await authHeader()),
         },
         body: JSON.stringify({
           paymentId,
