@@ -455,8 +455,10 @@ const TOEFL_META: Record<ToeflSection, {
  * Assemble a full TOEFL section from the pre-verified item bank —
  * the TOEFL analogue of assembleFromBank. Draws each task type's
  * blueprint quota (unseen-first per student), preserves ETS task order,
- * and clusters co-drawn Reading/Listening items that share a passage so
- * a passage renders with its questions. "Same as SAT": bank-only draw,
+ * and draws shared-passage Reading/Listening items as WHOLE SETS — the
+ * grouping unit survives ranking, the band preference, the blueprint
+ * count and the module split (see "Passage sets are the unit of the
+ * draw" below). "Same as SAT": bank-only draw,
  * no AI top-up — returns fewer items if a task type is thin.
  *
  * The bank items are already stored in the renderer's Question shape
@@ -549,53 +551,135 @@ export async function assembleToeflFromBank(
     if (p.module !== 2 || !p.difficulties?.length) {
       return unseenFirst(bucket, exposures, seed + type)
     }
-    const want = new Set(p.difficulties)
-    const inBand = bucket.filter(r => r.difficulty !== null && want.has(r.difficulty as 'easy' | 'medium' | 'hard'))
-    const rest = bucket.filter(r => !(r.difficulty !== null && want.has(r.difficulty as 'easy' | 'medium' | 'hard')))
+    const want = new Set<string>(p.difficulties)
+    const inBand = bucket.filter(r => r.difficulty !== null && want.has(r.difficulty))
+    const rest = bucket.filter(r => !(r.difficulty !== null && want.has(r.difficulty)))
     return [
       ...unseenFirst(inBand, exposures, seed + type),
       ...unseenFirst(rest, exposures, seed + type + ':fallback'),
     ]
   }
 
-  // Cluster items that share a passage (Reading/Listening: one passage
-  // feeds several MC questions). Ungrouped items become singletons; the
-  // first appearance of each group fixes its order so the sequence stays
-  // stable (co-drawn same-passage items land adjacent, but a partial
-  // group is fine — the passage text rides on every item).
-  const clusterByPassage = (items: Row[]): Row[] => {
+  // ── Passage sets are the unit of the draw, not the item ──────────────
+  //
+  // Reading/Listening MC items and Take-an-Interview items come in SETS:
+  // one passage (or transcript, or interview topic) feeds N questions, and
+  // every item in the set carries the shared `passageGroupId`. The unit
+  // that must survive ranking, band preference, the blueprint count and
+  // the module split is the SET — a half-drawn set makes the student read
+  // a full passage to answer two questions, and a set cut across the
+  // module break shows them the same passage again after the break.
+  type Group = { key: string; rows: Row[] }
+
+  const groupKeyOf = (r: Row): string => r.item.passageGroupId ?? `__solo:${r.id}`
+
+  /** Bucket rows into passage sets. Ungrouped items become singleton sets,
+   *  so every draw path below can be written once, over sets. Bank order
+   *  (created_at) is preserved inside a set — an authored 1→N interview
+   *  escalation has no other carrier. */
+  const groupRows = (items: Row[]): Group[] => {
     const groups = new Map<string, Row[]>()
     const order: string[] = []
     for (const it of items) {
-      const key = it.item.passageGroupId ?? `__solo:${it.id}`
+      const key = groupKeyOf(it)
       if (!groups.has(key)) { groups.set(key, []); order.push(key) }
       groups.get(key)!.push(it)
     }
-    return order.flatMap(k => groups.get(k)!)
+    return order.map(k => ({ key: k, rows: groups.get(k)! }))
   }
 
-  // Take-an-Interview draws WHOLE interviews, not loose questions: on
-  // the real exam all N items belong to one interview on one topic and
-  // must play in their authored 1→N order. Drawing item-by-item (as the
-  // other task types do) would mix two interviews and shuffle the
-  // escalation apart, so group first, rank groups unseen-first by their
-  // first item, then emit each group intact in bank order.
-  const drawInterviewGroups = (items: Row[], n: number): Row[] => {
-    const groups = new Map<string, Row[]>()
-    const order: string[] = []
-    for (const it of items) {
-      const key = it.item.passageGroupId ?? `__solo:${it.id}`
-      if (!groups.has(key)) { groups.set(key, []); order.push(key) }
-      groups.get(key)!.push(it)
+  /** `unseenFirst`, lifted to sets. A set counts as SEEN when ANY of its
+   *  items is in the ledger — module 1 having served part of a set must
+   *  push the WHOLE set back, not let its untouched members rank to the
+   *  front and re-show the passage after the break. Recycling order is a
+   *  set's OLDEST exposure. Unseen sets rank by their first item, which
+   *  reproduces `unseenFirst` exactly for singleton sets. */
+  const orderGroups = (groups: Group[], s: string): Group[] => {
+    const decorated = groups.map(g => {
+      let oldest: string | null = null
+      for (const r of g.rows) {
+        const t = exposures.get(r.id)
+        if (t !== undefined && (oldest === null || t < oldest)) oldest = t
+      }
+      return { g, seen: oldest, head: g.rows[0]!.id }
+    })
+    const unseen = decorated.filter(d => d.seen === null)
+      .sort((a, b) => itemRank(s, a.head) - itemRank(s, b.head) || a.head.localeCompare(b.head))
+    const seen = decorated.filter(d => d.seen !== null)
+      .sort((a, b) => a.seen!.localeCompare(b.seen!))
+    return [...unseen, ...seen].map(d => d.g)
+  }
+
+  /** `bandPreferred`, lifted to sets. A set's items can straddle the
+   *  routed band; partitioning ITEM-wise put half a passage's questions in
+   *  the in-band partition and half in the fallback, which interleaves two
+   *  passages once the count is taken. A SET is in-band when at least half
+   *  its items are, and it moves as one. Singleton sets reduce to the
+   *  item-level rule exactly. */
+  const bandPreferredGroups = (groups: Group[], type: string): Group[] => {
+    if (p.module !== 2 || !p.difficulties?.length) return orderGroups(groups, seed + type)
+    const want = new Set<string>(p.difficulties)
+    const inBand = (g: Group) => {
+      const hits = g.rows.filter(r => r.difficulty !== null && want.has(r.difficulty)).length
+      return hits * 2 >= g.rows.length
     }
-    const heads = order.map(k => ({ id: groups.get(k)![0].id, key: k }))
-    const ranked = unseenFirst(heads, exposures, seed + 'speaking_interview')
+    return [
+      ...orderGroups(groups.filter(inBand), seed + type),
+      ...orderGroups(groups.filter(g => !inBand(g)), seed + type + ':fallback'),
+    ]
+  }
+
+  /** Take `n` items as WHOLE sets, in rank order. A set that does not fit
+   *  the remaining slots is SKIPPED and a later, smaller set is tried in
+   *  its place, so the blueprint count is met without ever handing over a
+   *  fragment of a passage.
+   *
+   *  Last resort: if no whole set fits the slots that are still open, the
+   *  best-ranked leftover is truncated. Coming up short is worse — the
+   *  blueprint counts are the section's shape (Reading 2 CtW + 30 MC,
+   *  Listening 47) and a short module is a malformed test. With the bank's
+   *  authored set sizes (2-5 for Reading/Listening) a 15/24/23-slot module
+   *  packs exactly; the truncation only fires against sets larger than a
+   *  whole module, which today only exist because `passageGroupId` is
+   *  corrupt (one Reading "set" holds 108 items over 28 passages). */
+  const takeGroups = (ranked: Group[], n: number): Row[] => {
     const out: Row[] = []
-    for (const h of ranked) {
-      if (out.length >= n) break
-      out.push(...groups.get(h.key)!)
+    const leftover: Group[] = []
+    for (const g of ranked) {
+      if (out.length < n && g.rows.length <= n - out.length) out.push(...g.rows)
+      else leftover.push(g)
     }
-    return out.slice(0, n)
+    for (const g of leftover) {
+      if (out.length >= n) break
+      console.warn('[assemble] no whole passage set fits the remaining slots; truncating',
+        { section: p.section, group: g.key, size: g.rows.length, slots: n - out.length })
+      out.push(...g.rows.slice(0, n - out.length))
+    }
+    return out
+  }
+
+  /** Set-aware draw: rank sets (band-preferred for a routed module 2),
+   *  then pack whole sets to `n`. Used for Reading/Listening MC — one
+   *  passage feeds several questions — and for Take-an-Interview, where
+   *  all N items belong to one interview on one topic and must play in
+   *  their authored 1→N order. */
+  const drawGrouped = (bucket: Row[], type: string, n: number): Row[] =>
+    takeGroups(bandPreferredGroups(groupRows(bucket), type), n)
+
+  /** The cut nearest `want` that does not fall INSIDE a passage set.
+   *  `rows` is set-contiguous (drawGrouped emits it that way), so the legal
+   *  cuts are the indices where the set key changes. Splitting Reading's
+   *  module boundary mid-set would end module 1 halfway through a passage
+   *  and re-open the same passage after the break. Falls back to `want`
+   *  when there is no boundary at all (one set spanning the whole module —
+   *  only reachable with corrupt grouping). */
+  const splitOnGroupBoundary = (rows: Row[], want: number): number => {
+    const cuts: number[] = []
+    for (let i = 1; i < rows.length; i++) {
+      if (groupKeyOf(rows[i]!) !== groupKeyOf(rows[i - 1]!)) cuts.push(i)
+    }
+    if (cuts.length === 0) return want
+    return cuts.reduce((best, c) => (Math.abs(c - want) < Math.abs(best - want) ? c : best), cuts[0]!)
   }
 
   // Per-module share of each task type. Module 1 takes the ceiling so
@@ -614,19 +698,13 @@ export async function assembleToeflFromBank(
     const n = shareForModule(fullN)
     if (n <= 0) continue
     const bucket = byType.get(type) ?? []
-    if (type === 'speaking_interview') {
-      const drawn = drawInterviewGroups(bucket, n)
-      composition[type] = drawn.length
-      picked.push(...drawn)
-      continue
-    }
-    const ordered = bandPreferred(bucket, type).slice(0, n)
+    // Set-drawn task types (see drawGrouped). Everything else is a bag of
+    // independent items and draws item-by-item, exactly as before.
+    const grouped = type === 'speaking_interview'
+      || ((p.section === 'reading' || p.section === 'listening') && type === 'multiple_choice')
+    const ordered = grouped ? drawGrouped(bucket, type, n) : bandPreferred(bucket, type).slice(0, n)
     composition[type] = ordered.length
-    picked.push(
-      ...((p.section === 'reading' || p.section === 'listening') && type === 'multiple_choice'
-        ? clusterByPassage(ordered)
-        : ordered),
-    )
+    picked.push(...ordered)
   }
   if (picked.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
 
@@ -649,7 +727,7 @@ export async function assembleToeflFromBank(
     const ctw = picked.filter(r => r.item.type === 'fill_in_blanks')
     const mc = picked.filter(r => r.item.type !== 'fill_in_blanks')
     if (ctw.length === 2) {
-      const half = Math.ceil(mc.length / 2)
+      const half = splitOnGroupBoundary(mc, Math.ceil(mc.length / 2))
       const m1 = [ctw[0]!, ...mc.slice(0, half)]
       const m2 = [ctw[1]!, ...mc.slice(half)]
       picked.length = 0
@@ -657,8 +735,9 @@ export async function assembleToeflFromBank(
       moduleBreakIdx = m1.length
     } else {
       // Thin bank (0 or 1 CtW drawn): fall back to a plain split rather
-      // than promising a paragraph that isn't there.
-      moduleBreakIdx = Math.ceil(picked.length / 2)
+      // than promising a paragraph that isn't there — still cut on a
+      // passage-set boundary.
+      moduleBreakIdx = splitOnGroupBoundary(picked, Math.ceil(picked.length / 2))
     }
   }
 

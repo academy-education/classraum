@@ -158,6 +158,55 @@ describe('POST /api/study/test/route — TOEFL adaptive branch', () => {
     expect(merged.adaptive).toBe(true)
   })
 
+  it('namespaces Module 2 passage groups so a set cannot span the module break', async () => {
+    // Live evidence — session bbe2f56d-c1bb-4e00-9f02-45458546d02c
+    // (TOEFL Reading, moduleBreakIdx 16): passage group `academic-1`
+    // appears at Module-1 indices 5,6 AND Module-2 indices 16,17,18.
+    // Module 2 only excludes Module 1's ITEMS (exposure ledger), never
+    // its passage GROUPS, so the routed draw re-uses a group id. The
+    // client's grouper (test/helpers.tsx:85) scans the whole questions
+    // array by groupId, so it counted all five as one passage set and
+    // told the student "question 3 of 5 in this passage" on an item
+    // whose siblings are behind a locked module break — while the
+    // passage pane showed a different text.
+    enqueue('study_sessions', { data: { id: SID, student_id: 'student-9', module2_route: null } })
+    enqueue('study_messages', { data: [{ content: cacheContent({
+      questions: [
+        { correct_answer: 'A', passageGroupId: null },
+        { correct_answer: 'B', passageGroupId: 'academic-1' },
+        { correct_answer: 'C', passageGroupId: 'academic-1' },
+        { correct_answer: 'D', passageGroupId: 'daily-7' },
+        { correct_answer: 'E', passageGroupId: 'daily-7' },
+      ],
+    }) }] })
+    enqueue('study_sessions', { data: [{ id: SID }] })   // claim
+    const cacheWrite = enqueue('study_messages', { error: null })
+    assembleMock.mockResolvedValue({
+      questions: [
+        { ...m2Question(0), passageGroupId: 'academic-1' },
+        { ...m2Question(1), passageGroupId: 'academic-1' },
+      ],
+    })
+
+    const res = await POST(makeRequest(body(['A', 'B', 'C', 'D', 'E'])))
+    const json = await res.json()
+    // Still grouped WITH EACH OTHER (a real Module-2 passage set) but no
+    // longer joinable to Module 1's `academic-1`.
+    expect(json.module2Questions.map((q: { passageGroupId?: string | null }) => q.passageGroupId))
+      .toEqual(['academic-1#m2', 'academic-1#m2'])
+
+    const merged = JSON.parse(
+      (cacheWrite.update.mock.calls[0][0].content as string).slice(MARKER.length),
+    )
+    const groupsBefore = new Set(
+      merged.questions.slice(0, merged.moduleBreakIdx)
+        .map((q: { passageGroupId?: string | null }) => q.passageGroupId).filter(Boolean),
+    )
+    const groupsAfter = merged.questions.slice(merged.moduleBreakIdx)
+      .map((q: { passageGroupId?: string | null }) => q.passageGroupId).filter(Boolean)
+    for (const g of groupsAfter) expect(groupsBefore.has(g)).toBe(false)
+  })
+
   it('claims the route with an IS NULL guard so a double-fire cannot draw twice', async () => {
     const { claim } = happyPath()
     assembleMock.mockResolvedValue({ questions: [m2Question(0)] })

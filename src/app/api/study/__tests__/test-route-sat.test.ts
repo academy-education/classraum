@@ -9,7 +9,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assembleFromBank } from '@/lib/study/assemble'
-import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
+import { tableRouter, makeRequest, type ChainMock } from '@/tests/study-route-helpers'
 
 jest.mock('@/lib/supabase-admin', () => ({
   dbAdmin: { from: jest.fn() },
@@ -56,11 +56,17 @@ describe('POST /api/study/test/route — SAT adaptive branch', () => {
     return { sessionId: SID, sectionName: 'Math', answers: answers.map((answer, index) => ({ index, answer })) }
   }
 
-  it('routes HARD on ≥60% Module 1 and returns the drawn Module 2', async () => {
+  /** Queue for the happy path: session read → cache read → claim → cache write. */
+  function happyPath(): { claim: ChainMock; cacheWrite: ChainMock } {
     enqueue('study_sessions', { data: { id: SID, student_id: 'student-1', module2_route: null } })
     enqueue('study_messages', { data: [{ content: cacheContent() }] })
-    enqueue('study_messages', { error: null }) // cache update
-    enqueue('study_sessions', { error: null }) // session update
+    const claim = enqueue('study_sessions', { data: [{ id: SID }] })
+    const cacheWrite = enqueue('study_messages', { error: null })
+    return { claim, cacheWrite }
+  }
+
+  it('routes HARD on ≥60% Module 1 and returns the drawn Module 2', async () => {
+    happyPath()
     assembleMock.mockResolvedValue({ questions: [m2Question(0), m2Question(1)] })
 
     // All 3 correct → 100% → hard.
@@ -78,10 +84,7 @@ describe('POST /api/study/test/route — SAT adaptive branch', () => {
   })
 
   it('routes EASY below 60% and draws the easy/medium band', async () => {
-    enqueue('study_sessions', { data: { id: SID, student_id: 'student-1', module2_route: null } })
-    enqueue('study_messages', { data: [{ content: cacheContent() }] })
-    enqueue('study_messages', { error: null })
-    enqueue('study_sessions', { error: null })
+    happyPath()
     assembleMock.mockResolvedValue({ questions: [m2Question(0)] })
 
     // 1 of 3 correct → 33% → easy.
@@ -112,13 +115,85 @@ describe('POST /api/study/test/route — SAT adaptive branch', () => {
     expect(assembleMock).not.toHaveBeenCalled() // no second draw
   })
 
-  it('returns 409 when Module 2 cannot be drawn from the bank', async () => {
+  it('returns 409 and releases the claim when Module 2 cannot be drawn', async () => {
     enqueue('study_sessions', { data: { id: SID, student_id: 'student-1', module2_route: null } })
     enqueue('study_messages', { data: [{ content: cacheContent() }] })
+    enqueue('study_sessions', { data: [{ id: SID }] })  // claim
+    const release = enqueue('study_sessions', { error: null })
     assembleMock.mockRejectedValue(new Error('no verified items'))
 
     const res = await POST(makeRequest(body(['A', 'B', 'C'])))
     expect(res.status).toBe(409)
     expect((await res.json()).error).toBe('module2_bank_empty')
+    // Without the release the student is stranded: module2_route is set
+    // but the cache row still holds Module 1 only, so every retry hits
+    // the idempotent branch and replays an EMPTY Module 2.
+    expect(release.update).toHaveBeenCalledWith({ module2_route: null })
+  })
+
+  it('claims module2_route with an IS NULL guard BEFORE drawing', async () => {
+    const { claim } = happyPath()
+    assembleMock.mockResolvedValue({ questions: [m2Question(0)] })
+
+    await POST(makeRequest(body(['A', 'B', 'C'])))
+    expect(claim.is).toHaveBeenCalledWith('module2_route', null)
+    expect(claim.update).toHaveBeenCalledWith(
+      expect.objectContaining({ module2_route: 'hard', module1_correct: 3, module1_total: 3 }),
+    )
+  })
+
+  it('a lost claim race replays the winner’s Module 2 instead of appending a second one', async () => {
+    // Regression: the SAT branch used to draw and append FIRST and write
+    // module2_route last, unconditionally. Two concurrent requests (a
+    // double-tap, or the tap racing the module-1 timeout auto-route)
+    // therefore both read a null route and both appended a Module 2 to
+    // the same cache row — leaving the cache longer than the client's
+    // array, so /submit rejected the finished test on its question-count
+    // check and the student could never hand it in.
+    const merged = MARKER + JSON.stringify({
+      adaptive: true, sectionKey: 'math', moduleBreakIdx: 3,
+      questions: [
+        { correct_answer: 'A' }, { correct_answer: 'B' }, { correct_answer: 'C' },
+        m2Question(0), m2Question(1),
+      ],
+    })
+    enqueue('study_sessions', { data: { id: SID, student_id: 'student-1', module2_route: null } })
+    enqueue('study_messages', { data: [{ content: cacheContent() }] })
+    const claim = enqueue('study_sessions', { data: [] })         // claim matched 0 rows
+    const cacheWrite = enqueue('study_messages', { data: [{ content: merged }] })  // re-read
+    enqueue('study_sessions', { data: { module2_route: 'hard', module1_correct: 3, module1_total: 3 } })
+
+    const res = await POST(makeRequest(body(['A', 'B', 'C'])))
+    const json = await res.json()
+    expect(json.alreadyRouted).toBe(true)
+    expect(json.route).toBe('hard')
+    expect(json.module2Questions).toHaveLength(2)
+    expect(assembleMock).not.toHaveBeenCalled()
+    expect(claim.is).toHaveBeenCalledWith('module2_route', null)
+    // The loser must READ the cache row, never UPDATE it.
+    expect(cacheWrite.update).not.toHaveBeenCalled()
+  })
+
+  it('namespaces Module 2 passage groups so a set cannot span the module break', async () => {
+    const { cacheWrite } = happyPath()
+    assembleMock.mockResolvedValue({
+      questions: [
+        { ...m2Question(0), passageGroupId: 'academic-1' },
+        { ...m2Question(1), passageGroupId: 'academic-1' },
+        { ...m2Question(2), passageGroupId: null },
+      ],
+    })
+
+    const res = await POST(makeRequest(body(['A', 'B', 'C'])))
+    const json = await res.json()
+    expect(json.module2Questions.map((q: { passageGroupId?: string | null }) => q.passageGroupId))
+      .toEqual(['academic-1#m2', 'academic-1#m2', null])
+
+    // The cache row the client re-reads on resume must agree.
+    const written = JSON.parse(
+      (cacheWrite.update.mock.calls[0][0].content as string).slice(MARKER.length),
+    )
+    expect(written.questions.slice(3).map((q: { passageGroupId?: string | null }) => q.passageGroupId))
+      .toEqual(['academic-1#m2', 'academic-1#m2', null])
   })
 })

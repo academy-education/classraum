@@ -77,42 +77,116 @@ export function formatTime(ms: number): string {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
+/** Canonical form of a passage used ONLY for equality checks between
+ *  two items. Display normalization + whitespace collapse, so items
+ *  that differ solely in escaping or spacing still count as the same
+ *  passage. */
+function passageKey(text: string | null | undefined): string {
+  return normalizeDisplayText(text).replace(/\s+/g, ' ').trim()
+}
+
+/**
+ * Split the question list into passage RUNS: maximal spans of
+ * CONSECUTIVE questions that share both a `passageGroupId` and the
+ * exact same passage text (and live in the same adaptive module).
+ *
+ * Why not group by `passageGroupId` alone (what this used to do):
+ * production data has corrupt group ids — a single id can span many
+ * genuinely different passage texts. The card renders the PER-ITEM
+ * `question.passage`, so grouping by id alone printed "Question 3 of
+ * 5 in this passage" over five different passages. The counter must
+ * only ever describe what the student can actually see, so two items
+ * belong to the same run only if their passage text is identical.
+ *
+ * Runs are contiguous on purpose: walking Next through a run is then
+ * guaranteed to keep the same passage on screen. A group id whose
+ * items are scattered gets reported as several short runs — an
+ * undercount, never a false claim.
+ *
+ * Returns an array parallel to `questions`; entry i is the run index
+ * for question i, or -1 for questions that are not part of any
+ * passage run.
+ */
+function passageRuns(questions: Question[], moduleBreakIdx?: number): number[] {
+  const runOf: number[] = new Array(questions.length).fill(-1)
+  let run = -1
+  let prev: { id: string; text: string } | null = null
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i]
+    const id = q?.passageGroupId
+    // Complete-the-Words items stand alone by design (one paragraph =
+    // one item with 10 blanks). If the model erroneously emits a
+    // passageGroupId on a fill_in_blanks item, treat it as ungrouped.
+    if (!id || q?.type === 'fill_in_blanks') { prev = null; continue }
+    const text = passageKey(q.passage)
+    // No passage text = nothing the counter could honestly describe.
+    if (!text) { prev = null; continue }
+    // The adaptive module boundary always breaks a run: Module 2 is
+    // appended after the break and must never be merged into a
+    // Module 1 passage set (its ids can even collide with M1's).
+    const atModuleBreak = typeof moduleBreakIdx === 'number' && i === moduleBreakIdx
+    if (!prev || atModuleBreak || prev.id !== id || prev.text !== text) run++
+    runOf[i] = run
+    prev = { id, text }
+  }
+  return runOf
+}
+
 /** Compute passage-group context for the current question — used to
  *  show "Passage X — Question Y of Z in this passage" labels on
  *  shared-passage tests (TOEFL/IELTS/ACT Reading). Returns null when
- *  the test has no passage groups or the current question is
- *  ungrouped. */
-export function passageGroupInfo(questions: Question[], currentIdx: number): {
+ *  the current question isn't part of a multi-question passage set
+ *  that the UI can display consistently.
+ *
+ *  `moduleBreakIdx` is the index of the first Module 2 question on
+ *  adaptive tests; passing it keeps Module 1 and Module 2 items out
+ *  of the same passage set. Group numbering is scoped to the current
+ *  module, so Module 2 counts its own passages from 1 (Module 2 is
+ *  appended mid-session; a whole-test total would change under the
+ *  student's feet). */
+export function passageGroupInfo(
+  questions: Question[],
+  currentIdx: number,
+  moduleBreakIdx?: number,
+): {
   groupIndex: number
   totalGroups: number
   indexInGroup: number
   totalInGroup: number
 } | null {
-  const currentQuestion = questions[currentIdx]
-  const currentGroupId = currentQuestion?.passageGroupId
-  if (!currentGroupId) return null
-  // Complete-the-Words items stand alone by design (one paragraph =
-  // one item with 10 blanks). If the model erroneously emits a
-  // passageGroupId on a fill_in_blanks item, the grouper would
-  // display "Question X of Y in this passage" but each item has a
-  // different passage — confusing. Force-treat as ungrouped.
-  if (currentQuestion?.type === 'fill_in_blanks') return null
-  // Walk the list in order. Each new groupId increments groupIndex.
-  // Within a group, count items to find this question's position.
-  const groupOrder: string[] = []
-  for (const q of questions) {
-    const id = q.passageGroupId
-    if (id && !groupOrder.includes(id)) groupOrder.push(id)
+  const runOf = passageRuns(questions, moduleBreakIdx)
+  const currentRun = runOf[currentIdx]
+  if (currentRun == null || currentRun < 0) return null
+
+  // Restrict numbering to the current adaptive module.
+  const inModule2 = typeof moduleBreakIdx === 'number' && currentIdx >= moduleBreakIdx
+  const lo = inModule2 ? moduleBreakIdx! : 0
+  const hi = typeof moduleBreakIdx === 'number' && !inModule2 ? moduleBreakIdx : questions.length
+
+  const runsInModule: number[] = []
+  let totalInGroup = 0
+  let indexInGroup = 0
+  for (let i = lo; i < hi; i++) {
+    const r = runOf[i]
+    if (r < 0) continue
+    if (!runsInModule.includes(r)) runsInModule.push(r)
+    if (r === currentRun) {
+      totalInGroup++
+      if (i <= currentIdx) indexInGroup++
+    }
   }
-  const totalGroups = groupOrder.length
+  // A one-question "passage set" is not a set — saying "Question 1 of
+  // 1 in this passage" adds nothing and, on corrupt data, is exactly
+  // where the old code produced its worst claims.
+  if (totalInGroup < 2) return null
+  const totalGroups = runsInModule.length
   if (totalGroups < 2) return null // not worth showing for single group
-  const groupIndex = groupOrder.indexOf(currentGroupId) + 1
-  const inGroup = questions
-    .map((q, i) => ({ q, i }))
-    .filter(({ q }) => q.passageGroupId === currentGroupId)
-  const totalInGroup = inGroup.length
-  const indexInGroup = inGroup.findIndex(({ i }) => i === currentIdx) + 1
-  return { groupIndex, totalGroups, indexInGroup, totalInGroup }
+  return {
+    groupIndex: runsInModule.indexOf(currentRun) + 1,
+    totalGroups,
+    indexInGroup,
+    totalInGroup,
+  }
 }
 
 /** Renders a passage as one `<p>` per paragraph, with first-line

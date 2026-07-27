@@ -141,14 +141,78 @@ function toeflRows(itemType: string, n: number, difficulty = 'medium') {
   }))
 }
 
+/**
+ * Build TOEFL bank rows in SHARED-PASSAGE SETS: `groups` passages, each
+ * feeding `size` questions that carry the same passageGroupId and the same
+ * passage text — the shape the generator banks Reading/Listening in.
+ */
+function groupedRows(
+  itemType: string,
+  o: { groups: number; size: number; prefix?: string; difficulty?: string },
+) {
+  const prefix = o.prefix ?? 'psg'
+  const difficulty = o.difficulty ?? 'hard'
+  return Array.from({ length: o.groups }, (_, g) =>
+    Array.from({ length: o.size }, (_, i) => ({
+      id: `${prefix}-${g}-${i}`,
+      item_type: itemType,
+      difficulty,
+      item: {
+        prompt: `${prefix}-${g} Q${i}`,
+        type: itemType,
+        choices: ['A', 'B', 'C', 'D'],
+        correct_answer: 'A',
+        difficulty,
+        explanation: '',
+        passage: `Passage ${prefix}-${g}`,
+        passageGroupId: `${prefix}-${g}`,
+      },
+    })),
+  ).flat()
+}
+
+/**
+ * A delivered passage set must be WHOLE and CONTIGUOUS: every question the
+ * bank filed under that passage is present, and they sit next to each other
+ * so the passage renders once with its questions. Ungrouped items are
+ * exempt (they are sets of one).
+ */
+function expectWholeSets(
+  delivered: Array<{ passageGroupId?: string | null; prompt: string }>,
+  // `item` is the raw bank fixture shape — grouped rows carry
+  // passageGroupId, ungrouped ones (toeflRows) omit the key entirely.
+  bank: Array<{ item: object }>,
+) {
+  const bankSize = new Map<string, number>()
+  for (const r of bank) {
+    const g = (r.item as { passageGroupId?: string | null }).passageGroupId
+    if (g) bankSize.set(g, (bankSize.get(g) ?? 0) + 1)
+  }
+  const seen = new Map<string, number[]>()
+  delivered.forEach((q, i) => {
+    if (!q.passageGroupId) return
+    seen.set(q.passageGroupId, [...(seen.get(q.passageGroupId) ?? []), i])
+  })
+  for (const [gid, idxs] of seen) {
+    // Complete: no fragment of a passage's question set.
+    expect([gid, idxs.length]).toEqual([gid, bankSize.get(gid)])
+    // Contiguous: the set is not interleaved with another passage's items.
+    expect([gid, idxs[idxs.length - 1]! - idxs[0]!]).toEqual([gid, idxs.length - 1])
+  }
+}
+
 describe('assembleToeflFromBank two-module adaptive draw', () => {
   let enqueue: ReturnType<typeof tableRouter>
   beforeEach(() => {
     jest.clearAllMocks()
     jest.spyOn(console, 'error').mockImplementation(() => {})
+    jest.spyOn(console, 'warn').mockImplementation(() => {})
     enqueue = tableRouter(fromMock)
   })
-  afterEach(() => (console.error as jest.Mock).mockRestore())
+  afterEach(() => {
+    ;(console.error as jest.Mock).mockRestore()
+    ;(console.warn as jest.Mock).mockRestore()
+  })
 
   const deepReading = () => [...toeflRows('fill_in_blanks', 6), ...toeflRows('multiple_choice', 80)]
 
@@ -253,6 +317,98 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     await assembleToeflFromBank(
       { section: 'listening', module: 1, difficulties: ['hard'] }, 'seed-d1')
     expect(bank.in).not.toHaveBeenCalled()
+  })
+
+  it('Reading module 1 delivers WHOLE passage sets, never a fragment', async () => {
+    // Every set is 5 questions on one passage (ETS Academic shape). The
+    // draw ranked ITEMS, so the blueprint's 15 MC slots were filled with 15
+    // items from 15 different passages — a student read a full passage to
+    // answer one question, and "Question 1 of 1 in this passage" for a
+    // 5-question set.
+    const bank = groupedRows('multiple_choice', { groups: 20, size: 5 })
+    enqueue('study_item_bank', { data: [...toeflRows('fill_in_blanks', 6), ...bank] })
+    const test = await assembleToeflFromBank({ section: 'reading', module: 1 }, 'seed-g1')
+    expect(test.questions).toHaveLength(16)
+    expect(test.composition).toEqual({ fill_in_blanks: 1, multiple_choice: 15 })
+    expectWholeSets(test.questions, bank)
+  })
+
+  it('Listening module 1 delivers WHOLE transcript sets', async () => {
+    const bank = [
+      ...groupedRows('multiple_choice', { groups: 12, size: 3 }),
+      ...groupedRows('multiple_choice', { groups: 12, size: 2, prefix: 'pair' }),
+      // Listen-and-Respond items are ungrouped by design.
+      ...toeflRows('multiple_choice', 20),
+    ]
+    enqueue('study_item_bank', { data: bank })
+    const test = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-g2')
+    expect(test.questions).toHaveLength(24)
+    expectWholeSets(test.questions, bank)
+  })
+
+  it('the module-2 band preference moves a passage set as ONE unit', async () => {
+    // Sets straddle the routed band: 3 medium + 2 hard each. Partitioning
+    // ITEM-wise put a set's 3 medium questions in the in-band partition and
+    // its 2 hard ones in the fallback, so the count was filled with 3-of-5
+    // fragments of five different passages.
+    const inb = groupedRows('multiple_choice', { groups: 6, size: 5, prefix: 'inb' })
+      .map((r, i) => i % 5 < 3
+        ? { ...r, difficulty: 'medium', item: { ...r.item, difficulty: 'medium' } }
+        : r)
+    const oob = groupedRows('multiple_choice', { groups: 10, size: 5, prefix: 'oob' })
+    enqueue('study_item_bank', { data: [...oob, ...inb] })
+    const test = await assembleToeflFromBank(
+      { section: 'reading', module: 2, difficulties: ['medium'] }, 'seed-g3')
+    expect(test.composition.multiple_choice).toBe(15)
+    const mc = test.questions.filter(q => q.type !== 'fill_in_blanks')
+    expectWholeSets(mc, [...oob, ...inb])
+    // Majority-medium sets outrank the all-hard ones, and win as whole sets.
+    for (const q of mc) expect(q.passageGroupId).toMatch(/^inb-/)
+  })
+
+  it('the whole-section Reading module break never falls INSIDE a passage set', async () => {
+    // Module 1 ending mid-set showed the student half a passage's
+    // questions, a break banner, then the same passage again.
+    const bank = groupedRows('multiple_choice', { groups: 20, size: 5 })
+    enqueue('study_item_bank', { data: [...toeflRows('fill_in_blanks', 6), ...bank] })
+    const test = await assembleToeflFromBank({ section: 'reading' }, 'seed-g4')
+    expect(test.questions).toHaveLength(32)
+    expectWholeSets(test.questions.filter(q => q.type !== 'fill_in_blanks'), bank)
+    const brk = test.moduleBreakIdx!
+    expect(brk).toBeGreaterThan(0)
+    expect(brk).toBeLessThan(test.questions.length)
+    // No group id appears on both sides of the break.
+    const side = new Map<string, Set<number>>()
+    test.questions.forEach((q, i) => {
+      if (!q.passageGroupId) return
+      const s = side.get(q.passageGroupId) ?? new Set<number>()
+      s.add(i < brk ? 1 : 2)
+      side.set(q.passageGroupId, s)
+    })
+    for (const [gid, s] of side) expect([gid, s.size]).toEqual([gid, 1])
+  })
+
+  it('module 2 does not re-open a passage set module 1 already served', async () => {
+    // A set is SEEN as soon as any of its items is — otherwise its
+    // untouched members rank unseen-first and the same passage comes back
+    // after the break.
+    const bank = groupedRows('multiple_choice', { groups: 20, size: 3 })
+    enqueue('study_item_bank', { data: bank })
+    enqueue('study_item_exposures', { data: [] })
+    const m1 = await assembleToeflFromBank(
+      { section: 'listening', module: 1, studentId: 'stu-g' }, 'seed-g5')
+    const m1Ids = new Set(bank.filter(r => m1.questions.some(q => q.prompt === r.item.prompt)).map(r => r.id))
+    // Pretend only the FIRST item of each served set made it into the
+    // ledger — the ranking must still treat the whole set as spent.
+    enqueue('study_item_bank', { data: bank })
+    enqueue('study_item_exposures', {
+      data: [...m1Ids].filter(id => id.endsWith('-0'))
+        .map(id => ({ item_id: id, seen_at: '2026-01-01T00:00:00Z', session_id: 'other' })),
+    })
+    const m2 = await assembleToeflFromBank(
+      { section: 'listening', module: 2, studentId: 'stu-g' }, 'seed-g5')
+    const m1Groups = new Set(m1.questions.map(q => q.passageGroupId))
+    for (const q of m2.questions) expect(m1Groups.has(q.passageGroupId)).toBe(false)
   })
 
   it('omitting `module` reproduces the whole-section draw unchanged', async () => {

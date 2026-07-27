@@ -138,6 +138,50 @@ export async function POST(req: NextRequest) {
     const correct = gradeMultipleChoice(module1Questions, answers)
     const route = computeSatRoute(correct, module1Questions.length)
 
+    // CLAIM-then-draw — the same arbitration the TOEFL branch uses below,
+    // and for the same reason. This used to draw first and write
+    // module2_route LAST (a non-conditional update whose failure was only
+    // logged), so two concurrent requests — a double-tap, or the tap
+    // racing the module-1 timeout auto-route — both read a null route
+    // above and both appended a Module 2 to the same cache row. The
+    // client only ever holds ONE of them, so the resulting cache is
+    // longer than the client's array and /submit rejects the finished
+    // test with "submitted question count does not match the served
+    // test" (submit/route.ts:170). The `module2_route IS NULL` predicate
+    // makes the write the single point of arbitration: the loser matches
+    // zero rows and replays the winner's Module 2.
+    const { data: satClaimed } = await dbAdmin
+      .from('study_sessions')
+      .update({ module1_correct: correct, module1_total: module1Questions.length, module2_route: route })
+      .eq('id', sessionId)
+      .is('module2_route', null)
+      .select('id')
+    if (!satClaimed || satClaimed.length === 0) {
+      const { data: freshRows } = await dbAdmin
+        .from('study_messages')
+        .select('content')
+        .eq('session_id', sessionId)
+        .eq('role', 'assistant')
+        .ilike('content', `${CACHED_TEST_MARKER}%`)
+        .limit(1)
+      let fresh: { questions?: unknown[] } | null = null
+      if (freshRows?.[0]) {
+        try { fresh = JSON.parse(freshRows[0].content.slice(CACHED_TEST_MARKER.length)) } catch { /* corrupt */ }
+      }
+      const { data: s2 } = await dbAdmin
+        .from('study_sessions')
+        .select('module2_route, module1_correct, module1_total')
+        .eq('id', sessionId)
+        .maybeSingle()
+      return NextResponse.json({
+        route: s2?.module2_route ?? route,
+        module1Correct: s2?.module1_correct ?? correct,
+        module1Total: s2?.module1_total ?? module1Questions.length,
+        module2Questions: (fresh?.questions ?? []).slice(breakIdx),
+        alreadyRouted: true,
+      })
+    }
+
     // Draw Module 2 from the routed difficulty band. Module 1 items are
     // already in the exposure ledger (recorded at assemble) so this draw
     // excludes them; seed with the session id so it's stable on retry.
@@ -153,13 +197,15 @@ export async function POST(req: NextRequest) {
         sessionId,
       )
     } catch (e) {
+      await releaseClaim(sessionId, 'empty bank')
       return NextResponse.json(
         { error: 'module2_bank_empty', details: (e as Error).message }, { status: 409 },
       )
     }
 
     // Append Module 2 to the cached payload (same row /submit reads).
-    const merged = { ...cached, questions: [...allQuestions, ...module2.questions] }
+    const satModule2 = scopeModule2PassageGroups(module2.questions)
+    const merged = { ...cached, questions: [...allQuestions, ...satModule2] }
     const { error: writeErr } = await dbAdmin
       .from('study_messages')
       .update({ content: CACHED_TEST_MARKER + JSON.stringify(merged) })
@@ -167,27 +213,15 @@ export async function POST(req: NextRequest) {
       .eq('role', 'assistant')
       .ilike('content', `${CACHED_TEST_MARKER}%`)
     if (writeErr) {
+      await releaseClaim(sessionId, 'cache write failure')
       return NextResponse.json({ error: 'module2_cache_write_failed' }, { status: 500 })
-    }
-
-    // module2_route is the replay guard: the cache row now holds Module 2,
-    // so if this write is lost a re-entry reads a null route and appends a
-    // SECOND Module 2 to the same payload. The student already has their
-    // questions, so don't fail the response — but make the corruption risk
-    // visible rather than silent.
-    const { error: routeErr } = await dbAdmin
-      .from('study_sessions')
-      .update({ module1_correct: correct, module1_total: module1Questions.length, module2_route: route })
-      .eq('id', sessionId)
-    if (routeErr) {
-      console.error('[test/route] SAT route verdict not persisted', { sessionId, route, error: routeErr })
     }
 
     return NextResponse.json({
       route,
       module1Correct: correct,
       module1Total: module1Questions.length,
-      module2Questions: module2.questions,
+      module2Questions: satModule2,
       alreadyRouted: false,
     })
   }
@@ -324,15 +358,7 @@ export async function POST(req: NextRequest) {
   } catch (e) {
     // Release the claim so the student can retry once the bank is
     // seeded, rather than being stranded with a route and no Module 2.
-    // If the release itself fails they ARE stranded — the replay path will
-    // hand back an empty Module 2 forever — so it must not be silent.
-    const { error: releaseErr } = await dbAdmin
-      .from('study_sessions')
-      .update({ module2_route: null })
-      .eq('id', sessionId)
-    if (releaseErr) {
-      console.error('[test/route] claim release failed after empty bank', { sessionId, error: releaseErr })
-    }
+    await releaseClaim(sessionId, 'empty bank')
     return NextResponse.json(
       { error: 'module2_bank_empty', details: (e as Error).message }, { status: 409 },
     )
@@ -341,7 +367,8 @@ export async function POST(req: NextRequest) {
   // Append Module 2 to the cached payload — the SAME row /submit grades
   // against. `allQuestions` is Module 1 verbatim, so this never reorders
   // or rewrites it, and the scored-item accounting is unchanged.
-  const merged = { ...cached, questions: [...allQuestions, ...module2.questions] }
+  const toeflModule2 = scopeModule2PassageGroups(module2.questions)
+  const merged = { ...cached, questions: [...allQuestions, ...toeflModule2] }
   const { error: writeErr } = await dbAdmin
     .from('study_messages')
     .update({ content: CACHED_TEST_MARKER + JSON.stringify(merged) })
@@ -350,13 +377,7 @@ export async function POST(req: NextRequest) {
     .ilike('content', `${CACHED_TEST_MARKER}%`)
   if (writeErr) {
     // Same stranding risk as the bank-empty path above.
-    const { error: releaseErr } = await dbAdmin
-      .from('study_sessions')
-      .update({ module2_route: null })
-      .eq('id', sessionId)
-    if (releaseErr) {
-      console.error('[test/route] claim release failed after cache write failure', { sessionId, error: releaseErr })
-    }
+    await releaseClaim(sessionId, 'cache write failure')
     return NextResponse.json({ error: 'module2_cache_write_failed' }, { status: 500 })
   }
 
@@ -364,9 +385,57 @@ export async function POST(req: NextRequest) {
     route,
     module1Correct: correct,
     module1Total: module1Questions.length,
-    module2Questions: module2.questions,
+    module2Questions: toeflModule2,
     alreadyRouted: false,
   })
+}
+
+/** Give up a won `module2_route` claim after the draw or the cache
+ *  append failed, so the student can retry instead of being stranded
+ *  with a route and no Module 2. If the release itself fails they ARE
+ *  stranded — the replay path hands back an empty Module 2 forever — so
+ *  it must not be silent. */
+async function releaseClaim(sessionId: string, why: string): Promise<void> {
+  const { error } = await dbAdmin
+    .from('study_sessions')
+    .update({ module2_route: null })
+    .eq('id', sessionId)
+  if (error) {
+    console.error(`[test/route] claim release failed after ${why}`, { sessionId, error })
+  }
+}
+
+/**
+ * Namespace every Module-2 `passageGroupId` so a passage set can never
+ * span the module break.
+ *
+ * Module 2 is drawn from the same bank as Module 1 and only excludes
+ * Module 1's ITEMS (via the exposure ledger) — never its passage
+ * GROUPS. So the routed draw routinely returns further items carrying a
+ * groupId Module 1 already used. Once appended, the client's grouper
+ * (`passageGroupInfo`, mobile/study/session/[id]/test/helpers.tsx:85)
+ * scans the WHOLE questions array by groupId, so those Module-1 and
+ * Module-2 items are counted as ONE passage set: the student is told
+ * "question 3 of 5 in this passage" on a Module-2 item whose two
+ * siblings are behind a locked module break, and (because the bank
+ * stores a different passage per item under the same group id) the
+ * passage pane changes underneath the counter.
+ *
+ * Observed live: session bbe2f56d-c1bb-4e00-9f02-45458546d02c has group
+ * `academic-1` at Module-1 indices 5,6 and Module-2 indices 16,17,18.
+ *
+ * A cross-module group is never legitimate — Module 1 is read-only once
+ * Module 2 starts (TestSession.tsx:1199) — so the suffix costs nothing
+ * and grouping WITHIN Module 2 is preserved. Ungrouped items are left
+ * exactly as drawn. Note this does NOT fix same-group-different-passage
+ * corruption inside one module; that is a bank-data problem.
+ */
+function scopeModule2PassageGroups<T extends { passageGroupId?: string | null }>(questions: T[]): T[] {
+  return questions.map(q =>
+    typeof q.passageGroupId === 'string' && q.passageGroupId !== ''
+      ? { ...q, passageGroupId: `${q.passageGroupId}#m2` }
+      : q,
+  )
 }
 
 /** Count correct multiple-choice answers against a question slice.

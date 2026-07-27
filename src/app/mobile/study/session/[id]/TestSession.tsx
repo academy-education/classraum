@@ -1408,7 +1408,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // with inline inputs — rendering it twice would duplicate
           // the paragraph on screen and let students think the header
           // "Question X of Y" applies to unrelated passages.
-          const groupInfo = passageGroupInfo(test.questions, currentIdx)
+          // moduleBreakIdx keeps Module 1 and Module 2 items out of the
+          // same passage set (Module 2 is appended mid-session and can
+          // reuse Module 1's passageGroupIds).
+          const groupInfo = passageGroupInfo(test.questions, currentIdx, test.moduleBreakIdx)
           // TOEFL Listening items ship the spoken script inside the
           // passage field prefixed with "Transcript:". Detect and route
           // to the audio player so students actually LISTEN instead of
