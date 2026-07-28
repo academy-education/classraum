@@ -171,9 +171,16 @@ export function TestResultView({
                 fraction={scaleFraction(toeflScaledScore(model.scorePercent), 0, 30)}
                 /* Says the relationship out loud. The band above IS this
                    number divided by 5 — previously the two were computed
-                   from unrelated formulas and could disagree on screen. */
-                note={ko ? '이 점수를 5로 나눈 값이 위의 밴드 점수예요.'
-                         : 'Your band above is this number divided by 5.'}
+                   from unrelated formulas and could disagree on screen.
+                   The floor has to be stated too: a scaled 3 is a band 1,
+                   not 0.6, because the published scale starts at 1. Saying
+                   only "divided by 5" is false at the bottom, which is the
+                   same class of error this row was added to remove. */
+                note={toeflScaledScore(model.scorePercent) < 5
+                  ? (ko ? '이 점수를 5로 나눈 값이 밴드 점수예요. 단, 밴드는 1.0에서 시작합니다.'
+                        : 'Your band is this divided by 5 — but the scale starts at 1.0.')
+                  : (ko ? '이 점수를 5로 나눈 값이 위의 밴드 점수예요.'
+                        : 'Your band above is this number divided by 5.')}
               />
             </div>
           )}
