@@ -171,3 +171,62 @@ not only within one.
 Related: `verify-answer-key-spread.ts` gates on a minimum cohort size. A
 14-item cohort at 50%-on-one-slot passed that gate once. Small cohorts are
 not safe cohorts.
+
+### Corollary: a convention from one skill silently applies to the other
+
+TOEFL Speaking and Writing have SEPARATE official ETS scoring guides that
+do not agree with each other, and on 2026-07-29 we shipped three bugs of
+one shape — a Writing convention applied to Speaking:
+
+1. **Zero conditions.** Writing's 0 lists "rejects the topic" and
+   "entirely copied from the prompt"; Speaking's lists neither, and its
+   score-2 descriptor explicitly reads "consists mainly of language from
+   the question". A copied spoken answer is a 2 on the real exam and was
+   a 0 in ours.
+2. **The band rule.** Writing bands 2 and 1 read "exhibits ONE OR MORE of
+   the following"; Speaking uses "a typical response exhibits the
+   following" at every band. Under the imported one-or-more reading a
+   single weak feature dropped a response two bands.
+3. **The timed-conditions allowance.** Writing band 5 forgives "errors
+   expected from a competent writer writing under timed conditions". We
+   had dropped the clause entirely — from both skills.
+
+All three were invisible to the whole test suite and were found by
+reading the published PDFs (`pdftotext -layout` handles them; WebFetch
+does not). Before trusting any rubric text, diff it against the source
+for THAT skill. `rubric-fidelity.test.ts` now pins the divergences.
+
+### Corollary: fixing a loud failure by making it quiet is a regression
+
+Twice in one session a visible error was "fixed" into a silent wrong
+number:
+
+- `generateObject` threw when the model omitted `topic_relevance`, so the
+  key was made required. The model, told elsewhere not to judge
+  relevance, complied with `score 0, evidence "N/A"` — and the ceiling
+  min()'d that to 0. A 502 became an on-topic answer scored zero.
+- The band came from a hand-written ladder while the 0-30 row came from
+  `percent x 30`. Each was internally consistent; together they printed
+  "band 3.0" beside "13 / 30".
+
+When a schema error, a 502 or a crash is the symptom, check whether the
+fix removes the CAUSE or just the message. A test asserting the old
+behaviour would have passed in both cases, which is why neither was
+caught by 594 green tests.
+
+### The grader is not calibrated, and cannot be from public data
+
+`scripts/calibrate-grader.ts` grades ETS's own published samples through
+the production stage callbacks. As of 2026-07-29 it FAILS: a published 5
+scores 3, a published 4 scores 3 — harsh on both, mean -1.5 bands.
+Descriptor fidelity is no longer the explanation; all four rubrics now
+match the official guides and the numbers did not move.
+
+Only two scored samples for our task types are public (Academic
+Discussion, Writing Practice Set 4). Do NOT tune prompts against them:
+two items cannot support fitting, and few-shot anchoring on them means
+the grader has seen the whole test set. Fixing this needs TPO/TestReady
+exemplars or students self-reporting real TOEFL bands.
+
+Until then, do not fold rubric marks into the section band — it would
+push every Speaking and Writing score down by that same margin.

@@ -636,10 +636,29 @@ Prompt: "[Listen and Repeat] Repeat the sentence you hear."
 Passage: "She missed the lecture because her train was late this morning."
 Correct: "She missed the lecture because her train was late this morning."
 Note: 11 words — one main clause plus a single "because" tail and a time phrase, all everyday vocabulary. This is the CORRECT difficulty band for Listen-and-Repeat at every tier: enough length to stress working memory, but never nested clauses or rare words. Reject anything under 8 or over 12 words.`,
-          `EXAMPLE 2 (HARD — Interview prompt requiring a defended position):
-Prompt: "[Interview] Some universities are moving toward fully online degree programs. Do you think a fully online undergraduate degree has the same value as a traditional in-person degree? Defend your position with at least two specific reasons."
-Why hard: Open-ended, requires the student to (1) take a clear side, (2) avoid hedging into "both have value", (3) supply two distinct supporting reasons rather than restating their thesis. Compare to a soft prompt like "Have you ever taken an online class?" which can be answered in 8 words. Strong responses run 60-90 seconds; weak responses stall at "I think both are good" with no defense.`,
-          `EXAMPLE 3 (HARD — Interview prompt requiring comparison):
+          `EXAMPLE 2 (HARD — a WHOLE interview, which is the unit that ships):
+Take-an-Interview is ONE interview on ONE topic, so the example is a
+complete set, not a standalone question. A single question shown alone
+is what made an earlier model emit four unrelated opinion prompts.
+
+Premise (identical on all 4 items, delivered aurally and in print):
+"You have agreed to take part in a university research study about how students get to and from campus."
+  1. "[Interview] How do you usually travel to campus, and roughly how long does the trip take?"
+  2. "[Interview] Is there a time of day you prefer to travel, and what makes that time better for you?"
+  3. "[Interview] People often complain that public transport near universities is unreliable. In your experience, is that complaint fair?"
+  4. "[Interview] Suppose the university could fund only one of two things: more frequent shuttle buses, or cheaper parking. Which should it choose, and why?"
+
+Why hard: the ladder rises from a fact to a preference-with-reason to a
+contested claim to a forced trade-off, and every rung stays on the
+premise's topic. Rung 4 is answerable without rungs 1-3 — the section is
+linear, never branching.
+
+NOTE: TOEFL Speaking is served from the item bank
+(src/lib/study/toefl-interview-sets.ts), so this example does not
+currently drive generation. It is written as a set anyway, because the
+last time the examples here contradicted the prose above them, the model
+followed the examples.`,
+`EXAMPLE 3 (HARD — Interview prompt requiring comparison):
 Prompt: "[Interview] Some students prefer to study by re-reading their notes; others prefer to test themselves with practice questions. Which method do you think works better for long-term retention, and why?"
 Why hard: Forces a comparative judgment (re-reading vs retrieval practice) with a constrained "why". Trap: students who just describe their own habit ("I re-read my notes") without engaging the comparison get a low score on topic development. Strong responses pick a side AND explain the mechanism (e.g., "Active recall surfaces gaps in memory better than re-reading, which often feels familiar without actually being recallable").`,
         ],
