@@ -74,6 +74,8 @@ function SummaryInner({ id }: { id: string }) {
   const [session, setSession] = useState<SessionRow | null>(null)
   const [attempts, setAttempts] = useState<AttemptRow[]>([])
   const [loading, setLoading] = useState(true)
+  /** Review list is capped at 3 until asked; see the expander below. */
+  const [showAllMistakes, setShowAllMistakes] = useState(false)
   const showLoader = useMascotGate(loading)
 
   useEffect(() => {
@@ -144,6 +146,17 @@ function SummaryInner({ id }: { id: string }) {
     : session.score !== null
       ? Math.round(session.score)
       : Math.round((correct / totalItems) * 100)
+  // MISSED counts the same unit as the headline score (scored questions),
+  // so it reconciles with "6 of 35 correct" directly above it.
+  //
+  // It does NOT match the review list below, which is per CARD: a
+  // Complete-the-Words card is one row but ten scored questions, and
+  // unscored pilot items have no scored weight at all. A TOEFL Reading
+  // session showed "29 MISSED" above "20 to review" — both correct,
+  // counting different things, and impossible for a student to
+  // reconcile. Same card-vs-question conflation as the Module 2 banner's
+  // phantom "19". The list heading now says how many CARDS it holds
+  // rather than implying it accounts for the 29.
   const incorrect = totalItems - correct
   // SAT adaptive: path-weighted 200–800 section band (easy path caps).
   //
@@ -283,7 +296,12 @@ function SummaryInner({ id }: { id: string }) {
         <section className="animate-fade-in-up" style={{ animationDelay: '160ms', animationFillMode: 'both' }}>
           <div className="flex items-baseline justify-between mb-3">
             <h2 className="text-[15px] font-semibold tracking-tight text-gray-900">
-              {String(t('study.summary.mistakesTitle', { count: String(mistakes.length) }))}
+              {/* "N questions to review" — N is CARDS, deliberately not the
+                  MISSED stat above, which counts scored questions. Naming the
+                  unit is what makes the two numbers reconcilable. */}
+              {ko
+                ? `다시 볼 문제 ${mistakes.length}개`
+                : `${mistakes.length} question${mistakes.length === 1 ? '' : 's'} to review`}
             </h2>
             <Link
               href="/mobile/study/wrong-notebook"
@@ -293,16 +311,24 @@ function SummaryInner({ id }: { id: string }) {
             </Link>
           </div>
           <div className="space-y-2">
-            {mistakes.slice(0, 3).map((m) => (
+            {(showAllMistakes ? mistakes : mistakes.slice(0, 3)).map((m) => (
               <MistakeRow key={m.id} attempt={m} ko={ko} />
             ))}
             {mistakes.length > 3 && (
-              <Link
-                href="/mobile/study/wrong-notebook"
-                className="block text-center text-[12.5px] text-primary hover:text-primary/80 py-2 font-medium"
+              // Was a link straight out to the wrong notebook, so the
+              // student had to leave this screen to see items 4..N of
+              // their own test. Expand in place; the notebook link stays
+              // in the header for the cross-session view.
+              <button
+                type="button"
+                onClick={() => setShowAllMistakes(v => !v)}
+                aria-expanded={showAllMistakes}
+                className="block w-full text-center text-[12.5px] text-primary hover:text-primary/80 py-2 font-medium"
               >
-                {String(t('study.summary.mistakesMore', { count: String(mistakes.length - 3) }))} →
-              </Link>
+                {showAllMistakes
+                  ? (ko ? '접기' : 'Show less')
+                  : `${String(t('study.summary.mistakesMore', { count: String(mistakes.length - 3) }))} →`}
+              </button>
             )}
           </div>
         </section>
@@ -392,12 +418,40 @@ function Stat({ icon: Icon, value, label }: {
  * carry a choice list (non-MC types, or legacy attempts stored
  * without full question JSON).
  */
+/**
+ * Complete-the-Words stores BOTH sides as a blank-map, not a string:
+ * the student's answer is JSON like {"1":"adfad","2":"dhgfdh",...} and
+ * `correct_answer` is empty because the key lives in `blanks[]`. The row
+ * rendered the raw JSON with an empty green line underneath it — which a
+ * student cannot read and cannot learn from. Render both as
+ * "1 ous · 2 ification · …" instead.
+ */
+function formatBlankMap(raw: string | null | undefined): string | null {
+  if (!raw) return null
+  const s = raw.trim()
+  if (!s.startsWith('{')) return null
+  try {
+    const obj = JSON.parse(s) as Record<string, unknown>
+    const parts = Object.entries(obj)
+      .sort(([a], [b]) => Number(a) - Number(b))
+      .map(([k, v]) => `${k} ${String(v ?? '').trim() || '—'}`)
+    return parts.length ? parts.join(' · ') : null
+  } catch { return null }
+}
+
 function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
   const [expanded, setExpanded] = useState(false)
   const [picked, setPicked] = useState<string | null>(null)
   const choices = attempt.question?.choices ?? []
-  const correct = attempt.question?.correct_answer ?? ''
-  const canReattempt = choices.length >= 2 && !!correct
+  const rawCorrect = attempt.question?.correct_answer ?? ''
+  // Fall back to the blanks array — fill_in_blanks has no correct_answer.
+  const blanks = (attempt.question as { blanks?: { id: number; answer: string }[] } | null)?.blanks
+  const correct = rawCorrect
+    || (blanks?.length
+      ? blanks.map(b => `${b.id} ${b.answer}`).join(' · ')
+      : '')
+  const shownStudent = formatBlankMap(attempt.student_answer) ?? attempt.student_answer
+  const canReattempt = choices.length >= 2 && !!rawCorrect
 
   const isCorrectPick = picked !== null && picked === correct
   const isWrongPick = picked !== null && picked !== correct
@@ -419,8 +473,8 @@ function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
       </div>
       <div className="flex items-start gap-2 text-[12px] mb-1">
         <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
-        <span className="text-rose-700 line-through flex-1 truncate" title={attempt.student_answer}>
-          {attempt.student_answer || '—'}
+        <span className="text-rose-700 line-through flex-1 truncate" title={shownStudent ?? undefined}>
+          {shownStudent || '—'}
         </span>
       </div>
       <div className="flex items-start gap-2 text-[12px]">
