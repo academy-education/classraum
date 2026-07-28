@@ -359,13 +359,6 @@ export async function POST(req: NextRequest) {
   if (authResult.response) return authResult.response
   const user = authResult.user
 
-  // Test generation costs more than practice — cap tighter.
-  const blocked = enforceRateLimit(
-    `test-generate:user:${user.id}`,
-    { windowMs: 30 * 60 * 1000, max: 5 }
-  )
-  if (blocked) return blocked
-
   let body: { sessionId?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
   const sessionId = body.sessionId
@@ -392,6 +385,7 @@ export async function POST(req: NextRequest) {
     .eq('session_id', sessionId)
     .eq('role', 'assistant')
     .ilike('content', `${CACHED_TEST_MARKER}%`)
+    .order('created_at', { ascending: false })
     .limit(1)
   if (existingRows && existingRows.length > 0) {
     const raw = existingRows[0].content.slice(CACHED_TEST_MARKER.length)
@@ -445,6 +439,30 @@ export async function POST(req: NextRequest) {
     // here as well would mean a full refund AND a free test.
     console.warn('[test/generate] stale pending row — regenerating', { sessionId, staleMs })
   }
+
+  // ── Rate limit ──────────────────────────────────────────────────
+  // Placed HERE, not at the top of the handler.
+  //
+  // It used to run before anything else, which meant it also gated the
+  // cached-payload short-circuit above and the pending-generation poll.
+  // Neither spends a model token, so simply OPENING a test — including a
+  // finished one — consumed one of five allowances per 30 minutes. The
+  // window is fixed rather than rolling (lib/rate-limit.ts) and the store
+  // is a per-process Map, so on Vercel the 6th open in half an hour 429s
+  // or not depending which warm instance answers. The client turns any
+  // non-2xx into a bare throw, which renders as "We couldn't create your
+  // test" — over a test that already exists and was already graded.
+  //
+  // Real usage exceeds five easily: one student created 10 full_test
+  // sessions inside 30 minutes, before counting refreshes and retries.
+  //
+  // Below this line the request is about to spend model tokens, which is
+  // what the cap is actually for.
+  const blocked = enforceRateLimit(
+    `test-generate:user:${user.id}`,
+    { windowMs: 30 * 60 * 1000, max: 5 }
+  )
+  if (blocked) return blocked
 
   // ── Credit reserve ──────────────────────────────────────────────
   // Per-section pricing (2026-07 relaunch): e.g. TOEFL Speaking /

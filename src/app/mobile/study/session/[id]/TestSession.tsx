@@ -226,7 +226,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         headers,
         body: JSON.stringify({ sessionId }),
       })
-      if (!res.ok || !res.body) throw new Error()
+      // Carry the STATUS. This threw an empty Error, so 401 / 429 / 500 /
+      // 404 were indistinguishable downstream and every one of them
+      // rendered as "We couldn't create your test" — which is why an
+      // intermittent 429 went undiagnosed. 429 in particular has correct
+      // copy already ("give it a minute"); it just never reached it.
+      if (!res.ok || !res.body) throw new Error(`generate HTTP ${res.status}`)
 
       const reader = res.body.getReader()
       const decoder = new TextDecoder()
