@@ -275,7 +275,10 @@ function TestRow({ row, ko }: { row: Row; ko: boolean }) {
 
   return (
     <Link
-      href={`/mobile/study/session/${row.id}${state === 'completed' ? '/summary' : ''}`}
+      // Completed tests open the RESULT screen (score, band, per-question
+      // review), same as right after submitting — not /summary. The session
+      // page rebuilds it, and falls back to /summary itself if it cannot.
+      href={`/mobile/study/session/${row.id}`}
       className="group flex items-center gap-3 px-4 py-3 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
     >
       <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${meta.iconClass}`}>

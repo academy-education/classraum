@@ -1190,9 +1190,32 @@ export async function assembleToeflFromBank(
     // questions of a task never count — and then skip them.
     const scoredShare = scoredForModule(entry)
     if (scoredShare != null && scoredShare < ordered.length) {
+      // HARDEST items become the pilots.
+      //
+      // Was a flat seeded shuffle — any item equally likely. Two reasons to
+      // bias by difficulty instead:
+      //  - Every difficulty label in this bank is an ESTIMATE (a model pass,
+      //    or a proxy like word count) rather than a measurement; p-value
+      //    calibration has zero real attempts behind it. The hard end is
+      //    therefore the least trustworthy end, and the reported score is
+      //    steadier if it rests on the better-understood items.
+      //  - A pilot is where a not-yet-trusted item belongs.
+      //
+      // Shuffle WITHIN a difficulty band before slicing, so the choice is
+      // still not positional: taking "the last k" would be stable across
+      // sessions, and a student reviewing two tests could learn that the
+      // trailing questions of a task never count, then skip them.
+      //
+      // TRADE-OFF, deliberately accepted and worth revisiting once real
+      // p-values exist: pulling the hardest items out of the denominator
+      // makes the scored set systematically easier, so reported scores drift
+      // up and the test discriminates less at the top of the range.
+      const RANK: Record<string, number> = { hard: 0, medium: 1, easy: 2 }
+      const byHardest = seededShuffle(ordered.map(r => r.id), seed + ':pilot:' + key)
+        .map(id => ordered.find(r => r.id === id)!)
+        .sort((a, b) => (RANK[a.item.difficulty ?? 'medium'] ?? 1) - (RANK[b.item.difficulty ?? 'medium'] ?? 1))
       const pilots = new Set(
-        seededShuffle(ordered.map(r => r.id), seed + ':pilot:' + key)
-          .slice(0, ordered.length - scoredShare),
+        byHardest.slice(0, ordered.length - scoredShare).map(r => r.id),
       )
       for (const r of ordered) {
         if (pilots.has(r.id)) r.item = { ...r.item, scored: false }

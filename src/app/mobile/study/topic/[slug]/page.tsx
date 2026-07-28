@@ -1287,7 +1287,8 @@ function RecentTestsList({ topicIds, studentId, ko }: {
           return (
             <Link
               key={row.id}
-              href={`/mobile/study/session/${row.id}/summary`}
+              // Result screen, not the summary — see tests/page.tsx.
+              href={`/mobile/study/session/${row.id}`}
               className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
             >
               <div className={`flex-shrink-0 inline-flex items-center justify-center w-11 h-8 rounded-xl text-[13px] font-bold tabular-nums ring-1 ${
