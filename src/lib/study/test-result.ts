@@ -190,13 +190,21 @@ export function buildResultModel(input: {
 export type TestFamily = 'toefl' | 'sat' | 'other'
 export type SatSection = 'math' | 'reading_writing'
 
-/** Topic slugs follow "<family>-<section>" (toefl-reading, sat-math, ...).
- *  Derived here once: this rule was written three separate times, and one
- *  copy omitting it is what applied the SAT curve to a TOEFL test. */
-export function familyFromTopicSlug(slug: string | null | undefined): TestFamily {
-  const s = slug ?? ''
-  if (s.startsWith('toefl-')) return 'toefl'
-  if (s.startsWith('sat-')) return 'sat'
+/**
+ * Which exam this is. Written three separate times before this, and the
+ * copy that omitted it applied the SAT curve to a TOEFL test.
+ *
+ * Accepts either a topic slug ("toefl-reading", "sat-math") or a bare
+ * family label ("toefl"), because the two result screens have different
+ * things to hand: the durable screen has the topic slug, the post-submit
+ * screen has the payload's free-form `family: string | null`. Taking both
+ * is what lets them reach the same answer through the same rule instead
+ * of each interpreting its own field.
+ */
+export function familyFromTopicSlug(slugOrFamily: string | null | undefined): TestFamily {
+  const s = (slugOrFamily ?? '').trim().toLowerCase()
+  if (s === 'toefl' || s.startsWith('toefl-')) return 'toefl'
+  if (s === 'sat' || s.startsWith('sat-')) return 'sat'
   return 'other'
 }
 

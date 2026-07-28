@@ -194,6 +194,22 @@ describe('familyFromTopicSlug', () => {
     // The specific regression: a TOEFL topic must never read as SAT.
     expect(familyFromTopicSlug('toefl-reading')).not.toBe('sat')
   })
+
+  // The post-submit screen has the payload's bare `family` label, the
+  // durable screen has the topic slug. Both go through this one rule, so
+  // it has to read both — otherwise each screen interprets its own field
+  // and they drift, which is the whole failure mode.
+  it('reads a bare family label as well as a full slug', () => {
+    expect(familyFromTopicSlug('toefl')).toBe('toefl')
+    expect(familyFromTopicSlug('sat')).toBe('sat')
+    expect(familyFromTopicSlug('TOEFL')).toBe('toefl')
+    expect(familyFromTopicSlug(' sat ')).toBe('sat')
+  })
+
+  it('does not let a prefix collision claim a family', () => {
+    expect(familyFromTopicSlug('satire-reading')).toBe('other')
+    expect(familyFromTopicSlug('toeflish')).toBe('other')
+  })
 })
 
 describe('satSectionFromTopicSlug', () => {

@@ -1,30 +1,27 @@
 "use client"
 
-import { useState } from 'react'
 import Link from 'next/link'
-import {
-  ArrowRight, CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles,
-} from '@/app/mobile/study/_shared/icons'
+import { ArrowRight, Sparkles } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
-import { normalizeDisplayText, PassageParagraphs, percentToToeflBand } from './helpers'
-import { reviewRanges as buildReviewRanges } from '@/lib/study/test-result'
-import { QuestionGraphicView } from './QuestionGraphicView'
-import { WritingFeedbackPanel } from './WritingPanels'
-import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
+import { buildResultModel, familyFromTopicSlug } from '@/lib/study/test-result'
+import { TestResultView } from './TestResultView'
 import type { SpeechSignals, SubmitResult, TestPayload } from './types'
 
 /**
- * Post-submit review. Shows the score + a per-question accordion so
- * the student can revisit what they missed without re-running the
- * whole test.
+ * Post-submit review — now a thin adapter.
+ *
+ * It maps what the taking flow has in memory (the payload, the answers
+ * array, the submit response) onto the shared result model, and hands it
+ * to TestResultView. The durable /summary screen maps the DB rows onto the
+ * same model, which is the point: the two screens can no longer disagree
+ * about a number, because there is only one place left to compute it.
  */
 export function ReviewView({
   test, answers, answerAudioPaths, answerSpeechSignals, speakingGradeMode, result, ko, sessionId,
 }: {
   test: TestPayload
   answers: (string | null)[]
-  /** Per-question audio storage paths captured during Speaking.
-   *  Used to offer playback next to the rubric grade. */
+  /** Per-question audio storage paths captured during Speaking. */
   answerAudioPaths: Record<number, string>
   /** Per-question WPM / pause / clarity metrics from Whisper. */
   answerSpeechSignals: Record<number, SpeechSignals>
@@ -35,404 +32,69 @@ export function ReviewView({
   sessionId: string
 }) {
   const { t } = useTranslation()
-  const [expanded, setExpanded] = useState<number | null>(null)
-  /** Per-question detail is opt-in — see the note on the accordion below. */
-  const [showDetail, setShowDetail] = useState(false)
 
-  // Weighted question numbering — mirrors the taking view: a CtW item
-  // with 10 blanks occupies positions N..N+9 of the weighted total, so
-  // review labels match the "Question 12–21 of 50" numbering the
-  // student saw during the test.
-  const { ranges: reviewRanges, deliveredTotal: reviewTotal } = buildReviewRanges(test.questions)
+  const model = buildResultModel({
+    // `family` is payload-only and free-form (`string | null`), so it is
+    // normalized through the same rule /summary uses on the topic slug
+    // rather than trusted as-is. Both screens therefore answer "is this
+    // SAT?" identically — reading it raw on one screen only is what put a
+    // College Board 200-800 score on a TOEFL result.
+    family: familyFromTopicSlug(test.family),
+    correctCount: result.correctCount,
+    totalScored: result.totalQuestions,
+    scorePercent: result.scorePercent,
+    cards: test.questions.map((q, i) => ({
+      question: q,
+      studentAnswer: answers[i] ?? null,
+      correct: !!result.verdicts[i]?.correct,
+      ungraded: !!result.verdicts[i]?.ungraded,
+      // Freshly submitted: the array IS the delivered order, so every
+      // card is numbered. Reopened tests go through the DB path, which
+      // reads the stored `position` and suppresses labels without one.
+      position: i,
+    })),
+  })
 
   return (
     <div className="flex-1 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
-      <div className="px-5 py-6 space-y-5">
-        {/* Summary CTA — links to the dedicated summary page with
-            mistake review, streak update, and "try again" surface. */}
-        <Link
-          href={`/mobile/study/session/${sessionId}/summary`}
-          className="block rounded-2xl bg-gradient-to-br from-primary/[0.08] via-indigo-50/40 to-white ring-1 ring-primary/25 p-4 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.18)] active:scale-[0.99] transition-all"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] ring-1 ring-primary/30">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[14.5px] font-semibold text-gray-900 leading-tight">
-                {String(t('study.test.viewSummaryTitle'))}
-              </div>
-              <div className="text-[12px] text-gray-500 mt-0.5">
-                {String(t('study.test.viewSummarySubtitle'))}
-              </div>
-            </div>
-            <ArrowRight className="w-4 h-4 text-gray-400" />
-          </div>
-        </Link>
-
-        {/* Score summary */}
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">
-            {t('study.test.resultEyebrow')}
-          </p>
-          <h2 className="text-3xl font-semibold text-gray-900 tabular-nums">
-            {result.correctCount} / {result.totalQuestions}
-            <span className="text-base text-gray-500 ml-2">({result.scorePercent}%)</span>
-          </h2>
-          <p className="text-sm text-gray-500 mt-1">
-            {t(`study.test.resultMessage.${
-              result.scorePercent >= 85 ? 'excellent' :
-              result.scorePercent >= 65 ? 'solid' :
-              result.scorePercent >= 40 ? 'keepGoing' : 'startOver'
-            }`)}
-          </p>
-          {/* Reconcile the denominator with the review list.
-            *
-            * The headline is SCORED questions (e.g. 35) while the rows below
-            * are numbered out of DELIVERED (48). A student answered 48 and is
-            * scored on 35, and nothing said where the other 13 went — the
-            * numbers simply disagreed. The real exam does the same thing and
-            * tells you; so should we. Only rendered when the two differ, so a
-            * test with no pilots stays uncluttered. */}
-          {reviewTotal > result.totalQuestions && (
-            <p className="text-[12px] text-amber-700 mt-2 leading-relaxed">
-              {ko
-                ? `${reviewTotal}문항 중 ${result.totalQuestions}문항만 점수에 반영됩니다. 나머지 ${reviewTotal - result.totalQuestions}문항은 실험 문항으로, 실제 시험과 동일하게 채점 결과에서 제외됩니다.`
-                : `Scored on ${result.totalQuestions} of the ${reviewTotal} questions you answered. The other ${reviewTotal - result.totalQuestions} are experimental — shown and reviewed, but not counted, exactly as on the real exam.`}
-            </p>
-          )}
-          {/* TOEFL Jan 2026: surface the new 1-6 band score (avg of 4
-              sections, 0.5 increments) AND the transitional 0-30 per-
-              section score that ETS still publishes during the 2-year
-              transition. Practice covers ONE section, so we show
-              that section's band + 0-30, not the overall 0-120. */}
-          {test.family === 'toefl' && (() => {
-            const band = percentToToeflBand(result.scorePercent)
-            const score030 = Math.round((result.scorePercent / 100) * 30)
-            return (
-              <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3 text-left">
-                <div>
-                  <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
-                    {ko ? '밴드 점수 (1-6)' : 'Band score (1–6)'}
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 tabular-nums mt-0.5">
-                    {band.toFixed(1)}
-                  </div>
-                </div>
-                <div>
-                  <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
-                    {ko ? '섹션 점수 (0-30)' : 'Section (0–30)'}
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 tabular-nums mt-0.5">
-                    {score030}
-                  </div>
-                </div>
-                <p className="col-span-2 text-[11px] text-gray-400 mt-1 leading-relaxed">
-                  {ko
-                    ? 'ETS는 1-6 밴드 점수와 0-120 환산 점수를 2년 전환 기간 동안 모두 제공합니다.'
-                    : 'ETS issues both the 1–6 band and the 0–120 score during the 2-year transition.'}
-                </p>
-              </div>
-            )
-          })()}
-          {/* SAT: the number the student actually cares about — the
-              estimated 200–800 section score — shouldn't be buried a
-              navigation away on the summary. `result.sat` is already
-              returned by submit. */}
-          {result.sat && (
-            <div className="mt-4 pt-4 border-t border-gray-100">
-              <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
-                {ko ? '예상 SAT 점수 (200-800)' : 'Est. SAT score (200–800)'}
-              </div>
-              <div className="text-4xl font-bold text-primary tabular-nums mt-1 leading-none">
-                {result.sat.score}
-              </div>
-              <p className="text-[11px] text-gray-400 mt-1.5 leading-relaxed">
-                {result.sat.capped
-                  ? (ko
-                      ? '실제 시험처럼 모듈 2 난이도에 따라 상한이 적용된 추정치예요.'
-                      : 'An estimate — like the real test, your Module 2 band caps the range.')
-                  : (ko
-                      ? '이 섹션 추정치이며, 모의고사를 더 풀수록 정확해져요.'
-                      : 'A section estimate — more full tests sharpen it.')}
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Per-question review accordion — COLLAPSED by default.
-          *
-          * This screen has two jobs that used to be stacked on one scroll:
-          * "how did I do" and "what exactly did I get wrong". The second is
-          * long (one accordion row per question, up to 30 for Reading), so
-          * the score card was the top of a very tall page and the summary
-          * link sat above a wall of items.
-          *
-          * Collapsing it makes this screen the same shape whether it is
-          * reached by submitting a test or by tapping one in My mock tests,
-          * which is the point: one result screen, detail on request. */}
-        <section>
-          <button
-            type="button"
-            onClick={() => setShowDetail(v => !v)}
-            aria-expanded={showDetail}
-            className="w-full flex items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 mb-2 text-left active:bg-gray-50 transition-colors"
+      <TestResultView
+        model={model}
+        sessionId={sessionId}
+        ko={ko}
+        sat={result.sat ? { score: result.sat.score, capped: !!result.sat.capped } : null}
+        answerAudioPaths={answerAudioPaths}
+        answerSpeechSignals={answerSpeechSignals}
+        speakingGradeMode={speakingGradeMode}
+        header={
+          <Link
+            href={`/mobile/study/session/${sessionId}/summary`}
+            className="block rounded-2xl bg-gradient-to-br from-primary/[0.08] via-indigo-50/40 to-white ring-1 ring-primary/25 p-4 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.18)] active:scale-[0.99] transition-all"
           >
-            <span className="text-sm font-semibold text-gray-900">
-              {t('study.test.reviewTitle')}
-            </span>
-            <span className="flex items-center gap-1.5 text-[12px] font-medium text-gray-500 tabular-nums">
-              {test.questions.length}
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${showDetail ? 'rotate-180' : ''}`}
-              />
-            </span>
-          </button>
-          {showDetail && (
-          <h3 className="sr-only">
-            {t('study.test.reviewTitle')}
-          </h3>
-          )}
-          {showDetail && (
-          <div className="space-y-2">
-            {test.questions.map((q, i) => {
-              const verdict = result.verdicts[i]
-              const studentAnswer = answers[i]
-              const isOpen = expanded === i
-              return (
-                <div
-                  key={i}
-                  className={`rounded-xl border bg-white overflow-hidden ${
-                    verdict.ungraded || verdict.correct ? 'border-gray-200' : 'border-rose-200'
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setExpanded(prev => prev === i ? null : i)}
-                    className="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-gray-50"
-                  >
-                    {verdict.ungraded
-                      // Open-response: no ✓/✗ — scored by the rubric
-                      // panel inside, not the answer key, and excluded
-                      // from the auto-score.
-                      ? <Sparkles className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                      : verdict.correct
-                        ? <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                        : studentAnswer == null
-                          ? <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
-                          : <XCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />}
-                    <div className="flex-1 min-w-0">
-                      <div className="text-xs text-gray-500">
-                        {(() => {
-                          const r = reviewRanges[i]
-                          const cur = r
-                            ? (r.startAt === r.endAt ? String(r.startAt) : `${r.startAt}–${r.endAt}`)
-                            : String(i + 1)
-                          return t('study.test.questionN', { current: cur, total: String(reviewTotal) })
-                        })()}
-                        {/* THREE states, not two. An item can fail to count
-                          * for two unrelated reasons and the student needs
-                          * different words for each:
-                          *   ungraded      — open response, scored by rubric
-                          *   scored:false  — ETS pilot. Graded and shown, but
-                          *                   excluded from the denominator.
-                          * The second had NO label at all, which is why a
-                          * TOEFL Reading result read "4 / 35" above rows
-                          * numbered "of 48": thirteen answered questions
-                          * silently did not count. */}
-                        {verdict.ungraded ? (
-                          <span className="ml-1.5 text-primary font-medium">
-                            · {ko ? '루브릭 채점 (점수 미포함)' : 'rubric-graded (not in score)'}
-                          </span>
-                        ) : q.scored === false ? (
-                          <span className="ml-1.5 text-amber-700 font-medium">
-                            · {ko ? '실험 문항 (점수 미포함)' : 'experimental · not counted'}
-                          </span>
-                        ) : null}
-                      </div>
-                      <div className="text-sm text-gray-900 line-clamp-2 mt-0.5">
-                        {normalizeDisplayText(q.prompt)}
-                      </div>
-                    </div>
-                    {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" /> : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />}
-                  </button>
-                  {isOpen && (
-                    <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-sm">
-                      {q.passage && (
-                        <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-[13px] text-gray-800">
-                          <PassageParagraphs text={q.passage} />
-                        </div>
-                      )}
-                      <p className="text-gray-900 whitespace-pre-wrap">{normalizeDisplayText(q.prompt)}</p>
-                      {q.graphic && <QuestionGraphicView graphic={q.graphic} />}
-                      {/* Type-aware verdict rendering. MC/three_choice/quant
-                          render per-choice rows; the four Jan-2026 TOEFL
-                          item types each have their own answer/correct
-                          comparison shape. */}
-                      {q.type === 'fill_in_blanks' && (q.blanks?.length ?? 0) > 0 ? (
-                        // Complete-the-Words: per-blank rows with the
-                        // student's letters vs the expected word — the
-                        // stored answer is a JSON map of blankId→text,
-                        // which would otherwise render as a raw blob.
-                        <div className="space-y-1.5 mt-2">
-                          {(() => {
-                            let parsed: Record<string, string> = {}
-                            try {
-                              if (studentAnswer) parsed = JSON.parse(studentAnswer) as Record<string, string>
-                            } catch { /* unanswered or legacy format */ }
-                            const baseNum = reviewRanges[i]?.startAt ?? 1
-                            return q.blanks!.map((b, bi) => {
-                              const student = (parsed[String(b.id)] ?? '').trim()
-                              const accepted = [b.answer, ...(b.alternates ?? [])]
-                              const ok = !!student && accepted.some(a => a.trim().toLowerCase() === student.toLowerCase())
-                              return (
-                                <div key={b.id} className={`px-3 py-2 rounded-lg text-xs border flex items-center gap-2 ${
-                                  ok ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
-                                     : 'bg-rose-50 border-rose-200 text-rose-900'
-                                }`}>
-                                  <span className="font-semibold tabular-nums flex-shrink-0">{baseNum + bi}.</span>
-                                  <span className="flex-1 min-w-0">
-                                    {student || (ko ? '무응답' : 'not answered')}
-                                    {!ok && (
-                                      <span className="ml-2 font-semibold text-emerald-700">→ {b.answer}</span>
-                                    )}
-                                  </span>
-                                  {ok
-                                    ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                                    : <XCircle className="w-3.5 h-3.5 text-rose-600 flex-shrink-0" />}
-                                </div>
-                              )
-                            })
-                          })()}
-                        </div>
-                      ) : (q.type === 'fill_in_blanks' || q.type === 'arrange_words'
-                        || q.type === 'speaking_repeat' || q.type === 'speaking_interview'
-                        || q.type === 'writing_email' || q.type === 'writing_discussion') ? (
-                        <div className="space-y-2 mt-2">
-                          <div className="px-3 py-2 rounded-lg bg-emerald-50 text-emerald-900 text-xs border border-emerald-200">
-                            <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
-                            <div className="whitespace-pre-wrap">{normalizeDisplayText(verdict.correctAnswer)}</div>
-                          </div>
-                          {studentAnswer != null ? (
-                            <div className={`px-3 py-2 rounded-lg text-xs border ${
-                              verdict.correct
-                                ? 'bg-gray-50 text-gray-700 border-gray-200'
-                                : 'bg-rose-50 text-rose-900 border-rose-200'
-                            }`}>
-                              <div className="font-semibold mb-0.5">{ko ? '내 답' : 'Your answer'}</div>
-                              <div className="whitespace-pre-wrap">{normalizeDisplayText(studentAnswer)}</div>
-                            </div>
-                          ) : (
-                            <div className="px-3 py-2 rounded-lg bg-amber-50 text-amber-900 text-xs border border-amber-200">
-                              {ko ? '답하지 않음' : 'Not answered'}
-                            </div>
-                          )}
-                          {(q.type === 'writing_email' || q.type === 'writing_discussion') && studentAnswer != null && (
-                            <WritingFeedbackPanel
-                              sessionId={sessionId}
-                              prompt={q.prompt}
-                              response={studentAnswer}
-                              skill="writing"
-                              taskType={q.type === 'writing_email' ? 'email' : 'academic_discussion'}
-                              ko={ko}
-                            />
-                          )}
-                          {q.type === 'speaking_interview' && studentAnswer != null && (
-                            // Rubric grading for Take-an-Interview. The response
-                            // is either the voice transcript (Whisper) or typed
-                            // text — either way we grade what got captured.
-                            // audioPath is available when the student recorded
-                            // instead of typing; the panel shows a playback UI.
-                            // speechSignals feed the grader real delivery
-                            // metrics (WPM / pauses / clarity) so the delivery
-                            // criterion reflects the actual audio.
-                            <WritingFeedbackPanel
-                              sessionId={sessionId}
-                              prompt={q.prompt}
-                              response={studentAnswer}
-                              skill="speaking"
-                              audioPath={answerAudioPaths[i]}
-                              speechSignals={answerSpeechSignals[i]}
-                              speakingGradeMode={speakingGradeMode}
-                              ko={ko}
-                            />
-                          )}
-                        </div>
-                      ) : (
-                      <div className="space-y-1.5 mt-2">
-                        {q.choices.map(choice => {
-                          const isCorrect = choice === q.correct_answer
-                          const isStudentPick = choice === studentAnswer
-                          // Lookup the per-distractor rationale by
-                          // choice text. Only shown on WRONG choices
-                          // (correct choice's rationale lives in the
-                          // single `explanation` field below).
-                          const distractorReason = !isCorrect
-                            ? q.distractor_rationales?.find(d => d.choice === choice)?.reason
-                            : undefined
-                          return (
-                            <div
-                              key={choice}
-                              className={`px-3 py-2 rounded-lg text-xs ${
-                                isCorrect
-                                  ? 'bg-emerald-50 text-emerald-900 border border-emerald-200'
-                                  : isStudentPick
-                                    ? 'bg-rose-50 text-rose-900 border border-rose-200'
-                                    : 'bg-gray-50 text-gray-700 border border-gray-100'
-                              }`}
-                            >
-                              <div>
-                                {normalizeDisplayText(choice)}
-                                {isCorrect && <span className="ml-2 font-semibold">{ko ? '정답' : 'Correct'}</span>}
-                                {isStudentPick && !isCorrect && <span className="ml-2 font-semibold">{ko ? '내 답' : 'Your answer'}</span>}
-                              </div>
-                              {distractorReason && (
-                                <div className={`mt-1 text-[11px] leading-relaxed ${
-                                  isStudentPick ? 'text-rose-800' : 'text-gray-600'
-                                }`}>
-                                  <span className="font-semibold">{ko ? '오답 이유: ' : 'Why wrong: '}</span>
-                                  {normalizeDisplayText(distractorReason)}
-                                </div>
-                              )}
-                            </div>
-                          )
-                        })}
-                        {studentAnswer == null && (
-                          <div className="px-3 py-2 rounded-lg bg-amber-50 text-amber-900 text-xs border border-amber-200">
-                            {ko ? '답하지 않음' : 'Not answered'}
-                          </div>
-                        )}
-                      </div>
-                      )}
-                      <p className="text-xs text-gray-600 leading-relaxed mt-2">
-                        {normalizeDisplayText(q.explanation)}
-                      </p>
-                      <ReportQuestion
-                        sessionId={sessionId}
-                        question={{
-                          prompt: q.prompt,
-                          type: q.type,
-                          choices: q.type === 'multiple_choice' ? q.choices : undefined,
-                          correct_answer: q.type === 'multiple_choice' ? q.correct_answer : verdict.correctAnswer,
-                          explanation: q.explanation,
-                        }}
-                      />
-                    </div>
-                  )}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] ring-1 ring-primary/30">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[14.5px] font-semibold text-gray-900 leading-tight">
+                  {String(t('study.test.viewSummaryTitle'))}
                 </div>
-              )
-            })}
-          </div>
-          )}
-        </section>
-
-        <Link
-          href="/mobile/study"
-          className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
-        >
-          {t('study.test.backToStudy')}
-        </Link>
-      </div>
+                <div className="text-[12px] text-gray-500 mt-0.5">
+                  {String(t('study.test.viewSummarySubtitle'))}
+                </div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-gray-400" />
+            </div>
+          </Link>
+        }
+        footer={
+          <Link
+            href="/mobile/study"
+            className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white ring-1 ring-gray-200/70 text-sm font-medium text-gray-700"
+          >
+            {t('study.test.backToStudy')}
+          </Link>
+        }
+      />
     </div>
   )
 }
