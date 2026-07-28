@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Loader2, Mic } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { hapticImpact } from '@/lib/nativeHaptics'
+import { RecordingPanel } from './RecordingPanel'
 import type { SpeechSignals } from './types'
 
 // Global mic stream cache — Speaking auto-record works around browser
@@ -89,11 +90,89 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
   const [transcribing, setTranscribing] = useState(false)
   const [elapsedSec, setElapsedSec] = useState(0)
   const [micError, setMicError] = useState<'permission' | 'unavailable' | 'unknown' | null>(null)
+  /** True once the mic has been open for a couple of seconds without
+   *  registering meaningful sound. A muted headset or a mic the OS
+   *  routed elsewhere is otherwise indistinguishable from a student
+   *  thinking quietly — until the transcript comes back empty and the
+   *  answer scores zero, by which point the recording window is gone. */
+  const [silent, setSilent] = useState(false)
   const recRef = useRef<MediaRecorder | null>(null)
   const chunksRef = useRef<Blob[]>([])
   const streamRef = useRef<MediaStream | null>(null)
   const startTimeRef = useRef<number>(0)
   const tickRef = useRef<number | null>(null)
+  // Live input meter. The level is written straight onto the bar
+  // elements from the animation frame rather than held in state —
+  // 60 re-renders a second to animate a decoration is the kind of
+  // thing that makes a timed test drop frames.
+  const barsRef = useRef<HTMLDivElement | null>(null)
+  const audioCtxRef = useRef<AudioContext | null>(null)
+  const analyserRef = useRef<AnalyserNode | null>(null)
+  const rafRef = useRef<number | null>(null)
+  const loudAtRef = useRef<number>(0)
+
+  const BAR_COUNT = 28
+
+  /** Tear down the analyser graph. Separate from stopping the stream:
+   *  the mic stream is shared across questions and must survive. */
+  const stopMeter = () => {
+    if (rafRef.current != null) { cancelAnimationFrame(rafRef.current); rafRef.current = null }
+    analyserRef.current = null
+    const ctx = audioCtxRef.current
+    audioCtxRef.current = null
+    if (ctx && ctx.state !== 'closed') void ctx.close().catch(() => {})
+    const el = barsRef.current
+    if (el) for (const c of Array.from(el.children)) (c as HTMLElement).style.transform = 'scaleY(0.08)'
+  }
+
+  const startMeter = (stream: MediaStream) => {
+    stopMeter()
+    try {
+      const Ctor = window.AudioContext
+        ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+      if (!Ctor) return
+      const ctx = new Ctor()
+      const analyser = ctx.createAnalyser()
+      analyser.fftSize = 1024
+      analyser.smoothingTimeConstant = 0.75
+      ctx.createMediaStreamSource(stream).connect(analyser)
+      audioCtxRef.current = ctx
+      analyserRef.current = analyser
+      const buf = new Uint8Array(analyser.frequencyBinCount)
+      loudAtRef.current = Date.now()
+      setSilent(false)
+      const draw = () => {
+        const a = analyserRef.current
+        if (!a) return
+        a.getByteTimeDomainData(buf)
+        // RMS around the 128 midpoint, normalised so ordinary speech
+        // lands near the top of the meter rather than in the bottom
+        // tenth where nothing looks like it is moving.
+        let sum = 0
+        for (let i = 0; i < buf.length; i++) { const v = (buf[i]! - 128) / 128; sum += v * v }
+        const rms = Math.sqrt(sum / buf.length)
+        const level = Math.min(1, rms * 4)
+        if (level > 0.06) loudAtRef.current = Date.now()
+        setSilent(Date.now() - loudAtRef.current > 2500)
+        const el = barsRef.current
+        if (el) {
+          const kids = el.children
+          for (let i = 0; i < kids.length; i++) {
+            // Centre bars react hardest, so the meter reads as a voice
+            // rather than a row of equal blocks.
+            const d = Math.abs(i - (kids.length - 1) / 2) / ((kids.length - 1) / 2)
+            const h = Math.max(0.08, level * (1 - d * 0.65) * (0.75 + 0.25 * Math.sin(i * 1.7)))
+            ;(kids[i] as HTMLElement).style.transform = `scaleY(${h.toFixed(3)})`
+          }
+        }
+        rafRef.current = requestAnimationFrame(draw)
+      }
+      rafRef.current = requestAnimationFrame(draw)
+    } catch (err) {
+      // A meter is a nicety; never let it break the recording itself.
+      console.warn('[VoiceRecorder] meter unavailable', err)
+    }
+  }
 
   const micSupported = typeof window !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && typeof MediaRecorder !== 'undefined'
 
@@ -161,6 +240,7 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
       }
       recRef.current = rec
       rec.start()
+      startMeter(stream)
       setRecording(true)
       startTimeRef.current = Date.now()
       setElapsedSec(0)
@@ -193,6 +273,7 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
       streamRef.current.getTracks().forEach(t => t.stop())
     }
     setRecording(false)
+    stopMeter()
     if (tickRef.current) { window.clearInterval(tickRef.current); tickRef.current = null }
     hapticImpact('medium')
   }
@@ -213,6 +294,7 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
       streamRef.current.getTracks().forEach(t => t.stop())
     }
     if (tickRef.current) window.clearInterval(tickRef.current)
+    stopMeter()
   }, [])
 
   // Auto-start on token change — used by Speaking Interview to fire
@@ -269,13 +351,19 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
   if (hideManualButton) {
     return (
       <div className="w-full">
-        {transcribing && (
-          <div className="rounded-lg bg-primary/10 border border-primary/20 px-3 py-2 text-[12px] text-primary flex items-center gap-2">
-            <Loader2 className="w-4 h-4 animate-spin" />
-            <span className="font-semibold">
-              {ko ? '답변 처리 중…' : 'Processing your answer…'}
-            </span>
-          </div>
+        {/* The recording view lives here because only this component
+            knows the live input level. Everything AFTER the recording
+            stops — processing, captured — belongs to the parent, which
+            is what stops the two from rendering the same banner twice. */}
+        {recording && (
+          <RecordingPanel
+            barsRef={barsRef}
+            barCount={BAR_COUNT}
+            totalSec={maxDurationSec ?? null}
+            elapsedSec={elapsedSec}
+            silent={silent}
+            ko={ko}
+          />
         )}
         {errorText && (
           <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-[12px] text-rose-800">

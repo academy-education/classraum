@@ -1886,17 +1886,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     }, 3000)
                   }}
                 />
-                {isRecording && (
-                  <div role="status" aria-live="assertive" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
-                    <span className="relative inline-flex w-2.5 h-2.5">
-                      <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping" />
-                      <span className="relative inline-flex w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                    </span>
-                    <span className="font-semibold">
-                      {ko ? '녹음 중 (최대 15초, 다른 문제로 이동 불가)' : 'Recording (max 15 sec — navigation is locked)'}
-                    </span>
-                  </div>
-                )}
+                {/* No recording banner here on purpose. VoiceRecorder-
+                    Button owns the live recording view — it is the only
+                    thing that can read the input level — and this block
+                    owns everything after the recording stops. Both used
+                    to render their own indicator, which is how the same
+                    status appeared twice on screen. */}
                 {/* Post-recording status: amber "processing" while the
                     upload + Whisper transcription is in flight, then a
                     green "recording complete" confirmation once the
@@ -2078,17 +2073,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     setInterviewNextReady(s => s[timerKey] ? s : { ...s, [timerKey]: true })
                   }}
                 />
-                {isRecording && (
-                  <div role="status" aria-live="assertive" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
-                    <span className="relative inline-flex w-2.5 h-2.5">
-                      <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping" />
-                      <span className="relative inline-flex w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                    </span>
-                    <span className="font-semibold">
-                      {ko ? '녹음 중 (최대 45초, 다른 문제로 이동 불가)' : 'Recording (max 45 sec — navigation is locked)'}
-                    </span>
-                  </div>
-                )}
+                {/* No recording banner here on purpose. VoiceRecorder-
+                    Button owns the live recording view — it is the only
+                    thing that can read the input level — and this block
+                    owns everything after the recording stops. Both used
+                    to render their own indicator, which is how the same
+                    status appeared twice on screen. */}
                 {(phase === 'idle' || timerExpired) && !isRecording && (
                   <div className="text-[11px] text-gray-500 text-center">
                     {phase === 'idle'
