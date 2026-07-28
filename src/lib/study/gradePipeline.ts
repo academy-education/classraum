@@ -178,14 +178,29 @@ export function enforceRelevanceCeiling(
   grade: Grade,
   rubric: RubricSpec,
   ceiling: number,
+  /** Why the relevance stage landed where it did. Becomes the student-
+   *  facing evidence on the relevance criterion, which the quality rater
+   *  never sees and therefore cannot explain. */
+  relevanceEvidence?: string,
 ): { grade: Grade; ceilingApplied: boolean; languageScore: number } {
   const languageScore = clamp(grade.overallBand, rubric.scaleMax)
   const capped = applyCeiling(languageScore, ceiling)
-  const criteria = grade.criteria.map(c =>
-    c.key === rubric.relevanceCriterionKey
-      ? { ...c, score: applyCeiling(clamp(c.score, rubric.scaleMax), ceiling) }
-      : { ...c, score: clamp(c.score, rubric.scaleMax) },
-  )
+  const others = grade.criteria
+    .filter(c => c.key !== rubric.relevanceCriterionKey)
+    .map(c => ({ ...c, score: clamp(c.score, rubric.scaleMax) }))
+  // The relevance criterion is OWNED by the relevance stage. It is set
+  // here rather than min()'d out of whatever the quality rater returned,
+  // because that rater is told not to judge relevance at all.
+  const criteria = rubric.relevanceCriterionKey
+    ? [
+        ...others,
+        {
+          key: rubric.relevanceCriterionKey,
+          score: clamp(ceiling, rubric.scaleMax),
+          evidence: relevanceEvidence ?? '',
+        },
+      ]
+    : others
   return {
     grade: { ...grade, criteria, overallBand: capped },
     ceilingApplied: capped < languageScore,
@@ -442,9 +457,20 @@ export async function runStagedGrade(
   // ── Stages 2 + 4 in parallel (independent by construction) ───────
   // Listen and Repeat is a repetition-accuracy rubric — the relevance
   // ladder does not apply and the quality score stands alone.
+  // Only the criteria this stage is actually asked to judge. The quality
+  // prompt tells the rater that relevance "is being judged separately by
+  // another rater" — so requiring a relevance entry in its schema forces
+  // it to invent one. It complied with score 0 and evidence "N/A", the
+  // ceiling min()'d that to 0, and a student whose answer was squarely on
+  // topic saw "topic_relevance 0" beside a summary praising their
+  // on-topic argument. Requiring the key was a fix for a 502 caused by
+  // the model omitting it; the real fix is not to ask for it at all.
+  const qualityKeys = rubric.usesRelevanceLadder
+    ? rubric.criteria.filter(c => c.key !== rubric.relevanceCriterionKey).map(c => c.key)
+    : rubric.criteria.map(c => c.key)
   const qualityPromise = calls.quality({
     prompt: buildQualityPrompt(ctx),
-    criterionKeys: rubric.criteria.map(c => c.key),
+    criterionKeys: qualityKeys,
   })
   const relevancePromise = rubric.usesRelevanceLadder
     ? calls.text({
@@ -481,6 +507,7 @@ export async function runStagedGrade(
     qualityRes.object,
     rubric,
     ceiling,
+    relevance.elaborationAssessment,
   )
 
   return {
