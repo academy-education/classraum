@@ -1285,22 +1285,29 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 {ko ? '모듈 2 시작' : 'Module 2 begins'}
               </span>
             </div>
+            {/* Says NOTHING about Module 1 performance.
+              *
+              * This used to read "Module 1: 6/19 correct — you've been routed
+              * to a harder Module 2". Two problems, both reported by a tester:
+              *
+              *  - The real exam never tells you how you did mid-test, and
+              *    naming the route ("harder" / "easier") leaks the same
+              *    information even with the score removed. A student told
+              *    they were routed down carries that into the next 21
+              *    questions; one told they were routed up may coast.
+              *  - The 19 was `module1Total`, which is Module 1's CARD count,
+              *    not its question count (a Complete-the-Words card is ten
+              *    questions). So the number was both discouraging AND
+              *    inconsistent with the 48 the student was promised. Nobody
+              *    could have reconciled it, because it counts a different
+              *    thing from every other number in the UI.
+              *
+              * The route still happens; it is simply not announced. It shows
+              * up where it belongs, in the summary after submission. */}
             <p className="text-[12px] text-amber-800 leading-relaxed">
-              {(() => {
-                const scored = moduleRoute.correct != null ? `${moduleRoute.correct}/${moduleRoute.total}` : null
-                const exam = test.family === 'toefl' ? 'TOEFL' : 'SAT'
-                if (ko) {
-                  // TOEFL routes three ways; SAT only two.
-                  const band = moduleRoute.route === 'hard' ? '더 어려운'
-                    : moduleRoute.route === 'medium' ? '표준 난이도의'
-                    : '더 쉬운'
-                  return `모듈 1 ${scored ? `정답 ${scored} — ` : ''}실제 ${exam}처럼 ${band} 모듈 2가 배정됐어요. 아래 문제는 이 난이도에서 새로 출제된 문제입니다.`
-                }
-                const band = moduleRoute.route === 'hard' ? 'a harder'
-                  : moduleRoute.route === 'medium' ? 'a standard'
-                  : 'an easier'
-                return `Module 1${scored ? `: ${scored} correct` : ''} — like the real ${exam}, you've been routed to ${band} Module 2. The questions below were selected at that level.`
-              })()}
+              {ko
+                ? '남은 문제는 모듈 2에 속합니다. 모듈 1로는 돌아갈 수 없어요.'
+                : 'The remaining questions are in Module 2. You cannot return to Module 1.'}
             </p>
           </div>
         )}
