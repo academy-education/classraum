@@ -35,6 +35,18 @@ export type QuestionType =
  *  pipeline. Verifier skips them (no comparable choices), choice-count
  *  filter skips them, and dedupe uses a richer key (prompt is often
  *  identical across items of the same type). */
+/** Open-response items: rubric-graded in review, EXCLUDED from the auto
+ *  score and from the scored denominator.
+ *
+ *  Lives here because two places must agree on it and previously did not:
+ *  api/study/test/submit computes `ungraded` on each verdict, and the
+ *  client rebuilds those same verdicts when reopening a completed session
+ *  (TestSession). A private copy in either place drifts silently — the two
+ *  screens would mark different items ungraded with nothing to catch it. */
+export const OPEN_RESPONSE_TYPES: ReadonlySet<string> = new Set([
+  'speaking_interview', 'writing_email', 'writing_discussion',
+])
+
 export const NON_MC_TYPES: ReadonlySet<QuestionType> = new Set<QuestionType>([
   'numeric_entry', 'multi_select',
   'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
