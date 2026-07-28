@@ -162,9 +162,11 @@ describe('buildResultModel', () => {
 })
 
 describe('tallyRows', () => {
-  const rows = (specs: { ungraded?: boolean; isPilot?: boolean; answered?: boolean }[]) =>
+  const rows = (specs: { ungraded?: boolean; isPilot?: boolean; answered?: boolean; blanks?: number }[]) =>
     specs.map(s => ({
-      question: { prompt: 'p' },
+      question: s.blanks
+        ? { prompt: 'p', type: 'fill_in_blanks', blanks: Array.from({ length: s.blanks }, (_, i) => ({ id: i, answer: 'a' })) }
+        : { prompt: 'p', type: 'multiple_choice' },
       studentAnswer: s.answered === false ? null : 'A',
       correct: true,
       ungraded: !!s.ungraded,
@@ -173,35 +175,59 @@ describe('tallyRows', () => {
       range: null,
     }))
 
-  // The strip is laid out as if the four buckets sum to the card count, so
-  // they must. The first version double-counted a pilot as "graded" too,
-  // and a 30-card TOEFL Reading session rendered chips adding to 43.
-  it('partitions: the four buckets always sum to the row count', () => {
+  // THE identity. `counted` is the score's denominator, so the card
+  // reconciles with the headline instead of showing a third number.
+  // Reproduces live session fd9b9cfd: 30 items, 2 of them 10-blank
+  // Complete-the-Words, 13 pilots -> 48 delivered, 35 counted, and the
+  // session row records 6/35.
+  it('counts QUESTIONS, so `counted` equals the score denominator', () => {
+    const t = tallyRows(rows([
+      ...Array.from({ length: 13 }, () => ({ isPilot: true })),
+      ...Array.from({ length: 15 }, () => ({})),
+      { blanks: 10 }, { blanks: 10 },
+    ]))
+    expect(t.counted).toBe(35)          // == study_sessions.total_count
+    expect(t.pilot).toBe(13)
+    expect(t.counted + t.pilot + t.rubric).toBe(48)   // == deliveredTotal
+    // The bug the account owner hit: item-counting gave 17 here, a number
+    // that appeared nowhere else on the screen.
+    expect(t.counted).not.toBe(17)
+  })
+
+  it('keeps a skipped question INSIDE counted — it still scores', () => {
+    // submit's weightedScore zeroes the denominator only for pilots and
+    // open response. Pulling blanks out of `counted` would break the
+    // identity above the moment a student skipped anything.
+    const t = tallyRows(rows([{}, { answered: false }, { answered: false }]))
+    expect(t.counted).toBe(3)
+    expect(t.skippedWithinCounted).toBe(2)
+    expect(t.counted).not.toBe(1)
+  })
+
+  it('partitions: counted + pilot + rubric always equals delivered', () => {
     const cases = [
       rows([{}, {}, { isPilot: true }, { ungraded: true }, { answered: false }]),
       rows([]),
-      rows([{ isPilot: true, ungraded: true }]),          // both flags
-      rows([{ isPilot: true, answered: false }]),         // unanswered pilot
+      rows([{ isPilot: true, ungraded: true }]),
+      rows([{ isPilot: true, blanks: 10 }, { ungraded: true, blanks: 4 }]),
       rows(Array.from({ length: 30 }, (_, i) => ({ isPilot: i < 13 }))),
     ]
     for (const rs of cases) {
       const t = tallyRows(rs)
-      expect(t.counted + t.pilot + t.rubric + t.skipped).toBe(rs.length)
+      const delivered = rs.reduce((n, r) => n + deliveredWeight(r.question), 0)
+      expect(t.counted + t.pilot + t.rubric).toBe(delivered)
+      expect(t.skippedWithinCounted).toBeLessThanOrEqual(t.counted)
     }
   })
 
-  it('reproduces the live session that exposed the overlap', () => {
-    // fd9b9cfd: 30 cards, 13 pilots, none skipped, none rubric.
-    const t = tallyRows(rows(Array.from({ length: 30 }, (_, i) => ({ isPilot: i < 13 }))))
-    expect(t).toEqual({ counted: 17, pilot: 13, rubric: 0, skipped: 0 })
-    expect(t.counted).not.toBe(30)
+  it('weights a multi-blank item by its blanks, not as one', () => {
+    expect(tallyRows(rows([{ blanks: 10 }])).counted).toBe(10)
+    expect(tallyRows(rows([{ isPilot: true, blanks: 10 }])).pilot).toBe(10)
   })
 
-  it('classifies most-specific first so no card is counted twice', () => {
-    expect(tallyRows(rows([{ isPilot: true, ungraded: true }])))
-      .toEqual({ counted: 0, pilot: 0, rubric: 1, skipped: 0 })
-    expect(tallyRows(rows([{ isPilot: true, answered: false }])))
-      .toEqual({ counted: 0, pilot: 0, rubric: 0, skipped: 1 })
+  it('classifies rubric before pilot so no question is counted twice', () => {
+    const t = tallyRows(rows([{ isPilot: true, ungraded: true }]))
+    expect(t).toEqual({ counted: 0, pilot: 0, rubric: 1, skippedWithinCounted: 0 })
   })
 })
 

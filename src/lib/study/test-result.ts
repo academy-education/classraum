@@ -188,36 +188,51 @@ export function buildResultModel(input: {
 }
 
 /**
- * Where every CARD went, as a genuine partition.
+ * Where every DELIVERED QUESTION went, as a genuine partition.
  *
- * Written after the first draft of the accounting strip shipped chips
- * reading "30 GRADED" and "13 PILOT" on a 30-card test: a pilot is also
- * graded, so the categories overlapped while being laid out as if they
- * summed. 30 + 13 = 43 under a heading that said 30 — the same unit
- * confusion this file exists to stop, reintroduced as a display.
+ * Counted in QUESTIONS, not items, and that is the whole point. Two
+ * earlier versions of this display were wrong:
  *
- * Each card lands in exactly one bucket, most-specific first, so the four
- * always add up to rows.length. `assertPartitions` in the tests is what
- * keeps that true.
+ *  1. chips read "30 GRADED / 13 PILOT" on a 30-item test — a pilot is
+ *     also graded, so they overlapped while laid out as if they summed.
+ *  2. the buckets then counted ITEMS while the score above counts
+ *     QUESTIONS, so "Counted toward your score: 17" sat under "6 / 35"
+ *     and reconciled with nothing on screen. The account owner read the
+ *     header and asked whether 30 meant the number they got wrong — the
+ *     honest answer being that the number related to nothing they could
+ *     see.
+ *
+ * Weighted by delivered questions, `counted` IS the score denominator.
+ * Verified against every real full test on the account: 35/35, 35/35,
+ * 50/50, 44/44, 7/7.
+ *
+ * Skipped is NOT a fourth bucket. submit's weightedScore zeroes the
+ * denominator only for pilots and open response, so an unanswered
+ * question still counts — as wrong. Pulling it out of `counted` would
+ * break the identity above the moment a student left a blank. It is
+ * reported as a detail INSIDE counted instead.
  */
 export interface ResultTally {
-  /** Answered, objectively graded, and counted in the denominator. */
+  /** Delivered questions in the score denominator. Equals totalScored. */
   counted: number
-  /** Answered and graded, but excluded from the score (ETS pilot). */
+  /** Graded and shown, excluded from the score (ETS pilot). */
   pilot: number
-  /** Rubric-graded open response — no ✓/✗, not in the denominator. */
+  /** Rubric-graded open response — no key, not in the denominator. */
   rubric: number
-  /** No answer recorded. */
-  skipped: number
+  /** Subset of `counted` left blank. Counted as wrong, still counted. */
+  skippedWithinCounted: number
 }
 
 export function tallyRows(rows: ResultRow[]): ResultTally {
-  const tally: ResultTally = { counted: 0, pilot: 0, rubric: 0, skipped: 0 }
+  const tally: ResultTally = { counted: 0, pilot: 0, rubric: 0, skippedWithinCounted: 0 }
   for (const r of rows) {
-    if (r.ungraded) tally.rubric++
-    else if (r.studentAnswer == null) tally.skipped++
-    else if (r.isPilot) tally.pilot++
-    else tally.counted++
+    const w = deliveredWeight(r.question)
+    if (r.ungraded) tally.rubric += w
+    else if (r.isPilot) tally.pilot += w
+    else {
+      tally.counted += w
+      if (r.studentAnswer == null) tally.skippedWithinCounted += w
+    }
   }
   return tally
 }

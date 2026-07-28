@@ -53,10 +53,9 @@ export function TestResultView({
   const { t } = useTranslation()
   const [showDetail, setShowDetail] = useState(false)
 
-  // Unit: CARDS, and a true partition — the four always sum to
-  // rows.length. The first draft counted a pilot as both "graded" and
-  // "pilot", so a 30-card test showed chips adding to 43 under a heading
-  // that said 30.
+  // Unit: DELIVERED QUESTIONS, the same unit as the score. `tally.counted`
+  // IS model.totalScored, so the breakdown reconciles with the headline
+  // instead of introducing a third number — see tallyRows.
   const tally = tallyRows(model.rows)
 
   // Hero colour and Raumi's mood both follow accuracy. A hard session must
@@ -230,14 +229,12 @@ export function TestResultView({
               {ko ? '채점 방식' : 'How it was counted'}
             </div>
             <div className="text-[14px] font-semibold text-gray-900 leading-tight">
-              {/* "44 items · 44 questions" is noise when nothing on the
-                  test is multi-part — SAT Math has no Complete-the-Words,
-                  so the two counts are equal and saying both invites the
-                  reader to look for a distinction that isn't there. */}
-              {model.rows.length === model.deliveredTotal
-                ? (ko ? `${model.deliveredTotal}문항` : `${model.deliveredTotal} questions`)
-                : (ko ? `${model.rows.length}개 항목 · ${model.deliveredTotal}문항`
-                      : `${model.rows.length} items · ${model.deliveredTotal} questions`)}
+              {/* Questions only. The item count used to lead here and the
+                  account owner asked whether it meant the number they got
+                  WRONG — a number that related to nothing else on screen
+                  invites exactly that guess. Everything in this card is
+                  now in questions, the same unit as the score. */}
+              {ko ? `${model.deliveredTotal}문항` : `${model.deliveredTotal} questions`}
             </div>
             <div className="text-[12px] text-gray-500 mt-0.5">
               {ko ? '실제 시험처럼 모든 문항이 점수에 반영되지는 않아요.'
@@ -253,14 +250,21 @@ export function TestResultView({
             {tally.counted > 0 && <div className="bg-emerald-500" style={{ flexGrow: tally.counted }} />}
             {tally.pilot > 0 && <div className="bg-orange-400" style={{ flexGrow: tally.pilot }} />}
             {tally.rubric > 0 && <div className="bg-primary" style={{ flexGrow: tally.rubric }} />}
-            {tally.skipped > 0 && <div className="bg-amber-300" style={{ flexGrow: tally.skipped }} />}
           </div>
         </div>
 
         <div className="px-4 py-2 divide-y divide-gray-100">
           <TallyRow dot="bg-emerald-500" count={tally.counted}
             label={ko ? '점수에 반영됨' : 'Counted toward your score'}
-            note={ko ? '채점되어 위 점수에 들어갔어요.' : 'Graded and included in the score above.'} />
+            note={ko
+              ? `위 점수의 분모예요 — ${model.correctCount} / ${tally.counted}.`
+              : `The ${tally.counted} in your score above — ${model.correctCount} of them correct.`}
+            // Skipped questions ARE in the denominator (they score as
+            // wrong), so they belong inside this row, not beside it.
+            sub={tally.skippedWithinCounted > 0
+              ? (ko ? `${tally.skippedWithinCounted}문항은 무응답으로, 오답과 동일하게 처리됐어요.`
+                    : `${tally.skippedWithinCounted} left blank, counted as wrong.`)
+              : undefined} />
           <TallyRow dot="bg-orange-400" count={tally.pilot}
             label={ko ? '실험 문항' : 'Experimental'}
             note={ko ? '실제 시험에도 있는 미채점 문항이에요. 풀었지만 점수에는 반영되지 않아요.'
@@ -269,10 +273,6 @@ export function TestResultView({
             label={ko ? '루브릭 채점' : 'Graded by rubric'}
             note={ko ? '말하기·쓰기 답변이라 정답 키가 아닌 채점 기준으로 따로 평가돼요.'
                      : 'Speaking and writing answers, scored against criteria instead of an answer key.'} />
-          <TallyRow dot="bg-amber-300" count={tally.skipped}
-            label={ko ? '미응답' : 'Skipped'}
-            note={ko ? '답을 남기지 않은 문항이에요. 오답과 동일하게 처리돼요.'
-                     : 'Left blank. Counts the same as a wrong answer.'} />
         </div>
       </div>
 
@@ -419,8 +419,10 @@ function HeroStat({ icon: Icon, value, label, sub }: {
  * partition, and dropping the empty ones would leave a list that no
  * longer visibly adds up to the item count in the header.
  */
-function TallyRow({ dot, count, label, note }: {
+function TallyRow({ dot, count, label, note, sub }: {
   dot: string; count: number; label: string; note: string
+  /** Extra detail that lives INSIDE this bucket, not beside it. */
+  sub?: string
 }) {
   const empty = count === 0
   return (
@@ -429,6 +431,9 @@ function TallyRow({ dot, count, label, note }: {
       <div className="flex-1 min-w-0">
         <div className="text-[13px] font-semibold text-gray-900 leading-tight">{label}</div>
         <div className="text-[11.5px] text-gray-500 leading-snug mt-0.5">{note}</div>
+        {sub && (
+          <div className="text-[11.5px] text-amber-700 leading-snug mt-1">{sub}</div>
+        )}
       </div>
       <span className="text-[15px] font-bold text-gray-900 tabular-nums flex-shrink-0 tracking-tight">
         {count}
