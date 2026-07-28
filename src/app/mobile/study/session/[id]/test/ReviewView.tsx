@@ -7,6 +7,7 @@ import {
 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { normalizeDisplayText, PassageParagraphs, percentToToeflBand } from './helpers'
+import { reviewRanges as buildReviewRanges } from '@/lib/study/test-result'
 import { QuestionGraphicView } from './QuestionGraphicView'
 import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
@@ -42,16 +43,7 @@ export function ReviewView({
   // with 10 blanks occupies positions N..N+9 of the weighted total, so
   // review labels match the "Question 12–21 of 50" numbering the
   // student saw during the test.
-  const reviewRanges: { startAt: number; endAt: number }[] = []
-  {
-    let acc = 0
-    for (const q of test.questions) {
-      const w = q.type === 'fill_in_blanks' ? Math.max(1, q.blanks?.length ?? 1) : 1
-      reviewRanges.push({ startAt: acc + 1, endAt: acc + w })
-      acc += w
-    }
-  }
-  const reviewTotal = reviewRanges.length > 0 ? reviewRanges[reviewRanges.length - 1]!.endAt : 0
+  const { ranges: reviewRanges, deliveredTotal: reviewTotal } = buildReviewRanges(test.questions)
 
   return (
     <div className="flex-1 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>

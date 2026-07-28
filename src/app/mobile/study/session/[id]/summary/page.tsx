@@ -13,6 +13,7 @@ import { MascotLoader, useMascotGate } from '../../../_shared/MascotLoader'
 import { PathMascot, type MascotState } from '../../../_shared/PathMascot'
 import { StudyPageHeader, StudyScrollShell } from '../../../_shared/primitives'
 import { estimateSectionScore } from '@/lib/study/sat-adaptive'
+import { satSectionFromTopicSlug } from '@/lib/study/test-result'
 
 interface SessionRow {
   id: string
@@ -180,9 +181,7 @@ function SummaryInner({ id }: { id: string }) {
   // section from the topic slug and passes it, so the post-submit screen
   // was right and this one was wrong: the same number, two values,
   // depending which screen you opened. Third bug in this family.
-  const satSection = (session.topic?.slug ?? '').includes('math')
-    ? 'math' as const
-    : 'reading_writing' as const
+  const satSection = satSectionFromTopicSlug(session.topic?.slug)
   const satBand = satRoute && attempted
     ? estimateSectionScore(correct, totalItems, satRoute, satSection)
     : null
