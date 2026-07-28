@@ -346,7 +346,9 @@ ${criteriaList}
 Official band descriptors:
 ${rubric.bandDescriptors}
 
-Note the ETS asymmetry: at the top bands a response must display ALL of the listed features; at the bottom bands (2 and 1) ONE OR MORE of the listed features is enough to place the response there.
+${ctx.skill === 'writing'
+  ? 'Note the asymmetry in the official WRITING guides: bands 5-3 read "a typical response displays the following", but bands 2 and 1 read "a typical response exhibits ONE OR MORE of the following" — so a single listed weakness is enough to place a response at 2 or 1.'
+  : 'Note that the official SPEAKING guides use "a typical response exhibits the following" at EVERY band, including 2 and 1 — there is no one-or-more shortcut down. A response showing a single weakness while meeting the rest of a higher band belongs at that higher band. Do not drop it to 2 for one weak feature.'}
 
 Method — follow it in this order:
 1. For each criterion, quote the exact span that justifies the band, then explain in one sentence. Write the evidence BEFORE the number.

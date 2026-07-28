@@ -90,8 +90,8 @@ const TAKE_INTERVIEW_BANDS = `
 5 — Fully successful. Fully addresses the question; ON TOPIC and WELL ELABORATED. Good conversational pace. Easily intelligible throughout. Accurate range of grammar and vocabulary.
 4 — Generally successful. Addresses the question; ON TOPIC and ELABORATED, though it may lack sentence-level connectors. Good pace with some pausing. Occasionally requires minor listener effort. Adequate grammar and vocabulary.
 3 — Partially successful. GENERALLY ON TOPIC but ELABORATION IS RELATIVELY LIMITED. Frequent or lengthy pauses, choppy rhythm, filler words. Intelligibility is sometimes affected. Limited range noticeably restricts precision.
-2 — Mostly unsuccessful. ONE OR MORE of: MINIMALLY CONNECTED to the interviewer's question, with LITTLE OR NO RELEVANT ELABORATION; OR consists MAINLY OF LANGUAGE FROM THE QUESTION. Limited intelligibility. Very limited range.
-1 — Unsuccessful. ONE OR MORE of: only VAGUELY CONNECTED to language in the interviewer's question; mostly unintelligible; isolated words or phrases only.
+2 — Mostly unsuccessful. An ATTEMPT to address the question that is not supported meaningfully or intelligibly. A typical response shows ALL of: MINIMALLY CONNECTED to the interviewer's question, with LITTLE OR NO RELEVANT ELABORATION, or consisting MAINLY OF LANGUAGE FROM THE QUESTION; limited intelligibility; a very limited range of grammar and vocabulary.
+1 — Unsuccessful. MINIMALLY addresses the question with very limited control of language. A typical response shows ALL of: only VAGUELY CONNECTED to language in the interviewer's question; mostly unintelligible; mainly isolated words or phrases.
 0 — No response, OR entirely unintelligible, OR not in English, OR content ENTIRELY UNCONNECTED to the prompt (including responses consisting only of phrases such as "I don't know").
 `.trim()
 
@@ -102,7 +102,7 @@ This is a REPETITION-ACCURACY rubric, NOT a content rubric. Do not reward or pen
 3 — Essentially a full repetition, but does NOT accurately capture the original meaning. The majority of content words are present.
 2 — Missing a significant part of the sentence and/or highly inaccurate; may be fragmentary.
 1 — Captures very little of the original, or is largely unintelligible.
-0 — No response, OR entirely unintelligible, OR not in English.
+0 — No response, OR entirely unintelligible, OR not in English, OR content ENTIRELY UNCONNECTED to the stimulus (including responses consisting only of phrases such as "I don't know").
 `.trim()
 
 const WRITING_EMAIL_BANDS = `
