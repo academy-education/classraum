@@ -103,8 +103,8 @@ export function ReportQuestion({
             onClick={() => setReason(r)}
             className={`px-2.5 py-1 rounded-full text-[12px] font-medium ring-1 transition-colors ${
               reason === r
-                ? 'bg-gray-900 text-white ring-gray-900'
-                : 'bg-white text-gray-600 ring-gray-200 hover:ring-gray-300'
+                ? 'bg-primary text-white ring-primary'
+                : 'bg-white text-gray-600 ring-gray-200 hover:ring-primary/40'
             }`}
           >
             {t(`study.report.reason.${r}`)}
@@ -117,7 +117,7 @@ export function ReportQuestion({
         rows={2}
         maxLength={1000}
         placeholder={t('study.report.notePlaceholder')}
-        className="mt-2 w-full resize-none rounded-lg border border-gray-200 bg-white px-2.5 py-2 text-[13px] text-gray-900 placeholder:text-gray-400 focus:border-gray-400 focus:outline-none"
+        className="mt-2 w-full resize-none rounded-lg border border-gray-200 bg-white px-2.5 py-2 text-[13px] text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none"
       />
       <div className="mt-2 flex items-center justify-end gap-2">
         <button
@@ -131,7 +131,7 @@ export function ReportQuestion({
           type="button"
           onClick={submit}
           disabled={!reason || status === 'saving'}
-          className="inline-flex items-center gap-1.5 rounded-full bg-gray-900 px-3.5 py-1.5 text-[12px] font-semibold text-white disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-[12px] font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {status === 'saving' && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
           {t('study.report.submit')}

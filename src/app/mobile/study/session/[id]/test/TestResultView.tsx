@@ -20,6 +20,7 @@ import {
   scoreToeflSection, bandFromProportion, detectToeflSection, WEIGHTS_FOR,
 } from '@/lib/study/toefl-section-score'
 import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
+import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
 
 /** Types whose answer is prose, not a pick from `choices`. Kept as an
  *  explicit list because `arrange_words` DOES populate `choices` (its word
@@ -703,6 +704,10 @@ function ResultCard({
   const q = row.question
   const studentAnswer = row.studentAnswer
   const choices = q.choices ?? []
+  // Graded against rubric criteria, not an answer key. Read from the
+  // same map the grader routes on, so a new open-response type cannot
+  // be gradeable here and key-matched there.
+  const isRubricItem = OPEN_RESPONSE_TYPES.has(q.type ?? '')
 
   return (
     <div className={`rounded-2xl ring-1 bg-white overflow-hidden transition-all ${
@@ -833,16 +838,28 @@ function ResultCard({
             // carries its word bank in `choices`, so a choices-only test
             // would silently render it as multiple choice.
             <div className="space-y-2 mt-2">
-              <div className="px-3 py-2 rounded-xl bg-emerald-50 text-emerald-900 text-xs ring-1 ring-emerald-200/70">
-                <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
-                <div className="whitespace-pre-wrap">{normalizeDisplayText(row.correctAnswerDisplay)}</div>
-              </div>
+              {/* A rubric item has NO answer key, so there is nothing to
+                  put here. This used to render a green "Correct answer"
+                  box containing an em dash above the student's essay in
+                  failure red — an answer the grader had just given 5 out
+                  of 5 read as wrong with the solution withheld. */}
+              {!isRubricItem && (
+                <div className="px-3 py-2 rounded-xl bg-emerald-50 text-emerald-900 text-xs ring-1 ring-emerald-200/70">
+                  <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
+                  <div className="whitespace-pre-wrap">{normalizeDisplayText(row.correctAnswerDisplay)}</div>
+                </div>
+              )}
               {studentAnswer != null ? (
                 <div className={`px-3 py-2 rounded-xl text-xs ring-1 ${
-                  row.correct ? 'bg-gray-50 text-gray-700 ring-gray-200/70'
-                              : 'bg-rose-50 text-rose-900 ring-rose-200/70'
+                  // Neutral for rubric items whatever the band: red here
+                  // would contradict the score sitting directly below it.
+                  isRubricItem || row.correct
+                    ? 'bg-gray-50 text-gray-700 ring-gray-200/70'
+                    : 'bg-rose-50 text-rose-900 ring-rose-200/70'
                 }`}>
-                  <div className="font-semibold mb-0.5">{ko ? '내 답' : 'Your answer'}</div>
+                  <div className="font-semibold mb-0.5">
+                    {isRubricItem ? (ko ? '내 답변' : 'Your response') : (ko ? '내 답' : 'Your answer')}
+                  </div>
                   <div className="whitespace-pre-wrap">{normalizeDisplayText(studentAnswer)}</div>
                 </div>
               ) : (

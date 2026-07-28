@@ -7,6 +7,9 @@ import { db } from '@/lib/supabase'
 import { normalizeDisplayText } from './helpers'
 import type { GradeResponse, RubricGrade, SpeechSignals } from './types'
 import { parseDiscussionSpeakers } from './discussion-speakers'
+import {
+  criterionLabel, scoreFraction, scoreTone, TONE_CLASS, type ScoreTone,
+} from '@/lib/study/rubricDisplay'
 
 /** TOEFL Writing scenario renderer — makes Email + Academic Discussion
  *  passages easier to scan than a wall of prose. Email: bold the
@@ -335,6 +338,42 @@ export function BlankLetterInput({ id, expectedLen, value, onChange, isFilled, k
   )
 }
 
+/** One word for the band, so the number is not the only signal. Not a
+ *  verdict on the student — a description of the response. */
+const BAND_WORD: Record<ScoreTone, { en: string; ko: string }> = {
+  strong:     { en: 'Strong response',     ko: '훌륭한 답변' },
+  solid:      { en: 'Solid response',      ko: '좋은 답변' },
+  developing: { en: 'Developing response', ko: '발전 중인 답변' },
+  weak:       { en: 'Early draft',         ko: '초안 수준' },
+}
+
+/**
+ * The band as a ring. SVG rather than a div-and-border trick so the arc
+ * is exact at any scaleMax, and drawn from a stroke-dasharray on a
+ * single circle so there is nothing to keep in sync.
+ */
+function BandDial({ band, scaleMax }: { band: number; scaleMax: number }) {
+  const R = 22
+  const C = 2 * Math.PI * R
+  const tone = scoreTone(band, scaleMax)
+  const filled = scoreFraction(band, scaleMax) * C
+  return (
+    <div className="relative flex-shrink-0 w-[54px] h-[54px]">
+      <svg viewBox="0 0 54 54" className="w-full h-full -rotate-90" aria-hidden>
+        <circle cx="27" cy="27" r={R} fill="none" strokeWidth="5"
+          className="stroke-gray-200/80" />
+        <circle cx="27" cy="27" r={R} fill="none" strokeWidth="5" strokeLinecap="round"
+          className={`${TONE_CLASS[tone].text} transition-[stroke-dasharray] duration-700`}
+          stroke="currentColor" strokeDasharray={`${filled} ${C - filled}`} />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
+        <span className="text-[15px] font-bold text-gray-900 tabular-nums">{band.toFixed(1)}</span>
+        <span className="text-[9px] text-gray-400 tabular-nums mt-0.5">/ {scaleMax}</span>
+      </div>
+    </div>
+  )
+}
+
 export function WritingFeedbackPanel({
   sessionId, prompt, response, skill, taskType, audioPath, speechSignals, speakingGradeMode, ko,
 }: {
@@ -470,39 +509,83 @@ export function WritingFeedbackPanel({
   }, [])
 
   if (state === 'done' && grade) {
+    const tone = scoreTone(grade.overallBand, scaleMax)
     return (
-      <div className="mt-2 rounded-lg border border-primary/20 bg-primary/[0.03] px-3 py-3 space-y-2">
-        <div className="flex items-baseline justify-between">
-          <div className="text-xs font-semibold text-primary">{ko ? 'AI 루브릭 채점' : 'AI rubric grade'}</div>
-          <div className="text-sm font-semibold text-gray-900 tabular-nums">
-            {grade.overallBand.toFixed(1)} <span className="text-xs text-gray-500">/ {scaleMax}</span>
-          </div>
-        </div>
-        {gradeNotice && (
-          <div className="text-[11px] text-amber-700 bg-amber-50 rounded px-2 py-1 border border-amber-200">
-            {gradeNotice}
-            {premiumUpsell && (
-              <a href="/mobile/study/subscription" className="ml-1 font-semibold text-primary underline underline-offset-2">
-                {ko ? '프리미엄 보기' : 'See Premium'}
-              </a>
-            )}
-          </div>
-        )}
-        <div className="text-[12px] text-gray-700 leading-relaxed">{grade.summary}</div>
-        <div className="space-y-1 pt-1">
-          {grade.criteria.map(c => (
-            <div key={c.key} className="text-[11px] leading-relaxed">
-              <span className="font-semibold text-gray-800 capitalize">{c.key}: {c.score.toFixed(1)}</span>
-              <span className="text-gray-600"> — {c.evidence}</span>
+      <div className="mt-2 rounded-xl ring-1 ring-primary/20 bg-white overflow-hidden">
+        {/* Band, as a dial. The number alone gave no sense of where it
+            sat on the scale, which is the one thing a student wants
+            from a rubric score. */}
+        <div className="flex items-center gap-3.5 px-3 py-3 bg-gradient-to-br from-primary/[0.06] to-transparent">
+          <BandDial band={grade.overallBand} scaleMax={scaleMax} />
+          <div className="min-w-0">
+            <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-primary">
+              {ko ? 'AI 루브릭 채점' : 'AI rubric grade'}
             </div>
-          ))}
-        </div>
-        {grade.modelRewrite && (
-          <div className="pt-2 border-t border-primary/15">
-            <div className="text-[11px] font-semibold text-primary mb-1">{ko ? '한 단계 위 표현 예시' : 'One-band-up rewrite'}</div>
-            <div className="text-[11px] text-gray-700 leading-relaxed italic">{grade.modelRewrite}</div>
+            <div className={`text-[12.5px] font-semibold ${TONE_CLASS[tone].text}`}>
+              {BAND_WORD[tone][ko ? 'ko' : 'en']}
+            </div>
+            <div className="text-[11px] text-gray-500 mt-0.5">
+              {ko ? '정답이 아니라 기준별로 채점됩니다.' : 'Scored against criteria, not an answer key.'}
+            </div>
           </div>
-        )}
+        </div>
+
+        <div className="px-3 py-3 space-y-3">
+          {gradeNotice && (
+            <div className="text-[11px] text-amber-700 bg-amber-50 rounded-lg px-2 py-1.5 border border-amber-200">
+              {gradeNotice}
+              {premiumUpsell && (
+                <a href="/mobile/study/subscription" className="ml-1 font-semibold text-primary underline underline-offset-2">
+                  {ko ? '프리미엄 보기' : 'See Premium'}
+                </a>
+              )}
+            </div>
+          )}
+
+          {grade.summary && (
+            <p className="text-[12.5px] text-gray-700 leading-relaxed">{grade.summary}</p>
+          )}
+
+          {/* Per-criterion meters. Each row is label / score / bar, so
+              the weak criterion is findable without reading every
+              evidence quote. */}
+          <div className="space-y-2.5">
+            {grade.criteria.map(c => {
+              const ct = scoreTone(c.score, scaleMax)
+              return (
+                <div key={c.key}>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="text-[11.5px] font-semibold text-gray-800">
+                      {criterionLabel(c.key)}
+                    </span>
+                    <span className={`text-[11.5px] font-semibold tabular-nums ${TONE_CLASS[ct].text}`}>
+                      {c.score.toFixed(1)}
+                      <span className="text-gray-400 font-medium"> / {scaleMax}</span>
+                    </span>
+                  </div>
+                  <div className="mt-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+                    <div
+                      className={`h-full rounded-full ${TONE_CLASS[ct].bar} transition-[width] duration-500`}
+                      style={{ width: `${scoreFraction(c.score, scaleMax) * 100}%` }}
+                    />
+                  </div>
+                  {c.evidence && (
+                    <p className="mt-1 text-[11px] text-gray-600 leading-relaxed">{c.evidence}</p>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+
+          {grade.modelRewrite && (
+            <div className="rounded-lg bg-gray-50 ring-1 ring-gray-200/70 px-2.5 py-2">
+              <div className="text-[10.5px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-1">
+                {ko ? '한 단계 위 표현 예시' : 'One-band-up rewrite'}
+              </div>
+              <p className="text-[11.5px] text-gray-700 leading-relaxed italic">{grade.modelRewrite}</p>
+            </div>
+          )}
+        </div>
       </div>
     )
   }
