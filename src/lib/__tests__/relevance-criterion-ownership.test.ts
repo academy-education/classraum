@@ -19,7 +19,7 @@ import type { Grade } from '@/lib/study/responseRubrics'
  * The whole 594-test suite was green on that behaviour, so these assert
  * the ownership rule directly.
  */
-const rubric = getRubric('toefl', 'speaking', 'interview')
+const rubric = getRubric('toefl', 'speaking', 'take_interview')
 const relKey = rubric.relevanceCriterionKey!
 
 const qualityGrade = (over: Partial<Grade> = {}): Grade => ({

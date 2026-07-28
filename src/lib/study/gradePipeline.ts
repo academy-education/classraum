@@ -439,8 +439,8 @@ export async function runStagedGrade(
   })
   addUsage(gateRes.usage)
   const gate = gateRes.object
-  if (zeroGateTriggered(gate)) {
-    const reasons = zeroGateReasons(gate)
+  if (zeroGateTriggered(gate, ctx.skill)) {
+    const reasons = zeroGateReasons(gate, ctx.skill)
     return {
       grade: zeroGrade(gate, rubric),
       zeroGate: gate,

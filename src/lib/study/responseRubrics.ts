@@ -378,14 +378,46 @@ export const ZERO_GATE_FLAGS = [
   'arbitraryKeystrokes',
 ] as const
 
-/** Any single ETS 0-band condition scores the response 0. */
-export function zeroGateTriggered(gate: ZeroGate): boolean {
-  return ZERO_GATE_FLAGS.some(flag => gate[flag] === true)
+/**
+ * The 0-band conditions, which are NOT the same for the two skills.
+ *
+ * Taken verbatim from the official ETS scoring guides (2025 PDFs):
+ *
+ *   Writing 0  — "The response is blank, rejects the topic, is not in
+ *                 English, is entirely copied from the prompt, is
+ *                 entirely unconnected to the prompt or consists of
+ *                 arbitrary keystrokes."
+ *   Speaking 0 — "No response OR the response is entirely unintelligible
+ *                 OR there is no English in the response OR the content
+ *                 is entirely unconnected to the prompt (or consists only
+ *                 of phrases such as 'I don't know')."
+ *
+ * Speaking's list contains neither "rejects the topic" nor "entirely
+ * copied from the prompt". Copying is explicitly a TWO there — the score
+ * 2 descriptor reads "consists mainly of language from the question" —
+ * so zeroing a spoken response for it is two bands below the published
+ * rubric. We had been applying the Writing conditions to both skills.
+ */
+const WRITING_ZERO_FLAGS = ZERO_GATE_FLAGS
+const SPEAKING_ZERO_FLAGS = [
+  'noResponse',
+  'notInEnglish',
+  'entirelyUnintelligible',
+  'entirelyUnconnected',
+] as const
+
+export function zeroGateFlagsFor(skill: ResponseSkill): readonly (typeof ZERO_GATE_FLAGS)[number][] {
+  return skill === 'speaking' ? SPEAKING_ZERO_FLAGS : WRITING_ZERO_FLAGS
+}
+
+/** Any single ETS 0-band condition FOR THAT SKILL scores the response 0. */
+export function zeroGateTriggered(gate: ZeroGate, skill: ResponseSkill): boolean {
+  return zeroGateFlagsFor(skill).some(flag => gate[flag] === true)
 }
 
 /** Which conditions fired — persisted in the grade summary evidence. */
-export function zeroGateReasons(gate: ZeroGate): string[] {
-  return ZERO_GATE_FLAGS.filter(flag => gate[flag] === true)
+export function zeroGateReasons(gate: ZeroGate, skill: ResponseSkill): string[] {
+  return zeroGateFlagsFor(skill).filter(flag => gate[flag] === true)
 }
 
 // --- Stage 2: relevance ladder ---------------------------------------------
