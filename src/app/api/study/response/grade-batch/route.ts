@@ -114,6 +114,14 @@ export async function POST(req: NextRequest) {
     // string would spend a gpt-4o call to be told it is a zero.
     const answer = (a.student_answer ?? '').trim()
     if (!answer) return []
+    // A recorded Speaking answer is graded from the audio by
+    // /api/study/speaking/grade-audio, which the client calls directly.
+    // Grading it here as well would produce a SECOND submission row for
+    // the same task: the dedupe in gradeAndPersistResponse is a read
+    // then a write, so two callers a second apart both miss and both
+    // insert. That is exactly what put four submissions and two
+    // disagreeing bands on one Writing test. One writer per item.
+    if (a.position != null && body.signals?.[String(a.position)]?.audioPath) return []
     return [{ position: a.position, type, skill, prompt: q.prompt, answer }]
   })
 

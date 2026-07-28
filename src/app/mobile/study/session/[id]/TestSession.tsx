@@ -793,47 +793,44 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // Test is over — stop holding the mic open (browser tab keeps
       // showing the red recording dot while the primed stream lives).
       releaseMicStream()
-      // Pre-grade every open-response answer now (fire-and-forget) so
-      // the rubric submission + grade rows exist without the student
-      // having to expand each review panel — the panels then load
-      // instantly from the grade route's dedupe cache. Server-side
-      // idempotency (same session+prompt) makes duplicates harmless,
-      // and XP pays out at most once per task regardless.
+      // Audio-mode Speaking interviews ONLY. Everything else was
+      // already sent to grade-batch above, and sending it here too is
+      // not free: the batch and this loop each create their own
+      // submission row, because the "identical prompt+response is
+      // already graded" check in gradeAndPersistResponse is a read
+      // followed by a write with nothing between them. Fired ~1.5s
+      // apart, both SELECTs miss and both INSERT.
+      //
+      // A real Writing test taken on 2026-07-29 produced four
+      // submissions for two essays, and the same discussion essay came
+      // back band 4 from one call and band 3 from the other. The result
+      // screen read whichever row it happened to fetch, so the score
+      // was a coin flip and we paid twice to toss it.
+      //
+      // The audio branch stays because grade-batch cannot replace it:
+      // it grades a transcript through the staged text pipeline, while
+      // this route hands the recording to gpt-4o-audio.
       if (test.family === 'toefl' || test.family === 'ielts') {
         test.questions.forEach((q, i) => {
-          const isOpen = q.type === 'speaking_interview'
-            || q.type === 'writing_email' || q.type === 'writing_discussion'
           const response = (answers[i] ?? '').trim()
-          // Grade route requires ≥20-char responses; shorter ones have
-          // nothing gradeable anyway.
-          if (!isOpen || response.length < 20 || q.prompt.trim().length < 10) return
-          const signals = answerSpeechSignals[i]
-          // Speaking interviews on an audio-mode session pre-grade via
-          // the audio-native route — the SAME route the review panel
-          // calls — so the panel's request hits that route's dedupe
-          // cache instead of triggering a second gpt-4o-audio call.
           const useAudio = q.type === 'speaking_interview'
             && speakingGradeMode === 'audio'
             && !!answerAudioPaths[i]
-          const common = {
-            sessionId,
-            taskType: q.type === 'writing_email' ? 'email'
-              : q.type === 'writing_discussion' ? 'academic_discussion' : null,
-            promptText: q.prompt.slice(0, 2000),
-            responseText: response.slice(0, 8000),
-            audioPath: answerAudioPaths[i] ?? null,
-            durationSeconds: signals?.durationSec ?? null,
-            wpm: signals?.wpm ?? null,
-            pauseCount: signals?.pauseCount ?? null,
-            clarity: signals?.clarity ?? null,
-          }
-          void fetch(useAudio ? '/api/study/speaking/grade-audio' : '/api/study/response/grade', {
+          if (!useAudio || response.length < 20 || q.prompt.trim().length < 10) return
+          const signals = answerSpeechSignals[i]
+          void fetch('/api/study/speaking/grade-audio', {
             method: 'POST',
             headers,
-            body: JSON.stringify(useAudio ? common : {
-              ...common,
-              testFamily: test.family,
-              skill: q.type === 'speaking_interview' ? 'speaking' : 'writing',
+            body: JSON.stringify({
+              sessionId,
+              taskType: null,
+              promptText: q.prompt.slice(0, 2000),
+              responseText: response.slice(0, 8000),
+              audioPath: answerAudioPaths[i] ?? null,
+              durationSeconds: signals?.durationSec ?? null,
+              wpm: signals?.wpm ?? null,
+              pauseCount: signals?.pauseCount ?? null,
+              clarity: signals?.clarity ?? null,
             }),
           }).catch(() => { /* review panel re-requests on demand */ })
         })

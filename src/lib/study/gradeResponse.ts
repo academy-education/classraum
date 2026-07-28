@@ -11,6 +11,7 @@ import {
   type ResponseTaskType,
 } from '@/lib/study/responseRubrics'
 import { runStagedGrade, type QualityStageCall, type TextStageCall } from '@/lib/study/gradePipeline'
+import { composeGraderPrompt } from '@/lib/study/openResponse'
 
 /**
  * Grade ONE open response and persist it.
@@ -165,13 +166,29 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
   const language = (p.sessionLanguage === 'ko' ? 'ko' : 'en') as 'ko' | 'en'
   const { text: textStage, quality: defaultQuality } = openAiStages()
 
+  // The task the grader is scoring against lives in the attempt's
+  // `passage`, not in `promptText` — see composeGraderPrompt. Resolved
+  // HERE rather than in the two routes so the per-item request and the
+  // batch cannot disagree about what the task was, and so `prompt_text`
+  // stays the bare instruction: it is the dedupe key AND the join key
+  // the result screen uses to match a grade back to its question.
+  const { data: attempt } = await dbAdmin
+    .from('study_attempts')
+    .select('question')
+    .eq('session_id', p.sessionId)
+    .eq('question->>prompt', p.promptText)
+    .limit(1)
+    .maybeSingle()
+  const passage = (attempt?.question as { passage?: string | null } | null)?.passage ?? null
+  const graderPrompt = composeGraderPrompt(passage, p.promptText)
+
   let staged
   try {
     staged = await runStagedGrade({
       family: p.testFamily,
       skill: p.skill,
       taskType: p.taskType,
-      promptText: p.promptText,
+      promptText: graderPrompt,
       responseText: p.responseText,
       durationSeconds: p.durationSeconds ?? null,
       wordCount,

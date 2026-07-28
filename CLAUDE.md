@@ -230,3 +230,40 @@ exemplars or students self-reporting real TOEFL bands.
 
 Until then, do not fold rubric marks into the section band — it would
 push every Speaking and Writing score down by that same margin.
+
+### Corollary: "idempotent" that is a read followed by a write is not
+
+A live TOEFL Writing run on 2026-07-29 produced FOUR submission rows for
+two essays, and the same discussion essay came back band 4 from one call
+and band 3 from the other. The result screen read whichever row it
+fetched first, so the reported score was a coin toss — and we paid for
+both tosses.
+
+Two callers fired on submit: `grade-batch`, and an older per-question
+loop in TestSession that was never removed when the batch was added.
+The loop's comment said "server-side idempotency (same session+prompt)
+makes duplicates harmless". That dedupe is a SELECT followed by an
+INSERT with nothing between them. Fired ~1.5s apart, both SELECTs miss
+and both INSERT. The comment had never been tested with two callers,
+because until the batch landed there was only ever one.
+
+Two lessons, and the second is the load-bearing one:
+
+1. When you add a batch path, delete the per-item path it replaces —
+   or state why it must stay (here: audio-native Speaking grading, which
+   the batch cannot do). One writer per item.
+2. **A comment asserting an invariant is not evidence the invariant
+   holds.** Grep for the claim, then construct the concurrent case. If
+   the dedupe must survive real races it needs a unique index, not a
+   prior read.
+
+Same run, second finding, recorded because the OBVIOUS explanation was
+wrong: the grader was being sent only `question.prompt` — 70 characters
+of bare instruction — while the situation, the email being replied to,
+and the bulleted requirements all live in `question.passage` and were
+never sent. That looks exactly like the cause of the "harsh grader", and
+it is not. Ten trials (5 with the passage, 5 without) moved the band by
+zero. The harshness in that run came entirely from the duplicate call;
+with one writer the same two essays scored 5 and 4, not 3 and 3. The
+passage is now passed because a grader should see the task it scores —
+not because it changed a number. Do not credit it with one.
