@@ -135,8 +135,17 @@ export async function POST(req: NextRequest) {
   const topicRel = session.topic as { slug: string } | { slug: string }[] | null
   const topicSlug = (Array.isArray(topicRel) ? topicRel[0]?.slug : topicRel?.slug) ?? ''
   const satSection = topicSlug.includes('math') ? 'math' as const : 'reading_writing' as const
+  // Gated on the topic being SAT. `module2_route` alone was the test until
+  // 2026-07-28, and TOEFL became adaptive too — so a TOEFL Reading result
+  // carried a College Board 200-800 section score, rendered as
+  // "EST. SAT SCORE (200-800) 200" beside the correct 1-6 band. Two score
+  // scales for two different exams on one screen, one of them invented.
+  // Fixed here rather than in the two UIs that render it, so a third
+  // surface cannot reintroduce it. The header note above already says a
+  // TOEFL band must not be fabricated; this is the same rule.
+  const isSatTopic = topicSlug.startsWith('sat-')
   const satScore = (correct: number, total: number) =>
-    module2Route ? estimateSectionScore(correct, total, module2Route, satSection) : null
+    isSatTopic && module2Route ? estimateSectionScore(correct, total, module2Route, satSection) : null
 
   // ── Anti-forgery: grade against the SERVER's cached test payload ──
   // The client passes its questions array for convenience, but its
