@@ -16,6 +16,10 @@ import {
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
 import { authHeaders } from '@/lib/auth-headers'
+import {
+  scoreToeflSection, bandFromProportion, detectToeflSection, WEIGHTS_FOR,
+} from '@/lib/study/toefl-section-score'
+import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
 
 /** Types whose answer is prose, not a pick from `choices`. Kept as an
  *  explicit list because `arrange_words` DOES populate `choices` (its word
@@ -97,16 +101,41 @@ export function TestResultView({
 
   const split = scoreSplit(model.rows, grades)
 
+  // TOEFL Speaking and Writing are scored on the points model rather than
+  // percent-correct: a near-miss repeat earns partial credit, and the
+  // spoken and written answers count at all. Reading and Listening keep
+  // the percent-correct path, which already matches ETS.
+  const items = model.rows.map(r => ({
+    type: r.question.type ?? '',
+    expectedText: r.question.correct_answer ?? null,
+    studentAnswer: r.studentAnswer,
+    correct: r.correct,
+    rubricBand: grades[r.question.prompt ?? '']?.band ?? null,
+  }))
+  const toeflSection = model.family === 'toefl' ? detectToeflSection(items) : null
+  const pointsScore = toeflSection
+    ? scoreToeflSection(items, WEIGHTS_FOR[toeflSection], scoreListenRepeat)
+    : null
+
   // Hero colour and Raumi's mood both follow accuracy. A hard session must
   // never read as a celebration — the summary screen established this rule
   // and it moves here with the hero.
-  const hero = model.scorePercent >= 80
+  /* The single percentage this screen reports. When a section is scored
+     on points, the hero, the mascot, the headline copy and the band must
+     all come from THAT number — showing 43% beside a band derived from
+     54% is the same contradiction the band/scaled rows had this morning,
+     and it reappears the moment two sources exist again. */
+  const shownPercent = pointsScore
+    ? Math.round(pointsScore.proportion * 100)
+    : model.scorePercent
+
+  const hero = shownPercent >= 80
     ? { gradient: 'from-emerald-500 via-emerald-600 to-teal-700' }
-    : model.scorePercent >= 60
+    : shownPercent >= 60
       ? { gradient: 'from-amber-500 via-orange-500 to-orange-700' }
       : { gradient: 'from-rose-500 via-rose-600 to-red-700' }
   const mascotState: MascotState =
-    model.scorePercent >= 80 ? 'celebrate' : model.scorePercent >= 60 ? 'idle' : 'sad'
+    shownPercent >= 80 ? 'celebrate' : shownPercent >= 60 ? 'idle' : 'sad'
 
   return (
     <div className="px-5 py-6 space-y-5">
@@ -129,16 +158,19 @@ export function TestResultView({
             {t('study.test.resultEyebrow')}
           </div>
           <h2 className="text-[40px] font-bold leading-none tracking-tight tabular-nums">
-            <CountUp value={model.scorePercent} /><span className="text-[24px] opacity-80">%</span>
+            <CountUp value={shownPercent} /><span className="text-[24px] opacity-80">%</span>
           </h2>
           <p className="text-[14px] mt-1.5 opacity-90 tabular-nums">
-            {model.correctCount} / {model.totalScored} {ko ? '정답' : 'correct'}
+            {pointsScore
+              ? (ko ? `${pointsScore.earned} / ${pointsScore.max}점`
+                    : `${pointsScore.earned} of ${pointsScore.max} points`)
+              : `${model.correctCount} / ${model.totalScored} ${ko ? '정답' : 'correct'}`}
           </p>
           <p className="text-[12.5px] mt-1 opacity-75 leading-snug max-w-[85%]">
             {t(`study.test.resultMessage.${
-              model.scorePercent >= 85 ? 'excellent' :
-              model.scorePercent >= 65 ? 'solid' :
-              model.scorePercent >= 40 ? 'keepGoing' : 'startOver'
+              shownPercent >= 85 ? 'excellent' :
+              shownPercent >= 65 ? 'solid' :
+              shownPercent >= 40 ? 'keepGoing' : 'startOver'
             }`)}
           </p>
 
@@ -157,18 +189,24 @@ export function TestResultView({
             <div className="mt-5 space-y-2.5">
               <ScaleRow
                 label={ko ? '밴드 점수' : 'Band score'}
-                value={toeflBandFromScaled(toeflScaledScore(model.scorePercent)).toFixed(1)}
+                value={(pointsScore
+                  ? bandFromProportion(pointsScore.proportion)
+                  : toeflBandFromScaled(toeflScaledScore(model.scorePercent))).toFixed(1)}
                 min={1} max={6}
-                fraction={scaleFraction(
-                  toeflBandFromScaled(toeflScaledScore(model.scorePercent)), 1, 6)}
+                fraction={scaleFraction(pointsScore
+                  ? bandFromProportion(pointsScore.proportion)
+                  : toeflBandFromScaled(toeflScaledScore(model.scorePercent)), 1, 6)}
                 note={ko ? '이 섹션의 밴드 점수예요. 네 개 섹션의 평균이 총점이 됩니다.'
                          : 'This section only. Your overall score averages all four.'}
               />
               <ScaleRow
-                label={ko ? '환산 점수' : 'Scaled score'}
-                value={String(toeflScaledScore(model.scorePercent))}
-                min={0} max={30}
-                fraction={scaleFraction(toeflScaledScore(model.scorePercent), 0, 30)}
+                label={pointsScore ? (ko ? '획득 점수' : 'Points earned')
+                                   : (ko ? '환산 점수' : 'Scaled score')}
+                value={pointsScore ? String(pointsScore.earned) : String(toeflScaledScore(model.scorePercent))}
+                min={0} max={pointsScore ? pointsScore.max : 30}
+                fraction={pointsScore
+                  ? scaleFraction(pointsScore.earned, 0, Math.max(1, pointsScore.max))
+                  : scaleFraction(toeflScaledScore(model.scorePercent), 0, 30)}
                 /* Says the relationship out loud. The band above IS this
                    number divided by 5 — previously the two were computed
                    from unrelated formulas and could disagree on screen.
@@ -176,7 +214,10 @@ export function TestResultView({
                    not 0.6, because the published scale starts at 1. Saying
                    only "divided by 5" is false at the bottom, which is the
                    same class of error this row was added to remove. */
-                note={toeflScaledScore(model.scorePercent) < 5
+                note={pointsScore
+                  ? (ko ? '각 파트의 배점이 다릅니다. 아래에서 확인하세요.'
+                        : 'Parts are weighted differently — see the breakdown below.')
+                  : toeflScaledScore(model.scorePercent) < 5
                   ? (ko ? '이 점수를 5로 나눈 값이 밴드 점수예요. 단, 밴드는 1.0에서 시작합니다.'
                         : 'Your band is this divided by 5 — but the scale starts at 1.0.')
                   : (ko ? '이 점수를 5로 나눈 값이 위의 밴드 점수예요.'
@@ -200,10 +241,28 @@ export function TestResultView({
             </div>
           )}
 
-          {/* Counts. Every label names its unit, because two of these
-              three count different things and every previous version of
-              this screen let a student read them as one set. */}
+          {/* Counts.
+              A section scored on POINTS gets its parts, not correct/missed:
+              a repeat scored 4 out of 5 is neither correct nor missed, and
+              forcing it into one of those buckets is exactly what the old
+              model did when it threw the partial credit away. Patching the
+              two tiles individually produced "26 correct of 35" beside
+              "4 missed of 7" — the same two-sources-of-truth bug, one
+              layer down. So the whole group is chosen once, by model. */}
           <div className="mt-5 pt-4 border-t border-white/20 grid grid-cols-3 gap-2">
+            {pointsScore ? (
+              pointsScore.parts.filter(p => p.max > 0).map(p => (
+                <HeroStat
+                  key={p.key}
+                  icon={CheckCircle2}
+                  value={String(p.earned)}
+                  label={PART_LABEL[p.key]?.[ko ? 'ko' : 'en'] ?? p.key}
+                  sub={ko ? `${p.max}점 중 · 비중 ${Math.round(p.effectiveWeight * 100)}%`
+                          : `of ${p.max} · ${Math.round(p.effectiveWeight * 100)}% of score`}
+                />
+              ))
+            ) : (
+              <>
             <HeroStat
               icon={CheckCircle2}
               value={String(model.correctCount)}
@@ -222,6 +281,8 @@ export function TestResultView({
               label={ko ? '출제' : 'Delivered'}
               sub={ko ? '실제로 푼 문항' : 'questions you saw'}
             />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -237,6 +298,7 @@ export function TestResultView({
         * Same numbers, said in the student's language, with the reason
         * each bucket exists stated on its own row. Header matches the
         * StudyTodayCard shape used across study mode. */}
+      {!pointsScore && (
       <div className="rounded-2xl ring-1 ring-gray-200/70 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
         <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-100">
           <div className="flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] bg-gradient-to-br from-slate-500 to-slate-700 text-white">
@@ -307,6 +369,7 @@ export function TestResultView({
             subTone="info" />
         </div>
       </div>
+      )}
 
       {/* Two scales, side by side. The headline percentage counts only
           key-matched items — weightedScore returns total:0 for open
@@ -316,7 +379,7 @@ export function TestResultView({
           would be worse, not better: they are different scales measuring
           different things. Show both, and say which one the big number
           on this screen refers to. */}
-      {split.hasRubric && (
+      {split.hasRubric && !pointsScore && (
         <div className="mx-4 mt-3 rounded-2xl bg-white ring-1 ring-gray-200/70 p-4">
           <div className="text-[13px] font-bold text-gray-900">
             {ko ? '점수는 이렇게 구성돼요' : 'How your score was built'}
@@ -547,6 +610,15 @@ function ScoreBar({ label, detail, percent, tone, ko, headline = false, pending 
       </div>
     </div>
   )
+}
+
+/** Student-facing names for the score parts. */
+const PART_LABEL: Record<string, { en: string; ko: string }> = {
+  listen_repeat: { en: 'Repeating', ko: '따라 말하기' },
+  take_interview: { en: 'Interview', ko: '인터뷰' },
+  build_a_sentence: { en: 'Sentences', ko: '문장 만들기' },
+  write_email: { en: 'Email', ko: '이메일' },
+  academic_discussion: { en: 'Discussion', ko: '학술 토론' },
 }
 
 function TallyRow({ dot, count, label, note, sub, subTone = 'warn' }: {

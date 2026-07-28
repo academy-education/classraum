@@ -189,3 +189,22 @@ export function scoreToeflSection(
     })),
   )
 }
+
+/** Which TOEFL section these items belong to, from the item types
+ *  present. Avoids threading a section prop through the result screen,
+ *  which reads its rows from two different sources. */
+export function detectToeflSection(items: Array<{ type: string }>): 'speaking' | 'writing' | null {
+  for (const i of items) {
+    const part = PART_OF[i.type]
+    if (part === 'listen_repeat' || part === 'take_interview') return 'speaking'
+    if (part === 'build_a_sentence' || part === 'write_email' || part === 'academic_discussion') {
+      return 'writing'
+    }
+  }
+  return null
+}
+
+export const WEIGHTS_FOR: Record<'speaking' | 'writing', Record<string, number>> = {
+  speaking: SPEAKING_WEIGHTS,
+  writing: WRITING_WEIGHTS,
+}
