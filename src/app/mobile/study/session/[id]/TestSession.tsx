@@ -1327,7 +1327,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             difficulty mix. */}
         {test.family !== 'sat' && (
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
+            {/* Tinted by level rather than a flat grey pill — the student
+                paces off this, and on a challenge-locked test every item
+                reading "hard" in grey carried no signal at all. */}
+            <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
+              q.difficulty === 'hard'
+                ? 'bg-rose-50 text-rose-700 ring-rose-200/70'
+                : q.difficulty === 'medium'
+                  ? 'bg-amber-50 text-amber-700 ring-amber-200/70'
+                  : 'bg-emerald-50 text-emerald-700 ring-emerald-200/70'
+            }`}>
               {t(`study.practice.difficulty.${q.difficulty}`)}
             </span>
             {/* LEGACY TOEFL module chip — only for pre-adaptive cached
@@ -1569,7 +1578,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   <WritingScenario text={q.passage} kind={q.type === 'writing_email' ? 'email' : 'discussion'} />
                 </div>
               ) : (
-                <div className="mb-4 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[14px] text-gray-800 leading-relaxed">
+                <div className="mb-4 rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-3.5 text-[14px] text-gray-800 leading-relaxed shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
                   <PassageParagraphs text={q.passage} />
                 </div>
               )}
@@ -1608,7 +1617,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   })
                 }}
                 placeholder={ko ? '예: 12, 3.44, 5/8' : 'e.g. 12, 3.44, 5/8'}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
               />
             </label>
             <p className="text-[11px] text-gray-500">
@@ -1709,7 +1718,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     {filledCount} / {blanks.length}
                   </span>
                 </div>
-                <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 text-[15px] text-gray-900 leading-[2.4]">
+                <div className="rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-5 text-[15px] text-gray-900 leading-[2.4] shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
                   {segments.map((seg, i) => {
                     const match = seg.match(/^\[(\d+)\]$/)
                     if (!match) return <span key={i}>{normalizeDisplayText(seg)}</span>
@@ -2001,7 +2010,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   placeholder={q.type === 'writing_email'
                     ? (ko ? '여기에 이메일을 작성하세요…' : 'Type your email here…')
                     : (ko ? '여기에 토론 기여글을 작성하세요…' : 'Type your contribution here…')}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
                 />
                 <div className="flex items-center justify-between text-[11px] text-gray-500">
                   <span>
@@ -2246,7 +2255,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 // routed), matching the real section-adaptive exam.
                 onClick={() => setCurrentIdx(i => Math.max(inModule2 ? test.moduleBreakIdx! : 0, i - 1))}
                 disabled={currentIdx === (inModule2 ? test.moduleBreakIdx! : 0) || audioPlaying}
-                className="h-11 w-11 rounded-full bg-white border border-gray-200 text-gray-700 inline-flex items-center justify-center disabled:opacity-40"
+                className="h-11 w-11 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 inline-flex items-center justify-center shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/40 active:scale-95 transition-all disabled:opacity-40 disabled:hover:ring-gray-200/70"
                 aria-label={String(t('study.test.previous'))}
               >
                 <ArrowLeft className="w-4 h-4" />
