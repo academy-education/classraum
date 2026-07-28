@@ -78,6 +78,50 @@ export function xpSourceIdFor(sessionId: string, promptText: string): string {
   return [h.slice(0, 8), h.slice(8, 12), h.slice(12, 16), h.slice(16, 20), h.slice(20, 32)].join('-')
 }
 
+/**
+ * The OpenAI stage callbacks, as production runs them.
+ *
+ * Exported so `scripts/calibrate-grader.ts` measures the real pipeline
+ * rather than a second copy that could drift from it. A calibration
+ * harness grading through different model calls than the app would be
+ * measuring the wrong thing while looking authoritative.
+ */
+export function openAiStages(): { text: TextStageCall; quality: QualityStageCall } {
+  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  return {
+    // Stages 1-2 are cheap classification — a mini model at temperature 0
+    // is both sufficient and more consistent for a yes/no gate and a
+    // 6-way ladder. Stage 4 (language quality) keeps gpt-4o.
+    text: async ({ schema, schemaName, prompt }) => {
+      const r = await generateObject({
+        model: openai('gpt-4o-mini'),
+        schema: schema as z.ZodType<unknown>,
+        schemaName,
+        prompt,
+        temperature: 0,
+      })
+      return {
+        object: r.object as never,
+        usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
+      }
+    },
+    quality: async ({ prompt, criterionKeys }) => {
+      const r = await generateObject({
+        model: openai('gpt-4o'),
+        // Pinned to the rubric's own keys — see gradeSchemaForCriteria.
+        schema: gradeSchemaForCriteria(criterionKeys),
+        schemaName: 'rubric_grade',
+        prompt,
+        temperature: 0,
+      })
+      return {
+        object: r.object,
+        usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
+      }
+    },
+  }
+}
+
 export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<GradedResponse> {
   const rubric = getRubric(p.testFamily, p.skill, p.taskType)
   const xpSourceId = xpSourceIdFor(p.sessionId, p.promptText)
@@ -119,38 +163,7 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
 
   const wordCount = p.responseText.trim().split(/\s+/).filter(Boolean).length
   const language = (p.sessionLanguage === 'ko' ? 'ko' : 'en') as 'ko' | 'en'
-  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
-
-  // Stages 1-2 are cheap classification — a mini model at temperature 0
-  // is both sufficient and more consistent for a yes/no gate and a
-  // 6-way ladder. Stage 4 (language quality) keeps gpt-4o.
-  const textStage: TextStageCall = async ({ schema, schemaName, prompt }) => {
-    const r = await generateObject({
-      model: openai('gpt-4o-mini'),
-      schema: schema as z.ZodType<unknown>,
-      schemaName,
-      prompt,
-      temperature: 0,
-    })
-    return {
-      object: r.object as never,
-      usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
-    }
-  }
-  const defaultQuality: QualityStageCall = async ({ prompt, criterionKeys }) => {
-    const r = await generateObject({
-      model: openai('gpt-4o'),
-      // Pinned to the rubric's own keys — see gradeSchemaForCriteria.
-      schema: gradeSchemaForCriteria(criterionKeys),
-      schemaName: 'rubric_grade',
-      prompt,
-      temperature: 0,
-    })
-    return {
-      object: r.object,
-      usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
-    }
-  }
+  const { text: textStage, quality: defaultQuality } = openAiStages()
 
   let staged
   try {
