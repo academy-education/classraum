@@ -90,7 +90,18 @@ function SessionInner({ id }: { id: string }) {
         // durable summary (persisted answers + mistake review) instead,
         // exactly like a graded mock. Keep the loader up through the
         // navigation so the live UI never flashes.
-        if ((row.mode === 'full_test' || row.mode === 'practice') && row.status === 'completed') {
+        // PRACTICE only. A completed practice set genuinely must not
+        // re-enter the flow: it would draw a NEW batch into the finished
+        // session (re-earnable XP, score overwritten).
+        //
+        // full_test no longer redirects. TestSession rebuilds the
+        // post-submit result screen for a completed test from the session
+        // row + attempts, which is what the student expects to see when
+        // they open a finished mock. The blank-restart risk this guard was
+        // written for still exists if that rebuild fails, so TestSession
+        // routes HERE — to the summary — when it cannot build a result.
+        // The guarantee is preserved; it just moved to where the data is.
+        if (row.mode === 'practice' && row.status === 'completed') {
           redirecting = true
           router.replace(`/mobile/study/session/${id}/summary`)
           return
