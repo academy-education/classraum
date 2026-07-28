@@ -256,13 +256,22 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     ...groupedRows('multiple_choice', { groups: 8, size: 4, prefix: 'acad4', readingTask: 'academic_passage' }),
   ]
 
-  it('Reading Stage 1 draws 1 Complete-the-Words + 9 daily + 9 academic = 28 questions', () => {
+  it('Reading Stage 1 draws 1 Complete-the-Words + 10 daily + 8 academic = 28 questions', () => {
+    // Was 9 daily + 9 academic. Daily Life joined MULTI_QUESTION_TASKS on
+    // 2026-07-28, so its sets can no longer be FRAGMENTED — and a quota of 9
+    // over 2-question sets is only satisfiable by splitting one, which puts a
+    // lone question on screen under its own passage. That is the defect a
+    // student reported, arriving from the quota side rather than the bank
+    // side: even a well-formed pair got cut in half.
+    //
+    // 10 is 5 whole pairs. Academic sets are 4 and 5, so 8 = 4+4. The section
+    // total (28 scored, 19 cards) is unchanged.
     enqueue('study_item_bank', { data: deepReading() })
     return assembleToeflFromBank({ section: 'reading', module: 1 }, 'seed-m1').then(test => {
       expect(test.composition).toEqual({
         fill_in_blanks: 1,
-        'multiple_choice:daily_life': 9,
-        'multiple_choice:academic_passage': 9,
+        'multiple_choice:daily_life': 10,
+        'multiple_choice:academic_passage': 8,
       })
       expect(test.questions).toHaveLength(19)   // cards
       // ETS Table 1 counts a Complete-the-Words paragraph as TEN questions.
@@ -387,10 +396,14 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     ]
     enqueue('study_item_bank', { data: [...toeflRows('fill_in_blanks', 6), ...bank] })
     const test = await assembleToeflFromBank({ section: 'reading', module: 1 }, 'seed-g1')
+    // This fixture's daily sets are size THREE, so the quota of 10 is not a
+    // reachable sum and the draw stops at 9 rather than fragmenting a set —
+    // which is the behaviour under test. The live bank's daily sets are all
+    // size two, where 10 is exactly 5 sets; see the Stage 1 test above.
     expect(test.composition).toEqual({
       fill_in_blanks: 1,
       'multiple_choice:daily_life': 9,
-      'multiple_choice:academic_passage': 9,
+      'multiple_choice:academic_passage': 8,
     })
     expectWholeSets(test.questions, bank)
   })
@@ -431,7 +444,12 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     const bank = [
       ...groupedRows('multiple_choice', { groups: 10, size: 5, prefix: 'acad', readingTask: 'academic_passage' }),
       ...groupedRows('multiple_choice', { groups: 10, size: 4, prefix: 'acad4', readingTask: 'academic_passage' }),
-      ...groupedRows('multiple_choice', { groups: 10, size: 3, prefix: 'daily', readingTask: 'daily_life' }),
+      // Size TWO, matching the live bank: ETS Daily Life is a short 2-3
+      // question set, and since Daily Life joined MULTI_QUESTION_TASKS the
+      // only drawable daily texts are the 35 pairs. A size-3 fixture here
+      // made the daily quota of 10 unreachable and the section came up one
+      // card short — a fixture that no longer modelled what ships.
+      ...groupedRows('multiple_choice', { groups: 10, size: 2, prefix: 'daily', readingTask: 'daily_life' }),
     ]
     enqueue('study_item_bank', { data: [...toeflRows('fill_in_blanks', 6), ...bank] })
     const test = await assembleToeflFromBank({ section: 'reading' }, 'seed-g4')
@@ -730,12 +748,12 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     // Writing / Speaking and every non-adaptive caller depend on this.
     enqueue('study_item_bank', { data: deepReading() })
     const whole = await assembleToeflFromBank({ section: 'reading' }, 'seed-w')
-    // 2 CtW + 9 daily + 19 academic = 30 cards / 48 questions (hard path).
+    // 2 CtW + 10 daily + 18 academic = 30 cards / 48 questions (hard path).
     expect(whole.questions).toHaveLength(30)
     expect(whole.composition).toEqual({
       fill_in_blanks: 2,
-      'multiple_choice:daily_life': 9,
-      'multiple_choice:academic_passage': 19,
+      'multiple_choice:daily_life': 10,
+      'multiple_choice:academic_passage': 18,
     })
     // One CtW interleaved into each module. The break lands on a passage-set
     // boundary near the midpoint of the 28 MC cards, not at a fixed index —

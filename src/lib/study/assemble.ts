@@ -541,6 +541,21 @@ export type ToeflStage2Path = 'lower' | 'upper'
  *  the 171 banked audios are in that state; `isDrawableSet` excludes them. */
 const MULTI_QUESTION_TASKS: ReadonlySet<string> = new Set([
   'conversation', 'announcement', 'academic_talk',
+  // Daily Life. ETS delivers this task as short 2-3 question sets over one
+  // 40-90 word text, and TEST_SPECS says so; 68 of the bank's 103 daily-life
+  // texts nonetheless carry a single question, so a student read fifteen
+  // separate notices in one section. It was excluded here until 2026-07-28
+  // on the reasoning that a one-question notice is legitimate "by design",
+  // evidenced by how many of ours look that way — which is circular: the
+  // bank's shape is evidence about our generator, not about ETS.
+  //
+  // Excluding them drops the drawable pool to the 35 texts that already
+  // carry 2 questions. That is thin, and it recycles sooner. It is still
+  // the right trade: a shallower pool of well-formed sets beats a deep pool
+  // that misrepresents the task. Repopulating it needs items that cannot be
+  // answered without the passage — the 2026-07-28 repair batch scored 95%
+  // with the passages deleted and was discarded rather than banked.
+  'daily_life',
   // Reading: an academic passage feeds ~5 questions in ETS's design, and 22
   // of ours carry exactly one — harvest casualties. Daily Life is NOT here:
   // a campus notice with a single question is a legitimate ETS item, and 68
@@ -607,9 +622,16 @@ const TOEFL_META: Record<ToeflSection, {
       // Complete the Words is never a pilot — that is the whole point of
       // the split, since it is what keeps CtW at 20/35 = 57% of the score.
       { type: 'fill_in_blanks', n: 2, m1: 1, lower: 1, upper: 1, sM1: 1, sLower: 1, sUpper: 1 },
-      { type: 'multiple_choice', task: 'daily_life',       n: 9,  m1: 9, lower: 10, upper: 0,
+      // Stage 1 is 10 Daily / 8 Academic, not 9 / 9. Daily Life sets are all
+      // EVEN (two questions each) now that single-question texts are excluded,
+      // so an odd quota is not a reachable sum: a 9 drew 8 and the section
+      // shipped 47 delivered against a sheet promising 48 — the same
+      // count-drift bug fixed in 4f91709, reintroduced from the other side.
+      // Academic sets are 2-5 questions, so 8 is reachable there. Scored
+      // counts are untouched, so ETS Table 1 still holds at 35.
+      { type: 'multiple_choice', task: 'daily_life',       n: 10, m1: 10, lower: 10, upper: 0,
         sM1: 5, sLower: 5, sUpper: 0 },
-      { type: 'multiple_choice', task: 'academic_passage', n: 19, m1: 9, lower: 0,  upper: 10,
+      { type: 'multiple_choice', task: 'academic_passage', n: 18, m1: 8, lower: 0,  upper: 10,
         sM1: 5, sLower: 0, sUpper: 5 },
     ] },
   // Listening is FOUR ETS tasks, not one bag of MC.
