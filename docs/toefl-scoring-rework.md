@@ -154,6 +154,27 @@ inputs are still 1–2 bands low.
 
 *Estimate: 1–2 days once samples exist.*
 
+### HAZARD: Phase A makes Phase D load-bearing
+
+Today the grader's 1–2 band harshness is **cosmetic**. Rubric marks are
+displayed on the result screen but excluded from the band, so a harsh
+grade never reaches the score a student is told.
+
+The moment Phase A routes rubric points into the raw total, that
+harshness IS the score. Speaking moves from a band built on 7 binary
+items to a band built on 11 rubric items that are all 1–2 bands low.
+
+**So A shipped without D is a regression, not an improvement.** Either:
+
+- ship A and B behind a flag, keeping the displayed band on the old
+  model until calibration lands; or
+- ship A and B and stop showing a band for Speaking and Writing, showing
+  raw points and per-task feedback instead; or
+- do D first.
+
+The structurally-correct-but-wronger outcome is the easy mistake here,
+because A will look like progress and every test will pass.
+
 ### Phase E — verification
 
 - One end-to-end Speaking test on a real device. The recording panel,
