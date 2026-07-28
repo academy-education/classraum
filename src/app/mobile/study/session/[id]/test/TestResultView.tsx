@@ -224,12 +224,27 @@ export function TestResultView({
   )
 }
 
-/** Eases 0->value on mount so the score lands as a moment rather than
- *  popping in. Honours prefers-reduced-motion by jumping to the number. */
+/**
+ * Eases 0->value on mount so the score lands as a moment rather than
+ * popping in.
+ *
+ * The animation is skipped rather than started whenever it cannot be
+ * trusted to finish. Browsers do not fire requestAnimationFrame in a
+ * backgrounded tab, so the version that unconditionally did
+ * `setShown(0)` and then waited for rAF left the number stuck at 0 — a
+ * student who opened their result in a background tab, or switched away
+ * during the first second, came back to a screen reporting 0% over
+ * "6 / 35 correct". Caught in the preview, where the pane was hidden.
+ *
+ * Two guards, because a decorative flourish must never be the reason a
+ * score is wrong: don't start unless the page is visible, and snap to
+ * the value if the frames stop arriving anyway.
+ */
 function CountUp({ value, durationMs = 900 }: { value: number; durationMs?: number }) {
   const [shown, setShown] = useState(value)
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced || document.visibilityState !== 'visible') {
       setShown(value)
       return
     }
@@ -242,7 +257,10 @@ function CountUp({ value, durationMs = 900 }: { value: number; durationMs?: numb
     }
     setShown(0)
     raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
+    // Backstop: if the tab is hidden mid-run the frames stop and the
+    // number would freeze partway. Land on the real value regardless.
+    const settle = window.setTimeout(() => setShown(value), durationMs + 250)
+    return () => { cancelAnimationFrame(raf); window.clearTimeout(settle) }
   }, [value, durationMs])
   return <>{shown}</>
 }
