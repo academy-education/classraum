@@ -12,7 +12,7 @@ import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
 import {
-  tallyRows, scaleFraction, scoreSplit, toeflScaledScore, toeflBandFromScaled,
+  tallyRows, scaleFraction, scoreSplit,
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
 import { authHeaders } from '@/lib/auth-headers'
@@ -117,6 +117,21 @@ export function TestResultView({
     ? scoreToeflSection(items, WEIGHTS_FOR[toeflSection], scoreListenRepeat)
     : null
 
+  /* Points shown on the score row, for ANY TOEFL section.
+   *
+   * Reading and Listening are one point per question with a raw range of
+   * 0-35 (RR-25-12, Table 8), so their points are simply the questions
+   * they got right. They were still showing a "scaled score / 30" — a
+   * scale that does not exist in the 2026 format and that we computed as
+   * percent x 30. Speaking and Writing moved to real points and left
+   * these two behind, which is how one screen ended up quoting two
+   * different invented scales. */
+  const displayPoints = pointsScore
+    ? { earned: pointsScore.earned, max: pointsScore.max }
+    : model.family === 'toefl'
+      ? { earned: model.correctCount, max: model.totalScored }
+      : null
+
   // Hero colour and Raumi's mood both follow accuracy. A hard session must
   // never read as a celebration — the summary screen established this rule
   // and it moves here with the hero.
@@ -189,24 +204,24 @@ export function TestResultView({
             <div className="mt-5 space-y-2.5">
               <ScaleRow
                 label={ko ? '밴드 점수' : 'Band score'}
-                value={(pointsScore
-                  ? bandFromProportion(pointsScore.proportion)
-                  : toeflBandFromScaled(toeflScaledScore(model.scorePercent))).toFixed(1)}
+                /* One band function for all four sections. The two used
+                   to differ only in how the proportion was reached, and
+                   keeping two spellings of the same arithmetic is how the
+                   band and the scaled score drifted apart this morning. */
+                value={bandFromProportion(
+                  pointsScore ? pointsScore.proportion : model.scorePercent / 100).toFixed(1)}
                 min={1} max={6}
-                fraction={scaleFraction(pointsScore
-                  ? bandFromProportion(pointsScore.proportion)
-                  : toeflBandFromScaled(toeflScaledScore(model.scorePercent)), 1, 6)}
+                fraction={scaleFraction(bandFromProportion(
+                  pointsScore ? pointsScore.proportion : model.scorePercent / 100), 1, 6)}
                 note={ko ? '이 섹션의 밴드 점수예요. 네 개 섹션의 평균이 총점이 됩니다.'
                          : 'This section only. Your overall score averages all four.'}
               />
               <ScaleRow
-                label={pointsScore ? (ko ? '획득 점수' : 'Points earned')
-                                   : (ko ? '환산 점수' : 'Scaled score')}
-                value={pointsScore ? String(pointsScore.earned) : String(toeflScaledScore(model.scorePercent))}
-                min={0} max={pointsScore ? pointsScore.max : 30}
-                fraction={pointsScore
-                  ? scaleFraction(pointsScore.earned, 0, Math.max(1, pointsScore.max))
-                  : scaleFraction(toeflScaledScore(model.scorePercent), 0, 30)}
+                label={ko ? '획득 점수' : 'Points earned'}
+                value={String(displayPoints?.earned ?? 0)}
+                min={0} max={displayPoints?.max ?? 0}
+                fraction={scaleFraction(
+                  displayPoints?.earned ?? 0, 0, Math.max(1, displayPoints?.max ?? 1))}
                 /* Says the relationship out loud. The band above IS this
                    number divided by 5 — previously the two were computed
                    from unrelated formulas and could disagree on screen.
@@ -217,11 +232,8 @@ export function TestResultView({
                 note={pointsScore
                   ? (ko ? '각 파트의 배점이 다릅니다. 아래에서 확인하세요.'
                         : 'Parts are weighted differently — see the breakdown below.')
-                  : toeflScaledScore(model.scorePercent) < 5
-                  ? (ko ? '이 점수를 5로 나눈 값이 밴드 점수예요. 단, 밴드는 1.0에서 시작합니다.'
-                        : 'Your band is this divided by 5 — but the scale starts at 1.0.')
-                  : (ko ? '이 점수를 5로 나눈 값이 위의 밴드 점수예요.'
-                        : 'Your band above is this number divided by 5.')}
+                  : (ko ? '문항당 1점입니다. 위의 밴드 점수는 이 비율에서 나옵니다.'
+                        : 'One point per question. Your band above comes from this share.')}
               />
             </div>
           )}
