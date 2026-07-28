@@ -175,7 +175,14 @@ function SummaryInner({ id }: { id: string }) {
   const satBand = satRoute && attempted
     ? estimateSectionScore(correct, totalItems, satRoute)
     : null
-  const totalSeconds = attempts.reduce((sum, a) => sum + (a.time_spent_seconds ?? 0), 0)
+  // time_spent_seconds is NOT per-question: submit distributes the session
+  // elapsed evenly (`elapsedSeconds / questions.length`), and writes NULL for
+  // unanswered items. Summing it therefore reports only the answered share —
+  // a 54-question session with 1 answer showed "0m" for a ~23 minute sitting.
+  // Until the true elapsed is persisted, reconstruct it: every non-null row
+  // carries the same per-question value, so value x cards is the original.
+  const perQuestionSeconds = Math.max(0, ...attempts.map(a => a.time_spent_seconds ?? 0))
+  const totalSeconds = perQuestionSeconds * attempts.length
   const totalMinutes = Math.round(totalSeconds / 60)
   const topicName = session.topic
     ? (ko ? session.topic.name_ko : session.topic.name_en)
@@ -193,7 +200,10 @@ function SummaryInner({ id }: { id: string }) {
         ? { gradient: 'from-amber-500 via-orange-500 to-orange-700', accent: 'text-amber-50' }
         : { gradient: 'from-rose-500 via-rose-600 to-red-700', accent: 'text-rose-50' }
 
-  const mistakes = attempts.filter(a => !a.is_correct)
+  // `is_correct` is NULL for open-response items (rubric-graded elsewhere),
+  // and `!null === true` — so every writing and speaking answer was being
+  // listed as a MISTAKE. Compare to false explicitly.
+  const mistakes = attempts.filter(a => a.is_correct === false)
 
   return (
     <StudyScrollShell
