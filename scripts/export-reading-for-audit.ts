@@ -52,12 +52,20 @@ async function selectAll(build: () => { range: (a: number, b: number) => Promise
     .eq('verified', true).eq('archived', false) as never)
 
   const live = rows.filter(r => r.item?.readingTask === task)
+  // `choices` is included deliberately. The 2026-07-28 academic_passage audit
+  // ran WITHOUT it, and one auditor flagged the resulting blind spot itself:
+  // judging a key in isolation can only catch a key the passage contradicts,
+  // never a key that is merely DEFENSIBLE while a better option sits beside
+  // it unchosen. That is a real bad_key and this export was structurally
+  // unable to surface it — three items were left `ok` with exactly that
+  // caveat attached. Sending the option set closes it.
   writeFileSync(out, JSON.stringify(live.map(r => ({
     id: r.id,
     groupId: r.item.passageGroupId,
     passage: r.item.passage,
     prompt: r.item.prompt,
     key: r.item.correct_answer,
+    choices: r.item.choices,
   })), null, 1))
   console.log(`${live.length} live ${task} items (of ${rows.length} live reading) -> ${out}`)
 })()
