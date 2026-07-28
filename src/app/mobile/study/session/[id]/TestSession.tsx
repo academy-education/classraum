@@ -469,9 +469,26 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
 
       setPhase('taking')
     } catch {
+      // A COMPLETED session must never reach the error screen. Before the
+      // redirect was narrowed (c25fcd9) a finished test never ran this path
+      // at all; now it does, so any transient failure in the payload load —
+      // network blip, cache miss, stream hiccup — surfaced as "We couldn't
+      // create your test" on top of a test the student had already taken
+      // and scored. Reported in the wild as intermittent.
+      //
+      // The durable summary is always renderable from the DB, so fall back
+      // there rather than to an error that misdescribes what happened.
+      try {
+        const { data: s } = await db
+          .from('study_sessions').select('status').eq('id', sessionId).maybeSingle()
+        if (s?.status === 'completed') {
+          router.replace(`/mobile/study/session/${sessionId}/summary`)
+          return
+        }
+      } catch { /* fall through to the error screen below */ }
       setPhase('error')
     }
-  }, [sessionId])
+  }, [sessionId, router])
 
   useEffect(() => { void load() }, [load])
 
