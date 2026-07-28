@@ -11,7 +11,11 @@ import { QuestionGraphicView } from './QuestionGraphicView'
 import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
-import { tallyRows, scaleFraction, type ResultRow, type TestResultModel } from '@/lib/study/test-result'
+import {
+  tallyRows, scaleFraction, scoreSplit,
+  type ResultRow, type RubricGrade, type TestResultModel,
+} from '@/lib/study/test-result'
+import { authHeaders } from '@/lib/auth-headers'
 
 /** Types whose answer is prose, not a pick from `choices`. Kept as an
  *  explicit list because `arrange_words` DOES populate `choices` (its word
@@ -61,6 +65,37 @@ export function TestResultView({
   // IS model.totalScored, so the breakdown reconciles with the headline
   // instead of introducing a third number — see tallyRows.
   const tally = tallyRows(model.rows)
+
+  // Rubric grades, keyed by prompt. The batch grader writes these on
+  // submit; without reading them back the result screen reported a
+  // percentage covering only the key-matched items and said nothing at
+  // all about the answers the student actually spoke or wrote.
+  const [grades, setGrades] = useState<Record<string, RubricGrade>>({})
+  const hasRubricRows = model.rows.some(r => r.ungraded)
+  useEffect(() => {
+    // Re-runs when `gradingOpenResponses` flips false, which is the
+    // moment the batch has finished and there is something to fetch.
+    if (!hasRubricRows || gradingOpenResponses) return
+    let alive = true
+    void (async () => {
+      try {
+        const res = await fetch(
+          `/api/study/response/grades?sessionId=${encodeURIComponent(sessionId)}`,
+          { headers: await authHeaders() },
+        )
+        if (!res.ok) return
+        const json = await res.json()
+        if (alive && json?.grades) setGrades(json.grades as Record<string, RubricGrade>)
+      } catch (e) {
+        // Non-fatal: the split degrades to "not scored yet" rather than
+        // blocking the whole result screen on a feedback lookup.
+        console.warn('[TestResultView] grade lookup failed', e)
+      }
+    })()
+    return () => { alive = false }
+  }, [sessionId, hasRubricRows, gradingOpenResponses])
+
+  const split = scoreSplit(model.rows, grades)
 
   // Hero colour and Raumi's mood both follow accuracy. A hard session must
   // never read as a celebration — the summary screen established this rule
@@ -262,6 +297,53 @@ export function TestResultView({
         </div>
       </div>
 
+      {/* Two scales, side by side. The headline percentage counts only
+          key-matched items — weightedScore returns total:0 for open
+          responses — so a Speaking result that reads "71%" is describing
+          the Listen-and-Repeat items and silently omitting the answers
+          the student actually spoke. Averaging the two into one number
+          would be worse, not better: they are different scales measuring
+          different things. Show both, and say which one the big number
+          on this screen refers to. */}
+      {split.hasRubric && (
+        <div className="mx-4 mt-3 rounded-2xl bg-white ring-1 ring-gray-200/70 p-4">
+          <div className="text-[13px] font-bold text-gray-900">
+            {ko ? '점수는 이렇게 구성돼요' : 'How your score was built'}
+          </div>
+          <div className="text-[11.5px] text-gray-500 leading-snug mt-0.5">
+            {ko
+              ? '이 시험은 두 가지 방식으로 채점됩니다. 위쪽 큰 점수는 정답 키로 채점한 문항만 반영해요.'
+              : 'This section is scored two different ways. The big number above covers only the first of them.'}
+          </div>
+
+          <div className="mt-3 space-y-3">
+            <ScoreBar
+              label={ko ? '정답 키 채점' : 'Marked against an answer key'}
+              detail={ko
+                ? `${split.objective.total}문항 중 ${split.objective.correct}문항 정답`
+                : `${split.objective.correct} of ${split.objective.total} questions correct`}
+              percent={split.objective.percent}
+              tone="emerald"
+              headline
+              ko={ko}
+            />
+            <ScoreBar
+              label={ko ? 'AI 루브릭 채점' : 'Scored by AI against a rubric'}
+              detail={split.rubric.graded === 0
+                ? (ko ? '아직 채점되지 않았어요' : 'Not scored yet')
+                : (ko
+                    ? `${split.rubric.graded}개 답변 · ${split.rubric.max}점 만점에 ${split.rubric.earned}점`
+                    : `${split.rubric.graded} response${split.rubric.graded === 1 ? '' : 's'} · ${split.rubric.earned} of ${split.rubric.max} marks`)}
+              percent={split.rubric.percent}
+              tone="primary"
+              ko={ko}
+              pending={split.rubric.pending}
+              skipped={split.rubric.skipped}
+            />
+          </div>
+        </div>
+      )}
+
       {/* Per-question detail — collapsed. This screen answers "how did I
           do" first; "what exactly did I miss" is long (up to 30 rows) and
           opt-in, which is what lets one screen serve both entry points. */}
@@ -405,6 +487,57 @@ function HeroStat({ icon: Icon, value, label, sub }: {
  * partition, and dropping the empty ones would leave a list that no
  * longer visibly adds up to the item count in the header.
  */
+/** One scoring method, with its own scale. Deliberately NOT combined
+ *  with the other — see the block that renders these. */
+function ScoreBar({ label, detail, percent, tone, ko, headline = false, pending = 0, skipped = 0 }: {
+  label: string
+  detail: string
+  percent: number
+  tone: 'emerald' | 'primary'
+  ko: boolean
+  /** Marks this as the scale the headline percentage refers to. */
+  headline?: boolean
+  /** Responses still awaiting a grade. Counted as outstanding rather
+   *  than as zeros, so the bar is honest about being incomplete. */
+  pending?: number
+  /** Responses left blank. No grade is coming for these. */
+  skipped?: number
+}) {
+  const bar = tone === 'emerald' ? 'bg-emerald-500' : 'bg-primary'
+  const text = tone === 'emerald' ? 'text-emerald-700' : 'text-primary'
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-[12.5px] font-semibold text-gray-900">
+          {label}
+          {headline && (
+            <span className="ml-1.5 align-middle text-[10px] font-bold uppercase tracking-wide text-gray-400">
+              {ko ? '위 점수' : 'the big number'}
+            </span>
+          )}
+        </span>
+        <span className={`text-[14px] font-bold tabular-nums ${text}`}>{percent}%</span>
+      </div>
+      <div className="mt-1.5 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+        <div className={`h-full rounded-full ${bar}`} style={{ width: `${percent}%` }} />
+      </div>
+      <div className="mt-1 text-[11.5px] text-gray-500">
+        {detail}
+        {pending > 0 && (
+          <span className="text-amber-700 font-semibold">
+            {ko ? ` · ${pending}개 채점 대기 중` : ` · ${pending} still being scored`}
+          </span>
+        )}
+        {skipped > 0 && (
+          <span className="text-gray-400 font-semibold">
+            {ko ? ` · ${skipped}개 미답변` : ` · ${skipped} left blank`}
+          </span>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function TallyRow({ dot, count, label, note, sub, subTone = 'warn' }: {
   dot: string; count: number; label: string; note: string
   /** Extra detail that lives INSIDE this bucket, not beside it. */

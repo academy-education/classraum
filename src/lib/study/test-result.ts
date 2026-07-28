@@ -305,3 +305,84 @@ export function canNumberRows(rows: { position?: number | null }[]): boolean {
 export function satSectionFromTopicSlug(slug: string | null | undefined): SatSection {
   return (slug ?? '').includes('math') ? 'math' : 'reading_writing'
 }
+
+/** One rubric grade as the /api/study/response/grades route returns it. */
+export interface RubricGrade {
+  band: number
+  scaleMax: number
+  summary: string | null
+  skill: string
+}
+
+export interface ScoreSplit {
+  /** Key-matched items: the only part the headline percentage covers. */
+  objective: { correct: number; total: number; percent: number }
+  rubric: {
+    earned: number; max: number; percent: number; graded: number
+    /** Answered, grade not back yet. Genuinely still in flight. */
+    pending: number
+    /** Left blank. Will never be graded, so calling it "being scored"
+     *  promises a mark that is not coming. Reported separately. */
+    skipped: number
+  }
+  /** True when rubric items exist — i.e. the headline percentage is
+   *  reporting on less than the student actually did. */
+  hasRubric: boolean
+}
+
+/**
+ * Split the result into the two things that are scored in different ways.
+ *
+ * This exists because the headline percentage is NOT the whole section.
+ * `weightedScore` returns total: 0 for open responses, so a TOEFL Speaking
+ * result that reads "43%" is describing the seven Listen-and-Repeat items
+ * and silently omitting the four interview answers — the part the student
+ * spent most of the section actually speaking. Reporting one number for
+ * two scales would be worse, not better; the honest move is to show both
+ * and say which one the headline refers to.
+ *
+ * Pilots belong to neither: they are delivered and shown but excluded from
+ * the denominator by design, and `tallyRows` already accounts for them.
+ */
+export function scoreSplit(
+  rows: ResultRow[],
+  grades: Record<string, RubricGrade>,
+): ScoreSplit {
+  let correct = 0, total = 0
+  let earned = 0, max = 0, graded = 0, pending = 0, skipped = 0
+
+  for (const r of rows) {
+    const w = deliveredWeight(r.question)
+    if (r.ungraded) {
+      const g = grades[r.question.prompt ?? '']
+      if (g) {
+        earned += g.band
+        max += g.scaleMax
+        graded += 1
+      } else if (r.studentAnswer == null || r.studentAnswer.trim() === '') {
+        // Never answered. There is nothing to grade and nothing coming,
+        // so it must not be reported as in-flight. It is also NOT folded
+        // into `max` as a zero: the scale belongs to the rubric and is
+        // only known from a grade that will never arrive. Shown as its
+        // own count instead of quietly shrinking the denominator.
+        skipped += 1
+      } else {
+        // Answered, grade not back. Counting it as zero would report a
+        // worse score than the student earned, so it is left outstanding.
+        pending += 1
+      }
+    } else if (!r.isPilot) {
+      total += w
+      if (r.correct) correct += w
+    }
+  }
+
+  return {
+    objective: { correct, total, percent: total > 0 ? Math.round(100 * correct / total) : 0 },
+    rubric: {
+      earned, max, percent: max > 0 ? Math.round(100 * earned / max) : 0,
+      graded, pending, skipped,
+    },
+    hasRubric: graded + pending + skipped > 0,
+  }
+}
