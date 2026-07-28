@@ -172,8 +172,19 @@ function SummaryInner({ id }: { id: string }) {
   const satRoute = isSat && (session.module2_route === 'hard' || session.module2_route === 'easy')
     ? session.module2_route
     : null
+  // The 4th argument is NOT optional in practice. It defaults to
+  // 'reading_writing' (sat-adaptive.ts:139), so every SAT MATH session was
+  // scored against the Reading & Writing curve — at 50% correct that is
+  // RW ~340-360 where Math is ~430-460, a 90-100 point error presented to
+  // the student as their estimated score. submit/route.ts:138 derives the
+  // section from the topic slug and passes it, so the post-submit screen
+  // was right and this one was wrong: the same number, two values,
+  // depending which screen you opened. Third bug in this family.
+  const satSection = (session.topic?.slug ?? '').includes('math')
+    ? 'math' as const
+    : 'reading_writing' as const
   const satBand = satRoute && attempted
-    ? estimateSectionScore(correct, totalItems, satRoute)
+    ? estimateSectionScore(correct, totalItems, satRoute, satSection)
     : null
   // time_spent_seconds is NOT per-question: submit distributes the session
   // elapsed evenly (`elapsedSeconds / questions.length`), and writes NULL for
