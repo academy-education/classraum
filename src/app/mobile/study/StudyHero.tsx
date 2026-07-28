@@ -199,7 +199,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
             <p className="mt-2 text-[11.5px] text-gray-500">
               {goalMet ? (
                 <span className="text-emerald-700 font-medium">
-                  {ko ? '🎉 오늘의 목표 달성!' : "🎉 Daily goal met!"}
+                  {ko ? '오늘의 목표 달성!' : 'Daily goal met!'}
                   {streak !== null && streak > 0 && (
                     <span className="text-gray-500 font-normal">
                       {ko ? ` · ${streak}일 연속 유지 중` : ` · ${streak}-day streak going`}

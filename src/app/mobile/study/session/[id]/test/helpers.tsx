@@ -18,6 +18,35 @@ import type { Question } from './types'
  * Applied at every user-facing render site (passage, prompt, choice,
  * correct-answer display).
  */
+/**
+ * Renders a prompt with its leading task tag in bold.
+ *
+ * Every generated stem opens with the task in brackets — "[Choose a
+ * Response]", "[Daily Life — job ad]", "[Complete the Words]". That tag
+ * is the fastest way to know what KIND of question you are looking at,
+ * and it was rendering in the same weight as the stem, so it read as part
+ * of the sentence rather than as a label on it.
+ *
+ * Only a tag at the very start counts, and only when it is short enough
+ * to be a label — a stem that happens to quote bracketed text mid-sentence
+ * is left alone.
+ */
+export function PromptText({ text, className }: {
+  text: string | null | undefined
+  className?: string
+}) {
+  const full = normalizeDisplayText(text)
+  const m = /^\s*\[([^\]\n]{1,48})\]\s*/.exec(full)
+  if (!m) return <span className={className}>{full}</span>
+  return (
+    <span className={className}>
+      <strong className="font-bold">{m[1]}</strong>
+      {' '}
+      {full.slice(m[0].length)}
+    </span>
+  )
+}
+
 export function normalizeDisplayText(text: string | null | undefined): string {
   if (!text) return ''
   let s = String(text)

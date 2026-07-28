@@ -6,7 +6,7 @@ import {
 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot, type MascotState } from '@/app/mobile/study/_shared/PathMascot'
 import { useTranslation } from '@/hooks/useTranslation'
-import { normalizeDisplayText, PassageParagraphs, percentToToeflBand } from './helpers'
+import { normalizeDisplayText, PassageParagraphs, PromptText, percentToToeflBand } from './helpers'
 import { QuestionGraphicView } from './QuestionGraphicView'
 import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
@@ -509,7 +509,7 @@ function ResultCard({
           </div>
 
           <div className="text-[14px] font-semibold text-gray-900 leading-snug line-clamp-2">
-            {normalizeDisplayText(q.prompt)}
+            <PromptText text={q.prompt} />
           </div>
 
           {/* Answers as STACKED full-width rows. They were two inline chips
@@ -541,7 +541,7 @@ function ResultCard({
               <PassageParagraphs text={q.passage} />
             </div>
           )}
-          <p className="text-gray-900 whitespace-pre-wrap">{normalizeDisplayText(q.prompt)}</p>
+          <p className="text-gray-900 whitespace-pre-wrap"><PromptText text={q.prompt} /></p>
           {q.graphic != null && <QuestionGraphicView graphic={q.graphic} />}
 
           {q.type === 'fill_in_blanks' && (q.blanks?.length ?? 0) > 0 ? (

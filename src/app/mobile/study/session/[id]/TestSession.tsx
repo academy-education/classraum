@@ -19,7 +19,7 @@ import { hapticSelection } from '@/lib/nativeHaptics'
 import type { Question, SpeechSignals, SubmitResult, TestPayload } from './test/types'
 import { moduleRemainingMs } from '@/lib/study/sat-adaptive'
 import {
-  normalizeDisplayText, choiceLabel, formatTime, passageGroupInfo, PassageParagraphs,
+  normalizeDisplayText, choiceLabel, formatTime, passageGroupInfo, PassageParagraphs, PromptText,
 } from './test/helpers'
 import { QuestionGraphicView } from './test/QuestionGraphicView'
 import { ListeningAudioPlayer, LISTENING_PLAY_COUNTS } from './test/ListeningAudioPlayer'
@@ -1258,60 +1258,37 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           fade-in makes navigation read as movement, not a text swap. */}
       <div key={currentIdx} className="flex-1 overflow-y-auto animate-fade-in">
        <div className="w-full px-5 lg:px-8 py-5 lg:py-8">
-        {/* Difficulty chip — hidden for SAT (the customization sheet
-            already locks SAT to challenge and hides the picker, so
-            surfacing per-item difficulty here would be inconsistent).
-            Other families still show it so students can pace based on
-            difficulty mix. */}
-        {test.family !== 'sat' && (
-          <div className="flex items-center gap-2 mb-3">
-            {/* Tinted by level rather than a flat grey pill — the student
-                paces off this, and on a challenge-locked test every item
-                reading "hard" in grey carried no signal at all. */}
-            <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
-              q.difficulty === 'hard'
-                ? 'bg-rose-50 text-rose-700 ring-rose-200/70'
-                : q.difficulty === 'medium'
-                  ? 'bg-amber-50 text-amber-700 ring-amber-200/70'
-                  : 'bg-emerald-50 text-emerald-700 ring-emerald-200/70'
-            }`}>
-              {t(`study.practice.difficulty.${q.difficulty}`)}
-            </span>
-            {/* LEGACY TOEFL module chip — only for pre-adaptive cached
-                tests (whole section drawn up front, no `adaptive`
-                flag). Adaptive sessions fall through to the shared chip
-                below so the two don't render side by side. */}
-            {!test.adaptive && test.family === 'toefl' && test.section != null
-              && /(reading|listening)/i.test(test.section)
-              && test.questions.length >= 4 && (() => {
-              const breakIdx = test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2)
-              const isModule2 = currentIdx >= breakIdx
-              return (
-                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
-                  isModule2
-                    ? 'bg-amber-50 text-amber-800 ring-amber-200'
-                    : 'bg-primary/10 text-primary ring-primary/20'
-                }`}>
-                  {isModule2 ? 'Module 2' : 'Module 1'}
-                </span>
-              )
-            })()}
-            {/* Adaptive two-module chip (SAT + TOEFL Reading/Listening)
-                — Module 1 until the routed Module 2 is drawn + reached. */}
-            {test.adaptive && typeof test.moduleBreakIdx === 'number' && (() => {
-              const isModule2 = currentIdx >= test.moduleBreakIdx!
-              return (
-                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
-                  isModule2
-                    ? 'bg-amber-50 text-amber-800 ring-amber-200'
-                    : 'bg-primary/10 text-primary ring-primary/20'
-                }`}>
-                  {isModule2 ? 'Module 2' : 'Module 1'}
-                </span>
-              )
-            })()}
-          </div>
-        )}
+        {/* Module chip.
+          *
+          * The difficulty chip that used to sit beside it is gone. On a
+          * challenge-locked test every item reads "HARD", so it was a
+          * constant that never varied while looking like live per-question
+          * information — and a student mid-test cannot act on it anyway.
+          * The module IS actionable: it tells you which half you are in
+          * and whether Module 1 is still recoverable. */}
+        {(() => {
+          // Adaptive sessions carry moduleBreakIdx. Pre-adaptive cached
+          // TOEFL Reading/Listening tests do not, and derive the break.
+          const breakIdx = test.adaptive && typeof test.moduleBreakIdx === 'number'
+            ? test.moduleBreakIdx
+            : (!test.adaptive && test.family === 'toefl' && test.section != null
+                && /(reading|listening)/i.test(test.section) && test.questions.length >= 4)
+              ? (test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2))
+              : null
+          if (breakIdx == null) return null
+          const isModule2 = currentIdx >= breakIdx
+          return (
+            <div className="flex items-center gap-2 mb-3">
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
+                isModule2
+                  ? 'bg-amber-50 text-amber-800 ring-amber-200'
+                  : 'bg-primary/10 text-primary ring-primary/20'
+              }`}>
+                {isModule2 ? 'Module 2' : 'Module 1'}
+              </span>
+            </div>
+          )
+        })()}
         {/* "Module 2 begins" banner — shown on the first Module 2
             question with the EARNED route so the student sees the
             adaptivity happen. The items behind this banner were drawn
@@ -1319,14 +1296,21 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             what happened rather than what a real exam would have done. */}
         {test.adaptive && typeof test.moduleBreakIdx === 'number'
           && moduleRoute && currentIdx === test.moduleBreakIdx && (
-          <div className="mb-4 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-amber-50/40 px-4 py-3">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider">
-                Module 2
-              </span>
-              <span className="text-[13px] font-bold text-amber-900">
-                {ko ? '모듈 2 시작' : 'Module 2 begins'}
-              </span>
+          /* Same card shape as StudyTodayCard and the result screen: white,
+             ring-1, rounded-2xl, with an 11x11 gradient tile. It was the
+             only banner in the flow still on a hairline border and a flat
+             amber wash, so the one moment the test changes under the
+             student looked like a stray alert rather than part of the app. */
+          <div className="mb-4 rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-4 py-3.5 flex items-start gap-3">
+            <div className="flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_4px_10px_-2px_rgba(251,146,60,0.35)]">
+              <ArrowRight className="w-5 h-5" strokeWidth={2.25} />
+            </div>
+            <div className="flex-1 min-w-0">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
+              Module 2
+            </div>
+            <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+              {ko ? '모듈 2 시작' : 'Module 2 begins'}
             </div>
             {/* Says NOTHING about Module 1 performance.
               *
@@ -1347,11 +1331,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               *
               * The route still happens; it is simply not announced. It shows
               * up where it belongs, in the summary after submission. */}
-            <p className="text-[12px] text-amber-800 leading-relaxed">
+            <p className="text-[12px] text-gray-500 leading-relaxed mt-0.5">
               {ko
                 ? '남은 문제는 모듈 2에 속합니다. 모듈 1로는 돌아갈 수 없어요.'
                 : 'The remaining questions are in Module 2. You cannot return to Module 1.'}
             </p>
+            </div>
           </div>
         )}
         {/* LEGACY TOEFL "Module 2 begins" banner — pre-adaptive cached
@@ -1531,7 +1516,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // defeats the whole listening task. The inner branch below
           // renders task-specific instructions instead.
           <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap mb-4">
-            {normalizeDisplayText(q.prompt)}
+            <PromptText text={q.prompt} />
           </p>
         )}
         {q.graphic && <QuestionGraphicView graphic={q.graphic} />}
