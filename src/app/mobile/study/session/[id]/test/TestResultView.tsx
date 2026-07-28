@@ -6,13 +6,13 @@ import {
 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot, type MascotState } from '@/app/mobile/study/_shared/PathMascot'
 import { useTranslation } from '@/hooks/useTranslation'
-import { normalizeDisplayText, PassageParagraphs, PromptText, percentToToeflBand } from './helpers'
+import { normalizeDisplayText, PassageParagraphs, PromptText } from './helpers'
 import { QuestionGraphicView } from './QuestionGraphicView'
 import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
 import {
-  tallyRows, scaleFraction, scoreSplit,
+  tallyRows, scaleFraction, scoreSplit, toeflScaledScore, toeflBandFromScaled,
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
 import { authHeaders } from '@/lib/auth-headers'
@@ -157,19 +157,23 @@ export function TestResultView({
             <div className="mt-5 space-y-2.5">
               <ScaleRow
                 label={ko ? '밴드 점수' : 'Band score'}
-                value={percentToToeflBand(model.scorePercent).toFixed(1)}
+                value={toeflBandFromScaled(toeflScaledScore(model.scorePercent)).toFixed(1)}
                 min={1} max={6}
-                fraction={scaleFraction(percentToToeflBand(model.scorePercent), 1, 6)}
+                fraction={scaleFraction(
+                  toeflBandFromScaled(toeflScaledScore(model.scorePercent)), 1, 6)}
                 note={ko ? '이 섹션의 밴드 점수예요. 네 개 섹션의 평균이 총점이 됩니다.'
                          : 'This section only. Your overall score averages all four.'}
               />
               <ScaleRow
-                label={ko ? '섹션 점수' : 'Section score'}
-                value={String(Math.round((model.scorePercent / 100) * 30))}
+                label={ko ? '환산 점수' : 'Scaled score'}
+                value={String(toeflScaledScore(model.scorePercent))}
                 min={0} max={30}
-                fraction={scaleFraction(Math.round((model.scorePercent / 100) * 30), 0, 30)}
-                note={ko ? 'ETS가 2년 전환 기간 동안 함께 제공하는 0-30 환산 점수예요.'
-                         : 'The 0–30 score ETS still issues through the 2-year transition.'}
+                fraction={scaleFraction(toeflScaledScore(model.scorePercent), 0, 30)}
+                /* Says the relationship out loud. The band above IS this
+                   number divided by 5 — previously the two were computed
+                   from unrelated formulas and could disagree on screen. */
+                note={ko ? '이 점수를 5로 나눈 값이 위의 밴드 점수예요.'
+                         : 'Your band above is this number divided by 5.'}
               />
             </div>
           )}

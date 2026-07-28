@@ -386,3 +386,35 @@ export function scoreSplit(
     hasRubric: graded + pending + skipped > 0,
   }
 }
+
+/**
+ * TOEFL scaled score, 0–30.
+ *
+ * ETS's chain is raw → scaled → band, and the band is DERIVED from the
+ * scaled score rather than computed alongside it. Keeping that order is
+ * the whole point: the screen used to show a band from a hand-written
+ * percent→band step table AND a 0–30 figure from `percent × 30`, two
+ * unrelated formulas. They disagreed. One real result displayed "band
+ * 3.0" next to "13 / 30" — and 13 ÷ 5 is 2.6, so the two rows were
+ * describing different scores on the same test.
+ */
+export function toeflScaledScore(percent: number): number {
+  if (!Number.isFinite(percent)) return 0
+  return Math.max(0, Math.min(30, Math.round((percent / 100) * 30)))
+}
+
+/**
+ * TOEFL section band, 1–6 in half-band steps, derived from the scaled
+ * score. Floors at 1.0 because the published scale starts there — a
+ * scaled 0 is a band 1, not a band 0.
+ */
+export function toeflBandFromScaled(scaled: number): number {
+  if (!Number.isFinite(scaled)) return 1
+  const raw = Math.max(0, Math.min(30, scaled)) / 5
+  return Math.max(1, Math.min(6, Math.round(raw * 2) / 2))
+}
+
+/** Convenience: percent straight through the whole chain. */
+export function toeflBandFromPercent(percent: number): number {
+  return toeflBandFromScaled(toeflScaledScore(percent))
+}

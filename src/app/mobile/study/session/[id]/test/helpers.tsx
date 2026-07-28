@@ -76,29 +76,6 @@ export function choiceLabel(family: string | null | undefined, index: number): s
   return letters[index] ?? `${index + 1}.`
 }
 
-/**
- * Convert a per-section percent (0-100) into the TOEFL Jan 2026
- * 1-6 band score (0.5 increments). ETS aligns the band to CEFR;
- * the mapping below is calibrated against the pre-2026 0-30 band
- * descriptors (Advanced ≥24, High-Int 18-23, Low-Int 4-17, Below 0-3)
- * extrapolated into the new scale. ETS hasn't published an exact
- * crosswalk yet, so this is best-effort and worth re-tuning when
- * official descriptors land.
- */
-export function percentToToeflBand(percent: number): number {
-  if (percent >= 95) return 6.0
-  if (percent >= 88) return 5.5
-  if (percent >= 80) return 5.0
-  if (percent >= 70) return 4.5
-  if (percent >= 60) return 4.0
-  if (percent >= 50) return 3.5
-  if (percent >= 38) return 3.0
-  if (percent >= 25) return 2.5
-  if (percent >= 15) return 2.0
-  if (percent >= 5) return 1.5
-  return 1.0
-}
-
 export function formatTime(ms: number): string {
   const totalSec = Math.max(0, Math.floor(ms / 1000))
   const m = Math.floor(totalSec / 60)
