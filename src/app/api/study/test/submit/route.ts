@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { toJson } from '@/lib/json'
-import { OPEN_RESPONSE_TYPES } from '@/lib/test-verify'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assessSessionMastery } from '@/lib/study-mastery-assess'
 import { estimateSectionScore } from '@/lib/study/sat-adaptive'
@@ -434,11 +433,9 @@ export async function POST(req: NextRequest) {
  *  long-enough gibberish paste scored 100% on Writing), so they're
  *  excluded from the score denominator entirely. */
 function isOpenResponse(q: z.infer<typeof QuestionSchema>): boolean {
-  // Set lives in lib/test-verify so the client's completed-session
-  // rehydration marks exactly the same items ungraded. See OPEN_RESPONSE_TYPES.
-  // `type` is nullable in QuestionSchema (sanitizeQuestion normalises
-  // absent fields to null), so coalesce — a null type is not open-response.
-  return OPEN_RESPONSE_TYPES.has(q.type ?? '')
+  return q.type === 'speaking_interview'
+    || q.type === 'writing_email'
+    || q.type === 'writing_discussion'
 }
 
 /** Weighted (per-blank) contribution of one question to the score.
