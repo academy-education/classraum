@@ -377,6 +377,16 @@ export type TextStageCall = <T>(args: {
  *  route attaches the recording alongside it. */
 export type QualityStageCall = (args: {
   prompt: string
+  /** The rubric's criterion keys, in order.
+   *
+   *  The caller builds its schema from these so the model is told the
+   *  EXACT set it must return. GradeSchema alone only constrains the
+   *  COUNT (min 3, max 4) — nothing tied an entry to a real criterion. A
+   *  TOEFL Speaking grade came back with `delivery` and `language_use`
+   *  but no `topic_relevance`, and generateObject threw
+   *  AI_NoObjectGeneratedError "Array must contain at least 3 element(s)".
+   *  The student saw a 502 on a grade the model had already produced. */
+  criterionKeys: string[]
 }) => Promise<{ object: Grade; usage?: StageUsage }>
 
 export interface StagedGradeResult {
@@ -432,7 +442,10 @@ export async function runStagedGrade(
   // ── Stages 2 + 4 in parallel (independent by construction) ───────
   // Listen and Repeat is a repetition-accuracy rubric — the relevance
   // ladder does not apply and the quality score stands alone.
-  const qualityPromise = calls.quality({ prompt: buildQualityPrompt(ctx) })
+  const qualityPromise = calls.quality({
+    prompt: buildQualityPrompt(ctx),
+    criterionKeys: rubric.criteria.map(c => c.key),
+  })
   const relevancePromise = rubric.usesRelevanceLadder
     ? calls.text({
         schema: RelevanceSchema,

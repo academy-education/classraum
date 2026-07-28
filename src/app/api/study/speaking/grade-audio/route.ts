@@ -9,7 +9,7 @@ import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import {
   getRubric,
-  GradeSchema,
+  gradeSchemaForCriteria,
   inferSpeakingTaskType,
   type ResponseTestFamily,
   type ResponseSkill,
@@ -245,7 +245,11 @@ export async function POST(req: NextRequest) {
   // gate and the relevance ladder run on the transcript with a cheap
   // text model; neither needs to hear the audio, and keeping them off
   // the audio model is what makes the extra stages affordable.
-  const qualityStage: QualityStageCall = async ({ prompt }) => {
+  const qualityStage: QualityStageCall = async ({ prompt, criterionKeys }) => {
+    // Same pinning as the text route: parse against the rubric's OWN
+    // criterion keys, so a grade that silently drops one is rejected
+    // here and retried rather than surfacing as a 502.
+    const schema = gradeSchemaForCriteria(criterionKeys)
     let res = await callOpenAi(usedModel, prompt)
     if (!res.ok && res.status === 404 && usedModel !== FALLBACK_MODEL) {
       // Primary model doesn't exist under this ID — retry with the
@@ -271,7 +275,7 @@ export async function POST(req: NextRequest) {
     // The model occasionally returns prose or a near-miss shape. Retry
     // the call once before giving up.
     try {
-      return { object: GradeSchema.parse(JSON.parse(raw)), usage }
+      return { object: schema.parse(JSON.parse(raw)), usage }
     } catch (e) {
       console.warn('[speaking/grade-audio] parse failed, retrying', e)
       const retry = await callOpenAi(usedModel, prompt)
@@ -281,7 +285,7 @@ export async function POST(req: NextRequest) {
         usage?: { prompt_tokens?: number; completion_tokens?: number }
       }
       return {
-        object: GradeSchema.parse(JSON.parse(retryJson.choices?.[0]?.message?.content ?? '')),
+        object: schema.parse(JSON.parse(retryJson.choices?.[0]?.message?.content ?? '')),
         usage: {
           tokensIn: usage.tokensIn + (retryJson.usage?.prompt_tokens ?? 0),
           tokensOut: usage.tokensOut + (retryJson.usage?.completion_tokens ?? 0),
@@ -350,7 +354,14 @@ export async function POST(req: NextRequest) {
       prompt_text: body.promptText,
       response_text: body.responseText ?? '',
       audio_path: body.audioPath,
-      duration_seconds: body.durationSeconds ?? null,
+      // MediaRecorder reports a float (44.459999084472656); the column is
+      // INTEGER, so PostgREST rejected the whole insert with 22P02
+      // "invalid input syntax for type integer" and the student saw a bare
+      // "persist failed". The grade had already been generated and paid
+      // for at that point — it was thrown away on a rounding detail.
+      duration_seconds: body.durationSeconds == null
+        ? null
+        : Math.max(0, Math.round(body.durationSeconds)),
       word_count: wordCount,
       language,
     })

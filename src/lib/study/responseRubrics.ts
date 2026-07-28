@@ -315,6 +315,36 @@ export const GradeSchema = z.object({
   overallBand: z.number().describe('Overall band on the rubric scale, decided AFTER the per-criterion evidence above.'),
 })
 
+/**
+ * GradeSchema pinned to one rubric's criterion keys.
+ *
+ * The generic GradeSchema constrains the criteria array's LENGTH only
+ * (min 3, max 4) because it has to cover every rubric — TOEFL speaking
+ * has 3 criteria, IELTS writing 4. Nothing tied an entry to a real
+ * criterion, so a grade could come back with the right count and the
+ * wrong headings, or — as happened on 2026-07-28 — the wrong count:
+ * gpt-4o returned `delivery` and `language_use` and silently dropped
+ * `topic_relevance`, generateObject threw
+ * "Array must contain at least 3 element(s)", and the student got a 502
+ * on a grade the model had already written and we had already paid for.
+ *
+ * Handing the model an enum of the exact keys plus a fixed length makes
+ * it EASIER to comply, not harder: with structured outputs the allowed
+ * values are part of the contract rather than something to infer from
+ * the prompt.
+ */
+export function gradeSchemaForCriteria(keys: string[]) {
+  if (keys.length === 0) return GradeSchema
+  return GradeSchema.extend({
+    criteria: z.array(
+      RubricCriterionScoreSchema.extend({
+        key: z.enum(keys as [string, ...string[]])
+          .describe('Must be one of the rubric criterion keys, each used exactly once.'),
+      }),
+    ).length(keys.length),
+  })
+}
+
 export type Grade = z.infer<typeof GradeSchema>
 
 // --- Stage 1: hard zero gate -----------------------------------------------

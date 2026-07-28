@@ -8,7 +8,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { notifyStudent } from '@/lib/study/notify'
 import {
-  GradeSchema,
+  gradeSchemaForCriteria,
   getRubric,
   inferSpeakingTaskType,
   type ResponseSkill,
@@ -170,10 +170,14 @@ export async function POST(req: NextRequest) {
       usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
     }
   }
-  const qualityStage: QualityStageCall = async ({ prompt }) => {
+  const qualityStage: QualityStageCall = async ({ prompt, criterionKeys }) => {
     const r = await generateObject({
       model: openai('gpt-4o'),
-      schema: GradeSchema,
+      // Pin the criteria to the rubric's OWN keys rather than a bare
+      // count. As a JSON-schema enum this is easier for the model to
+      // satisfy, not harder — it is handed the exact allowed values
+      // instead of guessing which three of its own headings to use.
+      schema: gradeSchemaForCriteria(criterionKeys),
       schemaName: 'rubric_grade',
       prompt,
       temperature: 0,
@@ -223,7 +227,14 @@ export async function POST(req: NextRequest) {
       prompt_text: body.promptText,
       response_text: body.responseText,
       audio_path: body.audioPath ?? null,
-      duration_seconds: body.durationSeconds ?? null,
+      // MediaRecorder reports a float (44.459999084472656); the column is
+      // INTEGER, so PostgREST rejected the whole insert with 22P02
+      // "invalid input syntax for type integer" and the student saw a bare
+      // "persist failed". The grade had already been generated and paid
+      // for at that point — it was thrown away on a rounding detail.
+      duration_seconds: body.durationSeconds == null
+        ? null
+        : Math.max(0, Math.round(body.durationSeconds)),
       word_count: wordCount,
       language,
     })
