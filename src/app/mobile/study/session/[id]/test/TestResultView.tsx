@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import {
-  CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles, ListChecks, Info,
+  CheckCircle2, XCircle, AlertTriangle, ChevronDown, Sparkles, ListChecks,
 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot, type MascotState } from '@/app/mobile/study/_shared/PathMascot'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -33,7 +33,7 @@ const FREE_TEXT_TYPES = new Set([
  * optional and degrades to absent.
  */
 export function TestResultView({
-  model, sessionId, ko, sat,
+  model, sessionId, ko, sat, gradingOpenResponses = false,
   answerAudioPaths = {}, answerSpeechSignals = {}, speakingGradeMode = 'text',
   header, footer,
 }: {
@@ -42,6 +42,10 @@ export function TestResultView({
   ko: boolean
   /** Estimated 200-800 section band. SAT only; null everywhere else. */
   sat?: { score: number; capped: boolean } | null
+  /** True while the whole-test batch is still grading the open
+   *  responses. Only the post-submit screen can know this; a reopened
+   *  test reads finished grades from the DB. */
+  gradingOpenResponses?: boolean
   /** Speaking extras — post-submit only, absent on a reopened test. */
   answerAudioPaths?: Record<number, string>
   answerSpeechSignals?: Record<number, SpeechSignals>
@@ -246,7 +250,15 @@ export function TestResultView({
           <TallyRow dot="bg-primary" count={tally.rubric}
             label={ko ? '루브릭 채점' : 'Graded by rubric'}
             note={ko ? '말하기·쓰기 답변이라 정답 키가 아닌 채점 기준으로 따로 평가돼요.'
-                     : 'Speaking and writing answers, scored against criteria instead of an answer key.'} />
+                     : 'Speaking and writing answers, scored against criteria instead of an answer key.'}
+            // Grading starts automatically on submit and takes a few
+            // seconds per answer. Saying so beats an empty feedback
+            // panel that looks broken.
+            sub={gradingOpenResponses && tally.rubric > 0
+              ? (ko ? '지금 채점 중이에요 — 잠시 후 피드백이 표시됩니다.'
+                    : 'Scoring these now — feedback appears in a moment.')
+              : undefined}
+            subTone="info" />
         </div>
       </div>
 
@@ -393,10 +405,13 @@ function HeroStat({ icon: Icon, value, label, sub }: {
  * partition, and dropping the empty ones would leave a list that no
  * longer visibly adds up to the item count in the header.
  */
-function TallyRow({ dot, count, label, note, sub }: {
+function TallyRow({ dot, count, label, note, sub, subTone = 'warn' }: {
   dot: string; count: number; label: string; note: string
   /** Extra detail that lives INSIDE this bucket, not beside it. */
   sub?: string
+  /** 'warn' flags something the student should notice (skipped items);
+   *  'info' reports work in progress and must not read as a problem. */
+  subTone?: 'warn' | 'info'
 }) {
   const empty = count === 0
   return (
@@ -406,7 +421,13 @@ function TallyRow({ dot, count, label, note, sub }: {
         <div className="text-[13px] font-semibold text-gray-900 leading-tight">{label}</div>
         <div className="text-[11.5px] text-gray-500 leading-snug mt-0.5">{note}</div>
         {sub && (
-          <div className="text-[11.5px] text-amber-700 leading-snug mt-1">{sub}</div>
+          <div className={`text-[11.5px] leading-snug mt-1 flex items-center gap-1.5 ${
+            subTone === 'info' ? 'text-primary' : 'text-amber-700'}`}>
+            {subTone === 'info' && (
+              <span className="w-3 h-3 rounded-full border-2 border-primary/30 border-t-primary animate-spin flex-shrink-0" />
+            )}
+            {sub}
+          </div>
         )}
       </div>
       <span className="text-[15px] font-bold text-gray-900 tabular-nums flex-shrink-0 tracking-tight">

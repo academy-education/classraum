@@ -17,6 +17,7 @@ import type { SpeechSignals, SubmitResult, TestPayload } from './types'
  */
 export function ReviewView({
   test, answers, answerAudioPaths, answerSpeechSignals, speakingGradeMode, result, ko, sessionId,
+  gradingOpenResponses = false,
 }: {
   test: TestPayload
   answers: (string | null)[]
@@ -29,6 +30,8 @@ export function ReviewView({
   result: SubmitResult
   ko: boolean
   sessionId: string
+  /** Batch grading still running — see TestSession's submit handler. */
+  gradingOpenResponses?: boolean
 }) {
   const { t } = useTranslation()
 
@@ -60,6 +63,7 @@ export function ReviewView({
         model={model}
         sessionId={sessionId}
         ko={ko}
+        gradingOpenResponses={gradingOpenResponses}
         sat={result.sat ? { score: result.sat.score, capped: !!result.sat.capped } : null}
         answerAudioPaths={answerAudioPaths}
         answerSpeechSignals={answerSpeechSignals}

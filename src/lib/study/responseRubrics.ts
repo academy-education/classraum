@@ -591,3 +591,4 @@ Hallmarks: extended turn, idiomatic phrasing, natural hesitation, accurate compl
 Hallmarks: short turns, limited range, frequent simple errors, repeated vocabulary.
 `.trim(),
 }
+

@@ -6,13 +6,14 @@ import { useRouter } from 'next/navigation'
 import {
   Loader2, RefreshCw, ArrowRight, ArrowLeft, Clock, CheckCircle2,
   AlertTriangle, ChevronDown, ChevronUp,
-  Mic, MicOff, Coins,
+  Mic, Coins,
 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useAuth } from '@/contexts/AuthContext'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
+import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
 import { db } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
@@ -91,6 +92,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   } | null>(null)
   const [gridOpen, setGridOpen] = useState(false)
   const [result, setResult] = useState<SubmitResult | null>(null)
+  /** Batch grading of open responses runs after submit — see the call
+   *  site. Drives the result screen's "scoring your responses" state. */
+  const [gradingOpenResponses, setGradingOpenResponses] = useState(false)
   const router = useRouter()
   // TOEFL Listening audio is playing — locks Prev/Next/Grid so students
   // can't skim ahead while a recording is speaking (ETS-faithful:
@@ -739,6 +743,39 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }
       const json = await res.json() as SubmitResult
       setResult(json)
+      // Grade every open response for this test in ONE request, as part
+      // of submitting.
+      //
+      // These used to be graded one card at a time, only if the student
+      // happened to expand that card — so a Speaking section could sit
+      // permanently half-graded, and four separate calls plus retries
+      // exhausted the 10-per-10-minute limiter, which surfaced as
+      // "Too many requests" and read like an OpenAI billing failure.
+      //
+      // Deliberately not awaited: submitting must not block on ~15s of
+      // gpt-4o. The batch is idempotent, so the panels can also trigger
+      // it again later for anything that failed.
+      if (test.questions.some(q => OPEN_RESPONSE_TYPES.has(q.type))) {
+        setGradingOpenResponses(true)
+        void (async () => {
+          try {
+            await fetch('/api/study/response/grade-batch', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
+              // Whisper's delivery metrics live only in this component's
+              // state. Without them the grader scores a halting answer the
+              // same as a fluent one, because all it would see is the
+              // transcript. Keyed by question index, which IS the delivered
+              // position for a freshly submitted test.
+              body: JSON.stringify({ sessionId, signals: answerSpeechSignals }),
+            })
+          } catch (e) {
+            console.warn('[TestSession] batch grade failed', e)
+          } finally {
+            setGradingOpenResponses(false)
+          }
+        })()
+      }
       // Celebrate finishing the test. Only the fresh-grade path returns
       // xpAwarded (idempotent replays omit it), so this fires once.
       if ((json.xpAwarded ?? 0) > 0) {
@@ -1032,7 +1069,21 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   }
 
   if (phase === 'reviewing' && result) {
-    return <ReviewView test={test} answers={answers} answerAudioPaths={answerAudioPaths} answerSpeechSignals={answerSpeechSignals} speakingGradeMode={speakingGradeMode} result={result} ko={ko} sessionId={sessionId} />
+    return (
+      <ReviewView
+        test={test}
+        answers={answers}
+        answerAudioPaths={answerAudioPaths}
+        answerSpeechSignals={answerSpeechSignals}
+        speakingGradeMode={speakingGradeMode}
+        result={result}
+        ko={ko}
+        sessionId={sessionId}
+        // Batch grading is fired on submit and keeps running while this
+        // screen is already up; the result view says so on the rubric row.
+        gradingOpenResponses={gradingOpenResponses}
+      />
+    )
   }
 
   // phase === 'taking' or 'submitting'

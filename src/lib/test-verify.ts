@@ -43,9 +43,9 @@ export type QuestionType =
  *  client rebuilds those same verdicts when reopening a completed session
  *  (TestSession). A private copy in either place drifts silently — the two
  *  screens would mark different items ungraded with nothing to catch it. */
-export const OPEN_RESPONSE_TYPES: ReadonlySet<string> = new Set([
-  'speaking_interview', 'writing_email', 'writing_discussion',
-])
+// Re-exported for the callers that already import it from here. The
+// definition lives in openResponse.ts, which nothing heavy depends on.
+export { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
 
 export const NON_MC_TYPES: ReadonlySet<QuestionType> = new Set<QuestionType>([
   'numeric_entry', 'multi_select',

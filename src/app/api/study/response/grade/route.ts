@@ -1,21 +1,20 @@
-import { createHash } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
-import { generateObject } from 'ai'
-import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { notifyStudent } from '@/lib/study/notify'
 import {
-  gradeSchemaForCriteria,
-  getRubric,
   inferSpeakingTaskType,
   type ResponseSkill,
   type ResponseTestFamily,
   type ResponseTaskType,
 } from '@/lib/study/responseRubrics'
-import { runStagedGrade, type QualityStageCall, type TextStageCall } from '@/lib/study/gradePipeline'
+import {
+  gradeAndPersistResponse,
+  GradeGenerationError,
+  GradePersistError,
+} from '@/lib/study/gradeResponse'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -99,170 +98,46 @@ export async function POST(req: NextRequest) {
       ? inferSpeakingTaskType(body.promptText)
       : undefined)
     ?? undefined) as ResponseTaskType | undefined
-  const rubric = getRubric(body.testFamily as ResponseTestFamily, body.skill as ResponseSkill, taskType)
 
-  // ── Re-grade dedupe ────────────────────────────────────────────
-  // Deterministic XP key: md5(session + prompt) folded into a UUID.
-  // Grading the same task in the same session always produces the
-  // same key, so award_study_xp can only ever land ONE
-  // 'response_graded' event per task (unique index on
-  // study_xp_events enforces it — re-grades collide and roll back
-  // the award, closing the "re-grade the same answer for +20 XP
-  // each time" farming loop). Revised responses still get fresh
-  // FEEDBACK below; they just don't re-earn XP.
-  const promptHash = createHash('md5').update(`${body.sessionId}:${body.promptText}`).digest('hex')
-  const xpSourceId = [
-    promptHash.slice(0, 8), promptHash.slice(8, 12), promptHash.slice(12, 16),
-    promptHash.slice(16, 20), promptHash.slice(20, 32),
-  ].join('-')
-
-  // Identical prompt + response already graded in this session →
-  // return the stored grade instead of paying for a fresh gpt-4o
-  // call that would land on the same band anyway.
-  const { data: prior } = await dbAdmin
-    .from('study_response_submissions')
-    .select('id, response_text, study_response_grades(overall_band, rubric_scores, annotations, model_rewrite, summary)')
-    .eq('session_id', body.sessionId)
-    .eq('student_id', user.id)
-    .eq('prompt_text', body.promptText)
-    .order('created_at', { ascending: false })
-    .limit(1)
-    .maybeSingle()
-  if (prior && prior.response_text === body.responseText) {
-    const priorGrade = Array.isArray(prior.study_response_grades)
-      ? prior.study_response_grades[0]
-      : prior.study_response_grades
-    if (priorGrade) {
-      return NextResponse.json({
-        submissionId: prior.id,
-        grade: {
-          overallBand: Number(priorGrade.overall_band),
-          criteria: priorGrade.rubric_scores,
-          annotations: priorGrade.annotations,
-          modelRewrite: priorGrade.model_rewrite,
-          summary: priorGrade.summary,
-        },
-        scaleMax: rubric.scaleMax,
-        cached: true,
-      })
-    }
-  }
-
-  const wordCount = body.responseText.trim().split(/\s+/).filter(Boolean).length
-  const language = (session.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en'
-
-  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
-
-  // Stages 1 + 2 are cheap classification calls — a mini model at
-  // temperature 0 is both sufficient and more consistent than gpt-4o
-  // for a yes/no gate and a 6-way ladder. Stage 4 (language quality)
-  // keeps gpt-4o.
-  const textStage: TextStageCall = async ({ schema, schemaName, prompt }) => {
-    const r = await generateObject({
-      model: openai('gpt-4o-mini'),
-      schema: schema as z.ZodType<unknown>,
-      schemaName,
-      prompt,
-      temperature: 0,
-    })
-    return {
-      object: r.object as never,
-      usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
-    }
-  }
-  const qualityStage: QualityStageCall = async ({ prompt, criterionKeys }) => {
-    const r = await generateObject({
-      model: openai('gpt-4o'),
-      // Pin the criteria to the rubric's OWN keys rather than a bare
-      // count. As a JSON-schema enum this is easier for the model to
-      // satisfy, not harder — it is handed the exact allowed values
-      // instead of guessing which three of its own headings to use.
-      schema: gradeSchemaForCriteria(criterionKeys),
-      schemaName: 'rubric_grade',
-      prompt,
-      temperature: 0,
-    })
-    return {
-      object: r.object,
-      usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
-    }
-  }
-
-  let staged
+  // Grading + persistence live in lib/study/gradeResponse so this route
+  // and the whole-test batch cannot drift apart. What stays here is what
+  // is genuinely per-request: the rate limit above, the premium gate, XP
+  // and the notification below.
+  let graded
   try {
-    staged = await runStagedGrade({
-      family: body.testFamily,
-      skill: body.skill,
+    graded = await gradeAndPersistResponse({
+      userId: user.id,
+      sessionId: body.sessionId,
+      sessionLanguage: session.language,
+      testFamily: body.testFamily as ResponseTestFamily,
+      skill: body.skill as ResponseSkill,
       taskType,
       promptText: body.promptText,
       responseText: body.responseText,
+      audioPath: body.audioPath ?? null,
       durationSeconds: body.durationSeconds ?? null,
-      wordCount,
-      language,
-      speechSignals: body.skill === 'speaking' ? {
-        wpm: body.wpm ?? null,
-        pauseCount: body.pauseCount ?? null,
-        clarity: body.clarity ?? null,
-      } : null,
-    }, { text: textStage, quality: qualityStage })
+      wpm: body.wpm ?? null,
+      pauseCount: body.pauseCount ?? null,
+      clarity: body.clarity ?? null,
+    })
   } catch (err) {
-    console.error('[response/grade] generation', err)
-    return NextResponse.json({ error: 'grading failed' }, { status: 502 })
+    if (err instanceof GradeGenerationError) {
+      return NextResponse.json({ error: 'grading failed' }, { status: 502 })
+    }
+    if (err instanceof GradePersistError) {
+      return NextResponse.json({ error: 'persist failed' }, { status: 500 })
+    }
+    throw err
   }
-  const grade = staged.grade
-  const usage = staged.usage
-
-  // The pipeline already clamped + applied the relevance ceiling; this
-  // is a defensive backstop only.
-  const clampedBand = Math.max(0, Math.min(rubric.scaleMax, grade.overallBand))
-
-  // Persist submission.
-  const { data: submission, error: submissionErr } = await dbAdmin
-    .from('study_response_submissions')
-    .insert({
-      student_id: user.id,
-      session_id: body.sessionId,
-      test_family: body.testFamily,
-      skill: body.skill,
-      prompt_text: body.promptText,
-      response_text: body.responseText,
-      audio_path: body.audioPath ?? null,
-      // MediaRecorder reports a float (44.459999084472656); the column is
-      // INTEGER, so PostgREST rejected the whole insert with 22P02
-      // "invalid input syntax for type integer" and the student saw a bare
-      // "persist failed". The grade had already been generated and paid
-      // for at that point — it was thrown away on a rounding detail.
-      duration_seconds: body.durationSeconds == null
-        ? null
-        : Math.max(0, Math.round(body.durationSeconds)),
-      word_count: wordCount,
-      language,
+  if (graded.cached) {
+    return NextResponse.json({
+      submissionId: graded.submissionId,
+      grade: graded.grade,
+      scaleMax: graded.scaleMax,
+      cached: true,
     })
-    .select('id')
-    .single()
-  if (submissionErr || !submission) {
-    console.error('[response/grade] insert submission', submissionErr)
-    return NextResponse.json({ error: 'persist failed' }, { status: 500 })
   }
-
-  // Persist grade.
-  const { error: gradeErr } = await dbAdmin
-    .from('study_response_grades')
-    .insert({
-      submission_id: submission.id,
-      student_id: user.id,
-      overall_band: clampedBand,
-      rubric_scores: grade.criteria,
-      annotations: grade.annotations,
-      model_rewrite: grade.modelRewrite,
-      summary: grade.summary,
-      grader_model: 'gpt-4o+staged-ets',
-      tokens_in: usage.tokensIn,
-      tokens_out: usage.tokensOut,
-    })
-  if (gradeErr) {
-    console.error('[response/grade] insert grade', gradeErr)
-  }
+  const xpSourceId = graded.xpSourceId
 
   // Deterministic source key (NOT submission.id): re-grades of the
   // same task hit the partial unique index on study_xp_events and
@@ -281,7 +156,7 @@ export async function POST(req: NextRequest) {
     .update({
       status: 'completed',
       completed_at: new Date().toISOString(),
-      score: Math.round((clampedBand / rubric.scaleMax) * 100),
+      score: Math.round((graded.grade.overallBand / graded.scaleMax) * 100),
     })
     .eq('id', session.id)
     .eq('student_id', user.id)
@@ -295,24 +170,25 @@ export async function POST(req: NextRequest) {
   void notifyStudent({
     studentId: user.id,
     kind: 'study_response_graded',
-    title: `${familyLabel} ${skillLabel} 평가 완료 — ${Number.isInteger(clampedBand) ? clampedBand : clampedBand.toFixed(1)}점`,
-    message: grade.summary.slice(0, 120),
+    title: `${familyLabel} ${skillLabel} 평가 완료 — ${Number.isInteger(graded.grade.overallBand) ? graded.grade.overallBand : graded.grade.overallBand.toFixed(1)}점`,
+    message: (graded.grade.summary ?? '').slice(0, 120),
     link: '/mobile/study',
   })
 
+  const diag = graded.diagnostics
   return NextResponse.json({
-    submissionId: submission.id,
-    grade: { ...grade, overallBand: clampedBand },
-    scaleMax: rubric.scaleMax,
+    submissionId: graded.submissionId,
+    grade: graded.grade,
+    scaleMax: graded.scaleMax,
     // Diagnostics — why the band landed where it did. Purely additive;
     // the review panel ignores fields it doesn't know.
-    relevance: staged.relevance ? {
-      level: staged.relevance.level,
-      ceiling: staged.relevanceCeiling,
-      applied: staged.ceilingApplied,
-      languageScore: staged.languageScore,
+    relevance: diag?.relevanceLevel ? {
+      level: diag.relevanceLevel,
+      ceiling: diag.relevanceCeiling,
+      applied: diag.ceilingApplied,
+      languageScore: diag.languageScore,
     } : null,
-    zeroReasons: staged.zeroReasons,
+    zeroReasons: diag?.zeroReasons ?? [],
     xpAwarded: XP_VALUES.response_graded,
   })
 }
