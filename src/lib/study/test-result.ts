@@ -113,6 +113,33 @@ export function familyFromTopicSlug(slug: string | null | undefined): TestFamily
   return 'other'
 }
 
+/**
+ * Can this session's rows be numbered?
+ *
+ * The review list labels each row with its DELIVERED range ("Question
+ * 12-21 of 48"), which is only meaningful if the rows are in the order the
+ * student saw them. `position` carries that order — but it was added later,
+ * and on 2026-07-28 a live check found it NULL on 519 of 932 full-test
+ * attempt rows: 23 of 37 sessions, a clear majority.
+ *
+ * Nothing else recovers the order for those rows:
+ *   - `created_at` is a single shared timestamp on EVERY full-test session
+ *     (1 distinct value per session, all 37), so ordering by it is a no-op
+ *     that returns whatever Postgres feels like. /summary orders by it
+ *     today; that is harmless only because its mistake list is unordered.
+ *   - physical row order looked promising and is not: against the sessions
+ *     that DO have `position`, ctid rank disagreed on 214 of 413 rows
+ *     across 7 of 12 sessions.
+ *
+ * So legacy sessions get no numbers rather than confident wrong ones — a
+ * label pointing at the wrong question is worse than no label. Renumbering
+ * by array index is exactly the trap: it always produces a plausible
+ * sequence, and on these sessions it would be arbitrary.
+ */
+export function canNumberRows(rows: { position?: number | null }[]): boolean {
+  return rows.length > 0 && rows.every(r => typeof r.position === 'number')
+}
+
 /** Which College Board conversion table applies. NOT optional in practice:
  *  estimateSectionScore defaults to 'reading_writing', and a caller that
  *  omitted it scored every SAT Math session on the wrong curve — roughly a

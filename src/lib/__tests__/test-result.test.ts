@@ -13,6 +13,7 @@ import {
   reviewRanges,
   familyFromTopicSlug,
   satSectionFromTopicSlug,
+  canNumberRows,
 } from '@/lib/study/test-result'
 
 describe('displayCorrectAnswer', () => {
@@ -74,6 +75,28 @@ describe('deliveredWeight / reviewRanges', () => {
 
   it('degrades a blank-less CtW row to 1 rather than 0', () => {
     expect(deliveredWeight({ type: 'fill_in_blanks', blanks: [] })).toBe(1)
+  })
+})
+
+describe('canNumberRows', () => {
+  // 519 of 932 live full-test attempt rows have position NULL (23 of 37
+  // sessions). created_at is one shared value per session and ctid rank
+  // disagreed with position on 214/413 rows, so those sessions have no
+  // recoverable order — they must go unnumbered rather than renumbered.
+  it('numbers a session only when EVERY row carries a position', () => {
+    expect(canNumberRows([{ position: 0 }, { position: 1 }, { position: 2 }])).toBe(true)
+    expect(canNumberRows([{ position: 0 }, { position: null }])).toBe(false)
+    expect(canNumberRows([{ position: 0 }, {}])).toBe(false)
+  })
+
+  it('treats position 0 as a real position, not a falsy one', () => {
+    // `r.position ?? false`-style truthiness would drop the first row of
+    // every session, since submit writes position: i starting at 0.
+    expect(canNumberRows([{ position: 0 }])).toBe(true)
+  })
+
+  it('refuses to number an empty session', () => {
+    expect(canNumberRows([])).toBe(false)
   })
 })
 
