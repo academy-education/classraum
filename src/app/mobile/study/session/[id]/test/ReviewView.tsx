@@ -1,7 +1,6 @@
 "use client"
 
 import Link from 'next/link'
-import { ArrowRight, Sparkles } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { buildResultModel, familyFromTopicSlug } from '@/lib/study/test-result'
 import { TestResultView } from './TestResultView'
@@ -65,27 +64,6 @@ export function ReviewView({
         answerAudioPaths={answerAudioPaths}
         answerSpeechSignals={answerSpeechSignals}
         speakingGradeMode={speakingGradeMode}
-        header={
-          <Link
-            href={`/mobile/study/session/${sessionId}/summary`}
-            className="block rounded-2xl bg-gradient-to-br from-primary/[0.08] via-indigo-50/40 to-white ring-1 ring-primary/25 p-4 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.18)] active:scale-[0.99] transition-all"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] ring-1 ring-primary/30">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[14.5px] font-semibold text-gray-900 leading-tight">
-                  {String(t('study.test.viewSummaryTitle'))}
-                </div>
-                <div className="text-[12px] text-gray-500 mt-0.5">
-                  {String(t('study.test.viewSummarySubtitle'))}
-                </div>
-              </div>
-              <ArrowRight className="w-4 h-4 text-gray-400" />
-            </div>
-          </Link>
-        }
         footer={
           <Link
             href="/mobile/study"

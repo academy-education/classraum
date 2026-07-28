@@ -14,7 +14,6 @@ import { buyCreditPack } from '@/lib/study/purchase-credits'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
 import { db } from '@/lib/supabase'
-import { OPEN_RESPONSE_TYPES } from '@/lib/test-verify'
 import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
 import type { Question, SpeechSignals, SubmitResult, TestPayload } from './test/types'
@@ -401,76 +400,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         const m2 = localStorage.getItem(`study:test:${sessionId}:m2StartMs`)
         if (m2) setModule2StartMs(parseInt(m2, 10) || null)
       }
-      // ── Completed session: rebuild the post-submit screen ──────────
-      //
-      // `result` is otherwise set ONLY by a live submit, so opening a
-      // finished test used to drop the student into a blank taking view.
-      // That is why the mock-test cards linked to /summary instead.
-      //
-      // The counts come from the SESSION ROW, not from the attempts.
-      // Those two disagree BY DESIGN and the difference is not small:
-      // attempts are per CARD, while correct_count/total_count are per
-      // SCORED QUESTION — a Complete-the-Words card is ten questions, and
-      // unscored pilot items are excluded entirely. On a real session
-      // (fd9b9cfd) counting attempts gives 10/30 = 33% where submit
-      // recorded 6/35 = 17%. Rebuilding from attempts would therefore show
-      // one score right after submitting and a different one on revisit,
-      // with no error to notice. Verdicts are per card, so THOSE come from
-      // attempts, keyed on `position` rather than insertion order.
-      //
-      // xpAwarded is deliberately omitted: the type documents it as
-      // present only on a fresh grade so the completion toast fires once.
-      // Rehydrating it would re-award XP visually on every revisit.
-      try {
-        const { data: sess } = await db
-          .from('study_sessions')
-          .select('status, score, correct_count, total_count')
-          .eq('id', sessionId)
-          .maybeSingle()
-        const done = sess?.status === 'completed'
-          && sess.total_count != null && sess.correct_count != null
-        if (done) {
-          const { data: atts } = await db
-            .from('study_attempts')
-            .select('position, is_correct')
-            .eq('session_id', sessionId)
-            .order('position', { ascending: true })
-          const byPos = new Map<number, boolean>()
-          for (const a of atts ?? []) {
-            if (typeof a.position === 'number') byPos.set(a.position, !!a.is_correct)
-          }
-          // An unanswered/ungraded card has no attempt row; treat it as
-          // incorrect-but-ungraded rather than inventing a verdict.
-          const verdicts = payload.questions.map((q, i) => ({
-            index: i,
-            correct: byPos.get(i) === true,
-            correctAnswer: q.correct_answer ?? '',
-            ungraded: OPEN_RESPONSE_TYPES.has(q.type),
-          }))
-          setResult({
-            totalQuestions: sess.total_count!,
-            correctCount: sess.correct_count!,
-            scorePercent: Math.round(Number(sess.score ?? 0)),
-            verdicts,
-          })
-          setPhase('reviewing')
-          return
-        }
-        // Completed but NOT rehydratable — missing counts, or the
-        // rebuild threw. Falling through to 'taking' here is exactly the
-        // blank-restart bug the old redirect existed to prevent, so send
-        // the student to the durable summary instead. This is the branch
-        // that lets session/[id]/page.tsx stop redirecting every finished
-        // test; if it is ever removed, restore that redirect.
-        if (sess?.status === 'completed') {
-          router.replace(`/mobile/study/session/${sessionId}/summary`)
-          return
-        }
-      } catch {
-        // Same reasoning: a completed session must never land on 'taking'.
-        router.replace(`/mobile/study/session/${sessionId}/summary`)
-        return
-      }
+      // A COMPLETED session never reaches this component:
+      // session/[id]/page.tsx redirects it to /summary before TestSession
+      // mounts (see the guard there). This used to rebuild the post-submit
+      // screen here from the session row + attempts, which existed only
+      // because /summary was then a thinner, different screen. It renders
+      // the same result screen now, so the rebuild was a second way to
+      // compute numbers that already have one home — and it carried the
+      // CtW bug in its own right, keying correctAnswer off `correct_answer`
+      // which fill_in_blanks leaves empty.
 
       setPhase('taking')
     } catch {
