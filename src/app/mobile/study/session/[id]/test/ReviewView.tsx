@@ -35,6 +35,8 @@ export function ReviewView({
 }) {
   const { t } = useTranslation()
   const [expanded, setExpanded] = useState<number | null>(null)
+  /** Per-question detail is opt-in — see the note on the accordion below. */
+  const [showDetail, setShowDetail] = useState(false)
 
   // Weighted question numbering — mirrors the taking view: a CtW item
   // with 10 blanks occupies positions N..N+9 of the weighted total, so
@@ -151,11 +153,40 @@ export function ReviewView({
           )}
         </div>
 
-        {/* Per-question review accordion */}
+        {/* Per-question review accordion — COLLAPSED by default.
+          *
+          * This screen has two jobs that used to be stacked on one scroll:
+          * "how did I do" and "what exactly did I get wrong". The second is
+          * long (one accordion row per question, up to 30 for Reading), so
+          * the score card was the top of a very tall page and the summary
+          * link sat above a wall of items.
+          *
+          * Collapsing it makes this screen the same shape whether it is
+          * reached by submitting a test or by tapping one in My mock tests,
+          * which is the point: one result screen, detail on request. */}
         <section>
-          <h3 className="text-sm font-semibold text-gray-900 mb-2 px-1">
+          <button
+            type="button"
+            onClick={() => setShowDetail(v => !v)}
+            aria-expanded={showDetail}
+            className="w-full flex items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 mb-2 text-left active:bg-gray-50 transition-colors"
+          >
+            <span className="text-sm font-semibold text-gray-900">
+              {t('study.test.reviewTitle')}
+            </span>
+            <span className="flex items-center gap-1.5 text-[12px] font-medium text-gray-500 tabular-nums">
+              {test.questions.length}
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${showDetail ? 'rotate-180' : ''}`}
+              />
+            </span>
+          </button>
+          {showDetail && (
+          <h3 className="sr-only">
             {t('study.test.reviewTitle')}
           </h3>
+          )}
+          {showDetail && (
           <div className="space-y-2">
             {test.questions.map((q, i) => {
               const verdict = result.verdicts[i]
@@ -371,6 +402,7 @@ export function ReviewView({
               )
             })}
           </div>
+          )}
         </section>
 
         <Link
