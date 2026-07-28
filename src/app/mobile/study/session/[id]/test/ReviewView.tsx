@@ -94,6 +94,21 @@ export function ReviewView({
               result.scorePercent >= 40 ? 'keepGoing' : 'startOver'
             }`)}
           </p>
+          {/* Reconcile the denominator with the review list.
+            *
+            * The headline is SCORED questions (e.g. 35) while the rows below
+            * are numbered out of DELIVERED (48). A student answered 48 and is
+            * scored on 35, and nothing said where the other 13 went — the
+            * numbers simply disagreed. The real exam does the same thing and
+            * tells you; so should we. Only rendered when the two differ, so a
+            * test with no pilots stays uncluttered. */}
+          {reviewTotal > result.totalQuestions && (
+            <p className="text-[12px] text-amber-700 mt-2 leading-relaxed">
+              {ko
+                ? `${reviewTotal}문항 중 ${result.totalQuestions}문항만 점수에 반영됩니다. 나머지 ${reviewTotal - result.totalQuestions}문항은 실험 문항으로, 실제 시험과 동일하게 채점 결과에서 제외됩니다.`
+                : `Scored on ${result.totalQuestions} of the ${reviewTotal} questions you answered. The other ${reviewTotal - result.totalQuestions} are experimental — shown and reviewed, but not counted, exactly as on the real exam.`}
+            </p>
+          )}
           {/* TOEFL Jan 2026: surface the new 1-6 band score (avg of 4
               sections, 0.5 increments) AND the transitional 0-30 per-
               section score that ETS still publishes during the 2-year
@@ -223,11 +238,25 @@ export function ReviewView({
                             : String(i + 1)
                           return t('study.test.questionN', { current: cur, total: String(reviewTotal) })
                         })()}
-                        {verdict.ungraded && (
+                        {/* THREE states, not two. An item can fail to count
+                          * for two unrelated reasons and the student needs
+                          * different words for each:
+                          *   ungraded      — open response, scored by rubric
+                          *   scored:false  — ETS pilot. Graded and shown, but
+                          *                   excluded from the denominator.
+                          * The second had NO label at all, which is why a
+                          * TOEFL Reading result read "4 / 35" above rows
+                          * numbered "of 48": thirteen answered questions
+                          * silently did not count. */}
+                        {verdict.ungraded ? (
                           <span className="ml-1.5 text-primary font-medium">
                             · {ko ? '루브릭 채점 (점수 미포함)' : 'rubric-graded (not in score)'}
                           </span>
-                        )}
+                        ) : q.scored === false ? (
+                          <span className="ml-1.5 text-amber-700 font-medium">
+                            · {ko ? '실험 문항 (점수 미포함)' : 'experimental · not counted'}
+                          </span>
+                        ) : null}
                       </div>
                       <div className="text-sm text-gray-900 line-clamp-2 mt-0.5">
                         {normalizeDisplayText(q.prompt)}
