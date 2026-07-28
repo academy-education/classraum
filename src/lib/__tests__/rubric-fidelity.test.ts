@@ -71,6 +71,26 @@ describe('band descriptors match the official guides', () => {
     expect(text).toMatch(/entirely unconnected/i)
   })
 
+  it.each(['email', 'academic_discussion'] as const)(
+    'lets %s band 5 forgive errors ETS expects under timed conditions', task => {
+      // Both official WRITING guides qualify band 5 as "almost no lexical
+      // or grammatical errors OTHER THAN those expected from a competent
+      // writer writing under timed conditions". We had dropped that
+      // qualifier and written "at most negligible lapses", which is a
+      // stricter bar than the rubric sets. ETS cited exactly this clause
+      // when awarding a published sample a 5 that our grader scored 3.
+      const text = getRubric('toefl', 'writing', task).bandDescriptors
+      expect(text).toMatch(/timed conditions/i)
+    })
+
+  it('does not extend the timed-conditions allowance to speaking', () => {
+    // The speaking guides carry no such clause — band 5 there is just "a
+    // range of accurate grammar and vocabulary". Adding it would be the
+    // same writing-to-speaking leak as the zero gate and the band rule.
+    const text = getRubric('toefl', 'speaking', 'take_interview').bandDescriptors
+    expect(text).not.toMatch(/timed conditions/i)
+  })
+
   it('keeps Listen and Repeat an accuracy rubric, not a content one', () => {
     const text = getRubric('toefl', 'speaking', 'listen_repeat').bandDescriptors
     expect(text).toMatch(/repetition/i)

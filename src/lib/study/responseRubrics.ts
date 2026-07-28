@@ -106,7 +106,7 @@ This is a REPETITION-ACCURACY rubric, NOT a content rubric. Do not reward or pen
 `.trim()
 
 const WRITING_EMAIL_BANDS = `
-5 — DISPLAYS the following: fully successful, clearly relevant response to the task; effective use of APPROPRIATE SOCIAL CONVENTIONS (politeness, register, and the formulation of requests, refusals, or criticisms); well-organised and well-elaborated; a wide range of accurate grammar and vocabulary with at most negligible lapses.
+5 — DISPLAYS the following: fully successful, clearly relevant response to the task; effective use of APPROPRIATE SOCIAL CONVENTIONS (politeness, register, and the formulation of requests, refusals, or criticisms); well-organised and well-elaborated; a wide range of accurate grammar and vocabulary; almost no lexical or grammatical errors OTHER THAN THOSE EXPECTED FROM A COMPETENT WRITER WRITING UNDER TIMED CONDITIONS (common typos, misspellings, or substitutions like there/their do NOT keep a response out of this band).
 4 — DISPLAYS the following: generally successful response addressing the task; generally appropriate social conventions; adequately organised and elaborated; adequate range of grammar and vocabulary with minor lapses that do not obscure meaning.
 3 — DISPLAYS the following: partially successful response; social conventions inconsistently observed; limited organisation; elaboration is thin; noticeable lexical/grammatical limitations that occasionally obscure meaning.
 2 — Exhibits ONE OR MORE of the following: addresses the task only minimally; inappropriate register or social conventions; LIMITED OR IRRELEVANT ELABORATION; disorganised; frequent errors that obscure meaning; relies heavily on language lifted from the prompt.
@@ -115,7 +115,7 @@ const WRITING_EMAIL_BANDS = `
 `.trim()
 
 const WRITING_DISCUSSION_BANDS = `
-5 — A RELEVANT and VERY CLEARLY EXPRESSED contribution to the online discussion; consistently well-elaborated with explanation, exemplification, or detail; a wide range of accurate grammar and vocabulary; at most negligible lapses.
+5 — A RELEVANT and VERY CLEARLY EXPRESSED contribution to the online discussion; consistently well-elaborated with explanation, exemplification, or detail; a wide range of accurate grammar and vocabulary; almost no lexical or grammatical errors OTHER THAN THOSE EXPECTED FROM A COMPETENT WRITER WRITING UNDER TIMED CONDITIONS (common typos, misspellings, or substitutions like there/their do NOT keep a response out of this band).
 4 — A RELEVANT contribution to the online discussion, easily understood; elaboration is adequate though it may be uneven; some variety and accuracy of grammar and vocabulary; minor lapses do not obscure meaning.
 3 — A MOSTLY RELEVANT and MOSTLY UNDERSTANDABLE contribution, with SOME elaboration — part of which may be MISSING, UNCLEAR, OR IRRELEVANT; limited range of grammar and vocabulary; lapses sometimes obscure meaning.
 2 — Exhibits ONE OR MORE of the following: an ATTEMPT to contribute to the discussion; ideas POORLY ELABORATED OR ONLY PARTIALLY RELEVANT; limited or unclear connection to the discussion; frequent errors that impede meaning; noticeable reliance on prompt language.
