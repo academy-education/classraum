@@ -176,60 +176,6 @@ export function TestResultView({
         </div>
       </div>
 
-      {/* Reconcile the denominator with the list below.
-        *
-        * The hero counts SCORED questions (35); the rows are numbered out
-        * of DELIVERED (48). A student answered 48 and was scored on 35
-        * with nothing saying where the other 13 went.
-        *
-        * Styled as a deliberate note rather than a warning box. The first
-        * version was a flat amber slab with a warning triangle, which
-        * reads as "something went wrong" — but nothing did: this is how
-        * the real exam works, and the tone should say so. Amber accent
-        * rail, white card, the exam-normal framing pulled out as its own
-        * line.
-        *
-        * The reason has to match the actual session. It always said
-        * "experimental", and a TOEFL Speaking result read "the other 4
-        * are experimental" when those 4 were rubric-graded responses and
-        * the test had no pilots at all. Word it from the tally. */}
-      {model.deliveredTotal > model.totalScored && (
-        <div className="relative rounded-2xl bg-white ring-1 ring-amber-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
-          <div aria-hidden className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-amber-300 to-orange-400" />
-          <div className="pl-5 pr-4 py-3.5 flex items-start gap-3">
-            <div className="flex-shrink-0 w-8 h-8 rounded-xl bg-amber-50 ring-1 ring-amber-200/70 text-amber-600 flex items-center justify-center mt-0.5">
-              <Info className="w-4 h-4" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[13px] font-semibold text-gray-900 leading-snug">
-                {ko
-                  ? `${model.deliveredTotal}문항 중 ${model.totalScored}문항이 점수에 반영됐어요`
-                  : `Scored on ${model.totalScored} of the ${model.deliveredTotal} questions you answered`}
-              </p>
-              <p className="text-[12px] text-gray-600 leading-relaxed mt-1">
-                {ko
-                  ? `나머지 ${model.deliveredTotal - model.totalScored}문항은 ${
-                      tally.pilot > 0 && tally.rubric > 0 ? '실험 문항과 루브릭 채점 문항이에요.'
-                      : tally.rubric > 0 ? '루브릭으로 따로 채점되는 문항이에요.'
-                      : '실험 문항이에요.'
-                    }`
-                  : `The other ${model.deliveredTotal - model.totalScored} ${
-                      tally.pilot > 0 && tally.rubric > 0
-                        ? 'are experimental or graded separately by rubric.'
-                        : tally.rubric > 0
-                          ? 'are open responses, graded separately by rubric.'
-                          : 'are experimental — shown and reviewed, but not counted.'
-                    }`}
-              </p>
-              <p className="inline-flex items-center gap-1.5 mt-2 text-[11px] font-medium text-amber-700 bg-amber-50 ring-1 ring-amber-200/60 rounded-full px-2 py-0.5">
-                <CheckCircle2 className="w-3 h-3" />
-                {ko ? '실제 시험과 동일해요' : 'Exactly as on the real exam'}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* How the answers were counted.
         *
         * This was headed "Where your 30 cards went", which is our word,
@@ -251,16 +197,22 @@ export function TestResultView({
               {ko ? '채점 방식' : 'How it was counted'}
             </div>
             <div className="text-[14px] font-semibold text-gray-900 leading-tight">
-              {/* Questions only. The item count used to lead here and the
-                  account owner asked whether it meant the number they got
-                  WRONG — a number that related to nothing else on screen
-                  invites exactly that guess. Everything in this card is
-                  now in questions, the same unit as the score. */}
-              {ko ? `${model.deliveredTotal}문항` : `${model.deliveredTotal} questions`}
+              {/* The reconciliation lives HERE now. It used to be a separate
+                  amber card directly above this one, saying "Scored on 35 of
+                  the 48 questions you answered — the other 13 are
+                  experimental" — which is precisely what the rows below
+                  already say. Two adjacent explanations of one thing read as
+                  clutter no amount of styling fixes; the fix was to delete
+                  one. Questions only, the same unit as the score. */}
+              {model.deliveredTotal > model.totalScored
+                ? (ko ? `${model.deliveredTotal}문항 중 ${model.totalScored}문항 반영`
+                      : `${model.totalScored} of ${model.deliveredTotal} questions counted`)
+                : (ko ? `${model.deliveredTotal}문항 전부 반영`
+                      : `All ${model.deliveredTotal} questions counted`)}
             </div>
-            <div className="text-[12px] text-gray-500 mt-0.5">
-              {ko ? '실제 시험처럼 모든 문항이 점수에 반영되지는 않아요.'
-                  : 'As on the real exam, not everything you answer counts.'}
+            <div className="text-[12px] text-gray-500 mt-0.5 leading-snug">
+              {ko ? '실제 시험처럼, 푼 문항이 모두 점수에 반영되지는 않아요.'
+                  : 'Not everything you answer counts — the real exam works the same way.'}
             </div>
           </div>
         </div>
@@ -464,6 +416,27 @@ function TallyRow({ dot, count, label, note, sub }: {
   )
 }
 
+/** One answer on a collapsed review row — the student's, or the key.
+ *  Full width and single-line so a long option truncates at the end
+ *  instead of mid-word, which is what two side-by-side chips did at
+ *  375px, with the arrow between them orphaned onto its own line. */
+function AnswerLine({ tone, text }: {
+  tone: 'rose' | 'emerald' | 'amber'; text: string
+}) {
+  const spec = {
+    rose: { wrap: 'bg-rose-50 text-rose-700 ring-rose-200/70', Icon: XCircle },
+    emerald: { wrap: 'bg-emerald-50 text-emerald-700 ring-emerald-200/70', Icon: CheckCircle2 },
+    amber: { wrap: 'bg-amber-50 text-amber-700 ring-amber-200/70', Icon: AlertTriangle },
+  }[tone]
+  const Icon = spec.Icon
+  return (
+    <div className={`flex items-center gap-1.5 rounded-lg ring-1 px-2 py-1 ${spec.wrap}`}>
+      <Icon className="w-3 h-3 flex-shrink-0" />
+      <span className="text-[11.5px] font-medium truncate">{text}</span>
+    </div>
+  )
+}
+
 /** One CARD in the review list. */
 function ResultCard({
   row, deliveredTotal, sessionId, ko, audioPath, speechSignals, speakingGradeMode,
@@ -481,103 +454,88 @@ function ResultCard({
   const q = row.question
   const studentAnswer = row.studentAnswer
   const choices = q.choices ?? []
-  const missed = !row.ungraded && !row.correct
 
   return (
-    <div className={`relative rounded-2xl ring-1 bg-white overflow-hidden transition-all ${
-      isOpen ? 'shadow-[0_2px_12px_-2px_rgba(0,0,0,0.10)]' : 'shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
-    } ${
-      missed ? 'ring-rose-200/80' : row.ungraded ? 'ring-primary/20' : row.isPilot ? 'ring-amber-200/70' : 'ring-gray-200/70'
-    } ${isOpen ? '' : 'hover:ring-primary/40 active:scale-[0.995]'}`}>
-      {/* Verdict stripe — lets the outcome of 30 rows read in one scroll
-          without opening any of them. */}
-      <div aria-hidden className={`absolute inset-y-0 left-0 w-1 ${
-        row.ungraded ? 'bg-primary/40'
-          : row.correct ? 'bg-emerald-400'
-          : studentAnswer == null ? 'bg-amber-400'
-          : 'bg-rose-400'
-      }`} />
+    <div className={`rounded-2xl ring-1 bg-white overflow-hidden transition-all ${
+      isOpen ? 'shadow-[0_2px_12px_-2px_rgba(0,0,0,0.10)] ring-gray-200' : 'shadow-[0_1px_2px_rgba(0,0,0,0.03)] ring-gray-200 hover:ring-primary/40 active:scale-[0.995]'
+    }`}>
       <button
         type="button"
         onClick={() => setOpen(v => !v)}
         aria-expanded={isOpen}
-        className="w-full flex items-start gap-3 pl-5 pr-4 py-3.5 text-left hover:bg-gray-50/70 transition-colors"
+        className="w-full flex items-start gap-3 px-4 py-3.5 text-left hover:bg-gray-50/70 transition-colors"
       >
-        {/* Verdict tile — same 9x9 rounded-xl language as the rest of study. */}
-        <div className={`inline-flex items-center justify-center w-9 h-9 rounded-xl ring-1 flex-shrink-0 ${
-          row.ungraded ? 'bg-primary/10 text-primary ring-primary/20'
-            : row.correct ? 'bg-emerald-50 text-emerald-600 ring-emerald-200/70'
-            : studentAnswer == null ? 'bg-amber-50 text-amber-600 ring-amber-200/70'
-            : 'bg-rose-50 text-rose-600 ring-rose-200/70'
+        {/* Same 11x11 gradient tile as StudyTodayCard. The thin outlined
+            ring this replaced read as a different species of card next to
+            every other list in study mode, and the left accent stripe went
+            with it — nothing else in the language has one, and with a
+            coloured tile it was saying the verdict twice. */}
+        <div className={`flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] ${
+          row.ungraded ? 'bg-gradient-to-br from-primary to-indigo-600 text-white shadow-[0_4px_10px_-2px_rgba(40,133,232,0.35)]'
+            : row.correct ? 'bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-[0_4px_10px_-2px_rgba(16,185,129,0.35)]'
+            : studentAnswer == null ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_4px_10px_-2px_rgba(251,146,60,0.35)]'
+            : 'bg-gradient-to-br from-rose-400 to-rose-600 text-white shadow-[0_4px_10px_-2px_rgba(244,63,94,0.35)]'
         }`}>
-          {row.ungraded ? <Sparkles className="w-4 h-4" />
-            : row.correct ? <CheckCircle2 className="w-4 h-4" />
-            : studentAnswer == null ? <AlertTriangle className="w-4 h-4" />
-            : <XCircle className="w-4 h-4" />}
+          {row.ungraded ? <Sparkles className="w-5 h-5" strokeWidth={2.25} />
+            : row.correct ? <CheckCircle2 className="w-5 h-5" strokeWidth={2.25} />
+            : studentAnswer == null ? <AlertTriangle className="w-5 h-5" strokeWidth={2.25} />
+            : <XCircle className="w-5 h-5" strokeWidth={2.25} />}
         </div>
-        <div className="flex-1 min-w-0 pt-0.5">
-          <div className="text-xs text-gray-500">
-            {/* No label at all when the session's order is unrecoverable —
-                see canNumberRows. An index-derived number would look right
-                and point at the wrong question. */}
-            {row.range && t('study.test.questionN', {
-              current: row.range.startAt === row.range.endAt
-                ? String(row.range.startAt)
-                : `${row.range.startAt}–${row.range.endAt}`,
-              total: String(deliveredTotal),
-            })}
-            {/* Two unrelated reasons an item may not count, needing
-                different words. The pilot case had NO label, which is why
-                "4 / 35" sat above rows numbered "of 48". */}
+
+        <div className="flex-1 min-w-0">
+          {/* Eyebrow row. The badge was inline after a "·" and wrapped to a
+              second line with the separator dangling at the end of the
+              first; it is a pill on the same row now, and wraps as a unit. */}
+          <div className="flex items-center gap-1.5 flex-wrap mb-1">
+            {row.range && (
+              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none">
+                {t('study.test.questionN', {
+                  current: row.range.startAt === row.range.endAt
+                    ? String(row.range.startAt)
+                    : `${row.range.startAt}–${row.range.endAt}`,
+                  total: String(deliveredTotal),
+                })}
+              </span>
+            )}
             {row.ungraded ? (
-              <span className={row.range ? 'ml-1.5 text-primary font-medium' : 'text-primary font-medium'}>
-                {row.range ? '· ' : ''}{ko ? '루브릭 채점 (점수 미포함)' : 'rubric-graded (not in score)'}
+              <span className="inline-flex items-center rounded-md bg-primary/10 text-primary ring-1 ring-primary/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.04em] leading-none">
+                {ko ? '루브릭' : 'Rubric'}
               </span>
             ) : row.isPilot ? (
-              <span className={row.range ? 'ml-1.5 text-amber-700 font-medium' : 'text-amber-700 font-medium'}>
-                {row.range ? '· ' : ''}{ko ? '실험 문항 (점수 미포함)' : 'experimental · not counted'}
+              <span className="inline-flex items-center rounded-md bg-amber-50 text-amber-700 ring-1 ring-amber-200/70 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.04em] leading-none">
+                {ko ? '실험' : 'Experimental'}
               </span>
             ) : null}
           </div>
-          <div className="text-[13.5px] leading-snug text-gray-900 line-clamp-2 mt-1 font-medium">
+
+          <div className="text-[14px] font-semibold text-gray-900 leading-snug line-clamp-2">
             {normalizeDisplayText(q.prompt)}
           </div>
-          {/* The single most useful line, without making the student open
-              the row: what they put, and what it should have been. Only
-              where a short comparison is honest — open responses and
-              blank-maps are not one-liners. */}
+
+          {/* Answers as STACKED full-width rows. They were two inline chips
+              with an arrow between them, which at 375px truncated both
+              mid-word and pushed the arrow onto a line of its own. One row
+              each, one line each, truncating at the end where it reads as
+              intended rather than mid-sentence. */}
           {!isOpen && !row.ungraded && !FREE_TEXT_TYPES.has(q.type ?? '') && (
-            <div className="flex flex-wrap items-center gap-1.5 mt-2 text-[11.5px]">
+            <div className="mt-2 space-y-1">
               {studentAnswer == null ? (
-                <span className="inline-flex items-center rounded-md bg-amber-50 text-amber-700 ring-1 ring-amber-200/70 px-1.5 py-0.5 font-medium">
-                  {ko ? '무응답' : 'Skipped'}
-                </span>
-              ) : (
-                <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 font-medium max-w-full ${
-                  row.correct
-                    ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/70'
-                    : 'bg-rose-50 text-rose-700 ring-1 ring-rose-200/70'
-                }`}>
-                  <span className="truncate">{normalizeDisplayText(studentAnswer)}</span>
-                </span>
-              )}
+                <AnswerLine tone="amber" text={ko ? '답하지 않음' : 'Left blank'} />
+              ) : !row.correct ? (
+                <AnswerLine tone="rose" text={normalizeDisplayText(studentAnswer)} />
+              ) : null}
               {!row.correct && row.correctAnswerDisplay && (
-                <>
-                  <span className="text-gray-300">→</span>
-                  <span className="inline-flex items-center rounded-md bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/70 px-1.5 py-0.5 font-semibold max-w-full">
-                    <span className="truncate">{normalizeDisplayText(row.correctAnswerDisplay)}</span>
-                  </span>
-                </>
+                <AnswerLine tone="emerald" text={normalizeDisplayText(row.correctAnswerDisplay)} />
               )}
             </div>
           )}
         </div>
-        {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />
-                : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />}
+
+        <ChevronDown className={`w-4 h-4 text-gray-300 flex-shrink-0 mt-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="pl-5 pr-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-sm">
+        <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-sm">
           {q.passage && (
             <div className="rounded-xl ring-1 ring-gray-200/70 bg-gray-50 px-3 py-2 text-[13px] text-gray-800">
               <PassageParagraphs text={q.passage} />
