@@ -59,6 +59,8 @@ export interface RepeatAccuracy {
     lengthRatio: number
     contentMissing: string[]
     functionDiffs: number
+    /** Right word, wrong tense or number. */
+    markerDiffs: number
     transposed: boolean
   }
 }
@@ -70,6 +72,13 @@ const normalise = (s: string): string[] =>
     .filter(Boolean)
 
 const isContent = (w: string) => !FUNCTION_WORDS.has(w)
+
+/** Crude stem: strip the inflections ETS names at band 4 — "markers of
+ *  tense/aspect/number may be missing or incorrect". Good enough for the
+ *  8-12 word everyday sentences this task uses, where "afternoons" vs
+ *  "afternoon" is a number marker and not a different word. */
+const stem = (w: string): string =>
+  w.replace(/(ies)$/, 'y').replace(/(es|s|ed|ing|d)$/, '')
 
 /** Multiset difference: how many of `want` are absent from `have`. */
 function missingFrom(want: string[], have: string[]): string[] {
@@ -102,8 +111,16 @@ export function scoreListenRepeat(expected: string, actual: string): RepeatAccur
 
   const wantContent = want.filter(isContent)
   const missingAll = missingFrom(want, have)
-  const contentMissing = missingAll.filter(isContent)
-  const functionDiffs = missingAll.length - contentMissing.length
+  const missingContentRaw = missingAll.filter(isContent)
+  const functionDiffs = missingAll.length - missingContentRaw.length
+
+  // A content word whose STEM is present was not lost — it came back in
+  // the wrong number or tense, which ETS lists as a band-4 minor change
+  // rather than a missing word. Splitting these out is what stops
+  // "afternoons" -> "afternoon" costing a whole band.
+  const haveStems = new Set(have.map(stem))
+  const contentMissing = missingContentRaw.filter(w => !haveStems.has(stem(w)))
+  const markerDiffs = missingContentRaw.length - contentMissing.length
 
   const contentRecall = wantContent.length === 0
     ? 1
@@ -112,23 +129,26 @@ export function scoreListenRepeat(expected: string, actual: string): RepeatAccur
   const transposed = isSingleTransposition(want, have)
   const exact = want.length === have.length && want.every((w, i) => w === have[i])
 
-  const detail = { exact, contentRecall, lengthRatio, contentMissing, functionDiffs, transposed }
+  const detail = { exact, contentRecall, lengthRatio, contentMissing, functionDiffs, markerDiffs, transposed }
   const band = (score: number, reason: string): RepeatAccuracy => ({ score, reason, detail })
 
   if (have.length === 0) return band(0, 'No response was recorded.')
   if (exact) return band(5, 'Exact repetition.')
 
-  // Band 4: "minor changes ... that do not substantially change the
-  // meaning" — up to two function words, OR one content word, OR a
-  // single transposition. Not several at once.
-  const minorFunction = contentMissing.length === 0 && functionDiffs <= 2
-  const oneContentWord = contentMissing.length === 1 && functionDiffs === 0
-  if (transposed || minorFunction || oneContentWord) {
+  // Band 4: "minor changes in words or grammar ... that do not
+  // substantially change the meaning". The guide's examples are one or
+  // two function words, ONE content word, a tense/number marker, or a
+  // transposition — so up to two such changes, of which at most one may
+  // be an actually missing content word.
+  const minorChanges = functionDiffs + markerDiffs + contentMissing.length
+  if (transposed || (minorChanges <= 2 && contentMissing.length <= 1)) {
     return band(4, transposed
       ? 'Two words were swapped, but the meaning is intact.'
       : contentMissing.length === 1
         ? `Close — "${contentMissing[0]}" was missed.`
-        : 'Only small connecting words differed.')
+        : markerDiffs > 0
+          ? 'Only word endings and small connecting words differed.'
+          : 'Only small connecting words differed.')
   }
 
   // Band 1 before 3/2: the descriptor is about how LITTLE was produced,

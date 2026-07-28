@@ -106,3 +106,86 @@ export function bandFromProportion(proportion: number): number {
   const scaled = Math.max(0, Math.min(30, Math.round(proportion * 30)))
   return Math.max(1, Math.min(6, Math.round((scaled / 5) * 2) / 2))
 }
+
+/** Minimal shape needed to score one delivered item. Deliberately not
+ *  ResultRow — this module stays independent of the result-screen model
+ *  so it can be called from the server too. */
+export interface ScorableItem {
+  type: string
+  /** The sentence a Listen-and-Repeat item asked for. */
+  expectedText?: string | null
+  studentAnswer?: string | null
+  /** Verdict for key-matched types (Build a Sentence). */
+  correct?: boolean
+  /** 0-5 from the rubric grader, for open responses. Null when grading
+   *  has not finished or failed — the item then drops out rather than
+   *  scoring zero. */
+  rubricBand?: number | null
+}
+
+const PART_OF: Record<string, string> = {
+  speaking_repeat: 'listen_repeat',
+  speaking_interview: 'take_interview',
+  arrange_words: 'build_a_sentence',
+  writing_email: 'write_email',
+  writing_discussion: 'academic_discussion',
+}
+
+/** Points available per item, by part. Repeats and open responses are
+ *  0-5; Build a Sentence is 1 point, correct or not. */
+const MAX_OF: Record<string, number> = {
+  listen_repeat: 5,
+  take_interview: 5,
+  build_a_sentence: 1,
+  write_email: 5,
+  academic_discussion: 5,
+}
+
+/**
+ * Score a Speaking or Writing section from its delivered items.
+ *
+ * Listen-and-Repeat is scored here, deterministically, from the sentence
+ * the item asked for — no model call. Open responses use the rubric band
+ * the grader produced; an item still awaiting a grade contributes
+ * nothing to EITHER side of the fraction, so a half-graded test reads as
+ * a shorter test rather than a worse one.
+ */
+export function scoreToeflSection(
+  items: ScorableItem[],
+  weights: Record<string, number>,
+  scoreRepeat: (expected: string, actual: string) => { score: number },
+): SectionScore {
+  const acc = new Map<string, { earned: number; max: number }>()
+  const bump = (part: string, earned: number, max: number) => {
+    const cur = acc.get(part) ?? { earned: 0, max: 0 }
+    acc.set(part, { earned: cur.earned + earned, max: cur.max + max })
+  }
+
+  for (const it of items) {
+    const part = PART_OF[it.type]
+    if (!part) continue
+    const max = MAX_OF[part] ?? 1
+
+    if (part === 'listen_repeat') {
+      const expected = (it.expectedText ?? '').trim()
+      // Without the target sentence there is nothing to compare against,
+      // so the item is not scorable — drop it rather than score it 0.
+      if (!expected) continue
+      bump(part, scoreRepeat(expected, it.studentAnswer ?? '').score, max)
+    } else if (part === 'build_a_sentence') {
+      bump(part, it.correct ? 1 : 0, max)
+    } else {
+      if (it.rubricBand == null) continue
+      bump(part, Math.max(0, Math.min(max, it.rubricBand)), max)
+    }
+  }
+
+  return combineParts(
+    Object.keys(weights).map(key => ({
+      key,
+      earned: acc.get(key)?.earned ?? 0,
+      max: acc.get(key)?.max ?? 0,
+      weight: weights[key]!,
+    })),
+  )
+}

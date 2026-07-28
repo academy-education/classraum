@@ -1,7 +1,8 @@
 import {
-  combineParts, bandFromProportion,
-  SPEAKING_WEIGHTS, WRITING_WEIGHTS, type ScorePart,
+  combineParts, bandFromProportion, scoreToeflSection,
+  SPEAKING_WEIGHTS, WRITING_WEIGHTS, type ScorePart, type ScorableItem,
 } from '@/lib/study/toefl-section-score'
+import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
 
 const speaking = (repeatEarned: number, interviewEarned: number): ScorePart[] => [
   { key: 'listen_repeat', earned: repeatEarned, max: 35, weight: SPEAKING_WEIGHTS.listen_repeat },
@@ -94,5 +95,74 @@ describe('bandFromProportion', () => {
       expect(b).toBeGreaterThanOrEqual(prev)
       prev = b
     }
+  })
+})
+
+
+describe('scoreToeflSection', () => {
+  const repeat = (expected: string, said: string): ScorableItem =>
+    ({ type: 'speaking_repeat', expectedText: expected, studentAnswer: said })
+  const interview = (band: number | null): ScorableItem =>
+    ({ type: 'speaking_interview', rubricBand: band })
+
+  const SENT = 'She works at the library on Friday afternoons'
+
+  it('gives a near-miss repeat partial credit instead of zero', () => {
+    // A real transcript from a real session. Under the old model this
+    // failed an exact match and scored 0 out of 1. One function word and
+    // a plural marker is an ETS 4.
+    const s = scoreToeflSection(
+      [repeat(SENT, 'She works at the library Friday afternoon')],
+      SPEAKING_WEIGHTS, scoreListenRepeat,
+    )
+    expect(s.earned).toBe(4)
+    expect(s.max).toBe(5)
+  })
+
+  it('drops an ungraded open response from both sides of the fraction', () => {
+    // Half-graded must read as a SHORTER test, not a worse one.
+    const graded = scoreToeflSection(
+      [repeat(SENT, SENT), interview(4), interview(null)],
+      SPEAKING_WEIGHTS, scoreListenRepeat,
+    )
+    expect(graded.max).toBe(10)   // 5 repeat + 5 for the one graded item
+    expect(graded.parts.find(p => p.key === 'take_interview')!.max).toBe(5)
+  })
+
+  it('does not score a repeat with no target sentence', () => {
+    const s = scoreToeflSection(
+      [repeat('', 'anything at all')], SPEAKING_WEIGHTS, scoreListenRepeat)
+    expect(s.max).toBe(0)
+  })
+
+  it('weights a whole speaking section the way we specified', () => {
+    // Perfect repeats, failed interviews.
+    const s = scoreToeflSection([
+      ...Array.from({ length: 7 }, () => repeat(SENT, SENT)),
+      ...Array.from({ length: 4 }, () => interview(0)),
+    ], SPEAKING_WEIGHTS, scoreListenRepeat)
+    expect(s.earned).toBe(35)
+    expect(s.max).toBe(55)
+    // 40% weight on the perfect half, not 35/55 = 64%.
+    expect(s.proportion).toBeCloseTo(0.40)
+  })
+
+  it('scores build-a-sentence one point each', () => {
+    const s = scoreToeflSection([
+      { type: 'arrange_words', correct: true },
+      { type: 'arrange_words', correct: false },
+      { type: 'writing_discussion', rubricBand: 5 },
+    ], WRITING_WEIGHTS, scoreListenRepeat)
+    const bas = s.parts.find(p => p.key === 'build_a_sentence')!
+    expect(bas.earned).toBe(1)
+    expect(bas.max).toBe(2)
+  })
+
+  it('ignores item types that belong to another section', () => {
+    const s = scoreToeflSection(
+      [{ type: 'multiple_choice', correct: true }, repeat(SENT, SENT)],
+      SPEAKING_WEIGHTS, scoreListenRepeat,
+    )
+    expect(s.max).toBe(5)
   })
 })

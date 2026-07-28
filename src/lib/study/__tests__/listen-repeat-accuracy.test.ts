@@ -38,6 +38,26 @@ describe('scoreListenRepeat', () => {
     expect(scoreListenRepeat(s, 'He put the red small box on the table').score).toBe(4)
   })
 
+  it('treats a wrong tense or plural as a marker change, not a lost word', () => {
+    // ETS band 4 lists "markers of tense/aspect/number may be missing or
+    // incorrect" as a minor change. A real transcript caught this: the
+    // code was counting "afternoons" -> "afternoon" as a missing content
+    // word and charging a whole band for it.
+    const s = 'She works at the library on Friday afternoons'
+    const r = scoreListenRepeat(s, 'She works at the library Friday afternoon')
+    expect(r.score).toBe(4)
+    expect(r.detail.markerDiffs).toBe(1)
+    expect(r.detail.contentMissing).toEqual([])
+  })
+
+  it('still charges for a genuinely different word', () => {
+    // "class" is not an inflection of "lecture" — that is a real
+    // substitution, and must not be excused as a marker change.
+    const r = scoreListenRepeat(SENTENCE, 'She missed the class because her train was late this morning')
+    expect(r.detail.markerDiffs).toBe(0)
+    expect(r.detail.contentMissing).toEqual(['lecture'])
+  })
+
   it('gives a mostly-there but meaning-changed repetition a 3', () => {
     // Band 3 needs a MAJORITY of content words still present while the
     // meaning drifts. Two of five changed (train→bus, morning→evening)
