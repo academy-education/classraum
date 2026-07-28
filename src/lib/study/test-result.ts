@@ -222,6 +222,19 @@ export function tallyRows(rows: ResultRow[]): ResultTally {
   return tally
 }
 
+/**
+ * Where a score sits on its own scale, 0..1, for a meter.
+ *
+ * The floor matters and is easy to drop. TOEFL bands run 1..6, not 0..6:
+ * dividing by the max alone puts the WORST possible band at 17% full,
+ * which reads as partial credit for a score that has none. SAT sections
+ * run 200..800 and have the same trap, four times larger.
+ */
+export function scaleFraction(value: number, min: number, max: number): number {
+  if (!(max > min)) return 0
+  return Math.max(0, Math.min(1, (value - min) / (max - min)))
+}
+
 export type TestFamily = 'toefl' | 'sat' | 'other'
 export type SatSection = 'math' | 'reading_writing'
 

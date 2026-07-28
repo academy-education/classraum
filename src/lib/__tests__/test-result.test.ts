@@ -16,6 +16,7 @@ import {
   canNumberRows,
   buildResultModel,
   tallyRows,
+  scaleFraction,
 } from '@/lib/study/test-result'
 
 const card = (over = {}) => ({
@@ -201,6 +202,34 @@ describe('tallyRows', () => {
       .toEqual({ counted: 0, pilot: 0, rubric: 1, skipped: 0 })
     expect(tallyRows(rows([{ isPilot: true, answered: false }])))
       .toEqual({ counted: 0, pilot: 0, rubric: 0, skipped: 1 })
+  })
+})
+
+describe('scaleFraction', () => {
+  // TOEFL bands run 1..6 and SAT sections 200..800. Dividing by the max
+  // alone would render the WORST possible score as a partly-filled meter,
+  // which reads as credit the student did not earn.
+  it('puts the floor of a scale at empty, not at a fraction of the max', () => {
+    expect(scaleFraction(1, 1, 6)).toBe(0)      // naive 1/6 = 0.167
+    expect(scaleFraction(200, 200, 800)).toBe(0) // naive 200/800 = 0.25
+    expect(scaleFraction(0, 0, 30)).toBe(0)
+  })
+
+  it('puts the ceiling at full and the midpoint at half', () => {
+    expect(scaleFraction(6, 1, 6)).toBe(1)
+    expect(scaleFraction(3.5, 1, 6)).toBeCloseTo(0.5)
+    expect(scaleFraction(500, 200, 800)).toBeCloseTo(0.5)
+    expect(scaleFraction(15, 0, 30)).toBeCloseTo(0.5)
+  })
+
+  it('clamps out-of-range values instead of overflowing the meter', () => {
+    expect(scaleFraction(9, 1, 6)).toBe(1)
+    expect(scaleFraction(-4, 1, 6)).toBe(0)
+  })
+
+  it('returns 0 for a degenerate scale rather than dividing by zero', () => {
+    expect(scaleFraction(5, 3, 3)).toBe(0)
+    expect(Number.isNaN(scaleFraction(5, 3, 3))).toBe(false)
   })
 })
 

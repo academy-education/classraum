@@ -11,7 +11,7 @@ import { QuestionGraphicView } from './QuestionGraphicView'
 import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
-import { tallyRows, type ResultRow, type TestResultModel } from '@/lib/study/test-result'
+import { tallyRows, scaleFraction, type ResultRow, type TestResultModel } from '@/lib/study/test-result'
 
 /** Types whose answer is prose, not a pick from `choices`. Kept as an
  *  explicit list because `arrange_words` DOES populate `choices` (its word
@@ -104,37 +104,75 @@ export function TestResultView({
             }`)}
           </p>
 
-          {/* Scale pills — TOEFL band + section, or the SAT estimate.
-              Gated on the model's family, never on the presence of an
-              adaptive route: keying off the route alone is what put a
-              College Board 200-800 score on a TOEFL result. */}
+          {/* Scale readings.
+            *
+            * Each is a row rather than a pill: the number alone ("2.0")
+            * means nothing without the scale it sits on, and a student
+            * reading a first result does not know whether 2.0 of 6 is
+            * near the floor or the middle. So each row carries its range,
+            * a meter, and one line saying what the number is.
+            *
+            * No proficiency labels ("Intermediate") — ETS publishes those
+            * and we would be inventing the mapping. Everything here is
+            * derivable from the score and its scale. */}
           {model.family === 'toefl' && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              <HeroPill
-                label={ko ? '밴드 (1-6)' : 'Band (1–6)'}
+            <div className="mt-5 space-y-2.5">
+              <ScaleRow
+                label={ko ? '밴드 점수' : 'Band score'}
                 value={percentToToeflBand(model.scorePercent).toFixed(1)}
+                min={1} max={6}
+                fraction={scaleFraction(percentToToeflBand(model.scorePercent), 1, 6)}
+                note={ko ? '이 섹션의 밴드 점수예요. 네 개 섹션의 평균이 총점이 됩니다.'
+                         : 'This section only. Your overall score averages all four.'}
               />
-              <HeroPill
-                label={ko ? '섹션 (0-30)' : 'Section (0–30)'}
+              <ScaleRow
+                label={ko ? '섹션 점수' : 'Section score'}
                 value={String(Math.round((model.scorePercent / 100) * 30))}
+                min={0} max={30}
+                fraction={scaleFraction(Math.round((model.scorePercent / 100) * 30), 0, 30)}
+                note={ko ? 'ETS가 2년 전환 기간 동안 함께 제공하는 0-30 환산 점수예요.'
+                         : 'The 0–30 score ETS still issues through the 2-year transition.'}
               />
             </div>
           )}
           {model.family === 'sat' && sat && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              <HeroPill label={ko ? '예상 점수' : 'Est. score'} value={String(sat.score)} />
-              <span className="inline-flex items-center rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1.5 text-[11px] opacity-90">
-                {sat.capped
-                  ? (ko ? '하위 모듈 · 상한 적용' : 'easier module · capped')
-                  : (ko ? '상위 모듈' : 'harder module')}
-              </span>
+            <div className="mt-5 space-y-2.5">
+              <ScaleRow
+                label={ko ? '예상 섹션 점수' : 'Est. section score'}
+                value={String(sat.score)}
+                min={200} max={800}
+                fraction={scaleFraction(sat.score, 200, 800)}
+                note={sat.capped
+                  ? (ko ? '하위 모듈을 받아 상한이 적용된 추정치예요. 실제 시험과 동일합니다.'
+                        : 'Capped — you were routed to the easier Module 2, exactly as on the real test.')
+                  : (ko ? '상위 모듈 기준 추정치예요. 모의고사를 더 풀수록 정확해집니다.'
+                        : 'Based on the harder Module 2. More full tests sharpen it.')}
+              />
             </div>
           )}
 
-          <div className="mt-5 grid grid-cols-3 gap-3">
-            <HeroStat icon={CheckCircle2} value={String(model.correctCount)} label={ko ? '정답' : 'Correct'} />
-            <HeroStat icon={XCircle} value={String(Math.max(0, model.totalScored - model.correctCount))} label={ko ? '오답' : 'Missed'} />
-            <HeroStat icon={ListChecks} value={String(model.deliveredTotal)} label={ko ? '출제' : 'Delivered'} />
+          {/* Counts. Every label names its unit, because two of these
+              three count different things and every previous version of
+              this screen let a student read them as one set. */}
+          <div className="mt-5 pt-4 border-t border-white/20 grid grid-cols-3 gap-2">
+            <HeroStat
+              icon={CheckCircle2}
+              value={String(model.correctCount)}
+              label={ko ? '정답' : 'Correct'}
+              sub={ko ? `채점 ${model.totalScored}문항 중` : `of ${model.totalScored} scored`}
+            />
+            <HeroStat
+              icon={XCircle}
+              value={String(Math.max(0, model.totalScored - model.correctCount))}
+              label={ko ? '오답' : 'Missed'}
+              sub={ko ? `채점 ${model.totalScored}문항 중` : `of ${model.totalScored} scored`}
+            />
+            <HeroStat
+              icon={ListChecks}
+              value={String(model.deliveredTotal)}
+              label={ko ? '출제' : 'Delivered'}
+              sub={ko ? '실제로 푼 문항' : 'questions you saw'}
+            />
           </div>
         </div>
       </div>
@@ -265,26 +303,60 @@ function CountUp({ value, durationMs = 900 }: { value: number; durationMs?: numb
   return <>{shown}</>
 }
 
-/** A scale reading on the hero — band, section, or SAT estimate. */
-function HeroPill({ label, value }: { label: string; value: string }) {
+/**
+ * One scale reading — band, section, or SAT estimate — shown against the
+ * scale it belongs to.
+ *
+ * The meter's fill comes from scaleFraction, which subtracts the floor.
+ * A TOEFL band of 1.0 is the worst possible result and must read as an
+ * empty bar; value/max would have shown it 17% full.
+ */
+function ScaleRow({ label, value, min, max, fraction, note }: {
+  label: string; value: string; min: number; max: number
+  fraction: number; note: string
+}) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full bg-white/15 ring-1 ring-white/25 px-3 py-1.5 backdrop-blur-sm">
-      <span className="text-[10.5px] font-semibold uppercase tracking-[0.10em] opacity-90">{label}</span>
-      <span className="text-[15px] font-bold tabular-nums">{value}</span>
-    </span>
+    <div className="rounded-2xl bg-white/12 ring-1 ring-white/20 backdrop-blur-sm px-3.5 py-3">
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="text-[10.5px] font-semibold uppercase tracking-[0.10em] opacity-90">{label}</span>
+        <span className="tabular-nums">
+          <span className="text-[22px] font-bold leading-none">{value}</span>
+          <span className="text-[12px] opacity-70 ml-1">/ {max}</span>
+        </span>
+      </div>
+      <div className="mt-2 h-1.5 rounded-full bg-white/20 overflow-hidden">
+        <div
+          className="h-full rounded-full bg-white/85 transition-[width] duration-700 ease-out"
+          style={{ width: `${Math.round(fraction * 100)}%` }}
+        />
+      </div>
+      {/* Range and meaning on ONE flowing line. They were a left-aligned
+          floor marker and a right-aligned note, which at 375px wrapped
+          around each other into an L. The floor still has to be stated —
+          TOEFL bands start at 1, not 0, so an empty meter is a 1.0. */}
+      <p className="text-[10.5px] opacity-75 leading-snug mt-2">
+        <span className="font-semibold opacity-90 tabular-nums">{min}–{max} scale.</span>{' '}
+        {note}
+      </p>
+    </div>
   )
 }
 
-function HeroStat({ icon: Icon, value, label }: {
+function HeroStat({ icon: Icon, value, label, sub }: {
   icon: typeof CheckCircle2; value: string; label: string
+  /** The unit. Not decoration — CORRECT and MISSED are scored questions
+   *  while DELIVERED is every question shown, and the three sit side by
+   *  side. */
+  sub?: string
 }) {
   return (
     <div className="text-center">
       <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur ring-1 ring-white/25 mb-1.5">
         <Icon className="w-4 h-4" />
       </div>
-      <div className="text-[20px] font-bold tracking-tight leading-none tabular-nums">{value}</div>
-      <div className="text-[10.5px] font-medium uppercase tracking-[0.10em] opacity-80 mt-0.5">{label}</div>
+      <div className="text-[22px] font-bold tracking-tight leading-none tabular-nums">{value}</div>
+      <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] opacity-85 mt-1">{label}</div>
+      {sub && <div className="text-[10px] opacity-65 mt-0.5 leading-tight">{sub}</div>}
     </div>
   )
 }
