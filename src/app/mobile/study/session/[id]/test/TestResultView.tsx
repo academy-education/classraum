@@ -209,17 +209,70 @@ export function TestResultView({
         </div>
       )}
 
-      {/* Accounting — where every CARD went. Named in cards precisely
-          because the score above is in questions and the two differ. */}
-      <div className="rounded-2xl ring-1 ring-gray-200/70 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-        <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500 mb-3">
-          {ko ? `카드 ${model.rows.length}개 구성` : `Where your ${model.rows.length} cards went`}
+      {/* How the answers were counted.
+        *
+        * This was headed "Where your 30 cards went", which is our word,
+        * not the student's — "card" is the internal name for one
+        * study_attempts row and appears nowhere a student can learn it.
+        * The four chips also stood bare, so a reader had to infer that
+        * "Pilot 13" meant thirteen questions they answered for nothing.
+        *
+        * Same numbers, said in the student's language, with the reason
+        * each bucket exists stated on its own row. Header matches the
+        * StudyTodayCard shape used across study mode. */}
+      <div className="rounded-2xl ring-1 ring-gray-200/70 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-100">
+          <div className="flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] bg-gradient-to-br from-slate-500 to-slate-700 text-white">
+            <ListChecks className="w-5 h-5" strokeWidth={2.25} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
+              {ko ? '채점 방식' : 'How it was counted'}
+            </div>
+            <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+              {/* "44 items · 44 questions" is noise when nothing on the
+                  test is multi-part — SAT Math has no Complete-the-Words,
+                  so the two counts are equal and saying both invites the
+                  reader to look for a distinction that isn't there. */}
+              {model.rows.length === model.deliveredTotal
+                ? (ko ? `${model.deliveredTotal}문항` : `${model.deliveredTotal} questions`)
+                : (ko ? `${model.rows.length}개 항목 · ${model.deliveredTotal}문항`
+                      : `${model.rows.length} items · ${model.deliveredTotal} questions`)}
+            </div>
+            <div className="text-[12px] text-gray-500 mt-0.5">
+              {ko ? '실제 시험처럼 모든 문항이 점수에 반영되지는 않아요.'
+                  : 'As on the real exam, not everything you answer counts.'}
+            </div>
+          </div>
         </div>
-        <div className="grid grid-cols-4 gap-2">
-          <Tally tint="emerald" value={tally.counted} label={ko ? '점수 반영' : 'Counted'} />
-          <Tally tint="orange" value={tally.pilot} label={ko ? '실험' : 'Pilot'} />
-          <Tally tint="primary" value={tally.rubric} label={ko ? '루브릭' : 'Rubric'} />
-          <Tally tint="amber" value={tally.skipped} label={ko ? '미응답' : 'Skipped'} />
+
+        {/* A stacked bar makes the split visible before any number is
+            read, and shows at a glance that the four parts make a whole. */}
+        <div className="px-4 pt-3.5">
+          <div className="flex h-2 rounded-full overflow-hidden bg-gray-100 gap-px">
+            {tally.counted > 0 && <div className="bg-emerald-500" style={{ flexGrow: tally.counted }} />}
+            {tally.pilot > 0 && <div className="bg-orange-400" style={{ flexGrow: tally.pilot }} />}
+            {tally.rubric > 0 && <div className="bg-primary" style={{ flexGrow: tally.rubric }} />}
+            {tally.skipped > 0 && <div className="bg-amber-300" style={{ flexGrow: tally.skipped }} />}
+          </div>
+        </div>
+
+        <div className="px-4 py-2 divide-y divide-gray-100">
+          <TallyRow dot="bg-emerald-500" count={tally.counted}
+            label={ko ? '점수에 반영됨' : 'Counted toward your score'}
+            note={ko ? '채점되어 위 점수에 들어갔어요.' : 'Graded and included in the score above.'} />
+          <TallyRow dot="bg-orange-400" count={tally.pilot}
+            label={ko ? '실험 문항' : 'Experimental'}
+            note={ko ? '실제 시험에도 있는 미채점 문항이에요. 풀었지만 점수에는 반영되지 않아요.'
+                     : 'Trial questions the real exam also includes. You answered them; they do not count.'} />
+          <TallyRow dot="bg-primary" count={tally.rubric}
+            label={ko ? '루브릭 채점' : 'Graded by rubric'}
+            note={ko ? '말하기·쓰기 답변이라 정답 키가 아닌 채점 기준으로 따로 평가돼요.'
+                     : 'Speaking and writing answers, scored against criteria instead of an answer key.'} />
+          <TallyRow dot="bg-amber-300" count={tally.skipped}
+            label={ko ? '미응답' : 'Skipped'}
+            note={ko ? '답을 남기지 않은 문항이에요. 오답과 동일하게 처리돼요.'
+                     : 'Left blank. Counts the same as a wrong answer.'} />
         </div>
       </div>
 
@@ -361,21 +414,25 @@ function HeroStat({ icon: Icon, value, label, sub }: {
   )
 }
 
-function Tally({ tint, value, label }: {
-  tint: 'emerald' | 'amber' | 'orange' | 'primary'; value: number; label: string
+/**
+ * One bucket. Rendered even at zero — dimmed, not hidden: the four are a
+ * partition, and dropping the empty ones would leave a list that no
+ * longer visibly adds up to the item count in the header.
+ */
+function TallyRow({ dot, count, label, note }: {
+  dot: string; count: number; label: string; note: string
 }) {
-  const tints = {
-    emerald: 'bg-emerald-50 text-emerald-700 ring-emerald-200/70',
-    amber: 'bg-amber-50 text-amber-700 ring-amber-200/70',
-    orange: 'bg-orange-50 text-orange-700 ring-orange-200/70',
-    primary: 'bg-primary/10 text-primary ring-primary/20',
-  }[tint]
+  const empty = count === 0
   return (
-    <div className="text-center">
-      <div className={`inline-flex items-center justify-center w-9 h-9 rounded-xl ring-1 ${tints} text-[15px] font-bold tabular-nums`}>
-        {value}
+    <div className={`flex items-start gap-3 py-2.5 ${empty ? 'opacity-40' : ''}`}>
+      <span className={`flex-shrink-0 w-2 h-2 rounded-full mt-1.5 ${empty ? 'bg-gray-300' : dot}`} />
+      <div className="flex-1 min-w-0">
+        <div className="text-[13px] font-semibold text-gray-900 leading-tight">{label}</div>
+        <div className="text-[11.5px] text-gray-500 leading-snug mt-0.5">{note}</div>
       </div>
-      <div className="text-[10px] font-medium uppercase tracking-[0.08em] text-gray-500 mt-1">{label}</div>
+      <span className="text-[15px] font-bold text-gray-900 tabular-nums flex-shrink-0 tracking-tight">
+        {count}
+      </span>
     </div>
   )
 }
