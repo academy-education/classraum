@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
-  CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles,
+  CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles, ListChecks,
 } from '@/app/mobile/study/_shared/icons'
+import { PathMascot, type MascotState } from '@/app/mobile/study/_shared/PathMascot'
 import { useTranslation } from '@/hooks/useTranslation'
 import { normalizeDisplayText, PassageParagraphs, percentToToeflBand } from './helpers'
 import { QuestionGraphicView } from './QuestionGraphicView'
@@ -58,40 +59,101 @@ export function TestResultView({
   // that said 30.
   const tally = tallyRows(model.rows)
 
+  // Hero colour and Raumi's mood both follow accuracy. A hard session must
+  // never read as a celebration — the summary screen established this rule
+  // and it moves here with the hero.
+  const hero = model.scorePercent >= 80
+    ? { gradient: 'from-emerald-500 via-emerald-600 to-teal-700' }
+    : model.scorePercent >= 60
+      ? { gradient: 'from-amber-500 via-orange-500 to-orange-700' }
+      : { gradient: 'from-rose-500 via-rose-600 to-red-700' }
+  const mascotState: MascotState =
+    model.scorePercent >= 80 ? 'celebrate' : model.scorePercent >= 60 ? 'idle' : 'sad'
+
   return (
     <div className="px-5 py-6 space-y-5">
       {header}
 
-      {/* Score */}
-      <div className="rounded-2xl ring-1 ring-gray-200/70 bg-white p-6 text-center shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">
-          {t('study.test.resultEyebrow')}
-        </p>
-        <h2 className="text-3xl font-semibold text-gray-900 tabular-nums">
-          {model.correctCount} / {model.totalScored}
-          <span className="text-base text-gray-500 ml-2">({model.scorePercent}%)</span>
-        </h2>
-        <p className="text-sm text-gray-500 mt-1">
-          {t(`study.test.resultMessage.${
-            model.scorePercent >= 85 ? 'excellent' :
-            model.scorePercent >= 65 ? 'solid' :
-            model.scorePercent >= 40 ? 'keepGoing' : 'startOver'
-          }`)}
-        </p>
+      {/* Hero — the score as a moment, not a table cell. Raumi reacts to
+          how it went, and the gradient follows accuracy so a rough session
+          never gets a cheerful green. This replaced a plain white score
+          card: the same numbers, but the screen you actually want to see
+          after finishing a two-hour test. */}
+      <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${hero.gradient} p-6 text-white shadow-[0_2px_8px_rgba(0,0,0,0.10),0_24px_48px_-16px_rgba(0,0,0,0.32)]`}>
+        <div aria-hidden className="pointer-events-none absolute -top-12 -right-10 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+        <div className="absolute top-4 right-4 opacity-95 pointer-events-none">
+          <PathMascot size={72} state={mascotState} />
+        </div>
+        <div className="relative">
+          <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] opacity-90 mb-2">
+            <Sparkles className="w-3.5 h-3.5" />
+            {t('study.test.resultEyebrow')}
+          </div>
+          <h2 className="text-[40px] font-bold leading-none tracking-tight tabular-nums">
+            <CountUp value={model.scorePercent} /><span className="text-[24px] opacity-80">%</span>
+          </h2>
+          <p className="text-[14px] mt-1.5 opacity-90 tabular-nums">
+            {model.correctCount} / {model.totalScored} {ko ? '정답' : 'correct'}
+          </p>
+          <p className="text-[12.5px] mt-1 opacity-75 leading-snug max-w-[85%]">
+            {t(`study.test.resultMessage.${
+              model.scorePercent >= 85 ? 'excellent' :
+              model.scorePercent >= 65 ? 'solid' :
+              model.scorePercent >= 40 ? 'keepGoing' : 'startOver'
+            }`)}
+          </p>
 
-        {/* Reconcile the denominator with the list below.
-          *
-          * The headline counts SCORED questions (35); the rows are numbered
-          * out of DELIVERED (48). A student answered 48 and was scored on
-          * 35 with nothing saying where the other 13 went.
-          *
-          * The reason has to match the actual session. The first version
-          * always said "experimental", and a TOEFL Speaking result read
-          * "the other 4 are experimental" when those 4 were rubric-graded
-          * responses and the test had no pilots at all — a confident,
-          * checkable, wrong explanation. Word it from the tally. */}
-        {model.deliveredTotal > model.totalScored && (
-          <p className="text-[12px] text-amber-700 mt-2 leading-relaxed">
+          {/* Scale pills — TOEFL band + section, or the SAT estimate.
+              Gated on the model's family, never on the presence of an
+              adaptive route: keying off the route alone is what put a
+              College Board 200-800 score on a TOEFL result. */}
+          {model.family === 'toefl' && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              <HeroPill
+                label={ko ? '밴드 (1-6)' : 'Band (1–6)'}
+                value={percentToToeflBand(model.scorePercent).toFixed(1)}
+              />
+              <HeroPill
+                label={ko ? '섹션 (0-30)' : 'Section (0–30)'}
+                value={String(Math.round((model.scorePercent / 100) * 30))}
+              />
+            </div>
+          )}
+          {model.family === 'sat' && sat && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              <HeroPill label={ko ? '예상 점수' : 'Est. score'} value={String(sat.score)} />
+              <span className="inline-flex items-center rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1.5 text-[11px] opacity-90">
+                {sat.capped
+                  ? (ko ? '하위 모듈 · 상한 적용' : 'easier module · capped')
+                  : (ko ? '상위 모듈' : 'harder module')}
+              </span>
+            </div>
+          )}
+
+          <div className="mt-5 grid grid-cols-3 gap-3">
+            <HeroStat icon={CheckCircle2} value={String(model.correctCount)} label={ko ? '정답' : 'Correct'} />
+            <HeroStat icon={XCircle} value={String(Math.max(0, model.totalScored - model.correctCount))} label={ko ? '오답' : 'Missed'} />
+            <HeroStat icon={ListChecks} value={String(model.deliveredTotal)} label={ko ? '출제' : 'Delivered'} />
+          </div>
+        </div>
+      </div>
+
+      {/* Reconcile the denominator with the list below.
+        *
+        * The hero counts SCORED questions (35); the rows are numbered out
+        * of DELIVERED (48). A student answered 48 and was scored on 35
+        * with nothing saying where the other 13 went.
+        *
+        * The reason has to match the actual session. The first version
+        * always said "experimental", and a TOEFL Speaking result read
+        * "the other 4 are experimental" when those 4 were rubric-graded
+        * responses and the test had no pilots at all — a confident,
+        * checkable, wrong explanation. Word it from the tally. */}
+      {model.deliveredTotal > model.totalScored && (
+        <div className="rounded-2xl ring-1 ring-amber-200/70 bg-amber-50/60 px-4 py-3 flex items-start gap-2.5">
+          <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+          <p className="text-[12px] text-amber-800 leading-relaxed">
             {ko
               ? `${model.deliveredTotal}문항 중 ${model.totalScored}문항만 점수에 반영됩니다. 나머지 ${model.deliveredTotal - model.totalScored}문항은 ${
                   tally.pilot > 0 && tally.rubric > 0 ? '실험 문항과 루브릭 채점 문항으로'
@@ -106,56 +168,8 @@ export function TestResultView({
                       : 'are experimental — shown and reviewed, but not counted'
                 }, exactly as on the real exam.`}
           </p>
-        )}
-
-        {/* TOEFL Jan 2026: the 1-6 band plus the 0-30 section score ETS
-            still publishes through the 2-year transition. Practice covers
-            ONE section, so this is that section — never the 0-120. */}
-        {model.family === 'toefl' && (() => {
-          const band = percentToToeflBand(model.scorePercent)
-          const score030 = Math.round((model.scorePercent / 100) * 30)
-          return (
-            <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3 text-left">
-              <div>
-                <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
-                  {ko ? '밴드 점수 (1-6)' : 'Band score (1–6)'}
-                </div>
-                <div className="text-2xl font-semibold text-gray-900 tabular-nums mt-0.5">{band.toFixed(1)}</div>
-              </div>
-              <div>
-                <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
-                  {ko ? '섹션 점수 (0-30)' : 'Section (0–30)'}
-                </div>
-                <div className="text-2xl font-semibold text-gray-900 tabular-nums mt-0.5">{score030}</div>
-              </div>
-              <p className="col-span-2 text-[11px] text-gray-400 mt-1 leading-relaxed">
-                {ko
-                  ? 'ETS는 1-6 밴드 점수와 0-120 환산 점수를 2년 전환 기간 동안 모두 제공합니다.'
-                  : 'ETS issues both the 1–6 band and the 0–120 score during the 2-year transition.'}
-              </p>
-            </div>
-          )
-        })()}
-
-        {/* SAT: gated on the model's family, not on the presence of a
-            route. Keying off the route alone is what put a College Board
-            200-800 score on a TOEFL result. */}
-        {model.family === 'sat' && sat && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-500">
-              {ko ? '예상 SAT 점수 (200-800)' : 'Est. SAT score (200–800)'}
-            </div>
-            <div className="text-4xl font-bold text-primary tabular-nums mt-1 leading-none">{sat.score}</div>
-            <p className="text-[11px] text-gray-400 mt-1.5 leading-relaxed">
-              {sat.capped
-                ? (ko ? '실제 시험처럼 모듈 2 난이도에 따라 상한이 적용된 추정치예요.'
-                      : 'An estimate — like the real test, your Module 2 band caps the range.')
-                : (ko ? '이 섹션 추정치이며, 모의고사를 더 풀수록 정확해져요.'
-                      : 'A section estimate — more full tests sharpen it.')}
-            </p>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Accounting — where every CARD went. Named in cards precisely
           because the score above is in questions and the two differ. */}
@@ -210,6 +224,53 @@ export function TestResultView({
   )
 }
 
+/** Eases 0->value on mount so the score lands as a moment rather than
+ *  popping in. Honours prefers-reduced-motion by jumping to the number. */
+function CountUp({ value, durationMs = 900 }: { value: number; durationMs?: number }) {
+  const [shown, setShown] = useState(value)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setShown(value)
+      return
+    }
+    let raf = 0
+    const start = performance.now()
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / durationMs)
+      setShown(Math.round(value * (1 - Math.pow(1 - p, 3))))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    setShown(0)
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [value, durationMs])
+  return <>{shown}</>
+}
+
+/** A scale reading on the hero — band, section, or SAT estimate. */
+function HeroPill({ label, value }: { label: string; value: string }) {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full bg-white/15 ring-1 ring-white/25 px-3 py-1.5 backdrop-blur-sm">
+      <span className="text-[10.5px] font-semibold uppercase tracking-[0.10em] opacity-90">{label}</span>
+      <span className="text-[15px] font-bold tabular-nums">{value}</span>
+    </span>
+  )
+}
+
+function HeroStat({ icon: Icon, value, label }: {
+  icon: typeof CheckCircle2; value: string; label: string
+}) {
+  return (
+    <div className="text-center">
+      <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur ring-1 ring-white/25 mb-1.5">
+        <Icon className="w-4 h-4" />
+      </div>
+      <div className="text-[20px] font-bold tracking-tight leading-none tabular-nums">{value}</div>
+      <div className="text-[10.5px] font-medium uppercase tracking-[0.10em] opacity-80 mt-0.5">{label}</div>
+    </div>
+  )
+}
+
 function Tally({ tint, value, label }: {
   tint: 'emerald' | 'amber' | 'orange' | 'primary'; value: number; label: string
 }) {
@@ -249,14 +310,24 @@ function ResultCard({
   const missed = !row.ungraded && !row.correct
 
   return (
-    <div className={`rounded-2xl ring-1 bg-white overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-all ${
-      missed ? 'ring-rose-200/80' : 'ring-gray-200/70'
-    }`}>
+    <div className={`relative rounded-2xl ring-1 bg-white overflow-hidden transition-all ${
+      isOpen ? 'shadow-[0_2px_12px_-2px_rgba(0,0,0,0.10)]' : 'shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
+    } ${
+      missed ? 'ring-rose-200/80' : row.ungraded ? 'ring-primary/20' : row.isPilot ? 'ring-amber-200/70' : 'ring-gray-200/70'
+    } ${isOpen ? '' : 'hover:ring-primary/40 active:scale-[0.995]'}`}>
+      {/* Verdict stripe — lets the outcome of 30 rows read in one scroll
+          without opening any of them. */}
+      <div aria-hidden className={`absolute inset-y-0 left-0 w-1 ${
+        row.ungraded ? 'bg-primary/40'
+          : row.correct ? 'bg-emerald-400'
+          : studentAnswer == null ? 'bg-amber-400'
+          : 'bg-rose-400'
+      }`} />
       <button
         type="button"
         onClick={() => setOpen(v => !v)}
         aria-expanded={isOpen}
-        className="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-gray-50/70 transition-colors"
+        className="w-full flex items-start gap-3 pl-5 pr-4 py-3.5 text-left hover:bg-gray-50/70 transition-colors"
       >
         {/* Verdict tile — same 9x9 rounded-xl language as the rest of study. */}
         <div className={`inline-flex items-center justify-center w-9 h-9 rounded-xl ring-1 flex-shrink-0 ${
@@ -294,14 +365,45 @@ function ResultCard({
               </span>
             ) : null}
           </div>
-          <div className="text-sm text-gray-900 line-clamp-2 mt-0.5">{normalizeDisplayText(q.prompt)}</div>
+          <div className="text-[13.5px] leading-snug text-gray-900 line-clamp-2 mt-1 font-medium">
+            {normalizeDisplayText(q.prompt)}
+          </div>
+          {/* The single most useful line, without making the student open
+              the row: what they put, and what it should have been. Only
+              where a short comparison is honest — open responses and
+              blank-maps are not one-liners. */}
+          {!isOpen && !row.ungraded && !FREE_TEXT_TYPES.has(q.type ?? '') && (
+            <div className="flex flex-wrap items-center gap-1.5 mt-2 text-[11.5px]">
+              {studentAnswer == null ? (
+                <span className="inline-flex items-center rounded-md bg-amber-50 text-amber-700 ring-1 ring-amber-200/70 px-1.5 py-0.5 font-medium">
+                  {ko ? '무응답' : 'Skipped'}
+                </span>
+              ) : (
+                <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 font-medium max-w-full ${
+                  row.correct
+                    ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/70'
+                    : 'bg-rose-50 text-rose-700 ring-1 ring-rose-200/70'
+                }`}>
+                  <span className="truncate">{normalizeDisplayText(studentAnswer)}</span>
+                </span>
+              )}
+              {!row.correct && row.correctAnswerDisplay && (
+                <>
+                  <span className="text-gray-300">→</span>
+                  <span className="inline-flex items-center rounded-md bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/70 px-1.5 py-0.5 font-semibold max-w-full">
+                    <span className="truncate">{normalizeDisplayText(row.correctAnswerDisplay)}</span>
+                  </span>
+                </>
+              )}
+            </div>
+          )}
         </div>
         {isOpen ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />
                 : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />}
       </button>
 
       {isOpen && (
-        <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-sm">
+        <div className="pl-5 pr-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-sm">
           {q.passage && (
             <div className="rounded-xl ring-1 ring-gray-200/70 bg-gray-50 px-3 py-2 text-[13px] text-gray-800">
               <PassageParagraphs text={q.passage} />
@@ -421,7 +523,15 @@ function ResultCard({
           )}
 
           {q.explanation && (
-            <p className="text-xs text-gray-600 leading-relaxed mt-2">{normalizeDisplayText(q.explanation)}</p>
+            <div className="rounded-xl bg-gradient-to-br from-primary/[0.05] to-transparent ring-1 ring-primary/15 px-3 py-2.5 mt-3">
+              <div className="flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-[0.10em] text-primary mb-1">
+                <Sparkles className="w-3 h-3" />
+                {ko ? '해설' : 'Why'}
+              </div>
+              <p className="text-[12.5px] text-gray-700 leading-relaxed">
+                {normalizeDisplayText(q.explanation)}
+              </p>
+            </div>
           )}
           <ReportQuestion
             sessionId={sessionId}
