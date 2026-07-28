@@ -146,7 +146,17 @@ function SummaryInner({ id }: { id: string }) {
       : Math.round((correct / totalItems) * 100)
   const incorrect = totalItems - correct
   // SAT adaptive: path-weighted 200–800 section band (easy path caps).
-  const satRoute = session.module2_route === 'hard' || session.module2_route === 'easy'
+  //
+  // Gated on the topic being SAT. This used to key off `module2_route`
+  // alone, and TOEFL became adaptive too — so a TOEFL Reading session
+  // rendered "EST. SCORE 240 · easier module (capped)", a College Board
+  // 200-800 section score on a test graded 1-6. A student reasonably
+  // reads 240 as their result. The submit route already refuses to emit
+  // a TOEFL band precisely because no raw-count -> band conversion
+  // exists (see its header note); this screen was inventing one anyway
+  // from the wrong exam's curve.
+  const isSat = (session.topic?.slug ?? '').startsWith('sat-')
+  const satRoute = isSat && (session.module2_route === 'hard' || session.module2_route === 'easy')
     ? session.module2_route
     : null
   const satBand = satRoute && attempted
