@@ -278,7 +278,12 @@ function SummaryInner({ id }: { id: string }) {
                     className={studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })}
                   >
                     <RotateCcw className="w-4 h-4" />
-                    {String(t('study.summary.tryAgain'))}
+                    {/* This branch only renders for mode === 'full_test',
+                        so the CTA can name the thing the student just did.
+                        The shared 'tryAgain' string says "topic", which is
+                        right for practice and flashcards below and wrong
+                        here — a mock test is what they came for. */}
+                    {String(t('study.summary.tryTestAgain'))}
                   </Link>
                 )}
                 <Link

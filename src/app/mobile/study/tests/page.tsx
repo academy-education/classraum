@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useMemo, useState } from 'react'
-import { ClipboardList, CheckCircle2, Loader2, AlertTriangle, Play, Trophy, Search, X } from '@/app/mobile/study/_shared/icons'
+import { ClipboardList, Search, X } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyTodayCard } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
+import { TEST_STATE_META, type TestState } from '../_shared/testState'
 import { SkeletonRowList } from '../skeletons'
 import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -18,7 +19,6 @@ import { formatTimeAgo } from '../_shared/dateGroups'
  * row + prev/next pagination. Keeps the app-wide sub-page rhythm.
  */
 
-type TestState = 'ready' | 'generating' | 'in_progress' | 'completed' | 'failed'
 type FilterKey = 'all' | TestState
 
 interface Row {
@@ -268,7 +268,7 @@ function TestRow({ row, ko }: { row: Row; ko: boolean }) {
     ? (ko ? row.topic.name_ko : row.topic.name_en)
     : (row.topic_freeform ?? (ko ? '기타' : 'Untitled'))
 
-  const meta = STATE_META[state]
+  const meta = TEST_STATE_META[state]
   const relativeTime = formatTimeAgo(row.last_active_at, ko)
   const scored = state === 'completed' && typeof row.score === 'number'
 
@@ -306,39 +306,4 @@ function TestRow({ row, ko }: { row: Row; ko: boolean }) {
   )
 }
 
-/** Gradient icon tiles, matching the landing page's Today band exactly —
- *  white glyph on a two-stop gradient with a coloured drop shadow. The
- *  flat 50-weight tints these replaced were a different visual language
- *  for the same kind of card. */
-const STATE_META: Record<TestState, {
-  icon: typeof CheckCircle2
-  iconColorClass: string
-  label: (ko: boolean) => string
-}> = {
-  ready: {
-    icon: Play,
-    iconColorClass: 'bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-[0_4px_10px_-2px_rgba(16,185,129,0.35)]',
-    label: ko => ko ? '시작' : 'Ready',
-  },
-  generating: {
-    icon: Loader2,
-    iconColorClass: 'bg-gradient-to-br from-primary to-indigo-600 text-white shadow-[0_4px_10px_-2px_rgba(40,133,232,0.35)]',
-    label: ko => ko ? '생성 중' : 'Generating',
-  },
-  in_progress: {
-    icon: Play,
-    iconColorClass: 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_4px_10px_-2px_rgba(251,146,60,0.35)]',
-    label: ko => ko ? '진행 중' : 'In progress',
-  },
-  completed: {
-    icon: Trophy,
-    iconColorClass: 'bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-[0_4px_10px_-2px_rgba(139,92,246,0.35)]',
-    label: ko => ko ? '완료' : 'Completed',
-  },
-  failed: {
-    icon: AlertTriangle,
-    iconColorClass: 'bg-gradient-to-br from-rose-400 to-rose-600 text-white shadow-[0_4px_10px_-2px_rgba(244,63,94,0.35)]',
-    label: ko => ko ? '실패' : 'Failed',
-  },
-}
 

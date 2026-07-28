@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
 import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins, Zap } from '@/app/mobile/study/_shared/icons'
-import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell, StudyTodayCard } from '../../_shared/primitives'
+import { TEST_STATE_META } from '../../_shared/testState'
 import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../../skeletons'
@@ -1281,34 +1282,33 @@ function RecentTestsList({ topicIds, studentId, ko }: {
           <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
         </Link>
       ) : (
-      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] divide-y divide-gray-100 overflow-hidden">
+      /* Same card as /mobile/study/tests and the landing Today band —
+         StudyTodayCard with the shared TEST_STATE_META icon. This list
+         used to put a coloured PERCENTAGE PILL in the icon slot, so the
+         same mock test looked like a different kind of object depending
+         on which of the two lists you were reading. The score moves into
+         the description, where it reads as information rather than as the
+         row's identity. Every row here is completed by query. */
+      <div className="space-y-2">
         {rows.map(row => {
           const score = row.score !== null ? Math.round(Number(row.score)) : null
+          const meta = TEST_STATE_META.completed
+          const dateLabel = row.completed_at
+            ? new Date(row.completed_at).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
+            : ''
           return (
-            <Link
+            <StudyTodayCard
               key={row.id}
-              // Result screen, not the summary — see tests/page.tsx.
+              // Result screen — session/[id] redirects a completed test
+              // to /summary, which renders what the student saw on submit.
               href={`/mobile/study/session/${row.id}`}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
-            >
-              <div className={`flex-shrink-0 inline-flex items-center justify-center w-11 h-8 rounded-xl text-[13px] font-bold tabular-nums ring-1 ${
-                score === null ? 'bg-gray-50 ring-gray-200/70 text-gray-500'
-                : score >= 80 ? 'bg-emerald-50 ring-emerald-100 text-emerald-700'
-                : score >= 50 ? 'bg-amber-50 ring-amber-100 text-amber-700'
-                : 'bg-rose-50 ring-rose-100 text-rose-700'
-              }`}>
-                {score !== null ? `${score}%` : '—'}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[13.5px] font-medium text-gray-900 truncate">
-                  {row.title ?? (ko ? '모의고사' : 'Full test')}
-                </div>
-                <div className="text-[11.5px] text-gray-500 mt-0.5">
-                  {row.completed_at ? new Date(row.completed_at).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' }) : ''}
-                </div>
-              </div>
-              <ArrowRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
-            </Link>
+              icon={meta.icon}
+              iconColorClass={meta.iconColorClass}
+              eyebrow={meta.label(ko)}
+              title={row.title ?? (ko ? '모의고사' : 'Full test')}
+              subtitle={[score !== null ? `${score}%` : null, dateLabel]
+                .filter(Boolean).join(' · ')}
+            />
           )
         })}
       </div>
