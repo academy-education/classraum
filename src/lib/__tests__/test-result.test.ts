@@ -14,7 +14,13 @@ import {
   familyFromTopicSlug,
   satSectionFromTopicSlug,
   canNumberRows,
+  buildResultModel,
 } from '@/lib/study/test-result'
+
+const card = (over = {}) => ({
+  question: { type: 'multiple_choice', prompt: 'p', correct_answer: 'A', ...over },
+  studentAnswer: 'A', correct: true, ungraded: false, position: 0,
+})
 
 describe('displayCorrectAnswer', () => {
   // TestSession's DB rebuild used `q.correct_answer ?? ''`, so a
@@ -75,6 +81,81 @@ describe('deliveredWeight / reviewRanges', () => {
 
   it('degrades a blank-less CtW row to 1 rather than 0', () => {
     expect(deliveredWeight({ type: 'fill_in_blanks', blanks: [] })).toBe(1)
+  })
+})
+
+describe('buildResultModel', () => {
+  // THE bug this whole extraction exists to prevent. Session fd9b9cfd
+  // recorded 6/35; counting its attempt rows gives 10/30. The builder is
+  // handed the headline and must not "improve" on it.
+  it('passes the headline score through untouched — never recomputes from rows', () => {
+    const m = buildResultModel({
+      family: 'toefl',
+      correctCount: 6, totalScored: 35, scorePercent: 17,
+      // 30 cards, ALL of them correct — a recomputing builder would say 30/30.
+      cards: Array.from({ length: 30 }, () => card()),
+    })
+    expect(m.correctCount).toBe(6)
+    expect(m.totalScored).toBe(35)
+    expect(m.scorePercent).toBe(17)
+    expect(m.rows).toHaveLength(30)
+    expect(m.correctCount).not.toBe(30)
+    expect(m.totalScored).not.toBe(m.rows.length)
+  })
+
+  it('flags a pilot only on scored===false — absent and null are scored', () => {
+    const m = buildResultModel({
+      family: 'toefl', correctCount: 1, totalScored: 2, scorePercent: 50,
+      cards: [
+        card({ scored: false }),
+        card({ scored: null }),
+        card(),
+      ],
+    })
+    expect(m.rows.map(r => r.isPilot)).toEqual([true, false, false])
+  })
+
+  it('drops every row label when one position is missing, but keeps the delivered total', () => {
+    const cards = [card(), { ...card(), position: null }, card()]
+    const m = buildResultModel({
+      family: 'sat', correctCount: 2, totalScored: 3, scorePercent: 67, cards,
+    })
+    expect(m.numbered).toBe(false)
+    expect(m.rows.map(r => r.range)).toEqual([null, null, null])
+    // The reconciliation line ("scored on 35 of 48") counts delivered
+    // questions, which does not depend on their order — so it survives.
+    expect(m.deliveredTotal).toBe(3)
+  })
+
+  it('labels rows with delivered RANGES when positions are intact', () => {
+    const m = buildResultModel({
+      family: 'toefl', correctCount: 1, totalScored: 11, scorePercent: 9,
+      cards: [
+        { ...card(), position: 0 },
+        { ...card({ type: 'fill_in_blanks', blanks: [{ id: 1, answer: 'a' }, { id: 2, answer: 'b' }] }), position: 1 },
+        { ...card(), position: 2 },
+      ],
+    })
+    expect(m.numbered).toBe(true)
+    expect(m.rows.map(r => r.range)).toEqual([
+      { startAt: 1, endAt: 1 }, { startAt: 2, endAt: 3 }, { startAt: 4, endAt: 4 },
+    ])
+    expect(m.deliveredTotal).toBe(4)
+  })
+
+  it('resolves each row\'s displayed answer by type', () => {
+    const m = buildResultModel({
+      family: 'toefl', correctCount: 0, totalScored: 2, scorePercent: 0,
+      cards: [
+        card({ type: 'fill_in_blanks', correct_answer: '', blanks: [{ id: 1, answer: 'ous' }] }),
+        { ...card({ type: 'writing_email' }), ungraded: true },
+      ],
+    })
+    expect(m.rows[0]!.correctAnswerDisplay).toBe('[1] ous')
+    expect(m.rows[1]!.correctAnswerDisplay).toBe('—')
+    expect(m.rows[1]!.ungraded).toBe(true)
+    // ungraded and isPilot are different things and must not alias.
+    expect(m.rows[1]!.isPilot).toBe(false)
   })
 })
 

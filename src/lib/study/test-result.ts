@@ -100,6 +100,93 @@ export function reviewRanges(questions: { type?: string | null; blanks?: { id: n
   return { ranges, deliveredTotal: acc }
 }
 
+/** A question as the result screen needs to RENDER it, not merely score it. */
+export interface ResultRowQuestion extends ResultQuestion {
+  prompt: string
+  passage?: string | null
+  choices?: string[] | null
+  explanation?: string | null
+  graphic?: unknown
+  distractor_rationales?: { choice: string; reason: string }[] | null
+  /** ETS pilot marker. Written ONLY when false — a live check found the key
+   *  absent, JSON-null, or false, never true — so `=== false` is the test. */
+  scored?: boolean | null
+}
+
+/** One CARD. Not one question: a Complete-the-Words paragraph is one row
+ *  here and ten DELIVERED questions in `range`. */
+export interface ResultRow {
+  question: ResultRowQuestion
+  studentAnswer: string | null
+  correct: boolean
+  /** Open response — rubric-graded elsewhere, no ✓/✗ and no denominator. */
+  ungraded: boolean
+  /** Pilot: graded and shown, excluded from the denominator. Distinct from
+   *  `ungraded`, and needs different words in front of the student. */
+  isPilot: boolean
+  correctAnswerDisplay: string
+  /** DELIVERED position range, or null when this session can't be numbered. */
+  range: ReviewRange | null
+}
+
+export interface ResultCardInput {
+  question: ResultRowQuestion
+  studentAnswer: string | null
+  correct: boolean
+  ungraded: boolean
+  position?: number | null
+}
+
+export interface TestResultModel {
+  family: TestFamily
+  /** SCORED unit. Straight from the caller — see the weightedScore note. */
+  correctCount: number
+  totalScored: number
+  scorePercent: number
+  /** DELIVERED unit. Differs from totalScored exactly when pilots exist. */
+  deliveredTotal: number
+  /** False => legacy session, rows render without position labels. */
+  numbered: boolean
+  rows: ResultRow[]
+}
+
+/**
+ * The single normalization both result screens go through.
+ *
+ * Takes the headline numbers rather than deriving them, on purpose: the
+ * post-submit screen has them from the submit response and the durable
+ * screen has them from study_sessions, and recomputing on either side is
+ * how "10/30" ended up under a recorded 6/35. This function's job is the
+ * per-row shape and the numbering — not the score.
+ */
+export function buildResultModel(input: {
+  family: TestFamily
+  correctCount: number
+  totalScored: number
+  scorePercent: number
+  cards: ResultCardInput[]
+}): TestResultModel {
+  const numbered = canNumberRows(input.cards)
+  const { ranges, deliveredTotal } = reviewRanges(input.cards.map(c => c.question))
+  return {
+    family: input.family,
+    correctCount: input.correctCount,
+    totalScored: input.totalScored,
+    scorePercent: input.scorePercent,
+    deliveredTotal,
+    numbered,
+    rows: input.cards.map((c, i) => ({
+      question: c.question,
+      studentAnswer: c.studentAnswer,
+      correct: c.correct,
+      ungraded: c.ungraded,
+      isPilot: c.question.scored === false,
+      correctAnswerDisplay: displayCorrectAnswer(c.question),
+      range: numbered ? (ranges[i] ?? null) : null,
+    })),
+  }
+}
+
 export type TestFamily = 'toefl' | 'sat' | 'other'
 export type SatSection = 'math' | 'reading_writing'
 
