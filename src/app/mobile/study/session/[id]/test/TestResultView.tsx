@@ -10,7 +10,7 @@ import { QuestionGraphicView } from './QuestionGraphicView'
 import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
-import type { ResultRow, TestResultModel } from '@/lib/study/test-result'
+import { tallyRows, type ResultRow, type TestResultModel } from '@/lib/study/test-result'
 
 /** Types whose answer is prose, not a pick from `choices`. Kept as an
  *  explicit list because `arrange_words` DOES populate `choices` (its word
@@ -52,12 +52,11 @@ export function TestResultView({
   const { t } = useTranslation()
   const [showDetail, setShowDetail] = useState(false)
 
-  // Unit: CARDS. Every chip below counts accordion rows, which is NOT the
-  // unit of the score above it — hence the explicit "cards" wording.
-  const answered = model.rows.filter(r => r.studentAnswer != null && !r.ungraded).length
-  const skipped = model.rows.filter(r => r.studentAnswer == null).length
-  const pilots = model.rows.filter(r => r.isPilot).length
-  const rubric = model.rows.filter(r => r.ungraded).length
+  // Unit: CARDS, and a true partition — the four always sum to
+  // rows.length. The first draft counted a pilot as both "graded" and
+  // "pilot", so a 30-card test showed chips adding to 43 under a heading
+  // that said 30.
+  const tally = tallyRows(model.rows)
 
   return (
     <div className="px-5 py-6 space-y-5">
@@ -84,13 +83,28 @@ export function TestResultView({
           *
           * The headline counts SCORED questions (35); the rows are numbered
           * out of DELIVERED (48). A student answered 48 and was scored on
-          * 35 with nothing saying where the other 13 went. The real exam
-          * does this too — and tells you. Only rendered when they differ. */}
+          * 35 with nothing saying where the other 13 went.
+          *
+          * The reason has to match the actual session. The first version
+          * always said "experimental", and a TOEFL Speaking result read
+          * "the other 4 are experimental" when those 4 were rubric-graded
+          * responses and the test had no pilots at all — a confident,
+          * checkable, wrong explanation. Word it from the tally. */}
         {model.deliveredTotal > model.totalScored && (
           <p className="text-[12px] text-amber-700 mt-2 leading-relaxed">
             {ko
-              ? `${model.deliveredTotal}문항 중 ${model.totalScored}문항만 점수에 반영됩니다. 나머지 ${model.deliveredTotal - model.totalScored}문항은 실험 문항으로, 실제 시험과 동일하게 채점 결과에서 제외됩니다.`
-              : `Scored on ${model.totalScored} of the ${model.deliveredTotal} questions you answered. The other ${model.deliveredTotal - model.totalScored} are experimental — shown and reviewed, but not counted, exactly as on the real exam.`}
+              ? `${model.deliveredTotal}문항 중 ${model.totalScored}문항만 점수에 반영됩니다. 나머지 ${model.deliveredTotal - model.totalScored}문항은 ${
+                  tally.pilot > 0 && tally.rubric > 0 ? '실험 문항과 루브릭 채점 문항으로'
+                  : tally.rubric > 0 ? '루브릭으로 따로 채점되며'
+                  : '실험 문항으로'
+                }, 실제 시험과 동일하게 채점 결과에서 제외됩니다.`
+              : `Scored on ${model.totalScored} of the ${model.deliveredTotal} questions you answered. The other ${model.deliveredTotal - model.totalScored} ${
+                  tally.pilot > 0 && tally.rubric > 0
+                    ? 'are experimental or graded separately by rubric'
+                    : tally.rubric > 0
+                      ? 'are open responses, graded separately by rubric'
+                      : 'are experimental — shown and reviewed, but not counted'
+                }, exactly as on the real exam.`}
           </p>
         )}
 
@@ -150,10 +164,10 @@ export function TestResultView({
           {ko ? `카드 ${model.rows.length}개 구성` : `Where your ${model.rows.length} cards went`}
         </div>
         <div className="grid grid-cols-4 gap-2">
-          <Tally tint="emerald" value={answered} label={ko ? '채점됨' : 'Graded'} />
-          <Tally tint="amber" value={skipped} label={ko ? '미응답' : 'Skipped'} />
-          <Tally tint="orange" value={pilots} label={ko ? '실험' : 'Pilot'} />
-          <Tally tint="primary" value={rubric} label={ko ? '루브릭' : 'Rubric'} />
+          <Tally tint="emerald" value={tally.counted} label={ko ? '점수 반영' : 'Counted'} />
+          <Tally tint="orange" value={tally.pilot} label={ko ? '실험' : 'Pilot'} />
+          <Tally tint="primary" value={tally.rubric} label={ko ? '루브릭' : 'Rubric'} />
+          <Tally tint="amber" value={tally.skipped} label={ko ? '미응답' : 'Skipped'} />
         </div>
       </div>
 
@@ -179,7 +193,6 @@ export function TestResultView({
               <ResultCard
                 key={i}
                 row={row}
-                index={i}
                 deliveredTotal={model.deliveredTotal}
                 sessionId={sessionId}
                 ko={ko}
@@ -218,10 +231,9 @@ function Tally({ tint, value, label }: {
 
 /** One CARD in the review list. */
 function ResultCard({
-  row, index, deliveredTotal, sessionId, ko, audioPath, speechSignals, speakingGradeMode,
+  row, deliveredTotal, sessionId, ko, audioPath, speechSignals, speakingGradeMode,
 }: {
   row: ResultRow
-  index: number
   deliveredTotal: number
   sessionId: string
   ko: boolean

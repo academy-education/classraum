@@ -15,6 +15,7 @@ import {
   satSectionFromTopicSlug,
   canNumberRows,
   buildResultModel,
+  tallyRows,
 } from '@/lib/study/test-result'
 
 const card = (over = {}) => ({
@@ -156,6 +157,50 @@ describe('buildResultModel', () => {
     expect(m.rows[1]!.ungraded).toBe(true)
     // ungraded and isPilot are different things and must not alias.
     expect(m.rows[1]!.isPilot).toBe(false)
+  })
+})
+
+describe('tallyRows', () => {
+  const rows = (specs: { ungraded?: boolean; isPilot?: boolean; answered?: boolean }[]) =>
+    specs.map(s => ({
+      question: { prompt: 'p' },
+      studentAnswer: s.answered === false ? null : 'A',
+      correct: true,
+      ungraded: !!s.ungraded,
+      isPilot: !!s.isPilot,
+      correctAnswerDisplay: 'A',
+      range: null,
+    }))
+
+  // The strip is laid out as if the four buckets sum to the card count, so
+  // they must. The first version double-counted a pilot as "graded" too,
+  // and a 30-card TOEFL Reading session rendered chips adding to 43.
+  it('partitions: the four buckets always sum to the row count', () => {
+    const cases = [
+      rows([{}, {}, { isPilot: true }, { ungraded: true }, { answered: false }]),
+      rows([]),
+      rows([{ isPilot: true, ungraded: true }]),          // both flags
+      rows([{ isPilot: true, answered: false }]),         // unanswered pilot
+      rows(Array.from({ length: 30 }, (_, i) => ({ isPilot: i < 13 }))),
+    ]
+    for (const rs of cases) {
+      const t = tallyRows(rs)
+      expect(t.counted + t.pilot + t.rubric + t.skipped).toBe(rs.length)
+    }
+  })
+
+  it('reproduces the live session that exposed the overlap', () => {
+    // fd9b9cfd: 30 cards, 13 pilots, none skipped, none rubric.
+    const t = tallyRows(rows(Array.from({ length: 30 }, (_, i) => ({ isPilot: i < 13 }))))
+    expect(t).toEqual({ counted: 17, pilot: 13, rubric: 0, skipped: 0 })
+    expect(t.counted).not.toBe(30)
+  })
+
+  it('classifies most-specific first so no card is counted twice', () => {
+    expect(tallyRows(rows([{ isPilot: true, ungraded: true }])))
+      .toEqual({ counted: 0, pilot: 0, rubric: 1, skipped: 0 })
+    expect(tallyRows(rows([{ isPilot: true, answered: false }])))
+      .toEqual({ counted: 0, pilot: 0, rubric: 0, skipped: 1 })
   })
 })
 

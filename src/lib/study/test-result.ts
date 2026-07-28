@@ -187,6 +187,41 @@ export function buildResultModel(input: {
   }
 }
 
+/**
+ * Where every CARD went, as a genuine partition.
+ *
+ * Written after the first draft of the accounting strip shipped chips
+ * reading "30 GRADED" and "13 PILOT" on a 30-card test: a pilot is also
+ * graded, so the categories overlapped while being laid out as if they
+ * summed. 30 + 13 = 43 under a heading that said 30 — the same unit
+ * confusion this file exists to stop, reintroduced as a display.
+ *
+ * Each card lands in exactly one bucket, most-specific first, so the four
+ * always add up to rows.length. `assertPartitions` in the tests is what
+ * keeps that true.
+ */
+export interface ResultTally {
+  /** Answered, objectively graded, and counted in the denominator. */
+  counted: number
+  /** Answered and graded, but excluded from the score (ETS pilot). */
+  pilot: number
+  /** Rubric-graded open response — no ✓/✗, not in the denominator. */
+  rubric: number
+  /** No answer recorded. */
+  skipped: number
+}
+
+export function tallyRows(rows: ResultRow[]): ResultTally {
+  const tally: ResultTally = { counted: 0, pilot: 0, rubric: 0, skipped: 0 }
+  for (const r of rows) {
+    if (r.ungraded) tally.rubric++
+    else if (r.studentAnswer == null) tally.skipped++
+    else if (r.isPilot) tally.pilot++
+    else tally.counted++
+  }
+  return tally
+}
+
 export type TestFamily = 'toefl' | 'sat' | 'other'
 export type SatSection = 'math' | 'reading_writing'
 
