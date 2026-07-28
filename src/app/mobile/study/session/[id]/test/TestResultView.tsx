@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import {
-  CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles, ListChecks,
+  CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronUp, Sparkles, ListChecks, Info,
 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot, type MascotState } from '@/app/mobile/study/_shared/PathMascot'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -182,29 +182,51 @@ export function TestResultView({
         * of DELIVERED (48). A student answered 48 and was scored on 35
         * with nothing saying where the other 13 went.
         *
-        * The reason has to match the actual session. The first version
-        * always said "experimental", and a TOEFL Speaking result read
-        * "the other 4 are experimental" when those 4 were rubric-graded
-        * responses and the test had no pilots at all — a confident,
-        * checkable, wrong explanation. Word it from the tally. */}
+        * Styled as a deliberate note rather than a warning box. The first
+        * version was a flat amber slab with a warning triangle, which
+        * reads as "something went wrong" — but nothing did: this is how
+        * the real exam works, and the tone should say so. Amber accent
+        * rail, white card, the exam-normal framing pulled out as its own
+        * line.
+        *
+        * The reason has to match the actual session. It always said
+        * "experimental", and a TOEFL Speaking result read "the other 4
+        * are experimental" when those 4 were rubric-graded responses and
+        * the test had no pilots at all. Word it from the tally. */}
       {model.deliveredTotal > model.totalScored && (
-        <div className="rounded-2xl ring-1 ring-amber-200/70 bg-amber-50/60 px-4 py-3 flex items-start gap-2.5">
-          <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
-          <p className="text-[12px] text-amber-800 leading-relaxed">
-            {ko
-              ? `${model.deliveredTotal}문항 중 ${model.totalScored}문항만 점수에 반영됩니다. 나머지 ${model.deliveredTotal - model.totalScored}문항은 ${
-                  tally.pilot > 0 && tally.rubric > 0 ? '실험 문항과 루브릭 채점 문항으로'
-                  : tally.rubric > 0 ? '루브릭으로 따로 채점되며'
-                  : '실험 문항으로'
-                }, 실제 시험과 동일하게 채점 결과에서 제외됩니다.`
-              : `Scored on ${model.totalScored} of the ${model.deliveredTotal} questions you answered. The other ${model.deliveredTotal - model.totalScored} ${
-                  tally.pilot > 0 && tally.rubric > 0
-                    ? 'are experimental or graded separately by rubric'
-                    : tally.rubric > 0
-                      ? 'are open responses, graded separately by rubric'
-                      : 'are experimental — shown and reviewed, but not counted'
-                }, exactly as on the real exam.`}
-          </p>
+        <div className="relative rounded-2xl bg-white ring-1 ring-amber-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
+          <div aria-hidden className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-amber-300 to-orange-400" />
+          <div className="pl-5 pr-4 py-3.5 flex items-start gap-3">
+            <div className="flex-shrink-0 w-8 h-8 rounded-xl bg-amber-50 ring-1 ring-amber-200/70 text-amber-600 flex items-center justify-center mt-0.5">
+              <Info className="w-4 h-4" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[13px] font-semibold text-gray-900 leading-snug">
+                {ko
+                  ? `${model.deliveredTotal}문항 중 ${model.totalScored}문항이 점수에 반영됐어요`
+                  : `Scored on ${model.totalScored} of the ${model.deliveredTotal} questions you answered`}
+              </p>
+              <p className="text-[12px] text-gray-600 leading-relaxed mt-1">
+                {ko
+                  ? `나머지 ${model.deliveredTotal - model.totalScored}문항은 ${
+                      tally.pilot > 0 && tally.rubric > 0 ? '실험 문항과 루브릭 채점 문항이에요.'
+                      : tally.rubric > 0 ? '루브릭으로 따로 채점되는 문항이에요.'
+                      : '실험 문항이에요.'
+                    }`
+                  : `The other ${model.deliveredTotal - model.totalScored} ${
+                      tally.pilot > 0 && tally.rubric > 0
+                        ? 'are experimental or graded separately by rubric.'
+                        : tally.rubric > 0
+                          ? 'are open responses, graded separately by rubric.'
+                          : 'are experimental — shown and reviewed, but not counted.'
+                    }`}
+              </p>
+              <p className="inline-flex items-center gap-1.5 mt-2 text-[11px] font-medium text-amber-700 bg-amber-50 ring-1 ring-amber-200/60 rounded-full px-2 py-0.5">
+                <CheckCircle2 className="w-3 h-3" />
+                {ko ? '실제 시험과 동일해요' : 'Exactly as on the real exam'}
+              </p>
+            </div>
+          </div>
         </div>
       )}
 

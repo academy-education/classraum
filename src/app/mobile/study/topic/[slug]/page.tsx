@@ -1221,6 +1221,37 @@ function formatShortTimeAgo(iso: string, ko: boolean): string {
 /** Recent completed mock tests for this test family — score + date,
  *  linking into the session summary. Renders nothing until the student
  *  has at least one completed test. */
+/**
+ * Split mock tests into per-section groups, preserving the query's
+ * newest-first order both between and within groups.
+ *
+ * The heading is suppressed when everything lands in one group, which is
+ * the case on every section page — those lists are already scoped by
+ * topic_id and gain nothing from a label repeating the page title.
+ */
+function groupTestsBySection<T extends {
+  topic: { id: string; name_en: string; name_ko: string } | null
+}>(rows: T[], ko: boolean) {
+  const order: string[] = []
+  const byKey = new Map<string, { key: string; label: string; rows: T[] }>()
+  for (const row of rows) {
+    const key = row.topic?.id ?? '__none'
+    if (!byKey.has(key)) {
+      order.push(key)
+      byKey.set(key, {
+        key,
+        label: row.topic
+          ? (ko ? row.topic.name_ko : row.topic.name_en)
+          : (ko ? '기타' : 'Other'),
+        rows: [],
+      })
+    }
+    byKey.get(key)!.rows.push(row)
+  }
+  const groups = order.map(k => byKey.get(k)!)
+  return groups.map(g => ({ ...g, showHeading: groups.length > 1 }))
+}
+
 function RecentTestsList({ topicIds, studentId, ko }: {
   topicIds: string[]
   studentId: string | null
@@ -1231,6 +1262,10 @@ function RecentTestsList({ topicIds, studentId, ko }: {
     title: string | null
     score: number | null
     completed_at: string | null
+    /** The SECTION this test belongs to. On a category page (TOEFL) the
+     *  list spans Reading, Listening, Speaking and Writing, and without
+     *  this they arrived as one undifferentiated pile. */
+    topic: { id: string; name_en: string; name_ko: string } | null
   }>>([])
 
   useEffect(() => {
@@ -1239,7 +1274,7 @@ function RecentTestsList({ topicIds, studentId, ko }: {
     void (async () => {
       const { data } = await db
         .from('study_sessions')
-        .select('id, title, score, completed_at')
+        .select('id, title, score, completed_at, topic:study_topics ( id, name_en, name_ko )')
         .eq('student_id', studentId)
         .eq('mode', 'full_test')
         .eq('status', 'completed')
@@ -1289,28 +1324,48 @@ function RecentTestsList({ topicIds, studentId, ko }: {
          on which of the two lists you were reading. The score moves into
          the description, where it reads as information rather than as the
          row's identity. Every row here is completed by query. */
-      <div className="space-y-2">
-        {rows.map(row => {
-          const score = row.score !== null ? Math.round(Number(row.score)) : null
-          const meta = TEST_STATE_META.completed
-          const dateLabel = row.completed_at
-            ? new Date(row.completed_at).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
-            : ''
-          return (
-            <StudyTodayCard
-              key={row.id}
-              // Result screen — session/[id] redirects a completed test
-              // to /summary, which renders what the student saw on submit.
-              href={`/mobile/study/session/${row.id}`}
-              icon={meta.icon}
-              iconColorClass={meta.iconColorClass}
-              eyebrow={meta.label(ko)}
-              title={row.title ?? (ko ? '모의고사' : 'Full test')}
-              subtitle={[score !== null ? `${score}%` : null, dateLabel]
-                .filter(Boolean).join(' · ')}
-            />
-          )
-        })}
+      <div className="space-y-4">
+        {/* Grouped by SECTION. On a category page (TEST PREP / TOEFL) this
+            list spans Reading, Listening, Speaking and Writing, and it
+            used to render them as one flat pile — a Reading result sitting
+            directly above a Speaking one with nothing to separate them, so
+            "my mock tests" for the thing you actually practised was buried
+            among the ones you didn't. On a section page there is exactly
+            one group and the heading is suppressed, leaving it unchanged. */}
+        {groupTestsBySection(rows, ko).map(group => (
+          <div key={group.key} className="space-y-2">
+            {group.showHeading && (
+              <div className="flex items-center gap-2 px-0.5">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">
+                  {group.label}
+                </span>
+                <span className="text-[11px] text-gray-400 tabular-nums">{group.rows.length}</span>
+                <span aria-hidden className="flex-1 h-px bg-gray-100" />
+              </div>
+            )}
+            {group.rows.map(row => {
+              const score = row.score !== null ? Math.round(Number(row.score)) : null
+              const meta = TEST_STATE_META.completed
+              const dateLabel = row.completed_at
+                ? new Date(row.completed_at).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
+                : ''
+              return (
+                <StudyTodayCard
+                  key={row.id}
+                  // Result screen — session/[id] redirects a completed test
+                  // to /summary, which renders what the student saw on submit.
+                  href={`/mobile/study/session/${row.id}`}
+                  icon={meta.icon}
+                  iconColorClass={meta.iconColorClass}
+                  eyebrow={meta.label(ko)}
+                  title={row.title ?? (ko ? '모의고사' : 'Full test')}
+                  subtitle={[score !== null ? `${score}%` : null, dateLabel]
+                    .filter(Boolean).join(' · ')}
+                />
+              )
+            })}
+          </div>
+        ))}
       </div>
       )}
     </section>
