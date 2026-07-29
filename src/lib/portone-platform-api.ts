@@ -248,6 +248,23 @@ export class PortOnePlatformClient {
 }
 
 /**
- * Default client instance
+ * Default client instance, constructed on first use.
+ *
+ * This was `export const portoneClient = new PortOnePlatformClient()`,
+ * evaluated at module scope. The constructor throws when
+ * PORTONE_API_SECRET is absent, and `next build` imports every route to
+ * collect page data — so the build died on /api/portone/sync wherever
+ * the secret was not set. CI sets only well-formed placeholders and
+ * deliberately holds no real payment credentials, so it could never
+ * satisfy that constructor.
+ *
+ * Deferring construction keeps the throw — a missing secret must still
+ * be loud when something actually tries to call PortOne — but moves it
+ * from build time to request time, which is the only moment the secret
+ * was ever genuinely required.
  */
-export const portoneClient = new PortOnePlatformClient();
+let _portoneClient: PortOnePlatformClient | null = null;
+export function getPortoneClient(): PortOnePlatformClient {
+  if (!_portoneClient) _portoneClient = new PortOnePlatformClient();
+  return _portoneClient;
+}
