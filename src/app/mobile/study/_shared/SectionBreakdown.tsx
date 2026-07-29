@@ -1,7 +1,8 @@
 "use client"
 
-import { TrendingUp, TrendingDown, Target, Lightbulb, ArrowRight } from './icons'
+import { TrendingUp, TrendingDown, Target, Lightbulb, ArrowRight, CheckCircle2 } from './icons'
 import { samplesUntilDirection, type CriterionTrend } from '@/lib/study/criterion-trend'
+import { glossFor } from '@/lib/study/criterionGlossary'
 import type { Breakdown, SectionGroup } from '@/lib/study/section-breakdown'
 import { splitStrengths } from '@/lib/study/section-breakdown'
 import { scoreTone, TONE_CLASS } from '@/lib/study/rubricDisplay'
@@ -159,17 +160,25 @@ export function SkillCards({
       {weaknesses.length > 0 && (
         <SkillGroup
           tone="amber"
-          icon={<Lightbulb className="w-4 h-4" />}
+          icon={<Lightbulb className="w-4.5 h-4.5" />}
           title={ko ? '다음에 연습할 것' : 'What to practice next'}
+          subtitle={ko
+            ? `${weaknesses.length}가지 집중 영역`
+            : `${weaknesses.length} focus ${weaknesses.length === 1 ? 'area' : 'areas'}`}
           items={weaknesses}
+          marker={<ArrowRight className="w-3.5 h-3.5" />}
         />
       )}
       {strengths.length > 0 && (
         <SkillGroup
           tone="emerald"
-          icon={<TrendingUp className="w-4 h-4" />}
+          icon={<TrendingUp className="w-4.5 h-4.5" />}
           title={ko ? '잘하고 있는 것' : 'What you are doing well'}
+          subtitle={ko
+            ? `${strengths.length}가지 강점`
+            : `${strengths.length} ${strengths.length === 1 ? 'strength' : 'strengths'}`}
           items={strengths}
+          marker={<CheckCircle2 className="w-3.5 h-3.5" />}
           divided={weaknesses.length > 0}
         />
       )}
@@ -203,48 +212,67 @@ export function SkillCards({
 
 const GROUP_TONE = {
   emerald: {
-    icon: 'bg-emerald-100 text-emerald-700', head: 'text-emerald-700',
-    rail: 'bg-emerald-200', count: 'bg-emerald-50 text-emerald-700',
+    band: 'bg-emerald-50/70 border-emerald-100',
+    icon: 'bg-emerald-500 text-white shadow-[0_2px_6px_-1px_rgba(16,185,129,0.5)]',
+    head: 'text-emerald-900', sub: 'text-emerald-700/80',
+    row: 'bg-emerald-50/40 ring-emerald-100', marker: 'text-emerald-600',
+    pill: 'bg-white text-emerald-700 ring-emerald-200',
   },
   amber: {
-    icon: 'bg-amber-100 text-amber-700', head: 'text-amber-700',
-    rail: 'bg-amber-200', count: 'bg-amber-50 text-amber-700',
+    band: 'bg-amber-50/70 border-amber-100',
+    icon: 'bg-amber-500 text-white shadow-[0_2px_6px_-1px_rgba(245,158,11,0.5)]',
+    head: 'text-amber-900', sub: 'text-amber-700/80',
+    row: 'bg-amber-50/40 ring-amber-100', marker: 'text-amber-600',
+    pill: 'bg-white text-amber-700 ring-amber-200',
   },
 } as const
 
+/**
+ * One group: a tinted header band, then each item as its own row.
+ *
+ * Rows rather than a bulleted list because each of these is a separate
+ * thing to act on, and a bullet list renders them as one paragraph of
+ * prose with dots. The marker glyph differs per tone — a check for what
+ * is working, an arrow for what to do next — so the two groups are
+ * distinguishable without reading the header.
+ */
 function SkillGroup({
-  tone, icon, title, items, divided = false,
+  tone, icon, title, subtitle, items, marker, divided = false,
 }: {
   tone: keyof typeof GROUP_TONE
   icon: React.ReactNode
   title: string
+  subtitle: string
   items: string[]
+  marker: React.ReactNode
   divided?: boolean
 }) {
   const c = GROUP_TONE[tone]
   return (
-    <div className={`px-4 py-3.5 ${divided ? 'border-t border-gray-100' : ''}`}>
-      <div className="flex items-center gap-2">
-        <span className={`w-7 h-7 rounded-lg ${c.icon} inline-flex items-center justify-center flex-shrink-0`}>
+    <div className={divided ? 'border-t border-gray-100' : ''}>
+      <div className={`flex items-center gap-3 px-4 py-3 border-b ${c.band}`}>
+        <span className={`w-9 h-9 rounded-xl ${c.icon} inline-flex items-center justify-center flex-shrink-0`}>
           {icon}
         </span>
-        <span className={`text-[11px] font-semibold uppercase tracking-[0.08em] ${c.head}`}>
-          {title}
-        </span>
-        <span className={`ml-auto text-[11px] font-semibold tabular-nums rounded-full px-2 py-0.5 ${c.count}`}>
+        <div className="min-w-0 flex-1">
+          <div className={`text-[13px] font-bold leading-tight ${c.head}`}>{title}</div>
+          <div className={`text-[11px] ${c.sub} leading-tight mt-0.5`}>{subtitle}</div>
+        </div>
+        <span className={`flex-shrink-0 text-[13px] font-bold tabular-nums rounded-lg ring-1 px-2 py-1 ${c.pill}`}>
           {items.length}
         </span>
       </div>
-      {/* Rail rather than bullets: it ties the list to the header colour
-          and reads as one group instead of loose lines. */}
-      <ul className="mt-2.5 ml-3.5 pl-3.5 space-y-2 border-l-2 border-transparent relative">
-        <span className={`absolute left-0 top-1 bottom-1 w-[2px] rounded-full ${c.rail}`} />
+      <div className="px-3 py-2.5 space-y-1.5">
         {items.map(label => (
-          <li key={label} className="text-[13px] text-gray-700 leading-snug">
-            {label}
-          </li>
+          <div
+            key={label}
+            className={`flex items-start gap-2.5 rounded-xl ring-1 ${c.row} px-3 py-2.5`}
+          >
+            <span className={`flex-shrink-0 mt-[1px] ${c.marker}`}>{marker}</span>
+            <span className="text-[13px] text-gray-800 leading-snug min-w-0">{label}</span>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
@@ -289,8 +317,28 @@ export function CriterionTrendCard({
                 : 'Scores so far. A direction needs more responses than this.')}
       </p>
 
-      <div className="mt-3 space-y-3">
-        {trends.map(t => <CriterionRow key={t.key} trend={t} ko={ko} />)}
+      {/* How to read it. Every response is scored on three criteria out
+          of five, and without this the bars are three unlabelled
+          quantities — the card said what moved but never what the thing
+          that moved actually is. */}
+      <div className="mt-2.5 rounded-lg bg-gray-50 ring-1 ring-gray-200/70 px-2.5 py-2 flex items-center gap-3">
+        <div className="flex items-end gap-[3px] h-4 flex-shrink-0" aria-hidden>
+          {[1, 3, 4].map((v, i) => (
+            <span key={i} className={`w-1.5 rounded-sm ${TONE_CLASS[scoreTone(v, 5)].bar}`}
+              style={{ height: `${(v / 5) * 100}%` }} />
+          ))}
+        </div>
+        <p className="text-[10.5px] text-gray-500 leading-snug min-w-0">
+          {ko
+            ? '막대 하나가 응답 하나예요. 왼쪽이 오래된 것, 오른쪽이 최신. 높이는 0–5점.'
+            : 'One bar per response, oldest on the left. Height is the 0–5 score that response got.'}
+        </p>
+      </div>
+
+      <div className="mt-3 space-y-3.5">
+        {trends.map((t, i) => (
+          <CriterionRow key={t.key} trend={t} ko={ko} weakest={i === 0} />
+        ))}
       </div>
 
       {/* Says out loud that the level is not trustworthy even though the
@@ -310,15 +358,26 @@ const DIRECTION_STYLE = {
   flat: { chip: 'bg-gray-100 text-gray-600', en: 'Holding steady', ko: '유지' },
 } as const
 
-function CriterionRow({ trend, ko }: { trend: CriterionTrend; ko: boolean }) {
+function CriterionRow({
+  trend, ko, weakest,
+}: {
+  trend: CriterionTrend
+  ko: boolean
+  /** Lowest-scoring criterion in the card — the only one that shows
+   *  advice, so the card stays scannable. */
+  weakest: boolean
+}) {
   const need = samplesUntilDirection(trend)
   const tone = scoreTone(trend.average, 5)
   const dir = trend.direction ? DIRECTION_STYLE[trend.direction] : null
+  const gloss = glossFor(trend.key)
 
   return (
     <div>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-[12.5px] font-semibold text-gray-800 truncate">{trend.label}</span>
+        <span className="text-[12.5px] font-semibold text-gray-800 truncate">
+          {gloss?.short ?? trend.label}
+        </span>
         <span className="flex-shrink-0 flex items-center gap-1.5">
           {dir ? (
             <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10.5px] font-semibold ${dir.chip}`}>
@@ -332,16 +391,30 @@ function CriterionRow({ trend, ko }: { trend: CriterionTrend; ko: boolean }) {
             </span>
           )}
           <span className={`text-[11.5px] font-semibold tabular-nums ${TONE_CLASS[tone].text}`}>
-            {trend.average.toFixed(1)}
+            {trend.average.toFixed(1)}<span className="text-gray-400 font-medium">/5</span>
           </span>
         </span>
       </div>
+      {/* What the criterion measures. The rubric's own label is written
+          for the grader prompt ("Delivery (pace, pausing,
+          intelligibility)"); this is the same thing said to a student. */}
+      {gloss && (
+        <p className="text-[11px] text-gray-500 leading-snug mt-0.5">{gloss.what}</p>
+      )}
       <div className="mt-1.5 flex items-center gap-2">
         <ScoreDots scores={trend.scores} />
         <span className="flex-shrink-0 text-[10px] text-gray-400 tabular-nums">
           {ko ? `${trend.samples}개 응답` : `${trend.samples} ${trend.samples === 1 ? 'response' : 'responses'}`}
         </span>
       </div>
+      {/* The actionable half, on the weakest criterion only. On every row
+          it is four paragraphs of advice and nobody reads any of it. */}
+      {gloss && weakest && (
+        <div className="mt-1.5 flex items-start gap-1.5 rounded-lg bg-amber-50/60 ring-1 ring-amber-100 px-2.5 py-1.5">
+          <Lightbulb className="w-3 h-3 text-amber-600 flex-shrink-0 mt-[2px]" />
+          <p className="text-[11px] text-amber-900 leading-snug min-w-0">{gloss.raise}</p>
+        </div>
+      )}
     </div>
   )
 }
