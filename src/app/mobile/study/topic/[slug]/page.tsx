@@ -22,7 +22,7 @@ import { PRACTICE_SESSION_QUESTION_COUNT } from '@/lib/study-path'
 import { CreditConfirmSheet, NoCreditsSheet } from '../../_shared/CreditConfirmSheet'
 import { sectionVisual } from '../../_shared/sectionVisuals'
 import { PredictedScore } from '../../_shared/PredictedScore'
-import { RecommendedShelf } from '../../RecommendedShelf'
+import { TopicInsights } from './TopicInsights'
 import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
@@ -305,7 +305,7 @@ function TopicInner({ slug }: { slug: string }) {
     if (!user?.userId || !effectiveTopic) return
     let cancelled = false
     void (async () => {
-      const [{ data: mastery }, { data: sessions }] = await Promise.all([
+      const [{ data: mastery }, countRes, { data: sessions }] = await Promise.all([
         db
           .from('study_mastery')
           .select('score')
@@ -313,15 +313,31 @@ function TopicInner({ slug }: { slug: string }) {
           .eq('topic_id', effectiveTopic.id)
           .maybeSingle(),
         db
+          // head:true + count:'exact' asks Postgres for the count and no
+          // rows. The previous form paired count:'exact' with limit(1)
+          // and then read data.length, so "Sessions" was the number of
+          // ROWS RETURNED — permanently 1 for anyone who had ever
+          // studied here.
+          //
+          // Completed only. A generated-but-never-opened full test is an
+          // `active` row, and this topic had six of them: counting those
+          // put "Sessions 9" beside a trend chart reading "3 tests".
+          // Sessions means work the student actually did.
           .from('study_sessions')
-          .select('last_active_at', { count: 'exact' })
+          .select('id', { count: 'exact', head: true })
+          .eq('student_id', user.userId)
+          .eq('topic_id', effectiveTopic.id)
+          .eq('status', 'completed'),
+        db
+          .from('study_sessions')
+          .select('last_active_at')
           .eq('student_id', user.userId)
           .eq('topic_id', effectiveTopic.id)
           .order('last_active_at', { ascending: false })
           .limit(1),
       ])
       if (cancelled) return
-      const sessionCount = (sessions as { last_active_at: string }[] | null)?.length ?? 0
+      const sessionCount = countRes.count ?? 0
       const lastRow = (sessions as { last_active_at: string }[] | null)?.[0] ?? null
       setProgress({
         mastery: (mastery?.score as number | undefined) ?? null,
@@ -683,12 +699,11 @@ function TopicInner({ slug }: { slug: string }) {
                 self-hide anyway, and this way its loading skeleton
                 never flashes for students it doesn't apply to. */}
             {(targetTest ?? '').toLowerCase() === 'sat' && parseTestSlug(topic.slug).family === 'sat' && <PredictedScore />}
-            {/* hideUpsell: the diagnostic card above is already the
-                premium pitch (and promises weak-area targeted practice),
-                so a second "unlock personalized picks" paywall here just
-                repeats it. Free users see one pitch; paid users still get
-                real recommended cards. */}
-            <RecommendedShelf hideUpsell />
+            {/* "Recommended for you" is hidden here for now. The
+                per-topic trend + strengths/weaknesses card below covers
+                the same "what should I work on" question with this
+                topic's own data, and two answers on one screen competed.
+                Still mounted on the study home. */}
           </LandingDataProvider>
         )}
 
@@ -735,6 +750,14 @@ function TopicInner({ slug }: { slug: string }) {
               />
             </div>
           </div>
+        )}
+
+        {/* Score trend + AI strengths/weaknesses for THIS topic. Sits
+            directly under the three stats it expands on. Self-hides when
+            there is no completed test and no assessment yet, so it never
+            renders an empty chart. */}
+        {effectiveTopic && (
+          <TopicInsights topicId={effectiveTopic.id} ko={ko} />
         )}
 
         {/* Mode picker.
