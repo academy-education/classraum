@@ -43,7 +43,19 @@ interface Insights {
 const W = 300
 const H = 84
 
-export function TopicInsights({ topicId, ko }: { topicId: string; ko: boolean }) {
+export function TopicInsights({
+  topicId, ko, onPractice, onScores,
+}: {
+  topicId: string
+  ko: boolean
+  /** Starts a practice session on this topic. */
+  onPractice?: () => void
+  /** Hands the RECOMPUTED percents up so the mock-test list below can
+   *  show the same number this chart plots. Without it that list reads
+   *  study_sessions.score and printed 60% for the Writing test this card
+   *  calls 83%, on one screen. */
+  onScores?: (bySessionId: Record<string, number>) => void
+}) {
   const [data, setData] = useState<Insights | null>(null)
   const [loading, setLoading] = useState(true)
   const [active, setActive] = useState<number | null>(null)
@@ -58,7 +70,11 @@ export function TopicInsights({ topicId, ko }: { topicId: string; ko: boolean })
           `/api/study/topic-insights?topicId=${topicId}&lang=${ko ? 'ko' : 'en'}`, { headers })
         if (!res.ok) throw new Error(String(res.status))
         const json = await res.json() as Insights
-        if (!cancelled) { setData(json); setActive(null) }
+        if (!cancelled) {
+          setData(json)
+          setActive(null)
+          onScores?.(Object.fromEntries(json.points.map(p => [p.sessionId, p.percent])))
+        }
       } catch {
         if (!cancelled) setData(null)
       } finally {
@@ -66,6 +82,9 @@ export function TopicInsights({ topicId, ko }: { topicId: string; ko: boolean })
       }
     })()
     return () => { cancelled = true }
+    // onScores is a fresh closure each render; depending on it would
+    // refetch forever.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topicId, ko])
 
   if (loading) {
@@ -109,6 +128,7 @@ export function TopicInsights({ topicId, ko }: { topicId: string; ko: boolean })
         weaknesses={weaknesses}
         assessedAt={data?.mastery?.lastAssessedAt ?? null}
         ko={ko}
+        onPractice={onPractice}
       />
     </div>
   )

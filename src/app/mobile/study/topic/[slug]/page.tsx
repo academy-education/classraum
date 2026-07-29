@@ -147,6 +147,10 @@ function TopicInner({ slug }: { slug: string }) {
   const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
     count: 20, minutes: 30,
   })
+  /* Recomputed per-session percents from /api/study/topic-insights,
+     shared between the trend card and the mock-test list so the two
+     cannot quote different numbers for one test. */
+  const [recomputedScores, setRecomputedScores] = useState<Record<string, number>>({})
   const [progress, setProgress] = useState<{ mastery: number | null; sessions: number; lastActive: string | null }>({
     mastery: null, sessions: 0, lastActive: null,
   })
@@ -757,7 +761,12 @@ function TopicInner({ slug }: { slug: string }) {
             there is no completed test and no assessment yet, so it never
             renders an empty chart. */}
         {effectiveTopic && (
-          <TopicInsights topicId={effectiveTopic.id} ko={ko} />
+          <TopicInsights
+            topicId={effectiveTopic.id}
+            ko={ko}
+            onPractice={() => void startSession('practice')}
+            onScores={setRecomputedScores}
+          />
         )}
 
         {/* Mode picker.
@@ -850,6 +859,7 @@ function TopicInner({ slug }: { slug: string }) {
                   topicIds={[topic.id, ...children.map(c => c.id)]}
                   studentId={user?.userId ?? null}
                   ko={ko}
+                  scoreOverrides={recomputedScores}
                 />
               </>
             ) : (
@@ -1275,10 +1285,12 @@ function groupTestsBySection<T extends {
   return groups.map(g => ({ ...g, showHeading: groups.length > 1 }))
 }
 
-function RecentTestsList({ topicIds, studentId, ko }: {
+function RecentTestsList({ topicIds, studentId, ko, scoreOverrides }: {
   topicIds: string[]
   studentId: string | null
   ko: boolean
+  /** sessionId -> recomputed percent, from /api/study/topic-insights. */
+  scoreOverrides?: Record<string, number>
 }) {
   const [rows, setRows] = useState<Array<{
     id: string
@@ -1352,7 +1364,7 @@ function RecentTestsList({ topicIds, studentId, ko }: {
             list spans Reading, Listening, Speaking and Writing, and it
             used to render them as one flat pile — a Reading result sitting
             directly above a Speaking one with nothing to separate them, so
-            "my mock tests" for the thing you actually practised was buried
+            "my mock tests" for the thing you actually practiced was buried
             among the ones you didn't. On a section page there is exactly
             one group and the heading is suppressed, leaving it unchanged. */}
         {groupTestsBySection(rows, ko).map(group => (
@@ -1367,7 +1379,15 @@ function RecentTestsList({ topicIds, studentId, ko }: {
               </div>
             )}
             {group.rows.map(row => {
-              const score = row.score !== null ? Math.round(Number(row.score)) : null
+              /* The RECOMPUTED percent wins over study_sessions.score.
+                 That column still holds the pre-2026-07-29 model for
+                 Speaking and Writing, and this list sits on the same
+                 screen as the trend card: the Writing test that reads
+                 83% up there was printing "60%" down here, for the same
+                 session, three inches apart. Falls back to the column
+                 for sessions the insights call did not cover. */
+              const recomputed = scoreOverrides?.[row.id]
+              const score = recomputed ?? (row.score !== null ? Math.round(Number(row.score)) : null)
               const meta = TEST_STATE_META.completed
               const dateLabel = row.completed_at
                 ? new Date(row.completed_at).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
