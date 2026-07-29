@@ -41,6 +41,13 @@ jobs:
       NEXT_PUBLIC_PORTONE_STORE_ID: store-ci-placeholder
       NEXT_PUBLIC_PORTONE_CHANNEL_KEY_PAYMENT_LIVE: channel-ci-placeholder
       NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE: channel-ci-placeholder
+      # Belt and braces alongside the lazy client in
+      # src/lib/level-test-generator.ts. A module-scope `new OpenAI()`
+      # anywhere makes `next build` evaluate it while collecting page
+      # data, and the SDK throws without a key. The lazy getter is the
+      # real fix; this keeps the build honest if someone reintroduces
+      # the pattern. Fake, like every other value here.
+      OPENAI_API_KEY: sk-ci-placeholder-not-a-real-key
       # Keep telemetry out of CI runs.
       NEXT_TELEMETRY_DISABLED: '1'
       SENTRY_DSN: ''
