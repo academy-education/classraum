@@ -29,19 +29,25 @@ function hashStr(s: string): number {
 }
 
 export async function drawFlashcardBank(opts: {
-  section: 'math' | 'reading_writing'
+  /** Defaults to 'sat' for callers written before TOEFL Writing had a
+   *  deck. The family was hard-coded here, so passing a toefl section
+   *  alone silently returned zero cards and the mode rendered as
+   *  "coming soon" with 62 rows sitting in the table. */
+  family?: 'sat' | 'toefl'
+  section: 'math' | 'reading_writing' | 'writing'
   count: number
   studentId: string
   topicId: string | null
   seed: string
 }): Promise<FlashcardBankCard[]> {
-  const { section, count, studentId, topicId, seed } = opts
+  const { family = 'sat', section, count, studentId, topicId, seed } = opts
 
   const { data: cards } = await dbAdmin
     .from('study_flashcard_bank')
     .select('front, back, hint')
-    .eq('family', 'sat')
+    .eq('family', family)
     .eq('section', section)
+    .eq('verified', true)
     .eq('archived', false)
   if (!cards || cards.length === 0) return []
 
