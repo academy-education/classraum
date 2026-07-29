@@ -197,8 +197,12 @@ export function TestResultView({
     : shownPercent >= 60
       ? { gradient: 'from-amber-500 via-orange-500 to-orange-700' }
       : { gradient: 'from-rose-500 via-rose-600 to-red-700' }
+  // 'thinking' while the AI grader is still running, not 'idle':
+  // every other wait in the app uses thinking, and idle here made Raumi
+  // look like nothing was happening during the one wait the student is
+  // most anxious about.
   const mascotState: MascotState = !scoreReady
-    ? 'idle'
+    ? 'thinking'
     : shownPercent >= 80 ? 'celebrate' : shownPercent >= 60 ? 'idle' : 'sad'
 
   return (

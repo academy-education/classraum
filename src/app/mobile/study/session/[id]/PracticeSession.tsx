@@ -9,7 +9,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import { db } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
-import { MascotLoader } from '../../_shared/MascotLoader'
+import { MascotLoader, useMascotGate } from '../../_shared/MascotLoader'
 import { ExplainMore } from '../../_shared/ExplainMore'
 import { StudyButton } from '../../_shared/StudyButton'
 
@@ -244,10 +244,16 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
     setPhase('asking')
   }, [idx, questions.length])
 
+  const showPracticeLoader = useMascotGate(phase === 'loading')
+
+  // Commit-gated like the session shell and summary: Raumi either never
+  // appears (load beat the 300ms grace) or stays for a full animation
+  // cycle. Rendering MascotLoader raw let a fast fetch flash him for a
+  // few frames — the same flicker that was fixed on the summary screen.
   if (phase === 'loading') {
-    return (
-      <MascotLoader className="flex-1" label={t('study.practice.loading')} />
-    )
+    return showPracticeLoader
+      ? <MascotLoader className="flex-1" label={t('study.practice.loading')} />
+      : <div className="flex-1" />
   }
 
   if (phase === 'error') {

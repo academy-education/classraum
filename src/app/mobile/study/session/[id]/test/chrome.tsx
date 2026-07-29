@@ -117,9 +117,14 @@ export function GenerationProgress({
         <div className="text-center mb-6">
           {/* Mascot in loading state — the grab→spin→catch gag runs on
               a 2.7s loop, so the ~90s test-gen wait is the one place it
-              has time to land (short waits get "thinking" instead). */}
+              has time to land (short waits get "thinking" instead).
+              Size 96, not 72: this screen follows the session-shell
+              MascotLoader (96) and TestSession's own wait (96), and
+              TestSession's comment says it picks 96 precisely so the
+              mascot doesn't shrink between load phases. At 72 he shrank
+              here instead — the seam just moved one step later. */}
           <div className="inline-flex items-center justify-center mb-3">
-            <PathMascot state="loading" size={72} />
+            <PathMascot state="loading" size={96} />
           </div>
           <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
             {String(t(isLoadingOnly

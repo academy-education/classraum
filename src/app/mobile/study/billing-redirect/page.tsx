@@ -20,7 +20,7 @@ async function waitForAuthHeaders(): Promise<HeadersInit | null> {
   }
   return null
 }
-import { MascotLoader } from '../_shared/MascotLoader'
+import { MascotLoader, useMascotGate } from '../_shared/MascotLoader'
 import { StudyButton } from '../_shared/StudyButton'
 
 /**
@@ -167,6 +167,8 @@ export default function BillingRedirectPage() {
     })()
   }, [router])
 
+  const showPaymentLoader = useMascotGate(true)
+
   if (pending) {
     // Payment succeeded at the PG; the server is finalizing it (webhook
     // backstop). Reassure, don't alarm — the balance updates shortly.
@@ -206,9 +208,17 @@ export default function BillingRedirectPage() {
     )
   }
 
+  // Reaching here means we are still waiting on the payment round-trip.
+  // Gated like every other study wait: if the redirect resolves inside
+  // the 300ms grace the student sees nothing rather than a one-frame
+  // mascot. (Whether Raumi belongs on a billing screen at all is a
+  // separate question — subscription/page.tsx deliberately uses a
+  // skeleton and says "Raumi is reserved for studying screens".)
   return (
     <div className="flex flex-col h-full bg-gray-50">
-      <MascotLoader className="flex-1" label={ko ? '결제를 완료하는 중…' : 'Completing your payment…'} />
+      {showPaymentLoader
+        ? <MascotLoader className="flex-1" label={ko ? '결제를 완료하는 중…' : 'Completing your payment…'} />
+        : <div className="flex-1" />}
     </div>
   )
 }
