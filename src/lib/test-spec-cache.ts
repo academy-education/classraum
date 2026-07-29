@@ -13,6 +13,8 @@
 
 import {
   TEST_SPECS,
+  OPTION_LENGTH_RULE_EN,
+  OPTION_LENGTH_RULE_KO,
   renderTestSpec as renderTestSpecSync,
   defaultsForTestSection as defaultsForTestSectionSync,
   type SectionSpec,
@@ -128,7 +130,8 @@ export async function defaultsForTestSectionCached(
   return defaultsForTestSectionSync(family, sectionLabel)
 }
 
-function formatBlock(family: TestFamily, section: SectionSpec, language: 'en' | 'ko'): string {
+// Exported for the option-length test; nothing else should call it.
+export function formatBlock(family: TestFamily, section: SectionSpec, language: 'en' | 'ko'): string {
   // Use the hardcoded TEST_SPECS for the family-level framing — that
   // doesn't change as often and isn't worth re-fetching per section.
   const familySpec = TEST_SPECS[family]
@@ -144,6 +147,7 @@ function formatBlock(family: TestFamily, section: SectionSpec, language: 'en' | 
       `영역: ${section.name_ko}. 총 ${section.questionsPerSection}문항, ${section.minutesPerSection}분, ${section.choiceCount}지선다.`,
       `출제 패턴: ${section.patterns_ko}`,
       `오답 설계: ${section.distractorPatterns_ko}`,
+      OPTION_LENGTH_RULE_KO,
     ].filter(Boolean).join('\n\n')
   }
   return [
@@ -152,5 +156,6 @@ function formatBlock(family: TestFamily, section: SectionSpec, language: 'en' | 
     `Section: ${section.name_en}. ${section.questionsPerSection} questions, ${section.minutesPerSection} minutes, ${section.choiceCount}-choice multiple choice.`,
     `Question patterns: ${section.patterns_en}`,
     `Distractor design: ${section.distractorPatterns_en}`,
+    OPTION_LENGTH_RULE_EN,
   ].filter(Boolean).join('\n\n')
 }
