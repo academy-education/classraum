@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { authHeaders } from '@/lib/auth-headers'
-import { TrendingUp, TrendingDown, Target, Lightbulb, Sparkles } from '../../_shared/icons'
+import { TrendingUp, TrendingDown, Sparkles } from '../../_shared/icons'
+import { SectionBreakdownCard, SkillCards } from '../../_shared/SectionBreakdown'
+import type { Breakdown } from '@/lib/study/section-breakdown'
 import { chartGeometry, trendDelta, type TrendPoint } from '@/lib/study/topic-trend'
 
 /**
@@ -28,6 +30,7 @@ import { chartGeometry, trendDelta, type TrendPoint } from '@/lib/study/topic-tr
 
 interface Insights {
   points: TrendPoint[]
+  breakdown: Breakdown
   mastery: {
     score: number | null
     attempts: number
@@ -51,7 +54,8 @@ export function TopicInsights({ topicId, ko }: { topicId: string; ko: boolean })
     void (async () => {
       try {
         const headers = await authHeaders()
-        const res = await fetch(`/api/study/topic-insights?topicId=${topicId}`, { headers })
+        const res = await fetch(
+          `/api/study/topic-insights?topicId=${topicId}&lang=${ko ? 'ko' : 'en'}`, { headers })
         if (!res.ok) throw new Error(String(res.status))
         const json = await res.json() as Insights
         if (!cancelled) { setData(json); setActive(null) }
@@ -62,7 +66,7 @@ export function TopicInsights({ topicId, ko }: { topicId: string; ko: boolean })
       }
     })()
     return () => { cancelled = true }
-  }, [topicId])
+  }, [topicId, ko])
 
   if (loading) {
     return <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4 h-[172px] animate-pulse" />
@@ -71,25 +75,41 @@ export function TopicInsights({ topicId, ko }: { topicId: string; ko: boolean })
   const points = data?.points ?? []
   const strengths = data?.mastery?.strengths ?? []
   const weaknesses = data?.mastery?.weaknesses ?? []
+  const breakdown = data?.breakdown ?? { groups: [], covered: 0, omitted: 0 }
+  const hasBreakdown = breakdown.groups.length >= 2
 
   // Nothing to say yet. The progress card above already reports the
   // session count, so an empty chart here would only take up room.
   if (points.length === 0 && strengths.length === 0 && weaknesses.length === 0) return null
 
   return (
-    <div className="rounded-2xl bg-white ring-1 ring-gray-200 overflow-hidden">
-      {points.length > 0 && (
-        <TrendChart points={points} ko={ko} active={active} onActive={setActive} />
-      )}
-      {(strengths.length > 0 || weaknesses.length > 0) && (
-        <SkillLists
-          strengths={strengths}
-          weaknesses={weaknesses}
-          assessedAt={data?.mastery?.lastAssessedAt ?? null}
-          divided={points.length > 0}
-          ko={ko}
-        />
-      )}
+    <div className="space-y-2.5">
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200 overflow-hidden">
+        {points.length > 0 && (
+          <TrendChart points={points} ko={ko} active={active} onActive={setActive} />
+        )}
+        {/* Section bars live inside the trend card, under the line: the
+            chart says the score moved, these say which parts moved it.
+            Aggregated across the plotted sessions, not the newest one —
+            a single 12-question test splits into groups too small to
+            report and the card would sit empty. */}
+        {hasBreakdown && (
+          <div className={`px-4 py-3.5 ${points.length > 0 ? 'border-t border-gray-100 bg-gray-50/40' : ''}`}>
+            <SectionBreakdownCard
+              breakdown={breakdown} ko={ko} dense
+              title={ko ? `영역별 (최근 ${points.length}회 합산)`
+                        : `By section · last ${points.length} ${points.length === 1 ? 'test' : 'tests'}`}
+            />
+          </div>
+        )}
+      </div>
+
+      <SkillCards
+        strengths={strengths}
+        weaknesses={weaknesses}
+        assessedAt={data?.mastery?.lastAssessedAt ?? null}
+        ko={ko}
+      />
     </div>
   )
 }
@@ -242,79 +262,6 @@ function TrendChart({
         {ko ? `${formatDay(shown.at, ko)} 시험 결과 보기`
             : `Open ${formatDay(shown.at, ko)} test`}
       </Link>
-    </div>
-  )
-}
-
-function SkillLists({
-  strengths, weaknesses, assessedAt, divided, ko,
-}: {
-  strengths: string[]
-  weaknesses: string[]
-  assessedAt: string | null
-  divided: boolean
-  ko: boolean
-}) {
-  return (
-    <div className={`px-4 py-3.5 space-y-3 ${divided ? 'border-t border-gray-100 bg-gray-50/40' : ''}`}>
-      {strengths.length > 0 && (
-        <SkillGroup
-          icon={<Target className="w-3 h-3" />}
-          title={ko ? '강점' : 'Strengths'}
-          items={strengths}
-          tone="emerald"
-        />
-      )}
-      {weaknesses.length > 0 && (
-        <SkillGroup
-          icon={<Lightbulb className="w-3 h-3" />}
-          title={ko ? '보완할 점' : 'Work on'}
-          items={weaknesses}
-          // Amber, not rose. These are the next things to practise, not
-          // errors — the same reasoning that keeps a low rubric band out
-          // of failure red.
-          tone="amber"
-        />
-      )}
-      {assessedAt && (
-        <div className="text-[10.5px] text-gray-400">
-          {ko ? `${formatDay(assessedAt, ko)} 기준 AI 분석`
-              : `AI assessment as of ${formatDay(assessedAt, ko)}`}
-        </div>
-      )}
-    </div>
-  )
-}
-
-const TONE = {
-  emerald: { chip: 'bg-emerald-50 text-emerald-800 ring-emerald-200/70', head: 'text-emerald-700' },
-  amber: { chip: 'bg-amber-50 text-amber-900 ring-amber-200/70', head: 'text-amber-700' },
-} as const
-
-function SkillGroup({
-  icon, title, items, tone,
-}: {
-  icon: React.ReactNode
-  title: string
-  items: string[]
-  tone: keyof typeof TONE
-}) {
-  return (
-    <div>
-      <div className={`flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-[0.08em] ${TONE[tone].head}`}>
-        {icon}
-        {title}
-      </div>
-      <div className="mt-1.5 flex flex-wrap gap-1.5">
-        {items.map(label => (
-          <span
-            key={label}
-            className={`rounded-lg px-2 py-1 text-[11.5px] font-medium ring-1 ${TONE[tone].chip}`}
-          >
-            {label}
-          </span>
-        ))}
-      </div>
     </div>
   )
 }

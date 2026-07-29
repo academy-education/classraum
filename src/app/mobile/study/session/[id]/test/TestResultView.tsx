@@ -21,6 +21,8 @@ import {
 } from '@/lib/study/toefl-section-score'
 import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
 import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
+import { buildSectionBreakdown } from '@/lib/study/section-breakdown'
+import { SectionBreakdownCard } from '@/app/mobile/study/_shared/SectionBreakdown'
 
 /** Types whose answer is prose, not a pick from `choices`. Kept as an
  *  explicit list because `arrange_words` DOES populate `choices` (its word
@@ -108,12 +110,35 @@ export function TestResultView({
   // the percent-correct path, which already matches ETS.
   const items = model.rows.map(r => ({
     type: r.question.type ?? '',
+    // Carried for the per-section breakdown, which groups on the
+    // bracketed prefix the generator writes into the prompt.
+    prompt: r.question.prompt ?? null,
     expectedText: r.question.correct_answer ?? null,
     studentAnswer: r.studentAnswer,
     correct: r.correct,
     rubricBand: grades[r.question.prompt ?? '']?.band ?? null,
   }))
   const toeflSection = model.family === 'toefl' ? detectToeflSection(items) : null
+  /* Per-section performance, from the SAME per-item scorer as the total
+     above. Self-hides below 2 groups, which is every SAT test — those
+     prompts carry no section label at all.
+     
+     PILOTS EXCLUDED. They are delivered but unscored, and including them
+     made the rows sum to 17 points on a Listening test whose hero read
+     "14 / 35" — the breakdown was quietly scoring the 13 experimental
+     questions the screen directly below it says do not count. Same
+     population as the score, or the parts do not belong to the whole. */
+  const breakdown = buildSectionBreakdown(
+    model.rows.filter(r => !r.isPilot).map(r => ({
+      type: r.question.type ?? '',
+      prompt: r.question.prompt ?? null,
+      expectedText: r.question.correct_answer ?? null,
+      studentAnswer: r.studentAnswer,
+      correct: r.correct,
+      rubricBand: grades[r.question.prompt ?? '']?.band ?? null,
+    })),
+    scoreListenRepeat, { ko },
+  )
   const pointsScore = toeflSection
     ? scoreToeflSection(items, WEIGHTS_FOR[toeflSection], scoreListenRepeat)
     : null
@@ -299,6 +324,12 @@ export function TestResultView({
           </div>
         </div>
       </div>
+
+      {/* Which parts of the test went well. Directly under the hero,
+          because "83%" is the headline and "where did the 17% go" is the
+          immediate next question. Self-hides when the test has fewer than
+          two labelled sections. */}
+      <SectionBreakdownCard breakdown={breakdown} ko={ko} />
 
       {/* How the answers were counted.
         *

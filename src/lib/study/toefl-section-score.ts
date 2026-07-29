@@ -150,34 +150,59 @@ const MAX_OF: Record<string, number> = {
  * nothing to EITHER side of the fraction, so a half-graded test reads as
  * a shorter test rather than a worse one.
  */
+export interface ItemScore {
+  /** Which weighted part of the section this item belongs to. */
+  part: string
+  earned: number
+  max: number
+}
+
+/**
+ * Points for ONE delivered item, or null when it is not scorable —
+ * an item type from another section, a repeat with no target sentence,
+ * an open response still awaiting its grade.
+ *
+ * Exported because the per-section breakdown on the result screen needs
+ * the same arithmetic. Two functions scoring the same item is how the
+ * breakdown ends up totalling something other than the score above it,
+ * which is the failure this codebase keeps repeating; there is one rule
+ * and both callers use it.
+ */
+export function scoreItem(
+  it: ScorableItem,
+  scoreRepeat: (expected: string, actual: string) => { score: number },
+): ItemScore | null {
+  const part = PART_OF[it.type]
+  if (!part) return null
+  const max = MAX_OF[part] ?? 1
+
+  if (part === 'listen_repeat') {
+    const expected = (it.expectedText ?? '').trim()
+    // Without the target sentence there is nothing to compare against,
+    // so the item is not scorable — drop it rather than score it 0.
+    if (!expected) return null
+    return { part, earned: scoreRepeat(expected, it.studentAnswer ?? '').score, max }
+  }
+  if (part === 'build_a_sentence') return { part, earned: it.correct ? 1 : 0, max }
+  if (it.rubricBand == null) return null
+  return { part, earned: Math.max(0, Math.min(max, it.rubricBand)), max }
+}
+
 export function scoreToeflSection(
   items: ScorableItem[],
   weights: Record<string, number>,
   scoreRepeat: (expected: string, actual: string) => { score: number },
 ): SectionScore {
   const acc = new Map<string, { earned: number; max: number }>()
-  const bump = (part: string, earned: number, max: number) => {
-    const cur = acc.get(part) ?? { earned: 0, max: 0 }
-    acc.set(part, { earned: cur.earned + earned, max: cur.max + max })
-  }
 
   for (const it of items) {
-    const part = PART_OF[it.type]
-    if (!part) continue
-    const max = MAX_OF[part] ?? 1
-
-    if (part === 'listen_repeat') {
-      const expected = (it.expectedText ?? '').trim()
-      // Without the target sentence there is nothing to compare against,
-      // so the item is not scorable — drop it rather than score it 0.
-      if (!expected) continue
-      bump(part, scoreRepeat(expected, it.studentAnswer ?? '').score, max)
-    } else if (part === 'build_a_sentence') {
-      bump(part, it.correct ? 1 : 0, max)
-    } else {
-      if (it.rubricBand == null) continue
-      bump(part, Math.max(0, Math.min(max, it.rubricBand)), max)
-    }
+    const scored = scoreItem(it, scoreRepeat)
+    if (!scored) continue
+    const cur = acc.get(scored.part) ?? { earned: 0, max: 0 }
+    acc.set(scored.part, {
+      earned: cur.earned + scored.earned,
+      max: cur.max + scored.max,
+    })
   }
 
   return combineParts(

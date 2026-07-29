@@ -3,7 +3,8 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { familyFromTopicSlug } from '@/lib/study/test-result'
 import { scoreTrendSession, type TrendSession } from '@/lib/study/topic-trend'
-import type { ScorableItem } from '@/lib/study/toefl-section-score'
+import { buildSectionBreakdown, type BreakdownItem } from '@/lib/study/section-breakdown'
+import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
 
 /**
  * GET /api/study/topic-insights?topicId=… — the trend chart, strengths
@@ -44,6 +45,7 @@ export async function GET(req: NextRequest) {
   const user = authResult.user
 
   const topicId = req.nextUrl.searchParams.get('topicId')
+  const ko = req.nextUrl.searchParams.get('lang') === 'ko'
   if (!topicId) {
     return NextResponse.json({ error: 'topicId required' }, { status: 400 })
   }
@@ -70,6 +72,13 @@ export async function GET(req: NextRequest) {
     id: string; created_at: string; correct_count: number | null; total_count: number | null
   }>).reverse()
 
+  // Every item across the capped window, so the topic-page breakdown is
+  // built from the same sessions the chart plots. Aggregating rather than
+  // showing the newest test's breakdown: one test of 12 questions splits
+  // into groups too small to survive the minimum, and the topic page is
+  // the place where a pattern across sittings is the point.
+  const allItems: BreakdownItem[] = []
+
   const points = await Promise.all(rows.map(async row => {
     const [{ data: attempts }, { data: subs }] = await Promise.all([
       dbAdmin.from('study_attempts')
@@ -87,16 +96,24 @@ export async function GET(req: NextRequest) {
       if (g) bandByPrompt.set(s.prompt_text as string, Number(g.overall_band))
     }
 
-    const items: ScorableItem[] = (attempts ?? []).map(a => {
+    const items: BreakdownItem[] = (attempts ?? []).map(a => {
       const q = a.question as Record<string, unknown> | null
       return {
         type: String(q?.type ?? ''),
+        prompt: typeof q?.prompt === 'string' ? q.prompt : null,
         expectedText: typeof q?.correct_answer === 'string' ? q.correct_answer : null,
         studentAnswer: a.student_answer as string | null,
         correct: a.is_correct === true,
         rubricBand: bandByPrompt.get(String(q?.prompt ?? '')) ?? null,
       }
     })
+    // Scored items only. A pilot is delivered but never counted, and
+    // including them made the section rows total more points than the
+    // score they sit under.
+    allItems.push(...items.filter((_, i) => {
+      const q = (attempts ?? [])[i]?.question as Record<string, unknown> | null
+      return q?.scored !== false
+    }))
 
     const session: TrendSession = {
       sessionId: row.id,
@@ -111,6 +128,7 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({
     points,
+    breakdown: buildSectionBreakdown(allItems, scoreListenRepeat, { ko }),
     mastery: mastery
       ? {
           score: (mastery.score as number | null) ?? null,
