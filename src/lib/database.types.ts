@@ -2598,6 +2598,36 @@ export type Database = {
         }
         Relationships: []
       }
+      storage_deletion_queue: {
+        Row: {
+          attempts: number
+          bucket_id: string
+          deleted_at: string | null
+          enqueued_at: string
+          id: number
+          last_error: string | null
+          storage_path: string
+        }
+        Insert: {
+          attempts?: number
+          bucket_id: string
+          deleted_at?: string | null
+          enqueued_at?: string
+          id?: number
+          last_error?: string | null
+          storage_path: string
+        }
+        Update: {
+          attempts?: number
+          bucket_id?: string
+          deleted_at?: string | null
+          enqueued_at?: string
+          id?: number
+          last_error?: string | null
+          storage_path?: string
+        }
+        Relationships: []
+      }
       student_reports: {
         Row: {
           ai_feedback_created_at: string | null
@@ -3307,6 +3337,13 @@ export type Database = {
             referencedRelation: "study_item_bank"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "study_item_exposures_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_calibration"
+            referencedColumns: ["item_id"]
+          },
         ]
       }
       study_league_memberships: {
@@ -3690,6 +3727,47 @@ export type Database = {
           rewarded?: boolean
         }
         Relationships: []
+      }
+      study_response_audio: {
+        Row: {
+          bytes: number | null
+          created_at: string
+          id: string
+          mime_type: string | null
+          position: number | null
+          session_id: string
+          storage_path: string
+          student_id: string
+        }
+        Insert: {
+          bytes?: number | null
+          created_at?: string
+          id?: string
+          mime_type?: string | null
+          position?: number | null
+          session_id: string
+          storage_path: string
+          student_id: string
+        }
+        Update: {
+          bytes?: number | null
+          created_at?: string
+          id?: string
+          mime_type?: string | null
+          position?: number | null
+          session_id?: string
+          storage_path?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_response_audio_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "study_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       study_response_grades: {
         Row: {
@@ -4909,6 +4987,7 @@ export type Database = {
           deletion_scheduled_at: string | null
           email: string
           id: string
+          is_internal: boolean
           name: string
           phone: string | null
           role: string
@@ -4919,6 +4998,7 @@ export type Database = {
           deletion_scheduled_at?: string | null
           email: string
           id?: string
+          is_internal?: boolean
           name: string
           phone?: string | null
           role: string
@@ -4929,6 +5009,7 @@ export type Database = {
           deletion_scheduled_at?: string | null
           email?: string
           id?: string
+          is_internal?: boolean
           name?: string
           phone?: string | null
           role?: string
@@ -5005,6 +5086,24 @@ export type Database = {
           peak_student_count: number | null
           peak_teacher_count: number | null
           subscription_tier: string | null
+        }
+        Relationships: []
+      }
+      study_item_calibration: {
+        Row: {
+          attempts: number | null
+          cohort: string | null
+          correct: number | null
+          family: string | null
+          item_id: string | null
+          item_type: string | null
+          labelled_cefr: string | null
+          labelled_difficulty: string | null
+          listening_task: string | null
+          measured_difficulty: string | null
+          p_value: number | null
+          reading_task: string | null
+          section: string | null
         }
         Relationships: []
       }
