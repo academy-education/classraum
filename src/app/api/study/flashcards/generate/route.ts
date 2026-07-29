@@ -96,12 +96,28 @@ export async function POST(req: NextRequest) {
     void cleanupAbandonedPracticeSessions(user.id, sessionId)
   }
 
-  // Resolve the bank section from the topic slug (SAT only for now).
-  let bankSection: 'math' | 'reading_writing' | null = null
+  /* Resolve the bank family+section from the topic slug.
+   *
+   * TOEFL Writing gets a deck; Listening and Speaking deliberately do
+   * NOT. A flashcard is a recall tool — one cue, one retrievable answer
+   * — and that maps onto vocabulary, not onto hearing connected speech
+   * or producing it under time pressure. Shipping card decks there
+   * would feel like studying and move nothing. Their equivalents are
+   * dictation and the Listen-and-Repeat loop, which are separate modes.
+   *
+   * The Writing deck is usage-first, not definition-first: headword →
+   * pattern + the error to avoid → model sentence. A TOEFL writer knows
+   * what `contribute` means and still writes "contribute in". */
+  let bankFamily: 'sat' | 'toefl' = 'sat'
+  let bankSection: 'math' | 'reading_writing' | 'writing' | null = null
   if (session.topic_id) {
     const ctx = await loadStudyPromptContext(session.topic_id, session.language as 'en' | 'ko')
     if (ctx?.testFamily === 'sat') {
+      bankFamily = 'sat'
       bankSection = ctx.topicSlug === 'sat-math' ? 'math' : 'reading_writing'
+    } else if (ctx?.testFamily === 'toefl' && ctx.topicSlug === 'toefl-writing') {
+      bankFamily = 'toefl'
+      bankSection = 'writing'
     }
   }
   if (!bankSection) {
@@ -109,6 +125,7 @@ export async function POST(req: NextRequest) {
   }
 
   const cards = await drawFlashcardBank({
+    family: bankFamily,
     section: bankSection,
     count: DECK_SIZE,
     studentId: user.id,

@@ -178,14 +178,29 @@ export function enforceRelevanceCeiling(
   grade: Grade,
   rubric: RubricSpec,
   ceiling: number,
+  /** Why the relevance stage landed where it did. Becomes the student-
+   *  facing evidence on the relevance criterion, which the quality rater
+   *  never sees and therefore cannot explain. */
+  relevanceEvidence?: string,
 ): { grade: Grade; ceilingApplied: boolean; languageScore: number } {
   const languageScore = clamp(grade.overallBand, rubric.scaleMax)
   const capped = applyCeiling(languageScore, ceiling)
-  const criteria = grade.criteria.map(c =>
-    c.key === rubric.relevanceCriterionKey
-      ? { ...c, score: applyCeiling(clamp(c.score, rubric.scaleMax), ceiling) }
-      : { ...c, score: clamp(c.score, rubric.scaleMax) },
-  )
+  const others = grade.criteria
+    .filter(c => c.key !== rubric.relevanceCriterionKey)
+    .map(c => ({ ...c, score: clamp(c.score, rubric.scaleMax) }))
+  // The relevance criterion is OWNED by the relevance stage. It is set
+  // here rather than min()'d out of whatever the quality rater returned,
+  // because that rater is told not to judge relevance at all.
+  const criteria = rubric.relevanceCriterionKey
+    ? [
+        ...others,
+        {
+          key: rubric.relevanceCriterionKey,
+          score: clamp(ceiling, rubric.scaleMax),
+          evidence: relevanceEvidence ?? '',
+        },
+      ]
+    : others
   return {
     grade: { ...grade, criteria, overallBand: capped },
     ceilingApplied: capped < languageScore,
@@ -331,7 +346,9 @@ ${criteriaList}
 Official band descriptors:
 ${rubric.bandDescriptors}
 
-Note the ETS asymmetry: at the top bands a response must display ALL of the listed features; at the bottom bands (2 and 1) ONE OR MORE of the listed features is enough to place the response there.
+${ctx.skill === 'writing'
+  ? 'Note the asymmetry in the official WRITING guides: bands 5-3 read "a typical response displays the following", but bands 2 and 1 read "a typical response exhibits ONE OR MORE of the following" — so a single listed weakness is enough to place a response at 2 or 1.'
+  : 'Note that the official SPEAKING guides use "a typical response exhibits the following" at EVERY band, including 2 and 1 — there is no one-or-more shortcut down. A response showing a single weakness while meeting the rest of a higher band belongs at that higher band. Do not drop it to 2 for one weak feature.'}
 
 Method — follow it in this order:
 1. For each criterion, quote the exact span that justifies the band, then explain in one sentence. Write the evidence BEFORE the number.
@@ -377,6 +394,16 @@ export type TextStageCall = <T>(args: {
  *  route attaches the recording alongside it. */
 export type QualityStageCall = (args: {
   prompt: string
+  /** The rubric's criterion keys, in order.
+   *
+   *  The caller builds its schema from these so the model is told the
+   *  EXACT set it must return. GradeSchema alone only constrains the
+   *  COUNT (min 3, max 4) — nothing tied an entry to a real criterion. A
+   *  TOEFL Speaking grade came back with `delivery` and `language_use`
+   *  but no `topic_relevance`, and generateObject threw
+   *  AI_NoObjectGeneratedError "Array must contain at least 3 element(s)".
+   *  The student saw a 502 on a grade the model had already produced. */
+  criterionKeys: string[]
 }) => Promise<{ object: Grade; usage?: StageUsage }>
 
 export interface StagedGradeResult {
@@ -414,8 +441,8 @@ export async function runStagedGrade(
   })
   addUsage(gateRes.usage)
   const gate = gateRes.object
-  if (zeroGateTriggered(gate)) {
-    const reasons = zeroGateReasons(gate)
+  if (zeroGateTriggered(gate, ctx.skill)) {
+    const reasons = zeroGateReasons(gate, ctx.skill)
     return {
       grade: zeroGrade(gate, rubric),
       zeroGate: gate,
@@ -432,7 +459,21 @@ export async function runStagedGrade(
   // ── Stages 2 + 4 in parallel (independent by construction) ───────
   // Listen and Repeat is a repetition-accuracy rubric — the relevance
   // ladder does not apply and the quality score stands alone.
-  const qualityPromise = calls.quality({ prompt: buildQualityPrompt(ctx) })
+  // Only the criteria this stage is actually asked to judge. The quality
+  // prompt tells the rater that relevance "is being judged separately by
+  // another rater" — so requiring a relevance entry in its schema forces
+  // it to invent one. It complied with score 0 and evidence "N/A", the
+  // ceiling min()'d that to 0, and a student whose answer was squarely on
+  // topic saw "topic_relevance 0" beside a summary praising their
+  // on-topic argument. Requiring the key was a fix for a 502 caused by
+  // the model omitting it; the real fix is not to ask for it at all.
+  const qualityKeys = rubric.usesRelevanceLadder
+    ? rubric.criteria.filter(c => c.key !== rubric.relevanceCriterionKey).map(c => c.key)
+    : rubric.criteria.map(c => c.key)
+  const qualityPromise = calls.quality({
+    prompt: buildQualityPrompt(ctx),
+    criterionKeys: qualityKeys,
+  })
   const relevancePromise = rubric.usesRelevanceLadder
     ? calls.text({
         schema: RelevanceSchema,
@@ -468,6 +509,7 @@ export async function runStagedGrade(
     qualityRes.object,
     rubric,
     ceiling,
+    relevance.elaborationAssessment,
   )
 
   return {

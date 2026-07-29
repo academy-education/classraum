@@ -73,7 +73,57 @@ const MAX_SHARE = 0.45
     }
   }
 
+  // Per-cohort key LENGTH, which position cannot see.
+  //
+  // The TOEFL Choose-a-Response bank passed every check above — keys at
+  // 26/16/25/33 across A/B/C/D, no permutation clustering — while the key
+  // was the LONGEST of the four options in 70% of items (chance is 25%)
+  // and the shortest in 5%. A candidate who never played the audio and
+  // always picked the longest option scored ~70% on the task type.
+  //
+  // The cause is how a correct answer gets written: the key has to be
+  // fully natural and complete, distractors get clipped once they are
+  // wrong enough. That instinct is invisible to a position histogram and
+  // survives any amount of shuffling, because it travels WITH the text.
+  //
+  // Fourth distinct tell to reach this bank, each one invisible to the
+  // check watching for the last. Length is the cheapest to measure, so
+  // it belongs here rather than in a grader's remark.
+  const LEN_MIN_N = 12
+  const LEN_MAX_SHARE = 0.40   // chance 25%; 40% tolerates noise at n=12
+  const byCohortLen = new Map<string, { longest: number; shortest: number; n: number }>()
+  for (const r of rows) {
+    const it = r.item as Record<string, unknown> | null
+    const choices = it?.choices as string[] | undefined
+    const key = it?.correct_answer as string | undefined
+    if (!Array.isArray(choices) || choices.length !== 4 || !key) continue
+    if (!choices.includes(key)) continue
+    const lens = choices.map(c => (c ?? '').length)
+    const keyLen = key.length
+    const c = r.cohort ?? '(none)'
+    const acc = byCohortLen.get(c) ?? { longest: 0, shortest: 0, n: 0 }
+    acc.n++
+    // Ties count as NOT a tell: if two options share the max length the
+    // longest-option heuristic does not single out the key.
+    if (keyLen === Math.max(...lens) && lens.filter(l => l === keyLen).length === 1) acc.longest++
+    if (keyLen === Math.min(...lens) && lens.filter(l => l === keyLen).length === 1) acc.shortest++
+    byCohortLen.set(c, acc)
+  }
+
   let bad = 0
+  console.log('key-LENGTH tell (uniquely longest / uniquely shortest; 25% each is chance):')
+  for (const [cohort, a] of [...byCohortLen].sort()) {
+    const longShare = a.longest / a.n
+    const shortShare = a.shortest / a.n
+    const flag = a.n >= LEN_MIN_N && (longShare > LEN_MAX_SHARE || shortShare > LEN_MAX_SHARE)
+    console.log(
+      `${flag ? 'FAIL' : ' ok '} ${cohort.padEnd(14)} n=${String(a.n).padStart(5)}  ` +
+      `longest ${(longShare * 100).toFixed(1)}%  shortest ${(shortShare * 100).toFixed(1)}%`,
+    )
+    if (flag) bad++
+  }
+  console.log()
+
   for (const [cohort, counts] of [...byCohort].sort()) {
     const n = counts.reduce((a, b) => a + b, 0)
     const worst = Math.max(...counts)

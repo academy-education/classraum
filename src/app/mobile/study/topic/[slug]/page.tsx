@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
 import { ArrowLeft, Loader2, FileText, ArrowRight, Sparkles, Mic, Lock, GraduationCap, ClipboardList, Coins, Zap } from '@/app/mobile/study/_shared/icons'
-import { StudyPageHeader, StudyScrollShell } from '../../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell, StudyTodayCard } from '../../_shared/primitives'
+import { TEST_STATE_META } from '../../_shared/testState'
 import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard, SkeletonStickyHeader } from '../../skeletons'
@@ -21,7 +22,8 @@ import { PRACTICE_SESSION_QUESTION_COUNT } from '@/lib/study-path'
 import { CreditConfirmSheet, NoCreditsSheet } from '../../_shared/CreditConfirmSheet'
 import { sectionVisual } from '../../_shared/sectionVisuals'
 import { PredictedScore } from '../../_shared/PredictedScore'
-import { RecommendedShelf } from '../../RecommendedShelf'
+import { TopicInsights } from './TopicInsights'
+import { BankExhaustedSheet } from './BankExhaustedSheet'
 import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
@@ -132,6 +134,10 @@ function TopicInner({ slug }: { slug: string }) {
   const [tab, setTab] = useState<'tests' | 'practice'>('tests')
   const [bankBusy, setBankBusy] = useState(false)
   const { errorToast, showError } = useStudyErrorToast()
+  /* Set when the bank has nothing fresh left for this student. Distinct
+     from an error: the request succeeded and the answer is "not yet". */
+  const [exhausted, setExhausted] = useState<
+    { reason: 'pool_exhausted' | 'no_bank_coverage'; unseen: number } | null>(null)
   const [testSheetOpen, setTestSheetOpen] = useState(false)
   // Credit-spend confirm for the one-tap SAT bank start (the AI-test
   // customization sheet shows its own cost line, so it skips this).
@@ -146,6 +152,10 @@ function TopicInner({ slug }: { slug: string }) {
   const [testDefaults, setTestDefaults] = useState<{ count: number; minutes: number }>({
     count: 20, minutes: 30,
   })
+  /* Recomputed per-session percents from /api/study/topic-insights,
+     shared between the trend card and the mock-test list so the two
+     cannot quote different numbers for one test. */
+  const [recomputedScores, setRecomputedScores] = useState<Record<string, number>>({})
   const [progress, setProgress] = useState<{ mastery: number | null; sessions: number; lastActive: string | null }>({
     mastery: null, sessions: 0, lastActive: null,
   })
@@ -304,7 +314,7 @@ function TopicInner({ slug }: { slug: string }) {
     if (!user?.userId || !effectiveTopic) return
     let cancelled = false
     void (async () => {
-      const [{ data: mastery }, { data: sessions }] = await Promise.all([
+      const [{ data: mastery }, countRes, { data: sessions }] = await Promise.all([
         db
           .from('study_mastery')
           .select('score')
@@ -312,15 +322,31 @@ function TopicInner({ slug }: { slug: string }) {
           .eq('topic_id', effectiveTopic.id)
           .maybeSingle(),
         db
+          // head:true + count:'exact' asks Postgres for the count and no
+          // rows. The previous form paired count:'exact' with limit(1)
+          // and then read data.length, so "Sessions" was the number of
+          // ROWS RETURNED — permanently 1 for anyone who had ever
+          // studied here.
+          //
+          // Completed only. A generated-but-never-opened full test is an
+          // `active` row, and this topic had six of them: counting those
+          // put "Sessions 9" beside a trend chart reading "3 tests".
+          // Sessions means work the student actually did.
           .from('study_sessions')
-          .select('last_active_at', { count: 'exact' })
+          .select('id', { count: 'exact', head: true })
+          .eq('student_id', user.userId)
+          .eq('topic_id', effectiveTopic.id)
+          .eq('status', 'completed'),
+        db
+          .from('study_sessions')
+          .select('last_active_at')
           .eq('student_id', user.userId)
           .eq('topic_id', effectiveTopic.id)
           .order('last_active_at', { ascending: false })
           .limit(1),
       ])
       if (cancelled) return
-      const sessionCount = (sessions as { last_active_at: string }[] | null)?.length ?? 0
+      const sessionCount = countRes.count ?? 0
       const lastRow = (sessions as { last_active_at: string }[] | null)?.[0] ?? null
       setProgress({
         mastery: (mastery?.score as number | undefined) ?? null,
@@ -450,6 +476,21 @@ function TopicInner({ slug }: { slug: string }) {
         body: JSON.stringify(bankBody),
       })
       if (res.status === 402) { setBankBusy(false); setCreditConfirmOpen(false); setNoCreditsOpen(true); return }
+      /* 409 = the bank cannot give this student a mostly-fresh test.
+         A distinct screen, not the generic error toast: nothing has gone
+         wrong, they have simply finished the pool, and "try again"
+         (which is what a failure toast implies) would never work. No
+         credit was spent — the route refuses before reserving. */
+      if (res.status === 409) {
+        const json = await res.json().catch(() => ({})) as { reason?: string; unseen?: number }
+        setBankBusy(false)
+        setCreditConfirmOpen(false)
+        setExhausted({
+          reason: json.reason === 'no_bank_coverage' ? 'no_bank_coverage' : 'pool_exhausted',
+          unseen: json.unseen ?? 0,
+        })
+        return
+      }
       if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
@@ -530,19 +571,34 @@ function TopicInner({ slug }: { slug: string }) {
     && !!access && !access.all
     && !!pageFamily && !access.tests.includes(pageFamily)
 
-  // Flashcards are drawn from a hand-authored bank. Both SAT sections
-  // (Reading & Writing = vocab + grammar recall; Math = formula/fact
-  // cards) are covered; non-SAT topics have no deck, so those still show
-  // "coming soon" instead of dead-ending on an empty deck.
   const gridParsed = parseTestSlug(effectiveTopic?.slug ?? slug)
+  const gridSection = (gridParsed.section ?? '').toLowerCase()
+
+  /* Flashcards are drawn from a hand-authored bank: both SAT sections,
+     plus the TOEFL Writing usage deck (headword → pattern → model
+     sentence). */
   const flashcardsReady = gridParsed.family === 'sat'
+    || (gridParsed.family === 'toefl' && /writing/.test(gridSection))
+
+  /* Listening and Speaking get NO deck, and the card is HIDDEN rather
+     than shown as "coming soon".
+     
+     "Coming soon" is a promise, and this is one we do not intend to
+     keep. A flashcard is a recall tool — one cue, one retrievable
+     answer — and these two skills are perception and production. A deck
+     there would feel like studying and move nothing. Their real
+     equivalents (dictation, an SRS'd Listen-and-Repeat loop) are
+     separate modes, not card decks, so a student waiting for a deck
+     would wait forever. */
+  const flashcardsHidden = gridParsed.family === 'toefl'
+    && /listening|speaking/.test(gridSection)
   // Practice questions are bank-backed. Both SAT sections and TOEFL
   // Reading (~500 verified MC items) are banked for the flat practice UI
   // today. TOEFL Listening/Speaking/Writing need audio or free-response
   // grading, so they stay "coming soon" instead of letting a tap spend
   // energy on a draw that returns nothing.
   const practiceReady = gridParsed.family === 'sat'
-    || (gridParsed.family === 'toefl' && !!gridParsed.section && /reading/i.test(gridParsed.section))
+    || (gridParsed.family === 'toefl' && /reading/.test(gridSection))
 
   // The 2x2 learning-mode grid — shared by the subject layout and the
   // test-prep "Practice" tab. Practice questions + flashcards spend energy
@@ -552,6 +608,7 @@ function TopicInner({ slug }: { slug: string }) {
       {STUDY_MODES
         .filter(m => m.key !== 'full_test')
         .filter(m => m.key !== 'response')
+        .filter(m => !(m.key === 'flashcards' && flashcardsHidden))
         .map((mode, i) => {
           const Icon = mode.icon
           // Per-mode ambient decoration — small glyph cluster that
@@ -661,6 +718,17 @@ function TopicInner({ slug }: { slug: string }) {
       }
     >
       {errorToast}
+
+      {/* Pool exhausted / not yet banked. Deliberately NOT an error
+          dialog: nothing failed, and no credit was spent. */}
+      {exhausted && (
+        <BankExhaustedSheet
+          reason={exhausted.reason}
+          unseen={exhausted.unseen}
+          ko={ko}
+          onClose={() => setExhausted(null)}
+        />
+      )}
         {/* Mascot-led path entry — only for test-prep topics that have a
             hand-crafted path (SAT / TOEFL). Self-gates on whether this
             test is already the student's goal: continue-path card if so,
@@ -682,12 +750,11 @@ function TopicInner({ slug }: { slug: string }) {
                 self-hide anyway, and this way its loading skeleton
                 never flashes for students it doesn't apply to. */}
             {(targetTest ?? '').toLowerCase() === 'sat' && parseTestSlug(topic.slug).family === 'sat' && <PredictedScore />}
-            {/* hideUpsell: the diagnostic card above is already the
-                premium pitch (and promises weak-area targeted practice),
-                so a second "unlock personalized picks" paywall here just
-                repeats it. Free users see one pitch; paid users still get
-                real recommended cards. */}
-            <RecommendedShelf hideUpsell />
+            {/* "Recommended for you" is hidden here for now. The
+                per-topic trend + strengths/weaknesses card below covers
+                the same "what should I work on" question with this
+                topic's own data, and two answers on one screen competed.
+                Still mounted on the study home. */}
           </LandingDataProvider>
         )}
 
@@ -734,6 +801,25 @@ function TopicInner({ slug }: { slug: string }) {
               />
             </div>
           </div>
+        )}
+
+        {/* Score trend + AI strengths/weaknesses for THIS topic. Sits
+            directly under the three stats it expands on. Self-hides when
+            there is no completed test and no assessment yet, so it never
+            renders an empty chart. */}
+        {effectiveTopic && (
+          <TopicInsights
+            topicId={effectiveTopic.id}
+            ko={ko}
+            /* Only where practice can actually deliver. Passed
+               unconditionally, this put a "Practice" button on Speaking,
+               Listening and Writing — sections with no practice-eligible
+               bank items — and the tap opened a session that failed
+               immediately with "Couldn't load questions for this topic".
+               A button that cannot work is worse than no button. */
+            onPractice={practiceReady ? () => void startSession('practice') : undefined}
+            onScores={setRecomputedScores}
+          />
         )}
 
         {/* Mode picker.
@@ -826,6 +912,7 @@ function TopicInner({ slug }: { slug: string }) {
                   topicIds={[topic.id, ...children.map(c => c.id)]}
                   studentId={user?.userId ?? null}
                   ko={ko}
+                  scoreOverrides={recomputedScores}
                 />
               </>
             ) : (
@@ -1220,16 +1307,53 @@ function formatShortTimeAgo(iso: string, ko: boolean): string {
 /** Recent completed mock tests for this test family — score + date,
  *  linking into the session summary. Renders nothing until the student
  *  has at least one completed test. */
-function RecentTestsList({ topicIds, studentId, ko }: {
+/**
+ * Split mock tests into per-section groups, preserving the query's
+ * newest-first order both between and within groups.
+ *
+ * The heading is suppressed when everything lands in one group, which is
+ * the case on every section page — those lists are already scoped by
+ * topic_id and gain nothing from a label repeating the page title.
+ */
+function groupTestsBySection<T extends {
+  topic: { id: string; name_en: string; name_ko: string } | null
+}>(rows: T[], ko: boolean) {
+  const order: string[] = []
+  const byKey = new Map<string, { key: string; label: string; rows: T[] }>()
+  for (const row of rows) {
+    const key = row.topic?.id ?? '__none'
+    if (!byKey.has(key)) {
+      order.push(key)
+      byKey.set(key, {
+        key,
+        label: row.topic
+          ? (ko ? row.topic.name_ko : row.topic.name_en)
+          : (ko ? '기타' : 'Other'),
+        rows: [],
+      })
+    }
+    byKey.get(key)!.rows.push(row)
+  }
+  const groups = order.map(k => byKey.get(k)!)
+  return groups.map(g => ({ ...g, showHeading: groups.length > 1 }))
+}
+
+function RecentTestsList({ topicIds, studentId, ko, scoreOverrides }: {
   topicIds: string[]
   studentId: string | null
   ko: boolean
+  /** sessionId -> recomputed percent, from /api/study/topic-insights. */
+  scoreOverrides?: Record<string, number>
 }) {
   const [rows, setRows] = useState<Array<{
     id: string
     title: string | null
     score: number | null
     completed_at: string | null
+    /** The SECTION this test belongs to. On a category page (TOEFL) the
+     *  list spans Reading, Listening, Speaking and Writing, and without
+     *  this they arrived as one undifferentiated pile. */
+    topic: { id: string; name_en: string; name_ko: string } | null
   }>>([])
 
   useEffect(() => {
@@ -1238,7 +1362,7 @@ function RecentTestsList({ topicIds, studentId, ko }: {
     void (async () => {
       const { data } = await db
         .from('study_sessions')
-        .select('id, title, score, completed_at')
+        .select('id, title, score, completed_at, topic:study_topics ( id, name_en, name_ko )')
         .eq('student_id', studentId)
         .eq('mode', 'full_test')
         .eq('status', 'completed')
@@ -1281,36 +1405,63 @@ function RecentTestsList({ topicIds, studentId, ko }: {
           <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
         </Link>
       ) : (
-      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] divide-y divide-gray-100 overflow-hidden">
-        {rows.map(row => {
-          const score = row.score !== null ? Math.round(Number(row.score)) : null
-          return (
-            <Link
-              key={row.id}
-              // Result screen, not the summary — see tests/page.tsx.
-              href={`/mobile/study/session/${row.id}`}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
-            >
-              <div className={`flex-shrink-0 inline-flex items-center justify-center w-11 h-8 rounded-xl text-[13px] font-bold tabular-nums ring-1 ${
-                score === null ? 'bg-gray-50 ring-gray-200/70 text-gray-500'
-                : score >= 80 ? 'bg-emerald-50 ring-emerald-100 text-emerald-700'
-                : score >= 50 ? 'bg-amber-50 ring-amber-100 text-amber-700'
-                : 'bg-rose-50 ring-rose-100 text-rose-700'
-              }`}>
-                {score !== null ? `${score}%` : '—'}
+      /* Same card as /mobile/study/tests and the landing Today band —
+         StudyTodayCard with the shared TEST_STATE_META icon. This list
+         used to put a coloured PERCENTAGE PILL in the icon slot, so the
+         same mock test looked like a different kind of object depending
+         on which of the two lists you were reading. The score moves into
+         the description, where it reads as information rather than as the
+         row's identity. Every row here is completed by query. */
+      <div className="space-y-4">
+        {/* Grouped by SECTION. On a category page (TEST PREP / TOEFL) this
+            list spans Reading, Listening, Speaking and Writing, and it
+            used to render them as one flat pile — a Reading result sitting
+            directly above a Speaking one with nothing to separate them, so
+            "my mock tests" for the thing you actually practiced was buried
+            among the ones you didn't. On a section page there is exactly
+            one group and the heading is suppressed, leaving it unchanged. */}
+        {groupTestsBySection(rows, ko).map(group => (
+          <div key={group.key} className="space-y-2">
+            {group.showHeading && (
+              <div className="flex items-center gap-2 px-0.5">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">
+                  {group.label}
+                </span>
+                <span className="text-[11px] text-gray-400 tabular-nums">{group.rows.length}</span>
+                <span aria-hidden className="flex-1 h-px bg-gray-100" />
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[13.5px] font-medium text-gray-900 truncate">
-                  {row.title ?? (ko ? '모의고사' : 'Full test')}
-                </div>
-                <div className="text-[11.5px] text-gray-500 mt-0.5">
-                  {row.completed_at ? new Date(row.completed_at).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' }) : ''}
-                </div>
-              </div>
-              <ArrowRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
-            </Link>
-          )
-        })}
+            )}
+            {group.rows.map(row => {
+              /* The RECOMPUTED percent wins over study_sessions.score.
+                 That column still holds the pre-2026-07-29 model for
+                 Speaking and Writing, and this list sits on the same
+                 screen as the trend card: the Writing test that reads
+                 83% up there was printing "60%" down here, for the same
+                 session, three inches apart. Falls back to the column
+                 for sessions the insights call did not cover. */
+              const recomputed = scoreOverrides?.[row.id]
+              const score = recomputed ?? (row.score !== null ? Math.round(Number(row.score)) : null)
+              const meta = TEST_STATE_META.completed
+              const dateLabel = row.completed_at
+                ? new Date(row.completed_at).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
+                : ''
+              return (
+                <StudyTodayCard
+                  key={row.id}
+                  // Result screen — session/[id] redirects a completed test
+                  // to /summary, which renders what the student saw on submit.
+                  href={`/mobile/study/session/${row.id}`}
+                  icon={meta.icon}
+                  iconColorClass={meta.iconColorClass}
+                  eyebrow={meta.label(ko)}
+                  title={row.title ?? (ko ? '모의고사' : 'Full test')}
+                  subtitle={[score !== null ? `${score}%` : null, dateLabel]
+                    .filter(Boolean).join(' · ')}
+                />
+              )
+            })}
+          </div>
+        ))}
       </div>
       )}
     </section>

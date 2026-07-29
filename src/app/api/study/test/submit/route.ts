@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { toJson } from '@/lib/json'
 import { OPEN_RESPONSE_TYPES } from '@/lib/test-verify'
+import { displayCorrectAnswer, satSectionFromTopicSlug } from '@/lib/study/test-result'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { assessSessionMastery } from '@/lib/study-mastery-assess'
 import { estimateSectionScore } from '@/lib/study/sat-adaptive'
@@ -135,7 +136,7 @@ export async function POST(req: NextRequest) {
     : null
   const topicRel = session.topic as { slug: string } | { slug: string }[] | null
   const topicSlug = (Array.isArray(topicRel) ? topicRel[0]?.slug : topicRel?.slug) ?? ''
-  const satSection = topicSlug.includes('math') ? 'math' as const : 'reading_writing' as const
+  const satSection = satSectionFromTopicSlug(topicSlug)
   // Gated on the topic being SAT. `module2_route` alone was the test until
   // 2026-07-28, and TOEFL became adaptive too — so a TOEFL Reading result
   // carried a College Board 200-800 section score, rendered as
@@ -608,18 +609,6 @@ function gradeAnswer(q: z.infer<typeof QuestionSchema>, studentAnswer: string | 
 
   // multiple_choice / three_choice / quant_comparison — exact match.
   return norm(studentAnswer) === norm(q.correct_answer ?? '')
-}
-
-/** Human-readable correct answer for the UI verdict display. */
-function displayCorrectAnswer(q: z.infer<typeof QuestionSchema>): string {
-  if (q.type === 'numeric_entry') return q.acceptable_answers?.[0] ?? ''
-  if (q.type === 'multi_select') return (q.correct_answers ?? []).join(' + ')
-  if (q.type === 'fill_in_blanks') {
-    return (q.blanks ?? []).map(b => `[${b.id}] ${b.answer}`).join(', ')
-  }
-  if (q.type === 'speaking_interview') return '—'  // open-ended
-  if (q.type === 'writing_email' || q.type === 'writing_discussion') return '—'  // rubric-graded
-  return q.correct_answer ?? ''
 }
 
 /** Normalize numeric input so "12", "12.0", "12.00", " 12 " all match.

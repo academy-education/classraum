@@ -9,7 +9,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { authHeaders } from '@/lib/auth-headers'
 import { PathMascot } from '../../_shared/PathMascot'
-import { MascotLoader } from '../../_shared/MascotLoader'
+import { MascotLoader, useMascotGate } from '../../_shared/MascotLoader'
 import { scheduleNext, INITIAL_SRS } from '@/lib/srs'
 import { useStudyErrorToast, saveFailedMessage } from '../../_shared/useStudyErrorToast'
 
@@ -250,6 +250,11 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
     router.push(`/mobile/study/session/${data.id}`)
   }
 
+  // Above the gate/limit early returns, because hooks cannot sit below
+  // a conditional return. Commit-gated for the same reason as Practice:
+  // a fast deck fetch was flashing Raumi for a few frames.
+  const showDeckLoader = useMascotGate(loading)
+
   if (gate === 'locked') {
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-10 text-center gap-4">
@@ -298,9 +303,9 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
   }
 
   if (loading) {
-    return (
-      <MascotLoader className="flex-1" label={t('study.flashcards.loading')} />
-    )
+    return showDeckLoader
+      ? <MascotLoader className="flex-1" label={t('study.flashcards.loading')} />
+      : <div className="flex-1" />
   }
 
   // Completed deck — review-only. Show the full-deck list instead of the

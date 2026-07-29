@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Sparkles, X, Trophy } from '@/app/mobile/study/_shared/icons'
+import { X, Trophy } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLandingData } from '../LandingDataProvider'
@@ -127,43 +127,48 @@ export function DailyGoalCelebration() {
       <div
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[111] mx-auto max-w-sm rounded-3xl bg-gradient-to-br from-amber-400 via-orange-500 to-rose-500 text-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] animate-in zoom-in-95 fade-in duration-400 overflow-hidden"
+        className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[111] mx-auto max-w-sm rounded-3xl bg-white ring-1 ring-gray-200 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.28)] animate-in zoom-in-95 fade-in duration-400 overflow-hidden"
       >
-        <div aria-hidden className="pointer-events-none absolute -top-12 -right-12 w-48 h-48 rounded-full bg-white/30 blur-3xl" />
+        
         <button
           type="button"
           onClick={() => setShow(false)}
           aria-label="close"
-          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 inline-flex items-center justify-center transition"
+          className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600 inline-flex items-center justify-center transition"
         >
           <X className="w-4 h-4" />
         </button>
         <div className="relative p-6 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 ring-1 ring-white/30 mb-4">
-            <Trophy className="w-8 h-8" />
+          {/* Gradient tile in the study language, not a translucent square
+              on a saturated slab. No emoji — the trophy IS the icon, and a
+              second celebratory glyph in the headline said it twice. */}
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4 ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_6px_14px_-4px_rgba(251,146,60,0.45)]">
+            <Trophy className="w-7 h-7" strokeWidth={2.25} />
           </div>
-          <div className="text-[11px] font-bold tracking-[0.14em] uppercase opacity-90 mb-1">
-            {ko ? '오늘의 목표 달성' : 'Goal hit!'}
+          <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-gray-500 mb-1">
+            {ko ? '오늘의 목표 달성' : 'Goal hit'}
           </div>
-          <h2 className="text-[24px] font-bold tracking-tight leading-tight">
+          <h2 className="text-[24px] font-bold tracking-tight leading-tight text-gray-900">
             {ko
-              ? `${progress.goalMinutes}분 학습 완료 🎉`
-              : `${progress.goalMinutes} minutes done 🎉`}
+              ? `${progress.goalMinutes}분 학습 완료`
+              : `${progress.goalMinutes} minutes done`}
           </h2>
-          <p className="text-[13px] opacity-95 mt-2 leading-relaxed">
+          <p className="text-[13px] text-gray-500 mt-2 leading-relaxed">
             {ko
               ? `오늘 ${progress.questionsToday}문항을 풀었어요. 내일도 같은 시간에 만나요.`
               : `You answered ${progress.questionsToday} questions today. Come back tomorrow at the same time.`}
           </p>
 
           <div className="mt-5 flex gap-2">
+            {/* White-on-amber was unreadable and off-palette. These are
+                the app's standard secondary + primary buttons. */}
             <button type="button" onClick={() => setShow(false)}
-              className="flex-1 h-11 rounded-xl bg-white/20 hover:bg-white/30 text-[13px] font-semibold transition">
+              className="flex-1 h-11 rounded-xl bg-white ring-1 ring-gray-200 text-gray-700 hover:ring-gray-300 active:scale-[0.99] text-[13px] font-semibold transition-all">
               {ko ? '닫기' : 'Done'}
             </button>
             <Link href="/mobile/study/league" onClick={() => setShow(false)}
-              className="flex-1 h-11 rounded-xl bg-white text-amber-700 inline-flex items-center justify-center gap-1.5 text-[13px] font-semibold hover:bg-amber-50 transition">
-              <Sparkles className="w-3.5 h-3.5" />{ko ? '내 리그' : 'My league'}
+              className="flex-1 h-11 rounded-xl bg-primary text-white inline-flex items-center justify-center gap-1.5 text-[13px] font-semibold shadow-[0_2px_8px_-2px_rgba(40,133,232,0.40)] hover:bg-primary/90 active:scale-[0.99] transition-all">
+              <Trophy className="w-3.5 h-3.5" />{ko ? '내 리그' : 'My league'}
             </Link>
           </div>
         </div>

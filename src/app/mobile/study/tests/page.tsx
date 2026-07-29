@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useMemo, useState } from 'react'
-import Link from 'next/link'
-import { ClipboardList, ChevronRight, CheckCircle2, Loader2, AlertTriangle, Play, Trophy, Search, X } from '@/app/mobile/study/_shared/icons'
-import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '../_shared/primitives'
+import { ClipboardList, Search, X } from '@/app/mobile/study/_shared/icons'
+import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyTodayCard } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
+import { TEST_STATE_META, type TestState } from '../_shared/testState'
 import { SkeletonRowList } from '../skeletons'
 import { db } from '@/lib/supabase'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -19,7 +19,6 @@ import { formatTimeAgo } from '../_shared/dateGroups'
  * row + prev/next pagination. Keeps the app-wide sub-page rhythm.
  */
 
-type TestState = 'ready' | 'generating' | 'in_progress' | 'completed' | 'failed'
 type FilterKey = 'all' | TestState
 
 interface Row {
@@ -269,82 +268,42 @@ function TestRow({ row, ko }: { row: Row; ko: boolean }) {
     ? (ko ? row.topic.name_ko : row.topic.name_en)
     : (row.topic_freeform ?? (ko ? '기타' : 'Untitled'))
 
-  const meta = STATE_META[state]
-  const Icon = meta.icon
+  const meta = TEST_STATE_META[state]
   const relativeTime = formatTimeAgo(row.last_active_at, ko)
+  const scored = state === 'completed' && typeof row.score === 'number'
 
+  // Renders through StudyTodayCard — the same primitive the landing
+  // page's Today band uses. Copying its classes here is what let the two
+  // drift: this list had w-10 flat-tint icons and no eyebrow while Today
+  // had w-11 gradient tiles, so two lists of the same kind of thing read
+  // as two different products. Sharing the component makes them match by
+  // construction rather than by remembering to.
   return (
-    <Link
-      // Completed tests open the RESULT screen (score, band, per-question
-      // review), same as right after submitting — not /summary. The session
-      // page rebuilds it, and falls back to /summary itself if it cannot.
+    <StudyTodayCard
+      // A completed test opens the result screen. session/[id]/page.tsx
+      // redirects it to /summary, which renders exactly what the student
+      // saw on submitting.
       href={`/mobile/study/session/${row.id}`}
-      className="group flex items-center gap-3 px-4 py-3 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
-    >
-      <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${meta.iconClass}`}>
-        {state === 'generating' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="text-[14px] font-semibold text-gray-900 truncate leading-tight">
-          {topicName}
-        </div>
-        <div className="text-[12px] text-gray-500 mt-0.5 flex items-center gap-1.5">
-          <span className={meta.labelClass}>{meta.label(ko)}</span>
-          <span className="text-gray-300">·</span>
-          <span>{relativeTime}</span>
-          {state === 'completed' && typeof row.score === 'number' && (
-            <>
-              <span className="text-gray-300">·</span>
-              <span className="text-gray-700 font-semibold tabular-nums">
-                {Math.round(row.score)}%
-                {row.correct_count !== null && row.total_count !== null && (
-                  <span className="text-gray-400 font-normal ml-1">({row.correct_count}/{row.total_count})</span>
-                )}
-              </span>
-            </>
+      icon={meta.icon}
+      loading={state === 'generating'}
+      iconColorClass={meta.iconColorClass}
+      eyebrow={meta.label(ko)}
+      title={topicName}
+      subtitle={relativeTime}
+      rightSlot={scored ? (
+        <div className="text-right">
+          <div className="text-[16px] font-bold text-gray-900 tabular-nums leading-none">
+            {Math.round(row.score!)}%
+          </div>
+          {row.correct_count !== null && row.total_count !== null && (
+            <div className="text-[11px] text-gray-400 tabular-nums mt-1">
+              {row.correct_count}/{row.total_count}
+            </div>
           )}
         </div>
-      </div>
-      <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 flex-shrink-0 transition-all" />
-    </Link>
+      ) : undefined}
+    />
   )
 }
 
-const STATE_META: Record<TestState, {
-  icon: typeof CheckCircle2
-  iconClass: string
-  labelClass: string
-  label: (ko: boolean) => string
-}> = {
-  ready: {
-    icon: Play,
-    iconClass: 'bg-emerald-50 text-emerald-600',
-    labelClass: 'text-emerald-700 font-medium',
-    label: ko => ko ? '시작' : 'Ready',
-  },
-  generating: {
-    icon: Loader2,
-    iconClass: 'bg-primary/10 text-primary',
-    labelClass: 'text-primary font-medium',
-    label: ko => ko ? '생성 중' : 'Generating',
-  },
-  in_progress: {
-    icon: Play,
-    iconClass: 'bg-amber-50 text-amber-600',
-    labelClass: 'text-amber-700 font-medium',
-    label: ko => ko ? '진행 중' : 'In progress',
-  },
-  completed: {
-    icon: Trophy,
-    iconClass: 'bg-violet-50 text-violet-600',
-    labelClass: 'text-violet-700 font-medium',
-    label: ko => ko ? '완료' : 'Completed',
-  },
-  failed: {
-    icon: AlertTriangle,
-    iconClass: 'bg-rose-50 text-rose-600',
-    labelClass: 'text-rose-700 font-medium',
-    label: ko => ko ? '실패' : 'Failed',
-  },
-}
 

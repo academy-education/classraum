@@ -6,7 +6,7 @@
 
 import { supabaseServer } from './supabase-server';
 import {
-  portoneClient,
+  getPortoneClient,
   PlatformPartnerSettlement,
   PlatformPayout,
 } from './portone-platform-api';
@@ -33,7 +33,7 @@ export async function syncSettlements(options?: {
     const limit = options?.limit || 100;
 
     // Fetch settlements from PortOne API
-    const response = await portoneClient.getSettlements({
+    const response = await getPortoneClient().getSettlements({
       from: since.toISOString(),
       limit,
       // Statuses worth reconciling: money scheduled to move, moving, or
@@ -103,7 +103,7 @@ export async function syncPayouts(options?: {
     const limit = options?.limit || 100;
 
     // Fetch payouts from PortOne API
-    const response = await portoneClient.getPayouts({
+    const response = await getPortoneClient().getPayouts({
       from: since.toISOString(),
       limit,
       // Fetch all recent payouts

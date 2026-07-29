@@ -1,8 +1,24 @@
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+/**
+ * Lazily constructed, and that is load-bearing.
+ *
+ * At module scope this threw during `next build`: the "collect page
+ * data" step imports every route, so it evaluated `new OpenAI(...)`,
+ * and the SDK raises "Missing credentials" when OPENAI_API_KEY is
+ * absent. CI has no key by design — ci.yml holds only well-formed
+ * placeholders — so the build failed on a route nobody had touched,
+ * and had been failing on main for days.
+ *
+ * Deferring construction to the first call means the key is only needed
+ * when a request actually reaches the generator, which is the only time
+ * it was ever needed. Nothing else in this file changes.
+ */
+let client: OpenAI | null = null
+function openaiClient(): OpenAI {
+  if (!client) client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  return client
+}
 
 export type QuestionType = 'multiple_choice' | 'true_false' | 'short_answer'
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced' | 'expert'
@@ -158,7 +174,7 @@ Analysis instructions:
 
 ${langInstr} Do NOT use markdown headers or bullets - write in clean paragraphs.`
 
-  const response = await openai.chat.completions.create({
+  const response = await openaiClient().chat.completions.create({
     model: 'gpt-4o',
     messages: [
       { role: 'system', content: 'You are an expert educator who provides clear, actionable feedback on student tests.' },
@@ -221,7 +237,7 @@ Return ONLY valid JSON with this exact shape (no markdown, no commentary):
   ]
 }`
 
-  const response = await openai.chat.completions.create({
+  const response = await openaiClient().chat.completions.create({
     model: 'gpt-4o',
     messages: [
       { role: 'system', content: 'You are a precise grader. Return only valid JSON.' },
@@ -259,7 +275,7 @@ Return ONLY valid JSON with this exact shape (no markdown, no commentary):
 export async function generateLevelTest(params: GenerateTestParams): Promise<GeneratedTest> {
   const prompt = buildPrompt(params)
 
-  const response = await openai.chat.completions.create({
+  const response = await openaiClient().chat.completions.create({
     model: 'gpt-4o',
     messages: [
       { role: 'system', content: 'You are a test question generator. You always respond with valid JSON only, no markdown or commentary.' },

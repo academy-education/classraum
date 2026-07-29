@@ -171,3 +171,99 @@ not only within one.
 Related: `verify-answer-key-spread.ts` gates on a minimum cohort size. A
 14-item cohort at 50%-on-one-slot passed that gate once. Small cohorts are
 not safe cohorts.
+
+### Corollary: a convention from one skill silently applies to the other
+
+TOEFL Speaking and Writing have SEPARATE official ETS scoring guides that
+do not agree with each other, and on 2026-07-29 we shipped three bugs of
+one shape — a Writing convention applied to Speaking:
+
+1. **Zero conditions.** Writing's 0 lists "rejects the topic" and
+   "entirely copied from the prompt"; Speaking's lists neither, and its
+   score-2 descriptor explicitly reads "consists mainly of language from
+   the question". A copied spoken answer is a 2 on the real exam and was
+   a 0 in ours.
+2. **The band rule.** Writing bands 2 and 1 read "exhibits ONE OR MORE of
+   the following"; Speaking uses "a typical response exhibits the
+   following" at every band. Under the imported one-or-more reading a
+   single weak feature dropped a response two bands.
+3. **The timed-conditions allowance.** Writing band 5 forgives "errors
+   expected from a competent writer writing under timed conditions". We
+   had dropped the clause entirely — from both skills.
+
+All three were invisible to the whole test suite and were found by
+reading the published PDFs (`pdftotext -layout` handles them; WebFetch
+does not). Before trusting any rubric text, diff it against the source
+for THAT skill. `rubric-fidelity.test.ts` now pins the divergences.
+
+### Corollary: fixing a loud failure by making it quiet is a regression
+
+Twice in one session a visible error was "fixed" into a silent wrong
+number:
+
+- `generateObject` threw when the model omitted `topic_relevance`, so the
+  key was made required. The model, told elsewhere not to judge
+  relevance, complied with `score 0, evidence "N/A"` — and the ceiling
+  min()'d that to 0. A 502 became an on-topic answer scored zero.
+- The band came from a hand-written ladder while the 0-30 row came from
+  `percent x 30`. Each was internally consistent; together they printed
+  "band 3.0" beside "13 / 30".
+
+When a schema error, a 502 or a crash is the symptom, check whether the
+fix removes the CAUSE or just the message. A test asserting the old
+behaviour would have passed in both cases, which is why neither was
+caught by 594 green tests.
+
+### The grader is not calibrated, and cannot be from public data
+
+`scripts/calibrate-grader.ts` grades ETS's own published samples through
+the production stage callbacks. As of 2026-07-29 it FAILS: a published 5
+scores 3, a published 4 scores 3 — harsh on both, mean -1.5 bands.
+Descriptor fidelity is no longer the explanation; all four rubrics now
+match the official guides and the numbers did not move.
+
+Only two scored samples for our task types are public (Academic
+Discussion, Writing Practice Set 4). Do NOT tune prompts against them:
+two items cannot support fitting, and few-shot anchoring on them means
+the grader has seen the whole test set. Fixing this needs TPO/TestReady
+exemplars or students self-reporting real TOEFL bands.
+
+Until then, do not fold rubric marks into the section band — it would
+push every Speaking and Writing score down by that same margin.
+
+### Corollary: "idempotent" that is a read followed by a write is not
+
+A live TOEFL Writing run on 2026-07-29 produced FOUR submission rows for
+two essays, and the same discussion essay came back band 4 from one call
+and band 3 from the other. The result screen read whichever row it
+fetched first, so the reported score was a coin toss — and we paid for
+both tosses.
+
+Two callers fired on submit: `grade-batch`, and an older per-question
+loop in TestSession that was never removed when the batch was added.
+The loop's comment said "server-side idempotency (same session+prompt)
+makes duplicates harmless". That dedupe is a SELECT followed by an
+INSERT with nothing between them. Fired ~1.5s apart, both SELECTs miss
+and both INSERT. The comment had never been tested with two callers,
+because until the batch landed there was only ever one.
+
+Two lessons, and the second is the load-bearing one:
+
+1. When you add a batch path, delete the per-item path it replaces —
+   or state why it must stay (here: audio-native Speaking grading, which
+   the batch cannot do). One writer per item.
+2. **A comment asserting an invariant is not evidence the invariant
+   holds.** Grep for the claim, then construct the concurrent case. If
+   the dedupe must survive real races it needs a unique index, not a
+   prior read.
+
+Same run, second finding, recorded because the OBVIOUS explanation was
+wrong: the grader was being sent only `question.prompt` — 70 characters
+of bare instruction — while the situation, the email being replied to,
+and the bulleted requirements all live in `question.passage` and were
+never sent. That looks exactly like the cause of the "harsh grader", and
+it is not. Ten trials (5 with the passage, 5 without) moved the band by
+zero. The harshness in that run came entirely from the duplicate call;
+with one writer the same two essays scored 5 and 4, not 3 and 3. The
+passage is now passed because a grader should see the task it scores —
+not because it changed a number. Do not credit it with one.

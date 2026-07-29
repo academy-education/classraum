@@ -204,9 +204,10 @@ describe('runStagedGrade — ceiling enforcement end to end', () => {
 // ---------------------------------------------------------------------------
 
 describe('zero gate', () => {
-  it('is not triggered when every ETS 0-band condition is false', () => {
-    expect(zeroGateTriggered(cleanGate)).toBe(false)
-  })
+  it.each(['writing', 'speaking'] as const)(
+    'is not triggered for %s when every 0-band condition is false', skill => {
+      expect(zeroGateTriggered(cleanGate, skill)).toBe(false)
+    })
 
   it.each([
     'noResponse',
@@ -216,9 +217,23 @@ describe('zero gate', () => {
     'entirelyCopiedFromPrompt',
     'entirelyUnconnected',
     'arbitraryKeystrokes',
-  ] as const)('is triggered by %s alone', flag => {
-    expect(zeroGateTriggered({ ...cleanGate, [flag]: true })).toBe(true)
+  ] as const)('zeroes a WRITING response on %s alone', flag => {
+    expect(zeroGateTriggered({ ...cleanGate, [flag]: true }, 'writing')).toBe(true)
   })
+
+  // The two official guides do NOT list the same conditions, and we had
+  // been applying Writing's to both skills.
+  it.each(['noResponse', 'notInEnglish', 'entirelyUnintelligible', 'entirelyUnconnected'] as const)(
+    'zeroes a SPEAKING response on %s alone', flag => {
+      expect(zeroGateTriggered({ ...cleanGate, [flag]: true }, 'speaking')).toBe(true)
+    })
+
+  it.each(['rejectsTopic', 'entirelyCopiedFromPrompt', 'arbitraryKeystrokes'] as const)(
+    'does NOT zero a SPEAKING response on %s — not an ETS speaking 0 condition', flag => {
+      // Speaking's score-2 descriptor reads "consists mainly of language
+      // from the question", so a copied spoken answer is a 2, not a 0.
+      expect(zeroGateTriggered({ ...cleanGate, [flag]: true }, 'speaking')).toBe(false)
+    })
 
   it('short-circuits the pipeline — no relevance or quality call is made', async () => {
     const { calls, stages } = stubCalls({
@@ -234,7 +249,11 @@ describe('zero gate', () => {
 
   it('zeroes every criterion and carries the model feedback (no hardcoded copy)', async () => {
     const { stages } = stubCalls({
-      gate: { ...cleanGate, arbitraryKeystrokes: true, feedback: '무작위 입력입니다.' },
+      // ctx is a SPEAKING context, so the flag has to be one of
+      // speaking's own 0 conditions. arbitraryKeystrokes cannot describe
+      // a spoken answer at all — it is a writing condition, and using it
+      // here only passed while both skills shared one flag list.
+      gate: { ...cleanGate, entirelyUnintelligible: true, feedback: '무작위 입력입니다.' },
     })
     const res = await runStagedGrade(ctx, stages)
     expect(res.grade.criteria.every(c => c.score === 0)).toBe(true)

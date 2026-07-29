@@ -62,6 +62,36 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'upload failed' }, { status: 502 })
   }
 
+  // Register the recording NOW, not at grading time.
+  //
+  // audio_path on study_response_submissions is written when a response
+  // is graded, so any recording whose test is never submitted was
+  // orphaned by construction: 55 of 66 files in this bucket belonged to
+  // sessions with no speaking submission, 6 of them abandoned mid-test.
+  // Nothing could surface those files and no deletion path could reach
+  // them. Writing the row here means a recording is referenceable from
+  // the moment it exists, whatever happens to the test afterwards.
+  //
+  // Deliberately non-fatal. The audio is already safely stored and the
+  // student is mid-test waiting on a transcript — failing their turn
+  // because a bookkeeping insert failed would trade a recoverable
+  // inventory gap for a lost answer. A missed row resurfaces as an
+  // orphan, which is detectable; a lost answer is not.
+  const { error: ledgerError } = await dbAdmin
+    .from('study_response_audio')
+    .insert({
+      session_id: sessionId,
+      student_id: user.id,
+      storage_path: path,
+      mime_type: audio.type || 'audio/webm',
+      bytes: audio.size,
+    })
+  if (ledgerError) {
+    console.error('[response/transcribe] audio ledger insert failed', {
+      path, sessionId, error: ledgerError.message,
+    })
+  }
+
   // Forward to OpenAI transcription. Using whisper-1 (not gpt-4o-
   // transcribe) because whisper-1 supports verbose_json which returns
   // segment-level timing + confidence. We need those for the audio-

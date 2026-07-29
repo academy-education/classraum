@@ -90,8 +90,8 @@ const TAKE_INTERVIEW_BANDS = `
 5 — Fully successful. Fully addresses the question; ON TOPIC and WELL ELABORATED. Good conversational pace. Easily intelligible throughout. Accurate range of grammar and vocabulary.
 4 — Generally successful. Addresses the question; ON TOPIC and ELABORATED, though it may lack sentence-level connectors. Good pace with some pausing. Occasionally requires minor listener effort. Adequate grammar and vocabulary.
 3 — Partially successful. GENERALLY ON TOPIC but ELABORATION IS RELATIVELY LIMITED. Frequent or lengthy pauses, choppy rhythm, filler words. Intelligibility is sometimes affected. Limited range noticeably restricts precision.
-2 — Mostly unsuccessful. ONE OR MORE of: MINIMALLY CONNECTED to the interviewer's question, with LITTLE OR NO RELEVANT ELABORATION; OR consists MAINLY OF LANGUAGE FROM THE QUESTION. Limited intelligibility. Very limited range.
-1 — Unsuccessful. ONE OR MORE of: only VAGUELY CONNECTED to language in the interviewer's question; mostly unintelligible; isolated words or phrases only.
+2 — Mostly unsuccessful. An ATTEMPT to address the question that is not supported meaningfully or intelligibly. A typical response shows ALL of: MINIMALLY CONNECTED to the interviewer's question, with LITTLE OR NO RELEVANT ELABORATION, or consisting MAINLY OF LANGUAGE FROM THE QUESTION; limited intelligibility; a very limited range of grammar and vocabulary.
+1 — Unsuccessful. MINIMALLY addresses the question with very limited control of language. A typical response shows ALL of: only VAGUELY CONNECTED to language in the interviewer's question; mostly unintelligible; mainly isolated words or phrases.
 0 — No response, OR entirely unintelligible, OR not in English, OR content ENTIRELY UNCONNECTED to the prompt (including responses consisting only of phrases such as "I don't know").
 `.trim()
 
@@ -102,11 +102,11 @@ This is a REPETITION-ACCURACY rubric, NOT a content rubric. Do not reward or pen
 3 — Essentially a full repetition, but does NOT accurately capture the original meaning. The majority of content words are present.
 2 — Missing a significant part of the sentence and/or highly inaccurate; may be fragmentary.
 1 — Captures very little of the original, or is largely unintelligible.
-0 — No response, OR entirely unintelligible, OR not in English.
+0 — No response, OR entirely unintelligible, OR not in English, OR content ENTIRELY UNCONNECTED to the stimulus (including responses consisting only of phrases such as "I don't know").
 `.trim()
 
 const WRITING_EMAIL_BANDS = `
-5 — DISPLAYS the following: fully successful, clearly relevant response to the task; effective use of APPROPRIATE SOCIAL CONVENTIONS (politeness, register, and the formulation of requests, refusals, or criticisms); well-organised and well-elaborated; a wide range of accurate grammar and vocabulary with at most negligible lapses.
+5 — DISPLAYS the following: fully successful, clearly relevant response to the task; effective use of APPROPRIATE SOCIAL CONVENTIONS (politeness, register, and the formulation of requests, refusals, or criticisms); well-organised and well-elaborated; a wide range of accurate grammar and vocabulary; almost no lexical or grammatical errors OTHER THAN THOSE EXPECTED FROM A COMPETENT WRITER WRITING UNDER TIMED CONDITIONS (common typos, misspellings, or substitutions like there/their do NOT keep a response out of this band).
 4 — DISPLAYS the following: generally successful response addressing the task; generally appropriate social conventions; adequately organised and elaborated; adequate range of grammar and vocabulary with minor lapses that do not obscure meaning.
 3 — DISPLAYS the following: partially successful response; social conventions inconsistently observed; limited organisation; elaboration is thin; noticeable lexical/grammatical limitations that occasionally obscure meaning.
 2 — Exhibits ONE OR MORE of the following: addresses the task only minimally; inappropriate register or social conventions; LIMITED OR IRRELEVANT ELABORATION; disorganised; frequent errors that obscure meaning; relies heavily on language lifted from the prompt.
@@ -115,7 +115,7 @@ const WRITING_EMAIL_BANDS = `
 `.trim()
 
 const WRITING_DISCUSSION_BANDS = `
-5 — A RELEVANT and VERY CLEARLY EXPRESSED contribution to the online discussion; consistently well-elaborated with explanation, exemplification, or detail; a wide range of accurate grammar and vocabulary; at most negligible lapses.
+5 — A RELEVANT and VERY CLEARLY EXPRESSED contribution to the online discussion; consistently well-elaborated with explanation, exemplification, or detail; a wide range of accurate grammar and vocabulary; almost no lexical or grammatical errors OTHER THAN THOSE EXPECTED FROM A COMPETENT WRITER WRITING UNDER TIMED CONDITIONS (common typos, misspellings, or substitutions like there/their do NOT keep a response out of this band).
 4 — A RELEVANT contribution to the online discussion, easily understood; elaboration is adequate though it may be uneven; some variety and accuracy of grammar and vocabulary; minor lapses do not obscure meaning.
 3 — A MOSTLY RELEVANT and MOSTLY UNDERSTANDABLE contribution, with SOME elaboration — part of which may be MISSING, UNCLEAR, OR IRRELEVANT; limited range of grammar and vocabulary; lapses sometimes obscure meaning.
 2 — Exhibits ONE OR MORE of the following: an ATTEMPT to contribute to the discussion; ideas POORLY ELABORATED OR ONLY PARTIALLY RELEVANT; limited or unclear connection to the discussion; frequent errors that impede meaning; noticeable reliance on prompt language.
@@ -315,6 +315,36 @@ export const GradeSchema = z.object({
   overallBand: z.number().describe('Overall band on the rubric scale, decided AFTER the per-criterion evidence above.'),
 })
 
+/**
+ * GradeSchema pinned to one rubric's criterion keys.
+ *
+ * The generic GradeSchema constrains the criteria array's LENGTH only
+ * (min 3, max 4) because it has to cover every rubric — TOEFL speaking
+ * has 3 criteria, IELTS writing 4. Nothing tied an entry to a real
+ * criterion, so a grade could come back with the right count and the
+ * wrong headings, or — as happened on 2026-07-28 — the wrong count:
+ * gpt-4o returned `delivery` and `language_use` and silently dropped
+ * `topic_relevance`, generateObject threw
+ * "Array must contain at least 3 element(s)", and the student got a 502
+ * on a grade the model had already written and we had already paid for.
+ *
+ * Handing the model an enum of the exact keys plus a fixed length makes
+ * it EASIER to comply, not harder: with structured outputs the allowed
+ * values are part of the contract rather than something to infer from
+ * the prompt.
+ */
+export function gradeSchemaForCriteria(keys: string[]) {
+  if (keys.length === 0) return GradeSchema
+  return GradeSchema.extend({
+    criteria: z.array(
+      RubricCriterionScoreSchema.extend({
+        key: z.enum(keys as [string, ...string[]])
+          .describe('Must be one of the rubric criterion keys, each used exactly once.'),
+      }),
+    ).length(keys.length),
+  })
+}
+
 export type Grade = z.infer<typeof GradeSchema>
 
 // --- Stage 1: hard zero gate -----------------------------------------------
@@ -348,14 +378,46 @@ export const ZERO_GATE_FLAGS = [
   'arbitraryKeystrokes',
 ] as const
 
-/** Any single ETS 0-band condition scores the response 0. */
-export function zeroGateTriggered(gate: ZeroGate): boolean {
-  return ZERO_GATE_FLAGS.some(flag => gate[flag] === true)
+/**
+ * The 0-band conditions, which are NOT the same for the two skills.
+ *
+ * Taken verbatim from the official ETS scoring guides (2025 PDFs):
+ *
+ *   Writing 0  — "The response is blank, rejects the topic, is not in
+ *                 English, is entirely copied from the prompt, is
+ *                 entirely unconnected to the prompt or consists of
+ *                 arbitrary keystrokes."
+ *   Speaking 0 — "No response OR the response is entirely unintelligible
+ *                 OR there is no English in the response OR the content
+ *                 is entirely unconnected to the prompt (or consists only
+ *                 of phrases such as 'I don't know')."
+ *
+ * Speaking's list contains neither "rejects the topic" nor "entirely
+ * copied from the prompt". Copying is explicitly a TWO there — the score
+ * 2 descriptor reads "consists mainly of language from the question" —
+ * so zeroing a spoken response for it is two bands below the published
+ * rubric. We had been applying the Writing conditions to both skills.
+ */
+const WRITING_ZERO_FLAGS = ZERO_GATE_FLAGS
+const SPEAKING_ZERO_FLAGS = [
+  'noResponse',
+  'notInEnglish',
+  'entirelyUnintelligible',
+  'entirelyUnconnected',
+] as const
+
+export function zeroGateFlagsFor(skill: ResponseSkill): readonly (typeof ZERO_GATE_FLAGS)[number][] {
+  return skill === 'speaking' ? SPEAKING_ZERO_FLAGS : WRITING_ZERO_FLAGS
+}
+
+/** Any single ETS 0-band condition FOR THAT SKILL scores the response 0. */
+export function zeroGateTriggered(gate: ZeroGate, skill: ResponseSkill): boolean {
+  return zeroGateFlagsFor(skill).some(flag => gate[flag] === true)
 }
 
 /** Which conditions fired — persisted in the grade summary evidence. */
-export function zeroGateReasons(gate: ZeroGate): string[] {
-  return ZERO_GATE_FLAGS.filter(flag => gate[flag] === true)
+export function zeroGateReasons(gate: ZeroGate, skill: ResponseSkill): string[] {
+  return zeroGateFlagsFor(skill).filter(flag => gate[flag] === true)
 }
 
 // --- Stage 2: relevance ladder ---------------------------------------------
@@ -561,3 +623,4 @@ Hallmarks: extended turn, idiomatic phrasing, natural hesitation, accurate compl
 Hallmarks: short turns, limited range, frequent simple errors, repeated vocabulary.
 `.trim(),
 }
+

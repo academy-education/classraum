@@ -3,10 +3,16 @@ import { getCachedFeedback, setCachedFeedback } from './ai-cache'
 import { streamText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 
-// Initialize OpenAI client
-const openaiClient = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+// Lazily constructed — see the note in level-test-generator.ts. Two API
+// routes import this module, so a module-scope `new OpenAI()` here is
+// evaluated during `next build`'s page-data collection and throws
+// "Missing credentials" wherever the key is absent. Constructing on
+// first use means the key is needed only when a request arrives.
+let _openaiClient: OpenAI | null = null
+function openaiClient(): OpenAI {
+  if (!_openaiClient) _openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  return _openaiClient
+}
 
 // Types for individual grades
 export interface IndividualGrade {
@@ -816,7 +822,7 @@ export async function generateAIFeedback(
     // Call OpenAI API with retry logic
     const completion = await retryWithBackoff(async () => {
       console.log('About to call OpenAI with model:', 'gpt-4o-mini')
-      return await openaiClient.chat.completions.create({
+      return await openaiClient().chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
           {

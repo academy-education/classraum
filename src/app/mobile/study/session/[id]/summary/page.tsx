@@ -13,6 +13,11 @@ import { MascotLoader, useMascotGate } from '../../../_shared/MascotLoader'
 import { PathMascot, type MascotState } from '../../../_shared/PathMascot'
 import { StudyPageHeader, StudyScrollShell } from '../../../_shared/primitives'
 import { estimateSectionScore } from '@/lib/study/sat-adaptive'
+import {
+  satSectionFromTopicSlug, familyFromTopicSlug, buildResultModel,
+  type ResultRowQuestion,
+} from '@/lib/study/test-result'
+import { TestResultView } from '../test/TestResultView'
 
 interface SessionRow {
   id: string
@@ -34,18 +39,15 @@ interface SessionRow {
 
 interface AttemptRow {
   id: string
-  is_correct: boolean
+  /** NULL for open-response items — rubric-graded, not objectively
+   *  gradable. `!a.is_correct` therefore counts every writing and
+   *  speaking answer as a mistake; compare to false explicitly. */
+  is_correct: boolean | null
   time_spent_seconds: number | null
-  question: {
-    prompt: string
-    correct_answer: string
-    /** Full choice list for MC re-attempt. Present on most attempts
-     *  but tolerated missing so we can gracefully hide the re-attempt
-     *  affordance on non-MC types. */
-    choices?: string[] | null
-    type?: string | null
-    explanation?: string | null
-  } | null
+  /** Delivery order. NULL on legacy rows (519 of 932 live full-test
+   *  rows), which is why numbering is gated — see canNumberRows. */
+  position: number | null
+  question: ResultRowQuestion | null
   student_answer: string
 }
 
@@ -98,9 +100,15 @@ function SummaryInner({ id }: { id: string }) {
 
       const { data: atts } = await db
         .from('study_attempts')
-        .select('id, is_correct, time_spent_seconds, question, student_answer')
+        .select('id, is_correct, time_spent_seconds, position, question, student_answer')
         .eq('session_id', id)
-        .order('created_at', { ascending: true })
+        // NOT created_at: every full-test session writes its rows in one
+        // bulk insert sharing a single timestamp (1 distinct value per
+        // session across all 37 live sessions), so ordering by it returns
+        // an arbitrary order. `position` is the real delivery order; rows
+        // without one fall back to id and render unnumbered.
+        .order('position', { ascending: true, nullsFirst: false })
+        .order('id', { ascending: true })
       if (cancelled) return
       setAttempts((atts as unknown as AttemptRow[]) ?? [])
       } catch { /* fall through to not-found via finally */ }
@@ -180,9 +188,7 @@ function SummaryInner({ id }: { id: string }) {
   // section from the topic slug and passes it, so the post-submit screen
   // was right and this one was wrong: the same number, two values,
   // depending which screen you opened. Third bug in this family.
-  const satSection = (session.topic?.slug ?? '').includes('math')
-    ? 'math' as const
-    : 'reading_writing' as const
+  const satSection = satSectionFromTopicSlug(session.topic?.slug)
   const satBand = satRoute && attempted
     ? estimateSectionScore(correct, totalItems, satRoute, satSection)
     : null
@@ -215,6 +221,85 @@ function SummaryInner({ id }: { id: string }) {
   // and `!null === true` — so every writing and speaking answer was being
   // listed as a MISTAKE. Compare to false explicitly.
   const mistakes = attempts.filter(a => a.is_correct === false)
+
+  // ---- Full tests render THE result screen, the same component the
+  // post-submit view uses.
+  //
+  // Not "a summary of" the result — the same one. Before this, a finished
+  // test looked different depending on whether you had just submitted it
+  // or come back to it later, and the two disagreed about the score more
+  // than once. Other modes (practice, flashcards, daily challenge) keep
+  // the hero + mistakes layout below; nothing here applies to them.
+  if (session.mode === 'full_test' && attempts.length > 0) {
+    const model = buildResultModel({
+      // Derived from the topic slug, by the same helper the post-submit
+      // screen runs on the payload's family label.
+      family: familyFromTopicSlug(session.topic?.slug),
+      // From the SESSION ROW, never counted off the attempt rows: rows are
+      // CARDS and these are SCORED QUESTIONS. Counting gives 10/30 where
+      // submit recorded 6/35.
+      correctCount: correct,
+      totalScored: totalItems,
+      scorePercent: accuracy,
+      cards: attempts.map(a => ({
+        question: a.question ?? { prompt: '', type: 'multiple_choice' },
+        studentAnswer: a.student_answer ?? null,
+        correct: a.is_correct === true,
+        // is_correct IS NULL means open response — rubric-graded
+        // elsewhere. Distinct from a wrong answer and from a pilot.
+        ungraded: a.is_correct === null,
+        position: a.position,
+      })),
+    })
+    return (
+      <StudyScrollShell
+        header={
+          <StudyPageHeader
+            backHref="/mobile/study"
+            backLabel={String(t('study.topic.backToStudy'))}
+            icon={Sparkles}
+            iconColorClass="text-primary bg-primary/10"
+            eyebrow={String(t('study.summary.eyebrow'))}
+            title={topicName}
+          />
+        }
+      >
+        <div className="-mx-5 -my-6">
+          <TestResultView
+            model={model}
+            sessionId={id}
+            ko={ko}
+            sat={satBand ? { score: satBand.score, capped: satBand.route === 'easy' } : null}
+            footer={
+              <section className="space-y-2 pt-2">
+                {session.topic && !session.config?.dailyChallenge && (
+                  <Link
+                    href={`/mobile/study/topic/${session.topic.slug}`}
+                    className={studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })}
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    {/* This branch only renders for mode === 'full_test',
+                        so the CTA can name the thing the student just did.
+                        The shared 'tryAgain' string says "topic", which is
+                        right for practice and flashcards below and wrong
+                        here — a mock test is what they came for. */}
+                    {String(t('study.summary.tryTestAgain'))}
+                  </Link>
+                )}
+                <Link
+                  href="/mobile/study/wrong-notebook"
+                  className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })}
+                >
+                  {ko ? '오답노트' : 'Wrong notebook'}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </section>
+            }
+          />
+        </div>
+      </StudyScrollShell>
+    )
+  }
 
   return (
     <StudyScrollShell

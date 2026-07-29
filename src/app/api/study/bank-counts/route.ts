@@ -20,7 +20,10 @@ export const dynamic = 'force-dynamic'
 // Family → sections that have a practice-question bank today.
 const PRACTICE_SECTIONS: Record<string, string[]> = {
   sat: ['math', 'reading_writing'],
-  toefl: ['reading'],
+  // 'writing' has no practice-question bank; it is here because it has a
+  // FLASHCARD deck, and this route reports both counts. The practice
+  // count comes back 0 and the mode card renders accordingly.
+  toefl: ['reading', 'writing'],
 }
 
 export async function GET(req: NextRequest) {
@@ -39,13 +42,14 @@ export async function GET(req: NextRequest) {
       .select('*', { count: 'exact', head: true })
       .eq('family', family).eq('section', section)
       .eq('item_type', 'multiple_choice').eq('verified', true).eq('archived', false),
-    // Flashcards are SAT-only — TOEFL has no card deck, so report 0.
-    family === 'sat'
-      ? dbAdmin
-          .from('study_flashcard_bank')
-          .select('*', { count: 'exact', head: true })
-          .eq('family', 'sat').eq('section', section).eq('archived', false)
-      : Promise.resolve({ count: 0 }),
+    // Flashcards: SAT math / reading_writing, plus the TOEFL Writing
+    // usage deck. Listening and Speaking have none by design — see the
+    // note in the flashcards route.
+    dbAdmin
+      .from('study_flashcard_bank')
+      .select('*', { count: 'exact', head: true })
+      .eq('family', family).eq('section', section)
+      .eq('verified', true).eq('archived', false),
   ])
 
   return NextResponse.json({

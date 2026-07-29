@@ -209,7 +209,7 @@ export function PredictedScore() {
         {goalSet ? (
           data.onTrack ? (
             <span className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-emerald-200">
-              <Target className="w-3.5 h-3.5" />{ko ? `목표 ${data.goalScore} · 순조롭게 가는 중! 🎯` : `Goal ${data.goalScore} · On track! 🎯`}
+              <Target className="w-3.5 h-3.5" />{ko ? `목표 ${data.goalScore} · 순조롭게 가는 중!` : `Goal ${data.goalScore} · On track!`}
             </span>
           ) : (
             <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-white/85">

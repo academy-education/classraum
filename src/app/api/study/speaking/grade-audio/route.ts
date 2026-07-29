@@ -9,7 +9,7 @@ import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import {
   getRubric,
-  GradeSchema,
+  gradeSchemaForCriteria,
   inferSpeakingTaskType,
   type ResponseTestFamily,
   type ResponseSkill,
@@ -17,6 +17,7 @@ import {
 } from '@/lib/study/responseRubrics'
 import { runStagedGrade, type QualityStageCall, type TextStageCall } from '@/lib/study/gradePipeline'
 import { resolvePlan } from '@/lib/study/plans'
+import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -245,7 +246,11 @@ export async function POST(req: NextRequest) {
   // gate and the relevance ladder run on the transcript with a cheap
   // text model; neither needs to hear the audio, and keeping them off
   // the audio model is what makes the extra stages affordable.
-  const qualityStage: QualityStageCall = async ({ prompt }) => {
+  const qualityStage: QualityStageCall = async ({ prompt, criterionKeys }) => {
+    // Same pinning as the text route: parse against the rubric's OWN
+    // criterion keys, so a grade that silently drops one is rejected
+    // here and retried rather than surfacing as a 502.
+    const schema = gradeSchemaForCriteria(criterionKeys)
     let res = await callOpenAi(usedModel, prompt)
     if (!res.ok && res.status === 404 && usedModel !== FALLBACK_MODEL) {
       // Primary model doesn't exist under this ID — retry with the
@@ -271,7 +276,7 @@ export async function POST(req: NextRequest) {
     // The model occasionally returns prose or a near-miss shape. Retry
     // the call once before giving up.
     try {
-      return { object: GradeSchema.parse(JSON.parse(raw)), usage }
+      return { object: schema.parse(JSON.parse(raw)), usage }
     } catch (e) {
       console.warn('[speaking/grade-audio] parse failed, retrying', e)
       const retry = await callOpenAi(usedModel, prompt)
@@ -281,7 +286,7 @@ export async function POST(req: NextRequest) {
         usage?: { prompt_tokens?: number; completion_tokens?: number }
       }
       return {
-        object: GradeSchema.parse(JSON.parse(retryJson.choices?.[0]?.message?.content ?? '')),
+        object: schema.parse(JSON.parse(retryJson.choices?.[0]?.message?.content ?? '')),
         usage: {
           tokensIn: usage.tokensIn + (retryJson.usage?.prompt_tokens ?? 0),
           tokensOut: usage.tokensOut + (retryJson.usage?.completion_tokens ?? 0),
@@ -350,7 +355,14 @@ export async function POST(req: NextRequest) {
       prompt_text: body.promptText,
       response_text: body.responseText ?? '',
       audio_path: body.audioPath,
-      duration_seconds: body.durationSeconds ?? null,
+      // MediaRecorder reports a float (44.459999084472656); the column is
+      // INTEGER, so PostgREST rejected the whole insert with 22P02
+      // "invalid input syntax for type integer" and the student saw a bare
+      // "persist failed". The grade had already been generated and paid
+      // for at that point — it was thrown away on a rounding detail.
+      duration_seconds: body.durationSeconds == null
+        ? null
+        : Math.max(0, Math.round(body.durationSeconds)),
       word_count: wordCount,
       language,
     })
@@ -385,6 +397,20 @@ export async function POST(req: NextRequest) {
     promptHash.slice(16, 20), promptHash.slice(20, 32),
   ].join('-')
   void awardXp(user.id, 'response_graded', xpSourceId)
+
+  // Same rewrite as grade-batch. This route grades ONE spoken answer, so
+  // it will usually no-op with 'grading incomplete' until the last item
+  // of the section lands — which is the point: whichever route finishes
+  // last is the one that publishes the score, and neither has to know
+  // about the other. A Speaking section can be graded partly here
+  // (audio-native, premium) and partly by the text route, so no single
+  // caller has the whole picture; the helper reloads it instead.
+  const rescored = await recomputeAndPersistSessionScore(body.sessionId)
+  if (rescored.reason && !['unchanged', 'not a rubric section', 'grading incomplete'].includes(rescored.reason)) {
+    console.warn('[speaking/grade-audio] session score not updated', {
+      sessionId: body.sessionId, ...rescored,
+    })
+  }
 
   return NextResponse.json({
     submissionId: submission.id,

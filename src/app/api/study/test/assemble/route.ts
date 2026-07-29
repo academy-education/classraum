@@ -7,6 +7,7 @@ import { toeflAdaptiveConfig } from '@/lib/toefl-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
+import { assessCoverage, itemsShortBy } from '@/lib/study/bank-coverage'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
@@ -152,6 +153,45 @@ export async function POST(req: NextRequest) {
         { error: 'path stop already completed', reason: 'node_completed' },
         { status: 409 },
       )
+    }
+  }
+
+  /* Exhaustion gate — BEFORE the session insert and the credit reserve.
+   *
+   * The draw recycles oldest-seen items once the unseen pool runs dry.
+   * That is right for a student who has seen most of a section, and
+   * wrong once they have seen all of it: the "new" mock is then entirely
+   * questions they have already answered, its score measures memory
+   * rather than skill, and it costs 1-2 credits. Charging for a replay
+   * is the part that makes this a correctness bug and not a preference.
+   *
+   * Order matters. Placed after the insert this would have to delete the
+   * session and refund; placed here it simply never starts. */
+  {
+    const [{ count: poolSize }, { data: seenRows }] = await Promise.all([
+      dbAdmin
+        .from('study_item_bank')
+        .select('id', { count: 'exact', head: true })
+        .eq('family', family).eq('section', section)
+        .eq('verified', true).eq('archived', false),
+      dbAdmin
+        .from('study_item_exposures')
+        .select('item_id, item:study_item_bank!inner(family, section)')
+        .eq('student_id', user.id)
+        .eq('item.family', family)
+        .eq('item.section', section),
+    ])
+    const input = { poolSize: poolSize ?? 0, seen: seenRows?.length ?? 0, needed: count }
+    const coverage = assessCoverage(input)
+    if (!coverage.ok) {
+      return NextResponse.json({
+        error: coverage.reason === 'no_bank_coverage'
+          ? 'no questions banked for this section yet'
+          : 'you have seen every question we have for this section',
+        reason: coverage.reason,
+        unseen: coverage.unseen,
+        shortBy: itemsShortBy(input),
+      }, { status: 409 })
     }
   }
 

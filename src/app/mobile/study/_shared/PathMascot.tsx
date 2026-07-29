@@ -390,6 +390,25 @@ const CSS = `
   .raumi--loading .r-earlight,.raumi--loading .r-chip{animation:rkEar 1.1s ease-in-out infinite}
 }
 
+/* Reduced motion: every rule above lives inside the no-preference query,
+   and these groups default to opacity:0 because their ANIMATION is what
+   reveals them. With motion off that left three states degraded, one of
+   them broken:
+     loading  — r-eyeN/D/P are the only eyes drawn for this state, so the
+                visor went completely BLANK for the whole ~90s test-gen
+                wait. That is the defect; the rest is polish.
+     celebrate— lost both arms and the sparkles.
+     locked   — lost the raised "no" hand, so it read as plain idle.
+   Restore a sensible STATIC pose for each instead. Glitch bars, the "?"
+   and the dizzy/puzzled eyes stay hidden: they are motion artefacts and
+   mean nothing frozen, so loading settles on its calm open eyes. */
+@media (prefers-reduced-motion: reduce){
+  .raumi--loading .r-eyeN{opacity:1}
+  .raumi--celebrate .r-armL,.raumi--celebrate .r-armR,.raumi--celebrate .r-sparkles{opacity:1}
+  .raumi--locked .r-armR{opacity:1;transform:rotate(9deg)}
+  .raumi--thinking .r-think{opacity:1}
+}
+
 @keyframes rkFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2.6px) scale(1.015)}}
 @keyframes rkShadow{0%,100%{transform:scaleX(1);opacity:.14}50%{transform:scaleX(.82);opacity:.09}}
 @keyframes rkBlink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.08)}}

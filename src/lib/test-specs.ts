@@ -636,10 +636,29 @@ Prompt: "[Listen and Repeat] Repeat the sentence you hear."
 Passage: "She missed the lecture because her train was late this morning."
 Correct: "She missed the lecture because her train was late this morning."
 Note: 11 words — one main clause plus a single "because" tail and a time phrase, all everyday vocabulary. This is the CORRECT difficulty band for Listen-and-Repeat at every tier: enough length to stress working memory, but never nested clauses or rare words. Reject anything under 8 or over 12 words.`,
-          `EXAMPLE 2 (HARD — Interview prompt requiring a defended position):
-Prompt: "[Interview] Some universities are moving toward fully online degree programs. Do you think a fully online undergraduate degree has the same value as a traditional in-person degree? Defend your position with at least two specific reasons."
-Why hard: Open-ended, requires the student to (1) take a clear side, (2) avoid hedging into "both have value", (3) supply two distinct supporting reasons rather than restating their thesis. Compare to a soft prompt like "Have you ever taken an online class?" which can be answered in 8 words. Strong responses run 60-90 seconds; weak responses stall at "I think both are good" with no defense.`,
-          `EXAMPLE 3 (HARD — Interview prompt requiring comparison):
+          `EXAMPLE 2 (HARD — a WHOLE interview, which is the unit that ships):
+Take-an-Interview is ONE interview on ONE topic, so the example is a
+complete set, not a standalone question. A single question shown alone
+is what made an earlier model emit four unrelated opinion prompts.
+
+Premise (identical on all 4 items, delivered aurally and in print):
+"You have agreed to take part in a university research study about how students get to and from campus."
+  1. "[Interview] How do you usually travel to campus, and roughly how long does the trip take?"
+  2. "[Interview] Is there a time of day you prefer to travel, and what makes that time better for you?"
+  3. "[Interview] People often complain that public transport near universities is unreliable. In your experience, is that complaint fair?"
+  4. "[Interview] Suppose the university could fund only one of two things: more frequent shuttle buses, or cheaper parking. Which should it choose, and why?"
+
+Why hard: the ladder rises from a fact to a preference-with-reason to a
+contested claim to a forced trade-off, and every rung stays on the
+premise's topic. Rung 4 is answerable without rungs 1-3 — the section is
+linear, never branching.
+
+NOTE: TOEFL Speaking is served from the item bank
+(src/lib/study/toefl-interview-sets.ts), so this example does not
+currently drive generation. It is written as a set anyway, because the
+last time the examples here contradicted the prose above them, the model
+followed the examples.`,
+`EXAMPLE 3 (HARD — Interview prompt requiring comparison):
 Prompt: "[Interview] Some students prefer to study by re-reading their notes; others prefer to test themselves with practice questions. Which method do you think works better for long-term retention, and why?"
 Why hard: Forces a comparative judgment (re-reading vs retrieval practice) with a constrained "why". Trap: students who just describe their own habit ("I re-read my notes") without engaging the comparison get a low score on topic development. Strong responses pick a side AND explain the mechanism (e.g., "Active recall surfaces gaps in memory better than re-reading, which often feels familiar without actually being recallable").`,
         ],
@@ -1049,6 +1068,52 @@ function matchSection(spec: TestSpec, sectionLabel: string | null): SectionSpec 
  * Returns empty string when we don't have a spec — falls back to the
  * generic test-prep guidance from study-prompt-context.ts.
  */
+/**
+ * Option-length parity, appended to EVERY generated section prompt.
+ *
+ * On 2026-07-29 an audit found the answer key was the uniquely longest
+ * of four options in 72.6% of TOEFL Listening items, 64.3% of SAT
+ * Reading & Writing and 57.4% of TOEFL Reading — chance being 25%.
+ * 1,276 verbal items. Pick the longest option, read nothing, score
+ * roughly two thirds.
+ *
+ * SAT Math sat at 4.7% and is the tell in miniature: its options are
+ * numbers, so the instinct that causes this never gets the chance to
+ * operate. The cause is how a correct answer gets WRITTEN — the key has
+ * to be fully accurate and hedged where the source hedges, while a
+ * distractor gets clipped as soon as it is wrong enough. It is a habit
+ * of prose, not of design, which is why no distractor-CONTENT rule
+ * prevented it and why it appeared in hand-authored and model-generated
+ * cohorts alike.
+ *
+ * It lives here rather than in each distractorPatterns_* string because
+ * it applies to every family and section identically, and because the
+ * per-section strings are refreshed from the web by test-spec-refresh —
+ * anything written there can be silently overwritten on the next fetch.
+ *
+ * Guarded after the fact by scripts/verify-answer-key-spread.ts, which
+ * fails a cohort over 40% on longest-or-shortest. This is the upstream
+ * half of that guard.
+ */
+export const OPTION_LENGTH_RULE_EN =
+  'Option length: the correct answer must NOT be systematically longer than the wrong ones. ' +
+  'Across the questions you write, the longest option should be the correct one about a quarter ' +
+  'of the time and no more — vary it deliberately so that some keys are the shortest option and ' +
+  'many are mid-length. Keep all four options within roughly the same length band as each other ' +
+  '(no option more than ~1.5x the shortest). If a distractor reads as clipped or telegraphic next ' +
+  'to a fully-worded key, expand the distractor rather than trimming the key: a wrong answer should ' +
+  'be wrong on its content, never on its brevity. A test-taker who cannot see the passage and simply ' +
+  'picks the longest option must do no better than chance.'
+
+export const OPTION_LENGTH_RULE_KO =
+  '선택지 길이: 정답이 오답보다 체계적으로 길어서는 안 됩니다. ' +
+  '작성하는 문항 전체에서 가장 긴 선택지가 정답인 경우는 약 4분의 1 이하가 되도록 하고, ' +
+  '어떤 정답은 가장 짧은 선택지가 되도록 의도적으로 변화를 주세요. 네 선택지의 길이는 서로 ' +
+  '비슷한 범위로 유지하세요(가장 짧은 것의 약 1.5배를 넘지 않게). 오답이 정답에 비해 너무 ' +
+  '짧고 뚝 끊긴 느낌이면 정답을 줄이지 말고 오답을 늘리세요. 오답은 내용이 틀려야지 ' +
+  '짧아서 티가 나면 안 됩니다. 지문을 보지 않고 가장 긴 선택지만 고르는 사람이 ' +
+  '찍기보다 잘 맞혀서는 안 됩니다.'
+
 export function renderTestSpec(
   family: TestFamily | null,
   sectionLabel: string | null,
@@ -1068,6 +1133,7 @@ export function renderTestSpec(
       `영역: ${section.name_ko}. 총 ${section.questionsPerSection}문항, ${section.minutesPerSection}분, ${section.choiceCount}지선다.`,
       `출제 패턴: ${section.patterns_ko}`,
       `오답 설계: ${section.distractorPatterns_ko}`,
+      OPTION_LENGTH_RULE_KO,
     ].join('\n\n')
   }
   return [
@@ -1076,6 +1142,7 @@ export function renderTestSpec(
     `Section: ${section.name_en}. ${section.questionsPerSection} questions, ${section.minutesPerSection} minutes, ${section.choiceCount}-choice multiple choice.`,
     `Question patterns: ${section.patterns_en}`,
     `Distractor design: ${section.distractorPatterns_en}`,
+    OPTION_LENGTH_RULE_EN,
   ].join('\n\n')
 }
 

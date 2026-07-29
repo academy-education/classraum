@@ -90,18 +90,23 @@ function SessionInner({ id }: { id: string }) {
         // durable summary (persisted answers + mistake review) instead,
         // exactly like a graded mock. Keep the loader up through the
         // navigation so the live UI never flashes.
-        // PRACTICE only. A completed practice set genuinely must not
-        // re-enter the flow: it would draw a NEW batch into the finished
-        // session (re-earnable XP, score overwritten).
+        // full_test is back in this guard, and this ONE redirect is what
+        // makes a finished test open its result screen everywhere — the
+        // mock-tests list, history, search, the topic page. Those four
+        // link sites each keep linking to /session/{id}; putting a
+        // "is it completed?" branch in all four would be the same rule
+        // written four times, which is the exact habit that produced four
+        // wrong-number bugs in a day.
         //
-        // full_test no longer redirects. TestSession rebuilds the
-        // post-submit result screen for a completed test from the session
-        // row + attempts, which is what the student expects to see when
-        // they open a finished mock. The blank-restart risk this guard was
-        // written for still exists if that rebuild fails, so TestSession
-        // routes HERE — to the summary — when it cannot build a result.
-        // The guarantee is preserved; it just moved to where the data is.
-        if (row.mode === 'practice' && row.status === 'completed') {
+        // It is safe to route here now because /summary renders the same
+        // result screen the student saw on submitting, rather than the
+        // thinner summary it used to be. Until this commit /summary was a
+        // different, poorer screen, which is why full_test was carved out.
+        //
+        // The blank-restart guarantee (#237) also comes back: a completed
+        // session can no longer reach the taking flow at all, so it cannot
+        // fall through to `setPhase('taking')` or to load()'s error state.
+        if ((row.mode === 'practice' || row.mode === 'full_test') && row.status === 'completed') {
           redirecting = true
           router.replace(`/mobile/study/session/${id}/summary`)
           return

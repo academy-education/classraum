@@ -3,6 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { loadStudyPromptContext } from '@/lib/study-prompt-context'
 import { drawBankPractice } from '@/lib/study/assemble'
+import { assessCoverage, itemsShortBy } from '@/lib/study/bank-coverage'
 import { requireStudyUser } from '@/lib/study/auth'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { spendEnergy, cleanupAbandonedPracticeSessions } from '@/lib/study/practice-quota'
@@ -204,6 +205,50 @@ export async function POST(req: NextRequest) {
   // intentionally gone.)
   if (!bankSection) {
     return bailUnserveable({ questions: [], reason: 'no_bank_coverage' }, 200)
+  }
+
+  /* Exhaustion gate.
+   *
+   * The draw recycles oldest-seen items when the unseen pool runs dry,
+   * which is right for a student who has seen MOST of a section. It is
+   * wrong once they have seen all of it: the set is then entirely
+   * questions they have answered, and it still spends energy. Refuse
+   * instead, and say more are being written.
+   *
+   * Checked BEFORE the energy spend, so a refusal costs the student
+   * nothing — the same reason bailUnserveable exists above. */
+  {
+    const bankFilter = dbAdmin
+      .from('study_item_bank')
+      .select('id', { count: 'exact', head: true })
+      .eq('family', bankFamily).eq('section', bankSection)
+      .eq('item_type', 'multiple_choice')
+      .eq('verified', true).eq('archived', false)
+    if (config.domain) void bankFilter.eq('domain', config.domain)
+    const [{ count: poolSize }, { data: seenRows }] = await Promise.all([
+      bankFilter,
+      dbAdmin
+        .from('study_item_exposures')
+        .select('item_id, item:study_item_bank!inner(family, section)')
+        .eq('student_id', user.id)
+        .eq('item.family', bankFamily)
+        .eq('item.section', bankSection),
+    ])
+    const coverage = assessCoverage({
+      poolSize: poolSize ?? 0,
+      seen: seenRows?.length ?? 0,
+      needed: count,
+    })
+    if (!coverage.ok) {
+      return bailUnserveable({
+        questions: [],
+        reason: coverage.reason,
+        unseen: coverage.unseen,
+        shortBy: itemsShortBy({
+          poolSize: poolSize ?? 0, seen: seenRows?.length ?? 0, needed: count,
+        }),
+      }, 200)
+    }
   }
 
   // ── Energy ─────────────────────────────────────────────────────

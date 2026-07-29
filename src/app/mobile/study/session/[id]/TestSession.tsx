@@ -6,21 +6,21 @@ import { useRouter } from 'next/navigation'
 import {
   Loader2, RefreshCw, ArrowRight, ArrowLeft, Clock, CheckCircle2,
   AlertTriangle, ChevronDown, ChevronUp,
-  Mic, MicOff, Coins,
+  Mic, Coins,
 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useAuth } from '@/contexts/AuthContext'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
+import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
 import { db } from '@/lib/supabase'
-import { OPEN_RESPONSE_TYPES } from '@/lib/test-verify'
 import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
 import type { Question, SpeechSignals, SubmitResult, TestPayload } from './test/types'
 import { moduleRemainingMs } from '@/lib/study/sat-adaptive'
 import {
-  normalizeDisplayText, choiceLabel, formatTime, passageGroupInfo, PassageParagraphs,
+  normalizeDisplayText, choiceLabel, formatTime, passageGroupInfo, PassageParagraphs, PromptText,
 } from './test/helpers'
 import { QuestionGraphicView } from './test/QuestionGraphicView'
 import { ListeningAudioPlayer, LISTENING_PLAY_COUNTS } from './test/ListeningAudioPlayer'
@@ -92,6 +92,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   } | null>(null)
   const [gridOpen, setGridOpen] = useState(false)
   const [result, setResult] = useState<SubmitResult | null>(null)
+  /** Batch grading of open responses runs after submit — see the call
+   *  site. Drives the result screen's "scoring your responses" state. */
+  const [gradingOpenResponses, setGradingOpenResponses] = useState(false)
   const router = useRouter()
   // TOEFL Listening audio is playing — locks Prev/Next/Grid so students
   // can't skim ahead while a recording is speaking (ETS-faithful:
@@ -401,76 +404,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         const m2 = localStorage.getItem(`study:test:${sessionId}:m2StartMs`)
         if (m2) setModule2StartMs(parseInt(m2, 10) || null)
       }
-      // ── Completed session: rebuild the post-submit screen ──────────
-      //
-      // `result` is otherwise set ONLY by a live submit, so opening a
-      // finished test used to drop the student into a blank taking view.
-      // That is why the mock-test cards linked to /summary instead.
-      //
-      // The counts come from the SESSION ROW, not from the attempts.
-      // Those two disagree BY DESIGN and the difference is not small:
-      // attempts are per CARD, while correct_count/total_count are per
-      // SCORED QUESTION — a Complete-the-Words card is ten questions, and
-      // unscored pilot items are excluded entirely. On a real session
-      // (fd9b9cfd) counting attempts gives 10/30 = 33% where submit
-      // recorded 6/35 = 17%. Rebuilding from attempts would therefore show
-      // one score right after submitting and a different one on revisit,
-      // with no error to notice. Verdicts are per card, so THOSE come from
-      // attempts, keyed on `position` rather than insertion order.
-      //
-      // xpAwarded is deliberately omitted: the type documents it as
-      // present only on a fresh grade so the completion toast fires once.
-      // Rehydrating it would re-award XP visually on every revisit.
-      try {
-        const { data: sess } = await db
-          .from('study_sessions')
-          .select('status, score, correct_count, total_count')
-          .eq('id', sessionId)
-          .maybeSingle()
-        const done = sess?.status === 'completed'
-          && sess.total_count != null && sess.correct_count != null
-        if (done) {
-          const { data: atts } = await db
-            .from('study_attempts')
-            .select('position, is_correct')
-            .eq('session_id', sessionId)
-            .order('position', { ascending: true })
-          const byPos = new Map<number, boolean>()
-          for (const a of atts ?? []) {
-            if (typeof a.position === 'number') byPos.set(a.position, !!a.is_correct)
-          }
-          // An unanswered/ungraded card has no attempt row; treat it as
-          // incorrect-but-ungraded rather than inventing a verdict.
-          const verdicts = payload.questions.map((q, i) => ({
-            index: i,
-            correct: byPos.get(i) === true,
-            correctAnswer: q.correct_answer ?? '',
-            ungraded: OPEN_RESPONSE_TYPES.has(q.type),
-          }))
-          setResult({
-            totalQuestions: sess.total_count!,
-            correctCount: sess.correct_count!,
-            scorePercent: Math.round(Number(sess.score ?? 0)),
-            verdicts,
-          })
-          setPhase('reviewing')
-          return
-        }
-        // Completed but NOT rehydratable — missing counts, or the
-        // rebuild threw. Falling through to 'taking' here is exactly the
-        // blank-restart bug the old redirect existed to prevent, so send
-        // the student to the durable summary instead. This is the branch
-        // that lets session/[id]/page.tsx stop redirecting every finished
-        // test; if it is ever removed, restore that redirect.
-        if (sess?.status === 'completed') {
-          router.replace(`/mobile/study/session/${sessionId}/summary`)
-          return
-        }
-      } catch {
-        // Same reasoning: a completed session must never land on 'taking'.
-        router.replace(`/mobile/study/session/${sessionId}/summary`)
-        return
-      }
+      // A COMPLETED session never reaches this component:
+      // session/[id]/page.tsx redirects it to /summary before TestSession
+      // mounts (see the guard there). This used to rebuild the post-submit
+      // screen here from the session row + attempts, which existed only
+      // because /summary was then a thinner, different screen. It renders
+      // the same result screen now, so the rebuild was a second way to
+      // compute numbers that already have one home — and it carried the
+      // CtW bug in its own right, keying correctAnswer off `correct_answer`
+      // which fill_in_blanks leaves empty.
 
       setPhase('taking')
     } catch {
@@ -801,6 +743,57 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }
       const json = await res.json() as SubmitResult
       setResult(json)
+      // Grade every open response for this test in ONE request, as part
+      // of submitting.
+      //
+      // These used to be graded one card at a time, only if the student
+      // happened to expand that card — so a Speaking section could sit
+      // permanently half-graded, and four separate calls plus retries
+      // exhausted the 10-per-10-minute limiter, which surfaced as
+      // "Too many requests" and read like an OpenAI billing failure.
+      //
+      // Deliberately not awaited: submitting must not block on ~15s of
+      // gpt-4o. The batch is idempotent, so the panels can also trigger
+      // it again later for anything that failed.
+      /* Which positions the audio route will grade. Derived once and
+         used by BOTH the batch (as its skip list) and the loop below,
+         because the two deciding independently is how every recorded
+         answer from a text-tier student fell between them: the batch
+         skipped anything with audio, the loop only ran in audio mode,
+         and items in the gap reached no writer. */
+      const audioGradedPositions = (test.family === 'toefl' || test.family === 'ielts')
+        ? test.questions.reduce<number[]>((acc, q, i) => {
+            const response = (answers[i] ?? '').trim()
+            if (q.type === 'speaking_interview'
+              && speakingGradeMode === 'audio'
+              && !!answerAudioPaths[i]
+              && response.length >= 20
+              && q.prompt.trim().length >= 10) acc.push(i)
+            return acc
+          }, [])
+        : []
+
+      if (test.questions.some(q => OPEN_RESPONSE_TYPES.has(q.type))) {
+        setGradingOpenResponses(true)
+        void (async () => {
+          try {
+            await fetch('/api/study/response/grade-batch', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
+              // Whisper's delivery metrics live only in this component's
+              // state. Without them the grader scores a halting answer the
+              // same as a fluent one, because all it would see is the
+              // transcript. Keyed by question index, which IS the delivered
+              // position for a freshly submitted test.
+              body: JSON.stringify({ sessionId, signals: answerSpeechSignals, audioGradedPositions }),
+            })
+          } catch (e) {
+            console.warn('[TestSession] batch grade failed', e)
+          } finally {
+            setGradingOpenResponses(false)
+          }
+        })()
+      }
       // Celebrate finishing the test. Only the fresh-grade path returns
       // xpAwarded (idempotent replays omit it), so this fires once.
       if ((json.xpAwarded ?? 0) > 0) {
@@ -818,47 +811,41 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // Test is over — stop holding the mic open (browser tab keeps
       // showing the red recording dot while the primed stream lives).
       releaseMicStream()
-      // Pre-grade every open-response answer now (fire-and-forget) so
-      // the rubric submission + grade rows exist without the student
-      // having to expand each review panel — the panels then load
-      // instantly from the grade route's dedupe cache. Server-side
-      // idempotency (same session+prompt) makes duplicates harmless,
-      // and XP pays out at most once per task regardless.
+      // Audio-mode Speaking interviews ONLY. Everything else was
+      // already sent to grade-batch above, and sending it here too is
+      // not free: the batch and this loop each create their own
+      // submission row, because the "identical prompt+response is
+      // already graded" check in gradeAndPersistResponse is a read
+      // followed by a write with nothing between them. Fired ~1.5s
+      // apart, both SELECTs miss and both INSERT.
+      //
+      // A real Writing test taken on 2026-07-29 produced four
+      // submissions for two essays, and the same discussion essay came
+      // back band 4 from one call and band 3 from the other. The result
+      // screen read whichever row it happened to fetch, so the score
+      // was a coin flip and we paid twice to toss it.
+      //
+      // The audio branch stays because grade-batch cannot replace it:
+      // it grades a transcript through the staged text pipeline, while
+      // this route hands the recording to gpt-4o-audio.
       if (test.family === 'toefl' || test.family === 'ielts') {
-        test.questions.forEach((q, i) => {
-          const isOpen = q.type === 'speaking_interview'
-            || q.type === 'writing_email' || q.type === 'writing_discussion'
+        audioGradedPositions.forEach(i => {
+          const q = test.questions[i]!
           const response = (answers[i] ?? '').trim()
-          // Grade route requires ≥20-char responses; shorter ones have
-          // nothing gradeable anyway.
-          if (!isOpen || response.length < 20 || q.prompt.trim().length < 10) return
           const signals = answerSpeechSignals[i]
-          // Speaking interviews on an audio-mode session pre-grade via
-          // the audio-native route — the SAME route the review panel
-          // calls — so the panel's request hits that route's dedupe
-          // cache instead of triggering a second gpt-4o-audio call.
-          const useAudio = q.type === 'speaking_interview'
-            && speakingGradeMode === 'audio'
-            && !!answerAudioPaths[i]
-          const common = {
-            sessionId,
-            taskType: q.type === 'writing_email' ? 'email'
-              : q.type === 'writing_discussion' ? 'academic_discussion' : null,
-            promptText: q.prompt.slice(0, 2000),
-            responseText: response.slice(0, 8000),
-            audioPath: answerAudioPaths[i] ?? null,
-            durationSeconds: signals?.durationSec ?? null,
-            wpm: signals?.wpm ?? null,
-            pauseCount: signals?.pauseCount ?? null,
-            clarity: signals?.clarity ?? null,
-          }
-          void fetch(useAudio ? '/api/study/speaking/grade-audio' : '/api/study/response/grade', {
+          void fetch('/api/study/speaking/grade-audio', {
             method: 'POST',
             headers,
-            body: JSON.stringify(useAudio ? common : {
-              ...common,
-              testFamily: test.family,
-              skill: q.type === 'speaking_interview' ? 'speaking' : 'writing',
+            body: JSON.stringify({
+              sessionId,
+              taskType: null,
+              promptText: q.prompt.slice(0, 2000),
+              responseText: response.slice(0, 8000),
+              audioPath: answerAudioPaths[i] ?? null,
+              durationSeconds: signals?.durationSec ?? null,
+              wpm: signals?.wpm ?? null,
+              pauseCount: signals?.pauseCount ?? null,
+              clarity: signals?.clarity ?? null,
             }),
           }).catch(() => { /* review panel re-requests on demand */ })
         })
@@ -1094,7 +1081,21 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   }
 
   if (phase === 'reviewing' && result) {
-    return <ReviewView test={test} answers={answers} answerAudioPaths={answerAudioPaths} answerSpeechSignals={answerSpeechSignals} speakingGradeMode={speakingGradeMode} result={result} ko={ko} sessionId={sessionId} />
+    return (
+      <ReviewView
+        test={test}
+        answers={answers}
+        answerAudioPaths={answerAudioPaths}
+        answerSpeechSignals={answerSpeechSignals}
+        speakingGradeMode={speakingGradeMode}
+        result={result}
+        ko={ko}
+        sessionId={sessionId}
+        // Batch grading is fired on submit and keeps running while this
+        // screen is already up; the result view says so on the rubric row.
+        gradingOpenResponses={gradingOpenResponses}
+      />
+    )
   }
 
   // phase === 'taking' or 'submitting'
@@ -1320,51 +1321,37 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           fade-in makes navigation read as movement, not a text swap. */}
       <div key={currentIdx} className="flex-1 overflow-y-auto animate-fade-in">
        <div className="w-full px-5 lg:px-8 py-5 lg:py-8">
-        {/* Difficulty chip — hidden for SAT (the customization sheet
-            already locks SAT to challenge and hides the picker, so
-            surfacing per-item difficulty here would be inconsistent).
-            Other families still show it so students can pace based on
-            difficulty mix. */}
-        {test.family !== 'sat' && (
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
-              {t(`study.practice.difficulty.${q.difficulty}`)}
-            </span>
-            {/* LEGACY TOEFL module chip — only for pre-adaptive cached
-                tests (whole section drawn up front, no `adaptive`
-                flag). Adaptive sessions fall through to the shared chip
-                below so the two don't render side by side. */}
-            {!test.adaptive && test.family === 'toefl' && test.section != null
-              && /(reading|listening)/i.test(test.section)
-              && test.questions.length >= 4 && (() => {
-              const breakIdx = test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2)
-              const isModule2 = currentIdx >= breakIdx
-              return (
-                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
-                  isModule2
-                    ? 'bg-amber-50 text-amber-800 ring-amber-200'
-                    : 'bg-primary/10 text-primary ring-primary/20'
-                }`}>
-                  {isModule2 ? 'Module 2' : 'Module 1'}
-                </span>
-              )
-            })()}
-            {/* Adaptive two-module chip (SAT + TOEFL Reading/Listening)
-                — Module 1 until the routed Module 2 is drawn + reached. */}
-            {test.adaptive && typeof test.moduleBreakIdx === 'number' && (() => {
-              const isModule2 = currentIdx >= test.moduleBreakIdx!
-              return (
-                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
-                  isModule2
-                    ? 'bg-amber-50 text-amber-800 ring-amber-200'
-                    : 'bg-primary/10 text-primary ring-primary/20'
-                }`}>
-                  {isModule2 ? 'Module 2' : 'Module 1'}
-                </span>
-              )
-            })()}
-          </div>
-        )}
+        {/* Module chip.
+          *
+          * The difficulty chip that used to sit beside it is gone. On a
+          * challenge-locked test every item reads "HARD", so it was a
+          * constant that never varied while looking like live per-question
+          * information — and a student mid-test cannot act on it anyway.
+          * The module IS actionable: it tells you which half you are in
+          * and whether Module 1 is still recoverable. */}
+        {(() => {
+          // Adaptive sessions carry moduleBreakIdx. Pre-adaptive cached
+          // TOEFL Reading/Listening tests do not, and derive the break.
+          const breakIdx = test.adaptive && typeof test.moduleBreakIdx === 'number'
+            ? test.moduleBreakIdx
+            : (!test.adaptive && test.family === 'toefl' && test.section != null
+                && /(reading|listening)/i.test(test.section) && test.questions.length >= 4)
+              ? (test.moduleBreakIdx ?? Math.ceil(test.questions.length / 2))
+              : null
+          if (breakIdx == null) return null
+          const isModule2 = currentIdx >= breakIdx
+          return (
+            <div className="flex items-center gap-2 mb-3">
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ${
+                isModule2
+                  ? 'bg-amber-50 text-amber-800 ring-amber-200'
+                  : 'bg-primary/10 text-primary ring-primary/20'
+              }`}>
+                {isModule2 ? 'Module 2' : 'Module 1'}
+              </span>
+            </div>
+          )
+        })()}
         {/* "Module 2 begins" banner — shown on the first Module 2
             question with the EARNED route so the student sees the
             adaptivity happen. The items behind this banner were drawn
@@ -1372,14 +1359,21 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             what happened rather than what a real exam would have done. */}
         {test.adaptive && typeof test.moduleBreakIdx === 'number'
           && moduleRoute && currentIdx === test.moduleBreakIdx && (
-          <div className="mb-4 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-amber-50/40 px-4 py-3">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider">
-                Module 2
-              </span>
-              <span className="text-[13px] font-bold text-amber-900">
-                {ko ? '모듈 2 시작' : 'Module 2 begins'}
-              </span>
+          /* Same card shape as StudyTodayCard and the result screen: white,
+             ring-1, rounded-2xl, with an 11x11 gradient tile. It was the
+             only banner in the flow still on a hairline border and a flat
+             amber wash, so the one moment the test changes under the
+             student looked like a stray alert rather than part of the app. */
+          <div className="mb-4 rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-4 py-3.5 flex items-start gap-3">
+            <div className="flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_4px_10px_-2px_rgba(251,146,60,0.35)]">
+              <ArrowRight className="w-5 h-5" strokeWidth={2.25} />
+            </div>
+            <div className="flex-1 min-w-0">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
+              Module 2
+            </div>
+            <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+              {ko ? '모듈 2 시작' : 'Module 2 begins'}
             </div>
             {/* Says NOTHING about Module 1 performance.
               *
@@ -1400,11 +1394,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               *
               * The route still happens; it is simply not announced. It shows
               * up where it belongs, in the summary after submission. */}
-            <p className="text-[12px] text-amber-800 leading-relaxed">
+            <p className="text-[12px] text-gray-500 leading-relaxed mt-0.5">
               {ko
                 ? '남은 문제는 모듈 2에 속합니다. 모듈 1로는 돌아갈 수 없어요.'
                 : 'The remaining questions are in Module 2. You cannot return to Module 1.'}
             </p>
+            </div>
           </div>
         )}
         {/* LEGACY TOEFL "Module 2 begins" banner — pre-adaptive cached
@@ -1569,7 +1564,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   <WritingScenario text={q.passage} kind={q.type === 'writing_email' ? 'email' : 'discussion'} />
                 </div>
               ) : (
-                <div className="mb-4 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-[14px] text-gray-800 leading-relaxed">
+                <div className="mb-4 rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-3.5 text-[14px] text-gray-800 leading-relaxed shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
                   <PassageParagraphs text={q.passage} />
                 </div>
               )}
@@ -1584,7 +1579,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // defeats the whole listening task. The inner branch below
           // renders task-specific instructions instead.
           <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap mb-4">
-            {normalizeDisplayText(q.prompt)}
+            <PromptText text={q.prompt} />
           </p>
         )}
         {q.graphic && <QuestionGraphicView graphic={q.graphic} />}
@@ -1608,7 +1603,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   })
                 }}
                 placeholder={ko ? '예: 12, 3.44, 5/8' : 'e.g. 12, 3.44, 5/8'}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
               />
             </label>
             <p className="text-[11px] text-gray-500">
@@ -1709,7 +1704,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     {filledCount} / {blanks.length}
                   </span>
                 </div>
-                <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 text-[15px] text-gray-900 leading-[2.4]">
+                <div className="rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-5 text-[15px] text-gray-900 leading-[2.4] shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
                   {segments.map((seg, i) => {
                     const match = seg.match(/^\[(\d+)\]$/)
                     if (!match) return <span key={i}>{normalizeDisplayText(seg)}</span>
@@ -1903,17 +1898,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     }, 3000)
                   }}
                 />
-                {isRecording && (
-                  <div role="status" aria-live="assertive" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
-                    <span className="relative inline-flex w-2.5 h-2.5">
-                      <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping" />
-                      <span className="relative inline-flex w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                    </span>
-                    <span className="font-semibold">
-                      {ko ? '녹음 중 (최대 15초, 다른 문제로 이동 불가)' : 'Recording (max 15 sec — navigation is locked)'}
-                    </span>
-                  </div>
-                )}
+                {/* No recording banner here on purpose. VoiceRecorder-
+                    Button owns the live recording view — it is the only
+                    thing that can read the input level — and this block
+                    owns everything after the recording stops. Both used
+                    to render their own indicator, which is how the same
+                    status appeared twice on screen. */}
                 {/* Post-recording status: amber "processing" while the
                     upload + Whisper transcription is in flight, then a
                     green "recording complete" confirmation once the
@@ -2001,7 +1991,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   placeholder={q.type === 'writing_email'
                     ? (ko ? '여기에 이메일을 작성하세요…' : 'Type your email here…')
                     : (ko ? '여기에 토론 기여글을 작성하세요…' : 'Type your contribution here…')}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
                 />
                 <div className="flex items-center justify-between text-[11px] text-gray-500">
                   <span>
@@ -2095,17 +2085,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     setInterviewNextReady(s => s[timerKey] ? s : { ...s, [timerKey]: true })
                   }}
                 />
-                {isRecording && (
-                  <div role="status" aria-live="assertive" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
-                    <span className="relative inline-flex w-2.5 h-2.5">
-                      <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping" />
-                      <span className="relative inline-flex w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                    </span>
-                    <span className="font-semibold">
-                      {ko ? '녹음 중 (최대 45초, 다른 문제로 이동 불가)' : 'Recording (max 45 sec — navigation is locked)'}
-                    </span>
-                  </div>
-                )}
+                {/* No recording banner here on purpose. VoiceRecorder-
+                    Button owns the live recording view — it is the only
+                    thing that can read the input level — and this block
+                    owns everything after the recording stops. Both used
+                    to render their own indicator, which is how the same
+                    status appeared twice on screen. */}
                 {(phase === 'idle' || timerExpired) && !isRecording && (
                   <div className="text-[11px] text-gray-500 text-center">
                     {phase === 'idle'
@@ -2246,7 +2231,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 // routed), matching the real section-adaptive exam.
                 onClick={() => setCurrentIdx(i => Math.max(inModule2 ? test.moduleBreakIdx! : 0, i - 1))}
                 disabled={currentIdx === (inModule2 ? test.moduleBreakIdx! : 0) || audioPlaying}
-                className="h-11 w-11 rounded-full bg-white border border-gray-200 text-gray-700 inline-flex items-center justify-center disabled:opacity-40"
+                className="h-11 w-11 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 inline-flex items-center justify-center shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/40 active:scale-95 transition-all disabled:opacity-40 disabled:hover:ring-gray-200/70"
                 aria-label={String(t('study.test.previous'))}
               >
                 <ArrowLeft className="w-4 h-4" />

@@ -155,7 +155,7 @@ export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } 
 
       {allDone && (
         <p className="mt-2 px-1 text-[12px] font-medium text-emerald-600">
-          {ko ? '🎉 이번 주 퀘스트를 모두 완료했어요!' : '🎉 All quests done for this week!'}
+          {ko ? ' 이번 주 퀘스트를 모두 완료했어요!' : ' All quests done for this week!'}
         </p>
       )}
     </section>
