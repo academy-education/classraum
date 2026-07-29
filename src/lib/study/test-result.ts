@@ -312,6 +312,11 @@ export interface RubricGrade {
   scaleMax: number
   summary: string | null
   skill: string
+  /** Storage path of the student's recording, for Speaking. Present so
+   *  the DURABLE summary can offer playback: the live post-submit screen
+   *  still holds the path in component state, but a reopened session has
+   *  only what the grades endpoint returns. */
+  audioPath?: string | null
 }
 
 export interface ScoreSplit {

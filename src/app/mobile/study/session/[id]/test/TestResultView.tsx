@@ -78,7 +78,23 @@ export function TestResultView({
   // percentage covering only the key-matched items and said nothing at
   // all about the answers the student actually spoke or wrote.
   const [grades, setGrades] = useState<Record<string, RubricGrade>>({})
+  const [gradesLoaded, setGradesLoaded] = useState(false)
   const hasRubricRows = model.rows.some(r => r.ungraded)
+
+  /* Is the score safe to show?
+   *
+   * `grades` starts empty and arrives one fetch later. Until it does,
+   * every rubric item scores as "not graded yet" and DROPS OUT of the
+   * section — so a Speaking test paints 74% (the repeats alone, 26/35)
+   * and then snaps to 54% (32/50) when the interview grades land. That
+   * 20-point jump is the flicker, and it is not cosmetic: the first
+   * number is simply wrong, and a student who glances and navigates
+   * away keeps it.
+   *
+   * So the numbers wait. Only for sections that actually have rubric
+   * rows — Reading and Listening are complete on first paint and must
+   * not be delayed for a fetch whose result they never use. */
+  const scoreReady = !hasRubricRows || (gradesLoaded && !gradingOpenResponses)
   useEffect(() => {
     // Re-runs when `gradingOpenResponses` flips false, which is the
     // moment the batch has finished and there is something to fetch.
@@ -97,6 +113,10 @@ export function TestResultView({
         // Non-fatal: the split degrades to "not scored yet" rather than
         // blocking the whole result screen on a feedback lookup.
         console.warn('[TestResultView] grade lookup failed', e)
+      } finally {
+        // Released on failure too. A dead lookup must surface whatever
+        // score we can compute, not leave the hero pulsing forever.
+        if (alive) setGradesLoaded(true)
       }
     })()
     return () => { alive = false }
@@ -170,13 +190,16 @@ export function TestResultView({
     ? Math.round(pointsScore.proportion * 100)
     : model.scorePercent
 
-  const hero = shownPercent >= 80
+  const hero = !scoreReady
+    ? { gradient: 'from-slate-400 via-slate-500 to-slate-600' }
+    : shownPercent >= 80
     ? { gradient: 'from-emerald-500 via-emerald-600 to-teal-700' }
     : shownPercent >= 60
       ? { gradient: 'from-amber-500 via-orange-500 to-orange-700' }
       : { gradient: 'from-rose-500 via-rose-600 to-red-700' }
-  const mascotState: MascotState =
-    shownPercent >= 80 ? 'celebrate' : shownPercent >= 60 ? 'idle' : 'sad'
+  const mascotState: MascotState = !scoreReady
+    ? 'idle'
+    : shownPercent >= 80 ? 'celebrate' : shownPercent >= 60 ? 'idle' : 'sad'
 
   return (
     <div className="px-5 py-6 space-y-5">
@@ -198,22 +221,38 @@ export function TestResultView({
             <Sparkles className="w-3.5 h-3.5" />
             {t('study.test.resultEyebrow')}
           </div>
-          <h2 className="text-[40px] font-bold leading-none tracking-tight tabular-nums">
-            <CountUp value={shownPercent} /><span className="text-[24px] opacity-80">%</span>
-          </h2>
-          <p className="text-[14px] mt-1.5 opacity-90 tabular-nums">
-            {pointsScore
-              ? (ko ? `${pointsScore.earned} / ${pointsScore.max}점`
-                    : `${pointsScore.earned} of ${pointsScore.max} points`)
-              : `${model.correctCount} / ${model.totalScored} ${ko ? '정답' : 'correct'}`}
-          </p>
-          <p className="text-[12.5px] mt-1 opacity-75 leading-snug max-w-[85%]">
-            {t(`study.test.resultMessage.${
-              shownPercent >= 85 ? 'excellent' :
-              shownPercent >= 65 ? 'solid' :
-              shownPercent >= 40 ? 'keepGoing' : 'startOver'
-            }`)}
-          </p>
+          {scoreReady ? (
+            <>
+              <h2 className="text-[40px] font-bold leading-none tracking-tight tabular-nums">
+                <CountUp value={shownPercent} /><span className="text-[24px] opacity-80">%</span>
+              </h2>
+              <p className="text-[14px] mt-1.5 opacity-90 tabular-nums">
+                {pointsScore
+                  ? (ko ? `${pointsScore.earned} / ${pointsScore.max}점`
+                        : `${pointsScore.earned} of ${pointsScore.max} points`)
+                  : `${model.correctCount} / ${model.totalScored} ${ko ? '정답' : 'correct'}`}
+              </p>
+              <p className="text-[12.5px] mt-1 opacity-75 leading-snug max-w-[85%]">
+                {t(`study.test.resultMessage.${
+                  shownPercent >= 85 ? 'excellent' :
+                  shownPercent >= 65 ? 'solid' :
+                  shownPercent >= 40 ? 'keepGoing' : 'startOver'
+                }`)}
+              </p>
+            </>
+          ) : (
+            /* Waiting on the rubric grades. All three lines hold together
+               — showing the percent while the points are still a
+               placeholder would just move the contradiction down a row. */
+            <div className="animate-pulse">
+              <div className="h-[40px] w-[150px] rounded-xl bg-white/25" />
+              <div className="h-[14px] w-[110px] rounded-md bg-white/20 mt-2.5" />
+              <p className="text-[12.5px] mt-2 opacity-90 leading-snug">
+                {ko ? '작성·녹음한 답변을 채점하는 중이에요…'
+                    : 'Scoring the answers you wrote and recorded…'}
+              </p>
+            </div>
+          )}
 
           {/* Scale readings.
             *
@@ -226,7 +265,7 @@ export function TestResultView({
             * No proficiency labels ("Intermediate") — ETS publishes those
             * and we would be inventing the mapping. Everything here is
             * derivable from the score and its scale. */}
-          {model.family === 'toefl' && (
+          {model.family === 'toefl' && scoreReady && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
                 label={ko ? '밴드 점수' : 'Band score'}
@@ -488,6 +527,7 @@ export function TestResultView({
                 sessionId={sessionId}
                 ko={ko}
                 audioPath={answerAudioPaths[i]}
+                gradeAudioPath={grades[row.question.prompt ?? '']?.audioPath ?? undefined}
                 speechSignals={answerSpeechSignals[i]}
                 speakingGradeMode={speakingGradeMode}
               />
@@ -720,13 +760,16 @@ function AnswerLine({ tone, text }: {
 
 /** One CARD in the review list. */
 function ResultCard({
-  row, deliveredTotal, sessionId, ko, audioPath, speechSignals, speakingGradeMode,
+  row, deliveredTotal, sessionId, ko, audioPath, gradeAudioPath, speechSignals, speakingGradeMode,
 }: {
   row: ResultRow
   deliveredTotal: number
   sessionId: string
   ko: boolean
   audioPath?: string
+  /** audio_path persisted on the submission row, read back by the
+   *  grades endpoint. The durable path to the same recording. */
+  gradeAudioPath?: string
   speechSignals?: SpeechSignals
   speakingGradeMode: 'text' | 'audio'
 }) {
@@ -910,7 +953,10 @@ function ResultCard({
                 // there is no recording to play.
                 <WritingFeedbackPanel
                   sessionId={sessionId} prompt={q.prompt} response={studentAnswer} skill="speaking"
-                  audioPath={audioPath} speechSignals={speechSignals}
+                  // Live state first (the just-submitted screen), then
+                  // the persisted path (a reopened session). Either one
+                  // gives the panel its playback button.
+                  audioPath={audioPath ?? gradeAudioPath} speechSignals={speechSignals}
                   speakingGradeMode={speakingGradeMode} ko={ko}
                 />
               )}

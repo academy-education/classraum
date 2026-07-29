@@ -52,6 +52,11 @@ const SignalsSchema = z.object({
 })
 
 const BodySchema = z.object({
+  /** Positions the CLIENT will grade through /speaking/grade-audio.
+   *  Explicit rather than inferred, so "has audio" and "will be graded
+   *  elsewhere" cannot drift apart — they did, and the gap swallowed
+   *  every recording from a non-premium student. */
+  audioGradedPositions: z.array(z.number().int().nonnegative()).optional(),
   sessionId: z.string().uuid(),
   signals: z.record(z.string(), SignalsSchema).optional(),
 })
@@ -104,6 +109,9 @@ export async function POST(req: NextRequest) {
     .order('position', { ascending: true, nullsFirst: false })
     .order('id', { ascending: true })
 
+
+  const audioGraded = new Set(body.audioGradedPositions ?? [])
+
   const targets = (attempts ?? []).flatMap(a => {
     const q = a.question as { type?: string; prompt?: string } | null
     const type = q?.type ?? ''
@@ -121,7 +129,17 @@ export async function POST(req: NextRequest) {
     // then a write, so two callers a second apart both miss and both
     // insert. That is exactly what put four submissions and two
     // disagreeing bands on one Writing test. One writer per item.
-    if (a.position != null && body.signals?.[String(a.position)]?.audioPath) return []
+    // Skip ONLY the positions the client is actually sending to
+    // grade-audio. This used to skip anything that merely HAD an
+    // audioPath, which silently dropped every recorded answer belonging
+    // to a student on the text grading tier: the batch skipped it
+    // because audio existed, and grade-audio never ran because
+    // speakingGradeMode was 'text'. The item then reached no writer at
+    // all here, was graded later by the review panel — which has no
+    // audioPath on the durable summary — and so its submission row
+    // stored audio_path NULL. 66 recordings in storage, zero rows
+    // pointing at them.
+    if (a.position != null && audioGraded.has(a.position)) return []
     return [{ position: a.position, type, skill, prompt: q.prompt, answer }]
   })
 

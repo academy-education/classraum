@@ -755,6 +755,24 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // Deliberately not awaited: submitting must not block on ~15s of
       // gpt-4o. The batch is idempotent, so the panels can also trigger
       // it again later for anything that failed.
+      /* Which positions the audio route will grade. Derived once and
+         used by BOTH the batch (as its skip list) and the loop below,
+         because the two deciding independently is how every recorded
+         answer from a text-tier student fell between them: the batch
+         skipped anything with audio, the loop only ran in audio mode,
+         and items in the gap reached no writer. */
+      const audioGradedPositions = (test.family === 'toefl' || test.family === 'ielts')
+        ? test.questions.reduce<number[]>((acc, q, i) => {
+            const response = (answers[i] ?? '').trim()
+            if (q.type === 'speaking_interview'
+              && speakingGradeMode === 'audio'
+              && !!answerAudioPaths[i]
+              && response.length >= 20
+              && q.prompt.trim().length >= 10) acc.push(i)
+            return acc
+          }, [])
+        : []
+
       if (test.questions.some(q => OPEN_RESPONSE_TYPES.has(q.type))) {
         setGradingOpenResponses(true)
         void (async () => {
@@ -767,7 +785,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               // same as a fluent one, because all it would see is the
               // transcript. Keyed by question index, which IS the delivered
               // position for a freshly submitted test.
-              body: JSON.stringify({ sessionId, signals: answerSpeechSignals }),
+              body: JSON.stringify({ sessionId, signals: answerSpeechSignals, audioGradedPositions }),
             })
           } catch (e) {
             console.warn('[TestSession] batch grade failed', e)
@@ -811,12 +829,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // it grades a transcript through the staged text pipeline, while
       // this route hands the recording to gpt-4o-audio.
       if (test.family === 'toefl' || test.family === 'ielts') {
-        test.questions.forEach((q, i) => {
+        audioGradedPositions.forEach(i => {
+          const q = test.questions[i]!
           const response = (answers[i] ?? '').trim()
-          const useAudio = q.type === 'speaking_interview'
-            && speakingGradeMode === 'audio'
-            && !!answerAudioPaths[i]
-          if (!useAudio || response.length < 20 || q.prompt.trim().length < 10) return
           const signals = answerSpeechSignals[i]
           void fetch('/api/study/speaking/grade-audio', {
             method: 'POST',

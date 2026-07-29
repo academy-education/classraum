@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await dbAdmin
     .from('study_response_submissions')
-    .select('id, prompt_text, skill, test_family, created_at, study_response_grades(overall_band, summary, rubric_scores)')
+    .select('id, prompt_text, skill, test_family, audio_path, created_at, study_response_grades(overall_band, summary, rubric_scores)')
     .eq('session_id', sessionId)
     // Ownership is enforced here, not by RLS: dbAdmin is the service role.
     .eq('student_id', user.id)
@@ -51,6 +51,11 @@ export async function GET(req: NextRequest) {
     summary: string | null
     criteria: unknown
     skill: string
+    /** Storage path of the student's own recording, when there is one.
+     *  Returned so the DURABLE summary can offer playback — the live
+     *  post-submit screen has it in component state, the summary has
+     *  only what this endpoint sends. */
+    audioPath: string | null
   }> = {}
   for (const row of data ?? []) {
     const g = Array.isArray(row.study_response_grades)
@@ -67,6 +72,7 @@ export async function GET(req: NextRequest) {
       summary: g.summary,
       criteria: g.rubric_scores,
       skill: row.skill,
+      audioPath: (row.audio_path as string | null) ?? null,
     }
   }
 
