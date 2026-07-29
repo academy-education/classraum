@@ -571,19 +571,34 @@ function TopicInner({ slug }: { slug: string }) {
     && !!access && !access.all
     && !!pageFamily && !access.tests.includes(pageFamily)
 
-  // Flashcards are drawn from a hand-authored bank. Both SAT sections
-  // (Reading & Writing = vocab + grammar recall; Math = formula/fact
-  // cards) are covered; non-SAT topics have no deck, so those still show
-  // "coming soon" instead of dead-ending on an empty deck.
   const gridParsed = parseTestSlug(effectiveTopic?.slug ?? slug)
+  const gridSection = (gridParsed.section ?? '').toLowerCase()
+
+  /* Flashcards are drawn from a hand-authored bank: both SAT sections,
+     plus the TOEFL Writing usage deck (headword → pattern → model
+     sentence). */
   const flashcardsReady = gridParsed.family === 'sat'
+    || (gridParsed.family === 'toefl' && /writing/.test(gridSection))
+
+  /* Listening and Speaking get NO deck, and the card is HIDDEN rather
+     than shown as "coming soon".
+     
+     "Coming soon" is a promise, and this is one we do not intend to
+     keep. A flashcard is a recall tool — one cue, one retrievable
+     answer — and these two skills are perception and production. A deck
+     there would feel like studying and move nothing. Their real
+     equivalents (dictation, an SRS'd Listen-and-Repeat loop) are
+     separate modes, not card decks, so a student waiting for a deck
+     would wait forever. */
+  const flashcardsHidden = gridParsed.family === 'toefl'
+    && /listening|speaking/.test(gridSection)
   // Practice questions are bank-backed. Both SAT sections and TOEFL
   // Reading (~500 verified MC items) are banked for the flat practice UI
   // today. TOEFL Listening/Speaking/Writing need audio or free-response
   // grading, so they stay "coming soon" instead of letting a tap spend
   // energy on a draw that returns nothing.
   const practiceReady = gridParsed.family === 'sat'
-    || (gridParsed.family === 'toefl' && !!gridParsed.section && /reading/i.test(gridParsed.section))
+    || (gridParsed.family === 'toefl' && /reading/.test(gridSection))
 
   // The 2x2 learning-mode grid — shared by the subject layout and the
   // test-prep "Practice" tab. Practice questions + flashcards spend energy
@@ -593,6 +608,7 @@ function TopicInner({ slug }: { slug: string }) {
       {STUDY_MODES
         .filter(m => m.key !== 'full_test')
         .filter(m => m.key !== 'response')
+        .filter(m => !(m.key === 'flashcards' && flashcardsHidden))
         .map((mode, i) => {
           const Icon = mode.icon
           // Per-mode ambient decoration — small glyph cluster that
@@ -795,7 +811,13 @@ function TopicInner({ slug }: { slug: string }) {
           <TopicInsights
             topicId={effectiveTopic.id}
             ko={ko}
-            onPractice={() => void startSession('practice')}
+            /* Only where practice can actually deliver. Passed
+               unconditionally, this put a "Practice" button on Speaking,
+               Listening and Writing — sections with no practice-eligible
+               bank items — and the tap opened a session that failed
+               immediately with "Couldn't load questions for this topic".
+               A button that cannot work is worse than no button. */
+            onPractice={practiceReady ? () => void startSession('practice') : undefined}
             onScores={setRecomputedScores}
           />
         )}
