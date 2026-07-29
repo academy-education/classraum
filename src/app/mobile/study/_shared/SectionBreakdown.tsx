@@ -1,6 +1,7 @@
 "use client"
 
-import { TrendingUp, Target, Lightbulb, ArrowRight } from './icons'
+import { TrendingUp, TrendingDown, Target, Lightbulb, ArrowRight } from './icons'
+import { samplesUntilDirection, type CriterionTrend } from '@/lib/study/criterion-trend'
 import type { Breakdown, SectionGroup } from '@/lib/study/section-breakdown'
 import { splitStrengths } from '@/lib/study/section-breakdown'
 import { scoreTone, TONE_CLASS } from '@/lib/study/rubricDisplay'
@@ -252,4 +253,122 @@ function formatDay(iso: string, ko: boolean): string {
   const d = new Date(iso)
   if (Number.isNaN(d.getTime())) return ''
   return d.toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
+}
+
+/**
+ * Per-criterion movement for Speaking / Writing.
+ *
+ * Every row shows the scores. Only rows with enough history show a
+ * DIRECTION — see lib/study/criterion-trend.ts for why that gate has to
+ * exist (the grader gave the same essay a 4 and a 3 seconds apart, so a
+ * two-point "improving" would be reporting our own noise as the
+ * student's progress).
+ *
+ * The rows without a direction get a countdown instead of silence:
+ * "2 more responses" is a reason to write another one.
+ */
+export function CriterionTrendCard({
+  trends, ko,
+}: {
+  trends: CriterionTrend[]
+  ko: boolean
+}) {
+  if (trends.length === 0) return null
+  const anyDirection = trends.some(t => t.direction !== null)
+
+  return (
+    <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4">
+      <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-400">
+        {ko ? '채점 기준별 변화' : 'Your writing and speaking, by criterion'}
+      </div>
+      <p className="text-[12px] text-gray-600 mt-1 leading-relaxed">
+        {anyDirection
+          ? (ko ? '루브릭 기준별 점수 흐름이에요.'
+                : 'How each rubric criterion has moved across your graded responses.')
+          : (ko ? '응답이 더 쌓이면 방향을 알려드릴게요.'
+                : 'Scores so far. A direction needs more responses than this.')}
+      </p>
+
+      <div className="mt-3 space-y-3">
+        {trends.map(t => <CriterionRow key={t.key} trend={t} ko={ko} />)}
+      </div>
+
+      {/* Says out loud that the level is not trustworthy even though the
+          movement is. Without this the card reads as a score report. */}
+      <p className="mt-3 pt-2.5 border-t border-gray-100 text-[10.5px] text-gray-400 leading-relaxed">
+        {ko
+          ? 'AI 채점 기준이라 실제 시험 점수와 다를 수 있어요. 변화의 방향을 보는 용도예요.'
+          : 'Our AI grader marks harder than the real exam, so treat the level as rough — the movement is the useful part.'}
+      </p>
+    </div>
+  )
+}
+
+const DIRECTION_STYLE = {
+  up: { chip: 'bg-emerald-50 text-emerald-700', en: 'Improving', ko: '향상' },
+  down: { chip: 'bg-amber-50 text-amber-700', en: 'Slipping', ko: '하락' },
+  flat: { chip: 'bg-gray-100 text-gray-600', en: 'Holding steady', ko: '유지' },
+} as const
+
+function CriterionRow({ trend, ko }: { trend: CriterionTrend; ko: boolean }) {
+  const need = samplesUntilDirection(trend)
+  const tone = scoreTone(trend.average, 5)
+  const dir = trend.direction ? DIRECTION_STYLE[trend.direction] : null
+
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-[12.5px] font-semibold text-gray-800 truncate">{trend.label}</span>
+        <span className="flex-shrink-0 flex items-center gap-1.5">
+          {dir ? (
+            <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10.5px] font-semibold ${dir.chip}`}>
+              {trend.direction === 'up' && <TrendingUp className="w-3 h-3" />}
+              {trend.direction === 'down' && <TrendingDown className="w-3 h-3" />}
+              {ko ? dir.ko : dir.en}
+            </span>
+          ) : (
+            <span className="text-[10.5px] text-gray-400">
+              {ko ? `${need}개 더 필요` : `${need} more to call it`}
+            </span>
+          )}
+          <span className={`text-[11.5px] font-semibold tabular-nums ${TONE_CLASS[tone].text}`}>
+            {trend.average.toFixed(1)}
+          </span>
+        </span>
+      </div>
+      <div className="mt-1.5 flex items-center gap-2">
+        <ScoreDots scores={trend.scores} />
+        <span className="flex-shrink-0 text-[10px] text-gray-400 tabular-nums">
+          {ko ? `${trend.samples}개 응답` : `${trend.samples} ${trend.samples === 1 ? 'response' : 'responses'}`}
+        </span>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * The series as graded dots, oldest to newest — not a line.
+ *
+ * A line implies a continuous quantity sampled over time; these are a
+ * handful of discrete 0-5 judgements, often only two or three, and
+ * drawing a slope through them would make a trend look established that
+ * the row's own chip is explicitly declining to claim.
+ */
+function ScoreDots({ scores }: { scores: number[] }) {
+  const shown = scores.slice(-12)
+  return (
+    <div className="flex-1 flex items-end gap-1 h-6">
+      {shown.map((score, i) => {
+        const tone = scoreTone(score, 5)
+        return (
+          <div
+            key={i}
+            className={`flex-1 min-w-[3px] max-w-[14px] rounded-sm ${TONE_CLASS[tone].bar}`}
+            style={{ height: `${Math.max(12, (score / 5) * 100)}%` }}
+            title={`${score} / 5`}
+          />
+        )
+      })}
+    </div>
+  )
 }

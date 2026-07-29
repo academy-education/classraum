@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { authHeaders } from '@/lib/auth-headers'
 import { TrendingUp, TrendingDown, Sparkles } from '../../_shared/icons'
-import { SectionBreakdownCard, SkillCards } from '../../_shared/SectionBreakdown'
+import { SectionBreakdownCard, SkillCards, CriterionTrendCard } from '../../_shared/SectionBreakdown'
 import type { Breakdown } from '@/lib/study/section-breakdown'
+import type { CriterionTrend } from '@/lib/study/criterion-trend'
 import { chartGeometry, trendDelta, type TrendPoint } from '@/lib/study/topic-trend'
 
 /**
@@ -31,6 +32,7 @@ import { chartGeometry, trendDelta, type TrendPoint } from '@/lib/study/topic-tr
 interface Insights {
   points: TrendPoint[]
   breakdown: Breakdown
+  criteria: CriterionTrend[]
   mastery: {
     score: number | null
     attempts: number
@@ -96,10 +98,12 @@ export function TopicInsights({
   const weaknesses = data?.mastery?.weaknesses ?? []
   const breakdown = data?.breakdown ?? { groups: [], covered: 0, omitted: 0 }
   const hasBreakdown = breakdown.groups.length >= 2
+  const criteria = data?.criteria ?? []
 
   // Nothing to say yet. The progress card above already reports the
   // session count, so an empty chart here would only take up room.
-  if (points.length === 0 && strengths.length === 0 && weaknesses.length === 0) return null
+  if (points.length === 0 && strengths.length === 0 && weaknesses.length === 0
+      && criteria.length === 0) return null
 
   return (
     <div className="space-y-2.5">
@@ -122,6 +126,10 @@ export function TopicInsights({
           </div>
         )}
       </div>
+
+      {/* Only Speaking and Writing produce rubric criteria; the card
+          self-hides on Reading and Listening, where `criteria` is []. */}
+      <CriterionTrendCard trends={criteria} ko={ko} />
 
       <SkillCards
         strengths={strengths}

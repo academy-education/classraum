@@ -4,6 +4,7 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { familyFromTopicSlug } from '@/lib/study/test-result'
 import { scoreTrendSession, type TrendSession } from '@/lib/study/topic-trend'
 import { buildSectionBreakdown, type BreakdownItem } from '@/lib/study/section-breakdown'
+import { buildCriterionTrends, type CriterionSample } from '@/lib/study/criterion-trend'
 import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
 
 /**
@@ -50,7 +51,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'topicId required' }, { status: 400 })
   }
 
-  const [{ data: topic }, { data: mastery }, { data: sessions }] = await Promise.all([
+  const [{ data: topic }, { data: mastery }, { data: sessions }, { data: gradeRows }] = await Promise.all([
     dbAdmin.from('study_topics').select('slug').eq('id', topicId).maybeSingle(),
     dbAdmin
       .from('study_mastery')
@@ -65,6 +66,17 @@ export async function GET(req: NextRequest) {
       // dozen — reversed below so the chart still reads left to right.
       .order('created_at', { ascending: false })
       .limit(MAX_SESSIONS),
+    /* Every rubric grade this student has, for THIS topic's sessions.
+       Not capped at MAX_SESSIONS like the chart: a criterion needs six
+       responses before it can be given a direction, and a Writing test
+       yields two, so capping the history here would keep the trend
+       permanently below its own threshold. */
+    dbAdmin
+      .from('study_response_grades')
+      .select('rubric_scores, created_at, submission:study_response_submissions!inner(session_id, session:study_sessions!inner(topic_id))')
+      .eq('student_id', user.id)
+      .eq('submission.session.topic_id', topicId)
+      .order('created_at', { ascending: true }),
   ])
 
   const family = familyFromTopicSlug((topic as { slug: string } | null)?.slug ?? '')
@@ -126,9 +138,22 @@ export async function GET(req: NextRequest) {
     return scoreTrendSession(session)
   }))
 
+  /* Per-criterion history. rubric_scores is [{key, score, evidence}];
+     keys are task-specific (an email is graded on social_conventions, a
+     discussion on contribution) so each key forms its own series. */
+  const criterionSamples: CriterionSample[] = []
+  for (const row of (gradeRows ?? []) as Array<{ rubric_scores: unknown; created_at: string }>) {
+    if (!Array.isArray(row.rubric_scores)) continue
+    for (const c of row.rubric_scores as Array<{ key?: string; score?: number }>) {
+      if (typeof c?.key !== 'string' || typeof c?.score !== 'number') continue
+      criterionSamples.push({ key: c.key, score: c.score, at: row.created_at })
+    }
+  }
+
   return NextResponse.json({
     points,
     breakdown: buildSectionBreakdown(allItems, scoreListenRepeat, { ko }),
+    criteria: buildCriterionTrends(criterionSamples),
     mastery: mastery
       ? {
           score: (mastery.score as number | null) ?? null,
