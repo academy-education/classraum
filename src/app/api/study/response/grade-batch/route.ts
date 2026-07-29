@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
+import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
 import { awardXp } from '@/lib/study/xp'
 import { OPEN_RESPONSE_TYPES, RESPONSE_SKILL_BY_TYPE } from '@/lib/study/openResponse'
 import {
@@ -211,6 +212,26 @@ export async function POST(req: NextRequest) {
       console.error('[response/grade-batch] item failed', targets[i]!.position, e)
     }
   })
+
+  // Every band for this session has now landed (or failed). Rewrite the
+  // session score from the SAME scorer the summary screen uses.
+  //
+  // study_sessions.score was previously written once, at submit, before
+  // any rubric band existed — and never revised, because neither grading
+  // route touched study_sessions at all. That left history disagreeing
+  // with the summary on 19 rubric sessions: 10 with a wrong number, 9
+  // with none. Awaited rather than fire-and-forget: on Vercel the
+  // function can be frozen the moment the response is returned, and a
+  // dangling promise is exactly how the previous write went missing.
+  //
+  // It no-ops when open responses are still ungraded, so the partial
+  // (207) path cannot publish a score computed from half the section.
+  const rescored = await recomputeAndPersistSessionScore(body.sessionId)
+  if (rescored.reason && rescored.reason !== 'unchanged' && rescored.reason !== 'not a rubric section') {
+    console.warn('[response/grade-batch] session score not updated', {
+      sessionId: body.sessionId, ...rescored,
+    })
+  }
 
   // 207: some graded, some did not. The client shows what landed and can
   // re-run for the rest — a partial result is worth more than an error

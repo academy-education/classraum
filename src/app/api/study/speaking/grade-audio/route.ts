@@ -17,6 +17,7 @@ import {
 } from '@/lib/study/responseRubrics'
 import { runStagedGrade, type QualityStageCall, type TextStageCall } from '@/lib/study/gradePipeline'
 import { resolvePlan } from '@/lib/study/plans'
+import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -396,6 +397,20 @@ export async function POST(req: NextRequest) {
     promptHash.slice(16, 20), promptHash.slice(20, 32),
   ].join('-')
   void awardXp(user.id, 'response_graded', xpSourceId)
+
+  // Same rewrite as grade-batch. This route grades ONE spoken answer, so
+  // it will usually no-op with 'grading incomplete' until the last item
+  // of the section lands — which is the point: whichever route finishes
+  // last is the one that publishes the score, and neither has to know
+  // about the other. A Speaking section can be graded partly here
+  // (audio-native, premium) and partly by the text route, so no single
+  // caller has the whole picture; the helper reloads it instead.
+  const rescored = await recomputeAndPersistSessionScore(body.sessionId)
+  if (rescored.reason && !['unchanged', 'not a rubric section', 'grading incomplete'].includes(rescored.reason)) {
+    console.warn('[speaking/grade-audio] session score not updated', {
+      sessionId: body.sessionId, ...rescored,
+    })
+  }
 
   return NextResponse.json({
     submissionId: submission.id,
