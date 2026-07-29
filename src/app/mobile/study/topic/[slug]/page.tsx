@@ -23,6 +23,7 @@ import { CreditConfirmSheet, NoCreditsSheet } from '../../_shared/CreditConfirmS
 import { sectionVisual } from '../../_shared/sectionVisuals'
 import { PredictedScore } from '../../_shared/PredictedScore'
 import { TopicInsights } from './TopicInsights'
+import { BankExhaustedSheet } from './BankExhaustedSheet'
 import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
@@ -133,6 +134,10 @@ function TopicInner({ slug }: { slug: string }) {
   const [tab, setTab] = useState<'tests' | 'practice'>('tests')
   const [bankBusy, setBankBusy] = useState(false)
   const { errorToast, showError } = useStudyErrorToast()
+  /* Set when the bank has nothing fresh left for this student. Distinct
+     from an error: the request succeeded and the answer is "not yet". */
+  const [exhausted, setExhausted] = useState<
+    { reason: 'pool_exhausted' | 'no_bank_coverage'; unseen: number } | null>(null)
   const [testSheetOpen, setTestSheetOpen] = useState(false)
   // Credit-spend confirm for the one-tap SAT bank start (the AI-test
   // customization sheet shows its own cost line, so it skips this).
@@ -471,6 +476,21 @@ function TopicInner({ slug }: { slug: string }) {
         body: JSON.stringify(bankBody),
       })
       if (res.status === 402) { setBankBusy(false); setCreditConfirmOpen(false); setNoCreditsOpen(true); return }
+      /* 409 = the bank cannot give this student a mostly-fresh test.
+         A distinct screen, not the generic error toast: nothing has gone
+         wrong, they have simply finished the pool, and "try again"
+         (which is what a failure toast implies) would never work. No
+         credit was spent — the route refuses before reserving. */
+      if (res.status === 409) {
+        const json = await res.json().catch(() => ({})) as { reason?: string; unseen?: number }
+        setBankBusy(false)
+        setCreditConfirmOpen(false)
+        setExhausted({
+          reason: json.reason === 'no_bank_coverage' ? 'no_bank_coverage' : 'pool_exhausted',
+          unseen: json.unseen ?? 0,
+        })
+        return
+      }
       if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
@@ -682,6 +702,17 @@ function TopicInner({ slug }: { slug: string }) {
       }
     >
       {errorToast}
+
+      {/* Pool exhausted / not yet banked. Deliberately NOT an error
+          dialog: nothing failed, and no credit was spent. */}
+      {exhausted && (
+        <BankExhaustedSheet
+          reason={exhausted.reason}
+          unseen={exhausted.unseen}
+          ko={ko}
+          onClose={() => setExhausted(null)}
+        />
+      )}
         {/* Mascot-led path entry — only for test-prep topics that have a
             hand-crafted path (SAT / TOEFL). Self-gates on whether this
             test is already the student's goal: continue-path card if so,
