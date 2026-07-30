@@ -58,6 +58,16 @@
     <!-- Camera permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- Microphone: spoken answers in TOEFL Speaking practice + voice input in the
+         AI tutor, all via getUserMedia({audio:true}) inside the WebView.
+         BOTH are required. Capacitor's own BridgeWebChromeClient.onPermissionRequest
+         maps AUDIO_CAPTURE to {MODIFY_AUDIO_SETTINGS, RECORD_AUDIO} and launches a
+         single multi-permission request; an undeclared permission is auto-denied with
+         no dialog, and the callback grants only if ALL come back granted. Declaring
+         just RECORD_AUDIO would therefore still fail, silently. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
     <!-- Block storage permissions - using Android Photo Picker instead -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="remove" />
