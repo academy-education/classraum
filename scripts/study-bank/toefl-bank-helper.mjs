@@ -175,10 +175,24 @@ function listeningShapeOk(it) {
 function renderBlindListening(tagged) {
   const out = []
   for (const { id, it } of tagged) {
+    // SHUFFLE before rendering, with the same deterministic shuffle insert
+    // uses, so the blind render can never be answered by position.
+    //
+    // It used to render the AUTHORED order. Authors write the key first —
+    // cr-01.json and cr-03.json are both 22/22 key-in-slot-A — so a blind
+    // solver answering "always (A)" scored 44/44 on those batches and the
+    // QC that "confirmed" them proved nothing about their content. That is
+    // the same false green as the 2026-07-28 blind grade that returned
+    // 175/175 while reading position instead of content.
+    //
+    // The bank itself was never exposed: insert shuffles too. What was
+    // compromised is the CHECK, which is worse, because a check that cannot
+    // fail is what lets everything else through.
+    const shown = shuffleInPlace(it, hashListening(it))
     out.push(`### ${id}`)
-    out.push(it.passage)                       // transcript kept; key stripped
-    out.push(`Q: ${it.prompt}`)
-    it.choices.forEach((c, i) => out.push(`  (${LETTERS[i]}) ${c}`))
+    out.push(shown.passage)                    // transcript kept; key stripped
+    out.push(`Q: ${shown.prompt}`)
+    shown.choices.forEach((c, i) => out.push(`  (${LETTERS[i]}) ${c}`))
     out.push('')
   }
   return out.join('\n')
