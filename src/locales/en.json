@@ -2088,6 +2088,7 @@
     "assignmentCount": " Assignment",
     "assignmentCountPlural": " Assignments",
     "noAssignmentsForSession": "No assignments for this session",
+    "students": "students",
     "due": "Due",
     "categoryColon": "Category:",
     "notes": "Notes",
@@ -2659,6 +2660,7 @@
     "generateAiFeedback": "Generate AI Feedback",
     "aiGenerationConfirmation": "This will generate AI-powered feedback based on the student's performance data. Any existing manual feedback will be replaced.",
     "selectFeedbackTemplate": "Choose a feedback template that best suits your needs:",
+    "template": "Template",
     "warningExistingFeedback": "Warning: Existing feedback will be replaced",
     "warningExistingFeedbackDescription": "Generating new AI feedback will overwrite any current feedback in this report. This action cannot be undone.",
     "comprehensiveTemplate": "Comprehensive Analysis",
@@ -2681,6 +2683,7 @@
     "clickGenerateAi": "Click 'Generate AI' to create personalized feedback for this student.",
     "createdBy": "Created by",
     "enterAiFeedback": "Enter AI feedback...",
+    "enterManualFeedback": "Enter manual feedback...",
     "noStudentsAvailable": "No students available",
     "selected": "Selected:",
     "reportTitleRequired": "Report title is required",
@@ -3064,6 +3067,9 @@
     "noPaymentPlans": "No payment plans found",
     "noRecurringStudents": "No recurring students found",
     "noUpcomingTemplates": "No upcoming templates",
+    "manageRecurringTemplates": "Manage recurring payments",
+    "noPaymentPlansFound": "No payment plans found",
+    "getStartedFirstPlan": "Get started by creating your first payment plan",
     "allPaymentsUpToDate": "All payments are up to date",
     "overduePayments": "Overdue Payments",
     "upcomingPayments": "Upcoming Payments",
@@ -3247,6 +3253,7 @@
     "paymentHistory": "Payment History",
     "paymentTemplate": "Payment Template",
     "customAmount": "Custom Amount",
+    "baseAmount": "Base Amount",
     "overrideDefaultAmount": "Override Default Amount",
     "recurrence": "Recurrence",
     "method": "Method",
@@ -3460,6 +3467,7 @@
     "memberCount": " family members",
     "deleteFamily": "Delete Family",
     "deleteFamilyConfirm": "Are you sure you want to delete \"{name}\"? This will remove the family and all member relationships. This action cannot be undone.",
+    "parentLinkCopied": "Parent registration link copied to clipboard!",
     "familyName": "Family Name",
     "members": "Members",
     "parents": "Parents",
@@ -3475,12 +3483,21 @@
     "editFamily": "Edit Family",
     "addMember": "Add Member",
     "addFirstMember": "Add First Member",
+    "updating": "Updating...",
     "updateFamily": "Update Family",
+    "creating": "Creating...",
     "parentRegistrationLink": "Parent Registration Link",
     "studentRegistrationLink": "Student Registration Link",
     "shareParentLink": "Share this link with parents to invite them to this family.",
+    "studentLinkCopied": "Student registration link copied to clipboard!",
     "shareStudentLink": "Share this link with students to invite them to this family.",
     "done": "Done",
+    "familyUpdatedSuccessfully": "Family updated successfully!",
+    "errorUpdatingFamily": "Error updating family",
+    "errorDeletingFamily": "Error deleting family",
+    "familiesDeletedSuccessfully": "Families deleted successfully!",
+    "errorDeletingFamilies": "Error deleting families",
+    "errorAddingFamily": "Error adding family",
     "createFamily": "Create Family",
     "searchPlaceholder": "Search by family name or member...",
     "noFamilyMembers": "No family members",
@@ -3538,6 +3555,9 @@
     "personalizedLinks": "Personalized Registration Links",
     "memberLinkCopied": "Registration link copied to clipboard!",
     "confirmDeleteFamily": "Are you sure you want to delete this family?",
+    "familyDeletedSuccessfully": "Family deleted successfully",
+    "familyNameRequired": "Family name is required",
+    "errorLoadingFamilies": "Error loading families",
     "copyLink": "Copy Link"
   },
   "parents": {
@@ -3570,6 +3590,13 @@
     "familyMembers": "Family Members",
     "school": "School",
     "classrooms": "Classrooms",
+    "errorLoadingParents": "Error loading parents",
+    "errorFetchingFamilies": "Error fetching families",
+    "parentNotAssignedToFamily": "This parent is not assigned to any family",
+    "errorLoadingFamily": "Error loading family",
+    "parentHasNoChildren": "This parent has no children assigned",
+    "errorLoadingChildren": "Error loading children",
+    "errorUpdatingParents": "Error updating parents",
     "makeInactiveConfirm": "Are you sure you want to make {name} inactive?",
     "makeActiveConfirm": "Are you sure you want to activate {name}?",
     "dataPreserved": "System access will be removed but data will be preserved.",
@@ -3616,9 +3643,10 @@
     "classroomsFor": "{name}'s Classrooms",
     "enrolledClassrooms": "Enrolled Classrooms",
     "noClassroomsEnrolled": "No classrooms enrolled",
+    "notSpecified": "Not specified",
+    "notAssigned": "Not assigned",
     "studentInformation": "Student Information",
     "classroomInformation": "Classroom Information",
-    "loadingStudents": "Loading students...",
     "selected": "{count} selected",
     "clearSelection": "Clear Selection",
     "makeActive": "Make Active",
@@ -3647,7 +3675,6 @@
     "subject": "Subject",
     "teacher": "Teacher",
     "view": "View",
-    "edit": "Edit",
     "tryAdjustingSearch": "Try adjusting your search criteria",
     "noFamily": "No Family",
     "studentNotAssignedToFamily": "This student is not assigned to any family",
@@ -5122,8 +5149,8 @@
         "dismiss": "Dismiss"
       },
       "exitEndedTitle": "Test ended",
-      "exitEndedBody": "You left the app during a timed test, so the test was ended. Nothing was thrown away \u2014 the answers you had given are being submitted now.",
-      "exitEndedSubmitting": "Submitting your answers\u2026",
+      "exitEndedBody": "You left the app during a timed test, so the test was ended. Nothing was thrown away — the answers you had given are being submitted now.",
+      "exitEndedSubmitting": "Submitting your answers…",
       "exitEndedOffline": "You're offline. Your answers are saved and will be submitted as soon as you're back online.",
       "exitEndedRetry": "Submit my answers",
       "exitEndedNotice": "This test was ended because you left the app while it was running. Only the answers you had given at that point were graded.",
@@ -8113,6 +8140,7 @@
           "Request correction or deletion",
           "Withdraw consent",
           "Object to certain processing",
+          "Request data portability",
           "File a complaint with a supervisory authority"
         ],
         "exercise": "How to exercise your rights: Contact us at support@classraum.com. We will respond in accordance with the applicable law (e.g., within 30 days under PIPA/GDPR)."
@@ -8240,8 +8268,7 @@
     },
     "mainText": "**TABLE OF CONTENTS**\n1. What information do we collect?\n2. How do we process your information?\n3. When and with whom do we share your personal information?\n4. Do we use cookies and other tracking technologies?\n5. How do we handle your social logins?\n6. Is your information transferred internationally?\n7. How long do we keep your information?\n8. Do we collect information from minors?\n9. What are your privacy rights?\n10. Controls for Do-Not-Track features\n11. Do we make updates to this notice?\n12. How can you contact us about this notice?\n13. How can you review, update, or delete the data we collect from you?\n14. What responsibilities do schools and institution administrators have?\n15. Personal information manager\n16. Personal information retention and destruction policy\n17. Cross-border data transfer and storage location",
     "contactTitle": "Contact for Education Compliance Inquiries",
-    "contactDescription": "If you are an administrator with compliance questions or wish to request a DPA, please contact us at:",
-    "contactEmail": "support@classraum.com"
+    "contactDescription": "If you are an administrator with compliance questions or wish to request a DPA, please contact us at:"
   },
   "termsOfService": {
     "business": {
@@ -8445,18 +8472,18 @@
             "If users do not agree to the revised terms, they may stop using the service and withdraw."
           ]
         },
-        "section4Other": {
+        "section4": {
           "title": "Rules Other Than Terms",
           "content": "For matters not specified in these terms, the provisions of the \"Electronic Commerce Act\", \"Framework Act on Consumers\", \"Personal Information Protection Act\", other related laws of Korea, and the service operation policy (hereinafter \"operation policy\") established by the company shall apply."
         },
-        "section5Consumer": {
+        "section5": {
           "title": "Notification to Users",
           "items": [
             "The company may provide individual notifications to members through their contact information (email, text messages, app notifications, etc.).",
             "For notifications to an unspecified number of members, posting in the service announcements for more than 7 days can replace individual notifications."
           ]
         },
-        "section6Consumer": {
+        "section6": {
           "title": "Formation of Use Contract and Approval of Membership",
           "intro": "A use contract is concluded when a user applies for membership after agreeing to the contents of these terms, and the company accepts it.",
           "refusal": "The company may refuse membership or terminate the use contract afterwards in the following cases.",
@@ -8467,7 +8494,7 @@
             "When it is judged to violate the company's policies or to be a subscription for fraudulent purposes"
           ]
         },
-        "section7Consumer": {
+        "section7": {
           "title": "Management and Protection of Member Information",
           "items": [
             "Members must immediately update their information when it changes, and the company is not responsible for disadvantages arising from members not providing up-to-date information.",
@@ -8475,7 +8502,7 @@
             "When the company collects, uses, or provides members' personal information, it obtains consent and implements protection measures according to the \"Personal Information Protection Act\" and other related laws."
           ]
         },
-        "section8Consumer": {
+        "section8": {
           "title": "Company's Obligations",
           "items": [
             "The company does its best to provide stable and continuous services.",
@@ -8484,10 +8511,10 @@
             "The company clearly notifies the contents and transaction conditions of products and services and guarantees consumer rights such as withdrawal of subscription."
           ]
         },
-        "section9Consumer": {
+        "section9": {
           "title": "Service Provision and Changes",
           "intro": "The company provides the following services:",
-          "services": [
+          "items": [
             "Academy attendance and class information confirmation",
             "Announcements and communication functions",
             "Academic calendar and progress chart provision",
@@ -8495,7 +8522,7 @@
           ],
           "change": "The company may change services after prior notice when necessary for service improvement or other reasons."
         },
-        "section10Consumer": {
+        "section10": {
           "title": "Service Restrictions and Suspensions",
           "intro": "The company may temporarily restrict or suspend service provision in the following cases.",
           "items": [
@@ -8504,7 +8531,7 @@
           ],
           "notice": "The company provides prior notice when suspending services, and may notify afterwards in unavoidable cases."
         },
-        "section11Consumer": {
+        "section11": {
           "title": "Withdrawal of Subscription and Refunds",
           "intro": "Users may request withdrawal of subscription within 7 days after purchasing paid services.",
           "restrictions": "However, refunds may be restricted in the following cases.",
@@ -8514,14 +8541,14 @@
           ],
           "policy": "Refunds are processed according to the \"Electronic Commerce Act\" and the company's refund policy."
         },
-        "section12Consumer": {
+        "section12": {
           "title": "Attribution of Intellectual Property Rights and Content",
           "items": [
             "Intellectual property rights such as copyrights to content and materials provided by the company belong to the company.",
             "Members cannot reproduce, transmit, publish, distribute, broadcast, or otherwise use content received through the service or provide it to third parties without the company's prior consent."
           ]
         },
-        "section13Consumer": {
+        "section13": {
           "title": "User Obligations and Content Management",
           "intro": "Members must not engage in the following acts.",
           "prohibited": [
@@ -8532,21 +8559,21 @@
           ],
           "enforcement": "If violations are found, the company may delete the relevant posts or restrict posting, and may terminate the use contract if necessary."
         },
-        "section14Consumer": {
+        "section14": {
           "title": "Contract Termination and Service Withdrawal",
           "items": [
             "Members may terminate the contract at any time through the \"member withdrawal\" function within the service.",
             "The company may terminate the contract when members violate the terms or commit illegal acts."
           ]
         },
-        "section15Consumer": {
+        "section15": {
           "title": "Disclaimer",
           "items": [
             "The company is not responsible for service failures due to natural disasters or force majeure causes.",
             "The company is not responsible for service use failures due to members' negligence."
           ]
         },
-        "section16Consumer": {
+        "section16": {
           "title": "Dispute Resolution and Governing Court",
           "items": [
             "Disputes according to these terms are resolved through mutual consultation between the company and users, and if consultation fails, they may file a lawsuit with the competent court under the Civil Procedure Act.",

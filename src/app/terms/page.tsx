@@ -101,7 +101,6 @@ export default function TermsOfServicePage() {
 
               const sectionItems = getArrayItems(`termsOfService.${termSection}.sections.${sectionKey}.items`)
               const sectionRefusalItems = getArrayItems(`termsOfService.${termSection}.sections.${sectionKey}.refusalItems`)
-              const sectionServices = getArrayItems(`termsOfService.${termSection}.sections.${sectionKey}.services`)
               const sectionRestrictionItems = getArrayItems(`termsOfService.${termSection}.sections.${sectionKey}.restrictionItems`)
               const sectionProhibited = getArrayItems(`termsOfService.${termSection}.sections.${sectionKey}.prohibited`)
 
@@ -142,14 +141,6 @@ export default function TermsOfServicePage() {
                         </ul>
                       )}
                     </>
-                  )}
-
-                  {sectionServices && (
-                    <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
-                      {sectionServices.map((service, serviceIndex) => (
-                        <li key={serviceIndex}>{service}</li>
-                      ))}
-                    </ul>
                   )}
 
                   {sectionChange !== `termsOfService.${termSection}.sections.${sectionKey}.change` && (
