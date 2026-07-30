@@ -141,9 +141,24 @@ const LISTENING_TASKS = new Set(['choose_response', 'conversation', 'announcemen
 // The fix cannot be "shuffle less". It is to write explanations that
 // survive reordering: quote the option ("the option that offers a
 // refund"), never number it.
-const POSITIONAL_REF = /\b(choice|option)\s+(\d|[a-d]\b)|\b(first|second|third|fourth)\s+(choice|option)\b|\([A-D]\)/i
+// SCOPED DELIBERATELY. The first version was /\b(choice|option)\s+(\d|[a-d]\b)|...|\([A-D]\)/i
+// and it was wrong twice on SAT Math, where 192 items were flagged and only
+// 43 were real:
+//   - "Choice 7 comes from 2g = 6x - 4" names the option whose VALUE is 7.
+//     A four-option item has no seventh choice, so a number above 4 is
+//     always a value reference and survives a shuffle intact.
+//   - f(g(a)) and sin(A) matched \([A-D]\), and the /i flag matched the
+//     lowercase (a) too.
+// Both would have sent authors to rewrite prose that was never broken.
+// Two rules with DIFFERENT casing needs, which is why this is not one regex.
+// "Choice 2" must match case-insensitively; "(A)" must NOT match "(a)",
+// because f(g(a)) is function notation. Folding them into one /i pattern is
+// what produced 149 false positives on SAT Math.
+const POSITIONAL_WORD = /\b(choice|option)\s+([1-4]|[a-d])\b|\b(first|second|third|fourth)\s+(choice|option)\b/i
+const POSITIONAL_PAREN = /(^|[^A-Za-z0-9_])\([A-D]\)/
+const namesAPosition = (s) => POSITIONAL_WORD.test(s) || POSITIONAL_PAREN.test(s)
 function explanationIsOrderSafe(it) {
-  return !POSITIONAL_REF.test(String(it.explanation || ''))
+  return !namesAPosition(String(it.explanation || ''))
 }
 
 

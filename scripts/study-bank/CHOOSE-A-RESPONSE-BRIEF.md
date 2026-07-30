@@ -71,6 +71,42 @@ If a grader could read your batch and predict the answer from the shape of
 the key rather than from the utterance, the batch has failed even if every
 item is individually sound.
 
+### But the utterance must FORCE the move — this is where the first wave failed
+
+Spreading the moves is only half the rule, and the half I originally wrote
+was the wrong half on its own. 23 of the first 156 items were rejected by
+blind QC, and almost all of them failed the same way: the key performed a
+perfectly good move that the utterance did not require.
+
+    "A few of us lift at six before class — you should come along."
+      key:      "Six is brutal for me — though I'd be in for an evening session."
+      3 of 3 solvers: "Count me in — I'll find you by the racks at six."
+
+Both are natural. Whether you *can* do six in the morning is a fact about
+you that the utterance never supplied, so accept-versus-refuse is a coin
+flip and the item has no answer. The same fault, in other items: whether
+you have spare guest swipes, whether 7am suits your commute, whether the
+refund is the bursar's job or the desk's.
+
+The premise-correction move fails the same way and most often. A key like
+"This isn't tuition, though — it's the graduation fee" only works if the
+utterance contains something that makes the speaker's premise visibly
+wrong. If the student would need a fact they were never told, the item is
+unanswerable no matter how well written.
+
+So for EVERY item, before you keep it, answer this: **what in the utterance
+rules out the other three replies?** Name it. If the answer is "nothing —
+it depends on the responder's situation", the item is broken. Fix it by
+putting the constraint into the utterance ("I'm dead before eight, but a
+few of us lift at six — come along?") or change the key to the move the
+utterance actually forces.
+
+Plain agreement and offering-a-fix are the safest moves because the
+utterance usually does force them. Refusal, counter-proposal, conditional
+acceptance and premise-correction are the dangerous ones — they are the
+moves worth having, and every one of them needs the constraint stated out
+loud in the transcript.
+
 Vary the setting too — no scenario twice. Front desk, roommate, office hours,
 lab partner, library circulation, advising, part-time shift, group project,
 transit, campus dining, housing office, IT desk, gym, clinic reception.

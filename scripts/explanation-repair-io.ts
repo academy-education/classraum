@@ -38,7 +38,22 @@ const MODE = process.argv[2]
 const DIR = '.expl-repair'
 
 /** Same pattern the helpers now reject at insert. Keep them in step. */
-const POSITIONAL_REF = /\b(choice|option)\s+(\d|[a-d]\b)|\b(first|second|third|fourth)\s+(choice|option)\b|\([A-D]\)/i
+// SCOPED DELIBERATELY. The first version was /\b(choice|option)\s+(\d|[a-d]\b)|...|\([A-D]\)/i
+// and it was wrong twice on SAT Math, where 192 items were flagged and only
+// 43 were real:
+//   - "Choice 7 comes from 2g = 6x - 4" names the option whose VALUE is 7.
+//     A four-option item has no seventh choice, so a number above 4 is
+//     always a value reference and survives a shuffle intact.
+//   - f(g(a)) and sin(A) matched \([A-D]\), and the /i flag matched the
+//     lowercase (a) too.
+// Both would have sent authors to rewrite prose that was never broken.
+// Two rules with DIFFERENT casing needs, which is why this is not one regex.
+// "Choice 2" must match case-insensitively; "(A)" must NOT match "(a)",
+// because f(g(a)) is function notation. Folding them into one /i pattern is
+// what produced 149 false positives on SAT Math.
+const POSITIONAL_WORD = /\b(choice|option)\s+([1-4]|[a-d])\b|\b(first|second|third|fourth)\s+(choice|option)\b/i
+const POSITIONAL_PAREN = /(^|[^A-Za-z0-9_])\([A-D]\)/
+const namesAPosition = (s: string) => POSITIONAL_WORD.test(s) || POSITIONAL_PAREN.test(s)
 
 interface Payload {
   id: string
@@ -55,7 +70,7 @@ interface Payload {
 function check(p: Payload, next: string): string[] {
   const errs: string[] = []
   if (!next || !next.trim()) { errs.push('empty explanation'); return errs }
-  if (POSITIONAL_REF.test(next)) errs.push('still names an option by position')
+  if (namesAPosition(next)) errs.push('still names an option by position')
   if (next.trim() === p.explanation.trim()) errs.push('unchanged')
   // A rewrite that just deletes the offending clause loses the teaching. The
   // original is the only length reference available, so require the rewrite
@@ -67,8 +82,16 @@ function check(p: Payload, next: string): string[] {
   // A rewrite that never quotes any distractor has not anchored anything.
   const distractors = p.choices.filter(c => c !== p.correct_answer)
   const anchored = distractors.filter(d => {
-    // A "quote" = any run of 3+ words from the option appearing in the text.
     const words = d.replace(/[^\w\s]/g, ' ').split(/\s+/).filter(Boolean)
+    // SHORT OPTIONS ARE NOT PROSE. A math option is a single number — "18"
+    // is one token, "4√3" is two — so a 3-word-run rule can never fire and
+    // rejected 48/48 math items regardless of quality. A check that always
+    // fails is exactly as useless as one that always passes, and two agents
+    // hit it independently before it was noticed here. For these, the anchor
+    // is the value appearing verbatim.
+    if (words.length < 3) {
+      return new RegExp(`(^|[^\\w])${d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^\\w]|$)`).test(next)
+    }
     for (let i = 0; i + 3 <= words.length; i++) {
       if (next.toLowerCase().includes(words.slice(i, i + 3).join(' ').toLowerCase())) return true
     }
@@ -114,7 +137,7 @@ function archive(): string {
       if (!data || data.length < 1000) break
     }
 
-    const affected = rows.filter(r => POSITIONAL_REF.test(String(r.item?.explanation ?? '')))
+    const affected = rows.filter(r => namesAPosition(String(r.item?.explanation ?? '')))
     if (!existsSync(DIR)) mkdirSync(DIR, { recursive: true })
 
     // Same clobber guard as the length repair, for the same reason: a
