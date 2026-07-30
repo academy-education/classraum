@@ -25,37 +25,37 @@ export const StatusBadge = React.memo<StatusBadgeProps>(({
         return {
           className: 'bg-gray-50 text-gray-700',
           icon: <FileText className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
-          text: t('reports.status.draft')
+          text: t('reports.draft')
         }
       case 'Finished':
         return {
           className: 'bg-sky-50 text-sky-700',
           icon: <CheckCircle className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
-          text: t('reports.status.finished')
+          text: t('reports.finished')
         }
       case 'Approved':
         return {
           className: 'bg-emerald-50 text-emerald-700',
           icon: <CheckCircle className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
-          text: t('reports.status.approved')
+          text: t('reports.approved')
         }
       case 'Sent':
         return {
           className: 'bg-purple-100 text-purple-800',
           icon: <Send className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
-          text: t('reports.status.sent')
+          text: t('reports.sent')
         }
       case 'Viewed':
         return {
           className: 'bg-indigo-100 text-indigo-800',
           icon: <Eye className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
-          text: t('reports.status.viewed')
+          text: t('reports.viewed')
         }
       case 'Error':
         return {
           className: 'bg-rose-50 text-rose-700',
           icon: <AlertCircle className={`${size === 'sm' ? 'w-3 h-3' : 'w-4 h-4'}`} />,
-          text: t('reports.status.error')
+          text: t('reports.error')
         }
       default:
         return {

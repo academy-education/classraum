@@ -278,13 +278,13 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     const errors: { [key: string]: string } = {}
     
     if (!formData.name.trim()) {
-      errors.name = String(t('students.nameRequired'))
+      errors.name = String(t('validation.nameRequired'))
     }
     
     if (!formData.email.trim()) {
-      errors.email = String(t('students.emailRequired'))
+      errors.email = String(t('validation.emailRequired'))
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = String(t('students.validEmailRequired'))
+      errors.email = String(t('validation.invalidEmail'))
     }
     
     setFormErrors(errors)
@@ -392,7 +392,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
     if (result.success) {
       setSelectedStudents(new Set())
       await refreshData()
-      showSuccessToast(t(active ? 'success.multipleActivated' : 'success.multipleDeactivated', { items: t('students.students') as string }) as string)
+      showSuccessToast(t(active ? 'success.multipleActivated' : 'success.multipleDeactivated', { items: t('navigation.students') as string }) as string)
     } else {
       showErrorToast(String(t('students.errorUpdatingStudents')) + ': ' + result.error?.message)
     }

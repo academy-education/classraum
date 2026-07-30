@@ -76,7 +76,7 @@ export function ViewPaymentModal({
 
                   {viewingInvoice.discount_amount > 0 && (
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium text-gray-700">{t('payments.discount')}</Label>
+                      <Label className="text-sm font-medium text-gray-700">{t('payments.discountAmount')}</Label>
                       <div className="p-3 bg-gray-50 rounded-lg font-medium text-rose-600">
                         -{formatCurrency(viewingInvoice.discount_amount)}
                       </div>

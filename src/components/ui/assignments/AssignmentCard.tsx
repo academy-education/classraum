@@ -121,7 +121,7 @@ export const AssignmentCard = memo(function AssignmentCard({
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${typeColor}`}>
             {typeIcon}
-            {t(`assignments.type.${assignment.assignment_type}`)}
+            {t(`assignments.${assignment.assignment_type}`)}
           </div>
         </div>
         

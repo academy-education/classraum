@@ -184,7 +184,7 @@ export function EditPaymentModal({
                 <SelectContent className="z-[210]">
                   <SelectItem value="cash">{t('payments.paymentMethods.cash')}</SelectItem>
                   <SelectItem value="card">{t('payments.paymentMethods.card')}</SelectItem>
-                  <SelectItem value="bank_transfer">{t('payments.paymentMethods.bankTransfer')}</SelectItem>
+                  <SelectItem value="bank_transfer">{t('payments.paymentMethods.bank_transfer')}</SelectItem>
                   <SelectItem value="other">{t('payments.paymentMethods.other')}</SelectItem>
                 </SelectContent>
               </Select>

@@ -117,13 +117,13 @@ export const SessionsCalendarView = React.memo<SessionsCalendarViewProps>(({
 
   // Day of week headers
   const dayHeaders = [
-    t('common.days.sunday'),
-    t('common.days.monday'),
-    t('common.days.tuesday'),
-    t('common.days.wednesday'),
-    t('common.days.thursday'),
-    t('common.days.friday'),
-    t('common.days.saturday')
+    t('sessions.days.sun'),
+    t('sessions.days.mon'),
+    t('sessions.days.tue'),
+    t('sessions.days.wed'),
+    t('sessions.days.thu'),
+    t('sessions.days.fri'),
+    t('sessions.days.sat')
   ]
 
   return (
@@ -235,15 +235,15 @@ export const SessionsCalendarView = React.memo<SessionsCalendarViewProps>(({
         <div className="flex items-center gap-4 text-xs text-gray-600">
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 bg-sky-500 rounded"></div>
-            {t('sessions.status.scheduled')}
+            {t('sessions.scheduled')}
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 bg-green-500 rounded"></div>
-            {t('sessions.status.completed')}
+            {t('sessions.completed')}
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 bg-red-500 rounded"></div>
-            {t('sessions.status.cancelled')}
+            {t('sessions.cancelled')}
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ export const ReportsTableHeader = React.memo<ReportsTableHeaderProps>(({
     { key: 'start_date', label: t('reports.startDate') },
     { key: 'end_date', label: t('reports.endDate') },
     { key: 'status', label: t('reports.status') },
-    { key: 'created_at', label: t('reports.created') }
+    { key: 'created_at', label: t('common.created') }
   ]
 
   const allSelected = selectedRows.length === totalRows && totalRows > 0

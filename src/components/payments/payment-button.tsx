@@ -83,7 +83,7 @@ export function PaymentButton({
         // Payment failed
         console.error('Payment failed:', response);
         toast({
-          title: t('payments.paymentFailed') as string || 'Payment failed',
+          title: t('payments.paymentError') as string || 'Payment failed',
           description: response.message || (t('payments.paymentProcessingError') as string || 'An error occurred during payment processing.'),
           variant: 'destructive',
         });

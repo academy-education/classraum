@@ -167,7 +167,7 @@ export const ReportsTable = React.memo<ReportsTableProps>(({
                 >
                   {searchQuery || statusFilter !== 'all' 
                     ? t('reports.noReportsFound')
-                    : t('reports.noReportsYet')
+                    : t('reports.noReportsCreated')
                   }
                 </td>
               </tr>

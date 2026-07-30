@@ -81,7 +81,7 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
       <td className="p-4">
         <div className="space-y-1">
           <div className="font-medium text-gray-900">
-            {report.student_name || t('reports.unknownStudent')}
+            {report.student_name || t('common.unknownStudent')}
           </div>
           <div className="text-sm text-gray-500">
             {report.student_email}
@@ -125,7 +125,7 @@ export const ReportsTableRow = React.memo<ReportsTableRowProps>(({
             variant="ghost"
             size="sm"
             onClick={handlePreview}
-            title={String(t('reports.preview'))}
+            title={String(t('reports.previewReport'))}
           >
             <Eye className="w-4 h-4" />
           </Button>

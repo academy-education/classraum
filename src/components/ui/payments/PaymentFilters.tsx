@@ -47,25 +47,25 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
       case 'one_time':
         return [
           ...commonOptions,
-          { value: 'pending', label: t('payments.status.pending') },
-          { value: 'paid', label: t('payments.status.paid') },
-          { value: 'overdue', label: t('payments.status.overdue') },
-          { value: 'cancelled', label: t('payments.status.cancelled') }
+          { value: 'pending', label: t('payments.pending') },
+          { value: 'paid', label: t('payments.paid') },
+          { value: 'overdue', label: t('payments.overdue') },
+          { value: 'cancelled', label: t('payments.cancelled') }
         ]
       
       case 'recurring':
         return [
           ...commonOptions,
-          { value: 'active', label: t('payments.status.active') },
-          { value: 'paused', label: t('payments.status.paused') },
-          { value: 'inactive', label: t('payments.status.inactive') }
+          { value: 'active', label: t('payments.active') },
+          { value: 'paused', label: t('payments.paused') },
+          { value: 'inactive', label: t('payments.inactive') }
         ]
       
       case 'plans':
         return [
           ...commonOptions,
-          { value: 'active', label: t('payments.status.active') },
-          { value: 'inactive', label: t('payments.status.inactive') }
+          { value: 'active', label: t('payments.active') },
+          { value: 'inactive', label: t('payments.inactive') }
         ]
       
       default:
@@ -84,27 +84,27 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
     switch (activeTab) {
       case 'one_time':
         return [
-          { value: 'mark_paid', label: t('payments.actions.markPaid'), icon: '✅' },
-          { value: 'mark_pending', label: t('payments.actions.markPending'), icon: '⏳' },
-          { value: 'send_reminder', label: t('payments.actions.sendReminder'), icon: '📧' },
+          { value: 'mark_paid', label: t('payments.markPaid'), icon: '✅' },
+          { value: 'mark_pending', label: t('payments.markPending'), icon: '⏳' },
+          { value: 'send_reminder', label: t('payments.sendReminder'), icon: '📧' },
           { value: 'delete', label: t('common.delete'), icon: '🗑️', danger: true },
           ...commonActions
         ]
       
       case 'recurring':
         return [
-          { value: 'pause', label: t('payments.actions.pause'), icon: '⏸️' },
-          { value: 'resume', label: t('payments.actions.resume'), icon: '▶️' },
-          { value: 'update_amount', label: t('payments.actions.updateAmount'), icon: '💰' },
+          { value: 'pause', label: t('payments.pause'), icon: '⏸️' },
+          { value: 'resume', label: t('payments.resume'), icon: '▶️' },
+          { value: 'update_amount', label: t('payments.updateAmount'), icon: '💰' },
           { value: 'delete', label: t('common.delete'), icon: '🗑️', danger: true },
           ...commonActions
         ]
       
       case 'plans':
         return [
-          { value: 'activate', label: t('payments.actions.activate'), icon: '🟢' },
-          { value: 'deactivate', label: t('payments.actions.deactivate'), icon: '🔴' },
-          { value: 'duplicate', label: t('payments.actions.duplicate'), icon: '📋' },
+          { value: 'activate', label: t('payments.activate'), icon: '🟢' },
+          { value: 'deactivate', label: t('payments.deactivate'), icon: '🔴' },
+          { value: 'duplicate', label: t('common.duplicate'), icon: '📋' },
           { value: 'delete', label: t('common.delete'), icon: '🗑️', danger: true },
           ...commonActions
         ]
@@ -120,11 +120,11 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
     
     switch (activeTab) {
       case 'one_time':
-        return t('payments.search.oneTime')
+        return t('payments.searchInvoices')
       case 'recurring':
-        return t('payments.search.recurring')
+        return t('payments.searchRecurringPayments')
       case 'plans':
-        return t('payments.search.plans')
+        return t('payments.searchPaymentPlans')
       default:
         return t('common.search')
     }
@@ -151,7 +151,7 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
           <Filter className="w-4 h-4 text-gray-500" />
           <Select value={statusFilter} onValueChange={onStatusFilterChange}>
             <SelectTrigger className="w-[150px]">
-              <SelectValue placeholder={t('payments.filters.status')} />
+              <SelectValue placeholder={t('payments.filterByStatus')} />
             </SelectTrigger>
             <SelectContent>
               {statusOptions.map((option) => (
@@ -169,7 +169,7 @@ const PaymentFiltersComponent: React.FC<PaymentFiltersProps> = ({
         <div className="flex items-center justify-between p-3 bg-sky-50 border border-sky-200 rounded-lg">
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-sky-900">
-              {t('common.selected', { count: selectedItems.size })}
+              {t('common.itemsSelected', { count: selectedItems.size })}
             </span>
             <span className="text-xs text-blue-700">
               ({selectedItems.size} {selectedItems.size === 1 ? t('common.item') : t('common.items')})

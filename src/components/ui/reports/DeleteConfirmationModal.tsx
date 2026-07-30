@@ -43,7 +43,7 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
               {t('reports.deleteReport')}
             </h2>
             <p className="text-sm text-gray-600">
-              {t('common.confirmAction')}
+              {t('common.actionCannotBeUndone')}
             </p>
           </div>
         </div>
@@ -87,7 +87,7 @@ export const DeleteConfirmationModal = React.memo<DeleteConfirmationModalProps>(
             {t('reports.student')}: {report.student_name}
           </div>
           <div className="text-gray-500 text-xs mt-1">
-            {t('reports.created')}: {new Date(report.created_at).toLocaleDateString(getDateLocale(language))}
+            {t('common.created')}: {new Date(report.created_at).toLocaleDateString(getDateLocale(language))}
           </div>
         </div>
       </div>

@@ -403,7 +403,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setSelectedOneTimeInvoices(new Set())
       } catch (error) {
         console.error('Error updating bulk status:', error)
-        showErrorToast(t('payments.errorUpdatingStatus') as string)
+        showErrorToast(t('payments.errorUpdatingPayment') as string)
       }
     } else if (activeTab === 'recurring') {
       const selectedIds = Array.from(selectedRecurringStudents)
@@ -424,7 +424,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         setSelectedRecurringStudents(new Set())
       } catch (error) {
         console.error('Error updating recurring students bulk status:', error)
-        showErrorToast(t('payments.errorUpdatingStatus') as string)
+        showErrorToast(t('payments.errorUpdatingPayment') as string)
       }
     }
   }
@@ -2459,7 +2459,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             size="sm"
                             className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
                             onClick={() => handleEditTemplate(template)}
-                            title={String(t('payments.editTemplate'))}
+                            title={String(t('payments.editPaymentPlan'))}
                           >
                             <Edit className="w-4 h-4" strokeWidth={1.75} />
                           </Button>
@@ -2484,7 +2484,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                             size="sm"
                             className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50"
                             onClick={() => handleDeleteTemplate(template)}
-                            title={String(t('payments.deleteTemplate'))}
+                            title={String(t('payments.deletePaymentPlan'))}
                           >
                             <Trash2 className="w-4 h-4" strokeWidth={1.75} />
                           </Button>

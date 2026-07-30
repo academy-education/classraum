@@ -81,19 +81,19 @@ export const SessionCard = React.memo<SessionCardProps>(({
       case 'completed':
         return {
           icon: <CheckCircle className="w-4 h-4 text-green-600" />,
-          text: t('sessions.status.completed'),
+          text: t('sessions.completed'),
           className: 'text-green-600 bg-green-50'
         }
       case 'scheduled':
         return {
           icon: <Clock className="w-4 h-4 text-blue-600" />,
-          text: t('sessions.status.scheduled'),
+          text: t('sessions.scheduled'),
           className: 'text-blue-600 bg-blue-50'
         }
       case 'cancelled':
         return {
           icon: <XCircle className="w-4 h-4 text-rose-600" />,
-          text: t('sessions.status.cancelled'),
+          text: t('sessions.cancelled'),
           className: 'text-rose-600 bg-red-50'
         }
       default:
@@ -189,7 +189,7 @@ export const SessionCard = React.memo<SessionCardProps>(({
             {session.assignment_count !== undefined && (
               <div className="flex items-center gap-1">
                 <BookOpen className="w-4 h-4" />
-                {session.assignment_count} {t('sessions.assignments')}
+                {session.assignment_count} {t('sessions.assignmentsLabel')}
               </div>
             )}
           </div>
@@ -222,7 +222,7 @@ export const SessionCard = React.memo<SessionCardProps>(({
             onClick={handleViewAssignments}
           >
             <BookOpen className="w-3 h-3 mr-1" />
-            {compact ? '' : t('sessions.assignments')}
+            {compact ? '' : t('sessions.assignmentsLabel')}
           </Button>
         )}
         
@@ -233,7 +233,7 @@ export const SessionCard = React.memo<SessionCardProps>(({
             onClick={handleViewAttendance}
           >
             <Users className="w-3 h-3 mr-1" />
-            {compact ? '' : t('sessions.attendance')}
+            {compact ? '' : t('sessions.attendanceLabel')}
           </Button>
         )}
         

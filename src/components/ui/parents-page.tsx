@@ -1520,7 +1520,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                                         ? 'bg-purple-100 text-purple-800'
                                         : 'bg-emerald-50 text-emerald-700'
                                     }`}>
-                                      {t(`common.roles.${((member.users as Record<string, unknown>)?.role as string) || 'unknown'}`)}
+                                      {((member.users as Record<string, unknown>)?.role as string)
+                                        ? t(`common.roles.${(member.users as Record<string, unknown>).role as string}`)
+                                        : t('common.fallbacks.unknown')}
                                     </span>
                                   </div>
                                 </div>

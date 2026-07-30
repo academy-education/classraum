@@ -307,7 +307,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       }
     } catch (error) {
       console.error('Error fetching teachers:', error)
-      toast({ title: t('alerts.errorLoading', { resource: String(t('teachers.teachers')), error: (error as Error).message }) as string, variant: 'destructive' })
+      toast({ title: t('alerts.errorLoading', { resource: String(t('navigation.teachers')), error: (error as Error).message }) as string, variant: 'destructive' })
     } finally {
       setLoading(false)
         setTableLoading(false)
@@ -665,7 +665,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
       setSelectedTeachers(new Set())
       invalidateTeachersCache(academyId)
       fetchTeachers()
-      showSuccessToast(t(active ? 'success.multipleActivated' : 'success.multipleDeactivated', { items: t('teachers.teachers') as string }) as string)
+      showSuccessToast(t(active ? 'success.multipleActivated' : 'success.multipleDeactivated', { items: t('navigation.teachers') as string }) as string)
     } catch (error: unknown) {
       console.error('Error updating teachers:', error)
       showErrorToast('Error updating teachers: ' + (error instanceof Error ? error.message : 'Unknown error'))

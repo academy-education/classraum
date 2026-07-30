@@ -4634,7 +4634,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           </div>
           {(debouncedSessionSearchQuery || classroomFilter !== 'all' || teacherFilter !== 'all' || statusFilter !== 'all' || showTodayOnly || showUpcomingOnly) && (
             <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[11px] font-medium">
-              {String(t("common.ofTotal", { total: totalCount }))}
+              {String(t("sessions.ofTotal", { total: totalCount }))}
             </div>
           )}
         </Card>

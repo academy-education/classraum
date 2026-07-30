@@ -76,7 +76,7 @@ export function StudentDetailsModal({
       headerSlot={
         <div className="flex items-center justify-between gap-3 w-full">
           <h2 className="text-xl font-semibold tracking-tight text-gray-900 truncate">
-            {t('students.studentDetails')}
+            {t('students.studentInformation')}
           </h2>
           <Button
             variant="outline"
@@ -141,7 +141,7 @@ export function StudentDetailsModal({
                       <div className="flex items-center gap-3">
                         <Mail className="w-5 h-5 text-gray-400" />
                         <div>
-                          <div className="text-sm text-gray-500">{t('students.email')}</div>
+                          <div className="text-sm text-gray-500">{t('students.emailAddress')}</div>
                           <div className="font-medium">{student.email}</div>
                         </div>
                       </div>
@@ -184,7 +184,7 @@ export function StudentDetailsModal({
                     ) : (
                       <div className="flex items-center gap-3 text-gray-500">
                         <Home className="w-5 h-5" />
-                        <div className="text-sm">{t('students.noFamilyAssigned')}</div>
+                        <div className="text-sm">{t('students.studentNotAssignedToFamily')}</div>
                       </div>
                     )}
                   </div>

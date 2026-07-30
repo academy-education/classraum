@@ -170,7 +170,7 @@ export function SubmissionsModal({
             <div className="text-center py-8">
               <User className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">
-                {t('assignments.noSubmissions')}
+                {t('assignments.noSubmissionsYet')}
               </h3>
               <p className="text-gray-600">
                 {t('assignments.noSubmissionsDescription')}
@@ -216,7 +216,7 @@ export function SubmissionsModal({
 
                     {submission.submitted_at && (
                       <div className="text-xs text-gray-500 mb-3">
-                        {t('assignments.submittedAt')}: {new Date(submission.submitted_at).toLocaleString()}
+                        {t('assignments.submittedDate')}: {new Date(submission.submitted_at).toLocaleString()}
                       </div>
                     )}
 
@@ -229,7 +229,7 @@ export function SubmissionsModal({
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div>
-                        <Label className="text-xs text-gray-600">{t('assignments.grade')}</Label>
+                        <Label className="text-xs text-gray-600">{t('assignments.score')}</Label>
                         <Input
                           type="number"
                           min="0"
@@ -249,7 +249,7 @@ export function SubmissionsModal({
                             type="text"
                             value={grades[submission.id]?.feedback || ''}
                             onChange={(e) => handleGradeChange(submission.id, 'feedback', e.target.value)}
-                            placeholder={String(t('assignments.feedbackPlaceholder'))}
+                            placeholder={String(t('assignments.teacherFeedback'))}
                             className="h-8 text-sm flex-1"
                           />
                           <Button

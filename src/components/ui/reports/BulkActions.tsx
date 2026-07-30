@@ -38,7 +38,7 @@ export const BulkActions = React.memo<BulkActionsProps>(({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <span className="text-sm font-medium text-blue-800">
-            {t('reports.selectedItems', { count: selectedCount })}
+            {t('common.itemsSelected', { count: selectedCount })}
           </span>
           
           <Button

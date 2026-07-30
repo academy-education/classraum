@@ -76,19 +76,19 @@ export function StudentModal({
     e.preventDefault()
 
     if (!formData.name.trim()) {
-      toast({ title: t('students.nameRequired') as string, variant: 'warning' })
+      toast({ title: t('validation.nameRequired') as string, variant: 'warning' })
       return
     }
 
     if (!formData.email.trim()) {
-      toast({ title: t('students.emailRequired') as string, variant: 'warning' })
+      toast({ title: t('validation.emailRequired') as string, variant: 'warning' })
       return
     }
 
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
-      toast({ title: t('students.emailInvalid') as string, variant: 'warning' })
+      toast({ title: t('validation.emailInvalid') as string, variant: 'warning' })
       return
     }
 
@@ -130,13 +130,13 @@ export function StudentModal({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {t('students.name')} <span className="text-rose-500">*</span>
+                  {t('students.fullName')} <span className="text-rose-500">*</span>
                 </Label>
                 <Input
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  placeholder={String(t('students.namePlaceholder'))}
+                  placeholder={String(t('students.enterFullName'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   required
                 />
@@ -144,13 +144,13 @@ export function StudentModal({
 
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-foreground/80">
-                  {t('students.email')} <span className="text-rose-500">*</span>
+                  {t('students.emailAddress')} <span className="text-rose-500">*</span>
                 </Label>
                 <Input
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  placeholder={String(t('students.emailPlaceholder'))}
+                  placeholder={String(t('students.enterEmailAddress'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                   required
                   disabled={mode === 'edit'} // Don't allow email changes in edit mode
@@ -166,7 +166,7 @@ export function StudentModal({
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
-                  placeholder={String(t('students.phonePlaceholder'))}
+                  placeholder={String(t('students.enterPhoneNumber'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
@@ -177,7 +177,7 @@ export function StudentModal({
                   type="text"
                   value={formData.school_name}
                   onChange={(e) => handleInputChange('school_name', e.target.value)}
-                  placeholder={String(t('students.schoolPlaceholder'))}
+                  placeholder={String(t('students.enterSchoolName'))}
                   className="h-10 text-sm bg-white border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>

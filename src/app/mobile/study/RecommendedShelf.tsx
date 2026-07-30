@@ -371,7 +371,7 @@ function RecentSessionCard({ card, name, t, startSession, creating }: {
               {card.topic ? name(card.topic) : ''}
             </div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-white/80 backdrop-blur ring-1 ring-primary/20 rounded-full px-1.5 py-0.5 flex-shrink-0">
-              {String(t('study.modes.' + card.suggested_mode + '.title'))}
+              {String(t(`study.modes.${card.suggested_mode}.title`))}
             </span>
           </div>
           <div className="text-[12.5px] text-gray-600 mt-1 leading-relaxed">
