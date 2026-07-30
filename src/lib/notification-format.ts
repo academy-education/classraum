@@ -12,6 +12,38 @@
 
 export type NotifLang = 'english' | 'korean'
 
+/**
+ * Sigil marking a param VALUE that is itself a translation key.
+ *
+ * Study notifications carry enum-ish values — a league tier, a skill
+ * name — that must be translated at read time along with the template.
+ * Rather than one message key per enum member, the writer stores
+ * `{ tier: '@notifications.content.study.tier.silver' }` and the reader
+ * resolves it here. Kept in lockstep with `PARAM_KEY_REF_PREFIX` in
+ * src/lib/study/notification-copy.ts (which cannot be imported into the
+ * client bundle — it pulls in the server-side copy registry).
+ */
+export const PARAM_KEY_REF = '@'
+
+/**
+ * Replace `@some.translation.key` param values with their translation.
+ * Values that are not references pass through untouched, as do keys the
+ * translator does not know (t() returns the path, which is at least a
+ * visible symptom rather than a blank).
+ */
+export function resolveParamKeyRefs(
+  params: Record<string, string | number>,
+  translate: (key: string) => string,
+): Record<string, string | number> {
+  const out: Record<string, string | number> = {}
+  for (const [k, v] of Object.entries(params)) {
+    out[k] = typeof v === 'string' && v.startsWith(PARAM_KEY_REF)
+      ? translate(v.slice(PARAM_KEY_REF.length))
+      : v
+  }
+  return out
+}
+
 export function formatLocalizedDate(dateISO: string | undefined | null, lang: NotifLang): string {
   if (!dateISO) return ''
   const [yStr, mStr, dStr] = dateISO.split('-')

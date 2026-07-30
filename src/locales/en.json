@@ -4246,6 +4246,84 @@
           "title": "Level test submitted",
           "message": "{taker} completed {test}{scoreSuffix}."
         }
+      },
+      "study": {
+        "leaguePromoted": {
+          "title": "Promoted to {tier} League!"
+        },
+        "leagueDemoted": {
+          "title": "Moved down to {tier} League"
+        },
+        "leagueStayed": {
+          "title": "Staying in {tier} League"
+        },
+        "leagueRoll": {
+          "message": "You finished #{rank} last week — {fromTier} → {toTier}.",
+          "messageCredits": "You finished #{rank} last week — {fromTier} → {toTier}. You earned {credits} credits."
+        },
+        "weeklyRecap": {
+          "title": "Your week in Study — {hours}h, {accuracy}% accuracy",
+          "message": "{total} questions completed.",
+          "messageWithTopic": "{total} questions completed · Most studied: {topic}"
+        },
+        "streakMilestone": {
+          "title": "{days}-day streak! 🔥",
+          "message": "That's a new personal best. Come back tomorrow to keep it climbing."
+        },
+        "streakAtRisk": {
+          "title": "Your {days}-day streak ends today",
+          "message": "Five minutes is all it takes to keep it."
+        },
+        "streakSaved": {
+          "title": "❄️ Streak protected",
+          "message": "A streak freeze saved your {days}-day streak. Study today to keep it going!"
+        },
+        "dailyChallenge": {
+          "title": "Today's challenge is waiting",
+          "message": "{questions} questions · {minutes} minutes · {xp} XP — take it now."
+        },
+        "duelWon": {
+          "title": "Duel won! 🏆",
+          "message": "You took it with {xp} XP.",
+          "messageCredits": "You took it with {xp} XP and earned {credits} credits."
+        },
+        "duelLost": {
+          "title": "Duel over",
+          "message": "This one got away · {xp} XP"
+        },
+        "duelTie": {
+          "title": "Duel drawn",
+          "message": "The duel ended level · {xp} XP"
+        },
+        "responseGraded": {
+          "title": "{family} {skill} graded — {score}",
+          "message": "Tap to read the full feedback.",
+          "messageSummary": "{summary}"
+        },
+        "paymentFailed": {
+          "title": "Payment failed",
+          "message": "Your card payment didn't go through. Update your payment method to keep your Study subscription."
+        },
+        "subscriptionExpired": {
+          "title": "Subscription expired",
+          "message": "Repeated payment failures ended your subscription. You can start again any time — your credits are still here."
+        },
+        "tier": {
+          "bronze": "Bronze",
+          "silver": "Silver",
+          "gold": "Gold",
+          "sapphire": "Sapphire",
+          "ruby": "Ruby",
+          "emerald": "Emerald",
+          "amethyst": "Amethyst",
+          "pearl": "Pearl",
+          "obsidian": "Obsidian",
+          "diamond": "Diamond"
+        },
+        "skill": {
+          "speaking": "Speaking",
+          "writing": "Writing"
+        }
       }
     }
   },

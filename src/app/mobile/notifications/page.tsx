@@ -18,7 +18,7 @@ import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePag
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useMobileStore, useNotifications } from '@/stores/mobileStore'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
-import { augmentLocalizedTimeParams } from '@/lib/notification-format'
+import { augmentLocalizedTimeParams, resolveParamKeyRefs } from '@/lib/notification-format'
 import { safeNotificationPath, studyFallbackRoute } from '@/lib/study/notification-link'
 import type { Database, Json } from '@/lib/database.types'
 
@@ -454,10 +454,16 @@ function MobileNotificationsPageContent() {
           if (synthesizedDbIds.has(notif.id)) return
 
           const lang = language === 'korean' ? 'korean' : 'english'
-          const titleParams = toParams(notif.title_params)
+          // `@some.key` param values are translation references (league
+          // tier, skill name) and must be resolved in the READER's
+          // language, not the writer's. See resolveParamKeyRefs.
+          const titleParams = resolveParamKeyRefs(toParams(notif.title_params), t)
           // Inject locale-formatted {when} / {oldWhen} / {newWhen} from raw
           // ISO fields stored by the trigger (e.g. "2026-05-07" + "09:00").
-          const messageParams = augmentLocalizedTimeParams(toParams(notif.message_params), lang)
+          const messageParams = resolveParamKeyRefs(
+            augmentLocalizedTimeParams(toParams(notif.message_params), lang),
+            t,
+          )
           const renderedTitle = notif.title_key
             ? String(t(notif.title_key, titleParams))
             : (notif.title || '')

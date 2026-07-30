@@ -217,8 +217,8 @@ export async function evaluateStreak(studentId: string): Promise<StreakResult> {
     await notifyStudent({
       studentId,
       kind: 'study_streak_saved',
-      title: '❄️ Streak protected',
-      message: `A streak freeze saved your ${streak}-day streak. Study today to keep it going!`,
+      variant: 'default',
+      messageParams: { days: streak },
       link: '/mobile/study',
       push: true,
     })

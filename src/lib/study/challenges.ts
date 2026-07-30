@@ -116,8 +116,8 @@ async function awardDuelOutcome(row: ChallengeRow): Promise<void> {
     if (w === null) {
       // Tie — no credit, both sides told.
       await Promise.all([
-        notifyStudent({ studentId: c, kind: 'study_duel_lost', title: '듀얼 무승부', message: `듀얼이 무승부로 끝났어요 · ${cx} XP`, link, push: true }),
-        notifyStudent({ studentId: o, kind: 'study_duel_lost', title: '듀얼 무승부', message: `듀얼이 무승부로 끝났어요 · ${ox} XP`, link, push: true }),
+        notifyStudent({ studentId: c, kind: 'study_duel_lost', variant: 'tie', messageParams: { xp: cx }, link, push: true }),
+        notifyStudent({ studentId: o, kind: 'study_duel_lost', variant: 'tie', messageParams: { xp: ox }, link, push: true }),
       ])
       return
     }
@@ -143,16 +143,16 @@ async function awardDuelOutcome(row: ChallengeRow): Promise<void> {
       trackEvent(loser, 'challenge_lost', { opponentId: w, myXp: loserXp, theirXp: winnerXp }),
       notifyStudent({
         studentId: w, kind: 'study_duel_won',
-        title: '듀얼 승리! 🏆',
-        message: credited
-          ? `${winnerXp} XP로 승리하고 크레딧 ${DUEL_WIN_CREDITS}개를 받았어요`
-          : `${winnerXp} XP로 듀얼에서 이겼어요`,
+        variant: credited ? 'wonCredits' : 'won',
+        messageParams: credited
+          ? { xp: winnerXp, credits: DUEL_WIN_CREDITS }
+          : { xp: winnerXp },
         link, push: true,
       }),
       notifyStudent({
         studentId: loser, kind: 'study_duel_lost',
-        title: '듀얼 종료',
-        message: `이번 듀얼은 아쉽게 졌어요 · ${loserXp} XP`,
+        variant: 'lost',
+        messageParams: { xp: loserXp },
         link, push: true,
       }),
     ])

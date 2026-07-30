@@ -79,6 +79,22 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
     const raw = getNestedValue(translations, key)
     let translation: string = Array.isArray(raw) ? raw.join(', ') : raw
 
+    // A miss returns the path itself, which then renders on screen as
+    // "notifications.content.study.duelWon.title" — cosmetically almost
+    // invisible in a dense list, and completely silent. Say so in dev.
+    // Keys with a dot are the only ones checked: several call sites pass
+    // already-resolved plain text through t() as a convenience.
+    if (
+      process.env.NODE_ENV === 'development' &&
+      translation === key &&
+      key.includes('.')
+    ) {
+      console.error(
+        `[i18n] MISSING translation key "${key}" in ${language} — ` +
+        'the raw key is being rendered. Add it to BOTH src/locales/en.json and ko.json.',
+      )
+    }
+
     // Replace parameters in the translation string. Accept BOTH single
     // `{key}` and double `{{key}}` placeholder styles: some strings were
     // authored with `{{count}}` (i18next-style) but this interpolator only

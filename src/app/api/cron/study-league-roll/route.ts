@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { notifyStudent } from '@/lib/study/notify'
+import { tierParam } from '@/lib/study/notification-copy'
 import { grantLeagueRewards } from '@/lib/study/league-rewards'
 import { recordHeartbeat } from '@/lib/ops/heartbeat'
 import { verifyCronAuth } from '@/lib/cron-auth'
@@ -115,23 +116,40 @@ export async function GET(req: NextRequest) {
     })
     creditsAwarded += reward.total
 
-    const title = event === 'promoted'
-      ? `승급! ${toTier} 리그로 이동`
-      : event === 'demoted'
-        ? `${toTier} 리그로 강등`
-        : `${toTier} 리그 유지`
-    const base = `지난주 ${rank}위 — ${fromTier} → ${toTier}`
-    const message = reward.total > 0
-      ? `${base} · 크레딧 ${reward.total}개 획득`
-      : base
-    await notifyStudent({
-      studentId: m.student_id,
-      kind: event === 'demoted' ? 'study_league_demoted' : 'study_league_promoted',
-      title,
-      message,
-      link: '/mobile/study/league',
-      push: true,
-    })
+    // Copy is chosen by (kind, variant); the tier names travel as
+    // `@`-prefixed translation-key references so the reader sees
+    // "Silver" or "실버" depending on THEIR language, not this cron's.
+    const credited = reward.total > 0
+    const titleParams = { tier: tierParam(toTier) }
+    const messageParams = {
+      rank,
+      fromTier: tierParam(fromTier),
+      toTier: tierParam(toTier),
+      ...(credited ? { credits: reward.total } : {}),
+    }
+    if (event === 'demoted') {
+      await notifyStudent({
+        studentId: m.student_id,
+        kind: 'study_league_demoted',
+        variant: credited ? 'demotedCredits' : 'demoted',
+        titleParams,
+        messageParams,
+        link: '/mobile/study/league',
+        push: true,
+      })
+    } else {
+      await notifyStudent({
+        studentId: m.student_id,
+        kind: 'study_league_promoted',
+        variant: event === 'promoted'
+          ? (credited ? 'promotedCredits' : 'promoted')
+          : (credited ? 'stayedCredits' : 'stayed'),
+        titleParams,
+        messageParams,
+        link: '/mobile/study/league',
+        push: true,
+      })
+    }
     notified++
   }
 

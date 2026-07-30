@@ -144,8 +144,9 @@ async function runRecap() {
     void notifyStudent({
       studentId,
       kind: 'study_weekly_recap',
-      title: `이번 주 학습 요약 — ${hours}h, 정답률 ${accuracy}%`,
-      message: `${total}문항 학습 완료${topTopicName ? ` · 최다 학습: ${topTopicName}` : ''}`,
+      variant: topTopicName ? 'withTopic' : 'default',
+      titleParams: { hours, accuracy },
+      messageParams: { total, ...(topTopicName ? { topic: topTopicName } : {}) },
       link: '/mobile/study/stats',
     })
   }

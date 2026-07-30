@@ -18,8 +18,7 @@ async function notifyPaymentFailed(studentId: string) {
   await notifyStudent({
     studentId,
     kind: 'study_payment_failed',
-    title: '결제에 실패했어요',
-    message: '카드 결제가 처리되지 않았어요. 학습 구독을 유지하려면 결제 수단을 업데이트해 주세요.',
+    variant: 'default',
     link: SUB_LINK,
     push: true,
   })
@@ -28,8 +27,7 @@ async function notifySubscriptionExpired(studentId: string) {
   await notifyStudent({
     studentId,
     kind: 'study_subscription_expired',
-    title: '구독이 만료됐어요',
-    message: '결제가 계속 실패해 구독이 만료됐어요. 언제든 다시 시작할 수 있어요 — 크레딧은 그대로 남아 있어요.',
+    variant: 'default',
     link: SUB_LINK,
     push: true,
   })

@@ -79,15 +79,18 @@ async function runReminders() {
     // only if they study today".
     const streak = await currentStreakEndingYesterday(studentId)
     if (streak >= 2) {
-      const title = lang === 'ko'
-        ? `${streak}일 연속 기록이 오늘 끊겨요`
-        : `Your ${streak}-day streak ends today`
-      const message = lang === 'ko'
-        ? '5분만 투자하면 기록을 지킬 수 있어요.'
-        : 'Five minutes is all it takes to keep it.'
       await notifyStudent({
-        studentId, kind: 'study_streak_at_risk',
-        title, message, link: '/mobile/study', push: true,
+        studentId,
+        kind: 'study_streak_at_risk',
+        variant: 'default',
+        titleParams: { days: streak },
+        messageParams: { days: streak },
+        // We already read this student's preference above; pass it so
+        // notifyStudent doesn't re-query. It only affects the stored
+        // plaintext and the push body — the inbox row renders from keys.
+        lang: lang === 'ko' ? 'korean' : 'english',
+        link: '/mobile/study',
+        push: true,
       })
       sent++
       continue

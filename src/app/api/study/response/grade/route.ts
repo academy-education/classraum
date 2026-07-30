@@ -4,6 +4,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { notifyStudent } from '@/lib/study/notify'
+import { skillParam } from '@/lib/study/notification-copy'
 import {
   inferSpeakingTaskType,
   type ResponseSkill,
@@ -165,13 +166,21 @@ export async function POST(req: NextRequest) {
     })
   // Inbox row — useful for the student to revisit their graded
   // response later from the bell icon without scrolling history.
-  const skillLabel = body.skill === 'speaking' ? '말하기' : '작문'
   const familyLabel = body.testFamily.toUpperCase()
+  const summary = (graded.grade.summary ?? '').slice(0, 120).trim()
   void notifyStudent({
     studentId: user.id,
     kind: 'study_response_graded',
-    title: `${familyLabel} ${skillLabel} 평가 완료 — ${Number.isInteger(graded.grade.overallBand) ? graded.grade.overallBand : graded.grade.overallBand.toFixed(1)}점`,
-    message: (graded.grade.summary ?? '').slice(0, 120),
+    variant: summary ? 'withSummary' : 'default',
+    titleParams: {
+      family: familyLabel,
+      // Translation-key reference — resolved in the reader's language.
+      skill: skillParam(body.skill === 'speaking' ? 'speaking' : 'writing'),
+      score: Number.isInteger(graded.grade.overallBand)
+        ? graded.grade.overallBand
+        : graded.grade.overallBand.toFixed(1),
+    },
+    messageParams: summary ? { summary } : {},
     link: '/mobile/study',
   })
 
