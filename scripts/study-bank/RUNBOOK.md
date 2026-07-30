@@ -52,6 +52,24 @@ beats gpt-4.1, independence comes from answer-blindness): see the memory
    explanation }`. Vary domains/topics; make every distractor a real trap;
    never state the answer's meaning in the prompt (that leaks it).
 
+   **Vary the key's LENGTH, not just its position.** An audit on 2026-07-29
+   found the correct answer was the uniquely longest of four options in 64.3%
+   of banked SAT R&W items, against 25% by chance — while the A/B/C/D histogram
+   read as perfectly healthy, which is why nothing caught it for months. A
+   test-taker who never read the passage and always picked the longest option
+   scored about two thirds. (SAT Math sat at 4.7%: its options are numbers, so
+   the habit never gets the chance to operate.)
+   It comes from how a correct answer gets written — the key must be fully
+   accurate, a distractor gets clipped as soon as it is wrong enough. Across a
+   batch, the longest option should be the key about a QUARTER of the time and
+   no more, and some keys should be the shortest. Keep the four within roughly
+   one band (no option more than ~1.5x the shortest). When a distractor reads
+   clipped beside a fully-worded key, EXPAND THE DISTRACTOR into a real trap
+   rather than trimming the key — that also makes it a better distractor. Do
+   not overcorrect: making them all longer than the key just reverses the tell.
+   `scripts/verify-answer-key-spread.ts` fails a cohort above 40% on longest OR
+   shortest; run it before inserting.
+
 2. **Blind render** (keys stripped):
    ```
    node scripts/study-bank/bank-helper.mjs blind scratchpad/rw-batch.json

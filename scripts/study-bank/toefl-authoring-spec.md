@@ -12,6 +12,25 @@ Global rules for every item type:
 - Plain text only — NO markdown, NO LaTeX, NO `**bold**`. Escape JSON strings.
 - `correct_answer` (when used) MUST be byte-identical to one entry in `choices`.
 - 4 choices for MC; vary the correct position across A/B/C/D (don't cluster on A).
+- **Vary the correct answer's LENGTH too — this is not the same rule as position,
+  and getting position right is what let this one hide.** An audit on 2026-07-29
+  found the key was the uniquely longest of four options in 72.6% of banked TOEFL
+  Listening items and 57.4% of Reading, against 25% by chance, while every
+  position histogram read as healthy. A candidate who ignored the passage and
+  always picked the longest option scored about two thirds.
+  The cause is how a correct answer gets WRITTEN: the key has to be fully
+  accurate and hedged where the source hedges, so it grows, while a distractor
+  gets clipped the moment it is wrong enough. Left alone the habit is automatic.
+  So, across the batch you author: the longest option should be the correct one
+  about a QUARTER of the time and no more, and some keys should be the SHORTEST
+  option. Keep all four within roughly the same band (no option more than ~1.5x
+  the shortest). Where a distractor reads clipped next to a fully-worded key,
+  EXPAND THE DISTRACTOR — give it the concrete detail that would tempt a student
+  who half-understood — rather than trimming the key. A wrong answer must be
+  wrong on its content, never on its brevity.
+  Do not overcorrect either: making every distractor longer than the key just
+  reverses the giveaway. Guarded by `scripts/verify-answer-key-spread.ts`, which
+  fails a cohort above 40% on longest OR shortest — run it before inserting.
 - Ensure topical VARIETY within a batch — never reuse a scenario/topic twice.
   EXCEPTION: `speaking_interview`. On the real exam one interview = one topic,
   so the 4 questions of a single interview set MUST share a scenario and topic.
