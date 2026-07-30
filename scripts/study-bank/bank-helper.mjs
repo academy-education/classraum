@@ -92,6 +92,24 @@ function renderBlind(batch) {
 }
 
 // The single source of truth for what gets into the bank.
+// An explanation may NOT point at an option by position.
+//
+// Both helpers shuffle choices at insert (that is what killed the
+// key-in-slot-A tell), and the explanation is authored against the
+// PRE-shuffle order. So "Choice 2 echoes 'wall'" ends up naming a
+// different option than the one it describes. Verified against source on
+// 2026-07-30: 245 of 342 items traceable to an authored file had their
+// choices reordered, and 72 of those carry a positional reference — the
+// wrong-answer explanation a student reads points at the wrong option.
+//
+// The fix cannot be "shuffle less". It is to write explanations that
+// survive reordering: quote the option ("the option that offers a
+// refund"), never number it.
+const POSITIONAL_REF = /\b(choice|option)\s+(\d|[a-d]\b)|\b(first|second|third|fourth)\s+(choice|option)\b|\([A-D]\)/i
+function explanationIsOrderSafe(it) {
+  return !POSITIONAL_REF.test(String(it.explanation || ''))
+}
+
 function accepts(qc, domain, subskill) {
   if (!qc) return { ok: false, why: 'no qc row' }
   const kv = Number(qc.key_votes)
@@ -167,6 +185,10 @@ async function main() {
     const q = qc[String(raw.id)]
     const label = `id${raw.id} [${raw.domain} / ${raw.subskill}]`
     if (!shapeOk(raw)) { console.log(`SKIP ${label} — bad shape (need 4 distinct choices incl. key)`); continue }
+    if (!explanationIsOrderSafe(raw)) {
+      console.log(`REJECT ${id} — explanation names an option by position; choices are shuffled at insert, so quote the option instead of numbering it`)
+      rejected++; continue
+    }
     const verdict = accepts(q, raw.domain, raw.subskill)
     if (!verdict.ok) { console.log(`REJECT ${label} — ${verdict.why}`); continue }
     const it = toItem(raw, q.difficulty)

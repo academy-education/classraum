@@ -128,6 +128,25 @@ function labelFrom(text, fallback) {
 // used to "succeed" and then silently vanish from every test.
 const LISTENING_TASKS = new Set(['choose_response', 'conversation', 'announcement', 'academic_talk'])
 
+// An explanation may NOT point at an option by position.
+//
+// Both helpers shuffle choices at insert (that is what killed the
+// key-in-slot-A tell), and the explanation is authored against the
+// PRE-shuffle order. So "Choice 2 echoes 'wall'" ends up naming a
+// different option than the one it describes. Verified against source on
+// 2026-07-30: 245 of 342 items traceable to an authored file had their
+// choices reordered, and 72 of those carry a positional reference — the
+// wrong-answer explanation a student reads points at the wrong option.
+//
+// The fix cannot be "shuffle less". It is to write explanations that
+// survive reordering: quote the option ("the option that offers a
+// refund"), never number it.
+const POSITIONAL_REF = /\b(choice|option)\s+(\d|[a-d]\b)|\b(first|second|third|fourth)\s+(choice|option)\b|\([A-D]\)/i
+function explanationIsOrderSafe(it) {
+  return !POSITIONAL_REF.test(String(it.explanation || ''))
+}
+
+
 // Only Choose-a-Response is one question per audio. The other three must
 // carry 2+ questions sharing a passageGroupId — the assembler drops
 // single-question sets for those tasks, so banking one wastes the work.
@@ -195,6 +214,10 @@ async function insertListening(keepPath, files) {
   for (const { id, it: raw } of tagged) {
     let it = raw
     if (!listeningShapeOk(it)) { console.log(`SKIP ${id} — bad shape (check listeningTask)`); rejected++; continue }
+    if (!explanationIsOrderSafe(it)) {
+      console.log(`SKIP ${id} — explanation names an option by position; choices are shuffled at insert, so quote the option instead of numbering it`)
+      rejected++; continue
+    }
     // Orphan repair EXEMPTION: these items are siblings for an audio that
     // already has one question in the bank, so the batch legitimately holds
     // fewer than 2 for a group. Counting only within the file would reject
