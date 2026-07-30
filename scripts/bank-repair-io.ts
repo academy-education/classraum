@@ -108,10 +108,19 @@ function assignTargets(counts: number[], pool: number): number[] {
  * itself one of the tells. The 1.6x spread cap is what keeps a rank-4 key
  * from being a three-word stub beside three full sentences.
  */
-function check(key: string, choices: string[], targetRank: number | null): string[] {
+function check(key: string, choices: string[], targetRank: number | null, before: string[]): string[] {
   const p: string[] = []
   if (choices.length !== 4) { p.push(`expected 4 choices, got ${choices.length}`); return p }
   if (!choices.includes(key)) p.push('key text was altered or dropped')
+  // The key must stay in the SLOT it was in, not merely survive somewhere in
+  // the array. Membership plus rank says nothing about position, and position
+  // is the older tell — a hand-authored cohort shipped at 73% key-at-A on
+  // 2026-07-28. A repair pass that quietly permuted options could undo a
+  // spread this script never looks at. Found by an author reading the gate
+  // rather than by the gate.
+  if (before.indexOf(key) !== choices.indexOf(key)) {
+    p.push(`key moved from slot ${before.indexOf(key)} to ${choices.indexOf(key)}`)
+  }
   if (choices.filter(c => c === key).length > 1) p.push('key appears more than once')
   if (new Set(choices.map(c => c.trim().toLowerCase())).size !== choices.length) p.push('duplicate choices')
   if (choices.some(c => !c || !c.trim())) p.push('empty choice')
@@ -231,7 +240,7 @@ function check(key: string, choices: string[], targetRank: number | null): strin
     for (const p of payload) {
       const next = p.repaired_choices
       if (!Array.isArray(next)) { skipped++; problems.push(`${p.id.slice(0,8)}: no repaired_choices`); continue }
-      const errs = check(p.correct_answer, next, p.target_rank ?? null)
+      const errs = check(p.correct_answer, next, p.target_rank ?? null, p.choices)
       if (errs.length) { skipped++; problems.push(`${p.id.slice(0,8)}: ${errs.join('; ')}`); continue }
       accepted.push({ id: p.id, next })
     }
