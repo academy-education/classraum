@@ -59,14 +59,28 @@ beats gpt-4.1, independence comes from answer-blindness): see the memory
    test-taker who never read the passage and always picked the longest option
    scored about two thirds. (SAT Math sat at 4.7%: its options are numbers, so
    the habit never gets the chance to operate.)
+
    It comes from how a correct answer gets written — the key must be fully
-   accurate, a distractor gets clipped as soon as it is wrong enough. Across a
-   batch, the longest option should be the key about a QUARTER of the time and
-   no more, and some keys should be the shortest. Keep the four within roughly
-   one band (no option more than ~1.5x the shortest). When a distractor reads
-   clipped beside a fully-worded key, EXPAND THE DISTRACTOR into a real trap
-   rather than trimming the key — that also makes it a better distractor. Do
-   not overcorrect: making them all longer than the key just reverses the tell.
+   accurate, a distractor gets clipped as soon as it is wrong enough. When a
+   distractor reads clipped beside a fully-worded key, EXPAND THE DISTRACTOR
+   into a real trap rather than trimming the key; that also makes it a better
+   distractor. Keep the four within roughly one band (no option more than
+   ~1.5x the shortest).
+
+   State the goal as a HISTOGRAM, never as a direction. Rank the four options
+   by length and record where the key sits: 1 = longest, 4 = shortest. Across
+   a batch that should come out near **25% at each of the four ranks** — which
+   means about a quarter of your keys are the LONGEST option and about a
+   quarter are the SHORTEST. Both are correct outcomes.
+
+   Do not write the instruction as "aim for 2nd or 3rd". That exact wording
+   was used for the first repair wave on 2026-07-30 and 77% of 210 items came
+   back at rank 2: every author picked the safest reading, and the tell became
+   "the key is the second-longest option" instead. A per-item check cannot see
+   this, because a distribution is not a property of any single item. If you
+   are commissioning a batch, ASSIGN each item its rank rather than describing
+   a preference — see `REPAIR-BRIEF.md`, which does exactly that.
+
    `scripts/verify-answer-key-spread.ts` fails a cohort above 40% on longest OR
    shortest; run it before inserting.
 

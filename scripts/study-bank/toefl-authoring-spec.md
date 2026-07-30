@@ -21,16 +21,22 @@ Global rules for every item type:
   The cause is how a correct answer gets WRITTEN: the key has to be fully
   accurate and hedged where the source hedges, so it grows, while a distractor
   gets clipped the moment it is wrong enough. Left alone the habit is automatic.
-  So, across the batch you author: the longest option should be the correct one
-  about a QUARTER of the time and no more, and some keys should be the SHORTEST
-  option. Keep all four within roughly the same band (no option more than ~1.5x
-  the shortest). Where a distractor reads clipped next to a fully-worded key,
-  EXPAND THE DISTRACTOR — give it the concrete detail that would tempt a student
-  who half-understood — rather than trimming the key. A wrong answer must be
-  wrong on its content, never on its brevity.
-  Do not overcorrect either: making every distractor longer than the key just
-  reverses the giveaway. Guarded by `scripts/verify-answer-key-spread.ts`, which
-  fails a cohort above 40% on longest OR shortest — run it before inserting.
+  Where a distractor reads clipped next to a fully-worded key, EXPAND THE
+  DISTRACTOR — give it the concrete detail that would tempt a student who
+  half-understood — rather than trimming the key. A wrong answer must be wrong
+  on its content, never on its brevity. Keep all four within roughly the same
+  band (no option more than ~1.5x the shortest).
+  State the goal as a HISTOGRAM, not a direction. Rank the four options by
+  length, 1 = longest to 4 = shortest, and note where the key sits. Across the
+  batch that should land near 25% at EACH rank — so about a quarter of your
+  keys are the longest option and about a quarter are the SHORTEST. Both are
+  correct outcomes; a key that is never short is its own tell.
+  Do NOT phrase this to yourself as "aim for 2nd or 3rd". That exact wording
+  drove the first repair wave on 2026-07-30 and 77% of 210 items came back at
+  rank 2 — the giveaway moved rather than went away, and no per-item check
+  could see it, because a distribution is not a property of one item.
+  Guarded by `scripts/verify-answer-key-spread.ts`, which fails a cohort above
+  40% on longest OR shortest — run it before inserting.
 - Ensure topical VARIETY within a batch — never reuse a scenario/topic twice.
   EXCEPTION: `speaking_interview`. On the real exam one interview = one topic,
   so the 4 questions of a single interview set MUST share a scenario and topic.
