@@ -28,6 +28,12 @@ const RULES: Rule[] = [
   { name: 'contains a hedge word', hit: c => HEDGE.test(c) },
   { name: 'contains an absolute', hit: c => ABSOLUTE.test(c) },
   { name: 'contains a comma', hit: c => c.includes(',') },
+  // Typography, not vocabulary. Two authors independently found an em dash
+  // in 85% and 72% of their own draft keys, because a dash is how you hedge
+  // a fully-accurate statement — the same pressure that made keys longest.
+  { name: 'contains an em dash', hit: c => /[—–]| - /.test(c) },
+  { name: 'contains a semicolon', hit: c => c.includes(';') },
+  { name: 'contains a quoted phrase', hit: c => /["“”]/.test(c) },
   { name: 'has the most words', hit: () => false }, // handled separately
 ]
 
