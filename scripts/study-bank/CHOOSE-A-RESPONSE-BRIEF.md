@@ -107,6 +107,55 @@ acceptance and premise-correction are the dangerous ones — they are the
 moves worth having, and every one of them needs the constraint stated out
 loud in the transcript.
 
+### Do not write the distractors to a FIXED SET OF CLASSES
+
+Two blind graders, reading 78 items each with no key, independently built
+rules that score ~50-58% without ever looking at a transcript. Chance is 25%.
+
+Grader A's rule: *cross out any option that (a) opens in officialese, (b)
+proposes scrapping or redoing the whole thing, (c) minimises the problem, or
+(d) begins with "The". Among the survivors, pick the one with the most
+words.* — 50%, and stable across all three authors, so it came from the
+brief and not from one writer.
+
+Grader B's rule: *pick the option containing but / though / actually; else
+the one with an em dash; else the one that offers to do something.* — 58%.
+
+Both describe the same underlying fault. The wrong options were being drawn
+from a small fixed menu — the too-formal one, the over-reactor, the one who
+shrugs it off, the inert remark that opens by naming a noun — and the key
+was always the engaged reply that carries a condition or a follow-up. Learn
+the three throwaway classes and every item collapses to a two-way choice.
+
+Three consequences, and the third is the one that matters:
+
+1. **The stiff bureaucratic option is banned.** "I hereby authorise…",
+   "Kindly submit a fault report at your earliest convenience." It appeared
+   in 22 items in one pool and was the key in 0 of them. It is free
+   elimination on tone alone.
+2. **Do not make every key the two-part hedged move.** "Fine — as long as
+   it doesn't count against my aid" has a fixed typographic signature:
+   clause, dash, rider. If that is what a key always looks like, the dash IS
+   the answer key.
+3. **Sometimes the blunt short reply is correct. Sometimes the minimiser is
+   correct. Sometimes the deflection is correct** — because the utterance
+   genuinely calls for it. If the correct answer is always the most engaged,
+   most elaborated, most accommodating option, then "pick the one that
+   sounds most like a good student" is the whole test.
+
+Note what this means for the length rule below: the key's length skew is a
+SYMPTOM of the class structure, not a separate defect. Flattening lengths
+without fixing the classes just hides it.
+
+### Two stems that are almost always broken
+
+- **A yes/no question with a natural yes and a natural no.** "Have you had
+  a chance to look at the feedback I left?" — "Not yet, I'll get to the
+  queries today" and "Yes, I read it on the train" are both perfect, and
+  nothing says which is true of the responder. Do not write these.
+- **A tag question.** "…aren't you?", "…doesn't it?" explicitly invites
+  either confirmation or correction. Keying one of them is arbitrary.
+
 Vary the setting too — no scenario twice. Front desk, roommate, office hours,
 lab partner, library circulation, advising, part-time shift, group project,
 transit, campus dining, housing office, IT desk, gym, clinic reception.
