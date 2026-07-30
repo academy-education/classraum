@@ -107,6 +107,35 @@ acceptance and premise-correction are the dangerous ones — they are the
 moves worth having, and every one of them needs the constraint stated out
 loud in the transcript.
 
+### The constraint must be present without being blatant
+
+The first batch written under the "utterance must FORCE the move" rule came
+back with the ambiguity fixed and a new problem: of 26 items, only 2 were
+unanswerable — but **10 were graded EASY**, and only 14 passed. The
+rejection reason had moved from "no answer" to "obvious answer".
+
+The mechanism is direct. The way to force a move is to plant a blocker in
+the transcript — "my system won't take a card", "nothing else at all is
+free", "I'm not moving them" — and a blocker loud enough to remove the
+ambiguity is often loud enough to hand over the answer. Both failures are
+the same dial at opposite ends.
+
+What separates a good item is that the constraint is *stated but not
+underlined*. Compare:
+
+    blatant   "I can't do Tuesday, so don't suggest Tuesday."
+    right     "I'm teaching Tuesday through Thursday this term."
+
+The second still rules out three replies; it just requires the listener to
+notice it. Bury the constraint in something the speaker would say anyway —
+a schedule, a number, a name, a passing reason — not in a sentence whose
+only job is to close a door.
+
+The six best items in that batch planted a defect in the speaker's OWN
+turn: a contradiction, bad arithmetic, a wrong inference. Those force the
+corrective reply without announcing themselves, because the student has to
+catch the error before the reply makes sense.
+
 ### Do not write the distractors to a FIXED SET OF CLASSES
 
 Two blind graders, reading 78 items each with no key, independently built
@@ -146,6 +175,21 @@ Three consequences, and the third is the one that matters:
 Note what this means for the length rule below: the key's length skew is a
 SYMPTOM of the class structure, not a separate defect. Flattening lengths
 without fixing the classes just hides it.
+
+### Let the key sometimes BE the shape you use for distractors
+
+A grader that could not see the keys found five option shapes that were
+never correct across 26 items: an opener like Who/What/Which/How, a tag
+question, two or more commas, a politeness opener ("Sorry…", "Any chance…"),
+and a bare evaluative word (great / perfect / outrageous). Eliminating all
+five and guessing among the survivors scores about 40% out of sample.
+
+Nothing about those shapes makes a reply wrong. They are never the key only
+because we keep using them for distractors. So: write items where the
+correct answer IS the question asked back, IS the polite request, IS the
+comma-heavy sentence. Until some keys look like that, "the answer is never
+the option that merely asks for more information or merely reacts" is a
+free 15 points.
 
 ### Two stems that are almost always broken
 
