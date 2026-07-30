@@ -17,7 +17,7 @@ import type { SpeechSignals, SubmitResult, TestPayload } from './types'
  */
 export function ReviewView({
   test, answers, answerAudioPaths, answerSpeechSignals, speakingGradeMode, result, ko, sessionId,
-  gradingOpenResponses = false,
+  gradingOpenResponses = false, endedByAppExit = false,
 }: {
   test: TestPayload
   answers: (string | null)[]
@@ -32,6 +32,9 @@ export function ReviewView({
   sessionId: string
   /** Batch grading still running — see TestSession's submit handler. */
   gradingOpenResponses?: boolean
+  /** The test was ended because the app was backgrounded (native).
+   *  Explains the short score before the student wonders about it. */
+  endedByAppExit?: boolean
 }) {
   const { t } = useTranslation()
 
@@ -59,6 +62,13 @@ export function ReviewView({
 
   return (
     <div className="flex-1 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
+      {endedByAppExit && (
+        <div className="mx-4 mt-3 rounded-2xl bg-amber-50 ring-1 ring-amber-200/70 px-4 py-3">
+          <p className="text-[12.5px] text-amber-800 leading-relaxed">
+            {t('study.test.exitEndedNotice')}
+          </p>
+        </div>
+      )}
       <TestResultView
         model={model}
         sessionId={sessionId}

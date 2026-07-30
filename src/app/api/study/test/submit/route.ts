@@ -90,6 +90,11 @@ const SubmitSchema = z.object({
   answers: z.array(z.string().nullable()),
   /** Total seconds the student actually spent. */
   elapsedSeconds: z.number().int().min(0),
+  /** Why the test ended, when it wasn't the student pressing Submit.
+   *  'app_exited' = the native app was backgrounded mid-test and the
+   *  exit guard auto-submitted whatever had been answered. Persisted
+   *  so the reason survives the screen that reported it. */
+  endReason: z.literal('app_exited').nullable().optional(),
 })
 
 export async function POST(req: NextRequest) {
@@ -396,6 +401,22 @@ export async function POST(req: NextRequest) {
       context: { sessionId: body.sessionId, studentId: user.id, score: persistedScore },
     })
     return NextResponse.json({ error: 'could not save result' }, { status: 500 })
+  }
+
+  // Why the test ended, when it wasn't a deliberate Submit. Written as
+  // its OWN statement, after the result is safely persisted, and
+  // failure is swallowed: the reason is metadata, and no metadata is
+  // worth 500-ing a graded test back to the student. (It also means an
+  // environment whose `ended_reason` column hasn't been migrated yet
+  // still submits normally — see migration 066.)
+  if (body.endReason) {
+    const { error: reasonError } = await dbAdmin
+      .from('study_sessions')
+      .update({ ended_reason: body.endReason })
+      .eq('id', body.sessionId)
+    if (reasonError) {
+      console.warn('[test/submit] ended_reason not persisted', reasonError.message)
+    }
   }
 
   // Fire-and-forget AI mastery assessment. The trigger already

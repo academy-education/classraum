@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Loader2, Mic } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { hapticImpact } from '@/lib/nativeHaptics'
+import { beginMicPrompt, endMicPrompt } from '@/lib/study/mic-prompt'
 import { RecordingPanel } from './RecordingPanel'
 import type { SpeechSignals } from './types'
 
@@ -24,6 +25,10 @@ export async function primeMicStream(opts?: { force?: boolean }): Promise<MediaS
   if (PRIMED_MIC_ATTEMPTED && !opts?.force) return null
   PRIMED_MIC_ATTEMPTED = true
   if (typeof window === 'undefined' || !navigator.mediaDevices?.getUserMedia) return null
+  // The OS permission alert this raises makes the app resign active on
+  // iOS. Flagged so the timed-test exit guard doesn't read our own
+  // permission prompt as the student leaving the app.
+  beginMicPrompt()
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
     PRIMED_MIC_STREAM = stream
@@ -31,6 +36,8 @@ export async function primeMicStream(opts?: { force?: boolean }): Promise<MediaS
   } catch (err) {
     console.warn('[primeMicStream] denied or unavailable', err)
     return null
+  } finally {
+    endMicPrompt()
   }
 }
 // Stop the cached mic tracks (the browser's red recording indicator
@@ -195,7 +202,14 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
         stream = null
       }
       if (!stream) {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+        // Same flag as primeMicStream: a permission alert here must not
+        // look like the student leaving the app. (See mic-prompt.ts.)
+        beginMicPrompt()
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+        } finally {
+          endMicPrompt()
+        }
       }
       streamRef.current = stream
       const mime = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')

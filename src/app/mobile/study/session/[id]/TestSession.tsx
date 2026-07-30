@@ -30,6 +30,8 @@ import {
 import { WritingScenario, BlankLetterInput } from './test/WritingPanels'
 import { ReviewView } from './test/ReviewView'
 import { SubmitConfirmModal, GenerationProgress } from './test/chrome'
+import { useAppExitGuard } from './test/useAppExitGuard'
+import { EXIT_END_REASON, exitMarkerKey, type TestEndReason } from '@/lib/study/test-exit-guard'
 
 /**
  * Full-test mode UI.
@@ -677,6 +679,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
    *  Submit, blocks the actual POST until they confirm. */
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [module2ConfirmOpen, setModule2ConfirmOpen] = useState(false)
+  /** Native only: the app was backgrounded mid-test, so the test is
+   *  being ended for that reason. Drives the blocking explanation
+   *  screen and the banner on the result. See useAppExitGuard. */
+  const [endedByAppExit, setEndedByAppExit] = useState(false)
+  /** Why this submit is happening, if it isn't "the student pressed
+   *  Submit". A ref rather than an argument because `submit` is fired
+   *  from several places (timer expiry, network retry, the error
+   *  banner) and every one of them must carry the reason — an
+   *  argument would be dropped by the retry paths. */
+  const endReasonRef = useRef<TestEndReason | null>(null)
 
   // ── Submission path (used by manual Submit + timer expiry) ─────
   const submit = useCallback(async () => {
@@ -701,6 +713,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         questions: test.questions,
         answers: fullAnswers,
         elapsedSeconds,
+        // Recorded on the session so "ended because the app was closed"
+        // is a durable fact, not just this screen's state.
+        endReason: endReasonRef.current,
       })
       let res: Response | null = null
       let lastNetworkError: Error | null = null
@@ -807,6 +822,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         localStorage.removeItem(`study:test:${sessionId}:answers`)
         localStorage.removeItem(`study:test:${sessionId}:speech`)
         localStorage.removeItem(`study:test:${sessionId}:m2StartMs`)
+        // Cleared only now, on a SUCCESSFUL submit. While it exists, a
+        // relaunch after the OS killed the app re-ends the test instead
+        // of resuming it.
+        localStorage.removeItem(exitMarkerKey(sessionId))
       }
       // Test is over — stop holding the mic open (browser tab keeps
       // showing the red recording dot while the primed stream lives).
@@ -871,6 +890,34 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     window.addEventListener('online', onOnline)
     return () => window.removeEventListener('online', onOnline)
   }, [waitingForNetwork, submit])
+
+  // ── Leaving the app ends a timed test (native only) ─────────────
+  // Backgrounding the app mid-test used to be free: look something up,
+  // come back, the clock had even been frozen for you by the
+  // visibilitychange handler. On iOS/Android the test now ends.
+  //
+  // The work is NOT discarded — losing a half-finished test is a worse
+  // failure than the cheating this prevents — so this runs the ordinary
+  // submit path with everything answered so far.
+  useAppExitGuard({
+    sessionId,
+    phase,
+    timeLimitMinutes: test?.timeLimitMinutes ?? 0,
+    onExit: useCallback(() => {
+      endReasonRef.current = EXIT_END_REASON
+      setEndedByAppExit(true)
+    }, []),
+  })
+  // One auto-attempt, same shape as the timer-expiry guard below: a
+  // failed submit drops the phase back to 'taking', and without the ref
+  // this effect would fire again on every render.
+  const exitSubmitAttemptedRef = useRef(false)
+  useEffect(() => {
+    if (!endedByAppExit || phase !== 'taking') return
+    if (exitSubmitAttemptedRef.current) return
+    exitSubmitAttemptedRef.current = true
+    void submit()
+  }, [endedByAppExit, phase, submit])
 
   // Auto-submit when the timer hits zero.
   // Total time budget in ms. `now` is here so the effect re-runs
@@ -1080,9 +1127,49 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     )
   }
 
+  // The app was left mid-test. Explain it plainly and block the
+  // question UI while the answers go up — the student must not be able
+  // to keep working on a test that has ended, but they must also see
+  // that nothing was thrown away.
+  if (endedByAppExit && phase !== 'reviewing') {
+    const busy = phase === 'submitting'
+    return (
+      <div role="status" aria-live="assertive" className="flex-1 flex flex-col items-center justify-center px-5 text-center gap-3">
+        <div className="w-12 h-12 rounded-full flex items-center justify-center mb-1 bg-amber-50 text-amber-500">
+          {busy ? <Loader2 className="w-6 h-6 animate-spin" /> : <AlertTriangle className="w-6 h-6" />}
+        </div>
+        <p className="text-[15px] font-semibold text-gray-900">{String(t('study.test.exitEndedTitle'))}</p>
+        <p className="text-[13px] text-gray-500 leading-relaxed max-w-[300px]">{String(t('study.test.exitEndedBody'))}</p>
+        {busy && (
+          <p className="text-[12.5px] text-gray-400">{String(t('study.test.exitEndedSubmitting'))}</p>
+        )}
+        {!busy && waitingForNetwork && (
+          <p className="text-[12.5px] text-amber-700">{String(t('study.test.exitEndedOffline'))}</p>
+        )}
+        {!busy && submitError && (
+          <p className="text-[12.5px] text-rose-600 leading-snug max-w-[300px]">{submitError}</p>
+        )}
+        {!busy && !waitingForNetwork && (
+          <button
+            type="button"
+            onClick={() => void submit()}
+            className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+          >
+            <RefreshCw className="w-4 h-4" />
+            {String(t('study.test.exitEndedRetry'))}
+          </button>
+        )}
+        <Link href="/mobile/study" className="text-[12.5px] text-gray-400 underline mt-1">
+          {String(t('study.test.backToStudy'))}
+        </Link>
+      </div>
+    )
+  }
+
   if (phase === 'reviewing' && result) {
     return (
       <ReviewView
+        endedByAppExit={endedByAppExit}
         test={test}
         answers={answers}
         answerAudioPaths={answerAudioPaths}

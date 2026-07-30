@@ -5121,6 +5121,12 @@
         "title": "Submit failed",
         "dismiss": "Dismiss"
       },
+      "exitEndedTitle": "Test ended",
+      "exitEndedBody": "You left the app during a timed test, so the test was ended. Nothing was thrown away \u2014 the answers you had given are being submitted now.",
+      "exitEndedSubmitting": "Submitting your answers\u2026",
+      "exitEndedOffline": "You're offline. Your answers are saved and will be submitted as soon as you're back online.",
+      "exitEndedRetry": "Submit my answers",
+      "exitEndedNotice": "This test was ended because you left the app while it was running. Only the answers you had given at that point were graded.",
       "resultEyebrow": "Test complete",
       "resultMessage": {
         "excellent": "Strong result. The patterns are clicking — keep this pace.",

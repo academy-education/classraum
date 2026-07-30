@@ -3882,6 +3882,7 @@ export type Database = {
           config: Json
           correct_count: number | null
           created_at: string
+          ended_reason: string | null
           generation_status: string | null
           id: string
           language: string
@@ -3906,6 +3907,7 @@ export type Database = {
           config?: Json
           correct_count?: number | null
           created_at?: string
+          ended_reason?: string | null
           generation_status?: string | null
           id?: string
           language?: string
@@ -3930,6 +3932,7 @@ export type Database = {
           config?: Json
           correct_count?: number | null
           created_at?: string
+          ended_reason?: string | null
           generation_status?: string | null
           id?: string
           language?: string

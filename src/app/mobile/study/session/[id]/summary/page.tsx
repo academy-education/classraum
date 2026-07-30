@@ -33,6 +33,10 @@ interface SessionRow {
   total_count: number | null
   /** SAT two-module adaptive: the earned Module 2 route, or null. */
   module2_route: string | null
+  /** Why the session ended when it wasn't a deliberate submit.
+   *  'app_exited' = the native app was backgrounded mid-test and the
+   *  exit guard submitted what had been answered. See migration 066. */
+  ended_reason: string | null
   config: { dailyChallenge?: string } | null
   topic: { id: string; slug: string; name_en: string; name_ko: string } | null
 }
@@ -89,7 +93,7 @@ function SummaryInner({ id }: { id: string }) {
         .from('study_sessions')
         .select(`
           id, mode, language, topic_id, topic_freeform, status, created_at, last_active_at,
-          score, correct_count, total_count, module2_route, config,
+          score, correct_count, total_count, module2_route, config, ended_reason,
           topic:study_topics ( id, slug, name_en, name_ko )
         `)
         .eq('id', id)
@@ -265,6 +269,15 @@ function SummaryInner({ id }: { id: string }) {
         }
       >
         <div className="-mx-5 -my-6">
+          {/* Reopening the result must still say why the test is short.
+              Same sentence the post-submit screen showed. */}
+          {session.ended_reason === 'app_exited' && (
+            <div className="mx-4 mt-3 rounded-2xl bg-amber-50 ring-1 ring-amber-200/70 px-4 py-3">
+              <p className="text-[12.5px] text-amber-800 leading-relaxed">
+                {t('study.test.exitEndedNotice')}
+              </p>
+            </div>
+          )}
           <TestResultView
             model={model}
             sessionId={id}
