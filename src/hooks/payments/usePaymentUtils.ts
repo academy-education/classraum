@@ -123,21 +123,21 @@ export const getStatusColor = (status: string): string => {
 export const getStatusText = (status: string, t: (key: string) => string): string => {
   switch (status?.toLowerCase()) {
     case 'paid':
-      return String(t('payments.status.paid'))
+      return String(t('payments.paid'))
     case 'pending':
-      return String(t('payments.status.pending'))
+      return String(t('payments.pending'))
     case 'overdue':
-      return String(t('payments.status.overdue'))
+      return String(t('payments.overdue'))
     case 'cancelled':
-      return String(t('payments.status.cancelled'))
+      return String(t('payments.cancelled'))
     case 'active':
-      return String(t('payments.status.active'))
+      return String(t('payments.active'))
     case 'paused':
-      return String(t('payments.status.paused'))
+      return String(t('payments.paused'))
     case 'inactive':
-      return String(t('payments.status.inactive'))
+      return String(t('payments.inactive'))
     default:
-      return status || String(t('payments.status.unknown'))
+      return status || String(t('common.fallbacks.unknown'))
   }
 }
 
