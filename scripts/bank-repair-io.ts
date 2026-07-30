@@ -24,7 +24,7 @@ import { resolve } from 'path'
 config({ path: resolve(process.cwd(), '.env.local') })
 
 import { createClient } from '@supabase/supabase-js'
-import { writeFileSync, readFileSync, mkdirSync, existsSync } from 'fs'
+import { writeFileSync, readFileSync, mkdirSync, existsSync, readdirSync, renameSync } from 'fs'
 
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 const arg = (k: string, d = '') => process.argv.find(a => a.startsWith(`--${k}=`))?.split('=')[1] ?? d
@@ -138,7 +138,37 @@ function check(key: string, choices: string[], targetRank: number | null, before
   return p
 }
 
+/**
+ * Move imported batches out of the way so the next export can reuse the
+ * filenames, into .bank-repair/done/<wave>/ — a NUMBERED directory.
+ *
+ * This exists because `mv .bank-repair/*.json .bank-repair/done/` destroyed
+ * 149 batch records: both waves write sat-reading_writing-1.json, so the
+ * second archive silently overwrote the first. The bank was unaffected (the
+ * repairs were already written) but the pre-repair options and the record of
+ * which items had been touched were gone, which cost a later analysis its
+ * sample. Filenames repeat by design; the archive has to know that.
+ */
+function archive(): string {
+  const waves = existsSync(`${DIR}/done`)
+    ? readdirSync(`${DIR}/done`).map(Number).filter(n => Number.isInteger(n))
+    : []
+  const wave = String((waves.length ? Math.max(...waves) : 0) + 1)
+  const dest = `${DIR}/done/${wave}`
+  mkdirSync(dest, { recursive: true })
+  let n = 0
+  for (const f of readdirSync(DIR)) {
+    if (!f.endsWith('.json')) continue
+    renameSync(`${DIR}/${f}`, `${dest}/${f}`)
+    n++
+  }
+  console.log(n ? `archived ${n} batch file(s) to ${dest}` : `nothing to archive`)
+  return dest
+}
+
 ;(async () => {
+  if (MODE === 'archive') { archive(); return }
+
   if (MODE === 'export') {
     const family = arg('family', 'sat')
     const section = arg('section', 'reading_writing')
@@ -173,7 +203,24 @@ function check(key: string, choices: string[], targetRank: number | null, before
     const target = Math.round(scored.length * 0.25)
     const needed = Math.max(0, leaking.length - target)
     const pool = [...leaking].sort(() => Math.random() - 0.5).slice(0, Math.min(needed, batches * perBatch))
+
     const targets = assignTargets(counts, pool.length)
+
+    // Pair each item with its target, THEN shuffle, THEN split into batches.
+    //
+    // assignTargets() water-fills, so it emits runs and alternations —
+    // 3,4,3,4,... when two ranks are equally starved. Splitting that by
+    // `i % batches` handed one file 34 rank-4 items and the next file 33
+    // rank-3 items. The section total was still right, but a per-file brief
+    // describing "about half rank 4" was wrong for both, and one author had
+    // to work 34 consecutive rank-4 items (the hardest kind, since all three
+    // distractors must be lengthened inside the 1.6x cap). Caught by an
+    // author noticing its file did not match the brief it was given.
+    const assigned = pool.map((r, i) => ({ row: r, target: targets[i]! }))
+    for (let i = assigned.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[assigned[i], assigned[j]] = [assigned[j]!, assigned[i]!]
+    }
 
     if (!existsSync(DIR)) mkdirSync(DIR, { recursive: true })
 
@@ -208,18 +255,18 @@ function check(key: string, choices: string[], targetRank: number | null, before
     console.log(`  current rank 1/2/3/4 : ${counts.map(pct).join('  ')}   (${counts.join('/')})`)
     console.log(`  ${leaking.length} at rank 1; ${needed} must move`)
     const tHist = [0, 0, 0]
-    for (const t of targets) tHist[t - 2]!++
+    for (const a of assigned) tHist[a.target - 2]!++
     console.log(`  exporting ${pool.length}, assigned to rank 2/3/4 : ${tHist.join('/')}\n`)
     for (let b = 0; b < batches; b++) {
-      const slice = pool.filter((_, i) => i % batches === b)
+      const slice = assigned.filter((_, i) => i % batches === b)
       if (!slice.length) continue
-      const payload: Payload[] = slice.map(r => ({
+      const payload: Payload[] = slice.map(({ row: r, target }) => ({
         id: r.id,
         prompt: String(r.item.prompt ?? ''),
         passage: (r.item.passage as string | null) ?? null,
         choices: r.item.choices as string[],
         correct_answer: r.item.correct_answer as string,
-        target_rank: targets[pool.indexOf(r)] as 2 | 3 | 4,
+        target_rank: target as 2 | 3 | 4,
       }))
       const path = `${DIR}/${family}-${section}-${b + 1}.json`
       writeFileSync(path, JSON.stringify(payload, null, 2))
@@ -315,6 +362,6 @@ function check(key: string, choices: string[], targetRank: number | null, before
     return
   }
 
-  console.error('usage: bank-repair-io.ts export|import [flags]')
+  console.error('usage: bank-repair-io.ts export|import|archive [flags]')
   process.exit(1)
 })().catch(e => { console.error(e); process.exit(1) })
