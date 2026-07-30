@@ -111,8 +111,22 @@ export async function getAcademySubscription(academyId: string): Promise<Academy
       featuresEnabled: toFeatureFlags(data.features_enabled),
       monthlyAmount: data.monthly_amount,
       billingCycle: narrowEnum(data.billing_cycle, BILLING_CYCLES, 'monthly', 'billing_cycle'),
+      // Scheduled plan change. These were declared on the type but never
+      // mapped, so every consumer read `undefined` — /api/subscription/status
+      // included, which is why the settings page's "scheduled downgrade"
+      // banner stayed hidden even with pending_tier set on the row.
+      pendingTier: data.pending_tier ? toTier(data.pending_tier) : null,
+      pendingMonthlyAmount: data.pending_monthly_amount,
+      pendingChangeEffectiveDate: data.pending_change_effective_date,
       // Column default is `true`, so a NULL means "never set" — keep renewing.
       autoRenew: data.auto_renew ?? true,
+      // Whether a usable PortOne billing key is on file. cancel revokes the
+      // key and stamps billing_key_cancelled_at, so a cancelled subscription
+      // has none — /api/subscription/reactivate refuses to un-cancel without
+      // one, and the settings page uses this to offer "update payment method"
+      // instead of an action it knows would fail. The key itself is never
+      // exposed to the client; only this boolean.
+      billingKeyActive: Boolean(data.billing_key) && !data.billing_key_cancelled_at,
       createdAt: toDate(data.created_at),
       updatedAt: toDate(data.updated_at),
     } : null;

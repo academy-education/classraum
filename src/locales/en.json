@@ -8626,11 +8626,21 @@
       "addonCancelSuccess": "Pending Changes Canceled",
       "addonCancelSuccessMessage": "Pending add-on changes have been canceled",
       "addonCancelError": "Cancel Failed",
-      "addonCancelErrorMessage": "An error occurred while canceling pending changes"
+      "addonCancelErrorMessage": "An error occurred while canceling pending changes",
+      "reactivateSuccess": "Subscription Resumed",
+      "reactivateError": "Could Not Resume Subscription",
+      "reactivateErrorMessage": "An error occurred while resuming your subscription",
+      "reactivateNeedsCard": "Payment Method Required",
+      "reactivateNeedsCardMessage": "Your card was removed when you cancelled. Register a card to resume your subscription."
     },
     "usersCount": "{current} / {limit} users",
     "userLimitReached": "User limit reached. Please upgrade your plan to add more users.",
-    "userLimitReachedSignup": "This academy has reached its user limit. Please contact the academy administrator to upgrade the plan."
+    "userLimitReachedSignup": "This academy has reached its user limit. Please contact the academy administrator to upgrade the plan.",
+    "reactivateSubscription": "Resume Subscription",
+    "reactivating": "Resuming...",
+    "cancelledNotice": "Subscription cancelled",
+    "cancelledNoticeMessage": "You keep full access until {date}. You can resume before then and nothing changes.",
+    "cancelledNoticeCardRemoved": "Your saved card was removed when you cancelled. Resuming will ask you to register a card again."
   },
   "account": {
     "goodbye": {

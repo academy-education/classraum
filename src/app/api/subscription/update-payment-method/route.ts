@@ -80,12 +80,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Update billing key
+    // Update billing key.
+    //
+    // billing_key_cancelled_at MUST be cleared here. /api/subscription/cancel
+    // stamps it when it revokes the old key at PortOne, and it describes the
+    // key that was just replaced — leaving it set would mark this brand-new,
+    // valid key as revoked forever. /api/subscription/reactivate reads that
+    // column to decide whether a subscription can be un-cancelled, so a stale
+    // stamp would trap the manager in a loop: reactivate says "register a
+    // payment method first", they register one, and reactivate says it again.
     const { error: updateError } = await supabase
       .from('academy_subscriptions')
       .update({
         billing_key: billingKey,
         billing_key_issued_at: new Date().toISOString(),
+        billing_key_cancelled_at: null,
         updated_at: new Date().toISOString(),
       })
       .eq('academy_id', academyId);

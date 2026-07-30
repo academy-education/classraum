@@ -37,6 +37,9 @@ interface SubscriptionData {
     monthlyAmount: number
     billingCycle: string
     autoRenew: boolean
+    /** A usable PortOne billing key is on file. False after a cancellation,
+     *  which revokes the key — reactivating needs a new card first. */
+    billingKeyActive?: boolean
     totalUserLimit: number
     storageLimitGb: number
     pendingTier?: string | null
@@ -85,6 +88,7 @@ export default function SubscriptionManagementPage() {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<SubscriptionData | null>(null)
   const [cancelling, setCancelling] = useState(false)
+  const [reactivating, setReactivating] = useState(false)
   const [updatingPayment, setUpdatingPayment] = useState(false)
 
   // Add-on related state
@@ -215,6 +219,50 @@ export default function SubscriptionManagementPage() {
       })
     } finally {
       setCancelling(false)
+    }
+  }
+
+  /** Undo a cancellation while the paid period is still running. The route
+   *  refuses when the billing key was revoked at cancel time; in that case
+   *  send the manager to the card form rather than leaving them at an error. */
+  const handleReactivateSubscription = async () => {
+    setReactivating(true)
+    try {
+      const response = await fetch('/api/subscription/reactivate', {
+        method: 'POST',
+        headers: { ...(await authHeader()) },
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        toast({
+          title: String(t('subscription.toast.reactivateSuccess')),
+          description: result.message,
+        })
+        await fetchSubscriptionData()
+      } else if (result.code === 'billing_key_required') {
+        toast({
+          title: String(t('subscription.toast.reactivateNeedsCard')),
+          description: String(t('subscription.toast.reactivateNeedsCardMessage')),
+        })
+        await handleUpdatePaymentMethod()
+      } else {
+        toast({
+          title: String(t('subscription.toast.reactivateError')),
+          description: result.message || String(t('subscription.toast.reactivateErrorMessage')),
+          variant: 'destructive',
+        })
+      }
+    } catch (error) {
+      console.error('Error reactivating subscription:', error)
+      toast({
+        title: String(t('subscription.toast.error')),
+        description: String(t('subscription.toast.reactivateErrorMessage')),
+        variant: 'destructive',
+      })
+    } finally {
+      setReactivating(false)
     }
   }
 
@@ -706,6 +754,33 @@ export default function SubscriptionManagementPage() {
                   </div>
                 )}
 
+                {/* Cancelled but still inside the paid period: say plainly
+                    when access ends, and that it can still be undone. */}
+                {!subscription.autoRenew &&
+                  subscription.planTier !== 'free' &&
+                  subscription.status === 'active' &&
+                  new Date(subscription.currentPeriodEnd).getTime() > Date.now() && (
+                  <div className="mt-4 p-4 bg-rose-50 border border-rose-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <AlertCircle className="w-5 h-5 text-rose-600 mt-0.5 flex-shrink-0" />
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-rose-900 mb-1">
+                          {t('subscription.cancelledNotice')}
+                        </p>
+                        <p className="text-sm text-rose-800">
+                          {String(t('subscription.cancelledNoticeMessage'))
+                            .replace('{date}', formatDate(subscription.currentPeriodEnd))}
+                        </p>
+                        {subscription.billingKeyActive === false && (
+                          <p className="text-xs text-rose-700 mt-2">
+                            {t('subscription.cancelledNoticeCardRemoved')}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Show scheduled downgrade notice */}
                 {subscription && subscription.pendingTier && subscription.pendingChangeEffectiveDate && (
                   <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
@@ -771,6 +846,36 @@ export default function SubscriptionManagementPage() {
                         {t('subscription.upgradePlan')}
                       </Button>
                     </>
+                  )}
+
+                  {/* Undo a cancellation. Only offered while the already-paid
+                      period is still running — past that the subscription
+                      needs a fresh charge, which is checkout's job. Mirrors
+                      the guard in /api/subscription/reactivate. Hidden on iOS
+                      with the other billing actions. */}
+                  {!isIOS &&
+                    !subscription.autoRenew &&
+                    subscription.planTier !== 'free' &&
+                    subscription.status === 'active' &&
+                    new Date(subscription.currentPeriodEnd).getTime() > Date.now() && (
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={handleReactivateSubscription}
+                      disabled={reactivating || updatingPayment}
+                    >
+                      {reactivating ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          {t('subscription.reactivating')}
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle2 className="w-4 h-4 mr-2" />
+                          {t('subscription.reactivateSubscription')}
+                        </>
+                      )}
+                    </Button>
                   )}
 
                   {subscription.autoRenew && subscription.planTier !== 'free' && (

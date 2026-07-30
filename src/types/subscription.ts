@@ -63,6 +63,10 @@ export interface AcademySubscription {
   pendingMonthlyAmount?: number | null;
   pendingChangeEffectiveDate?: Date | string | null;
   autoRenew: boolean;
+  /** True when a PortOne billing key is on file and has not been revoked.
+   *  Cancelling revokes the key, so this is what tells the UI whether a
+   *  subscription can be un-cancelled directly or needs a new card first. */
+  billingKeyActive?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
