@@ -1,0 +1,418 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your timesheet has you clocked in Thursday night, but I had you down as off that evening — did somebody swap?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That was me covering Daniela's close at the last minute — should I have logged it under her name?",
+      "Thursday nights are the busiest ones we do, so I'm always glad of the hours.",
+      "Sorry — take those hours off the sheet, I'd rather not cause any trouble.",
+      "I confirm that the hours submitted are accurate to the best of my knowledge."
+    ],
+    "correct_answer": "That was me covering Daniela's close at the last minute — should I have logged it under her name?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The supervisor is not accusing anyone; the tag question is a request to account for a mismatch, so the useful reply supplies the missing reason and asks how it should have been recorded. Saying the hours are always welcome answers a remark about shift popularity that nobody made, surrendering the hours treats a query as a charge and gives up real pay, and the line about accuracy to the best of one's knowledge is written attestation language, not speech."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We'd like you on the drop-in desk as well as your one-to-ones — same rate, obviously, nothing changes there.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The drop-in desk sounds a lot more interesting than sitting with the same two students.",
+      "Brilliant, so the extra responsibility comes with a bump in pay from next month.",
+      "Happy to — does the desk come out of my twelve hours, or on top of them?",
+      "Does that mean I'd be coming off the one-to-ones altogether, then?"
+    ],
+    "correct_answer": "Happy to — does the desk come out of my twelve hours, or on top of them?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Same rate, obviously\" closes off pay while leaving the hours wide open, so the natural reply accepts and pins down whether this is extra work or the same work rearranged. Reading a raise into the offer contradicts what was just said, hearing it as a replacement for the one-to-ones ignores \"as well as\", and enthusing about the desk being more interesting responds to the content while settling nothing."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your pool certificate expires in March, and I can't roster anyone onto the water once the date's gone by.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "March is months off, though — I'll sort the paperwork out nearer the time and let you know.",
+      "Then I'll book the renewal course now — is the training time paid, or is that my own?",
+      "So that's me off the rota from March, then. Should I hand my whistle in?",
+      "Please be assured my qualifications will not be allowed to lapse."
+    ],
+    "correct_answer": "Then I'll book the renewal course now — is the training time paid, or is that my own?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is a warning with an implied instruction — renew before March — and the reply that books the course and asks whether the training hours are paid acts on it while clearing up the one thing left open. Putting the paperwork off until nearer the time under-reacts to a deadline that was raised for a reason, offering to hand the whistle in treats a solvable expiry as a dismissal, and the assurance about qualifications not lapsing is a written formula rather than an answer."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Send the slides round to the team before you go — and copy Marcus in, but not the version with the budget figures.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So Marcus gets the version without the budget — should the rest of the team get that one as well?",
+      "Will do. I'll send the full set to everyone and put Marcus on the copy line.",
+      "Understood. I shall action the distribution before departing this evening.",
+      "Marcus hasn't been on the circulation list for these before, has he?"
+    ],
+    "correct_answer": "So Marcus gets the version without the budget — should the rest of the team get that one as well?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The instruction has an ambiguity in it: one recipient is carved out, but it is not said whether the team sees the budget figures either, and the reply that names the carve-out and asks about the rest is the only one that resolves it before anything is sent. Sending the full set to everyone does exactly what was ruled out, wondering about the circulation list raises history nobody asked about, and promising to action the distribution accepts an instruction that has not yet been made clear."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you take Rana's Saturday tours as well as your own? I know Saturdays are tight for you with lab.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, I'll cover all of Rana's Saturdays — I can catch up on the lab work later.",
+      "If Rana's not pulling her weight, maybe someone should say something to her.",
+      "Is Rana all right? She's missed a fair few weekends this term, hasn't she?",
+      "I can take the ones after noon, but the early tours clash with lab."
+    ],
+    "correct_answer": "I can take the ones after noon, but the early tours clash with lab.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The coordinator names the lab clash herself, which turns the request into an invitation to say how much is actually possible, so the reply that splits the day and takes the afternoon tours is the cooperative one. Agreeing to all of them waves away a conflict the speaker had just conceded, asking whether Rana is all right turns a rota question into concern about a colleague, and suggesting somebody have a word with her reads a staffing gap as misconduct."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can put you forward for the spring cohort instead — though I should say that one's unpaid, unlike the summer.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Perfect, put me down for spring — I'll budget around the same monthly stipend as the summer one.",
+      "Then I'd rather hold out for the summer one — is there any harm in applying to both?",
+      "Spring would certainly be quieter for me than trying to fit the summer in.",
+      "So the summer cohort is the unpaid one — good to know before I apply."
+    ],
+    "correct_answer": "Then I'd rather hold out for the summer one — is there any harm in applying to both?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The alternative is offered and then undercut in the same breath, so declining it while asking to keep the summer route open is the reply that uses the warning. Budgeting for the same stipend accepts an offer whose whole point was that the money is gone, saying the summer cohort is the unpaid one gets the two backwards, and remarking that spring would be quieter engages the timing while ignoring the pay."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"If I'm ten minutes late on Saturday, could you swipe me in at nine? Nobody ever looks at the log anyway.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ten minutes on a Saturday morning isn't going to matter — the place is dead until ten.",
+      "Sure — I'll put your card through at nine and say nothing about it.",
+      "I'd rather not touch your card — I'll cover the counter till you get in.",
+      "I must decline to falsify another employee's attendance record."
+    ],
+    "correct_answer": "I'd rather not touch your card — I'll cover the counter till you get in.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A coworker is asking to be clocked in for time not worked, and the reply that refuses the card but volunteers to hold the counter turns down the favour without turning down the colleague. Putting the card through agrees to the thing being asked, saying ten minutes will not matter dodges the request instead of answering it, and the line about falsifying an attendance record is right in substance but stiff enough to sound like a threat between two people on the same shift."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We could move you onto the Tuesday team — though it'd mean handing the client project off two weeks before launch.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Two weeks out feels like a risky time to hand it over — could the move wait until after launch?",
+      "Tuesdays would suit me much better — I'll let the client know someone else is taking over.",
+      "Who on the Tuesday team would be picking the launch up, out of interest?",
+      "I remain amenable to whatever reallocation management considers best."
+    ],
+    "correct_answer": "Two weeks out feels like a risky time to hand it over — could the move wait until after launch?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The offer arrives with its own objection attached, so the intern is being asked to weigh the timing rather than to say yes, and the reply that names the risk and proposes a later move does that. Taking the move and telling the client someone else will take over acts as if the warning were a detail, asking who would inherit the launch treats a decision as a matter of curiosity, and declaring oneself amenable to any reallocation avoids the judgement that was invited."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You start on the third, so that's your two weeks of training done before the client visit on the tenth.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Two weeks of training sounds like plenty — I'll be more than ready by the time they arrive.",
+      "The third to the tenth is only a week, though — should I be starting the twenty-seventh?",
+      "Should I be in the room for the client visit, or is that partners only?",
+      "The third's a Monday, isn't it? That's an easy enough day to start."
+    ],
+    "correct_answer": "The third to the tenth is only a week, though — should I be starting the twenty-seventh?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The dates given do not add up to the training period claimed, and the reply that points out the one-week gap and asks about an earlier start is the one that catches it before a schedule is set. Agreeing that two weeks is plenty repeats the error back, asking who attends the client visit picks up a detail while the plan stays wrong, and remarking that the third is a Monday responds to the date as small talk."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I've put you down for eight hours on the alumni dinner — that was noon through to six, wasn't it?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The alumni dinner was the long one, so I'm certainly not going to argue with eight.",
+      "I trust the total has been calculated in line with the applicable rate.",
+      "Eight sounds about right for that one — those dinners always overrun.",
+      "Noon to six is six, though — the other two were Friday's setup."
+    ],
+    "correct_answer": "Noon to six is six, though — the other two were Friday's setup.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The hours claimed and the times quoted do not match, and the tag question invites exactly the correction the reply about noon to six makes, along with where the extra two hours really came from. Saying eight sounds about right and that the dinners overrun waves the discrepancy through, refusing to argue with a generous figure accepts a total that will not survive a check, and trusting the rate to have been applied answers a question about pay rather than about hours."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The workshop shuts at six on Fridays, so put yourself down for the five-to-nine on Friday and I'll sign it off.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "If it shuts at six, should that be five till six? I'm happy to stay, but there'd be nobody in.",
+      "Fridays after six are pretty dead in there anyway, from what I remember.",
+      "Five to nine on Friday — I'll put it in the system before I go tonight.",
+      "Do you want me on the Saturday morning as well, while I'm at it?"
+    ],
+    "correct_answer": "If it shuts at six, should that be five till six? I'm happy to stay, but there'd be nobody in.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The instruction contradicts itself — a four-hour shift in a workshop that closes after one — so the reply that queries the end time while offering to stay resolves it without making the supervisor look careless. Entering five to nine records the contradiction, agreeing that Fridays are quiet after six notices the oddity and does nothing with it, and volunteering for Saturday adds hours to a shift that has not been sorted out."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The analysis itself is solid — I'd just want the client version stripped of the jargon before it goes out Friday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thanks — I'll send it straight over to the client this afternoon, then, and copy you in.",
+      "Most of that terminology is standard in the industry — the client will know all of it.",
+      "I can have a plainer version by Wednesday, as long as the charts stay as they are.",
+      "I acknowledge the deficiency and will rectify the document forthwith."
+    ],
+    "correct_answer": "I can have a plainer version by Wednesday, as long as the charts stay as they are.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Praise for the analysis is the wrapper; the instruction is that a rewritten version has to exist before Friday, and the reply that commits to Wednesday while protecting the charts takes the work on without agreeing to redo everything. Sending it to the client this afternoon acts as though the draft had been approved, defending the terminology as industry-standard argues with an instruction rather than following it, and acknowledging a deficiency and promising to rectify it forthwith is memo language spoken aloud."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I know it's short notice, but could I drop to one shift a week while finals are on? Just for December.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "We can manage one a week through December, provided you're back on two from the January rota.",
+      "Take the whole of December off, then, and come back to us fresh in the new year.",
+      "One shift a week? You'd barely be on the rota at all in December.",
+      "December's the busiest month we have, as you can probably imagine."
+    ],
+    "correct_answer": "We can manage one a week through December, provided you're back on two from the January rota.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A bounded request — one shift, one month — is best met by granting exactly that and naming what happens afterwards, which is what the reply about the January rota does. Offering the whole month off gives away more than was asked and costs the student a month's pay, pointing out how little rota time that leaves comments without deciding, and saying December is the busiest month acknowledges the difficulty while leaving the request unanswered."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We'd love you in the Denver office this summer — the housing stipend only stretches to eight weeks, though.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Denver's a lovely city, isn't it? My cousin moved out there last year and loves it.",
+      "Wonderful — I'll start looking for somewhere from June right through to August.",
+      "I accept, and would ask that the full terms be committed to writing this week.",
+      "I'd like to accept, if the placement can be the eight weeks rather than ten."
+    ],
+    "correct_answer": "I'd like to accept, if the placement can be the eight weeks rather than ten.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The offer comes with a gap built into it — housing runs out before the placement does — so accepting while proposing that the placement match the eight funded weeks is the reply that closes it. Planning to rent from June through August walks straight into the unfunded stretch, praising the city treats a conditional offer as news, and accepting while demanding the terms in writing this week is contract register for a conversation that has not settled the problem."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you show the new starter the ropes on Thursday? It'd be on top of your usual jobs, I'm afraid.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Of course, no trouble at all — I'll fit the training in around all my usual jobs somehow.",
+      "I can do that, as long as someone else takes the deliveries — I can't be in two places.",
+      "Who's the new starter, then? I didn't know we'd taken anyone else on.",
+      "I would need written confirmation of the additional duties first."
+    ],
+    "correct_answer": "I can do that, as long as someone else takes the deliveries — I can't be in two places.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I'm afraid\" flags the clash rather than apologising for it, so the reply that agrees and names what has to move is the one that answers the flag. Promising to fit it in around everything somehow ignores the warning the manager took care to give, asking who the new starter is answers nothing about Thursday, and requiring written confirmation of additional duties treats a shop-floor request as a variation of contract."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Funny how the rush just stops the moment the ten o'clock lectures start — like somebody's flicked a switch.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry — I'll try to get the queue moving faster tomorrow morning, I promise.",
+      "Most of the ten o'clocks are over in the science building, I think.",
+      "Do you think we could close the second till before ten, then?",
+      "Every single day. And nothing at all then until noon."
+    ],
+    "correct_answer": "Every single day. And nothing at all then until noon.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Sometimes an observation really is only an observation, and the reply that agrees and adds the lull until noon is what one coworker says to another over a quiet counter. Apologising for the queue hears a complaint about performance where none was made, proposing to close a till turns idle talk into a staffing decision, and locating the ten o'clock lectures answers a question about timetabling that was never asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Funny, isn't it — the section that pays the least is the one everyone's queuing up to write for.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd take a pay cut myself if it meant keeping the arts pages the way they are.",
+      "Arts pays about forty a piece, I think, which is less than news does.",
+      "It really is. Nobody's ever queued up to cover the budget meetings.",
+      "Are you thinking of moving off arts, then? You'd be missed."
+    ],
+    "correct_answer": "It really is. Nobody's ever queued up to cover the budget meetings.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The remark is a shared joke about how little the rate explains, and the reply that agrees and supplies the opposite case — the meetings nobody volunteers for — keeps it going in kind. Offering to take a pay cut answers as if a sacrifice had been requested, quoting the per-piece rate confirms a fact that was not in doubt, and asking whether the speaker is leaving arts reads a general observation as a personal announcement."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Half the people who take these jobs are gone by October, and it's never the money that does it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Could we not put the rate up a bit and keep more of them through the winter?",
+      "I'm not planning on going anywhere myself, if that's what you're getting at.",
+      "Was there something wrong with the last two? Nobody told me anything.",
+      "It's the six o'clock starts, isn't it. That's what got the last two."
+    ],
+    "correct_answer": "It's the six o'clock starts, isn't it. That's what got the last two.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker states a pattern and rules out the obvious explanation, which is an invitation to name the real one, and the reply about six o'clock starts supplies it from the same crew's experience. Suggesting a higher rate proposes the very cause that was just excluded, hearing a warning about oneself takes a general remark personally, and asking whether something happened to the last two treats a familiar pattern as fresh news."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My first pay's about nine hours short, and the greenhouse supervisor says it isn't something she can change herself.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Corrections go through payroll rather than us — come with me and I'll introduce you to Hana.",
+      "Nine hours is a lot to lose — it's worth asking your supervisor to look again.",
+      "First payments often run a cycle behind for new student staff, in fairness.",
+      "Your grievance has been received and will be processed in due course."
+    ],
+    "correct_answer": "Corrections go through payroll rather than us — come with me and I'll introduce you to Hana.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student has already been turned away once and is reporting a dead end, so naming the office that can actually amend the record and walking them to a person there is help rather than a brush-off. Suggesting the supervisor look again sends the student back to the door that just closed, explaining that first payments often lag treats a missing amount as a timing quirk, and announcing that a grievance has been received and will be processed converts a nine-hour shortfall into a case file."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The reader let me in yesterday, but this morning it says my membership lapsed in June. I've definitely paid.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Give it another tap or two — the reader plays up when the card's been sitting in a wallet.",
+      "I can't change membership records from the desk — Bea's in the office now and she can.",
+      "June's when a lot of the annual memberships run out, as it happens.",
+      "Kindly provide documentary evidence of your payment for review."
+    ],
+    "correct_answer": "I can't change membership records from the desk — Bea's in the office now and she can.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The member has already ruled out a card fault by saying it worked yesterday, so the honest move is to say what the desk cannot do and point to the person on duty who can fix the record. Telling them to tap again offers the remedy their own account excludes, noting when annual memberships expire explains the error away rather than correcting it, and asking for documentary evidence of payment puts the burden back on someone who has just said they paid."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's a parcel that's been in the overflow bin three weeks now — no name on it, just a room number.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Three weeks is well past what we hold things for — send it back to the sender, I'd say.",
+      "The overflow bin does fill up terribly quickly around the end of term, doesn't it?",
+      "Room numbers are housing's to look up — take it to Yusuf on the residence desk.",
+      "Open it and see if there's anything inside with a name on it."
+    ],
+    "correct_answer": "Room numbers are housing's to look up — take it to Yusuf on the residence desk.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student worker is reporting a solvable problem, not asking for a disposal decision: a room number is traceable by the office that keeps room records, and sending the parcel there is the step that identifies an owner. Returning it to sender throws away a delivery that can still be matched, opening someone's post to find a name is not the mailroom's to do, and remarking on how fast the bin fills up sympathises with the clutter instead of clearing it."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's a gap in the freezer log from Saturday to Monday — you were the one down for weekend checks, weren't you?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I was, and I missed the Sunday entirely — I'll pull the temperature history and log it today.",
+      "Weekend checks have been mine since Ibrahim's timetable changed in October, yes.",
+      "The alarm would have gone off if anything had actually gone wrong in there.",
+      "I regret the oversight and accept any measures deemed appropriate."
+    ],
+    "correct_answer": "I was, and I missed the Sunday entirely — I'll pull the temperature history and log it today.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The question about who was rostered is only the frame; what the supervisor needs is the missing record accounted for and restored, which is what the reply that admits the skipped Sunday and offers to recover the temperature history does. Confirming the rota answers the literal question and stops there, invoking the alarm argues that the log did not matter, and regretting the oversight while accepting any measures is a disciplinary formula that still leaves the log empty."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The Friday concert list has forty-two names on it, and the room the department booked seats thirty-five.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Whoever booked a room that size for a concert can't have been thinking it through, can they?",
+      "That's my doing — I kept taking names after Thursday. I'll ring the last seven today.",
+      "Forty-two is only a handful over, and half of them never turn up anyway.",
+      "The discrepancy will be addressed through the proper booking channels."
+    ],
+    "correct_answer": "That's my doing — I kept taking names after Thursday. I'll ring the last seven today.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Two numbers are set side by side so that the assistant will see the overbooking and deal with it, and the reply that owns the extra names and undertakes to call the surplus does both. Blaming whoever chose the room shifts a problem that came from the list, betting that half will not show gambles with an event on Friday, and saying the discrepancy will be addressed through the proper channels names no one who will act."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The partners' dinner is Thursday. Most of the interns go, though nobody's ever actually told to, as such.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Do the partners usually stay for the whole evening, or just look in at the start?",
+      "Good, so it's optional — I'll stay and finish the reconciliation instead, then.",
+      "I'll go, then. Is it the sort of evening where I should wear a suit?",
+      "Nobody mentioned it to me, so I assumed it wasn't for interns."
+    ],
+    "correct_answer": "I'll go, then. Is it the sort of evening where I should wear a suit?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Nobody's ever told to\" is how an expectation gets stated without being made an order, and the reply that commits to going and asks about dress takes the hint and then deals with the practical part. Treating the absence of an instruction as permission to skip it reads the words and misses the act, wondering how long the partners stay leaves the decision unmade, and saying one assumed it was not for interns answers a hint that has just been given as though it had not been."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My bus doesn't get in until quarter past on a Sunday, and the shop's meant to be open at eleven.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The Sunday buses are dreadful, aren't they? Mine's late more often than not.",
+      "I trust you'll make whatever arrangements are needed to arrive on time.",
+      "You should ask Priya to move your Sunday start to half past, surely.",
+      "I'll open up on Sundays, then — I'm usually in by half ten anyway."
+    ],
+    "correct_answer": "I'll open up on Sundays, then — I'm usually in by half ten anyway.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Laying a bus time next to an opening time is how a colleague asks for cover without asking, and the reply that volunteers to unlock on Sundays gives exactly the small favour being angled for. Commiserating about Sunday buses matches the surface and offers nothing, sending them to Priya to change the start time hands off a problem the listener could solve in a sentence, and trusting them to make arrangements answers a request for help as if it were an excuse."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The assistant manager job closes Friday. We've had three applications, and not one from anybody who's ever worked a close.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Three isn't many at all — do you want me to put the notice up in the break room again?",
+      "Whoever takes it on will have to learn the close in a real hurry, by the sound of it.",
+      "I've closed most Sundays since March. I'll get an application in before Friday.",
+      "None of them, really? That's surprising for a job with the extra pay."
+    ],
+    "correct_answer": "I've closed most Sundays since March. I'll get an application in before Friday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The manager mentions a deadline and then the one qualification the applicants lack, in front of someone who has it, which is an invitation rather than a status report — and the reply that cites the Sunday closes and promises an application takes it. Offering to re-post the notice hears a recruitment problem, predicting that the winner will have to learn fast comments from the sidelines, and expressing surprise at the turnout treats the remark as gossip about the job market."
+  }
+]

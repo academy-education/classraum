@@ -1,0 +1,418 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The dryer on the second floor took two card swipes off me this morning and never actually started.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Two swipes isn't so bad — most people just use the machines down by the back stairwell.",
+      "Those dryers can be slow to get going — half the building is washing at once.",
+      "Sorry about that. I'll put those two swipes back on your card and tag the machine.",
+      "Please submit a written account of the malfunction to the housing office for review."
+    ],
+    "correct_answer": "Sorry about that. I'll put those two swipes back on your card and tag the machine.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student reports a fault, but the money lost makes it a claim as well as a report, so the desk owes both a refund and a repair. The reply that returns the swipes and tags the machine does both. The remark about the building washing at once explains the delay away and ignores that the dryer never ran, the suggestion to use the back stairwell tells the student to absorb the loss, and the request for a written account is office paperwork language for a two-minute counter problem."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your account's showing zero meal swipes left for the week, so you'd be paying cash from here until Monday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That can't be right — I moved onto the block plan in September, so my swipes shouldn't reset every week.",
+      "Cash it is, then — do you take the campus card for that, or does it have to be notes?",
+      "Monday always feels a long way off once the swipes start running low near the end of term.",
+      "Then I'd like to make a formal complaint about the way this meal plan was sold to me."
+    ],
+    "correct_answer": "That can't be right — I moved onto the block plan in September, so my swipes shouldn't reset every week.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The cashier states a weekly reset as fact, and the whole utterance rests on that premise; the student who knows the premise is wrong must say so before anything else. The reply naming the block plan corrects it. Agreeing to pay cash accepts a charge that should never have been made, the remark about the end of term treats a billing error as small talk, and demanding a formal complaint escalates against a cashier who is only reading a screen."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can get someone in to look at the shower drain on Thursday, though it'd have to be during the day.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thursday's fine if they can come after two, as I'm on nights this week.",
+      "Daytime is impossible for me, so I suppose the drain will have to stay as it is.",
+      "Thursday works — I'll be in the room all morning, so just send them up whenever.",
+      "I hereby authorise entry to the premises at whatever hour your contractor finds convenient."
+    ],
+    "correct_answer": "Thursday's fine if they can come after two, as I'm on nights this week.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Maintenance offers a slot with a constraint attached, and the constraint is what the student has to answer. The reply accepting Thursday but naming an hour that works takes the offer and adds its own condition. Promising to be in all morning ignores the fact that mornings are exactly what the student cannot do, giving up on the drain treats a workable offer as a dead end, and the authorisation wording belongs on a lease, not in a phone call."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The wifi in Fairfield drops out every evening around nine, but it's completely fine during the day.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Nine is when everyone starts streaming, so honestly I'd just try again in the morning.",
+      "That sounds like the evening load on that access point — is it dropping on your phone as well?",
+      "Fairfield is on the older equipment, yes — the whole block was due an upgrade last summer and it slipped.",
+      "I'll take the building's network down tomorrow while we work out what's happening."
+    ],
+    "correct_answer": "That sounds like the evening load on that access point — is it dropping on your phone as well?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The time pattern is offered as diagnostic evidence, so the useful reply narrows it rather than merely accounting for it. Naming the likely cause and asking whether the phone drops too does that. The history of the block's postponed upgrade echoes the building name while leaving the student with nothing, telling them to try again in the morning dismisses a nightly failure, and taking the whole network down is a wildly disproportionate remedy for one access point."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"A few of us lift at six before class — you should come along, it's the only hour the racks are ever free.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Count me in, then — I'll find you by the racks tomorrow morning at six.",
+      "The racks really are impossible after four — I gave up trying at that hour weeks ago.",
+      "Six is brutal for me, honestly — though I'd be in if you ever moved a session to the evening.",
+      "Thank you for the invitation. I shall consider it and revert to you in due course."
+    ],
+    "correct_answer": "Six is brutal for me, honestly — though I'd be in if you ever moved a session to the evening.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is an invitation from a peer, and declining it without closing the door means declining and proposing something else. The reply calling six brutal and offering evenings instead refuses and counter-proposes in one breath. Saying count me in accepts a time the speaker has given no sign of wanting, agreeing about the racks after four picks up the salient detail and never answers the invitation at all, and the promise to revert in due course is boardroom English between gym partners."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"They've put the coffee urns right down at the far end since the renovation, which is a bit of a walk.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll bring yours over on my way past, if walking down there is a problem for you.",
+      "You should say something to the dining manager — they'd move them back if enough people asked.",
+      "They have, yeah, right down by the exit now. It takes a bit of getting used to.",
+      "The renovation isn't finished either — the new seating still hasn't turned up."
+    ],
+    "correct_answer": "They have, yeah, right down by the exit now. It takes a bit of getting used to.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Not every hedged remark is a complaint in disguise; a bit of a walk is mild enough that the speaker is simply noticing a change, and a peer answers by noticing it too. Sending the student to the dining manager treats an offhand observation as a grievance to be filed, offering to fetch the coffee treats it as a request for help nobody made, and the update on the seating echoes the renovation while abandoning the point about the urns."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I need my immunisation record sorted today — there's a hold on my housing application because of it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That record sits with Student Health Records upstairs — they can normally clear it today.",
+      "I'll take the hold off your housing file from here and we can chase the record afterwards.",
+      "We could give you the vaccinations again today, if you'd rather not chase the paperwork.",
+      "Housing applications stay open to the end of the month — there's still time in hand."
+    ],
+    "correct_answer": "That record sits with Student Health Records upstairs — they can normally clear it today.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student names a deadline and a blocker, and reception's genuine power here is knowing which office holds the file. Pointing upstairs and confirming they can normally do it that day answers the urgency. Offering to lift the hold at the front desk promises something reception cannot do, offering the vaccinations again answers the word immunisation rather than the problem, and the reassurance about the month-end deadline contradicts the today the student just used."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The hallway light outside our door has been out since the weekend and it's pitch dark by the stairs.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It has been dark, hasn't it — I nearly went over on that top step on Sunday evening.",
+      "I'll log it tonight — is it just ours, or the stairwell one too?",
+      "That's a serious hazard — I'm emailing the dean of students about it this evening.",
+      "Nothing gets fixed at the weekend, so Monday was always going to be the earliest anyway."
+    ],
+    "correct_answer": "I'll log it tonight — is it just ours, or the stairwell one too?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Mentioning the dark stairs turns a burnt-out bulb into a safety issue, so the resident assistant both acts and gets the detail the work order will need. Promising to log it and asking how many fittings are out does both. Agreeing about the top step commiserates without reporting anything, going to the dean escalates a maintenance ticket past everyone who could actually fix it, and the remark about weekends defends a delay the speaker never asked about."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your print quota's gone in three weeks — the system has logged just over four hundred pages against you.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Four hundred pages is nothing next to what the thesis printing is going to come to.",
+      "That'll be the studio machines. Half the class prints under my login, not theirs.",
+      "Four hundred does sound like me, honestly — what's the process for topping the quota up?",
+      "Then somebody has got into my account, and I'd like that looked into properly."
+    ],
+    "correct_answer": "That'll be the studio machines. Half the class prints under my login, not theirs.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The figure is presented as the student's own usage, and that attribution is the part that is wrong. Explaining that classmates print under the same login corrects it without accusing anyone. Asking how to top the quota up concedes a charge that isn't the student's, the comparison with thesis printing echoes the page count and drifts off the point, and calling it a break-in over-reads a shared lab login as theft."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can put you in a basement locker today — the ones by the changing rooms are gone until January.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "January is ages off, so I'll carry the whole lot around with me the way I have been.",
+      "Perfect — put me down for one of the lockers by the changing rooms, then.",
+      "I'll take the basement one, then, as long as you'll move me upstairs the moment one frees up.",
+      "Please note my objection to being allocated the inferior facilities as a paying member."
+    ],
+    "correct_answer": "I'll take the basement one, then, as long as you'll move me upstairs the moment one frees up.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "What is on offer is the lesser of the two lockers, and the sensible move is to take it while keeping a claim on the better one. The reply accepting the basement and asking to be moved up does exactly that. Asking for a changing-room locker requests the thing just declared unavailable, deciding to carry everything refuses a workable offer over a temporary drawback, and the objection about inferior facilities is complaint-letter register at a gym counter."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The trays arrived for tonight's club dinner, but the two vegetarian ones we ordered weren't with them.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "How many are you expecting tonight? The hall usually seats about sixty comfortably.",
+      "The kitchen only makes up what's on the docket, so it's worth checking what went in on your side.",
+      "That's our mistake. I'll send the vegetarian trays over and take them off your bill.",
+      "Ah, that's annoying — hopefully nobody minds sharing whatever did turn up."
+    ],
+    "correct_answer": "That's our mistake. I'll send the vegetarian trays over and take them off your bill.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "An order is short and the event is tonight, so the reply has to fix the food before anything else is discussed. Sending the missing trays straight over and adjusting the bill does that. Suggesting the club check its own docket disputes fault while the dinner goes unserved, the question about numbers answers something nobody asked, and shrugging that people can share leaves catering staff sounding indifferent to their own error."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've got guest swipes going spare, haven't you? I'm completely out until the plan resets on Sunday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Not this week, sorry. I'm down to two and my sister visits Saturday.",
+      "Take as many as you need — I never get through mine before the reset anyway.",
+      "Sunday is when mine comes back too, so we're both stuck in the same boat until then.",
+      "I am not in a position to transfer meal entitlements without written authorisation."
+    ],
+    "correct_answer": "Not this week, sorry. I'm down to two and my sister visits Saturday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The tag question is a request for swipes, not a question about the account, and a friend who cannot spare them says no with a reason. The refusal naming the two left and the visiting sister does that. Handing over as many as needed contradicts a speaker who has none to give, the remark about both resets echoes Sunday and never answers the request, and the line about written authorisation is bureaucratic language aimed at a friend."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The practice room door won't latch any more, so people keep wandering in halfway through my session.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Booking the room doesn't actually give you sole use of it before six in the evening.",
+      "I'll get the latch changed this week — is that the room on the corridor side, or the one by the lift?",
+      "People do wander, yes — most students end up taping a sign to the door and carrying on.",
+      "I'll close the whole practice wing until a joiner has been round to check every door in it."
+    ],
+    "correct_answer": "I'll get the latch changed this week — is that the room on the corridor side, or the one by the lift?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A broken latch is the cause and the interruptions are the consequence, so facilities fixes the hardware and pins down which room. The reply promising a new latch and asking which door does both. The point about sole use answers a booking dispute the student never raised, the advice about taping up a sign leaves the fault in place, and closing the whole wing over one latch punishes every other player in the building."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I paid for the eight-week swim course and then broke my wrist in week two — can I get the rest back?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's rotten luck — your wrist should be right in time for the summer course, at least.",
+      "Refunds go through the bursar's office, so take the doctor's note over to them there.",
+      "I'll credit the weeks you've missed to your gym membership from here at the desk instead.",
+      "Course fees are non-refundable once the first session has been taken, I'm afraid."
+    ],
+    "correct_answer": "Refunds go through the bursar's office, so take the doctor's note over to them there.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Money paid to the university comes back through the office that took it, so the honest answer sends the student there with what that office will want. Naming the bursar and the doctor's note does that. Offering membership credit at the desk substitutes a remedy the student didn't ask for, sympathy about the summer course answers the injury instead of the question, and the flat statement that fees are non-refundable closes a door the desk has no authority to close."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your account keeps locking because your phone is still trying the old password every few minutes.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "My phone's never had the mail on it, so it'll be the lab desktop I stay signed into.",
+      "It has locked me out three times today — which is exactly why I came down here.",
+      "I'll fix the settings on my phone as soon as I get back to the room this evening.",
+      "Take the account off my phone altogether, then. I'd rather lose the mail than the access."
+    ],
+    "correct_answer": "My phone's never had the mail on it, so it'll be the lab desktop I stay signed into.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The diagnosis names a specific device, and the student is the only person who knows it is the wrong one; saying so redirects the fix to the lab desktop. Promising to change the phone settings accepts a diagnosis that cannot be right, describing the three lockouts repeats the symptom the technician has already explained, and asking for the account to be stripped from the phone acts drastically on a premise that was never true."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The upstairs track is a scrum around five, but come eight in the evening you've basically got it to yourself.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry, eight doesn't work for me — I've got lab most evenings this term.",
+      "Then I'll ask the desk about capping the numbers at five, if it's got that bad.",
+      "It really is — I've started going late for exactly that reason.",
+      "Five is when the teams train, so the track is closed to everyone else anyway."
+    ],
+    "correct_answer": "It really is — I've started going late for exactly that reason.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker is comparing two times of day, not complaining and not proposing anything, so agreeing and adding a small fact of one's own is the whole of the natural reply. Taking it to the desk to cap numbers treats a passing remark as a formal complaint, apologising for being busy at eight answers an invitation that was never issued, and the claim about team training contradicts a speaker who has plainly been on the track at five."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's a single free in Marlowe from next month, though I should say it backs onto the service road.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's great news — sign me up and I'll come by for the keys on the first.",
+      "If it backs onto the service road I'd rather stay where I am and forget the whole thing.",
+      "I'll take it, provided I can move across at reading week rather than mid-term.",
+      "Marlowe is the block with the new kitchens, isn't it? People say they're a lot better."
+    ],
+    "correct_answer": "I'll take it, provided I can move across at reading week rather than mid-term.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The offer is real and the warning about the service road is a courtesy, so a student who wants the room takes it while setting the terms of the move. Accepting on condition of a reading-week move does that. Arranging to collect the keys accepts without noticing there is anything to negotiate, walking away over the road treats a flagged drawback as a deal-breaker, and the aside about the new kitchens answers a question about Marlowe that nobody asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I was told the referral team would ring me back on Monday about the knee, and it's Thursday now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "They are very busy at this time of year, so a fortnight's wait isn't unusual.",
+      "That's on us. I'll find out where the referral has stuck and call you back myself before five.",
+      "How has the knee been in the meantime — is it still swelling up after you've been walking?",
+      "I'll cancel that referral and open a fresh one, which starts the whole thing over."
+    ],
+    "correct_answer": "That's on us. I'll find out where the referral has stuck and call you back myself before five.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Naming the promised day and today's date is a complaint about a broken undertaking, and only an apology attached to a new, specific commitment settles it. Owning the lapse and promising a call before five does that. Explaining how busy the team is defends the failure instead of repairing it, the question about swelling answers the knee rather than the missed callback, and starting a fresh referral throws away the waiting time the patient has already served."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're away this weekend, aren't you? Our group needs somewhere quiet and your room is the only option.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd rather not have people in while I'm away, but the third-floor lounge is free.",
+      "It is quiet up there, though the pipes get noisy once the heating comes on at night.",
+      "Sure — I'll leave the key under the mat and you can lock up on Sunday night.",
+      "Absolutely not. I'm not having strangers going through my things, thanks."
+    ],
+    "correct_answer": "I'd rather not have people in while I'm away, but the third-floor lounge is free.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The question about the weekend is a way into asking for the room, and a friend can decline the room while still solving the group's problem. Refusing and naming the third-floor lounge does both. Leaving the key under the mat agrees to something the speaker plainly doesn't want, the observation about the pipes picks up the word quiet and never addresses the request, and the line about strangers going through one's things is far harsher than an ordinary favour deserves."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Everything off the basement printer is coming out two shades too light, even the pages I ran last week.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll swap the toner this afternoon — was that sent from the lab queue or your laptop?",
+      "Try sending it once more — the first job after a long idle spell comes out patchy.",
+      "Light printing is fine for drafts, so I wouldn't worry unless something's due in on Friday.",
+      "I'll pull that printer out of service and reroute the whole basement lab's jobs upstairs."
+    ],
+    "correct_answer": "I'll swap the toner this afternoon — was that sent from the lab queue or your laptop?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Saying the fault goes back to last week rules out a one-off, so the technician commits to the likely fix and narrows down where the jobs are coming from. Promising new toner and asking about the queue does both. Calling faint printing acceptable for drafts under-reads a persistent fault, suggesting one more attempt answers a first-job problem that has already been excluded, and taking the printer out of service leaves the lab worse off than the faint pages did."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You'll have to book the squash court through the athletics site — that's been the system since last year.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll get it booked for Thursday, then. Do I need my membership number to sign in?",
+      "Booking on that site is a nightmare, though — it signs you out every few minutes.",
+      "Kindly direct me to the relevant scheduling policy so that I can review it in full.",
+      "They dropped that in September, and the courts are walk-in after eight now."
+    ],
+    "correct_answer": "They dropped that in September, and the courts are walk-in after eight now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker states a rule that has since been withdrawn, and the reply that keeps the conversation useful is the one that updates it. Naming September and the walk-in hours does that. Asking about a membership number acts on a system that no longer exists, complaining that the site signs you out echoes the booking process while leaving the false rule standing, and asking to review the scheduling policy is stiff enough to sound like a challenge over a squash court."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The meal plan is costing more than I budgeted for this term — is there any way to bring it down?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll move you onto the cheapest plan right now and you can sort out the difference later.",
+      "Most people find the plan works out cheaper than cooking, once you count the shopping.",
+      "Plans are fixed for the whole term — there's nothing to be done before January.",
+      "Reductions are decided by Student Financial Services rather than us — they can look at your award and adjust the plan."
+    ],
+    "correct_answer": "Reductions are decided by Student Financial Services rather than us — they can look at your award and adjust the plan.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is a request about affordability, which the residence desk cannot rule on but does know where to send. Naming Student Financial Services and what they can do answers the real need. Switching the plan on the spot solves the wrong problem and may cost the student more, the comparison with cooking argues with a budget the student has already worked out, and the claim that nothing can be done until January shuts down a request the desk was never entitled to decide."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can reimage the laptop for you this afternoon, but anything not already on the network drive goes with it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Great — take it now and I'll collect it before the desk shuts this evening.",
+      "Leave it alone, then. I'll put up with the machine as it is for the rest of the term.",
+      "The network drive has been unbearably slow all term, which is honestly half the problem here.",
+      "Go ahead this afternoon, so long as I get an hour first to copy my thesis folder over."
+    ],
+    "correct_answer": "Go ahead this afternoon, so long as I get an hour first to copy my thesis folder over.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The offer comes with a warning about data loss, so accepting it responsibly means building in time to save what matters. Agreeing on condition of an hour for the thesis folder does that. Handing the machine over immediately walks straight into the loss the technician just flagged, the complaint about the slow drive echoes it and answers nothing, and refusing the reimage outright abandons the repair over a condition that is easily met."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The late kitchen runs till one now, which actually suits the people coming out of the evening labs.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The evening labs are meant to finish at nine, though they always overrun by an hour.",
+      "You should raise it with the dining committee if the new hours aren't working out for you.",
+      "Sorry, one in the morning is far too late for me — I'd be asleep long before that.",
+      "It does. The lab crowd never made the old closing time, so half of them were living off vending machines."
+    ],
+    "correct_answer": "It does. The lab crowd never made the old closing time, so half of them were living off vending machines.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The remark is approving, not aggrieved, so the natural reply agrees and adds a reason the change was needed. Recalling the vending machines does that. Suggesting the dining committee reads approval as a grievance, declining to eat at one in the morning answers an invitation the speaker never made, and the correction about lab finishing times picks up the labs and quietly disagrees with a point the speaker didn't make."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We've had a cancellation for the physio assessment at seven tomorrow morning, if that's any use to you.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I regret that I must decline, and request that my case be reassigned accordingly.",
+      "Do people cancel often — I'd have taken an earlier slot if I'd known that.",
+      "Seven is perfect, I'll be there. Should I bring anything with me for the assessment?",
+      "Seven's too early with my commute. Is there anything later in the week instead?"
+    ],
+    "correct_answer": "Seven's too early with my commute. Is there anything later in the week instead?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "If that's any use to you marks the slot as optional, so turning it down and asking for another costs nothing and keeps the appointment alive. The reply citing the commute and asking about later in the week does that. Accepting a seven o'clock start ignores whether it is workable at all, the question about how often people cancel echoes the cancellation and lets the slot pass, and the formal decline sounds like withdrawing from care rather than moving an appointment."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's water all over the floor by the fridge — I think something in the freezer has been dripping.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That fridge has been on its way out for months — the seal at the bottom went ages ago.",
+      "It's probably just condensation — these old kitchens always get damp in the winter.",
+      "I'll report the whole kitchen to housing and ask them to replace both appliances.",
+      "That'll be my ice tray. I'll mop it up and sort the shelf out now."
+    ],
+    "correct_answer": "That'll be my ice tray. I'll mop it up and sort the shelf out now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A flatmate describes a mess and guesses at its source, and the housemate who recognises the cause as their own says so and clears it up. Naming the ice tray and offering to mop does that. Blaming the ageing fridge deflects onto the appliance, calling it condensation dismisses water that is plainly pooling, and reporting the kitchen to housing escalates a two-minute clean-up into a maintenance case."
+  }
+]

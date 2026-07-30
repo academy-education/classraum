@@ -1,0 +1,418 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can put the balance on the four-month plan, though the first instalment would still have to clear by Friday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Four instalments across the term works out cheaper than paying it in one go, doesn't it?",
+      "Four months sounds ideal. So nothing at all is due until the end of the month?",
+      "Friday's tight — how much of the balance has to be in that first instalment?",
+      "Kindly furnish me with the full instalment schedule in writing."
+    ],
+    "correct_answer": "Friday's tight — how much of the balance has to be in that first instalment?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The offer of a plan is real, but its force sits in the qualifier about Friday, so the useful reply probes the immediate amount. The reply asking whether instalments are cheaper answers a question about cost that was never raised, the reply hearing nothing due until month's end drops the Friday condition entirely, and the request for a written schedule is stiff office language at a cashier's window."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The portal won't let me register — it says there's a hold, and I paid my tuition balance off back in July.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "July payments post overnight, so your receipt number ought to be showing in the portal by now.",
+      "Your tuition is clear — this hold is the library's, and only they can lift it.",
+      "Yeah, the portal does that to people constantly. Not a lot I can do.",
+      "I'm sorry about that — I'll take the hold off your record right now."
+    ],
+    "correct_answer": "Your tuition is clear — this hold is the library's, and only they can lift it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student's mention of the paid balance is an implied claim that the hold is a billing error, and the clerk's job is to name the office that actually owns it. The reply about overnight posting answers a question about the payment itself, the reply promising to remove the hold on the spot claims authority this counter does not have, and the shrug about the portal is both dismissive and too casual for staff."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I know the fee's automatic, but I was in hospital that whole week — is there really nothing you can do?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I can't take it off at this window, but a note from your dean would get it reviewed properly.",
+      "The late fee is fifty dollars, and it posts the morning after the deadline passes.",
+      "That sounds awful. Consider it gone — I've cleared the charge off your account.",
+      "Rules are rules, I'm afraid. You'll have to pay it like everybody else."
+    ],
+    "correct_answer": "I can't take it off at this window, but a note from your dean would get it reviewed properly.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The question is an appeal for an exception, and the honest answer is a refusal that still opens a route. The reply quoting the amount and the posting date answers a factual question nobody asked, the reply wiping the charge on the spot grants something a cashier cannot grant, and the reply about rules being rules refuses without offering the appeal that exists."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your account's about six hundred in credit — we can send that back to your bank, or leave it against the spring.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Six hundred? I paid that in August, so there must be a mistake somewhere here.",
+      "I hereby authorise the disbursement of the surplus to my nominated account.",
+      "Could you put it towards my parking permit and the library fine as well?",
+      "Send it to my bank, please — as long as that doesn't affect my aid."
+    ],
+    "correct_answer": "Send it to my bank, please — as long as that doesn't affect my aid.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is a genuine either-or decision put to the student, and the natural reply picks one and attaches the condition that matters. The reply calling the credit a mistake misreads good news as an error, the reply asking for the money to go on a permit and a fine ignores the two options actually offered, and the authorisation wording belongs on a form rather than in speech."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Just so you know before we start, we can't take a credit card for tuition — it has to be an e-check.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You can't seriously refuse a card. I'd like to speak to a supervisor about this.",
+      "This isn't tuition, though — it's the fee for the graduation application.",
+      "Mine's a debit card, though, not a credit card — does that count?",
+      "Fine, I'll do the e-check, then. Can I set it up here now?"
+    ],
+    "correct_answer": "This isn't tuition, though — it's the fee for the graduation application.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk has assumed what the payment is for, and the restriction only applies to tuition, so the reply that matters corrects the premise. The reply agreeing to set up an e-check accepts a rule that does not apply here, the reply about a debit card takes up the wrong half of the sentence, and demanding a supervisor escalates against a routine warning given helpfully."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The award renews automatically each year, provided you finish with a 3.2 and stay enrolled full-time.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Should I be worried? My average is right at 3.2 and I could lose everything.",
+      "I've been full-time since I started, so that part has never been an issue.",
+      "Great, so it just carries over and I don't have to do anything at all.",
+      "Is that 3.2 cumulative, or just this year on its own?"
+    ],
+    "correct_answer": "Is that 3.2 cumulative, or just this year on its own?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The word \"provided\" turns a reassurance into two conditions, and the ambiguous one is the average, so the sharp reply pins it down. The reply hearing an automatic renewal drops the conditions altogether, the reply about always being full-time takes up the condition that is not in doubt, and the alarmed reply treats a routine statement of terms as bad news."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Any outside award has to be reported, and the first thing it usually comes off is the university grant.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So I'm punished for winning something? That can't be how it's meant to work.",
+      "It's only twelve hundred dollars, from a company my mother works for.",
+      "Understood — I'll report it the moment the cheque comes through.",
+      "Could it come off my loan instead, and leave the grant?"
+    ],
+    "correct_answer": "Could it come off my loan instead, and leave the grant?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The word \"usually\" signals that the order of the reduction is negotiable, so the reply worth making proposes a different order. The reply promising to report the award takes up only the part that was never in question, the reply describing the sponsor answers a question about where the money came from, and the reply about being punished argues with a rule instead of working inside it."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My father's been out of work since May, and I'm not sure our case is unusual enough to bother appealing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You may well be right that it's common, but there's always next year's cycle.",
+      "Aid is worked out from last year's tax return, which was filed back in April.",
+      "That is exactly what an appeal is for — let's start the form now.",
+      "Please submit documentation of the change in household income."
+    ],
+    "correct_answer": "That is exactly what an appeal is for — let's start the form now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student is talking himself out of applying, so the reply has to overturn that and move straight to the paperwork. The reply agreeing that the case is common accepts the self-deprecation and sends him away, the reply explaining which tax year is used answers a question about method rather than the hesitation, and the bare instruction to submit documents reads as a form letter to someone who has not yet decided to apply."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The hardship fund can cover your books this term, though it's the once — you can't come back to it in spring.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The books came to a little over three hundred dollars this term, mostly the chemistry ones.",
+      "I'll take it for this term, then — as long as it doesn't count against my aid.",
+      "I formally accept the award and undertake to abide by its conditions.",
+      "Perfect — and if spring is tight, I'll just come back and ask again."
+    ],
+    "correct_answer": "I'll take it for this term, then — as long as it doesn't count against my aid.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "An offer arrives with a limit attached, and the reply that respects it accepts now while checking the one consequence that could still bite. The reply about coming back in spring ignores the limit that was just stated, the reply itemising the cost of the books answers a question about totals, and the formal acceptance is contract language for a small act of help."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I fly home on Saturday, and I've only just heard my I-20 needs a signature before I can come back in.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You'd need to book an advising appointment, and the next free one is in two weeks.",
+      "Travel signatures stay valid for a year, so yours is almost certainly still fine.",
+      "Saturday flights out of the city are usually the cheapest of the week.",
+      "Come by before four this afternoon and I'll sign it for you."
+    ],
+    "correct_answer": "Come by before four this afternoon and I'll sign it for you.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The mention of Saturday makes this urgent, so the reply that answers the act removes the obstacle before the flight. The reply offering an appointment in two weeks routes a same-week problem into a process that finishes too late, the reply that signatures last a year assumes a fact the student has not confirmed, and the remark about cheap flights takes up the travel and drops the request."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your work authorisation can't begin before the date printed on the new I-20, whatever start date the employer wants.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll start on the Monday they asked for and bring the new I-20 in once it arrives.",
+      "It's a research lab here on campus, if that makes any difference to the rule.",
+      "Then I'll ask them to move my start date to the following Monday.",
+      "On what statutory basis is that restriction imposed on me?"
+    ],
+    "correct_answer": "Then I'll ask them to move my start date to the following Monday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The adviser is warning that the employer's calendar has no authority here, so the workable reply moves the job to fit the document. The reply about starting Monday anyway does the very thing the warning forbids, the reply describing the lab offers a detail as though it were an exemption, and the demand for a statutory basis argues law with someone giving practical advice."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Dropping to nine credits would take the pressure off, though I've heard that can put my visa status at risk.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then let's get the reduced-load form approved first — that keeps you full-time on paper.",
+      "Nine credits sounds sensible — plenty of students take a lighter term.",
+      "Nine is under the minimum, so you'd be out of status the day it went through.",
+      "Tuition doesn't drop below twelve credits, so you'd be paying the same either way."
+    ],
+    "correct_answer": "Then let's get the reduced-load form approved first — that keeps you full-time on paper.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student is asking, indirectly, whether the risk can be managed, and the answer is that authorisation before the drop removes it. The reply calling nine credits sensible waves away a risk the student has correctly identified, the reply that he would be out of status states the danger without the remedy that exists, and the reply about tuition answers a question about money."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can't waive the university plan on this — your policy only shows cover through to the end of December.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It runs through to August, actually — that card only shows when the cover started.",
+      "My parents pay a great deal for that policy and I expect it to be honoured.",
+      "Then I'll take the university plan. Can you add it to my account today?",
+      "December's fine — I'll be home for the whole winter break anyway."
+    ],
+    "correct_answer": "It runs through to August, actually — that card only shows when the cover started.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The refusal rests entirely on a misread date, so the only reply that changes anything corrects the fact. The reply agreeing to buy the university plan accepts a premise that is wrong, the reply that December is fine misses that the gap is what blocks the waiver, and the appeal to what the parents pay treats an administrative reading of a card as an insult."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Half this room is here for the same signature, and they're still calling the numbers one at a time.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd encourage you to put that in writing — they do read the feedback forms.",
+      "The signature has to be an original, I think. They won't take a scan of it.",
+      "You should say something at the desk. That really isn't acceptable.",
+      "Right? It's the same queue in here every single August, without fail."
+    ],
+    "correct_answer": "Right? It's the same queue in here every single August, without fail.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "One student in a waiting room is grumbling companionably, not asking for anything, so shared agreement is the whole of the expected reply. The reply urging a word at the desk turns an idle remark into a confrontation, the advice to file written feedback is bureaucratic for a queue, and the point about originals answers a question about the paperwork that was not asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You can switch to audit up until Friday, but an audited course won't count towards the residency requirement.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Does an audit still show up on the transcript, or does the whole row disappear?",
+      "Residency is the two-year rule about credits taken on campus, isn't it?",
+      "Good — then switching costs me nothing, and I'll come in on Friday.",
+      "Whatever's easiest for you — I'm honestly not fussed either way."
+    ],
+    "correct_answer": "Does an audit still show up on the transcript, or does the whole row disappear?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk offers a deadline and a cost in the same breath, and the student cannot weigh the cost without knowing what an audit leaves behind on the record. The reply that switching costs nothing ignores the exclusion just described, the reply defining residency turns the warning into a vocabulary check, and the breezy \"not fussed either way\" hands back a decision that is the student's alone to make."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're clear for June except the second writing-intensive — the audit still has that one showing as outstanding.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd like a formal explanation of how this was missed at the earlier check.",
+      "The audit has been wrong about my language credits before as well, to be honest.",
+      "Then I'll register for one in the spring so it's finished before June.",
+      "That should be my seminar abroad — it was approved as writing-intensive."
+    ],
+    "correct_answer": "That should be my seminar abroad — it was approved as writing-intensive.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The requirement is not actually missing; the audit has failed to pick up a course that was already approved, and the reply that resolves it names that course. The reply promising to take another course in spring accepts the gap as real and pays for it twice, the complaint about past errors with language credits vents instead of fixing, and the demand for a formal explanation treats a routine flag as misconduct."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The Incomplete turns into an F on its own if the work isn't in by the end of week six — nobody has to do anything.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So it just stays an Incomplete on the transcript either way, then.",
+      "Whose decision is that — my professor's, or does this office make it?",
+      "Week six works, provided my professor is back from leave by then.",
+      "Noted, and thank you for drawing the deadline to my attention."
+    ],
+    "correct_answer": "Week six works, provided my professor is back from leave by then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The warning is that the bad outcome arrives by default, so the reply accepts the deadline and flags the one thing that could stop the student meeting it. The reply hearing that the Incomplete simply stays reverses the warning, the question about whose decision it is misses the explicit point that no one decides, and the polite acknowledgement is written register spoken aloud."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The bank won't take the printout from the portal — they want it on headed paper with a stamp, apparently.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The portal version is the official one, so the bank really ought to accept it.",
+      "I can print one on letterhead and stamp it while you wait — two minutes.",
+      "Banks do ask for the oddest things. Which bank is it, out of interest?",
+      "Email the request in and allow five working days for it to be issued."
+    ],
+    "correct_answer": "I can print one on letterhead and stamp it while you wait — two minutes.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student is reporting a rejection, which at this counter is a request for the stamped version, and the reply that reads it that way produces one on the spot. The reply defending the portal printout argues with a bank that is not present, the reply asking which bank it is treats a request as small talk, and sending the student away to email and wait five days invents delay for something the counter can do now."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'd like these three courses from my community college to count towards the major, not just as electives.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I can post them as elective credit today, but major equivalency is the chair's call.",
+      "I'll mark all three towards the major now — that's really no trouble at all.",
+      "Transfer credit is capped at sixty units, and you're comfortably under that.",
+      "Credit from a community college can't count towards a major, I'm afraid."
+    ],
+    "correct_answer": "I can post them as elective credit today, but major equivalency is the chair's call.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The request has two halves and this counter can only grant one of them, so the reply does what it can and names who decides the rest. The reply marking all three towards the major promises a decision that is not this clerk's to make, the reply about the sixty-unit cap answers a question about quantity, and the flat statement that such credit never counts is a refusal the office has no basis for."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You can still drop it, but from Friday the transcript shows a W rather than the course simply disappearing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "A W I can live with, so long as dropping it doesn't put me under twelve credits.",
+      "Then I'll wait until after Friday, when it comes off the record completely.",
+      "Honestly the class is a disaster — the professor has lost half the room.",
+      "Kindly record my withdrawal with immediate effect, in that case."
+    ],
+    "correct_answer": "A W I can live with, so long as dropping it doesn't put me under twelve credits.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The deadline runs the other way from how it is often heard, and the reply accepts the mark while naming the condition that actually constrains the decision. The reply about waiting until after Friday inverts what the clerk said, the complaint about the professor answers a question about the course rather than the deadline, and the formal instruction to record a withdrawal is legal register at a service window."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Two of my finals are down for Thursday at nine — I assume one of them has to move somewhere else.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Exam times were published back in April, so they can't really be changed now.",
+      "Thursday is the busiest exam day of the whole week, unfortunately for you.",
+      "I'll move the later one to Friday morning for you — consider it done.",
+      "That's the later instructor's call — take the conflict form to her."
+    ],
+    "correct_answer": "That's the later instructor's call — take the conflict form to her.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student is right that something must move but wrong about who moves it, and the reply that helps sends him to the person with the power. The reply rescheduling the exam on the spot claims an authority the records counter does not hold, the reply that times were published in April refuses a legitimate conflict, and the remark about Thursday being busy commiserates without resolving anything."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm the one paying the tuition, so I'd like to see how my son actually did this semester.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Tuition payments are handled at the bursar's window, just down the corridor.",
+      "I can't release grades without his permission — he can add you online.",
+      "Of course. Let me print the semester grades out for you right now.",
+      "That's really something between you and your son, I'd have thought."
+    ],
+    "correct_answer": "I can't release grades without his permission — he can add you online.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Paying the bill is offered as grounds for access it does not confer, so the reply refuses and points to the consent that would work. The reply printing the grades hands over records that cannot lawfully be released, the reply directing the parent to the bursar answers the money half of the sentence, and telling him it is between him and his son declines without giving him anything to do."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That'll be twenty dollars for the replacement card — lost ones aren't covered by the fee waiver, I'm afraid.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Twenty is fine. Can you put it on my student account rather than take it now?",
+      "I've had that card since August and never once had a problem with it.",
+      "It isn't lost, though — the reader stopped reading it last week.",
+      "Twenty dollars for a piece of plastic is frankly a bit of a scandal."
+    ],
+    "correct_answer": "It isn't lost, though — the reader stopped reading it last week.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The charge follows from an assumption about how the card was lost, and a failed card is a different case, so the reply corrects the assumption. The reply agreeing to twenty dollars on the student account pays a fee that may not apply, the reply about having had the card since August offers history instead of the correction, and calling the price a scandal picks a fight with the person who could waive it."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Every graduand gets four tickets; any spares go back into the pool about two weeks before the ceremony.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The ceremony's on the tenth, isn't it? My family are flying in that morning.",
+      "Four covers us — are spares first come, first served, or is there a list?",
+      "Four won't be nearly enough. Could you put six aside for me now?",
+      "I should like to register my interest in additional tickets in writing."
+    ],
+    "correct_answer": "Four covers us — are spares first come, first served, or is there a list?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The second half of the sentence is the useful part, and the reply takes the allocation and asks how the spares are actually distributed. The reply asking for six to be set aside ignores the mechanism just described, the remark about flights answers a question about the date, and registering an interest in writing is committee language for a conversation at a desk."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"They redesigned this form over the summer, and honestly I don't think it's any clearer than the old one.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I did wonder — I read the middle section about three times before giving up.",
+      "Should I report that somewhere? It sounds like it's causing real problems.",
+      "Please don't apologise. None of this is your fault, and I do understand.",
+      "I'll fill in whichever version of it you'd prefer, then."
+    ],
+    "correct_answer": "I did wonder — I read the middle section about three times before giving up.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk is being companionable about a bad form, not apologising and not asking for anything, so easy agreement from the student's own experience is the fitting reply. The offer to report it escalates an aside into a complaint, the reassurance answers an apology that was never made, and the offer to fill in either version hears a remark as an instruction."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"People are often surprised by this one — the degree date on the transcript is the conferral date, not the ceremony.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Could you change it to the ceremony date? My employer is expecting June.",
+      "That's a serious discrepancy — who exactly do I speak to about correcting it?",
+      "The ceremony's in the arena this year, which holds a great many more people.",
+      "So mine will say May, even though we don't walk until June."
+    ],
+    "correct_answer": "So mine will say May, even though we don't walk until June.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is an explanation offered pre-emptively, not a problem, so the reply that fits simply works the rule through to the student's own case. The request to change the date treats a correct record as an error, the reply calling it a serious discrepancy over-reads a friendly warning, and the remark about the arena takes up the ceremony and drops the point."
+  }
+]

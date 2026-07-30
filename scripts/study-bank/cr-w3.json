@@ -1,0 +1,418 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Someone's put a hold on that atlas you've got out, so you can keep it till Friday, but not past that.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I've barely opened it yet, honestly — I only picked the thing up on Monday afternoon.",
+      "Friday's fine. If I still need it after that, do I go back in the queue behind them?",
+      "Great, so I'll just renew it online the way I normally would, then.",
+      "Should I run it back this afternoon? I'd hate to keep somebody waiting on it."
+    ],
+    "correct_answer": "Friday's fine. If I still need it after that, do I go back in the queue behind them?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The hold quietly cancels the student's renewal rights, so the useful reply accepts the new date and asks what happens after it. The reply about having only picked it up on Monday argues against a rule rather than answering it, the reply about renewing online assumes exactly what the hold has just blocked, and the offer to run it back this afternoon over-reacts to a deadline that is still four days away."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can order it in from a partner library, though I should say it's usually ten days, sometimes closer to a fortnight.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Wonderful, I'll come by and collect it tomorrow afternoon, then.",
+      "Partner libraries share almost all their stock these days, though, don't they?",
+      "That's past my deadline — could you get a scan of the one chapter instead?",
+      "Ten days is fine — I'll just tell my tutor the essay's going to be late, then."
+    ],
+    "correct_answer": "That's past my deadline — could you get a scan of the one chapter instead?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Though I should say\" flags the lead time as the problem with the offer, so the strong reply proposes a faster route to the same text. The reply about collecting it tomorrow ignores the warning entirely, the remark about libraries sharing their stock treats the warning as small talk, and the reply that accepts a late essay swallows a bad outcome instead of solving it."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I've spent two days trying to get that scanner in the media room to talk to my laptop, and nothing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ask at the media desk — they sort that out in about five minutes.",
+      "Two whole days? Mine took a week before I gave up on it altogether.",
+      "That scanner's the newest thing in the building — they put it in over the summer.",
+      "Kindly submit a fault report to the facilities team at your earliest convenience."
+    ],
+    "correct_answer": "Ask at the media desk — they sort that out in about five minutes.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The complaint is really a request for help, and the genuinely helpful move is naming the people whose job this is. The reply about giving up after a week commiserates without helping, the remark that the scanner is new answers a question about the equipment that nobody asked, and the fault-report reply is helpdesk language between two students."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"These are two-hour reserve copies, so it can't leave the building — but any of the desks upstairs are fine.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Great, I'll take this one home tonight and have it back here first thing.",
+      "The desks upstairs are much better for spreading your work out, aren't they?",
+      "Please confirm in writing whether an extension of the loan may be granted.",
+      "Upstairs is fine, as long as I can renew it when the two hours are up."
+    ],
+    "correct_answer": "Upstairs is fine, as long as I can renew it when the two hours are up.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk grants access on two conditions, and the natural reply takes the offer while pinning down what happens at the limit. The reply about taking it home does the one thing that was just ruled out, the remark about spreading your work out echoes the desks with no uptake of the loan rule, and the request for written confirmation is contract language at a library counter."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The system's still showing that atlas as lost, and there's a replacement charge of forty pounds sitting on your account.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Forty pounds seems very steep for a book that was already falling apart.",
+      "It isn't lost, though — I put it in the drop box on Monday. Could you check the returns trolley?",
+      "That's fine — I'll settle it at the desk before the end of the week.",
+      "Atlases have got so expensive now, haven't they? Especially the big ones."
+    ],
+    "correct_answer": "It isn't lost, though — I put it in the drop box on Monday. Could you check the returns trolley?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The charge rests on a factual claim that is simply untrue, so the reply has to correct the premise and point at where the book actually is. The reply about the price argues the amount while conceding the loss, the reply agreeing to settle it pays for a book that was returned, and the remark about atlases being expensive is sympathetic chat with no correction in it."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're welcome to consult it in the reading room, though it's pencils only in there, and bags go in the lockers.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Understood. Is a laptop all right in there, or is it handwritten notes only?",
+      "So I'll leave my pen out here at the counter and take the bag through with me.",
+      "The reading room is the one on the second floor with the long tables, isn't it?",
+      "I'd be grateful for a copy of your handling policy to keep for my records."
+    ],
+    "correct_answer": "Understood. Is a laptop all right in there, or is it handwritten notes only?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Two conditions are stated and a third — what you may actually take notes with — is left open, so the sharp reply asks about the gap. The reply about carrying the bag through accepts one rule while breaking the other, the question about the second floor answers a matter of geography nobody raised, and asking for a written handling policy is far heavier than a counter enquiry warrants."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Any chance you could take my books back for me? You're going past the library and mine are three days over already.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Three days really isn't bad — the fine doesn't start building up properly until a week.",
+      "Sure, hand them over and I'll get them renewed at the desk while I'm there.",
+      "I'm not actually going in today, sorry — there's a drop box by the side door, though.",
+      "I regret that I cannot accept responsibility for another borrower's items."
+    ],
+    "correct_answer": "I'm not actually going in today, sorry — there's a drop box by the side door, though.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The request rests on a premise about the responder's route that happens to be wrong, so the reply declines and hands back a way to solve it anyway. The reassurance about fines answers a worry that was never expressed, the reply offering to renew them does something other than what was asked, and refusing on grounds of responsibility for another borrower's items is oddly stiff between friends."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My card's blocked till I clear the fine — could you put this one out on yours? I know they don't love that.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "How much is the fine? I've had one of those hanging over me since March.",
+      "No problem, keep it as long as you like — I never really use my card anyway.",
+      "You shouldn't have let a fine build up like that in the first place, honestly.",
+      "I'd rather not, sorry — if it goes missing it lands on me. The desk might do a short loan."
+    ],
+    "correct_answer": "I'd rather not, sorry — if it goes missing it lands on me. The desk might do a short loan.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I know they don't love that\" concedes the request is a bad idea, and the reply that declines while suggesting the desk answers both parts of it. The question about the size of the fine follows a side detail instead of the request, the cheerful \"keep it as long as you like\" ignores the risk the speaker has just flagged, and the scolding about letting a fine build up lectures rather than answers."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The glassware from yesterday's run is still sitting in the sink, and we're booked in again at nine tomorrow.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Nine is early, isn't it? I don't think that room is even unlocked before half past.",
+      "That was my run — I'll come in at eight and get it all washed before we start.",
+      "Yes, the sink in there backs up constantly — somebody really ought to report it.",
+      "Shall I email the technician and tell her the room wasn't left properly?"
+    ],
+    "correct_answer": "That was my run — I'll come in at eight and get it all washed before we start.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Two neutral facts placed side by side amount to a request that the mess be cleared before the next booking. The reply that claims the run and commits to washing it does that; the remark about the room being locked deflects into scheduling, the complaint about the sink backing up echoes the sink while dodging the point, and emailing the technician escalates a two-person problem to a third party."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You can skip the goggles for this bit, honestly — it's water going into the flask, nothing else.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Fair enough, they steam up so badly at this bench anyway.",
+      "The water's the easy part, yes — it's the weighing that always takes me ages.",
+      "It's what goes in after the water that spits — keep them on.",
+      "Regulations require eye protection at all times within the laboratory."
+    ],
+    "correct_answer": "It's what goes in after the water that spits — keep them on.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The advice is built on a claim about what is going into the flask, and the reply that corrects that claim is the only one that engages with it. Agreeing because the goggles steam up accepts a false premise, the remark about weighing echoes the water and drifts off the point, and quoting regulations is right in substance but reads as a stranger's voice between two lab partners."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I see you've got the centrifuge down for the whole of Thursday afternoon, and I only need twenty minutes on it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The booking sheet is on the door, so anyone can see for themselves what's free.",
+      "Twenty minutes is nothing — mine runs for four hours at a stretch, most weeks.",
+      "Take the whole afternoon if you like, I'll go and find somewhere else to be.",
+      "Come at two and take it then — I'll push my spins back and start after you."
+    ],
+    "correct_answer": "Come at two and take it then — I'll push my spins back and start after you.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Pointing out a long booking beside a short need is how a colleague asks to be fitted in, and the reply that carves out a slot and shifts its own work answers it. Pointing at the booking sheet defends the reservation instead, the comparison of run lengths dismisses the request, and surrendering the whole afternoon gives away far more than twenty minutes were asked for."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your entries are all there, but they're in pencil, and nothing after the first page has a date on it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll go through tonight and put the dates in, in pen, before you look at it again.",
+      "Thanks — I was worried I'd left whole sessions out of the notebook altogether, actually.",
+      "Pencil is easier to correct, and I do end up rubbing quite a lot of it out.",
+      "The first page is the one with the calibration table on it, I think."
+    ],
+    "correct_answer": "I'll go through tonight and put the dates in, in pen, before you look at it again.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Your entries are all there, but\" is a concession before a criticism of how the notebook is kept, so the reply has to repair both faults named. The grateful reply hears the concession as praise, the defence of pencil argues with the criticism, and the remark about the calibration table picks up a stray detail and answers nothing."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's maybe two millilitres of the enzyme stock left in there, and the reorder takes the best part of a month.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "A month? I'd have thought that sort of thing arrived next day now.",
+      "Two millilitres will cover my last three plates, so I'll just use what's there.",
+      "Sanjay's lab ordered a big batch in June — worth asking them for a vial to keep us going.",
+      "It stretches further than you'd think, though — we barely use any per plate."
+    ],
+    "correct_answer": "Sanjay's lab ordered a big batch in June — worth asking them for a vial to keep us going.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The two facts together are a warning that the shared stock will run out before it can be replaced, and the reply naming a neighbouring lab with a surplus is the only one that closes the gap. The remark about next-day delivery treats it as conversation, the plan to use what is left takes the last of a shared supply, and the claim that it stretches further than you would think talks the problem away."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your third trial sits miles away from the other two — I'd want that repeated before any of it goes in the report.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Right, I'll leave that trial out of the write-up altogether, then.",
+      "I can repeat it Friday if the water bath is free — otherwise it'd have to wait till Monday.",
+      "Two out of three agreeing is quite good going for this assay, though.",
+      "Should I scrap the set and start the whole assay again from the beginning?"
+    ],
+    "correct_answer": "I can repeat it Friday if the water bath is free — otherwise it'd have to wait till Monday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"I'd want that repeated\" is an instruction in soft clothing, and the reply that agrees while naming the one thing that could delay it is what a supervisor needs to hear. Dropping the trial from the write-up substitutes deletion for the repeat that was asked for, defending two out of three argues with the instruction, and starting the whole assay again over-corrects a single outlier."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Those masses look fine on paper, but that balance hasn't been calibrated since we came back after the break.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Good, so the numbers hold up — I'll make a start on the graphs this evening.",
+      "Calibration is the technician's job rather than ours, as far as I understand it.",
+      "That balance is the old two-pan one over by the window, isn't it?",
+      "Then let's weigh the lot again downstairs before we write a single number up."
+    ],
+    "correct_answer": "Then let's weigh the lot again downstairs before we write a single number up.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Fine on paper, but\" casts doubt on data that looks healthy, so the reply that proposes reweighing on a trusted instrument is the one that takes the doubt seriously. Reading it as confirmation and starting the graphs hears approval in a warning, assigning calibration to the technician answers a question of duty rather than of data, and identifying which balance it is picks up the wrong half of the sentence."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That carboy is labelled for non-halogenated waste only, and what you've just poured in there is chlorinated.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Does what's in there have to come out, or do we just relabel it?",
+      "Sorry — I'll pour the rest of mine into the other one by the door instead.",
+      "The label is half peeling off, though. You can barely read what it says.",
+      "I'll ring the safety office and get somebody to come and empty it now."
+    ],
+    "correct_answer": "Does what's in there have to come out, or do we just relabel it?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The correction leaves the important thing unsaid — what to do about what has already gone into the wrong container — so the reply that asks exactly that is the useful one. Redirecting only the rest fixes the future and leaves the mistake in place, blaming the peeling label excuses rather than repairs, and calling the safety office out immediately treats a routine correction as an emergency."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You couldn't run my plates through the reader this evening, could you? I know you're only signed off on the old one.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "No problem at all — I'll put them straight through the new reader for you this evening.",
+      "That's the trouble — I'd need someone trained sitting with me, and it's late notice.",
+      "The old reader is actually more accurate at low concentrations, I find.",
+      "Regrettably I must decline your request, for reasons of laboratory policy."
+    ],
+    "correct_answer": "That's the trouble — I'd need someone trained sitting with me, and it's late notice.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker names the obstacle inside the request itself, so the natural reply picks it up and declines on those grounds. Agreeing to put the plates through the new reader ignores the very limit that was acknowledged, the comparison of accuracy at low concentrations answers a technical question nobody asked, and declining on grounds of laboratory policy is a form of words no one uses on a lab partner."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Funny, isn't it — the cleanest data we've had all term came off the oldest spectrometer in the room.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry, I should have booked the newer machine for us — I'll do that next week.",
+      "Are you saying the runs I did on the new machine can't be trusted at all?",
+      "It really is. I think the new one has been drifting since they moved it.",
+      "Please log any concerns about instrument performance with the lab manager."
+    ],
+    "correct_answer": "It really is. I think the new one has been drifting since they moved it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This one really is just an observation between colleagues, so agreeing and adding a thought is the whole of what is called for. Apologising for the booking treats a remark as a complaint, asking whether the runs can be trusted hears an accusation that was never made, and telling a lab partner to log concerns with the manager turns idle shop talk into a procedure."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"So I've done the intro and the method slides, which leaves the results section to you, doesn't it?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The method slides are the ones with the big flow diagram on them, aren't they?",
+      "Results, right — and I'll go over the intro slides again while I'm at it.",
+      "It does — I'll have them ready by the time we meet on Thursday.",
+      "We swapped those on Tuesday — you took results and I took the discussion."
+    ],
+    "correct_answer": "We swapped those on Tuesday — you took results and I took the discussion.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The tag question invites confirmation of a division of labour that has since changed, so the reply that sets the record straight prevents a section going unwritten. Confirming it for Thursday accepts a false premise, the question about the flow diagram picks at a detail instead of the claim, and going over the intro slides again duplicates work that is already finished."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That's the third Wednesday you've missed, Deniz, and we're standing up in front of the class in ten days.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You're right, and that's on me — I'll have the survey section finished before Friday.",
+      "Wednesdays are impossible for me, they always have been, right from the start.",
+      "Ten days is loads of time, honestly. We'll be absolutely fine on the day.",
+      "Fair enough — do you want to just present the thing without me, then?"
+    ],
+    "correct_answer": "You're right, and that's on me — I'll have the survey section finished before Friday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The complaint is about reliability with a deadline attached, and the reply that owns the absences and commits to a dated piece of work answers both halves. Calling Wednesdays impossible explains without repairing, the reassurance that ten days is plenty brushes the complaint aside, and offering to drop out escalates a request to turn up into leaving the group."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Half the references follow the style we agreed and half don't, and I can't tell from the doc who put which ones in.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll go through the list tonight and change every one of them to match.",
+      "We agreed on that style right at the very first meeting, though, didn't we?",
+      "Those are Tomas's — mine came off the template, so ask him.",
+      "Does it matter that much? The marker is hardly going to check every entry."
+    ],
+    "correct_answer": "Those are Tomas's — mine came off the template, so ask him.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker is asking whose entries these are, so that the person who made them can put them right, and naming Tomas answers exactly that. Volunteering to rewrite the whole list takes on someone else's section without answering the question, the reminder about the first meeting restates the agreement instead, and dismissing it as something the marker won't check refuses the problem outright."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Twenty-two minutes in the run-through, and they stop you dead at fifteen on the day.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "We'll just talk a bit faster on the day and it'll all fit in fine.",
+      "Fifteen minutes is barely anything for a project of this size, is it?",
+      "I propose we revisit the timing allocation at our next scheduled meeting.",
+      "Then my third section goes — unless you'd rather drop the case study?"
+    ],
+    "correct_answer": "Then my third section goes — unless you'd rather drop the case study?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Stating the two timings together is a way of saying that seven minutes have to come out, and the reply that volunteers a cut and offers an alternative moves that decision along. Promising to talk faster wishes the overrun away, complaining that fifteen minutes is too short argues with a fixed limit, and postponing the timing question to the next meeting defers what has to be settled now."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your section and mine both spend a good two pages on the same three studies, as far as I can see.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Do you want to keep them in yours and I'll cut mine to a line, or the other way about?",
+      "They're the three that everybody cites, so it's hardly all that surprising.",
+      "Mine only summarises them, though — yours goes right into the methods in detail.",
+      "Kindly advise which portions of my text you would like me to take out."
+    ],
+    "correct_answer": "Do you want to keep them in yours and I'll cut mine to a line, or the other way about?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The overlap is reported neutrally but the point is that one of the two write-ups has to go, and the reply that puts that decision to the other person settles it fastest. Saying everybody cites those studies explains the duplication without removing it, drawing a distinction between summary and detail defends the overlap, and asking to be advised which portions to take out is stiff enough to sound wounded."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"This peer form wants us to score each other out of ten, which feels harsh for four people who all turned up.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Are you worried about what I'm going to put down for you on the form, is that it?",
+      "It does. I think it's really there to catch the groups where somebody vanished.",
+      "The form's due on Friday, isn't it? I'll get mine filled in tonight.",
+      "You should be giving Marta a nine — she's easily done the most work of any of us."
+    ],
+    "correct_answer": "It does. I think it's really there to catch the groups where somebody vanished.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Nothing is being asked for here — it is a reflection on the form — so agreeing and offering a reason why it exists is the natural move. Asking whether the speaker is worried about their own score reads an accusation into a general remark, the reminder about Friday answers a logistical question that wasn't raised, and proposing a nine for Marta starts the scoring the speaker was uneasy about."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I've pushed my changes, but I think I've written over whatever you did to the analysis file this morning.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's the second time this week the shared folder has done something like that.",
+      "Great, so we're both finally working from the same file at last, then.",
+      "Please upload no further revisions until this matter has been properly resolved.",
+      "Don't panic — my version is still open on my laptop, so I'll paste it back in."
+    ],
+    "correct_answer": "Don't panic — my version is still open on my laptop, so I'll paste it back in.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The apology carries an unspoken question — is the lost work recoverable — and the reply that says the text still exists and offers to restore it answers it. Blaming the shared folder responds to the cause and not the loss, treating it as good news misreads an admission as progress, and an instruction to upload nothing further scolds a partner who has just owned up."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The only hour everyone's free is eight on Monday morning, which I know is nobody's idea of fun.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Mornings are fine by me — shall we say ten o'clock instead, then?",
+      "Monday is always the very worst day of the week for me, honestly.",
+      "Eight works for me, as long as we keep it to half an hour and start on time.",
+      "I confirm my availability for the proposed slot and await the agenda."
+    ],
+    "correct_answer": "Eight works for me, as long as we keep it to half an hour and start on time.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The apology attached to the time signals that the slot is fixed and the speaker expects resistance, so agreeing while setting a limit on the length is the cooperative reply. Suggesting ten o'clock ignores that this was the only hour everyone was free, complaining about Mondays offers no decision at all, and confirming availability and awaiting an agenda is committee language between classmates."
+  }
+]

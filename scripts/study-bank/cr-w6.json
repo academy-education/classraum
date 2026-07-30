@@ -1,0 +1,418 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's a replacement bus for the last two stops tonight — it goes from the far end of the car park, not the front.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So there's nothing at all running out of this station for the rest of tonight?",
+      "The far end — is that the exit by the bike racks, or past the taxis?",
+      "Fine, I'll wait on platform two for the train the way I always do.",
+      "That car park is usually full by eight in the morning, isn't it?"
+    ],
+    "correct_answer": "The far end — is that the exit by the bike racks, or past the taxis?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The utterance is a direction whose whole point is the correction at the end, and \"the far end\" is not something a stranger can find without checking. The key asks for the detail it needs; the reply that assumes nothing is running over-reads a two-stop replacement as a full closure, the reply that waits on platform two ignores the instruction entirely, and the remark about the car park filling up echoes a salient word while answering nothing."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm not blaming anyone, Dara, but the film society's account is about two hundred short of what the spreadsheet says.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You're right, that's my fault entirely. I'll go through every receipt tonight.",
+      "Shared spreadsheets always go wrong once three people are editing them.",
+      "Brilliant, so we've got a bit spare for the end-of-term screening.",
+      "That's the projector deposit — paid, just not entered yet."
+    ],
+    "correct_answer": "That's the projector deposit — paid, just not entered yet.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The hedge \"I'm not blaming anyone\" softens what is really a query about a discrepancy, and the treasurer who knows where the money went should say so rather than investigate. The key supplies the missing entry; the reply accepting fault and promising a receipt hunt takes on blame for a gap that isn't one, the remark about shared spreadsheets commiserates instead of answering, and the reply about having a bit spare reads a shortfall as a surplus."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We're thin on Saturday mornings at the moment — most of our regular volunteers have gone home for the summer.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You could put a notice up in the union — people really do read that board.",
+      "Yes, it always seems to get much quieter once the term has finished.",
+      "I could do Saturdays if it's the early slot — I start work at one.",
+      "That's a shame. Hopefully they'll all be back again in September."
+    ],
+    "correct_answer": "I could do Saturdays if it's the early slot — I start work at one.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Said to a volunteer standing in front of you, a statement about being short-handed is a recruitment request, and the useful reply commits with the limit it can actually keep. The key volunteers and names its condition; the suggestion about the union noticeboard hands the problem back to the person who raised it, the remark about term-time being quieter agrees without offering anything, and the sympathetic reply about September treats a live shortage as a story about the past."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Any chance you could run the stall on Friday? I know it's your presentation week, but you've done it before.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Friday's the presentation itself, I'm afraid — but I could show Sam the ropes on Thursday.",
+      "Thanks for asking. It really is a lot of work to run that stall on your own.",
+      "You've run it yourself, though — you did the whole open day last year.",
+      "Sure, I'll take Friday. The presentation can wait until I'm back."
+    ],
+    "correct_answer": "Friday's the presentation itself, I'm afraid — but I could show Sam the ropes on Thursday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The asker has already conceded the clash, which licenses a refusal, so the cooperative move is to decline the day and keep helping another way. The key does both; the reply thanking them for asking treats a request as a compliment, the reminder that they ran it at the open day pushes the job back without answering, and agreeing to take Friday sacrifices the presentation the speaker just acknowledged."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The student account switches over automatically at graduation, though the overdraft starts shrinking from the September after.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd like to close the account and move everything across to another bank.",
+      "Good — so nothing changes for me until I've actually graduated.",
+      "Shrinking how quickly? I need to know what's left of it by December.",
+      "Graduation is in July, in the hall behind the cathedral, I think."
+    ],
+    "correct_answer": "Shrinking how quickly? I need to know what's left of it by December.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The reassuring first half is a wrapper for the part that costs money, and \"starts shrinking\" is deliberately vague about the rate. The key presses on exactly that; the reply about closing the account escalates a routine change into a departure, the reply that nothing changes before graduation drops the September qualifier, and the remark about the ceremony being in July answers a question about graduation that was never asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The tablets are fine, it's just — I've had this ringing in my ear since I started them, and it isn't settling.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That needs the doctor rather than me — I can get you a call back this afternoon.",
+      "Ringing ears are usually only wax. Try the drops they sell at the chemist.",
+      "I'll cancel the rest of your prescription and take you off them now.",
+      "Good to hear the tablets are working out well for you, then."
+    ],
+    "correct_answer": "That needs the doctor rather than me — I can get you a call back this afternoon.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A patient hedging at a reception desk is reporting a possible side effect, and reception can route it but cannot judge it. The key hands it to the clinician and offers a concrete route; the reply diagnosing it as wax gives medical advice from behind the desk, the reply cancelling the prescription acts outside reception's authority, and the cheerful reply about the tablets working hears \"the tablets are fine\" and misses everything after it."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're three kilos over on the hold bag, though there's nothing stopping you moving some of it into your hand luggage.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Three kilos? That case was well under twenty when I weighed it at home.",
+      "Then I'll pay the excess and leave both bags exactly as they are.",
+      "Everything in the small bag is liquids and cables, unfortunately.",
+      "Fine, I'll repack here — as long as the cabin bag isn't weighed too."
+    ],
+    "correct_answer": "Fine, I'll repack here — as long as the cabin bag isn't weighed too.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The second half of the utterance is a free way out of a charge, and taking it sensibly means checking that the cabin bag won't be weighed in turn. The key accepts on that condition; the reply disputing the weight argues with the scales instead of solving anything, paying the excess throws money at a problem the agent just offered to remove, and the remark about liquids and cables answers a question about the small bag's contents that nobody asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We did book the six-bed dorm, but the confirmation on my phone says two nights and we're here for three.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Let me add the third night now — same beds, and I'll email you the corrected booking.",
+      "Two nights is what the system shows on this side as well, so that is consistent.",
+      "Six-bed dorms fill up very fast in August, so booking early was sensible.",
+      "Check-out is at ten, and the lockers take a padlock of your own."
+    ],
+    "correct_answer": "Let me add the third night now — same beds, and I'll email you the corrected booking.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A guest reciting two numbers that disagree is asking staff to fix the booking, not to confirm the discrepancy. The key repairs it and leaves the guest with proof; the reply that the system agrees restates the fault as though it settled the matter, the remark about August availability answers a question about booking habits, and the check-out and locker information moves on before the problem is solved."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The second key you left works on the front door, but it doesn't seem to turn the lock on the flat itself.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Try lifting the handle as you turn it — that door has been stiff for years.",
+      "The front door key is the one with the blue tag, if that helps you at all.",
+      "I'll drop the right one round this evening — sorry, I mixed up the set.",
+      "Good, so you can get in and out of the building without any trouble."
+    ],
+    "correct_answer": "I'll drop the right one round this evening — sorry, I mixed up the set.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A tenant locked out of the flat itself is reporting the landlord's error, however politely it is phrased. The key owns the mistake and fixes it today; the advice about lifting the handle treats a wrong key as a sticky door, the reply about the blue tag explains the key that already works, and the cheerful reply about getting into the building takes the half that went right and ignores the half that didn't."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You'll need to pay the twelve pounds before Thursday, otherwise you can't speak in the first round.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Twelve pounds seems steep for a society that meets in a lecture room.",
+      "I paid at the freshers' fair — it went through on the card reader.",
+      "Understood. I'll sit the opening round out and just join in later on.",
+      "Thursday is tight. Could I bring the cash along to the round itself?"
+    ],
+    "correct_answer": "I paid at the freshers' fair — it went through on the card reader.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The deadline only applies to someone who hasn't paid, so the member who has should correct the record rather than comply with it. The key does that and says how the payment was made; the complaint about twelve pounds argues with a fee already settled, the reply sitting the round out accepts a penalty for nothing, and the request to bring cash on the day offers to pay a second time."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Honestly, half of what we're bagging today is bits of old fishing net rather than anything left by visitors.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Visitors do leave an unbelievable amount behind over the summer months.",
+      "Then we ought to report this whole beach to the council straight away.",
+      "I'm sorry — I'll be more careful what I put in the bag, then.",
+      "Yeah, most of it's blown in off the water rather than dropped here."
+    ],
+    "correct_answer": "Yeah, most of it's blown in off the water rather than dropped here.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Not every remark is a complaint or a request; between two volunteers doing the same job this is an observation, and agreeing with it is the whole of the reply. The key agrees and adds the same point in different words; the reply about what visitors leave behind agrees with the opposite of what was said, the call to report the beach to the council escalates a passing comment, and the apology treats a neutral observation as criticism of the listener."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can knock forty off the handset if you move up to the unlimited plan — it's only a few pounds more each month.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I never get through the data I have now, so I'll stay on the smaller plan.",
+      "Forty is about what the screen repair cost me over the winter, actually.",
+      "So the handset comes free if I take that plan? That's worth doing.",
+      "Forty off sounds good — put me down for the unlimited one, then."
+    ],
+    "correct_answer": "I never get through the data I have now, so I'll stay on the smaller plan.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is an upsell, and the reply that a competent customer gives declines it with the reason that makes the discount worthless to them. The key refuses on exactly that ground; the remark about a screen repair echoes the number and answers nothing, the reply calling the handset free misreads a forty-pound reduction as the whole price, and accepting the unlimited plan buys data the speaker has no use for."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I left a grey rucksack on the eleven-forty from Bristol — it's got my passport in the front pocket.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Bags left on board usually turn up at the end of the route somewhere.",
+      "I'd report that passport to the police straight away, before anything happens to it.",
+      "Lost property is run by the operator, not us — their desk is on stand nine.",
+      "The eleven-forty out of Bristol gets in here at half past two, most days."
+    ],
+    "correct_answer": "Lost property is run by the operator, not us — their desk is on stand nine.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The passenger needs the bag back quickly, and station staff who cannot open the operator's lost property can still send them to the desk that can. The key redirects and says where; the vague reply about bags turning up at the end of the route offers no route to the bag, the advice to go to the police jumps past the desk fifty metres away, and the arrival time answers a timetable question that was never asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The bike you lent me is fine, except the rear brake doesn't bite until the lever is pulled right in.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then don't ride it at all — I'll pull it out of the pool until it's stripped down.",
+      "I'll tighten that cable now — give me ten minutes before you set off.",
+      "Rear brakes do most of the work on a descent, so lean on the front one too.",
+      "Good, the front brake was the one I was worried about on that bike."
+    ],
+    "correct_answer": "I'll tighten that cable now — give me ten minutes before you set off.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"Fine, except\" is how a rider reports a fault without sounding ungrateful, and a brake with no bite is a repair job before the ride. The key fixes it in time; the reply withdrawing the bike from the pool over-corrects a ten-minute adjustment into a write-off, the advice about using the front brake tells the rider to live with it, and the relief about the front brake hears the reassurance and misses the fault."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We pair you with the same pupil each week, though you'd need the background check done before the first session.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "How long does that check usually take? I'd want to start before half term.",
+      "Background checks feel like a lot for an hour of reading a week.",
+      "I'll start next Tuesday and get the check sorted out in the meantime.",
+      "Being paired with the same pupil weekly is ideal — you get much further that way."
+    ],
+    "correct_answer": "How long does that check usually take? I'd want to start before half term.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The offer comes with a precondition on a timetable the volunteer doesn't know, so the reply that moves things forward asks how long it takes. The key does, and says why the answer matters; the grumble about checks resists a requirement that isn't negotiable, the plan to start next Tuesday and sort the check out later breaks the condition just stated, and the praise for weekly pairing agrees with the easy half and skips the hard one."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We stopped the card because it was used in Lisbon on Tuesday, and you've never travelled with us before.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Tuesday was the day the transfer from my parents finally came through.",
+      "Thanks for spotting that. I haven't been out of the country in years.",
+      "Please cancel the card and post the replacement to my home address.",
+      "That was me — I'm in Lisbon now, and I told you back in June."
+    ],
+    "correct_answer": "That was me — I'm in Lisbon now, and I told you back in June.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The bank has inferred fraud from a premise the customer knows to be false, and the fastest way to the card working again is to say so. The key corrects both halves of the premise; the remark about the transfer answers a question about a different transaction, the reply thanking them and denying any travel confirms a story the customer knows is wrong, and cancelling the card strands a traveller abroad with no way to pay."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The last sailing back is at six, but in October they sometimes cancel it if the crossing gets rough.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Six is perfect — that gives us the whole afternoon over on the island.",
+      "If it does get cancelled, is there anything else back the same night?",
+      "October is a lovely time to go across, everyone says. Much quieter.",
+      "Then I'll call the trip off. I can't risk being stranded over there."
+    ],
+    "correct_answer": "If it does get cancelled, is there anything else back the same night?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk volunteers the cancellation risk as a warning, and what the traveller actually needs to know is what happens if it lands. The key asks for the fallback; the delighted reply about the whole afternoon takes the six o'clock sailing as guaranteed, the remark about October being quieter echoes the month as small talk, and calling the trip off treats \"sometimes\" as a certainty."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're welcome on Sunday's walk, but I'd want you in proper boots — the top section is loose rock all the way.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I've walked that whole path in trainers before without any trouble at all.",
+      "Loose rock is why I like that route — the view from the top is worth it.",
+      "I'll come if I can borrow boots from the kit store; mine are trainers.",
+      "Then count me out. I'm not buying boots for one walk in October."
+    ],
+    "correct_answer": "I'll come if I can borrow boots from the kit store; mine are trainers.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The invitation is real but conditional, so the reply that keeps the place accepts and solves the footwear. The key does exactly that; the claim about having walked it in trainers argues with a safety condition the leader set, the enthusiasm about the view answers the description of the terrain rather than the requirement attached to it, and dropping out abandons a trip over a problem the club's kit store solves."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I've put you down for two till closing on Wednesdays, since that's when the donations pile up out the back.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Wednesdays I've a seminar until four — could I take the Thursday shift instead?",
+      "Sorting the donations is my favourite part of it, so that suits me fine.",
+      "Two till closing is quite a long stretch for one person, isn't it?",
+      "Fine, I'll be there at two and someone can cover my seminar."
+    ],
+    "correct_answer": "Wednesdays I've a seminar until four — could I take the Thursday shift instead?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A rota announced rather than requested still has to be answerable, and the volunteer with a fixed clash should say so and propose a day that works. The key refuses the slot and supplies the alternative; the reply that sorting donations suits them fine accepts a shift they cannot attend, the remark about the length of the stretch grumbles without naming the real obstacle, and covering the seminar sacrifices coursework to an unpaid shift."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The treatment was covered by the university scheme, but I've had a letter here asking me for eighty pounds.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll take the eighty now and you can claim it back from the scheme later.",
+      "Eighty pounds is the standard band-two charge, so that letter looks right.",
+      "Just ignore the letter — those go out automatically to everybody.",
+      "Billing handles the scheme, not this desk. I'll put you through."
+    ],
+    "correct_answer": "Billing handles the scheme, not this desk. I'll put you through.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The patient is disputing a charge against a scheme the front desk doesn't administer, so sending them to the team that does is the genuinely useful move. The key redirects and connects them; taking the eighty collects a payment that may not be owed, the reply that the charge looks right defends the letter without checking the scheme, and telling the patient to ignore it leaves an unpaid bill in their name."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You'll need the visa sorted before you fly, and they're taking about six weeks at the consulate at the moment.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Six weeks is fine — I'm not flying out until late August anyway.",
+      "I'm travelling on an Irish passport, so there's no visa for me to get.",
+      "Then I'll apply the week before I go and hope it comes through in time.",
+      "Is the consulate the one over on Kensington High Street, do you know?"
+    ],
+    "correct_answer": "I'm travelling on an Irish passport, so there's no visa for me to get.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The warning rests on an assumption about which passport the traveller holds, and correcting that assumption is more use than planning around it. The key removes the requirement altogether; the reply that six weeks is fine accepts a process it needn't start, applying the week before ignores the very delay just quoted, and the question about Kensington High Street chases the address of a building the speaker has no reason to visit."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Twelve hours on this thing and they still won't put a plug socket by the seats — my phone died before Leeds.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You should take that up with the driver properly before we set off again.",
+      "You'll want to get off at Leeds, then, and charge it in the station there.",
+      "Mine's down to four percent — you'd think it would be standard by now.",
+      "Sorry — I'll shift my charger so that you can reach the socket."
+    ],
+    "correct_answer": "Mine's down to four percent — you'd think it would be standard by now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A grumble to the stranger in the next seat asks for nothing but company in it, and matching the complaint is the whole reply. The key does that; sending them to the driver turns idle moaning into a formal complaint, the suggestion to get off at Leeds proposes a stop the coach has already passed, and the apology about a charger invents a socket the speaker has just said does not exist."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Nobody's turned up for the Spanish table twice running now, and I'm the one sitting there on my own at seven.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's not on — I'll message the group tonight and take the Spanish table myself.",
+      "Seven is early for a Tuesday. People do tend to be eating around then.",
+      "Spanish has always been our biggest table, so they'll come back to it.",
+      "Then we should close the Spanish table and put everyone into French."
+    ],
+    "correct_answer": "That's not on — I'll message the group tonight and take the Spanish table myself.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A member describing two wasted evenings is telling the organiser that the arrangement has failed them personally, and the organiser owes both an acknowledgement and a change. The key gives both; the observation about people eating at seven explains the failure away, the confidence that Spanish is the biggest table denies what the speaker has just lived through, and closing the table down punishes the one person who kept turning up."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We could really use someone with a van on Saturday — the compost has to come up from the depot somehow.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Compost is heavy stuff. You'd want a proper trailer for a load like that.",
+      "I'll be there on Saturday, though I haven't got anything to drive.",
+      "Have you asked the allotment association? They run deliveries out here.",
+      "I can bring the van if someone helps me load it."
+    ],
+    "correct_answer": "I can bring the van if someone helps me load it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "\"We could really use someone with a van\" is a request aimed at whoever has one, and the useful answer supplies the van with the help it needs to be worth having. The key accepts on that condition; the remark about trailers comments on the logistics instead of volunteering, turning up with nothing to drive offers the one thing not being asked for, and pointing at the allotment association passes the request on rather than answering it."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The earliest engineer slot is Monday between eight and one, and someone over eighteen has to be in the flat.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then cancel it — I'll live on phone data until something better comes along.",
+      "Nobody's here Monday mornings. Is there anything on a Saturday instead?",
+      "Eight till one is a very wide window to sit waiting around in, isn't it?",
+      "Monday's fine. I'll leave the key under the mat for the engineer."
+    ],
+    "correct_answer": "Nobody's here Monday mornings. Is there anything on a Saturday instead?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The slot comes with a condition the household cannot meet, so the reply that gets the broadband installed proposes a day it can. The key counters with the weekend; cancelling outright abandons the installation over one bad morning, the complaint about the width of the window quibbles with the part that isn't the problem, and leaving the key under the mat breaks the attendance requirement that was just spelled out."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Forty for the taxi split three ways is barely more than the train, once you count the bags and the changes.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll cover the whole forty myself — don't worry about splitting it up.",
+      "Forty pounds is a great deal for one journey, however you divide it up.",
+      "True — the train with two changes and these cases would be miserable.",
+      "Then let's just take the train and save ourselves the money after all."
+    ],
+    "correct_answer": "True — the train with two changes and these cases would be miserable.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is a friend thinking aloud towards the taxi and inviting agreement, not asking anyone to pay or to decide. The key agrees and adds the reason; offering to cover the whole fare answers a question about money that wasn't raised, calling forty pounds a great deal per journey misses that the whole point was the split, and choosing the train reaches the opposite conclusion from the one just argued for."
+  }
+]

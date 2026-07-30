@@ -1,0 +1,418 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your argument in section three is interesting, though I'm not sure the evidence you've got is doing quite as much work as you think.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So is it that I need more sources there, or that I'm reading the ones I've got too generously?",
+      "Thanks — I was pleased with that section too, so I'll leave it much as it stands.",
+      "Sorry — I'll cut section three completely and rebuild that part from scratch.",
+      "There are three sections in total, yes, and the fourth one is actually just a summary."
+    ],
+    "correct_answer": "So is it that I need more sources there, or that I'm reading the ones I've got too generously?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The praise is a wrapper; the act is a criticism of how far the evidence stretches. The reply asking whether the problem is too few sources or too generous a reading takes up that criticism and asks what would fix it. The reply that thanks him and leaves the section alone hears approval where there is none, the reply that cuts section three treats a hedged note as a verdict, and the reply counting the sections answers a question about structure that was never asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Since you've already finished the statistics requirement, we can put you straight into the research seminar next term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's great news, thank you. I'll sign up for the seminar the moment the portal opens on Monday.",
+      "Actually I sat the exam, but the credit hasn't come through; my retake is in January.",
+      "Statistics was much harder than I expected — the lab component ate most of my week.",
+      "Would you mind emailing the convenor, just to check there's still a place left?"
+    ],
+    "correct_answer": "Actually I sat the exam, but the credit hasn't come through; my retake is in January.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The advisor is building a plan on a premise that is false, so the useful reply corrects it: the reply explaining that the credit has not come through and a retake is pending stops the registration going wrong. The reply promising to sign up on Monday accepts the bad premise, the reply about how hard statistics was answers the surface word and not the plan, and the reply asking him to email the convenor solves a problem that does not exist yet."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'd like the full literature chapter on my desk by Monday morning — you've had my notes on it for a while now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Of course, Monday's fine. I'll leave the chapter in your pigeonhole before the department meeting.",
+      "I apologise for the delay and accept full responsibility for the state of that chapter.",
+      "Monday won't be possible, I'm afraid. I'm marking two hundred scripts that weekend.",
+      "Your notes were useful, thank you, particularly the ones on the nineteen-nineties debate."
+    ],
+    "correct_answer": "Monday won't be possible, I'm afraid. I'm marking two hundred scripts that weekend.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A deadline is being set with a reproach folded into it, and the honest move is to decline it rather than agree to something undeliverable. The reply naming the marking load declines and gives the reason. The reply agreeing to Monday promises what cannot be done, the reply apologising and accepting responsibility answers the reproach but never the deadline, and the reply praising the notes responds to the wrong half of the sentence."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I've come to the last two office hours and the queue was out the door both times — I never actually got in.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, they've been unusually busy this term, since a lot of people are worried about the midterm.",
+      "You could always post the question on the discussion board instead of coming in person.",
+      "The queue forms by the stairwell rather than the lift — that's where the confusion comes from.",
+      "Let me book you a slot on Thursday, then — that hour is usually much quieter."
+    ],
+    "correct_answer": "Let me book you a slot on Thursday, then — that hour is usually much quieter.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student is not reporting on queue lengths; the report is a request for a way in. The reply booking a Thursday slot gives the student what the complaint was for. The reply agreeing that office hours are busy accepts the surface content and leaves the student exactly where they were, the reply sending them to the discussion board deflects the request, and the reply about where the queue forms answers a logistical question nobody asked."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Do you know if there's any way to get the late-withdrawal penalty waived? My doctor has written me a letter about it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That decision sits with the Committee on Standing — bring the letter to their Wednesday intake.",
+      "I'm afraid penalties can't be waived once the deadline has passed. That's the policy.",
+      "It's good that you saw someone — was it something that kept you out for the whole term?",
+      "The late-withdrawal deadline was the fourteenth, so that's about three weeks ago now."
+    ],
+    "correct_answer": "That decision sits with the Committee on Standing — bring the letter to their Wednesday intake.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "It is phrased as a question about possibility but it is a request for an outcome the front desk cannot grant, so naming who can grant it is the genuinely useful reply. The reply pointing the student at the Committee and its intake day does that. The reply saying penalties are never waived overstates a rule and closes off a real route, the reply asking about the illness follows the doctor's letter into small talk, and the reply reciting the deadline tells the student something they already know."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm happy to sign off on your proposal, assuming you can narrow that last research question before it goes to the board.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's a relief — thank you for signing it off. I'll send the proposal to the board tonight.",
+      "The board meets twice a term, I think, once in October and then again in February.",
+      "I can narrow it, yes, provided the board's deadline leaves me until the end of the month.",
+      "If that question is a problem I'll drop it altogether and work with just the other two."
+    ],
+    "correct_answer": "I can narrow it, yes, provided the board's deadline leaves me until the end of the month.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The sign-off is conditional, and the reply that agrees to narrow the question while attaching its own timing condition engages with the bargain being offered. The reply thanking him and sending the proposal tonight treats a conditional approval as an unconditional one, the reply about when the board meets picks up a detail and drops the condition, and the reply dropping the question entirely gives away far more than was asked for."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's strange how the reading list gets lighter around week eight and then jumps right back up at the very end.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'm sorry — I'll make sure all of the week eight reading is done properly before the next session.",
+      "It does, yes. Week eight felt like a breather, and then the last three weeks landed at once.",
+      "Would you like me to email the whole group and ask them to spread the reading out more evenly?",
+      "Week eight was where we moved into the second module, wasn't it? The one on measurement."
+    ],
+    "correct_answer": "It does, yes. Week eight felt like a breather, and then the last three weeks landed at once.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Here the utterance really is only an observation, and the trap is hearing an accusation or an instruction in it. The reply agreeing and describing the same pattern from the student's side matches what was said. The reply apologising about week eight reads a complaint into it, the reply offering to email the group turns a remark into a task, and the reply asking which module week eight belonged to changes the subject to course structure."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"A conference in Lisbon sounds wonderful — of course, that's the same fortnight as your upgrade viva, isn't it?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It does look wonderful — I've gone ahead and booked the flights, and the hotel as well.",
+      "Lisbon is meant to be lovely in March, apparently. I've never been to Portugal at all.",
+      "It is — I could ask the panel whether the viva might move to the following week.",
+      "I withdraw the request entirely, and I'm sorry for raising it during such a busy period."
+    ],
+    "correct_answer": "It is — I could ask the panel whether the viva might move to the following week.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The enthusiasm is doing the work of an objection: the supervisor is pointing at a clash, not at Portugal. The reply that acknowledges the clash and proposes moving the viva answers the real point and keeps the trip alive. The reply announcing the flights are booked hears only the compliment, the reply about Portugal follows the place name away from the problem, and the reply withdrawing the request and apologising surrenders to a warning that was not a refusal."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My audit still lists the language requirement as outstanding, but I finished the second-year course back in the spring.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Audits do run a term behind sometimes — it's honestly nothing to worry about yet.",
+      "Spring grades were posted late this year across the whole faculty.",
+      "You'll need to submit a graduation application before this can be reviewed.",
+      "I'll send a correction to the registrar this afternoon and copy you in on it."
+    ],
+    "correct_answer": "I'll send a correction to the registrar this afternoon and copy you in on it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A record contradicts the student's own account, so the act is a request to have the record put right. The reply promising a correction to the registrar with the student copied in does exactly that and leaves a trail. The reply saying audits lag reassures instead of acting, the reply about late spring grades explains the cause without fixing it, and the reply demanding a graduation application sends the student off on unrelated paperwork."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Given that your sample is all first-years, I'd frame the discussion around students who haven't declared a major yet.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "About a third of them are second-years, though — I widened the sample after the pilot.",
+      "That's a good frame — I'll rewrite the whole discussion around undeclared students this week.",
+      "I'd have said most people declare a major by the end of second year, from what I've read.",
+      "Should I say more about first-year life in the opening section of the chapter, then?"
+    ],
+    "correct_answer": "About a third of them are second-years, though — I widened the sample after the pilot.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The advice depends on a fact about the sample that is out of date, so correcting the fact matters more than accepting the advice. The reply noting that a third are second-years after the sample was widened does that. The reply agreeing to rewrite the discussion builds on the error, the reply about when people declare a major argues with a side detail, and the reply offering more on first-year life takes the mistaken framing even further."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Have you had a chance to look at the feedback I left on your draft? There were a few queries in the margin.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, I read it on the train home. Thank you for turning it round so quickly.",
+      "Not yet — did you want written answers to the margin queries, or shall we talk them through now?",
+      "The margin comments were hard to read on my tablet — in the end I printed the draft out.",
+      "I'm sorry. I'll rewrite the whole draft from the beginning before we meet again."
+    ],
+    "correct_answer": "Not yet — did you want written answers to the margin queries, or shall we talk them through now?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The question about whether the student has looked is really a prompt to deal with the queries, and how the professor wants them dealt with is genuinely unsettled. The reply asking whether to answer in writing or go through them now engages the request and settles that. The reply simply confirming it was read on the train answers the literal question and stops, the reply about the tablet responds to the format rather than the queries, and the reply promising a full rewrite treats a few margin notes as a demand to start over."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you sign the overload form so I can take six courses? I'll drop one straight away if it gets too much.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd rather not, with your grades still provisional; the overload rule exists for that case.",
+      "Of course — I'll sign it now and you can take it to the registrar's window downstairs.",
+      "If you do drop one, make sure it's before the census date or it'll show on your record.",
+      "The overload form is held by the faculty office, up on the second floor these days."
+    ],
+    "correct_answer": "I'd rather not, with your grades still provisional; the overload rule exists for that case.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The promise to drop a course is offered in advance to make refusal awkward, and the advisor's job here is to decline anyway. The reply declining while pointing at the provisional grades gives the reason without hedging. The reply signing immediately lets the pre-emptive concession do its work, the reply about the census date answers the throwaway clause instead of the request, and the reply about which office holds the form dodges the decision on a technicality."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Rashid's sent me three weeks of comments all in one go, and honestly I can't tell which of them he actually cares about.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Three weeks in one go is brutal. Supervisors always do that right before a deadline.",
+      "Did he put anything at the top of the document? Mine usually flags the big ones up there.",
+      "You might consider asking him for a formal written summary, listing his priorities in order.",
+      "Rashid supervises four of us now, I think — he took on two more people in September."
+    ],
+    "correct_answer": "Did he put anything at the top of the document? Mine usually flags the big ones up there.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The complaint ends on a problem to be solved — which comments matter — so a question that helps sort them is the reply that lands. The reply asking whether anything was flagged at the top of the document does that from shared experience. The reply calling it brutal sympathises and leaves the pile unsorted, the reply advising a formal written summary is stiff between two doctoral students, and the reply about how many people Rashid supervises drifts onto the supervisor himself."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My statistics grade came back far lower than the work I handed in, and you're honestly the only lecturer I know here.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Send me the paper, and I'll have a look at it and re-mark it myself this week.",
+      "I'd guess statistics is on a curve this year — the numbers all look lower than they are.",
+      "The person to see is Dr Osei, who marked it — I'll walk you over and introduce you.",
+      "Any complaint regarding an assessment outcome must be submitted, in writing, to the appeals office."
+    ],
+    "correct_answer": "The person to see is Dr Osei, who marked it — I'll walk you over and introduce you.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The last clause explains why the student came here rather than to the right person, so the helpful move is to hand them on warmly instead of taking it over. The reply naming the marker and offering an introduction does both. The reply promising a re-mark claims authority over someone else's grading, the reply about the curve explains the number away without addressing the grievance, and the reply reciting the appeals procedure is cold enough to end the conversation."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Would it be all right if I brought in a co-author on the methods paper? A friend of mine in the physics department.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "No, I'd keep it single-authored. Co-authorship complicates things badly at this stage.",
+      "Physics people write very differently, in my experience — much shorter sentences than us.",
+      "Is your friend doing a doctorate as well, or are they still finishing a master's degree?",
+      "Fine by me, so long as it's clear in writing who wrote which section."
+    ],
+    "correct_answer": "Fine by me, so long as it's clear in writing who wrote which section.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Permission is being asked for, and the sensible supervisory answer is yes with the one safeguard that matters. The reply agreeing on condition that authorship of each section is written down grants the request and protects the student. The reply refusing outright treats a routine request as a threat, the reply comparing writing styles in physics answers nothing that was asked, and the reply asking about the friend's degree stage gathers detail while leaving the request hanging."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"If you want to graduate in June, you'll have to take the capstone and the field seminar in the same term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Suppose I took the field seminar over the summer instead and kept June as the graduation date.",
+      "That's fine — I'll register for both and simply accept that it'll be a very heavy term.",
+      "June graduation is the bigger ceremony, isn't it? My family were hoping for that one.",
+      "I didn't realise the capstone ran in spring at all — I'd assumed it was an autumn course."
+    ],
+    "correct_answer": "Suppose I took the field seminar over the summer instead and kept June as the graduation date.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A constraint is being presented as the only route, and testing an alternative route is the move that gets something. The reply proposing the field seminar in summer while keeping June holds on to the goal and changes the method. The reply accepting a very heavy term takes the constraint as fixed without checking, the reply about the ceremony answers the word June rather than the problem, and the reply about when the capstone runs raises a confusion that does not address the clash."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Since the ethics approval covers interviews, I've gone ahead and started recruiting for the focus groups this week as well.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Good, that's ahead of schedule — let me know how many people you manage to sign up.",
+      "Focus groups weren't in that application — you'll need an amendment before you recruit.",
+      "How many interviews are you planning altogether? Twenty would be plenty for one chapter.",
+      "Stop all recruitment now and withdraw the whole ethics application from the committee."
+    ],
+    "correct_answer": "Focus groups weren't in that application — you'll need an amendment before you recruit.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The word since carries an inference the student has drawn for themselves, and it is wrong, so the reply has to correct it before the recruiting goes further. The reply pointing out that focus groups were not in the application and an amendment is needed does that plainly. The reply praising the progress endorses the mistake, the reply asking how many interviews are planned follows the safe half of the sentence, and the reply demanding the whole application be withdrawn is a wild over-correction."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I've always thought this novel works better if you read the final chapter first, though nobody in the department agrees with me.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll reread the whole novel backwards before the seminar, then, if that's what you want.",
+      "That's plainly incorrect, given that the author arranged the chapters in a fixed order.",
+      "Who disagrees with you about it — is that something the department argues about often?",
+      "I tried it that way, actually, and the opening made far more sense the second time."
+    ],
+    "correct_answer": "I tried it that way, actually, and the opening made far more sense the second time.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "This is a professor sharing an opinion for its own sake, not issuing an instruction, so agreeing from experience is exactly right. The reply saying the student tried reading it that way and found the opening clearer meets the remark on its own terms. The reply promising to reread the novel backwards hears an assignment, the reply calling the view plainly incorrect is far too blunt for the setting, and the reply asking who disagrees chases the aside instead of the idea."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The system won't let me register at all — it just says there's a hold, and nobody has told me what for.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Holds are usually financial — it might be worth checking your account balance online.",
+      "Registration opens by year group, so first-years can't get in until Thursday anyway.",
+      "I can see it here — it's a library fine. Clear that and I'll lift the hold today.",
+      "You'd need the IT helpdesk, really, for anything to do with the portal."
+    ],
+    "correct_answer": "I can see it here — it's a library fine. Clear that and I'll lift the hold today.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student is blocked and nobody has explained why, so the reply that looks it up and offers to remove the block is the one that ends the problem. The reply naming the library fine and offering to lift the hold does both halves. The reply guessing that holds are usually financial hands the work back to the student, the reply about year-group registration explains a different obstacle altogether, and the reply sending them to the IT helpdesk misreads a records issue as a technical one."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're on campus Fridays anyway, so I thought you might take on the second-year marking as well this term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Happy to. Send the scripts over whenever they're ready and I'll start on them this Friday.",
+      "I'm only in on Friday mornings now — the afternoons I've been working from home.",
+      "I'd request that any additional teaching duties be assigned, formally, by the workload committee.",
+      "That'll have to be a no this term; my fieldwork write-up already fills most of Fridays."
+    ],
+    "correct_answer": "That'll have to be a no this term; my fieldwork write-up already fills most of Fridays.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "An assumption about the student's Fridays is being used to slide a request past them, and declining with a reason is the reply that protects the thesis. The reply refusing for this term because the write-up already fills Fridays does that without rancour. The reply agreeing to start on the scripts lets the assumption stand, the reply correcting which part of Friday is free quibbles with the detail and leaves the request unanswered, and the reply invoking the workload committee escalates a casual ask into a formal dispute."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My tuition invoice went up by four hundred pounds this term, and nobody in my department can tell me why.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Fees do creep up most years, unfortunately — mine went up twice while I was a student here.",
+      "Student Finance on the ground floor can pull up the breakdown. They're open until four.",
+      "Leave the invoice with me and I'll take it up with the department office myself on Monday.",
+      "Which department are you in now? I thought you'd moved across to history last year."
+    ],
+    "correct_answer": "Student Finance on the ground floor can pull up the breakdown. They're open until four.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student has already been round the department and got nowhere, so the reply that names the office holding the itemised figures is the one that moves things. The reply pointing at Student Finance and its opening hours does that. The reply saying fees creep up normalises the problem instead of solving it, the reply offering to take it up with the department repeats the route that has already failed, and the reply asking which department they belong to chases a detail and forgets the invoice."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I think I want to change my major, but honestly it's more that I can't stand the people in my current cohort.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then let's separate those two things: whether you've gone off the subject, or gone off the people.",
+      "I'll send over the change-of-major form, and we can get it in before the deadline.",
+      "Cohorts can be difficult — most people find a group they click with by second year.",
+      "Which major were you thinking of moving into? Some of them have extra prerequisites."
+    ],
+    "correct_answer": "Then let's separate those two things: whether you've gone off the subject, or gone off the people.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The stated request and the stated reason do not match, and the student has as good as said so, so the reply that pulls the two apart is the one that helps. The reply that pulls the subject apart from the people takes the admission seriously. The reply sending the form acts on a request the student has just undercut, the reply reassuring them about cohorts brushes past the decision, and the reply asking which major they would move into is a question about the wrong half of the problem."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The chapter reads well, but there's no bridge at all between the theory section and the case study that follows it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thank you — I was worried the theory section would end up being too dense to follow.",
+      "I'll write a short linking passage that sets the case up in the theory's own terms.",
+      "The case study was the part I enjoyed writing most — it came together very quickly.",
+      "I'll cut the theory section out entirely and let the case study carry the argument."
+    ],
+    "correct_answer": "I'll write a short linking passage that sets the case up in the theory's own terms.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The compliment is there to soften a specific structural fault, and the fault is what needs answering. The reply proposing a short linking passage in the theory's terms fixes the gap that was named. The reply thanking him for the praise hears only the first half, the reply about enjoying the case study answers neither half, and the reply cutting the theory section removes a piece of the chapter when only a join was missing."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Is there any chance of an extension on the essay? My grandmother's in hospital and I've been travelling back most weekends.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Extensions require documentation submitted at least five working days before the deadline.",
+      "I'm very sorry to hear that — hospitals are exhausting, especially at that sort of distance.",
+      "I wonder how far the journey is. Some students commute two or three hours each way here.",
+      "Take until the tenth, but send me what you have now so I know where you are."
+    ],
+    "correct_answer": "Take until the tenth, but send me what you have now so I know where you are.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A request is being made under real strain, and granting it with one small string attached is both kind and responsible. The reply giving until the tenth on condition that the current draft is sent now does that. The reply reciting the documentation rule refuses on a technicality, the reply offering sympathy alone never answers the request, and the reply wondering how far the journey is turns a difficult disclosure into small talk."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You'll want a control group for this, otherwise the reviewers will simply say the effect you found could be anything.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "A control is out of reach with this sample, so I'd want a before-and-after design instead.",
+      "I'll recruit a second group, the same size again, and run them alongside next term.",
+      "Which journal did you have in mind? Their reviewers are notoriously slow, I've heard.",
+      "The effect was fairly large in the pilot — I doubt anyone will really question it."
+    ],
+    "correct_answer": "A control is out of reach with this sample, so I'd want a before-and-after design instead.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The supervisor is naming a design weakness rather than prescribing the only remedy, so proposing a workable alternative answers the concern. The reply saying a control is out of reach and offering a before-and-after design keeps the objection in view. The reply promising to recruit a second group agrees to something the sample will not allow, the reply asking which journal follows the word reviewers away from the design, and the reply citing a large pilot effect brushes the objection aside."
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're in the Tuesday seminar with Dr Halvorsen, aren't you? Then the presentation deadline doesn't affect you until May.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's a relief — I'll start on the presentation once the exams are out of the way.",
+      "May seems quite late for a presentation. Most of the other courses finish up in April.",
+      "My group changed to Thursdays back in October, so mine is due in March, I think.",
+      "I'll check with Dr Halvorsen, and let you know what he says about the timing of it."
+    ],
+    "correct_answer": "My group changed to Thursdays back in October, so mine is due in March, I think.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The reassurance rests on a mistaken belief about which seminar the student is in, and letting it stand would cost them two months. The reply explaining the move to the Thursday group and the earlier deadline corrects it at once. The reply expressing relief accepts the error, the reply querying whether May is late argues with the date instead of the premise, and the reply promising to check with Dr Halvorsen defers a correction the student can make immediately."
+  }
+]
