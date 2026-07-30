@@ -37,6 +37,54 @@ Global rules for every item type:
   could see it, because a distribution is not a property of one item.
   Guarded by `scripts/verify-answer-key-spread.ts`, which fails a cohort above
   40% on longest OR shortest — run it before inserting.
+### The hedge/absolute asymmetry — and why the fix is on the DISTRACTOR side
+
+Measured against 462 official College Board Digital SAT items and 314 ETS
+TOEFL items (2026 practice tests, teacher's resources, released sets),
+because we had no released items in the repo and the reference rate could
+not be guessed:
+
+    "pick the only hedged option" scores, on the OFFICIAL exams
+      SAT Reading & Writing   21%  — key 20.7% / distractor 21.0%, PARITY
+      TOEFL Listening         23%  — key  6.9% / distractor 12.0%, keys
+                                     hedge LESS than distractors
+      TOEFL Reading           47%  — key 23.8% / distractor 11.2%, a real
+                                     tell on the real exam
+
+So "a correct answer hedges because it must be defensible" is true for
+TOEFL Reading and false everywhere else. Do not aim every section at 25%,
+and do not aim SAT keys at "more hedged".
+
+**Our keys are fine.** Every key-side deviation from official is
+statistically insignificant. The gap is entirely in the distractors:
+
+    absolutes (all / every / always / never / only / must / cannot)
+      official distractors    1.4 - 6.5% of options
+      ours                   11 - 19%
+
+That is not merely a tell. An absolute is the single most-taught
+elimination cue on both exams, so roughly one wrong answer in five is
+currently removable without reading the passage — which makes our items
+EASIER than the real thing, not just more guessable.
+
+What to do when authoring:
+
+- **Vary how a distractor is wrong.** Overstatement is one way. The others
+  are: right claim about the wrong paragraph, reversed causation, the
+  answer to a question that was not asked, a true statement that does not
+  address the prompt, the popular misconception the passage corrects.
+  Reach for overstatement roughly as often as official items do — rarely.
+- **Distractors may hedge.** Official SAT distractors hedge as often as its
+  keys do. A hedged wrong answer is a better trap than an absolute one,
+  because it cannot be eliminated on form.
+- **The target is the key/distractor RATIO, not a level.** Cutting
+  distractor absolutes alone would flip the SAT absolute tell from 13.9% to
+  36.8%, because our keys carry absolutes at 10.8% against an official
+  6.5%. Move both sides toward the official ratio or neither.
+- **Leave TOEFL Reading hedges alone.** Ours already match ETS there.
+
+Full working, corpora and per-section z-scores: `docs/plans/hedge-word-tell.md`.
+
 - Ensure topical VARIETY within a batch — never reuse a scenario/topic twice.
   EXCEPTION: `speaking_interview`. On the real exam one interview = one topic,
   so the 4 questions of a single interview set MUST share a scenario and topic.
