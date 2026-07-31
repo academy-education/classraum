@@ -14,6 +14,7 @@ import {
   type DeepLinkData,
   type StatusBarStyle,
 } from '@/lib/nativeApp'
+import { runBackInterceptor } from '@/lib/back-intercept'
 
 interface UseNativeAppOptions {
   // Called when app resumes from background
@@ -103,6 +104,19 @@ export function useNativeApp(options: UseNativeAppOptions = {}): UseNativeAppRet
         options.onPause?.()
       },
       onBackButton: () => {
+        // A surface may own the back button — currently a live timed test,
+        // which shows its submit confirmation instead. Checked FIRST and
+        // returned immediately, because both branches below are destructive
+        // mid-test: router.back() navigates off the test, and returning
+        // false leads to App.exitApp(), which finishes the activity, fires
+        // onStop, and is the authoritative end-the-test event on Android.
+        //
+        // This must stay the ONLY backButton listener. Capacitor fires every
+        // registered listener, so a component adding its own would not stop
+        // this one — see src/lib/back-intercept.ts.
+        if (runBackInterceptor()) {
+          return true // consumed; do not navigate, do not exit
+        }
         // Check if we can go back in history
         if (window.history.length > 1) {
           router.back()

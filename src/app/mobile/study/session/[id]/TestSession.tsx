@@ -31,6 +31,7 @@ import { WritingScenario, BlankLetterInput } from './test/WritingPanels'
 import { ReviewView } from './test/ReviewView'
 import { SubmitConfirmModal, GenerationProgress } from './test/chrome'
 import { useAppExitGuard } from './test/useAppExitGuard'
+import { setBackInterceptor } from '@/lib/back-intercept'
 import { EXIT_END_REASON, exitMarkerKey, type TestEndReason } from '@/lib/study/test-exit-guard'
 
 /**
@@ -908,6 +909,29 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       setEndedByAppExit(true)
     }, []),
   })
+
+  // Android hardware back, while the test is LIVE, opens the submit
+  // confirmation rather than leaving.
+  //
+  // Without this the press was destructive both ways: with history it
+  // navigated off the test, and without it reached App.exitApp() — which
+  // finishes the activity, fires onStop, and is exactly the event the exit
+  // guard above treats as "the student left". So the most-pressed button on
+  // Android was an accidental trigger for ending the exam.
+  //
+  // Gated on phase 'taking' so back behaves normally everywhere else,
+  // including the review screen after submitting.
+  //
+  // The updater TOGGLES rather than sets: pressed with the modal open, back
+  // should dismiss it (what the button means everywhere else), and the
+  // functional form reads current state, so no stale closure.
+  useEffect(() => {
+    if (phase !== 'taking') return
+    setBackInterceptor(() => setConfirmOpen(prev => !prev))
+    // Releasing on unmount is not optional — a stale owner would leave back
+    // dead for the rest of the session.
+    return () => setBackInterceptor(null)
+  }, [phase])
   // One auto-attempt, same shape as the timer-expiry guard below: a
   // failed submit drops the phase back to 'taking', and without the ref
   // this effect would fire again on every render.
