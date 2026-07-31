@@ -7,6 +7,7 @@ import { Gift, Copy, Check, Users, Sparkles, Ticket, Share2 } from '@/app/mobile
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'
+import { inviteUrl } from '@/lib/deeplinks'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyScrollShell, StudyMetric, StudyPageTransition } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
@@ -162,12 +163,19 @@ function ReferralInner() {
 function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; signupReward: number; premiumReward: number; ko: boolean }) {
   const [copied, setCopied] = useState(false)
 
-  // Invite link points at the signup page's study door with the code in
-  // the URL: /auth prefills + locks the referral input from ?ref, and the
-  // code is persisted (pending-referral) so it survives email confirmation
-  // and is redeemed after the account exists.
+  // Invite link points at /invite/CODE, which both native apps claim as a
+  // deep link — so a recipient WITH the app opens it there, and one without
+  // gets a store screen instead of a bare signup form.
+  //
+  // It used to point straight at /auth?intent=study&ref=CODE. That still
+  // works and is where /invite hands off to (prefill + lock + persist +
+  // redeem all live there, untouched), but as a share URL it had two
+  // problems: nothing offered the app to someone who did not have it, and
+  // the AASA claims /auth/*, which does not match a bare /auth — so iOS
+  // would not have opened it even with the rest of the deep-link config
+  // fixed.
   const inviteLink = typeof window !== 'undefined'
-    ? `${window.location.origin}/auth?intent=study&ref=${encodeURIComponent(code)}`
+    ? inviteUrl(code, window.location.origin)
     : ''
 
   const copy = useCallback(async (text: string) => {

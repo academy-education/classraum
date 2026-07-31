@@ -58,3 +58,23 @@ export function generateReferralCode(length: number = REFERRAL_CODE_LENGTH): str
 export function normalizeReferralCode(raw: string): string {
   return raw.trim().toUpperCase()
 }
+
+/**
+ * Could this string be one of our codes? Shape only — says nothing about
+ * whether the code EXISTS.
+ *
+ * Used by the public /invite/[code] page so a URL that could never be a
+ * real code 404s instead of rendering a branded page for arbitrary input.
+ * The existence check is deliberately NOT done there: /invite is
+ * unauthenticated, so looking a code up would let anyone probe which codes
+ * are real, and with a 6-character alphabet that is a cheap enumeration.
+ * A wrong-but-well-formed code therefore renders the page and fails at
+ * redeem, behind auth, where the redeem route already answers
+ * `unknown_code`.
+ */
+export function isWellFormedReferralCode(raw: string): boolean {
+  const c = normalizeReferralCode(raw)
+  if (c.length !== REFERRAL_CODE_LENGTH) return false
+  for (const ch of c) if (!CODE_ALPHABET.includes(ch)) return false
+  return true
+}

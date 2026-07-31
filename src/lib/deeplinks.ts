@@ -69,3 +69,31 @@ export function appStoreUrl(): string | null {
 export function inviteUrl(code: string, origin: string): string {
   return `${origin.replace(/\/$/, '')}/invite/${encodeURIComponent(code.trim().toUpperCase())}`
 }
+
+export type DevicePlatform = 'ios' | 'android' | 'desktop' | 'unknown'
+
+/**
+ * Which store, if any, to offer this visitor.
+ *
+ * Lives here rather than inside the invite component so it can be tested
+ * against real UA strings — the branch cannot be exercised by browsing,
+ * because the browser's UA is whatever it is, and "looks right in source"
+ * is how you ship an Android user to the App Store.
+ *
+ * `maxTouchPoints` is load-bearing: iPadOS 13+ reports itself as
+ * "Macintosh" in the UA, so string matching alone classifies every iPad as
+ * a desktop and hides the App Store link from it.
+ *
+ * A mobile browser we cannot place returns 'unknown' rather than a guess;
+ * the caller shows both stores.
+ */
+export function detectPlatform(ua: string, maxTouchPoints = 0): DevicePlatform {
+  if (/iPhone|iPod/.test(ua)) return 'ios'
+  if (/iPad/.test(ua)) return 'ios'
+  if (/Macintosh/.test(ua) && maxTouchPoints > 1) return 'ios'
+  // Android must be checked before the generic Mobi catch-all, and note
+  // that Android UAs also contain "Linux" — order matters here.
+  if (/Android/.test(ua)) return 'android'
+  if (/Mobi/.test(ua)) return 'unknown'
+  return 'desktop'
+}

@@ -19,6 +19,7 @@ import {
   APPLE_TEAM_ID,
   APP_ID,
   appStoreUrl,
+  detectPlatform,
   inviteUrl,
   PLAY_STORE_URL,
 } from '../deeplinks'
@@ -110,5 +111,54 @@ describe('inviteUrl', () => {
 
   it('escapes a code that would otherwise alter the path', () => {
     expect(inviteUrl('a/b', 'https://x.test')).toBe('https://x.test/invite/A%2FB')
+  })
+})
+
+describe('detectPlatform', () => {
+  // Real UA strings. The whole point of this branch is sending a person to
+  // the store they can actually install from, and getting it wrong is
+  // invisible on the developer's own machine.
+  const UA = {
+    iphone: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1',
+    ipadOld: 'Mozilla/5.0 (iPad; CPU OS 12_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1',
+    ipadOS13: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15',
+    android: 'Mozilla/5.0 (Linux; Android 14; SM-S911N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Mobile Safari/537.36',
+    androidTablet: 'Mozilla/5.0 (Linux; Android 13; SM-X700) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    mac: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+    windows: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+    kakaoAndroid: 'Mozilla/5.0 (Linux; Android 14; SM-S911N) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/125.0.0.0 Mobile Safari/537.36 KAKAOTALK 10.4.5',
+    kakaoIos: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 KAKAOTALK 10.4.5',
+  }
+
+  it.each([
+    ['iphone', UA.iphone, 0, 'ios'],
+    ['old iPad', UA.ipadOld, 0, 'ios'],
+    ['android phone', UA.android, 0, 'android'],
+    // A tablet UA with no "Mobi" token — must still be Android, not desktop.
+    ['android tablet', UA.androidTablet, 0, 'android'],
+    ['mac desktop', UA.mac, 0, 'desktop'],
+    ['windows desktop', UA.windows, 0, 'desktop'],
+    // Korea ships most invite links through KakaoTalk's in-app browser.
+    ['kakaotalk on android', UA.kakaoAndroid, 0, 'android'],
+    ['kakaotalk on ios', UA.kakaoIos, 0, 'ios'],
+  ])('classifies %s', (_label, ua, touch, expected) => {
+    expect(detectPlatform(ua as string, touch as number)).toBe(expected)
+  })
+
+  it('treats an iPadOS 13+ tablet as iOS, not desktop', () => {
+    // iPadOS 13+ lies in its UA and claims to be a Mac. Without the
+    // touch-points check every iPad is classified desktop and silently
+    // redirected past the App Store link.
+    expect(detectPlatform(UA.ipadOS13, 5)).toBe('ios')
+  })
+
+  it('still treats a real Mac as desktop', () => {
+    // Same UA as above with no touch points — the pair is what makes the
+    // check meaningful, so both directions are asserted.
+    expect(detectPlatform(UA.ipadOS13, 0)).toBe('desktop')
+  })
+
+  it('never guesses a store for an unclassifiable mobile browser', () => {
+    expect(detectPlatform('Mozilla/5.0 (Unknown; Mobi) SomeBrowser/1.0', 0)).toBe('unknown')
   })
 })

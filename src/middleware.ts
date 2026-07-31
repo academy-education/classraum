@@ -54,6 +54,13 @@ export function middleware(request: NextRequest) {
   // manager to sign up. Token in the URL gates access; the API validates it.
   const isOnboardingRoute = url.pathname.startsWith('/onboarding/')
 
+  // Public friend-invite landing (/invite/CODE). MUST be listed: without it
+  // the app-subdomain branch falls through to "redirect unknown routes to
+  // /auth", which drops the path — and with it the referral code — so every
+  // invite would arrive unattributed. The page reveals nothing about the
+  // code (no lookup, by design); redemption still happens behind auth.
+  const isInviteRoute = url.pathname.startsWith('/invite/')
+
   // Internal preview routes (sandbox; remove with the route files when done)
   const isDesignPreviewRoute =
     url.pathname.startsWith('/design-preview') ||
@@ -106,6 +113,11 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
+    // Allow the public friend-invite landing (no auth; hands off to /auth)
+    if (isInviteRoute) {
+      return NextResponse.next()
+    }
+
     // Allow internal design-preview sandbox
     if (isDesignPreviewRoute) {
       return NextResponse.next()
@@ -135,6 +147,11 @@ export function middleware(request: NextRequest) {
 
     // Allow public onboarding pages (token-gated, no auth)
     if (isOnboardingRoute) {
+      return NextResponse.next()
+    }
+
+    // Allow the public friend-invite landing (no auth; hands off to /auth)
+    if (isInviteRoute) {
       return NextResponse.next()
     }
 
