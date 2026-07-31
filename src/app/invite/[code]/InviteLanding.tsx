@@ -35,7 +35,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { savePendingReferral } from '@/lib/study/pending-referral'
 import { appStoreUrl, detectPlatform, PLAY_STORE_URL, type DevicePlatform } from '@/lib/deeplinks'
 import { REFERRAL_PREMIUM_CREDITS, REFERRAL_SIGNUP_CREDITS } from '@/lib/study/referral'
-import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
+import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
 
 export function InviteLanding({ code }: { code: string }) {
   const router = useRouter()
@@ -94,7 +94,7 @@ export function InviteLanding({ code }: { code: string }) {
   const ios = appStoreUrl()
 
   return (
-    <main className="min-h-dvh bg-gray-50 px-5 py-10 flex flex-col items-center">
+    <main className="min-h-dvh bg-gray-50 px-5 py-10 flex flex-col items-center justify-center">
       <div className="w-full max-w-sm space-y-5">
         <header className="text-center space-y-2">
           <h1 className="text-[22px] font-bold text-gray-900 leading-snug break-keep">
@@ -164,7 +164,7 @@ export function InviteLanding({ code }: { code: string }) {
           {platform === 'ios' && ios && (
             <a
               href={ios}
-              className="w-full inline-flex items-center justify-center h-12 rounded-xl bg-gray-900 text-white text-[14px] font-semibold active:scale-[0.99] transition"
+              className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true, square: true })}
             >
               {ko ? 'App Store에서 다운로드' : 'Download on the App Store'}
             </a>
@@ -172,7 +172,7 @@ export function InviteLanding({ code }: { code: string }) {
           {platform === 'android' && (
             <a
               href={PLAY_STORE_URL}
-              className="w-full inline-flex items-center justify-center h-12 rounded-xl bg-gray-900 text-white text-[14px] font-semibold active:scale-[0.99] transition"
+              className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true, square: true })}
             >
               {ko ? 'Google Play에서 받기' : 'Get it on Google Play'}
             </a>
@@ -185,14 +185,14 @@ export function InviteLanding({ code }: { code: string }) {
               {ios && (
                 <a
                   href={ios}
-                  className="w-full inline-flex items-center justify-center h-12 rounded-xl bg-gray-900 text-white text-[14px] font-semibold active:scale-[0.99] transition"
+                  className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true, square: true })}
                 >
                   {ko ? 'App Store에서 다운로드' : 'Download on the App Store'}
                 </a>
               )}
               <a
                 href={PLAY_STORE_URL}
-                className="w-full inline-flex items-center justify-center h-12 rounded-xl bg-gray-900 text-white text-[14px] font-semibold active:scale-[0.99] transition"
+                className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true, square: true })}
               >
                 {ko ? 'Google Play에서 받기' : 'Get it on Google Play'}
               </a>

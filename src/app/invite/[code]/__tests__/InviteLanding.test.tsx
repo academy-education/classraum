@@ -171,3 +171,30 @@ describe('copy button failure feedback', () => {
     expect(screen.queryByRole('status')).toBeNull()
   })
 })
+
+describe('store links use the shared button styling', () => {
+  // These were hand-rolled anchors. studyButtonClass exists precisely for
+  // "use on a <Link>/<a> CTA so it matches StudyButton exactly", and the
+  // hand-rolled version silently dropped the ONLY keyboard focus indicator
+  // on the page — invisible in a mouse/touch review, and the sort of thing
+  // that comes back the moment someone adds a third store button.
+  it('gives every store link a visible keyboard focus ring', async () => {
+    setUA(UA.iphone)
+    render(<InviteLanding code="ABC234" />)
+    const links = await screen.findAllByRole('link')
+    expect(links.length).toBeGreaterThan(0)
+    for (const a of links) {
+      expect(a.className).toMatch(/focus-visible:ring/)
+    }
+  })
+
+  it('matches the copy button height so adjacent CTAs are not mismatched', async () => {
+    setUA(UA.android)
+    render(<InviteLanding code="ABC234" />)
+    const link = (await screen.findAllByRole('link'))[0]
+    // size="lg" === h-12 + text-[15px]; the hand-rolled version was
+    // h-12 + text-[14px], 8px away from a 15px button.
+    expect(link.className).toMatch(/h-12/)
+    expect(link.className).toMatch(/text-\[15px\]/)
+  })
+})
