@@ -37,7 +37,6 @@ const TESTS = [
 ]
 
 const GRADES = [
-  { value: 'elementary', label_en: 'Elementary',  label_ko: '초등학생' },
   { value: 'middle',     label_en: 'Middle School', label_ko: '중학생' },
   { value: 'high',       label_en: 'High School',   label_ko: '고등학생' },
   { value: 'college',    label_en: 'College',       label_ko: '대학생' },
