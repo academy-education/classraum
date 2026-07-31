@@ -73,11 +73,27 @@ describe('apple app site association', () => {
 })
 
 describe('store links', () => {
-  it('returns no App Store URL until a real numeric id is configured', () => {
-    // Guards against shipping a button that points at a nonexistent listing.
-    // NEXT_PUBLIC_IOS_APP_STORE_ID is unset in test, so this is the live path.
-    const url = appStoreUrl()
-    if (url !== null) expect(url).toMatch(/^https:\/\/apps\.apple\.com\/app\/id\d+$/)
+  // The listing is live (verified 2026-07-31 via the iTunes lookup API:
+  // trackId 6757461159 for bundleId com.classraum.app). If this ever returns
+  // null the invite page silently drops its iOS download button, which is the
+  // exact failure the hardcoded default exists to prevent — so assert a real
+  // URL, not merely a well-formed one.
+  it('produces a real App Store URL by default', () => {
+    expect(appStoreUrl()).toBe('https://apps.apple.com/app/id6757461159')
+  })
+
+  it('rejects a non-numeric id rather than building a broken link', () => {
+    const prev = process.env.NEXT_PUBLIC_IOS_APP_STORE_ID
+    try {
+      process.env.NEXT_PUBLIC_IOS_APP_STORE_ID = 'id6757461159' // a classic paste error
+      jest.resetModules()
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      expect(require('../deeplinks').appStoreUrl()).toBeNull()
+    } finally {
+      if (prev === undefined) delete process.env.NEXT_PUBLIC_IOS_APP_STORE_ID
+      else process.env.NEXT_PUBLIC_IOS_APP_STORE_ID = prev
+      jest.resetModules()
+    }
   })
 })
 

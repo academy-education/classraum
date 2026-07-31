@@ -46,13 +46,19 @@ export const PLAY_STORE_URL =
   `https://play.google.com/store/apps/details?id=${APP_ID}`
 
 /**
- * Numeric App Store ID (the `id` in apps.apple.com/app/id1234567890).
+ * Numeric App Store ID — the `id` in apps.apple.com/app/id6757461159.
  *
- * Unset until the iOS app is published. Deliberately NOT guessed: a store
- * button pointing at a nonexistent listing is worse than no button, so
- * `appStoreUrl()` returns null and callers hide the button instead.
+ * Hardcoded, not env-only, because it is a public constant that never
+ * changes for the life of the listing. Behind an env var it would be one
+ * more thing to set per environment, and forgetting it fails SILENTLY —
+ * `appStoreUrl()` returns null and the download button just vanishes. The
+ * override stays for staging builds pointing at a different listing.
+ *
+ * Confirmed live 2026-07-31 via https://itunes.apple.com/lookup?bundleId=com.classraum.app
+ * (trackId 6757461159, bundleId com.classraum.app, seller "Classraum Co., Ltd").
  */
-const IOS_APP_STORE_ID = process.env.NEXT_PUBLIC_IOS_APP_STORE_ID?.trim() || ''
+const IOS_APP_STORE_ID =
+  process.env.NEXT_PUBLIC_IOS_APP_STORE_ID?.trim() || '6757461159'
 
 export function appStoreUrl(): string | null {
   if (!/^\d+$/.test(IOS_APP_STORE_ID)) return null
