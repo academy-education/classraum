@@ -41,6 +41,31 @@ export const APPLE_APP_SITE_ASSOCIATION = {
   webcredentials: { apps: [APPLE_APP_ID] },
 } as const
 
+/**
+ * SHA-256 of the PLAY APP SIGNING key — the certificate Google re-signs every
+ * release with, and therefore the only one present on a user's device.
+ *
+ * Source: Play Console -> Test and release -> App signing -> "App signing key
+ * certificate". Read 2026-07-31.
+ *
+ * NOT the upload key. That is the trap: the upload key is the one a developer
+ * handles directly, it appears on the same screen, and using it produces an
+ * assetlinks.json that is perfectly well-formed, parses cleanly, is accepted by
+ * Google's Digital Asset Links API — and verifies on no installed copy of the
+ * app, because Play stripped that signature before shipping.
+ *
+ * That is not hypothetical. Until this commit the file named
+ * D1:3D:6A:0E:82:...:F5:A0:1F, which matches neither certificate on that
+ * screen. Android App Links had therefore NEVER verified, and nothing noticed,
+ * because every available check inspects the statement's shape rather than
+ * whether the key signs anything real.
+ *
+ * If a release ever moves to a new signing key ("Request key upgrade"), this
+ * must list BOTH during the transition or existing installs stop verifying.
+ */
+export const ANDROID_SHA256_FINGERPRINT =
+  'B0:92:D5:07:76:DB:D7:EB:46:7C:A1:AB:6F:E9:8A:28:68:6A:35:6F:D3:C7:EC:D7:FE:1C:4E:CF:84:88:B3:F8'
+
 /** Play listing is derivable from the package name; the App Store's is not. */
 export const PLAY_STORE_URL =
   `https://play.google.com/store/apps/details?id=${APP_ID}`

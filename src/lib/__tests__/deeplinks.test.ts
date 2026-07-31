@@ -17,6 +17,7 @@ import { join } from 'path'
 import {
   APPLE_APP_SITE_ASSOCIATION,
   APPLE_TEAM_ID,
+  ANDROID_SHA256_FINGERPRINT,
   APP_ID,
   appStoreUrl,
   detectPlatform,
@@ -160,5 +161,44 @@ describe('detectPlatform', () => {
 
   it('never guesses a store for an unclassifiable mobile browser', () => {
     expect(detectPlatform('Mozilla/5.0 (Unknown; Mobi) SomeBrowser/1.0', 0)).toBe('unknown')
+  })
+})
+
+describe('android asset links', () => {
+  const assetlinks = () =>
+    JSON.parse(read('public/.well-known/assetlinks.json')) as Array<{
+      relation: string[]
+      target: { namespace: string; package_name: string; sha256_cert_fingerprints: string[] }
+    }>
+
+  it('declares the Play APP SIGNING key, not some other certificate', () => {
+    const fps = assetlinks().flatMap(s => s.target.sha256_cert_fingerprints)
+    expect(fps).toContain(ANDROID_SHA256_FINGERPRINT)
+  })
+
+  it('does not carry the dead fingerprint that never verified', () => {
+    // The file shipped with this value until 2026-07-31. It matches neither
+    // certificate in Play Console, so App Links verified on no device — and
+    // every structural check passed anyway, including Google's own Digital
+    // Asset Links API, which validates shape rather than whether the key
+    // signs anything. Pinned explicitly so a revert is loud.
+    const raw = read('public/.well-known/assetlinks.json')
+    expect(raw).not.toContain('D1:3D:6A:0E:82:AE:5B:E1')
+  })
+
+  it('targets the package both stores ship', () => {
+    for (const s of assetlinks()) {
+      expect(s.target.package_name).toBe(APP_ID)
+      expect(s.target.namespace).toBe('android_app')
+      expect(s.relation).toContain('delegate_permission/common.handle_all_urls')
+    }
+  })
+
+  it('uses the uppercase colon-separated form Google requires', () => {
+    for (const fp of assetlinks().flatMap(s => s.target.sha256_cert_fingerprints)) {
+      // 32 bytes, uppercase hex, colon-separated. A lowercase or
+      // colon-stripped fingerprint is silently rejected.
+      expect(fp).toMatch(/^([0-9A-F]{2}:){31}[0-9A-F]{2}$/)
+    }
   })
 })
