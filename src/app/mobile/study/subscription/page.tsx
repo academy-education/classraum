@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
+import { App } from '@capacitor/app'
 import Link from 'next/link'
 import {
   CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw,
@@ -16,6 +17,7 @@ import { openExternalUrl } from '@/lib/nativeApp'
 import { FREE_CREDITS, creditCostForTest, isPassPlan } from '@/lib/study/plans'
 import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
+import { isAppReturnedEvent, type AppLifecycleEvent, type ExitPlatform } from '@/lib/study/test-exit-guard'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
 import { passCreditLabel } from '../_shared/pass-label'
@@ -112,6 +114,15 @@ function subscribeOnWebUrl(planId: string): string {
 type Acting = 'cancel' | 'reactivate' | 'pack' | 'pass' | `checkout:${string}` | `change:${string}` | null
 
 /**
+ * Two "the app came back" signals can arrive for one return (iOS fires
+ * both `resume` and `appStateChange{isActive:true}`, and a WebView also
+ * raises `visibilitychange`). Collapse anything inside this window into
+ * a single refetch — a user cannot leave and genuinely return twice
+ * inside it, so nothing real is dropped.
+ */
+const RESUME_COALESCE_MS = 1500
+
+/**
  * /mobile/study/subscription — plans, credits, and billing management.
  *
  * Two tiers (General / Premium) with a monthly test-credit grant.
@@ -140,7 +151,13 @@ export default function SubscriptionPage() {
   const [confirmingCancel, setConfirmingCancel] = useState(false)
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
+  // True while a GET of /api/study/subscription is outstanding — read by
+  // the resume refresh so a return that lands mid-load doesn't race a
+  // second response in behind the first.
+  const inFlightRef = useRef(false)
+
   const load = useCallback(async () => {
+    inFlightRef.current = true
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/subscription', { headers })
@@ -149,11 +166,83 @@ export default function SubscriptionPage() {
     } catch {
       setError(t('study.subscription.loadFailed') as string)
     } finally {
+      inFlightRef.current = false
       setLoading(false)
     }
   }, [t])
 
   useEffect(() => { void load() }, [load])
+
+  // ── Refresh when the app comes back to the foreground ──────────────
+  //
+  // Native students can't be sold to in-app (App Store anti-steering), so
+  // the plan cards send them to app.classraum.com in an EXTERNAL browser.
+  // They pay there and swipe back — into a WebView whose React tree never
+  // unmounted, still rendering the plan they had before they paid. The
+  // mobile layout does call useNativeApp({ onResume }), but that handler
+  // only calls PersistentMobileAuth's `refetch`; it has no knowledge of
+  // this page's `load()`, so nothing here re-runs. Hence a listener of
+  // our own.
+  //
+  // Refs, not deps: the listeners are registered ONCE (the callback below
+  // has no dependencies) so a re-render can never stack a second copy,
+  // and they still read current state through these.
+  const loadRef = useRef(load)
+  loadRef.current = load
+  const actingRef = useRef(acting)
+  actingRef.current = acting
+  const lastResumeRef = useRef(0)
+
+  const refreshOnReturn = useCallback(() => {
+    // A checkout/cancel/plan-change is mid-flight. It ends with its own
+    // `await load()`, and on native it is the PortOne overlay itself that
+    // backgrounded us — refetching now would either race that load or
+    // overwrite the pre-charge state on top of it.
+    if (actingRef.current !== null) return
+    if (inFlightRef.current) return
+    const now = Date.now()
+    if (now - lastResumeRef.current < RESUME_COALESCE_MS) return
+    lastResumeRef.current = now
+    void loadRef.current()
+  }, [])
+
+  useEffect(() => {
+    // Native: @capacitor/app. `isAppReturnedEvent` is reused from the
+    // test-exit-guard rather than reimplemented — the iOS/Android
+    // asymmetry documented there is about which event proves the app
+    // LEFT; both platforms agree on what proves it came back, and this
+    // page only needs the latter.
+    if (Capacitor.isNativePlatform()) {
+      const platform = Capacitor.getPlatform() as ExitPlatform
+      const handle = (event: AppLifecycleEvent) => {
+        if (isAppReturnedEvent(platform, event)) refreshOnReturn()
+      }
+      const handles: Array<{ remove: () => Promise<void> }> = []
+      let removed = false
+      const keep = (p: Promise<{ remove: () => Promise<void> }>) => {
+        void p.then(h => {
+          // Unmounted before the plugin resolved the handle — remove it
+          // immediately instead of leaking a listener onto a dead page.
+          if (removed) { void h.remove(); return }
+          handles.push(h)
+        }).catch(() => { /* plugin unavailable — refresh simply stays off */ })
+      }
+      keep(App.addListener('resume', () => handle({ type: 'resume' })))
+      keep(App.addListener('appStateChange', s => handle({ type: 'appStateChange', isActive: s.isActive })))
+      return () => {
+        removed = true
+        handles.forEach(h => { void h.remove() })
+      }
+    }
+
+    // Web (and PWA): the same page is served at app.classraum.com, where
+    // a student pays in another tab and switches back. No Capacitor there.
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') refreshOnReturn()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
+  }, [refreshOnReturn])
 
   // Mobile redirect checkouts (packs / passes) come back from
   // /mobile/study/billing-redirect with ?purchased=pack|pass — surface
