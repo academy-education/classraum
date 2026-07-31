@@ -87,6 +87,28 @@ interface SubPayload {
   access?: { all: boolean; tests: string[] }
 }
 
+/**
+ * Native "subscribe on web" destination.
+ *
+ * The old version opened '/mobile/study/subscription' directly. That fails
+ * because @capacitor/browser opens Custom Tabs / SFSafariViewController, which
+ * keep their OWN cookie jar — separate from the WebView holding the Supabase
+ * session — so the student arrived logged OUT, hit the auth gate, and the
+ * button was dead. It also pointed at the page they were already on.
+ *
+ * So: send them to /auth deliberately, and use ?next= to bring them back to
+ * checkout once they have signed in. They DO have to sign in — that is the
+ * accepted cost of this approach, chosen over minting one-time login links,
+ * which would mean an endpoint whose whole job is handing out sessions.
+ *
+ * ?next= is validated on arrival by safeNotificationPath (see auth/page.tsx),
+ * so a crafted link cannot turn this into an open redirect.
+ */
+function subscribeOnWebUrl(planId: string): string {
+  const next = `/mobile/study/subscription?plan=${encodeURIComponent(planId)}`
+  return `https://app.classraum.com/auth?intent=study&next=${encodeURIComponent(next)}`
+}
+
 type Acting = 'cancel' | 'reactivate' | 'pack' | 'pass' | `checkout:${string}` | `change:${string}` | null
 
 /**
@@ -785,7 +807,7 @@ export default function SubscriptionPage() {
                   !isCurrent && (
                     <button
                       type="button"
-                      onClick={() => void openExternalUrl('https://app.classraum.com/mobile/study/subscription')}
+                      onClick={() => void openExternalUrl(subscribeOnWebUrl(plan.id))}
                       className={studyButtonClass({ variant: 'secondary' })}
                     >
                       <ExternalLink className="w-4 h-4" />

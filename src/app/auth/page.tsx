@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast"
 import { readStoredMode } from "@/lib/study/currentMode"
 import { authHeaders } from "@/lib/auth-headers"
 import { savePendingReferral, clearPendingReferral } from "@/lib/study/pending-referral"
+import { safeNotificationPath } from "@/lib/study/notification-link"
 
 /**
  * POST the referral code to the redeem endpoint using the current session.
@@ -287,6 +288,27 @@ export default function AuthPage() {
       // Check if this is an invite link - redirect to mobile with params
       const hasInvite = checkInviteParams()
       if (hasInvite) return // Already redirecting to mobile
+
+      // ?next= — an explicit post-login destination, currently used by the
+      // native "subscribe on web" button, which opens this page in Custom
+      // Tabs. That browser has its own cookie jar, so the student genuinely
+      // has to sign in; ?next= is what stops them landing on the role-based
+      // default and having to find the subscription page again.
+      //
+      // Validated with safeNotificationPath — the SAME check the notification
+      // inbox uses — rather than a second implementation. It rejects
+      // protocol-relative "//evil.com", the backslash variants browsers
+      // normalise to it, control characters, and anything scheme-shaped. A
+      // post-login redirect that accepts absolute URLs is an open redirect,
+      // and this one is reachable by anyone who can get a student to open a
+      // link.
+      const nextParam = new URLSearchParams(window.location.search).get('next')
+      const safeNext = safeNotificationPath(nextParam)
+      if (safeNext) {
+        console.log('[Auth] Redirecting to ?next=', safeNext)
+        router.replace(safeNext)
+        return
+      }
 
       try {
         // Fetch user role from database
