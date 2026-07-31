@@ -120,3 +120,54 @@ describe('InviteLanding', () => {
     )
   })
 })
+
+describe('copy button failure feedback', () => {
+  // The bug: navigator.clipboard.writeText throws NotAllowedError in
+  // KakaoTalk's in-app webview — which is where most of these links are
+  // opened in Korea — and the original catch swallowed it. The button kept
+  // reading "copy", the clipboard stayed empty, and the student walked to
+  // the store with nothing. That is the single outcome this screen exists
+  // to prevent, and it failed silently.
+  const setClipboard = (impl: (() => Promise<void>) | null) => {
+    Object.defineProperty(window.navigator, 'clipboard', {
+      value: impl ? { writeText: impl } : undefined,
+      configurable: true,
+    })
+  }
+
+  it('tells the student to long-press when the clipboard is blocked', async () => {
+    setUA(UA.iphone)
+    setClipboard(() => Promise.reject(new Error('NotAllowedError')))
+    render(<InviteLanding code="ABC234" />)
+
+    ;(await screen.findByRole('button', { name: /copy invite code/i })).click()
+
+    const msg = await screen.findByRole('status')
+    expect(msg.textContent).toMatch(/press and hold/i)
+  })
+
+  it('also reports failure when the clipboard API is absent entirely', async () => {
+    // Older webviews expose no navigator.clipboard at all; reading .writeText
+    // off undefined would throw a TypeError inside the try, which happens to
+    // land in the same catch — assert it rather than rely on that.
+    setUA(UA.iphone)
+    setClipboard(null)
+    render(<InviteLanding code="ABC234" />)
+
+    ;(await screen.findByRole('button', { name: /copy invite code/i })).click()
+    expect((await screen.findByRole('status')).textContent).toMatch(/press and hold/i)
+  })
+
+  it('shows success and no warning when the clipboard works', async () => {
+    setUA(UA.iphone)
+    const writeText = jest.fn(() => Promise.resolve())
+    setClipboard(writeText)
+    render(<InviteLanding code="ABC234" />)
+
+    ;(await screen.findByRole('button', { name: /copy invite code/i })).click()
+
+    expect(await screen.findByText(/copied!/i)).toBeInTheDocument()
+    expect(writeText).toHaveBeenCalledWith('ABC234')
+    expect(screen.queryByRole('status')).toBeNull()
+  })
+})

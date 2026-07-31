@@ -91,7 +91,7 @@ function ReferralInner() {
           eyebrow={ko ? '친구 초대' : 'Invite friends'}
           title={ko ? '친구 초대하고 크레딧 받기' : 'Invite friends, earn credits'}
           subtitle={ko
-            ? `가입 시 둘 다 크레딧 ${signupReward}개, 프리미엄 전환 시 각각 ${premiumReward}개 더!`
+            ? `가입하면 둘 다 크레딧 ${signupReward}개, 프리미엄으로 업그레이드하면 각각 ${premiumReward}개 더!`
             : `You both get ${signupReward} credit when they sign up — and ${premiumReward} more each when they go Premium!`}
         />
       }
@@ -200,7 +200,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
   const canShare = isNative || kakaoEnabled
   const doShare = useCallback(async () => {
     const text = ko
-      ? `Classraum에서 함께 공부해요! 초대 코드 "${code}"를 입력하면 둘 다 테스트 크레딧 ${signupReward}개, 프리미엄 전환 시 각각 ${premiumReward}개 더 받아요.`
+      ? `Classraum에서 같이 공부해요! 초대 코드 "${code}"를 입력하면 둘 다 테스트 크레딧 ${signupReward}개, 프리미엄으로 업그레이드하면 각각 ${premiumReward}개를 더 받아요.`
       : `Study with me on Classraum! Use my invite code "${code}" — we each get ${signupReward} test credit now, and ${premiumReward} more each when you go Premium.`
     if (isNative) {
       try {
@@ -232,7 +232,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
         </div>
         <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
           {ko
-            ? `친구가 가입하면 둘 다 ${signupReward}개, 프리미엄 전환 시 각각 ${premiumReward}개 더 받아요.`
+            ? `친구가 가입하면 둘 다 ${signupReward}개, 프리미엄으로 업그레이드하면 각각 ${premiumReward}개를 더 받아요.`
             : `You both get ${signupReward} credit when they sign up, and ${premiumReward} more each when they go Premium.`}
         </p>
       </div>

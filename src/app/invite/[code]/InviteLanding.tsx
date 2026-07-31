@@ -46,7 +46,7 @@ export function InviteLanding({ code }: { code: string }) {
   // then yanking it away on hydration is a visible flash for the native and
   // desktop cases, both of which are leaving immediately anyway.
   const [platform, setPlatform] = useState<DevicePlatform | 'pending'>('pending')
-  const [copied, setCopied] = useState(false)
+  const [copyState, setCopyState] = useState<'idle' | 'copied' | 'failed'>('idle')
 
   const continueUrl = `/auth?intent=study&ref=${encodeURIComponent(code)}`
 
@@ -68,33 +68,42 @@ export function InviteLanding({ code }: { code: string }) {
 
   const copy = useCallback(async () => {
     try {
+      if (!navigator.clipboard) throw new Error('no clipboard api')
       await navigator.clipboard.writeText(code)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1800)
+      setCopyState('copied')
+      setTimeout(() => setCopyState('idle'), 1800)
     } catch {
-      // Clipboard blocked — the code is displayed in full and selectable,
-      // so this degrades to reading it off the screen.
+      // A SILENT failure here loses the referral. writeText throws
+      // NotAllowedError in exactly the browser most of these links arrive in
+      // — KakaoTalk's in-app webview — and the previous version swallowed it,
+      // leaving the button reading "copy" while the clipboard stayed empty.
+      // The student then walks to the store with nothing, which is the one
+      // outcome this screen exists to prevent.
+      //
+      // The code is displayed large and `select-all`, so long-press works;
+      // that is only a fallback if we SAY so.
+      setCopyState('failed')
     }
   }, [code])
 
   // Native and desktop are mid-redirect; painting the invite would flash.
   if (platform === 'pending' || platform === 'desktop') {
-    return <div className="min-h-screen bg-gray-50" aria-hidden="true" />
+    return <div className="min-h-dvh bg-gray-50" aria-hidden="true" />
   }
 
   const ios = appStoreUrl()
 
   return (
-    <main className="min-h-screen bg-gray-50 px-5 py-10 flex flex-col items-center">
+    <main className="min-h-dvh bg-gray-50 px-5 py-10 flex flex-col items-center">
       <div className="w-full max-w-sm space-y-5">
         <header className="text-center space-y-2">
-          <h1 className="text-[22px] font-bold text-gray-900 leading-snug">
+          <h1 className="text-[22px] font-bold text-gray-900 leading-snug break-keep">
             {ko ? '친구가 Classraum에 초대했어요' : 'A friend invited you to Classraum'}
           </h1>
-          <p className="text-[13.5px] text-gray-600 leading-relaxed">
+          <p className="text-[13.5px] text-gray-600 leading-relaxed break-keep">
             {ko
-              ? 'AI가 만드는 SAT · TOEFL · 수능 모의고사로 함께 공부해요.'
-              : 'AI-built SAT, TOEFL and 수능 practice tests.'}
+              ? 'AI가 만들어주는 SAT · TOEFL · 수능 모의고사로 친구와 함께 공부해요.'
+              : 'AI-built SAT, TOEFL and Suneung (Korean CSAT) practice tests.'}
           </p>
         </header>
 
@@ -108,9 +117,9 @@ export function InviteLanding({ code }: { code: string }) {
                 {code}
               </span>
             </div>
-            <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
+            <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed break-keep">
               {ko
-                ? `가입하면 둘 다 크레딧 ${REFERRAL_SIGNUP_CREDITS}개, 프리미엄 전환 시 각각 ${REFERRAL_PREMIUM_CREDITS}개 더 받아요.`
+                ? `가입하면 둘 다 크레딧 ${REFERRAL_SIGNUP_CREDITS}개, 프리미엄으로 업그레이드하면 각각 ${REFERRAL_PREMIUM_CREDITS}개를 더 받아요.`
                 : `You both get ${REFERRAL_SIGNUP_CREDITS} credit when you sign up, and ${REFERRAL_PREMIUM_CREDITS} more each when you go Premium.`}
             </p>
           </div>
@@ -118,24 +127,36 @@ export function InviteLanding({ code }: { code: string }) {
           {/* Copy sits above the store buttons on purpose: the code does NOT
               survive a store install, so it has to be in the clipboard
               BEFORE the user leaves for the store. */}
+          {/* variant="primary": this is the most important control on the
+              screen. It was secondary — white on a white card, the weakest
+              element present — while the store link below was solid black,
+              which argued the opposite of the comment above it. */}
           <StudyButton
             type="button"
-            variant="secondary"
+            variant="primary"
             size="lg"
             fullWidth
             square
             onClick={() => void copy()}
-            leftIcon={copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+            leftIcon={copyState === 'copied' ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           >
-            {copied
+            {copyState === 'copied'
               ? (ko ? '복사됐어요!' : 'Copied!')
-              : (ko ? '코드 복사하기' : 'Copy the code')}
+              : (ko ? '코드 복사하기' : 'Copy invite code')}
           </StudyButton>
 
-          <p className="text-[11.5px] text-gray-500 text-center leading-relaxed">
+          {copyState === 'failed' && (
+            <p role="status" className="text-[12px] text-amber-700 bg-amber-50 ring-1 ring-amber-200/70 rounded-xl px-3 py-2 text-center leading-relaxed break-keep">
+              {ko
+                ? '자동 복사가 안 됐어요. 위 코드를 길게 눌러 복사해 주세요.'
+                : 'Automatic copying was blocked. Press and hold the code above to copy it.'}
+            </p>
+          )}
+
+          <p className="text-[11.5px] text-gray-500 text-center leading-relaxed break-keep">
             {ko
-              ? '앱 설치 후 가입할 때 이 코드를 입력하면 돼요.'
-              : 'Enter this code when you sign up after installing.'}
+              ? '앱을 설치하고 가입할 때 이 코드를 입력하면 돼요.'
+              : 'Enter this code when you sign up in the app.'}
           </p>
         </section>
 
@@ -145,7 +166,7 @@ export function InviteLanding({ code }: { code: string }) {
               href={ios}
               className="w-full inline-flex items-center justify-center h-12 rounded-xl bg-gray-900 text-white text-[14px] font-semibold active:scale-[0.99] transition"
             >
-              {ko ? 'App Store에서 받기' : 'Get it on the App Store'}
+              {ko ? 'App Store에서 다운로드' : 'Download on the App Store'}
             </a>
           )}
           {platform === 'android' && (
@@ -166,7 +187,7 @@ export function InviteLanding({ code }: { code: string }) {
                   href={ios}
                   className="w-full inline-flex items-center justify-center h-12 rounded-xl bg-gray-900 text-white text-[14px] font-semibold active:scale-[0.99] transition"
                 >
-                  {ko ? 'App Store에서 받기' : 'Get it on the App Store'}
+                  {ko ? 'App Store에서 다운로드' : 'Download on the App Store'}
                 </a>
               )}
               <a
@@ -183,7 +204,7 @@ export function InviteLanding({ code }: { code: string }) {
             onClick={() => router.push(continueUrl)}
             className="w-full h-12 rounded-xl text-[14px] font-medium text-gray-600 hover:text-gray-900 transition"
           >
-            {ko ? '브라우저에서 계속하기' : 'Continue in the browser'}
+            {ko ? '앱 없이 계속하기' : 'Continue without the app'}
           </button>
         </div>
       </div>
