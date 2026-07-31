@@ -61,6 +61,35 @@ export function middleware(request: NextRequest) {
   // code (no lookup, by design); redemption still happens behind auth.
   const isInviteRoute = url.pathname.startsWith('/invite/')
 
+  // Public account-deletion instructions (/account-deletion). MUST be listed
+  // for the same reason /invite/ is: the app-subdomain branch below falls
+  // through to "redirect unknown routes to /auth", and this page's entire
+  // purpose is to be reachable WITHOUT an account. Google Play requires the
+  // URL entered in Play Console to load for a reviewer who has never signed
+  // in; a 307 to /auth fails that review. The native app loads
+  // app.classraum.com, so the app-subdomain branch is the one that matters.
+  // Exact match (not startsWith) — it is a single leaf page, and a prefix
+  // match would silently open up any future /account-deletion-* route.
+  const isAccountDeletionRoute = url.pathname === '/account-deletion'
+
+  // Deletion aftermath pages (/account/goodbye, /account/reactivate). These
+  // were unreachable on the app subdomain: neither is in protectedRoutes nor
+  // any allowlist, so both fell through to the unknown-route redirect and
+  // 307'd to /auth. Verified before fixing — the control path 307s too, so
+  // the fallthrough is live.
+  //
+  // That broke the UNDO for a destructive, time-limited action. Requesting
+  // deletion bans the auth identity and schedules a hard delete 30 days out;
+  // /account/reactivate (email + password, no session — it cannot use one,
+  // the account is banned) is the only way back, and /account/goodbye's
+  // button pushes straight at it. From inside the native app, which loads
+  // app.classraum.com, both bounced to a login the student can no longer
+  // pass. They had 30 days to change their mind and no reachable way to.
+  //
+  // Neither page needs a session by design, so allowing them removes nothing.
+  const isAccountRecoveryRoute =
+    url.pathname === '/account/goodbye' || url.pathname === '/account/reactivate'
+
   // Internal preview routes (sandbox; remove with the route files when done)
   const isDesignPreviewRoute =
     url.pathname.startsWith('/design-preview') ||
@@ -118,6 +147,17 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
+    // Allow the public account-deletion instructions (no auth; Play Console)
+    if (isAccountDeletionRoute) {
+      return NextResponse.next()
+    }
+
+    // Allow the deletion aftermath pages (no auth by design — the account is
+    // banned, so a session is impossible; see isAccountRecoveryRoute above)
+    if (isAccountRecoveryRoute) {
+      return NextResponse.next()
+    }
+
     // Allow internal design-preview sandbox
     if (isDesignPreviewRoute) {
       return NextResponse.next()
@@ -155,8 +195,12 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
-    // Allow internal design-preview sandbox
-    if (isDesignPreviewRoute) {
+    // Allow the public account-deletion instructions (no auth; Play Console).
+    // Today the main-domain branch already falls through to next() for
+    // unrecognised paths, so this is belt-and-braces — but it means the page
+    // stays public if /account* is ever added to protectedRoutes, which is
+    // the kind of change that would silently break a store listing.
+    if (isAccountDeletionRoute) {
       return NextResponse.next()
     }
 
