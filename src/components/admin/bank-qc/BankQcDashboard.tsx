@@ -1,5 +1,3 @@
-'use client'
-
 /**
  * Visibility over how question banks are built and checked.
  *
@@ -16,10 +14,11 @@ import { AlertTriangle, CheckCircle2, CircleDashed, FlaskConical, Layers, Shield
 import {
   getLedger, ceilingFor, healthFor, formsFor, formsBySection, STAGE_ORDER,
   prettyTask, prettyTest, FAMILY_LABELS,
-  readinessFor, readinessTotals, READINESS_LABEL, READINESS_BLURB, type Readiness,
+  readinessForRow, readinessTotals, READINESS_LABEL, READINESS_BLURB, type Readiness,
   type Health, type Coverage,
 } from '@/lib/study/bank-ledger'
 import { TASK_PIPELINES, type TaskPipeline } from '@/lib/study/task-pipelines'
+import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 
@@ -62,9 +61,6 @@ function Chip({ health, children }: { health: Health; children: React.ReactNode 
   )
 }
 
-/** The seven stages, in order. `always` marks the four that are genuinely
- *  universal — spec, author, shape and insert apply to every task type, and
- *  only the middle gates vary by family. */
 /** Display names for the ledger stage keys, so the batch strip does not
  *  render raw identifiers like "withsource". */
 const STAGE_LABELS: Record<string, string> = {
@@ -79,6 +75,12 @@ const PIPELINE_STAGES = [
   { key: 'withsource',  short: 'With source', always: false, blurb: 'answerable? right difficulty? right construct?' },
   { key: 'nosource',    short: 'No source',   always: false, blurb: 'can it be solved with the audio or passage hidden?' },
   { key: 'elimination', short: 'Elimination', always: false, blurb: 'is any option rejectable on sight, without the source?' },
+  // `tells` was missing from this list while FAMILY_STAGES required it of
+  // every family — so the strip omitted the one BATCH-level gate, the one
+  // that catches a key sitting in slot A across a cohort or every item
+  // sharing a key shape. That is the defect class this project has shipped
+  // three times, and the diagram said it was not checked at all.
+  { key: 'tells',       short: 'Batch tells', always: true,  blurb: 'across the batch: key position, option length, uniform key shape' },
   { key: 'insert',      short: 'Insert',      always: true,  blurb: 'refused unless every required gate passed at this content hash' },
 ] as const
 
@@ -91,15 +93,17 @@ const FAMILY_STYLE: Record<string, { dot: string; node: string; tint: string; sh
   production:       { dot: "bg-rose-500",    node: "bg-rose-500",    tint: "ring-rose-100",    short: "No answer key" },
 }
 
-/** Which of the seven stages each family actually runs. Mirrors
- *  FAMILY_STAGES in bank-qc.ts, which remains the authority; a test pins the
- *  two together so they cannot drift. */
-const FAMILY_GATES: Record<string, readonly string[]> = {
-  mc_hidden_source: ["withsource", "nosource", "elimination"],
-  mc_stem_source:   ["withsource", "nosource"],
-  cloze:            ["withsource", "nosource"],
-  production:       ["withsource"],
-}
+/** Which gates each family actually runs — DERIVED from bank-qc.ts rather
+ *  than restated here.
+ *
+ *  This was previously a hand-written second copy, under a comment claiming
+ *  "a test pins the two together so they cannot drift". No such test existed,
+ *  and they had already drifted: this copy omitted `tells`, which
+ *  FAMILY_STAGES requires of every family. Deriving removes the possibility
+ *  rather than asserting it away. */
+const FAMILY_GATES: Record<ItemFamily, readonly string[]> = Object.fromEntries(
+  (Object.keys(FAMILY_STAGES) as ItemFamily[]).map(f => [f, FAMILY_STAGES[f]]),
+) as Record<ItemFamily, readonly string[]>
 
 /** Group the pipeline table by test → section, preserving declaration order
  *  so Listening reads before Reading rather than alphabetically. */
@@ -123,8 +127,14 @@ function TaskCard({ t, auditFor, coverage }: {
   const style = FAMILY_STYLE[t.family]!
   const gates = FAMILY_GATES[t.family]!
   const cov = coverage.find(c => c.task === t.task)
-  const margin = auditFor(t.task === "sat_rw" ? "sat_information_and_ideas"
-    : t.task === "sat_math" ? "sat_math_advanced" : t.task)
+  // Read the cohorts off the ledger row rather than re-deriving them here.
+  // A hardcoded sat_rw -> sat_information_and_ideas mapping used to live at
+  // this line: it named ONE of four measured domains and presented its score
+  // as the section's, which read 848 passing maths items as failed.
+  const margins = (cov?.qualityTasks ?? [])
+    .map(q => auditFor(q))
+    .filter((m): m is number => m !== undefined)
+    .sort((a, b) => a - b)
 
   return (
     <div className={`rounded-xl bg-white ring-1 ${style.tint} p-4`}>
@@ -150,12 +160,19 @@ function TaskCard({ t, auditFor, coverage }: {
           </>
         )}
         <dt className="text-gray-500">Quality</dt>
-        <dd className={margin === undefined ? "text-gray-400" : "text-gray-800 tabular-nums"}>
-          {margin === undefined ? "not measured" : `+${margin} pts blind vs its own control`}
+        <dd className={margins.length === 0 ? "text-gray-400" : "text-gray-800 tabular-nums"}>
+          {margins.length === 0
+            ? "not measured"
+            // A range when the row covers several measured domains — the SAT
+            // rows span four apiece and they disagree by up to 31 points.
+            // One number here would be a claim about the others.
+            : margins.length === 1
+              ? `+${margins[0]} pts blind vs its own control`
+              : `+${margins[0]} to +${margins[margins.length - 1]} pts blind across ${margins.length} domains`}
         </dd>
       </dl>
 
-      <ol className="mt-3 grid grid-cols-7 gap-1">
+      <ol className="mt-3 grid grid-cols-8 gap-1">
         {PIPELINE_STAGES.map((st, i) => {
           const applies = st.always || gates.includes(st.key)
           return (
@@ -237,21 +254,30 @@ function CoverageGroup({ title, rows, auditFor, readiness }: {
           <strong className="tabular-nums text-gray-900">{limit}</strong> full tests · capped by {sorted[0]!.label}
         </span>
       </div>
+      {/* Scrolls rather than clips: the fixed columns total ~464px before the
+          Task column, so under ~600px the Status column was unreachable —
+          the parent's overflow-hidden cut it off instead of scrolling. */}
+      <div className="overflow-x-auto">
       <table className="w-full text-sm">
+        <caption className="sr-only">{title} — items, questions per test, whole tests available, blind-solve margin and gate status per task</caption>
         <thead>
           <tr className="text-[10px] uppercase tracking-wide text-gray-400 border-t border-gray-100">
-            <th className="py-1.5 px-4 font-medium text-left">Task</th>
-            <th className="py-1.5 px-2 font-medium text-right w-20">Items</th>
-            <th className="py-1.5 px-2 font-medium text-right w-20">Per test</th>
-            <th className="py-1.5 px-2 font-medium text-right w-16">Tests</th>
-            <th className="py-1.5 px-4 font-medium text-right w-28">Quality</th>
-            <th className="py-1.5 px-4 font-medium text-right w-32">Status</th>
+            <th scope="col" className="py-1.5 px-4 font-medium text-left">Task</th>
+            <th scope="col" className="py-1.5 px-2 font-medium text-right w-20">Items</th>
+            <th scope="col" className="py-1.5 px-2 font-medium text-right w-20">Per test</th>
+            <th scope="col" className="py-1.5 px-2 font-medium text-right w-16">Tests</th>
+            <th scope="col" className="py-1.5 px-4 font-medium text-right w-28">Quality</th>
+            <th scope="col" className="py-1.5 px-4 font-medium text-right w-32">Status</th>
           </tr>
         </thead>
         <tbody>
           {sorted.map(c => {
             const forms = formsFor(c)
-            const margin = auditFor(c.qualityTask)
+            const ms = c.qualityTasks.map(auditFor)
+              .filter((m): m is number => m !== undefined).sort((a, b) => a - b)
+            const margin = ms.length === 0 ? undefined
+              : ms.length === 1 ? `+${ms[0]}`
+              : `+${ms[0]} to +${ms[ms.length - 1]}`
             const excluded = c.items - c.usableItems
             return (
               <tr key={c.task} className="border-t border-gray-50">
@@ -270,7 +296,7 @@ function CoverageGroup({ title, rows, auditFor, readiness }: {
                 <td className="py-2 px-4 w-28 text-right">
                   {margin === undefined
                     ? <span className="text-[11px] text-gray-400">not measured</span>
-                    : <span className="text-[11px] tabular-nums text-gray-600">+{margin} blind</span>}
+                    : <span className="text-[11px] tabular-nums text-gray-600">{margin} blind</span>}
                 </td>
                 <td className="py-2 px-4 w-32 text-right">
                   <span
@@ -285,6 +311,7 @@ function CoverageGroup({ title, rows, auditFor, readiness }: {
           })}
         </tbody>
       </table>
+      </div>
     </div>
   )
 }
@@ -297,18 +324,18 @@ export function BankQcDashboard() {
   const sections = formsBySection(coverage)
   const auditFor = (task: string | null) =>
     task ? auditedCohorts.find(a => a.task === task)?.margin : undefined
-  const overStandard = auditedCohorts.filter(
-    a => healthFor(a.margin, ceilingFor(a.task, baselines)) !== 'ok'
-  ).length
-  const measured = auditedCohorts.length
   const tightest = sections.reduce((a, b) => (b.forms < a.forms ? b : a))
 
   // Which gates a task must clear before it can be called ready. Mirrors
   // FAMILY_STAGES in bank-qc.ts; the widest set is used so nothing is called
   // ready on a technicality.
   const REQUIRED = ["shape", "withsource", "nosource", "elimination", "tells"]
+  // A row's verdict is its WORST cohort — a section is not clean because
+  // three of its four domains are. Item COUNTS are attributed per cohort by
+  // readinessTotals, so a failing domain no longer drags its passing
+  // siblings into the failed tally.
   const readiness = (c: Coverage) =>
-    readinessFor(c.qualityTask, auditedCohorts, baselines, ledger.gatesRunOnBank, REQUIRED)
+    readinessForRow(c, auditedCohorts, baselines, ledger.gatesRunOnBank, REQUIRED)
   const totals = readinessTotals(coverage, auditedCohorts, baselines, ledger.gatesRunOnBank, REQUIRED)
 
   // Group coverage by test+section, preserving ledger order.
@@ -420,7 +447,7 @@ export function BankQcDashboard() {
           <h2 className="text-sm font-semibold text-gray-900">How questions are made</h2>
         </div>
         <p className="text-xs text-gray-600 mb-5 max-w-3xl">
-          Every task runs the same seven stages, but which gates apply depends on what is
+          Every task runs the same eight stages, but which gates apply depends on what is
           being hidden. Four of the eleven TOEFL task types have no answer key at all, so two
           of the gates are undefined for them — those show as dashed.
         </p>
@@ -451,7 +478,7 @@ export function BankQcDashboard() {
         </div>
 
         <div className="mt-5 rounded-xl bg-gray-50 px-4 py-3">
-          <div className="text-[11px] font-medium text-gray-700 mb-1.5">The seven stages</div>
+          <div className="text-[11px] font-medium text-gray-700 mb-1.5">The eight stages</div>
           <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2 lg:grid-cols-4">
             {PIPELINE_STAGES.map((st, i) => (
               <div key={st.key} className="text-[11px] text-gray-600 leading-snug">

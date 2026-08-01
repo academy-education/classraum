@@ -276,7 +276,9 @@
       "items": 71,
       "usableItems": 71,
       "perTest": 14,
-      "qualityTask": "choose_response"
+      "qualityTasks": [
+        "choose_response"
+      ]
     },
     {
       "test": "TOEFL",
@@ -286,7 +288,9 @@
       "items": 193,
       "usableItems": 193,
       "perTest": 12,
-      "qualityTask": "conversation"
+      "qualityTasks": [
+        "conversation"
+      ]
     },
     {
       "test": "TOEFL",
@@ -296,7 +300,9 @@
       "items": 121,
       "usableItems": 121,
       "perTest": 6,
-      "qualityTask": "announcement"
+      "qualityTasks": [
+        "announcement"
+      ]
     },
     {
       "test": "TOEFL",
@@ -306,7 +312,9 @@
       "items": 274,
       "usableItems": 274,
       "perTest": 16,
-      "qualityTask": "academic_talk"
+      "qualityTasks": [
+        "academic_talk"
+      ]
     },
     {
       "test": "TOEFL",
@@ -317,7 +325,7 @@
       "usableItems": 64,
       "perTest": 10,
       "note": "69 items sit in single-question texts the draw excludes",
-      "qualityTask": null
+      "qualityTasks": []
     },
     {
       "test": "TOEFL",
@@ -327,7 +335,9 @@
       "items": 433,
       "usableItems": 433,
       "perTest": 18,
-      "qualityTask": "academic_passage"
+      "qualityTasks": [
+        "academic_passage"
+      ]
     },
     {
       "test": "TOEFL",
@@ -338,7 +348,7 @@
       "usableItems": 93,
       "perTest": 2,
       "note": "1 row = 10 scored blanks",
-      "qualityTask": null
+      "qualityTasks": []
     },
     {
       "test": "TOEFL",
@@ -348,7 +358,7 @@
       "items": 97,
       "usableItems": 97,
       "perTest": 7,
-      "qualityTask": null
+      "qualityTasks": []
     },
     {
       "test": "TOEFL",
@@ -358,7 +368,7 @@
       "items": 48,
       "usableItems": 48,
       "perTest": 4,
-      "qualityTask": null
+      "qualityTasks": []
     },
     {
       "test": "TOEFL",
@@ -368,7 +378,7 @@
       "items": 119,
       "usableItems": 119,
       "perTest": 10,
-      "qualityTask": null
+      "qualityTasks": []
     },
     {
       "test": "TOEFL",
@@ -378,7 +388,7 @@
       "items": 92,
       "usableItems": 92,
       "perTest": 1,
-      "qualityTask": null
+      "qualityTasks": []
     },
     {
       "test": "TOEFL",
@@ -388,7 +398,7 @@
       "items": 92,
       "usableItems": 92,
       "perTest": 1,
-      "qualityTask": null
+      "qualityTasks": []
     },
     {
       "test": "SAT",
@@ -398,7 +408,12 @@
       "items": 751,
       "usableItems": 751,
       "perTest": 54,
-      "qualityTask": "sat_information_and_ideas"
+      "qualityTasks": [
+        "sat_craft_and_structure",
+        "sat_expression_of_ideas",
+        "sat_information_and_ideas",
+        "sat_standard_english_conventions"
+      ]
     },
     {
       "test": "SAT",
@@ -408,12 +423,18 @@
       "items": 848,
       "usableItems": 848,
       "perTest": 44,
-      "qualityTask": "sat_math_advanced"
+      "qualityTasks": [
+        "sat_math_advanced",
+        "sat_math_algebra",
+        "sat_math_geometry",
+        "sat_math_problem_solving"
+      ]
     }
   ],
   "gateVersion": 2,
   "gateVersionNote": "v2 = 2026-08-01, when thresholds were calibrated against 183 published items. Any pass recorded under v1 is STALE, not Ready — the bar moved in both directions that day.",
   "gatesRunOnBank": [
     "nosource"
-  ]
+  ],
+  "coverageNote": "qualityTasks lists EVERY audited cohort making up the row. The two SAT rows each cover four College Board domains that were measured separately and disagree — judging the row by one of them counted 848 passing math items as failed. Cohort n values sum exactly to the row items, so readiness is attributed per cohort, not per row."
 }

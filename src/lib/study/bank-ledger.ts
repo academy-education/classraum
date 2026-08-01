@@ -83,8 +83,15 @@ export interface Coverage {
   usableItems: number
   perTest: number
   note?: string
-  /** Key into auditedCohorts, when this task's quality has been measured. */
-  qualityTask: string | null
+  /** EVERY audited cohort making up this row, not a representative one.
+   *
+   *  The two SAT rows each span four College Board domains that were
+   *  measured separately and disagree sharply — Advanced Math is the only
+   *  failing maths domain, and judging the row by it counted all 848 maths
+   *  items as failed when 643 of them are in passing domains. Cohort `n`
+   *  values sum exactly to `items` for every measured row, so readiness is
+   *  attributed per cohort rather than smeared across the row. */
+  qualityTasks: string[]
 }
 
 export interface Ledger {
@@ -317,7 +324,40 @@ export function readinessFor(
   return everyGateRun ? 'ready' : 'partial'
 }
 
-/** Item counts by readiness, for the summary tile. */
+/** Readiness for a whole coverage row: the WORST of its cohorts.
+ *
+ *  A section is not servable because three of its four domains are clean.
+ *  This is the display verdict for the row — for item counts use
+ *  `readinessTotals`, which attributes each cohort's items to its own
+ *  verdict instead of pushing the whole row into the worst bucket. */
+export function readinessForRow(
+  c: Coverage,
+  audited: AuditedCohort[],
+  baselines: Baseline[],
+  gatesRun: string[],
+  requiredGates: readonly string[],
+): Readiness {
+  if (c.qualityTasks.length === 0) return 'unverified'
+  const RANK: Record<Readiness, number> = { failed: 0, unverified: 1, partial: 2, ready: 3 }
+  return c.qualityTasks
+    .map(t => readinessFor(t, audited, baselines, gatesRun, requiredGates))
+    .reduce((worst, r) => (RANK[r] < RANK[worst] ? r : worst))
+}
+
+/**
+ * Item counts by readiness.
+ *
+ * Attributed PER COHORT, not per row. The two SAT rows each span four
+ * College Board domains measured separately: Advanced Math fails at +16.6
+ * while Algebra, Geometry and Problem-Solving all pass. Judging the row by
+ * one of them put all 848 maths items in `failed` when 643 belong to
+ * passing domains — the same "each part internally consistent, wrong
+ * together" shape as the band-vs-score bug.
+ *
+ * Cohort `n` values sum exactly to `items` on every measured row today, so
+ * this is exact rather than apportioned. Any remainder is counted
+ * `unverified`, which is what unmeasured items are.
+ */
 export function readinessTotals(
   coverage: Coverage[],
   audited: AuditedCohort[],
@@ -327,7 +367,15 @@ export function readinessTotals(
 ): Record<Readiness, number> {
   const totals: Record<Readiness, number> = { ready: 0, partial: 0, failed: 0, unverified: 0 }
   for (const c of coverage) {
-    totals[readinessFor(c.qualityTask, audited, baselines, gatesRun, requiredGates)] += c.items
+    let attributed = 0
+    for (const t of c.qualityTasks) {
+      const cohort = audited.find(a => a.task === t)
+      if (!cohort) continue
+      totals[readinessFor(t, audited, baselines, gatesRun, requiredGates)] += cohort.n
+      attributed += cohort.n
+    }
+    // Items no cohort measured are unverified, not silently dropped.
+    totals.unverified += Math.max(0, c.items - attributed)
   }
   return totals
 }

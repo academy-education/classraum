@@ -16,13 +16,14 @@
  */
 import {
   formsFor, formsBySection, ceilingFor, healthFor,
-  readinessFor, readinessTotals, getLedger,
+  readinessFor, readinessForRow, readinessTotals, getLedger, STAGE_ORDER,
   type Coverage, type Baseline, type AuditedCohort,
 } from '../bank-ledger'
+import { FAMILY_STAGES } from '../bank-qc'
 
 const cov = (o: Partial<Coverage>): Coverage => ({
   test: 'toefl', section: 'Listening', task: 't', label: 'T',
-  items: 100, usableItems: 100, perTest: 10, qualityTask: null, ...o,
+  items: 100, usableItems: 100, perTest: 10, qualityTasks: [], ...o,
 })
 
 /** The four published measurements ceilingFor keys off, at their real values. */
@@ -168,12 +169,69 @@ describe('readiness', () => {
 
   it('totals by ITEM count, so a big failing cohort outweighs a small passing one', () => {
     const totals = readinessTotals(
-      [cov({ items: 274, qualityTask: 'academic_talk' }),
-       cov({ items: 193, qualityTask: 'conversation' }),
-       cov({ items: 50,  qualityTask: null })],
+      [cov({ items: 274, qualityTasks: ['academic_talk'] }),
+       cov({ items: 193, qualityTasks: ['conversation'] }),
+       cov({ items: 50,  qualityTasks: [] })],
       audited, BASELINES, ['nosource'], REQUIRED,
     )
     expect(totals).toEqual({ ready: 0, partial: 274, failed: 193, unverified: 50 })
+  })
+
+  it('does not drag a row’s passing cohorts into the failing bucket', () => {
+    // THE REGRESSION. One row, two measured cohorts, one failing. Judging the
+    // row by a single representative put ALL its items in `failed` — on the
+    // real ledger that was 848 maths items, of which 643 are in domains that
+    // pass. Each cohort must be counted under its own verdict.
+    const totals = readinessTotals(
+      [cov({ items: 467, qualityTasks: ['academic_talk', 'conversation'] })],
+      audited, BASELINES, ['nosource'], REQUIRED,
+    )
+    expect(totals.failed).toBe(193)   // conversation only
+    expect(totals.partial).toBe(274)  // academic_talk keeps its own verdict
+  })
+
+  it('counts items no cohort measured as unverified rather than dropping them', () => {
+    const totals = readinessTotals(
+      [cov({ items: 300, qualityTasks: ['academic_talk'] })], // cohort n=274
+      audited, BASELINES, ['nosource'], REQUIRED,
+    )
+    expect(totals.partial).toBe(274)
+    expect(totals.unverified).toBe(26)
+    expect(totals.partial + totals.unverified).toBe(300)
+  })
+
+  it('gives the ROW the verdict of its worst cohort', () => {
+    // For the row's own chip the conservative reading is right: a section is
+    // not clean because three of its four domains are.
+    const row = cov({ items: 467, qualityTasks: ['academic_talk', 'conversation'] })
+    expect(readinessForRow(row, audited, BASELINES, [...REQUIRED], REQUIRED)).toBe('failed')
+    const clean = cov({ items: 274, qualityTasks: ['academic_talk'] })
+    expect(readinessForRow(clean, audited, BASELINES, [...REQUIRED], REQUIRED)).toBe('ready')
+  })
+})
+
+describe('the dashboard mirrors bank-qc.ts rather than restating it', () => {
+  // The dashboard used to carry a hand-written FAMILY_GATES copy under a
+  // comment claiming "a test pins the two together so they cannot drift".
+  // There was no such test, and the copy had already lost `tells`. This is
+  // that test — plus the stage-list check the omission slipped through.
+  it('every family requires the batch-level tells gate', () => {
+    for (const stages of Object.values(FAMILY_STAGES)) {
+      expect(stages).toContain('tells')
+    }
+  })
+
+  it('STAGE_ORDER covers every stage any family requires', () => {
+    const required = new Set(Object.values(FAMILY_STAGES).flat())
+    for (const s of required) expect(STAGE_ORDER).toContain(s)
+  })
+
+  it('production tasks require neither source-hiding gate — they have no key', () => {
+    expect(FAMILY_STAGES.production).not.toContain('nosource')
+    expect(FAMILY_STAGES.production).not.toContain('elimination')
+    // ...so a readiness rule that demands them of every task would make
+    // production items permanently unreachable. Guard the shape here.
+    expect(FAMILY_STAGES.production).toEqual(['shape', 'withsource', 'tells'])
   })
 })
 
