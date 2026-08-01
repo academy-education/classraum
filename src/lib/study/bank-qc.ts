@@ -18,6 +18,22 @@
  * another. The authors had followed the written constraint. Instructions do
  * not hold; gates do.
  *
+ * STATUS, STATED PLAINLY: THIS IS NOT YET WIRED IN.
+ *
+ * `evaluateBatch` has no caller outside its tests. The live insert path is
+ * `insertListening()` in scripts/study-bank/toefl-bank-helper.mjs, which
+ * imports nothing from this file and still runs only the four mechanical
+ * checks described above. So today this module DEFINES the contract and the
+ * ledger RECORDS results against it, but nothing refuses an insert.
+ *
+ * That gap is the whole point of writing it down here rather than leaving it
+ * implied: by the argument above, a documented gate nobody runs is exactly
+ * the "instructions do not hold" failure it was written to prevent. Wiring
+ * it needs `StageResult` (bank-ledger.ts) to carry `passed` and
+ * `contentSha`, which today it does not — the ledger models a stage as a
+ * map of measurements, this file models it as an array of runs with a
+ * verdict, and no adapter exists between them.
+ *
  * TWO THINGS THIS ENCODES THAT A CHECKLIST CANNOT
  *
  * 1. HASH BINDING. Every gate result is bound to the sha256 of the exact

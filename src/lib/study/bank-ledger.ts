@@ -258,7 +258,7 @@ export const FAMILY_LABELS: Record<string, string> = {
 }
 
 /** Stages a family must clear, mirroring FAMILY_STAGES in bank-qc.ts.
- *  Duplicated as a display concern only — bank-qc.ts remains the authority
+ *  Duplicated as a display concern only — bank-qc.ts defines the contract
  *  on whether a batch may insert. */
 export const STAGE_ORDER = ['shape', 'withsource', 'nosource', 'elimination', 'tells'] as const
 
