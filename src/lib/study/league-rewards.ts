@@ -1,4 +1,5 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import { PODIUM_CREDITS, PROMOTION_CREDITS, MILESTONE_CREDITS } from '@/lib/study/league-reward-values'
 
 /**
  * League reward payouts — granted by the weekly roll cron
@@ -22,19 +23,11 @@ export const LEAGUE_TIERS = [
   'emerald', 'amethyst', 'pearl', 'obsidian', 'diamond',
 ] as const
 
-/** Podium (top-3 finish in your cohort) → credits by rank. */
-const PODIUM_CREDITS: Record<number, number> = { 1: 3, 2: 2, 3: 1 }
-
-/** Any promotion (top-third finisher moving up a tier) → flat credits. */
-const PROMOTION_CREDITS = 1
-
-/** First-ever time reaching a tier → one-time milestone credits. The
- *  entry tiers (bronze/silver) pay nothing; the reward grows toward the
- *  top so climbing feels rewarding without a big burn. */
-const MILESTONE_CREDITS: Record<string, number> = {
-  gold: 2, sapphire: 2, ruby: 3, emerald: 3,
-  amethyst: 4, pearl: 4, obsidian: 5, diamond: 8,
-}
+// The payout tables (PODIUM_CREDITS / PROMOTION_CREDITS /
+// MILESTONE_CREDITS) live in `league-reward-values.ts` — a
+// dependency-free module the client-side league page can also import, so
+// the numbers shown to the student are the numbers the cron pays rather
+// than a hand-copied duplicate.
 
 export interface ClosedMember {
   studentId: string

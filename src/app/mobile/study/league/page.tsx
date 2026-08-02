@@ -2,15 +2,18 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus, Award, Diamond, Shield, Confetti, Check } from '@/app/mobile/study/_shared/icons'
+import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus, Award, Diamond, Shield, Confetti, Check, Lock } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { validateNickname, NICKNAME_MAX } from '@/lib/study/nickname'
+import { PODIUM_CREDITS, PROMOTION_CREDITS, MILESTONE_CREDITS } from '@/lib/study/league-reward-values'
+import { promoteZoneFor, relegateStartFor, bandFor, type LeagueBand } from '@/lib/study/league-bands'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition, StudyScrollShell } from '../_shared/primitives'
 import { SkeletonCard, SkeletonBlock, SkeletonRowList } from '../skeletons'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
+import { StudyAvatar } from '@/app/mobile/study/_shared/avatars'
 
 /**
  * /mobile/study/league — weekly cohort leaderboard.
@@ -41,6 +44,10 @@ const TIERS = [
 interface LeaderboardRow {
   student_id: string
   display_name: string
+  /** Optional on the wire: absent from responses served before migration
+   *  071 is applied, null for anyone who never picked an avatar. Both
+   *  render the initials avatar. */
+  avatar_id?: string | null
   xp_this_week: number
   rank: number
   is_me: boolean
@@ -106,6 +113,12 @@ function LeagueInner() {
   useEffect(() => { void load() }, [load, retryKey])
 
   const tier = TIERS.find(t => t.key === data?.tier) ?? TIERS[0]
+
+  // Cohort size drives every zone boundary, so resolve it once. The API
+  // omits memberCount in the not-joined envelope; fall back to the number
+  // of rows we did get, and never let it sit below the rendered rows (the
+  // leaderboard is capped at 20, so it can only ever be an undercount).
+  const memberCount = Math.max(data?.memberCount ?? 0, data?.leaderboard.length ?? 0)
 
   // League vs Friends view. Deep-linkable via ?view=friends (the friends
   // page links here) so "Friends leaderboard" lands on the right tab.
@@ -185,9 +198,10 @@ function LeagueInner() {
             {data.promotionNotice && (
               <PromotionBanner notice={data.promotionNotice} ko={ko} />
             )}
-            <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} seasonHigh={data.seasonHigh ?? null} promoteCount={promoteZoneFor(data.memberCount ?? data.leaderboard.length)} />
-            <Leaderboard rows={data.leaderboard} ko={ko} promoteCount={promoteZoneFor(data.memberCount ?? data.leaderboard.length)} />
-            <RewardsPanel ko={ko} />
+            <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} seasonHigh={data.seasonHigh ?? null} promoteCount={promoteZoneFor(memberCount)} />
+            <PromotionZone tier={tier} ko={ko} myRank={data.myRank} memberCount={memberCount} />
+            <Leaderboard rows={data.leaderboard} ko={ko} memberCount={memberCount} />
+            <RewardsPanel ko={ko} tier={tier} myRank={data.myRank} memberCount={memberCount} seasonHigh={data.seasonHigh ?? null} />
             <TierLadder activeKey={data.tier ?? 'bronze'} ko={ko} />
             <EarnXpPanel ko={ko} />
           </div>
@@ -361,9 +375,8 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
               r.is_me ? 'bg-amber-50 ring-amber-200' : 'bg-white ring-gray-200/70'
             }`}>
             <span className={`flex-shrink-0 w-6 text-center text-[13px] font-bold tabular-nums ${r.rank === 1 ? 'text-amber-500' : 'text-gray-400'}`}>{r.rank}</span>
-            <span className={`flex-shrink-0 w-8 h-8 rounded-full ${hueOf(r.student_id)} flex items-center justify-center text-[11px] font-bold`}>
-              {initialsOf(r.display_name)}
-            </span>
+            <RankAvatar row={r} size={32}
+              initialsClass={`flex-shrink-0 w-8 h-8 rounded-full ${hueOf(r.student_id)} flex items-center justify-center text-[11px] font-bold`} />
             <span className={`flex-1 min-w-0 truncate text-[13.5px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
               {r.display_name}{r.is_me && <span className="text-[10px] font-semibold text-amber-600 ml-1.5">({ko ? '나' : 'me'})</span>}
             </span>
@@ -381,7 +394,70 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
 // The top THIRD of each cohort advance to the next tier each week
 // (matches close_study_league_week), so the promotion zone depends on
 // cohort size — not a fixed rank. At least 1 always advances.
-const promoteZoneFor = (memberCount: number) => Math.max(1, Math.floor(memberCount / 3))
+/* promoteZoneFor / relegateStartFor / bandFor now live in
+   src/lib/study/league-bands.ts, where a test can diff them against a
+   signature generated by close_study_league_week itself. */
+
+// The bottom third drop a tier. close_study_league_week writes
+//   rank <= GREATEST(1, total/3)              → 'promoted'
+//   rank >  total - GREATEST(1, total/3)      → 'demoted'
+//   else                                      → 'held'
+// so the relegation band is the SAME size as the promotion band, and
+// this returns the first rank inside it. In a tiny cohort the two bands
+// can overlap; the SQL CASE tests 'promoted' first, so promotion wins —
+// `bandFor` below reproduces that ordering rather than re-deriving it.
+
+
+/** Per-band visual tokens. Colour is never the only signal — every band
+ *  also carries its own arrow glyph (up / flat / down) and the student's
+ *  own band is the only one rendered at full contrast. */
+const BAND_TONE: Record<LeagueBand, {
+  bar: string; text: string; rowBg: string; ring: string; tile: string; dot: string
+}> = {
+  promote: {
+    bar: 'bg-emerald-400', text: 'text-emerald-700', rowBg: 'bg-emerald-50/70',
+    ring: 'ring-emerald-200', dot: 'bg-emerald-400',
+    tile: 'from-emerald-400 to-teal-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_4px_10px_-2px_rgba(16,185,129,0.28)]',
+  },
+  safe: {
+    bar: 'bg-slate-300', text: 'text-slate-600', rowBg: 'bg-slate-50',
+    ring: 'ring-slate-200', dot: 'bg-slate-300',
+    tile: 'from-slate-400 to-slate-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_4px_10px_-2px_rgba(100,116,139,0.28)]',
+  },
+  relegate: {
+    bar: 'bg-rose-400', text: 'text-rose-700', rowBg: 'bg-rose-50/70',
+    ring: 'ring-rose-200', dot: 'bg-rose-400',
+    tile: 'from-rose-400 to-red-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_4px_10px_-2px_rgba(244,63,94,0.28)]',
+  },
+}
+
+const BAND_ICON: Record<LeagueBand, typeof TrendingUp> = {
+  promote: TrendingUp, safe: Minus, relegate: TrendingDown,
+}
+
+/**
+ * A leaderboard row's avatar: the student's chosen Raumi avatar when they
+ * have one, otherwise the deterministic initials disc this page has always
+ * drawn.
+ *
+ * `initialsClass` is the ORIGINAL markup's className, passed through
+ * untouched — hue, size and type scale are unchanged, so every student who
+ * never opens the avatar picker sees the leaderboard exactly as before.
+ * `avatarClass` carries only the framing (the podium's ring + shadow) onto
+ * the Raumi branch, which brings its own colour and shape.
+ */
+function RankAvatar({ row, size, initialsClass, avatarClass = '' }: {
+  row: LeaderboardRow; size: number; initialsClass: string; avatarClass?: string
+}) {
+  return (
+    <StudyAvatar
+      avatarId={row.avatar_id}
+      size={size}
+      className={avatarClass}
+      fallback={<span className={initialsClass}>{initialsOf(row.display_name)}</span>}
+    />
+  )
+}
 
 /** Deterministic initials + a stable hue from a display name. */
 function initialsOf(name: string): string {
@@ -395,6 +471,137 @@ function hueOf(id: string): string {
   let h = 0
   for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0
   return AVATAR_HUES[h % AVATAR_HUES.length]
+}
+
+/** Small tier pill — the destination a band lands you in next week.
+ *  When the destination is the tier you're already in (the Safe band, or
+ *  Bronze/Diamond where the ladder clamps) it renders neutral, so a
+ *  coloured pill always means "your tier changes". */
+function TierChip({ tier, muted, ko }: { tier: typeof TIERS[number]; muted: boolean; ko: boolean }) {
+  return (
+    <span className={`flex-shrink-0 inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-[10.5px] font-bold ${
+      muted ? 'bg-gray-100 text-gray-500' : `bg-gradient-to-br ${tier.color} text-white`
+    }`}>
+      {ko ? tier.label_ko : tier.label_en}
+    </span>
+  )
+}
+
+/**
+ * Promotion zone — the three outcomes of Sunday's close (promote /
+ * hold / relegate) as three explicitly-bounded rank bands, with the
+ * student's own band called out.
+ *
+ * Every band shows its literal rank range and the tier it lands you in,
+ * so "am I safe?" is answerable without counting rows in the standings
+ * — which matters because the standings are truncated to the top 20
+ * while the bands are computed from the full cohort size.
+ */
+function PromotionZone({ tier, ko, myRank, memberCount }: {
+  tier: typeof TIERS[number]; ko: boolean; myRank: number | null; memberCount: number
+}) {
+  const promoteCount = promoteZoneFor(memberCount)
+  const relegateStart = relegateStartFor(memberCount)
+  const idx = TIERS.findIndex(t => t.key === tier.key)
+  // next_tier / prev_tier exactly as close_study_league_week clamps them:
+  // Diamond can't climb further, Bronze can't drop.
+  const upTier = TIERS[Math.min(TIERS.length - 1, idx + 1)]
+  const downTier = TIERS[Math.max(0, idx - 1)]
+
+  // A tiny cohort can leave the promote and relegate bands touching (or
+  // overlapping); promotion wins, so the relegation band starts at
+  // promoteCount + 1 at the earliest and the safe band may be empty.
+  const relegateFrom = Math.max(relegateStart, promoteCount + 1)
+  const allBands: Array<{ key: LeagueBand; label: string; from: number; to: number; dest: typeof TIERS[number] }> = [
+    { key: 'promote', label: ko ? '승급권' : 'Promotion', from: 1, to: promoteCount, dest: upTier },
+    { key: 'safe', label: ko ? '유지권' : 'Safe', from: promoteCount + 1, to: relegateFrom - 1, dest: tier },
+    { key: 'relegate', label: ko ? '강등권' : 'Relegation', from: relegateFrom, to: memberCount, dest: downTier },
+  ]
+  const bands = allBands.filter(b => b.from <= b.to)
+
+  const myBand = myRank != null ? bandFor(myRank, memberCount) : null
+  const headTone = BAND_TONE[myBand ?? 'safe']
+  const HeadIcon = BAND_ICON[myBand ?? 'safe']
+  const myBandLabel = bands.find(b => b.key === myBand)?.label ?? ''
+
+  // The one number that tells the student what to do next.
+  const message = (band: LeagueBand): string | null => {
+    if (myRank == null) return null
+    if (band === 'promote') return ko ? '자리를 지키세요!' : 'Hold your spot!'
+    if (band === 'safe') {
+      const n = myRank - promoteCount
+      return ko ? `승급권까지 ${n}계단` : `${n} ${n === 1 ? 'spot' : 'spots'} from promotion`
+    }
+    const n = myRank - relegateFrom + 1
+    return ko ? `안전권까지 ${n}계단` : `${n} ${n === 1 ? 'spot' : 'spots'} from safety`
+  }
+
+  const range = (from: number, to: number) => from === to ? `#${from}` : `#${from}–${to}`
+
+  return (
+    <section>
+      <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? '승급 / 강등 구간' : 'Promotion zone'}</h3>
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
+        {/* Where you stand right now — the answer, before the structure. */}
+        <div className="flex items-center gap-3 px-4 pt-4 pb-3.5">
+          <span className={`flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br ${headTone.tile} text-white flex items-center justify-center ring-1 ring-black/[0.04]`}>
+            <HeadIcon className="w-5 h-5" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none">
+              {ko ? '내 위치' : 'Your position'}
+            </div>
+            <div className="text-[15px] font-semibold text-gray-900 mt-1.5 leading-none truncate">
+              {myRank == null
+                ? (ko ? `${memberCount}명 참가 중` : `${memberCount} in your cohort`)
+                : (
+                  <>
+                    <span className="tabular-nums">{ko ? `${memberCount}명 중 ${myRank}위` : `#${myRank} of ${memberCount}`}</span>
+                    {myBandLabel && (
+                      <>
+                        <span className="text-gray-300 mx-1.5">·</span>
+                        <span className={headTone.text}>{myBandLabel}</span>
+                      </>
+                    )}
+                  </>
+                )}
+            </div>
+          </div>
+        </div>
+        {/* The three bands. Only the student's own band is at full
+            contrast; the others recede but keep their rank range so the
+            whole structure stays readable. */}
+        <div className="border-t border-gray-100 divide-y divide-gray-100">
+          {bands.map((b) => {
+            const mine = b.key === myBand
+            const tone = BAND_TONE[b.key]
+            const Icon = BAND_ICON[b.key]
+            const msg = mine ? message(b.key) : null
+            return (
+              <div key={b.key}
+                className={`relative flex items-center gap-2.5 pl-4 pr-3.5 py-2.5 ${mine ? tone.rowBg : 'bg-white'}`}>
+                <span aria-hidden className={`absolute left-0 top-0 bottom-0 w-1 ${mine ? tone.bar : 'bg-gray-200'}`} />
+                <Icon className={`flex-shrink-0 w-4 h-4 ${mine ? tone.text : 'text-gray-400'}`} />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className={`text-[12.5px] font-semibold truncate ${mine ? 'text-gray-900' : 'text-gray-600'}`}>{b.label}</span>
+                    <span className="flex-shrink-0 text-[11.5px] tabular-nums text-gray-400">{range(b.from, b.to)}</span>
+                    {mine && myRank != null && (
+                      <span className={`flex-shrink-0 inline-flex items-center rounded-full bg-white ring-1 ${tone.ring} px-1.5 py-px text-[10px] font-bold tabular-nums ${tone.text}`}>
+                        {ko ? `나 ${myRank}위` : `you #${myRank}`}
+                      </span>
+                    )}
+                  </div>
+                  {msg && <div className={`mt-0.5 text-[11px] font-medium ${tone.text}`}>{msg}</div>}
+                </div>
+                <TierChip tier={b.dest} muted={b.dest.key === tier.key} ko={ko} />
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
 }
 
 function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh, promoteCount }: {
@@ -447,12 +654,14 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh, promoteC
           </div>
         ))}
       </div>
-      {myRank != null && (
-        <div className={`relative mt-3 rounded-xl px-3 py-2 text-[12px] font-semibold flex items-center justify-center gap-1.5 ${inPromo ? 'bg-emerald-400/25 ring-1 ring-emerald-200/40' : 'bg-white/12 ring-1 ring-white/15'}`}>
-          {inPromo && <Confetti weight="fill" className="w-3.5 h-3.5 flex-shrink-0" />}
-          <span>{inPromo
-            ? (ko ? '승급권 안에 있어요 — 계속 유지하세요!' : "You're in the promotion zone — hold your spot!")
-            : (ko ? `승급권까지 ${Math.max(0, myRank - promoteCount)}계단 남았어요` : `${Math.max(0, myRank - promoteCount)} spots from the promotion zone`)}</span>
+      {/* Only the celebratory half of the old status strip survives here.
+          The "N spots from the promotion zone" half moved into
+          <PromotionZone>, which says the same thing with the relegation
+          side attached — two copies of it 40px apart read as noise. */}
+      {inPromo && (
+        <div className="relative mt-3 rounded-xl px-3 py-2 text-[12px] font-semibold flex items-center justify-center gap-1.5 bg-emerald-400/25 ring-1 ring-emerald-200/40">
+          <Confetti weight="fill" className="w-3.5 h-3.5 flex-shrink-0" />
+          <span>{ko ? '승급권 안에 있어요 — 계속 유지하세요!' : "You're in the promotion zone — hold your spot!"}</span>
         </div>
       )}
     </div>
@@ -476,9 +685,8 @@ function Podium({ top, ko }: { top: LeaderboardRow[]; ko: boolean }) {
           return (
             <div key={r.student_id} className="flex flex-col items-center animate-card-in opacity-0" style={{ animationDelay: `${r.rank * 60}ms` }}>
               <div className="relative">
-                <div className={`w-14 h-14 rounded-full ring-2 ${m.ring} ${hueOf(r.student_id)} flex items-center justify-center text-[16px] font-bold shadow-sm`}>
-                  {initialsOf(r.display_name)}
-                </div>
+                <RankAvatar row={r} size={56} avatarClass={`ring-2 ${m.ring} shadow-sm`}
+                  initialsClass={`w-14 h-14 rounded-full ring-2 ${m.ring} ${hueOf(r.student_id)} flex items-center justify-center text-[16px] font-bold shadow-sm`} />
                 <span className="absolute -bottom-1 -right-1 text-[15px] drop-shadow-sm">{m.medal}</span>
               </div>
               <div className={`mt-2 max-w-full truncate text-[12px] font-semibold ${r.is_me ? 'text-amber-700' : 'text-gray-800'}`}>
@@ -498,50 +706,79 @@ function Podium({ top, ko }: { top: LeaderboardRow[]; ko: boolean }) {
   )
 }
 
-function Leaderboard({ rows, ko, promoteCount }: { rows: LeaderboardRow[]; ko: boolean; promoteCount: number }) {
+/** The dashed boundary between two bands, drawn inline in the standings. */
+function ZoneDivider({ label, tone }: { label: string; tone: LeagueBand }) {
+  const line = tone === 'promote' ? 'from-emerald-300/60' : 'from-rose-300/60'
+  const text = tone === 'promote' ? 'text-emerald-500' : 'text-rose-500'
+  return (
+    <div className="flex items-center gap-2 py-1.5 px-1">
+      <div className={`flex-1 h-px bg-gradient-to-r ${line} to-transparent`} />
+      <span className={`text-[9.5px] font-bold uppercase tracking-wider ${text}`}>{label}</span>
+      <div className={`flex-1 h-px bg-gradient-to-l ${line} to-transparent`} />
+    </div>
+  )
+}
+
+function Leaderboard({ rows, ko, memberCount }: { rows: LeaderboardRow[]; ko: boolean; memberCount: number }) {
   const hasPodium = rows.length >= 3
   const top = hasPodium ? rows.slice(0, 3) : []
   const rest = hasPodium ? rows.slice(3) : rows
+  const promoteCount = promoteZoneFor(memberCount)
+  const relegateFrom = Math.max(relegateStartFor(memberCount), promoteCount + 1)
   return (
     <>
       {hasPodium && <Podium top={top} ko={ko} />}
       <section>
         <div className="flex items-center justify-between mb-3 px-1">
           <h3 className="text-[13px] font-semibold text-gray-900">{ko ? '전체 순위' : 'Full standings'}</h3>
-          <span className="inline-flex items-center gap-1 text-[10.5px] font-medium text-emerald-600">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />{ko ? '승급권' : 'Promotion zone'}
+          {/* The legend that used to live here is now the whole
+              <PromotionZone> card above — repeating one of its three
+              bands as a lone dot was the weaker half of the pair. */}
+          <span className="text-[10.5px] font-medium text-gray-400 tabular-nums">
+            {ko ? `${memberCount}명` : `${memberCount} students`}
           </span>
         </div>
         <ol className="space-y-1.5">
           {rest.map((r, i) => {
-            const promo = r.rank <= promoteCount
-            const showDivider = hasPodium && r.rank === promoteCount + 1
+            const band = bandFor(r.rank, memberCount)
+            const tone = BAND_TONE[band]
+            const BandIcon = BAND_ICON[band]
+            // Draw a boundary only where the row that OPENS the band is
+            // actually rendered. The list is capped at the top 20 while
+            // the bands are computed from the full cohort, so in a large
+            // cohort the relegation line simply isn't on screen — much
+            // better than pinning it to the last visible row, which would
+            // claim a rank boundary that isn't there.
+            const divider = !hasPodium
+              ? null
+              : r.rank === promoteCount + 1
+                ? { label: ko ? '승급 경계선' : 'Promotion line', tone: 'promote' as LeagueBand }
+                : r.rank === relegateFrom
+                  ? { label: ko ? '강등 경계선' : 'Relegation line', tone: 'relegate' as LeagueBand }
+                  : null
             return (
               <div key={r.student_id}>
-                {showDivider && (
-                  <div className="flex items-center gap-2 py-1.5 px-1">
-                    <div className="flex-1 h-px bg-gradient-to-r from-emerald-300/60 to-transparent" />
-                    <span className="text-[9.5px] font-bold uppercase tracking-wider text-emerald-500">{ko ? '승급 경계선' : 'Promotion line'}</span>
-                    <div className="flex-1 h-px bg-gradient-to-l from-emerald-300/60 to-transparent" />
-                  </div>
-                )}
+                {divider && <ZoneDivider label={divider.label} tone={divider.tone} />}
                 <li
                   style={{ animationDelay: `${Math.min(i, 10) * 35}ms` }}
                   className={`flex items-center gap-3 pl-2 pr-3.5 py-2 rounded-xl ring-1 animate-card-in opacity-0 ${
                     r.is_me
                       ? 'bg-amber-50 ring-amber-200'
-                      : promo
+                      : band === 'promote'
                         ? 'bg-emerald-50/60 ring-emerald-100'
-                        : 'bg-white ring-gray-200/70'
+                        : band === 'relegate'
+                          ? 'bg-rose-50/50 ring-rose-100'
+                          : 'bg-white ring-gray-200/70'
                   }`}>
-                  <span className={`flex-shrink-0 w-6 text-center text-[12.5px] font-bold tabular-nums ${promo ? 'text-emerald-600' : 'text-gray-400'}`}>{r.rank}</span>
-                  <span className={`flex-shrink-0 w-8 h-8 rounded-full ${hueOf(r.student_id)} flex items-center justify-center text-[11px] font-bold`}>
-                    {initialsOf(r.display_name)}
-                  </span>
+                  <span className={`flex-shrink-0 w-6 text-center text-[12.5px] font-bold tabular-nums ${band === 'safe' ? 'text-gray-400' : tone.text}`}>{r.rank}</span>
+                  <RankAvatar row={r} size={32}
+                    initialsClass={`flex-shrink-0 w-8 h-8 rounded-full ${hueOf(r.student_id)} flex items-center justify-center text-[11px] font-bold`} />
                   <span className={`flex-1 min-w-0 truncate text-[13.5px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
                     {r.display_name}{r.is_me && <span className="text-[10px] font-semibold text-amber-600 ml-1.5">({ko ? '나' : 'me'})</span>}
                   </span>
-                  {promo && <TrendingUp className="flex-shrink-0 w-3.5 h-3.5 text-emerald-500" />}
+                  {/* The band arrow renders even on the amber "me" row, so
+                      the band survives the row tint being overridden. */}
+                  {band !== 'safe' && <BandIcon className={`flex-shrink-0 w-3.5 h-3.5 ${tone.text}`} />}
                   <span className="flex-shrink-0 inline-flex items-center gap-1 text-[12.5px] tabular-nums font-semibold text-gray-700">
                     <Sparkles className="w-3 h-3 text-amber-500" />{r.xp_this_week}
                   </span>
@@ -631,40 +868,160 @@ function PromotionBanner({ notice, ko }: { notice: PromotionNotice; ko: boolean 
   )
 }
 
-function RewardsPanel({ ko }: { ko: boolean }) {
-  // What the weekly close pays out. Credits land in the never-expiring
-  // purchased bucket. Keep in sync with lib/study/league-rewards.ts.
-  const rows = [
-    { Icon: Trophy, en: 'Podium finish (top 3)', ko: '포디움 (1~3위)', valEn: '+3 / +2 / +1', valKo: '+3 / +2 / +1' },
-    { Icon: TrendingUp, en: 'Promoted to a higher tier', ko: '상위 리그 승급', valEn: '+1', valKo: '+1' },
-    { Icon: Crown, en: 'First time reaching a new tier', ko: '새 리그 첫 도달', valEn: 'up to +8', valKo: '최대 +8' },
+type RewardState = 'ontrack' | 'ahead' | 'unavailable'
+
+/**
+ * Weekly rewards — the three payouts the Sunday close can make, each
+ * carrying its own state: on track at the student's current rank,
+ * still ahead of them, or not available in this tier at all.
+ *
+ * Amounts come from `league-reward-values.ts`, the same table
+ * grantLeagueRewards pays from. They used to be literals here under a
+ * "keep in sync" comment, which is how the panel came to advertise a
+ * vague "up to +8" for a milestone whose real value is fixed per tier.
+ *
+ * Nothing here claims credits are EARNED — they are granted at the
+ * close, so the on-track state is explicitly labelled as a projection
+ * of the current rank and the footnote says so.
+ */
+function RewardsPanel({ ko, tier, myRank, memberCount, seasonHigh }: {
+  ko: boolean; tier: typeof TIERS[number]; myRank: number | null; memberCount: number; seasonHigh: string | null
+}) {
+  const promoteCount = promoteZoneFor(memberCount)
+  const idx = TIERS.findIndex(t => t.key === tier.key)
+  const nextIdx = Math.min(TIERS.length - 1, idx + 1)
+  const nextTier = TIERS[nextIdx]
+  const milestoneCredits = MILESTONE_CREDITS[nextTier.key]
+
+  // grantLeagueRewards pays the milestone only the FIRST time a student
+  // is ever placed in a tier. Tiers are climbed one rung at a time, so a
+  // season high at or above the next tier means they have already held
+  // it and the bonus can never pay again. At Diamond `nextTier` clamps
+  // to Diamond itself, which this same comparison correctly marks as
+  // already held.
+  const seasonHighIdx = seasonHigh ? TIERS.findIndex(t => t.key === seasonHigh) : idx
+  const milestoneHeld = seasonHighIdx >= nextIdx
+
+  const onPromoTrack = myRank != null && myRank <= promoteCount
+  const podiumCredits = myRank != null ? PODIUM_CREDITS[myRank] : undefined
+  const milestoneOpen = !!milestoneCredits && !milestoneHeld
+
+  const rows: Array<{
+    Icon: typeof Trophy; tile: string; title: string; detail: string
+    value: string; state: RewardState; projected: number
+  }> = [
+    {
+      Icon: Trophy,
+      tile: 'from-amber-400 to-orange-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_4px_10px_-2px_rgba(245,158,11,0.28)]',
+      title: ko ? '포디움' : 'Podium finish',
+      detail: ko ? '코호트 1 · 2 · 3위' : 'Finish 1st, 2nd or 3rd',
+      value: `+${PODIUM_CREDITS[1]} / +${PODIUM_CREDITS[2]} / +${PODIUM_CREDITS[3]}`,
+      state: podiumCredits ? 'ontrack' : 'ahead',
+      projected: podiumCredits ?? 0,
+    },
+    {
+      Icon: TrendingUp,
+      tile: 'from-emerald-400 to-teal-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_4px_10px_-2px_rgba(16,185,129,0.28)]',
+      title: ko ? '승급 보너스' : 'Promotion bonus',
+      detail: ko ? `상위 ${promoteCount}위 안에 들기` : `Finish in the top ${promoteCount}`,
+      value: `+${PROMOTION_CREDITS}`,
+      state: onPromoTrack ? 'ontrack' : 'ahead',
+      projected: onPromoTrack ? PROMOTION_CREDITS : 0,
+    },
+    {
+      Icon: Crown,
+      tile: 'from-violet-500 to-purple-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_4px_10px_-2px_rgba(139,92,246,0.28)]',
+      title: ko ? `${nextTier.label_ko} 첫 도달` : `First time in ${nextTier.label_en}`,
+      detail: !milestoneCredits
+        ? (ko ? '골드 리그부터 지급돼요' : 'Milestones start at Gold')
+        : milestoneHeld
+          ? (ko ? '이미 도달한 적이 있어요 — 1회 한정' : "You've been there — one time only")
+          : (ko ? '승급해서 처음 도달하면 지급' : 'Paid the first time you are promoted into it'),
+      value: milestoneCredits ? `+${milestoneCredits}` : '—',
+      state: !milestoneOpen ? 'unavailable' : onPromoTrack ? 'ontrack' : 'ahead',
+      projected: milestoneOpen && onPromoTrack ? milestoneCredits : 0,
+    },
   ]
+
+  const projectedTotal = rows.reduce((sum, r) => sum + r.projected, 0)
+
+  const chip = (state: RewardState) => {
+    if (state === 'ontrack') return (
+      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 ring-1 ring-emerald-200 px-1.5 py-px text-[10px] font-bold text-emerald-700">
+        <Check className="w-2.5 h-2.5" weight="bold" />{ko ? '획득 예정' : 'On track'}
+      </span>
+    )
+    if (state === 'unavailable') return (
+      <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 ring-1 ring-gray-200 px-1.5 py-px text-[10px] font-bold text-gray-400">
+        <Lock className="w-2.5 h-2.5" />{ko ? '해당 없음' : 'N/A'}
+      </span>
+    )
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 ring-1 ring-gray-200 px-1.5 py-px text-[10px] font-bold text-gray-500">
+        <span aria-hidden className="w-1.5 h-1.5 rounded-full ring-1 ring-gray-400" />{ko ? '아직' : 'Not yet'}
+      </span>
+    )
+  }
+
   return (
-    <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-4">
-      <div className="flex items-center gap-2 mb-3">
-        <span className="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-          <Sparkles className="w-4 h-4" weight="fill" />
-        </span>
-        <div>
-          <div className="text-[14px] font-semibold text-gray-900">{ko ? '주간 보상' : 'Weekly rewards'}</div>
-          <div className="text-[11.5px] text-gray-500 leading-snug">{ko ? '매주 일요일 마감 시 크레딧 지급' : 'Credits paid out when the week closes on Sunday'}</div>
+    <section>
+      <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? '주간 보상' : 'Weekly rewards'}</h3>
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
+        <div className="flex items-center gap-3 px-4 pt-4 pb-3.5">
+          <span className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_4px_10px_-2px_rgba(245,158,11,0.28)]">
+            <Sparkles className="w-5 h-5" weight="fill" />
+          </span>
+          {/* Eyebrow stays short enough to hold one line at 375px — the
+              full "what does on track mean" caveat lives in the footnote,
+              and the total is NOT repeated as a chip beside the headline
+              that already states it. */}
+          <div className="min-w-0 flex-1">
+            <div className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none">
+              {ko ? '일요일 마감 지급' : 'Sunday payout'}
+            </div>
+            <div className="text-[15px] font-semibold text-gray-900 mt-1.5 leading-none">
+              {projectedTotal > 0
+                ? (ko ? `크레딧 ${projectedTotal}개 획득 예정` : `${projectedTotal} credits on track`)
+                : (ko ? '아직 획득 예정 보상 없음' : 'Nothing on track yet')}
+            </div>
+          </div>
+        </div>
+        <div className="border-t border-gray-100 divide-y divide-gray-100">
+          {rows.map((r, i) => {
+            const dim = r.state === 'unavailable'
+            const Icon = r.Icon
+            return (
+              <div key={i} className={`flex items-start gap-3 px-4 py-3 ${dim ? 'opacity-55' : ''}`}>
+                <span className={`flex-shrink-0 mt-0.5 w-8 h-8 rounded-xl text-white flex items-center justify-center ${
+                  dim ? 'bg-gray-300' : `bg-gradient-to-br ${r.tile}`
+                }`}>
+                  <Icon className="w-4 h-4" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="text-[13px] font-semibold text-gray-900 truncate">{r.title}</div>
+                  <div className="text-[11.5px] text-gray-500 leading-snug mt-0.5">{r.detail}</div>
+                </div>
+                <div className="flex-shrink-0 flex flex-col items-end gap-1">
+                  <span className={`inline-flex items-center gap-1 text-[12.5px] font-bold tabular-nums whitespace-nowrap ${dim ? 'text-gray-400' : 'text-amber-700'}`}>
+                    {!dim && <Sparkles className="w-3 h-3 text-amber-500" weight="fill" />}
+                    {r.value}
+                  </span>
+                  {chip(r.state)}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        {/* States above are a PROJECTION of the current standings, not a
+            ledger of granted credits — say so rather than letting "on
+            track" read as "earned". */}
+        <div className="border-t border-gray-100 bg-gray-50/70 px-4 py-2.5 text-[11px] text-gray-500 leading-snug">
+          {ko
+            ? '‘획득 예정’은 지금 순위가 일요일까지 유지될 경우예요. 크레딧은 마감 시 지급되며 만료되지 않아요.'
+            : '"On track" assumes your current rank holds until Sunday. Credits are granted at the close and never expire.'}
         </div>
       </div>
-      <div className="space-y-1.5">
-        {rows.map((r, i) => (
-          <div key={i} className="flex items-center justify-between rounded-xl bg-gray-50 px-3 py-2">
-            <span className="inline-flex items-center gap-2 text-[13px] text-gray-700">
-              <r.Icon className="w-4 h-4 text-gray-400" />
-              {ko ? r.ko : r.en}
-            </span>
-            <span className="inline-flex items-center gap-1 text-[12.5px] font-bold text-amber-700 tabular-nums">
-              <Sparkles className="w-3 h-3 text-amber-500" weight="fill" />
-              {ko ? r.valKo : r.valEn}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
+    </section>
   )
 }
 
