@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Loader2, Check, X, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp } from '@/app/mobile/study/_shared/icons'
+import { Loader2, Check, X, Target, GraduationCap, Clock, Globe, Sparkles, Settings, TrendingUp, Student } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -9,8 +9,13 @@ import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
+import { RaumiAvatar, STUDY_AVATAR_LIST } from '../_shared/avatars'
 
 interface Prefs {
+  /** Chosen Raumi avatar id, or null → the social surfaces keep drawing
+   *  the initials avatar. Absent from the API response until migration
+   *  071 is applied, hence optional. */
+  avatar_id?: string | null
   target_test: string | null
   target_tests: string[]
   grade_level: string | null
@@ -180,6 +185,46 @@ function PreferencesInner() {
           {ko ? '저장하지 못했어요. 다시 시도해 주세요.' : "Couldn't save. Please try again."}
         </div>
       )}
+
+      {/* Avatar — pick a member of Raumi's family to stand in for you on
+          the friends list and the league leaderboard.
+
+          "Initials" is a real, reachable option and is the default: it
+          writes avatar_id = null, which is what makes those surfaces draw
+          the deterministic initials avatar they always have. Without a way
+          back to it, choosing an avatar would be one-way.
+
+          TODO(i18n): another workstream owns src/locales/*.json right now.
+          Keys used below — study.prefs.avatar, study.prefs.avatarHint,
+          study.prefs.avatarNone, and study.prefs.avatarName.* (one per
+          registry entry, see _shared/avatars.tsx) — are listed with their
+          en + ko text in the PR description and must be added to BOTH
+          en.json and ko.json. Until then t() renders the raw key, and the
+          per-avatar names are only reachable by screen readers. */}
+      <SettingGroup icon={Student} label={String(t('study.prefs.avatar'))} saving={saving === 'avatar_id'}>
+        <div role="group" aria-label={String(t('study.prefs.avatar'))} className="grid grid-cols-4 lg:grid-cols-6 gap-2">
+          <AvatarTile
+            selected={!prefs.avatar_id}
+            label={String(t('study.prefs.avatarNone'))}
+            onSelect={() => update('avatar_id', null)}
+          >
+            <div className="w-[52px] h-[52px] rounded-full bg-gray-100 ring-1 ring-gray-200/80 flex items-center justify-center">
+              <Student className="w-6 h-6 text-gray-400" />
+            </div>
+          </AvatarTile>
+          {STUDY_AVATAR_LIST.map(spec => (
+            <AvatarTile
+              key={spec.id}
+              selected={prefs.avatar_id === spec.id}
+              label={String(t(spec.nameKey))}
+              onSelect={() => update('avatar_id', spec.id)}
+            >
+              <RaumiAvatar spec={spec} size={52} />
+            </AvatarTile>
+          ))}
+        </div>
+        <p className="mt-2 px-1 text-[11.5px] text-gray-400">{t('study.prefs.avatarHint')}</p>
+      </SettingGroup>
 
       {/* Target test — multi-select. A student can prep for more than one
           test (SAT + TOEFL). Tapping a chip ADDS it (and focuses it); it
@@ -360,6 +405,42 @@ function PreferencesInner() {
       </SettingGroup>
 
     </StudyScrollShell>
+  )
+}
+
+/**
+ * One tile in the avatar grid.
+ *
+ * A real <button>, so it is in the tab order and fires on Enter/Space for
+ * free; `aria-pressed` carries the selection state, and the name lives in
+ * `aria-label` rather than under the art (ten captions in a 4-up grid at
+ * 375px wrap to three lines each and turn the picker into a list). The
+ * selected ring is paired with a check badge so selection does not depend
+ * on colour alone.
+ */
+function AvatarTile({ selected, label, onSelect, children }: {
+  selected: boolean; label: string; onSelect: () => void; children: React.ReactNode
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={selected}
+      aria-label={label}
+      title={label}
+      onClick={onSelect}
+      className={`relative flex items-center justify-center rounded-2xl p-1.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+        selected
+          ? 'bg-primary/10 ring-2 ring-primary'
+          : 'bg-white ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.96]'
+      }`}
+    >
+      {children}
+      {selected && (
+        <span aria-hidden className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center shadow-sm ring-2 ring-white">
+          <Check className="w-3 h-3" />
+        </span>
+      )}
+    </button>
   )
 }
 

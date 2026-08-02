@@ -52,11 +52,39 @@ describe('PUT /api/study/prefs', () => {
     ['non-integer daily_goal_minutes', { daily_goal_minutes: 7.5 }, 'daily_goal_minutes'],
     ["default_language 'fr'", { default_language: 'fr' }, 'default_language'],
     ["onboarded_at 'not-a-date'", { onboarded_at: 'not-a-date' }, 'onboarded_at'],
+    // avatar_id must be an id this build can DRAW. The column's own CHECK
+    // only constrains format, so a well-formed unknown id would store
+    // fine and then render as a blank disc for every friend who sees it.
+    ['an unregistered avatar_id', { avatar_id: 'raumi-nonexistent' }, 'avatar_id'],
+    ['a non-string avatar_id', { avatar_id: 3 }, 'avatar_id'],
+    ['an avatar_id that fails the column format', { avatar_id: 'Raumi Classic!' }, 'avatar_id'],
   ])('rejects %s with 400', async (_label, body, field) => {
     const res = await PUT(makeRequest(body, { method: 'PUT' }))
     expect(res.status).toBe(400)
     expect(await res.json()).toEqual({ error: `invalid value for ${field}` })
     expect(fromMock).not.toHaveBeenCalled()
+  })
+
+  it('persists a registered avatar_id', async () => {
+    const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1', avatar_id: 'raumi-scholar' } })
+
+    const res = await PUT(makeRequest({ avatar_id: 'raumi-scholar' }, { method: 'PUT' }))
+    expect(res.status).toBe(200)
+    expect(upsertChain.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({ student_id: 'student-1', avatar_id: 'raumi-scholar' }),
+      { onConflict: 'student_id' },
+    )
+  })
+
+  it('persists a null avatar_id — the way back to the initials avatar', async () => {
+    const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1', avatar_id: null } })
+
+    const res = await PUT(makeRequest({ avatar_id: null }, { method: 'PUT' }))
+    expect(res.status).toBe(200)
+    expect(upsertChain.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({ student_id: 'student-1', avatar_id: null }),
+      { onConflict: 'student_id' },
+    )
   })
 
   it('ignores student_id in the body — the upsert always uses the authenticated user', async () => {

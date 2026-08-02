@@ -1,0 +1,188 @@
+[
+  {
+    "id": "5a2bc950-e913-41e7-af04-39e61737bdb2",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Combined rates of work",
+    "prompt": "Pump A can fill a tank in 4 hours and pump B can fill the same tank in 6 hours. Both pumps run together for 1 hour, after which pump A is turned off and pump B finishes filling the tank alone. What is the total time, in hours, required to fill the tank?",
+    "correct_answer": "4.5",
+    "choices": ["3.5", "2.4", "5.5", "4.5"],
+    "explanation": "Together they fill 1/4 + 1/6 = 5/12 of the tank in the first hour. The remaining 7/12 is filled by B at 1/6 per hour, taking (7/12)/(1/6) = 3.5 hours, for a total of 1 + 3.5 = 4.5 hours. (2.4 is the together-only fill time; 3.5 omits the first hour.)",
+    "repaired_choices": ["3.5", "2.4", "6", "4.5"],
+    "distractor_reasoning": {
+      "3.5": "Found how long B needs alone after the first hour and forgot to add that first hour back.",
+      "2.4": "Answered the time if both pumps ran the whole way, 1/(1/4 + 1/6).",
+      "6": "Reported B's solo fill time, ignoring the hour during which A was also running."
+    }
+  },
+  {
+    "id": "c85f3f57-c33f-4e1d-ae45-ec62f20b234e",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Exponential growth models",
+    "prompt": "A colony of bacteria doubles in number every 6 hours. If there are 500 bacteria at noon, how many bacteria will there be at 6 a.m. the following day, assuming the growth continues at this rate?",
+    "correct_answer": "4000",
+    "choices": ["2000", "4000", "8000", "3000"],
+    "explanation": "From noon to 6 a.m. the next day is 18 hours, which is 18/6 = 3 doubling periods. The count is 500 × 2^3 = 4000. (2000 uses 2 doublings; 8000 uses 4.)",
+    "hub_retained": "In a doubling problem, miscounting the elapsed time by one period IS the error, and it necessarily lands on half or twice the key. Replacing both would mean shipping distractors no student would ever produce.",
+    "repaired_choices": ["2000", "4000", "8000", "4500"],
+    "distractor_reasoning": {
+      "2000": "Counted the interval as 12 hours (noon to midnight), giving only 2 doublings.",
+      "8000": "Counted the interval as a full 24 hours, giving 4 doublings.",
+      "4500": "Swapped base and exponent, computing 500 × 3² instead of 500 × 2³."
+    }
+  },
+  {
+    "id": "6a038cab-abb5-4014-b37e-e6619c825c2a",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Average speed (harmonic reasoning)",
+    "prompt": "A cyclist rides 30 kilometers at a speed of 15 kilometers per hour and then returns along the same 30-kilometer route at a speed of 10 kilometers per hour. What is the cyclist's average speed, in kilometers per hour, for the entire round trip?",
+    "correct_answer": "12",
+    "choices": ["12.5", "12", "11", "13"],
+    "explanation": "The trip takes 30/15 + 30/10 = 2 + 3 = 5 hours to cover 60 km, so the average speed is 60/5 = 12 km/h. (12.5 is the incorrect simple average of 15 and 10.)",
+    "repaired_choices": ["12.5", "12", "10", "5"],
+    "distractor_reasoning": {
+      "12.5": "Took the simple arithmetic average of 15 and 10, ignoring that more time is spent at the slower speed.",
+      "10": "Reported the slower leg's speed as the average for the whole trip.",
+      "5": "Reported the total time in hours rather than the speed."
+    }
+  },
+  {
+    "id": "98ebd15b-12b3-460c-acb0-9ec4177209f8",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Two-variable data: models and scatterplots",
+    "prompt": "A bacterial culture doubles in population every 5 hours and grows according to this pattern at all times. At 9:00 a.m. the culture contains 3,200 cells. How many cells did the culture contain at 11:00 p.m. on the previous day?",
+    "correct_answer": "800",
+    "choices": ["1600", "12800", "800", "400"],
+    "explanation": "From 11:00 p.m. to 9:00 a.m. is 10 hours, which is two 5-hour doubling periods. Going backward in time, halve twice: 3,200 ÷ 2 ÷ 2 = 800.",
+    "hub_retained": "Halving once too few or once too many is the error this item is built to catch, and both results are necessarily twice or half the key.",
+    "repaired_choices": ["1600", "640", "800", "400"],
+    "distractor_reasoning": {
+      "1600": "Halved only once, treating the 10-hour gap as a single doubling period.",
+      "640": "Divided by the 5 of the 5-hour period instead of halving per period.",
+      "400": "Halved three times, counting one doubling period too many."
+    }
+  },
+  {
+    "id": "715d33b1-f539-4162-b70f-af01290b72bf",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Ratios, rates, and units",
+    "prompt": "A solid metal has a density of 8.9 grams per cubic centimeter. A length of uniform wire made from this metal has a mass of 445 grams and a constant cross-sectional area of 0.05 square centimeters. What is the length of the wire, in meters?",
+    "correct_answer": "10",
+    "choices": ["5", "10", "1000", "0.1"],
+    "explanation": "Volume = mass / density = 445 / 8.9 = 50 cm^3. Length = volume / cross-sectional area = 50 / 0.05 = 1000 cm. Converting: 1000 cm = 10 m. The distractor 1000 forgets the cm-to-m conversion; 5 comes from dividing area by 2 as a radius.",
+    "explanation_stale": "Explanation names 1000 and 5, both kept; no edit strictly required, but the removed 0.1 is not mentioned so nothing is broken.",
+    "hub_retained": "The cm-to-m conversion is the whole point of the item, and getting the power of ten wrong by one step lands on 100 (÷10) — a slip-value of the key by construction, not by authoring habit.",
+    "repaired_choices": ["5", "10", "1000", "100"],
+    "distractor_reasoning": {
+      "5": "Halved the cross-sectional area as if it were a diameter-to-radius step before dividing.",
+      "1000": "Gave the length in centimetres, skipping the cm-to-m conversion entirely.",
+      "100": "Converted 1000 cm to metres by dividing by 10 rather than by 100."
+    }
+  },
+  {
+    "id": "8c978451-376f-44a3-9842-d36c90b86c6b",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Rates",
+    "prompt": "A cyclist rides 120 miles from town A to town B at an average speed of 40 miles per hour, then returns along the same 120-mile route at an average speed of 60 miles per hour. What is the cyclist's average speed, in miles per hour, for the entire round trip?",
+    "correct_answer": "48",
+    "choices": ["48", "50", "96", "24"],
+    "explanation": "Average speed = total distance / total time. Time out = 120/40 = 3 h, time back = 120/60 = 2 h, total time = 5 h; total distance = 240 mi, so 240/5 = 48. The distractor 50 wrongly averages the two speeds arithmetically.",
+    "explanation_stale": "Explanation still describes the removed option 50; that sentence must be replaced with one for 100.",
+    "hub_retained": "Pairing one-way distance with round-trip time (24) and total distance with one-way time (96) are the two mismatches this item is designed to catch; on a 2:3 time split they necessarily land at half and twice the key.",
+    "repaired_choices": ["48", "100", "96", "24"],
+    "distractor_reasoning": {
+      "100": "Added the two speeds instead of combining distance and time.",
+      "96": "Used the total 240 miles with the average of the two leg times, 2.5 h, rather than their sum.",
+      "24": "Used the one-way 120 miles with the round-trip time of 5 hours."
+    }
+  },
+  {
+    "id": "3274a10b-8d89-4995-84c2-6cbe7d4627a8",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Probability and conditional probability",
+    "prompt": "If a laptop buyer is selected at random, what is the probability that the customer bought a warranty?",
+    "correct_answer": "3/10",
+    "choices": ["10/3", "7/10", "3/10", "18/120"],
+    "explanation": "Among the 60 people in that row, 18 are in the \"Warranty\" column, so the conditional probability is 18/60 = 3/10.",
+    "repaired_choices": ["3/7", "7/10", "3/10", "7/20"],
+    "distractor_reasoning": {
+      "3/7": "Reversed the condition, computing the probability a warranty buyer bought a laptop, 18/42.",
+      "7/10": "Read the \"No warranty\" cell instead, giving the complement 42/60.",
+      "7/20": "Ignored the condition entirely and used the whole table, 42 warranties out of 120 customers."
+    }
+  },
+  {
+    "id": "da2c6564-62ec-4161-b0ea-156b146ed2be",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Probability and conditional probability",
+    "prompt": "If a downtown commuter is chosen at random, what is the probability they use transit?",
+    "correct_answer": "2/3",
+    "choices": ["16/60", "3/2", "1/3", "2/3"],
+    "explanation": "Among the 24 in that row, 16 are in the \"Transit\" column, so the probability is 16/24 = 2/3.",
+    "repaired_choices": ["4/15", "16/25", "5/12", "2/3"],
+    "distractor_reasoning": {
+      "4/15": "Used the joint probability, 16 downtown-transit commuters out of all 60, rather than conditioning on the row.",
+      "16/25": "Reversed the condition, computing the probability a transit user is from downtown, 16/25.",
+      "5/12": "Ignored the condition entirely, using all 25 transit users out of 60."
+    }
+  },
+  {
+    "id": "584b1ec4-5bef-4263-a5d1-7cfbe10cea13",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Probability and conditional probability",
+    "prompt": "If an untreated plant is chosen at random, what is the probability it flowered?",
+    "correct_answer": "2/5",
+    "choices": ["5/2", "3/5", "2/5", "20/100"],
+    "explanation": "Among the 50 in that row, 20 are in the \"Flowered\" column, so the probability is 20/50 = 2/5.",
+    "repaired_choices": ["4/11", "7/10", "2/5", "1/5"],
+    "distractor_reasoning": {
+      "4/11": "Reversed the condition, computing the probability a flowering plant was untreated, 20/55.",
+      "7/10": "Read the Treated row instead of the Untreated row, giving 35/50.",
+      "1/5": "Used the joint probability, 20 untreated-and-flowered out of all 100 plants."
+    }
+  },
+  {
+    "id": "d8e1746b-cc7c-4993-8265-ab0fba5c8593",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Probability and conditional probability",
+    "prompt": "If a device from Factory 1 is chosen at random, what is the probability it failed?",
+    "correct_answer": "2/7",
+    "choices": ["5/7", "2/7", "12/84", "7/2"],
+    "explanation": "Among the 42 in that row, 12 are in the \"Fail\" column, so the probability is 12/42 = 2/7.",
+    "repaired_choices": ["6/13", "2/7", "1/3", "13/42"],
+    "distractor_reasoning": {
+      "6/13": "Reversed the condition, computing the probability a failed device came from Factory 1, 12/26.",
+      "1/3": "Read the Factory 2 row instead, giving 14/42.",
+      "13/42": "Ignored the condition entirely, using all 26 failures out of 84 devices."
+    }
+  },
+  {
+    "id": "d0113a70-3eea-401d-87e0-5fe7e57ebe62",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Probability and conditional probability",
+    "prompt": "If a Party A voter is chosen at random, what is the probability they favor the measure?",
+    "correct_answer": "3/5",
+    "choices": ["3/5", "27/75", "5/3", "2/5"],
+    "explanation": "Among the 45 in that row, 27 are in the \"Favor\" column, so the probability is 27/45 = 3/5.",
+    "repaired_choices": ["3/5", "13/25", "9/13", "2/5"],
+    "distractor_reasoning": {
+      "13/25": "Ignored the condition entirely, using all 39 voters who favor out of 75.",
+      "9/13": "Reversed the condition, computing the probability a supporter is from Party A, 27/39.",
+      "2/5": "Read the \"Oppose\" cell instead, giving the complement 18/45."
+    }
+  },
+  {
+    "id": "db74a131-64d4-4d08-83e6-2a2b11a70637",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "Center and spread",
+    "prompt": "What is the range of the data shown in the dot plot?",
+    "correct_answer": "6",
+    "choices": ["12", "7", "6", "18"],
+    "explanation": "The range of the data set is 6.",
+    "repaired_choices": ["13.5", "14.33", "6", "18"],
+    "distractor_reasoning": {
+      "13.5": "Reported the median of the six values instead of the range.",
+      "14.33": "Reported the mean of the six values instead of the range.",
+      "18": "Reported the maximum value rather than maximum minus minimum."
+    }
+  }
+]

@@ -9,6 +9,7 @@ import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyScrollShell, StudyPageTransition, StudyEmptyState } from '../_shared/primitives'
 import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
+import { StudyAvatar } from '@/app/mobile/study/_shared/avatars'
 
 /**
  * /mobile/study/friends — friend management.
@@ -19,7 +20,10 @@ import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
  * the referral loop.
  */
 
-interface Person { student_id: string; display_name: string }
+/** avatar_id is optional on the wire: it is absent from responses served
+ *  before migration 071 is applied, and null for anyone who never picked
+ *  an avatar. Both cases render the initials avatar. */
+interface Person { student_id: string; display_name: string; avatar_id?: string | null }
 interface FriendRequest extends Person { id: string }
 interface FriendsData {
   friends: Person[]
@@ -30,6 +34,7 @@ interface FriendsData {
 interface SearchResult {
   student_id: string
   nickname: string
+  avatar_id?: string | null
   relation: 'none' | 'friends' | 'pending_out' | 'pending_in'
 }
 interface ActiveDuel { id: string; opponent: Person; my_xp: number; their_xp: number; ends_at: string | null }
@@ -231,7 +236,7 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
         <div className="space-y-1.5">
           {results.map(r => (
             <div key={r.student_id} className="flex items-center gap-2.5 px-1 py-1">
-              <Avatar name={r.nickname} />
+              <Avatar name={r.nickname} avatarId={r.avatar_id} />
               <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{r.nickname}</span>
               {r.relation === 'friends' ? (
                 <span className="text-[11.5px] font-semibold text-emerald-600">{ko ? '친구' : 'Friends'}</span>
@@ -311,7 +316,7 @@ function IncomingRequests({ ko, requests, onChanged }: { ko: boolean; requests: 
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 divide-y divide-gray-100">
         {requests.map(r => (
           <div key={r.id} className="flex items-center gap-2.5 px-4 py-3">
-            <Avatar name={r.display_name} />
+            <Avatar name={r.display_name} avatarId={r.avatar_id} />
             <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{r.display_name}</span>
             <button type="button" onClick={() => void respond(r.id, 'accept')}
               className="h-8 px-3 rounded-full bg-primary text-white text-[12px] font-semibold hover:opacity-95 active:scale-95 transition">
@@ -383,7 +388,7 @@ function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: bo
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 divide-y divide-gray-100">
         {friends.map(f => (
           <div key={f.student_id} className="group flex items-center gap-2.5 px-4 py-3">
-            <Avatar name={f.display_name} />
+            <Avatar name={f.display_name} avatarId={f.avatar_id} />
             <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{f.display_name}</span>
             {/* duels hidden for launch */}
             {false && (
@@ -401,7 +406,7 @@ function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: bo
         ))}
         {outgoing.map(o => (
           <div key={o.id} className="flex items-center gap-2.5 px-4 py-3 opacity-70">
-            <Avatar name={o.display_name} />
+            <Avatar name={o.display_name} avatarId={o.avatar_id} />
             <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-500">{o.display_name}</span>
             <span className="text-[11.5px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
             <button type="button" onClick={() => void cancel(o.id)} aria-label={ko ? '취소' : 'Cancel'}
@@ -463,7 +468,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
       {/* Incoming challenge requests */}
       {data.incoming.map(r => (
         <div key={r.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-primary/20 px-4 py-3">
-          <Avatar name={r.opponent.display_name} />
+          <Avatar name={r.opponent.display_name} avatarId={r.opponent.avatar_id} />
           <div className="flex-1 min-w-0">
             <div className="text-[13.5px] font-medium text-gray-800 truncate">{r.opponent.display_name}</div>
             <div className="text-[11.5px] text-gray-400">{ko ? '대결을 신청했어요' : 'challenged you'}</div>
@@ -487,7 +492,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
           <div key={d.id} className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-3">
             <div className="flex items-center justify-between mb-2">
               <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-gray-800">
-                <Avatar name={d.opponent.display_name} />
+                <Avatar name={d.opponent.display_name} avatarId={d.opponent.avatar_id} />
                 <span className="truncate max-w-[120px]">{d.opponent.display_name}</span>
               </span>
               <span className="inline-flex items-center gap-1 text-[11px] font-medium text-gray-400">
@@ -515,7 +520,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
       {/* Outgoing pending */}
       {data.outgoing.map(o => (
         <div key={o.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-3 opacity-80">
-          <Avatar name={o.opponent.display_name} />
+          <Avatar name={o.opponent.display_name} avatarId={o.opponent.avatar_id} />
           <span className="flex-1 min-w-0 truncate text-[13.5px] text-gray-600">{o.opponent.display_name}</span>
           <span className="text-[11.5px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
           <button type="button" onClick={() => void respond(o.id, 'cancel')} aria-label={ko ? '취소' : 'Cancel'}
@@ -528,7 +533,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
       {/* Recent results */}
       {data.recent.map(r => (
         <div key={r.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-2.5">
-          <Avatar name={r.opponent.display_name} />
+          <Avatar name={r.opponent.display_name} avatarId={r.opponent.avatar_id} />
           <span className="flex-1 min-w-0 truncate text-[13.5px] text-gray-700">{r.opponent.display_name}</span>
           <span className="text-[12px] tabular-nums text-gray-500">{r.my_xp}–{r.their_xp}</span>
           <span className={`text-[11px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${
@@ -542,15 +547,28 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
   )
 }
 
-/** Deterministic initials avatar, matching the leaderboard style. */
-function Avatar({ name }: { name: string }) {
+/**
+ * The person's chosen Raumi avatar, falling back to the deterministic
+ * initials avatar (matching the leaderboard style) when they have none.
+ *
+ * The fallback branch below is the ORIGINAL component, unchanged — same
+ * hash, same hsl(), same size and type scale — so a student who never
+ * opens the avatar picker sees exactly what they saw before.
+ */
+function Avatar({ name, avatarId }: { name: string; avatarId?: string | null }) {
   const initial = (name.trim()[0] ?? '?').toUpperCase()
   let h = 0
   for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) % 360
   return (
-    <div className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold text-white"
-      style={{ backgroundColor: `hsl(${h}, 55%, 55%)` }}>
-      {initial}
-    </div>
+    <StudyAvatar
+      avatarId={avatarId}
+      size={36}
+      fallback={
+        <div className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold text-white"
+          style={{ backgroundColor: `hsl(${h}, 55%, 55%)` }}>
+          {initial}
+        </div>
+      }
+    />
   )
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
+import { isStudyAvatarId } from '@/lib/study/avatars'
 
 /**
  * GET /api/study/prefs — returns the student's stored study prefs,
@@ -20,6 +21,10 @@ export interface StudyUserPrefs {
    *  Null until set. Written via /api/study/nickname (not the prefs PUT),
    *  which owns the format + uniqueness rules. */
   nickname: string | null
+  /** Chosen Raumi avatar id (see src/lib/study/avatars.ts). NULL means
+   *  "never picked one" — every social surface then draws the initials
+   *  avatar it drew before avatars existed. Settable through this PUT. */
+  avatar_id: string | null
   target_test: string | null
   /** Full set of active target tests (SAT, TOEFL, …). Superset of
    *  target_test, which is the "current focus" pointer. Empty array
@@ -96,6 +101,12 @@ export async function PUT(req: NextRequest) {
     default_difficulty: v => v === 'warmup' || v === 'balanced' || v === 'challenge',
     onboarded_at: isNullOrIsoDate,
     nav_tour_seen_at: isNullOrIsoDate,
+    // Avatar choice. null clears it (back to the initials avatar). Only
+    // ids this build can DRAW are accepted: the column's own constraint
+    // checks format, not membership, so an unrecognised id would store
+    // fine and then render as a blank disc for everyone who sees the
+    // student. Rejecting here keeps the stored set drawable.
+    avatar_id: v => v === null || isStudyAvatarId(v),
     // Score-plan engine (P1): the total goal (SAT 400–1600) + exam date.
     goal_score: v => v === null || (typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= 2000),
     // Per-test goal map: { sat: 1500, toefl: 105, … }. Each value an

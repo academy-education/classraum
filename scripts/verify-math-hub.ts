@@ -40,13 +40,15 @@ import { config } from 'dotenv'
 import { resolve } from 'path'
 config({ path: resolve(process.cwd(), '.env.local'), quiet: true })
 import { createClient } from '@supabase/supabase-js'
+import { readdirSync, readFileSync } from 'fs'
+import { pathToFileURL } from 'url'
 
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
 /** Parse an option into a number where it plainly is one. Handles integers,
  *  decimals, negatives, currency, percentages and simple a/b fractions.
  *  Returns null for anything algebraic — those are skipped, not guessed at. */
-function num(raw: string): number | null {
+export function num(raw: string): number | null {
   const s = raw.trim().replace(/[$,\s]/g, '')
   let m = /^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/.exec(s)
   if (m) { const d = parseFloat(m[2]!); return d === 0 ? null : parseFloat(m[1]!) / d }
@@ -59,7 +61,7 @@ const EPS = 1e-9
 const close = (a: number, b: number) => Math.abs(a - b) < Math.max(EPS, Math.abs(b) * 1e-9)
 
 /** Is `to` reachable from `from` by one predictable slip? */
-function derives(from: number, to: number): boolean {
+export function derives(from: number, to: number): boolean {
   if (from === 0) return false
   const cands = [-from, 1 / from, from * 2, from / 2, from * from, from + 1, from - 1]
   if (from > 0) cands.push(Math.sqrt(from))
@@ -86,8 +88,66 @@ async function load(section: string): Promise<Array<Item & { domain: string; id:
 /** Pass --ids to print the affected item ids as a repair work-list. */
 const LIST_IDS = process.argv.includes('--ids')
 
-;(async () => {
+/**
+ * --overlay=<glob-dir> substitutes `repaired_choices` from the repair JSON
+ * files over the banked option sets before measuring, so a repair can be
+ * scored WITHOUT writing to the bank first.
+ *
+ * The overlay exists so that the before and after numbers come out of this
+ * file — the same `derives`, the same single-hub rule, the same control. A
+ * separate "did my repair work" script is exactly the shape of check that
+ * passes because it disagrees with the detector nobody re-ran.
+ *
+ * It is read-only and off by default; without the flag this script is
+ * byte-for-byte the measurement it always was.
+ */
+const OVERLAY = process.argv.find(a => a.startsWith('--overlay='))?.split('=')[1]
+
+// A bare `--overlay` (no =dir) used to be silently ignored: the script ran
+// the UNREPAIRED bank and printed the before-numbers under a command that
+// looked like it was measuring the after. That is the exact shape of a check
+// that cannot fail — you read 64% and conclude the repair did nothing, or
+// worse read a number that moved for an unrelated reason and conclude it
+// worked. Mistyping the flag is now loud.
+{
+  const malformed = process.argv.find(a => a === '--overlay' || (a.startsWith('--overlay') && !a.startsWith('--overlay=')))
+  if (malformed) {
+    console.error(`\n${malformed} is not a valid flag. Use --overlay=<dir>, e.g.\n  npx tsx scripts/verify-math-hub.ts --overlay=scripts/study-bank\n`)
+    process.exit(2)
+  }
+}
+
+function applyOverlay(items: Array<Item & { domain: string; id: string }>): number {
+  if (!OVERLAY) return 0
+  const byId = new Map<string, string[]>()
+  for (const f of readdirSync(OVERLAY).filter(f => f.endsWith('.json'))) {
+    let payload: any[]
+    try { payload = JSON.parse(readFileSync(`${OVERLAY}/${f}`, 'utf8')) } catch { continue }
+    if (!Array.isArray(payload)) continue
+    for (const p of payload) {
+      if (p?.id && Array.isArray(p.repaired_choices)) byId.set(p.id, p.repaired_choices.map(String))
+    }
+  }
+  let n = 0
+  for (const it of items) {
+    const next = byId.get(it.id)
+    if (next) { it.choices = next; n++ }
+  }
+  console.log(`OVERLAY: ${byId.size} repaired option set(s) on disk, ${n} matched into the bank sample.\n`)
+  return n
+}
+
+/**
+ * Only measure when RUN, not when IMPORTED. scripts/math-hub-repair-io.ts
+ * imports `num` and `derives` from here so the repair tooling cannot drift
+ * from the detector; without this guard that import would silently fire a
+ * full bank scan on every export.
+ */
+const IS_MAIN = process.argv[1] ? import.meta.url === pathToFileURL(process.argv[1]).href : false
+
+async function main() {
   const items = await load('math')
+  applyOverlay(items)
   const byDomain = new Map<string, typeof items>()
   for (const it of items) {
     if (!byDomain.has(it.domain)) byDomain.set(it.domain, [] as any)
@@ -178,4 +238,6 @@ not the unique centre.
 Note what a clean option set looks like, per the solvers: uniform arithmetic
 runs (9/10/11/13, 40/52/64/76) and flat plausible-value clusters carry no
 signal at all. That is the target shape.`)
-})().catch(e => { console.error(e); process.exit(1) })
+}
+
+if (IS_MAIN) main().catch(e => { console.error(e); process.exit(1) })

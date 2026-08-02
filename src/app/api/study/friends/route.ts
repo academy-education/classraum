@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
-import { resolveDisplayNames } from '@/lib/study/identity'
+import { resolveIdentities } from '@/lib/study/identity'
 import { findFriendship } from '@/lib/study/friends'
 import { generateReferralCode, normalizeReferralCode } from '@/lib/study/referral'
 import { normalizeNickname, validateNickname } from '@/lib/study/nickname'
@@ -28,7 +28,9 @@ import { normalizeNickname, validateNickname } from '@/lib/study/nickname'
 
 export const dynamic = 'force-dynamic'
 
-interface Person { student_id: string; display_name: string }
+/** avatar_id is null for anyone who hasn't picked one — the client then
+ *  draws the same initials avatar it always has. */
+interface Person { student_id: string; display_name: string; avatar_id: string | null }
 interface FriendRequest extends Person { id: string }
 
 export async function GET(req: NextRequest) {
@@ -55,11 +57,15 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  const names = await resolveDisplayNames(
+  const identities = await resolveIdentities(
     [...friendIds, ...incoming.map(i => i.other), ...outgoing.map(o => o.other)],
     user.id,
   )
-  const person = (id: string): Person => ({ student_id: id, display_name: names.get(id) ?? 'Student' })
+  const person = (id: string): Person => ({
+    student_id: id,
+    display_name: identities.get(id)?.display_name ?? 'Student',
+    avatar_id: identities.get(id)?.avatar_id ?? null,
+  })
 
   return NextResponse.json({
     friends: friendIds.map(person).sort((a, b) => a.display_name.localeCompare(b.display_name)),

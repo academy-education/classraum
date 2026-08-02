@@ -4228,6 +4228,7 @@ export type Database = {
       }
       study_user_prefs: {
         Row: {
+          avatar_id: string | null
           created_at: string
           daily_goal_minutes: number | null
           default_difficulty: string | null
@@ -4246,6 +4247,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          avatar_id?: string | null
           created_at?: string
           daily_goal_minutes?: number | null
           default_difficulty?: string | null
@@ -4264,6 +4266,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          avatar_id?: string | null
           created_at?: string
           daily_goal_minutes?: number | null
           default_difficulty?: string | null

@@ -1,0 +1,411 @@
+[
+  {
+    "id": "f2709ca8-84d6-4341-99ae-a2a6bf26617c",
+    "domain": "Algebra",
+    "subskill": "System with parameter (infinite solutions)",
+    "prompt": "The system of equations 6x + 8y = 14 and ax + 12y = 21 has infinitely many solutions. What is the value of a?",
+    "correct_answer": "9",
+    "choices": ["9", "8", "12", "4.5"],
+    "explanation": "For infinitely many solutions the second equation is a multiple of the first. 21/14 = 1.5, so a = 6(1.5) = 9 (and 12 = 8(1.5)).",
+    "repaired_choices": ["9", "6", "16", "4"],
+    "distractor_reasoning": {
+      "6": "Read 'infinitely many solutions' as requiring the two equations to have IDENTICAL coefficients, so a is copied straight from the 6 in 6x.",
+      "16": "Cross-multiplied the wrong pair: took 8 and 12 as the matched coefficients and computed 8(12)/6 instead of 6(12)/8.",
+      "4": "Inverted the scale factor, using 14/21 = 2/3 rather than 21/14 = 3/2, so a = 6(2/3)."
+    }
+  },
+  {
+    "id": "6b9b8526-7484-46e9-b0b6-4ff6a12b43fc",
+    "domain": "Algebra",
+    "subskill": "mixture-systems",
+    "prompt": "A chemist mixes a 20% acid solution with a 50% acid solution to make 60 liters of a 30% acid solution. How many liters of the 50% solution are used?",
+    "correct_answer": "20",
+    "choices": ["40", "20", "30", "10"],
+    "explanation": "Let x be the liters of 50% solution. Then 0.50x + 0.20(60 − x) = 0.30(60). This gives 0.30x + 12 = 18, so 0.30x = 6 and x = 20.",
+    "repaired_choices": ["36", "20", "30", "18"],
+    "distractor_reasoning": {
+      "36": "Found the 18 L of pure acid the mixture must contain, then divided by 0.50 — answering 'how much 50% solution holds all the acid' and ignoring that the 20% solution contributes some of it.",
+      "30": "Assumed a 30% target means an even split of the 60 L between the two solutions.",
+      "18": "Answered the litres of pure acid, 0.30(60), instead of the litres of solution."
+    }
+  },
+  {
+    "id": "ca9bea47-044e-4db1-b765-18747b63f118",
+    "domain": "Algebra",
+    "subskill": "line-circle tangency parameter",
+    "prompt": "The line y = x + b is tangent to the circle x^2 + y^2 = 8, where b is a positive constant. What is the value of b?",
+    "correct_answer": "4",
+    "choices": ["2", "8", "4", "2.83"],
+    "explanation": "Substituting gives 2x^2 + 2bx + b^2 - 8 = 0; tangency needs discriminant 0: 4b^2 - 8(b^2-8)=0, so b^2=16, b=4.",
+    "repaired_choices": ["16", "2.83", "4", "2.31"],
+    "distractor_reasoning": {
+      "16": "Solved correctly to b^2 = 16 and reported b^2 without taking the square root.",
+      "2.83": "Set b equal to the radius 2√2, treating the y-intercept of a tangent line as the distance from the centre rather than that distance times √2.",
+      "2.31": "Sign slip inside the discriminant: expanded 4b^2 − 8(b^2 − 8) as 4b^2 + 8b^2 − 64, giving 12b^2 = 64 and b = √(16/3)."
+    }
+  },
+  {
+    "id": "cf61ea7c-f63c-46c1-acb2-2b0f2feb8f57",
+    "domain": "Algebra",
+    "subskill": "Linear equations in two variables",
+    "prompt": "A line in the xy-plane passes through the points (-2, 7) and (4, -5). At what value of x does this line cross the x-axis?",
+    "correct_answer": "1.5",
+    "choices": ["3", "-2", "0.5", "1.5"],
+    "explanation": "The slope is (-5 - 7)/(4 - (-2)) = -12/6 = -2, so the line is y = -2x + b; using the point where x = -2 and y = 7 gives b = 7 - (-2)(-2) = 3. The line crosses the x-axis where y = 0: 0 = -2x + 3 gives x = 1.5, the key. The value 3 is the y-intercept b, i.e. where the line meets the other axis. The value -2 is the slope, and is also the x-coordinate of one of the two given points, so it is doubly tempting. The value 0.5 comes from dividing the intercept 3 by the run 6 instead of by the slope 2.",
+    "explanation_stale": "Explanation still describes the removed option 0.5; its final sentence must be dropped or rewritten for 12 before this item is served.",
+    "repaired_choices": ["3", "-2", "12", "1.5"],
+    "distractor_reasoning": {
+      "3": "Found the y-intercept b = 3 and reported it — answered where the line meets the other axis.",
+      "-2": "Reported the slope, which is also the x-coordinate of one of the two given points.",
+      "12": "Inverted the slope to run-over-rise, −1/2, giving y = −x/2 + 6 and an x-intercept of 12."
+    }
+  },
+  {
+    "id": "8c52fa6e-0514-4397-b6af-1257318cda68",
+    "domain": "Algebra",
+    "subskill": "Exponential equations — common base",
+    "prompt": "If 2^(x + 3) = 8^(x − 1), what is the value of x?",
+    "correct_answer": "3",
+    "choices": ["2", "6", "0", "3"],
+    "explanation": "Write 8 as 2³, so 8^(x − 1) = 2^(3(x − 1)) = 2^(3x − 3). Equal bases give x + 3 = 3x − 3, so 2x = 6 and x = 3.",
+    "repaired_choices": ["2", "2.33", "0", "3"],
+    "distractor_reasoning": {
+      "2": "Failed to distribute the 3, writing 8^(x−1) = 2^(3x−1) and solving x + 3 = 3x − 1.",
+      "2.33": "Used 8 = 2^4 (multiplying rather than exponentiating), giving x + 3 = 4x − 4 and 3x = 7.",
+      "0": "Collected the constants on the wrong side: from x + 3 = 3x − 3, wrote 2x = 3 − 3 = 0."
+    }
+  },
+  {
+    "id": "7f63e837-38be-4ffa-8d7e-c49eaf1a3fc0",
+    "domain": "Algebra",
+    "subskill": "systems-elimination",
+    "prompt": "If 3x + 5y = 1 and 5x + 3y = 15, what is the value of x − y?",
+    "correct_answer": "7",
+    "choices": ["2", "-7", "7", "14"],
+    "explanation": "Subtracting the first equation from the second gives (5x + 3y) − (3x + 5y) = 15 − 1, so 2x − 2y = 14, which means x − y = 7. (No need to solve for x and y individually.)",
+    "hub_retained": "The two commonest real errors here are subtracting in the other order (−7) and stopping at 2x − 2y = 14. Both happen to be slip-values of the key; suppressing both would mean inventing distractors no student produces. See the repair note on why ~25% of hub items should keep the key as hub.",
+    "repaired_choices": ["4.5", "-7", "7", "14"],
+    "distractor_reasoning": {
+      "4.5": "Solved the system out to x = 4.5, y = −2.5 and reported x rather than x − y.",
+      "-7": "Subtracted in the other order, computing (3x + 5y) − (5x + 3y) = 1 − 15 and reporting y − x.",
+      "14": "Stopped at 2x − 2y = 14 without dividing by 2."
+    }
+  },
+  {
+    "id": "7ca289c8-2208-474d-b5ea-6cc544562c30",
+    "domain": "Algebra",
+    "subskill": "Tangent line to a parabola (discriminant = 0)",
+    "prompt": "The line y = 3x + c is tangent to the parabola y = x^2 + 5x + 7 in the xy-plane. What is the value of c?",
+    "correct_answer": "6",
+    "choices": ["8", "6", "5", "-6"],
+    "explanation": "Set the two expressions equal: x^2 + 5x + 7 = 3x + c, which rearranges to x^2 + 2x + (7 - c) = 0. Tangency means this quadratic has exactly one root, so its discriminant is zero: 2^2 - 4(7 - c) = 0, i.e. 4 = 4(7 - c), so 7 - c = 1 and c = 6, the key. The value 8 comes from solving 7 - c = 1 as c = 7 + 1 instead of c = 7 - 1. The value 5 comes from mis-simplifying 4 = 4(7 - c) by dividing by 2 rather than by 4, which leaves 7 - c = 2. The value -6 comes from carrying the constant as 7 + c, so that 4 = 4(7 + c) forces 7 + c = 1.",
+    "explanation_stale": "Explanation still describes the removed option 5; that sentence must be replaced with one for 0.75.",
+    "repaired_choices": ["8", "6", "0.75", "-6"],
+    "distractor_reasoning": {
+      "8": "Solved 7 − c = 1 by adding, writing c = 7 + 1.",
+      "0.75": "Never subtracted the line's slope: used b = 5 from the parabola instead of 2, so 25 − 4(7 − c) = 0 and 7 − c = 6.25.",
+      "-6": "Carried the constant as 7 + c, so 4 = 4(7 + c) forces 7 + c = 1."
+    }
+  },
+  {
+    "id": "c0eb62d7-1bd0-49a3-ac8f-dcaaf942af75",
+    "domain": "Algebra",
+    "subskill": "Nonlinear equations (Vieta / sum & product of roots)",
+    "prompt": "The equation 2x^2 - 12x + k = 0 has roots r and s. If r^2 + s^2 = 22, what is the value of k?",
+    "correct_answer": "14",
+    "choices": ["14", "7", "-14", "61"],
+    "explanation": "By Vieta's formulas the roots of 2x^2 - 12x + k = 0 satisfy r + s = 12/2 = 6 and rs = k/2. Then r^2 + s^2 = (r + s)^2 - 2rs = 36 - 2(k/2) = 36 - k, and setting 36 - k = 22 gives k = 14, so the 14 option is correct. The 7 option comes from forgetting that the product of the roots is k/2 rather than k, which turns the equation into 36 - 2k = 22. The -14 option is a sign slip, solving 36 + k = 22. The 61 option ignores the leading coefficient 2 and uses r + s = 12, giving 144 - 2k = 22.",
+    "explanation_stale": "Explanation still describes the removed option -14; that sentence must be replaced with one for 28.",
+    "hub_retained": "Taking rs = k (giving k/2) and dropping the factor 2 from the identity (giving 2k) are both textbook Vieta errors that land on slip-values of the key.",
+    "repaired_choices": ["14", "7", "28", "61"],
+    "distractor_reasoning": {
+      "7": "Took the product of the roots as k rather than k/2, turning the equation into 36 − 2k = 22.",
+      "28": "Used the identity as (r + s)^2 − rs instead of (r + s)^2 − 2rs, giving 36 − k/2 = 22.",
+      "61": "Ignored the leading coefficient and used r + s = 12, giving 144 − 2k = 22."
+    }
+  },
+  {
+    "id": "90365aec-571e-438b-b088-55703c3934b3",
+    "domain": "Algebra",
+    "subskill": "Exponential equations with common base",
+    "prompt": "If 2^(x+3) = 8^(x-1), what is the value of x?",
+    "correct_answer": "3",
+    "choices": ["2", "6", "3", "-3"],
+    "explanation": "Write 8 as 2^3, so 8^(x-1) = 2^(3(x-1)) = 2^(3x-3). With the same base on both sides the exponents must match: x + 3 = 3x - 3, so 2x = 6 and x = 3, the key. Substituting back confirms it, since 2^6 = 64 and 8^2 = 64. The option giving 2 comes from failing to distribute the 3 across the whole exponent, writing 8^(x-1) = 2^(3x-1) and solving x + 3 = 3x - 1. The option giving 6 stops one step early and reports 2x = 6 instead of dividing by 2. The option giving -3 moves the terms the wrong way, reaching -2x = 6 rather than -2x = -6.",
+    "explanation_stale": "Explanation still describes the removed options 2 and 6; those two sentences must be replaced with ones for 0 and 2.33.",
+    "duplicate_of": "8c52fa6e-0514-4397-b6af-1257318cda68 — identical stem; worth deduping separately.",
+    "repaired_choices": ["0", "2.33", "3", "-3"],
+    "distractor_reasoning": {
+      "0": "Collected the constants on the wrong side: from x + 3 = 3x − 3, wrote 2x = 3 − 3 = 0.",
+      "2.33": "Used 8 = 2^4 (multiplying rather than exponentiating), giving x + 3 = 4x − 4 and 3x = 7.",
+      "-3": "Moved the terms the wrong way, reaching −2x = 6 rather than −2x = −6."
+    }
+  },
+  {
+    "id": "795a9f6f-4079-4362-baf0-ab7ba03ab6ec",
+    "domain": "Algebra",
+    "subskill": "Discriminant = 0 for a parameter",
+    "prompt": "For what positive value of k does 9x² + kx + 4 = 0 have exactly one real solution?",
+    "correct_answer": "12",
+    "choices": ["6", "144", "12", "24"],
+    "explanation": "Exactly one solution means the discriminant is zero: k² − 4·9·4 = 0, so k² = 144 and k = 12 (positive).",
+    "repaired_choices": ["36", "144", "12", "20"],
+    "distractor_reasoning": {
+      "36": "Mis-applied the discriminant as k = 4ac rather than k^2 = 4ac, computing 4(9) and stopping.",
+      "144": "Solved correctly to k^2 = 144 and reported k^2 without taking the square root.",
+      "20": "Tried to factor over the integers instead of forcing a double root: (x + 2)(9x + 2) = 9x^2 + 20x + 4."
+    }
+  },
+  {
+    "id": "2bb24370-0070-4581-948f-419b9e222c77",
+    "domain": "Algebra",
+    "subskill": "Rational equations (cross-multiplying)",
+    "prompt": "What value of x satisfies 3/(x − 2) = 5/(x + 4)?",
+    "correct_answer": "11",
+    "choices": ["1", "11", "-11", "22"],
+    "explanation": "Cross-multiply: 3(x + 4) = 5(x − 2), so 3x + 12 = 5x − 10, giving 22 = 2x and x = 11. Stopping at 2x = 22 without dividing gives 22.",
+    "repaired_choices": ["1", "11", "-13", "22"],
+    "distractor_reasoning": {
+      "1": "Arithmetic slip collecting the constants: read 3x + 12 = 5x − 10 as 2x = 2.",
+      "-13": "Cross-multiplied the same side twice, writing 3(x − 2) = 5(x + 4) and solving −2x = 26.",
+      "22": "Stopped at 2x = 22 without dividing by 2."
+    }
+  },
+  {
+    "id": "1709f2a3-7042-4850-bb21-43dded155670",
+    "domain": "Algebra",
+    "subskill": "Function composition solved for the input",
+    "prompt": "The functions f and g are defined by f(x) = 2x - 3 and g(x) = x^2 + 1. If f(g(a)) = 17, what is the positive value of a?",
+    "correct_answer": "3",
+    "choices": ["3", "9", "6", "2"],
+    "explanation": "Apply g first, then f: g contributes a^2 + 1, and f doubles that and subtracts 3, giving 2(a^2 + 1) - 3 = 2a^2 - 1. Setting 2a^2 - 1 = 17 gives 2a^2 = 18, a^2 = 9, and the positive value a = 3, so the 3 option is correct. The 9 option is a^2, stopping before taking the square root. The 6 option multiplies by 2 where it should divide, taking a^2 = 36 from 2a^2 = 18. The 2 option fails a substitution check: with a = 2, a^2 + 1 = 5 and 2(5) - 3 = 7, not 17.",
+    "explanation_stale": "Explanation still describes the removed options 6 and 2; those sentences must be replaced with ones for 4 and 3.5.",
+    "hub_retained": "Reporting a^2 = 9 and solving the inner function alone (a^2 + 1 = 17 → a = 4) are the two errors students actually make on this item; both are slip-values of the key.",
+    "repaired_choices": ["3", "9", "4", "3.5"],
+    "distractor_reasoning": {
+      "9": "Reported a^2, stopping before taking the square root.",
+      "4": "Solved the inner function against the target instead of the composition: a^2 + 1 = 17.",
+      "3.5": "Composed in the wrong order, computing g(f(a)) = (2a − 3)^2 + 1 = 17."
+    }
+  },
+  {
+    "id": "51ddaae7-36ec-4dfc-90b8-fd092d0b6846",
+    "domain": "Algebra",
+    "subskill": "Radical equations — extraneous roots",
+    "prompt": "If √(3x + 4) = x and x > 0, what is the value of x?",
+    "correct_answer": "4",
+    "choices": ["4", "-1", "2", "5"],
+    "explanation": "Squaring gives 3x + 4 = x², or x² − 3x − 4 = 0, which factors as (x − 4)(x + 1) = 0. The candidate x = −1 is extraneous (it makes √ = x negative), so x = 4.",
+    "repaired_choices": ["4", "-1", "1", "7"],
+    "distractor_reasoning": {
+      "-1": "Kept the extraneous root without testing it against the original equation.",
+      "1": "Mis-factored x² − 3x − 4 as (x + 4)(x − 1), swapping the signs of the factors.",
+      "7": "Rearranged to x(x − 3) = 4 and applied the zero-product rule to a non-zero right-hand side, solving x − 3 = 4."
+    }
+  },
+  {
+    "id": "7fd1d3e5-4f20-4507-a796-c333579eaf38",
+    "domain": "Algebra",
+    "subskill": "Systems — difference of squares factoring",
+    "prompt": "If x + y = 10 and x² − y² = 40, what is the value of x − y?",
+    "correct_answer": "4",
+    "choices": ["6", "4", "8", "2"],
+    "explanation": "Since x² − y² = (x + y)(x − y), we have 10(x − y) = 40, so x − y = 4.",
+    "repaired_choices": ["7", "4", "6.32", "3"],
+    "distractor_reasoning": {
+      "7": "Solved the system out to x = 7, y = 3 and reported x instead of x − y.",
+      "6.32": "Read x² − y² as (x − y)², so x − y = √40.",
+      "3": "Solved the system out and reported y instead of x − y."
+    }
+  },
+  {
+    "id": "1153c5cd-f283-40da-8341-bf6a256cdf95",
+    "domain": "Algebra",
+    "subskill": "Parabola-line tangency",
+    "prompt": "The line y = 4x + c is tangent to the parabola y = x^2 + 2x + 7. What is the value of c?",
+    "correct_answer": "6",
+    "choices": ["-6", "6", "3", "7"],
+    "explanation": "Setting the expressions equal gives x^2 - 2x + (7 - c) = 0; tangency requires the discriminant 4 - 4(7 - c) = 0, so c = 6.",
+    "duplicate_of": "cc6cb282, 99023578 and e4e72c1b carry the same stem; worth deduping separately.",
+    "repaired_choices": ["8", "6", "10", "24"],
+    "distractor_reasoning": {
+      "8": "Solved 7 − c = 1 by adding, writing c = 7 + 1.",
+      "10": "Assumed the tangency happens at the parabola's vertex, x = −1, and matched the line there: −4 + c = 6.",
+      "24": "Expanded the discriminant to 4c − 24 = 0 and stopped at 4c = 24 without dividing."
+    }
+  },
+  {
+    "id": "cee55e79-7784-41fc-a523-7d3921281b65",
+    "domain": "Algebra",
+    "subskill": "Systems of two linear equations",
+    "prompt": "A chemist mixes a 20% acid solution with a 50% acid solution to make 30 liters of a 30% acid solution. How many liters of the 50% solution are used?",
+    "correct_answer": "10",
+    "choices": ["20", "15", "10", "5"],
+    "explanation": "Let x be the litres of 50% solution, so 30 - x litres of the 20% solution are used. Then 0.5x + 0.2(30 - x) = 0.3(30) = 9, so 0.3x + 6 = 9, 0.3x = 3, and x = 10, the key. Every wrong value can be tested the same way. The option giving 20 is the amount of the 20% solution, not the 50%: it yields 0.5(20) + 0.2(10) = 12 litres of acid, a 40% mixture. The option giving 15 splits the 30 litres evenly and yields 0.5(15) + 0.2(15) = 10.5 litres, a 35% mixture. The option giving 5 yields 0.5(5) + 0.2(25) = 7.5 litres, a 25% mixture.",
+    "explanation_stale": "Explanation still describes the removed option 5; that sentence must be replaced with one for 18.",
+    "repaired_choices": ["20", "15", "10", "18"],
+    "distractor_reasoning": {
+      "20": "Reported the amount of the 20% solution instead of the 50% solution.",
+      "15": "Split the 30 litres evenly between the two solutions.",
+      "18": "Found the 9 L of pure acid required, then divided by 0.5 as if the 50% solution had to supply all of it."
+    }
+  },
+  {
+    "id": "3b2d5a6c-5a1a-4133-a6d8-4d1396fe64cb",
+    "domain": "Algebra",
+    "subskill": "Perpendicular lines — y-intercept",
+    "prompt": "A line is perpendicular to the line y = −(3/4)x + 2 and passes through the point (3, 1). What is the y-intercept of this line?",
+    "correct_answer": "-3",
+    "choices": ["3", "-4", "5", "-3"],
+    "explanation": "The perpendicular slope is the negative reciprocal of −3/4, which is 4/3. Using point (3, 1): 1 = (4/3)(3) + b → 1 = 4 + b → b = −3.",
+    "repaired_choices": ["5", "3.25", "-1.25", "-3"],
+    "distractor_reasoning": {
+      "5": "Took the reciprocal but kept the negative sign, using slope −4/3: 1 = (−4/3)(3) + b.",
+      "3.25": "Never took the reciprocal at all, reusing the given slope −3/4: 1 = (−3/4)(3) + b.",
+      "-1.25": "Negated without reciprocating, using slope 3/4: 1 = (3/4)(3) + b."
+    }
+  },
+  {
+    "id": "cc6cb282-7850-4cdd-a14a-82e4e9ffc23c",
+    "domain": "Algebra",
+    "subskill": "Line–parabola tangency via discriminant",
+    "prompt": "The line y = 4x + c is tangent to the parabola y = x² + 2x + 7. What is the value of c?",
+    "correct_answer": "6",
+    "choices": ["6", "8", "-6", "3"],
+    "explanation": "Setting the expressions equal: x² + 2x + 7 = 4x + c, or x² − 2x + (7 − c) = 0. Tangency means exactly one solution, so the discriminant is zero: (−2)² − 4(7 − c) = 0 → 4 = 4(7 − c) → 7 − c = 1 → c = 6.",
+    "duplicate_of": "1153c5cd, 99023578 and e4e72c1b carry the same stem.",
+    "repaired_choices": ["6", "1", "-2", "7"],
+    "distractor_reasoning": {
+      "1": "Reported the intermediate value 7 − c = 1 as the answer.",
+      "-2": "Moved 4x across with the wrong sign, leaving x² + 6x + (7 − c) = 0 and 36 = 4(7 − c).",
+      "7": "Substituted x = 0 and matched the constant terms, reading c straight off as 7."
+    }
+  },
+  {
+    "id": "c5b7076a-ac26-489f-b66f-ce1a4d826d3e",
+    "domain": "Algebra",
+    "subskill": "System with no solution (parallel lines)",
+    "prompt": "The system of equations ax + 3y = 6 and 4x + 6y = 9 has no solution. What is the value of a?",
+    "correct_answer": "2",
+    "choices": ["8", "1/2", "2", "-2"],
+    "explanation": "No solution means the lines are parallel: the x- and y-coefficients are proportional while the constants are not. So a/4 = 3/6 = 1/2, giving a = 2 (and 6/9 ≠ 1/2 confirms no solution). Inverting the ratio to 4/a = 3/6 gives a = 8.",
+    "repaired_choices": ["8", "1/2", "2", "2.67"],
+    "distractor_reasoning": {
+      "8": "Inverted the proportion, solving 4/a = 3/6.",
+      "1/2": "Reported the common ratio 3/6 = 1/2 rather than the coefficient a it determines.",
+      "2.67": "Built the proportion from the constants instead of the y-coefficients, solving a/4 = 6/9."
+    }
+  },
+  {
+    "id": "2bb9fed0-6c6d-4321-bc96-3bfc55bf07c8",
+    "domain": "Algebra",
+    "subskill": "Function composition (solve for the inner function)",
+    "prompt": "The function f is defined by f(x) = 2x − 5. If f(g(x)) = 4x + 1 for all x, what is the value of g(3)?",
+    "correct_answer": "9",
+    "choices": ["9", "6.5", "18", "3"],
+    "explanation": "f(g(x)) = 2g(x) − 5 = 4x + 1, so 2g(x) = 4x + 6 and g(x) = 2x + 3. Then g(3) = 9. Forgetting to add 5 to both sides gives g(x) = 2x + 0.5 and g(3) = 6.5.",
+    "repaired_choices": ["9", "6.5", "13", "3"],
+    "distractor_reasoning": {
+      "6.5": "Forgot to add 5 to both sides, giving g(x) = 2x + 0.5.",
+      "13": "Answered f(g(3)) = 4(3) + 1 rather than g(3).",
+      "3": "Reported the input 3 instead of the output g(3)."
+    }
+  },
+  {
+    "id": "b91531df-435a-48e4-aad9-5392672aecbc",
+    "domain": "Algebra",
+    "subskill": "Symmetric system (sum and sum of squares)",
+    "prompt": "Real numbers x and y satisfy x + y = 5 and x² + y² = 17. What is the value of xy?",
+    "correct_answer": "4",
+    "choices": ["8", "21", "4", "-4"],
+    "explanation": "Since (x + y)² = x² + 2xy + y², we have 25 = 17 + 2xy, so 2xy = 8 and xy = 4. Forgetting to divide by 2 gives 8; reversing the subtraction (17 − 25) gives −4.",
+    "hub_retained": "Stopping at 2xy = 8 and reversing the subtraction to get −4 are the two errors this identity actually produces; both are slip-values of the key.",
+    "repaired_choices": ["8", "6", "4", "-4"],
+    "distractor_reasoning": {
+      "8": "Stopped at 2xy = 8 without dividing by 2.",
+      "6": "Subtracted the given sum from the sum of squares and halved, computing (17 − 5)/2.",
+      "-4": "Reversed the subtraction, computing (17 − 25)/2."
+    }
+  },
+  {
+    "id": "5e3fcf6e-0d50-4b38-aa4c-0bed8674c62c",
+    "domain": "Algebra",
+    "subskill": "Biquadratic equations",
+    "prompt": "What is the sum of the positive solutions of the equation x^4 - 13x^2 + 36 = 0 ?",
+    "correct_answer": "5",
+    "choices": ["6", "10", "5", "13"],
+    "explanation": "Let y = x^2, so y^2 - 13y + 36 = 0 factors as (y - 4)(y - 9) = 0, giving y = 4 or y = 9 and therefore x = 2, -2, 3, -3. Only the positive solutions are wanted, so the sum is 2 + 3 = 5, the key. The option giving 6 multiplies the two positive solutions instead of adding them. The option giving 10 adds the magnitudes of all four solutions, 2 + 3 + 2 + 3, ignoring the restriction to positive ones. The option giving 13 stops at the substituted variable and adds 4 + 9, the two y-values, rather than converting back to x.",
+    "explanation_stale": "Explanation still describes the removed option 10; that sentence must be replaced with one for 0.",
+    "repaired_choices": ["6", "0", "5", "13"],
+    "distractor_reasoning": {
+      "6": "Multiplied the two positive solutions instead of adding them.",
+      "0": "Summed all four solutions, 2 + (−2) + 3 + (−3), ignoring the restriction to positive ones.",
+      "13": "Stopped at the substituted variable and added the two y-values, 4 + 9."
+    }
+  },
+  {
+    "id": "cf6db388-bcf0-4a04-80b7-7428eb3ce41e",
+    "domain": "Algebra",
+    "subskill": "Exponential equations with common base",
+    "prompt": "If 4^(x + 1) = 8^(x - 1), what is the value of x?",
+    "correct_answer": "5",
+    "choices": ["1", "5", "-5", "1/5"],
+    "explanation": "Rewrite both sides in base 2: 4^(x+1) = 2^(2x+2) and 8^(x-1) = 2^(3x-3). Equal bases force 2x + 2 = 3x - 3, so x = 5, the key; check that 4^6 = 4096 = 8^4. The option giving 1 comes from a sign error when collecting terms: writing 2x - 3x = -3 + 2 gives -x = -1 and x = 1, when the constant 2 should have crossed over as -2. The option giving -5 makes the mirror-image slip at the last step, reading -x = -5 as x = -5 instead of x = 5. The option giving 1/5 is the reciprocal of the correct value, the result of inverting at the final division.",
+    "explanation_stale": "Explanation still describes the removed option 1/5; that sentence must be replaced with one for 3.",
+    "repaired_choices": ["1", "5", "-5", "3"],
+    "distractor_reasoning": {
+      "1": "Sign error collecting terms: wrote 2x − 3x = −3 + 2, giving −x = −1.",
+      "-5": "Read the final line −x = −5 as x = −5.",
+      "3": "Failed to distribute on the right, writing 8^(x−1) = 2^(3x−1) and solving 2x + 2 = 3x − 1."
+    }
+  },
+  {
+    "id": "63527d98-f8c9-482a-a0e2-ccf1aa071972",
+    "domain": "Algebra",
+    "subskill": "Linear equations in one variable",
+    "prompt": "A chemist mixes a 20% acid solution with a 50% acid solution to produce 12 liters of a 30% acid solution. How many liters of the 20% acid solution are used?",
+    "correct_answer": "8",
+    "choices": ["4", "6", "8", "9"],
+    "explanation": "Let x be the liters of 20% solution, so 12 - x liters are the 50% solution. The acid balance is 0.20x + 0.50(12 - x) = 0.30(12), i.e. 6 - 0.30x = 3.6, so 0.30x = 2.4 and x = 8, the key. The option giving 4 is the amount of the 50% solution, 12 - 8; it is also what you get by swapping the two concentrations in the setup. The option giving 6 splits the 12 liters evenly, which would give 0.20(6) + 0.50(6) = 4.2 liters of acid, a 35% mixture rather than 30%. The option giving 9 fails the same check: 0.20(9) + 0.50(3) = 3.3 liters, only 27.5% acid.",
+    "explanation_stale": "Explanation still describes the removed option 9; that sentence must be replaced with one for 3.6.",
+    "repaired_choices": ["4", "6", "8", "3.6"],
+    "distractor_reasoning": {
+      "4": "Reported the amount of the 50% solution; it is also what swapping the two concentrations in the setup produces.",
+      "6": "Split the 12 litres evenly between the two solutions.",
+      "3.6": "Answered the litres of pure acid in the mixture, 0.30(12), instead of the litres of 20% solution."
+    }
+  },
+  {
+    "id": "68ca9070-9acb-49cf-a17d-56cff91e58ee",
+    "domain": "Algebra",
+    "subskill": "Systems using symmetric identities",
+    "prompt": "Real numbers x and y satisfy x + y = 5 and x^2 + y^2 = 17. What is the value of xy?",
+    "correct_answer": "4",
+    "choices": ["8", "-4", "12.5", "4"],
+    "explanation": "Square the sum: (x + y)^2 = x^2 + 2xy + y^2, so 25 = 17 + 2xy, giving 2xy = 8 and xy = 4. The 4 option is correct. The 8 option stops at 2xy and forgets to divide by 2. The 12.5 option is 25/2, halving the square of the sum instead of using the identity. The -4 option comes from a sign error, writing 25 = 17 - 2xy.",
+    "explanation_stale": "Explanation still describes the removed option 8; that sentence must be replaced with one for 21.",
+    "duplicate_of": "b91531df and 8b2524b0 carry the same stem.",
+    "repaired_choices": ["21", "-4", "12.5", "4"],
+    "distractor_reasoning": {
+      "21": "Averaged the two given quantities rather than differencing them, computing (25 + 17)/2.",
+      "-4": "Sign error, writing 25 = 17 − 2xy.",
+      "12.5": "Halved the square of the sum, 25/2, instead of using the identity."
+    }
+  },
+  {
+    "id": "0ee29aa5-45ae-497c-9b73-98b8ac886b1a",
+    "domain": "Algebra",
+    "subskill": "Systems of two linear equations",
+    "prompt": "For what value of c does the system cx + 4y = 9 and 3x + 2y = 5 have no solution?",
+    "correct_answer": "6",
+    "choices": ["1.5", "6", "12", "-6"],
+    "explanation": "A pair of linear equations has no solution when the coefficients are proportional but the constants are not. Matching cx + 4y = 9 against 3x + 2y = 5 requires c/3 = 4/2, so c = 6. With c = 6 the left sides are exactly double one another while 9 is not double 5, so the lines are parallel and distinct; the 6 option is correct. The 1.5 option inverts the proportion, solving 3/c = 4/2. The 12 option solves c/3 = 4, forgetting to reduce the y-coefficients to 4/2 = 2 first. The -6 option has the right size with a sign slip; -6x + 4y = 9 is not proportional to 3x + 2y = 5, so that system does have a solution.",
+    "explanation_stale": "Explanation still describes the removed option -6; that sentence must be replaced with one for 5.4.",
+    "repaired_choices": ["1.5", "6", "12", "5.4"],
+    "distractor_reasoning": {
+      "1.5": "Inverted the proportion, solving 3/c = 4/2.",
+      "12": "Solved c/3 = 4, forgetting to reduce the y-coefficients to 4/2 = 2 first.",
+      "5.4": "Built the proportion from the constants instead of the y-coefficients, solving c/3 = 9/5."
+    }
+  }
+]
