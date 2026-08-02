@@ -55,11 +55,16 @@ console.log('controls: ' + controls.map(c => `${c.L}=${(100 * c.hits / N).toFixe
 
 const spreads = []
 const scores = []
+/** Solver files that did not answer every item. See the refusal below. */
+const incomplete = []
 for (const p of solverPaths) {
   if (!existsSync(p)) { console.log(`${p}: MISSING`); continue }
   const ans = JSON.parse(readFileSync(p, 'utf8'))
   const answered = Object.keys(ans).length
-  if (answered !== N) console.log(`!! ${p}: ${answered} answers for ${N} items`)
+  if (answered !== N) {
+    console.log(`!! ${p}: ${answered} answers for ${N} items`)
+    incomplete.push({ name: p.split('/').pop(), answered })
+  }
 
   let hit = 0, confN = 0, confHit = 0, gN = 0, gHit = 0
   const picks = { A: 0, B: 0, C: 0, D: 0 }
@@ -100,9 +105,43 @@ if (identical) {
   console.log('   Independent solvers do not agree by accident — this is a deterministic tell.')
 }
 
+// REFUSE A VERDICT ON AN INCOMPLETE SOLVER FILE.
+//
+// A solver that answered nothing scores 0%, which is "at or below control",
+// which printed PASS. A silently dead solver — a crashed agent, a truncated
+// write, a wrong path — was therefore indistinguishable from a clean cohort,
+// and PASS is the line people read. The `!!` warning above was printed in
+// the same run and did not stop it.
+//
+// This is the exact failure this repo keeps hitting: a check that cannot go
+// red. Refusing is the only safe answer, because a partial file understates
+// accuracy in proportion to how much is missing.
+if (incomplete.length) {
+  console.log('')
+  for (const s of incomplete) {
+    console.log(`REFUSED — ${s.name} answered ${s.answered} of ${N} items.`)
+  }
+  console.log('  A missing answer is scored as wrong, so an incomplete file always')
+  console.log('  UNDERSTATES accuracy — the direction that manufactures a pass.')
+  console.log('  Re-run the solver; do not read a verdict from this.')
+  process.exit(2)
+}
+
 const pass = mean <= ctl && !identical
 console.log(pass
   ? 'PASS — at or below this cohort\'s own fixed-letter control, and solvers disagree.'
   : mean <= ctl
     ? 'FAIL — accuracy is at control BUT solvers agree exactly. Investigate before shipping.'
     : `FAIL — beats its own control by ${(mean - ctl).toFixed(1)}pts.`)
+
+// THE BAR ABOVE IS SUPERSEDED. "At or below the cohort's own control" is
+// unreachable: measured against 183 official items, published ETS and
+// College Board questions beat their own controls by +25.5 to +68.8. Judge a
+// batch against the published baseline FOR ITS FORMAT — ceilingFor() in
+// src/lib/study/bank-ledger.ts — not against this line.
+console.log('')
+console.log('NOTE: the verdict above uses the SUPERSEDED absolute bar (mean <= control).')
+console.log('      Published ETS/College Board items score +25.5 to +68.8 over their own')
+console.log('      controls, so that bar fails healthy batches. Compare the margin below')
+console.log('      to the baseline for THIS format — see ceilingFor() in bank-ledger.ts.')
+console.log(`      margin = ${(mean - ctl).toFixed(1)}pts over this cohort's own control.`)
