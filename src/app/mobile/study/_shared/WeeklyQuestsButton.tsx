@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { Target, ChevronRight, X } from '@/app/mobile/study/_shared/icons'
+import { ListChecks, ChevronRight, X } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ModalPortal } from '@/components/ui/modal-portal'
 import { useSheetDrag } from './useSheetDrag'
@@ -26,8 +26,17 @@ export function WeeklyQuestsButton() {
         onClick={() => setOpen(true)}
         className="w-full flex items-center gap-3 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-4 py-3.5 text-left hover:ring-primary/30 transition"
       >
-        <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-          <Target className="w-5 h-5 text-primary" />
+        {/* The app's standard list-row icon: 11x11, rounded-2xl, tinted with
+            a matching ring (RecommendedShelf, subscription, gift all use it).
+            This was a ringless 10x10 rounded-xl, which read a size and a
+            corner-radius off from every other row on the page.
+
+            Icon is ListChecks, not Target: Target is already the TARGET-TEST
+            icon in TestPrepPathCard, OnboardingWizard, PredictedScore and the
+            path page, so using it here made "your goal exam" and "this week's
+            quests" look like the same thing. */}
+        <span className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
+          <ListChecks className="w-5 h-5" />
         </span>
         <span className="flex-1 min-w-0">
           <span className="block text-[14px] font-semibold text-gray-900">

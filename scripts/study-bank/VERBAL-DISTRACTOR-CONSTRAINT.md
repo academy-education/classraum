@@ -3,6 +3,13 @@
 Supersedes the distractor guidance in `CHOOSE-A-RESPONSE-BRIEF.md` and
 `toefl-authoring-spec.md`. Everything else in those files still stands.
 
+**Scope: every verbal MC task, not just Choose a Response.** The same defect
+was measured across Choose a Response, Conversation, Announcement, Academic
+Passage and SAT Reading & Writing. Where this document says "the source",
+read it as the audio for a listening task and the passage for a reading one;
+"the utterance" in the worked examples is Choose a Response only because
+that is where the mechanism was isolated. Nothing here is task-specific.
+
 ## Why this document is one rule and not a list
 
 The previous brief listed banned distractor shapes by name — the stiff
@@ -100,11 +107,75 @@ of register. Across a batch, let the correct reply sometimes be the blunt
 one, sometimes the question, sometimes the refusal, sometimes the one that
 changes the subject — because the utterance genuinely calls for it.
 
+## What this brief still did NOT prevent
+
+A 24-item pilot was authored against everything above and still failed four
+of five gates. Read this section as seriously as the rule — following the
+rule is necessary and is not sufficient.
+
+| gate | result | what it means |
+|---|---|---|
+| no-source | **passed**, +25.0 vs a +25.5 published bar | the rule above works |
+| elimination | failed — 3 of 24 had a rejectable option | the rule is hard to apply |
+| with-source | failed — **0 hard items** against a 20% standard | closeness was bought by making items EASY |
+| batch tells | failed — key at a length extreme on 83% (chance 50%), and slot A 6/6 in one sub-batch | the batch leaked what the items did not |
+| shape | failed — a sub-batch omitted `listeningTask` | mechanical, but it would have made items undrawable |
+
+Three additions follow directly from that.
+
+**1. Closeness must not be bought with easiness.** The fastest way to make
+four options equally plausible is to ask something trivial. That satisfies
+the rule above and destroys the item. A batch must hit its difficulty mix —
+roughly 20% hard — measured WITH the source in front of the reader. If your
+items got closer and easier at the same time, you have moved the defect, not
+removed it.
+
+**2. Length is a tell, and it is measured.** The key sitting at the longest
+or shortest option far more often than chance is a free signal that survives
+every rule about register and speech acts. Across a batch, the key must land
+at a length extreme no more often than chance. Do not fix this by padding —
+write options that genuinely need similar space.
+
+**3. The batch is a unit, and it is attacked as one.** Key position, key
+length, and key SHAPE are batch properties. No item can be checked for them
+alone. This project has now shipped three distinct cross-item tells, each
+invisible to the check watching for the previous one — key-in-slot-A, the
+complete-ABCD-permutation, and identical key PROSE across eight lectures with
+letters correctly rotated. Rotate what varies, and assume the thing you did
+not think to vary is the next tell.
+
 ## The gate
 
-Before any item reaches the bank, an independent reader who has not seen
-the transcripts names, per item, the option they would reject first and
-whether they are certain. **Any item with a confidently rejectable option
-fails.** The full no-source attack then runs on the surviving cohort as an
-acceptance test; passing means mean accuracy at or below that cohort's own
-fixed-letter control, with solver pick-spreads that differ from each other.
+Before any item reaches the bank, an independent reader who has not seen the
+source names, per item, the option they would reject first and whether they
+are certain. **Any item with a confidently rejectable option fails.** This is
+the cheap gate and it fires earliest — run it first, and note that it names
+WHICH option is defective, which the attack cannot.
+
+The no-source attack then runs on the surviving cohort as an acceptance test.
+
+**The passing bar is calibrated, not absolute.** An earlier version of this
+document required "mean accuracy at or below that cohort's own fixed-letter
+control". That bar is unreachable and was wrong in both directions — it
+failed a batch that matched published ETS quality, and it passed a healthy
+SAT domain by accident. Measured against 183 official ETS and College Board
+items, published questions themselves score well above their own controls:
+
+| format | published margin over control |
+|---|---|
+| ETS Choose a Response | +25.5 |
+| SAT Reading & Writing | +36.2 |
+| ETS listening — lecture sets | +68.8 |
+| ETS listening — short conversations | +13.0 |
+
+So a batch passes when its margin is **at or below the published baseline for
+its own format** (plus a 4-point tolerance for sample noise), with solver
+pick-spreads that differ from each other. Use the format's OWN baseline:
+lectures and short conversations are five times apart, and averaging them
+into one "listening" number is meaningless for both. `ceilingFor()` in
+`src/lib/study/bank-ledger.ts` is the implementation.
+
+Every number above comes from AI solvers, not students. The comparison to
+published items holds because both sides were measured the same way; an
+absolute claim about human candidates does not follow, and re-measurement is
+owed if real student data ever arrives.
