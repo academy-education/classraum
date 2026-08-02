@@ -151,6 +151,24 @@ const DOMAINS: ReadonlyArray<{ ns: string; values: readonly string[]; suffix?: s
     source: 'the question `type` union in the study practice session',
   },
   {
+    // Rule 2 is blind to this one: the variable is an UNDERSCORE suffix on
+    // the last segment, so the namespace it checks is `admin.studyConsole`,
+    // which resolves to an object and passes no matter which statuses exist.
+    // `expired` was live in study_subscriptions while missing from both
+    // locales, and the console rendered the raw dotted key.
+    ns: 'admin.studyConsole',
+    values: [
+      'subStatus_free', 'subStatus_trial', 'subStatus_active',
+      'subStatus_past_due', 'subStatus_cancelled', 'subStatus_expired',
+    ],
+    source:
+      'the study_subscriptions_status_check CHECK constraint, which is the ' +
+      'authoritative set — six values, verified against the live DB. Do not ' +
+      'derive this list from the rows that happen to exist: `expired` was one ' +
+      'row out of 13 and had been missing from both locale files since the ' +
+      'status was introduced',
+  },
+  {
     ns: 'admin.users.roles',
     values: ['student', 'parent', 'teacher', 'manager', 'admin', 'superAdmin'],
     source: 'the role options in admin/users/EditUserModal (super_admin is mapped to superAdmin at the call site)',

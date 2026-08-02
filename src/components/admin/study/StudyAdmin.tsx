@@ -705,7 +705,12 @@ interface SubListRow {
   updatedAt: string | null
 }
 
-const SUB_STATUS_OPTIONS = ['all', 'active', 'past_due', 'cancelled', 'free', 'trial']
+/** Must list every value study_subscriptions_status_check allows, or a real
+ *  subscription becomes both unfilterable and untranslatable — `expired`
+ *  existed in the DB while missing from here AND from both locale files, so
+ *  the console rendered the raw key `admin.studyConsole.subStatus_expired`.
+ *  A test pins this to the constraint. */
+const SUB_STATUS_OPTIONS = ['all', 'active', 'past_due', 'cancelled', 'free', 'trial', 'expired']
 const SUB_PLAN_OPTIONS = [
   'all', 'free_v1', 'general_v1', 'premium_v1', 'premium_plus_v1',
   'premium_3mo_v1', 'premium_6mo_v1', 'general_annual_v1', 'premium_annual_v1', 'premium_plus_annual_v1',
@@ -717,6 +722,10 @@ function subStatusMeta(status: string): string {
     case 'past_due': return 'bg-rose-50 text-rose-700 ring-rose-200/60'
     case 'cancelled': return 'bg-gray-100 text-gray-600 ring-gray-200/70'
     case 'trial': return 'bg-violet-50 text-violet-700 ring-violet-200/60'
+    // Lapsed at period end. Distinct from `free`, which never paid, and from
+    // `cancelled`, which was cancelled deliberately — sharing the free grey
+    // made a churned payer indistinguishable from someone who never bought.
+    case 'expired': return 'bg-amber-50 text-amber-700 ring-amber-200/60'
     default: return 'bg-gray-100 text-gray-500 ring-gray-200/70' // free
   }
 }
