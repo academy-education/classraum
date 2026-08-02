@@ -33,6 +33,7 @@ import { createClient } from '@supabase/supabase-js'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { basename, extname } from 'node:path'
+import { gateBatch, overrideReason } from './gate.mjs'
 
 const LETTERS = ['A', 'B', 'C', 'D']
 const norm = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
@@ -216,6 +217,36 @@ function renderBlindListening(tagged) {
 async function insertListening(keepPath, files) {
   const keep = new Set((JSON.parse(readFileSync(keepPath, 'utf8')).keep) || [])
   const tagged = loadTagged(files)
+
+  // ── THE GATE ────────────────────────────────────────────────────────
+  // Everything below this point is mechanical: shape, explanation safety,
+  // group size, and "the id is in a keep file". None of it asks whether an
+  // item is answerable, appropriately hard, or solvable without its source
+  // — and a bank-wide audit found 92.7-100% of verbal items solvable with
+  // the audio or passage hidden. That is what this refuses.
+  //
+  // Bound to the sha256 of the item files, so editing an option after
+  // review invalidates the approval rather than silently inheriting it.
+  const batchTask = tagged[0]?.it?.listeningTask ?? tagged[0]?.it?.readingTask
+  const verdict = gateBatch({ task: batchTask, family: 'toefl', section: sectionOf(tagged[0]?.it ?? {}), itemFiles: files })
+  const override = overrideReason()
+  if (!verdict.canInsert && !override) {
+    console.error(`\nREFUSED — ${tagged.length} item(s) not inserted.`)
+    console.error(`  batch family : ${verdict.family}`)
+    console.error(`  content hash : ${verdict.sha.slice(0, 16)}`)
+    console.error(`  reason       : ${verdict.reason}`)
+    console.error(`\nRecord the gate results in scripts/study-bank/ledger.json under this`)
+    console.error(`hash, or set BANK_GATE_OVERRIDE="<reason>" if this is a documented`)
+    console.error(`exception such as an orphan-repair batch.\n`)
+    process.exitCode = 1
+    return
+  }
+  if (override) {
+    console.warn(`\n!! GATE OVERRIDDEN: ${override}`)
+    console.warn(`!! ${verdict.reason}`)
+    console.warn(`!! Record this in the ledger under hash ${verdict.sha.slice(0, 16)}.\n`)
+  }
+
   const db = admin()
   // Dedup across BOTH sections — a mixed batch inserts into either.
   const { data: existing } = await db.from('study_item_bank')

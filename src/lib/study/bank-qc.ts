@@ -1,3 +1,5 @@
+import contract from '../../../scripts/study-bank/gate-contract.json'
+
 /**
  * The QC ledger contract: which gates a batch of authored items must clear
  * before it may enter `study_item_bank`, and whether a given batch has
@@ -18,21 +20,26 @@
  * another. The authors had followed the written constraint. Instructions do
  * not hold; gates do.
  *
- * STATUS, STATED PLAINLY: THIS IS NOT YET WIRED IN.
+ * STATUS: WIRED IN as of 2026-08-02.
  *
- * `evaluateBatch` has no caller outside its tests. The live insert path is
- * `insertListening()` in scripts/study-bank/toefl-bank-helper.mjs, which
- * imports nothing from this file and still runs only the four mechanical
- * checks described above. So today this module DEFINES the contract and the
- * ledger RECORDS results against it, but nothing refuses an insert.
+ * `insertListening()` in scripts/study-bank/toefl-bank-helper.mjs now calls
+ * `gateBatch()` before it touches the database and exits 1 on a refusal.
+ * Verified end-to-end, in both directions: an ungated batch is refused, a
+ * batch whose every stage passes at its hash is admitted, and flipping one
+ * stage to failed refuses it again naming that stage.
  *
- * That gap is the whole point of writing it down here rather than leaving it
- * implied: by the argument above, a documented gate nobody runs is exactly
- * the "instructions do not hold" failure it was written to prevent. Wiring
- * it needs `StageResult` (bank-ledger.ts) to carry `passed` and
- * `contentSha`, which today it does not — the ledger models a stage as a
- * map of measurements, this file models it as an array of runs with a
- * verdict, and no adapter exists between them.
+ * The helper is plain ESM and cannot import this .ts module without a build
+ * step. Rather than keep a second hand-written copy of the stage list — the
+ * drift that let the admin dashboard silently lose `tells` — the DATA moved
+ * to scripts/study-bank/gate-contract.json and both sides read it. This file
+ * still owns the types and the semantics; gate.mjs mirrors evaluateBatch,
+ * and gate-wiring.test.ts asserts the two give identical verdicts.
+ *
+ * Ledger stage results now carry `passed`. Before, they held measurements
+ * only, and anything holding a measurement read as done — including the
+ * pilot's `tells`, which recorded an 83%-vs-50% key-length tell and rendered
+ * as a tick. Absence of a verdict is not a verdict, and the gate treats a
+ * stage with no explicit `passed` as never having run.
  *
  * TWO THINGS THIS ENCODES THAT A CHECKLIST CANNOT
  *
@@ -83,12 +90,14 @@ export type QcStage =
  * word order, a rubric that cannot separate bands) are checked inside
  * `withsource` for that family.
  */
-export const FAMILY_STAGES: Record<ItemFamily, readonly QcStage[]> = {
-  mc_hidden_source: ['shape', 'withsource', 'nosource', 'elimination', 'tells'],
-  mc_stem_source: ['shape', 'withsource', 'nosource', 'tells'],
-  cloze: ['shape', 'withsource', 'nosource', 'tells'],
-  production: ['shape', 'withsource', 'tells'],
-} as const
+/* The data lives in gate-contract.json, not here, because the LIVE INSERT
+ * PATH is scripts/study-bank/toefl-bank-helper.mjs — plain ESM, which cannot
+ * import a .ts module without a build step. The alternative was a second
+ * hand-written copy in the helper, and a second hand-written copy is exactly
+ * what let the dashboard's stage list silently lose `tells`. One file, two
+ * readers. `bank-qc.test.ts` pins the JSON's shape so this cast cannot drift
+ * into a lie. */
+export const FAMILY_STAGES = contract.familyStages as Record<ItemFamily, readonly QcStage[]>
 
 /** Maps a bank task to its family. The task string is the one the DRAW
  *  reads — item->>'listeningTask' / 'readingTask', or item->>'type' for the

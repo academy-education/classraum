@@ -137,7 +137,9 @@
               "confident": 0,
               "spread": "6/9/4/5"
             }
-          ]
+          ],
+          "passed": true,
+          "verdict": "margin 25.0 is at/below the choose_response ceiling (published +25.5, +4 tolerance). Under the ORIGINAL uncalibrated bar this read as a failure — recalibration against 183 published items reversed it."
         },
         "elimination": {
           "itemsWithRejectableOption": 3,
@@ -146,7 +148,9 @@
             8,
             19,
             21
-          ]
+          ],
+          "passed": false,
+          "verdict": "3 of 24 items carry an option a reader rejects on sight without the audio (items 8, 19, 21). Any such option is a defect."
         },
         "withsource": {
           "difficulty": {
@@ -163,13 +167,21 @@
             23,
             14,
             17
-          ]
+          ],
+          "passed": false,
+          "verdict": "0 hard items against a bank standard of 20% hard, and 6 items where a solver was not confident of a single defensible answer."
         },
         "tells": {
           "keyAtLengthExtremePct": 83,
           "chancePct": 50,
           "slotAInSubBatch3": "6/6",
-          "note": "pilot-3 uniform key shape + missing listeningTask field"
+          "note": "pilot-3 uniform key shape + missing listeningTask field",
+          "passed": false,
+          "verdict": "key sat at a length extreme on 83% of items against 50% chance, and sub-batch 3 put the key in slot A 6 times out of 6."
+        },
+        "shape": {
+          "passed": false,
+          "verdict": "items in sub-batch 3 are missing the listeningTask field, so the draw would bucket them as unclassified and never serve them."
         }
       }
     }
