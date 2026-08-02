@@ -26,16 +26,21 @@ export function WeeklyQuestsButton() {
         onClick={() => setOpen(true)}
         className="w-full flex items-center gap-3 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-4 py-3.5 text-left hover:ring-primary/30 transition"
       >
-        {/* The app's standard list-row icon: 11x11, rounded-2xl, tinted with
-            a matching ring (RecommendedShelf, subscription, gift all use it).
-            This was a ringless 10x10 rounded-xl, which read a size and a
-            corner-radius off from every other row on the page.
+        {/* Matches the PROMINENT row treatment the study surfaces use for a
+            standalone CTA — gradient tile, white icon, inset highlight and a
+            tinted ring (RecommendedShelf.tsx:363 is the same recipe).
+
+            Two earlier versions were both off. It started as a ringless
+            10x10 rounded-xl — a size AND a corner-radius away from anything
+            else. Then I made it the FLAT tinted variant, which is the style
+            used for items INSIDE a list, not for a standalone row like this
+            one; next to real gradient tiles it read washed out.
 
             Icon is ListChecks, not Target: Target is already the TARGET-TEST
             icon in TestPrepPathCard, OnboardingWizard, PredictedScore and the
             path page, so using it here made "your goal exam" and "this week's
-            quests" look like the same thing. */}
-        <span className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
+            quests" look like the same concept. */}
+        <span className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/20">
           <ListChecks className="w-5 h-5" />
         </span>
         <span className="flex-1 min-w-0">
