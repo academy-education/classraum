@@ -23,7 +23,7 @@ export function maskName(name: string, isMe: boolean): string {
 
 export interface StudyIdentity {
   display_name: string
-  /** The chosen Raumi avatar id, or null → the surface draws its own
+  /** The chosen preset-avatar id, or null → the surface draws its own
    *  initials avatar exactly as it did before avatars existed. */
   avatar_id: string | null
 }

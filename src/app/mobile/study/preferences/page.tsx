@@ -9,10 +9,10 @@ import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
-import { RaumiAvatar, STUDY_AVATAR_LIST } from '../_shared/avatars'
+import { PersonAvatar, STUDY_AVATAR_LIST } from '../_shared/avatars'
 
 interface Prefs {
-  /** Chosen Raumi avatar id, or null → the social surfaces keep drawing
+  /** Chosen preset-avatar id, or null → the social surfaces keep drawing
    *  the initials avatar. Absent from the API response until migration
    *  071 is applied, hence optional. */
   avatar_id?: string | null
@@ -186,21 +186,21 @@ function PreferencesInner() {
         </div>
       )}
 
-      {/* Avatar — pick a member of Raumi's family to stand in for you on
-          the friends list and the league leaderboard.
+      {/* Avatar — pick a preset person to stand in for you on the friends
+          list and the league leaderboard. (Raumi is the mascot, not an
+          avatar; he does not appear here.)
 
           "Initials" is a real, reachable option and is the default: it
           writes avatar_id = null, which is what makes those surfaces draw
           the deterministic initials avatar they always have. Without a way
           back to it, choosing an avatar would be one-way.
 
-          TODO(i18n): another workstream owns src/locales/*.json right now.
           Keys used below — study.prefs.avatar, study.prefs.avatarHint,
           study.prefs.avatarNone, and study.prefs.avatarName.* (one per
-          registry entry, see _shared/avatars.tsx) — are listed with their
-          en + ko text in the PR description and must be added to BOTH
-          en.json and ko.json. Until then t() renders the raw key, and the
-          per-avatar names are only reachable by screen readers. */}
+          registry entry, see _shared/avatars.tsx) — live in BOTH en.json
+          and ko.json. The per-avatar names are reachable only as the
+          tile's aria-label/title: eighteen captions in a 4-up grid at
+          375px turn the picker into a list. */}
       <SettingGroup icon={Student} label={String(t('study.prefs.avatar'))} saving={saving === 'avatar_id'}>
         <div role="group" aria-label={String(t('study.prefs.avatar'))} className="grid grid-cols-4 lg:grid-cols-6 gap-2">
           <AvatarTile
@@ -219,7 +219,7 @@ function PreferencesInner() {
               label={String(t(spec.nameKey))}
               onSelect={() => update('avatar_id', spec.id)}
             >
-              <RaumiAvatar spec={spec} size={52} />
+              <PersonAvatar spec={spec} size={52} />
             </AvatarTile>
           ))}
         </div>

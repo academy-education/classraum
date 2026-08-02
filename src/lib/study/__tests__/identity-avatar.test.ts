@@ -38,10 +38,10 @@ describe('resolveIdentities', () => {
 
   it('returns nickname + avatar when the column exists', async () => {
     enqueue('users', { data: [{ id: 'u1', name: 'Andrew Park' }] })
-    enqueue('study_user_prefs', { data: [{ student_id: 'u1', nickname: 'andy', avatar_id: 'raumi-mint' }] })
+    enqueue('study_user_prefs', { data: [{ student_id: 'u1', nickname: 'andy', avatar_id: 'person-aster' }] })
 
     const out = await resolveIdentities(['u1'], 'me')
-    expect(out.get('u1')).toEqual({ display_name: 'andy', avatar_id: 'raumi-mint' })
+    expect(out.get('u1')).toEqual({ display_name: 'andy', avatar_id: 'person-aster' })
   })
 
   it('KEEPS EVERY DISPLAY NAME when avatar_id does not exist yet (migration 071 unapplied)', async () => {
@@ -61,7 +61,7 @@ describe('resolveIdentities', () => {
 
   it('drops an avatar id this build cannot draw, rather than passing it to the client', async () => {
     enqueue('users', { data: [{ id: 'u1', name: 'Andrew Park' }] })
-    enqueue('study_user_prefs', { data: [{ student_id: 'u1', nickname: 'andy', avatar_id: 'raumi-retired-2024' }] })
+    enqueue('study_user_prefs', { data: [{ student_id: 'u1', nickname: 'andy', avatar_id: 'person-retired-2024' }] })
 
     // null is the initials fallback; the unknown id would have been a
     // blank disc on every surface that renders this student.
@@ -85,7 +85,7 @@ describe('resolveIdentities', () => {
 
   it('resolveDisplayNames still returns just the names', async () => {
     enqueue('users', { data: [{ id: 'u1', name: 'Andrew Park' }] })
-    enqueue('study_user_prefs', { data: [{ student_id: 'u1', nickname: 'andy', avatar_id: 'raumi-mint' }] })
+    enqueue('study_user_prefs', { data: [{ student_id: 'u1', nickname: 'andy', avatar_id: 'person-aster' }] })
 
     const names = await resolveDisplayNames(['u1'], 'me')
     expect(names.get('u1')).toBe('andy')

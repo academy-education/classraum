@@ -21,7 +21,7 @@ export interface StudyUserPrefs {
    *  Null until set. Written via /api/study/nickname (not the prefs PUT),
    *  which owns the format + uniqueness rules. */
   nickname: string | null
-  /** Chosen Raumi avatar id (see src/lib/study/avatars.ts). NULL means
+  /** Chosen preset-avatar id (see src/lib/study/avatars.ts). NULL means
    *  "never picked one" — every social surface then draws the initials
    *  avatar it drew before avatars existed. Settable through this PUT. */
   avatar_id: string | null

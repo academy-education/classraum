@@ -2,127 +2,240 @@ import type { ReactNode } from 'react'
 import { STUDY_AVATAR_IDS, isStudyAvatarId, type StudyAvatarId } from '@/lib/study/avatars'
 
 /**
- * Raumi's family — the pickable study avatars.
+ * The pickable study avatars: PRESET PEOPLE, head-and-shoulders.
  *
- * These are NOT a second illustration style. Every one is built from the
- * same parts as the mascot in PathMascot.tsx, at the same proportions:
+ * These replaced a set of ten Raumi-robot colourways in 2026-08. Raumi is
+ * still the mascot (PathMascot.tsx) — he is the app talking to you, not
+ * you. An avatar is the student, and a student picking a face wants to
+ * find one that looks like them.
  *
- *   rounded head shell (rx ≈ half the height) + hairline tonal ring at
- *   0.8–0.9 stroke · recessed bezel one step darker than the shell ·
- *   near-black flat visor · glowing eyes as the only saturated shape
- *   inside it · seated ear pods · charcoal mechanical neck · shoulder
- *   capsule carrying the chest "C".
+ * ── Style ────────────────────────────────────────────────────────────
+ * Same "soft-flat" discipline as the mascot so the two sit together:
+ * flat colour blocking, a hairline tonal ring one step darker than the
+ * shape it edges (never a cartoon outline), no gradients-as-shading.
+ * There are NO <defs> at all — no filters, no clipPaths, no gradients —
+ * hence no per-instance ids to collide when a leaderboard renders
+ * twenty of these on one screen. The circular crop is an inline
+ * border-radius on the wrapper.
  *
- * The differences from PathMascot are deliberate and are about SIZE, not
- * style: these render at 32–56px in lists, where Gaussian shading turns
- * to mush. So the soft-flat two-tone shading collapses to a single
- * highlight sweep, and there are no <defs> at all — no filters, no
- * clipPaths, hence no per-instance ids to collide (the circular crop is
- * an inline border-radius on the wrapper). A hookless module also means
- * it imports cleanly anywhere.
+ * ── The crop is the hard constraint ──────────────────────────────────
+ * The bust deliberately overruns the 64×64 box so it fills the disc,
+ * which means the VIEWBOX IS NOT THE SAFE AREA: everything that must be
+ * seen sits inside a radius-31 circle about (32,32). The previous set
+ * shipped three defects that only rendering caught — an antenna ball and
+ * a beanie pom sliced off at the top, and one colourway with no
+ * silhouette against its own backdrop. Hence, here: every hair mass and
+ * every accessory is placed against the radius, and every shape that
+ * defines the silhouette (head, hair, garment) carries its own hairline
+ * stroke so it reads even if a future backdrop lands close to its fill.
  *
- * Everything is laid out to survive that crop: the bust deliberately
- * overruns the 64×64 box so it fills the disc, which means anything near
- * a corner is thrown away. Accessories therefore sit inside a radius-32
- * circle about (32,32), not merely inside the viewBox — an antenna ball
- * at y≈0 renders in a square preview and is sliced off in the product.
+ * ── Range is the point ───────────────────────────────────────────────
+ * Eighteen presets. The axes are independent and are all load-bearing:
+ * SKIN_RAMP (8 documented tones, evenly spaced in lightness), hair
+ * TEXTURE (9 families — not one silhouette recoloured), hair COLOUR (11,
+ * including grey, white and two fashion colours), FACE_SHAPES (6) and
+ * separate eye / brow / mouth / facial-hair sets. A preset is not "a
+ * face with a hat on": change the skin tone alone and you get a
+ * different person, change the hair alone and you get a different
+ * person. Accessories appear on 6 of 18 and are never the only thing
+ * separating two presets.
  *
- * VARIATION IS ON THREE AXES AT ONCE, never one. Each avatar has its own
- * colourway AND its own expression AND its own accessory — ten of each,
- * no repeats. Ten hues of the same face would read as one avatar with a
- * filter applied, which is the "picked a costume" feeling we want to
- * avoid; it is also how a set becomes describable by a single rule.
+ * The primary audience is Korean middle- and high-schoolers plus
+ * international SAT/TOEFL students, so monolid and almond eye shapes with
+ * straight black hair are well represented — across four different skin
+ * tones and five different silhouettes, so that representation does not
+ * collapse into one repeated face either.
  */
 
-// ── Colourways ───────────────────────────────────────────────────────
-// Same roles as PathMascot's BASE / SH / HI / RING / BEZEL / EYE /
-// ACCENT / NECK / STEEL, re-toned per avatar. `bg` is the disc behind
-// the bust — always the palest member of its own family, so the bust
-// keeps its edge without an outline.
-interface Colourway {
-  bg: string
-  shell: string
-  shellHi: string
-  ring: string
-  bezel: string
-  visor: string
-  eye: string
-  accent: string
-  neck: string
-  chest: string
+// ── Colour helpers ───────────────────────────────────────────────────
+// Derived tones (a hairline stroke, a garment fold, a faded undercut)
+// are computed, not hand-listed, so they cannot drift out of step with
+// the base colour they belong to. Pure functions, no runtime state.
+
+function mix(hex: string, target: string, t: number): string {
+  const a = parseInt(hex.slice(1), 16)
+  const b = parseInt(target.slice(1), 16)
+  const at = (shift: number) => Math.round((((a >> shift) & 255) * (1 - t)) + (((b >> shift) & 255) * t))
+  return '#' + [16, 8, 0].map(s => at(s).toString(16).padStart(2, '0')).join('')
+}
+const darken = (hex: string, t = 0.22) => mix(hex, '#000000', t)
+const lighten = (hex: string, t = 0.2) => mix(hex, '#FFFFFF', t)
+
+// ── The skin ramp ────────────────────────────────────────────────────
+/**
+ * EIGHT tones, spaced across the whole range rather than clustered at
+ * the light end. The spacing is inspectable on purpose: `base` steps
+ * down in mean channel value by roughly 22–31 per rung across
+ * 230 → 41, i.e. no two neighbours are a re-tint of each other and no
+ * gap is twice another. `avatars.test.tsx` asserts both the count and
+ * the monotonic descent, so "add one more fair tone" cannot happen by
+ * accident.
+ *
+ *   base   the face and neck fill
+ *   shade  jaw / neck / ear shadow AND the head's hairline stroke — one
+ *          step darker than base, never a black outline
+ *   line   nose and lid lines; the darkest member of the tone's family,
+ *          because a fixed grey reads as dirt on fair skin and vanishes
+ *          on deep skin
+ *   lip    mouth; the tone's family pushed toward rose, same reason
+ */
+export const SKIN_RAMP = {
+  'tone-1': { base: '#FBE3D3', shade: '#EFCAB4', line: '#B9866B', lip: '#C97D77' },
+  'tone-2': { base: '#F1CDB2', shade: '#E0B393', line: '#A97551', lip: '#BF6F64' },
+  'tone-3': { base: '#E0AC8B', shade: '#CB9070', line: '#96603F', lip: '#AC5F53' },
+  'tone-4': { base: '#CB8F66', shade: '#B4744C', line: '#7C4A2B', lip: '#954C40' },
+  'tone-5': { base: '#AE6E45', shade: '#95582F', line: '#63361B', lip: '#7C3D33' },
+  'tone-6': { base: '#8F5330', shade: '#76401F', line: '#4C2711', lip: '#66301F' },
+  'tone-7': { base: '#6B3A1F', shade: '#552C13', line: '#361A0A', lip: '#4E2416' },
+  'tone-8': { base: '#47250F', shade: '#361B09', line: '#1F0F05', lip: '#351A0E' },
+} as const
+export type SkinTone = keyof typeof SKIN_RAMP
+
+/** Mean channel value per rung — the ramp's spacing, made checkable. */
+export function skinLightness(tone: SkinTone): number {
+  const n = parseInt(SKIN_RAMP[tone].base.slice(1), 16)
+  return (((n >> 16) & 255) + ((n >> 8) & 255) + (n & 255)) / 3
 }
 
-/** Expression, drawn inside the visor. One per avatar. */
-type Expression =
-  | 'round' | 'squint' | 'arc' | 'wink' | 'star'
-  | 'curious' | 'sleepy' | 'scan' | 'determined' | 'wide'
+// ── Hair colour ──────────────────────────────────────────────────────
+/** Eleven colours. `hi` is the sheen stroke; the hairline stroke is
+ *  derived with darken() so it always belongs to its own family. */
+export const HAIR_COLOURS = {
+  black: { base: '#1C1A22', hi: '#3A3746' },
+  'soft-black': { base: '#2A2230', hi: '#494056' },
+  'dark-brown': { base: '#3D2A1E', hi: '#5D432F' },
+  brown: { base: '#5C3D28', hi: '#805740' },
+  'light-brown': { base: '#8C6039', hi: '#AE8054' },
+  auburn: { base: '#8E3F26', hi: '#B7603C' },
+  blonde: { base: '#D3A44C', hi: '#EFCE84' },
+  grey: { base: '#8E8F9A', hi: '#B6B7C1' },
+  white: { base: '#D8D9E1', hi: '#F3F4F9' },
+  lavender: { base: '#8E6FCB', hi: '#B49AE6' },
+  teal: { base: '#25837F', hi: '#4FB3AC' },
+} as const
+export type HairColour = keyof typeof HAIR_COLOURS
 
-/** A single small hardware detail. One per avatar. */
-type Accessory =
-  | 'antenna' | 'grad-cap' | 'star-clip' | 'crest' | 'headphones'
-  | 'halo' | 'moon-pin' | 'signal' | 'beanie' | 'bolt-pin'
+// ── Hair ─────────────────────────────────────────────────────────────
+export type HairTexture =
+  | 'straight' | 'wavy' | 'curly' | 'coily'
+  | 'braided' | 'locs' | 'cropped' | 'none' | 'covered'
+
+export type HairStyle =
+  | 'straight-long' | 'straight-bob' | 'crop-side' | 'updo-low' | 'ponytail-high'
+  | 'wavy-mid' | 'waves-short'
+  | 'curly-shoulder' | 'bun-top'
+  | 'coily-afro' | 'coily-puff'
+  | 'braids-twin' | 'locs-long'
+  | 'buzz' | 'undercut-fade' | 'pixie'
+  | 'bald' | 'hijab'
+
+/**
+ * Every style, its texture family, and whether the ears show through it.
+ *
+ * Texture lives HERE and not on the preset, so a preset cannot claim a
+ * texture its silhouette does not draw. Eighteen distinct silhouettes
+ * across nine families: the set cannot be described as "one head of hair
+ * in eleven colours", which is the failure mode CLAUDE.md's "a batch
+ * built to one brief develops a cross-item tell" warns about.
+ */
+export const HAIR_STYLES: Record<HairStyle, { texture: HairTexture; ears: boolean }> = {
+  'straight-long': { texture: 'straight', ears: false },
+  'straight-bob': { texture: 'straight', ears: false },
+  'crop-side': { texture: 'straight', ears: true },
+  'updo-low': { texture: 'straight', ears: true },
+  'ponytail-high': { texture: 'straight', ears: true },
+  'wavy-mid': { texture: 'wavy', ears: false },
+  'waves-short': { texture: 'wavy', ears: true },
+  'curly-shoulder': { texture: 'curly', ears: false },
+  'bun-top': { texture: 'curly', ears: true },
+  'coily-afro': { texture: 'coily', ears: false },
+  'coily-puff': { texture: 'coily', ears: true },
+  'braids-twin': { texture: 'braided', ears: false },
+  'locs-long': { texture: 'locs', ears: false },
+  buzz: { texture: 'cropped', ears: true },
+  'undercut-fade': { texture: 'cropped', ears: true },
+  pixie: { texture: 'cropped', ears: true },
+  bald: { texture: 'none', ears: true },
+  hijab: { texture: 'covered', ears: false },
+}
+
+// ── Face ─────────────────────────────────────────────────────────────
+export type FaceShape = 'oval' | 'round' | 'square' | 'heart' | 'long' | 'diamond'
+
+/**
+ * Six head silhouettes. `hairScale` squeezes the (shared) hair geometry
+ * horizontally about x=32 so a wide crop does not float off a narrow
+ * face; `ear` is the half-width at ear height. Presentation variety has
+ * to come from the FACE as well as the hair, or the set reads as
+ * gendered pairs of one face.
+ */
+const FACE_SHAPES: Record<FaceShape, { path: string; hairScale: number; ear: number }> = {
+  oval: {
+    path: 'M 32 10 C 40.5 10 46.2 16.5 46.2 25.5 C 46.2 36.5 40 45 32 45 C 24 45 17.8 36.5 17.8 25.5 C 17.8 16.5 23.5 10 32 10 Z',
+    hairScale: 1, ear: 14,
+  },
+  round: {
+    path: 'M 32 10.2 C 41 10.2 47.2 16.6 47.2 26 C 47.2 36.4 40.6 44.4 32 44.4 C 23.4 44.4 16.8 36.4 16.8 26 C 16.8 16.6 23 10.2 32 10.2 Z',
+    hairScale: 1.05, ear: 15,
+  },
+  square: {
+    path: 'M 32 9.8 C 41.6 9.8 46.6 14.6 46.6 22.4 L 46.6 34 C 46.6 40.8 41.4 45 32 45 C 22.6 45 17.4 40.8 17.4 34 L 17.4 22.4 C 17.4 14.6 22.4 9.8 32 9.8 Z',
+    hairScale: 1.04, ear: 14.6,
+  },
+  heart: {
+    path: 'M 32 9.6 C 41.6 9.6 46.8 15.2 46.8 23.8 C 46.8 34.6 39.4 45.6 32 45.6 C 24.6 45.6 17.2 34.6 17.2 23.8 C 17.2 15.2 22.4 9.6 32 9.6 Z',
+    hairScale: 1.02, ear: 14.4,
+  },
+  long: {
+    path: 'M 32 9 C 39.6 9 44.8 15.2 44.8 24.4 C 44.8 36.6 39.2 46 32 46 C 24.8 46 19.2 36.6 19.2 24.4 C 19.2 15.2 24.4 9 32 9 Z',
+    hairScale: 0.93, ear: 12.8,
+  },
+  diamond: {
+    path: 'M 32 10.4 C 38.6 10.4 43 14.4 44.8 21.6 C 46.6 28.4 41.2 45.2 32 45.2 C 22.8 45.2 17.4 28.4 19.2 21.6 C 21 14.4 25.4 10.4 32 10.4 Z',
+    hairScale: 0.99, ear: 13.4,
+  },
+}
+
+export type EyeShape = 'almond' | 'mono' | 'round' | 'narrow' | 'wide' | 'smiling'
+export type BrowShape = 'soft' | 'straight' | 'arched' | 'thick' | 'thin'
+export type MouthShape = 'smile' | 'soft-smile' | 'neutral' | 'grin' | 'smirk'
+export type FacialHair = 'none' | 'stubble' | 'short-beard' | 'moustache'
+export type Accessory = 'none' | 'glasses' | 'round-glasses' | 'earrings' | 'headband' | 'freckles'
+
+/** Iris colours. Deliberately small and mostly dark — an eye is ~2px at
+ *  leaderboard size, so this axis is decoration, never the difference
+ *  between two presets. */
+const IRIS = {
+  dark: '#2B2028', brown: '#5A3620', hazel: '#8A6134',
+  green: '#3F6B4B', blue: '#3F6690', grey: '#5F6C77',
+} as const
+export type Iris = keyof typeof IRIS
 
 export interface StudyAvatarSpec {
   id: StudyAvatarId
-  colours: Colourway
-  expression: Expression
+  skin: SkinTone
+  face: FaceShape
+  hair: HairStyle
+  /** Also the brow and facial-hair colour. Unused as *hair* by 'bald'
+   *  and 'hijab', which still need brows. */
+  hairColour: HairColour
+  /** Headscarf fabric. Required by 'hijab'; ignored otherwise. */
+  coverColour?: string
+  eyes: EyeShape
+  iris: Iris
+  brow: BrowShape
+  mouth: MouthShape
+  facialHair: FacialHair
   accessory: Accessory
-  /** i18n key for the accessible name. Locale entries listed in the PR. */
+  /** Garment. The second-largest block after the face, so it is the
+   *  other thing carrying identity at 32px. */
+  clothes: string
+  /** Disc behind the bust. Chosen to sit clear of BOTH the skin tone and
+   *  the hair colour — a pale backdrop under white hair, or a peach one
+   *  under tone-1, erases the silhouette. Pinned by a contrast test. */
+  bg: string
+  /** i18n key for the accessible name (en.json + ko.json). */
   nameKey: string
-}
-
-const CLASSIC: Colourway = {
-  bg: '#F3F0EA', shell: '#EDE9E2', shellHi: '#F8F5F0', ring: '#DAD3C7',
-  bezel: '#E0DACF', visor: '#1A1E26', eye: '#83DAF5', accent: '#7FBFE0',
-  neck: '#252932', chest: '#4E6E8E',
-}
-const SCHOLAR: Colourway = {
-  bg: '#F4EFE3', shell: '#EFE6D2', shellHi: '#F9F3E6', ring: '#DCCEB0',
-  bezel: '#E6DCC4', visor: '#1C1A18', eye: '#F2C879', accent: '#C79A4A',
-  neck: '#2A2620', chest: '#8A6A34',
-}
-const SUNNY: Colourway = {
-  bg: '#FDF3E0', shell: '#FBE7C6', shellHi: '#FEF5E6', ring: '#EBCF9F',
-  bezel: '#F6DFB6', visor: '#221B12', eye: '#FFC24D', accent: '#F59E2B',
-  neck: '#2E2419', chest: '#B4761C',
-}
-const MINT: Colourway = {
-  bg: '#E9F7F0', shell: '#DDF0E4', shellHi: '#F1FAF5', ring: '#B7DCC6',
-  bezel: '#CFE9D9', visor: '#12211A', eye: '#5FE0B0', accent: '#34B98A',
-  neck: '#1E2B25', chest: '#2E7D62',
-}
-const BERRY: Colourway = {
-  bg: '#FBECF1', shell: '#F7DDE6', shellHi: '#FDF1F5', ring: '#E7B9CA',
-  bezel: '#F2CFDC', visor: '#24141B', eye: '#FF9EC4', accent: '#E4699A',
-  neck: '#2C1C22', chest: '#A84C74',
-}
-const VIOLET: Colourway = {
-  bg: '#F1ECFB', shell: '#E6DEF8', shellHi: '#F6F2FE', ring: '#C6B7EA',
-  bezel: '#DCD2F2', visor: '#191428', eye: '#B79BFF', accent: '#8B6BE8',
-  neck: '#241E36', chest: '#6247B0',
-}
-// The one dark shell in the set. Ring goes DARKER than the shell here
-// (it is a tonal edge, not an outline) and the chest "C" goes lighter,
-// so the same construction still reads on a night colourway.
-const MIDNIGHT: Colourway = {
-  bg: '#232833', shell: '#3A4152', shellHi: '#4B5366', ring: '#262B36',
-  bezel: '#333A49', visor: '#12151C', eye: '#8FD6FF', accent: '#6EA8D8',
-  neck: '#1A1E27', chest: '#9FC4E4',
-}
-const COBALT: Colourway = {
-  bg: '#E5EFFB', shell: '#D5E4F7', shellHi: '#ECF4FD', ring: '#A9C6EA',
-  bezel: '#C6DAF2', visor: '#0F1826', eye: '#6FC0FF', accent: '#2F7FD8',
-  neck: '#1B2534', chest: '#205FA8',
-}
-const CORAL: Colourway = {
-  bg: '#FDEEE8', shell: '#FBDCD0', shellHi: '#FEF2ED', ring: '#EFBCA8',
-  bezel: '#F7CDBB', visor: '#241611', eye: '#FFAB8A', accent: '#EE7350',
-  neck: '#2E1D17', chest: '#B44F2E',
-}
-const FROST: Colourway = {
-  bg: '#E8F6F9', shell: '#DAEFF4', shellHi: '#F1FBFD', ring: '#AFD8E2',
-  bezel: '#CBE7EE', visor: '#10202A', eye: '#7EE8F5', accent: '#3EB6CE',
-  neck: '#17262E', chest: '#2A7F95',
 }
 
 /**
@@ -131,16 +244,132 @@ const FROST: Colourway = {
  * the drawings cannot drift apart silently.
  */
 export const STUDY_AVATARS = {
-  'raumi-classic':  { id: 'raumi-classic',  colours: CLASSIC,  expression: 'round',      accessory: 'antenna',     nameKey: 'study.prefs.avatarName.classic' },
-  'raumi-scholar':  { id: 'raumi-scholar',  colours: SCHOLAR,  expression: 'squint',     accessory: 'grad-cap',    nameKey: 'study.prefs.avatarName.scholar' },
-  'raumi-sunny':    { id: 'raumi-sunny',    colours: SUNNY,    expression: 'arc',        accessory: 'star-clip',   nameKey: 'study.prefs.avatarName.sunny' },
-  'raumi-mint':     { id: 'raumi-mint',     colours: MINT,     expression: 'wink',       accessory: 'crest',       nameKey: 'study.prefs.avatarName.mint' },
-  'raumi-berry':    { id: 'raumi-berry',    colours: BERRY,    expression: 'star',       accessory: 'headphones',  nameKey: 'study.prefs.avatarName.berry' },
-  'raumi-violet':   { id: 'raumi-violet',   colours: VIOLET,   expression: 'curious',    accessory: 'halo',        nameKey: 'study.prefs.avatarName.violet' },
-  'raumi-midnight': { id: 'raumi-midnight', colours: MIDNIGHT, expression: 'sleepy',     accessory: 'moon-pin',    nameKey: 'study.prefs.avatarName.midnight' },
-  'raumi-cobalt':   { id: 'raumi-cobalt',   colours: COBALT,   expression: 'scan',       accessory: 'signal',      nameKey: 'study.prefs.avatarName.cobalt' },
-  'raumi-coral':    { id: 'raumi-coral',    colours: CORAL,    expression: 'determined', accessory: 'beanie',      nameKey: 'study.prefs.avatarName.coral' },
-  'raumi-frost':    { id: 'raumi-frost',    colours: FROST,    expression: 'wide',       accessory: 'bolt-pin',    nameKey: 'study.prefs.avatarName.frost' },
+  'person-aster': {
+    id: 'person-aster', skin: 'tone-2', face: 'oval',
+    hair: 'straight-long', hairColour: 'black',
+    eyes: 'mono', iris: 'dark', brow: 'straight', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#5B7FD4', bg: '#EDE7F6', nameKey: 'study.prefs.avatarName.aster',
+  },
+  'person-ember': {
+    id: 'person-ember', skin: 'tone-7', face: 'round',
+    hair: 'coily-afro', hairColour: 'soft-black',
+    eyes: 'wide', iris: 'brown', brow: 'soft', mouth: 'grin',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#E9B04A', bg: '#DFF0F4', nameKey: 'study.prefs.avatarName.ember',
+  },
+  'person-quartz': {
+    id: 'person-quartz', skin: 'tone-3', face: 'round',
+    hair: 'straight-bob', hairColour: 'teal',
+    eyes: 'mono', iris: 'dark', brow: 'straight', mouth: 'smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#E2A03C', bg: '#F0EAF8', nameKey: 'study.prefs.avatarName.quartz',
+  },
+  'person-onyx': {
+    id: 'person-onyx', skin: 'tone-5', face: 'long',
+    hair: 'bald', hairColour: 'soft-black',
+    eyes: 'almond', iris: 'dark', brow: 'thick', mouth: 'neutral',
+    facialHair: 'short-beard', accessory: 'none',
+    clothes: '#4C5A73', bg: '#F3EFE2', nameKey: 'study.prefs.avatarName.onyx',
+  },
+  'person-birch': {
+    id: 'person-birch', skin: 'tone-1', face: 'round',
+    hair: 'wavy-mid', hairColour: 'light-brown',
+    eyes: 'round', iris: 'green', brow: 'soft', mouth: 'smile',
+    facialHair: 'none', accessory: 'freckles',
+    clothes: '#E0764F', bg: '#C4DCCB', nameKey: 'study.prefs.avatarName.birch',
+  },
+  'person-garnet': {
+    id: 'person-garnet', skin: 'tone-8', face: 'long',
+    hair: 'locs-long', hairColour: 'black',
+    eyes: 'almond', iris: 'brown', brow: 'straight', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#C9603F', bg: '#E7EDF6', nameKey: 'study.prefs.avatarName.garnet',
+  },
+  'person-maple': {
+    id: 'person-maple', skin: 'tone-4', face: 'heart',
+    hair: 'ponytail-high', hairColour: 'auburn',
+    eyes: 'almond', iris: 'hazel', brow: 'arched', mouth: 'smile',
+    facialHair: 'none', accessory: 'headband',
+    clothes: '#2E8F86', bg: '#F6E9E2', nameKey: 'study.prefs.avatarName.maple',
+  },
+  'person-cedar': {
+    id: 'person-cedar', skin: 'tone-6', face: 'square',
+    hair: 'buzz', hairColour: 'black',
+    eyes: 'almond', iris: 'dark', brow: 'thick', mouth: 'neutral',
+    facialHair: 'stubble', accessory: 'none',
+    clothes: '#3F7A63', bg: '#F2E9DC', nameKey: 'study.prefs.avatarName.cedar',
+  },
+  'person-harbor': {
+    id: 'person-harbor', skin: 'tone-2', face: 'long',
+    hair: 'crop-side', hairColour: 'blonde',
+    eyes: 'narrow', iris: 'blue', brow: 'thin', mouth: 'smirk',
+    facialHair: 'none', accessory: 'glasses',
+    clothes: '#4A6E96', bg: '#F7E6EC', nameKey: 'study.prefs.avatarName.harbor',
+  },
+  'person-nova': {
+    id: 'person-nova', skin: 'tone-7', face: 'oval',
+    hair: 'coily-puff', hairColour: 'black',
+    eyes: 'wide', iris: 'dark', brow: 'thick', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#D9564F', bg: '#E4EDFA', nameKey: 'study.prefs.avatarName.nova',
+  },
+  'person-dune': {
+    id: 'person-dune', skin: 'tone-3', face: 'heart',
+    hair: 'bun-top', hairColour: 'dark-brown',
+    eyes: 'almond', iris: 'brown', brow: 'arched', mouth: 'smile',
+    facialHair: 'none', accessory: 'earrings',
+    clothes: '#D2688F', bg: '#EAF1E6', nameKey: 'study.prefs.avatarName.dune',
+  },
+  'person-juniper': {
+    id: 'person-juniper', skin: 'tone-5', face: 'long',
+    hair: 'hijab', hairColour: 'dark-brown', coverColour: '#6C7FC4',
+    eyes: 'almond', iris: 'dark', brow: 'soft', mouth: 'smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#AEB6D2', bg: '#FAEDDC', nameKey: 'study.prefs.avatarName.juniper',
+  },
+  'person-indigo': {
+    id: 'person-indigo', skin: 'tone-1', face: 'diamond',
+    hair: 'pixie', hairColour: 'lavender',
+    eyes: 'round', iris: 'grey', brow: 'thin', mouth: 'smirk',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#3A3F52', bg: '#C8D6E8', nameKey: 'study.prefs.avatarName.indigo',
+  },
+  'person-rowan': {
+    id: 'person-rowan', skin: 'tone-8', face: 'diamond',
+    hair: 'waves-short', hairColour: 'grey',
+    eyes: 'almond', iris: 'dark', brow: 'thick', mouth: 'soft-smile',
+    facialHair: 'moustache', accessory: 'glasses',
+    clothes: '#3E8C6A', bg: '#F7EEDD', nameKey: 'study.prefs.avatarName.rowan',
+  },
+  'person-fern': {
+    id: 'person-fern', skin: 'tone-4', face: 'oval',
+    hair: 'curly-shoulder', hairColour: 'brown',
+    eyes: 'almond', iris: 'brown', brow: 'soft', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'round-glasses',
+    clothes: '#6C63C4', bg: '#E4F1E9', nameKey: 'study.prefs.avatarName.fern',
+  },
+  'person-lumen': {
+    id: 'person-lumen', skin: 'tone-6', face: 'heart',
+    hair: 'braids-twin', hairColour: 'dark-brown',
+    eyes: 'smiling', iris: 'brown', brow: 'soft', mouth: 'grin',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#7A5AC0', bg: '#EAF3E4', nameKey: 'study.prefs.avatarName.lumen',
+  },
+  'person-pearl': {
+    id: 'person-pearl', skin: 'tone-2', face: 'oval',
+    hair: 'updo-low', hairColour: 'white',
+    eyes: 'narrow', iris: 'grey', brow: 'thin', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#7C89A6', bg: '#AEBDD0', nameKey: 'study.prefs.avatarName.pearl',
+  },
+  'person-kestrel': {
+    id: 'person-kestrel', skin: 'tone-3', face: 'square',
+    hair: 'undercut-fade', hairColour: 'soft-black',
+    eyes: 'mono', iris: 'dark', brow: 'straight', mouth: 'smirk',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#2F6E8E', bg: '#F8EFDE', nameKey: 'study.prefs.avatarName.kestrel',
+  },
 } satisfies Record<StudyAvatarId, StudyAvatarSpec>
 
 /** Registry order = picker order. Derived from the canonical id list so
@@ -159,215 +388,638 @@ export function getStudyAvatar(id: string | null | undefined): StudyAvatarSpec |
  * see the module note). `label` is the accessible name; pass null to
  * mark it decorative when an adjacent element already names the person.
  */
-export function RaumiAvatar({ spec, size = 36, label, className = '' }: {
+export function PersonAvatar({ spec: s, size = 36, label, className = '' }: {
   spec: StudyAvatarSpec
   size?: number
   label?: string | null
   className?: string
 }) {
-  const c = spec.colours
+  const skin = SKIN_RAMP[s.skin]
+  const hair = HAIR_COLOURS[s.hairColour]
+  const face = FACE_SHAPES[s.face]
+  const style = HAIR_STYLES[s.hair]
+  const hairEdge = darken(hair.base, 0.28)
+  const clothesEdge = darken(s.clothes, 0.2)
+  // Squeeze the shared hair geometry onto this head's width.
+  const hairTransform = `translate(${32 * (1 - face.hairScale)} 0) scale(${face.hairScale} 1)`
+
   return (
     <div
       className={`flex-shrink-0 ${className}`}
       // The circular crop is INLINE, not a Tailwind class: it is the only
-      // thing keeping the shoulder capsule (which runs past the viewBox
-      // edge by design, so the bust fills the disc) inside a circle. As a
-      // class it would depend on the consumer's stylesheet being present
-      // and on `rounded-full` surviving purge — and the failure mode is a
-      // square avatar, silently, only on some surface.
+      // thing keeping the shoulders (which run past the viewBox edge by
+      // design, so the bust fills the disc) inside a circle. As a class it
+      // would depend on the consumer's stylesheet being present and on
+      // `rounded-full` surviving purge — and the failure mode is a square
+      // avatar, silently, only on some surface.
       style={{
-        width: size, height: size, backgroundColor: c.bg,
+        width: size, height: size, backgroundColor: s.bg,
         borderRadius: '50%', overflow: 'hidden',
       }}
       {...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true })}
     >
       <svg viewBox="0 0 64 64" width={size} height={size} focusable="false">
-        {/* Shoulder capsule + chest "C" — drawn first so the head and
-            neck overlap it, the same stacking as the mascot. */}
-        <rect x="11" y="45" width="42" height="24" rx="12" fill={c.shell} stroke={c.ring} strokeWidth="0.9" />
-        <path d="M 34 51.5 A 4.4 4.4 0 1 0 34 60.3" fill="none" stroke={c.chest} strokeWidth="2.2" strokeLinecap="round" />
-        <circle cx="35.6" cy="49.8" r="1.35" fill={c.accent} />
+        {/* 1 · hair mass behind the head */}
+        <g transform={hairTransform}>
+          <HairBack style={s.hair} hair={hair} edge={hairEdge} />
+        </g>
 
-        {/* Neck joint */}
-        <rect x="26" y="38" width="12" height="10" rx="4.5" fill={c.neck} />
-        <rect x="28.4" y="39.6" width="1.7" height="7" rx="0.85" fill="#3B414B" />
-        <rect x="33.9" y="39.6" width="1.7" height="7" rx="0.85" fill="#3B414B" />
+        {/* 2 · neck, then the garment over it */}
+        <path d="M 26.4 34 h 11.2 v 11 q 0 3.4 -5.6 3.4 q -5.6 0 -5.6 -3.4 z" fill={skin.base} />
+        <path d="M 26.4 34 h 11.2 v 3.4 q -5.6 3.6 -11.2 0 z" fill={skin.shade} />
+        <path
+          d="M 32 45.4 C 20.4 45.4 10.2 52.4 7 65 L 57 65 C 53.8 52.4 43.6 45.4 32 45.4 Z"
+          fill={s.clothes} stroke={clothesEdge} strokeWidth="0.9"
+        />
+        <path d="M 25.8 46.6 Q 32 53.4 38.2 46.6" fill="none" stroke={clothesEdge} strokeWidth="1.3" strokeLinecap="round" />
 
-        {/* Ear pods */}
-        <circle cx="12.2" cy="26" r="4.3" fill={c.shell} stroke={c.ring} strokeWidth="0.9" />
-        <circle cx="51.8" cy="26" r="4.3" fill={c.shell} stroke={c.ring} strokeWidth="0.9" />
-        <circle cx="52.8" cy="26" r="1.6" fill={c.accent} />
+        {/* 3 · ears (behind the head, so only the outer edge shows) */}
+        {style.ears && (
+          <>
+            <ellipse cx={32 - face.ear} cy="28.6" rx="2.7" ry="3.6" fill={skin.base} stroke={skin.shade} strokeWidth="0.7" />
+            <ellipse cx={32 + face.ear} cy="28.6" rx="2.7" ry="3.6" fill={skin.base} stroke={skin.shade} strokeWidth="0.7" />
+          </>
+        )}
 
-        {/* Head shell + the single highlight sweep that replaces the
-            mascot's two-tone soft shading at this size. */}
-        <rect x="14" y="7" width="36" height="35" rx="17" fill={c.shell} stroke={c.ring} strokeWidth="0.9" />
-        <path d="M 20 12.5 Q 27 8.4 35 9.2 Q 26 11.6 21.6 16.4 Z" fill={c.shellHi} />
+        {/* 4 · head */}
+        <path d={face.path} fill={skin.base} stroke={skin.shade} strokeWidth="0.85" />
 
-        {/* Recessed bezel + flat visor */}
-        <rect x="16.2" y="13.6" width="31.6" height="24" rx="11" fill={c.bezel} stroke={c.ring} strokeWidth="0.9" />
-        <rect x="17.6" y="15" width="28.8" height="21.2" rx="9.8" fill={c.visor} />
-        {/* Eyes softly lighting the lower screen — the one piece of the
-            mascot's glass treatment that survives at 32px. */}
-        <ellipse cx="32" cy="33.6" rx="10" ry="2.6" fill={c.eye} opacity="0.14" />
+        {/* 5 · face */}
+        <Brows shape={s.brow} colour={hair.base} />
+        <Eyes shape={s.eyes} iris={IRIS[s.iris]} line={skin.line} />
+        <path d="M 32 28.6 v 3.6 q 0 1.5 1.9 1.7" fill="none" stroke={skin.line} strokeWidth="0.85" strokeLinecap="round" opacity="0.75" />
+        <ellipse cx="23.4" cy="33" rx="3" ry="1.9" fill={skin.shade} opacity="0.55" />
+        <ellipse cx="40.6" cy="33" rx="3" ry="1.9" fill={skin.shade} opacity="0.55" />
+        <Mouth shape={s.mouth} lip={skin.lip} skin={skin.base} />
+        <FacialHairMark kind={s.facialHair} colour={hair.base} />
 
-        <Eyes expression={spec.expression} eye={c.eye} />
-        <Accessory kind={spec.accessory} c={c} />
+        {/* 6 · hair over the head */}
+        <g transform={hairTransform}>
+          <HairFront style={s.hair} hair={hair} edge={hairEdge} skin={skin.base} cover={s.coverColour ?? '#6C7FC4'} />
+        </g>
+
+        {/* 7 · accessory — last, and never the only difference between
+               two presets. Everything here is inside radius 31. */}
+        <AccessoryMark kind={s.accessory} skin={skin} ear={face.ear} />
       </svg>
     </div>
   )
 }
 
-/** Visor contents. Centre of the screen is (32, 25.6). */
-function Eyes({ expression, eye }: { expression: Expression; eye: string }) {
-  const GLINT = '#EEFCFF'
-  switch (expression) {
-    case 'round':
+/** One rung of the ramps above, as handed to a part renderer. */
+type SkinSwatch = (typeof SKIN_RAMP)[SkinTone]
+type HairSwatch = (typeof HAIR_COLOURS)[HairColour]
+
+// ── Face parts ───────────────────────────────────────────────────────
+// Eyes sit on y = 27.6, centred at x = 32 ± 6.3. Brows on y ≈ 22.
+const EYE_L = 25.7
+const EYE_R = 38.3
+
+function Eyes({ shape, iris, line }: { shape: EyeShape; iris: string; line: string }) {
+  const one = (cx: number) => {
+    switch (shape) {
+      case 'almond':
+        return (
+          <g key={cx}>
+            <path d={`M ${cx - 4.3} 27.7 Q ${cx} 24.1 ${cx + 4.3} 27.7 Q ${cx} 30.7 ${cx - 4.3} 27.7 Z`} fill="#FBFCFE" />
+            <circle cx={cx} cy="27.7" r="2.2" fill={iris} />
+            <circle cx={cx + 0.75} cy="26.9" r="0.7" fill="#FFFFFF" opacity="0.85" />
+            <path d={`M ${cx - 4.4} 27.4 Q ${cx} 23.5 ${cx + 4.4} 27.4`} fill="none" stroke={line} strokeWidth="0.9" strokeLinecap="round" />
+          </g>
+        )
+      case 'mono':
+        // Monolid: a flatter lens with the lid crease sitting high and
+        // close, rather than a second arc away from the lash line.
+        return (
+          <g key={cx}>
+            <path d={`M ${cx - 4.4} 27.9 Q ${cx} 25.1 ${cx + 4.4} 27.9 Q ${cx} 30.2 ${cx - 4.4} 27.9 Z`} fill="#FBFCFE" />
+            <circle cx={cx} cy="27.9" r="2.05" fill={iris} />
+            <circle cx={cx + 0.7} cy="27.2" r="0.65" fill="#FFFFFF" opacity="0.85" />
+            <path d={`M ${cx - 4.5} 27.7 Q ${cx} 24.6 ${cx + 4.5} 27.7`} fill="none" stroke={line} strokeWidth="1" strokeLinecap="round" />
+            <path d={`M ${cx - 3.4} 24.5 Q ${cx} 23.3 ${cx + 3.6} 24.6`} fill="none" stroke={line} strokeWidth="0.6" opacity="0.5" strokeLinecap="round" />
+          </g>
+        )
+      case 'round':
+        return (
+          <g key={cx}>
+            {/* The iris must nearly FILL the sclera. At r=3.3/2.15 there was
+                a thick white ring all the way round the iris, which reads as
+                startled rather than round-eyed — it made ember and indigo
+                look bug-eyed next to the almond-eyed presets. Every other
+                eye shape here shows white only at the CORNERS, so matching
+                that ratio is what makes this one belong. Caught by looking
+                at a render; no assertion in the suite covers proportion. */}
+            <circle cx={cx} cy="27.7" r="2.95" fill="#FBFCFE" stroke={line} strokeWidth="0.75" />
+            <circle cx={cx} cy="27.9" r="2.45" fill={iris} />
+            <circle cx={cx + 0.75} cy="27" r="0.7" fill="#FFFFFF" opacity="0.9" />
+          </g>
+        )
+      case 'narrow':
+        return (
+          <g key={cx}>
+            {/* Slightly less pinched than it was (25.6/29.8, iris 1.85). That
+                lens was flat enough that its two sharp corners plus the lid
+                stroke read as arrowheads rather than eyes — clearest on
+                rowan, where the glasses frame sits right on them. Widening
+                the opening a little and letting the iris carry more of it
+                keeps "narrow" narrow without the chevron artefact. */}
+            <path d={`M ${cx - 4.2} 27.8 Q ${cx} 25.15 ${cx + 4.2} 27.8 Q ${cx} 30.05 ${cx - 4.2} 27.8 Z`} fill="#FBFCFE" />
+            <circle cx={cx} cy="27.8" r="2.05" fill={iris} />
+            <path d={`M ${cx - 4.3} 27.6 Q ${cx} 24.7 ${cx + 4.3} 27.6`} fill="none" stroke={line} strokeWidth="0.95" strokeLinecap="round" />
+          </g>
+        )
+      case 'wide':
+        return (
+          <g key={cx}>
+            <ellipse cx={cx} cy="27.6" rx="4.5" ry="3.9" fill="#FBFCFE" stroke={line} strokeWidth="0.75" />
+            <circle cx={cx} cy="27.8" r="2.7" fill={iris} />
+            <circle cx={cx + 1} cy="26.7" r="1" fill="#FFFFFF" opacity="0.9" />
+          </g>
+        )
+      case 'smiling':
+        // Drawn in the IRIS colour, not `line`. `line` is a per-tone
+        // shade meant for the nose and lid — as the whole eye it is a
+        // pale tan arc on tone-1 and near-black-on-black at tone-8, so
+        // the eyes disappear at both ends of the ramp. The iris palette
+        // is dark on purpose and reads on every tone.
+        return (
+          <path
+            key={cx}
+            d={`M ${cx - 4.1} 29 Q ${cx} 24.4 ${cx + 4.1} 29`}
+            fill="none" stroke={iris} strokeWidth="1.8" strokeLinecap="round"
+          />
+        )
+    }
+  }
+  return <>{[one(EYE_L), one(EYE_R)]}</>
+}
+
+function Brows({ shape, colour }: { shape: BrowShape; colour: string }) {
+  const geom = (cx: number, sign: number) => {
+    switch (shape) {
+      case 'straight': return `M ${cx - 4.6} ${22.3 - sign * 0.2} L ${cx + 4.6} ${22.1 + sign * 0.2}`
+      case 'arched': return `M ${cx - 4.6} 22.8 Q ${cx} 19.3 ${cx + 4.6} 22.4`
+      case 'thin': return `M ${cx - 4.3} 22.4 Q ${cx} 20.7 ${cx + 4.3} 22.2`
+      default: return `M ${cx - 4.5} 22.5 Q ${cx} 20.2 ${cx + 4.5} 22.2`
+    }
+  }
+  const width = shape === 'thick' ? 2.3 : shape === 'thin' ? 1.05 : 1.7
+  return (
+    <>
+      <path d={geom(EYE_L, -1)} fill="none" stroke={colour} strokeWidth={width} strokeLinecap="round" />
+      <path d={geom(EYE_R, 1)} fill="none" stroke={colour} strokeWidth={width} strokeLinecap="round" />
+    </>
+  )
+}
+
+function Mouth({ shape, lip, skin }: { shape: MouthShape; lip: string; skin: string }) {
+  switch (shape) {
+    case 'smile':
+      return <path d="M 28.1 36.6 Q 32 40.7 35.9 36.6" fill="none" stroke={lip} strokeWidth="1.7" strokeLinecap="round" />
+    case 'soft-smile':
+      return <path d="M 29 37.1 Q 32 39.3 35 37.1" fill="none" stroke={lip} strokeWidth="1.6" strokeLinecap="round" />
+    case 'neutral':
+      return <path d="M 29.3 37.6 L 34.7 37.6" fill="none" stroke={lip} strokeWidth="1.6" strokeLinecap="round" />
+    case 'grin':
       return (
         <>
-          <rect x="24" y="20.6" width="5" height="10" rx="2.5" fill={eye} />
-          <rect x="35" y="20.6" width="5" height="10" rx="2.5" fill={eye} />
-          <circle cx="25.5" cy="23.2" r="1.25" fill={GLINT} />
-          <circle cx="36.5" cy="23.2" r="1.25" fill={GLINT} />
+          <path d="M 28 36.3 Q 32 41.9 36 36.3 Z" fill={darken(lip, 0.3)} />
+          <path d="M 28.6 36.7 L 35.4 36.7 Q 34 38 32 38 Q 30 38 28.6 36.7 Z" fill={lighten(skin, 0.72)} />
         </>
       )
-    case 'squint':
-      // The mascot's 'thinking' eyes — level, narrowed, working.
+    case 'smirk':
+      return <path d="M 28.9 37.8 Q 32.4 39.4 35.4 36.8" fill="none" stroke={lip} strokeWidth="1.6" strokeLinecap="round" />
+  }
+}
+
+function FacialHairMark({ kind, colour }: { kind: FacialHair; colour: string }) {
+  switch (kind) {
+    case 'none':
+      return null
+    case 'stubble':
+      return (
+        <path
+          d="M 20.6 31.6 Q 21.4 45.4 32 45.4 Q 42.6 45.4 43.4 31.6 Q 41.6 40 32 40 Q 22.4 40 20.6 31.6 Z"
+          fill={colour} opacity="0.26"
+        />
+      )
+    case 'short-beard':
       return (
         <>
-          <rect x="23.4" y="23.9" width="6.6" height="3.5" rx="1.75" fill={eye} />
-          <rect x="34" y="23.9" width="6.6" height="3.5" rx="1.75" fill={eye} />
+          <path
+            d="M 20.4 30.4 Q 20 45.6 32 47.2 Q 44 45.6 43.6 30.4 Q 42.4 38.4 32 38.4 Q 21.6 38.4 20.4 30.4 Z"
+            fill={colour}
+          />
+          <path d="M 28.4 34.4 Q 32 33.2 35.6 34.4" fill="none" stroke={colour} strokeWidth="1.9" strokeLinecap="round" />
         </>
       )
-    case 'arc':
-      // The mascot's 'celebrate' smile-arcs.
+    case 'moustache':
+      return <path d="M 27.4 35.2 Q 32 33.4 36.6 35.2 Q 32 36.6 27.4 35.2 Z" fill={colour} />
+  }
+}
+
+function AccessoryMark({ kind, skin, ear }: { kind: Accessory; skin: SkinSwatch; ear: number }) {
+  switch (kind) {
+    case 'none':
+      return null
+    case 'glasses':
+      return (
+        <g fill="none" stroke="#3A3F4A" strokeWidth="1.15">
+          <rect x="20.4" y="24.2" width="10.6" height="7.2" rx="2" />
+          <rect x="33" y="24.2" width="10.6" height="7.2" rx="2" />
+          <path d="M 31 27.2 L 33 27.2" />
+          <path d="M 20.4 26.6 L 17.6 27.4" />
+          <path d="M 43.6 26.6 L 46.4 27.4" />
+        </g>
+      )
+    case 'round-glasses':
+      return (
+        <g fill="none" stroke="#4A4232" strokeWidth="1.15">
+          <circle cx="25.7" cy="27.8" r="5.1" />
+          <circle cx="38.3" cy="27.8" r="5.1" />
+          <path d="M 30.8 27.4 L 33.2 27.4" />
+          <path d="M 20.6 26.6 L 17.8 27.4" />
+          <path d="M 43.4 26.6 L 46.2 27.4" />
+        </g>
+      )
+    case 'earrings':
       return (
         <>
-          <path d="M 22.6 28.6 Q 26.5 22.2 30.4 28.6" stroke={eye} strokeWidth="2.9" fill="none" strokeLinecap="round" />
-          <path d="M 33.6 28.6 Q 37.5 22.2 41.4 28.6" stroke={eye} strokeWidth="2.9" fill="none" strokeLinecap="round" />
+          <circle cx={32 - ear - 0.4} cy="32.6" r="1.5" fill="#E6B54B" stroke={darken('#E6B54B', 0.3)} strokeWidth="0.5" />
+          <circle cx={32 + ear + 0.4} cy="32.6" r="1.5" fill="#E6B54B" stroke={darken('#E6B54B', 0.3)} strokeWidth="0.5" />
         </>
       )
-    case 'wink':
+    case 'headband':
       return (
-        <>
-          <rect x="24" y="20.6" width="5" height="10" rx="2.5" fill={eye} />
-          <circle cx="25.5" cy="23.2" r="1.25" fill={GLINT} />
-          <path d="M 33.6 27.8 Q 37.5 22.4 41.4 27.8" stroke={eye} strokeWidth="2.8" fill="none" strokeLinecap="round" />
-        </>
+        <path
+          d="M 18.2 21.4 Q 32 15.4 45.8 21.4 L 45.8 18.6 Q 32 12.6 18.2 18.6 Z"
+          fill="#F2F4F8" stroke="#C9CEDA" strokeWidth="0.7"
+        />
       )
-    case 'star':
+    case 'freckles':
       return (
-        <>
-          <path d="M 26.4 20.2 l 1.7 3.7 3.7 1.7 -3.7 1.7 -1.7 3.7 -1.7 -3.7 -3.7 -1.7 3.7 -1.7 z" fill={eye} />
-          <path d="M 37.6 20.2 l 1.7 3.7 3.7 1.7 -3.7 1.7 -1.7 3.7 -1.7 -3.7 -3.7 -1.7 3.7 -1.7 z" fill={eye} />
-        </>
-      )
-    case 'curious':
-      // Asymmetric on purpose — one eye wide open, the other narrowed.
-      return (
-        <>
-          <circle cx="26.2" cy="25.6" r="4.5" fill={eye} />
-          <circle cx="27.6" cy="24" r="1.6" fill={GLINT} />
-          <rect x="34.4" y="23.9" width="6.6" height="3.4" rx="1.7" fill={eye} />
-        </>
-      )
-    case 'sleepy':
-      return (
-        <>
-          <path d="M 22.8 24 Q 26.6 29.6 30.4 24" stroke={eye} strokeWidth="2.7" fill="none" strokeLinecap="round" />
-          <path d="M 33.6 24 Q 37.4 29.6 41.2 24" stroke={eye} strokeWidth="2.7" fill="none" strokeLinecap="round" />
-        </>
-      )
-    case 'scan':
-      // A single lit scan bar with two brighter blocks where the eyes sit —
-      // the mascot's 'thinking' sweep, frozen.
-      return (
-        <>
-          <rect x="21.4" y="23.9" width="21.2" height="3.4" rx="1.7" fill={eye} opacity="0.32" />
-          <rect x="23.2" y="23.9" width="6.4" height="3.4" rx="1.7" fill={eye} />
-          <rect x="34.4" y="23.9" width="6.4" height="3.4" rx="1.7" fill={eye} />
-        </>
-      )
-    case 'determined':
-      return (
-        <>
-          <path d="M 22.8 19.9 L 29.6 21.9" stroke={eye} strokeWidth="2" fill="none" strokeLinecap="round" />
-          <path d="M 41.2 19.9 L 34.4 21.9" stroke={eye} strokeWidth="2" fill="none" strokeLinecap="round" />
-          <rect x="24.2" y="23.2" width="5.2" height="7.6" rx="2.6" fill={eye} />
-          <rect x="34.6" y="23.2" width="5.2" height="7.6" rx="2.6" fill={eye} />
-        </>
-      )
-    case 'wide':
-      return (
-        <>
-          <circle cx="26.2" cy="25.6" r="5.1" fill={eye} />
-          <circle cx="37.8" cy="25.6" r="5.1" fill={eye} />
-          <circle cx="27.8" cy="23.6" r="1.8" fill={GLINT} />
-          <circle cx="39.4" cy="23.6" r="1.8" fill={GLINT} />
-          <circle cx="24.8" cy="28" r="0.95" fill={GLINT} opacity="0.65" />
-          <circle cx="36.4" cy="28" r="0.95" fill={GLINT} opacity="0.65" />
-        </>
+        <g fill={skin.line} opacity="0.5">
+          <circle cx="22.6" cy="31.4" r="0.62" /><circle cx="25" cy="33.1" r="0.62" />
+          <circle cx="21.4" cy="34" r="0.62" /><circle cx="39" cy="33.1" r="0.62" />
+          <circle cx="41.4" cy="31.4" r="0.62" /><circle cx="42.6" cy="34" r="0.62" />
+        </g>
       )
   }
 }
 
-/** One small hardware detail, drawn over the head. */
-function Accessory({ kind, c }: { kind: Accessory; c: Colourway }) {
-  switch (kind) {
-    case 'antenna':
+// ── Hair ─────────────────────────────────────────────────────────────
+// Two layers per style: BACK draws behind the head (long lengths, the
+// afro's outer mass, a bun, a ponytail), FRONT draws over it (hairline,
+// fringe, sheen). Split this way so the face is never buried and the
+// silhouette is never a rectangle behind a head.
+//
+// Every coordinate below was placed against the radius-31 safe circle
+// about (32,32), not against the viewBox: the highest point in the set
+// is the top bun at y ≈ 3.8 (r = 28.2) and the widest is the coily puff
+// at (19.8, 16.4) r 7.8 (r = 27.6).
+
+const CURL_BUMPS: Array<[number, number, number]> = [
+  [32, 10.6, 7.2], [23.2, 13, 6.4], [40.8, 13, 6.4],
+  [18.4, 21.4, 6.2], [45.6, 21.4, 6.2],
+  [19.6, 30.4, 5.9], [44.4, 30.4, 5.9],
+  [22.2, 38.6, 5.4], [41.8, 38.6, 5.4],
+]
+
+function HairBack({ style, hair, edge }: {
+  style: HairStyle; hair: HairSwatch; edge: string
+}) {
+  const fill = { fill: hair.base, stroke: edge, strokeWidth: 0.8 }
+  switch (style) {
+    case 'straight-long':
+      return (
+        <path
+          {...fill}
+          d="M 32 8.4 C 20.4 8.4 15.4 16.4 15.4 26 L 15.4 48.4 Q 15.4 50.6 17.8 50.6 L 21.4 50.6 Q 23.2 50.6 23 48.6 L 21.6 30 L 42.4 30 L 41 48.6 Q 40.8 50.6 42.6 50.6 L 46.2 50.6 Q 48.6 50.6 48.6 48.4 L 48.6 26 C 48.6 16.4 43.6 8.4 32 8.4 Z"
+        />
+      )
+    case 'straight-bob':
+      return (
+        <path
+          {...fill}
+          d="M 32 8.6 C 21 8.6 15.8 16.2 15.8 26 L 15.8 40.2 Q 15.8 43.2 18.6 43.2 Q 21.4 43.2 21.4 40.2 L 21.4 30 L 42.6 30 L 42.6 40.2 Q 42.6 43.2 45.4 43.2 Q 48.2 43.2 48.2 40.2 L 48.2 26 C 48.2 16.2 43 8.6 32 8.6 Z"
+        />
+      )
+    case 'wavy-mid':
+      return (
+        <path
+          {...fill}
+          d="M 32 8.4 C 20.8 8.4 15.6 16.4 15.6 26 C 15.6 33.4 14.6 40.4 16.4 46.6 Q 18.4 43.4 20.6 46.4 Q 22.8 49.4 25.2 46 L 22.8 30 L 41.2 30 L 38.8 46 Q 41.2 49.4 43.4 46.4 Q 45.6 43.4 47.6 46.6 C 49.4 40.4 48.4 33.4 48.4 26 C 48.4 16.4 43.2 8.4 32 8.4 Z"
+        />
+      )
+    case 'curly-shoulder':
       return (
         <>
-          <rect x="31.2" y="4.4" width="1.7" height="4.4" rx="0.85" fill={c.ring} />
-          <circle cx="32" cy="4.4" r="2.6" fill={c.accent} />
+          {CURL_BUMPS.map(([cx, cy, r], i) => (
+            <circle key={i} cx={cx} cy={cy} r={r} fill={hair.base} stroke={edge} strokeWidth="0.7" />
+          ))}
+          <path d="M 20 20 L 44 20 L 44 34 L 20 34 Z" fill={hair.base} />
         </>
       )
-    case 'grad-cap':
+    case 'coily-afro':
       return (
         <>
-          <rect x="24.6" y="5.4" width="14.8" height="4.6" rx="1.6" fill={c.neck} />
-          <path d="M 32 0.6 L 46.4 6 L 32 11.4 L 17.6 6 Z" fill={c.neck} />
-          <path d="M 46.4 6 L 46.4 11.6" stroke={c.accent} strokeWidth="1.3" strokeLinecap="round" />
-          <circle cx="46.4" cy="12.4" r="1.7" fill={c.accent} />
+          <circle cx="32" cy="24" r="18.4" fill={hair.base} stroke={edge} strokeWidth="0.8" />
+          {[
+            [16.6, 13.4], [24, 7.4], [32, 5.6], [40, 7.4], [47.4, 13.4],
+            [50.2, 22.4], [13.8, 22.4], [48.2, 32], [15.8, 32],
+          ].map(([cx, cy], i) => (
+            // No stroke on the texture bumps: an outline on each one
+            // turns a coily edge into a ring of separate pom-poms.
+            // They only need to break the circle's outline.
+            <circle key={i} cx={cx} cy={cy} r="4.1" fill={hair.base} />
+          ))}
         </>
       )
-    case 'star-clip':
-      return <path d="M 45.6 4.6 l 1.6 3.3 3.3 1.6 -3.3 1.6 -1.6 3.3 -1.6 -3.3 -3.3 -1.6 3.3 -1.6 z" fill={c.accent} />
-    case 'crest':
-      // A three-spike fin along the crown.
-      return <path d="M 23.6 9.4 L 26.6 3.2 L 29.6 8 L 32.6 1.4 L 35.6 8 L 38.6 3.2 L 41.6 9.4 Z" fill={c.accent} />
-    case 'headphones':
+    case 'coily-puff':
       return (
         <>
-          <path d="M 11 27 A 21 22 0 0 1 53 27" fill="none" stroke={c.ring} strokeWidth="4.4" strokeLinecap="round" />
-          <path d="M 11 27 A 21 22 0 0 1 53 27" fill="none" stroke={c.accent} strokeWidth="2.6" strokeLinecap="round" />
-          <rect x="6.8" y="21" width="9.4" height="13" rx="4.7" fill={c.accent} />
-          <rect x="47.8" y="21" width="9.4" height="13" rx="4.7" fill={c.accent} />
+          <circle cx="19.8" cy="16.4" r="7.8" fill={hair.base} stroke={edge} strokeWidth="0.8" />
+          <circle cx="44.2" cy="16.4" r="7.8" fill={hair.base} stroke={edge} strokeWidth="0.8" />
+          <circle cx="17.8" cy="13.4" r="3.4" fill={hair.hi} opacity="0.35" />
+          <circle cx="42.2" cy="13.4" r="3.4" fill={hair.hi} opacity="0.35" />
         </>
       )
-    case 'halo':
-      return <ellipse cx="32" cy="3.6" rx="10.4" ry="3" fill="none" stroke={c.accent} strokeWidth="2.1" />
-    case 'moon-pin':
-      return <path d="M 47.6 4.4 a 4.4 4.4 0 1 0 0 8.4 a 3.3 3.3 0 1 1 0 -8.4 z" fill={c.accent} />
-    case 'signal':
+    case 'braids-twin':
       return (
         <>
-          <rect x="51.6" y="20.4" width="2.1" height="3.4" rx="1" fill={c.accent} />
-          <rect x="54.8" y="17.8" width="2.1" height="6" rx="1" fill={c.accent} />
-          <rect x="58" y="15.2" width="2.1" height="8.6" rx="1" fill={c.accent} opacity="0.55" />
+          {[15.6, 48.4].flatMap(cx => (
+            [30, 35.6, 41, 45.8].map((cy, i) => (
+              <ellipse
+                key={`${cx}-${cy}`} cx={cx} cy={cy} rx={4.3 - i * 0.45} ry={3.5 - i * 0.35}
+                fill={hair.base} stroke={edge} strokeWidth="0.7"
+              />
+            ))
+          ))}
+          <path d="M 15.6 22 L 48.4 22 L 48.4 31 L 15.6 31 Z" fill={hair.base} />
         </>
       )
-    case 'beanie':
+    case 'locs-long':
       return (
         <>
-          <path d="M 16.4 12.6 A 16 16 0 0 1 47.6 12.6 Z" fill={c.accent} />
-          <rect x="15" y="10.6" width="34" height="4.4" rx="2.2" fill={c.accent} />
-          <rect x="15" y="10.6" width="34" height="4.4" rx="2.2" fill="#FFFFFF" opacity="0.25" />
-          {/* Pale bobble, not another accent circle: the dome's own arc
-              crests at y≈0, so an accent-on-accent pom is invisible. */}
-          <circle cx="32" cy="4.6" r="3.1" fill={c.shellHi} stroke={c.accent} strokeWidth="0.9" />
+          <path d="M 32 8.8 C 21.2 8.8 16.2 16.4 16.2 27 L 47.8 27 C 47.8 16.4 42.8 8.8 32 8.8 Z" fill={hair.base} stroke={edge} strokeWidth="0.8" />
+          {/* Mirrored about x=32: a rect [x, x+3.4] pairs with [60.6-x]. */}
+          {[
+            [15.6, 49.6], [19.2, 47.4], [22.8, 44.6],
+            [37.8, 44.6], [41.4, 47.4], [45, 49.6],
+          ].map(([x, y2], i) => (
+            // Outlined in the hair's OWN highlight, not in `edge`: on
+            // black hair a darker edge is invisible, and without a
+            // separator the six locs render as one undifferentiated
+            // mass that reads as plain long hair.
+            <rect
+              key={i} x={x} y="24" width="3.4" height={y2 - 24} rx="1.7"
+              fill={hair.base} stroke={hair.hi} strokeWidth="0.7" strokeOpacity="0.6"
+            />
+          ))}
         </>
       )
-    case 'bolt-pin':
-      return <path d="M 56.4 35.6 L 51.4 43.4 L 54.8 43.4 L 53.2 49.4 L 58.6 41 L 55.2 41 Z" fill={c.accent} />
+    case 'bun-top':
+      return (
+        <>
+          <circle cx="32" cy="10" r="6.2" fill={hair.base} stroke={edge} strokeWidth="0.8" />
+          <path d="M 29.4 6.6 Q 33.6 5.2 35.6 8.6" fill="none" stroke={hair.hi} strokeWidth="1.3" strokeLinecap="round" opacity="0.8" />
+        </>
+      )
+    case 'updo-low':
+      return (
+        <>
+          <circle cx="46.4" cy="34.6" r="6.4" fill={hair.base} stroke={edge} strokeWidth="0.8" />
+          <path d="M 43.6 31.6 Q 48 30.4 50 34.2" fill="none" stroke={hair.hi} strokeWidth="1.2" strokeLinecap="round" opacity="0.8" />
+        </>
+      )
+    case 'ponytail-high':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 43 14 C 51.6 12.2 56.6 19.6 55 27.4 C 54 32.6 50.4 36 46.4 36.2 C 50 31.6 51.4 26.2 50 21.4 C 48.8 17.2 46 15 43 14 Z"
+          />
+          <ellipse cx="44.4" cy="15.4" rx="3.1" ry="2.5" fill={darken(hair.base, 0.35)} />
+        </>
+      )
+    case 'crop-side':
+    case 'undercut-fade':
+    case 'waves-short':
+    case 'buzz':
+    case 'pixie':
+    case 'bald':
+    case 'hijab':
+      return null
+  }
+}
+
+function HairFront({ style, hair, edge, skin, cover }: {
+  style: HairStyle; hair: HairSwatch; edge: string; skin: string; cover: string
+}) {
+  const fill = { fill: hair.base, stroke: edge, strokeWidth: 0.8 }
+  const sheen = (d: string, w = 1.5) => (
+    <path d={d} fill="none" stroke={hair.hi} strokeWidth={w} strokeLinecap="round" opacity="0.8" />
+  )
+  switch (style) {
+    case 'straight-long':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 32 8.4 C 21.4 8.4 16.4 15.6 16.2 25 C 16 19.6 19.8 14.4 25.2 13.4 C 27.8 15.4 29.9 16.2 32 16.2 C 34.1 16.2 36.2 15.4 38.8 13.4 C 44.2 14.4 48 19.6 47.8 25 C 47.6 15.6 42.6 8.4 32 8.4 Z"
+          />
+          {sheen('M 24 12.4 Q 29.4 9.6 35.4 11')}
+        </>
+      )
+    case 'straight-bob':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 16.4 24.6 C 16.4 14 22.6 8.6 32 8.6 C 41.4 8.6 47.6 14 47.6 24.6 L 47.6 19 C 43.6 21.4 38.4 22.4 32 22.4 C 25.6 22.4 20.4 21.4 16.4 19 Z"
+          />
+          {sheen('M 22.6 13.4 Q 29 10 36 11.6')}
+        </>
+      )
+    case 'wavy-mid':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 32 8.4 C 21.4 8.4 16.4 15.4 16.2 25.6 Q 17.6 18.4 22.4 15.6 Q 28.8 20.6 36.4 18.4 Q 43.6 16.2 47.8 25.6 C 47.6 15.4 42.6 8.4 32 8.4 Z"
+          />
+          {sheen('M 21.4 15.6 Q 25.4 11.8 30.6 12.4')}
+          {sheen('M 38.4 12.6 Q 43.2 14.4 45.6 19', 1.3)}
+        </>
+      )
+    case 'curly-shoulder':
+      return (
+        <>
+          {[[23.6, 14.6, 5.4], [32, 12.2, 6], [40.4, 14.6, 5.4], [18.8, 20.6, 4.8], [45.2, 20.6, 4.8]].map(([cx, cy, r], i) => (
+            <circle key={i} cx={cx} cy={cy} r={r} fill={hair.base} stroke={edge} strokeWidth="0.6" />
+          ))}
+          <circle cx="28.4" cy="12.4" r="2.4" fill={hair.hi} opacity="0.4" />
+        </>
+      )
+    case 'coily-afro':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.6 25.4 C 17.6 13.8 24 8.6 32 8.6 C 40 8.6 46.4 13.8 46.4 25.4 C 43.8 18.4 38.6 15.4 32 15.4 C 25.4 15.4 20.2 18.4 17.6 25.4 Z"
+          />
+          {[[22.4, 17.6], [27.4, 14.6], [32, 13.4], [36.6, 14.6], [41.6, 17.6]].map(([cx, cy], i) => (
+            <circle key={i} cx={cx} cy={cy} r="3.1" fill={hair.base} />
+          ))}
+          <circle cx="27" cy="13.6" r="2.2" fill={hair.hi} opacity="0.35" />
+        </>
+      )
+    case 'coily-puff':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.8 25.2 C 18.2 14.6 24.2 9.2 32 9.2 C 39.8 9.2 45.8 14.6 46.2 25.2 C 43.6 18 38.4 15.2 32 15.2 C 25.6 15.2 20.4 18 17.8 25.2 Z"
+          />
+          {[[21.6, 18.6], [26.4, 14.4], [32, 12.8], [37.6, 14.4], [42.4, 18.6]].map(([cx, cy], i) => (
+            <circle key={i} cx={cx} cy={cy} r="3.2" fill={hair.base} />
+          ))}
+        </>
+      )
+    case 'braids-twin':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.4 25.4 C 17.4 14.4 23.8 9 32 9 C 40.2 9 46.6 14.4 46.6 25.4 C 45.2 17.4 39.6 14 32 14 C 24.4 14 18.8 17.4 17.4 25.4 Z"
+          />
+          <path d="M 32 9.4 L 32 15" stroke={hair.hi} strokeWidth="0.9" strokeLinecap="round" opacity="0.8" />
+          {[[23.6, 12.8], [27.6, 10.8], [36.4, 10.8], [40.4, 12.8]].map(([x, y], i) => (
+            <path key={i} d={`M ${x} ${y} Q 32 ${y - 2.4} ${64 - x} ${y}`} fill="none" stroke={hair.hi} strokeWidth="0.7" opacity="0.45" />
+          ))}
+        </>
+      )
+    case 'locs-long':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.6 26 C 17.6 14.6 24 9 32 9 C 40 9 46.4 14.6 46.4 26 C 46.4 19.8 40 16.6 32 16.6 C 24 16.6 17.6 19.8 17.6 26 Z"
+          />
+          {[20.4, 24.4, 28.4, 32.4, 36.4, 40.4].map((x, i) => (
+            <path key={i} d={`M ${x} ${11.6 + Math.abs(30 - x) * 0.22} L ${x} 21.6`} stroke={hair.hi} strokeWidth="1.1" strokeLinecap="round" opacity="0.45" />
+          ))}
+        </>
+      )
+    case 'buzz':
+      return (
+        <path
+          d="M 17.5 26.6 C 17.5 14.6 23.8 9.2 32 9.2 C 40.2 9.2 46.5 14.6 46.5 26.6 C 46.2 21.4 44.8 18.6 42.6 17.6 C 39.6 16.2 36.2 15.8 32 15.8 C 27.8 15.8 24.4 16.2 21.4 17.6 C 19.2 18.6 17.8 21.4 17.5 26.6 Z"
+          fill={mix(hair.base, skin, 0.22)} stroke={darken(mix(hair.base, skin, 0.22), 0.22)} strokeWidth="0.7"
+        />
+      )
+    case 'undercut-fade':
+      // The faded sides are drawn HERE, over the head. Behind it (the
+      // obvious place, next to the other back masses) they sit inside
+      // the skull outline and never show at all — which turned the
+      // longer top into what read as a headband.
+      return (
+        <>
+          <path d="M 19 20.4 Q 17.6 26 18.2 31 L 22.4 31 Q 21.4 25.4 22.4 20.4 Z" fill={mix(hair.base, skin, 0.4)} />
+          <path d="M 45 20.4 Q 46.4 26 45.8 31 L 41.6 31 Q 42.6 25.4 41.6 20.4 Z" fill={mix(hair.base, skin, 0.4)} />
+          <path
+            {...fill}
+            d="M 18 23 C 18 12.2 24.4 8.2 32 8.2 C 39.6 8.2 46 12.2 46 23 C 43.4 16.6 38.4 14.4 32 14.4 C 25.6 14.4 20.6 16.6 18 23 Z"
+          />
+          {sheen('M 22.4 13.8 Q 28.6 9.4 35.6 10.6', 1.4)}
+          {sheen('M 36.8 10.2 Q 41.4 11.6 43.6 15.4', 1.1)}
+        </>
+      )
+    case 'crop-side':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.6 26.4 C 17.6 14.4 24 9 32 9 C 40 9 46.4 14.4 46.4 26.4 C 46.2 19.6 44.4 16.4 40.8 15.8 C 36.6 15.1 31 18.6 25.6 18.6 C 22.4 18.6 19.4 20 17.6 26.4 Z"
+          />
+          {sheen('M 24.4 13.2 Q 31.6 9.8 38.4 11.8')}
+        </>
+      )
+    case 'waves-short':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.6 26.4 C 17.6 14.6 24 9 32 9 C 40 9 46.4 14.6 46.4 26.4 C 45.4 20.6 43.6 17.4 40.6 16.4 C 37.4 19 34 19.4 30 18.4 C 26.4 17.6 22.6 18 20.4 20 C 19 21.2 18.2 23.6 17.6 26.4 Z"
+          />
+          {sheen('M 21.6 18.4 Q 26.4 14.4 31.6 15.8', 1.2)}
+          {sheen('M 33.6 12.6 Q 39.4 11.6 43 15.2', 1.2)}
+        </>
+      )
+    case 'pixie':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.4 27 C 16.7 15.2 23.4 8.8 32 8.8 C 40.6 8.8 47.3 15.2 46.6 27 L 44.8 20.4 L 43.2 24.2 L 41.6 18.6 C 38 20.8 27.4 22 22.6 18.2 L 21 23.6 L 19.4 19.8 Z"
+          />
+          {sheen('M 23.6 12.8 Q 30.4 9.4 37.6 11.4', 1.3)}
+        </>
+      )
+    case 'ponytail-high':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.6 25.4 C 17.6 13.8 24 8.8 32 8.8 C 40 8.8 46.4 13.8 46.4 25.4 C 45.6 18 40 14.6 32 14.6 C 24 14.6 18.4 18 17.6 25.4 Z"
+          />
+          {[[19.6, 22], [22.4, 17.4], [26.8, 13.6]].map(([x, y], i) => (
+            <path key={i} d={`M ${x} ${y} Q ${x + 8} ${y - 4} ${x + 17} ${y - 3}`} fill="none" stroke={hair.hi} strokeWidth="0.85" opacity="0.5" />
+          ))}
+        </>
+      )
+    case 'updo-low':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.2 25.8 C 17.2 14 23.6 8.8 32 8.8 C 40.4 8.8 46.8 14 46.8 25.8 C 46.2 18.8 41.6 15.4 34 15.4 C 27 15.4 20 17.6 17.2 25.8 Z"
+          />
+          {sheen('M 20.6 19.6 Q 26.6 12.6 35.4 12.4', 1.3)}
+        </>
+      )
+    case 'bald':
+      return <path d="M 25.4 15 Q 29.8 12.2 35 13.8" fill="none" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.2" strokeLinecap="round" />
+    case 'bun-top':
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.6 25.4 C 17.6 14.4 24 9.4 32 9.4 C 40 9.4 46.4 14.4 46.4 25.4 C 45.2 18.2 39.6 15 32 15 C 24.4 15 18.8 18.2 17.6 25.4 Z"
+          />
+          {[[22.4, 17.2], [27, 14], [32, 12.8], [37, 14], [41.6, 17.2]].map(([cx, cy], i) => (
+            <circle key={i} cx={cx} cy={cy} r="2.7" fill={hair.base} />
+          ))}
+          <path d="M 20 24.4 Q 18.4 29.4 19.4 33.4" fill="none" stroke={hair.base} strokeWidth="2.2" strokeLinecap="round" />
+        </>
+      )
+    case 'hijab':
+      // One path, fill-rule evenodd: the outer drape minus the face
+      // opening. Drawn LAST so it covers the neck and the garment's
+      // shoulder line the way real fabric does, without needing a clip.
+      return (
+        <>
+          <path
+            fillRule="evenodd"
+            fill={cover}
+            stroke={darken(cover, 0.24)}
+            strokeWidth="0.85"
+            d="M 32 6.6 C 19.4 6.6 13.6 16.4 13.6 27.6 C 13.6 38 15.6 46 18.6 51.4 C 21.6 56.8 26 58.4 32 58.4 C 38 58.4 42.4 56.8 45.4 51.4 C 48.4 46 50.4 38 50.4 27.6 C 50.4 16.4 44.6 6.6 32 6.6 Z M 32 11.6 C 22.4 11.6 17.8 19.8 17.8 28.4 C 17.8 38.8 24.6 47.2 32 47.2 C 39.4 47.2 46.2 38.8 46.2 28.4 C 46.2 19.8 41.6 11.6 32 11.6 Z"
+          />
+          <path d="M 21.6 15.6 Q 27.4 9.8 35.8 10.6" fill="none" stroke={lighten(cover, 0.3)} strokeWidth="1.5" strokeLinecap="round" opacity="0.75" />
+          <path d="M 44.8 40.4 Q 47.2 46.6 44 51.6" fill="none" stroke={darken(cover, 0.16)} strokeWidth="1.3" strokeLinecap="round" />
+        </>
+      )
   }
 }
 
@@ -376,11 +1028,11 @@ function Accessory({ kind, c }: { kind: Accessory; c: Colourway }) {
  *
  * `fallback` is a NODE, not a flag, and that is the point: the initials
  * avatar is not identical across surfaces (friends uses an hsl() hue off
- * the display name; the league uses a Tailwind class off the student id,
- * at three different sizes). Re-implementing "the initials avatar" here
- * would have silently changed all of them for every student who never
- * picks an avatar — i.e. everyone, on day one. Each call site keeps its
- * own existing markup and passes it in untouched.
+ * the display name at 36px; the league uses a Tailwind class off the
+ * student id, at 32px and 56px). Re-implementing "the initials avatar"
+ * here would have silently changed all of them for every student who
+ * never picks an avatar — i.e. everyone, on day one. Each call site keeps
+ * its own existing markup and passes it in untouched.
  *
  * Unknown / retired / malformed ids take the fallback too, so a value
  * this build cannot draw degrades to initials rather than a blank disc.
@@ -392,7 +1044,7 @@ export function StudyAvatar({ avatarId, size = 36, label, className = '', fallba
   className?: string
   fallback: ReactNode
 }) {
-  const spec = getStudyAvatar(avatarId)
-  if (!spec) return <>{fallback}</>
-  return <RaumiAvatar spec={spec} size={size} label={label} className={className} />
+  const found = getStudyAvatar(avatarId)
+  if (!found) return <>{fallback}</>
+  return <PersonAvatar spec={found} size={size} label={label} className={className} />
 }

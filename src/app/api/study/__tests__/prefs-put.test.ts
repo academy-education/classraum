@@ -55,7 +55,7 @@ describe('PUT /api/study/prefs', () => {
     // avatar_id must be an id this build can DRAW. The column's own CHECK
     // only constrains format, so a well-formed unknown id would store
     // fine and then render as a blank disc for every friend who sees it.
-    ['an unregistered avatar_id', { avatar_id: 'raumi-nonexistent' }, 'avatar_id'],
+    ['an unregistered avatar_id', { avatar_id: 'person-nonexistent' }, 'avatar_id'],
     ['a non-string avatar_id', { avatar_id: 3 }, 'avatar_id'],
     ['an avatar_id that fails the column format', { avatar_id: 'Raumi Classic!' }, 'avatar_id'],
   ])('rejects %s with 400', async (_label, body, field) => {
@@ -66,12 +66,12 @@ describe('PUT /api/study/prefs', () => {
   })
 
   it('persists a registered avatar_id', async () => {
-    const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1', avatar_id: 'raumi-scholar' } })
+    const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1', avatar_id: 'person-aster' } })
 
-    const res = await PUT(makeRequest({ avatar_id: 'raumi-scholar' }, { method: 'PUT' }))
+    const res = await PUT(makeRequest({ avatar_id: 'person-aster' }, { method: 'PUT' }))
     expect(res.status).toBe(200)
     expect(upsertChain.upsert).toHaveBeenCalledWith(
-      expect.objectContaining({ student_id: 'student-1', avatar_id: 'raumi-scholar' }),
+      expect.objectContaining({ student_id: 'student-1', avatar_id: 'person-aster' }),
       { onConflict: 'student_id' },
     )
   })

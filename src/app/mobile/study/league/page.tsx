@@ -436,15 +436,14 @@ const BAND_ICON: Record<LeagueBand, typeof TrendingUp> = {
 }
 
 /**
- * A leaderboard row's avatar: the student's chosen Raumi avatar when they
+ * A leaderboard row's avatar: the student's chosen preset avatar when they
  * have one, otherwise the deterministic initials disc this page has always
  * drawn.
  *
  * `initialsClass` is the ORIGINAL markup's className, passed through
  * untouched — hue, size and type scale are unchanged, so every student who
  * never opens the avatar picker sees the leaderboard exactly as before.
- * `avatarClass` carries only the framing (the podium's ring + shadow) onto
- * the Raumi branch, which brings its own colour and shape.
+ * `avatarClass` carries only the framing (the podium's ring + shadow)  * the preset branch, which brings its own colour and shape.
  */
 function RankAvatar({ row, size, initialsClass, avatarClass = '' }: {
   row: LeaderboardRow; size: number; initialsClass: string; avatarClass?: string

@@ -548,7 +548,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
 }
 
 /**
- * The person's chosen Raumi avatar, falling back to the deterministic
+ * The person's chosen preset avatar, falling back to the deterministic
  * initials avatar (matching the leaderboard style) when they have none.
  *
  * The fallback branch below is the ORIGINAL component, unchanged — same
