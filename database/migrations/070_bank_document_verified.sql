@@ -1,7 +1,6 @@
 -- Document what `verified` actually means. NO RENAME — see below.
 --
--- NOT APPLIED. This migration changes zero rows and zero column types; it
--- writes comments only, so it is safe to run at any point in the sequence.
+-- APPLIED 2026-08-02. Changes zero rows and zero column types; comments only.
 --
 --
 -- THE ORIGINAL PLAN WAS TO RENAME THIS COLUMN. DON'T.

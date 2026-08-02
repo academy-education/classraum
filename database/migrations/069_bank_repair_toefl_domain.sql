@@ -1,7 +1,9 @@
 -- Repair the TOEFL `domain` values, which disagree with the task the item is
 -- actually drawn as. Every overwritten value is preserved first.
 --
--- NOT APPLIED. Run 068 first — this depends on `task` existing.
+-- APPLIED 2026-08-02, after 068. Verified after: 2,065 rows repaired and
+-- 2,065 carry legacy_domain (1:1), 0 Reading items still labelled Listening,
+-- 0 SAT rows touched.
 --
 --
 -- WHY

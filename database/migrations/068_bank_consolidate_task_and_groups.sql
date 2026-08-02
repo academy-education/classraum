@@ -2,7 +2,8 @@
 -- one way. ADDITIVE ONLY — nothing is dropped, nothing is renamed, and every
 -- backfill is asserted before the migration is allowed to commit.
 --
--- NOT APPLIED. Review before running.
+-- APPLIED 2026-08-02. Verified after: task mismatch 0, task nulls 0,
+-- passage_group_id column 1,723 = JSON 1,723 (was 48 - 1,675 rows filled).
 --
 --
 -- WHY
