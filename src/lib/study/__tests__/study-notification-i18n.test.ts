@@ -23,9 +23,11 @@
 import { languages, getNestedValue } from '@/locales'
 import {
   STUDY_NOTIFICATION_COPY,
+  STUDY_PUSH_COPY,
   STUDY_PARAM_REF_KEYS,
   LEAGUE_TIER_KEYS,
   allStudyCopyEntries,
+  renderStudyPush,
   findMissingStudyCopyKeys,
   translateStudyKey,
   tierParam,
@@ -107,6 +109,103 @@ describe.each(LANGS)('every registered key exists in %s', lang => {
       expect(value).not.toBe(key)
       expect(String(value).trim()).not.toBe('')
     }
+  })
+})
+
+/**
+ * PUSH-ONLY nudges. These write no inbox row, so they have no kind and
+ * are invisible to every check above. They were three hardcoded ko/en
+ * string pairs inside the reminders cron — bilingual, so no raw key ever
+ * rendered, but outside the locale files and therefore outside every
+ * guard. The asymmetry that proves the cost: the English SRS title
+ * carried the card count and the Korean one did not.
+ */
+describe('push-only study copy', () => {
+  const pushEntries = Object.entries(STUDY_PUSH_COPY)
+
+  it('registers the nudges the reminders cron sends', () => {
+    expect(Object.keys(STUDY_PUSH_COPY).sort()).toEqual(
+      ['dailyChallenge', 'idleNudge', 'srsDue'],
+    )
+  })
+
+  describe.each(LANGS)('resolves in %s', lang => {
+    it.each(pushEntries)('%s', (variant, copy) => {
+      for (const key of [copy.titleKey, copy.messageKey]) {
+        const value = lookup(lang, key)
+        expect({ variant, key, value }).toEqual({ variant, key, value: expect.any(String) })
+        expect(value).not.toBe(key)
+        expect(String(value).trim()).not.toBe('')
+      }
+    })
+  })
+
+  it.each(pushEntries)('%s uses the same params in en and ko', (_variant, copy) => {
+    const placeholders = (s: string) =>
+      Array.from(s.matchAll(/\{\{?(\w+)\}?\}/g), m => m[1]).sort()
+    for (const key of [copy.titleKey, copy.messageKey]) {
+      expect(placeholders(String(lookup('korean', key))))
+        .toEqual(placeholders(String(lookup('english', key))))
+    }
+  })
+
+  it('renders each nudge fully in both languages', () => {
+    const params = { due: 4, questions: 3 }
+    for (const lang of LANGS) {
+      for (const variant of Object.keys(STUDY_PUSH_COPY) as Array<keyof typeof STUDY_PUSH_COPY>) {
+        const { title, body } = renderStudyPush(lang, variant, params)
+        for (const s of [title, body]) {
+          expect(s.trim()).not.toBe('')
+          expect(s).not.toMatch(/notifications\.content\.study/)
+          expect(s).not.toMatch(/\{\w+\}/)
+        }
+      }
+    }
+  })
+
+  it('renders Korean to a Korean student and English to an English one', () => {
+    const en = renderStudyPush('english', 'srsDue', { due: 4 })
+    const ko = renderStudyPush('korean', 'srsDue', { due: 4 })
+    expect(en.title).toBe('4 cards ready to review')
+    expect(ko.title).toBe('복습할 카드 4장이 기다려요')
+    expect(en.body).not.toBe(ko.body)
+    // The count reaches BOTH languages. The old hardcoded Korean title
+    // dropped it, so Korean students got a strictly less useful push.
+    expect(ko.title).toContain('4')
+  })
+})
+
+describe('the reminders cron does not hardcode copy', () => {
+  const stripComments = (s: string) =>
+    s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '')
+
+  const read = () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const fs = require('fs') as typeof import('fs')
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const path = require('path') as typeof import('path')
+    return fs.readFileSync(
+      path.join(process.cwd(), 'src/app/api/cron/study-push-reminders/route.ts'),
+      'utf8',
+    )
+  }
+
+  it('contains no Hangul string literals', () => {
+    // A hand-written Korean push body in the route is exactly the shape
+    // that escaped every i18n guard. Comments are stripped first so the
+    // rationale above a fix does not trip its own check.
+    const hangul = stripComments(read()).match(/[가-힣]+/g) ?? []
+    expect(hangul).toEqual([])
+  })
+
+  it('resolves the language with the shared helper, not a local fallback', () => {
+    const src = stripComments(read())
+    // Reading the study-pref language column directly here skipped the
+    // account-level `user_preferences.language` fallback that
+    // studentNotifLang applies, and the result was then FORCED onto
+    // notifyStudent via `lang:`, overriding it for the inbox row too.
+    expect(src).toMatch(/studentNotifLang\(studentId\)/)
+    expect(src).not.toMatch(/default_language/)
   })
 })
 

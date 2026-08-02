@@ -110,6 +110,46 @@ export type StudyCopyRegistry = typeof STUDY_NOTIFICATION_COPY
 export type StudyCopyVariant<K extends StudyNotificationKind> = keyof StudyCopyRegistry[K] & string
 
 /**
+ * PUSH-ONLY copy — nudges that go to the device but write no inbox row,
+ * so they have no `StudyNotificationKind` and never touch the
+ * `notifications.type` CHECK constraint.
+ *
+ * These lived as hardcoded ko/en string pairs inside
+ * src/app/api/cron/study-push-reminders/route.ts. They were bilingual,
+ * so nothing rendered a raw key — but they sat outside the locale files
+ * entirely, which meant no guard could see them. The asymmetry that
+ * proves the point: the English SRS title carried the card count
+ * ("3 cards ready to review") and the Korean one did not ("복습할 카드가
+ * 있어요"). Placeholder parity across locales is checked for every key in
+ * the registry; a string literal in a route file is checked by nothing.
+ *
+ * `dailyChallenge` intentionally points at the same keys as the
+ * `study_daily_challenge` kind above — one wording, one place to edit.
+ * That kind has no inbox emit site, so these keys had been registered
+ * and unused while the push shipped a hand-written copy of them.
+ */
+export const STUDY_PUSH_COPY = {
+  srsDue: { titleKey: `${NS}.srsDue.title`, messageKey: `${NS}.srsDue.message` },
+  dailyChallenge: { titleKey: `${NS}.dailyChallenge.title`, messageKey: `${NS}.dailyChallenge.message` },
+  idleNudge: { titleKey: `${NS}.idleNudge.title`, messageKey: `${NS}.idleNudge.message` },
+} as const satisfies Record<string, StudyCopy>
+
+export type StudyPushVariant = keyof typeof STUDY_PUSH_COPY
+
+/** Render a push-only nudge in the recipient's language. */
+export function renderStudyPush(
+  lang: StudyNotifLang,
+  variant: StudyPushVariant,
+  params?: StudyNotifParams,
+): { title: string; body: string } {
+  const copy = STUDY_PUSH_COPY[variant]
+  return {
+    title: translateStudyKey(lang, copy.titleKey, params),
+    body: translateStudyKey(lang, copy.messageKey, params),
+  }
+}
+
+/**
  * Translation keys referenced from PARAM VALUES rather than from the
  * registry above (the `@key` form). They are just as required, and just
  * as invisible to a grep of the registry, so they are listed here and
@@ -227,6 +267,13 @@ export function findMissingStudyCopyKeys(): string[] {
     for (const lang of ['english', 'korean'] as const) {
       for (const key of [copy.titleKey, copy.messageKey]) {
         if (isMissingKey(lang, key)) missing.push(`${lang}: ${key} (${kind}/${variant})`)
+      }
+    }
+  }
+  for (const [variant, copy] of Object.entries(STUDY_PUSH_COPY)) {
+    for (const lang of ['english', 'korean'] as const) {
+      for (const key of [copy.titleKey, copy.messageKey]) {
+        if (isMissingKey(lang, key)) missing.push(`${lang}: ${key} (push/${variant})`)
       }
     }
   }

@@ -12,6 +12,17 @@ import { dbAdmin } from '@/lib/supabase-admin'
  * card self-hides; the landing prompts to pick a test instead).
  */
 
+/**
+ * Questions in a daily-challenge session. Single source of truth for
+ * both the session `config` written by /api/study/daily-challenge/start
+ * and the copy that advertises the challenge in a push.
+ *
+ * It is 3. The push nudge used to say "5 questions · 5 minutes · 50 XP"
+ * in both languages — the count was wrong, and neither the minutes nor
+ * the XP figure corresponds to anything in the codebase.
+ */
+export const DAILY_CHALLENGE_QUESTION_COUNT = 3
+
 export interface DailyChallengeState {
   date: string
   sessionId: string | null

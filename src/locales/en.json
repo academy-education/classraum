@@ -4348,7 +4348,15 @@
         },
         "dailyChallenge": {
           "title": "Today's challenge is waiting",
-          "message": "{questions} questions · {minutes} minutes · {xp} XP — take it now."
+          "message": "{questions} questions — take it now."
+        },
+        "srsDue": {
+          "title": "{due} cards ready to review",
+          "message": "Five minutes now keeps what you've learned fresh."
+        },
+        "idleNudge": {
+          "title": "One question, five minutes",
+          "message": "Keep your league rank up — open Study and try one."
         },
         "duelWon": {
           "title": "Duel won! 🏆",

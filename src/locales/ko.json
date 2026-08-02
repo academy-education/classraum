@@ -4348,7 +4348,15 @@
         },
         "dailyChallenge": {
           "title": "오늘의 챌린지가 기다리고 있어요",
-          "message": "{questions}문제 · {minutes}분 · {xp} XP — 지금 도전해 보세요."
+          "message": "{questions}문제 — 지금 도전해 보세요."
+        },
+        "srsDue": {
+          "title": "복습할 카드 {due}장이 기다려요",
+          "message": "지금 5분이면 배운 내용을 오래 기억할 수 있어요."
+        },
+        "idleNudge": {
+          "title": "한 문제만 풀어볼까요?",
+          "message": "5분이면 XP가 쌓이고 리그 순위도 올라가요."
         },
         "duelWon": {
           "title": "듀얼 승리! 🏆",

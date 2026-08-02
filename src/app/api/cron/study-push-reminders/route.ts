@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { sendPushToStudent } from '@/lib/study/push'
-import { notifyStudent } from '@/lib/study/notify'
+import { notifyStudent, studentNotifLang } from '@/lib/study/notify'
+import { renderStudyPush } from '@/lib/study/notification-copy'
+import { DAILY_CHALLENGE_QUESTION_COUNT } from '@/lib/study/daily-challenge'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
 import { verifyCronAuth } from '@/lib/cron-auth'
 
@@ -14,7 +16,8 @@ import { verifyCronAuth } from '@/lib/cron-auth'
  *      any generic nudge motivates; this is the highest-value push
  *      we can send. Also lands in the in-app inbox.
  *   2. SRS backlog — flashcards due for review.
- *   3. Daily challenge — today's 5-question micro-quiz not done yet.
+ *   3. Daily challenge — today's micro-quiz not done yet
+ *      (DAILY_CHALLENGE_QUESTION_COUNT questions).
  *   4. Generic idle nudge.
  *
  * Schedule: 18:00 KST (= 09:00 UTC) — after most school days end,
@@ -48,7 +51,7 @@ export async function GET(req: NextRequest) {
 async function runReminders() {
   const { data: prefs } = await dbAdmin
     .from('study_user_prefs')
-    .select('student_id, default_language')
+    .select('student_id')
     .not('onboarded_at', 'is', null)
 
   if (!prefs || prefs.length === 0) {
@@ -65,7 +68,14 @@ async function runReminders() {
 
   for (const row of prefs) {
     const studentId = row.student_id
-    const lang = row.default_language === 'ko' ? 'ko' : 'en'
+    // Use the SAME resolution every other study notification uses:
+    // study pref → account pref → English. Reading only
+    // study_user_prefs.default_language here (and defaulting a NULL to
+    // English) diverged from `studentNotifLang`, and because the value
+    // was then FORCED onto notifyStudent via `lang:` below, it also
+    // overrode the account-level Korean fallback for the streak row.
+    // The column is nullable (default 'ko'), so that path is reachable.
+    const lang = await studentNotifLang(studentId)
 
     const { count: todayXp } = await dbAdmin
       .from('study_xp_events')
@@ -85,10 +95,10 @@ async function runReminders() {
         variant: 'default',
         titleParams: { days: streak },
         messageParams: { days: streak },
-        // We already read this student's preference above; pass it so
+        // We already resolved this student's language above; pass it so
         // notifyStudent doesn't re-query. It only affects the stored
         // plaintext and the push body — the inbox row renders from keys.
-        lang: lang === 'ko' ? 'korean' : 'english',
+        lang,
         link: '/mobile/study',
         push: true,
       })
@@ -104,17 +114,10 @@ async function runReminders() {
       .lte('due_at', nowIso)
     if ((dueCount ?? 0) > 0) {
       const due = dueCount ?? 0
-      const result = await sendPushToStudent(studentId, lang === 'ko'
-        ? {
-            title: '복습할 카드가 있어요',
-            body: `오늘 ${due}장이 준비되어 있어요. 5분이면 충분해요.`,
-            url: '/mobile/study/review',
-          }
-        : {
-            title: `${due} cards ready to review`,
-            body: 'Spend 5 minutes now — keep your knowledge fresh.',
-            url: '/mobile/study/review',
-          })
+      const result = await sendPushToStudent(studentId, {
+        ...renderStudyPush(lang, 'srsDue', { due }),
+        url: '/mobile/study/review',
+      })
       if (result.skipped) skipped++
       else if (result.sent > 0) sent++
       else failed++
@@ -130,28 +133,18 @@ async function runReminders() {
       .contains('config', { dailyChallenge: todayUtc })
       .limit(1)
     const payload = (!challengeDone || challengeDone.length === 0)
-      ? (lang === 'ko'
-          ? {
-              title: '오늘의 챌린지가 기다리고 있어요',
-              body: '5문제 · 5분 · 50 XP — 지금 도전해 보세요.',
-              url: '/mobile/study',
-            }
-          : {
-              title: "Today's challenge is waiting",
-              body: '5 questions · 5 minutes · 50 XP — take it now.',
-              url: '/mobile/study',
-            })
-      : (lang === 'ko'
-          ? {
-              title: '오늘 한 문제만 풀어볼까요?',
-              body: '5분이면 XP가 쌓이고 리그 순위가 올라가요.',
-              url: '/mobile/study',
-            }
-          : {
-              title: 'One question, five minutes',
-              body: 'Keep your league rank up — open Study and try one.',
-              url: '/mobile/study',
-            })
+      ? {
+          // Same keys the `study_daily_challenge` kind registers, so the
+          // challenge nudge has one wording rather than a hand-copied twin.
+          ...renderStudyPush(lang, 'dailyChallenge', {
+            questions: DAILY_CHALLENGE_QUESTION_COUNT,
+          }),
+          url: '/mobile/study',
+        }
+      : {
+          ...renderStudyPush(lang, 'idleNudge'),
+          url: '/mobile/study',
+        }
 
     const result = await sendPushToStudent(studentId, payload)
     if (result.skipped) skipped++
