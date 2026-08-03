@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
+import { progressFor, overallProgress } from '@/lib/study/bank-targets'
 
 /**
  * LIVE bank state for /admin/bank-qc — read from the database, every time.
@@ -156,6 +157,16 @@ export async function GET(request: NextRequest) {
     const cohorts = [...byDomain.entries()].map(([k, e]) => {
       const [family, domain] = k.split('|')
       const blindPct = e.picks > 0 ? Math.round((1000 * e.correct) / e.picks) / 10 : null
+      /*
+       * Progress is judged over the MULTIPLE-CHOICE population, not the
+       * whole cohort. The attack shuffles options and withholds a
+       * source, so an item with no options is not outstanding work —
+       * it is out of scope, and counting it as unfinished would park
+       * the finish bar permanently below 100%.
+       */
+      const prog = e.mc === 0
+        ? { state: 'not-applicable' as const, target: null, remaining: '' }
+        : progressFor(domain, e.mc, e.measured, blindPct)
       return {
         family, domain,
         items: e.items,
@@ -167,8 +178,34 @@ export async function GET(request: NextRequest) {
         // A cohort with no MC items cannot be attacked at all; say so
         // rather than showing it as work outstanding forever.
         status: e.mc === 0 ? ('not-applicable' as Status) : statusFor(e.measured, blindPct, e.mc),
+        // What "finished" means for THIS task type, and what is left.
+        progress: prog.state,
+        target: prog.target,
+        remaining: prog.remaining,
       }
     }).sort((a, b) => b.items - a.items)
+
+    /*
+     * The finish bar. Every attackable item lands in exactly one bucket,
+     * so the four counts sum to `total` and the bar cannot show progress
+     * that has not happened.
+     *
+     * `unmeasured` is its own segment rather than being folded into
+     * failing: we do not know those items are bad, and claiming we do
+     * would be the same overreach in the opposite direction.
+     */
+    const bar = { done: 0, tooEasy: 0, tooHard: 0, spotChecked: 0, unmeasured: 0 }
+    for (const c of cohorts) {
+      if (c.progress === 'not-applicable') continue
+      if (c.progress === 'done') bar.done += c.multipleChoice
+      else if (c.progress === 'too-easy') bar.tooEasy += c.multipleChoice
+      else if (c.progress === 'too-hard') bar.tooHard += c.multipleChoice
+      else if (c.progress === 'spot-checked') bar.spotChecked += c.multipleChoice
+      else bar.unmeasured += c.multipleChoice
+    }
+    const overall = overallProgress(
+      cohorts.map(c => ({ domain: c.domain, items: c.multipleChoice, measured: c.measured, blindPct: c.blindPct })),
+    )
 
     const byCohort = agg(i => i.cohort ?? '(none)')
     const provenance = [...byCohort.entries()].map(([cohort, e]) => {
@@ -211,6 +248,7 @@ export async function GET(request: NextRequest) {
         measured: live.filter(i => latest.has(i.id)).length,
         unmeasured: live.filter(i => !latest.has(i.id)).length,
       },
+      finish: { ...bar, total: overall.total, pct: overall.pct },
       cohorts,
       provenance,
       runs,

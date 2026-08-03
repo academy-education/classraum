@@ -47,6 +47,13 @@ interface CohortRow {
   family: string; domain: string; items: number; multipleChoice: number
   measured: number; unmeasured: number; blindPct: number | null
   everySolverGotIt: number; status: Status
+  progress: Progress; target: Target | null; remaining: string
+}
+type Progress = 'done' | 'too-easy' | 'too-hard' | 'spot-checked' | 'unmeasured' | 'not-applicable'
+interface Target { min: number; max: number; published: number | null; note: string }
+interface Finish {
+  done: number; tooEasy: number; tooHard: number; spotChecked: number
+  unmeasured: number; total: number; pct: number
 }
 interface ProvenanceRow {
   cohort: string; source: string | null; method: string | null
@@ -61,9 +68,164 @@ type Status = 'ready' | 'spot-checked' | 'guessable' | 'badly-guessable' | 'unme
 interface Live {
   generatedAt: string
   totals: { items: number; measured: number; unmeasured: number }
+  finish: Finish
   cohorts: CohortRow[]
   provenance: ProvenanceRow[]
   runs: RunRow[]
+}
+
+/**
+ * The finish bar.
+ *
+ * ── What "finished" means, and why it is not one number ──────────────
+ * An item is finished when its cohort's BLIND SCORE — how often solvers
+ * pick the key with the passage or audio withheld — sits inside the band
+ * for that task type, measured over at least 20% of the cohort.
+ *
+ * The bands live in src/lib/study/bank-targets.ts and differ per task,
+ * because official items differ per task: College Board SAT R&W scores
+ * 71.6% blind, ETS lectures 96.9%. A single bar across all cohorts was
+ * the original mistake — it reported TOEFL lectures as failing when they
+ * are the cohort closest to standard.
+ *
+ * ── Why five segments and not a percentage ───────────────────────────
+ * "62% done" hides which 38%. The states are different KINDS of
+ * outstanding work and cost different amounts:
+ *
+ *   too easy      rewrite distractors      expensive, per item
+ *   too hard      review — options may be arbitrary
+ *   spot-checked  in band, just needs more measuring   cheap
+ *   unmeasured    unknown — attack it first            cheap
+ *
+ * `unmeasured` is deliberately its own segment. Folding it into failing
+ * would claim we know those items are bad, which is the same overreach
+ * as calling them fine — and the bar's whole job is to not do that.
+ */
+const SEGMENTS: Array<{
+  key: keyof Omit<Finish, 'total' | 'pct'>; state: Progress
+  label: string; bar: string; dot: string; blurb: string
+}> = [
+  { key: 'done', state: 'done', label: 'Finished', bar: 'bg-emerald-500', dot: 'bg-emerald-500',
+    blurb: 'Blind score inside the band for its task type, over at least 20% of the cohort.' },
+  { key: 'spotChecked', state: 'spot-checked', label: 'In band, needs more measuring', bar: 'bg-sky-400', dot: 'bg-sky-400',
+    blurb: 'Scoring well, but on too small a sample to claim the cohort. Cheap to close — just attack more items.' },
+  { key: 'unmeasured', state: 'unmeasured', label: 'Not measured', bar: 'bg-violet-300', dot: 'bg-violet-300',
+    blurb: 'Unknown, not passing. Needs an attack run before anything can be said about it.' },
+  { key: 'tooHard', state: 'too-hard', label: 'Below the band', bar: 'bg-orange-400', dot: 'bg-orange-400',
+    blurb: 'Harder to guess than intended — distractors may be arbitrary rather than plausible. Needs review.' },
+  { key: 'tooEasy', state: 'too-easy', label: 'Too guessable', bar: 'bg-red-500', dot: 'bg-red-500',
+    blurb: 'Answerable without the passage or audio. The real defect: distractors must be rewritten, per item.' },
+]
+
+function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }) {
+  const [open, setOpen] = React.useState<Progress | null>(null)
+  const pctOf = (n: number) => (finish.total === 0 ? 0 : (100 * n) / finish.total)
+
+  return (
+    <div className={`${CARD} p-5`}>
+      <div className="flex items-baseline justify-between gap-3 flex-wrap">
+        <h2 className="text-[15px] font-semibold text-gray-900">Bank optimization — how far in</h2>
+        <span className="text-[13px] tabular-nums text-gray-500">
+          <strong className="text-[19px] text-gray-900 mr-1">{finish.pct}%</strong>
+          {finish.done.toLocaleString()} of {finish.total.toLocaleString()} attackable items finished
+        </span>
+      </div>
+
+      <div
+        className="mt-3 flex h-3.5 w-full overflow-hidden rounded-full bg-gray-100"
+        onMouseLeave={() => setOpen(null)}
+      >
+        {SEGMENTS.map(s => {
+          const n = finish[s.key]
+          if (n === 0) return null
+          return (
+            <button
+              key={s.key}
+              type="button"
+              aria-label={`${s.label}: ${n} items`}
+              className={`${s.bar} h-full transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 ${
+                open && open !== s.state ? 'opacity-40' : ''
+              }`}
+              style={{ width: `${pctOf(n)}%` }}
+              onMouseEnter={() => setOpen(s.state)}
+              onFocus={() => setOpen(s.state)}
+              onClick={() => setOpen(open === s.state ? null : s.state)}
+            />
+          )
+        })}
+      </div>
+
+      {/* The legend is also the hover target — the bar's thin segments are
+          hard to hit, and a keyboard user cannot hover at all. */}
+      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5" onMouseLeave={() => setOpen(null)}>
+        {SEGMENTS.map(s => {
+          const n = finish[s.key]
+          if (n === 0) return null
+          return (
+            <button
+              key={s.key}
+              type="button"
+              className="flex items-center gap-1.5 text-[12px] text-gray-600 hover:text-gray-900 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
+              onMouseEnter={() => setOpen(s.state)}
+              onFocus={() => setOpen(s.state)}
+              onClick={() => setOpen(open === s.state ? null : s.state)}
+            >
+              <span className={`inline-block h-2 w-2 rounded-full ${s.dot}`} />
+              <span>{s.label}</span>
+              <span className="tabular-nums text-gray-400">{n.toLocaleString()}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      {open && <WhatIsLeft state={open} cohorts={cohorts} />}
+
+      {!open && (
+        <p className="mt-3 text-[12px] text-gray-400">
+          Hover a segment to see which cohorts are in it and what each one needs.
+        </p>
+      )}
+    </div>
+  )
+}
+
+/** The hover panel: which cohorts are in this state, and the next
+ *  concrete action for each — not a status word the reader has to
+ *  translate into work. */
+function WhatIsLeft({ state, cohorts }: { state: Progress; cohorts: CohortRow[] }) {
+  const seg = SEGMENTS.find(s => s.state === state)
+  const rows = cohorts.filter(c => c.progress === state)
+    .sort((a, b) => b.multipleChoice - a.multipleChoice)
+
+  return (
+    <div className="mt-3 rounded-xl bg-gray-50 ring-1 ring-gray-100 p-3.5">
+      <div className="flex items-center gap-1.5">
+        <span className={`inline-block h-2 w-2 rounded-full ${seg?.dot}`} />
+        <span className="text-[12.5px] font-medium text-gray-900">{seg?.label}</span>
+      </div>
+      <p className="text-[12px] text-gray-500 mt-1 leading-relaxed">{seg?.blurb}</p>
+
+      <ul className="mt-2.5 space-y-1.5">
+        {rows.map(c => (
+          <li key={`${c.family}|${c.domain}`} className="text-[12px] leading-relaxed">
+            <span className="text-gray-400 uppercase text-[10px] mr-1">{c.family}</span>
+            <span className="text-gray-800 font-medium">{c.domain}</span>
+            <span className="text-gray-400 tabular-nums ml-1.5">{c.multipleChoice} items</span>
+            {c.target && (
+              <span className="text-gray-400 tabular-nums ml-1.5">
+                · now {c.blindPct === null ? 'unmeasured' : `${c.blindPct}%`}, target {c.target.min}–{c.target.max}%
+              </span>
+            )}
+            {c.remaining && <div className="text-gray-600">{c.remaining}</div>}
+            {/* The band's justification travels WITH the number. A target
+                the reader has to take on trust is how the lecture cohort
+                got held to a reading bar in the first place. */}
+            {c.target && <div className="text-gray-400 text-[11px]">{c.target.note}</div>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
 const STATUS: Record<Status, { label: string; chip: string }> = {
@@ -137,6 +299,8 @@ export function LiveBankState() {
 
   return (
     <section className="mb-8 space-y-4">
+      {data.finish && <FinishBar finish={data.finish} cohorts={data.cohorts} />}
+
       <div className={`${CARD} p-5`}>
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
           <h2 className="text-[15px] font-semibold text-gray-900">Bank readiness — live</h2>
