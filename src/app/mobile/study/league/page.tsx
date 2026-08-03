@@ -202,6 +202,7 @@ function LeagueInner() {
             {data.promotionNotice && (
               <PromotionBanner notice={data.promotionNotice} ko={ko} />
             )}
+            <CollectRewards ko={ko} />
             <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} seasonHigh={data.seasonHigh ?? null} promoteCount={promoteZoneFor(memberCount)} />
             <PromotionZone tier={tier} ko={ko} myRank={data.myRank} memberCount={memberCount} />
             <Leaderboard rows={data.leaderboard} ko={ko} memberCount={memberCount} />
@@ -1083,4 +1084,97 @@ function formatCountdown(seconds: number, ko: boolean): string {
   if (d >= 1) return ko ? `${d}일 ${h}시간` : `${d}d ${h}h`
   const m = Math.floor((seconds % 3600) / 60)
   return ko ? `${h}시간 ${m}분` : `${h}h ${m}m`
+}
+
+
+/**
+ * Waiting league rewards, and the button that collects them.
+ *
+ * Since 073 the Sunday cron RECORDS rewards without paying them, so
+ * the credits move when the student taps here. That is the entire
+ * point of the change: a payout that happens while you are asleep is a
+ * number that changed, not a reward you were given.
+ *
+ * Renders NOTHING when there is nothing waiting. An always-present
+ * "collect" card with a zero in it trains students to ignore the one
+ * week it matters.
+ */
+function CollectRewards({ ko }: { ko: boolean }) {
+  const [total, setTotal] = useState(0)
+  const [count, setCount] = useState(0)
+  const [busy, setBusy] = useState(false)
+  const [collected, setCollected] = useState<number | null>(null)
+
+  const load = useCallback(async () => {
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/league/claim', { headers })
+      if (!res.ok) return
+      const json = await res.json()
+      setTotal(Number(json?.totalCredits ?? 0))
+      setCount(Array.isArray(json?.rewards) ? json.rewards.length : 0)
+    } catch {
+      // Silent: nothing waiting is indistinguishable from a failed
+      // check, and neither is worth an error banner on a leaderboard.
+    }
+  }, [])
+
+  useEffect(() => { void load() }, [load])
+
+  const collect = async () => {
+    if (busy) return
+    setBusy(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/league/claim', { method: 'POST', headers })
+      const json = await res.json().catch(() => ({}))
+      if (res.ok) {
+        // Trust the SERVER's number, not the one on screen. If a second
+        // device already collected, this legitimately comes back 0 and
+        // the card should say so rather than claim credits that another
+        // tab banked.
+        setCollected(Number(json?.credits ?? 0))
+        setTotal(0)
+        setCount(0)
+      }
+    } catch {
+      // Leave the card as-is; the reward is still waiting server-side.
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  if (collected !== null) {
+    return (
+      <div className="rounded-2xl bg-emerald-50 ring-1 ring-emerald-200/70 px-4 py-3 flex items-center gap-2">
+        <Check className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+        <span className="text-[13.5px] font-semibold text-emerald-800">
+          {collected > 0
+            ? (ko ? `크레딧 ${collected}개를 받았어요` : `Collected ${collected} credit${collected === 1 ? '' : 's'}`)
+            : (ko ? '이미 받았어요' : 'Already collected')}
+        </span>
+      </div>
+    )
+  }
+
+  if (total <= 0) return null
+
+  return (
+    <div className="rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 ring-1 ring-amber-200/70 p-4">
+      <div className="flex items-center gap-2 mb-1">
+        <Trophy className="w-4 h-4 text-amber-600" />
+        <span className="text-[11px] font-bold uppercase tracking-[0.10em] text-amber-700">
+          {ko ? '받을 보상' : 'Rewards waiting'}
+        </span>
+      </div>
+      <p className="text-[13.5px] text-amber-900/80 leading-relaxed mb-3">
+        {ko
+          ? `지난주 리그 보상 ${count}개, 크레딧 ${total}개가 기다리고 있어요.`
+          : `${count} league reward${count === 1 ? '' : 's'} worth ${total} credit${total === 1 ? '' : 's'}.`}
+      </p>
+      <StudyButton type="button" size="lg" fullWidth loading={busy} onClick={() => void collect()}>
+        {ko ? '보상 받기' : 'Collect'}
+      </StudyButton>
+    </div>
+  )
 }

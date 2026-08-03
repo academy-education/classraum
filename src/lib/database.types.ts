@@ -3392,6 +3392,7 @@ export type Database = {
       }
       study_league_rewards: {
         Row: {
+          claimed_at: string | null
           created_at: string
           credits: number
           id: string
@@ -3402,6 +3403,7 @@ export type Database = {
           week_start: string
         }
         Insert: {
+          claimed_at?: string | null
           created_at?: string
           credits?: number
           id?: string
@@ -3412,6 +3414,7 @@ export type Database = {
           week_start: string
         }
         Update: {
+          claimed_at?: string | null
           created_at?: string
           credits?: number
           id?: string
