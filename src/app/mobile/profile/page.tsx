@@ -27,6 +27,9 @@ import { User as UserIcon } from 'lucide-react'
 import { useMobileProfile } from './hooks/useMobileProfile'
 import { StudyNicknameCard } from './StudyNicknameCard'
 import { StudyAvatarCard } from './StudyAvatarCard'
+import { PersonAvatar } from '@/app/mobile/study/_shared/avatars'
+import { normaliseAvatarConfig, type AvatarConfig } from '@/lib/study/avatarConfig'
+import { authHeaders } from '@/lib/auth-headers'
 import { ModalPortal } from '@/components/ui/modal-portal'
 import {
   Select,
@@ -146,8 +149,42 @@ function MobileProfilePageContent() {
   // always members — useEffectiveUserId won't even mark them ready
   // otherwise). Teachers and managers have no study mode at all and land
   // here, so the segmented control never renders for them.
+  /*
+   * The student's saved avatar, for the HEADER.
+   *
+   * It lives here rather than inside StudyAvatarCard because two things
+   * need it and one of them is above the other on the page: the header
+   * shows it, the card edits it. Fetching it twice would let the header
+   * keep showing the old face after a save — the bug you get for free
+   * by treating "the avatar" as the card's private state when it is the
+   * page's identity.
+   *
+   * Null is the initials state, and stays null for a student who never
+   * opened the builder.
+   */
+  const [headerAvatar, setHeaderAvatar] = useState<AvatarConfig | null>(null)
+
   const hasStudyMode = profile?.role === 'student'
   const hasAcademyMode = academyIds.length > 0 || profile?.role === 'parent'
+
+  // Only for students — nobody else has a study profile to read.
+  useEffect(() => {
+    if (profile?.role !== 'student') return
+    let cancelled = false
+    void (async () => {
+      try {
+        const headers = await authHeaders()
+        const res = await fetch('/api/study/prefs', { headers })
+        if (!res.ok) return
+        const json = await res.json()
+        if (!cancelled) setHeaderAvatar(normaliseAvatarConfig(json?.prefs?.avatar_config))
+      } catch {
+        // Header falls back to initials. An avatar is decoration; it must
+        // never be the reason a profile page looks broken.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [profile?.role])
   const showModeTabs = hasStudyMode && hasAcademyMode
   // With only one mode available, that mode's sections render directly —
   // never an empty tab, and never a control with nothing to switch to.
@@ -461,11 +498,22 @@ function MobileProfilePageContent() {
         return (
           <Card className="p-6 mb-6">
             <div className="flex flex-col items-center text-center">
-              <div className={`w-20 h-20 bg-gradient-to-br ${roleGradient} rounded-full flex items-center justify-center mb-3`}>
-                <span className="text-2xl font-semibold text-white">
-                  {profile?.name?.split(' ').map(n => n[0]).join('').toUpperCase() || 'U'}
-                </span>
-              </div>
+              {headerAvatar ? (
+                /* The avatar IS the identity once one is set — the
+                   initials disc was only ever the stand-in for not
+                   having chosen. No gradient ring behind it: the avatar
+                   carries its own backdrop, chosen for contrast against
+                   the skin tone, and a second disc under it fights that. */
+                <div className="w-20 h-20 mb-3">
+                  <PersonAvatar config={headerAvatar} size={80} label={profile?.name ?? undefined} />
+                </div>
+              ) : (
+                <div className={`w-20 h-20 bg-gradient-to-br ${roleGradient} rounded-full flex items-center justify-center mb-3`}>
+                  <span className="text-2xl font-semibold text-white">
+                    {profile?.name?.split(' ').map(n => n[0]).join('').toUpperCase() || 'U'}
+                  </span>
+                </div>
+              )}
               <h2 className="text-lg font-semibold text-gray-900 mb-0.5">{profile?.name}</h2>
               <p className="text-sm text-gray-500 mb-2.5">{profile?.email || t('mobile.profile.noEmail')}</p>
               {profile?.role && (
@@ -636,7 +684,7 @@ function MobileProfilePageContent() {
               pairs with on the leaderboard. It replaced the preset grid
               that used to live in /mobile/study/preferences; presets are
               still here, as the builder's starting points. */}
-          <StudyAvatarCard />
+          <StudyAvatarCard onSaved={setHeaderAvatar} />
 
           {/* Study nickname — the public leaderboard handle. Students
               only; in the academy context it is meaningless noise. */}

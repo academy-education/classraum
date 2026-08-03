@@ -41,13 +41,14 @@ import {
  * "Use my initials" writes NULL to both. That is the way back, and it
  * has to exist: without it, choosing an avatar would be one-way.
  *
- * ── Degrading with migration 072 unapplied ───────────────────────────
- * 072 IS NOT APPLIED. The GET simply has no `avatar_config` field, so
- * the card opens on whatever preset the student has (or initials). A
- * save comes back 200 with `unsupported: ['avatar_config']` — or 503 if
- * there was nothing else to write — and the card says so rather than
- * showing a face that the next reload will undo. Nothing here throws,
- * and nothing here shows a blank disc.
+ * ── Degrading if avatar_config is missing ────────────────────────────
+ * 072 IS APPLIED (2026-08-03) and this saves for real. The degradation
+ * path below is KEPT, not dead code: a fresh environment restored from
+ * before that migration, or a rollback, puts the app straight back into
+ * it. There, the GET simply has no `avatar_config` field, a save returns
+ * 200 with `unsupported: ['avatar_config']` (or 503 with nothing else to
+ * write), and the card says so rather than showing a face the next
+ * reload undoes. Nothing throws and nothing renders a blank disc.
  *
  * ── Saving is explicit ───────────────────────────────────────────────
  * Every other setting on this page saves on tap. This one does not: a
@@ -66,7 +67,12 @@ interface Stored {
   presetId: string | null
 }
 
-export function StudyAvatarCard() {
+export function StudyAvatarCard({ onSaved }: {
+  /** Told the new config whenever a save SUCCEEDS, so the page header
+   *  stops showing the previous face. Not called on the 503/unsupported
+   *  path — nothing was written, so nothing upstream should change. */
+  onSaved?: (config: AvatarConfig | null) => void
+} = {}) {
   const { t } = useTranslation()
 
   const [stored, setStored] = useState<Stored | null>(null)
@@ -173,6 +179,7 @@ export function StudyAvatarCard() {
       if (!res.ok) { setFailed(true); return }
       setStored(draft)
       setSaved(true)
+      onSaved?.(draft.config)
     } catch {
       setFailed(true)
     } finally {

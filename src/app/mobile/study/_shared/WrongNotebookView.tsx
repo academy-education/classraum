@@ -4,6 +4,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, BookmarkCheck, Image as ImageIcon, Search, X, AlertCircle } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from '@/components/ui/select'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPageTransition } from './primitives'
 import { groupByDate } from './dateGroups'
@@ -334,80 +337,63 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
               )}
               {entries.length > 0 && (
                 <>
-                  {/* Topic + difficulty + sort — one labeled-chip-row
-                      group so all three filters share the same 8px
-                      vertical rhythm (previously the topic row sat in
-                      the outer 24px column, leaving it unevenly spaced
-                      from difficulty/sort). Zero-count difficulties are
-                      disabled — tapping them could only show an empty
-                      list. */}
-                  <div className="space-y-2 px-1">
+                  {/* Topic + difficulty + sort as DROPDOWNS.
+                      They were three rows of chips, which grew with the
+                      data — a student with a dozen topics got a dozen
+                      wrapping pills pushing the actual notebook below the
+                      fold. A select is fixed-height whatever the topic
+                      count, and it is the control the rest of the app
+                      already uses (see the language and theme rows on
+                      the profile page), so this stops being the one
+                      screen with a bespoke filter idiom.
+
+                      Counts stay in the option labels: they are the
+                      reason to pick one, and a disabled zero-count
+                      difficulty could only ever show an empty list. */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 px-1">
                     {topics.length > 0 && (
-                      <TopicFilter
-                        topics={topics}
-                        selectedId={selectedTopicId}
-                        onSelect={setSelectedTopicId}
-                        ko={ko}
-                        allLabel={String(t('study.wrongNotebook.allTopics'))}
+                      <FilterSelect
+                        label={ko ? '주제' : 'Topic'}
+                        value={selectedTopicId ?? '__all'}
+                        onChange={v => setSelectedTopicId(v === '__all' ? null : v)}
+                        className="col-span-2 sm:col-span-1"
+                        options={[
+                          {
+                            value: '__all',
+                            label: `${String(t('study.wrongNotebook.allTopics'))} (${topics.reduce((n, x) => n + x.count, 0)})`,
+                          },
+                          ...topics.map(x => ({
+                            value: x.id,
+                            label: `${ko ? x.name_ko : x.name_en} (${x.count})`,
+                          })),
+                        ]}
                       />
                     )}
-                    <div className="flex items-start gap-1.5">
-                      <span className="w-[72px] flex-shrink-0 pt-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
-                        {ko ? '난이도' : 'Difficulty'}
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {([
-                          { key: 'all', label: ko ? '전체' : 'All' },
-                          { key: 'easy', label: ko ? '쉬움' : 'Easy' },
-                          { key: 'medium', label: ko ? '보통' : 'Medium' },
-                          { key: 'hard', label: ko ? '어려움' : 'Hard' },
-                        ] as Array<{ key: DifficultyKey; label: string }>).map(item => {
-                          const active = difficultyFilter === item.key
-                          const empty = item.key !== 'all' && difficultyCounts[item.key] === 0
-                          return (
-                            <button
-                              key={item.key}
-                              type="button"
-                              onClick={() => setDifficultyFilter(item.key)}
-                              disabled={empty}
-                              className={`whitespace-nowrap inline-flex items-center gap-1 px-2.5 h-7 rounded-full text-[12px] font-semibold transition-all ${
-                                active
-                                  ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
-                                  : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
-                              } disabled:opacity-40 disabled:cursor-not-allowed`}
-                            >
-                              {item.label}
-                              <span className="opacity-60 tabular-nums">{difficultyCounts[item.key]}</span>
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-1.5">
-                      <span className="w-[72px] flex-shrink-0 pt-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
-                        {ko ? '정렬' : 'Sort'}
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {([
-                          { key: 'newest', label: ko ? '최신순' : 'Newest' },
-                          { key: 'oldest', label: ko ? '오래된순' : 'Oldest' },
-                          { key: 'hardest', label: ko ? '어려운순' : 'Hardest' },
-                        ] as Array<{ key: SortKey; label: string }>).map(item => (
-                          <button
-                            key={item.key}
-                            type="button"
-                            onClick={() => setSortKey(item.key)}
-                            className={`whitespace-nowrap px-2.5 h-7 rounded-full text-[12px] font-semibold transition-all ${
-                              sortKey === item.key
-                                ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
-                                : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
-                            }`}
-                          >
-                            {item.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                    <FilterSelect
+                      label={ko ? '난이도' : 'Difficulty'}
+                      value={difficultyFilter}
+                      onChange={v => setDifficultyFilter(v as DifficultyKey)}
+                      options={([
+                        { key: 'all', label: ko ? '전체' : 'All' },
+                        { key: 'easy', label: ko ? '쉬움' : 'Easy' },
+                        { key: 'medium', label: ko ? '보통' : 'Medium' },
+                        { key: 'hard', label: ko ? '어려움' : 'Hard' },
+                      ] as Array<{ key: DifficultyKey; label: string }>).map(item => ({
+                        value: item.key,
+                        label: `${item.label} (${difficultyCounts[item.key]})`,
+                        disabled: item.key !== 'all' && difficultyCounts[item.key] === 0,
+                      }))}
+                    />
+                    <FilterSelect
+                      label={ko ? '정렬' : 'Sort'}
+                      value={sortKey}
+                      onChange={v => setSortKey(v as SortKey)}
+                      options={[
+                        { value: 'newest', label: ko ? '최신순' : 'Newest' },
+                        { value: 'oldest', label: ko ? '오래된순' : 'Oldest' },
+                        { value: 'hardest', label: ko ? '어려운순' : 'Hardest' },
+                      ]}
+                    />
                   </div>
 
                   {visibleActive.length > 0 && (
@@ -549,7 +535,6 @@ function BookmarkedSnapsSection({ snaps, ko }: { snaps: BookmarkedSnap[]; ko: bo
             style={{ animationDelay: `${i * 40}ms` }}
             className="relative rounded-2xl overflow-hidden ring-1 ring-gray-200/70 bg-white aspect-square animate-card-in opacity-0">
             {s.image_url ? (
-              // eslint-disable-next-line @next/next/no-img-element
               <img src={s.image_url} alt="" className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-gray-50">
@@ -566,45 +551,43 @@ function BookmarkedSnapsSection({ snaps, ko }: { snaps: BookmarkedSnap[]; ko: bo
   )
 }
 
-function TopicFilter({
-  topics, selectedId, onSelect, ko, allLabel,
+/**
+ * One labelled dropdown, wrapping the app's shared Select so the
+ * notebook's filters look and behave exactly like the language and
+ * theme rows on the profile page.
+ *
+ * The label is a real <label>-style caption above the control rather
+ * than a placeholder inside it: a placeholder disappears the moment a
+ * value is picked, and "Hardest" on its own does not say what axis it
+ * belongs to.
+ */
+function FilterSelect({
+  label, value, onChange, options, className,
 }: {
-  topics: TopicSummary[]
-  selectedId: string | null
-  onSelect: (id: string | null) => void
-  ko: boolean
-  allLabel: string
+  label: string
+  value: string
+  onChange: (value: string) => void
+  options: Array<{ value: string; label: string; disabled?: boolean }>
+  className?: string
 }) {
-  const totalCount = topics.reduce((s, t) => s + t.count, 0)
   return (
-    <div className="flex items-start gap-1.5">
-      <span className="w-[72px] flex-shrink-0 pt-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
-        {ko ? '주제' : 'Topic'}
+    <div className={className}>
+      <span className="block mb-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+        {label}
       </span>
-      <div className="flex flex-wrap gap-1.5">
-        <FilterChip active={selectedId === null} onClick={() => onSelect(null)}>
-          {allLabel} <span className="opacity-60 tabular-nums">{totalCount}</span>
-        </FilterChip>
-        {topics.map(t => (
-          <FilterChip key={t.id} active={selectedId === t.id} onClick={() => onSelect(t.id)}>
-            {ko ? t.name_ko : t.name_en} <span className="opacity-60 tabular-nums">{t.count}</span>
-          </FilterChip>
-        ))}
-      </div>
+      <Select value={value} onValueChange={onChange}>
+        <SelectTrigger className="w-full h-9 rounded-xl bg-white ring-1 ring-gray-200/70 border-0 text-[13px] font-medium text-gray-700 shadow-none">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map(o => (
+            <SelectItem key={o.value} value={o.value} disabled={o.disabled}>
+              {o.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
-  )
-}
-
-function FilterChip({ children, active, onClick }: { children: React.ReactNode; active: boolean; onClick: () => void }) {
-  return (
-    <button
-      type="button" onClick={onClick}
-      className={`whitespace-nowrap inline-flex items-center gap-1 px-2.5 h-7 rounded-full text-[12px] font-semibold transition-all ${
-        active
-          ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
-          : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
-      }`}
-    >{children}</button>
   )
 }
 
