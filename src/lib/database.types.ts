@@ -3238,6 +3238,33 @@ export type Database = {
         }
         Relationships: []
       }
+      study_item_attacks: {
+        Row: {
+          attacked_at: string
+          correct: number
+          id: string
+          item_id: string
+          run_id: string
+          solvers: number
+        }
+        Insert: {
+          attacked_at?: string
+          correct: number
+          id?: string
+          item_id: string
+          run_id: string
+          solvers: number
+        }
+        Update: {
+          attacked_at?: string
+          correct?: number
+          id?: string
+          item_id?: string
+          run_id?: string
+          solvers?: number
+        }
+        Relationships: []
+      }
       study_item_bank: {
         Row: {
           archived: boolean

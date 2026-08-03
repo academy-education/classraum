@@ -17,6 +17,7 @@ import {
   readinessForRow, readinessTotals, READINESS_LABEL, READINESS_BLURB, type Readiness,
   type Health, type Coverage,
 } from '@/lib/study/bank-ledger'
+import { LiveBankState } from './LiveBankState'
 import { TASK_PIPELINES, type TaskPipeline } from '@/lib/study/task-pipelines'
 import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
 
@@ -367,6 +368,22 @@ export function BankQcDashboard() {
           coached student may exploit them more, not less. Unverified either way.
         </p>
       </header>
+
+      {/* LIVE — the database, read on every load. Placed FIRST because
+          everything below it is the checked-in ledger file, and the
+          ledger cannot answer "is this ready" (it does not know what is
+          in the bank). Putting history above state is what made this
+          page unreadable. */}
+      <LiveBankState />
+
+      <div className="pt-2 border-t border-gray-100">
+        <h2 className="text-[15px] font-semibold text-gray-900">Historical QC runs</h2>
+        <p className="text-[12.5px] text-gray-500 mt-1 max-w-3xl leading-relaxed">
+          Everything below comes from <code className="text-[11.5px]">scripts/study-bank/ledger.json</code>,
+          a checked-in file that records batches we ran by hand. It updates on deploy and
+          does NOT reflect the current bank — treat it as a log, not as status.
+        </p>
+      </div>
 
       {/* At-a-glance. Deliberately four numbers, not twelve — the point is to
           answer "how much do we have and how much of it is sound" in one look. */}

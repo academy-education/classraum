@@ -1,0 +1,259 @@
+"use client"
+
+import React from 'react'
+
+/*
+ * The Supabase client is imported DYNAMICALLY, inside the effect, not at
+ * module scope.
+ *
+ * BankQcDashboard renders this component, and its jest suite imports the
+ * dashboard. A static `import { db } from '@/lib/supabase'` pulls the
+ * client — and its ESM dependencies — into that module graph at import
+ * time, and the suite dies before collecting a single test. It then
+ * reports "1 failed suite" next to a fully green test count, which is
+ * the failure shape CLAUDE.md calls out: a suite that dies at import
+ * collects zero tests and the other suites' passes hide it.
+ *
+ * Deferring the import keeps the graph clean for anything that only
+ * renders this component, and the client is only needed once the effect
+ * actually runs in a browser.
+ */
+
+/**
+ * The LIVE half of /admin/bank-qc.
+ *
+ * Everything else on that page renders `scripts/study-bank/ledger.json`,
+ * a checked-in file someone updates by hand. That is a record of QC RUNS
+ * and it is genuinely useful history, but it cannot answer "is this
+ * cohort ready" because it does not know what is in the bank. This
+ * component asks the database, every load.
+ *
+ * Two tables, because they are two different questions and conflating
+ * them is what made the page unreadable:
+ *
+ *   READINESS  — what state is each cohort in? Crucially, UNMEASURED is
+ *                its own status, styled as a warning rather than as a
+ *                pass. `study_item_bank.verified` is true for 3,365 of
+ *                3,369 items and means only that the answer key was
+ *                checked; it is never shown here as readiness.
+ *
+ *   PROVENANCE — how was each batch made? Source (hand vs generated),
+ *                the authoring method recorded on the items themselves,
+ *                when, and how that batch actually scored. This is the
+ *                "how is each question made" view that did not exist.
+ */
+
+interface CohortRow {
+  family: string; domain: string; items: number; multipleChoice: number
+  measured: number; unmeasured: number; blindPct: number | null
+  everySolverGotIt: number; status: Status
+}
+interface ProvenanceRow {
+  cohort: string; source: string | null; method: string | null
+  verifyMetaKeys: string[]; items: number; created: string | null
+  measured: number; blindPct: number | null; status: Status
+}
+interface RunRow {
+  runId: string; items: number; solvers: number; blindPct: number | null; at: string | null
+}
+type Status = 'ready' | 'spot-checked' | 'guessable' | 'badly-guessable' | 'unmeasured' | 'not-applicable'
+
+interface Live {
+  generatedAt: string
+  totals: { items: number; measured: number; unmeasured: number }
+  cohorts: CohortRow[]
+  provenance: ProvenanceRow[]
+  runs: RunRow[]
+}
+
+const STATUS: Record<Status, { label: string; chip: string }> = {
+  ready:             { label: 'Ready',             chip: 'bg-emerald-50 text-emerald-700 ring-emerald-200' },
+  // A clean score on a small sample. Distinct from Ready ON PURPOSE: a
+  // good sample does not license a claim about the cohort, and merging
+  // the two is how "measured 12 of 234" becomes "this cohort is fine".
+  'spot-checked':    { label: 'Spot-checked only', chip: 'bg-sky-50 text-sky-700 ring-sky-200' },
+  guessable:         { label: 'Too guessable',     chip: 'bg-amber-50 text-amber-700 ring-amber-200' },
+  'badly-guessable': { label: 'Far too guessable', chip: 'bg-red-50 text-red-700 ring-red-200' },
+  // Deliberately NOT grey-and-quiet. An unmeasured cohort is unknown, and
+  // unknown reading as "fine" is the exact failure this panel exists to
+  // stop — 93.7% of the bank is in this state.
+  unmeasured:        { label: 'Not measured',      chip: 'bg-violet-50 text-violet-700 ring-violet-200' },
+  'not-applicable':  { label: 'N/A — no options',  chip: 'bg-gray-50 text-gray-500 ring-gray-200' },
+}
+
+const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
+
+function Chip({ status }: { status: Status }) {
+  return (
+    <span className={`inline-flex shrink-0 whitespace-nowrap items-center rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ${STATUS[status].chip}`}>
+      {STATUS[status].label}
+    </span>
+  )
+}
+
+export function LiveBankState() {
+  const [data, setData] = React.useState<Live | null>(null)
+  const [error, setError] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    let cancelled = false
+    void (async () => {
+      try {
+        const { db } = await import('@/lib/supabase')
+        const { data: { session } } = await db.auth.getSession()
+        const res = await fetch('/api/admin/bank-qc/live', {
+          headers: session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {},
+        })
+        if (!res.ok) throw new Error(`${res.status}`)
+        const json = await res.json()
+        if (!cancelled) setData(json)
+      } catch (e) {
+        // Shown, not swallowed. A silent failure here would leave the
+        // static ledger below looking like the whole picture, which is
+        // the situation this component was added to end.
+        if (!cancelled) setError((e as Error).message)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
+
+  if (error) {
+    return (
+      <div className={`${CARD} p-5 mb-6`}>
+        <p className="text-sm text-red-600">Live bank state unavailable ({error}).</p>
+        <p className="text-[12.5px] text-gray-500 mt-1">
+          Everything below this point is the checked-in ledger file, not the current bank.
+        </p>
+      </div>
+    )
+  }
+
+  if (!data) {
+    return <div className={`${CARD} p-5 mb-6 animate-pulse h-32`} />
+  }
+
+  const pctMeasured = data.totals.items === 0 ? 0
+    : Math.round((100 * data.totals.measured) / data.totals.items)
+
+  return (
+    <section className="mb-8 space-y-4">
+      <div className={`${CARD} p-5`}>
+        <div className="flex items-baseline justify-between gap-3 flex-wrap">
+          <h2 className="text-[15px] font-semibold text-gray-900">Bank readiness — live</h2>
+          <span className="text-[11.5px] text-gray-400">
+            read from the database {new Date(data.generatedAt).toLocaleString()}
+          </span>
+        </div>
+        <p className="text-[12.5px] text-gray-500 mt-1 leading-relaxed">
+          {data.totals.items.toLocaleString()} live items · {data.totals.measured.toLocaleString()} measured
+          ({pctMeasured}%) · <strong className="text-violet-700">{data.totals.unmeasured.toLocaleString()} never measured</strong>.
+          A cohort that has not been attacked is unknown, not passing.
+        </p>
+
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full text-[12.5px]">
+            <thead>
+              <tr className="text-left text-gray-400 border-b border-gray-100">
+                <th className="py-1.5 pr-3 font-medium">Cohort</th>
+                <th className="py-1.5 pr-3 font-medium text-right">Items</th>
+                <th className="py-1.5 pr-3 font-medium text-right">Measured</th>
+                <th className="py-1.5 pr-3 font-medium text-right">Blind score</th>
+                <th className="py-1.5 pr-3 font-medium text-right">All solvers</th>
+                <th className="py-1.5 font-medium">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.cohorts.map(c => (
+                <tr key={`${c.family}|${c.domain}`} className="border-b border-gray-50 last:border-0">
+                  <td className="py-1.5 pr-3">
+                    <span className="text-gray-400 uppercase text-[10.5px] mr-1.5">{c.family}</span>
+                    <span className="text-gray-800">{c.domain}</span>
+                  </td>
+                  <td className="py-1.5 pr-3 text-right tabular-nums text-gray-600">{c.items}</td>
+                  <td className="py-1.5 pr-3 text-right tabular-nums text-gray-600">{c.measured}</td>
+                  <td className="py-1.5 pr-3 text-right tabular-nums text-gray-800">
+                    {c.blindPct === null ? '—' : `${c.blindPct}%`}
+                  </td>
+                  <td className="py-1.5 pr-3 text-right tabular-nums text-gray-500">
+                    {/* Items every solver answered without the source — the
+                        list to act on, not an average that hides them. */}
+                    {c.measured === 0 ? '—' : `${c.everySolverGotIt}/${c.measured}`}
+                  </td>
+                  <td className="py-1.5"><Chip status={c.status} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className={`${CARD} p-5`}>
+        <h2 className="text-[15px] font-semibold text-gray-900">How these questions were made — live</h2>
+        <p className="text-[12.5px] text-gray-500 mt-1 leading-relaxed">
+          Authoring batches as recorded on the items themselves: where they came from,
+          the method used, and how that batch scored when attacked.
+        </p>
+
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full text-[12.5px]">
+            <thead>
+              <tr className="text-left text-gray-400 border-b border-gray-100">
+                <th className="py-1.5 pr-3 font-medium">Batch</th>
+                <th className="py-1.5 pr-3 font-medium">Source</th>
+                <th className="py-1.5 pr-3 font-medium">Method</th>
+                <th className="py-1.5 pr-3 font-medium">Created</th>
+                <th className="py-1.5 pr-3 font-medium text-right">Items</th>
+                <th className="py-1.5 pr-3 font-medium text-right">Blind</th>
+                <th className="py-1.5 font-medium">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.provenance.map(p => (
+                <tr key={p.cohort} className="border-b border-gray-50 last:border-0 align-top">
+                  <td className="py-1.5 pr-3">
+                    <div className="text-gray-800">{p.cohort}</div>
+                    {p.verifyMetaKeys.length > 0 && (
+                      <div className="text-[10.5px] text-gray-400 mt-0.5">
+                        checks recorded: {p.verifyMetaKeys.join(', ')}
+                      </div>
+                    )}
+                  </td>
+                  <td className="py-1.5 pr-3 text-gray-600">{p.source ?? '—'}</td>
+                  <td className="py-1.5 pr-3 text-gray-600">{p.method ?? '—'}</td>
+                  <td className="py-1.5 pr-3 text-gray-500 tabular-nums">{p.created ?? '—'}</td>
+                  <td className="py-1.5 pr-3 text-right tabular-nums text-gray-600">{p.items}</td>
+                  <td className="py-1.5 pr-3 text-right tabular-nums text-gray-800">
+                    {p.blindPct === null ? '—' : `${p.blindPct}%`}
+                  </td>
+                  <td className="py-1.5"><Chip status={p.status} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {data.runs.length > 0 && (
+        <div className={`${CARD} p-5`}>
+          <h2 className="text-[15px] font-semibold text-gray-900">Attack runs</h2>
+          <p className="text-[12.5px] text-gray-500 mt-1">
+            Every measurement, newest first. Re-attacking uses a new run id, so a
+            before/after comparison is never overwritten.
+          </p>
+          <ul className="mt-3 space-y-1">
+            {data.runs.map(r => (
+              <li key={r.runId} className="flex items-baseline gap-3 text-[12.5px]">
+                <span className="text-gray-400 tabular-nums w-[86px] shrink-0">{r.at ?? '—'}</span>
+                <span className="text-gray-800 flex-1 truncate">{r.runId}</span>
+                <span className="text-gray-500 tabular-nums">{r.items} items · {r.solvers} solvers</span>
+                <span className="text-gray-900 tabular-nums w-14 text-right">
+                  {r.blindPct === null ? '—' : `${r.blindPct}%`}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  )
+}
