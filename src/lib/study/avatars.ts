@@ -31,41 +31,65 @@
  * src/app/mobile/study/_shared/avatars.tsx, which is type-checked against
  * this list: adding an id here without drawing it fails `tsc`.
  *
- * Order here is PICKER order, and it is interleaved by skin tone on
- * purpose — sorted light-to-dark, a grid of presets reads as a ranking.
+ * Order here is PICKER order. Two rules govern it, and they pull in
+ * opposite directions:
+ *
+ * 1. Lead with people this app's students look like. The users are
+ *    Korean middle/high-schoolers, and the first row is what most of
+ *    them will ever scroll — so it opens with young, East-Asian-reading
+ *    presets, and the four that read OLDER (grey or white hair, or
+ *    facial hair: cedar, onyx, rowan, pearl) sit at the end. A student
+ *    picking an avatar should not have to scroll past a bearded adult
+ *    and a grandmother to find someone their own age.
+ *
+ * 2. Never let the order read as a ranking. Sorted light-to-dark, a
+ *    grid of presets IS a ranking, whatever was intended. So skin tone
+ *    is interleaved WITHIN each group, not just across the list as a
+ *    whole — including inside the leading group, which is the one most
+ *    at risk of becoming a uniform block. `avatars.test.tsx` asserts
+ *    the tones are not monotonic; see the test, not this comment, for
+ *    what is actually enforced.
+ *
+ * Rule 1 is a product call about who is centred. Rule 2 is not
+ * negotiable, and it constrains how rule 1 may be satisfied.
  */
 
 export const STUDY_AVATAR_IDS = [
+  // Young, East-Asian reading. `mono` (monolid) is the marker this set
+  // draws with; linden and clover are here on hair and face rather than
+  // eye shape.
+  'person-willow',   // blazer + ribbon — a school student, and the clearest "this is you"
+  'person-kestrel',
   'person-aster',
-  'person-ember',
-  'person-quartz',
-  'person-onyx',
+  'person-opal',
+  'person-linden',
+  'person-clover',
+  'person-thistle',
+  'person-quartz',   // dyed teal — young, and signals the builder can do more than realism
+  // Other young presets: the rest of the school-uniform cohort first,
+  // then the non-uniform ones.
+  'person-flint',
+  'person-jasper',
+  'person-sorrel',
+  'person-mica',
+  'person-lumen',
   'person-birch',
-  'person-garnet',
-  'person-maple',
-  'person-cedar',
-  'person-harbor',
   'person-nova',
   'person-dune',
   'person-juniper',
+  'person-garnet',
+  'person-maple',
+  'person-harbor',
   'person-indigo',
-  'person-rowan',
   'person-fern',
-  'person-lumen',
+  'person-ember',
+  // Read older. Last on purpose — see rule 1 above. Kept, not cut: a
+  // picker with no adults in it tells a student the product has decided
+  // what they are allowed to look like.
+  'person-cedar',
+  'person-onyx',
+  'person-rowan',
   'person-pearl',
-  'person-kestrel',
-  // Added 2026-08. Nine presets drawn for Korean middle/high-school
-  // students (see the block comment in _shared/avatars.tsx). Interleaved
-  // by skin tone for the same reason the first eighteen are.
-  'person-willow',
-  'person-flint',
-  'person-linden',
-  'person-sorrel',
-  'person-jasper',
-  'person-clover',
-  'person-thistle',
-  'person-mica',
-  'person-opal',
 ] as const
 
 export type StudyAvatarId = (typeof STUDY_AVATAR_IDS)[number]

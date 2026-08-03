@@ -270,6 +270,40 @@ describe('the set spans the range it claims', () => {
     expect(new Set(styles).size).toBe(styles.length)
   })
 
+  it('does not order the picker by skin tone — not overall, not in the lead', () => {
+    // PICKER ORDER IS A STATEMENT, whatever was intended by it. Sorted
+    // light-to-dark (or dark-to-light) a grid of faces reads as a
+    // ranking, and the person at the bottom is told where they placed.
+    //
+    // This became load-bearing on 2026-08-03, when the order was
+    // deliberately re-cut to lead with young East-Asian-reading presets
+    // — the users are Korean students, and the first row is what most
+    // of them will ever scroll. That change groups the list by
+    // something OTHER than tone, which is fine, but it also makes an
+    // accidental tone ramp much easier to introduce: the leading group
+    // is drawn from a narrower slice of the ramp to begin with.
+    //
+    // So both the whole list AND the lead are checked. The lead is the
+    // stricter case and the reason this test exists in two parts: a
+    // monotonic first eight passes an all-27 check comfortably, because
+    // the remaining nineteen wash it out.
+    const monotonic = (xs: number[]) =>
+      xs.every((v, i) => i === 0 || v >= xs[i - 1]) ||
+      xs.every((v, i) => i === 0 || v <= xs[i - 1])
+
+    const all = list.map(s => skinLightness(s.skin))
+    expect(monotonic(all)).toBe(false)
+
+    const lead = all.slice(0, 8)
+    expect(monotonic(lead)).toBe(false)
+
+    // And the lead must not be one tone wearing different hair. Four
+    // distinct rungs out of eight tiles is not diversity theatre — it
+    // is the floor at which "everyone here looks the same" stops being
+    // the honest description.
+    expect(new Set(list.slice(0, 8).map(s => s.skin)).size).toBeGreaterThanOrEqual(4)
+  })
+
   it('draws every style it declares — no unreachable hair', () => {
     // The other direction of the style-uniqueness check above: a style
     // added to HAIR_STYLES and never given to a preset is art nobody can
