@@ -135,3 +135,80 @@ graded by a check that cannot see its most likely defect.
     mirror-pairs-v1.mp-blind.json     what the solvers saw
     mirror-pairs-v1.mp-key.json       shuffled key
     mirror-pairs-v1.mp-solver-[abc].json
+
+---
+
+# Bank-wide sweep — 2026-08-03, same day
+
+Ran the new repeatable loop (`attack-cohort.mjs`) across every cohort,
+12 items each, 3 blind solvers. Results are in `study_item_attacks`;
+`attack-cohort.mjs report` reproduces this table from the database.
+
+    family  domain                             items  attacked  blind%
+    toefl   Academic Passage                     433        12   100
+    toefl   Academic Talk                        274        12   100
+    sat     Information and Ideas                240        12   100
+    sat     Geometry and Trigonometry            225        12   100
+    sat     Problem-Solving and Data Analysis    211        12   100
+    sat     Advanced Math                        207        12   100
+    sat     Algebra                              205        12   100
+    sat     Expression of Ideas                   66        12   100
+    toefl   Daily Life                           133        12   100
+    toefl   Announcement                         121        12   100
+    sat     Craft and Structure                  211        52  97.4
+    toefl   Choose a Response                     71        12  91.7
+    toefl   Conversation                         193        12  83.3
+    sat     Standard English Conventions         234        12  52.8
+
+**Twelve of fourteen measured cohorts score 100% blind.** Controls run
+28.9–37.5%. This is not a TOEFL problem or a verbal problem; it is the
+whole multiple-choice bank.
+
+## Two readings that are NOT supported
+
+**"SAT Math is fine because it was repaired."** It is not. Algebra,
+Advanced Math, Geometry, and Problem-Solving all score 100% blind here.
+The earlier repair fixed the *derivational hub* defect in 96 specific
+items and drove that measured sample to 23.6%. The rest of SAT Math was
+never re-measured, and now that it has been, it fails.
+
+**"Standard English Conventions is the healthy one."** 52.8% is the
+lowest score but probably not evidence of quality. SEC is grammar and
+punctuation: only 179 of 234 items carry a passage at all, and those
+average 125 characters against 750 for Craft and Structure. For a
+"which punctuation is correct" item the sentence lives in the stem and
+the skill is knowing the rule — there is no withheld source in the
+sense the attack assumes. **The attack is the wrong instrument for this
+cohort**, and its number should not be read as either pass or fail.
+
+That distinction matters generally: the attack measures "is the source
+doing work", so it only applies where a source is doing work.
+
+## What is still unmeasured, and why
+
+541 TOEFL items in six cohorts (Build a Sentence, Listen and Repeat,
+Complete the Words, Academic Discussion, Email, Interview) have no
+multiple-choice options at all. `prepare` correctly skipped them. They
+need a different check entirely — the attack has nothing to withhold
+and nothing to shuffle.
+
+3,157 of 3,369 items (93.7%) remain unmeasured, but the sample is now
+broad enough that the per-cohort rate is unlikely to be a sampling
+artifact: 12 items at 100% across 12 independent cohorts is not a run
+of bad luck.
+
+## The conclusion this forces
+
+Repairing is no longer a sensible frame. At a ~95%+ blind rate across
+every passage-dependent cohort, the defect is in the GENERATOR, and the
+items are downstream of it. The order has to be:
+
+1. Fix the authoring brief — distractors independently plausible, which
+   the mirror-pair pilot showed is the live failure and is not
+   achievable by care alone.
+2. Gate on both statistics before anything is written to the bank.
+3. Regenerate a SMALL verified-clean set and ship that.
+4. Archive the rest rather than repairing it.
+
+Producing ~400 good items per exam behind a working gate is now
+cheaper, and far more certain, than attempting to rescue 3,369.

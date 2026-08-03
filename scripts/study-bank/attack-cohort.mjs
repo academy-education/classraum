@@ -59,23 +59,52 @@ const shuffle = (arr, rand) => {
 async function prepare() {
   const domain = argOf('--domain')
   const limit = Number(argOf('--limit') ?? 60)
-  if (!runId || !domain) {
-    console.error('usage: prepare <run-id> --domain "<domain>" [--limit 60]'); process.exit(1)
+  // --all takes `limit` items from EVERY cohort in one file, because the
+  // expensive part of this loop is the solver pass, not the query. One
+  // pass over 20 cohorts costs the same three agent calls as one cohort
+  // and tells you where to look; twenty separate runs cost sixty.
+  const all = rest.includes('--all')
+  const family = argOf('--family')
+  if (!runId || (!domain && !all)) {
+    console.error('usage: prepare <run-id> (--domain "<d>" | --all [--family sat]) [--limit 60]'); process.exit(1)
   }
 
   // Everything already measured, in ANY run. This is the anti-repetition
   // rule and it is deliberately not scoped to this run id.
-  const { data: done, error: doneErr } = await db.from('study_item_attacks').select('item_id')
-  if (doneErr) { console.error('could not read prior attacks:', doneErr.message); process.exit(1) }
-  const seen = new Set((done ?? []).map(r => r.item_id))
+  // Same 1000-row cap applies here, and under-reading it would re-attack
+  // items already measured — the exact repetition this script exists to
+  // stop.
+  const seen = new Set()
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await db.from('study_item_attacks').select('item_id').range(from, from + 999)
+    if (error) { console.error('could not read prior attacks:', error.message); process.exit(1) }
+    for (const r of data ?? []) seen.add(r.item_id)
+    if (!data || data.length < 1000) break
+  }
 
-  const { data: rows, error } = await db
-    .from('study_item_bank')
-    .select('id, item, domain')
-    .eq('domain', domain)
-    .eq('archived', false)
-    .limit(4000)
-  if (error) { console.error('bank read failed:', error.message); process.exit(1) }
+  /*
+   * PAGINATED, and that is not defensive coding.
+   *
+   * PostgREST caps a response at 1000 rows regardless of .limit(), and
+   * it does so SILENTLY — the first version of this read asked for 6000
+   * and reported "0 of 1000" for a family holding 1,770 items. CLAUDE.md
+   * records the same trap producing a verifier that reported "0
+   * problems" because the rows containing the defect were never loaded.
+   *
+   * A truncated read here would be worse than useless: it would sample
+   * only the first page, mark those items measured, and leave the rest
+   * looking like they had been considered and passed over.
+   */
+  const rows = []
+  for (let from = 0; ; from += 1000) {
+    let q = db.from('study_item_bank').select('id, item, domain, family').eq('archived', false)
+    if (domain) q = q.eq('domain', domain)
+    if (family) q = q.eq('family', family)
+    const { data, error } = await q.range(from, from + 999)
+    if (error) { console.error('bank read failed:', error.message); process.exit(1) }
+    rows.push(...(data ?? []))
+    if (!data || data.length < 1000) break
+  }
 
   const fresh = (rows ?? []).filter(r => !seen.has(r.id))
   if (fresh.length === 0) {
@@ -84,7 +113,16 @@ async function prepare() {
   }
 
   const rand = rng(runId)
-  const picked = shuffle(fresh, rand).slice(0, limit)
+  // Per-cohort quota under --all, so a 433-item domain cannot crowd out
+  // a 48-item one and leave it looking measured when it is not.
+  let picked
+  if (all) {
+    const byDomain = {}
+    for (const r of shuffle(fresh, rand)) (byDomain[r.domain] ??= []).push(r)
+    picked = Object.values(byDomain).flatMap(list => list.slice(0, limit))
+  } else {
+    picked = shuffle(fresh, rand).slice(0, limit)
+  }
 
   const blind = {}, key = {}
   let skipped = 0
@@ -119,7 +157,7 @@ async function prepare() {
 
   writeFileSync(`${DIR}/${runId}.blind.json`, JSON.stringify(blind, null, 1))
   writeFileSync(`${DIR}/${runId}.key.json`, JSON.stringify(key, null, 1))
-  console.log(`domain      : ${domain}`)
+  console.log(`scope       : ${domain ?? (family ? family + ' (all cohorts)' : 'ALL cohorts')}`)
   console.log(`already done: ${rows.length - fresh.length} of ${rows.length}`)
   console.log(`prepared    : ${Object.keys(blind).length} items${skipped ? ` (${skipped} skipped — malformed)` : ''}`)
   console.log(`wrote       : ${DIR}/${runId}.blind.json  (SOURCE WITHHELD — solve this)`)
