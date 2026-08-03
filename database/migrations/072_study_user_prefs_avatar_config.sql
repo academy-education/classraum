@@ -1,6 +1,10 @@
 -- 072: study_user_prefs.avatar_config — the customisable avatar.
 --
--- NOT APPLIED. Written for review; do not run it from an agent session.
+-- APPLIED 2026-08-03. Verified after apply: 13 rows, 0 customized, no
+-- DEFAULT, nullable YES, CHECK convalidated. The shape CHECK was then
+-- probed inside a rolled-back transaction — a jsonb array and a >2 KB
+-- object were both refused, a real config was accepted — so the
+-- constraint is known to BITE rather than merely to exist.
 -- Run 071 first (it adds avatar_id, and this migration keeps that column).
 --
 --
@@ -22,7 +26,7 @@
 --                  from scratch. Not read by the renderer. Kept because it
 --                  is the only way to learn which presets people reach for,
 --                  and because a student who picked a preset and never
---                  customised should not be indistinguishable from one who
+--                  customized should not be indistinguishable from one who
 --                  hand-built the identical face.
 --
 -- Presets are therefore not a separate system from the builder: a preset IS
@@ -92,7 +96,7 @@ begin
 end $$;
 
 comment on column public.study_user_prefs.avatar_config is
-  'The student''s customised avatar, as {skin, face, eyes, hair, hairColor, accessory, top} using part keys from src/app/mobile/study/_shared/avatars.tsx. THE SOURCE OF TRUTH FOR RENDERING. NULL = never opened the builder, and NULL is what makes the friends list and league leaderboard draw the deterministic initials avatar — never give this column a DEFAULT. The CHECK constrains SHAPE only; which part keys actually render is the app registry''s call, and an unknown part degrades to that category''s default rather than blanking the avatar. No image is stored or uploaded.';
+  'The student''s customized avatar, as {skin, face, eyes, hair, hairColor, accessory, top} using part keys from src/app/mobile/study/_shared/avatars.tsx. THE SOURCE OF TRUTH FOR RENDERING. NULL = never opened the builder, and NULL is what makes the friends list and league leaderboard draw the deterministic initials avatar — never give this column a DEFAULT. The CHECK constrains SHAPE only; which part keys actually render is the app registry''s call, and an unknown part degrades to that category''s default rather than blanking the avatar. No image is stored or uploaded.';
 
 comment on column public.study_user_prefs.avatar_id is
   'Which PRESET the student started from, or NULL if they built from scratch. NOT read by the renderer — avatar_config is. Kept so preset popularity is answerable, and so "picked a preset" stays distinguishable from "hand-built the same face". Added in 071, demoted to this role in 072.';
@@ -127,7 +131,7 @@ begin
   end if;
   if nullable <> 'YES' then
     raise exception
-      'study_user_prefs.avatar_config must be nullable — NULL is the "never customised" signal the fallback depends on.';
+      'study_user_prefs.avatar_config must be nullable — NULL is the "never customized" signal the fallback depends on.';
   end if;
 
   if not exists (
@@ -157,11 +161,11 @@ commit;
 
 
 -- ── Verify after applying ─────────────────────────────────────────────
--- Expect customised = 0 immediately after apply, has_default = f, nullable = YES.
+-- Expect customized = 0 immediately after apply, has_default = f, nullable = YES.
 --
 --   select
 --     count(*)                                          as rows,
---     count(*) filter (where avatar_config is not null) as customised,
+--     count(*) filter (where avatar_config is not null) as customized,
 --     count(*) filter (where avatar_id is not null)     as started_from_preset
 --   from public.study_user_prefs;
 --
