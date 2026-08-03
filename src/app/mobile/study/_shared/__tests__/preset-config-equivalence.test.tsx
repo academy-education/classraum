@@ -13,16 +13,31 @@
  * swap between two presets leaves all of those numbers unchanged.
  *
  * So the check is not a property, it is an identity: the exact SVG
- * markup every preset produced BEFORE the refactor, captured from the
- * old renderer and checked in as __fixtures__/preset-render-baseline
- * .json, must still be produced byte for byte.
+ * markup every preset produces, checked in as
+ * __fixtures__/preset-render-baseline.json, must still be produced byte
+ * for byte.
  *
  * Why a fixture and not a jest snapshot: `--ci` aside, a snapshot file
  * is rewritten by `-u` and by any run that finds it missing, so the
  * baseline could be silently re-blessed to whatever the code now does —
- * which is exactly the thing being guarded. This fixture was generated
- * once, from the pre-refactor code, and updating it means deliberately
- * editing 100 KB of markup.
+ * which is exactly the thing being guarded. Re-capturing this one is a
+ * deliberate act: you have to write the generator, run it, and diff the
+ * result.
+ *
+ * ── Re-captured 2026-08-03, and what that cost ───────────────────────
+ * The original baseline came from the PRE-refactor renderer, so a pass
+ * meant "the rename changed nothing". It no longer means that. The eye
+ * art was deliberately changed — see `Pupil` in avatars.tsx — and the
+ * baseline was regenerated from the new renderer, so it can no longer
+ * certify the refactor. What it certifies now is the art as of that
+ * change, which is what the NEXT refactor will be checked against.
+ *
+ * The re-capture was gated on a prediction rather than on eyeballing
+ * the diff: `Pupil` touches only shapes that draw an iris DISC, and
+ * `smiling` is drawn as arcs, so person-lumen and person-mica had to
+ * come out byte-identical while the other 25 moved. They did, exactly.
+ * That is the only reason regenerating 100 KB of markup was allowed to
+ * count as intentional rather than as blowing away the guard.
  *
  * ── What this CANNOT tell you ────────────────────────────────────────
  * It cannot tell you the presets look right — only that they look the

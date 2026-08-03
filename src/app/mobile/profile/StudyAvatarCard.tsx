@@ -215,18 +215,22 @@ export function StudyAvatarCard() {
           <>
             {/* ── Presets: the starting points, kept first and kept big ─ */}
             <Section label={String(t('study.avatar.startFrom'))} hint={String(t('study.avatar.startFromHint'))}>
-              <TileGrid>
+              <TileRow>
                 {STUDY_AVATAR_LIST.map(spec => (
                   <Tile
                     key={spec.id}
                     selected={draft.presetId === spec.id}
                     label={String(t(spec.nameKey))}
                     onSelect={() => applyPreset(spec.id)}
+                    /* shrink-0 or flex squeezes 27 tiles into the row's
+                       width and every face becomes a sliver. snap-start
+                       pairs with the container's snap-x. */
+                    className="shrink-0 snap-start"
                   >
                     <PersonAvatar config={spec} size={44} />
                   </Tile>
                 ))}
-              </TileGrid>
+              </TileRow>
             </Section>
 
             {/* ── Parts ────────────────────────────────────────────── */}
@@ -503,12 +507,44 @@ function TileGrid({ children }: { children: React.ReactNode }) {
   return <div className="grid grid-cols-5 gap-2">{children}</div>
 }
 
-function Tile({ selected, disabled, label, onSelect, children }: {
+/**
+ * The presets, as ONE horizontally-scrolling row.
+ *
+ * A 5-wide grid turned 27 presets into six stacked rows, which pushed the
+ * parts editor — the thing the card is actually for — below the fold. A row
+ * costs one row of height regardless of how many presets exist, which also
+ * means adding a 28th preset never re-lays-out the card.
+ *
+ * Follows the app's existing scroll-row recipe (topic/[slug]/page.tsx:1072):
+ * bleed to the card's edges with `-mx-4 px-4` so the first and last tiles
+ * sit flush and a partly-visible next tile is what tells you it scrolls;
+ * `snap-x` + `scroll-px-4` so a flick lands on a tile rather than between
+ * two; `scrollbar-hide` because iOS draws none anyway and a visible one on
+ * desktop just adds a grey bar under the faces.
+ *
+ * `py-2` is NOT decoration. `overflow-x-auto` establishes a scroll container
+ * that clips VERTICALLY too, and Tile's selected badge sits at
+ * `-top-1 -right-1` — without the padding the tick on the chosen preset is
+ * sliced off. The same note appears on the path page's scroller for the
+ * same reason.
+ */
+function TileRow({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x -mx-4 px-4 scroll-px-4 py-2">
+      {children}
+    </div>
+  )
+}
+
+function Tile({ selected, disabled, label, onSelect, children, className = '' }: {
   selected: boolean
   disabled?: boolean
   label: string
   onSelect: () => void
   children: React.ReactNode
+  /** Extra layout classes. Used by the preset row, where each tile must
+   *  opt out of flex-shrink and become a scroll-snap target. */
+  className?: string
 }) {
   return (
     <button
@@ -518,7 +554,7 @@ function Tile({ selected, disabled, label, onSelect, children }: {
       title={label}
       disabled={disabled}
       onClick={onSelect}
-      className={`relative flex items-center justify-center rounded-2xl p-1 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+      className={`${className} relative flex items-center justify-center rounded-2xl p-1 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
         disabled
           ? 'opacity-30 cursor-not-allowed ring-1 ring-gray-200/70'
           : selected

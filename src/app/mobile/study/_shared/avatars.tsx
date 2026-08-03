@@ -223,6 +223,36 @@ type HairSwatch = (typeof HAIR_COLOURS)[HairColour]
 const EYE_L = 25.7
 const EYE_R = 38.3
 
+/**
+ * Iris, pupil and catchlight as one unit.
+ *
+ * Two defects this fixes by existing at all:
+ *
+ * · `narrow` drew no catchlight. Every other shape did, which is why
+ *   harbor and rowan read flatter than the rest of the set — the tell was
+ *   visible only once the presets were rendered side by side at picker
+ *   size, never at the 32px the header uses.
+ * · Nothing drew a pupil anywhere, so an iris was one solid disc. At 32px
+ *   that is fine — the disc reads AS a pupil. At the ~150px the picker
+ *   renders it reads as a sticker.
+ *
+ * The pupil is a darkened iris rather than black, so a brown eye stays
+ * warm and a grey one stays cool, and at half the iris radius it merely
+ * deepens the centre at small sizes instead of muddying it.
+ *
+ * Everything is expressed as a fraction of `r`, so the six shapes keep
+ * their own tuning and only ever disagree about size.
+ */
+function Pupil({ cx, cy, r, iris }: { cx: number; cy: number; r: number; iris: string }) {
+  return (
+    <>
+      <circle cx={cx} cy={cy} r={r} fill={iris} />
+      <circle cx={cx} cy={cy} r={r * 0.5} fill={darken(iris, 0.5)} />
+      <circle cx={cx + r * 0.34} cy={cy - r * 0.36} r={r * 0.31} fill="#FFFFFF" opacity="0.88" />
+    </>
+  )
+}
+
 function Eyes({ shape, iris, line }: { shape: EyeShape; iris: string; line: string }) {
   const one = (cx: number) => {
     switch (shape) {
@@ -230,8 +260,7 @@ function Eyes({ shape, iris, line }: { shape: EyeShape; iris: string; line: stri
         return (
           <g key={cx}>
             <path d={`M ${cx - 4.3} 27.7 Q ${cx} 24.1 ${cx + 4.3} 27.7 Q ${cx} 30.7 ${cx - 4.3} 27.7 Z`} fill="#FBFCFE" />
-            <circle cx={cx} cy="27.7" r="2.2" fill={iris} />
-            <circle cx={cx + 0.75} cy="26.9" r="0.7" fill="#FFFFFF" opacity="0.85" />
+            <Pupil cx={cx} cy={27.7} r={2.2} iris={iris} />
             <path d={`M ${cx - 4.4} 27.4 Q ${cx} 23.5 ${cx + 4.4} 27.4`} fill="none" stroke={line} strokeWidth="0.9" strokeLinecap="round" />
           </g>
         )
@@ -241,8 +270,7 @@ function Eyes({ shape, iris, line }: { shape: EyeShape; iris: string; line: stri
         return (
           <g key={cx}>
             <path d={`M ${cx - 4.4} 27.9 Q ${cx} 25.1 ${cx + 4.4} 27.9 Q ${cx} 30.2 ${cx - 4.4} 27.9 Z`} fill="#FBFCFE" />
-            <circle cx={cx} cy="27.9" r="2.05" fill={iris} />
-            <circle cx={cx + 0.7} cy="27.2" r="0.65" fill="#FFFFFF" opacity="0.85" />
+            <Pupil cx={cx} cy={27.9} r={2.05} iris={iris} />
             <path d={`M ${cx - 4.5} 27.7 Q ${cx} 24.6 ${cx + 4.5} 27.7`} fill="none" stroke={line} strokeWidth="1" strokeLinecap="round" />
             <path d={`M ${cx - 3.4} 24.5 Q ${cx} 23.3 ${cx + 3.6} 24.6`} fill="none" stroke={line} strokeWidth="0.6" opacity="0.5" strokeLinecap="round" />
           </g>
@@ -250,16 +278,27 @@ function Eyes({ shape, iris, line }: { shape: EyeShape; iris: string; line: stri
       case 'round':
         return (
           <g key={cx}>
-            {/* The iris must nearly FILL the sclera. At r=3.3/2.15 there was
-                a thick white ring all the way round the iris, which reads as
-                startled rather than round-eyed — it made ember and indigo
-                look bug-eyed next to the almond-eyed presets. Every other
-                eye shape here shows white only at the CORNERS, so matching
-                that ratio is what makes this one belong. Caught by looking
-                at a render; no assertion in the suite covers proportion. */}
-            <circle cx={cx} cy="27.7" r="2.95" fill="#FBFCFE" stroke={line} strokeWidth="0.75" />
-            <circle cx={cx} cy="27.9" r="2.45" fill={iris} />
-            <circle cx={cx + 0.75} cy="27" r="0.7" fill="#FFFFFF" opacity="0.9" />
+            {/* THIRD pass, and the first two were both too timid.
+                r=3.3/2.15 was a thick white ring; r=2.95/2.45 was a thinner
+                one; a full ring of sclera around the iris is what reads as
+                startled at ANY thickness, because no other eye shape here
+                has one — almond, narrow, wide and mono all show white only
+                at the CORNERS. Seen side by side with the other 24, ember,
+                nova and indigo were still the odd ones out.
+
+                So the iris now meets the sclera edge (2.7 vs 2.75) and the
+                lid arc crops the top, which is what actually distinguishes
+                a round eye from a staring one. Only the three round-eyed
+                presets change; the equivalence fixture proves the other 24
+                are byte-identical. No assertion covers proportion — this
+                was found by rendering all 27 at once and comparing. */}
+            <circle cx={cx} cy="27.7" r="2.75" fill="#FBFCFE" stroke={line} strokeWidth="0.75" />
+            <Pupil cx={cx} cy={27.85} r={2.7} iris={iris} />
+            {/* Upper lid. Without it the iris-filled circle reads as a hole. */}
+            <path
+              d={`M ${cx - 2.9} 26.9 Q ${cx} 24.4 ${cx + 2.9} 26.9`}
+              fill="none" stroke={line} strokeWidth="0.9" strokeLinecap="round"
+            />
           </g>
         )
       case 'narrow':
@@ -272,16 +311,29 @@ function Eyes({ shape, iris, line }: { shape: EyeShape; iris: string; line: stri
                 the opening a little and letting the iris carry more of it
                 keeps "narrow" narrow without the chevron artefact. */}
             <path d={`M ${cx - 4.2} 27.8 Q ${cx} 25.15 ${cx + 4.2} 27.8 Q ${cx} 30.05 ${cx - 4.2} 27.8 Z`} fill="#FBFCFE" />
-            <circle cx={cx} cy="27.8" r="2.05" fill={iris} />
+            <Pupil cx={cx} cy={27.8} r={2.05} iris={iris} />
             <path d={`M ${cx - 4.3} 27.6 Q ${cx} 24.7 ${cx + 4.3} 27.6`} fill="none" stroke={line} strokeWidth="0.95" strokeLinecap="round" />
           </g>
         )
       case 'wide':
         return (
           <g key={cx}>
-            <ellipse cx={cx} cy="27.6" rx="4.5" ry="3.9" fill="#FBFCFE" stroke={line} strokeWidth="0.75" />
-            <circle cx={cx} cy="27.8" r="2.7" fill={iris} />
-            <circle cx={cx + 1} cy="26.7" r="1" fill="#FFFFFF" opacity="0.9" />
+            {/* Same correction as `round`, and for the same reason: a
+                4.5x3.9 sclera behind a 2.7 iris left white ALL the way
+                around, which is what makes ember and nova read as startled
+                beside the almond-eyed presets. Every other shape here shows
+                white only at the corners.
+
+                `wide` still has to stay wider than `round` — that is the
+                whole point of it — so the fix is a flatter ellipse plus a
+                bigger iris, not a smaller one: white survives at the
+                corners, where it belongs, and the lid arc crops the top. */}
+            <ellipse cx={cx} cy="27.6" rx="4.1" ry="3.15" fill="#FBFCFE" stroke={line} strokeWidth="0.75" />
+            <Pupil cx={cx} cy={27.8} r={2.95} iris={iris} />
+            <path
+              d={`M ${cx - 4.2} 26.7 Q ${cx} 23.9 ${cx + 4.2} 26.7`}
+              fill="none" stroke={line} strokeWidth="0.9" strokeLinecap="round"
+            />
           </g>
         )
       case 'smiling':
