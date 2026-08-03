@@ -54,6 +54,18 @@ export const STUDY_AVATAR_IDS = [
   'person-lumen',
   'person-pearl',
   'person-kestrel',
+  // Added 2026-08. Nine presets drawn for Korean middle/high-school
+  // students (see the block comment in _shared/avatars.tsx). Interleaved
+  // by skin tone for the same reason the first eighteen are.
+  'person-willow',
+  'person-flint',
+  'person-linden',
+  'person-sorrel',
+  'person-jasper',
+  'person-clover',
+  'person-thistle',
+  'person-mica',
+  'person-opal',
 ] as const
 
 export type StudyAvatarId = (typeof STUDY_AVATAR_IDS)[number]

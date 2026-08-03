@@ -122,41 +122,73 @@ export type HairTexture =
 
 export type HairStyle =
   | 'straight-long' | 'straight-bob' | 'crop-side' | 'updo-low' | 'ponytail-high'
-  | 'wavy-mid' | 'waves-short'
+  | 'fringe-long' | 'wispy-long' | 'low-ponytail' | 'bob-bangs' | 'half-up'
+  | 'wavy-mid' | 'waves-short' | 'middle-part-mid' | 'layered-bob'
   | 'curly-shoulder' | 'bun-top'
   | 'coily-afro' | 'coily-puff'
   | 'braids-twin' | 'locs-long'
-  | 'buzz' | 'undercut-fade' | 'pixie'
+  | 'buzz' | 'undercut-fade' | 'pixie' | 'two-block' | 'crop-neat'
   | 'bald' | 'hijab'
 
 /**
- * Every style, its texture family, and whether the ears show through it.
+ * How the hair meets the FACE — the hairline, parting or fringe.
  *
- * Texture lives HERE and not on the preset, so a preset cannot claim a
- * texture its silhouette does not draw. Eighteen distinct silhouettes
- * across nine families: the set cannot be described as "one head of hair
- * in eleven colours", which is the failure mode CLAUDE.md's "a batch
- * built to one brief develops a cross-item tell" warns about.
+ * This axis exists because texture alone stopped discriminating once the
+ * set gained a block of styles aimed at Korean students, whose hair is
+ * overwhelmingly straight: a blunt fringe (일자 앞머리), see-through
+ * bangs (시스루뱅), a middle part and a swept-back ponytail are four
+ * completely different heads that all answer "straight" to the texture
+ * question. `avatars.test.tsx` asserts that the DOMINANT texture family
+ * spans several fronts, which is the check that "eighteen straight cuts"
+ * was really reaching for — a texture histogram never was.
  */
-export const HAIR_STYLES: Record<HairStyle, { texture: HairTexture; ears: boolean }> = {
-  'straight-long': { texture: 'straight', ears: false },
-  'straight-bob': { texture: 'straight', ears: false },
-  'crop-side': { texture: 'straight', ears: true },
-  'updo-low': { texture: 'straight', ears: true },
-  'ponytail-high': { texture: 'straight', ears: true },
-  'wavy-mid': { texture: 'wavy', ears: false },
-  'waves-short': { texture: 'wavy', ears: true },
-  'curly-shoulder': { texture: 'curly', ears: false },
-  'bun-top': { texture: 'curly', ears: true },
-  'coily-afro': { texture: 'coily', ears: false },
-  'coily-puff': { texture: 'coily', ears: true },
-  'braids-twin': { texture: 'braided', ears: false },
-  'locs-long': { texture: 'locs', ears: false },
-  buzz: { texture: 'cropped', ears: true },
-  'undercut-fade': { texture: 'cropped', ears: true },
-  pixie: { texture: 'cropped', ears: true },
-  bald: { texture: 'none', ears: true },
-  hijab: { texture: 'covered', ears: false },
+export type HairFront =
+  | 'cap' | 'side-part' | 'middle-part' | 'swept-back'
+  | 'full-fringe' | 'blunt-fringe' | 'wispy-fringe'
+  | 'none' | 'covered'
+
+/**
+ * Every style, its texture family, its hairline, and whether the ears
+ * show through it.
+ *
+ * Texture and front live HERE and not on the preset, so a preset cannot
+ * claim a texture its silhouette does not draw. Twenty-seven distinct
+ * silhouettes across nine texture families and nine fronts: the set
+ * cannot be described as "one head of hair in eleven colours", which is
+ * the failure mode CLAUDE.md's "a batch built to one brief develops a
+ * cross-item tell" warns about.
+ */
+export const HAIR_STYLES: Record<HairStyle, { texture: HairTexture; front: HairFront; ears: boolean }> = {
+  'straight-long': { texture: 'straight', front: 'middle-part', ears: false },
+  'straight-bob': { texture: 'straight', front: 'full-fringe', ears: false },
+  'crop-side': { texture: 'straight', front: 'side-part', ears: true },
+  'updo-low': { texture: 'straight', front: 'swept-back', ears: true },
+  'ponytail-high': { texture: 'straight', front: 'swept-back', ears: true },
+  // ── added 2026-08 for Korean middle/high-school students ──────────
+  'fringe-long': { texture: 'straight', front: 'blunt-fringe', ears: false },
+  'wispy-long': { texture: 'straight', front: 'wispy-fringe', ears: false },
+  'low-ponytail': { texture: 'straight', front: 'swept-back', ears: true },
+  'bob-bangs': { texture: 'straight', front: 'full-fringe', ears: false },
+  'half-up': { texture: 'straight', front: 'middle-part', ears: true },
+  'wavy-mid': { texture: 'wavy', front: 'side-part', ears: false },
+  'waves-short': { texture: 'wavy', front: 'side-part', ears: true },
+  // C컬 단발 / 레이어드컷 — a soft perm, which is what most "straight"
+  // Korean school hair actually is once it is past the shoulder.
+  'middle-part-mid': { texture: 'wavy', front: 'middle-part', ears: false },
+  'layered-bob': { texture: 'wavy', front: 'side-part', ears: true },
+  'curly-shoulder': { texture: 'curly', front: 'cap', ears: false },
+  'bun-top': { texture: 'curly', front: 'cap', ears: true },
+  'coily-afro': { texture: 'coily', front: 'cap', ears: false },
+  'coily-puff': { texture: 'coily', front: 'cap', ears: true },
+  'braids-twin': { texture: 'braided', front: 'cap', ears: false },
+  'locs-long': { texture: 'locs', front: 'cap', ears: false },
+  buzz: { texture: 'cropped', front: 'cap', ears: true },
+  'undercut-fade': { texture: 'cropped', front: 'swept-back', ears: true },
+  pixie: { texture: 'cropped', front: 'cap', ears: true },
+  'two-block': { texture: 'cropped', front: 'full-fringe', ears: true },
+  'crop-neat': { texture: 'cropped', front: 'full-fringe', ears: true },
+  bald: { texture: 'none', front: 'none', ears: true },
+  hijab: { texture: 'covered', front: 'covered', ears: false },
 }
 
 // ── Face ─────────────────────────────────────────────────────────────
@@ -200,7 +232,20 @@ export type EyeShape = 'almond' | 'mono' | 'round' | 'narrow' | 'wide' | 'smilin
 export type BrowShape = 'soft' | 'straight' | 'arched' | 'thick' | 'thin'
 export type MouthShape = 'smile' | 'soft-smile' | 'neutral' | 'grin' | 'smirk'
 export type FacialHair = 'none' | 'stubble' | 'short-beard' | 'moustache'
-export type Accessory = 'none' | 'glasses' | 'round-glasses' | 'earrings' | 'headband' | 'freckles'
+export type Accessory =
+  | 'none' | 'glasses' | 'round-glasses' | 'slim-glasses'
+  | 'earrings' | 'headband' | 'freckles'
+
+/**
+ * School-uniform garments, drawn OVER the plain garment block.
+ *
+ * A separate axis from `clothes` rather than three more `clothes` hex
+ * values, because a uniform is layered: `clothes` stays the outer
+ * garment (the blazer, or the shirt itself when there is no blazer) and
+ * this adds the white collar, the placket and the ribbon or necktie on
+ * top. Kept optional so the other twenty-four presets are untouched.
+ */
+export type Uniform = 'blazer-ribbon' | 'blazer-tie' | 'shirt-collar'
 
 /** Iris colours. Deliberately small and mostly dark — an eye is ~2px at
  *  leaderboard size, so this axis is decoration, never the difference
@@ -227,8 +272,14 @@ export interface StudyAvatarSpec {
   mouth: MouthShape
   facialHair: FacialHair
   accessory: Accessory
+  /** School uniform layered over `clothes`. Omit for plain clothes. */
+  uniform?: Uniform
+  /** Ribbon / necktie colour. Required in practice by 'blazer-ribbon'
+   *  and 'blazer-tie'; ignored otherwise. */
+  tieColour?: string
   /** Garment. The second-largest block after the face, so it is the
-   *  other thing carrying identity at 32px. */
+   *  other thing carrying identity at 32px. For a uniform preset this is
+   *  the OUTER layer — the blazer, or the shirt when there is none. */
   clothes: string
   /** Disc behind the bust. Chosen to sit clear of BOTH the skin tone and
    *  the hair colour — a pale backdrop under white hair, or a peach one
@@ -370,6 +421,84 @@ export const STUDY_AVATARS = {
     facialHair: 'none', accessory: 'none',
     clothes: '#2F6E8E', bg: '#F8EFDE', nameKey: 'study.prefs.avatarName.kestrel',
   },
+
+  // ── Added 2026-08 ──────────────────────────────────────────────────
+  // Nine presets aimed at the primary audience: Korean middle- and
+  // high-schoolers. They are a block of REALISM, not a block of one
+  // face: the hair is predominantly black or dark brown with two dyed
+  // browns (which is what a classroom actually looks like), but the
+  // skin runs across six of the eight rungs and every one of the nine
+  // has its own face shape, eye shape, brow, mouth and hairline.
+  //
+  // The ids stay botanical/mineral like the first eighteen — nothing
+  // here encodes a nationality, and none of these presets is "the
+  // Korean one". A student anywhere can pick a 단발 and a blazer.
+  'person-willow': {
+    id: 'person-willow', skin: 'tone-2', face: 'oval',
+    hair: 'fringe-long', hairColour: 'black',
+    eyes: 'mono', iris: 'dark', brow: 'straight', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'none',
+    uniform: 'blazer-ribbon', tieColour: '#B0384A',
+    clothes: '#2E3C63', bg: '#DDE9F4', nameKey: 'study.prefs.avatarName.willow',
+  },
+  'person-flint': {
+    id: 'person-flint', skin: 'tone-6', face: 'square',
+    hair: 'two-block', hairColour: 'black',
+    eyes: 'narrow', iris: 'dark', brow: 'thick', mouth: 'smirk',
+    facialHair: 'none', accessory: 'slim-glasses',
+    uniform: 'blazer-tie', tieColour: '#2F4B7C',
+    clothes: '#2B2B34', bg: '#E7EFE4', nameKey: 'study.prefs.avatarName.flint',
+  },
+  'person-linden': {
+    id: 'person-linden', skin: 'tone-1', face: 'heart',
+    hair: 'wispy-long', hairColour: 'black',
+    eyes: 'almond', iris: 'brown', brow: 'soft', mouth: 'smile',
+    facialHair: 'none', accessory: 'slim-glasses',
+    clothes: '#C2557A', bg: '#BFD6E4', nameKey: 'study.prefs.avatarName.linden',
+  },
+  'person-sorrel': {
+    id: 'person-sorrel', skin: 'tone-6', face: 'round',
+    hair: 'low-ponytail', hairColour: 'soft-black',
+    eyes: 'almond', iris: 'brown', brow: 'soft', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#3F7F9E', bg: '#F6ECDC', nameKey: 'study.prefs.avatarName.sorrel',
+  },
+  'person-jasper': {
+    id: 'person-jasper', skin: 'tone-5', face: 'square',
+    hair: 'crop-neat', hairColour: 'soft-black',
+    eyes: 'almond', iris: 'dark', brow: 'straight', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'glasses',
+    uniform: 'shirt-collar',
+    clothes: '#DCE5F2', bg: '#96AEC9', nameKey: 'study.prefs.avatarName.jasper',
+  },
+  'person-clover': {
+    id: 'person-clover', skin: 'tone-4', face: 'round',
+    hair: 'bob-bangs', hairColour: 'black',
+    eyes: 'round', iris: 'dark', brow: 'thin', mouth: 'smile',
+    facialHair: 'none', accessory: 'round-glasses',
+    clothes: '#E07A4F', bg: '#DCE9DA', nameKey: 'study.prefs.avatarName.clover',
+  },
+  'person-thistle': {
+    id: 'person-thistle', skin: 'tone-2', face: 'heart',
+    hair: 'half-up', hairColour: 'light-brown',
+    eyes: 'mono', iris: 'brown', brow: 'arched', mouth: 'soft-smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#58A08C', bg: '#F5EFE1', nameKey: 'study.prefs.avatarName.thistle',
+  },
+  'person-mica': {
+    id: 'person-mica', skin: 'tone-3', face: 'long',
+    hair: 'middle-part-mid', hairColour: 'brown',
+    eyes: 'smiling', iris: 'dark', brow: 'arched', mouth: 'grin',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#C86A8E', bg: '#E1EDF1', nameKey: 'study.prefs.avatarName.mica',
+  },
+  'person-opal': {
+    id: 'person-opal', skin: 'tone-1', face: 'diamond',
+    hair: 'layered-bob', hairColour: 'dark-brown',
+    eyes: 'mono', iris: 'brown', brow: 'straight', mouth: 'smile',
+    facialHair: 'none', accessory: 'none',
+    clothes: '#6E76B8', bg: '#BEDACC', nameKey: 'study.prefs.avatarName.opal',
+  },
 } satisfies Record<StudyAvatarId, StudyAvatarSpec>
 
 /** Registry order = picker order. Derived from the canonical id list so
@@ -431,7 +560,12 @@ export function PersonAvatar({ spec: s, size = 36, label, className = '' }: {
           d="M 32 45.4 C 20.4 45.4 10.2 52.4 7 65 L 57 65 C 53.8 52.4 43.6 45.4 32 45.4 Z"
           fill={s.clothes} stroke={clothesEdge} strokeWidth="0.9"
         />
-        <path d="M 25.8 46.6 Q 32 53.4 38.2 46.6" fill="none" stroke={clothesEdge} strokeWidth="1.3" strokeLinecap="round" />
+        {/* Plain neckline, OR the uniform that replaces it. Both sit
+            under the head (drawn at step 4), so a long chin overlaps the
+            collar the way a real one does. */}
+        {s.uniform
+          ? <UniformMark kind={s.uniform} accent={s.tieColour ?? '#B0384A'} />
+          : <path d="M 25.8 46.6 Q 32 53.4 38.2 46.6" fill="none" stroke={clothesEdge} strokeWidth="1.3" strokeLinecap="round" />}
 
         {/* 3 · ears (behind the head, so only the outer edge shows) */}
         {style.ears && (
@@ -618,6 +752,62 @@ function FacialHairMark({ kind, colour }: { kind: FacialHair; colour: string }) 
   }
 }
 
+// ── School uniform ───────────────────────────────────────────────────
+// The collar and the ribbon/tie are the two most legible uniform cues at
+// 32px — a blazer alone is just a dark garment. Everything here is
+// placed against the radius-31 safe circle, which BITES on this part
+// more than on any other: the garment sits low and wide, so a collar
+// point at (21.2, 48.4) is already r = 19.6 and the ribbon's outer
+// corner at (24.6, 55.8) is r = 24.9. Anything pushed out to the
+// shoulder line would be sliced off by the crop.
+const SHIRT = '#F7F9FD'
+const SHIRT_EDGE = '#BFC9DA'
+
+function UniformMark({ kind, accent }: { kind: Uniform; accent: string }) {
+  const accentEdge = darken(accent, 0.3)
+  return (
+    <>
+      {/* The wedge of shirt showing between the blazer fronts. Skipped
+          for 'shirt-collar', where the garment already IS the shirt and
+          this would outline a panel that is not there. */}
+      {kind !== 'shirt-collar' && (
+        <path
+          d="M 25.6 45.6 Q 32 50.4 38.4 45.6 L 42.8 48.8 L 39.6 65 L 24.4 65 L 21.2 48.8 Z"
+          fill={SHIRT} stroke={SHIRT_EDGE} strokeWidth="0.7"
+        />
+      )}
+      <path d="M 32 53.8 L 32 64" fill="none" stroke={SHIRT_EDGE} strokeWidth="0.7" strokeLinecap="round" />
+      <path
+        d="M 25.9 45 L 32 51.4 L 26.6 54 L 21.2 48.4 Z"
+        fill={SHIRT} stroke={SHIRT_EDGE} strokeWidth="0.7" strokeLinejoin="round"
+      />
+      <path
+        d="M 38.1 45 L 32 51.4 L 37.4 54 L 42.8 48.4 Z"
+        fill={SHIRT} stroke={SHIRT_EDGE} strokeWidth="0.7" strokeLinejoin="round"
+      />
+      {kind === 'blazer-ribbon' && (
+        <>
+          <path d="M 32 52.4 L 25.4 49.4 L 24.6 55.8 L 32 54 Z" fill={accent} stroke={accentEdge} strokeWidth="0.6" strokeLinejoin="round" />
+          <path d="M 32 52.4 L 38.6 49.4 L 39.4 55.8 L 32 54 Z" fill={accent} stroke={accentEdge} strokeWidth="0.6" strokeLinejoin="round" />
+          <circle cx="32" cy="52.6" r="1.75" fill={lighten(accent, 0.12)} stroke={accentEdge} strokeWidth="0.6" />
+        </>
+      )}
+      {kind === 'blazer-tie' && (
+        <>
+          <path d="M 32 53.6 L 29.5 55.8 L 30.7 65 L 33.3 65 L 34.5 55.8 Z" fill={accent} stroke={accentEdge} strokeWidth="0.6" strokeLinejoin="round" />
+          <path d="M 32 50.2 L 29.4 52.8 L 32 55.2 L 34.6 52.8 Z" fill={lighten(accent, 0.14)} stroke={accentEdge} strokeWidth="0.6" strokeLinejoin="round" />
+        </>
+      )}
+      {kind === 'shirt-collar' && (
+        <>
+          <circle cx="32" cy="57" r="0.9" fill={SHIRT_EDGE} />
+          <circle cx="32" cy="62" r="0.9" fill={SHIRT_EDGE} />
+        </>
+      )}
+    </>
+  )
+}
+
 function AccessoryMark({ kind, skin, ear }: { kind: Accessory; skin: SkinSwatch; ear: number }) {
   switch (kind) {
     case 'none':
@@ -640,6 +830,20 @@ function AccessoryMark({ kind, skin, ear }: { kind: Accessory; skin: SkinSwatch;
           <path d="M 30.8 27.4 L 33.2 27.4" />
           <path d="M 20.6 26.6 L 17.8 27.4" />
           <path d="M 43.4 26.6 L 46.2 27.4" />
+        </g>
+      )
+    case 'slim-glasses':
+      // Thin metal semi-rimless frames — the commonest school-glasses
+      // shape in this cohort, and visibly NOT the two chunky frames
+      // already in the set: shallower lenses, a thinner stroke and a
+      // high bridge, so it does not collapse into `glasses` at 32px.
+      return (
+        <g fill="none" stroke="#5B5F6B" strokeWidth="0.85">
+          <rect x="20.8" y="24.8" width="9.8" height="6" rx="2.6" />
+          <rect x="33.4" y="24.8" width="9.8" height="6" rx="2.6" />
+          <path d="M 30.6 26.4 Q 32 25.4 33.4 26.4" />
+          <path d="M 20.8 26.4 L 18 27.2" />
+          <path d="M 43.2 26.4 L 46 27.2" />
         </g>
       )
     case 'earrings':
@@ -802,11 +1006,93 @@ function HairBack({ style, hair, edge }: {
           <ellipse cx="44.4" cy="15.4" rx="3.1" ry="2.5" fill={darken(hair.base, 0.35)} />
         </>
       )
+    // ── Added 2026-08 ────────────────────────────────────────────────
+    case 'fringe-long':
+      // Blunt-cut lengths: a FLAT hem, where 'straight-long' tapers to
+      // rounded tips. Flat at y = 51.4 the hem is r = 24.2 from centre,
+      // well inside the crop, and the garment covers everything from
+      // x ≈ 16.4 inward — so what reads is the squared outer corner.
+      return (
+        <path
+          {...fill}
+          d="M 32 8.2 C 19.8 8.2 15 16.4 15 26.6 L 15 51.4 L 24.6 51.4 L 23 30 L 41 30 L 39.4 51.4 L 49 51.4 L 49 26.6 C 49 16.4 44.2 8.2 32 8.2 Z"
+        />
+      )
+    case 'wispy-long':
+      return (
+        <path
+          {...fill}
+          d="M 32 8.6 C 21 8.6 16 16.2 16 26 L 16 47.6 Q 16 50.6 19 50.6 Q 22 50.6 22.2 47.8 L 22.8 30 L 41.2 30 L 41.8 47.8 Q 42 50.6 45 50.6 Q 48 50.6 48 47.6 L 48 26 C 48 16.2 43 8.6 32 8.6 Z"
+        />
+      )
+    case 'middle-part-mid':
+      // Shoulder length with the ends flicking OUT (C컬). The flick tips
+      // at (14.8, 47.4) and (49.2, 47.4) are r = 23.1 — the widest point
+      // of this style and the one to re-check if the lengths ever grow.
+      return (
+        <path
+          {...fill}
+          d="M 32 8.6 C 21 8.6 15.8 16.4 15.8 26.4 C 15.8 33 15.2 38.6 16.6 43.6 Q 13.6 44.6 14.8 47.4 Q 18.4 45.6 20.8 42 L 23 30 L 41 30 L 43.2 42 Q 45.6 45.6 49.2 47.4 Q 50.4 44.6 47.4 43.6 C 48.8 38.6 48.2 33 48.2 26.4 C 48.2 16.4 43 8.6 32 8.6 Z"
+        />
+      )
+    case 'low-ponytail':
+      // Gathered at the nape and swept to one side. A tail drawn CENTRED
+      // at the back is invisible head-on — it would be a preset whose
+      // whole point never renders — so it hangs to the right, where it
+      // clears the garment down to y ≈ 47.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 41.2 27.2 C 49.6 27.4 53.2 34 52.8 41.2 C 52.5 45.8 50.4 49 47.4 50.2 C 49.6 44.8 49.8 38.4 47.6 33.4 C 46.2 30.4 43.8 28.2 41.2 27.2 Z"
+          />
+          <ellipse cx="42.8" cy="28.8" rx="3.2" ry="2.4" fill={darken(hair.base, 0.35)} />
+          <path d="M 49 32.8 Q 51.6 38 50.6 43.6" fill="none" stroke={hair.hi} strokeWidth="1.1" strokeLinecap="round" opacity="0.55" />
+        </>
+      )
+    case 'bob-bangs':
+      // 단발. Chin length with the ends turning IN, which is what stops
+      // it reading as a shorter 'straight-long'.
+      return (
+        <path
+          {...fill}
+          d="M 32 8.6 C 20.8 8.6 15.4 16 15.4 26 L 15.4 36.6 Q 15.4 41.4 19.4 42.6 Q 22.6 43.4 23.4 40.6 Q 21.2 38 21.4 30 L 42.6 30 Q 42.8 38 40.6 40.6 Q 41.4 43.4 44.6 42.6 Q 48.6 41.4 48.6 36.6 L 48.6 26 C 48.6 16 43.2 8.6 32 8.6 Z"
+        />
+      )
+    case 'layered-bob':
+      // Same length as 'bob-bangs', different CUT: notched, layered ends
+      // rather than one blunt line, and one side tucked behind the ear.
+      return (
+        <path
+          {...fill}
+          d="M 32 8.8 C 21.4 8.8 16.2 16 16.2 26 C 16.2 32 15.4 37.4 17 41.4 Q 19.4 39.4 21.6 41.6 Q 23.6 43.6 25.4 40.4 L 23 30 L 41 30 L 38.6 40.4 Q 40.4 43.6 42.4 41.6 Q 44.6 39.4 47 41.4 C 48.6 37.4 47.8 32 47.8 26 C 47.8 16 42.6 8.8 32 8.8 Z"
+        />
+      )
+    case 'half-up':
+      // 반묶음: the top section gathered at the crown, the rest left
+      // down. The gathered mound is deliberately WIDE and FLAT (top at
+      // y = 5, r = 27) where 'bun-top' is a ball — at 32px a same-sized
+      // ball would have made these two presets the same avatar.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 32 8.6 C 21.2 8.6 16 16.2 16 26.2 C 16 33 15.6 40 17 45.6 Q 19.6 43.2 22 45.4 Q 24 47.2 25.6 44.4 L 23 30 L 41 30 L 38.4 44.4 Q 40 47.2 42 45.4 Q 44.4 43.2 47 45.6 C 48.4 40 48 33 48 26.2 C 48 16.2 42.8 8.6 32 8.6 Z"
+          />
+          <path
+            {...fill}
+            d="M 22 13.4 Q 22.6 3.2 32 3.2 Q 41.4 3.2 42 13.4 Q 36.6 9.6 32 11.4 Q 27.4 9.6 22 13.4 Z"
+          />
+          <path d="M 26.6 8.2 Q 31.6 6.2 36.2 7.6" fill="none" stroke={hair.hi} strokeWidth="1.2" strokeLinecap="round" opacity="0.7" />
+        </>
+      )
     case 'crop-side':
     case 'undercut-fade':
     case 'waves-short':
     case 'buzz':
     case 'pixie':
+    case 'two-block':
+    case 'crop-neat':
     case 'bald':
     case 'hijab':
       return null
@@ -986,6 +1272,154 @@ function HairFront({ style, hair, edge, skin, cover }: {
             d="M 17.2 25.8 C 17.2 14 23.6 8.8 32 8.8 C 40.4 8.8 46.8 14 46.8 25.8 C 46.2 18.8 41.6 15.4 34 15.4 C 27 15.4 20 17.6 17.2 25.8 Z"
           />
           {sheen('M 20.6 19.6 Q 26.6 12.6 35.4 12.4', 1.3)}
+        </>
+      )
+    // ── Added 2026-08 ────────────────────────────────────────────────
+    // The FRINGE is what separates these from each other and from the
+    // five straight cuts that were already here. Every hem below stops
+    // at or above y ≈ 20.6 on purpose: the brows sit at y ≈ 20.2–22.5
+    // and a fringe drawn lower buries them, which costs the face its
+    // whole expression. HairFront draws after Brows, so a low hem is
+    // silent — nothing errors, the eyebrows are simply gone.
+    case 'fringe-long':
+      // 일자 앞머리 — a blunt, level fringe with the sides continuing
+      // past the temples.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 16.6 31 C 16 13.4 23.2 8.2 32 8.2 C 40.8 8.2 48 13.4 47.4 31 L 45.4 17.6 Q 32 18.4 18.6 17.6 Z"
+          />
+          {sheen('M 22.8 13.6 Q 29.4 10.2 36.4 11.8', 1.3)}
+        </>
+      )
+    case 'wispy-long':
+      // 시스루뱅 — the fringe is THIN, so the forehead shows between the
+      // strands. Drawn as separate tapered pieces rather than as one
+      // mass with a lighter fill, because a lighter fill just reads as
+      // a second hair colour.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17 30.4 C 16.8 13.6 23.6 8.6 32 8.6 C 40.4 8.6 47.2 13.6 47 30.4 C 46.4 21 44 17.2 39 16.4 Q 32 15.4 25 16.4 C 20 17.2 17.6 21 17 30.4 Z"
+          />
+          {/* Five strands, not seven, and no two the same: even spacing
+              at even length is a COMB, which is what the first pass drew.
+              Each leans slightly toward the parting and stops short of
+              the brow — a black strand crossing a black brow merges into
+              it and the face loses its expression. */}
+          {[
+            [24.6, 17.4, 19.2, 1.3], [27.9, 16.3, 19.9, 1.5],
+            [31.5, 15.9, 18.9, 1.4], [35.1, 16.3, 19.6, 1.5],
+            [38.4, 17.4, 18.8, 1.2],
+          ].map(([x, y1, y2, w], i) => (
+            <path
+              key={i}
+              d={`M ${x} ${y1} Q ${x - 0.5} ${(y1 + y2) / 2} ${x - 1.1} ${y2}`}
+              stroke={hair.base} strokeWidth={w} strokeLinecap="round" fill="none"
+            />
+          ))}
+          {sheen('M 23.4 13.2 Q 30 10 36.8 11.6', 1.2)}
+        </>
+      )
+    case 'middle-part-mid':
+      // A true centre part: the forehead is open in the MIDDLE and the
+      // hair frames it down both sides past the cheekbone.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.2 30 C 17 13.4 23.8 8.6 32 8.6 C 40.2 8.6 47 13.4 46.8 30 C 45.4 22 40.6 16.4 32 14.6 C 23.4 16.4 18.6 22 17.2 30 Z"
+          />
+          <path d="M 32 9 L 32 14.8" fill="none" stroke={hair.hi} strokeWidth="0.9" strokeLinecap="round" opacity="0.7" />
+          {sheen('M 21.8 19.4 Q 25.6 13.6 30.4 12', 1.2)}
+          {sheen('M 33.6 12 Q 38.4 13.6 42.2 19.4', 1.2)}
+        </>
+      )
+    case 'low-ponytail':
+      // Pulled back and smooth. The sweep strokes run DOWN-RIGHT toward
+      // the nape; 'ponytail-high' sweeps up-left toward the crown, which
+      // is the only reason the two fronts do not look identical.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.8 24.4 C 17.8 13.4 24 8.8 32 8.8 C 40 8.8 46.2 13.4 46.2 24.4 C 45.4 19.2 43 16.2 39.4 15 Q 32 13.2 24.6 15 C 21 16.2 18.6 19.2 17.8 24.4 Z"
+          />
+          {[[21, 20.4], [23.4, 17], [27, 14.8]].map(([x, y], i) => (
+            <path key={i} d={`M ${x} ${y} Q ${x + 9} ${y - 2.4} ${x + 17.6} ${y + 2}`} fill="none" stroke={hair.hi} strokeWidth="0.85" opacity="0.5" />
+          ))}
+        </>
+      )
+    case 'bob-bangs':
+      // 단발 + 앞머리. A softly rounded hem, longest in the middle.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 16.8 27.4 C 16.4 13 23.2 8.6 32 8.6 C 40.8 8.6 47.6 13 47.2 27.4 L 46 15.6 Q 39 18.2 32 18.2 Q 25 18.2 18 15.6 Z"
+          />
+          {sheen('M 23 13 Q 29.6 9.6 36.6 11.4', 1.3)}
+        </>
+      )
+    case 'layered-bob':
+      // No fringe: a deep side part with the shorter side tucked behind
+      // the ear, so this reads as a different CUT and not as
+      // 'straight-bob' with the fringe deleted.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 18 25.2 C 17.6 13.8 23.8 8.8 32 8.8 C 40.2 8.8 46.6 13.8 46.6 28.8 C 45.6 20 41.4 15.4 34.2 15.4 C 28 15.4 22.4 17.6 20 22.2 C 19.2 23.6 18.5 24.4 18 25.2 Z"
+          />
+          {sheen('M 24.6 12.4 Q 32.4 9.8 39.6 13', 1.4)}
+          {sheen('M 40.2 15.4 Q 43.6 17.8 44.8 22.4', 1)}
+        </>
+      )
+    case 'two-block':
+      // 투블럭. The SIDES are clipper-short and the top overhangs them
+      // with a visible step — that step is the whole style. The short
+      // sides are drawn over the head for the same reason
+      // 'undercut-fade' does it: behind the head they fall inside the
+      // skull outline and never show at all.
+      return (
+        <>
+          <path d="M 18.8 19.6 Q 17.5 25.4 18.4 32 L 23 31.2 Q 22 25.4 22.8 19.6 Z" fill={mix(hair.base, skin, 0.32)} />
+          <path d="M 45.2 19.6 Q 46.5 25.4 45.6 32 L 41 31.2 Q 42 25.4 41.2 19.6 Z" fill={mix(hair.base, skin, 0.32)} />
+          <path
+            {...fill}
+            d="M 17.4 22.4 C 17.4 11.4 23.8 8.2 32 8.2 C 40.2 8.2 46.6 11.4 46.6 22.4 L 45.8 17.4 Q 39.6 18.8 33 18.2 Q 25.4 17.4 18.4 13.8 Z"
+          />
+          {sheen('M 23 12.6 Q 30 9.2 37.2 11', 1.3)}
+          {sheen('M 38 11.4 Q 42.4 12.8 44.6 16.6', 1)}
+        </>
+      )
+    case 'crop-neat':
+      // A short, even school crop — one length all round, tidy hem.
+      // Where 'two-block' steps and 'crop-side' sweeps, this does
+      // neither, and the flat hem is what says "cut last month".
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.8 25.4 C 17.8 14 24 8.8 32 8.8 C 40 8.8 46.2 14 46.2 25.4 C 45.9 20.4 45 18.2 43.4 17 Q 38 19.4 32 19.2 Q 26 19 20.6 16.6 C 19 17.8 18.1 20.4 17.8 25.4 Z"
+          />
+          {sheen('M 24 13 Q 31.4 10 38.6 12.2', 1.2)}
+        </>
+      )
+    case 'half-up':
+      // The front sections are taken back, so the temples show and the
+      // parting notch at the centre is visible under the gathered mound
+      // drawn in HairBack.
+      return (
+        <>
+          <path
+            {...fill}
+            d="M 17.6 26.6 C 17.6 13.6 24 8.6 32 8.6 C 40 8.6 46.4 13.6 46.4 26.6 C 45.6 19.4 40.8 15.8 34.6 15.4 Q 32 15.2 32 12.6 Q 32 15.2 29.4 15.4 C 23.2 15.8 18.4 19.4 17.6 26.6 Z"
+          />
+          {sheen('M 21.6 20.4 Q 25.4 14.4 30.2 12.8', 1.2)}
+          {sheen('M 33.8 12.8 Q 38.6 14.4 42.4 20.4', 1.2)}
         </>
       )
     case 'bald':

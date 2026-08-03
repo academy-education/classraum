@@ -201,8 +201,8 @@ describe('the skin ramp', () => {
 describe('the set spans the range it claims', () => {
   const list = STUDY_AVATAR_LIST
 
-  it('ships at least 16 presets', () => {
-    expect(list.length).toBeGreaterThanOrEqual(16)
+  it('ships at least 24 presets', () => {
+    expect(list.length).toBeGreaterThanOrEqual(24)
   })
 
   it('uses EVERY rung of the skin ramp, at least twice each', () => {
@@ -226,14 +226,53 @@ describe('the set spans the range it claims', () => {
     expect(new Set(styles).size).toBe(styles.length)
   })
 
+  it('draws every style it declares — no unreachable hair', () => {
+    // The other direction of the style-uniqueness check above: a style
+    // added to HAIR_STYLES and never given to a preset is art nobody can
+    // pick, and it silently inflates every "how many textures / fronts
+    // do we cover" number below.
+    expect(Object.keys(HAIR_STYLES).sort()).toEqual([...list.map(s => s.hair)].sort())
+  })
+
   it('covers at least 7 hair TEXTURE families, none of them dominant', () => {
-    // Style count alone is satisfiable by eighteen straight cuts. The
+    // Style count alone is satisfiable by twenty-seven straight cuts. The
     // texture family is the thing the brief is actually about.
+    //
+    // The cap moved 0.35 → 0.42 when the 2026-08 Korean-student block
+    // landed, and that is a REAL loosening, so it is written down: the
+    // primary audience's hair is overwhelmingly straight, and a set that
+    // refuses to reflect that in order to hold a histogram flat is
+    // failing the students it is for. The straight family is 10/27.
+    //
+    // Loosening a threshold to make a batch fit is the exact move
+    // CLAUDE.md warns about, so the guarantee is not simply reduced —
+    // it moves to the axis those ten styles actually vary on, in the
+    // assertion below. Delete that one and this cap alone would happily
+    // pass ten identical straight cuts.
     const textures = list.map(s => HAIR_STYLES[s.hair].texture)
     const counts = new Map<string, number>()
     for (const t of textures) counts.set(t, (counts.get(t) ?? 0) + 1)
     expect(counts.size).toBeGreaterThanOrEqual(7)
-    expect(Math.max(...counts.values()) / list.length).toBeLessThanOrEqual(0.35)
+    expect(Math.max(...counts.values()) / list.length).toBeLessThanOrEqual(0.42)
+  })
+
+  it('varies the HAIRLINE, and does so inside the dominant texture family', () => {
+    // What actually separates a blunt fringe from see-through bangs from
+    // a middle part from a swept-back ponytail is the front, not the
+    // curl. Nine fronts overall, and the biggest texture family — the
+    // one the cap above tolerates — must itself span at least five, so
+    // "add eight more straight cuts" cannot pass by adding eight more of
+    // the SAME straight cut.
+    const fronts = list.map(s => HAIR_STYLES[s.hair].front)
+    expect(new Set(fronts).size).toBeGreaterThanOrEqual(8)
+
+    const byTexture = new Map<string, string[]>()
+    for (const s of list) {
+      const { texture, front } = HAIR_STYLES[s.hair]
+      byTexture.set(texture, [...(byTexture.get(texture) ?? []), front])
+    }
+    const dominant = [...byTexture.entries()].sort((a, b) => b[1].length - a[1].length)[0]
+    expect(new Set(dominant[1]).size).toBeGreaterThanOrEqual(5)
   })
 
   it('includes coily, braided, locs, a covered head and a bald option', () => {
@@ -273,6 +312,58 @@ describe('the set spans the range it claims', () => {
       ...s, accessory: null, id: null, nameKey: null,
     }))
     expect(new Set(withoutAccessory).size).toBe(list.length)
+  })
+
+  it('never lets the hair vanish into the face', () => {
+    // Found by RENDERING, not by any assertion that existed: one of the
+    // 2026-08 presets was drawn with light-brown hair (#8C6039) on
+    // tone-6 skin (#8F5330). Those are the same colour — luminance ratio
+    // 1.12, hue 6° apart — and the head lost its outline entirely; the
+    // face read as a smudge with a hat-shaped stain on it.
+    //
+    // A plain contrast floor CANNOT express this. 'person-pearl' (white
+    // hair on tone-2) sits at 1.06 and 'person-garnet' (black on tone-8)
+    // at 1.26 — both LOWER than the broken pair — and both look correct,
+    // because their hair is a different hue family from their skin and
+    // the derived edge stroke reads as an edge. So the rule is
+    // conditional: close in value is fine, close in value AND close in
+    // hue is not.
+    const bad = list
+      .filter(s => !['bald', 'hijab'].includes(s.hair))
+      .map(s => {
+        const skin = SKIN_RAMP[s.skin].base
+        const hair = HAIR_COLOURS[s.hairColour].base
+        return { id: s.id, ratio: contrast(skin, hair), hue: hueGap(skin, hair) }
+      })
+      .filter(r => r.ratio < 1.3 && r.hue < 40)
+      .map(r => `${r.id} lum ${r.ratio.toFixed(2)} hue ${r.hue.toFixed(0)}°`)
+    expect(bad).toEqual([])
+  })
+
+  it('offers school uniforms — a white collar plus a ribbon AND a necktie', () => {
+    // The primary audience wears one to school every day. Two blazer
+    // variants and a collar-only summer shirt; a blazer preset without a
+    // tieColour would draw its ribbon in the default red regardless of
+    // what the blazer is, which is a silent wrong colour rather than an
+    // error.
+    const uniformed = list.filter(s => s.uniform)
+    expect(uniformed.length).toBeGreaterThanOrEqual(2)
+    const kinds = new Set(uniformed.map(s => s.uniform))
+    expect(kinds.has('blazer-ribbon')).toBe(true)
+    expect(kinds.has('blazer-tie')).toBe(true)
+    for (const s of uniformed.filter(u => u.uniform !== 'shirt-collar')) {
+      expect(s.tieColour).toMatch(/^#[0-9A-Fa-f]{6}$/)
+      // A blazer that matches the shirt is not a blazer.
+      expect(contrast(s.clothes, '#F7F9FD')).toBeGreaterThan(3)
+    }
+  })
+
+  it('puts glasses on a real share of the set, in more than one frame', () => {
+    // Very common in this cohort, and a student who wears them should
+    // not have to pick the one preset that does.
+    const glassed = list.filter(s => s.accessory.includes('glasses'))
+    expect(glassed.length).toBeGreaterThanOrEqual(5)
+    expect(new Set(glassed.map(s => s.accessory)).size).toBeGreaterThanOrEqual(3)
   })
 
   it('gives every preset a silhouette against its own backdrop', () => {
@@ -322,11 +413,24 @@ describe('the set spans the range it claims', () => {
  *     coordinate would pass everything here;
  *   · whether two presets look alike despite differing in the table
  *     (two "distinct" face shapes can be indistinguishable at size);
- *   · whether the hair silhouettes read as the textures they are
- *     labelled — HAIR_STYLES's texture field is an assertion by the
- *     author, not a measurement of the path data;
+ *   · whether the hair silhouettes read as the textures and FRONTS they
+ *     are labelled — HAIR_STYLES's texture and front fields are
+ *     assertions by the author, not measurements of the path data. The
+ *     "dominant family spans five fronts" check is only as true as those
+ *     nine labels;
+ *   · whether a fringe BURIES THE EYEBROWS. HairFront paints after
+ *     Brows, so a hem drawn 2px lower simply deletes them and nothing
+ *     errors. Two of the 2026-08 presets shipped exactly that in their
+ *     first pass and both were found by looking at a 280px render. The
+ *     brow hem sits at y ≈ 20.1–21.5 and every fringe hem is hand-placed
+ *     above it; nothing here parses a path to confirm it;
+ *   · whether a uniform collar or a ribbon is CLIPPED by the circular
+ *     crop. The garment sits low and wide, so it is the part closest to
+ *     the radius-31 boundary, and the boundary is checked by eye;
  *   · whether the set feels respectful or stereotyped. That is a
- *     judgement about art and it needs human eyes.
+ *     judgement about art and it needs human eyes. In particular nothing
+ *     here can tell you the Korean-student presets read as ordinary
+ *     students rather than as a costume.
  */
 
 // ── helpers ──────────────────────────────────────────────────────────
@@ -352,4 +456,22 @@ function contrast(a: string, b: string): number {
   const la = luminance(a)
   const lb = luminance(b)
   return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05)
+}
+
+/** HSL hue in degrees, on #rrggbb. 0 for any grey. */
+function hue(hex: string): number {
+  const n = parseInt(hex.slice(1), 16)
+  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(v => v / 255)
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+  const d = max - min
+  if (d === 0) return 0
+  const h = 60 * (max === r ? (((g - b) / d) % 6) : max === g ? (b - r) / d + 2 : (r - g) / d + 4)
+  return h < 0 ? h + 360 : h
+}
+
+/** Shortest angular distance between two hues, 0–180. */
+function hueGap(a: string, b: string): number {
+  const d = Math.abs(hue(a) - hue(b))
+  return Math.min(d, 360 - d)
 }

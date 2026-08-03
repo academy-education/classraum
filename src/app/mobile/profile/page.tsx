@@ -22,6 +22,7 @@ import { ProfileSkeleton } from '@/components/ui/skeleton'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { StatusPill } from '@/components/ui/status-pill'
 import { StudySubPageHeader } from '@/app/mobile/study/_shared/primitives'
+import { SegmentedTabs } from '@/app/mobile/study/_shared/SegmentedTabs'
 import { User as UserIcon } from 'lucide-react'
 import { useMobileProfile } from './hooks/useMobileProfile'
 import { StudyNicknameCard } from './StudyNicknameCard'
@@ -57,6 +58,13 @@ import Link from 'next/link'
 import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
+
+/**
+ * Which of the app's two top-level modes a section belongs to.
+ * 'academy' is the mode the rest of the app labels "Grades"
+ * (mobile.mode.gradesLabel) — same thing, seen from the account page.
+ */
+type ProfileMode = 'study' | 'academy'
 
 function MobileProfilePageContent() {
   const router = useRouter()
@@ -95,11 +103,17 @@ function MobileProfilePageContent() {
 
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
   const [showStudentSelector, setShowStudentSelector] = useState(false)
-  // Profile is a shared route — which mode the user came from decides
-  // whether study-only sections (nickname) render. Read in an effect
-  // (localStorage isn't available during SSR).
-  const [inStudyMode, setInStudyMode] = useState(false)
-  useEffect(() => { setInStudyMode(readStoredMode() === 'study') }, [])
+  // Profile is a shared route serving BOTH top-level modes, so the
+  // mode-specific sections sit behind a local segmented control.
+  //
+  // The default comes from the app's current mode — readStoredMode(),
+  // the same signal the header ModeChip and the bottom nav read (and
+  // localStorage isn't available during SSR, hence the effect). But the
+  // tab is deliberately LOCAL: switching it never calls storeMode(), so
+  // a student can read their academy settings without the whole app
+  // leaving Study mode.
+  const [modeTab, setModeTab] = useState<ProfileMode>('academy')
+  useEffect(() => { setModeTab(readStoredMode() === 'study' ? 'study' : 'academy') }, [])
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('')
   const [deletingAccount, setDeletingAccount] = useState(false)
@@ -116,6 +130,30 @@ function MobileProfilePageContent() {
     }>
   } | null>(null)
   const [confirmCascadeAcademy, setConfirmCascadeAcademy] = useState(false)
+
+  // ── Which modes does this user actually HAVE? ────────────────────────
+  //
+  // Study: students only. That is exactly the gate the study sections
+  // carried before this refactor (nickname + referral were
+  // `role === 'student' && inStudyMode`), so nobody gains or loses a
+  // section here. Note ModeChip additionally offers the Grades↔Study
+  // switch to PARENTS, so a parent can be in study mode — they just have
+  // no study-mode content on this page, which is why they get the
+  // academy view directly rather than an empty Study tab.
+  //
+  // Academy: anyone with an academy membership (plus parents, who are
+  // always members — useEffectiveUserId won't even mark them ready
+  // otherwise). Teachers and managers have no study mode at all and land
+  // here, so the segmented control never renders for them.
+  const hasStudyMode = profile?.role === 'student'
+  const hasAcademyMode = academyIds.length > 0 || profile?.role === 'parent'
+  const showModeTabs = hasStudyMode && hasAcademyMode
+  // With only one mode available, that mode's sections render directly —
+  // never an empty tab, and never a control with nothing to switch to.
+  const activeMode: ProfileMode =
+    !hasStudyMode ? 'academy' :
+    !hasAcademyMode ? 'study' :
+    modeTab
 
   // Handle body scroll prevention when modal is open
   useEffect(() => {
@@ -439,35 +477,6 @@ function MobileProfilePageContent() {
         )
       })()}
 
-      {/* Study nickname — the public leaderboard handle. Students only,
-          and only when the profile was reached from Study mode: in the
-          Grades/academy context the nickname is meaningless noise. */}
-      {profile?.role === 'student' && inStudyMode && <StudyNicknameCard ko={language === 'korean'} />}
-
-      {/* Friend referral — lives here (not on the subscription page) so
-          the invite loop reads as an account feature. Study mode only. */}
-      {profile?.role === 'student' && inStudyMode && (
-        <div className="mb-6">
-          <Link
-            href="/mobile/study/referral"
-            className="flex items-center gap-3 rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.99] transition-all"
-          >
-            <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-              <Users className="w-5 h-5" strokeWidth={1.75} />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-sm font-semibold text-gray-900 truncate">
-                {language === 'korean' ? '친구 초대' : 'Refer a friend'}
-              </span>
-              <span className="block text-[12px] text-gray-500 truncate">
-                {language === 'korean' ? '가입 시 1개 + 프리미엄 시 10개' : '1 credit + 10 on Premium'}
-              </span>
-            </span>
-            <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
-          </Link>
-        </div>
-      )}
-
       {/* Contact Information panel — the phone row always renders (it's
           editable, so an empty value shows an Add action); other rows
           only when they have data. */}
@@ -591,35 +600,176 @@ function MobileProfilePageContent() {
         </div>
       )}
 
-      {/* Active student (parents only) — academy-picker-style row */}
-      {profile?.role === 'parent' && (
-        <div className="mb-6">
-          <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
-            {t('mobile.profile.activeStudent')}
-          </Eyebrow>
-          <Card className="p-0 overflow-hidden">
-            <button
-              onClick={() => setShowStudentSelector(true)}
-              className="w-full px-5 py-6 hover:bg-gray-50 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                  <UserCheck className="w-4 h-4 text-emerald-600" strokeWidth={1.75} />
-                </div>
-                <div className="flex-1 min-w-0 text-left">
-                  <Eyebrow className="mb-0.5">
-                    {t('mobile.profile.selectedStudent')}
-                  </Eyebrow>
-                  <p className="text-sm font-semibold text-gray-900 truncate">
-                    {selectedStudent?.name || t('mobile.profile.noStudentSelected')}
-                  </p>
-                </div>
-                <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
-              </div>
-            </button>
-          </Card>
+      {/* ══════════════════════════════════════════════════════════════════
+          MODE-SPECIFIC SECTIONS — everything from here to the matching
+          "END MODE-SPECIFIC" banner belongs to exactly ONE of the app's
+          two top-level modes. Shared identity/account sections sit above
+          (hero, contact) and below (general settings, push, account).
+
+          The segmented control only appears when the user genuinely has
+          both modes; see hasStudyMode / hasAcademyMode above.
+          ══════════════════════════════════════════════════════════════════ */}
+      {showModeTabs && (
+        <div className="mb-4">
+          {/* Deliberately NOT `mobile.mode.sheetTitle` ("Switch mode"):
+              this control only changes which mode's settings you are
+              LOOKING at, and never calls storeMode(), so "switch mode"
+              would mis-describe it to a screen reader. */}
+          <SegmentedTabs
+            aria-label={String(t('mobile.profile.modeTabsLabel'))}
+            options={[
+              { value: 'study' as ProfileMode, label: String(t('mobile.mode.studyLabel')) },
+              { value: 'academy' as ProfileMode, label: String(t('mobile.mode.gradesLabel')) },
+            ]}
+            value={activeMode}
+            onChange={setModeTab}
+          />
         </div>
       )}
+
+      {/* ───────────────────────── STUDY MODE ───────────────────────── */}
+      {activeMode === 'study' && (
+        <>
+          {/* ▼▼▼ AVATAR CUSTOMISER GOES HERE ▼▼▼
+              Insertion point for the study avatar picker (the preset
+              people from study/_shared/avatars.tsx, currently living in
+              /mobile/study/preferences). It belongs at the TOP of the
+              study section — it is the most identity-like study setting,
+              so it should sit directly under the tabs and above the
+              nickname it pairs with on the leaderboard.
+              Owned by a separate workstream; do not inline it here
+              without coordinating.
+              ▲▲▲ AVATAR CUSTOMISER GOES HERE ▲▲▲ */}
+
+          {/* Study nickname — the public leaderboard handle. Students
+              only; in the academy context it is meaningless noise. */}
+          <StudyNicknameCard ko={language === 'korean'} />
+
+          {/* Friend referral — lives here (not on the subscription page)
+              so the invite loop reads as an account feature. */}
+          <div className="mb-6">
+            <Link
+              href="/mobile/study/referral"
+              className="flex items-center gap-3 rounded-2xl bg-white ring-1 ring-gray-200/70 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.99] transition-all"
+            >
+              <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                <Users className="w-5 h-5" strokeWidth={1.75} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-semibold text-gray-900 truncate">
+                  {language === 'korean' ? '친구 초대' : 'Refer a friend'}
+                </span>
+                <span className="block text-[12px] text-gray-500 truncate">
+                  {language === 'korean' ? '가입 시 1개 + 프리미엄 시 10개' : '1 credit + 10 on Premium'}
+                </span>
+              </span>
+              <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
+            </Link>
+          </div>
+        </>
+      )}
+
+      {/* ──────────────────────── ACADEMY MODE ──────────────────────── */}
+      {activeMode === 'academy' && (
+        <>
+          {/* Active student (parents only) — academy-picker-style row */}
+          {profile?.role === 'parent' && (
+            <div className="mb-6">
+              <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
+                {t('mobile.profile.activeStudent')}
+              </Eyebrow>
+              <Card className="p-0 overflow-hidden">
+                <button
+                  onClick={() => setShowStudentSelector(true)}
+                  className="w-full px-5 py-6 hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                      <UserCheck className="w-4 h-4 text-emerald-600" strokeWidth={1.75} />
+                    </div>
+                    <div className="flex-1 min-w-0 text-left">
+                      <Eyebrow className="mb-0.5">
+                        {t('mobile.profile.selectedStudent')}
+                      </Eyebrow>
+                      <p className="text-sm font-semibold text-gray-900 truncate">
+                        {selectedStudent?.name || t('mobile.profile.noStudentSelected')}
+                      </p>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
+                  </div>
+                </button>
+              </Card>
+            </div>
+          )}
+
+          {/* Email Notifications — header + divide-y sub-toggles using
+              switches. Academy-mode only: every category here
+              (assignments, grades, announcements, reminders) is an
+              academy event, so study-only accounts just see noise.
+              Same `academyIds.length > 0` gate as before the split. */}
+          {academyIds.length > 0 && (
+            <div className="mb-6">
+              <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
+                {t('mobile.profile.notificationSettings')}
+              </Eyebrow>
+              <Card className="overflow-hidden py-0 gap-0">
+                <div className="p-4 flex items-center gap-3 border-b border-gray-100">
+                  <div className="w-9 h-9 rounded-xl bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 text-violet-600" strokeWidth={1.75} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900">{t('mobile.profile.emailNotifications')}</p>
+                    <p className="text-xs text-gray-500">{t('mobile.profile.emailNotificationsDesc')}</p>
+                  </div>
+                </div>
+
+                {/* Email sub-toggles — divide-y rows */}
+                <div className="divide-y divide-gray-100">
+                  {([
+                    { key: 'assignments',   label: 'mobile.profile.assignmentNotifications',  icon: BookOpen },
+                    { key: 'grades',        label: 'mobile.profile.gradeNotifications',        icon: GraduationCap },
+                    { key: 'announcements', label: 'mobile.profile.announcementNotifications', icon: Megaphone },
+                    { key: 'reminders',     label: 'mobile.profile.reminderNotifications',     icon: Clock }
+                  ] as const).map(({ key, label, icon: Icon }) => {
+                    const checked = preferences.email_notifications[key as keyof typeof preferences.email_notifications]
+                    return (
+                      <div key={key} className="px-4 py-3 flex items-center gap-3">
+                        <Icon className="w-4 h-4 text-gray-500 flex-shrink-0" strokeWidth={1.75} />
+                        <span className="flex-1 text-sm text-gray-700 truncate">{t(label)}</span>
+                        <button
+                          onClick={() => {
+                            hapticTap()
+                            updatePreferences({
+                              email_notifications: {
+                                ...preferences.email_notifications,
+                                [key]: !checked
+                              }
+                            })
+                          }}
+                          disabled={preferencesLoading}
+                          role="switch"
+                          aria-checked={checked}
+                          aria-label={String(t(label))}
+                          className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
+                            checked ? 'bg-primary' : 'bg-gray-200'
+                          } ${preferencesLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        >
+                          <span
+                            className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.15)] transition duration-200 ease-in-out mt-0.5 ${
+                              checked ? 'translate-x-[18px]' : 'translate-x-0.5'
+                            }`}
+                          />
+                        </button>
+                      </div>
+                    )
+                  })}
+                </div>
+              </Card>
+            </div>
+          )}
+        </>
+      )}
+      {/* ═══════════════════════ END MODE-SPECIFIC ═══════════════════════ */}
 
       {/* General Settings — divide-y panel */}
       <div className="mb-6">
@@ -684,20 +834,27 @@ function MobileProfilePageContent() {
         </Card>
       </div>
 
-      {/* Notification Settings — Push toggle + Email sub-toggles in one
-          panel. Hidden entirely when neither applies (study-only user on
-          web: no push without the native app, no academy emails). */}
-      {(Capacitor.isNativePlatform() || academyIds.length > 0) && (
+      {/* Push Notifications — SHARED, deliberately.
+          It is one device-level switch over ALL push from the app:
+          academy events (assignment posted, grade released) and study
+          events (streak reminder, duel result) ride the same token, and
+          `user_preferences.push_notifications` has no per-mode
+          dimension. Splitting it would have meant inventing two
+          settings that write one column, so it stays out of the
+          mode-specific block.
+
+          Native app only: device push tokens are registered through
+          Capacitor, so on the web this toggle controls nothing and
+          reads as broken. (The old outer gate was
+          `isNative || academyIds.length > 0` wrapping an inner
+          `isNative` — the same condition, so nothing changes here.) */}
+      {Capacitor.isNativePlatform() && (
       <div className="mb-6">
         <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
           {t('mobile.profile.notificationSettings')}
         </Eyebrow>
 
-        {/* Push Notifications — primary toggle row. Native app only:
-            device push tokens are registered through Capacitor, so on
-            the web this toggle controls nothing and reads as broken. */}
-        {Capacitor.isNativePlatform() && (
-        <Card className="p-4 mb-3">
+        <Card className="p-4">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
               <Bell className="w-4 h-4 text-amber-600" strokeWidth={1.75} />
@@ -727,67 +884,6 @@ function MobileProfilePageContent() {
             </button>
           </div>
         </Card>
-        )}
-
-        {/* Email Notifications — header + divide-y sub-toggles using
-            switches. Academy members only: every email category here
-            (assignments, grades, announcements, reminders) is an
-            academy event, so study-only accounts just see noise. */}
-        {academyIds.length > 0 && (
-        <Card className="overflow-hidden py-0 gap-0">
-          <div className="p-4 flex items-center gap-3 border-b border-gray-100">
-            <div className="w-9 h-9 rounded-xl bg-violet-500/10 flex items-center justify-center flex-shrink-0">
-              <Mail className="w-4 h-4 text-violet-600" strokeWidth={1.75} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900">{t('mobile.profile.emailNotifications')}</p>
-              <p className="text-xs text-gray-500">{t('mobile.profile.emailNotificationsDesc')}</p>
-            </div>
-          </div>
-
-          {/* Email sub-toggles — divide-y rows */}
-          <div className="divide-y divide-gray-100">
-            {([
-              { key: 'assignments',   label: 'mobile.profile.assignmentNotifications',  icon: BookOpen },
-              { key: 'grades',        label: 'mobile.profile.gradeNotifications',        icon: GraduationCap },
-              { key: 'announcements', label: 'mobile.profile.announcementNotifications', icon: Megaphone },
-              { key: 'reminders',     label: 'mobile.profile.reminderNotifications',     icon: Clock }
-            ] as const).map(({ key, label, icon: Icon }) => {
-              const checked = preferences.email_notifications[key as keyof typeof preferences.email_notifications]
-              return (
-                <div key={key} className="px-4 py-3 flex items-center gap-3">
-                  <Icon className="w-4 h-4 text-gray-500 flex-shrink-0" strokeWidth={1.75} />
-                  <span className="flex-1 text-sm text-gray-700 truncate">{t(label)}</span>
-                  <button
-                    onClick={() => {
-                      hapticTap()
-                      updatePreferences({
-                        email_notifications: {
-                          ...preferences.email_notifications,
-                          [key]: !checked
-                        }
-                      })
-                    }}
-                    disabled={preferencesLoading}
-                    role="switch"
-                    aria-checked={checked}
-                    aria-label={String(t(label))}
-                    className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
-                      checked ? 'bg-primary' : 'bg-gray-200'
-                    } ${preferencesLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  >
-                    <span
-                      className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.15)] transition duration-200 ease-in-out mt-0.5 ${
-                        checked ? 'translate-x-[18px]' : 'translate-x-0.5'
-                      }`}
-                    />
-                  </button>
-                </div>
-              )
-            })}
-          </div>
-        </Card>
-        )}
       </div>
       )}
 
