@@ -195,7 +195,16 @@ export function PersonAvatar({ config: s, size = 36, label, className = '' }: {
         {/* 5 · face */}
         <Brows shape={s.brow} colour={hair.base} />
         <Eyes shape={s.eyes} iris={IRIS[s.iris]} line={skin.line} />
-        <path d="M 32 28.6 v 3.6 q 0 1.5 1.9 1.7" fill="none" stroke={skin.line} strokeWidth="0.85" strokeLinecap="round" opacity="0.75" />
+        {/* Nose. It began at y = 28.6 — level with the pupils — ran 3.6
+            down and hooked 1.9 across, which is a bridge-and-hook drawn
+            from the brow line. Read together with the heavy brow above it
+            that is a Western face, and it survived every check here
+            because nothing tests proportion.
+
+            Now a short tick low on the face: it starts BELOW the eyes,
+            and the hook is small enough to read as a nostril shadow
+            rather than a profile. */}
+        <path d="M 32 30.7 v 2.2 q 0 1.15 1.5 1.35" fill="none" stroke={skin.line} strokeWidth="0.8" strokeLinecap="round" opacity="0.62" />
         <ellipse cx="23.4" cy="33" rx="3" ry="1.9" fill={skin.shade} opacity="0.55" />
         <ellipse cx="40.6" cy="33" rx="3" ry="1.9" fill={skin.shade} opacity="0.55" />
         <Mouth shape={s.mouth} lip={skin.lip} skin={skin.base} />
@@ -357,13 +366,24 @@ function Eyes({ shape, iris, line }: { shape: EyeShape; iris: string; line: stri
 function Brows({ shape, colour }: { shape: BrowShape; colour: string }) {
   const geom = (cx: number, sign: number) => {
     switch (shape) {
-      case 'straight': return `M ${cx - 4.6} ${22.3 - sign * 0.2} L ${cx + 4.6} ${22.1 + sign * 0.2}`
-      case 'arched': return `M ${cx - 4.6} 22.8 Q ${cx} 19.3 ${cx + 4.6} 22.4`
-      case 'thin': return `M ${cx - 4.3} 22.4 Q ${cx} 20.7 ${cx + 4.3} 22.2`
-      default: return `M ${cx - 4.5} 22.5 Q ${cx} 20.2 ${cx + 4.5} 22.2`
+      // BROW-TO-EYE DISTANCE IS THE TELL. These sat on y ≈ 22.1-22.8 with
+      // the eye at 27.7 — a gap of 5.5 on a 64-unit face, drawn 1.7 thick
+      // and 9.2 wide, i.e. WIDER than the eye beneath it. That reads as a
+      // heavy Western brow no matter what eye shape is under it, and it
+      // was the main reason the "Korean student" presets did not look
+      // Korean: the config said `mono`, the drawing said otherwise.
+      //
+      // Dropped ~1.0 closer to the eye and thinned. The floor is set by
+      // the eyes themselves — mono's lid crease peaks near y = 23.9 and
+      // round's lid arc near 24.4 — so 23.1 is as low as a brow can go
+      // before it touches the eye it belongs to.
+      case 'straight': return `M ${cx - 4.35} ${23.1 - sign * 0.15} L ${cx + 4.35} ${22.95 + sign * 0.15}`
+      case 'arched': return `M ${cx - 4.4} 23.5 Q ${cx} 20.8 ${cx + 4.4} 23.2`
+      case 'thin': return `M ${cx - 4.15} 23.3 Q ${cx} 21.9 ${cx + 4.15} 23.1`
+      default: return `M ${cx - 4.3} 23.4 Q ${cx} 21.4 ${cx + 4.3} 23.2`
     }
   }
-  const width = shape === 'thick' ? 2.3 : shape === 'thin' ? 1.05 : 1.7
+  const width = shape === 'thick' ? 1.95 : shape === 'thin' ? 0.95 : 1.4
   return (
     <>
       <path d={geom(EYE_L, -1)} fill="none" stroke={colour} strokeWidth={width} strokeLinecap="round" />
@@ -969,11 +989,18 @@ function HairFront({ style, hair, edge, skin, cover }: {
     case 'fringe-long':
       // 일자 앞머리 — a blunt, level fringe with the sides continuing
       // past the temples.
+      //
+      // The hem was at y ≈ 17.6-18.4, which put it FOUR units clear of a
+      // brow at 22.1 — a fringe hovering over a bare forehead. A blunt
+      // fringe is cut to the brow; that near-contact is the whole look,
+      // and without it willow read as a centre-parted Western girl no
+      // matter what the config said. Now it sits at 21.2-22.2, just
+      // above the relocated brow at 23.1.
       return (
         <>
           <path
             {...fill}
-            d="M 16.6 31 C 16 13.4 23.2 8.2 32 8.2 C 40.8 8.2 48 13.4 47.4 31 L 45.4 17.6 Q 32 18.4 18.6 17.6 Z"
+            d="M 16.6 31 C 16 13.4 23.2 8.2 32 8.2 C 40.8 8.2 48 13.4 47.4 31 L 45.6 21.2 Q 32 22.3 18.4 21.2 Z"
           />
           {sheen('M 22.8 13.6 Q 29.4 10.2 36.4 11.8', 1.3)}
         </>
@@ -995,9 +1022,14 @@ function HairFront({ style, hair, edge, skin, cover }: {
               the brow — a black strand crossing a black brow merges into
               it and the face loses its expression. */}
           {[
-            [24.6, 17.4, 19.2, 1.3], [27.9, 16.3, 19.9, 1.5],
-            [31.5, 15.9, 18.9, 1.4], [35.1, 16.3, 19.6, 1.5],
-            [38.4, 17.4, 18.8, 1.2],
+            // Lengthened with the fringe fix: these stopped at y ≈ 19,
+            // which was short of a brow at 22.1 and is short of one at
+            // 23.1 too. 시스루뱅 reaches the brow — that is what makes it
+            // see-through rather than simply short. Still clear of the
+            // brow itself, for the reason in the comment above.
+            [24.6, 17.4, 21.4, 1.3], [27.9, 16.3, 22.1, 1.5],
+            [31.5, 15.9, 21.2, 1.4], [35.1, 16.3, 21.9, 1.5],
+            [38.4, 17.4, 21.1, 1.2],
           ].map(([x, y1, y2, w], i) => (
             <path
               key={i}
