@@ -4,6 +4,7 @@ import { sendPostmarkEmail } from '@/lib/postmark'
 import { notifyStudent } from '@/lib/study/notify'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
 import { verifyCronAuth } from '@/lib/cron-auth'
+import { readStudyRecapOptOuts } from '@/lib/study/emailPrefs'
 
 /**
  * GET /api/cron/study-weekly-recap — sends a personalized last-week
@@ -11,6 +12,9 @@ import { verifyCronAuth } from '@/lib/cron-auth'
  *  - has prefs.onboarded_at set (real users, not abandoned signups)
  *  - had at least one study_attempt in the past 7 days
  *  - has an email on file
+ *  - has not switched the recap off (user_preferences
+ *    .email_notifications.study_recap === false). Absent = still sends;
+ *    see readStudyRecapOptOuts for why that direction is load-bearing.
  *
  * Body content: hours studied, accuracy, streak, top topic studied,
  * mastered topics this week, plus a tap-back-into-the-app link.
@@ -52,9 +56,18 @@ async function runRecap() {
     return { checked: 0, sent: 0 }
   }
 
+  // 2) Who has switched this email off? One batched read up front
+  //    rather than a per-student lookup inside the loop. The gate
+  //    itself is applied further down, around the SEND only — see the
+  //    comment there for why the in-app row is not gated with it.
+  const optedOut = await readStudyRecapOptOuts(
+    activeStudentIds.map(r => r.student_id as string),
+  )
+
   let sent = 0
   let skipped = 0
   let failed = 0
+  let optedOutCount = 0
 
   for (const row of activeStudentIds) {
     const studentId = row.student_id
@@ -122,22 +135,25 @@ async function runRecap() {
       .filter((x): x is string => !!x)
       .slice(0, 5)
 
-    const htmlBody = renderRecapEmail({
-      name,
-      hours,
-      accuracy,
-      total,
-      topTopicName,
-      masteredNames,
-    })
-
-    const result = await sendPostmarkEmail({
-      to: email,
-      subject: `Your week in Classraum Study — ${hours}h, ${accuracy}% accuracy`,
-      htmlBody,
-    })
-    if (result.sent) sent++
-    else failed++
+    // The opt-out gates the EMAIL ONLY. The setting lives under "email
+    // notifications" on the profile page, so suppressing the in-app
+    // inbox row from it would be a silent over-reach — a student who
+    // muted their inbox did not ask to stop seeing the recap in the
+    // app. Counted separately from `skipped` (quiet week / no address):
+    // an opt-out is a choice, and a rise in it is a signal.
+    if (optedOut.has(studentId)) {
+      optedOutCount++
+    } else {
+      const result = await sendPostmarkEmail({
+        to: email,
+        subject: `Your week in Classraum Study — ${hours}h, ${accuracy}% accuracy`,
+        htmlBody: renderRecapEmail({
+          name, hours, accuracy, total, topTopicName, masteredNames,
+        }),
+      })
+      if (result.sent) sent++
+      else failed++
+    }
 
     // In-app inbox row alongside the email — students who don't open
     // email still see the recap when they tap the bell.
@@ -156,6 +172,7 @@ async function runRecap() {
     sent,
     skipped,
     failed,
+    optedOut: optedOutCount,
   }
 }
 
@@ -224,7 +241,8 @@ function renderRecapEmail(input: {
     </tr>
     <tr>
       <td style="padding-top: 32px; color: #9ca3af; font-size: 11px;">
-        You're getting this because you opted in to study reminders. Manage in Settings.
+        You're getting this because you studied with Classraum this week.
+        To stop it, open the app and go to Account → Study → Weekly recap email.
       </td>
     </tr>
   </table>

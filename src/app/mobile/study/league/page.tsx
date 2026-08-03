@@ -48,6 +48,10 @@ interface LeaderboardRow {
    *  071 is applied, null for anyone who never picked an avatar. Both
    *  render the initials avatar. */
   avatar_id?: string | null
+  /** The customised avatar (migration 072, unapplied). Wins over
+   *  avatar_id when present. `unknown` because it is jsonb — StudyAvatar
+   *  owns the narrowing. */
+  avatar_config?: unknown
   xp_this_week: number
   rank: number
   is_me: boolean
@@ -451,6 +455,7 @@ function RankAvatar({ row, size, initialsClass, avatarClass = '' }: {
   return (
     <StudyAvatar
       avatarId={row.avatar_id}
+      avatarConfig={row.avatar_config}
       size={size}
       className={avatarClass}
       fallback={<span className={initialsClass}>{initialsOf(row.display_name)}</span>}

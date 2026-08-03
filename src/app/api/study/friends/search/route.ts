@@ -56,6 +56,7 @@ export async function GET(req: NextRequest) {
       student_id: r.student_id as string,
       nickname: r.nickname as string,
       avatar_id: avatars.get(r.student_id as string)?.avatar_id ?? null,
+      avatar_config: avatars.get(r.student_id as string)?.avatar_config ?? null,
       relation,
     }
   }))

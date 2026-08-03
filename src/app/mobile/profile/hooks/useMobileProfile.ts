@@ -22,11 +22,30 @@ export interface UserProfile {
 
 export interface UserPreferences {
   push_notifications: boolean
+  /**
+   * Per-category email opt-outs, stored in the `user_preferences`
+   * jsonb column of the same name.
+   *
+   * The first four are ACADEMY concerns (they gate the assignment- and
+   * session-reminder crons). `study_recap` is the study weekly-recap
+   * email and is the only study-mode member — it is read by
+   * /api/cron/study-weekly-recap, which until this key existed had no
+   * opt-out at all and mailed every onboarded student regardless of
+   * what they had switched off here.
+   *
+   * EVERY flag is opt-OUT: an absent key means "on". See the `!== false`
+   * reads below, and `defaultPreferences`. The column is genuinely `{}`
+   * for accounts created through LanguageContext, and carries a
+   * completely different key set for accounts created through the
+   * dashboard settings page, so "absent" is the common case and must
+   * never be read as "off".
+   */
   email_notifications: {
     assignments: boolean
     grades: boolean
     announcements: boolean
     reminders: boolean
+    study_recap: boolean
   }
   language: string
 }
@@ -56,9 +75,46 @@ const defaultPreferences: UserPreferences = {
     assignments: true,
     grades: true,
     announcements: true,
-    reminders: true
+    reminders: true,
+    study_recap: true
   },
   language: 'english'
+}
+
+/**
+ * Fill in any email flag the stored shape does not have.
+ *
+ * Needed because the sessionStorage cache is a snapshot of an OLDER
+ * BUILD's UserPreferences: a student who loaded this page before
+ * `study_recap` existed has a five-minute-fresh cache with four flags in
+ * it, and `preferences.email_notifications.study_recap` reads
+ * `undefined`. A toggle bound to `undefined` renders OFF and
+ * `aria-checked` becomes absent — so the screen would say the student
+ * had opted out of an email they are in fact still receiving, until the
+ * cache expired.
+ *
+ * Same `!== false` rule as the database read, for the same reason:
+ * absent is ON.
+ */
+function withPreferenceDefaults(cached: CachedProfileData | null): CachedProfileData | null {
+  if (!cached) return null
+  const stored = (cached.preferences?.email_notifications ?? {}) as Partial<
+    UserPreferences['email_notifications']
+  >
+  return {
+    ...cached,
+    preferences: {
+      ...defaultPreferences,
+      ...cached.preferences,
+      email_notifications: {
+        assignments: stored.assignments !== false,
+        grades: stored.grades !== false,
+        announcements: stored.announcements !== false,
+        reminders: stored.reminders !== false,
+        study_recap: stored.study_recap !== false,
+      },
+    },
+  }
 }
 
 export const useMobileProfile = (
@@ -80,8 +136,7 @@ export const useMobileProfile = (
         const cacheValidFor = 5 * 60 * 1000 // 5 minutes
 
         if (timeDiff < cacheValidFor) {
-          const parsed = JSON.parse(sessionCachedData)
-          return parsed
+          return withPreferenceDefaults(JSON.parse(sessionCachedData))
         }
       }
     } catch (error) {
@@ -111,8 +166,7 @@ export const useMobileProfile = (
 
       if (timeDiff < cacheValidFor) {
         try {
-          const parsed = JSON.parse(sessionCachedData)
-          setData(parsed)
+          setData(withPreferenceDefaults(JSON.parse(sessionCachedData)))
           return
         } catch (error) {
           console.warn('[useMobileProfile] Cache parse error:', error)
@@ -244,7 +298,12 @@ export const useMobileProfile = (
             assignments: emailNotifs.assignments !== false,
             grades: emailNotifs.grades !== false,
             announcements: emailNotifs.announcements !== false,
-            reminders: emailNotifs.reminders !== false
+            reminders: emailNotifs.reminders !== false,
+            // Same `!== false` rule as the four above, and for the same
+            // reason: a student who has never touched this screen has no
+            // study_recap key at all, and must keep receiving the recap
+            // they already receive today.
+            study_recap: emailNotifs.study_recap !== false
           },
           language: preferencesResult.data.language || 'english'
         }

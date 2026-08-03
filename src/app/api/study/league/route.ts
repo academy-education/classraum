@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { LEAGUE_TIERS } from '@/lib/study/league-rewards'
 import { resolveIdentities } from '@/lib/study/identity'
+import type { AvatarConfig } from '@/lib/study/avatarConfig'
 
 /**
  * GET /api/study/league — current week's leaderboard for the caller.
@@ -24,8 +25,11 @@ export const dynamic = 'force-dynamic'
 interface LeaderboardRow {
   student_id: string
   display_name: string
-  /** Chosen Raumi avatar, or null → the row draws its initials avatar. */
+  /** The preset the student started from, or null. */
   avatar_id: string | null
+  /** Their customised avatar, and the one the row actually draws when
+   *  set. Null until migration 072 is applied. */
+  avatar_config: AvatarConfig | null
   xp_this_week: number
   rank: number
   is_me: boolean
@@ -117,6 +121,7 @@ export async function GET(req: NextRequest) {
       student_id: sid,
       display_name: identities.get(sid)?.display_name ?? 'Student',
       avatar_id: identities.get(sid)?.avatar_id ?? null,
+      avatar_config: identities.get(sid)?.avatar_config ?? null,
       xp_this_week: m.xp_this_week as number,
       rank: i + 1,
       is_me: sid === user.id,

@@ -1,18 +1,26 @@
 /** @jest-environment node */
 /**
  * resolveIdentities feeds the league leaderboard, the friends list and
- * the friend search. It reads `avatar_id`, a column migration 071 adds
- * and which IS NOT APPLIED YET.
+ * the friend search. It reads `avatar_id` (migration 071) and
+ * `avatar_config` (migration 072). NEITHER MIGRATION IS APPLIED.
  *
  * The failure mode this file exists for: PostgREST rejects a select that
  * names an unknown column (42703) and returns `data: null` for the WHOLE
  * query — not just that field. Without the fallback, every display name
  * on the leaderboard silently becomes "Student" the moment this code
  * ships ahead of the migration, and nothing throws.
+ *
+ * 072 made this a LADDER rather than one fallback, and that is what the
+ * middle tests below pin. The obvious way to add avatar_config — put it
+ * in the existing wide select — re-arms the trap one rung up: against a
+ * post-071/pre-072 database the wide select fails, the single fallback
+ * drops all the way to nickname-only, and the avatars that DID work
+ * disappear. Each rung has to drop exactly one migration's columns.
  */
 import { resolveIdentities, resolveDisplayNames, maskName } from '@/lib/study/identity'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { tableRouter } from '@/tests/study-route-helpers'
+import { DEFAULT_AVATAR_CONFIG } from '@/lib/study/avatarConfig'
 
 jest.mock('@/lib/supabase-admin', () => ({ dbAdmin: { from: jest.fn() } }))
 
@@ -41,7 +49,7 @@ describe('resolveIdentities', () => {
     enqueue('study_user_prefs', { data: [{ student_id: 'u1', nickname: 'andy', avatar_id: 'person-aster' }] })
 
     const out = await resolveIdentities(['u1'], 'me')
-    expect(out.get('u1')).toEqual({ display_name: 'andy', avatar_id: 'person-aster' })
+    expect(out.get('u1')).toEqual({ display_name: 'andy', avatar_id: 'person-aster', avatar_config: null })
   })
 
   it('KEEPS EVERY DISPLAY NAME when avatar_id does not exist yet (migration 071 unapplied)', async () => {
@@ -53,10 +61,68 @@ describe('resolveIdentities', () => {
 
     const out = await resolveIdentities(['u1', 'u2'], 'u2')
     // The whole point: names survive, only avatars are absent.
-    expect(out.get('u1')).toEqual({ display_name: 'andy', avatar_id: null })
-    expect(out.get('u2')).toEqual({ display_name: '김민수', avatar_id: null })
+    expect(out.get('u1')).toEqual({ display_name: 'andy', avatar_id: null, avatar_config: null })
+    expect(out.get('u2')).toEqual({ display_name: '김민수', avatar_id: null, avatar_config: null })
     expect(out.get('u1')!.display_name).not.toBe('Student')
     expect(warn).toHaveBeenCalled()
+  })
+
+  it('KEEPS THE PRESET AVATARS when only avatar_config is missing (072 unapplied, 071 applied)', async () => {
+    // The rung the naive fix skips. Everything that worked before 072
+    // has to keep working while 072 is unapplied — which is right now.
+    enqueue('users', { data: [{ id: 'u1', name: 'Andrew Park' }] })
+    enqueue('study_user_prefs', { error: UNDEFINED_COLUMN })
+    enqueue('study_user_prefs', { data: [{ student_id: 'u1', nickname: 'andy', avatar_id: 'person-aster' }] })
+
+    const out = await resolveIdentities(['u1'], 'me')
+    expect(out.get('u1')).toEqual({
+      display_name: 'andy', avatar_id: 'person-aster', avatar_config: null,
+    })
+  })
+
+  it('returns a normalised config when 072 IS applied', async () => {
+    enqueue('users', { data: [{ id: 'u1', name: 'Andrew Park' }] })
+    enqueue('study_user_prefs', {
+      data: [{
+        student_id: 'u1', nickname: 'andy', avatar_id: 'person-aster',
+        avatar_config: { skin: 'tone-6', hair: 'two-block', junk: 'x' },
+      }],
+    })
+
+    const out = await resolveIdentities(['u1'], 'me')
+    // Normalised on the SERVER: the parts this build knows survive, the
+    // rest fill in from the defaults, and the junk key never reaches a
+    // client.
+    expect(out.get('u1')!.avatar_config).toEqual({
+      ...DEFAULT_AVATAR_CONFIG, skin: 'tone-6', hair: 'two-block',
+    })
+    expect(out.get('u1')!.avatar_config).not.toHaveProperty('junk')
+  })
+
+  it('leaves avatar_config null when the stored value is not an object', async () => {
+    // NULL is the "never opened the builder" signal, and a scalar that
+    // somehow got in must reach the initials fallback, not a blank disc.
+    enqueue('users', { data: [{ id: 'u1', name: 'Andrew Park' }] })
+    enqueue('study_user_prefs', {
+      data: [{ student_id: 'u1', nickname: 'andy', avatar_id: null, avatar_config: 'oops' }],
+    })
+
+    expect((await resolveIdentities(['u1'], 'me')).get('u1')!.avatar_config).toBeNull()
+  })
+
+  it('still returns names when EVERY rung of the ladder fails', async () => {
+    enqueue('users', { data: [{ id: 'u1', name: 'Andrew Park' }] })
+    enqueue('study_user_prefs', { error: UNDEFINED_COLUMN })
+    enqueue('study_user_prefs', { error: UNDEFINED_COLUMN })
+    enqueue('study_user_prefs', { error: { code: '42P01', message: 'relation does not exist' } })
+    const err = jest.spyOn(console, 'error').mockImplementation(() => {})
+
+    const out = await resolveIdentities(['u1'], 'me')
+    // No nicknames are available, so the masked real name is the floor —
+    // and it must not be the string "Student".
+    expect(out.get('u1')!.display_name).toBe(maskName('Andrew Park', false))
+    expect(err).toHaveBeenCalled()
+    err.mockRestore()
   })
 
   it('drops an avatar id this build cannot draw, rather than passing it to the client', async () => {

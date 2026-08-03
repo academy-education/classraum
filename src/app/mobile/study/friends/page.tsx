@@ -20,10 +20,19 @@ import { StudyAvatar } from '@/app/mobile/study/_shared/avatars'
  * the referral loop.
  */
 
-/** avatar_id is optional on the wire: it is absent from responses served
- *  before migration 071 is applied, and null for anyone who never picked
- *  an avatar. Both cases render the initials avatar. */
-interface Person { student_id: string; display_name: string; avatar_id?: string | null }
+/** Both avatar fields are optional on the wire: absent from responses
+ *  served before their migration is applied (071 for avatar_id, 072 for
+ *  avatar_config — neither is applied today), and null for anyone who
+ *  has neither picked a preset nor built one. Every one of those cases
+ *  renders the initials avatar. `avatar_config` is jsonb and is typed
+ *  `unknown` here on purpose: StudyAvatar owns the narrowing, so a page
+ *  cannot skip it by asserting a type it did not check. */
+interface Person {
+  student_id: string
+  display_name: string
+  avatar_id?: string | null
+  avatar_config?: unknown
+}
 interface FriendRequest extends Person { id: string }
 interface FriendsData {
   friends: Person[]
@@ -35,6 +44,7 @@ interface SearchResult {
   student_id: string
   nickname: string
   avatar_id?: string | null
+  avatar_config?: unknown
   relation: 'none' | 'friends' | 'pending_out' | 'pending_in'
 }
 interface ActiveDuel { id: string; opponent: Person; my_xp: number; their_xp: number; ends_at: string | null }
@@ -236,7 +246,7 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
         <div className="space-y-1.5">
           {results.map(r => (
             <div key={r.student_id} className="flex items-center gap-2.5 px-1 py-1">
-              <Avatar name={r.nickname} avatarId={r.avatar_id} />
+              <Avatar name={r.nickname} avatarId={r.avatar_id} avatarConfig={r.avatar_config} />
               <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{r.nickname}</span>
               {r.relation === 'friends' ? (
                 <span className="text-[11.5px] font-semibold text-emerald-600">{ko ? '친구' : 'Friends'}</span>
@@ -316,7 +326,7 @@ function IncomingRequests({ ko, requests, onChanged }: { ko: boolean; requests: 
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 divide-y divide-gray-100">
         {requests.map(r => (
           <div key={r.id} className="flex items-center gap-2.5 px-4 py-3">
-            <Avatar name={r.display_name} avatarId={r.avatar_id} />
+            <Avatar name={r.display_name} avatarId={r.avatar_id} avatarConfig={r.avatar_config} />
             <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{r.display_name}</span>
             <button type="button" onClick={() => void respond(r.id, 'accept')}
               className="h-8 px-3 rounded-full bg-primary text-white text-[12px] font-semibold hover:opacity-95 active:scale-95 transition">
@@ -388,7 +398,7 @@ function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: bo
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 divide-y divide-gray-100">
         {friends.map(f => (
           <div key={f.student_id} className="group flex items-center gap-2.5 px-4 py-3">
-            <Avatar name={f.display_name} avatarId={f.avatar_id} />
+            <Avatar name={f.display_name} avatarId={f.avatar_id} avatarConfig={f.avatar_config} />
             <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{f.display_name}</span>
             {/* duels hidden for launch */}
             {false && (
@@ -406,7 +416,7 @@ function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: bo
         ))}
         {outgoing.map(o => (
           <div key={o.id} className="flex items-center gap-2.5 px-4 py-3 opacity-70">
-            <Avatar name={o.display_name} avatarId={o.avatar_id} />
+            <Avatar name={o.display_name} avatarId={o.avatar_id} avatarConfig={o.avatar_config} />
             <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-500">{o.display_name}</span>
             <span className="text-[11.5px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
             <button type="button" onClick={() => void cancel(o.id)} aria-label={ko ? '취소' : 'Cancel'}
@@ -468,7 +478,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
       {/* Incoming challenge requests */}
       {data.incoming.map(r => (
         <div key={r.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-primary/20 px-4 py-3">
-          <Avatar name={r.opponent.display_name} avatarId={r.opponent.avatar_id} />
+          <Avatar name={r.opponent.display_name} avatarId={r.opponent.avatar_id} avatarConfig={r.opponent.avatar_config} />
           <div className="flex-1 min-w-0">
             <div className="text-[13.5px] font-medium text-gray-800 truncate">{r.opponent.display_name}</div>
             <div className="text-[11.5px] text-gray-400">{ko ? '대결을 신청했어요' : 'challenged you'}</div>
@@ -492,7 +502,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
           <div key={d.id} className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-3">
             <div className="flex items-center justify-between mb-2">
               <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-gray-800">
-                <Avatar name={d.opponent.display_name} avatarId={d.opponent.avatar_id} />
+                <Avatar name={d.opponent.display_name} avatarId={d.opponent.avatar_id} avatarConfig={d.opponent.avatar_config} />
                 <span className="truncate max-w-[120px]">{d.opponent.display_name}</span>
               </span>
               <span className="inline-flex items-center gap-1 text-[11px] font-medium text-gray-400">
@@ -520,7 +530,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
       {/* Outgoing pending */}
       {data.outgoing.map(o => (
         <div key={o.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-3 opacity-80">
-          <Avatar name={o.opponent.display_name} avatarId={o.opponent.avatar_id} />
+          <Avatar name={o.opponent.display_name} avatarId={o.opponent.avatar_id} avatarConfig={o.opponent.avatar_config} />
           <span className="flex-1 min-w-0 truncate text-[13.5px] text-gray-600">{o.opponent.display_name}</span>
           <span className="text-[11.5px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
           <button type="button" onClick={() => void respond(o.id, 'cancel')} aria-label={ko ? '취소' : 'Cancel'}
@@ -533,7 +543,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
       {/* Recent results */}
       {data.recent.map(r => (
         <div key={r.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-2.5">
-          <Avatar name={r.opponent.display_name} avatarId={r.opponent.avatar_id} />
+          <Avatar name={r.opponent.display_name} avatarId={r.opponent.avatar_id} avatarConfig={r.opponent.avatar_config} />
           <span className="flex-1 min-w-0 truncate text-[13.5px] text-gray-700">{r.opponent.display_name}</span>
           <span className="text-[12px] tabular-nums text-gray-500">{r.my_xp}–{r.their_xp}</span>
           <span className={`text-[11px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${
@@ -555,13 +565,16 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
  * hash, same hsl(), same size and type scale — so a student who never
  * opens the avatar picker sees exactly what they saw before.
  */
-function Avatar({ name, avatarId }: { name: string; avatarId?: string | null }) {
+function Avatar({ name, avatarId, avatarConfig }: {
+  name: string; avatarId?: string | null; avatarConfig?: unknown
+}) {
   const initial = (name.trim()[0] ?? '?').toUpperCase()
   let h = 0
   for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) % 360
   return (
     <StudyAvatar
       avatarId={avatarId}
+      avatarConfig={avatarConfig}
       size={36}
       fallback={
         <div className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold text-white"

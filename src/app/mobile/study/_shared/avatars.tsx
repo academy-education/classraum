@@ -1,13 +1,36 @@
 import type { ReactNode } from 'react'
-import { STUDY_AVATAR_IDS, isStudyAvatarId, type StudyAvatarId } from '@/lib/study/avatars'
+import {
+  SKIN_RAMP, HAIR_COLOURS, HAIR_STYLES, IRIS,
+  STUDY_AVATARS, STUDY_AVATAR_LIST, getStudyAvatar, presetConfig,
+  normaliseAvatarConfig, DEFAULT_AVATAR_CONFIG, skinLightness,
+  mix, darken, lighten, contrastRatio,
+  type AvatarConfig, type StudyAvatarSpec,
+  type SkinTone, type HairColour, type HairStyle, type HairTexture,
+  type HairFront, type FaceShape, type EyeShape, type BrowShape,
+  type MouthShape, type FacialHair, type Accessory, type Uniform, type Iris,
+} from '@/lib/study/avatarConfig'
 
 /**
- * The pickable study avatars: PRESET PEOPLE, head-and-shoulders.
+ * The study avatar, DRAWN — head-and-shoulders, from an AvatarConfig.
+ *
+ * The part VOCABULARY and the config shape live in
+ * `@/lib/study/avatarConfig` (data only, no React, so the API can
+ * validate a submitted config without importing this file). What lives
+ * here is the geometry and the components.
  *
  * These replaced a set of ten Raumi-robot colourways in 2026-08. Raumi is
  * still the mascot (PathMascot.tsx) — he is the app talking to you, not
  * you. An avatar is the student, and a student picking a face wants to
  * find one that looks like them.
+ *
+ * ── A preset is a config ─────────────────────────────────────────────
+ * Nothing here renders a preset ID. `PersonAvatar` takes a config;
+ * `StudyAvatar` resolves a stored config first and a preset id second,
+ * and falls back to the CALL SITE's own initials avatar when it has
+ * neither. The 27 presets are configs in the registry, so the builder
+ * and the picker draw through exactly one path — a preset that renders
+ * differently from the identical hand-built config is not possible,
+ * because there is only one renderer and it never sees an id.
  *
  * ── Style ────────────────────────────────────────────────────────────
  * Same "soft-flat" discipline as the mascot so the two sit together:
@@ -30,15 +53,15 @@ import { STUDY_AVATAR_IDS, isStudyAvatarId, type StudyAvatarId } from '@/lib/stu
  * stroke so it reads even if a future backdrop lands close to its fill.
  *
  * ── Range is the point ───────────────────────────────────────────────
- * Eighteen presets. The axes are independent and are all load-bearing:
- * SKIN_RAMP (8 documented tones, evenly spaced in lightness), hair
- * TEXTURE (9 families — not one silhouette recoloured), hair COLOUR (11,
- * including grey, white and two fashion colours), FACE_SHAPES (6) and
- * separate eye / brow / mouth / facial-hair sets. A preset is not "a
- * face with a hat on": change the skin tone alone and you get a
- * different person, change the hair alone and you get a different
- * person. Accessories appear on 6 of 18 and are never the only thing
- * separating two presets.
+ * Twenty-seven presets. The axes are independent and are all
+ * load-bearing: SKIN_RAMP (8 documented tones, evenly spaced in
+ * lightness), hair TEXTURE (9 families — not one silhouette recoloured),
+ * hair COLOUR (11, including grey, white and two fashion colours),
+ * FACE_SHAPES (6) and separate eye / brow / mouth / facial-hair sets. A
+ * preset is not "a face with a hat on": change the skin tone alone and
+ * you get a different person, change the hair alone and you get a
+ * different person. Accessories are never the only thing separating two
+ * presets.
  *
  * The primary audience is Korean middle- and high-schoolers plus
  * international SAT/TOEFL students, so monolid and almond eye shapes with
@@ -47,159 +70,30 @@ import { STUDY_AVATAR_IDS, isStudyAvatarId, type StudyAvatarId } from '@/lib/stu
  * collapse into one repeated face either.
  */
 
-// ── Colour helpers ───────────────────────────────────────────────────
-// Derived tones (a hairline stroke, a garment fold, a faded undercut)
-// are computed, not hand-listed, so they cannot drift out of step with
-// the base colour they belong to. Pure functions, no runtime state.
-
-function mix(hex: string, target: string, t: number): string {
-  const a = parseInt(hex.slice(1), 16)
-  const b = parseInt(target.slice(1), 16)
-  const at = (shift: number) => Math.round((((a >> shift) & 255) * (1 - t)) + (((b >> shift) & 255) * t))
-  return '#' + [16, 8, 0].map(s => at(s).toString(16).padStart(2, '0')).join('')
+// Re-exported so the drawing module stays the one import for anything
+// that already reached for a part table through it.
+export {
+  SKIN_RAMP, HAIR_COLOURS, HAIR_STYLES, IRIS,
+  STUDY_AVATARS, STUDY_AVATAR_LIST, getStudyAvatar, presetConfig,
+  normaliseAvatarConfig, DEFAULT_AVATAR_CONFIG, skinLightness,
 }
-const darken = (hex: string, t = 0.22) => mix(hex, '#000000', t)
-const lighten = (hex: string, t = 0.2) => mix(hex, '#FFFFFF', t)
-
-// ── The skin ramp ────────────────────────────────────────────────────
-/**
- * EIGHT tones, spaced across the whole range rather than clustered at
- * the light end. The spacing is inspectable on purpose: `base` steps
- * down in mean channel value by roughly 22–31 per rung across
- * 230 → 41, i.e. no two neighbours are a re-tint of each other and no
- * gap is twice another. `avatars.test.tsx` asserts both the count and
- * the monotonic descent, so "add one more fair tone" cannot happen by
- * accident.
- *
- *   base   the face and neck fill
- *   shade  jaw / neck / ear shadow AND the head's hairline stroke — one
- *          step darker than base, never a black outline
- *   line   nose and lid lines; the darkest member of the tone's family,
- *          because a fixed grey reads as dirt on fair skin and vanishes
- *          on deep skin
- *   lip    mouth; the tone's family pushed toward rose, same reason
- */
-export const SKIN_RAMP = {
-  'tone-1': { base: '#FBE3D3', shade: '#EFCAB4', line: '#B9866B', lip: '#C97D77' },
-  'tone-2': { base: '#F1CDB2', shade: '#E0B393', line: '#A97551', lip: '#BF6F64' },
-  'tone-3': { base: '#E0AC8B', shade: '#CB9070', line: '#96603F', lip: '#AC5F53' },
-  'tone-4': { base: '#CB8F66', shade: '#B4744C', line: '#7C4A2B', lip: '#954C40' },
-  'tone-5': { base: '#AE6E45', shade: '#95582F', line: '#63361B', lip: '#7C3D33' },
-  'tone-6': { base: '#8F5330', shade: '#76401F', line: '#4C2711', lip: '#66301F' },
-  'tone-7': { base: '#6B3A1F', shade: '#552C13', line: '#361A0A', lip: '#4E2416' },
-  'tone-8': { base: '#47250F', shade: '#361B09', line: '#1F0F05', lip: '#351A0E' },
-} as const
-export type SkinTone = keyof typeof SKIN_RAMP
-
-/** Mean channel value per rung — the ramp's spacing, made checkable. */
-export function skinLightness(tone: SkinTone): number {
-  const n = parseInt(SKIN_RAMP[tone].base.slice(1), 16)
-  return (((n >> 16) & 255) + ((n >> 8) & 255) + (n & 255)) / 3
+export type {
+  AvatarConfig, StudyAvatarSpec,
+  SkinTone, HairColour, HairStyle, HairTexture, HairFront,
+  FaceShape, EyeShape, BrowShape, MouthShape, FacialHair, Accessory,
+  Uniform, Iris,
 }
 
-// ── Hair colour ──────────────────────────────────────────────────────
-/** Eleven colours. `hi` is the sheen stroke; the hairline stroke is
- *  derived with darken() so it always belongs to its own family. */
-export const HAIR_COLOURS = {
-  black: { base: '#1C1A22', hi: '#3A3746' },
-  'soft-black': { base: '#2A2230', hi: '#494056' },
-  'dark-brown': { base: '#3D2A1E', hi: '#5D432F' },
-  brown: { base: '#5C3D28', hi: '#805740' },
-  'light-brown': { base: '#8C6039', hi: '#AE8054' },
-  auburn: { base: '#8E3F26', hi: '#B7603C' },
-  blonde: { base: '#D3A44C', hi: '#EFCE84' },
-  grey: { base: '#8E8F9A', hi: '#B6B7C1' },
-  white: { base: '#D8D9E1', hi: '#F3F4F9' },
-  lavender: { base: '#8E6FCB', hi: '#B49AE6' },
-  teal: { base: '#25837F', hi: '#4FB3AC' },
-} as const
-export type HairColour = keyof typeof HAIR_COLOURS
-
-// ── Hair ─────────────────────────────────────────────────────────────
-export type HairTexture =
-  | 'straight' | 'wavy' | 'curly' | 'coily'
-  | 'braided' | 'locs' | 'cropped' | 'none' | 'covered'
-
-export type HairStyle =
-  | 'straight-long' | 'straight-bob' | 'crop-side' | 'updo-low' | 'ponytail-high'
-  | 'fringe-long' | 'wispy-long' | 'low-ponytail' | 'bob-bangs' | 'half-up'
-  | 'wavy-mid' | 'waves-short' | 'middle-part-mid' | 'layered-bob'
-  | 'curly-shoulder' | 'bun-top'
-  | 'coily-afro' | 'coily-puff'
-  | 'braids-twin' | 'locs-long'
-  | 'buzz' | 'undercut-fade' | 'pixie' | 'two-block' | 'crop-neat'
-  | 'bald' | 'hijab'
-
-/**
- * How the hair meets the FACE — the hairline, parting or fringe.
- *
- * This axis exists because texture alone stopped discriminating once the
- * set gained a block of styles aimed at Korean students, whose hair is
- * overwhelmingly straight: a blunt fringe (일자 앞머리), see-through
- * bangs (시스루뱅), a middle part and a swept-back ponytail are four
- * completely different heads that all answer "straight" to the texture
- * question. `avatars.test.tsx` asserts that the DOMINANT texture family
- * spans several fronts, which is the check that "eighteen straight cuts"
- * was really reaching for — a texture histogram never was.
- */
-export type HairFront =
-  | 'cap' | 'side-part' | 'middle-part' | 'swept-back'
-  | 'full-fringe' | 'blunt-fringe' | 'wispy-fringe'
-  | 'none' | 'covered'
-
-/**
- * Every style, its texture family, its hairline, and whether the ears
- * show through it.
- *
- * Texture and front live HERE and not on the preset, so a preset cannot
- * claim a texture its silhouette does not draw. Twenty-seven distinct
- * silhouettes across nine texture families and nine fronts: the set
- * cannot be described as "one head of hair in eleven colours", which is
- * the failure mode CLAUDE.md's "a batch built to one brief develops a
- * cross-item tell" warns about.
- */
-export const HAIR_STYLES: Record<HairStyle, { texture: HairTexture; front: HairFront; ears: boolean }> = {
-  'straight-long': { texture: 'straight', front: 'middle-part', ears: false },
-  'straight-bob': { texture: 'straight', front: 'full-fringe', ears: false },
-  'crop-side': { texture: 'straight', front: 'side-part', ears: true },
-  'updo-low': { texture: 'straight', front: 'swept-back', ears: true },
-  'ponytail-high': { texture: 'straight', front: 'swept-back', ears: true },
-  // ── added 2026-08 for Korean middle/high-school students ──────────
-  'fringe-long': { texture: 'straight', front: 'blunt-fringe', ears: false },
-  'wispy-long': { texture: 'straight', front: 'wispy-fringe', ears: false },
-  'low-ponytail': { texture: 'straight', front: 'swept-back', ears: true },
-  'bob-bangs': { texture: 'straight', front: 'full-fringe', ears: false },
-  'half-up': { texture: 'straight', front: 'middle-part', ears: true },
-  'wavy-mid': { texture: 'wavy', front: 'side-part', ears: false },
-  'waves-short': { texture: 'wavy', front: 'side-part', ears: true },
-  // C컬 단발 / 레이어드컷 — a soft perm, which is what most "straight"
-  // Korean school hair actually is once it is past the shoulder.
-  'middle-part-mid': { texture: 'wavy', front: 'middle-part', ears: false },
-  'layered-bob': { texture: 'wavy', front: 'side-part', ears: true },
-  'curly-shoulder': { texture: 'curly', front: 'cap', ears: false },
-  'bun-top': { texture: 'curly', front: 'cap', ears: true },
-  'coily-afro': { texture: 'coily', front: 'cap', ears: false },
-  'coily-puff': { texture: 'coily', front: 'cap', ears: true },
-  'braids-twin': { texture: 'braided', front: 'cap', ears: false },
-  'locs-long': { texture: 'locs', front: 'cap', ears: false },
-  buzz: { texture: 'cropped', front: 'cap', ears: true },
-  'undercut-fade': { texture: 'cropped', front: 'swept-back', ears: true },
-  pixie: { texture: 'cropped', front: 'cap', ears: true },
-  'two-block': { texture: 'cropped', front: 'full-fringe', ears: true },
-  'crop-neat': { texture: 'cropped', front: 'full-fringe', ears: true },
-  bald: { texture: 'none', front: 'none', ears: true },
-  hijab: { texture: 'covered', front: 'covered', ears: false },
-}
-
-// ── Face ─────────────────────────────────────────────────────────────
-export type FaceShape = 'oval' | 'round' | 'square' | 'heart' | 'long' | 'diamond'
-
+// ── Face geometry ────────────────────────────────────────────────────
 /**
  * Six head silhouettes. `hairScale` squeezes the (shared) hair geometry
  * horizontally about x=32 so a wide crop does not float off a narrow
  * face; `ear` is the half-width at ear height. Presentation variety has
  * to come from the FACE as well as the hair, or the set reads as
  * gendered pairs of one face.
+ *
+ * Keyed by FaceShape, so a shape added to the vocabulary without a path
+ * here is a compile error rather than a blank head.
  */
 const FACE_SHAPES: Record<FaceShape, { path: string; hairScale: number; ear: number }> = {
   oval: {
@@ -228,288 +122,6 @@ const FACE_SHAPES: Record<FaceShape, { path: string; hairScale: number; ear: num
   },
 }
 
-export type EyeShape = 'almond' | 'mono' | 'round' | 'narrow' | 'wide' | 'smiling'
-export type BrowShape = 'soft' | 'straight' | 'arched' | 'thick' | 'thin'
-export type MouthShape = 'smile' | 'soft-smile' | 'neutral' | 'grin' | 'smirk'
-export type FacialHair = 'none' | 'stubble' | 'short-beard' | 'moustache'
-export type Accessory =
-  | 'none' | 'glasses' | 'round-glasses' | 'slim-glasses'
-  | 'earrings' | 'headband' | 'freckles'
-
-/**
- * School-uniform garments, drawn OVER the plain garment block.
- *
- * A separate axis from `clothes` rather than three more `clothes` hex
- * values, because a uniform is layered: `clothes` stays the outer
- * garment (the blazer, or the shirt itself when there is no blazer) and
- * this adds the white collar, the placket and the ribbon or necktie on
- * top. Kept optional so the other twenty-four presets are untouched.
- */
-export type Uniform = 'blazer-ribbon' | 'blazer-tie' | 'shirt-collar'
-
-/** Iris colours. Deliberately small and mostly dark — an eye is ~2px at
- *  leaderboard size, so this axis is decoration, never the difference
- *  between two presets. */
-const IRIS = {
-  dark: '#2B2028', brown: '#5A3620', hazel: '#8A6134',
-  green: '#3F6B4B', blue: '#3F6690', grey: '#5F6C77',
-} as const
-export type Iris = keyof typeof IRIS
-
-export interface StudyAvatarSpec {
-  id: StudyAvatarId
-  skin: SkinTone
-  face: FaceShape
-  hair: HairStyle
-  /** Also the brow and facial-hair colour. Unused as *hair* by 'bald'
-   *  and 'hijab', which still need brows. */
-  hairColour: HairColour
-  /** Headscarf fabric. Required by 'hijab'; ignored otherwise. */
-  coverColour?: string
-  eyes: EyeShape
-  iris: Iris
-  brow: BrowShape
-  mouth: MouthShape
-  facialHair: FacialHair
-  accessory: Accessory
-  /** School uniform layered over `clothes`. Omit for plain clothes. */
-  uniform?: Uniform
-  /** Ribbon / necktie colour. Required in practice by 'blazer-ribbon'
-   *  and 'blazer-tie'; ignored otherwise. */
-  tieColour?: string
-  /** Garment. The second-largest block after the face, so it is the
-   *  other thing carrying identity at 32px. For a uniform preset this is
-   *  the OUTER layer — the blazer, or the shirt when there is none. */
-  clothes: string
-  /** Disc behind the bust. Chosen to sit clear of BOTH the skin tone and
-   *  the hair colour — a pale backdrop under white hair, or a peach one
-   *  under tone-1, erases the silhouette. Pinned by a contrast test. */
-  bg: string
-  /** i18n key for the accessible name (en.json + ko.json). */
-  nameKey: string
-}
-
-/**
- * The registry. Keyed by the ids in @/lib/study/avatars — `satisfies`
- * makes a missing or misspelled key a compile error, so the id list and
- * the drawings cannot drift apart silently.
- */
-export const STUDY_AVATARS = {
-  'person-aster': {
-    id: 'person-aster', skin: 'tone-2', face: 'oval',
-    hair: 'straight-long', hairColour: 'black',
-    eyes: 'mono', iris: 'dark', brow: 'straight', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#5B7FD4', bg: '#EDE7F6', nameKey: 'study.prefs.avatarName.aster',
-  },
-  'person-ember': {
-    id: 'person-ember', skin: 'tone-7', face: 'round',
-    hair: 'coily-afro', hairColour: 'soft-black',
-    eyes: 'wide', iris: 'brown', brow: 'soft', mouth: 'grin',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#E9B04A', bg: '#DFF0F4', nameKey: 'study.prefs.avatarName.ember',
-  },
-  'person-quartz': {
-    id: 'person-quartz', skin: 'tone-3', face: 'round',
-    hair: 'straight-bob', hairColour: 'teal',
-    eyes: 'mono', iris: 'dark', brow: 'straight', mouth: 'smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#E2A03C', bg: '#F0EAF8', nameKey: 'study.prefs.avatarName.quartz',
-  },
-  'person-onyx': {
-    id: 'person-onyx', skin: 'tone-5', face: 'long',
-    hair: 'bald', hairColour: 'soft-black',
-    eyes: 'almond', iris: 'dark', brow: 'thick', mouth: 'neutral',
-    facialHair: 'short-beard', accessory: 'none',
-    clothes: '#4C5A73', bg: '#F3EFE2', nameKey: 'study.prefs.avatarName.onyx',
-  },
-  'person-birch': {
-    id: 'person-birch', skin: 'tone-1', face: 'round',
-    hair: 'wavy-mid', hairColour: 'light-brown',
-    eyes: 'round', iris: 'green', brow: 'soft', mouth: 'smile',
-    facialHair: 'none', accessory: 'freckles',
-    clothes: '#E0764F', bg: '#C4DCCB', nameKey: 'study.prefs.avatarName.birch',
-  },
-  'person-garnet': {
-    id: 'person-garnet', skin: 'tone-8', face: 'long',
-    hair: 'locs-long', hairColour: 'black',
-    eyes: 'almond', iris: 'brown', brow: 'straight', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#C9603F', bg: '#E7EDF6', nameKey: 'study.prefs.avatarName.garnet',
-  },
-  'person-maple': {
-    id: 'person-maple', skin: 'tone-4', face: 'heart',
-    hair: 'ponytail-high', hairColour: 'auburn',
-    eyes: 'almond', iris: 'hazel', brow: 'arched', mouth: 'smile',
-    facialHair: 'none', accessory: 'headband',
-    clothes: '#2E8F86', bg: '#F6E9E2', nameKey: 'study.prefs.avatarName.maple',
-  },
-  'person-cedar': {
-    id: 'person-cedar', skin: 'tone-6', face: 'square',
-    hair: 'buzz', hairColour: 'black',
-    eyes: 'almond', iris: 'dark', brow: 'thick', mouth: 'neutral',
-    facialHair: 'stubble', accessory: 'none',
-    clothes: '#3F7A63', bg: '#F2E9DC', nameKey: 'study.prefs.avatarName.cedar',
-  },
-  'person-harbor': {
-    id: 'person-harbor', skin: 'tone-2', face: 'long',
-    hair: 'crop-side', hairColour: 'blonde',
-    eyes: 'narrow', iris: 'blue', brow: 'thin', mouth: 'smirk',
-    facialHair: 'none', accessory: 'glasses',
-    clothes: '#4A6E96', bg: '#F7E6EC', nameKey: 'study.prefs.avatarName.harbor',
-  },
-  'person-nova': {
-    id: 'person-nova', skin: 'tone-7', face: 'oval',
-    hair: 'coily-puff', hairColour: 'black',
-    eyes: 'wide', iris: 'dark', brow: 'thick', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#D9564F', bg: '#E4EDFA', nameKey: 'study.prefs.avatarName.nova',
-  },
-  'person-dune': {
-    id: 'person-dune', skin: 'tone-3', face: 'heart',
-    hair: 'bun-top', hairColour: 'dark-brown',
-    eyes: 'almond', iris: 'brown', brow: 'arched', mouth: 'smile',
-    facialHair: 'none', accessory: 'earrings',
-    clothes: '#D2688F', bg: '#EAF1E6', nameKey: 'study.prefs.avatarName.dune',
-  },
-  'person-juniper': {
-    id: 'person-juniper', skin: 'tone-5', face: 'long',
-    hair: 'hijab', hairColour: 'dark-brown', coverColour: '#6C7FC4',
-    eyes: 'almond', iris: 'dark', brow: 'soft', mouth: 'smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#AEB6D2', bg: '#FAEDDC', nameKey: 'study.prefs.avatarName.juniper',
-  },
-  'person-indigo': {
-    id: 'person-indigo', skin: 'tone-1', face: 'diamond',
-    hair: 'pixie', hairColour: 'lavender',
-    eyes: 'round', iris: 'grey', brow: 'thin', mouth: 'smirk',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#3A3F52', bg: '#C8D6E8', nameKey: 'study.prefs.avatarName.indigo',
-  },
-  'person-rowan': {
-    id: 'person-rowan', skin: 'tone-8', face: 'diamond',
-    hair: 'waves-short', hairColour: 'grey',
-    eyes: 'almond', iris: 'dark', brow: 'thick', mouth: 'soft-smile',
-    facialHair: 'moustache', accessory: 'glasses',
-    clothes: '#3E8C6A', bg: '#F7EEDD', nameKey: 'study.prefs.avatarName.rowan',
-  },
-  'person-fern': {
-    id: 'person-fern', skin: 'tone-4', face: 'oval',
-    hair: 'curly-shoulder', hairColour: 'brown',
-    eyes: 'almond', iris: 'brown', brow: 'soft', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'round-glasses',
-    clothes: '#6C63C4', bg: '#E4F1E9', nameKey: 'study.prefs.avatarName.fern',
-  },
-  'person-lumen': {
-    id: 'person-lumen', skin: 'tone-6', face: 'heart',
-    hair: 'braids-twin', hairColour: 'dark-brown',
-    eyes: 'smiling', iris: 'brown', brow: 'soft', mouth: 'grin',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#7A5AC0', bg: '#EAF3E4', nameKey: 'study.prefs.avatarName.lumen',
-  },
-  'person-pearl': {
-    id: 'person-pearl', skin: 'tone-2', face: 'oval',
-    hair: 'updo-low', hairColour: 'white',
-    eyes: 'narrow', iris: 'grey', brow: 'thin', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#7C89A6', bg: '#AEBDD0', nameKey: 'study.prefs.avatarName.pearl',
-  },
-  'person-kestrel': {
-    id: 'person-kestrel', skin: 'tone-3', face: 'square',
-    hair: 'undercut-fade', hairColour: 'soft-black',
-    eyes: 'mono', iris: 'dark', brow: 'straight', mouth: 'smirk',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#2F6E8E', bg: '#F8EFDE', nameKey: 'study.prefs.avatarName.kestrel',
-  },
-
-  // ── Added 2026-08 ──────────────────────────────────────────────────
-  // Nine presets aimed at the primary audience: Korean middle- and
-  // high-schoolers. They are a block of REALISM, not a block of one
-  // face: the hair is predominantly black or dark brown with two dyed
-  // browns (which is what a classroom actually looks like), but the
-  // skin runs across six of the eight rungs and every one of the nine
-  // has its own face shape, eye shape, brow, mouth and hairline.
-  //
-  // The ids stay botanical/mineral like the first eighteen — nothing
-  // here encodes a nationality, and none of these presets is "the
-  // Korean one". A student anywhere can pick a 단발 and a blazer.
-  'person-willow': {
-    id: 'person-willow', skin: 'tone-2', face: 'oval',
-    hair: 'fringe-long', hairColour: 'black',
-    eyes: 'mono', iris: 'dark', brow: 'straight', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'none',
-    uniform: 'blazer-ribbon', tieColour: '#B0384A',
-    clothes: '#2E3C63', bg: '#DDE9F4', nameKey: 'study.prefs.avatarName.willow',
-  },
-  'person-flint': {
-    id: 'person-flint', skin: 'tone-6', face: 'square',
-    hair: 'two-block', hairColour: 'black',
-    eyes: 'narrow', iris: 'dark', brow: 'thick', mouth: 'smirk',
-    facialHair: 'none', accessory: 'slim-glasses',
-    uniform: 'blazer-tie', tieColour: '#2F4B7C',
-    clothes: '#2B2B34', bg: '#E7EFE4', nameKey: 'study.prefs.avatarName.flint',
-  },
-  'person-linden': {
-    id: 'person-linden', skin: 'tone-1', face: 'heart',
-    hair: 'wispy-long', hairColour: 'black',
-    eyes: 'almond', iris: 'brown', brow: 'soft', mouth: 'smile',
-    facialHair: 'none', accessory: 'slim-glasses',
-    clothes: '#C2557A', bg: '#BFD6E4', nameKey: 'study.prefs.avatarName.linden',
-  },
-  'person-sorrel': {
-    id: 'person-sorrel', skin: 'tone-6', face: 'round',
-    hair: 'low-ponytail', hairColour: 'soft-black',
-    eyes: 'almond', iris: 'brown', brow: 'soft', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#3F7F9E', bg: '#F6ECDC', nameKey: 'study.prefs.avatarName.sorrel',
-  },
-  'person-jasper': {
-    id: 'person-jasper', skin: 'tone-5', face: 'square',
-    hair: 'crop-neat', hairColour: 'soft-black',
-    eyes: 'almond', iris: 'dark', brow: 'straight', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'glasses',
-    uniform: 'shirt-collar',
-    clothes: '#DCE5F2', bg: '#96AEC9', nameKey: 'study.prefs.avatarName.jasper',
-  },
-  'person-clover': {
-    id: 'person-clover', skin: 'tone-4', face: 'round',
-    hair: 'bob-bangs', hairColour: 'black',
-    eyes: 'round', iris: 'dark', brow: 'thin', mouth: 'smile',
-    facialHair: 'none', accessory: 'round-glasses',
-    clothes: '#E07A4F', bg: '#DCE9DA', nameKey: 'study.prefs.avatarName.clover',
-  },
-  'person-thistle': {
-    id: 'person-thistle', skin: 'tone-2', face: 'heart',
-    hair: 'half-up', hairColour: 'light-brown',
-    eyes: 'mono', iris: 'brown', brow: 'arched', mouth: 'soft-smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#58A08C', bg: '#F5EFE1', nameKey: 'study.prefs.avatarName.thistle',
-  },
-  'person-mica': {
-    id: 'person-mica', skin: 'tone-3', face: 'long',
-    hair: 'middle-part-mid', hairColour: 'brown',
-    eyes: 'smiling', iris: 'dark', brow: 'arched', mouth: 'grin',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#C86A8E', bg: '#E1EDF1', nameKey: 'study.prefs.avatarName.mica',
-  },
-  'person-opal': {
-    id: 'person-opal', skin: 'tone-1', face: 'diamond',
-    hair: 'layered-bob', hairColour: 'dark-brown',
-    eyes: 'mono', iris: 'brown', brow: 'straight', mouth: 'smile',
-    facialHair: 'none', accessory: 'none',
-    clothes: '#6E76B8', bg: '#BEDACC', nameKey: 'study.prefs.avatarName.opal',
-  },
-} satisfies Record<StudyAvatarId, StudyAvatarSpec>
-
-/** Registry order = picker order. Derived from the canonical id list so
- *  the two can never disagree about membership. */
-export const STUDY_AVATAR_LIST: StudyAvatarSpec[] = STUDY_AVATAR_IDS.map(id => STUDY_AVATARS[id])
-
-/** Spec for an id, or null for null / unknown / retired ids. */
-export function getStudyAvatar(id: string | null | undefined): StudyAvatarSpec | null {
-  return isStudyAvatarId(id) ? STUDY_AVATARS[id] : null
-}
-
 // ── Drawing ──────────────────────────────────────────────────────────
 
 /**
@@ -517,18 +129,20 @@ export function getStudyAvatar(id: string | null | undefined): StudyAvatarSpec |
  * see the module note). `label` is the accessible name; pass null to
  * mark it decorative when an adjacent element already names the person.
  */
-export function PersonAvatar({ spec: s, size = 36, label, className = '' }: {
-  spec: StudyAvatarSpec
+export function PersonAvatar({ config: s, size = 36, label, className = '' }: {
+  /** A full config. A preset spec is one (plus id + nameKey), so it can
+   *  be passed straight in — there is no separate preset render path. */
+  config: AvatarConfig
   size?: number
   label?: string | null
   className?: string
 }) {
   const skin = SKIN_RAMP[s.skin]
-  const hair = HAIR_COLOURS[s.hairColour]
+  const hair = HAIR_COLOURS[s.hairColor]
   const face = FACE_SHAPES[s.face]
   const style = HAIR_STYLES[s.hair]
   const hairEdge = darken(hair.base, 0.28)
-  const clothesEdge = darken(s.clothes, 0.2)
+  const clothesEdge = darken(s.top, 0.2)
   // Squeeze the shared hair geometry onto this head's width.
   const hairTransform = `translate(${32 * (1 - face.hairScale)} 0) scale(${face.hairScale} 1)`
 
@@ -558,13 +172,13 @@ export function PersonAvatar({ spec: s, size = 36, label, className = '' }: {
         <path d="M 26.4 34 h 11.2 v 3.4 q -5.6 3.6 -11.2 0 z" fill={skin.shade} />
         <path
           d="M 32 45.4 C 20.4 45.4 10.2 52.4 7 65 L 57 65 C 53.8 52.4 43.6 45.4 32 45.4 Z"
-          fill={s.clothes} stroke={clothesEdge} strokeWidth="0.9"
+          fill={s.top} stroke={clothesEdge} strokeWidth="0.9"
         />
         {/* Plain neckline, OR the uniform that replaces it. Both sit
             under the head (drawn at step 4), so a long chin overlaps the
             collar the way a real one does. */}
         {s.uniform
-          ? <UniformMark kind={s.uniform} accent={s.tieColour ?? '#B0384A'} />
+          ? <UniformMark kind={s.uniform} accent={s.tieColor ?? '#B0384A'} />
           : <path d="M 25.8 46.6 Q 32 53.4 38.2 46.6" fill="none" stroke={clothesEdge} strokeWidth="1.3" strokeLinecap="round" />}
 
         {/* 3 · ears (behind the head, so only the outer edge shows) */}
@@ -589,7 +203,7 @@ export function PersonAvatar({ spec: s, size = 36, label, className = '' }: {
 
         {/* 6 · hair over the head */}
         <g transform={hairTransform}>
-          <HairFront style={s.hair} hair={hair} edge={hairEdge} skin={skin.base} cover={s.coverColour ?? '#6C7FC4'} />
+          <HairFront style={s.hair} hair={hair} edge={hairEdge} skin={skin.base} cover={s.coverColor ?? '#6C7FC4'} />
         </g>
 
         {/* 7 · accessory — last, and never the only difference between
@@ -1099,6 +713,25 @@ function HairBack({ style, hair, edge }: {
   }
 }
 
+/**
+ * A clipper-short side or a buzz cut: the hair colour mixed toward the
+ * skin, because that is what stubble over a scalp actually looks like.
+ *
+ * The guard is not decoration. `mix(white, tone-1, 0.32)` IS tone-1 —
+ * so on pale hair over pale skin the faded sides disappear entirely and
+ * the longer top block reads as a swim cap sitting on a bald head. No
+ * preset combines those (every buzz / undercut / two-block preset has
+ * near-black hair), which is exactly why the builder found it and the
+ * preset suite could not: `avatars.test.tsx` only ever sees the 27
+ * combinations that exist. Falling back to a plain darkened hair colour
+ * keeps the side readable and leaves every preset byte-identical —
+ * `preset-config-equivalence.test.tsx` is what proves the second half.
+ */
+function fadedHair(hair: string, skin: string, t: number): string {
+  const mixed = mix(hair, skin, t)
+  return contrastRatio(mixed, skin) < 1.2 ? darken(hair, 0.2) : mixed
+}
+
 function HairFront({ style, hair, edge, skin, cover }: {
   style: HairStyle; hair: HairSwatch; edge: string; skin: string; cover: string
 }) {
@@ -1201,7 +834,7 @@ function HairFront({ style, hair, edge, skin, cover }: {
       return (
         <path
           d="M 17.5 26.6 C 17.5 14.6 23.8 9.2 32 9.2 C 40.2 9.2 46.5 14.6 46.5 26.6 C 46.2 21.4 44.8 18.6 42.6 17.6 C 39.6 16.2 36.2 15.8 32 15.8 C 27.8 15.8 24.4 16.2 21.4 17.6 C 19.2 18.6 17.8 21.4 17.5 26.6 Z"
-          fill={mix(hair.base, skin, 0.22)} stroke={darken(mix(hair.base, skin, 0.22), 0.22)} strokeWidth="0.7"
+          fill={fadedHair(hair.base, skin, 0.22)} stroke={darken(fadedHair(hair.base, skin, 0.22), 0.22)} strokeWidth="0.7"
         />
       )
     case 'undercut-fade':
@@ -1211,8 +844,8 @@ function HairFront({ style, hair, edge, skin, cover }: {
       // longer top into what read as a headband.
       return (
         <>
-          <path d="M 19 20.4 Q 17.6 26 18.2 31 L 22.4 31 Q 21.4 25.4 22.4 20.4 Z" fill={mix(hair.base, skin, 0.4)} />
-          <path d="M 45 20.4 Q 46.4 26 45.8 31 L 41.6 31 Q 42.6 25.4 41.6 20.4 Z" fill={mix(hair.base, skin, 0.4)} />
+          <path d="M 19 20.4 Q 17.6 26 18.2 31 L 22.4 31 Q 21.4 25.4 22.4 20.4 Z" fill={fadedHair(hair.base, skin, 0.4)} />
+          <path d="M 45 20.4 Q 46.4 26 45.8 31 L 41.6 31 Q 42.6 25.4 41.6 20.4 Z" fill={fadedHair(hair.base, skin, 0.4)} />
           <path
             {...fill}
             d="M 18 23 C 18 12.2 24.4 8.2 32 8.2 C 39.6 8.2 46 12.2 46 23 C 43.4 16.6 38.4 14.4 32 14.4 C 25.6 14.4 20.6 16.6 18 23 Z"
@@ -1385,8 +1018,8 @@ function HairFront({ style, hair, edge, skin, cover }: {
       // skull outline and never show at all.
       return (
         <>
-          <path d="M 18.8 19.6 Q 17.5 25.4 18.4 32 L 23 31.2 Q 22 25.4 22.8 19.6 Z" fill={mix(hair.base, skin, 0.32)} />
-          <path d="M 45.2 19.6 Q 46.5 25.4 45.6 32 L 41 31.2 Q 42 25.4 41.2 19.6 Z" fill={mix(hair.base, skin, 0.32)} />
+          <path d="M 18.8 19.6 Q 17.5 25.4 18.4 32 L 23 31.2 Q 22 25.4 22.8 19.6 Z" fill={fadedHair(hair.base, skin, 0.32)} />
+          <path d="M 45.2 19.6 Q 46.5 25.4 45.6 32 L 41 31.2 Q 42 25.4 41.2 19.6 Z" fill={fadedHair(hair.base, skin, 0.32)} />
           <path
             {...fill}
             d="M 17.4 22.4 C 17.4 11.4 23.8 8.2 32 8.2 C 40.2 8.2 46.6 11.4 46.6 22.4 L 45.8 17.4 Q 39.6 18.8 33 18.2 Q 25.4 17.4 18.4 13.8 Z"
@@ -1470,15 +1103,34 @@ function HairFront({ style, hair, edge, skin, cover }: {
  *
  * Unknown / retired / malformed ids take the fallback too, so a value
  * this build cannot draw degrades to initials rather than a blank disc.
+ *
+ * ── Resolution order, and why ────────────────────────────────────────
+ *   1. `avatarConfig` — the source of truth once a student has opened
+ *      the builder. Absent whenever migration 072 is unapplied, which is
+ *      TODAY: the API omits the field rather than failing the query, so
+ *      this prop is simply undefined and the next line answers.
+ *   2. `avatarId` — the preset they chose, resolved to that preset's
+ *      config. Nothing renders "a preset"; there is one renderer.
+ *   3. `fallback` — the call site's own initials avatar.
+ *
+ * A config that is present but partly unreadable does NOT fall through
+ * to the id or to the fallback: normaliseAvatarConfig degrades the
+ * unknown parts and draws the rest. Falling through would mean a
+ * student's face changing on the day a part is retired.
  */
-export function StudyAvatar({ avatarId, size = 36, label, className = '', fallback }: {
+export function StudyAvatar({ avatarId, avatarConfig, size = 36, label, className = '', fallback }: {
   avatarId?: string | null
+  /** Stored `study_user_prefs.avatar_config`, straight off the wire.
+   *  `unknown` on purpose — it is jsonb and this component owns the
+   *  narrowing, so no caller can skip it. */
+  avatarConfig?: unknown
   size?: number
   label?: string | null
   className?: string
   fallback: ReactNode
 }) {
-  const found = getStudyAvatar(avatarId)
-  if (!found) return <>{fallback}</>
-  return <PersonAvatar spec={found} size={size} label={label} className={className} />
+  const config = normaliseAvatarConfig(avatarConfig)
+    ?? (getStudyAvatar(avatarId) ? presetConfig(getStudyAvatar(avatarId)!) : null)
+  if (!config) return <>{fallback}</>
+  return <PersonAvatar config={config} size={size} label={label} className={className} />
 }

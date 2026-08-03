@@ -128,6 +128,50 @@ describe('StudyAvatar fallback', () => {
     expect(getStudyAvatar(undefined)).toBeNull()
     expect(getStudyAvatar(ANY)?.id).toBe(ANY)
   })
+
+  // ── avatar_config (migration 072) ────────────────────────────────
+  // The fallback is the thing most likely to be lost when a second
+  // avatar source is added, because the new source works and nobody
+  // looks at what happens when it is absent — which, with 072
+  // unapplied, is EVERY student.
+
+  it.each([
+    ['null', null],
+    ['undefined — the field the API omits pre-072', undefined],
+    ['a JSON scalar that is valid jsonb', 'person-aster'],
+    ['a number', 7],
+    ['an array', ['tone-1']],
+    ['a boolean', false],
+  ])('still renders the initials fallback when avatarConfig is %s and there is no id', (_l, avatarConfig) => {
+    const { container } = render(
+      <StudyAvatar avatarConfig={avatarConfig} fallback={Initials} />,
+    )
+    expect(screen.getByTestId('initials-fallback')).toBeTruthy()
+    expect(container.querySelector('svg')).toBeNull()
+  })
+
+  it('draws a config, and does NOT fall back, even when every part is unknown', () => {
+    // "Present but unreadable" must draw a person. Falling through to
+    // the fallback here would mean a student's face vanishing on the
+    // day a part is retired.
+    const { container } = render(
+      <StudyAvatar avatarConfig={{ skin: 'tone-999', hair: 'mullet' }} fallback={Initials} />,
+    )
+    expect(screen.queryByTestId('initials-fallback')).toBeNull()
+    expect(container.querySelectorAll('svg *').length).toBeGreaterThan(12)
+  })
+
+  it('lets a config WIN over a preset id — the config is the source of truth', () => {
+    const preset = render(<StudyAvatar avatarId={ANY} fallback={Initials} />).container.innerHTML
+    const overridden = render(
+      <StudyAvatar avatarId={ANY} avatarConfig={{ skin: 'tone-8' }} fallback={Initials} />,
+    ).container.innerHTML
+    expect(overridden).not.toBe(preset)
+    // …and the preset id still answers when there is no config, so a
+    // pre-072 student keeps the avatar they already picked.
+    const idOnly = render(<StudyAvatar avatarId={ANY} avatarConfig={null} fallback={Initials} />).container.innerHTML
+    expect(idOnly).toBe(preset)
+  })
 })
 
 describe('every preset actually renders', () => {
@@ -283,14 +327,14 @@ describe('the set spans the range it claims', () => {
   })
 
   it('covers black, brown, blonde, grey/white and fashion hair colours', () => {
-    const used = new Set<string>(list.map(s => s.hairColour))
+    const used = new Set<string>(list.map(s => s.hairColor))
     expect(used.size).toBeGreaterThanOrEqual(8)
     for (const required of ['black', 'dark-brown', 'light-brown', 'blonde', 'grey', 'white']) {
       expect(used.has(required)).toBe(true)
     }
     // At least one clearly non-natural colour.
     expect(['lavender', 'teal'].some(c => used.has(c))).toBe(true)
-    for (const s of list) expect(HAIR_COLOURS[s.hairColour]).toBeDefined()
+    for (const s of list) expect(HAIR_COLOURS[s.hairColor]).toBeDefined()
   })
 
   it('varies the FACE, not only the hair', () => {
@@ -332,7 +376,7 @@ describe('the set spans the range it claims', () => {
       .filter(s => !['bald', 'hijab'].includes(s.hair))
       .map(s => {
         const skin = SKIN_RAMP[s.skin].base
-        const hair = HAIR_COLOURS[s.hairColour].base
+        const hair = HAIR_COLOURS[s.hairColor].base
         return { id: s.id, ratio: contrast(skin, hair), hue: hueGap(skin, hair) }
       })
       .filter(r => r.ratio < 1.3 && r.hue < 40)
@@ -352,9 +396,9 @@ describe('the set spans the range it claims', () => {
     expect(kinds.has('blazer-ribbon')).toBe(true)
     expect(kinds.has('blazer-tie')).toBe(true)
     for (const s of uniformed.filter(u => u.uniform !== 'shirt-collar')) {
-      expect(s.tieColour).toMatch(/^#[0-9A-Fa-f]{6}$/)
+      expect(s.tieColor).toMatch(/^#[0-9A-Fa-f]{6}$/)
       // A blazer that matches the shirt is not a blazer.
-      expect(contrast(s.clothes, '#F7F9FD')).toBeGreaterThan(3)
+      expect(contrast(s.top, '#F7F9FD')).toBeGreaterThan(3)
     }
   })
 
@@ -373,8 +417,8 @@ describe('the set spans the range it claims', () => {
     // same way a fair face on a peach disc does.
     const tooClose = list.flatMap(s => [
       ['skin', s.id, contrast(s.bg, SKIN_RAMP[s.skin].base), 1.14] as const,
-      ['hair', s.id, contrast(s.bg, HAIR_COLOURS[s.hairColour].base), 1.3] as const,
-      ['garment', s.id, contrast(s.bg, s.clothes), 1.2] as const,
+      ['hair', s.id, contrast(s.bg, HAIR_COLOURS[s.hairColor].base), 1.3] as const,
+      ['garment', s.id, contrast(s.bg, s.top), 1.2] as const,
     ]).filter(([, , ratio, floor]) => ratio <= floor)
       .map(([part, id, ratio]) => `${id} ${part} ${ratio.toFixed(3)}`)
     expect(tooClose).toEqual([])
