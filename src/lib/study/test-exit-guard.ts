@@ -1,6 +1,24 @@
 /**
  * "The student left the app during a timed test" — decision logic.
  *
+ * ─────────────────────────────────────────────────────────────────
+ * What leaving the app COSTS the student: the clock, and nothing else
+ * ─────────────────────────────────────────────────────────────────
+ * This guard used to END the test — it ran the submit path with
+ * whatever had been answered so far and wrote
+ * `ended_reason = 'app_exited'` on the session. Two production rows
+ * show what that meant in practice: a full_test opened, backgrounded,
+ * and marked `completed` with a score of 0/20 inside ninety seconds.
+ * The test generation had already been paid for in credits, and there
+ * was no way back into it.
+ *
+ * It PAUSES now. Backgrounding freezes the clock and puts the paused
+ * overlay up; the student taps Resume and carries on. The anti-cheat
+ * value that mattered — you cannot gain answering time by leaving to
+ * look something up — is entirely in the freeze, which the timer does
+ * anyway. Ending the test never added anything to that; it only added
+ * a way to lose a test.
+ *
  * Pure by design: every input is passed in, nothing is read from
  * Capacitor, the DOM or localStorage here. The wiring lives in
  * `useAppExitGuard`; this file is what the unit tests attack.
@@ -57,7 +75,9 @@ export type AppLifecycleEvent =
  * Deliberately short: three seconds is not enough to look anything up,
  * but it absorbs an event that immediately reverses itself — an app
  * switcher peek, or an OEM that stops the activity for a permission
- * dialog the student dismisses instantly.
+ * dialog the student dismisses instantly. Below this we don't even
+ * bother raising the paused overlay; the timer freeze during those
+ * three seconds stands on its own.
  */
 export const EXIT_GRACE_MS = 3000
 
@@ -98,20 +118,20 @@ export interface ExitGuardContext {
   timeLimitMinutes: number
   /** A mic permission prompt is open, or closed within the settle window. */
   micPromptRecent: boolean
-  /** The guard already fired for this session — never fire twice. */
-  alreadyEnded: boolean
+  /** The test is ALREADY paused, so there is nothing to record. */
+  alreadyPaused: boolean
 }
 
 /**
  * Step 1 — on a lifecycle event, should we record that the student
- * left? Recording is not ending: the decision to end is made on
- * return, by `shouldEndOnReturn`, once we know how long they were gone.
+ * left? Recording is not pausing: the decision is made on return, by
+ * `shouldPauseOnReturn`, once we know how long they were gone.
  */
 export function shouldMarkExit(ctx: ExitGuardContext, event: AppLifecycleEvent): boolean {
   if (!ctx.native) return false
   if (ctx.phase !== 'taking') return false
   if (!(ctx.timeLimitMinutes > 0)) return false
-  if (ctx.alreadyEnded) return false
+  if (ctx.alreadyPaused) return false
   if (ctx.micPromptRecent) return false
   return isAppLeftEvent(ctx.platform, event)
 }
@@ -122,23 +142,27 @@ export interface ReturnContext {
   now: number
   graceMs?: number
   phase: string
-  alreadyEnded: boolean
+  /** Already paused (manually, or by an earlier trip away). */
+  alreadyPaused: boolean
 }
 
 /**
  * Step 2 — the app is back (or the page has just re-mounted after the
- * OS killed it). Is the pending exit real enough to end the test?
+ * OS killed it). Was the student away long enough to pause the test?
  *
  * Evaluated on RETURN rather than at background time on purpose: the
  * WebView's JS is frozen while the app is backgrounded, so a timer
- * armed on the way out would not run, and a `fetch` fired on the way
- * out can be killed mid-flight. Deciding here also means the elapsed
- * away time is measured, not assumed.
+ * armed on the way out would not run. Deciding here also means the
+ * elapsed away time is measured, not assumed.
+ *
+ * Unlike the version that ended the test, this may answer `true` any
+ * number of times in a session — a student who leaves the app four
+ * times comes back to a paused test four times.
  */
-export function shouldEndOnReturn(ctx: ReturnContext): boolean {
+export function shouldPauseOnReturn(ctx: ReturnContext): boolean {
   if (ctx.exitedAt == null) return false
   if (ctx.phase !== 'taking') return false
-  if (ctx.alreadyEnded) return false
+  if (ctx.alreadyPaused) return false
   const graceMs = ctx.graceMs ?? EXIT_GRACE_MS
   // A clock that went backwards (device time change) must not be read
   // as "gone for a negative time"; treat it as not yet proven.
@@ -151,6 +175,11 @@ export function exitMarkerKey(sessionId: string): string {
   return `study:test:${sessionId}:exitedAt`
 }
 
-/** The value persisted on study_sessions.ended_reason. */
+/**
+ * The value that USED to be persisted on study_sessions.ended_reason
+ * when leaving the app ended a test. Nothing writes it any more — it
+ * stays because rows written before that change still carry it and the
+ * submit route still accepts it.
+ */
 export const EXIT_END_REASON = 'app_exited' as const
 export type TestEndReason = typeof EXIT_END_REASON

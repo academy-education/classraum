@@ -32,7 +32,7 @@ import { ReviewView } from './test/ReviewView'
 import { SubmitConfirmModal, GenerationProgress } from './test/chrome'
 import { useAppExitGuard } from './test/useAppExitGuard'
 import { setBackInterceptor } from '@/lib/back-intercept'
-import { EXIT_END_REASON, exitMarkerKey, type TestEndReason } from '@/lib/study/test-exit-guard'
+import { exitMarkerKey } from '@/lib/study/test-exit-guard'
 
 /**
  * Full-test mode UI.
@@ -179,6 +179,14 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const activeElapsedMsRef = useRef<number>(0)
   const resumedAtRef = useRef<number | null>(null)
   const [paused, setPaused] = useState(false)
+  // Ref mirror of `paused`, read by handlers that must see the CURRENT
+  // value rather than the one their effect closed over. The
+  // visibilitychange handler is re-registered on every `paused` change,
+  // so it lags by a render — and the app-exit guard pauses from inside
+  // a Capacitor callback that can land in the same tick as the
+  // WebView's own 'visible' event. Reading the stale `false` there
+  // restarted the clock underneath the paused overlay.
+  const pausedRef = useRef(false)
   const [now, setNow] = useState(Date.now())
   // Adaptive per-module timing: total-elapsed value at the moment
   // Module 2 began. null while still in Module 1. Persisted so a
@@ -189,6 +197,28 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const currentElapsedMs = useCallback(() => {
     const base = activeElapsedMsRef.current
     return resumedAtRef.current ? base + (Date.now() - resumedAtRef.current) : base
+  }, [])
+  /** TOEFL Speaking/Listening hold their own freeze while audio is
+   *  preparing or playing. Declared up here because both clock helpers
+   *  below read it; the value is assigned each render further down,
+   *  once the freeze condition is derivable. */
+  const speakingFreezeRef = useRef(false)
+  /** Stop the clock, banking whatever span is currently accumulating.
+   *  Idempotent — freezing a frozen clock is a no-op, which is what
+   *  lets the visibilitychange handler and the app-exit guard both
+   *  freeze on the way out without double-counting. */
+  const freezeClock = useCallback(() => {
+    if (resumedAtRef.current != null) {
+      activeElapsedMsRef.current += Date.now() - resumedAtRef.current
+      resumedAtRef.current = null
+    }
+  }, [])
+  /** Start the clock again — unless something else is legitimately
+   *  holding it frozen (manual pause, or Speaking/Listening audio). */
+  const resumeClockIfRunnable = useCallback(() => {
+    if (pausedRef.current) return
+    if (speakingFreezeRef.current) return
+    if (resumedAtRef.current == null) resumedAtRef.current = Date.now()
   }, [])
 
   // ── Phase 1: load (or resume) ───────────────────────────────────
@@ -555,34 +585,23 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // This makes practice tests non-hostile: a student who takes a call
   // mid-test doesn't lose time. Real ETS behaviour differs but that's
   // not this app's job.
-  // (Declared here, ABOVE the visibility effect that reads it — the
-  // value is assigned each render further down once the speaking
-  // freeze condition is derivable.)
-  const speakingFreezeRef = useRef(false)
   useEffect(() => {
     if (phase !== 'taking') return
     const onVis = () => {
       if (document.visibilityState === 'hidden') {
-        // Freeze: flush the currently-accumulating span into the
-        // ref and null out resumedAt so ticks stop advancing.
-        if (resumedAtRef.current != null) {
-          activeElapsedMsRef.current += Date.now() - resumedAtRef.current
-          resumedAtRef.current = null
-        }
+        freezeClock()
       } else {
         // Resume: only restart the clock if the student hasn't ALSO
         // manually paused AND the Speaking flow isn't holding its own
         // freeze (audio preparing/playing). Otherwise tab-away during
         // Speaking audio + tab-back would restart the clock while the
         // question audio was still running.
-        if (!paused && !speakingFreezeRef.current && resumedAtRef.current == null) {
-          resumedAtRef.current = Date.now()
-        }
+        resumeClockIfRunnable()
       }
     }
     document.addEventListener('visibilitychange', onVis)
     return () => document.removeEventListener('visibilitychange', onVis)
-  }, [phase, paused])
+  }, [phase, freezeClock, resumeClockIfRunnable])
 
   // TOEFL: freeze the test countdown while section audio is playing.
   //
@@ -640,10 +659,23 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     }
   }, [audioFreezeActive, isSpeakingSection, isListeningSection, phase, paused])
 
+  // Freeze the clock and put the test into the paused state. Shared by
+  // the manual Pause button and by the app-exit guard, so "paused
+  // because you left the app" and "paused because you pressed Pause"
+  // are one state and not two — the second of which would need its own
+  // overlay, its own resume path and its own way to go wrong.
+  const pauseNow = useCallback(() => {
+    if (pausedRef.current) return
+    freezeClock()
+    pausedRef.current = true
+    setPaused(true)
+  }, [freezeClock])
+
   // Manual pause / resume toggle.
   const togglePause = useCallback(() => {
     setPaused(p => {
       const nextPaused = !p
+      pausedRef.current = nextPaused
       if (nextPaused) {
         // Pausing: flush accumulated time + freeze.
         if (resumedAtRef.current != null) {
@@ -680,17 +712,6 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
    *  Submit, blocks the actual POST until they confirm. */
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [module2ConfirmOpen, setModule2ConfirmOpen] = useState(false)
-  /** Native only: the app was backgrounded mid-test, so the test is
-   *  being ended for that reason. Drives the blocking explanation
-   *  screen and the banner on the result. See useAppExitGuard. */
-  const [endedByAppExit, setEndedByAppExit] = useState(false)
-  /** Why this submit is happening, if it isn't "the student pressed
-   *  Submit". A ref rather than an argument because `submit` is fired
-   *  from several places (timer expiry, network retry, the error
-   *  banner) and every one of them must carry the reason — an
-   *  argument would be dropped by the retry paths. */
-  const endReasonRef = useRef<TestEndReason | null>(null)
-
   // ── Submission path (used by manual Submit + timer expiry) ─────
   const submit = useCallback(async () => {
     if (!test || phase !== 'taking') return
@@ -714,9 +735,6 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         questions: test.questions,
         answers: fullAnswers,
         elapsedSeconds,
-        // Recorded on the session so "ended because the app was closed"
-        // is a durable fact, not just this screen's state.
-        endReason: endReasonRef.current,
       })
       let res: Response | null = null
       let lastNetworkError: Error | null = null
@@ -892,22 +910,37 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     return () => window.removeEventListener('online', onOnline)
   }, [waitingForNetwork, submit])
 
-  // ── Leaving the app ends a timed test (native only) ─────────────
-  // Backgrounding the app mid-test used to be free: look something up,
-  // come back, the clock had even been frozen for you by the
-  // visibilitychange handler. On iOS/Android the test now ends.
+  // ── Leaving the app PAUSES a timed test (native only) ───────────
+  // The clock is already frozen while the app is away (the WebView
+  // reports hidden, and the visibilitychange handler above stops
+  // accumulating), so leaving buys the student nothing. Coming back
+  // then lands on the paused overlay rather than straight back into a
+  // live question, which is the honest state: they were gone.
   //
-  // The work is NOT discarded — losing a half-finished test is a worse
-  // failure than the cheating this prevents — so this runs the ordinary
-  // submit path with everything answered so far.
+  // This used to END the test — submit whatever was answered and mark
+  // the session completed with ended_reason='app_exited'. Two real
+  // sessions died that way inside ninety seconds of being created,
+  // scoring 0/20 on tests the student had paid credits to generate.
+  // Nothing about ending was load-bearing: the anti-cheat value is the
+  // frozen clock, which pausing keeps.
   useAppExitGuard({
     sessionId,
     phase,
     timeLimitMinutes: test?.timeLimitMinutes ?? 0,
-    onExit: useCallback(() => {
-      endReasonRef.current = EXIT_END_REASON
-      setEndedByAppExit(true)
-    }, []),
+    isPaused: paused,
+    // Leaving stops the clock immediately. Waiting for the WebView's
+    // own `visibilitychange` was the old plan and it is not something
+    // this code gets to assume — a TestSession backgrounded without one
+    // charges the student every second they are away.
+    onAway: freezeClock,
+    onReturn: useCallback((pause: boolean) => {
+      if (pause) pauseNow()
+      // A blip inside the grace window: no overlay, just start the
+      // clock again. Without this the freeze above would be permanent
+      // whenever no visibilitychange arrives, quietly handing out an
+      // untimed test — the same class of bug in the other direction.
+      else resumeClockIfRunnable()
+    }, [pauseNow, resumeClockIfRunnable]),
   })
 
   // Android hardware back, while the test is LIVE, opens the submit
@@ -932,16 +965,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     // dead for the rest of the session.
     return () => setBackInterceptor(null)
   }, [phase])
-  // One auto-attempt, same shape as the timer-expiry guard below: a
-  // failed submit drops the phase back to 'taking', and without the ref
-  // this effect would fire again on every render.
-  const exitSubmitAttemptedRef = useRef(false)
-  useEffect(() => {
-    if (!endedByAppExit || phase !== 'taking') return
-    if (exitSubmitAttemptedRef.current) return
-    exitSubmitAttemptedRef.current = true
-    void submit()
-  }, [endedByAppExit, phase, submit])
+  // (An effect here used to auto-submit the test as soon as the exit
+  // guard fired. It is gone: leaving the app pauses now, and there is
+  // no such thing as a submit the student did not ask for other than
+  // the timer running out, below.)
 
   // Auto-submit when the timer hits zero.
   // Total time budget in ms. `now` is here so the effect re-runs
@@ -1151,49 +1178,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     )
   }
 
-  // The app was left mid-test. Explain it plainly and block the
-  // question UI while the answers go up — the student must not be able
-  // to keep working on a test that has ended, but they must also see
-  // that nothing was thrown away.
-  if (endedByAppExit && phase !== 'reviewing') {
-    const busy = phase === 'submitting'
-    return (
-      <div role="status" aria-live="assertive" className="flex-1 flex flex-col items-center justify-center px-5 text-center gap-3">
-        <div className="w-12 h-12 rounded-full flex items-center justify-center mb-1 bg-amber-50 text-amber-500">
-          {busy ? <Loader2 className="w-6 h-6 animate-spin" /> : <AlertTriangle className="w-6 h-6" />}
-        </div>
-        <p className="text-[15px] font-semibold text-gray-900">{String(t('study.test.exitEndedTitle'))}</p>
-        <p className="text-[13px] text-gray-500 leading-relaxed max-w-[300px]">{String(t('study.test.exitEndedBody'))}</p>
-        {busy && (
-          <p className="text-[12.5px] text-gray-400">{String(t('study.test.exitEndedSubmitting'))}</p>
-        )}
-        {!busy && waitingForNetwork && (
-          <p className="text-[12.5px] text-amber-700">{String(t('study.test.exitEndedOffline'))}</p>
-        )}
-        {!busy && submitError && (
-          <p className="text-[12.5px] text-rose-600 leading-snug max-w-[300px]">{submitError}</p>
-        )}
-        {!busy && !waitingForNetwork && (
-          <button
-            type="button"
-            onClick={() => void submit()}
-            className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
-          >
-            <RefreshCw className="w-4 h-4" />
-            {String(t('study.test.exitEndedRetry'))}
-          </button>
-        )}
-        <Link href="/mobile/study" className="text-[12.5px] text-gray-400 underline mt-1">
-          {String(t('study.test.backToStudy'))}
-        </Link>
-      </div>
-    )
-  }
+  // (A blocking "your test was ended because you left the app" screen
+  // used to live here. Leaving the app pauses now, so the student comes
+  // back to the paused overlay on their own test instead.)
 
   if (phase === 'reviewing' && result) {
     return (
       <ReviewView
-        endedByAppExit={endedByAppExit}
         test={test}
         answers={answers}
         answerAudioPaths={answerAudioPaths}

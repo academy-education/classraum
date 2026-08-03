@@ -67,15 +67,21 @@ const mount = (over: Partial<Parameters<typeof useAppExitGuard>[0]> = {}) => {
   // the rerender a no-op — the killed-app case below then "passed" for
   // the wrong reason on the way to failing for the right one.
   const { phase: initialPhase = 'taking', ...rest } = over
-  const onExit = jest.fn()
-  const view = renderHook((props: { phase: string }) => useAppExitGuard({
+  const onAway = jest.fn()
+  const onReturn = jest.fn()
+  const view = renderHook((props: { phase: string; isPaused: boolean }) => useAppExitGuard({
     sessionId: SESSION,
     timeLimitMinutes: 35,
-    onExit,
+    isPaused: false,
+    onAway,
+    onReturn,
     ...rest,
     phase: props.phase,
-  }), { initialProps: { phase: initialPhase } })
-  return { onExit, view }
+    ...(rest.isPaused === undefined ? { isPaused: props.isPaused } : {}),
+  }), { initialProps: { phase: initialPhase, isPaused: false } })
+  /** Calls that asked for a pause (as opposed to a grace-window blip). */
+  const pauseCalls = () => onReturn.mock.calls.filter(([pause]) => pause === true)
+  return { onAway, onReturn, pauseCalls, view }
 }
 
 describe('useAppExitGuard — iOS', () => {
@@ -88,39 +94,81 @@ describe('useAppExitGuard — iOS', () => {
     expect(localStorage.getItem(KEY)).toBe(String(clock))
   })
 
-  it('ends the test on return once the student has been away past the grace window', async () => {
-    const { onExit } = mount()
+  it('stops the clock on the way OUT, not on the way back', async () => {
+    // The freeze cannot wait for the return: the student is charged for
+    // every second between the two, and the only reason it used to work
+    // was an assumed `visibilitychange` from the WebView.
+    const { onAway, pauseCalls } = mount()
+    await emit('pause')
+    expect(onAway).toHaveBeenCalledTimes(1)
+    expect(pauseCalls()).toHaveLength(0)
+  })
+
+  it('pauses the test on return once the student has been away past the grace window', async () => {
+    const { pauseCalls, onAway } = mount()
     await emit('pause')
     clock += EXIT_GRACE_MS + 1
     await emit('resume')
-    expect(onExit).toHaveBeenCalledTimes(1)
+    expect(pauseCalls()).toHaveLength(1)
   })
 
-  it('does not end the test — and forgets the exit — for a blip inside the grace window', async () => {
-    const { onExit } = mount()
+  it('does not pause — but DOES restart the clock — for a blip inside the grace window', async () => {
+    const { pauseCalls, onReturn } = mount()
     await emit('pause')
     clock += EXIT_GRACE_MS - 1
     await emit('resume')
-    expect(onExit).not.toHaveBeenCalled()
+    expect(pauseCalls()).toHaveLength(0)
+    // The clock was frozen on the way out, so somebody has to start it
+    // again or the blip silently makes the test untimed.
+    expect(onReturn).toHaveBeenCalledWith(false)
     expect(localStorage.getItem(KEY)).toBeNull()
   })
 
-  it('fires once, however many return events arrive', async () => {
-    const { onExit } = mount()
+  it('fires once per trip away, however many return events arrive', async () => {
+    const { pauseCalls, onAway } = mount()
     await emit('pause')
     clock += 60_000
     await emit('resume')
     await emit('appStateChange', { isActive: true })
-    expect(onExit).toHaveBeenCalledTimes(1)
+    expect(pauseCalls()).toHaveLength(1)
   })
 
-  it('leaves the marker in place until the submit clears it, so an app killed mid-submit still ends the test', async () => {
-    const { onExit } = mount()
+  it('consumes the marker when it pauses — nothing is left to re-fire later', async () => {
+    // The marker used to be left behind deliberately, because the thing
+    // it triggered was a submit and the submit cleared it. There is no
+    // submit now, so a marker left behind would re-pause on every phase
+    // change for the rest of the test.
+    const { pauseCalls, onAway } = mount()
     await emit('pause')
     clock += 60_000
     await emit('resume')
-    expect(onExit).toHaveBeenCalledTimes(1)
-    expect(localStorage.getItem(KEY)).not.toBeNull()
+    expect(pauseCalls()).toHaveLength(1)
+    expect(localStorage.getItem(KEY)).toBeNull()
+  })
+
+  it('pauses AGAIN the next time the student leaves — the guard is not one-shot', async () => {
+    // The old guard fired at most once per session because firing meant
+    // ending. A student who checks a message twice must come back to a
+    // paused test twice.
+    const { pauseCalls, onAway } = mount()
+    await emit('pause')
+    clock += 60_000
+    await emit('resume')
+    expect(pauseCalls()).toHaveLength(1)
+
+    await emit('pause')
+    clock += 60_000
+    await emit('resume')
+    expect(pauseCalls()).toHaveLength(2)
+  })
+
+  it('does nothing while the test is already paused — no marker, no second pause', async () => {
+    const { pauseCalls } = mount({ isPaused: true })
+    await emit('pause')
+    expect(localStorage.getItem(KEY)).toBeNull()
+    clock += 60_000
+    await emit('resume')
+    expect(pauseCalls()).toHaveLength(0)
   })
 })
 
@@ -147,8 +195,8 @@ describe('useAppExitGuard — web is untouched', () => {
 
   it('ignores a marker left behind by a previous native install', () => {
     localStorage.setItem(KEY, String(clock - 60_000))
-    const { onExit } = mount()
-    expect(onExit).not.toHaveBeenCalled()
+    const { pauseCalls, onAway } = mount()
+    expect(pauseCalls()).toHaveLength(0)
   })
 })
 
@@ -191,16 +239,16 @@ describe('useAppExitGuard — false positives', () => {
 })
 
 describe('useAppExitGuard — the app was killed while backgrounded', () => {
-  it('ends the test on the next mount, once the test is actually loaded', async () => {
+  it('pauses on the next mount, once the test is actually loaded', async () => {
     // Marker written by a previous run of the app; no resume event will
     // ever arrive in this JS context.
     localStorage.setItem(KEY, String(clock - 60_000))
-    const { onExit, view } = mount({ phase: 'detecting' })
+    const { pauseCalls, view } = mount({ phase: 'detecting' })
     // Still loading: nothing decided yet, and the marker survives.
-    expect(onExit).not.toHaveBeenCalled()
+    expect(pauseCalls()).toHaveLength(0)
     expect(localStorage.getItem(KEY)).not.toBeNull()
 
-    await act(async () => { view.rerender({ phase: 'taking' }) })
-    expect(onExit).toHaveBeenCalledTimes(1)
+    await act(async () => { view.rerender({ phase: 'taking', isPaused: false }) })
+    expect(pauseCalls()).toHaveLength(1)
   })
 })
