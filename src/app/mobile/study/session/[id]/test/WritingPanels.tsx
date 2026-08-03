@@ -7,6 +7,7 @@ import { db } from '@/lib/supabase'
 import { normalizeDisplayText } from './helpers'
 import type { GradeResponse, RubricGrade, SpeechSignals } from './types'
 import { parseDiscussionSpeakers } from './discussion-speakers'
+import { AUDIO_GRADING_ENABLED } from '@/lib/study/speaking-mode'
 import {
   criterionLabel, scoreFraction, scoreTone, TONE_CLASS, type ScoreTone,
 } from '@/lib/study/rubricDisplay'
@@ -431,7 +432,15 @@ export function WritingFeedbackPanel({
       // 'audio' mode AND we actually have a recording to grade. Fall
       // back to text-only if the student typed their answer or if the
       // mode is 'text'.
-      const useAudio = skill === 'speaking' && speakingGradeMode === 'audio' && !!audioPath
+      //
+      // AUDIO_GRADING_ENABLED gates this as well as the chooser, because
+      // sessions created BEFORE the feature was switched off still carry
+      // `speaking_grade_mode = 'audio'` in the database (1 such row on
+      // 2026-08-04, already completed). Reading the flag only where the
+      // choice is offered would let one of those resume straight onto
+      // the disabled grader.
+      const useAudio = AUDIO_GRADING_ENABLED
+        && skill === 'speaking' && speakingGradeMode === 'audio' && !!audioPath
       const commonBody = {
         sessionId,
         taskType,

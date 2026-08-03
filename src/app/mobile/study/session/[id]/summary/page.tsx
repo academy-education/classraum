@@ -377,7 +377,9 @@ function SummaryInner({ id }: { id: string }) {
               <div className={`mt-5 grid grid-cols-3 gap-3 ${hero.accent}`}>
                 <Stat icon={CheckCircle2} value={String(correct)} label={String(t('study.summary.correct'))} />
                 <Stat icon={XCircle} value={String(incorrect)} label={String(t('study.summary.incorrect'))} />
-                <Stat icon={Clock} value={`${totalMinutes}m`} label={String(t('study.summary.timeLabel'))} />
+                {/* The unit is part of the translation, not glued on here —
+                    a hardcoded "m" rendered "35m" under a Korean label. */}
+                <Stat icon={Clock} value={String(t('study.summary.timeValue', { minutes: totalMinutes }))} label={String(t('study.summary.timeLabel'))} />
               </div>
             </>
           ) : (

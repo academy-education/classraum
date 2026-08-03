@@ -12,6 +12,7 @@ import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 import { useSheetDrag } from '@/app/mobile/study/_shared/useSheetDrag'
 import { creditCostForTest } from '@/lib/study/plans'
 import { passCreditLabel } from '@/app/mobile/study/_shared/pass-label'
+import { isToeflSpeakingSection, speakingGradeModeChoice } from '@/lib/study/speaking-mode'
 
 // Per-section credit cost (2026-07 relaunch) comes from the shared
 // catalog — e.g. TOEFL Speaking/Listening 2, Reading/Writing 1.
@@ -81,8 +82,12 @@ export function TestCustomizationSheet({
   const [passBalance, setPassBalance] = useState(0)
   const [creditSource, setCreditSource] = useState<'pass' | 'regular'>('pass')
   const [starting, setStarting] = useState(false)
-  const [speakingGradeMode, setSpeakingGradeMode] = useState<'text' | 'audio'>('text')
-  const isSpeakingTest = family === 'toefl' && section != null && /speaking/i.test(section)
+  // TOEFL Speaking is text-graded from the student's side: no chooser is
+  // rendered and the mode is fixed to 'text'. The audio grader is untouched
+  // and still runs for any session whose config says 'audio'.
+  const gradeModeChoice = speakingGradeModeChoice(family, section)
+  const [speakingGradeMode, setSpeakingGradeMode] = useState<'text' | 'audio'>(gradeModeChoice.mode)
+  const isSpeakingTest = isToeflSpeakingSection(family, section)
 
   // Reset whenever the sheet reopens for a new test.
   useEffect(() => {
@@ -227,8 +232,15 @@ export function TestCustomizationSheet({
           {/* Test format — read-only, sourced from the spec library */}
           <SettingGroup icon={Award} label={ko ? '시험 형식' : 'Test format'}>
             <div className="grid grid-cols-2 gap-2">
-              <FormatChip icon={Hash} value={String(defaults.count)} label={ko ? '문항' : 'questions'} />
-              <FormatChip icon={Clock} value={`${defaults.minutes}m`} label={ko ? '제한 시간' : 'time limit'} />
+              {/* The count is a bare numeral (language-neutral); the time
+                  amount carries a unit and MUST come from the locale file —
+                  it read "35m" in the Korean UI before 2026-08-04. */}
+              <FormatChip icon={Hash} value={String(defaults.count)} label={String(t('study.testConfig.questionCount'))} />
+              <FormatChip
+                icon={Clock}
+                value={String(t('study.testConfig.timeLimitValue', { minutes: defaults.minutes }))}
+                label={String(t('study.testConfig.timeLimit'))}
+              />
             </div>
             <p className="text-[11px] text-gray-500 mt-2 leading-relaxed">
               {ko ? '실제 시험과 같은 문항 수와 시간으로 출제됩니다.' : 'Mirrors the real test’s question count and timing.'}
@@ -267,7 +279,7 @@ export function TestCustomizationSheet({
                   : 'The real Digital SAT runs at discriminating difficulty across the module — this practice is locked to the hardest setting.')}
             </p>
           )}
-          {isSpeakingTest && (
+          {gradeModeChoice.offerChoice && (
             <SettingGroup icon={Sparkles} label={ko ? 'AI 채점 방식' : 'AI grading mode'}>
               <div className="space-y-2">
                 <button
