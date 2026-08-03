@@ -1,0 +1,245 @@
+{
+  "_design": "MIRROR PAIRS. Each pair (a/b) shares the IDENTICAL four options verbatim; only the audio differs, and it selects a different key. Any strategy that reads only the options must therefore score 25% across the set by construction — there is no 'most complete', 'most hedged', or 'most specific' option, because every option is the key in some item. This is the falsifiable version of 'distractors must not be mutations of the key': if a blind solver still beats chance here, the leak is NOT in the option set and re-authoring distractors cannot fix the bank.",
+  "items": [
+    {
+      "id": "mp-01a", "pair": "mp-01", "task": "listening_conversation",
+      "audio": "STUDENT: I wanted to ask about the field trip fee. PROFESSOR: It's forty dollars, due Friday. STUDENT: That's the problem — I don't get paid until the fifteenth. PROFESSOR: Then talk to the department office. They keep a small fund for exactly this, and they can cover it and let you repay later in the term. It's not a scholarship, it's a loan, so you'd still owe it. STUDENT: But I would be able to go. PROFESSOR: You would.",
+      "stem": "What does the professor suggest the student do?",
+      "options": {
+        "A": "Ask the department office about a fund that covers the fee up front",
+        "B": "Skip the trip and complete an alternative written assignment",
+        "C": "Pay a reduced fee because of documented financial hardship",
+        "D": "Request that the payment deadline be moved to after the fifteenth"
+      },
+      "key": "A"
+    },
+    {
+      "id": "mp-01b", "pair": "mp-01", "task": "listening_conversation",
+      "audio": "STUDENT: I wanted to ask about the field trip fee. PROFESSOR: Forty dollars, due Friday. STUDENT: I don't get paid until the fifteenth. PROFESSOR: Ah — that's easy. The Friday date is mine, not the university's; I set it so I could count heads. The bus company doesn't invoice us until the end of the month. Just get it to me by the sixteenth and nothing changes. STUDENT: So I don't need to borrow anything. PROFESSOR: No. Same trip, same price, later date.",
+      "stem": "What does the professor suggest the student do?",
+      "options": {
+        "A": "Ask the department office about a fund that covers the fee up front",
+        "B": "Skip the trip and complete an alternative written assignment",
+        "C": "Pay a reduced fee because of documented financial hardship",
+        "D": "Request that the payment deadline be moved to after the fifteenth"
+      },
+      "key": "D"
+    },
+    {
+      "id": "mp-02a", "pair": "mp-02", "task": "listening_lecture",
+      "audio": "So the puzzle with these desert beetles is where the water comes from. There's no standing water for months. What they do is stand facing the morning fog with the back tilted up. The shell has bumps that the fog condenses onto, and channels between them that run the droplets down to the mouth. They are not drinking dew off plants and they are not making water metabolically — they are harvesting it directly out of moving air.",
+      "stem": "According to the lecture, how do the beetles obtain water?",
+      "options": {
+        "A": "By producing it internally as a by-product of metabolism",
+        "B": "By condensing fog on the body and channelling it to the mouth",
+        "C": "By absorbing dew that collects on desert vegetation overnight",
+        "D": "By extracting moisture from the tissues of the insects they eat"
+      },
+      "key": "B"
+    },
+    {
+      "id": "mp-02b", "pair": "mp-02", "task": "listening_lecture",
+      "audio": "Now, the fog-harvesting beetle is famous, but it's the exception. Most beetles in this desert never touch free water at all. They're predators, and their prey is mostly water by mass. A beetle eating soft-bodied larvae takes in everything it needs that way, which is why you find them active in the driest months when there is no fog at all on the coast. The fog specialists are a coastal minority.",
+      "stem": "According to the lecture, how do the beetles obtain water?",
+      "options": {
+        "A": "By producing it internally as a by-product of metabolism",
+        "B": "By condensing fog on the body and channelling it to the mouth",
+        "C": "By absorbing dew that collects on desert vegetation overnight",
+        "D": "By extracting moisture from the tissues of the insects they eat"
+      },
+      "key": "D"
+    },
+    {
+      "id": "mp-03a", "pair": "mp-03", "task": "listening_conversation",
+      "audio": "STUDENT: My lab partner dropped the course. ADVISOR: When? STUDENT: Yesterday. We were halfway through the semester project. ADVISOR: Then you're in luck, actually — there's another pair in that section who lost a member the same week. I can put the two of you together and you'd merge the two half-finished projects. STUDENT: Is that allowed? ADVISOR: It's the standard fix. You'd submit as a pair with one combined report.",
+      "stem": "What will the student most likely do?",
+      "options": {
+        "A": "Join another student who also lost a partner and merge the work",
+        "B": "Finish the entire semester project alone with an extended deadline",
+        "C": "Withdraw from the course and retake it in a later semester",
+        "D": "Restart the project from the beginning with a new topic"
+      },
+      "key": "A"
+    },
+    {
+      "id": "mp-03b", "pair": "mp-03", "task": "listening_conversation",
+      "audio": "STUDENT: My lab partner dropped the course. ADVISOR: Hmm. Everyone else is already paired and well past where you are — merging you into an existing pair would mean three people on a two-person report, which the department doesn't allow. STUDENT: So what happens? ADVISOR: You keep going by yourself. I'll sign off on four extra weeks, which is what the workload difference comes to. STUDENT: Alone, then. ADVISOR: Alone, but with the time.",
+      "stem": "What will the student most likely do?",
+      "options": {
+        "A": "Join another student who also lost a partner and merge the work",
+        "B": "Finish the entire semester project alone with an extended deadline",
+        "C": "Withdraw from the course and retake it in a later semester",
+        "D": "Restart the project from the beginning with a new topic"
+      },
+      "key": "B"
+    },
+    {
+      "id": "mp-04a", "pair": "mp-04", "task": "listening_lecture",
+      "audio": "The collapse of that trading city has been blamed on everything, but the sediment cores settle it. You see a sharp drop in river silt about a decade before the city empties. The river had shifted course upstream. Without the river the harbour silted shut, and a port city with no port is just an inland town with too many warehouses. The population left over about fifteen years. No siege layer, no ash, no mass graves.",
+      "stem": "What does the professor identify as the cause of the city's decline?",
+      "options": {
+        "A": "A military conquest that destroyed the city's defensive walls",
+        "B": "An epidemic that sharply reduced the working population",
+        "C": "A shift in the river that closed the city's harbour",
+        "D": "A change in trade routes that bypassed the region entirely"
+      },
+      "key": "C"
+    },
+    {
+      "id": "mp-04b", "pair": "mp-04", "task": "listening_lecture",
+      "audio": "People assume the harbour silting is what killed that city, but the silting happened two centuries earlier and the city carried on fine — they dredged. What actually ends it is the northern overland route opening. Once caravans could cross the mountains directly, nobody needed to come down to the coast at all. The warehouse records show goods volume falling while the population is still stable, which is the signature of a place being routed around rather than emptied out.",
+      "stem": "What does the professor identify as the cause of the city's decline?",
+      "options": {
+        "A": "A military conquest that destroyed the city's defensive walls",
+        "B": "An epidemic that sharply reduced the working population",
+        "C": "A shift in the river that closed the city's harbour",
+        "D": "A change in trade routes that bypassed the region entirely"
+      },
+      "key": "D"
+    },
+    {
+      "id": "mp-05a", "pair": "mp-05", "task": "listening_conversation",
+      "audio": "STUDENT: The library says my thesis draft is overdue for binding. LIBRARIAN: Binding is only for the final copy. STUDENT: So the notice is wrong? LIBRARIAN: The notice is for a different deadline — the deposit date, when we need a digital file for the archive. People confuse them constantly because the email template is the same. Upload the PDF today and the notice clears. Binding is in June and you pay for that separately.",
+      "stem": "What does the librarian tell the student to do?",
+      "options": {
+        "A": "Submit a digital copy for the archive to clear the notice",
+        "B": "Pay the binding fee immediately to avoid a late penalty",
+        "C": "Ignore the notice because it was sent to her in error",
+        "D": "Bring a printed copy of the draft to the library in person"
+      },
+      "key": "A"
+    },
+    {
+      "id": "mp-05b", "pair": "mp-05", "task": "listening_conversation",
+      "audio": "STUDENT: The library says my thesis draft is overdue for binding. LIBRARIAN: Let me look. Ah — you're not on this year's list at all. That went to everyone in the department rather than to the students who actually have a thesis due, and about forty people have already come in about it. There is nothing for you to do. Your deposit isn't until next spring. STUDENT: So I can just delete it. LIBRARIAN: Please do.",
+      "stem": "What does the librarian tell the student to do?",
+      "options": {
+        "A": "Submit a digital copy for the archive to clear the notice",
+        "B": "Pay the binding fee immediately to avoid a late penalty",
+        "C": "Ignore the notice because it was sent to her in error",
+        "D": "Bring a printed copy of the draft to the library in person"
+      },
+      "key": "C"
+    },
+    {
+      "id": "mp-06a", "pair": "mp-06", "task": "listening_lecture",
+      "audio": "What makes this pigment unusual is stability. Most organic reds fade badly in sunlight — a few decades and you have brown. This one is bound to a clay substrate, and the clay's lattice physically holds the dye molecule in a position where the light-driven reaction can't proceed. Same dye, unbound, fades in a season. It's not a more robust molecule; it's a molecule that has been immobilised.",
+      "stem": "Why does the professor say this pigment resists fading?",
+      "options": {
+        "A": "The dye molecule is chemically more stable than similar reds",
+        "B": "A clay substrate holds the molecule so the reaction cannot occur",
+        "C": "A surface varnish blocks ultraviolet light from reaching it",
+        "D": "The pigment is applied in layers thick enough to mask any change"
+      },
+      "key": "B"
+    },
+    {
+      "id": "mp-06b", "pair": "mp-06", "task": "listening_lecture",
+      "audio": "The clay-binding story is the one in the textbooks and it's been overtaken. Researchers made the pigment without any clay at all and it held up identically. What's actually going on is the varnish these workshops used over the top — a resin layer that absorbs almost everything in the ultraviolet. Strip the varnish and the same clay-bound pigment fades on schedule. The protection was never in the pigment. It was sitting on top of it.",
+      "stem": "Why does the professor say this pigment resists fading?",
+      "options": {
+        "A": "The dye molecule is chemically more stable than similar reds",
+        "B": "A clay substrate holds the molecule so the reaction cannot occur",
+        "C": "A surface varnish blocks ultraviolet light from reaching it",
+        "D": "The pigment is applied in layers thick enough to mask any change"
+      },
+      "key": "C"
+    },
+    {
+      "id": "mp-07a", "pair": "mp-07", "task": "listening_conversation",
+      "audio": "STUDENT: I need a room for the study group. STAFF: How many? STUDENT: Six of us, weekly. STAFF: Weekly is the issue. Single bookings you do yourself online, but anything recurring has to be a registered student organisation, and you're not one. STUDENT: Can we register? STAFF: You'd need eight members and a faculty sponsor. Or you book it week by week yourself, which most groups end up doing.",
+      "stem": "What does the staff member say about the student's request?",
+      "options": {
+        "A": "Recurring bookings require the group to be a registered organisation",
+        "B": "The room is already reserved by another group at that time",
+        "C": "Groups of six or more must use the larger rooms on the third floor",
+        "D": "Bookings can only be made in person during staffed hours"
+      },
+      "key": "A"
+    },
+    {
+      "id": "mp-07b", "pair": "mp-07", "task": "listening_conversation",
+      "audio": "STUDENT: I need a room for the study group, six of us, weekly. STAFF: Recurring is fine, anyone can do that. What I can't give you is one of these — capacity four. Six puts you over, and fire code is fire code. STUDENT: So a bigger room. STAFF: Third floor, they hold twelve, and they're emptier anyway. Same booking system, just filter by capacity.",
+      "stem": "What does the staff member say about the student's request?",
+      "options": {
+        "A": "Recurring bookings require the group to be a registered organisation",
+        "B": "The room is already reserved by another group at that time",
+        "C": "Groups of six or more must use the larger rooms on the third floor",
+        "D": "Bookings can only be made in person during staffed hours"
+      },
+      "key": "C"
+    },
+    {
+      "id": "mp-08a", "pair": "mp-08", "task": "listening_lecture",
+      "audio": "The surprise in the tree-ring record is the timing. Everyone expected the growth collapse to line up with the drought years, and it doesn't — the rings are narrow starting three years BEFORE the drought begins. What that tells us is that the trees were already stressed, almost certainly by the insect outbreak documented in the same period. The drought finished off a forest that was going anyway.",
+      "stem": "What does the tree-ring evidence indicate?",
+      "options": {
+        "A": "The forest was already weakened by insects before the drought",
+        "B": "The drought was more severe than written records suggested",
+        "C": "Growth recovered faster than expected once rainfall returned",
+        "D": "The trees were cut for timber rather than dying naturally"
+      },
+      "key": "A"
+    },
+    {
+      "id": "mp-08b", "pair": "mp-08", "task": "listening_lecture",
+      "audio": "The rings line up with the drought exactly — no lead, no lag — but they're far narrower than the rainfall figures in the monastery records would predict. Those records were kept for tax purposes and they systematically understate a bad year, because a bad year meant relief payments. The trees are the honest witness here, and they say the drought was considerably worse than the paperwork admits.",
+      "stem": "What does the tree-ring evidence indicate?",
+      "options": {
+        "A": "The forest was already weakened by insects before the drought",
+        "B": "The drought was more severe than written records suggested",
+        "C": "Growth recovered faster than expected once rainfall returned",
+        "D": "The trees were cut for timber rather than dying naturally"
+      },
+      "key": "B"
+    },
+    {
+      "id": "mp-09a", "pair": "mp-09", "task": "listening_conversation",
+      "audio": "STUDENT: My presentation is scheduled the same morning as the conference. PROFESSOR: Which are you presenting at? STUDENT: Both, that's the problem. PROFESSOR: Then present here on video. Record it, I'll play it to the class in your slot, and you take questions by email afterwards. Two students did it last year. It's not ideal but it's clean, and you keep the conference.",
+      "stem": "What solution does the professor propose?",
+      "options": {
+        "A": "The student should record the presentation for the class to watch",
+        "B": "The student should swap slots with a classmate presenting later",
+        "C": "The student should skip the conference and present in person",
+        "D": "The student should present a shortened version before travelling"
+      },
+      "key": "A"
+    },
+    {
+      "id": "mp-09b", "pair": "mp-09", "task": "listening_conversation",
+      "audio": "STUDENT: My presentation clashes with the conference. PROFESSOR: Video won't work — the whole point of this slot is live questions from the class, and I've had to stop allowing recordings because nobody watches them. But the order within the day is mine to set. Who's on in the afternoon? STUDENT: Dana, I think. PROFESSOR: Ask Dana. If she'll take your morning slot you take her afternoon one, and you're back from the airport by then.",
+      "stem": "What solution does the professor propose?",
+      "options": {
+        "A": "The student should record the presentation for the class to watch",
+        "B": "The student should swap slots with a classmate presenting later",
+        "C": "The student should skip the conference and present in person",
+        "D": "The student should present a shortened version before travelling"
+      },
+      "key": "B"
+    },
+    {
+      "id": "mp-10a", "pair": "mp-10", "task": "listening_lecture",
+      "audio": "The reason these seeds germinate only after fire isn't the heat, which is what people assume. You can heat them in an oven to the same temperature and nothing happens. It's a compound in the smoke — one specific molecule in the smoke of burning vegetation that the seed coat responds to. You can dissolve it in water and water the seeds with it, no fire involved, and they come up.",
+      "stem": "What triggers germination in these seeds?",
+      "options": {
+        "A": "The high temperature reached during a fire",
+        "B": "A chemical compound present in vegetation smoke",
+        "C": "The removal of competing plants from the surrounding soil",
+        "D": "The increase in soil nutrients from deposited ash"
+      },
+      "key": "B"
+    },
+    {
+      "id": "mp-10b", "pair": "mp-10", "task": "listening_lecture",
+      "audio": "The smoke-chemical mechanism is real in other species but not this one — smoke water does nothing here. What these seeds are responding to is light. They sit under a dense canopy of shrubs, and germination is suppressed until that canopy goes. Fire is simply the usual way it goes. Clear the same plot by hand, no fire, no smoke, and you get the identical flush of seedlings the following spring.",
+      "stem": "What triggers germination in these seeds?",
+      "options": {
+        "A": "The high temperature reached during a fire",
+        "B": "A chemical compound present in vegetation smoke",
+        "C": "The removal of competing plants from the surrounding soil",
+        "D": "The increase in soil nutrients from deposited ash"
+      },
+      "key": "C"
+    }
+  ]
+}
