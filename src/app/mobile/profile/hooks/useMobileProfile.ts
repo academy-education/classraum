@@ -181,8 +181,16 @@ export const useMobileProfile = (
 
       // Fetch profile and preferences in parallel
       const [userDataResult, preferencesResult] = await Promise.all([
+        // `users` stays `.single()`: no row here means the caller handed
+        // us an id that does not exist, which IS an error.
         db.from('users').select('*').eq('id', userId).single(),
-        db.from('user_preferences').select('*').eq('user_id', userId).single()
+        // `user_preferences` does not: 6 of 415 accounts have no row (the
+        // column is only written when something is changed), and the
+        // reader below already falls through to `defaultPreferences`.
+        // Behaviourally identical — the guard is `data && !error` either
+        // way — but it stops a PostgrestError sitting in the result for a
+        // normal state, waiting for someone to log it.
+        db.from('user_preferences').select('*').eq('user_id', userId).maybeSingle()
       ])
 
       // Build profile data
@@ -206,14 +214,39 @@ export const useMobileProfile = (
           phone: userData.phone || undefined
         }
 
-        // Fetch role-specific data
+        /*
+         * Fetch role-specific data.
+         *
+         * EVERY ONE OF THESE IS `maybeSingle`, NOT `single`, AND THAT IS
+         * LOAD-BEARING. `users.role` is a pointer at the DEFAULT SURFACE,
+         * not a claim that the matching role row exists — a study-only
+         * account is `role: 'student'` with no `students` row at all,
+         * which is exactly what the `users.phone` comment above is about.
+         *
+         * `.single()` treats zero rows as an ERROR, so those accounts
+         * logged "Error fetching students row" on every profile load for
+         * a completely normal state. Measured against the live database
+         * on 2026-08-03, users whose role row does not exist:
+         *
+         *     student  12 / 204      teacher  1 / 22
+         *     manager   2 / 13       parent   1 / 175
+         *
+         * — so this was not a one-account edge case, and it was noise on
+         * a console that a real failure has to be spotted in.
+         *
+         * `.maybeSingle()` returns {data: null, error: null} for zero
+         * rows and still errors on the things worth hearing about: more
+         * than one row (a duplicate role row IS a bug), RLS refusal, a
+         * dead connection. The logs below therefore keep their meaning
+         * instead of being trained away.
+         */
         try {
           if (userData.role === 'student') {
             const { data: studentData, error: studentError } = await db
               .from('students')
               .select('phone, school_name')
               .eq('user_id', userId)
-              .single()
+              .maybeSingle()
 
             if (studentError) console.error('[useMobileProfile] Error fetching students row:', studentError)
             if (studentData) {
@@ -225,7 +258,7 @@ export const useMobileProfile = (
               .from('teachers')
               .select('phone')
               .eq('user_id', userId)
-              .single()
+              .maybeSingle()
 
             if (teacherError) console.error('[useMobileProfile] Error fetching teachers row:', teacherError)
             if (teacherData?.phone) {
@@ -236,7 +269,7 @@ export const useMobileProfile = (
               .from('parents')
               .select('phone')
               .eq('user_id', userId)
-              .single()
+              .maybeSingle()
 
             if (parentError) console.error('[useMobileProfile] Error fetching parents row:', parentError)
             if (parentData?.phone) {
@@ -249,7 +282,7 @@ export const useMobileProfile = (
               .from('managers')
               .select('phone')
               .eq('user_id', userId)
-              .single()
+              .maybeSingle()
 
             if (managerError) console.error('[useMobileProfile] Error fetching managers row:', managerError)
             if (managerData?.phone) {
