@@ -710,3 +710,97 @@ export function ensureVisibleBackdrop(config: AvatarConfig): AvatarConfig {
 export function contrastRatio(a: string, b: string): number {
   return contrast(a, b)
 }
+
+// ── Randomiser ───────────────────────────────────────────────────────
+
+/**
+ * Backdrops and garments the randomiser draws from — the same values the
+ * 27 presets use, deduplicated. Inventing fresh hex here would mean
+ * inventing a palette nobody art-directed; reusing these means every
+ * random avatar is built from colours that already shipped.
+ */
+const RANDOM_BG = [
+  '#EDE7F6', '#DFF0F4', '#F0EAF8', '#F3EFE2', '#C4DCCB', '#E7EDF6', '#F6E9E2',
+  '#F2E9DC', '#F7E6EC', '#E4EDFA', '#EAF1E6', '#FAEDDC', '#C8D6E8', '#F7EEDD',
+  '#E4F1E9', '#EAF3E4', '#AEBDD0', '#F8EFDE', '#DDE9F4', '#E7EFE4', '#BFD6E4',
+  '#F6ECDC', '#96AEC9', '#DCE9DA', '#F5EFE1', '#E1EDF1', '#BEDACC',
+] as const
+const RANDOM_TOP = [
+  '#5B7FD4', '#E9B04A', '#E2A03C', '#4C5A73', '#E0764F', '#C9603F', '#2E8F86',
+  '#3F7A63', '#4A6E96', '#D9564F', '#D2688F', '#AEB6D2', '#3A3F52', '#3E8C6A',
+  '#6C63C4', '#7A5AC0', '#7C89A6', '#2F6E8E', '#2E3C63', '#2B2B34', '#C2557A',
+  '#3F7F9E', '#DCE5F2', '#E07A4F', '#58A08C', '#C86A8E', '#6E76B8',
+] as const
+const RANDOM_TIE = ['#B0384A', '#2F4B7C'] as const
+
+/**
+ * The two floors a random avatar has to clear, and why they exist.
+ *
+ * These are not invented for the randomiser — they are the thresholds
+ * `avatars.test.tsx` already holds the 27 hand-authored presets to. A
+ * randomiser is just a preset author who never gets tired, so it is held
+ * to the same bar; otherwise "pick a random one" becomes the one path in
+ * the product that can produce an avatar a human reviewer would have
+ * rejected.
+ */
+const MIN_BG_VS_SKIN = 1.14   // a backdrop at skin luminance erases the silhouette
+const MIN_HAIR_VS_SKIN = 1.3  // hair at skin luminance erases the hairline
+
+/** A random avatar that would survive the checks the presets survive. */
+export function randomAvatarConfig(rand: () => number = Math.random): AvatarConfig {
+  const pick = <T,>(xs: readonly T[]): T => xs[Math.floor(rand() * xs.length) % xs.length]
+
+  const skin: SkinTone = pick(SKIN_TONES)
+  const skinBase = SKIN_RAMP[skin].base
+  const hair = pick(HAIR_STYLE_KEYS)
+
+  /*
+   * REJECTION SAMPLING, not "pick and hope".
+   *
+   * Both loops are bounded and both have a deterministic fallback,
+   * because an unbounded retry on a constraint that happens to be
+   * unsatisfiable is a frozen tab, and a fallback that is itself random
+   * would reintroduce exactly the failure being guarded. The fallbacks
+   * are the extreme ends of each ramp, which clear the thresholds
+   * against every tone by construction.
+   */
+  let hairColor = pick(HAIR_COLOR_KEYS)
+  if (HAIR_STYLES[hair].texture !== 'none' && HAIR_STYLES[hair].texture !== 'covered') {
+    let tries = 0
+    while (contrastRatio(skinBase, HAIR_COLOURS[hairColor].base) < MIN_HAIR_VS_SKIN && tries++ < 24) {
+      hairColor = pick(HAIR_COLOR_KEYS)
+    }
+    if (contrastRatio(skinBase, HAIR_COLOURS[hairColor].base) < MIN_HAIR_VS_SKIN) {
+      hairColor = skinLightness(skin) > 50 ? 'black' : 'white'
+    }
+  }
+
+  let bg = pick(RANDOM_BG)
+  let bgTries = 0
+  while (contrastRatio(bg, skinBase) < MIN_BG_VS_SKIN && bgTries++ < 24) bg = pick(RANDOM_BG)
+  if (contrastRatio(bg, skinBase) < MIN_BG_VS_SKIN) {
+    bg = skinLightness(skin) > 50 ? '#96AEC9' : '#F3EFE2'
+  }
+
+  // A uniform is the common case for this audience, not an exotic one,
+  // so it comes up roughly a third of the time rather than never.
+  const uniform = rand() < 0.34 ? pick(['blazer-ribbon', 'blazer-tie', 'shirt-collar'] as const) : undefined
+
+  return {
+    skin,
+    face: pick(FACE_SHAPE_KEYS),
+    eyes: pick(EYE_SHAPE_KEYS),
+    iris: pick(IRIS_KEYS),
+    brow: pick(BROW_SHAPE_KEYS),
+    mouth: pick(MOUTH_SHAPE_KEYS),
+    // Facial hair on a middle-schooler is a joke that stops being funny
+    // on the second roll, so it stays rare rather than 1-in-4.
+    facialHair: rand() < 0.12 ? pick(FACIAL_HAIR_KEYS.filter(f => f !== 'none')) : 'none',
+    hair,
+    hairColor,
+    accessory: pick(ACCESSORY_KEYS),
+    top: pick(RANDOM_TOP),
+    bg,
+    ...(uniform ? { uniform, tieColor: pick(RANDOM_TIE) } : {}),
+  }
+}

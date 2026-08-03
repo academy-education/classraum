@@ -916,8 +916,18 @@ function HairFront({ style, hair, edge, skin, cover }: {
       // longer top into what read as a headband.
       return (
         <>
-          <path d="M 19 20.4 Q 17.6 26 18.2 31 L 22.4 31 Q 21.4 25.4 22.4 20.4 Z" fill={fadedHair(hair.base, skin, 0.4)} />
-          <path d="M 45 20.4 Q 46.4 26 45.8 31 L 41.6 31 Q 42.6 25.4 41.6 20.4 Z" fill={fadedHair(hair.base, skin, 0.4)} />
+          {/* The faded side used to end in `L 22.4 31` — a horizontal
+              cut across the bottom, under a flat top edge. Two straight
+              edges and two near-vertical ones is a RECTANGLE, and the
+              ear sits at x = 32 ± ear (17.4 on a square face) right
+              beside it, so it read as a grey square stuck to the head.
+              Reported on kestrel, and two-block had the identical bug.
+
+              Real clipper-short sides taper into the skin at the
+              bottom and follow the hairline at the top. Both ends are
+              curves now, so nothing in the silhouette is straight. */}
+          <path d="M 19.4 19.8 Q 17.6 25.6 18.5 30.2 Q 20.5 33 22.4 28.8 Q 21.3 24.4 22.8 20 Z" fill={fadedHair(hair.base, skin, 0.4)} />
+          <path d="M 44.6 19.8 Q 46.4 25.6 45.5 30.2 Q 43.5 33 41.6 28.8 Q 42.7 24.4 41.2 20 Z" fill={fadedHair(hair.base, skin, 0.4)} />
           <path
             {...fill}
             d="M 18 23 C 18 12.2 24.4 8.2 32 8.2 C 39.6 8.2 46 12.2 46 23 C 43.4 16.6 38.4 14.4 32 14.4 C 25.6 14.4 20.6 16.6 18 23 Z"
@@ -1102,8 +1112,12 @@ function HairFront({ style, hair, edge, skin, cover }: {
       // skull outline and never show at all.
       return (
         <>
-          <path d="M 18.8 19.6 Q 17.5 25.4 18.4 32 L 23 31.2 Q 22 25.4 22.8 19.6 Z" fill={fadedHair(hair.base, skin, 0.32)} />
-          <path d="M 45.2 19.6 Q 46.5 25.4 45.6 32 L 41 31.2 Q 42 25.4 41.2 19.6 Z" fill={fadedHair(hair.base, skin, 0.32)} />
+          {/* Same rectangle-beside-the-ear fix as 'undercut-fade' — see
+              the comment there. The step at the TOP is what makes a
+              두블럭 a 투블럭, so that edge stays crisp; only the bottom
+              stops being a straight cut. */}
+          <path d="M 18.8 19.6 Q 17.5 25.4 18.5 30.8 Q 20.8 33.6 22.9 29.4 Q 22 25 22.8 19.6 Z" fill={fadedHair(hair.base, skin, 0.32)} />
+          <path d="M 45.2 19.6 Q 46.5 25.4 45.5 30.8 Q 43.2 33.6 41.1 29.4 Q 42 25 41.2 19.6 Z" fill={fadedHair(hair.base, skin, 0.32)} />
           <path
             {...fill}
             d="M 17.4 22.4 C 17.4 11.4 23.8 8.2 32 8.2 C 40.2 8.2 46.6 11.4 46.6 22.4 L 45.8 17.4 Q 39.6 18.8 33 18.2 Q 25.4 17.4 18.4 13.8 Z"

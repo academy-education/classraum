@@ -14,6 +14,7 @@ import {
   SKIN_TONES, FACE_SHAPE_KEYS, EYE_SHAPE_KEYS, IRIS_KEYS, BROW_SHAPE_KEYS,
   MOUTH_SHAPE_KEYS, HAIR_STYLE_KEYS, HAIR_COLOR_KEYS, ACCESSORY_KEYS,
   FACIAL_HAIR_KEYS, UNIFORM_KEYS, GARMENT_PALETTE, BACKDROP_PALETTE,
+  randomAvatarConfig,
   TIE_PALETTE, COVER_PALETTE,
   type AvatarConfig,
 } from '@/lib/study/avatarConfig'
@@ -141,6 +142,15 @@ export function StudyAvatarCard() {
     setDraft({ config: null, presetId: null })
   }
 
+  /** `presetId: null` — a rolled avatar started from nothing, and saying
+   *  it started from whichever preset happened to be selected would make
+   *  the preset-popularity numbers (the only reason avatar_id survives
+   *  072) a lie. */
+  const randomise = () => {
+    setSaved(false)
+    setDraft({ config: randomAvatarConfig(), presetId: null })
+  }
+
   const save = async () => {
     if (!draft || saving) return
     setSaving(true)
@@ -195,15 +205,16 @@ export function StudyAvatarCard() {
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-[12.5px] text-gray-500 leading-snug">{t('study.avatar.hint')}</p>
-            <p className="mt-1 text-[11.5px] text-gray-400">
-              {!preview
-                ? t('study.avatar.usingInitials')
-                : draft?.presetId
-                  ? t('study.avatar.startedFrom', {
-                      name: String(t(getStudyAvatar(draft.presetId)!.nameKey)),
-                    })
-                  : t('study.avatar.builtFromScratch')}
-            </p>
+            {/* "Started from Long black hair with a blunt fringe" was
+                provenance, not information: it described a preset the
+                student can SEE, in the words of an internal art brief,
+                and it changed under them as they edited. Only the
+                no-avatar-yet line survives, because that one tells them
+                something the picture does not — that what they are
+                looking at is their initials, not a choice they made. */}
+            {!preview && (
+              <p className="mt-1 text-[11.5px] text-gray-400">{t('study.avatar.usingInitials')}</p>
+            )}
           </div>
         </div>
 
@@ -288,11 +299,22 @@ export function StudyAvatarCard() {
                   {t('study.avatar.discard')}
                 </button>
               )}
+              {/* Before "use my initials", because it is the constructive
+                  escape from a blank slate and that one is the giving-up
+                  escape. A student who does not know what they want gets
+                  somewhere by pressing this repeatedly. */}
+              <button
+                type="button"
+                onClick={randomise}
+                className="h-10 px-3 rounded-xl text-[13px] font-medium text-gray-600 hover:bg-gray-100 transition ml-auto"
+              >
+                {t('study.avatar.randomise')}
+              </button>
               {draft.config && (
                 <button
                   type="button"
                   onClick={useInitials}
-                  className="h-10 px-3 rounded-xl text-[13px] font-medium text-gray-500 hover:bg-gray-100 transition ml-auto"
+                  className="h-10 px-3 rounded-xl text-[13px] font-medium text-gray-500 hover:bg-gray-100 transition"
                 >
                   {t('study.avatar.useInitials')}
                 </button>
