@@ -41,6 +41,8 @@ interface Reveal {
 
 interface RunResult {
   runId: string
+  reviewerId: string
+  isMine: boolean
   drawn: number; answered: number; skipped: number
   correct: number; cantTell: number
   pct: number | null; controlPct: number | null; margin: number | null
@@ -87,13 +89,32 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
   const [realism, setRealism] = React.useState<Realism | null>(null)
   const [results, setResults] = React.useState<RunResult[]>([])
 
-  React.useEffect(() => { void refresh() }, [])
+  /*
+   * Resume on load. Without this the panel forgot the sitting on every
+   * refresh, and because the default run name carries the date, the
+   * next day's Start drew a SECOND sample while the first one's
+   * unanswered items were stranded — two partial runs, neither of them
+   * the sample anybody actually sat.
+   */
+  React.useEffect(() => {
+    void (async () => {
+      const open = await refresh()
+      if (open) { setRunId(open); await nextItem(open) }
+    })()
+    // Mount only, deliberately. `nextItem` is redefined every render, so
+    // listing it would re-fetch the blind item on each one — and each
+    // fetch is what the reviewer is looking at, so it would flicker
+    // under them mid-answer.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  async function refresh() {
+  /** Returns the reviewer's unfinished run id, if any. */
+  async function refresh(): Promise<string | null> {
     try {
       const json = await authed('/api/admin/bank-qc/review')
       setResults(json.runs ?? [])
-    } catch (e) { setError((e as Error).message) }
+      return json.openRun ?? null
+    } catch (e) { setError((e as Error).message); return null }
   }
 
   async function nextItem(rid: string) {
@@ -273,6 +294,14 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
               <div key={r.runId} className="rounded-xl ring-1 ring-gray-100 px-4 py-3">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[13px] font-medium text-gray-900">{r.runId}</span>
+                  {!r.isMine && (
+                    // Scores are per reviewer, never averaged across them —
+                    // two people disagreeing is the signal, and a merged
+                    // number would erase exactly that.
+                    <span className="rounded-full px-2 py-0.5 text-[11px] ring-1 bg-gray-50 text-gray-500 ring-gray-200">
+                      another reviewer
+                    </span>
+                  )}
                   <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ${READING[r.reading].chip}`}>
                     {READING[r.reading].label}
                   </span>

@@ -1,4 +1,4 @@
-import { dealSlots, dealItem, scoreRun, readRun, SLOTS, type ReviewRow, type Slot } from '../item-review'
+import { dealSlots, dealItem, scoreRun, readRun, groupRuns, SLOTS, type ReviewRow, type Slot } from '../item-review'
 
 /** Deterministic rand so a failure is reproducible. */
 function rng(seed: number) {
@@ -129,6 +129,47 @@ describe('human item review', () => {
     ]))
     expect(thick.answered).toBe(24)
     expect(readRun(thick, 25.5).reading).toBe('clean')
+  })
+
+  /*
+   * Two reviewers on one sample is the design, not an edge case. The
+   * route originally grouped by run id alone, which averaged them into
+   * a score neither person produced and erased the disagreement — the
+   * single most informative thing a second reviewer can give you.
+   */
+  it('never averages two reviewers into one score', () => {
+    const mk = (reviewerId: string, keySlot: Slot, pick: Slot | null) =>
+      ({ runId: 'cr-2026-08-05', reviewerId, ...row(keySlot, pick) })
+
+    // A picks the key every time; B never does. Same run, same items.
+    const rows = [
+      ...SLOTS.map(s => mk('A', s, s)),
+      ...SLOTS.map(s => mk('B', s, s === 'A' ? 'B' : 'A')),
+    ]
+
+    const grouped = groupRuns(rows)
+    expect(grouped).toHaveLength(2)
+    const a = grouped.find(g => g.reviewerId === 'A')!
+    const b = grouped.find(g => g.reviewerId === 'B')!
+    expect(a.score.pct).toBe(100)
+    expect(b.score.pct).toBe(0)
+
+    // Merged, this would read 50% — a number neither of them produced,
+    // and the 100-point disagreement would be invisible.
+    expect(scoreRun(rows).pct).toBe(50)
+    expect(a.score.pct).not.toBe(scoreRun(rows).pct)
+  })
+
+  it('does not merge reviewers when a run id contains separators', () => {
+    // The grouping key is built by concatenation; a run id with a space
+    // or hyphen in it must not be able to collide with another pair.
+    const rows = [
+      { runId: 'choose a response', reviewerId: 'x y', ...row('A', 'A') },
+      { runId: 'choose a response x', reviewerId: 'y', ...row('A', 'B') },
+    ]
+    const grouped = groupRuns(rows)
+    expect(grouped).toHaveLength(2)
+    expect(grouped.map(g => g.score.pct).sort()).toEqual([0, 100])
   })
 
   it('counts phase 2 only when both judgements are present', () => {

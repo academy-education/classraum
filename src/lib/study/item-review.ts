@@ -148,6 +148,32 @@ const round1 = (x: number) => Math.round(x * 10) / 10
  * items leak and no extra sampling will unsay that), while a GOOD result
  * needs volume before it counts.
  */
+/**
+ * Group rows into one score per (run, reviewer) — never per run alone.
+ *
+ * Two people reviewing the same sample is the whole point: agreement is
+ * the signal and disagreement is the most informative outcome. Merging
+ * them produces a number neither person produced — reviewer A at 90%
+ * and reviewer B at 30% prints as a tidy 60% — and destroys precisely
+ * the comparison the second reviewer was there to provide.
+ */
+export function groupRuns<T extends ReviewRow & { runId: string; reviewerId: string }>(
+  rows: T[],
+): Array<{ runId: string; reviewerId: string; score: RunScore }> {
+  const by = new Map<string, T[]>()
+  for (const r of rows) {
+    // Tab-separated: a run id may contain spaces and hyphens, and a
+    // collision here would silently merge two reviewers again.
+    const k = `${r.runId}\t${r.reviewerId}`
+    if (!by.has(k)) by.set(k, [])
+    by.get(k)!.push(r)
+  }
+  return [...by.entries()].map(([k, rs]) => {
+    const [runId, reviewerId] = k.split('\t')
+    return { runId, reviewerId, score: scoreRun(rs) }
+  })
+}
+
 export type RunReading = 'leaks' | 'clean' | 'inconclusive' | 'not-enough'
 
 export function readRun(s: RunScore, publishedMargin: number): { reading: RunReading; why: string } {

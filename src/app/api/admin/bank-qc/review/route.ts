@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
-import { dealSlots, dealItem, scoreRun, readRun, SLOTS, type Slot, type ReviewRow } from '@/lib/study/item-review'
+import { dealSlots, dealItem, groupRuns, readRun, SLOTS, type Slot } from '@/lib/study/item-review'
 
 /**
  * Human two-phase item review for /admin/bank-qc.
@@ -92,24 +92,58 @@ export async function GET(request: NextRequest) {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
   const rowsAll = (data ?? []) as ReviewRecord[]
-  const byRun = new Map<string, ReviewRecord[]>()
-  for (const r of rowsAll) {
-    if (!byRun.has(r.run_id)) byRun.set(r.run_id, [])
-    byRun.get(r.run_id)!.push(r)
-  }
 
-  const runs = [...byRun.entries()].map(([id, rows]) => {
-    const scored = scoreRun(rows.map((r): ReviewRow => ({
-      keySlot: r.key_slot as Slot,
-      blindPick: (r.blind_pick as Slot | null) ?? null,
-      answered: r.blind_at !== null,
-      verdict: r.verdict,
-      realism: r.realism,
-    })))
-    return { runId: id, ...scored, ...readRun(scored, PUBLISHED_MARGIN) }
+  /*
+   * Grouped by run AND reviewer, not by run alone.
+   *
+   * Two people reviewing the same sample is the point — agreement
+   * between them is the signal. Grouping by run_id only would average
+   * their blind picks into a single score, which is not a measurement
+   * of anybody: reviewer A scoring 90% and reviewer B scoring 30% would
+   * print as one tidy 60% that neither of them produced, and the
+   * disagreement — the most informative thing in the run — would be the
+   * part that got destroyed. The view in migration 075 groups by both;
+   * this now matches it.
+   */
+  const runs = groupRuns(rowsAll.map(r => ({
+    runId: r.run_id,
+    reviewerId: r.reviewer_id,
+    keySlot: r.key_slot as Slot,
+    blindPick: (r.blind_pick as Slot | null) ?? null,
+    answered: r.blind_at !== null,
+    verdict: r.verdict,
+    realism: r.realism,
+  }))).map(g => ({
+    runId: g.runId,
+    reviewerId: g.reviewerId,
+    isMine: g.reviewerId === admin.userId,
+    ...g.score,
+    ...readRun(g.score, PUBLISHED_MARGIN),
+  }))
+
+  /*
+   * The reviewer's own unfinished sitting, so the client can drop back
+   * into it after a reload.
+   *
+   * Without this the panel forgot the run on refresh and the default
+   * run name is `<cohort>-<today>` — so pressing Start the next day drew
+   * a SECOND sample while the first one's unanswered items sat stranded.
+   * Silently splitting one sitting into two partial runs destroys the
+   * fixed denominator that the draw-before-you-look design exists to
+   * protect.
+   */
+  const { data: open } = await reviews()
+    .select('run_id')
+    .eq('reviewer_id', admin.userId)
+    .is('blind_at', null)
+    .order('run_id', { ascending: false })
+    .limit(1).maybeSingle()
+
+  return NextResponse.json({
+    publishedMargin: PUBLISHED_MARGIN,
+    runs,
+    openRun: (open as { run_id: string } | null)?.run_id ?? null,
   })
-
-  return NextResponse.json({ publishedMargin: PUBLISHED_MARGIN, runs })
 }
 
 /**
@@ -128,6 +162,33 @@ export async function POST(request: NextRequest) {
   const domain = String(body.domain ?? '')
   const size = Math.min(50, Math.max(4, Number(body.size) || 12))
   if (!domain) return NextResponse.json({ error: 'domain is required' }, { status: 400 })
+
+  /*
+   * Refuse to open a second sitting while one is unfinished.
+   *
+   * Resuming (see GET's `openRun`) makes an interrupted sitting
+   * recoverable; this makes an abandoned one impossible. They are
+   * different guarantees and both are needed: without this, a reviewer
+   * who reloads and clicks Start on a new day silently draws a fresh
+   * 12 and orphans the old 11, and the two partial runs each report a
+   * denominator that is not the sample anybody actually sat.
+   */
+  const { data: unfinished } = await reviews()
+    .select('run_id')
+    .eq('reviewer_id', admin.userId)
+    .is('blind_at', null)
+    .order('run_id', { ascending: false })
+    .limit(1).maybeSingle()
+  if (unfinished && !body.force) {
+    const open = (unfinished as { run_id: string }).run_id
+    return NextResponse.json(
+      {
+        error: `"${open}" is still open — finish it before drawing another sample, or it becomes a partial run that no longer represents its cohort.`,
+        openRun: open,
+      },
+      { status: 409 },
+    )
+  }
 
   const { data: pool, error: poolErr } = await dbAdmin
     .from('study_item_bank')
