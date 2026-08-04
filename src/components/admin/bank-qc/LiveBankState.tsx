@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import { ReviewPanel } from './ReviewPanel'
 
 /*
  * The Supabase client is imported DYNAMICALLY, inside the effect, not at
@@ -300,6 +301,17 @@ export function LiveBankState() {
   return (
     <section className="mb-8 space-y-4">
       {data.finish && <FinishBar finish={data.finish} cohorts={data.cohorts} />}
+
+      {/* The one instrument no script here can talk itself into. Only
+          cohorts the blind attack applies to — a maths cohort carries
+          its whole problem in the stem, so "guess it from the options"
+          is not a question about the item. */}
+      <ReviewPanel
+        domains={data.cohorts
+          .filter(c => c.progress !== 'not-applicable')
+          .map(c => c.domain)
+          .filter((d, i, a) => a.indexOf(d) === i)}
+      />
 
       <div className={`${CARD} p-5`}>
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
