@@ -1,0 +1,137 @@
+{
+  "cohort": "nearmiss-v1",
+  "authoredFor": "choose_response",
+  "recipe": "Each distractor is the CORRECT reply to a neighbouring utterance the speaker could plausibly have made in the same situation — a different stance, timeframe or scope. No distractor carries an engineered defect (no wrong register, no absurd topic, no hedge planted to be spotted). Blind, all four read as good replies to something; only the actual utterance separates them.",
+  "whyNotTheThreeEliminatedDesigns": "Mutations of the key make the option set invertible (+40.4). Options from unrelated items are blind-safe but obviously wrong with the source (0% hard). A shared rotated option set forces category-error distractors (keyword-matchable). This abandons construction entirely and does the per-item authoring the mirror-pair pilot said was required.",
+  "stoppingRule": "Both gates on one run. Blind margin over this batch's own control must land in the 45-55% band for choose_response (official ETS reply items score 62.2%). With-source: two readers must agree, accuracy near 100%, and NOT 0% inference. If the blind margin does not fall meaningfully below the bank's +40.4, the near-miss recipe is not the answer and we stop rather than iterate.",
+  "items": [
+    { "setting": "supervisor on a draft", "act": "praise for content, criticism of ORDERING only",
+      "stimulus": "I've read your draft. The argument's fine — it's the ordering that's making it hard to follow.",
+      "key": "I'll rework the sequence, then, and leave the content as it is.",
+      "distractors": [
+        "I'll go back over the argument and tighten it up.",
+        "I'll start again from scratch and bring you something new.",
+        "It follows the order I set out in the proposal, though."
+      ] },
+    { "setting": "library desk", "act": "grant with a restriction on removal",
+      "stimulus": "We've got it, but it's reference-only — you can read it here, you just can't take it away.",
+      "key": "Then I'll work through it here this afternoon.",
+      "distractors": [
+        "Do you know anywhere that might have a lending copy?",
+        "Could I put in a request to borrow it anyway?",
+        "Great — I'll take it out for a fortnight, then."
+      ] },
+    { "setting": "lab partner", "act": "reports consistency AS the worry, not the reassurance",
+      "stimulus": "I ran the second set twice and got the same result both times, which is the part that worries me.",
+      "key": "So it's repeatable and still wrong — that points at the method.",
+      "distractors": [
+        "Good, that settles it. We can write it up.",
+        "Try a third run and see whether it shifts.",
+        "It might be the instrument rather than the sample."
+      ] },
+    { "setting": "housing office", "act": "offer, plus informal advice against using its full extent",
+      "stimulus": "I can hold the room for you until Friday, though I'd not leave it that late if I were you.",
+      "key": "I'll confirm tomorrow rather than push it.",
+      "distractors": [
+        "Friday's fine — I'll let you know then.",
+        "I'll take it now, then, if that's simpler.",
+        "Is there another one like it if this falls through?"
+      ] },
+    { "setting": "professor on figures", "act": "praise plus one addition, with its location already conceded",
+      "stimulus": "Your figures are clearer than last time. I'd still like the raw counts somewhere, even if it's an appendix.",
+      "key": "I'll add them as an appendix so the main text stays clean.",
+      "distractors": [
+        "I'll work them into the results section, then.",
+        "I'll redo the figures with the counts on the axes.",
+        "The raw counts are in the supplementary file already."
+      ] },
+    { "setting": "IT desk", "act": "consent plus a side-effect warning",
+      "stimulus": "The password reset will work, but it'll sign you out of the app on your phone as well.",
+      "key": "That's fine — I'll sign back in on the phone after.",
+      "distractors": [
+        "I'd rather not lose the phone one. Is there another way?",
+        "Should I sort the phone out before we do it?",
+        "It's already signed me out, actually."
+      ] },
+    { "setting": "tutor on timing", "act": "diagnosis locating the problem in a specific place",
+      "stimulus": "You're not far off the pace — it's the last two questions where you're losing the time.",
+      "key": "I'll practise finishing under the clock, then.",
+      "distractors": [
+        "I'll work on going faster overall.",
+        "I'll go back over the last two topics.",
+        "So I'm about where I should be, then."
+      ] },
+    { "setting": "finance office", "act": "completion on our side, disclaiming the remaining delay",
+      "stimulus": "The transfer's gone through on our side; whether it shows today depends on your bank, not us.",
+      "key": "I'll chase them if it's not there by tomorrow.",
+      "distractors": [
+        "So it hasn't actually been sent yet?",
+        "Is there something I need to send them?",
+        "Good, so it'll definitely be there today."
+      ] },
+    { "setting": "group project", "act": "conditional acceptance citing a past imbalance",
+      "stimulus": "I'm happy to take the intro, but only if someone else does the conclusion — I did both last time.",
+      "key": "I'll do the conclusion. That's fair.",
+      "distractors": [
+        "Great, the intro's yours then.",
+        "We can split everything evenly this time.",
+        "I'll find someone else for the intro."
+      ] },
+    { "setting": "letting agent", "act": "inclusion with a written caveat",
+      "stimulus": "The heating's included, but there's a fair-use limit written into the contract.",
+      "key": "What counts as fair use, out of interest?",
+      "distractors": [
+        "So I'd be paying for heating separately?",
+        "Good, so I can leave it on as I like.",
+        "Could that be raised if I asked?"
+      ] },
+    { "setting": "health centre", "act": "downgrades urgency while advising against a long wait",
+      "stimulus": "It's not urgent, but I'd rather see you sooner than leave it three months.",
+      "key": "I'll take whatever's free in the next few weeks.",
+      "distractors": [
+        "I'll book something after the holidays, then.",
+        "Should I come in today?",
+        "Is that something I'd see a specialist for?"
+      ] },
+    { "setting": "job offer", "act": "concedes one axis, refuses another",
+      "stimulus": "We can be flexible on the start date. The salary, though, is what it is.",
+      "key": "Then I'd like to push the start to September, if that's open.",
+      "distractors": [
+        "Is there any movement at all on the figure?",
+        "That all sounds fine — I'll take it as offered.",
+        "When would you want me to start, ideally?"
+      ] },
+    { "setting": "study peer", "act": "provision with a conditional caveat on scope",
+      "stimulus": "I've booked the room for two hours, which should be plenty unless you want to run the whole thing.",
+      "key": "Let's do the second half only — two hours covers that.",
+      "distractors": [
+        "Could we get a longer slot?",
+        "Perfect, we'll go through it end to end.",
+        "Which room did you get?"
+      ] },
+    { "setting": "editor", "act": "acceptance with one localised reservation",
+      "stimulus": "The piece works. My only hesitation is the opening — it takes a while to get going.",
+      "key": "I'll cut into the first few paragraphs and start later.",
+      "distractors": [
+        "I'll tighten it throughout.",
+        "Would you rather I pitched something else?",
+        "I'll rework how it finishes as well."
+      ] },
+    { "setting": "registrar", "act": "confirms eligibility while flagging it is not sufficient",
+      "stimulus": "You're eligible to apply. Being eligible and being funded aren't the same thing, mind.",
+      "key": "What's the funding decided on, separately?",
+      "distractors": [
+        "Good — I'll get the application in this week.",
+        "So there's no point applying, then.",
+        "Does that come through with the place?"
+      ] },
+    { "setting": "colleague", "act": "offer, self-undermined in favour of a better option",
+      "stimulus": "I could look at it tonight, though I'd be doing it tired and you'd get a better read tomorrow.",
+      "key": "Tomorrow's fine — I'd rather have the better read.",
+      "distractors": [
+        "Tonight would help, if you don't mind.",
+        "No problem, I'll ask someone else.",
+        "When do you think you'd get to it?"
+      ] }
+  ]
+}
