@@ -1,5 +1,6 @@
 import {
   TARGETS, NOT_APPLICABLE, progressFor, overallProgress, MEANINGFUL_COVERAGE,
+  MATHS_WITH_GRAPHIC,
 } from '../bank-targets'
 
 /**
@@ -79,7 +80,6 @@ describe('bank targets', () => {
       { domain: 'Craft and Structure', items: 211, measured: 52, blindPct: 97.4 },
       { domain: 'Choose a Response', items: 71, measured: 12, blindPct: 91.7 },
       { domain: 'Conversation', items: 193, measured: 12, blindPct: 83.3 },
-      { domain: 'Algebra', items: 205, measured: 12, blindPct: 100 },
       { domain: 'Build a Sentence', items: 90, measured: 0, blindPct: null },
     ])
     expect(done).toBe(0)
@@ -87,10 +87,46 @@ describe('bank targets', () => {
   })
 
   it('says how many items an unmeasured cohort needs', () => {
-    const p = progressFor('Algebra', 205, 0, null)
+    const p = progressFor('Conversation', 205, 0, null)
     expect(p.state).toBe('unmeasured')
     expect(p.remaining).toContain('Attack 41 of 205')
     expect(Math.ceil(205 * MEANINGFUL_COVERAGE)).toBe(41)
+  })
+
+  it('does not judge maths with an instrument that keeps the whole problem', () => {
+    /*
+     * All four maths domains scored 100% "blind" and were reported as
+     * the bank's worst cohorts. The attack KEEPS the stem — right for
+     * listening and reading, where the withheld source is the audio or
+     * passage — but a maths item has no separate source: `passage` is
+     * null on all 848 and the stem IS the problem. So 100% meant the
+     * solver did the algebra, not that the item leaked.
+     *
+     * The band that judged them came from a comment in bank-targets.ts
+     * claiming the attack "removes the stem entirely". Nothing checked
+     * that sentence, and it was false.
+     */
+    for (const d of ['Algebra', 'Advanced Math', 'Geometry and Trigonometry',
+                     'Problem-Solving and Data Analysis']) {
+      expect(NOT_APPLICABLE.has(d)).toBe(true)
+      // Even a perfect-looking 100% must not be reported as a failure.
+      expect(progressFor(d, 205, 12, 100).state).toBe('not-applicable')
+      expect(TARGETS[d]).toBeUndefined()
+    }
+
+    // 848 maths items must leave the denominator entirely...
+    const { total } = overallProgress([
+      { domain: 'Algebra', items: 205, measured: 12, blindPct: 100 },
+      { domain: 'Advanced Math', items: 207, measured: 12, blindPct: 100 },
+      { domain: 'Geometry and Trigonometry', items: 225, measured: 12, blindPct: 100 },
+      { domain: 'Problem-Solving and Data Analysis', items: 211, measured: 12, blindPct: 100 },
+      { domain: 'Conversation', items: 193, measured: 12, blindPct: 83.3 },
+    ])
+    expect(total).toBe(193)
+
+    // ...but the 132 that carry a FIGURE are recorded, not forgotten.
+    // A figure-blind attack could judge those; it does not exist yet.
+    expect(Object.values(MATHS_WITH_GRAPHIC).reduce((a, b) => a + b, 0)).toBe(132)
   })
 
   it('every band sits below its published baseline', () => {

@@ -50,12 +50,50 @@ export interface Target {
  * - Grammar/punctuation items carry the sentence in the STEM; the skill
  *   is the rule, and there is nothing to withhold.
  * - Free-response tasks have no options to shuffle.
+ * - MATHS carries the whole problem in the stem. See below.
+ *
+ * ── Why maths was moved here on 2026-08-04 ───────────────────────────
+ * All four maths domains scored 100% "blind" and were reported as the
+ * bank's worst cohorts. That number measures nothing about the items.
+ *
+ * attack-cohort.mjs KEEPS the stem, deliberately — ANSWERABILITY-GATE.md
+ * says the threat model is "can you answer without the SOURCE", not
+ * "without the question", which is right for listening and reading where
+ * the audio or passage is the withheld source. Maths has no separate
+ * source: all 848 items have `passage = null` and the stem is the whole
+ * problem ("In the system 3x - 5y = 12 and 9x + ky = 30 there is no
+ * solution, what is k?"). Handing a solver the stem hands it everything,
+ * so 100% means the solver did the algebra, not that the item leaks.
+ *
+ * This file previously claimed the opposite — "the maths attack removes
+ * the stem entirely, so a solver has nothing legitimate to reason from"
+ * — and that sentence was written here by me with nothing checking it.
+ * It then set a 25-35% band that 848 items were judged against.
+ *
+ * CAVEAT, deliberately recorded rather than quietly excluded: 132 of the
+ * 848 DO carry a graphic (Geometry 70, PSDA 46, Advanced Math 6, Algebra
+ * 10). For those the figure IS a withheld source and a figure-blind
+ * attack would be meaningful. That gate does not exist yet, so those
+ * items are neither measured nor claimed — they are counted out of scope
+ * here only because the CURRENT instrument cannot judge them.
  */
 export const NOT_APPLICABLE = new Set([
   'Standard English Conventions',
   'Build a Sentence', 'Listen and Repeat', 'Complete the Words',
   'Email', 'Academic Discussion', 'Interview',
+  'Algebra', 'Advanced Math', 'Geometry and Trigonometry',
+  'Problem-Solving and Data Analysis',
 ])
+
+/** Maths items carrying a figure, which a future figure-blind attack
+ *  COULD judge. Kept visible so "not applicable" does not quietly become
+ *  "forgotten". Counts measured from the live bank, 2026-08-04. */
+export const MATHS_WITH_GRAPHIC = {
+  'Geometry and Trigonometry': 70,
+  'Problem-Solving and Data Analysis': 46,
+  'Algebra': 10,
+  'Advanced Math': 6,
+} as const
 
 const READING: Target = {
   min: 50, max: 60, published: 71.6,
@@ -100,21 +138,11 @@ export const TARGETS: Record<string, Target> = {
     note: 'Official ETS lectures score 96.9% blind — the format really is guessable. 80-90% is harder than official.',
   },
 
-  // Maths: the attack strips the stem, so a solver sees four bare
-  // values and has nothing legitimate to work from. Judged against
-  // chance, not against a verbal margin.
-  'Algebra': mathTarget(),
-  'Advanced Math': mathTarget(),
-  'Geometry and Trigonometry': mathTarget(),
-  'Problem-Solving and Data Analysis': mathTarget(),
+  // Maths is deliberately ABSENT — see NOT_APPLICABLE above. The attack
+  // keeps the stem, and for maths the stem is the entire problem, so a
+  // "blind" score there measures whether the solver can do algebra.
 }
 
-function mathTarget(): Target {
-  return {
-    min: 25, max: 35, published: null,
-    note: 'The maths attack removes the stem entirely, so a solver has nothing legitimate to reason from. Judged against chance (25%), not a published margin.',
-  }
-}
 
 /** Below this share of a cohort measured, a good score is a spot check
  *  and not a verdict — see the asymmetry note in bank-readiness-status. */
