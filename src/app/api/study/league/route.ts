@@ -3,6 +3,8 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { LEAGUE_TIERS } from '@/lib/study/league-rewards'
+import { resolveIdentities } from '@/lib/study/identity'
+import type { AvatarConfig } from '@/lib/study/avatarConfig'
 
 /**
  * GET /api/study/league — current week's leaderboard for the caller.
@@ -23,6 +25,11 @@ export const dynamic = 'force-dynamic'
 interface LeaderboardRow {
   student_id: string
   display_name: string
+  /** The preset the student started from, or null. */
+  avatar_id: string | null
+  /** Their customised avatar, and the one the row actually draws when
+   *  set. Null until migration 072 is applied. */
+  avatar_config: AvatarConfig | null
   xp_this_week: number
   rank: number
   is_me: boolean
@@ -101,32 +108,20 @@ export async function GET(req: NextRequest) {
   ])
 
   const ids = (top ?? []).map(r => r.student_id)
-  // Two identity sources, resolved in parallel: the real name (masked for
-  // privacy) and the opt-in public nickname. A member who set a nickname
+  // Name + avatar, from the shared resolver. A member who set a nickname
   // shows it UNMASKED — it's a handle they chose to be seen by; everyone
-  // else keeps the masked real name.
-  const [{ data: users }, { data: nickRows }] = await Promise.all([
-    ids.length > 0
-      ? dbAdmin.from('users').select('id, name').in('id', ids)
-      : Promise.resolve({ data: [] as { id: string; name: string | null }[] }),
-    ids.length > 0
-      ? dbAdmin.from('study_user_prefs').select('student_id, nickname').in('student_id', ids)
-      : Promise.resolve({ data: [] as { student_id: string; nickname: string | null }[] }),
-  ])
-  const nameMap = new Map<string, string>()
-  for (const u of (users ?? [])) nameMap.set(u.id as string, (u.name as string | null) ?? 'Student')
-  const nickMap = new Map<string, string>()
-  for (const r of (nickRows ?? [])) {
-    if (r.nickname) nickMap.set(r.student_id as string, r.nickname as string)
-  }
+  // else keeps the masked real name. This used to be an inline copy of
+  // resolveIdentities (plus a byte-identical copy of maskName); the two
+  // copies now cannot drift.
+  const identities = await resolveIdentities(ids, user.id)
 
   const leaderboard: LeaderboardRow[] = (top ?? []).map((m, i) => {
     const sid = m.student_id as string
-    const nick = nickMap.get(sid)
     return {
       student_id: sid,
-      // Nickname wins (shown as-is); otherwise fall back to the masked name.
-      display_name: nick ?? maskName(nameMap.get(sid) ?? 'Student', sid === user.id),
+      display_name: identities.get(sid)?.display_name ?? 'Student',
+      avatar_id: identities.get(sid)?.avatar_id ?? null,
+      avatar_config: identities.get(sid)?.avatar_config ?? null,
       xp_this_week: m.xp_this_week as number,
       rank: i + 1,
       is_me: sid === user.id,
@@ -230,17 +225,3 @@ export async function GET(req: NextRequest) {
   })
 }
 
-/** Privacy: show full name only for the caller; mask others to first
- *  syllable / initial + tail. Prevents accidental classmate exposure. */
-function maskName(name: string, isMe: boolean): string {
-  if (isMe) return name
-  const trimmed = name.trim()
-  if (trimmed.length <= 2) return trimmed
-  // For Korean names: first char + ** + last char.
-  const isKorean = /[ㄱ-힝]/.test(trimmed)
-  if (isKorean) return `${trimmed[0]}**${trimmed[trimmed.length - 1]}`
-  // For Latin names: first letter + dot.
-  const parts = trimmed.split(/\s+/)
-  if (parts.length === 1) return `${parts[0][0]}***`
-  return `${parts[0]} ${parts[parts.length - 1][0]}.`
-}

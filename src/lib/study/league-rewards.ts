@@ -1,4 +1,5 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import { PODIUM_CREDITS, PROMOTION_CREDITS, MILESTONE_CREDITS } from '@/lib/study/league-reward-values'
 
 /**
  * League reward payouts — granted by the weekly roll cron
@@ -22,19 +23,11 @@ export const LEAGUE_TIERS = [
   'emerald', 'amethyst', 'pearl', 'obsidian', 'diamond',
 ] as const
 
-/** Podium (top-3 finish in your cohort) → credits by rank. */
-const PODIUM_CREDITS: Record<number, number> = { 1: 3, 2: 2, 3: 1 }
-
-/** Any promotion (top-third finisher moving up a tier) → flat credits. */
-const PROMOTION_CREDITS = 1
-
-/** First-ever time reaching a tier → one-time milestone credits. The
- *  entry tiers (bronze/silver) pay nothing; the reward grows toward the
- *  top so climbing feels rewarding without a big burn. */
-const MILESTONE_CREDITS: Record<string, number> = {
-  gold: 2, sapphire: 2, ruby: 3, emerald: 3,
-  amethyst: 4, pearl: 4, obsidian: 5, diamond: 8,
-}
+// The payout tables (PODIUM_CREDITS / PROMOTION_CREDITS /
+// MILESTONE_CREDITS) live in `league-reward-values.ts` — a
+// dependency-free module the client-side league page can also import, so
+// the numbers shown to the student are the numbers the cron pays rather
+// than a hand-copied duplicate.
 
 export interface ClosedMember {
   studentId: string
@@ -54,7 +47,7 @@ export interface RewardBreakdown {
 }
 
 /** Add credits to the purchased bucket + write an audit ledger row. */
-async function grantCredits(studentId: string, delta: number, note: string): Promise<boolean> {
+export async function grantCredits(studentId: string, delta: number, note: string): Promise<boolean> {
   if (delta <= 0) return false
   // No pre-provisioning needed: increment_study_purchased_credits is an
   // upsert as of migration 055, so a free student who has only ever
@@ -113,23 +106,37 @@ async function hasReachedTier(studentId: string, tier: string): Promise<boolean>
 export async function grantLeagueRewards(m: ClosedMember): Promise<RewardBreakdown> {
   const out: RewardBreakdown = { podium: 0, promotion: 0, milestone: 0, milestoneTier: null, total: 0 }
 
+  /*
+   * RECORDING IS NOT PAYING, since 073.
+   *
+   * Each branch writes an UNCLAIMED reward row and stops. The credits
+   * move when the student taps Collect, in /api/study/league/claim —
+   * the reward is a thing they receive rather than a number that
+   * changed overnight.
+   *
+   * The breakdown returned below therefore means "what was EARNED this
+   * close", which is what the result notification should say. It no
+   * longer means "what landed in the balance", and the two are now
+   * different facts.
+   */
+
   // Podium — top 3 in the cohort.
   const podiumCredits = PODIUM_CREDITS[m.finalRank]
   if (podiumCredits) {
     const fresh = await recordReward({ student_id: m.studentId, week_start: m.weekStart, kind: 'podium', tier: m.fromTier, rank: m.finalRank, credits: podiumCredits })
-    if (fresh && await grantCredits(m.studentId, podiumCredits, `podium #${m.finalRank} ${m.fromTier} ${m.weekStart}`)) out.podium = podiumCredits
+    if (fresh) out.podium = podiumCredits
   }
 
   if (m.promotionEvent === 'promoted') {
     // Promotion — flat bonus for moving up.
     const fresh = await recordReward({ student_id: m.studentId, week_start: m.weekStart, kind: 'promotion', tier: m.nextTier, rank: m.finalRank, credits: PROMOTION_CREDITS })
-    if (fresh && await grantCredits(m.studentId, PROMOTION_CREDITS, `promotion → ${m.nextTier} ${m.weekStart}`)) out.promotion = PROMOTION_CREDITS
+    if (fresh) out.promotion = PROMOTION_CREDITS
 
     // Milestone — first time EVER reaching next_tier.
     const milestoneCredits = MILESTONE_CREDITS[m.nextTier]
     if (milestoneCredits && !(await hasReachedTier(m.studentId, m.nextTier))) {
       const fresh2 = await recordReward({ student_id: m.studentId, week_start: m.weekStart, kind: 'tier_milestone', tier: m.nextTier, rank: m.finalRank, credits: milestoneCredits })
-      if (fresh2 && await grantCredits(m.studentId, milestoneCredits, `first ${m.nextTier} ${m.weekStart}`)) {
+      if (fresh2) {
         out.milestone = milestoneCredits
         out.milestoneTier = m.nextTier
       }
@@ -138,4 +145,92 @@ export async function grantLeagueRewards(m: ClosedMember): Promise<RewardBreakdo
 
   out.total = out.podium + out.promotion + out.milestone
   return out
+}
+
+
+// ── Collecting ───────────────────────────────────────────────────────
+
+export interface ClaimableReward {
+  id: string
+  week_start: string
+  kind: string
+  tier: string | null
+  rank: number | null
+  credits: number
+}
+
+/** Everything this student has earned and not yet collected. */
+export async function listUnclaimedRewards(studentId: string): Promise<ClaimableReward[]> {
+  const { data, error } = await dbAdmin
+    .from('study_league_rewards')
+    .select('id, week_start, kind, tier, rank, credits')
+    .eq('student_id', studentId)
+    .is('claimed_at', null)
+    .gt('credits', 0)
+    .order('week_start', { ascending: false })
+  if (error) {
+    console.error('[league-rewards] unclaimed list failed', { studentId, error })
+    return []
+  }
+  return (data ?? []) as ClaimableReward[]
+}
+
+/**
+ * Collect every waiting reward for one student.
+ *
+ * ── THE ONLY THING PREVENTING DOUBLE PAYMENT ─────────────────────────
+ * The `.is('claimed_at', null)` on the UPDATE, and the fact that the
+ * rows it RETURNS — not a prior SELECT — decide what gets paid.
+ *
+ * Two taps 200ms apart both reach this. Postgres serialises them on the
+ * row: the first sets claimed_at and returns the row, the second finds
+ * nothing still NULL, matches zero rows, and grants nothing. That works
+ * because claiming and checking are ONE statement.
+ *
+ * The shape this deliberately is NOT:
+ *
+ *     const rows = await select(...).is('claimed_at', null)   // read
+ *     await grantCredits(sum(rows))                           // pay
+ *     await update(...).set({ claimed_at })                   // mark
+ *
+ * Both callers' SELECTs return the same rows and both pay. CLAUDE.md
+ * records that exact race shipping once already — the TOEFL grader whose
+ * "server-side idempotency" was a SELECT followed by an INSERT, which
+ * produced four submission rows for two essays. A comment asserting an
+ * invariant is not the invariant.
+ *
+ * ── Ordering: mark first, then pay ───────────────────────────────────
+ * If the grant fails after the mark, the student is short and the row
+ * says collected — recoverable, visible, and the ledger shows no entry.
+ * If we paid first and the mark failed, a retry pays again. Given one
+ * of those has to be possible, it is the one that cannot mint money.
+ */
+export async function claimRewards(studentId: string): Promise<{ claimed: number; credits: number }> {
+  const { data, error } = await dbAdmin
+    .from('study_league_rewards')
+    .update({ claimed_at: new Date().toISOString() })
+    .eq('student_id', studentId)
+    .is('claimed_at', null)
+    .gt('credits', 0)
+    .select('id, credits')
+
+  if (error) {
+    console.error('[league-rewards] claim update failed', { studentId, error })
+    throw new Error('claim_failed')
+  }
+
+  const rows = (data ?? []) as Array<{ id: string; credits: number }>
+  if (rows.length === 0) return { claimed: 0, credits: 0 }
+
+  const total = rows.reduce((n, r) => n + r.credits, 0)
+  const ok = await grantCredits(studentId, total, `league rewards x${rows.length}`)
+  if (!ok) {
+    // Loud, because the rows are marked collected and the balance did
+    // not move. Not rolled back: un-marking would re-open the race this
+    // whole function exists to close.
+    console.error('[league-rewards] CLAIMED BUT NOT PAID — reconcile', {
+      studentId, total, rewardIds: rows.map(r => r.id),
+    })
+  }
+  return { claimed: rows.length, credits: total }
 }

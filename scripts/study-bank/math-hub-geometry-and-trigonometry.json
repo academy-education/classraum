@@ -1,0 +1,358 @@
+[
+  {
+    "id": "8e66b922-3e34-4852-a629-a04715978f11",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Circle equation, complete the square",
+    "prompt": "The equation of a circle is x² + y² − 6x + 8y − 11 = 0. What is the radius of the circle?",
+    "correct_answer": "6",
+    "choices": ["5", "36", "6", "11"],
+    "explanation": "Completing the square: (x−3)² + (y+4)² = 11 + 9 + 16 = 36, so the radius is √36 = 6.",
+    "duplicate_of": "7a02d80d and 19c5172f carry the same stem; worth deduping separately.",
+    "repaired_choices": ["36", "3.74", "6", "11"],
+    "distractor_reasoning": {
+      "36": "Completed the square correctly and reported r² instead of r.",
+      "3.74": "Moved the −11 the wrong way, computing 9 + 16 − 11 = 14 and taking √14.",
+      "11": "Read the constant term of the original equation as the radius."
+    }
+  },
+  {
+    "id": "2e0b32a2-f647-454e-acba-8a18e3f5a60a",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Chord distance from center",
+    "prompt": "A chord of a circle has length 24. The chord is located 5 units from the center of the circle. What is the radius of the circle?",
+    "correct_answer": "13",
+    "choices": ["12", "17", "13", "26"],
+    "explanation": "A perpendicular from the center bisects the chord, forming a right triangle with legs 12 (half the chord) and 5 (distance from center), and hypotenuse equal to the radius. So radius = sqrt(12^2 + 5^2) = sqrt(169) = 13.",
+    "repaired_choices": ["17", "24.5", "13", "10.9"],
+    "distractor_reasoning": {
+      "17": "Added the two legs, 12 + 5, instead of using the Pythagorean theorem.",
+      "24.5": "Used the whole chord 24 as a leg rather than half of it, giving √(24² + 5²).",
+      "10.9": "Subtracted the squares instead of adding, giving √(144 − 25)."
+    }
+  },
+  {
+    "id": "80f42b82-4f88-4b96-b1f3-60fc8b199c8f",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Circles",
+    "prompt": "A sector of a circle has radius 8 and an arc length of 6π. The area of this sector can be written as kπ, where k is a constant. What is the value of k?",
+    "correct_answer": "24",
+    "choices": ["48", "24", "12", "32"],
+    "explanation": "The central angle in radians is θ = (arc length)/(radius) = 6π/8 = 3π/4. The sector area is (1/2)r^2θ = (1/2)(64)(3π/4) = 24π. Equivalently, sector area = (1/2)(radius)(arc length) = (1/2)(8)(6π) = 24π, so k = 24. (Omitting the factor of 1/2 gives 48.)",
+    "explanation_stale": "The parenthetical still describes the removed option 48 and must be dropped.",
+    "repaired_choices": ["64", "24", "32", "75.4"],
+    "distractor_reasoning": {
+      "64": "Computed the area of the WHOLE circle, πr², ignoring that only a sector is wanted.",
+      "32": "Used (1/2)r·r instead of (1/2)r·(arc length), putting the radius where the arc length belongs.",
+      "75.4": "Evaluated 24π numerically and reported that, rather than the coefficient k."
+    }
+  },
+  {
+    "id": "80723f79-cd18-48f0-baef-1c565b304e1d",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Circle from general equation",
+    "prompt": "A circle in the xy-plane has equation x² + y² − 6x + 8y + 9 = 0. What is the radius of the circle?",
+    "correct_answer": "4",
+    "choices": ["3", "5", "4", "16"],
+    "explanation": "Complete the square: (x − 3)² + (y + 4)² = 9 + 16 − 9 = 16, so the radius is √16 = 4.",
+    "hub_retained": "Reporting r² and dropping the constant when moving it across are the two errors completing-the-square actually produces here; both land on slip-values of the key.",
+    "repaired_choices": ["5.83", "5", "4", "16"],
+    "distractor_reasoning": {
+      "5.83": "Added the +9 instead of subtracting it, giving 9 + 16 + 9 = 34 and √34.",
+      "5": "Dropped the +9 entirely when moving it across, leaving 9 + 16 = 25.",
+      "16": "Completed the square correctly and reported r² instead of r."
+    }
+  },
+  {
+    "id": "242670cb-7ed4-49b7-8432-137cebed9fc0",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Coordinate area",
+    "prompt": "A triangle in the xy-plane has vertices at (1, 1), (5, 2), and (3, 6). What is the area of the triangle, in square units?",
+    "correct_answer": "9",
+    "choices": ["18", "12", "4.5", "9"],
+    "explanation": "Using the shoelace formula, area = |x1(y2 - y3) + x2(y3 - y1) + x3(y1 - y2)| / 2 = |1(2 - 6) + 5(6 - 1) + 3(1 - 2)| / 2 = |-4 + 25 - 3| / 2 = 18/2 = 9.",
+    "repaired_choices": ["12", "20", "10", "9"],
+    "distractor_reasoning": {
+      "12": "Sign slip on the last shoelace term: summed −4 + 25 + 3 = 24 before halving.",
+      "20": "Computed the area of the bounding rectangle instead, 4 wide by 5 tall.",
+      "10": "Took the bounding box's width and height as base and height of the triangle, (1/2)(4)(5)."
+    }
+  },
+  {
+    "id": "33b3f26a-d0c1-411b-9dc0-72d3459311de",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Coordinate area",
+    "prompt": "A quadrilateral in the xy-plane has vertices, in order, at (0, 0), (6, 0), (8, 5), and (2, 7). What is the area of the quadrilateral, in square units?",
+    "correct_answer": "38",
+    "choices": ["38", "76", "40", "19"],
+    "explanation": "Apply the shoelace formula around the vertices in order: sum of (x_i * y_{i+1} - x_{i+1} * y_i) = (0*0 - 6*0) + (6*5 - 8*0) + (8*7 - 2*5) + (2*0 - 0*7) = 0 + 30 + 46 + 0 = 76. Area = |76|/2 = 38.",
+    "repaired_choices": ["38", "76", "56", "23"],
+    "distractor_reasoning": {
+      "76": "Reported the shoelace sum without the final halving.",
+      "56": "Computed the bounding rectangle instead, 8 wide by 7 tall.",
+      "23": "Split the quadrilateral into two triangles and reported only one of them, the (0,0)-(8,5)-(2,7) piece."
+    }
+  },
+  {
+    "id": "ee1d0538-11a8-4424-b06b-f05ddb311171",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (1, 2) and (21, 23)?",
+    "correct_answer": "29",
+    "choices": ["30", "28", "29", "41"],
+    "repaired_choices": ["41", "21", "29", "841"],
+    "explanation": "Distance = √(20² + 21²) = √841 = 29.",
+    "distractor_reasoning": {
+      "41": "Added the two coordinate differences, 20 + 21, without squaring — the taxicab distance.",
+      "21": "Used only the larger of the two differences.",
+      "841": "Computed 20² + 21² and reported it without taking the square root."
+    }
+  },
+  {
+    "id": "50e20299-ff06-4c99-9000-562879c60a47",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Right triangles and the Pythagorean theorem",
+    "prompt": "In right triangle ABC, the right angle is at B, leg AB = 20, and leg BC = 21. What is the length of the hypotenuse AC?",
+    "correct_answer": "29",
+    "choices": ["41", "30", "28", "29"],
+    "explanation": "AC = √(20² + 21²) = √(400+441) = √841 = 29.",
+    "repaired_choices": ["20.5", "6.4", "841", "29"],
+    "distractor_reasoning": {
+      "20.5": "Averaged the two legs instead of applying the Pythagorean theorem.",
+      "6.4": "Subtracted the squares rather than adding, computing √(21² − 20²) as if solving for a leg.",
+      "841": "Computed AC² = 841 and reported it without taking the square root."
+    }
+  },
+  {
+    "id": "0088dae3-db19-4e4f-baeb-998e580c4850",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Right triangles and the Pythagorean theorem",
+    "prompt": "In right triangle ABC, the right angle is at B, leg AB = 5, and leg BC = 12. What is the length of the hypotenuse AC?",
+    "correct_answer": "13",
+    "choices": ["14", "12", "13", "17"],
+    "explanation": "AC = √(5² + 12²) = √(25+144) = √169 = 13.",
+    "repaired_choices": ["17", "8.5", "13", "10.91"],
+    "distractor_reasoning": {
+      "17": "Added the two legs, 5 + 12, instead of applying the Pythagorean theorem.",
+      "8.5": "Averaged the two legs.",
+      "10.91": "Subtracted the squares rather than adding, computing √(12² − 5²) as if solving for a leg."
+    }
+  },
+  {
+    "id": "7a02d80d-cf29-4003-9045-1880f3fd70ea",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Circle equation / completing square",
+    "prompt": "In the xy-plane, a circle is given by the equation x^2 + y^2 - 6x + 8y - 11 = 0. What is the radius of the circle? Round to the nearest whole number if needed.",
+    "correct_answer": "6",
+    "choices": ["36", "11", "6", "5"],
+    "explanation": "Complete the square: (x^2 - 6x + 9) + (y^2 + 8y + 16) = 11 + 9 + 16 = 36. So (x - 3)^2 + (y + 4)^2 = 36, giving radius sqrt(36) = 6.",
+    "duplicate_of": "8e66b922 and 19c5172f carry the same stem.",
+    "repaired_choices": ["18", "14", "6", "5"],
+    "distractor_reasoning": {
+      "18": "Halved r² = 36 instead of taking its square root.",
+      "14": "Moved the −11 the wrong way, reporting 9 + 16 − 11 without a square root.",
+      "5": "Dropped the −11 entirely, leaving 9 + 16 = 25 and a radius of 5."
+    }
+  },
+  {
+    "id": "97d362bd-7406-4786-aed4-147fe6d42bbd",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Two-step right-triangle trig",
+    "prompt": "In right triangle ABC, the right angle is at B. Angle A measures 30 degrees and the hypotenuse AC has length 20. A point D lies on AB such that BD equals half of BC. What is the length of BC?",
+    "correct_answer": "10",
+    "choices": ["17", "20", "10", "5"],
+    "explanation": "BC is the side opposite the 30-degree angle A, so BC = AC * sin(30 degrees) = 20 * 0.5 = 10. (The point D detail is extra information not needed for BC.)",
+    "repaired_choices": ["17.3", "11.5", "10", "40"],
+    "distractor_reasoning": {
+      "17.3": "Found AB, the leg adjacent to the 30° angle, computing 20cos30° instead of 20sin30°.",
+      "11.5": "Used the tangent with the hypotenuse, computing 20tan30°.",
+      "40": "Divided by sin30° instead of multiplying by it."
+    }
+  },
+  {
+    "id": "1666d768-751f-47cd-9c9e-879f71251be7",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (2, 3) and (14, 8)?",
+    "correct_answer": "13",
+    "choices": ["13", "17", "14", "12"],
+    "explanation": "Distance = √((14−(2))² + (8−(3))²) = √(144+25) = √169 = 13.",
+    "repaired_choices": ["13", "7", "169", "17"],
+    "distractor_reasoning": {
+      "7": "Subtracted the two coordinate differences, 12 − 5.",
+      "169": "Computed 12² + 5² and reported it without taking the square root.",
+      "17": "Added the two coordinate differences, 12 + 5, without squaring."
+    }
+  },
+  {
+    "id": "6dc0558c-b35f-42c6-83a7-32a76a5680e1",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (0, -5) and (9, 7)?",
+    "correct_answer": "15",
+    "choices": ["15", "21", "16", "14"],
+    "explanation": "Distance = √(9² + 12²) = √225 = 15.",
+    "repaired_choices": ["15", "21", "12", "9.22"],
+    "distractor_reasoning": {
+      "21": "Added the two coordinate differences, 9 + 12, without squaring.",
+      "12": "Used only the larger of the two differences.",
+      "9.22": "Added the coordinates instead of subtracting them, computing √((0+9)² + (−5+7)²)."
+    }
+  },
+  {
+    "id": "55a5d70e-5389-4b85-9488-e2ae2d6d9861",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (2, -3) and (10, 12)?",
+    "correct_answer": "17",
+    "choices": ["23", "18", "16", "17"],
+    "explanation": "Distance = √(8² + 15²) = √289 = 17.",
+    "repaired_choices": ["23", "7", "11.5", "17"],
+    "distractor_reasoning": {
+      "23": "Added the two coordinate differences, 8 + 15, without squaring.",
+      "7": "Subtracted the two coordinate differences, 15 − 8.",
+      "11.5": "Averaged the two coordinate differences."
+    }
+  },
+  {
+    "id": "f40d3a43-5c5d-4d4a-a323-52ee97d43a32",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (-4, 1) and (8, 17)?",
+    "correct_answer": "20",
+    "choices": ["21", "19", "20", "28"],
+    "explanation": "Distance = √(12² + 16²) = √400 = 20.",
+    "repaired_choices": ["10.58", "400", "20", "14"],
+    "distractor_reasoning": {
+      "10.58": "Subtracted the squares rather than adding, computing √(16² − 12²).",
+      "400": "Computed 12² + 16² and reported it without taking the square root.",
+      "14": "Averaged the two coordinate differences."
+    }
+  },
+  {
+    "id": "290a8af4-41ea-49a9-a1cd-70fca2857204",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (3, 4) and (18, 24)?",
+    "correct_answer": "25",
+    "choices": ["24", "25", "35", "26"],
+    "explanation": "Distance = √(15² + 20²) = √625 = 25.",
+    "hub_retained": "Reporting the squared distance and subtracting the two differences are both real distance-formula errors; on a 15-20-25 triple they happen to land on slip-values of the key.",
+    "repaired_choices": ["17.5", "25", "5", "625"],
+    "distractor_reasoning": {
+      "17.5": "Averaged the two coordinate differences.",
+      "5": "Subtracted the two coordinate differences, 20 − 15.",
+      "625": "Computed 15² + 20² and reported it without taking the square root."
+    }
+  },
+  {
+    "id": "384a1cd7-18a1-42a6-8990-98b0b245bee0",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (-1, -2) and (6, 22)?",
+    "correct_answer": "25",
+    "choices": ["25", "31", "26", "24"],
+    "explanation": "Distance = √(7² + 24²) = √625 = 25.",
+    "repaired_choices": ["25", "31", "17", "20.6"],
+    "distractor_reasoning": {
+      "31": "Added the two coordinate differences, 7 + 24, without squaring.",
+      "17": "Subtracted the two coordinate differences, 24 − 7.",
+      "20.6": "Added the coordinates instead of subtracting them, computing √((−1+6)² + (−2+22)²)."
+    }
+  },
+  {
+    "id": "cbba96c7-bd03-41cc-86b9-2e4220c3e0d6",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (-3, -4) and (7, 20)?",
+    "correct_answer": "26",
+    "choices": ["34", "27", "25", "26"],
+    "explanation": "Distance = √(10² + 24²) = √676 = 26.",
+    "repaired_choices": ["676", "17", "21.8", "26"],
+    "distractor_reasoning": {
+      "676": "Computed 10² + 24² and reported it without taking the square root.",
+      "17": "Averaged the two coordinate differences.",
+      "21.8": "Subtracted the squares rather than adding, computing √(24² − 10²)."
+    }
+  },
+  {
+    "id": "05fa09ea-c9c3-43da-8290-8c8932999bfc",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Distance in the coordinate plane",
+    "prompt": "In the xy-plane shown, what is the distance between the points (1, 2) and (9, 8)?",
+    "correct_answer": "10",
+    "choices": ["14", "11", "9", "10"],
+    "explanation": "Distance = √((9−(1))² + (8−(2))²) = √(64+36) = √100 = 10.",
+    "repaired_choices": ["5.29", "7", "100", "10"],
+    "distractor_reasoning": {
+      "5.29": "Subtracted the squares rather than adding, computing √(8² − 6²).",
+      "7": "Averaged the two coordinate differences.",
+      "100": "Computed 8² + 6² and reported it without taking the square root."
+    }
+  },
+  {
+    "id": "3b71845d-2d9e-4b45-a52d-c54826e15ade",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Tangency via discriminant = 0",
+    "prompt": "The line y = 2x + c is tangent to the parabola y = x^2 + 4x + 7 at exactly one point. What is the value of c?",
+    "correct_answer": "6",
+    "choices": ["8", "-6", "3", "6"],
+    "explanation": "Substituting the line into the parabola gives x^2 + 4x + 7 = 2x + c, so x^2 + 2x + (7 - c) = 0. Tangency means exactly one root, so the discriminant vanishes: 2^2 - 4(7 - c) = 0, hence 7 - c = 1 and c = 6, the key. The option giving 3 is what you get if the 2x is never moved across: leaving x^2 + 4x + (7 - c) = 0 makes the discriminant condition 16 - 4(7 - c) = 0, so 7 - c = 4 and c = 3. The option giving 8 solves 7 - c = 1 by adding rather than subtracting, writing c = 7 + 1. The option giving -6 reaches c = 6 and then flips the sign.",
+    "explanation_stale": "Explanation still describes the removed option -6; that sentence must be replaced with one for 10.",
+    "repaired_choices": ["8", "3", "10", "6"],
+    "distractor_reasoning": {
+      "8": "Solved 7 − c = 1 by adding rather than subtracting, writing c = 7 + 1.",
+      "3": "Never moved the 2x across, leaving x² + 4x + (7 − c) = 0 and 16 − 4(7 − c) = 0.",
+      "10": "Put the point of tangency at x = +1 instead of x = −1 when solving 2x + 2 = 0, then matched the line there."
+    }
+  },
+  {
+    "id": "9737e933-3a0a-44ae-878e-afd9146b0e2a",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Right triangle special segments",
+    "prompt": "A right triangle has legs of length 10 and 24. What is the length of the median drawn from the right angle to the hypotenuse?",
+    "correct_answer": "13",
+    "choices": ["26", "13", "6.5", "12"],
+    "explanation": "The hypotenuse is sqrt(10^2 + 24^2) = sqrt(676) = 26. The right-angle vertex lies on the circle whose diameter is the hypotenuse, so the median from that vertex to the hypotenuse is a radius of that circle, equal to half the hypotenuse: 26/2 = 13, the key. The option giving 26 is the whole hypotenuse, with the halving skipped. The option giving 6.5 halves twice, taking a quarter of 26. The option giving 12 halves a leg, 24/2, instead of the hypotenuse; nor is it the altitude to the hypotenuse, which would be 10 times 24 over 26, about 9.2.",
+    "explanation_stale": "Explanation still describes the removed option 12; that sentence must be rewritten, and it currently gives away 9.2 as a wrong value while 9.23 is now an option.",
+    "hub_retained": "Skipping the halving (the whole hypotenuse) and halving twice are the two errors this construction actually produces; both are slip-values of the key.",
+    "repaired_choices": ["26", "13", "6.5", "9.23"],
+    "distractor_reasoning": {
+      "26": "Reported the whole hypotenuse, skipping the halving.",
+      "6.5": "Halved twice, taking a quarter of the hypotenuse.",
+      "9.23": "Computed the ALTITUDE to the hypotenuse, 10·24/26, confusing it with the median."
+    }
+  },
+  {
+    "id": "e2083d68-1e0d-4e74-b765-80c4825d13f9",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Trigonometry beyond right triangles",
+    "prompt": "An angle θ is obtuse (between 90° and 180°) and sin θ = 5/13. What is the value of tan θ?",
+    "correct_answer": "-5/12",
+    "choices": ["-5/12", "5/12", "-12/5", "12/13"],
+    "explanation": "Since sin^2 + cos^2 = 1, cos θ = ±12/13, and θ lies in the second quadrant where cosine is negative, so cos θ = -12/13. Then tan θ = sin θ / cos θ = (5/13)/(-12/13) = -5/12, and the -5/12 option is correct. The 5/12 option has the right magnitude with the sign ignored; it is what the tangent would be if θ were acute. The -12/5 option is the reciprocal, the cotangent rather than the tangent. The 12/13 option is the size of the cosine, an intermediate value, and it drops the negative sign as well.",
+    "explanation_stale": "Explanation still describes the removed options -12/5 and 12/13; those two sentences must be replaced with ones for -12/13 and -13/12.",
+    "repaired_choices": ["-5/12", "5/12", "-12/13", "-13/12"],
+    "distractor_reasoning": {
+      "5/12": "Right magnitude with the quadrant ignored; this is the tangent θ would have if it were acute.",
+      "-12/13": "Reported cos θ, the intermediate value, instead of tan θ.",
+      "-13/12": "Computed 1/cos θ, the secant, in place of sin θ / cos θ."
+    }
+  },
+  {
+    "id": "19c5172f-77bc-4f6c-a808-669634e5024b",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "Circles: equation and radius (completing the square)",
+    "prompt": "In the xy-plane, a circle is defined by the equation x^2 + y^2 - 6x + 8y - 11 = 0. What is the radius of the circle?",
+    "correct_answer": "6",
+    "choices": ["5", "6", "11", "36"],
+    "explanation": "Complete the square: (x - 3)^2 + (y + 4)^2 = 11 + 9 + 16 = 36, so the radius is sqrt(36) = 6 and the 6 option is correct. The 36 option is the radius squared, stopping one step early. The 5 option comes from dropping the -11 when moving it across, leaving 9 + 16 = 25 and a radius of 5. The 11 option is just the constant from the original equation, which is neither the radius nor its square.",
+    "explanation_stale": "Explanation still describes the removed options 5 and 11; those two sentences must be replaced with ones for 10.54 and 8.",
+    "duplicate_of": "8e66b922 and 7a02d80d carry the same stem.",
+    "repaired_choices": ["10.54", "6", "8", "36"],
+    "distractor_reasoning": {
+      "10.54": "Forgot to halve the linear coefficients before squaring them, using 11 + 6² + 8² = 111.",
+      "8": "Read the coefficient of y in the original equation as the radius.",
+      "36": "Reported the radius squared, stopping one step early."
+    }
+  }
+]

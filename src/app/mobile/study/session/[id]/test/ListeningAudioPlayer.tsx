@@ -6,6 +6,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { PassageParagraphs } from './helpers'
 import { primeMicStream } from './VoiceRecorder'
+import { measureEdgeSilence, advanceAtSeconds, TURN_GAP_MS, type EdgeSilence } from '@/lib/study/audio-trim'
 
 /** TOEFL Listening audio player. Plays the transcript via browser TTS
  *  and hides the text until the student opts to reveal it. Enforces the
@@ -189,6 +190,32 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
   // segment index. Populated by the prefetch effect below.
   const prefetchedUrlsRef = useRef<Array<string | null>>([])
 
+  // Per-segment edge silence, measured from the decoded mp3 at prefetch.
+  //
+  // A conversation is one mp3 PER SPEAKER TURN, so every turn boundary
+  // carries the trailing silence of one clip plus the leading silence of
+  // the next. Measured across 17 clips pulled from the production cache:
+  // mean 53 ms lead, 230 ms trail, trail ranging 0-626 ms. On top of that
+  // the player used to wait a further 350 ms, so a join was ~633 ms of
+  // dead air — ten of them in a median 11-turn conversation.
+  //
+  // Real ETS conversations are a single continuous two-actor recording
+  // and have none of this. Ours read as a stack of separate clips, which
+  // is what "too many switches" describes.
+  //
+  // Empty means "not measured" and every consumer treats that as zero,
+  // so a browser without AudioContext, a decode failure, or a race just
+  // gets the old behaviour rather than a broken chain.
+  const trimsRef = useRef<EdgeSilence[]>([])
+  // The early-advance timer for the segment currently playing. It runs on
+  // WALL CLOCK, so a pause has to cancel it — otherwise the chain would
+  // march on behind the pause overlay and the student would come back to
+  // a conversation two turns further along than the one they stopped.
+  const turnTimerRef = useRef<number | null>(null)
+  // Re-arms that timer against the element's live currentTime. Held in a
+  // ref because the resume effect lives outside playNext's closure.
+  const rescheduleAdvanceRef = useRef<(() => void) | null>(null)
+
   // One <audio> element per segment, built as soon as the URLs resolve so
   // the browser buffers every turn WHILE the student reads the prompt.
   //
@@ -233,10 +260,30 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
       // Then hand each URL to a real <audio> with preload='auto' so the
       // browser actually buffers it rather than merely holding it in the
       // HTTP cache. This is what takes the inter-turn gap to ~0.
-      await Promise.all(urls.map(u =>
-        u ? fetch(u, { method: 'GET', cache: 'force-cache' }).catch(() => {}) : Promise.resolve(),
-      ))
+      //
+      // The same fetch also feeds the silence measurement: we already
+      // have the bytes here, so decoding them costs one pass and no
+      // extra network. Failures resolve to {0,0} — no trim, old
+      // behaviour — because a missed trim is a slightly loose join
+      // while a wrong trim eats a student's speaker turn.
+      const ctx = typeof window !== 'undefined'
+        ? (window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)
+        : undefined
+      const audioCtx = ctx ? new ctx() : null
+      const trims = await Promise.all(urls.map(async u => {
+        if (!u) return { lead: 0, trail: 0 }
+        try {
+          const res = await fetch(u, { method: 'GET', cache: 'force-cache' })
+          if (!audioCtx || !res.ok) return { lead: 0, trail: 0 }
+          const buf = await audioCtx.decodeAudioData(await res.arrayBuffer())
+          return measureEdgeSilence(buf.getChannelData(0), buf.sampleRate)
+        } catch {
+          return { lead: 0, trail: 0 }
+        }
+      }))
+      void audioCtx?.close().catch(() => {})
       if (cancelled) return
+      trimsRef.current = trims
       audioPoolRef.current = urls.map(u => {
         const a = new Audio()
         a.preload = 'auto'
@@ -361,24 +408,70 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
         resumeFromGapRef.current = playNext
         return
       }
-      audio.onended = () => {
+      const trim = trimsRef.current[i] ?? { lead: 0, trail: 0 }
+
+      // Advance to the next turn exactly once, whether we got there by
+      // the scheduled trim or by the clip genuinely ending. Both paths
+      // stay wired: the timer is the fast path, `onended` the backstop
+      // for when duration is unknown, the seek failed, or the trim
+      // measured as zero. Without the guard a clip whose trail was
+      // overestimated would fire both and skip a turn.
+      let advanced = false
+      const advance = () => {
+        if (advanced || cancelledRef.current) return
+        advanced = true
+        if (turnTimerRef.current != null) {
+          window.clearTimeout(turnTimerRef.current)
+          turnTimerRef.current = null
+        }
         charsDone += charsPerTurn[i]
         i++
         if (i < urls.length) {
-          // 350 ms breath between dialogue turns.
+          // A conversational beat, not padding — see TURN_GAP_MS. The
+          // trailing silence is already skipped by `advance` firing
+          // early, so this is the whole of the pause a student hears.
           resumeFromGapRef.current = playNext
           if (pausedRef.current) return
           gapTimerRef.current = window.setTimeout(() => {
             gapTimerRef.current = null
             resumeFromGapRef.current = null
             playNext()
-          }, segments.length > 1 ? 350 : 0)
+          }, segments.length > 1 ? TURN_GAP_MS : 0)
         } else {
           playNext()
         }
       }
+
+      // Schedule the early advance once we know how long the clip is.
+      // `duration` is NaN until metadata loads, so this runs on the
+      // metadata event when it has not arrived yet.
+      const scheduleAdvance = () => {
+        if (advanced || pausedRef.current || turnTimerRef.current != null) return
+        const dur = audio.duration
+        if (!Number.isFinite(dur) || dur <= 0 || trim.trail <= 0) return
+        const at = advanceAtSeconds(dur, trim.trail, 0)
+        const wait = Math.max(0, (at - audio.currentTime) * 1000)
+        turnTimerRef.current = window.setTimeout(() => {
+          turnTimerRef.current = null
+          advance()
+        }, wait)
+      }
+
+      audio.onended = advance
       audio.onerror = () => { charsDone += charsPerTurn[i]; i++; playNext() }
+      audio.onloadedmetadata = scheduleAdvance
+      // Recomputed from currentTime, so resuming mid-turn re-arms for
+      // the remaining audible time rather than the whole clip again.
+      rescheduleAdvanceRef.current = scheduleAdvance
+
+      // Skip the clip's own leading silence. Guarded the same way the
+      // rewind above is: if the seek does not take, we simply play the
+      // lead — a slightly loose join, never a missing turn.
+      if (trim.lead > 0) {
+        try { audio.currentTime = trim.lead } catch { /* not seekable yet */ }
+      }
       void audio.play().catch(() => { i++; playNext() })
+      scheduleAdvance()
     }
     playNext()
   }
@@ -400,11 +493,18 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
         gapTimerRef.current = null
         // resumeFromGapRef still holds the continuation.
       }
+      // The early-advance timer is wall-clock and must not survive a
+      // pause; it is re-armed from currentTime on resume.
+      if (turnTimerRef.current != null) {
+        window.clearTimeout(turnTimerRef.current)
+        turnTimerRef.current = null
+      }
       return
     }
     const audio = audioRef.current
     if (audio && !audio.ended && audio.currentTime > 0) {
       void audio.play().catch(() => {})
+      rescheduleAdvanceRef.current?.()
       return
     }
     // Paused during the inter-segment gap (or before a segment had
@@ -423,6 +523,11 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
       window.clearTimeout(gapTimerRef.current)
       gapTimerRef.current = null
     }
+    if (turnTimerRef.current != null) {
+      window.clearTimeout(turnTimerRef.current)
+      turnTimerRef.current = null
+    }
+    rescheduleAdvanceRef.current = null
     resumeFromGapRef.current = null
     if (audioRef.current) {
       audioRef.current.pause()

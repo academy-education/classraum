@@ -1,0 +1,1209 @@
+[
+  {
+    "id": "012fc0d9-17af-4f49-a300-a224a1d4af81",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That's kind of you, but honestly — if you could just watch the bags for a minute, that would help far more.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sure, I'll sit here with them. Take your time.",
+      "Of course, I'll take them to left luggage.",
+      "Certainly. I'll carry the big one up the stairs and wait at the top for you.",
+      "Not at all, I'll hold your place in the queue and you can catch me up."
+    ],
+    "correct_answer": "Sure, I'll sit here with them. Take your time.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker names the favour he actually wants — someone to stay with the bags for a minute — so the reply that agrees to sit with them and tells him to take his time is the one that does it. Taking the bags to left luggage removes them instead of watching them, carrying the big one up the stairs performs the help he has just set aside, and holding his place in the queue is a different errand from the one he asked for."
+  },
+  {
+    "id": "01878680-2405-4815-934c-c1945250154b",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The Hitachi talk is Wednesday, four till six — your lab runs till five, and the department won't let anybody leave a lab early.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So I'd miss the whole thing — is there any chance these talks get recorded?",
+      "So I'd only catch the second hour — is it worth walking in halfway through?",
+      "So I'd have to get my demonstrator to sign me out at four to hear all of it.",
+      "Wednesday's fine. My lab is on Thursday this term, so nothing clashes."
+    ],
+    "correct_answer": "So I'd only catch the second hour — is it worth walking in halfway through?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The lab runs to five and the talk to six, so an hour of the talk is reachable and the open question is whether an hour is worth having. Saying the whole thing would be missed loses the hour that is available, being signed out at four takes the early exit the department is said to refuse, and putting the lab on Thursday contradicts the timetable just described."
+  },
+  {
+    "id": "030a6404-c865-4621-92aa-196cbf23f2a9",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The good news is your application made the shortlist — the shift you asked for, though, got filled on Monday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Great — when would you like me to start on that shift?",
+      "Should I put in a second application for the shortlist, or is the one enough?",
+      "Right, so the shortlist is decided once Monday's shift has been filled?",
+      "Oh, are any other shifts still open, or should I wait for the next posting?"
+    ],
+    "correct_answer": "Oh, are any other shifts still open, or should I wait for the next posting?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "Two things are said: the application is on the shortlist and the requested shift is already gone, so asking whether other shifts are open or whether to wait for the next posting is the reply that uses both. Asking when to start treats the gone shift as won, submitting a second application repeats a step already completed, and putting the shortlist decision after the shift is filled reverses the order given."
+  },
+  {
+    "id": "04cbf5ea-ca55-4fea-bfde-d6f2d2a54550",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've been at that catalogue terminal a while — the subject headings in that field are a bit unusual.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thanks. Could you show me how to book this terminal for a longer slot later?",
+      "Yes, sorry. I'll move off it now so someone else can have a turn.",
+      "The terminal's been slow since I sat down — is that normal?",
+      "They really are — could you show me which heading covers coastal ecology?"
+    ],
+    "correct_answer": "They really are — could you show me which heading covers coastal ecology?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The remark about unusual subject headings is where the help is being offered, so agreeing and naming the heading that is wanted takes it up. Booking a longer slot answers the passing observation about time rather than the offer, giving the terminal up treats the observation as a request to leave, and reporting a slow machine locates the trouble in the hardware rather than in the headings."
+  },
+  {
+    "id": "05b7c73e-d09b-41a0-ac2f-96b409da72d6",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can see what you want to argue by the conclusion; I'm less sure the opening promises the same thing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So the conclusion needs to come back to what the opening promises.",
+      "So the introduction needs to set up the claim the conclusion actually makes.",
+      "So the argument itself is not clear enough yet and I should rethink the claim.",
+      "So I should cut the opening back and let the conclusion do the work."
+    ],
+    "correct_answer": "So the introduction needs to set up the claim the conclusion actually makes.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The conclusion is described as clear and the opening as the part that does not match it, so the fix runs one way: the introduction is what has to set up the claim the conclusion makes. Moving the conclusion toward the opening reverses which end is at fault, rethinking the claim discards the argument that was said to come through, and cutting the opening removes the section that needs to do more work."
+  },
+  {
+    "id": "05e7e013-a809-4c05-9c54-61d1fbed63ff",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your CV's fine, I suppose — I'd just say the placement section reads like a job description rather than what you actually did.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll put the placement section first so it is the thing they read soonest.",
+      "I'll add the dates and my supervisor's name to it.",
+      "I'll cut it down to a line and use the space for my dissertation instead.",
+      "I'll rewrite that part around what I actually changed there."
+    ],
+    "correct_answer": "I'll rewrite that part around what I actually changed there.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The complaint is that the placement section lists duties instead of what he did, so rewriting it around what he actually changed is the fix that answers it. Moving the section earlier changes where it sits rather than what it says, adding dates and a supervisor's name supplies more of the job-description material, and cutting it to a line throws away the experience rather than describing it."
+  },
+  {
+    "id": "0a3967a3-448f-418c-a549-fc7d520d3938",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm happy to work through the argument with you, though we don't correct grammar line by line here.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That works — could we start with the second paragraph's grammar, then?",
+      "Understood. I'll book a separate session for the argument another day.",
+      "That's fine. I mostly wanted a second opinion on my sources.",
+      "That's fine. The argument is what I wanted to talk through anyway."
+    ],
+    "correct_answer": "That's fine. The argument is what I wanted to talk through anyway.",
+    "difficulty": "easy",
+    "listeningTask": "choose_response",
+    "explanation": "The tutor offers the argument and rules out line-by-line grammar, so saying the argument was what he wanted anyway accepts what is on the table. Starting with the grammar asks for the part just excluded, booking the argument for another day postpones what is available now, and asking about sources swaps in a job the tutor has not offered."
+  },
+  {
+    "id": "0a421dce-338f-4b5a-9f39-174f71e8dee5",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"This form gives your name as Choi Ji-woo, but your enrolment record was opened under a different spelling.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That'll be my sister's record — we get confused on the system fairly often.",
+      "I changed the spelling last term, so the form is the out-of-date one.",
+      "That'll be the spelling on my visa — I'll ask the visa office to correct it.",
+      "That's the same person — I can bring my passport so you can match the two."
+    ],
+    "correct_answer": "That's the same person — I can bring my passport so you can match the two.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "One person's name is spelled two ways across two documents, so offering a passport to match them is what settles it. Attributing the record to a sister makes it someone else's file, dating the change so that the form is the stale document contradicts the clerk's account of which document is which, and sending the fix to the visa office moves it to a body that holds neither record."
+  },
+  {
+    "id": "0a897ff2-0d8e-4600-aeee-7f1b17e0090f",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Have you thought about whether Chapter Three might work better as an appendix?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I had, and I moved it — Chapter Three is the appendix in this draft.",
+      "I have, and I would sooner move Chapter Four; it is the thinner of the two.",
+      "I hadn't, but I can see the case. It is mostly supporting data.",
+      "I have, though my supervisor wants the appendices kept under forty pages."
+    ],
+    "correct_answer": "I hadn't, but I can see the case. It is mostly supporting data.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The question is a proposal about Chapter Three, so conceding the point and giving the reason — it is mostly supporting data — engages with it. Saying the chapter is already the appendix denies the arrangement the question assumes, offering Chapter Four moves a different part of the thesis, and quoting a page limit answers with a constraint instead of with the proposal."
+  },
+  {
+    "id": "0b280141-5b68-418e-a5e3-3f04a4caae23",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Sorry — I think that's rung up as the large. I actually asked for the medium latte.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You're right, sorry — I'll take the extra off and top it up to a large for you.",
+      "You're right, my mistake so I'll refund the difference and remake it as a medium.",
+      "Sorry about that. I'll put the difference on a card for you to use next time.",
+      "Sorry. I'll remake it as a medium; the price is the same, so there's nothing to refund."
+    ],
+    "correct_answer": "You're right, my mistake so I'll refund the difference and remake it as a medium.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "A medium was ordered, a large was rung up, so the reply that refunds the difference and remakes it as a medium repairs both halves. Topping it up to a large keeps the size that was not ordered, putting the difference on a card for next time withholds money already overcharged, and saying the price is the same denies the overcharge the correction is about."
+  },
+  {
+    "id": "0de0817d-7931-4653-b664-be00394ed83a",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Dinner on Saturday sounds great — could I let you know by Thursday? My sister may be flying in.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Of course — I'll shift the whole thing to Thursday so your sister can come along too.",
+      "No rush at all. Let me know by Saturday morning and I'll set the table then.",
+      "That's fine. I'll count you both in and cook for one more just in case.",
+      "Thursday works. I'll hold a seat for you and you can just say the word either way."
+    ],
+    "correct_answer": "Thursday works. I'll hold a seat for you and you can just say the word either way.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "What is being asked for is time to answer, so agreeing to Thursday and holding a seat either way grants exactly that. Moving the dinner to Thursday changes the day of the event rather than the day of the answer, waiting until Saturday morning pushes the answer past the meal itself, and counting them both in converts a deferral into a yes plus a guest."
+  },
+  {
+    "id": "142fabb7-0a0a-4e99-8ff6-eda7224a34c9",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"If you're heading to the airport on Sunday, Mei-lin, I'm driving right past it anyway — no detour at all.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's very good of you — I fly on the Monday, though, so I'd be a day out.",
+      "Then I'll take you up on that. My flight's at noon so would nine be too early for you?",
+      "Thanks — could you drop me at the station on the way instead? The train from there is much easier.",
+      "Then I'll drive us both and you can leave your car at mine — it's silly to take two."
+    ],
+    "correct_answer": "Then I'll take you up on that. My flight's at noon so would nine be too early for you?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The lift is offered for Sunday and the detour objection is pre-empted, so accepting and settling a pick-up time is the reply that uses it. Flying on the Monday puts the traveller a day away from the lift on offer, asking for the station swaps the destination that made the lift free of detour, and offering to drive instead hands back the favour to the person giving it."
+  },
+  {
+    "id": "1583d945-77a1-4fb0-b890-fb0eb03ec04c",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Results go out four weeks after the sitting, so yours will be with you by the twentieth — you sat it on the eighth, didn't you?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It was the eighteenth I sat it, so four weeks would take me past the twentieth.",
+      "Four weeks from the eighth lands in the next month, though — the twentieth is barely twelve days.",
+      "The twentieth suits me. I'll ring on the nineteenth if nothing has arrived.",
+      "So the four weeks runs from when the results are printed, not from the sitting?"
+    ],
+    "correct_answer": "Four weeks from the eighth lands in the next month, though — the twentieth is barely twelve days.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A four-week rule and a sitting on the eighth do not produce the twentieth, and saying so is what a student planning around that date needs to do. Moving the sitting to the eighteenth alters the date the clerk was given, accepting the twentieth adopts the figure that does not follow from the rule, and starting the four weeks at printing invents a different starting point instead of checking the sum."
+  },
+  {
+    "id": "179c2e0f-6eda-49a9-9775-64bcbab026e4",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We'd love you on the alumni panel on the fifteenth. That's your graduation day, I know, but the panel isn't until seven.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The ceremony is on the sixteenth, so the fifteenth is clear for me either way.",
+      "Seven's after the ceremony — that works, put me down.",
+      "I'd love to, but the fifteenth is my graduation — could we do the sixteenth?",
+      "Is there an afternoon slot instead? I'd rather not be out that late."
+    ],
+    "correct_answer": "Seven's after the ceremony — that works, put me down.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clash and its answer are given together — graduation is that day, the panel is not until seven — so accepting on the strength of the time is what is left to do. Putting the ceremony on the sixteenth changes the date just stated, declining because of graduation ignores the answer already supplied, and asking for an afternoon slot moves the panel into the part of the day that does clash."
+  },
+  {
+    "id": "17d5acca-28cd-434a-8f62-25705058bebe",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can get you onto the 9:40, though I should warn you the connection in Frankfurt is only forty minutes.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Forty minutes is fine — could you check my bags right through to the end?",
+      "Is there an earlier departure? I'd rather have the extra time at this end.",
+      "That's fine. I'll stay overnight in Frankfurt and carry on the next morning.",
+      "If it's that tight, is there anything later that leaves more room between the two flights?"
+    ],
+    "correct_answer": "If it's that tight, is there anything later that leaves more room between the two flights?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The connection is flagged as tight, so asking for a later departure with more room between the two flights is the reply that acts on the warning. Checking bags through accepts the risk the agent raised, wanting extra time at the departure end puts the margin where it is not needed, and staying overnight in Frankfurt turns a warning about forty minutes into an extra day of travel."
+  },
+  {
+    "id": "1953423a-e761-4c6a-a055-465dc8fc031e",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The problem set is due Thursday — though I think you may be looking at last week's sheet, Tomás.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh let me check the date on it. I may have printed the old one.",
+      "Thursday it is. I'll send you my answers to the first three questions tonight.",
+      "I picked this one up from the pigeonhole this morning, so it should be this week's.",
+      "Right — so last week's is the one that's due on Thursday?"
+    ],
+    "correct_answer": "Oh let me check the date on it. I may have printed the old one.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "Two things are said, and only one of them is news: the sheet in his hand may be the wrong one, so checking its date is what the reply has to do. Sending answers tonight works from the sheet without checking it, dating it from the pigeonhole asserts it is current rather than looking, and making last week's sheet the one due reverses which sheet counts."
+  },
+  {
+    "id": "1d1464fd-28d4-41e3-9ca3-b6ddc6ee7ab5",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"This looks lovely — I did ask for the sauce on the side, though. I can't really do dairy.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry about that. I'll bring you a jug of the sauce so you can add it yourself.",
+      "Of course. I'll ask the kitchen to leave the cheese off the next course as well.",
+      "I'm sorry about that, let me have the kitchen make a fresh one with the sauce separate.",
+      "Sorry — I'll take it off the bill and bring the menu back over."
+    ],
+    "correct_answer": "I'm sorry about that, let me have the kitchen make a fresh one with the sauce separate.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The sauce is on the plate and the diner cannot have dairy, so replacing the dish with one that has the sauce separate is the repair. Bringing a jug adds sauce to a plate that already has it, changing the next course fixes a different dish, and taking it off the bill leaves the diner without the meal she ordered."
+  },
+  {
+    "id": "214faf95-da28-424a-93d1-91eddfab7ddd",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your mentor's eight hours ahead of us, so the only overlap with her working day is our early morning — that's the whole window.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Seven her time, then. That still falls in our morning.",
+      "Early it is, so I'll offer her seven our time and see what she says.",
+      "Three slots across the week, then, and she can pick whichever one suits.",
+      "Our lunchtime, then. That should catch the end of her day."
+    ],
+    "correct_answer": "Early it is, so I'll offer her seven our time and see what she says.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The overlap is our early morning and that is described as the whole of it, so naming an early hour in our time moves the arrangement forward. Seven her time falls eight hours away from our morning, offering three slots across the week supposes more choice than there is, and our lunchtime sits past the end of a working day eight hours ahead."
+  },
+  {
+    "id": "21d55704-e5a5-49a9-baca-d87f500e4f8e",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The instrument is back from repair, but calibration slots are booked solid until the middle of next week.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Good — I'll get my samples on it first thing tomorrow morning, then.",
+      "Then I'll send the samples over to the other lab and have them run there.",
+      "Any chance the calibration comes forward to Friday? I'd start on Monday.",
+      "Then I'll push my runs back a week and do the sample prep meanwhile."
+    ],
+    "correct_answer": "Then I'll push my runs back a week and do the sample prep meanwhile.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The instrument is back but cannot be calibrated until the middle of next week, so moving the runs and doing sample prep in the gap uses both facts. Running samples tomorrow uses an instrument that is not yet calibrated, sending the samples elsewhere gives up the repaired instrument entirely, and bringing calibration forward to Friday asks for a slot that has already been described as taken."
+  },
+  {
+    "id": "25309d38-4cf0-44eb-8341-f1eaf4f3cf4a",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm sorry to spring this on you, but the committee needs your revised prospectus by Monday morning.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Monday's fine. I'll send the original version and revise it after the meeting.",
+      "Monday afternoon, straight after my seminar, is when I could have it.",
+      "Tell the committee I'll bring it along to the meeting itself, if that helps.",
+      "That's tight, but I can get it to you Monday if the last section stays rough."
+    ],
+    "correct_answer": "That's tight, but I can get it to you Monday if the last section stays rough.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "A revised prospectus is wanted by Monday morning, so promising it for Monday with the last section still rough answers both the what and the when. Sending the original and revising later supplies the wrong version, Monday afternoon lands after the time given, and bringing it to the meeting delivers it later still, to people who wanted it in advance."
+  },
+  {
+    "id": "25eca95b-5301-46f4-a7d3-222b8172b9b1",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Everything came back within range overall — I'd just like to recheck that one liver value in about six weeks.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Should I come back sooner if some of the other values were borderline too?",
+      "Should I book the whole panel again for six weeks' time?",
+      "So the six weeks is how long the results themselves take to come back?",
+      "Six weeks is fine. Should I book that now, or will the surgery call me?"
+    ],
+    "correct_answer": "Six weeks is fine. Should I book that now, or will the surgery call me?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "Everything was in range except one liver value, which is to be rechecked in six weeks, so asking how the recheck gets booked is the practical next step. Asking about other borderline values reopens results described as in range, rebooking the whole panel repeats tests that do not need repeating, and treating six weeks as the reporting time confuses the wait for a new test with the wait for these results."
+  },
+  {
+    "id": "2b930ea0-3c6e-4b44-adc9-4aa8590b97ee",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Transcripts do go out by email, though anything going to a foreign ministry still needs the sealed paper copy.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Mine's going to a ministry, so email will be the quickest route for that.",
+      "The sealed copy, then. Mine's for a university in Lisbon.",
+      "Mine's going to a ministry, so I'll order the sealed copy.",
+      "So the sealed copy comes by email and the ordinary one by post?"
+    ],
+    "correct_answer": "Mine's going to a ministry, so I'll order the sealed copy.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "Email is the default and a foreign ministry is the exception, so a student whose transcript goes to a ministry ordering the sealed copy applies the rule to his own case. Emailing a ministry uses the route the exception excludes, ordering the sealed copy for a university applies the exception where it does not hold, and emailing the sealed copy contradicts what makes it sealed."
+  },
+  {
+    "id": "2ef36ac2-7f43-4ec5-9ab4-0b6818d1f6b2",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I only ask because I got completely stuck on this same problem set last year — how's question four treating you?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Honestly? It's beating me. Did you ever find a way in?",
+      "Same here — I got stuck on it last year too and gave up on it in the end.",
+      "It's going all right so far, though I'm only up to question two.",
+      "Are you retaking the course this year, then?"
+    ],
+    "correct_answer": "Honestly? It's beating me. Did you ever find a way in?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The question is about how question four is going, asked by someone who has admitted being stuck on it himself, so answering honestly and asking how he got in takes the opening. Claiming to have been stuck on it last year puts the speaker in the other person's position, reporting progress only as far as question two leaves the question that was asked unanswered, and asking about retaking treats a past year's struggle as a current enrolment."
+  },
+  {
+    "id": "2f404ae1-7b3a-4b4a-b6d6-65c5f80c7e34",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The group rooms are meant for four or more — I notice you've had this one to yourself since nine.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry about that. I'll move to a carrel and free the room up.",
+      "Sorry. I'll bring three others in after lunch so we're up to four.",
+      "Sorry, I'll sign it out properly for the rest of the morning, then.",
+      "Of course — I'll swap to one of the smaller group rooms instead."
+    ],
+    "correct_answer": "Sorry about that. I'll move to a carrel and free the room up.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "A group room is being used by one person, so moving to a carrel and freeing it is what the librarian is after. Bringing three others in after lunch leaves the room occupied by one until then, signing it out treats the problem as paperwork, and moving to a smaller group room keeps a group room in single use."
+  },
+  {
+    "id": "33566296-12c3-4cf8-8140-14596e37d8de",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Sorry, Nguyen, I hate to be that person, but I still haven't seen the slides you were going to send over.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's on me. I'll bring them on a stick to the seminar tomorrow.",
+      "That's on me — give me an hour and they'll be in your inbox.",
+      "I sent those over on Tuesday — have a word with Mei, she may have them.",
+      "Sorry. I'll get the handout finished first and send everything together."
+    ],
+    "correct_answer": "That's on me — give me an hour and they'll be in your inbox.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The slides were promised and have not arrived, so taking the blame and putting them in the inbox within the hour is the reply that delivers them. Handing them over at tomorrow's seminar keeps them out of the person's hands until then, saying they were sent on Tuesday disputes an absence the other person is reporting, and waiting for the handout attaches the slides to a second piece of work."
+  },
+  {
+    "id": "3dabde66-bd21-4e5b-ab7f-995f8accb34c",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The room itself is fine — it's just that the window looks straight out onto the loading bay.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Let me send someone up to look at the window catch straight away.",
+      "Let me see what we have free on the quieter side of the building, one moment.",
+      "Let me have housekeeping give the room another go while you're at dinner.",
+      "Let me move you up to the top floor on the same side — the view is better there."
+    ],
+    "correct_answer": "Let me see what we have free on the quieter side of the building, one moment.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The room is said to be fine and the loading bay outside the window is not, so offering a room on the quieter side is the change that helps. Repairing the window catch treats the window as broken, sending housekeeping in cleans a room already described as fine, and moving up on the same side leaves the guest looking at the same loading bay."
+  },
+  {
+    "id": "3dc068f7-27c4-4983-a225-e92c979ed9d2",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You can count the seminar toward the minor, but not toward the language requirement — those are separate lists.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So the seminar counts for neither list until I have finished the minor?",
+      "I see — so I still need a language course on top of the seminar.",
+      "So I'll need a second seminar to finish the minor, then.",
+      "Right, so I can drop the seminar and take a language course for both."
+    ],
+    "correct_answer": "I see — so I still need a language course on top of the seminar.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The seminar counts toward the minor and not toward the language requirement, so the consequence is that a language course is still needed on top of it. Saying it counts for neither discards the half that does count, adding a second seminar supposes the minor is still short, and dropping the seminar gives up the requirement it does satisfy."
+  },
+  {
+    "id": "45428475-5c1e-44f6-bae1-6eb86a4949bc",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That module only runs in their spring term, and you're out there for the spring, so I've had to cross it off your study plan.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "What about the autumn term instead, before I fly out?",
+      "Is there an equivalent module here that I could take once I'm back home?",
+      "That's a shame — I'll put the environmental one down in its place.",
+      "But spring is exactly when I'm out there, so shouldn't that one work?"
+    ],
+    "correct_answer": "But spring is exactly when I'm out there, so shouldn't that one work?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The module runs in their spring and the exchange covers their spring, so pointing out that the two line up is the reply that catches the mistake. Asking for the autumn term wants a term in which the module does not run, looking for an equivalent at home replaces something that is in fact available, and choosing a substitute accepts the removal without testing it."
+  },
+  {
+    "id": "4730ad1c-afb6-4658-ac7a-7e7f469ba4f9",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'd be glad to write for you, but I only taught you in one large lecture, so the letter would be fairly thin.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's fine. A short letter is all the department asks for anyway.",
+      "Would you write it jointly with the lecturer who ran the tutorials?",
+      "Thank you. I'll list you as the referee who knows my work best.",
+      "That's helpful to know. Perhaps I should ask Professor Okonkwo from my seminar instead."
+    ],
+    "correct_answer": "That's helpful to know. Perhaps I should ask Professor Okonkwo from my seminar instead.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The professor agrees to write but says the letter would be thin because he taught her only in a large lecture, so looking to a seminar tutor instead acts on the warning. Calling a short letter sufficient sets aside the professor's own estimate of it, proposing a joint letter asks two people to sign one reference, and naming him as the referee who knows her best contradicts what he has just said about how little he knows her."
+  },
+  {
+    "id": "4df6140e-3d82-426e-a821-4f5f0821cb51",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Someone did turn in a blue backpack this morning — I should say, though, the laptop sleeve was empty.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Could you check whether the charger was still in the front pocket?",
+      "Perhaps I should come back tomorrow when the morning staff are on.",
+      "Let me take a look anyway and I should probably report the laptop missing while I'm here.",
+      "Then it isn't mine — mine had a laptop in it."
+    ],
+    "correct_answer": "Let me take a look anyway and I should probably report the laptop missing while I'm here.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "A blue backpack has been handed in and the laptop sleeve is empty, so looking at the bag and reporting the laptop missing responds to both. Asking about the charger picks a smaller item than the one described as gone, coming back tomorrow leaves the bag unclaimed for another day, and ruling the bag out treats an empty sleeve as proof the bag belongs to someone else."
+  },
+  {
+    "id": "528b1436-29b5-48cf-8bf4-a1594249a36a",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Have you thought about taking the statistics requirement over the summer instead of piling it on this fall?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I have. Statistics is the requirement I finished last spring.",
+      "I hadn't. Would a summer session count toward the language requirement too?",
+      "I hadn't. Is the fall section the one that meets on Tuesday evenings?",
+      "I hadn't, actually — that would take a lot of pressure off my fall term."
+    ],
+    "correct_answer": "I hadn't, actually — that would take a lot of pressure off my fall term.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The suggestion is to move statistics to the summer to lighten the fall, so conceding the idea and naming the pressure it would take off engages with it. Saying the requirement is already finished removes the problem the suggestion addresses, asking about the language requirement applies the idea to a different requirement, and asking about the fall meeting time keeps the course where the suggestion proposes moving it from."
+  },
+  {
+    "id": "53b9d1f2-84ea-4b89-ad6b-139981b86844",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your technique has come a long way — I'd still like to see you label the tubes before you pipette, though.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Understood — I'll write the labels up in the notebook as I go along.",
+      "Understood. I'll get someone to check my labels at the end of each run.",
+      "Understood. I'll slow the pipetting right down until it is steadier.",
+      "Understood. I'll label everything before I start from now on."
+    ],
+    "correct_answer": "Understood. I'll label everything before I start from now on.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The instruction is to label the tubes before pipetting, so committing to label everything before starting is what it asks for. Writing labels in the notebook records them somewhere other than on the tubes, checking labels at the end of a run puts the check after the step it is meant to protect, and slowing the pipetting changes the technique that was praised rather than the labelling that was not."
+  },
+  {
+    "id": "53baa412-b624-4108-afa9-46a41e5f3a7d",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Priya says she'll have her section finished by tonight, but, well, you've worked with her before.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Fair point, maybe I'll draft a backup version just in case.",
+      "True. She's usually the one waiting on the rest of us.",
+      "Fair enough, I'll leave her section out of the draft altogether, then.",
+      "That's right, we shared an office in second year."
+    ],
+    "correct_answer": "Fair point, maybe I'll draft a backup version just in case.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The trailing remark casts doubt on Priya finishing tonight, so drafting a backup covers the risk without accusing anyone. Calling her the one who waits on everyone else reverses the doubt being expressed, dropping her section entirely discards work that may well arrive, and recalling a shared office answers the aside as a question about their history."
+  },
+  {
+    "id": "5499e327-6126-4dd8-8a88-d09d59e0000d",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I noticed the radiator in the back bedroom has started clanking again — it's been going since Tuesday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll have the boiler serviced in the spring, once the system is off.",
+      "I'll ask the neighbours whether theirs has been doing the same thing.",
+      "I'll get the plumber round this week — would Thursday morning suit you?",
+      "I'll get someone to look at the one in the front room while they're there."
+    ],
+    "correct_answer": "I'll get the plumber round this week — would Thursday morning suit you?",
+    "difficulty": "easy",
+    "listeningTask": "choose_response",
+    "explanation": "A radiator has been clanking since Tuesday, so booking a plumber this week and offering a time treats the report as the repair request it is. Waiting until spring leaves the noise running through the season, asking the neighbours gathers information instead of arranging a visit, and sending someone to the front room addresses a radiator other than the one reported."
+  },
+  {
+    "id": "5e14bf29-fbb8-4465-baef-31b77e1d1edc",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I hold extra hours before the midterm — most people who come don't strictly need to, but they say it helps.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll come to the ones you hold after the midterm instead.",
+      "Do I need to sign up, or is it only for the people who are struggling?",
+      "Then I'll come along, even if it's only to check I'm on the right track.",
+      "Maybe I'll send a couple of questions over by email instead of coming in."
+    ],
+    "correct_answer": "Then I'll come along, even if it's only to check I'm on the right track.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The extra hours are before the midterm and are described as useful even to people who do not strictly need them, so saying he will come along to check he is on the right track accepts on those terms. Coming after the midterm attends sessions held before it, asking whether it is only for people struggling reads a restriction the TA has just removed, and emailing questions declines the sessions on offer."
+  },
+  {
+    "id": "60feb484-7372-454a-8ab1-746ef3522e0e",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Not a big deal, but the recycling bin's been sitting by our door since, what, Tuesday?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry, that one's mine — I'll take it down before my first class.",
+      "Sorry — I'll move it into the kitchen until the collection day.",
+      "I think that one belongs to the flat upstairs — I'll knock and ask them.",
+      "Sorry, I'll put a note on it so nobody trips over it in the dark."
+    ],
+    "correct_answer": "Sorry, that one's mine — I'll take it down before my first class.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The bin has been by the door since Tuesday and it is his, so owning it and taking it down before class clears it. Moving it to the kitchen keeps it in the flat, attributing it to the flat upstairs makes it someone else's to shift, and labelling it leaves it exactly where the complaint found it."
+  },
+  {
+    "id": "670f8291-49f2-4605-b7e7-5c5c7c8a39de",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Trials are six on Tuesdays — that's your compulsory seminar, and I'm not moving them, so tell me now if you're out.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'm out for Tuesdays. I'd still train with the seconds if that's open.",
+      "I'm in. The seminar finishes at half five, so six works fine.",
+      "Count me out altogether, then. I'll come back to it next season.",
+      "Put me down for Tuesdays — I can get the seminar notes off someone else."
+    ],
+    "correct_answer": "I'm out for Tuesdays. I'd still train with the seconds if that's open.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The trial time is fixed, the seminar is compulsory, and an answer is wanted now, so declining Tuesdays while asking about the seconds gives the answer and keeps a route in. Saying the seminar finishes at half five puts it earlier than the clash the coach describes, standing down for the season gives up more than Tuesdays, and taking the notes from someone else skips a session described as compulsory."
+  },
+  {
+    "id": "6873b6be-5cb0-4c8a-acb6-9a0a86891e8b",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I don't want to make a fuss, Yusuf, but the music last night carried right through the wall until about two.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I had no idea. I'll move the speakers off the shared wall this weekend.",
+      "I had no idea it travelled that far so I'll keep it down after eleven from now on.",
+      "Sorry — that was a film, not music; I'll put the subtitles on next time.",
+      "Sorry about that. It won't happen again once my flatmate moves out in June."
+    ],
+    "correct_answer": "I had no idea it travelled that far so I'll keep it down after eleven from now on.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The music carried through the wall until two, so apologising and undertaking to keep it down after eleven answers both the noise and the hour. Moving the speakers at the weekend leaves the late hours untouched, calling it a film disputes what the neighbour heard, and waiting for June leaves the nights until then as they were."
+  },
+  {
+    "id": "6d8df537-183e-4deb-8e5c-ddf5f9308fcd",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"This is an interesting direction, Priya, though I do wonder whether the second section is really earning its place.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You're right that it drifts from the argument. I could fold the useful parts into section one.",
+      "You're right that it's thin — I'll expand it; it's the shortest section.",
+      "It could move to the end so the argument comes through earlier.",
+      "Good. I'll leave the second section as it is and cut the third instead."
+    ],
+    "correct_answer": "You're right that it drifts from the argument. I could fold the useful parts into section one.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The doubt is whether the second section earns its place, so conceding that it drifts and folding the useful parts into section one deals with it. Expanding it adds to the section whose value is in question, moving it to the end keeps it at full length in a new position, and cutting the third section removes a part nobody raised."
+  },
+  {
+    "id": "6fec1efe-23f9-4a6c-ac25-6eda6e1e4f21",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Eighteen credits plus the internship — I mean, people have done it, I suppose.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Who managed it, though? I'd like to talk to one of them first.",
+      "Then I'll add the fourth seminar as well and be finished in a year.",
+      "It is only eighteen if the internship carries credit — does it?",
+      "You think it's too much, don't you? Tell me honestly."
+    ],
+    "correct_answer": "You think it's too much, don't you? Tell me honestly.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The hedges around \"people have done it\" carry a reservation that is not being stated, so asking outright whether he thinks it is too much brings it into the open. Asking who managed it collects names instead of the opinion, adding a fourth seminar increases the load the hesitation is about, and querying whether the internship carries credit turns the reply into a question about registration."
+  },
+  {
+    "id": "7338650c-a2f7-4eb3-80ea-d6689624b738",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The scheme is only open to final-year students, and you're in the second year of a two-year master's, so it isn't for you.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll come back and apply next year, once I'm into the third year.",
+      "Would it help if my supervisor confirmed I'm on the two-year route?",
+      "Fair enough — is there something similar for taught master's students on two-year courses?",
+      "The second of two years is my final year, though — doesn't that put me inside it?"
+    ],
+    "correct_answer": "The second of two years is my final year, though — doesn't that put me inside it?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Final-year students are eligible and the second year of a two-year master's is a final year, so saying so is the reply that tests the refusal. Waiting for a third year assumes a year the course does not have, offering confirmation of the two-year route supplies a fact already on the table, and asking about another scheme looks elsewhere for something already open."
+  },
+  {
+    "id": "815ea5b8-5e81-48a6-9a05-e19517527049",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's really kind of you to invite me to the potluck, though Fridays are when I work the late shift at the library.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's fine. I'll shift it to the Saturday so you can make it after all.",
+      "Great. I'll put you down for a dessert, then.",
+      "No problem — could you bring something over on your break instead?",
+      "No worries at all so I'll save you a plate in case you get out early."
+    ],
+    "correct_answer": "No worries at all so I'll save you a plate in case you get out early.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The compliment wraps a refusal for Friday, so saying not to worry and offering to save a plate releases her while leaving the door open. Moving the potluck to Saturday rearranges the event around a polite no, assigning her a dessert treats the refusal as an acceptance, and asking her to come by on her break keeps her attending the evening she has just ruled out."
+  },
+  {
+    "id": "83dd8e3f-67a6-4690-bb85-dc811a2bdde0",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can put you on the waitlist today; whether a seat actually opens before add/drop closes is another matter.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Put me on it. So I'm registered for the course from today, then?",
+      "Let's do the waitlist, then. What should I line up as a backup if it doesn't clear?",
+      "Let's skip the waitlist; I'll take the course next year instead.",
+      "Let's do it. How many people are ahead of me on the list at the moment?"
+    ],
+    "correct_answer": "Let's do the waitlist, then. What should I line up as a backup if it doesn't clear?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "A waitlist place is offered with an explicit warning that a seat may never open, so taking it and asking what to line up as a backup uses both halves. Treating it as registration ignores the warning, skipping the waitlist gives up a place that costs nothing, and asking how many are ahead collects a number without preparing for the list not clearing."
+  },
+  {
+    "id": "84e0c2a3-638f-4173-9054-fdfbdc34dc43",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Aditi, I've got a spare graphing calculator in my desk if yours is still acting up before the midterm.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll bring mine in and you can have a look at what's wrong with it.",
+      "Perfect — I'll take it now and give it back after the final in May.",
+      "That would save me. Could I pick it up sometime tomorrow?",
+      "Leave it at the department office and I'll collect it there."
+    ],
+    "correct_answer": "That would save me. Could I pick it up sometime tomorrow?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "A spare calculator is offered for the period before the midterm, so accepting and arranging to pick it up tomorrow settles it. Asking him to look at the broken one requests a repair rather than the loan, keeping it until May extends a loan offered for the midterm, and routing it through the department office adds a step for a calculator sitting in his desk."
+  },
+  {
+    "id": "8bcce6b3-74d7-4233-9f52-da7f70ee930e",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You can take these alongside your antihistamine — just not within two hours of each other.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So I'll take them both at eight and be done with it.",
+      "So two hours after food, then — before or after breakfast?",
+      "So if I take one at eight in the morning, the antihistamine should wait until ten?",
+      "So I should stop the antihistamine for two weeks while I'm on these?"
+    ],
+    "correct_answer": "So if I take one at eight in the morning, the antihistamine should wait until ten?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The two medicines may be combined provided they are two hours apart, so checking that eight and ten would satisfy that is what the condition asks. Taking both at eight leaves no gap at all, timing the gap from food attaches the interval to meals rather than to the other tablet, and stopping the antihistamine drops a medicine the pharmacist has just allowed."
+  },
+  {
+    "id": "8f6e3049-9153-4020-aaac-140cf9a4e98f",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your presentation was clear and well-paced; I'd only say the data slide went by faster than anyone could read it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Fair point. I'll hold that slide longer and cut the text down.",
+      "Fair point. I'll slow the whole thing down by a couple of minutes.",
+      "Fair point. I'll drop the data slide and put the numbers in the handout.",
+      "Fair point. I'll put the data slide first, while everyone is still fresh."
+    ],
+    "correct_answer": "Fair point. I'll hold that slide longer and cut the text down.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The pacing was praised and one slide went past too fast to read, so holding that slide longer and cutting its text is the change being asked for. Slowing the whole talk alters the pacing that was working, dropping the slide removes the data rather than giving it time, and moving it earlier changes its position while leaving it just as brief."
+  },
+  {
+    "id": "9465f0a9-016e-497f-8cd9-e452ac3c5bc6",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The only make-up slot is Friday at nine, which I can see is when your chemistry final sits. Nothing else at all is free.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Could I sit the make-up straight after the chemistry final finishes?",
+      "So could I take Friday at nine and ask chemistry to let me start late?",
+      "So who decides which of the two I'm allowed to move?",
+      "Is there a make-up slot in the next round that I could wait for instead?"
+    ],
+    "correct_answer": "So who decides which of the two I'm allowed to move?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Two papers are booked for the same hour and no other slot exists, so the question of who can release one of them is the only thing left to settle. Sitting it after the chemistry final asks for time the clerk has said is not there, starting the chemistry paper late moves a final rather than the make-up, and waiting for the next round leaves this sitting unresolved."
+  },
+  {
+    "id": "94672cde-d132-4d37-8a1e-9a53a7ba2167",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Ji-woo, I'm not trying to make a thing of it, but the bass from your speakers really travels through the wall.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thanks for saying something — I'll switch to headphones after ten from now on.",
+      "Thanks for telling me — I'll put the speakers down on the floor, that should help.",
+      "Sorry. I'll move them into the other room this weekend.",
+      "That will be the neighbours upstairs — mine have been switched off all week."
+    ],
+    "correct_answer": "Thanks for saying something — I'll switch to headphones after ten from now on.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The bass from his speakers goes through the wall, so thanking her and switching to headphones after ten stops it at the hours that matter. Putting the speakers on the floor changes how the sound travels without reducing it, moving them at the weekend leaves the nights before then unchanged, and blaming the flat upstairs denies that the noise is his."
+  },
+  {
+    "id": "9aaca043-fba1-4eb5-9e38-f7f2dfe1d8dc",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've had a strong quarter, Aisha. The raise is something I'd want to take up once the budget's signed off in March.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's great — will the new rate be backdated to the start of the quarter?",
+      "Understood. I'll put a proposal together for the March budget round.",
+      "March is fine, could we put a note in my file now so it doesn't get lost?",
+      "Shall we look at it again after next quarter's numbers instead?"
+    ],
+    "correct_answer": "March is fine, could we put a note in my file now so it doesn't get lost?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The raise is not refused but deferred to the March sign-off, so agreeing to March and asking for a note on file protects the commitment. Asking about backdating treats the raise as granted, preparing a proposal takes on the job the manager has said she will take up, and pushing to the following quarter moves the review past the date offered."
+  },
+  {
+    "id": "9d723c14-3c53-4f9b-9fce-d2288f254eda",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I don't want to be unfair to Emeka — he did show up to the meeting, just, you know, at the very end.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "He did. I'll send him the minutes so he's caught up on what he missed.",
+      "I noticed that too. Should one of us say something before the next meeting?",
+      "He wasn't there at all, was he? I didn't see him.",
+      "Then we should move the meeting later so it suits him better."
+    ],
+    "correct_answer": "I noticed that too. Should one of us say something before the next meeting?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The disclaimer carries a complaint that Emeka arrived at the very end, so agreeing and asking whether one of them should say something takes it up. Sending the minutes helps him catch up rather than addressing the lateness, saying he was not there at all contradicts the concession that he did come, and moving the meeting rearranges everyone around one person's arrival."
+  },
+  {
+    "id": "9df5a1cd-b9b0-479a-a518-95f53d4b7f40",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Pre-departure's Thursday at two, clashing with your Arabic seminar — and your tutor's already said no more absences there.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd better stay in the seminar — can I get the briefing another way?",
+      "I'd go to the briefing and ask my tutor to mark me present at the seminar.",
+      "Would they move the briefing to the Friday, then?",
+      "Then I'll drop Arabic this term and pick it up again in the spring."
+    ],
+    "correct_answer": "I'd better stay in the seminar — can I get the briefing another way?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The briefing clashes with a seminar that can no longer be missed, so staying in the seminar and asking for the briefing another way is the move left open. Going to the briefing and asking to be marked present requests the absence that has been ruled out, moving the briefing to Friday asks the department to reschedule around him, and dropping Arabic gives up a course to attend one briefing."
+  },
+  {
+    "id": "a0284173-6986-4db8-b22f-a212ce838e94",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The recruiter told you to email her, but all you've got is a first name and the company's postal address — that's thin.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Somebody on that stand must have taken her card — could you ask before I guess?",
+      "Somebody there will pass it on if I write to the postal address.",
+      "Better to email the general enquiries address with her first name in the subject line.",
+      "She gave me her number as well, so I'll ring her instead."
+    ],
+    "correct_answer": "Somebody on that stand must have taken her card — could you ask before I guess?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "An email was asked for and no email address exists, and the person raising it was at the same stand, so asking them to check before guessing is what closes the gap. Writing to the postal address answers by post the instruction to email, sending it to general enquiries leaves it with whoever opens that inbox, and producing a phone number contradicts the account of what she left behind."
+  },
+  {
+    "id": "a1a41923-36c6-4ff0-93ca-e47cb2217b69",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Have you thought about ringing them first, before you drive all the way out there?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Good point — I'll set off earlier so I get there before they close.",
+      "I did ring, and nobody picked up, so I may as well drive out.",
+      "Good point — I'll call ahead and save myself the trip if they're shut.",
+      "Good idea. I'll email them tonight and set off once they reply."
+    ],
+    "correct_answer": "Good point — I'll call ahead and save myself the trip if they're shut.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The suggestion is to ring before making the drive, so calling ahead and saving the trip if they are shut takes it up. Leaving earlier makes the same journey sooner, saying nobody answered turns a suggestion into a report of a failed attempt, and waiting on an email replaces a call that would settle it now."
+  },
+  {
+    "id": "a4ff61a6-c426-4874-956c-433821c724be",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can do store credit for you today — a refund to the card really only applies to items still in their original packaging.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll take the refund to the card and keep the packaging here.",
+      "Put the store credit onto the card instead, if you can — it's all in one place then.",
+      "Then store credit is fine. Does it have an expiry date I should know about?",
+      "Store credit, then. And I'll take the same item in a different size now."
+    ],
+    "correct_answer": "Then store credit is fine. Does it have an expiry date I should know about?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "A card refund is ruled out by the packaging condition and store credit is offered, so accepting the credit and asking about an expiry date works within it. Asking for the card refund requests what the condition excludes, putting the credit onto the card is that same refund by another name, and swapping for a different size takes goods rather than the credit that was offered."
+  },
+  {
+    "id": "a6c04056-c19c-4215-a4e2-2faa93283e0f",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The online system won't take a late registration, though there is a paper route most students never hear about.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Could you walk me through the paper route? I'd rather not lose the term.",
+      "Could I try the online form once more tonight? It may have been a glitch.",
+      "Could you register me on the system from your end instead?",
+      "Then I'll register late next term and take the module then."
+    ],
+    "correct_answer": "Could you walk me through the paper route? I'd rather not lose the term.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The online route is closed and a paper route exists, so asking to be walked through the paper route takes up the offer. Retrying the form tonight uses the route that has been ruled out, asking the office to register him from their end goes through the same closed system, and waiting for next term gives up the term the paper route would save."
+  },
+  {
+    "id": "a8da0ec0-7314-43ab-9218-7e35e6b0f83c",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'd normally hand my lecture notes over in a second, but Professor Alvarez was pretty firm about that this term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Understood — I'll get them from someone else on the course instead, then.",
+      "Fair enough. I'll borrow last term's notes from you instead.",
+      "No problem. Could you just tell me what she covered on Tuesday?",
+      "Understood. I'll ask her whether I can get the recording instead."
+    ],
+    "correct_answer": "Understood. I'll ask her whether I can get the recording instead.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The notes are being withheld because of what Professor Alvarez said this term, so asking her about the recording goes to the person whose rule it is. Getting them from another student on the course takes the same notes by another hand, borrowing last term's notes supplies material for a different term, and asking what she covered on Tuesday requests the content the refusal covers."
+  },
+  {
+    "id": "adeae657-103f-483b-bf3a-bd96031030e3",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can overlook the marks on the wall, but the hallway carpet is going to have to come out of the deposit.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's fair. Could you send me the quote for the wall as well?",
+      "Fair enough — I'll get the carpet cleaned myself before I hand the keys back to you.",
+      "That seems fair. Could you send me the cleaning quote before you take it off?",
+      "That's fine. Take the full deposit and we'll call it settled."
+    ],
+    "correct_answer": "That seems fair. Could you send me the cleaning quote before you take it off?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The marks are waived and the carpet is coming out of the deposit, so accepting that and asking for the cleaning quote first tests the one charge that stands. Asking for a quote for the wall prices something already written off, cleaning the carpet himself offers work on a deduction the landlord has already decided, and surrendering the whole deposit gives up more than the carpet."
+  },
+  {
+    "id": "b62a7dee-8533-4128-a238-a9bdd368e384",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"My laptop is the only thing keeping my thesis alive right now, but the department keeps loaners at the front desk.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Got it. I'll try the front desk, thanks for the tip.",
+      "Right. I'll borrow yours once the thesis is handed in, then.",
+      "The library lends laptops as well, though, doesn't it?",
+      "Good idea — I'll buy a cheap one this weekend and skip the loaner."
+    ],
+    "correct_answer": "Got it. I'll try the front desk, thanks for the tip.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "His own laptop is not available and the department keeps loaners at the front desk, so taking the tip and trying the front desk uses what he offered. Waiting to borrow his still asks for the machine he cannot lend, going to the library goes past the desk he named, and buying one at the weekend spends money on what is already there to borrow."
+  },
+  {
+    "id": "b6fd4436-ba8b-414d-bb26-d5e28ff58e46",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I could sign the late-add form for you, but the registrar stopped accepting them on Friday, I'm afraid.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sign it anyway and I'll take my chances with the registrar.",
+      "Then I'll get the registrar to sign it and bring it back to you.",
+      "Then I'll look at what's still open for next term instead.",
+      "Then I'll come back on the Friday with the form all filled in."
+    ],
+    "correct_answer": "Then I'll look at what's still open for next term instead.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The signature is available and the registrar stopped accepting the forms on Friday, so turning to what is still open next term is the way round it. Asking for the signature anyway pursues a form that will not be accepted, sending it to the registrar for signature reverses who signs, and coming back on Friday returns after the deadline it names."
+  },
+  {
+    "id": "b89e89c3-d237-4973-9791-5e5ebb0fc3c8",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your ticket's valid, but this service doesn't stop at Ashford after seven — you'll want the one behind us.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So I'll change at Ashford and pick it up there.",
+      "I'd stay on and get a bus back from the next town.",
+      "Then I'll buy a ticket for the later service when we stop.",
+      "I'll get off at the next stop and wait for it, then. Do you know how far behind it is?"
+    ],
+    "correct_answer": "I'll get off at the next stop and wait for it, then. Do you know how far behind it is?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The ticket is valid and this train does not stop at Ashford after seven, so getting off at the next stop for the train behind uses both. Changing at Ashford supposes a stop the train does not make, taking a bus back from the next town solves by road what the following train does directly, and buying a new ticket replaces one the conductor has already accepted."
+  },
+  {
+    "id": "bb5806d0-e499-4304-9f24-9023d58a1da0",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The credit card does sound useful, though I'm honestly trying not to add anything new to my plate this year.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Of course. I'll send the forms out so they're there when you're ready.",
+      "Understood. I'll give you a ring back in a fortnight, once things have settled.",
+      "That's fine — shall I set it up with a low limit so it's less to manage?",
+      "Of course, I'll make a note on your file so nobody rings you about it again."
+    ],
+    "correct_answer": "Of course, I'll make a note on your file so nobody rings you about it again.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The card is being declined for this year, so noting the file so nobody rings again accepts the refusal. Sending the forms keeps the application moving, ringing back in a fortnight returns well inside the year he asked to be left alone, and offering a low limit continues to sell the product he has turned down."
+  },
+  {
+    "id": "be340c00-1c65-4442-b502-86305720507b",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I could probably swap shifts with you this weekend, Ji-woo, as long as it isn't the Friday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Perfect. It's the Friday evening one I need covering.",
+      "Great. Could you take the Friday and the Saturday both?",
+      "That's perfect. The one I need covered is Sunday. Friday I'm already on the schedule anyway.",
+      "Thanks — so you'll cover next weekend rather than this one?"
+    ],
+    "correct_answer": "That's perfect. The one I need covered is Sunday. Friday I'm already on the schedule anyway.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The swap is offered for this weekend on the condition that it is not the Friday, so naming Sunday and noting that Friday is already covered stays inside it. Asking for Friday evening picks the day excluded, asking for Friday and Saturday includes that day in a pair, and moving it to next weekend changes the weekend the offer covers."
+  },
+  {
+    "id": "c9ac813a-09d9-40d2-b0aa-73605d8f48a1",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your sources are all recent, which is fine — I did expect one of the original studies you keep describing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "You're right, I've been citing summaries. I'll go back to the primary papers.",
+      "A few older reviews would spread the dates out — I'll swap some in.",
+      "I'll add a line explaining why the original studies are so hard to get hold of.",
+      "The descriptions could go, and the recent work would carry it instead."
+    ],
+    "correct_answer": "You're right, I've been citing summaries. I'll go back to the primary papers.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "Recency is explicitly accepted and the missing thing is one of the original studies being described, so admitting to citing summaries and going back to the primary papers meets it. Swapping in older reviews changes publication dates rather than the kind of source, explaining that the originals are hard to get substitutes a reason for a citation, and cutting the descriptions removes the studies rather than citing them."
+  },
+  {
+    "id": "cd4d70a7-a20e-4fc9-90c7-bc148e79be2b",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm so sorry to do this to you, Ngozi — my train's been cancelled and I'm still forty minutes out.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Don't worry, I'll tell them we're starting late and get us both a coffee in the meantime.",
+      "No problem. I'll push it back an hour and send everyone off for lunch first.",
+      "Don't worry, I'll come and meet you at the station and we'll walk over together.",
+      "That's fine. I'll tell them you're stuck and we'll rearrange for tomorrow."
+    ],
+    "correct_answer": "Don't worry, I'll tell them we're starting late and get us both a coffee in the meantime.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The train is cancelled and he is forty minutes away, so covering with the others and getting coffee holds things together for that gap. Pushing it back an hour and breaking for lunch costs more time than the delay, meeting him at the station leaves the room waiting for both of them, and rearranging for tomorrow abandons a meeting that is forty minutes from starting."
+  },
+  {
+    "id": "d937e3f9-2116-4913-81bf-168894a06396",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I heard the chemistry exam is going to be mostly short answer this time.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That’s a relief—I’m better at explaining than picking choices.",
+      "Good—I’ll go back over the glossary, then; that’s where most of the marks are.",
+      "Mostly? So there’s still a multiple-choice section—do I revise that too?",
+      "That’s the format changing again—are they still doing the practical?"
+    ],
+    "correct_answer": "That’s a relief—I’m better at explaining than picking choices.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The exam is moving to mostly short answer, so a reply that says what that means for the speaker's own strengths responds to the news. Revising the glossary prepares for the format being replaced, asking about the remaining multiple choice queries the smaller part of the paper, and asking about the practical moves to a different assessment."
+  },
+  {
+    "id": "e05a3b6c-7cb8-4968-bff9-e469f8211560",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The invigilator sent me over to sort my extra-time letter with you, though she did say disability services are the ones who issue it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "We can issue it here — I'll just need the invigilator's signature first.",
+      "She's right — we don't issue those. Come back once they've sent yours.",
+      "Bring the letter to me on the day and I'll pass it to the invigilator.",
+      "Extra time is set by the exams office, so you'll want them, not us."
+    ],
+    "correct_answer": "She's right — we don't issue those. Come back once they've sent yours.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The student repeats the fact that settles it — disability services issue the letter — so confirming that and telling him to come back once they have sent it is the reply that helps. Offering to issue it here contradicts what he has just been told, asking him to bring the letter on the day assumes he has one, and sending him to the exams office names a third body neither of them mentioned."
+  },
+  {
+    "id": "e2e70282-1220-483f-823c-9a74c3368ff3",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I think that's the fourth-floor key — the group study room you booked is actually on the third.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ah, my mistake. Could I swap it for the right one instead?",
+      "Ah. Could you move my booking up to the fourth floor, then?",
+      "I'll take the third-floor key when I come back after lunch.",
+      "That's right, the fourth-floor room is the one I booked last week."
+    ],
+    "correct_answer": "Ah, my mistake. Could I swap it for the right one instead?",
+    "difficulty": "easy",
+    "listeningTask": "choose_response",
+    "explanation": "The booking is on the third floor and the key is for the fourth, so asking to swap it for the right one puts them back together. Moving the booking changes the room instead of the key, collecting the right key after lunch leaves him without the room he booked meanwhile, and claiming the fourth-floor room denies the booking the member of staff is reading."
+  },
+  {
+    "id": "e3fa2d36-eabf-4da6-b965-e9ccd92b4f71",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've asked for the travel check, and that's a twenty-minute booking — all I've got left today is ten minutes at four.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The ten at four would do, and I could finish the rest online afterwards.",
+      "I'd rather wait for a full twenty — when's the next one free?",
+      "Two ten-minute slots back to back this afternoon would do it, wouldn't they?",
+      "Four's fine. I only need the yellow fever one, so it's quicker."
+    ],
+    "correct_answer": "I'd rather wait for a full twenty — when's the next one free?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A travel check needs twenty minutes and only ten are left today, so waiting for a full twenty and asking when the next one is free is what fits. Taking the ten minutes books half of an appointment, asking for two back-to-back slots wants more time than the day has left, and calling it quicker sets aside the length the receptionist has given."
+  },
+  {
+    "id": "ed8916e3-c161-49f8-a4e4-05112c139aa5",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I read your results section twice, and I still can't tell which of the two samples the graph is showing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sorry — I'll rewrite the results section so the text explains the graph.",
+      "Sorry. I'll add the raw numbers as an appendix table.",
+      "It's the untreated sample throughout — the treated one is in the appendix.",
+      "Sorry. That's my labelling. I'll mark clearly which line is the treated sample."
+    ],
+    "correct_answer": "Sorry. That's my labelling. I'll mark clearly which line is the treated sample.",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "The graph does not show which of two samples is which, so taking responsibility and marking the treated line fixes the thing that is unreadable. Rewriting the text describes a figure that stays unlabelled, adding an appendix table puts the numbers somewhere else again, and saying only the untreated sample is shown contradicts a graph with two samples on it."
+  },
+  {
+    "id": "f0019f6f-ddcb-40bb-9218-11d369dc107e",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You may be thinking of the work-study rate — student assistants on the general payroll start a little lower.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh — so should I ask to be moved onto the work-study payroll instead?",
+      "Right, so the general rate is the higher of the two.",
+      "So the work-study rate applies once I've done a term on the general payroll?",
+      "Oh, I had those two mixed up. What does the general rate come out to?"
+    ],
+    "correct_answer": "Oh, I had those two mixed up. What does the general rate come out to?",
+    "difficulty": "medium",
+    "listeningTask": "choose_response",
+    "explanation": "Two rates are being distinguished and the general payroll is the lower one, so admitting the mix-up and asking what the general rate comes to gets the figure that applies. Asking to move payroll changes the job rather than the confusion, making the general rate the higher one inverts the comparison just given, and putting work-study after a term on the general payroll invents a progression between them."
+  },
+  {
+    "id": "fc7452a5-50cc-4735-96e6-e4ba25180473",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The pitch is yours from five, provided the groundsman's finished marking it — mind you, he does sometimes run to half past.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "We'll take it from four, then, and be off before he starts.",
+      "We'll ask him to mark it out tomorrow instead, so we're not left waiting.",
+      "We'll go at five and warm up by the track if he's not done.",
+      "We'll book the second pitch as well, in case this one isn't free."
+    ],
+    "correct_answer": "We'll go at five and warm up by the track if he's not done.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The pitch is theirs from five unless the marking overruns to half past, so arriving at five and warming up by the track if he is not finished uses both. Taking it from four claims the pitch before the booking starts, moving the marking to tomorrow rearranges the groundsman's work around the session, and booking a second pitch takes a slot that was never in question."
+  }
+]

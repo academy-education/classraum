@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
-import { resolveDisplayNames } from '@/lib/study/identity'
+import { resolveIdentities } from '@/lib/study/identity'
+import type { AvatarConfig } from '@/lib/study/avatarConfig'
 import { findFriendship } from '@/lib/study/friends'
 import { generateReferralCode, normalizeReferralCode } from '@/lib/study/referral'
 import { normalizeNickname, validateNickname } from '@/lib/study/nickname'
@@ -28,7 +29,16 @@ import { normalizeNickname, validateNickname } from '@/lib/study/nickname'
 
 export const dynamic = 'force-dynamic'
 
-interface Person { student_id: string; display_name: string }
+/** Both avatar fields are null for anyone who has neither picked a
+ *  preset nor built one — the client then draws the same initials
+ *  avatar it always has. `avatar_config` wins when both are set; it is
+ *  always null while migration 072 is unapplied. */
+interface Person {
+  student_id: string
+  display_name: string
+  avatar_id: string | null
+  avatar_config: AvatarConfig | null
+}
 interface FriendRequest extends Person { id: string }
 
 export async function GET(req: NextRequest) {
@@ -55,11 +65,16 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  const names = await resolveDisplayNames(
+  const identities = await resolveIdentities(
     [...friendIds, ...incoming.map(i => i.other), ...outgoing.map(o => o.other)],
     user.id,
   )
-  const person = (id: string): Person => ({ student_id: id, display_name: names.get(id) ?? 'Student' })
+  const person = (id: string): Person => ({
+    student_id: id,
+    display_name: identities.get(id)?.display_name ?? 'Student',
+    avatar_id: identities.get(id)?.avatar_id ?? null,
+    avatar_config: identities.get(id)?.avatar_config ?? null,
+  })
 
   return NextResponse.json({
     friends: friendIds.map(person).sort((a, b) => a.display_name.localeCompare(b.display_name)),

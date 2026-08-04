@@ -365,6 +365,8 @@
       "analyticsDesc": "매출 및 사용량 분석",
       "study": "스터디",
       "studyDesc": "스터디 사용자 조회 및 문제 신고",
+      "bankQc": "문항 품질 관리",
+      "bankQcDesc": "문항 배치 생성 및 검증 현황",
       "support": "고객 지원",
       "supportDesc": "고객 지원 티켓",
       "commentReports": "댓글 신고",
@@ -462,6 +464,7 @@
       "subStatus_cancelled": "취소됨",
       "subStatus_free": "무료",
       "subStatus_trial": "체험",
+      "subStatus_expired": "만료됨",
       "subsEmpty": "조건에 맞는 구독이 없습니다.",
       "cancelsShort": "해지 예정",
       "payAllKinds": "전체 유형",
@@ -4345,7 +4348,15 @@
         },
         "dailyChallenge": {
           "title": "오늘의 챌린지가 기다리고 있어요",
-          "message": "{questions}문제 · {minutes}분 · {xp} XP — 지금 도전해 보세요."
+          "message": "{questions}문제 — 지금 도전해 보세요."
+        },
+        "srsDue": {
+          "title": "복습할 카드 {due}장이 기다려요",
+          "message": "지금 5분이면 배운 내용을 오래 기억할 수 있어요."
+        },
+        "idleNudge": {
+          "title": "한 문제만 풀어볼까요?",
+          "message": "5분이면 XP가 쌓이고 리그 순위도 올라가요."
         },
         "duelWon": {
           "title": "듀얼 승리! 🏆",
@@ -4955,6 +4966,50 @@
       "difficultyLabel": "난이도",
       "start": "맞춤 시험 시작"
     },
+    "avatar": {
+      "title": "아바타",
+      "hint": "친구 목록과 리그 순위표에서 이름 옆에 표시돼요.",
+      "previewLabel": "내 아바타",
+      "startFrom": "어떤 모습으로 시작할까요",
+      "startFromHint": "하나 고른 뒤 마음대로 바꿀 수 있어요.",
+      "customise": "직접 꾸미기",
+      "useInitials": "이니셜로 되돌리기",
+      "usingInitials": "지금은 이니셜로 표시되고 있어요.",
+      "save": "아바타 저장",
+      "saving": "저장 중…",
+      "saved": "저장했어요",
+      "discard": "변경 취소",
+      "saveFailed": "아바타를 저장하지 못했어요. 다시 시도해 주세요.",
+      "unavailable": "아바타 꾸미기는 아직 열리지 않았어요. 당분간 이니셜로 표시돼요.",
+      "loadFailed": "아바타를 불러오지 못했어요.",
+      "none": "없음",
+      "tab": {
+        "skin": "피부",
+        "face": "얼굴",
+        "hair": "헤어",
+        "color": "색상",
+        "extras": "소품",
+        "clothes": "옷"
+      },
+      "part": {
+        "skin": "피부톤",
+        "faceShape": "얼굴형",
+        "eyes": "눈",
+        "iris": "눈동자 색",
+        "brow": "눈썹",
+        "mouth": "입",
+        "hairStyle": "헤어스타일",
+        "hairColor": "머리 색",
+        "accessory": "액세서리",
+        "facialHair": "수염",
+        "uniform": "교복",
+        "top": "상의",
+        "backdrop": "배경",
+        "tieColor": "리본 · 넥타이",
+        "coverColor": "히잡"
+      },
+      "randomise": "랜덤으로 만들기"
+    },
     "prefs": {
       "title": "학습 설정",
       "subtitle": "목표와 기본값을 조정하세요. 변경 사항은 자동 저장됩니다.",
@@ -4964,7 +5019,36 @@
       "defaultLanguage": "기본 언어",
       "defaultDifficulty": "기본 난이도",
       "statsTitle": "통계 보기",
-      "statsSubtitle": "누적 합계 + 최근 추이"
+      "statsSubtitle": "누적 합계 + 최근 추이",
+      "avatarName": {
+        "aster": "긴 검은 생머리",
+        "ember": "아프로 헤어",
+        "quartz": "청록색 단발",
+        "onyx": "삭발 머리와 수염",
+        "birch": "갈색 웨이브와 주근깨",
+        "garnet": "긴 레게 머리",
+        "maple": "적갈색 높은 포니테일",
+        "cedar": "짧은 스포츠머리",
+        "harbor": "금발 가르마와 안경",
+        "nova": "곱슬 방울 머리",
+        "dune": "곱슬 머리 위로 묶은 머리",
+        "juniper": "히잡",
+        "indigo": "라벤더색 픽시컷",
+        "rowan": "흰머리 웨이브와 안경",
+        "fern": "곱슬머리와 동그란 안경",
+        "lumen": "양갈래 땋은 머리",
+        "pearl": "백발 낮게 묶은 머리",
+        "kestrel": "투블럭 컷",
+        "willow": "일자 앞머리와 긴 검은 생머리",
+        "flint": "앞머리 내린 투블럭과 안경",
+        "linden": "시스루 뱅과 긴 검은 생머리",
+        "sorrel": "낮게 묶은 머리",
+        "jasper": "짧은 단정한 머리와 안경",
+        "clover": "앞머리 단발과 동그란 안경",
+        "thistle": "갈색 반묶음 머리",
+        "mica": "가르마 탄 어깨 길이 머리",
+        "opal": "레이어드 단발"
+      }
     },
     "stats": {
       "title": "학습 통계",
@@ -5036,6 +5120,7 @@
       "correct": "정답",
       "incorrect": "오답",
       "timeLabel": "시간",
+      "timeValue": "{minutes}분",
       "streakLine": "연속 학습 유지 중 🔥",
       "streakHint": "내일 다시 와서 이어가세요.",
       "mistakesTitle": "복습할 {count}문제",
@@ -5050,6 +5135,7 @@
       "language": "언어",
       "questionCount": "문항 수",
       "timeLimit": "제한 시간",
+      "timeLimitValue": "{minutes}분",
       "difficulty": "난이도",
       "difficultyWarmup": "쉬움 위주",
       "difficultyBalanced": "기본",
@@ -5679,6 +5765,9 @@
       "gradeNotifications": "성적 알림",
       "announcementNotifications": "공지사항 알림",
       "reminderNotifications": "리마인더 알림",
+      "studyEmails": "학습 이메일",
+      "studyRecapEmail": "주간 학습 리포트 메일",
+      "studyRecapEmailDesc": "매주 월요일에 지난 한 주 학습 시간, 정답률, 마스터한 주제를 정리해서 보내드려요.",
       "selectedStudent": "선택된 학생",
       "noStudentSelected": "선택된 학생 없음",
       "dangerZone": "위험 구역",
@@ -5690,7 +5779,8 @@
       "deleteData2": "과제 및 성적",
       "deleteData3": "계정 접근 권한",
       "deleteAccountFinal": "이 작업은 되돌릴 수 없습니다.",
-      "confirmDelete": "삭제"
+      "confirmDelete": "삭제",
+      "modeTabsLabel": "설정 모드"
     },
     "notifications": {
       "title": "알림",

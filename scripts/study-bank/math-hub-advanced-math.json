@@ -1,0 +1,560 @@
+[
+  {
+    "id": "9fa2716b-7255-4894-9773-2d175be1b5aa",
+    "domain": "Advanced Math",
+    "subskill": "Remainder theorem",
+    "prompt": "When the polynomial P(x) = 2x^3 - 3x^2 + kx - 5 is divided by (x - 2), the remainder is 7. What is the value of k?",
+    "correct_answer": "4",
+    "choices": ["2", "4", "6", "-4"],
+    "explanation": "By the remainder theorem, P(2) = 16 - 12 + 2k - 5 = 7, so 2k - 1 = 7 and k = 4.",
+    "repaired_choices": ["6", "4", "0.5", "-20"],
+    "distractor_reasoning": {
+      "6": "Solved 2k = 8 by subtracting 2 rather than dividing by it.",
+      "0.5": "Set the remainder to 0 as if (x − 2) were a factor, solving 2k − 1 = 0.",
+      "-20": "Substituted x = −2 instead of x = 2, reading the sign of the factor backwards."
+    }
+  },
+  {
+    "id": "ad54e038-1513-4fe9-9132-825d9f69e181",
+    "domain": "Advanced Math",
+    "subskill": "Polynomial equations in quadratic form",
+    "prompt": "What is the product of all real solutions to the equation x^4 - 13x^2 + 36 = 0?",
+    "correct_answer": "36",
+    "choices": ["6", "-36", "13", "36"],
+    "explanation": "Let u = x^2: u^2 - 13u + 36 = 0 gives u = 4 or u = 9, so x = ±2 and x = ±3. The product (2)(-2)(3)(-3) = 36. (6 multiplies only the positive roots; -36 gets the sign wrong; 13 is the middle coefficient.)",
+    "explanation_stale": "The parenthetical still describes the removed option 13; that clause must be replaced with one for 0.",
+    "hub_retained": "Multiplying only the positive roots gives √36, and losing one negative sign gives −36. Both are what students actually do with a ±2, ±3 root set.",
+    "repaired_choices": ["6", "-36", "0", "36"],
+    "distractor_reasoning": {
+      "6": "Multiplied only the positive roots, 2 × 3.",
+      "-36": "Lost one negative sign while multiplying the four roots.",
+      "0": "Added the four roots instead of multiplying them."
+    }
+  },
+  {
+    "id": "ebbf2227-0fd2-4d34-91fd-eabe3fc6fdcc",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear equations in one variable",
+    "prompt": "What is the solution to the equation sqrt(x + 5) + 1 = x ?",
+    "correct_answer": "4",
+    "choices": ["4", "-1", "5", "3"],
+    "explanation": "Isolate: sqrt(x+5) = x-1, then square: x+5 = x^2-2x+1, so x^2-3x-4=0, giving x=4 or x=-1. Only x=4 satisfies the original equation (x=-1 is extraneous).",
+    "repaired_choices": ["4", "-1", "-2", "11"],
+    "distractor_reasoning": {
+      "-1": "Kept the extraneous root without testing it against the original equation.",
+      "-2": "Squared before isolating the radical, solving x + 6 = x² and taking the negative root.",
+      "11": "Picked the value that makes the radicand x + 5 a perfect square without checking the equation."
+    }
+  },
+  {
+    "id": "45c300b0-405c-43d0-b3ab-bc1db9a2acf2",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear functions",
+    "prompt": "The polynomial p(x) = 2x^3 - 3x^2 + kx - 12 is divisible by (x - 2). What is the value of k?",
+    "correct_answer": "4",
+    "choices": ["8", "4", "-4", "2"],
+    "explanation": "By the Factor Theorem, p(2) = 0: 16 - 12 + 2k - 12 = 0, so 2k = 8 and k = 4.",
+    "repaired_choices": ["-20", "4", "-2", "6"],
+    "distractor_reasoning": {
+      "-20": "Substituted x = −2 instead of x = 2, reading the sign of the factor backwards.",
+      "-2": "Dropped the constant −12 when evaluating p(2).",
+      "6": "Evaluated 2x³ at x = 2 as 2·2·3 = 12 rather than 16."
+    }
+  },
+  {
+    "id": "6f6f2f0e-164f-4cb5-8ec8-9447986ae077",
+    "domain": "Advanced Math",
+    "subskill": "Function notation and composition",
+    "prompt": "Let f(x) = 3x - 1 and g(x) = x^2 + 2. What is the value of g(f(2)) - f(g(2))?",
+    "correct_answer": "10",
+    "choices": ["-10", "20", "10", "44"],
+    "explanation": "f(2) = 5, so g(f(2)) = 25 + 2 = 27. g(2) = 6, so f(g(2)) = 18 - 1 = 17. Thus 27 - 17 = 10. Choice -10 reverses the subtraction; 44 adds instead of subtracts; 20 comes from dropping the -1 in f throughout.",
+    "explanation_stale": "Explanation still describes the removed options -10 and 20; those clauses must be replaced with ones for 27 and 5.",
+    "repaired_choices": ["44", "27", "10", "5"],
+    "distractor_reasoning": {
+      "44": "Added the two compositions instead of subtracting, 27 + 17.",
+      "27": "Reported g(f(2)) alone, never computing the second composition.",
+      "5": "Reported f(2), the first intermediate step."
+    }
+  },
+  {
+    "id": "05d545ec-46d8-4c61-af59-ca16580a4700",
+    "domain": "Advanced Math",
+    "subskill": "Systems of nonlinear equations",
+    "prompt": "Real numbers x and y satisfy x + y = 7 and x^2 + y^2 = 29. What is the value of xy?",
+    "correct_answer": "10",
+    "choices": ["3", "10", "20", "-10"],
+    "explanation": "Since (x + y)^2 = x^2 + 2xy + y^2, substituting gives 49 = 29 + 2xy, so 2xy = 20 and xy = 10, the key. The option giving 20 stops at 2xy and forgets to divide by 2. The option giving -10 reverses the subtraction, computing (29 - 49)/2. The option giving 3 is the value of x - y rather than xy: (x - y)^2 = x^2 + y^2 - 2xy = 29 - 20 = 9, so x - y = 3.",
+    "explanation_stale": "Explanation still describes the removed options 20 and -10; those sentences must be replaced with ones for 24.5 and 14.5.",
+    "duplicate_of": "2804a6ed carries the same stem.",
+    "repaired_choices": ["3", "10", "24.5", "14.5"],
+    "distractor_reasoning": {
+      "3": "Found x − y instead of xy, from (x − y)² = 29 − 20 = 9.",
+      "24.5": "Halved (x + y)² = 49 rather than using the identity.",
+      "14.5": "Halved x² + y² = 29 rather than using the identity."
+    }
+  },
+  {
+    "id": "2e76651f-ef3a-4720-89e1-009c09bd53ce",
+    "domain": "Advanced Math",
+    "subskill": "Nested radical",
+    "prompt": "If x = sqrt(20 + sqrt(20 + sqrt(20 + ...))) continuing infinitely, what is the value of x?",
+    "correct_answer": "5",
+    "choices": ["4", "6", "10", "5"],
+    "explanation": "The self-similar structure gives x = sqrt(20 + x), so x^2 - x - 20 = 0, factoring to (x-5)(x+4)=0; the positive root is 5.",
+    "hub_retained": "Mis-factoring x² − x − 20 as (x−4)(x+5) and mishandling x² = 20 + x as x = 20/2 both land on slip-values of the key here.",
+    "repaired_choices": ["4", "-4", "10", "5"],
+    "distractor_reasoning": {
+      "4": "Mis-factored x² − x − 20 as (x − 4)(x + 5), swapping which factor carries the 5.",
+      "-4": "Took the negative root of (x − 5)(x + 4) = 0, ignoring that a square root is non-negative.",
+      "10": "Read x² − x = 20 as x·x − x = 20, then solved x = 20/2."
+    }
+  },
+  {
+    "id": "0d7b9102-80e8-4fdb-88a8-79c0ee1002af",
+    "domain": "Advanced Math",
+    "subskill": "Systems with exponential expressions",
+    "prompt": "If 2^x * 2^y = 32 and (2^x)/(2^y) = 2, what is the value of xy?",
+    "correct_answer": "6",
+    "choices": ["5", "8", "6", "3"],
+    "explanation": "Multiplying powers adds exponents, so 2^(x+y) = 32 = 2^5 gives x + y = 5; dividing subtracts them, so 2^(x-y) = 2^1 gives x - y = 1. Solving the pair gives x = 3 and y = 2, so xy = 6, the key. The option giving 5 reports the sum x + y and stops there. The option giving 3 reports x alone, never multiplying by y. The option giving 8 is 2^3, that is the power 2^x, mistaken for the product xy.",
+    "explanation_stale": "Explanation still describes the removed options 5 and 3; those sentences must be replaced with ones for 1 and 2.",
+    "repaired_choices": ["1", "8", "6", "2"],
+    "distractor_reasoning": {
+      "1": "Reported x − y and stopped, never solving the pair.",
+      "8": "Reported 2^x = 2³, the power rather than the product xy.",
+      "2": "Reported y alone, never multiplying by x."
+    }
+  },
+  {
+    "id": "d8eb9d9b-33a4-4017-aa1d-3fc871b2d470",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear equations (Vieta / roots)",
+    "prompt": "The quadratic equation 2x^2 - 7x + 3 = 0 has roots r and s. What is the value of 1/r + 1/s?",
+    "correct_answer": "7/3",
+    "choices": ["3/7", "7/3", "7/2", "-7/3"],
+    "explanation": "By Vieta's formulas, r + s = 7/2 and rs = 3/2. Then 1/r + 1/s = (r+s)/(rs) = (7/2)/(3/2) = 7/3.",
+    "repaired_choices": ["3/2", "7/3", "7/2", "2/3"],
+    "distractor_reasoning": {
+      "3/2": "Reported rs, the product of the roots, instead of the reciprocal sum.",
+      "7/2": "Reported r + s and stopped, never dividing by rs.",
+      "2/3": "Computed 1/(rs), treating 1/r + 1/s as a single reciprocal."
+    }
+  },
+  {
+    "id": "8b2524b0-1e1b-420f-8025-d603c931afd0",
+    "domain": "Advanced Math",
+    "subskill": "Systems using symmetric identities",
+    "prompt": "Real numbers x and y satisfy x + y = 5 and x^2 + y^2 = 17. What is the value of xy?",
+    "correct_answer": "4",
+    "choices": ["4", "8", "-4", "21"],
+    "explanation": "Since (x + y)^2 = x^2 + 2xy + y^2, we have 25 = 17 + 2xy, so 2xy = 8 and xy = 4.",
+    "duplicate_of": "b91531df and 68ca9070 carry the same stem.",
+    "repaired_choices": ["4", "1", "12.5", "21"],
+    "distractor_reasoning": {
+      "1": "Solved out to x = 1, y = 4 and reported one of the numbers rather than their product.",
+      "12.5": "Halved the square of the sum, 25/2, instead of using the identity.",
+      "21": "Averaged the two given quantities, computing (25 + 17)/2."
+    }
+  },
+  {
+    "id": "5a5839fa-29ec-4ede-b3c1-988cd68d9fad",
+    "domain": "Advanced Math",
+    "subskill": "Reciprocal / rational quadratic word problem",
+    "prompt": "The sum of a positive number and its reciprocal is 10/3. What is the larger of the two possible values of the number?",
+    "correct_answer": "3",
+    "choices": ["1/3", "10/3", "3", "-3"],
+    "explanation": "If the number is x, then x + 1/x = 10/3. Multiplying by 3x gives 3x^2 - 10x + 3 = 0, which factors as (3x - 1)(x - 3) = 0, so x = 3 or x = 1/3. The larger value is 3.",
+    "repaired_choices": ["1", "10/3", "3", "5/3"],
+    "distractor_reasoning": {
+      "1": "Mis-factored 3x² − 10x + 3 as (3x − 3)(x − 1), which does not reproduce the middle term.",
+      "10/3": "Echoed the given sum as the answer.",
+      "5/3": "Assumed the number and its reciprocal are equal, so each is half of 10/3."
+    }
+  },
+  {
+    "id": "2a4b8835-79c8-466f-aee9-9ced01b0f12d",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear functions",
+    "prompt": "The line shown passes through (0, -4) and is tangent to the parabola y = x² at a point in the first quadrant. What is the slope of the line?",
+    "correct_answer": "4",
+    "choices": ["2", "4", "6", "8"],
+    "explanation": "A line y = mx − 4 meets y = x² where x² − mx + 4 = 0. Tangency means one solution, so the discriminant m² − 16 = 0, giving m = 4 (positive slope for the first-quadrant point of tangency at x = 2).",
+    "hub_retained": "Reporting the x-coordinate of tangency (2) and stopping at m² = 16 are the two errors this discriminant set-up produces; both are slip-values of the key.",
+    "repaired_choices": ["2", "4", "16", "4.33"],
+    "distractor_reasoning": {
+      "2": "Reported the x-coordinate of the point of tangency instead of the slope.",
+      "16": "Solved to m² = 16 and reported m² without taking the square root.",
+      "4.33": "Guessed the tangency point at x = 3, then took the slope from (0, −4) to (3, 9)."
+    }
+  },
+  {
+    "id": "5534c23c-c2a5-4c4a-a1e4-c22d236a5a58",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear equations in one variable and systems of equations in two variables",
+    "prompt": "In the equation x² − 12x + k = 0, one solution is exactly twice the other. What is the value of k?",
+    "correct_answer": "32",
+    "choices": ["32", "72", "16", "64"],
+    "explanation": "Let the roots be r and 2r. Their sum is r + 2r = 3r = 12, so r = 4. By Vieta's formulas, k equals the product of the roots: r · 2r = 2r² = 2(16) = 32.",
+    "hub_retained": "With roots r and 2r, the product is 2r², so leaving out the 2 gives exactly k/2 and squaring the larger root gives exactly 2k. Both are the errors this item is built to catch.",
+    "repaired_choices": ["32", "36", "16", "64"],
+    "distractor_reasoning": {
+      "36": "Assumed the two roots are equal, giving (12/2)².",
+      "16": "Reported r² = 16, leaving out the factor of 2 in 2r².",
+      "64": "Squared the larger root, (2r)² = 8², instead of multiplying the two different roots."
+    }
+  },
+  {
+    "id": "e4e72c1b-03f1-465f-aca7-872d2da668ad",
+    "domain": "Advanced Math",
+    "subskill": "Systems of nonlinear equations",
+    "prompt": "The line y = 4x + c is tangent to the parabola y = x^2 + 2x + 7. What is the value of c?",
+    "correct_answer": "6",
+    "choices": ["8", "6", "-6", "5"],
+    "explanation": "Setting the curves equal gives x^2 + 2x + 7 = 4x + c, or x^2 - 2x + (7 - c) = 0. Tangency means one solution, so the discriminant is 0: (-2)^2 - 4(7 - c) = 0, giving 4 = 4(7 - c), so 7 - c = 1 and c = 6. The other choices come from sign slips or an off-by-one in solving 7 - c = 1.",
+    "duplicate_of": "1153c5cd, cc6cb282 and 99023578 carry the same stem.",
+    "repaired_choices": ["24", "6", "-2", "5"],
+    "distractor_reasoning": {
+      "24": "Expanded the discriminant to 4c − 24 = 0 and stopped at 4c = 24 without dividing.",
+      "-2": "Moved 4x across with the wrong sign, leaving x² + 6x + (7 − c) = 0 and 36 = 4(7 − c).",
+      "5": "Divided 4 = 4(7 − c) by 2 rather than by 4, leaving 7 − c = 2."
+    }
+  },
+  {
+    "id": "363fa231-e3c3-4fa3-acf9-9786c08e64e3",
+    "domain": "Advanced Math",
+    "subskill": "Rational exponents",
+    "prompt": "If x^(3/2) = 27 and x > 0, what is the value of x?",
+    "correct_answer": "9",
+    "choices": ["3", "27", "9", "18"],
+    "explanation": "Raise both sides to the 2/3 power, which undoes the 3/2 exponent: x = 27^(2/3) = (27^(1/3))^2 = 3^2 = 9, the key. Checking, 9^(3/2) = (√9)^3 = 3^3 = 27. The option giving 3 takes only the cube root of 27 and stops there. The option giving 27 leaves the right-hand side unchanged, as if the exponent were 1. The option giving 18 treats the exponent as a multiplier, computing 27*(2/3).",
+    "explanation_stale": "Explanation still describes the removed options 3 and 18; those sentences must be replaced with ones for 6 and 40.5.",
+    "duplicate_of": "2ea5bc1c carries the same stem.",
+    "repaired_choices": ["6", "27", "9", "40.5"],
+    "distractor_reasoning": {
+      "6": "Took the cube root 3 and then doubled it instead of squaring it.",
+      "27": "Left the right-hand side unchanged, as if the exponent were 1.",
+      "40.5": "Treated the exponent as a multiplier the wrong way up, computing 27 × 3/2."
+    }
+  },
+  {
+    "id": "cd8c3850-a6ca-4181-b9cb-4ddb89f8e0f4",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear equations in one variable",
+    "prompt": "If sqrt(2x + 7) = x - 4, what is the value of x?",
+    "correct_answer": "9",
+    "choices": ["1", "10", "-9", "9"],
+    "explanation": "Squaring both sides gives 2x + 7 = (x - 4)^2 = x^2 - 8x + 16, so x^2 - 10x + 9 = 0 and (x - 1)(x - 9) = 0, giving x = 1 or x = 9. Squaring can introduce roots that fail the original equation, so both must be tested. At x = 1 the left side is sqrt(9) = 3 while the right side is 1 - 4 = -3, so that root is extraneous; at x = 9 the left side is sqrt(25) = 5 and the right side is 9 - 4 = 5, so 9 is the key. The option giving 1 keeps the extraneous root without checking it. The option giving 10 reports the sum of the two roots, 1 + 9. The option giving -9 reads the factor (x - 9) backwards.",
+    "explanation_stale": "Explanation still describes the removed options 10 and -9; those sentences must be replaced with ones for -11 and 5.9.",
+    "duplicate_of": "96ad0a49 carries the same stem.",
+    "repaired_choices": ["1", "-11", "5.9", "9"],
+    "distractor_reasoning": {
+      "1": "Kept the extraneous root without testing it against the original equation.",
+      "-11": "Never squared, solving 2x + 7 = x − 4 directly.",
+      "5.9": "Expanded (x − 4)² as x² − 16, giving x² − 2x − 23 = 0."
+    }
+  },
+  {
+    "id": "e4d53cca-b5c6-48f4-a5f0-08ba6127818a",
+    "domain": "Advanced Math",
+    "subskill": "Systems of equations",
+    "prompt": "If x + y = 9 and x^2 + y^2 = 53, what is the value of xy?",
+    "correct_answer": "14",
+    "choices": ["28", "14", "34", "-14"],
+    "explanation": "(x+y)^2 = x^2 + y^2 + 2xy, so 81 = 53 + 2xy, giving xy = 14.",
+    "repaired_choices": ["40.5", "14", "67", "5"],
+    "distractor_reasoning": {
+      "40.5": "Halved (x + y)² = 81 rather than using the identity.",
+      "67": "Averaged the two given quantities, computing (81 + 53)/2.",
+      "5": "Found x − y = 5 instead of xy."
+    }
+  },
+  {
+    "id": "5776add9-324e-44df-9c8a-e3830a7a550f",
+    "domain": "Advanced Math",
+    "subskill": "Vieta reciprocal sum",
+    "prompt": "If p and q are the solutions to 3x^2 + 11x - 4 = 0, what is the value of 1/p + 1/q?",
+    "correct_answer": "11/4",
+    "choices": ["-11/4", "11/4", "4/11", "-3/4"],
+    "explanation": "By Vieta's, p + q = -11/3 and pq = -4/3. Then 1/p + 1/q = (p + q)/(pq) = (-11/3)/(-4/3) = 11/4.",
+    "repaired_choices": ["-11/3", "11/4", "-4/3", "-3/4"],
+    "distractor_reasoning": {
+      "-11/3": "Reported p + q and stopped, never dividing by pq.",
+      "-4/3": "Reported pq, the product of the roots, instead of the reciprocal sum.",
+      "-3/4": "Computed 1/(pq), treating 1/p + 1/q as a single reciprocal."
+    }
+  },
+  {
+    "id": "68b1bf39-42fc-4380-a851-3cf15e3adc96",
+    "domain": "Advanced Math",
+    "subskill": "Product of roots parameter",
+    "prompt": "For what value of b does the equation x^2 + bx + 12 = 0 have one root that is three times the other?",
+    "correct_answer": "-8",
+    "choices": ["-8", "8", "-7", "6"],
+    "explanation": "Let the roots be r and 3r. Product: r(3r) = 3r^2 = 12, so r^2 = 4, r = 2 or r = -2. Sum: r + 3r = 4r = -b. For r = 2, b = -8. (For r = -2, b = 8, but taking the value with positive smaller root gives -8; the intended clean answer among choices consistent with r = 2 is -8.)",
+    "repaired_choices": ["-8", "2", "-12", "6"],
+    "distractor_reasoning": {
+      "2": "Reported the smaller root r = 2 instead of the coefficient b.",
+      "-12": "Took b from the constant term 12 with a sign attached, never using the sum of the roots.",
+      "6": "Reported the larger root 3r = 6 instead of the coefficient b."
+    }
+  },
+  {
+    "id": "37254e6f-0c89-4a71-a8de-709728f7545b",
+    "domain": "Advanced Math",
+    "subskill": "Tangency via discriminant = 0",
+    "prompt": "A line y = mx + 2 is tangent to the parabola y = x^2 + 3x + 6. What is the sum of all values of m for which this happens?",
+    "correct_answer": "6",
+    "choices": ["6", "7", "-1", "3"],
+    "explanation": "Setting mx + 2 = x^2 + 3x + 6 gives x^2 + (3 - m)x + 4 = 0. Tangency requires the discriminant to be 0: (3 - m)^2 - 16 = 0, so 3 - m = ±4, giving m = 7 or m = -1. Their sum is 6. Choices 7 and -1 are the individual values (the trap of reporting just one), and 3 is the parabola's linear coefficient.",
+    "explanation_stale": "Explanation still describes the removed options 7 and 3; that sentence must be rewritten for -7 and 8.",
+    "repaired_choices": ["6", "-7", "-1", "8"],
+    "distractor_reasoning": {
+      "-7": "Multiplied the two values of m instead of adding them, 7 × (−1).",
+      "-1": "Reported one of the two values of m rather than their sum.",
+      "8": "Took the difference of the two values of m, 7 − (−1), instead of the sum."
+    }
+  },
+  {
+    "id": "29f9f068-5523-494c-9636-c70be216c1b2",
+    "domain": "Advanced Math",
+    "subskill": "Function composition solving for a parameter",
+    "prompt": "The function f is defined by f(x) = 3x + a for some constant a. If f(f(1)) = 25, what is the value of a?",
+    "correct_answer": "4",
+    "choices": ["4", "16", "3", "5"],
+    "explanation": "f(1) = 3 + a, so f(f(1)) = 3(3 + a) + a = 9 + 4a. Setting 9 + 4a = 25 gives a = 4. The distractor 3 comes from stopping at one application (3 + a = something), 16 is the intermediate 4a value, and 5 comes from dividing 25 by 3 and rounding.",
+    "explanation_stale": "Explanation still describes the removed options 3 and 5; those clauses must be replaced with ones for 22 and 5.33.",
+    "repaired_choices": ["4", "22", "5.33", "8"],
+    "distractor_reasoning": {
+      "22": "Applied f only once, solving 3 + a = 25.",
+      "5.33": "Dropped the outer a when expanding, solving 9 + 3a = 25.",
+      "8": "Reached 4a = 16 and divided by 2 instead of 4."
+    }
+  },
+  {
+    "id": "96ad0a49-71b2-4775-bc0f-8367d7ad89e0",
+    "domain": "Advanced Math",
+    "subskill": "Radical equation with extraneous root",
+    "prompt": "What is the solution to the equation sqrt(2x + 7) = x - 4?",
+    "correct_answer": "9",
+    "choices": ["9", "1", "10", "-9"],
+    "explanation": "Squaring gives 2x + 7 = x^2 - 8x + 16, so x^2 - 10x + 9 = 0, with roots x = 1 and x = 9. Since the right side x - 4 must be nonnegative, x = 1 is extraneous, leaving x = 9. The distractor 1 is the rejected root, 10 is the sum of both roots, and -9 flips a sign.",
+    "explanation_stale": "Explanation still describes the removed option -9; that clause must be replaced with one for 21.",
+    "duplicate_of": "cd8c3850 carries the same stem.",
+    "repaired_choices": ["9", "1", "10", "21"],
+    "distractor_reasoning": {
+      "1": "Kept the extraneous root without testing it against the original equation.",
+      "10": "Reported the sum of the two roots, 1 + 9.",
+      "21": "Picked the value that makes the radicand 2x + 7 a perfect square, 49, without checking the equation."
+    }
+  },
+  {
+    "id": "b8099166-b01c-444b-9ac8-71d73579accb",
+    "domain": "Advanced Math",
+    "subskill": "Rational equations",
+    "prompt": "What value of x satisfies 1/(x - 1) + 1/(x + 1) = 10/(x^2 - 1)?",
+    "correct_answer": "5",
+    "choices": ["1", "10", "-5", "5"],
+    "explanation": "Since x^2 - 1 = (x - 1)(x + 1), multiply through by it: (x + 1) + (x - 1) = 10, so 2x = 10 and x = 5. The distractor 1 is an excluded value that makes a denominator zero, 10 skips dividing by 2, and -5 flips the sign.",
+    "explanation_stale": "Explanation still describes the removed options 10 and -5; those clauses must be replaced with ones for -1 and 4.",
+    "repaired_choices": ["1", "-1", "4", "5"],
+    "distractor_reasoning": {
+      "1": "An excluded value: it makes the denominator x − 1 zero.",
+      "-1": "The other excluded value: it makes the denominator x + 1 zero.",
+      "4": "Dropped a sign when combining the numerators, solving 2x + 2 = 10."
+    }
+  },
+  {
+    "id": "2ea5bc1c-2eac-4714-9177-a534b57cddeb",
+    "domain": "Advanced Math",
+    "subskill": "Solving equations with rational exponents",
+    "prompt": "If x^(3/2) = 27 and x > 0, what is the value of x?",
+    "correct_answer": "9",
+    "choices": ["3", "27", "81", "9"],
+    "explanation": "Raise both sides to the 2/3 power: x = 27^(2/3) = (27^(1/3))^2 = 3^2 = 9. The distractor 3 is the cube root of 27 (stopping too early), 27 just echoes the right side, and 81 comes from raising to 3/2 instead of 2/3.",
+    "explanation_stale": "Explanation still describes the removed option 27; that clause must be replaced with one for 18.",
+    "duplicate_of": "363fa231 carries the same stem.",
+    "hub_retained": "Stopping at the cube root gives √9, and dividing rather than cube-rooting after cubing gives 9². Both are the real failure modes of a fractional exponent.",
+    "repaired_choices": ["3", "18", "81", "9"],
+    "distractor_reasoning": {
+      "3": "Took the cube root of 27 and stopped, leaving x^(1/2) rather than x.",
+      "18": "Treated the exponent as a multiplier, computing 27 × 2/3.",
+      "81": "Cubed both sides to x³ = 729 and then divided by 9 instead of taking the cube root."
+    }
+  },
+  {
+    "id": "2284c4ae-46a1-4bef-b6bf-dcc39e3bffa3",
+    "domain": "Advanced Math",
+    "subskill": "Remainder theorem",
+    "prompt": "When the polynomial P(x) = 2x^3 + kx^2 - 5x + 3 is divided by (x - 2), the remainder is 1. What is the value of k?",
+    "correct_answer": "-2",
+    "choices": ["2", "-3", "-2", "5"],
+    "explanation": "By the remainder theorem, P(2) = 1. So 2(8) + k(4) - 5(2) + 3 = 1, giving 16 + 4k - 10 + 3 = 1, so 4k + 9 = 1, 4k = -8, k = -2.",
+    "repaired_choices": ["-8", "-2.25", "-2", "1"],
+    "distractor_reasoning": {
+      "-8": "Stopped at 4k = −8 without dividing by 4.",
+      "-2.25": "Set the remainder to 0 as if (x − 2) were a factor, solving 4k + 9 = 0.",
+      "1": "Substituted x = −2 instead of x = 2, reading the sign of the factor backwards."
+    }
+  },
+  {
+    "id": "76be628a-3001-46cc-8f6a-d3402e0d3ed7",
+    "domain": "Advanced Math",
+    "subskill": "Exponential with negative exponent",
+    "prompt": "If 9^(x) = 27^(2 - x), what is the value of x?",
+    "correct_answer": "6/5",
+    "choices": ["5/6", "2/5", "6/5", "3/5"],
+    "explanation": "In base 3: 9^x = 3^(2x) and 27^(2-x) = 3^(6-3x). Set 2x = 6 - 3x, so 5x = 6, x = 6/5.",
+    "repaired_choices": ["5/6", "2/5", "6/5", "6"],
+    "distractor_reasoning": {
+      "5/6": "Inverted the final division, reading 5x = 6 as x = 5/6.",
+      "2/5": "Dropped the 3 when expanding 3(2 − x), solving 5x = 2.",
+      "6": "Stopped at 5x = 6 without dividing by 5."
+    }
+  },
+  {
+    "id": "99023578-4b5d-4378-ab2b-9a93b847c3ab",
+    "domain": "Advanced Math",
+    "subskill": "Tangency via discriminant = 0",
+    "prompt": "The line y = 4x + c is tangent to the parabola y = x^2 + 2x + 7. What is the value of c?",
+    "correct_answer": "6",
+    "choices": ["8", "6", "-6", "3"],
+    "explanation": "Set x^2 + 2x + 7 = 4x + c, giving x^2 - 2x + (7 - c) = 0. Tangency requires the discriminant to be 0: (-2)^2 - 4(7 - c) = 0, so 4 - 28 + 4c = 0 and c = 6. The value -6 is a sign error; 8 and 3 come from mishandling the constant term.",
+    "explanation_stale": "Explanation still describes the removed option 8; that clause must be rewritten for 10.",
+    "duplicate_of": "1153c5cd, cc6cb282 and e4e72c1b carry the same stem.",
+    "hub_retained": "Carrying the constant as 7 + c gives −c, and using the line's slope in place of the reduced coefficient gives c/2. Both are the standard discriminant slips for this set-up.",
+    "repaired_choices": ["10", "6", "-6", "3"],
+    "distractor_reasoning": {
+      "10": "Put the point of tangency at x = +1 instead of x = −1, then matched the line there.",
+      "-6": "Carried the constant as 7 + c, so 4 = 4(7 + c) forces 7 + c = 1.",
+      "3": "Used the line's slope 4 as the middle coefficient, giving 16 = 4(7 − c) and 7 − c = 4."
+    }
+  },
+  {
+    "id": "2e9a1150-221b-449f-a700-88cd5bef9091",
+    "domain": "Advanced Math",
+    "subskill": "Radical equation with extraneous root",
+    "prompt": "What is the solution to the equation sqrt(x + 10) = x - 2?",
+    "correct_answer": "6",
+    "choices": ["6", "-1", "7", "5"],
+    "explanation": "Squaring gives x + 10 = x^2 - 4x + 4, so x^2 - 5x - 6 = 0, which factors as (x - 6)(x + 1) = 0. The candidate x = -1 is extraneous because x - 2 must be nonnegative, leaving x = 6. Choosing -1 keeps the extraneous root; 7 and 5 are arithmetic slips.",
+    "explanation_stale": "Explanation still describes the removed options 7 and 5; that clause must be rewritten for 15 and 4.27.",
+    "repaired_choices": ["6", "-1", "15", "4.27"],
+    "distractor_reasoning": {
+      "-1": "Kept the extraneous root without testing it against the original equation.",
+      "15": "Picked the value that makes the radicand x + 10 a perfect square, 25, without checking the equation.",
+      "4.27": "Expanded (x − 2)² as x² − 4, giving x² − x − 14 = 0."
+    }
+  },
+  {
+    "id": "6443cac7-4740-4fd4-9276-c9f2c47f6130",
+    "domain": "Advanced Math",
+    "subskill": "Rational-exponent equation",
+    "prompt": "If x^(2/3) = 16, what is the value of x?",
+    "correct_answer": "64",
+    "choices": ["32", "8", "128", "64"],
+    "explanation": "Raise both sides to the 3/2 power: x = 16^(3/2) = (16^(1/2))^3 = 4^3 = 64. Choosing 8 computes 16^(1/2) times something; 32 uses 16 times 2; 128 raises to the wrong power.",
+    "explanation_stale": "Explanation still describes the removed options 8, 32 and 128; that whole clause must be rewritten for 4, 24 and 256.",
+    "repaired_choices": ["4", "24", "256", "64"],
+    "distractor_reasoning": {
+      "4": "Took √16 and stopped, never cubing.",
+      "24": "Treated the exponent as a multiplier, computing 16 × 3/2.",
+      "256": "Squared 16, applying the numerator of the reciprocal exponent to the base without the root."
+    }
+  },
+  {
+    "id": "997ad934-9e46-4d80-9306-d3982110eed0",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear equations in one variable",
+    "prompt": "The equation x^2 - 7x + k = 0 has two real roots whose difference is 3. What is the value of k?",
+    "correct_answer": "10",
+    "choices": ["5", "21", "10", "-10"],
+    "explanation": "By Vieta's formulas the roots sum to 7. If their difference is 3, the roots are (7+3)/2 = 5 and (7-3)/2 = 2. Their product equals k, so k = 5 * 2 = 10.",
+    "repaired_choices": ["12.25", "21", "10", "2"],
+    "distractor_reasoning": {
+      "12.25": "Assumed the two roots are equal, giving (7/2)².",
+      "21": "Multiplied the sum 7 by the difference 3 instead of finding the roots.",
+      "2": "Reported the smaller root rather than the product of the two roots."
+    }
+  },
+  {
+    "id": "59025893-1468-488a-8e45-649de1319b3d",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear equations (Vieta on transformed roots)",
+    "prompt": "The roots of 2x^2 - 5x + 3 = 0 are r and s. What is the value of 1/r + 1/s?",
+    "correct_answer": "5/3",
+    "choices": ["3/5", "5/3", "-5/3", "2/3"],
+    "explanation": "1/r + 1/s = (r + s)/(rs). By Vieta's formulas r + s = 5/2 and rs = 3/2, so the value is (5/2)/(3/2) = 5/3.",
+    "repaired_choices": ["5/2", "5/3", "3/2", "2/3"],
+    "distractor_reasoning": {
+      "5/2": "Reported r + s and stopped, never dividing by rs.",
+      "3/2": "Reported rs, the product of the roots, instead of the reciprocal sum.",
+      "2/3": "Computed 1/(rs), treating 1/r + 1/s as a single reciprocal."
+    }
+  },
+  {
+    "id": "fe9e29d4-4be1-4e7a-a66f-5641c7d86d50",
+    "domain": "Advanced Math",
+    "subskill": "Nonlinear functions (geometric sequence)",
+    "prompt": "In a geometric sequence, the 3rd term is 12 and the 6th term is 96. What is the 1st term?",
+    "correct_answer": "3",
+    "choices": ["3", "6", "4", "48"],
+    "explanation": "The ratio satisfies r^3 = 96/12 = 8, so r = 2. Since the 3rd term is a1·r^2 = 12, a1 = 12/4 = 3.",
+    "repaired_choices": ["3", "24", "8", "48"],
+    "distractor_reasoning": {
+      "24": "Multiplied the 3rd term by the ratio instead of dividing, moving forward in the sequence rather than back.",
+      "8": "Reported r³ = 96/12 rather than the first term.",
+      "48": "Halved the 6th term once, working from the wrong end of the sequence."
+    }
+  },
+  {
+    "id": "2804a6ed-826d-4314-833a-a47c8e1470e2",
+    "domain": "Advanced Math",
+    "subskill": "Systems using symmetric identities",
+    "prompt": "The real numbers x and y satisfy x + y = 7 and x^2 + y^2 = 29. What is the value of xy?",
+    "correct_answer": "10",
+    "choices": ["5", "20", "10", "-10"],
+    "explanation": "Since (x + y)^2 = x^2 + y^2 + 2xy, we have 49 = 29 + 2xy, so 2xy = 20 and xy = 10. (20 is 2xy before dividing; -10 flips a sign; 5 halves 10 again.)",
+    "explanation_stale": "The parenthetical still describes the removed option -10; that clause must be replaced with one for 3.",
+    "duplicate_of": "05d545ec carries the same stem.",
+    "hub_retained": "The identity produces 2xy, so forgetting to halve gives exactly 2k and halving twice gives exactly k/2. These are the errors the item exists to detect.",
+    "repaired_choices": ["5", "20", "10", "3"],
+    "distractor_reasoning": {
+      "5": "Divided by 2 a second time after correctly reaching xy = 10.",
+      "20": "Stopped at 2xy = 20 without dividing by 2.",
+      "3": "Found x − y = 3 instead of xy, from (x − y)² = 29 − 20 = 9."
+    }
+  },
+  {
+    "id": "70eef696-7b1d-4f10-ab3f-d479168af76a",
+    "domain": "Advanced Math",
+    "subskill": "Quadratic: transformed roots",
+    "prompt": "If r and s are the solutions of 3x^2 - 5x + 2 = 0, what is the value of 1/r + 1/s?",
+    "correct_answer": "5/2",
+    "choices": ["2/5", "5/2", "-5/2", "3/2"],
+    "explanation": "Write 1/r + 1/s as (r + s)/(rs). Vieta's formulas give r + s = 5/3 and rs = 2/3, so the value is (5/3) divided by (2/3) = 5/2, the key; the roots are in fact 2/3 and 1, and 3/2 + 1 = 5/2. The option giving 2/5 inverts the quotient, computing rs over r + s. The option giving -5/2 takes the sum of the roots as -5/3, misreading the sign in -b/a. The option giving 3/2 treats 1/r + 1/s as 1/(rs) = 3/2; it is also 1/r for the root 2/3 alone, with the second reciprocal never added.",
+    "explanation_stale": "Explanation still describes the removed options 2/5 and -5/2; those sentences must be replaced with ones for 5/3 and 2/3.",
+    "repaired_choices": ["5/3", "5/2", "2/3", "3/2"],
+    "distractor_reasoning": {
+      "5/3": "Reported r + s and stopped, never dividing by rs.",
+      "2/3": "Reported rs, the product of the roots, instead of the reciprocal sum.",
+      "3/2": "Treated 1/r + 1/s as 1/(rs); it is also 1/r for the root 2/3 alone, with the second reciprocal never added."
+    }
+  },
+  {
+    "id": "d02bfb48-8641-429a-b0df-d33d1c17d723",
+    "domain": "Advanced Math",
+    "subskill": "Vieta's formulas and root relationships",
+    "prompt": "In the equation x^2 - 15x + k = 0, one root is twice the other. What is the value of k?",
+    "correct_answer": "50",
+    "choices": ["100", "50", "25", "45"],
+    "explanation": "Call the roots r and 2r. For x^2 - 15x + k = 0 the roots sum to 15, so 3r = 15 and r = 5, making the roots 5 and 10. The product of the roots is k, so k = 5 * 10 = 2r^2 = 50, the key. The value 25 is r^2, the product with the factor of 2 left out. The value 100 is (2r)^2, squaring the larger root instead of multiplying the two different roots together. The value 45 is 3 * 15, multiplying the sum by the 3 in 3r = 15 rather than dividing by it.",
+    "explanation_stale": "Explanation still describes the removed options 25 and 100; those sentences must be replaced with ones for 56.25 and 10.",
+    "repaired_choices": ["56.25", "50", "10", "45"],
+    "distractor_reasoning": {
+      "56.25": "Assumed the two roots are equal, giving (15/2)².",
+      "10": "Reported the larger root instead of the product of the two roots.",
+      "45": "Multiplied the sum 15 by the 3 in 3r = 15 rather than dividing by it."
+    }
+  }
+]

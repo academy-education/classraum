@@ -21,7 +21,8 @@ import {
   Bug,
   TrendingUp,
   Webhook,
-  GraduationCap
+  GraduationCap,
+  FlaskConical
 } from 'lucide-react';
 import { AdminUser, getAdminPermissions } from '@/lib/admin-auth-shared';
 import { db } from '@/lib/supabase';
@@ -51,6 +52,7 @@ const navigationItems: NavigationItem[] = [
   { nameKey: 'users',          descriptionKey: 'usersDesc',          href: '/admin/users',           icon: Users,           permission: 'manageUsers' },
   { nameKey: 'analytics',      descriptionKey: 'analyticsDesc',      href: '/admin/analytics',       icon: BarChart3,       permission: 'viewAnalytics' },
   { nameKey: 'study',          descriptionKey: 'studyDesc',          href: '/admin/study',           icon: GraduationCap,   permission: 'viewDashboard' },
+  { nameKey: 'bankQc',         descriptionKey: 'bankQcDesc',         href: '/admin/bank-qc',         icon: FlaskConical,    permission: 'viewDashboard' },
   { nameKey: 'support',        descriptionKey: 'supportDesc',        href: '/admin/support',         icon: Headphones,      permission: 'viewSupport' },
   { nameKey: 'commentReports', descriptionKey: 'commentReportsDesc', href: '/admin/comment-reports', icon: MessageSquare,   permission: 'manageSupport' },
 ];

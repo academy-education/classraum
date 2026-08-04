@@ -1,0 +1,45 @@
+{
+  "_comment": "SINGLE SOURCE for which gates each item family must clear. Read by src/lib/study/bank-qc.ts (typed) AND by scripts/study-bank/gate.mjs (the insert path). A .ts file cannot be imported by the .mjs helper without a build step, and a second hand-written copy is exactly the drift that let the dashboard lose the tells gate — so the data lives here and both sides read it.",
+  "familyStages": {
+    "mc_hidden_source": [
+      "shape",
+      "withsource",
+      "nosource",
+      "elimination",
+      "tells"
+    ],
+    "mc_stem_source": [
+      "shape",
+      "withsource",
+      "nosource",
+      "tells"
+    ],
+    "cloze": [
+      "shape",
+      "withsource",
+      "nosource",
+      "tells"
+    ],
+    "production": [
+      "shape",
+      "withsource",
+      "tells"
+    ]
+  },
+  "taskFamily": {
+    "choose_response": "mc_hidden_source",
+    "conversation": "mc_hidden_source",
+    "announcement": "mc_hidden_source",
+    "academic_talk": "mc_hidden_source",
+    "daily_life": "mc_hidden_source",
+    "academic_passage": "mc_hidden_source",
+    "fill_in_blanks": "cloze",
+    "speaking_repeat": "production",
+    "speaking_interview": "production",
+    "arrange_words": "production",
+    "writing_email": "production",
+    "writing_discussion": "production",
+    "sat_rw": "mc_hidden_source",
+    "sat_math": "mc_stem_source"
+  }
+}

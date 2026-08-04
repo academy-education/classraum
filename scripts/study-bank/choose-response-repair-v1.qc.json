@@ -1,0 +1,193 @@
+{
+  "batch": "choose-response-repair-v1",
+  "createdAt": "2026-08-03",
+  "targetTest": "toefl",
+  "section": "listening",
+  "task": "choose_response",
+  "family": "mc_hidden_source",
+  "contentSha": "8ed455caccca335ab0f4d0e307a8c5c1ebc7cb3318370e5325a551e6a791bcfd",
+  "status": "NOT FOR INSERT — failed nosource, elimination and withsource. Distractors only were rewritten; utterance, stem, key and difficulty are byte-identical to the live rows.",
+  "scope": {
+    "items": 71,
+    "distractorsRewritten": 213,
+    "keysTouched": 0,
+    "utterancesTouched": 0,
+    "difficultyTouched": 0
+  },
+  "apparatus": {
+    "note": "Three independent Claude solvers per run. Validated by re-measuring the UNREPAIRED live cohort first: an attack that cannot reproduce the known-bad number cannot certify a repaired one.",
+    "calibration": {
+      "cohort": "live choose_response, unrepaired",
+      "mean": 89.7,
+      "control": 33.8,
+      "margin": 55.9,
+      "ledgerRecords": {
+        "mean": 94.3,
+        "control": 28.6,
+        "margin": 65.7
+      }
+    },
+    "rejectedProtocol": "per-item gpt-4.1 / gpt-4o / gpt-4.1-mini scored the unrepaired cohort at +8.0 against a recorded +65.7, so that protocol was discarded as unable to see the defect at all",
+    "scorer": "scripts/study-bank/score-blind.mjs reports PASS on an empty or truncated solver file and still applies the superseded mean<=control bar, so a strict wrapper was used for every number here"
+  },
+  "ceiling": {
+    "value": 29.5,
+    "basis": "ETS Choose a Response published margin +25.5 plus the 4pt tolerance; ceilingFor() in src/lib/study/bank-ledger.ts"
+  },
+  "stages": {
+    "shape": {
+      "passed": true,
+      "contentSha": "8ed455caccca335ab0f4d0e307a8c5c1ebc7cb3318370e5325a551e6a791bcfd",
+      "ranAt": "2026-08-03",
+      "metrics": {
+        "items": 71,
+        "distinctOptions": true,
+        "keyPresentVerbatim": true,
+        "explanationOrderSafe": true,
+        "crossItemOptionReuse": 0
+      }
+    },
+    "tells": {
+      "passed": true,
+      "contentSha": "8ed455caccca335ab0f4d0e307a8c5c1ebc7cb3318370e5325a551e6a791bcfd",
+      "ranAt": "2026-08-03",
+      "metrics": {
+        "keyPosition": "18/15/16/22",
+        "keyAtLengthExtreme": 43.7,
+        "keyLongest": 21.1,
+        "keyShortest": 22.5,
+        "openerPKeyRange": "12.5-29.4% over every opener with n>=8",
+        "pKeyGivenTwoSentences": 30.3,
+        "pKeyGivenEmDash": 25.7,
+        "keyStructurallyUniqueInItem": 33.8,
+        "note": "The same script FAILS the unrepaired cohort on five measures, including P(key | opener \"yes\") = 0%, P(key | opener \"great\") = 0%, P(key | two sentences) = 50%, and key structurally unique in 57.7% of items.",
+        "selfInflictedAndFixed": [
+          "round 1 put the key at a length extreme in 64.8% of items (chance 50%)",
+          "round 1 opened 34 of 213 distractors with \"I'll\" against 3 of 71 keys — P(key) 8%",
+          "the fix for that created a \"could\" cluster — 17 distractors, 1 key, P(key) 5.6%",
+          "round 1 left P(key | two sentences) at 68%, named by a solver before any check saw it"
+        ]
+      }
+    },
+    "nosource": {
+      "passed": false,
+      "contentSha": "8ed455caccca335ab0f4d0e307a8c5c1ebc7cb3318370e5325a551e6a791bcfd",
+      "ranAt": "2026-08-03",
+      "metrics": {
+        "mean": 71.4,
+        "control": 31,
+        "margin": 40.4,
+        "ceiling": 29.5,
+        "identicalSpreads": false,
+        "solvers": [
+          {
+            "pct": 74.6,
+            "spread": "19/16/27/9"
+          },
+          {
+            "pct": 64.8,
+            "spread": "13/11/25/22"
+          },
+          {
+            "pct": 74.6,
+            "spread": "20/15/25/11"
+          }
+        ],
+        "beforeMargin": 55.9,
+        "round1Margin": 40.8,
+        "ablationMargin": 9.9,
+        "ablationNote": "Key plus three distractors from UNRELATED items scores 40.8% against a 31.0% control, with 1 of the solver’s 4 confident picks correct. The documented ablation on the unrepaired bank was 81.4% against 31.4%. The repaired keys no longer announce themselves in isolation; the residual signal is RELATIONAL — the three distractors let a solver reconstruct the withheld utterance and then pick the reply that fits it."
+      }
+    },
+    "elimination": {
+      "passed": false,
+      "contentSha": "8ed455caccca335ab0f4d0e307a8c5c1ebc7cb3318370e5325a551e6a791bcfd",
+      "ranAt": "2026-08-03",
+      "metrics": {
+        "itemsWithConfidentlyRejectableOption": 1,
+        "failingItems": [
+          43
+        ],
+        "failingOption": "Put me on it. So I am registered for the course from today, then? (delivered wording uses the contraction)",
+        "failingReason": "conflates being waitlisted with being registered — self-contradictory whatever the utterance was",
+        "certainRejections": 1,
+        "firstRejectionHitsKey": "2/71 = 2.8% (chance 25%)",
+        "beforeCohort": {
+          "itemsWithConfidentlyRejectableOption": 29,
+          "firstRejectionHitsKey": "0/71"
+        },
+        "note": "Round 1 passed this gate 0/71 on the same item. Round 2 split that option’s em-dash into a sentence break, which made the contradiction salient — so the round-1 pass on item 43 was borderline, not clean."
+      }
+    },
+    "withsource": {
+      "passed": false,
+      "contentSha": "8ed455caccca335ab0f4d0e307a8c5c1ebc7cb3318370e5325a551e6a791bcfd",
+      "ranAt": "2026-08-03",
+      "metrics": {
+        "keyAgreement": 97.2,
+        "difficulty": {
+          "trivial": 0,
+          "easy": 28,
+          "medium": 32,
+          "hard": 11
+        },
+        "hardPct": 15.5,
+        "twoDefensible": 16,
+        "twoDefensibleItems": [
+          9,
+          11,
+          12,
+          15,
+          16,
+          23,
+          37,
+          38,
+          47,
+          48,
+          53,
+          54,
+          57,
+          64,
+          65,
+          69
+        ],
+        "factsAtLeastTwo": "32/71 = 45%",
+        "constructInvalid": [
+          13
+        ],
+        "beforeCohort": {
+          "difficulty": {
+            "trivial": 2,
+            "easy": 59,
+            "medium": 10,
+            "hard": 0
+          },
+          "twoDefensible": 2,
+          "factsAtLeastTwo": "5/71 = 7%"
+        },
+        "note": "Difficulty moved the right way on every axis — hard 0% to 15.5%, multi-fact 7% to 45%, trivial 2 to 0 — so closeness was NOT bought with easiness. The blocker is the opposite failure: making distractors plausible without the source made 16 of them defensible WITH it."
+      }
+    }
+  },
+  "knownDefects": [
+    {
+      "item": 43,
+      "kind": "elimination",
+      "detail": "Self-contradictory distractor, named above. Left in the file rather than silently edited after the gates ran — hash binding exists to stop exactly that. Fix in round 3 with the ambiguous items and re-run every stage."
+    },
+    {
+      "item": 13,
+      "kind": "construct",
+      "detail": "Date arithmetic wearing a pragmatics frame. Inherited: the utterance and key are original and out of scope for a distractor-only rewrite."
+    },
+    {
+      "items": [
+        38,
+        48
+      ],
+      "kind": "duplication",
+      "detail": "Near-duplicate scenarios (noise through a shared wall, hedged complaint). Inherited from the live bank."
+    }
+  ],
+  "nextRound": "The 16 twoDefensible items cluster into three shapes: \"Have you thought about X?\" openers where accepting and counter-proposing are both natural; a stated obstacle where \"work around it\" and \"ask for an alternative\" are equally licensed; and complaint items where two different remedies both resolve it. Each needs the second-best option made wrong on a stated fact WITHOUT making it rejectable blind — which is the narrow corridor this pilot located and did not fully clear."
+}

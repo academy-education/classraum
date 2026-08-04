@@ -181,6 +181,24 @@ function PreferencesInner() {
         </div>
       )}
 
+      {/* The avatar PICKER used to live here — a grid of 27 finished
+          people, writing avatar_id. It moved to the profile page's study
+          section and became a builder (profile/StudyAvatarCard.tsx),
+          where the same 27 are the starting points and every part is
+          then editable. Nothing was removed from this page until that
+          one worked; there was never a build with neither.
+
+          Not re-pointed at avatar_config here: two editors for one
+          setting is the shape of the duplicate-writer bug CLAUDE.md
+          records ("when you add a batch path, delete the per-item path
+          it replaces"). This page keeps the study GOALS; identity —
+          nickname and avatar — lives on the account page together.
+
+          study.prefs.avatar / avatarHint / avatarNone are retired with
+          it. study.prefs.avatarName.* stay: the builder still names
+          every preset, and avatars.test.tsx fails if either locale keeps
+          a name for a preset that no longer exists. */}
+
       {/* Target test — multi-select. A student can prep for more than one
           test (SAT + TOEFL). Tapping a chip ADDS it (and focuses it); it
           never removes on the same tap — that used to read as an

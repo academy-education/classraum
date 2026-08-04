@@ -3238,6 +3238,33 @@ export type Database = {
         }
         Relationships: []
       }
+      study_item_attacks: {
+        Row: {
+          attacked_at: string
+          correct: number
+          id: string
+          item_id: string
+          run_id: string
+          solvers: number
+        }
+        Insert: {
+          attacked_at?: string
+          correct: number
+          id?: string
+          item_id: string
+          run_id: string
+          solvers: number
+        }
+        Update: {
+          attacked_at?: string
+          correct?: number
+          id?: string
+          item_id?: string
+          run_id?: string
+          solvers?: number
+        }
+        Relationships: []
+      }
       study_item_bank: {
         Row: {
           archived: boolean
@@ -3392,6 +3419,7 @@ export type Database = {
       }
       study_league_rewards: {
         Row: {
+          claimed_at: string | null
           created_at: string
           credits: number
           id: string
@@ -3402,6 +3430,7 @@ export type Database = {
           week_start: string
         }
         Insert: {
+          claimed_at?: string | null
           created_at?: string
           credits?: number
           id?: string
@@ -3412,6 +3441,7 @@ export type Database = {
           week_start: string
         }
         Update: {
+          claimed_at?: string | null
           created_at?: string
           credits?: number
           id?: string
@@ -4228,6 +4258,7 @@ export type Database = {
       }
       study_user_prefs: {
         Row: {
+          avatar_id: string | null
           created_at: string
           daily_goal_minutes: number | null
           default_difficulty: string | null
@@ -4246,6 +4277,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          avatar_id?: string | null
           created_at?: string
           daily_goal_minutes?: number | null
           default_difficulty?: string | null
@@ -4264,6 +4296,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          avatar_id?: string | null
           created_at?: string
           daily_goal_minutes?: number | null
           default_difficulty?: string | null

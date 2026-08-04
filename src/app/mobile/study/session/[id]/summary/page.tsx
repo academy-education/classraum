@@ -377,7 +377,9 @@ function SummaryInner({ id }: { id: string }) {
               <div className={`mt-5 grid grid-cols-3 gap-3 ${hero.accent}`}>
                 <Stat icon={CheckCircle2} value={String(correct)} label={String(t('study.summary.correct'))} />
                 <Stat icon={XCircle} value={String(incorrect)} label={String(t('study.summary.incorrect'))} />
-                <Stat icon={Clock} value={`${totalMinutes}m`} label={String(t('study.summary.timeLabel'))} />
+                {/* The unit is part of the translation, not glued on here —
+                    a hardcoded "m" rendered "35m" under a Korean label. */}
+                <Stat icon={Clock} value={String(t('study.summary.timeValue', { minutes: totalMinutes }))} label={String(t('study.summary.timeLabel'))} />
               </div>
             </>
           ) : (
@@ -453,19 +455,14 @@ function SummaryInner({ id }: { id: string }) {
         </section>
       )}
 
-      {/* CTAs — unified h-12 rounded-2xl for both. Daily-challenge
-          sessions skip "try this topic again": the daily set is a
-          once-a-day fixed set, not a topic the student re-enters. */}
+      {/* CTAs.
+          The "try this topic again" button is GONE. It was a link back
+          to the topic page dressed as the primary action, which put
+          "do that again" in front of a student who had just finished —
+          ahead of the per-question re-attempt below, which actually
+          re-asks the questions they got wrong. Re-running a whole topic
+          is still one tap away from the topic page. */}
       <section className="space-y-2 pt-2 animate-fade-in-up" style={{ animationDelay: '240ms', animationFillMode: 'both' }}>
-        {session.topic && !session.config?.dailyChallenge && (
-          <Link
-            href={`/mobile/study/topic/${session.topic.slug}`}
-            className={studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })}
-          >
-            <RotateCcw className="w-4 h-4" />
-            {String(t('study.summary.tryAgain'))}
-          </Link>
-        )}
         <Link
           href="/mobile/study"
           className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })}

@@ -1,0 +1,452 @@
+{
+  "generatedAt": "2026-08-01",
+  "note": "Generated from the real result files. Numbers are computed, not transcribed.",
+  "baselines": [
+    {
+      "task": "choose_response",
+      "label": "ETS TOEFL Essentials — official",
+      "source": "ets.org free practice test 1",
+      "n": 30,
+      "mean": 62.2,
+      "control": 36.7,
+      "margin": 25.5,
+      "identicalSpreads": false,
+      "solvers": [
+        {
+          "score": 21,
+          "pct": 70,
+          "confident": 4,
+          "spread": "12/7/4/7"
+        },
+        {
+          "score": 17,
+          "pct": 56.7,
+          "confident": 5,
+          "spread": "11/5/7/7"
+        },
+        {
+          "score": 18,
+          "pct": 60,
+          "confident": 6,
+          "spread": "9/8/6/7"
+        }
+      ]
+    },
+    {
+      "task": "sat_rw",
+      "label": "College Board SAT R&W — official",
+      "source": "satsuitequestionbank.collegeboard.org",
+      "n": 48,
+      "mean": 71.6,
+      "control": 35.4,
+      "margin": 36.2,
+      "identicalSpreads": false,
+      "solvers": [
+        {
+          "score": 33,
+          "pct": 68.8,
+          "confident": 26,
+          "spread": "14/11/13/10"
+        },
+        {
+          "score": 37,
+          "pct": 77.1,
+          "confident": 25,
+          "spread": "17/13/9/9"
+        },
+        {
+          "score": 33,
+          "pct": 68.8,
+          "confident": 25,
+          "spread": "13/12/13/10"
+        }
+      ]
+    },
+    {
+      "task": "listening_lecture",
+      "label": "ETS listening — lecture sets",
+      "source": "ets.org free practice (32 items)",
+      "n": 32,
+      "mean": 96.9,
+      "control": 28.1,
+      "margin": 68.8,
+      "identicalSpreads": false,
+      "solvers": []
+    },
+    {
+      "task": "listening_conversation",
+      "label": "ETS listening — short conversations",
+      "source": "ets.org free practice (23 items)",
+      "n": 23,
+      "mean": 47.8,
+      "control": 34.8,
+      "margin": 13,
+      "identicalSpreads": false,
+      "solvers": []
+    }
+  ],
+  "batches": [
+    {
+      "id": "pilot-2026-08-01",
+      "createdAt": "2026-08-01",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 24,
+        "authors": 4,
+        "emphases": [
+          "general",
+          "numeric",
+          "pragmatic-force",
+          "condition"
+        ],
+        "difficultyTarget": {
+          "easy": 0.05,
+          "medium": 0.75,
+          "hard": 0.2
+        }
+      },
+      "contentSha": "a6927d56712dfe2970ca306ee6b8bf2afe619214ef6c198addbd36976f26a041",
+      "status": "qc",
+      "cohort": null,
+      "stages": {
+        "nosource": {
+          "n": 24,
+          "mean": 58.3,
+          "control": 33.3,
+          "margin": 25,
+          "identicalSpreads": false,
+          "solvers": [
+            {
+              "score": 12,
+              "pct": 50,
+              "confident": 0,
+              "spread": "6/6/6/6"
+            },
+            {
+              "score": 14,
+              "pct": 58.3,
+              "confident": 0,
+              "spread": "9/9/2/4"
+            },
+            {
+              "score": 16,
+              "pct": 66.7,
+              "confident": 0,
+              "spread": "6/9/4/5"
+            }
+          ],
+          "passed": true,
+          "verdict": "margin 25.0 is at/below the choose_response ceiling (published +25.5, +4 tolerance). Under the ORIGINAL uncalibrated bar this read as a failure — recalibration against 183 published items reversed it."
+        },
+        "elimination": {
+          "itemsWithRejectableOption": 3,
+          "total": 24,
+          "flagged": [
+            8,
+            19,
+            21
+          ],
+          "passed": false,
+          "verdict": "3 of 24 items carry an option a reader rejects on sight without the audio (items 8, 19, 21). Any such option is a defect."
+        },
+        "withsource": {
+          "difficulty": {
+            "trivial": 0,
+            "easy": 12,
+            "medium": 12,
+            "hard": 0
+          },
+          "notConfident": 1,
+          "problemItems": [
+            2,
+            13,
+            18,
+            23,
+            14,
+            17
+          ],
+          "passed": false,
+          "verdict": "0 hard items against a bank standard of 20% hard, and 6 items where a solver was not confident of a single defensible answer."
+        },
+        "tells": {
+          "keyAtLengthExtremePct": 83,
+          "chancePct": 50,
+          "slotAInSubBatch3": "6/6",
+          "note": "pilot-3 uniform key shape + missing listeningTask field",
+          "passed": false,
+          "verdict": "key sat at a length extreme on 83% of items against 50% chance, and sub-batch 3 put the key in slot A 6 times out of 6."
+        },
+        "shape": {
+          "passed": false,
+          "verdict": "items in sub-batch 3 are missing the listeningTask field, so the draw would bucket them as unclassified and never serve them."
+        }
+      }
+    }
+  ],
+  "auditedCohorts": [
+    {
+      "task": "conversation",
+      "n": 193,
+      "mean": 100,
+      "control": 40,
+      "margin": 60
+    },
+    {
+      "task": "academic_talk",
+      "n": 274,
+      "mean": 100,
+      "control": 31.7,
+      "margin": 68.3
+    },
+    {
+      "task": "academic_passage",
+      "n": 433,
+      "mean": 99.2,
+      "control": 31,
+      "margin": 68.2
+    },
+    {
+      "task": "choose_response",
+      "n": 71,
+      "mean": 94.3,
+      "control": 28.6,
+      "margin": 65.7
+    },
+    {
+      "task": "announcement",
+      "n": 121,
+      "mean": 92.7,
+      "control": 34.1,
+      "margin": 58.6
+    },
+    {
+      "task": "sat_craft_and_structure",
+      "n": 211,
+      "mean": 100,
+      "control": 31.3,
+      "margin": 68.7
+    },
+    {
+      "task": "sat_expression_of_ideas",
+      "n": 66,
+      "mean": 100,
+      "control": 37.5,
+      "margin": 62.5
+    },
+    {
+      "task": "sat_information_and_ideas",
+      "n": 240,
+      "mean": 96.9,
+      "control": 34.4,
+      "margin": 62.5
+    },
+    {
+      "task": "sat_standard_english_conventions",
+      "n": 234,
+      "mean": 75,
+      "control": 37.5,
+      "margin": 37.5
+    },
+    {
+      "task": "sat_math_advanced",
+      "n": 207,
+      "mean": 47.9,
+      "control": 31.3,
+      "margin": 16.6
+    },
+    {
+      "task": "sat_math_algebra",
+      "n": 205,
+      "mean": 43.8,
+      "control": 34.4,
+      "margin": 9.4
+    },
+    {
+      "task": "sat_math_geometry",
+      "n": 225,
+      "mean": 43.8,
+      "control": 43.8,
+      "margin": 0
+    },
+    {
+      "task": "sat_math_problem_solving",
+      "n": 211,
+      "mean": 36.5,
+      "control": 37.5,
+      "margin": -1
+    }
+  ],
+  "coverage": [
+    {
+      "test": "TOEFL",
+      "section": "Listening",
+      "task": "choose_response",
+      "label": "Choose a Response",
+      "items": 71,
+      "usableItems": 71,
+      "perTest": 14,
+      "qualityTasks": [
+        "choose_response"
+      ]
+    },
+    {
+      "test": "TOEFL",
+      "section": "Listening",
+      "task": "conversation",
+      "label": "Conversation",
+      "items": 193,
+      "usableItems": 193,
+      "perTest": 12,
+      "qualityTasks": [
+        "conversation"
+      ]
+    },
+    {
+      "test": "TOEFL",
+      "section": "Listening",
+      "task": "announcement",
+      "label": "Announcement",
+      "items": 121,
+      "usableItems": 121,
+      "perTest": 6,
+      "qualityTasks": [
+        "announcement"
+      ]
+    },
+    {
+      "test": "TOEFL",
+      "section": "Listening",
+      "task": "academic_talk",
+      "label": "Academic Talk",
+      "items": 274,
+      "usableItems": 274,
+      "perTest": 16,
+      "qualityTasks": [
+        "academic_talk"
+      ]
+    },
+    {
+      "test": "TOEFL",
+      "section": "Reading",
+      "task": "daily_life",
+      "label": "Daily Life",
+      "items": 133,
+      "usableItems": 64,
+      "perTest": 10,
+      "note": "69 items sit in single-question texts the draw excludes",
+      "qualityTasks": []
+    },
+    {
+      "test": "TOEFL",
+      "section": "Reading",
+      "task": "academic_passage",
+      "label": "Academic Passage",
+      "items": 433,
+      "usableItems": 433,
+      "perTest": 18,
+      "qualityTasks": [
+        "academic_passage"
+      ]
+    },
+    {
+      "test": "TOEFL",
+      "section": "Reading",
+      "task": "fill_in_blanks",
+      "label": "Complete the Words",
+      "items": 93,
+      "usableItems": 93,
+      "perTest": 2,
+      "note": "1 row = 10 scored blanks",
+      "qualityTasks": []
+    },
+    {
+      "test": "TOEFL",
+      "section": "Speaking",
+      "task": "speaking_repeat",
+      "label": "Listen and Repeat",
+      "items": 97,
+      "usableItems": 97,
+      "perTest": 7,
+      "qualityTasks": []
+    },
+    {
+      "test": "TOEFL",
+      "section": "Speaking",
+      "task": "speaking_interview",
+      "label": "Interview",
+      "items": 48,
+      "usableItems": 48,
+      "perTest": 4,
+      "qualityTasks": []
+    },
+    {
+      "test": "TOEFL",
+      "section": "Writing",
+      "task": "arrange_words",
+      "label": "Build a Sentence",
+      "items": 119,
+      "usableItems": 119,
+      "perTest": 10,
+      "qualityTasks": []
+    },
+    {
+      "test": "TOEFL",
+      "section": "Writing",
+      "task": "writing_email",
+      "label": "Email",
+      "items": 92,
+      "usableItems": 92,
+      "perTest": 1,
+      "qualityTasks": []
+    },
+    {
+      "test": "TOEFL",
+      "section": "Writing",
+      "task": "writing_discussion",
+      "label": "Academic Discussion",
+      "items": 92,
+      "usableItems": 92,
+      "perTest": 1,
+      "qualityTasks": []
+    },
+    {
+      "test": "SAT",
+      "section": "Reading & Writing",
+      "task": "sat_rw",
+      "label": "All domains",
+      "items": 751,
+      "usableItems": 751,
+      "perTest": 54,
+      "qualityTasks": [
+        "sat_craft_and_structure",
+        "sat_expression_of_ideas",
+        "sat_information_and_ideas",
+        "sat_standard_english_conventions"
+      ]
+    },
+    {
+      "test": "SAT",
+      "section": "Math",
+      "task": "sat_math",
+      "label": "All domains",
+      "items": 848,
+      "usableItems": 848,
+      "perTest": 44,
+      "qualityTasks": [
+        "sat_math_advanced",
+        "sat_math_algebra",
+        "sat_math_geometry",
+        "sat_math_problem_solving"
+      ]
+    }
+  ],
+  "gateVersion": 2,
+  "gateVersionNote": "v2 = 2026-08-01, when thresholds were calibrated against 183 published items. Any pass recorded under v1 is STALE, not Ready — the bar moved in both directions that day.",
+  "gatesRunOnBank": [
+    "nosource"
+  ],
+  "coverageNote": "qualityTasks lists EVERY audited cohort making up the row. The two SAT rows each cover four College Board domains that were measured separately and disagree — judging the row by one of them counted 848 passing math items as failed. Cohort n values sum exactly to the row items, so readiness is attributed per cohort, not per row."
+}

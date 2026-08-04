@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { computeDailyChallenge } from '@/lib/study/daily-challenge'
+import { computeDailyChallenge, DAILY_CHALLENGE_QUESTION_COUNT } from '@/lib/study/daily-challenge'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
       topic_id: parsed.data.topicId,
       mode: 'practice',
       language,
-      config: { questionCount: 3, dailyChallenge: today },
+      config: { questionCount: DAILY_CHALLENGE_QUESTION_COUNT, dailyChallenge: today },
     })
     .select('id')
     .single()

@@ -12,7 +12,7 @@
  * See the report in the PR/session notes for the recorded runs.
  */
 import {
-  EXIT_GRACE_MS, isAppLeftEvent, isAppReturnedEvent, shouldEndOnReturn, shouldMarkExit,
+  EXIT_GRACE_MS, isAppLeftEvent, isAppReturnedEvent, shouldPauseOnReturn, shouldMarkExit,
   exitMarkerKey, type AppLifecycleEvent, type ExitGuardContext,
 } from '../test-exit-guard'
 
@@ -22,7 +22,7 @@ const live = (over: Partial<ExitGuardContext> = {}): ExitGuardContext => ({
   phase: 'taking',
   timeLimitMinutes: 35,
   micPromptRecent: false,
-  alreadyEnded: false,
+  alreadyPaused: false,
   ...over,
 })
 
@@ -88,7 +88,7 @@ describe('shouldMarkExit — native, in-progress, timed', () => {
     }
   })
 
-  it('a browser tab never ends a test even mid-question', () => {
+  it('a browser tab never triggers the guard, even mid-question', () => {
     expect(shouldMarkExit(
       live({ native: false, platform: 'web', phase: 'taking', timeLimitMinutes: 35 }),
       BACKGROUNDED,
@@ -107,8 +107,8 @@ describe('shouldMarkExit — native, in-progress, timed', () => {
     expect(shouldMarkExit(live({ timeLimitMinutes: 0 }), BACKGROUNDED)).toBe(false)
   })
 
-  it('does not fire twice', () => {
-    expect(shouldMarkExit(live({ alreadyEnded: true }), BACKGROUNDED)).toBe(false)
+  it('does not mark an exit while the test is already paused', () => {
+    expect(shouldMarkExit(live({ alreadyPaused: true }), BACKGROUNDED)).toBe(false)
   })
 
   // ── the false-positive gate ──────────────────────────────────────
@@ -131,47 +131,47 @@ describe('shouldMarkExit — native, in-progress, timed', () => {
   })
 })
 
-describe('shouldEndOnReturn — the grace window', () => {
+describe('shouldPauseOnReturn — the grace window', () => {
   const t0 = 1_700_000_000_000
 
-  it('ends the test when the student was away longer than the grace period', () => {
-    expect(shouldEndOnReturn({
-      exitedAt: t0, now: t0 + EXIT_GRACE_MS, phase: 'taking', alreadyEnded: false,
+  it('pauses the test when the student was away longer than the grace period', () => {
+    expect(shouldPauseOnReturn({
+      exitedAt: t0, now: t0 + EXIT_GRACE_MS, phase: 'taking', alreadyPaused: false,
     })).toBe(true)
-    expect(shouldEndOnReturn({
-      exitedAt: t0, now: t0 + 60_000, phase: 'taking', alreadyEnded: false,
+    expect(shouldPauseOnReturn({
+      exitedAt: t0, now: t0 + 60_000, phase: 'taking', alreadyPaused: false,
     })).toBe(true)
   })
 
   it('forgives a blip shorter than the grace period', () => {
-    expect(shouldEndOnReturn({
-      exitedAt: t0, now: t0 + EXIT_GRACE_MS - 1, phase: 'taking', alreadyEnded: false,
+    expect(shouldPauseOnReturn({
+      exitedAt: t0, now: t0 + EXIT_GRACE_MS - 1, phase: 'taking', alreadyPaused: false,
     })).toBe(false)
   })
 
   it('does nothing without a pending marker', () => {
-    expect(shouldEndOnReturn({
-      exitedAt: null, now: t0 + 60_000, phase: 'taking', alreadyEnded: false,
+    expect(shouldPauseOnReturn({
+      exitedAt: null, now: t0 + 60_000, phase: 'taking', alreadyPaused: false,
     })).toBe(false)
   })
 
   it('does not fire once the test is no longer in progress', () => {
     for (const phase of ['submitting', 'reviewing', 'error', 'detecting']) {
-      expect(shouldEndOnReturn({
-        exitedAt: t0, now: t0 + 60_000, phase, alreadyEnded: false,
+      expect(shouldPauseOnReturn({
+        exitedAt: t0, now: t0 + 60_000, phase, alreadyPaused: false,
       })).toBe(false)
     }
   })
 
-  it('does not fire twice', () => {
-    expect(shouldEndOnReturn({
-      exitedAt: t0, now: t0 + 60_000, phase: 'taking', alreadyEnded: true,
+  it('does not re-pause a test that is already paused', () => {
+    expect(shouldPauseOnReturn({
+      exitedAt: t0, now: t0 + 60_000, phase: 'taking', alreadyPaused: true,
     })).toBe(false)
   })
 
   it('a clock that jumped backwards does not read as time away', () => {
-    expect(shouldEndOnReturn({
-      exitedAt: t0, now: t0 - 60_000, phase: 'taking', alreadyEnded: false,
+    expect(shouldPauseOnReturn({
+      exitedAt: t0, now: t0 - 60_000, phase: 'taking', alreadyPaused: false,
     })).toBe(false)
   })
 

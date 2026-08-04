@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
-import { resolveDisplayNames } from '@/lib/study/identity'
+import { resolveIdentities } from '@/lib/study/identity'
+import type { AvatarConfig } from '@/lib/study/avatarConfig'
 import { listAcceptedFriendIds } from '@/lib/study/friends'
 
 /**
@@ -18,6 +19,11 @@ export const dynamic = 'force-dynamic'
 interface FriendRow {
   student_id: string
   display_name: string
+  /** The preset the student started from, or null. */
+  avatar_id: string | null
+  /** Their customised avatar, and the one the row actually draws when
+   *  set. Null until migration 072 is applied. */
+  avatar_config: AvatarConfig | null
   xp_this_week: number
   rank: number
   is_me: boolean
@@ -31,13 +37,13 @@ export async function GET(req: NextRequest) {
   const friendIds = await listAcceptedFriendIds(user.id)
   const ids = [user.id, ...friendIds]
 
-  const [{ data: memberships }, names] = await Promise.all([
+  const [{ data: memberships }, identities] = await Promise.all([
     dbAdmin
       .from('study_league_memberships')
       .select('student_id, xp_this_week')
       .in('student_id', ids)
       .is('closed_at', null),
-    resolveDisplayNames(ids, user.id),
+    resolveIdentities(ids, user.id),
   ])
 
   const xp = new Map<string, number>()
@@ -46,7 +52,9 @@ export async function GET(req: NextRequest) {
   const rows: FriendRow[] = ids
     .map(id => ({
       student_id: id,
-      display_name: names.get(id) ?? 'Student',
+      display_name: identities.get(id)?.display_name ?? 'Student',
+      avatar_id: identities.get(id)?.avatar_id ?? null,
+      avatar_config: identities.get(id)?.avatar_config ?? null,
       xp_this_week: xp.get(id) ?? 0,
       rank: 0,
       is_me: id === user.id,

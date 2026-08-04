@@ -8,6 +8,8 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { ModalPortal } from '@/components/ui/modal-portal'
 import { validateNickname, normalizeNickname } from '@/lib/study/nickname'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
+import { PersonAvatar, STUDY_AVATARS } from '@/app/mobile/study/_shared/avatars'
+import { STUDY_AVATAR_IDS } from '@/lib/study/avatars'
 
 type Difficulty = 'warmup' | 'balanced' | 'challenge'
 interface Step1 { targetTest: string | null; goalScore: number | null }
@@ -64,6 +66,15 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
   const [s2, setS2] = useState<Step2>({ gradeLevel: null })
   const [s3, setS3] = useState<Step3>({ dailyGoalMinutes: 30 })
   const [s4, setS4] = useState<Step4>({ defaultLanguage: ko ? 'ko' : 'en', defaultDifficulty: 'balanced' })
+  // Avatar rides on step 5 with the nickname rather than becoming a
+  // sixth step: it is the same question ("who are you here"), and every
+  // extra step in a first-run wizard costs completions.
+  //
+  // PRESET ONLY. The full builder writes `avatar_config`, whose column
+  // needs migration 072 — not applied — so offering it here would let a
+  // student build a face during onboarding and lose it on the next load.
+  // `avatar_id` is 071 and writes today. Profile carries the builder.
+  const [avatarId, setAvatarId] = useState<string | null>(null)
   const [nickname, setNickname] = useState('')
   const [nickStatus, setNickStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'invalid'>('idle')
   const [saving, setSaving] = useState(false)
@@ -109,6 +120,11 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
             daily_goal_minutes: s3.dailyGoalMinutes,
             default_language: s4.defaultLanguage,
             default_difficulty: s4.defaultDifficulty,
+            // Only when chosen. Sending `avatar_id: null` would be an
+            // explicit "clear it" to the route, which is a different
+            // thing from "didn't pick one" and would stomp a value if
+            // onboarding is ever re-run.
+            ...(avatarId ? { avatar_id: avatarId } : {}),
           }),
           onboarded_at: new Date().toISOString(),
         }),
@@ -391,12 +407,38 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                 </span>
               </div>
               <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">
-                {ko ? '닉네임을 정하세요' : 'Pick a nickname'}
+                {ko ? '프로필을 만들어요' : 'Make it yours'}
               </h2>
               <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
-                {ko ? '리더보드와 친구에게 보여요. 한 번만 변경할 수 있어요. (선택)' : 'Shown on the leaderboard and to friends. Changeable once. (optional)'}
+                {ko ? '리더보드와 친구에게 보여요. 둘 다 나중에 바꿀 수 있어요. (선택)' : 'Shown on the leaderboard and to friends. Both can be changed later. (optional)'}
               </p>
-              <div className="relative mt-5">
+
+              {/* Same scroll-row convention as the profile picker and the
+                  topic shelves: bleed to the screen edge so the row reads
+                  as scrollable instead of stopping at the card padding. */}
+              <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x -mx-5 px-5 scroll-px-5 py-3 mt-3">
+                {STUDY_AVATAR_IDS.map(id => {
+                  const on = avatarId === id
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      aria-pressed={on}
+                      // Tapping the chosen one clears it — otherwise the
+                      // first tap is irreversible without finishing and
+                      // going to Profile, and there is no "none" tile.
+                      onClick={() => setAvatarId(on ? null : id)}
+                      className={`shrink-0 snap-start rounded-2xl p-1 transition ${
+                        on ? 'ring-2 ring-primary bg-primary/5' : 'ring-1 ring-gray-200/70 bg-white'
+                      }`}
+                    >
+                      <PersonAvatar config={STUDY_AVATARS[id]} size={54} />
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="relative">
                 <AtSign className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
                 <input
                   type="text"
