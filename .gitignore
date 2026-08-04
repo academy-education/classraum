@@ -62,3 +62,8 @@ supabase/.temp/
 .bank-repair/
 .expl-repair/
 .dash-repair/
+
+# ETS copyrighted practice items — calibration reference, kept LOCAL only.
+# Pushed once by accident (git add -A) in f60c07c; untracked immediately after.
+# Distributing ETS test content is a decision for a human, not a glob.
+scripts/study-bank/ets-reference-v1.json

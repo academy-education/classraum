@@ -31,34 +31,50 @@
  * `--acts` prints the stimuli grouped for a grader to label by hand;
  * that pass stays human.
  *
- * ── There is no clean control, and that is the finding ───────────────
+ * ── The control, obtained 2026-08-05 ─────────────────────────────────
  * This script was first written with the live Choose a Response cohort
  * as its control, on a NARROW pivot regex that scored it 45.1% against
- * nearmiss-v1's 100%. Both numbers were wrong in the same direction.
+ * nearmiss-v1's 100%. Both numbers were wrong in the same direction: a
+ * blind labeller put the live cohort at 94.4% and SQL agreed.
  *
- * A blind labeller, given the two corpora unmarked and asked to label
- * each stimulus by rhetorical shape SEMANTICALLY, returned:
+ * So there was no clean corpus, and the thresholds below were guesses.
+ * There is one now — the 30 official ETS TOEFL Essentials reply items
+ * from ets.org free practice test 1, extracted and held LOCALLY as
+ * scripts/study-bank/ets-reference-v1.json (gitignored: it is ETS
+ * copyright and must never be committed, served, inserted, or used as
+ * few-shot material).
  *
- *                        narrow regex   wide pivot   labelled CONCESSION
- *   live bank (n=71)        45.1%         94.4%            50.7%
- *   nearmiss-v1 (n=16)      56.3%        100.0%           100.0%
+ *                        pivot    BrE    opening    length CV
+ *   ETS official (n=30)   0.0%   0.0%     60.0%       19.4%   PASS
+ *   live bank   (n=71)   94.4%   0.0%     39.4%       11.8%   fail
+ *   nearmiss-v1 (n=16)   87.5%   6.3%     56.3%       10.0%   fail
  *
- * The 94.4% was then re-derived directly in SQL, independently of the
- * labeller. The live cohort is NOT a control: ~94% of its stimuli are
- * grant-then-qualify, and the labeller noted its COMPLAINT items all
- * open with a concessive softener ("I don't want to make a fuss, but"),
- * i.e. the same surface shape wearing a different illocution.
+ * The real form scores ZERO on the tell that killed both of ours. The
+ * gate therefore discriminates, which is the property it lacked and
+ * the property `check-lexical-anchor.mjs` never had.
  *
- * So the tell that killed nearmiss-v1 is ALREADY IN THE SHIPPED BANK,
- * and it is the first named, checkable candidate cause for that
- * cohort's +40.4 blind margin.
+ * CAVEAT, carried rather than smoothed over: the official corpus clears
+ * two of the four bars narrowly (opening 60.0 vs a 55 floor, CV 19.4 vs
+ * an 18 floor). The thresholds were chosen before this corpus existed
+ * and happen to sit just under it. They are not tuned, and a batch that
+ * scrapes past them is not thereby good.
  *
- * Consequence for this file: the thresholds below are NOT calibrated
- * against a known-good corpus, because we do not have one — the ETS
- * baseline run (ledger.json, n=30) kept the scores and discarded the
- * item text. They are set where a batch stops looking like the two
- * corpora we have, both of which fail. Treat a FAIL as informative and
- * a PASS as unproven until a clean corpus exists to calibrate on.
+ * Also from that corpus, and NOT checked here because these are
+ * authoring-brief problems rather than batch tells — every one of them
+ * is a place CHOOSE-A-RESPONSE-BRIEF.md is stricter than the real exam
+ * on the wrong axis:
+ *   - official stimuli run 5-12 words (mean 8.2). Our brief mandates
+ *     12-28, so every item we author is longer than the longest real one.
+ *   - 29 of 30 official stimuli are bare questions. Not one concession.
+ *   - official key-length rank is 10/9/2/9 (1 = longest), skewed to the
+ *     longest option; the brief demands a flat 25/25/25/25.
+ *   - longest:shortest option ratio reaches 2.88x; the brief caps 1.6x.
+ *   - official distractors are routinely off-topic word-echoes, which
+ *     VERBAL-DISTRACTOR-CONSTRAINT.md would reject outright.
+ *
+ * ETS's own welcome screen calls that test a familiarization form, not
+ * a simulation. Treat it as a control for SHAPE and VARIETY, not for
+ * difficulty.
  *
  * usage:
  *   check-batch-variety.mjs <batch.json>     # {items:[{stimulus,...}]} or [{stimulus}]
@@ -67,10 +83,10 @@
  */
 import { readFileSync } from 'node:fs'
 
-const PIVOT_MAX = 0.60      // live bank 0.944 FAIL, nearmiss 1.000 FAIL
-const BRITISH_MAX = 0.10    // live bank ~0.15 FAIL, nearmiss ~0.13 FAIL
-const OPENING_MIN = 0.55    // distinct first words / items
-const LEN_CV_MIN = 0.18     // coefficient of variation of stimulus length
+const PIVOT_MAX = 0.60      // ETS 0.000 pass; live bank 0.944, nearmiss 0.875 FAIL
+const BRITISH_MAX = 0.10    // ETS 0.000 pass (stimuli only; live-bank prose has ~15%)
+const OPENING_MIN = 0.55    // ETS 0.600 pass, live bank 0.394 FAIL
+const LEN_CV_MIN = 0.18     // ETS 0.194 pass, live bank 0.118 FAIL
 
 /*
  * WIDE deliberately. The narrow version — /but|though|although|however/
