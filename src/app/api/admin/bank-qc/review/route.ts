@@ -26,18 +26,7 @@ export const dynamic = 'force-dynamic'
  *  above that is leaking as badly as nothing at all. */
 const PUBLISHED_MARGIN = 25.5
 
-/*
- * Migration 075 is APPLIED (2026-08-04) but `src/lib/database.types.ts`
- * has not been regenerated, so the checked-in Database type still does
- * not list this table and every query against it fails to compile.
- *
- * The cast is confined to this ONE accessor rather than sprinkled at
- * each call site, so the fix is deleting these lines after a
- * `supabase gen types` run — and so a grep for the table name does not
- * turn up a dozen silent `any`s.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const reviews = () => (dbAdmin as any).from('study_item_reviews')
+const reviews = () => dbAdmin.from('study_item_reviews')
 
 interface ReviewRecord {
   run_id: string

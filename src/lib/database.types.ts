@@ -3331,6 +3331,51 @@ export type Database = {
         }
         Relationships: []
       }
+      study_item_reviews: {
+        Row: {
+          blind_at: string | null
+          blind_pick: string | null
+          id: string
+          item_id: string
+          key_slot: string
+          note: string | null
+          realism: string | null
+          reviewed_at: string | null
+          reviewer_id: string
+          run_id: string
+          shown_order: Json
+          verdict: string | null
+        }
+        Insert: {
+          blind_at?: string | null
+          blind_pick?: string | null
+          id?: string
+          item_id: string
+          key_slot: string
+          note?: string | null
+          realism?: string | null
+          reviewed_at?: string | null
+          reviewer_id: string
+          run_id: string
+          shown_order: Json
+          verdict?: string | null
+        }
+        Update: {
+          blind_at?: string | null
+          blind_pick?: string | null
+          id?: string
+          item_id?: string
+          key_slot?: string
+          note?: string | null
+          realism?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string
+          run_id?: string
+          shown_order?: Json
+          verdict?: string | null
+        }
+        Relationships: []
+      }
       study_item_exposures: {
         Row: {
           id: string
