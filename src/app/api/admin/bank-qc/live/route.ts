@@ -174,6 +174,23 @@ export async function GET(request: NextRequest) {
         measured: e.measured,
         unmeasured: e.items - e.measured,
         blindPct,
+        /*
+         * Whether that percentage DESCRIBES THE ITEMS.
+         *
+         * Standard English Conventions measured 52.8% and reads like a
+         * middling score. It is not one: the attack withholds a SOURCE,
+         * and a conventions item carries its sentence in the stem, so
+         * there is nothing to withhold — the same reason 848 maths items
+         * scored "100% blind" and were briefly reported as the bank's
+         * worst cohorts (see bank-targets.ts). The number is real; what
+         * it measures is the solver, not the item.
+         *
+         * Kept on the payload rather than nulled, because deleting a
+         * measurement to avoid misreading it is its own kind of lie.
+         * The UI renders it as not-judgeable and puts the raw figure in
+         * the title.
+         */
+        judgeable: prog.state !== 'not-applicable',
         everySolverGotIt: e.allSolversGotIt,
         // A cohort with no MC items cannot be attacked at all; say so
         // rather than showing it as work outstanding forever.

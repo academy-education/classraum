@@ -47,6 +47,9 @@ import { ReviewPanel } from './ReviewPanel'
 interface CohortRow {
   family: string; domain: string; items: number; multipleChoice: number
   measured: number; unmeasured: number; blindPct: number | null
+  /** Whether blindPct describes the ITEMS. False where the attack has no
+   *  source to withhold — the score then measures the solver. */
+  judgeable?: boolean
   everySolverGotIt: number; status: Status
   progress: Progress; target: Target | null; remaining: string
 }
@@ -348,7 +351,20 @@ export function LiveBankState() {
                   <td className="py-1.5 pr-3 text-right tabular-nums text-gray-600">{c.items}</td>
                   <td className="py-1.5 pr-3 text-right tabular-nums text-gray-600">{c.measured}</td>
                   <td className="py-1.5 pr-3 text-right tabular-nums text-gray-800">
-                    {c.blindPct === null ? '—' : `${c.blindPct}%`}
+                    {/* A score from the wrong instrument is shown as n/a, not
+                        as a percentage. 52.8% on Standard English Conventions
+                        reads as a middling result and is not one — the item
+                        carries its sentence in the stem, so nothing was
+                        withheld. The raw figure stays in the title so the
+                        measurement is not lost, only stopped from lying. */}
+                    {c.judgeable === false && c.blindPct !== null ? (
+                      <span
+                        className="text-gray-400 cursor-help"
+                        title={`Measured ${c.blindPct}%, but this task type carries its source in the stem — the attack has nothing to withhold, so the number describes the solver, not the item.`}
+                      >
+                        n/a
+                      </span>
+                    ) : c.blindPct === null ? '—' : `${c.blindPct}%`}
                   </td>
                   <td className="py-1.5 pr-3 text-right tabular-nums text-gray-500">
                     {/* Items every solver answered without the source — the

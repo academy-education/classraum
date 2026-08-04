@@ -1,0 +1,593 @@
+{
+  "_README": {
+    "purpose": "CALIBRATION REFERENCE ONLY. These are official ETS TOEFL Essentials 'Listen and Reply' items, extracted verbatim from ETS's own free practice test. They exist in this repo solely so that the QC gates in scripts/study-bank/ can be calibrated against a known-good corpus instead of against our own defective items.",
+    "copyright": "(c) 2021 ETS. All rights reserved. ETS, the ETS logo and TOEFL are registered trademarks of ETS. TOEFL ESSENTIALS is a trademark of ETS. This material is NOT ours.",
+    "prohibited": [
+      "NEVER insert any of this into study_item_bank or any other database table.",
+      "NEVER serve any of this to a student, in any surface, paid or free.",
+      "NEVER use as few-shot examples for an authoring model (that would launder ETS text into our bank).",
+      "NEVER redistribute this file outside the repo."
+    ],
+    "permitted": [
+      "Measuring our QC gates against it (blind-solve margin, key-slot spread, length rank, batch variety).",
+      "Reading it to understand what the real task type actually looks like."
+    ],
+    "provenance": {
+      "extractedOn": "2026-08-05",
+      "sourceUrl": "https://www.ets.org/s/toefl-essentials/free-practice-test-1/start1.html",
+      "alsoIdenticalAt": [
+        "https://www.ets.org/s/toefl-essentials/free-practice-test-2/start2.html",
+        "https://www.ets.org/s/toefl-essentials/free-practice-test-3/start3.html"
+      ],
+      "linkedFrom": "https://www.ets.org/toefl/test-takers/essentials/prepare.html",
+      "method": "The practice test is a single self-contained HTML application. The item bank is embedded as tab-delimited literals assigned to the JS variable `fv` (rows tagged \"listqr\"). Fields, per the engine's own parser at calcIcon_get_info_67411: 1=type, 2=audio index, 3=picture index, 4=intro text, 5=stem (the spoken utterance), 6-9=the four options. The keyed option is the one suffixed with '@', which the engine strips before display.",
+      "authenticity": [
+        "30 listqr rows, audio indices 1..30, matched 1:1 by 30 <audio> elements in the same file.",
+        "Audio index 1 is named soundIcon_whofav_*, matching stem 1 'Who's your favorite basketball player?'.",
+        "Pearson r between stem word count and the engine's data-medialength (audio seconds) is 0.715 over the 30 items, so the stem text is the transcript of the audio, not an unrelated field.",
+        "All 30 rows have exactly 9 fields, exactly one '@'-marked option, and 4 distinct options.",
+        "Practice tests 1, 2 and 3 differ only in navigation targets; the Listening item pool is byte-identical across all three, so 30 is the entire published pool, not a third of it."
+      ],
+      "classification": "GENUINE OFFICIAL ETS. Not a third-party imitation. Nothing in this file was written, paraphrased, reconstructed or completed by a model."
+    },
+    "matchesLedgerBaseline": "ledger.json records baseline task=choose_response, label 'ETS TOEFL Essentials - official', source 'ets.org free practice test 1', n=30. The n and the source both match, so this is very likely the exact corpus whose scores (mean 62.2, control 36.7, margin 25.5) were kept when the item text was discarded.",
+    "caveats": [
+      "ETS calls the section directions 'Listen and Reply'; the on-screen prompt is 'Choose the best response.'",
+      "No difficulty labels, no explanations, and no per-item statistics are published. Only stimulus, options and key.",
+      "This is a familiarization test. ETS states on the welcome screen: 'this test is not a simulation of the TOEFL Essentials test'. Treat difficulty as indicative, not as the operational form's difficulty."
+    ]
+  },
+  "descriptives": {
+    "n": 30,
+    "stimulusWords": {
+      "min": 5,
+      "max": 12,
+      "mean": 8.2,
+      "median": 8.0
+    },
+    "optionWords": {
+      "min": 2,
+      "max": 9,
+      "mean": 5.4
+    },
+    "keySlotSpread": {
+      "A": 7,
+      "B": 8,
+      "C": 6,
+      "D": 9
+    },
+    "keyLengthRank_1isLongest": {
+      "1": 10,
+      "2": 9,
+      "3": 2,
+      "4": 9
+    },
+    "longestOverShortestOptionRatio": {
+      "min": 1.2,
+      "max": 2.88,
+      "mean": 1.76
+    },
+    "notesForOurBrief": [
+      "Official stimuli are 5-12 words (mean 8.2). CHOOSE-A-RESPONSE-BRIEF.md mandates 12-28 words. Every one of our items is longer than the longest official one.",
+      "Official stimuli are overwhelmingly bare questions or short statements. There is no two-clause concession anywhere in the 30; our live cohort is ~94% concession-shaped.",
+      "Key length rank is 10/9/2/9 across ranks 1-4, i.e. NOT flat and skewed toward the LONGEST option. Our brief's 25/25/25/25 target is stricter than the real form.",
+      "Longest/shortest option ratio reaches 2.9x; our brief caps it at 1.6x. Real items do not obey that cap.",
+      "Distractors are frequently off-topic word-echoes ('I like it plain, thanks' for 'plane'), which our VERBAL-DISTRACTOR-CONSTRAINT would reject.",
+      "Settings repeat freely (several shopping/travel items); the brief's 'no scenario twice' rule is stricter than the real form."
+    ],
+    "stimulusIsQuestion": "29/30 (the one exception is item 8, a plain statement)",
+    "widePivotRate": "0/30 = 0.0%. check-batch-variety.mjs's wide-pivot regex fires on ZERO official items, against 94.4% of our live choose_response cohort and 100% of nearmiss-v1. This is the single most useful number in this file: it is a real control for that gate."
+  },
+  "items": [
+    {
+      "itemNumber": 1,
+      "audioIndex": 1,
+      "pictureIndex": 13,
+      "prompt": "Choose the best response.",
+      "stimulus": "Who's your favorite basketball player?",
+      "options": [
+        "Play that song again.",
+        "I don't like basketball.",
+        "My favorite color is green.",
+        "That sounds like fun!"
+      ],
+      "keyIndex": 1,
+      "keyLetter": "B",
+      "key": "I don't like basketball.",
+      "audioSeconds": 1.893
+    },
+    {
+      "itemNumber": 2,
+      "audioIndex": 2,
+      "pictureIndex": 17,
+      "prompt": "Choose the best response.",
+      "stimulus": "Can you tell me where the textbook section is?",
+      "options": [
+        "We're open till 8 P.M.",
+        "Sorry, I don't work here.",
+        "The lab session just ended.",
+        "Please don't text while you're driving."
+      ],
+      "keyIndex": 1,
+      "keyLetter": "B",
+      "key": "Sorry, I don't work here.",
+      "audioSeconds": 2.136
+    },
+    {
+      "itemNumber": 3,
+      "audioIndex": 3,
+      "pictureIndex": 19,
+      "prompt": "Choose the best response.",
+      "stimulus": "What did you enjoy the most in your freshman year?",
+      "options": [
+        "You must bring your identification.",
+        "I've been studying biology for three years now.",
+        "Everything here is very fresh.",
+        "I really liked group projects."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "I really liked group projects.",
+      "audioSeconds": 2.433
+    },
+    {
+      "itemNumber": 4,
+      "audioIndex": 4,
+      "pictureIndex": 20,
+      "prompt": "Choose the best response.",
+      "stimulus": "How about trying out that new Japanese restaurant?",
+      "options": [
+        "I heard the food wasn't that good.",
+        "When did you try out for the play?",
+        "Yes, I've been to Japan.",
+        "We don't have any more."
+      ],
+      "keyIndex": 0,
+      "keyLetter": "A",
+      "key": "I heard the food wasn't that good.",
+      "audioSeconds": 2.696
+    },
+    {
+      "itemNumber": 5,
+      "audioIndex": 5,
+      "pictureIndex": 11,
+      "prompt": "Choose the best response.",
+      "stimulus": "When will construction be finished?",
+      "options": [
+        "Because of the weather.",
+        "A two-bedroom house.",
+        "In the summer, probably.",
+        "When did you buy them?"
+      ],
+      "keyIndex": 2,
+      "keyLetter": "C",
+      "key": "In the summer, probably.",
+      "audioSeconds": 1.78
+    },
+    {
+      "itemNumber": 6,
+      "audioIndex": 6,
+      "pictureIndex": 19,
+      "prompt": "Choose the best response.",
+      "stimulus": "What are you doing this weekend?",
+      "options": [
+        "I went to a party last night.",
+        "I work on Thursdays.",
+        "It depends on when the assignment is due.",
+        "How many weeks is your semester?"
+      ],
+      "keyIndex": 2,
+      "keyLetter": "C",
+      "key": "It depends on when the assignment is due.",
+      "audioSeconds": 1.525
+    },
+    {
+      "itemNumber": 7,
+      "audioIndex": 7,
+      "pictureIndex": 8,
+      "prompt": "Choose the best response.",
+      "stimulus": "The windows will be replaced, won't they?",
+      "options": [
+        "An open window.",
+        "Well, I won't be long.",
+        "I assume so.",
+        "That's the right place."
+      ],
+      "keyIndex": 2,
+      "keyLetter": "C",
+      "key": "I assume so.",
+      "audioSeconds": 2.131
+    },
+    {
+      "itemNumber": 8,
+      "audioIndex": 8,
+      "pictureIndex": 18,
+      "prompt": "Choose the best response.",
+      "stimulus": "I ended up not going to the art exhibit opening last night.",
+      "options": [
+        "How did you like it?",
+        "I also like to work out in the morning.",
+        "I'll finish painting tomorrow.",
+        "You missed a great event."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "You missed a great event.",
+      "audioSeconds": 2.872
+    },
+    {
+      "itemNumber": 9,
+      "audioIndex": 9,
+      "pictureIndex": 11,
+      "prompt": "Choose the best response.",
+      "stimulus": "How many days are you going to be at the camp?",
+      "options": [
+        "I'm excited about the coaching experience.",
+        "There will be more than thirty people.",
+        "I go camping every spring.",
+        "My plan is to stay there for five days."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "My plan is to stay there for five days.",
+      "audioSeconds": 2.12
+    },
+    {
+      "itemNumber": 10,
+      "audioIndex": 10,
+      "pictureIndex": 7,
+      "prompt": "Choose the best response.",
+      "stimulus": "Why did Ravi bring candy for everyone?",
+      "options": [
+        "To celebrate our award.",
+        "Yes, he brought them.",
+        "Chocolate covered raisins.",
+        "No, anyone is fine."
+      ],
+      "keyIndex": 0,
+      "keyLetter": "A",
+      "key": "To celebrate our award.",
+      "audioSeconds": 2.152
+    },
+    {
+      "itemNumber": 11,
+      "audioIndex": 11,
+      "pictureIndex": 12,
+      "prompt": "Choose the best response.",
+      "stimulus": "Where should I go for the psychology seminar?",
+      "options": [
+        "By three o'clock.",
+        "The conference room on the second floor.",
+        "You'll receive 20 dollars for your participation.",
+        "I heard a similar story too."
+      ],
+      "keyIndex": 1,
+      "keyLetter": "B",
+      "key": "The conference room on the second floor.",
+      "audioSeconds": 2.344
+    },
+    {
+      "itemNumber": 12,
+      "audioIndex": 12,
+      "pictureIndex": 15,
+      "prompt": "Choose the best response.",
+      "stimulus": "How did you like the concert?",
+      "options": [
+        "I was pleasantly surprised.",
+        "Yes, it did look similar to this one.",
+        "I went there by bus.",
+        "Why do you feel that way?"
+      ],
+      "keyIndex": 0,
+      "keyLetter": "A",
+      "key": "I was pleasantly surprised.",
+      "audioSeconds": 1.441
+    },
+    {
+      "itemNumber": 13,
+      "audioIndex": 13,
+      "pictureIndex": 14,
+      "prompt": "Choose the best response.",
+      "stimulus": "When are we scheduled to arrive in Shanghai?",
+      "options": [
+        "I do them every morning.",
+        "Let me check our tickets.",
+        "By express train.",
+        "Yes, I'd love to go."
+      ],
+      "keyIndex": 1,
+      "keyLetter": "B",
+      "key": "Let me check our tickets.",
+      "audioSeconds": 2.264
+    },
+    {
+      "itemNumber": 14,
+      "audioIndex": 14,
+      "pictureIndex": 18,
+      "prompt": "Choose the best response.",
+      "stimulus": "Do you think we should meet before or after class?",
+      "options": [
+        "The class meets every Thursday.",
+        "My favorite class is world history.",
+        "It's up to you.",
+        "I was there too."
+      ],
+      "keyIndex": 2,
+      "keyLetter": "C",
+      "key": "It's up to you.",
+      "audioSeconds": 2.608
+    },
+    {
+      "itemNumber": 15,
+      "audioIndex": 15,
+      "pictureIndex": 17,
+      "prompt": "Choose the best response.",
+      "stimulus": "What did you think of the professor's lecture?",
+      "options": [
+        "Yes, I think so.",
+        "That place is my favorite coffee shop.",
+        "In the history department.",
+        "It was too difficult for me to follow."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "It was too difficult for me to follow.",
+      "audioSeconds": 1.912
+    },
+    {
+      "itemNumber": 16,
+      "audioIndex": 16,
+      "pictureIndex": 12,
+      "prompt": "Choose the best response.",
+      "stimulus": "Should I buy the textbook or borrow it from Shawn?",
+      "options": [
+        "Yes, you should use a textbook for reference.",
+        "He gave us a lot of assignments.",
+        "I need to return a book too.",
+        "I think it's worthwhile to get one for yourself."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "I think it's worthwhile to get one for yourself.",
+      "audioSeconds": 2.504
+    },
+    {
+      "itemNumber": 17,
+      "audioIndex": 17,
+      "pictureIndex": 19,
+      "prompt": "Choose the best response.",
+      "stimulus": "Who checked the signatures on the sign up sheet?",
+      "options": [
+        "Please sign at the bottom.",
+        "From page 12 to 20.",
+        "Sure, I'll do that right after lunch.",
+        "Ahmed said he would take care of it."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "Ahmed said he would take care of it.",
+      "audioSeconds": 2.456
+    },
+    {
+      "itemNumber": 18,
+      "audioIndex": 18,
+      "pictureIndex": 16,
+      "prompt": "Choose the best response.",
+      "stimulus": "Would you like to take the car for a test drive?",
+      "options": [
+        "Is that the only greeting card you have?",
+        "How much did they take?",
+        "It's on the back seat.",
+        "Maybe next time."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "Maybe next time.",
+      "audioSeconds": 2.262
+    },
+    {
+      "itemNumber": 19,
+      "audioIndex": 19,
+      "pictureIndex": 14,
+      "prompt": "Choose the best response.",
+      "stimulus": "Who'll be supervising the laboratory?",
+      "options": [
+        "In January.",
+        "The supervisor said so.",
+        "The chemistry laboratory.",
+        "We haven't been told yet."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "We haven't been told yet.",
+      "audioSeconds": 1.96
+    },
+    {
+      "itemNumber": 20,
+      "audioIndex": 20,
+      "pictureIndex": 15,
+      "prompt": "Choose the best response.",
+      "stimulus": "Weren't you able to do some work on the plane?",
+      "options": [
+        "I couldn't get a good Internet connection.",
+        "I like it plain, thanks.",
+        "We're flying to New York.",
+        "Yes, we can work together."
+      ],
+      "keyIndex": 0,
+      "keyLetter": "A",
+      "key": "I couldn't get a good Internet connection.",
+      "audioSeconds": 2.104
+    },
+    {
+      "itemNumber": 21,
+      "audioIndex": 21,
+      "pictureIndex": 11,
+      "prompt": "Choose the best response.",
+      "stimulus": "Is there anything we should bring to the party?",
+      "options": [
+        "Around nine o'clock.",
+        "I didn't do anything fun either.",
+        "Can you take care of chips and soda?",
+        "Why did he bring his brother?"
+      ],
+      "keyIndex": 2,
+      "keyLetter": "C",
+      "key": "Can you take care of chips and soda?",
+      "audioSeconds": 2.056
+    },
+    {
+      "itemNumber": 22,
+      "audioIndex": 22,
+      "pictureIndex": 20,
+      "prompt": "Choose the best response.",
+      "stimulus": "When does the show begin?",
+      "options": [
+        "The show has gotten good reviews.",
+        "I was there until nine P.M. last night.",
+        "It takes about 15 minutes to get there.",
+        "It's about to start."
+      ],
+      "keyIndex": 3,
+      "keyLetter": "D",
+      "key": "It's about to start.",
+      "audioSeconds": 1.608
+    },
+    {
+      "itemNumber": 23,
+      "audioIndex": 23,
+      "pictureIndex": 13,
+      "prompt": "Choose the best response.",
+      "stimulus": "Where can I buy a train ticket?",
+      "options": [
+        "I can help you here.",
+        "It cost them 20 euros.",
+        "No, that isn't the train to Prague.",
+        "Did you do it by yourself?"
+      ],
+      "keyIndex": 0,
+      "keyLetter": "A",
+      "key": "I can help you here.",
+      "audioSeconds": 1.533
+    },
+    {
+      "itemNumber": 24,
+      "audioIndex": 24,
+      "pictureIndex": 8,
+      "prompt": "Choose the best response.",
+      "stimulus": "Did you spend some time with your parents over the weekend?",
+      "options": [
+        "They were out of town on business.",
+        "I just bought a pet parrot.",
+        "No, I'm an only child.",
+        "Their anniversary is coming up."
+      ],
+      "keyIndex": 0,
+      "keyLetter": "A",
+      "key": "They were out of town on business.",
+      "audioSeconds": 2.68
+    },
+    {
+      "itemNumber": 25,
+      "audioIndex": 25,
+      "pictureIndex": 16,
+      "prompt": "Choose the best response.",
+      "stimulus": "Why are you so dressed up today?",
+      "options": [
+        "At a department store.",
+        "I have an interview.",
+        "Today or tomorrow.",
+        "I did turn them up."
+      ],
+      "keyIndex": 1,
+      "keyLetter": "B",
+      "key": "I have an interview.",
+      "audioSeconds": 1.608
+    },
+    {
+      "itemNumber": 26,
+      "audioIndex": 26,
+      "pictureIndex": 19,
+      "prompt": "Choose the best response.",
+      "stimulus": "When can we expect to receive the refund?",
+      "options": [
+        "The total is 42 euros.",
+        "It could take 3 to 5 business days.",
+        "I don't expect it will.",
+        "In the shipping department."
+      ],
+      "keyIndex": 1,
+      "keyLetter": "B",
+      "key": "It could take 3 to 5 business days.",
+      "audioSeconds": 2.233
+    },
+    {
+      "itemNumber": 27,
+      "audioIndex": 27,
+      "pictureIndex": 18,
+      "prompt": "Choose the best response.",
+      "stimulus": "That's an electronics store, isn't it?",
+      "options": [
+        "My new mobile phone.",
+        "Yes, it just opened.",
+        "Look in the storage closet.",
+        "It is a little expensive."
+      ],
+      "keyIndex": 1,
+      "keyLetter": "B",
+      "key": "Yes, it just opened.",
+      "audioSeconds": 1.96
+    },
+    {
+      "itemNumber": 28,
+      "audioIndex": 28,
+      "pictureIndex": 17,
+      "prompt": "Choose the best response.",
+      "stimulus": "Where do you shop for your groceries?",
+      "options": [
+        "I decided not to apply for the job.",
+        "I try to shop at least once a week.",
+        "It depends on my shopping list.",
+        "I like walking around the campus at night."
+      ],
+      "keyIndex": 2,
+      "keyLetter": "C",
+      "key": "It depends on my shopping list.",
+      "audioSeconds": 1.832
+    },
+    {
+      "itemNumber": 29,
+      "audioIndex": 29,
+      "pictureIndex": 14,
+      "prompt": "Choose the best response.",
+      "stimulus": "How often does the school hold musical concerts?",
+      "options": [
+        "I think there's one every semester.",
+        "In the music building.",
+        "The concert is free for students.",
+        "It should be about two hours long."
+      ],
+      "keyIndex": 0,
+      "keyLetter": "A",
+      "key": "I think there's one every semester.",
+      "audioSeconds": 2.76
+    },
+    {
+      "itemNumber": 30,
+      "audioIndex": 30,
+      "pictureIndex": 12,
+      "prompt": "Choose the best response.",
+      "stimulus": "How much will it cost to have it delivered to my home?",
+      "options": [
+        "At least two weeks.",
+        "Where do you live?",
+        "Yes, we can deliver.",
+        "When do you want to start?"
+      ],
+      "keyIndex": 1,
+      "keyLetter": "B",
+      "key": "Where do you live?",
+      "audioSeconds": 2.584
+    }
+  ]
+}

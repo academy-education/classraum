@@ -40,6 +40,15 @@ const LIVE = {
       remaining: '37.4pts too guessable. Rewrite distractors so the score falls to 50-60%.',
     },
     {
+      // The real 2026-08-03 figure, from an instrument that cannot judge
+      // this task type: a conventions item carries its sentence in the
+      // stem, so the attack withholds nothing.
+      family: 'sat', domain: 'Standard English Conventions', items: 234, multipleChoice: 234,
+      measured: 12, unmeasured: 222, blindPct: 52.8, judgeable: false,
+      everySolverGotIt: 6, status: 'not-applicable',
+      progress: 'not-applicable', target: null, remaining: '',
+    },
+    {
       family: 'sat', domain: 'Algebra', items: 205, multipleChoice: 205,
       measured: 0, unmeasured: 205, blindPct: null, everySolverGotIt: 0, status: 'unmeasured',
       progress: 'unmeasured', target: { min: 25, max: 35, published: null, note: 'Judged against chance.' },
@@ -114,5 +123,30 @@ describe('finish bar', () => {
     // status chip in the table below — a span, not a control.
     fireEvent.focus(screen.getByLabelText('Not measured: 205 items'))
     expect(await screen.findByText(/Attack 41 of 205 items/)).toBeInTheDocument()
+  })
+
+  /*
+   * A number from the wrong instrument must not render as a score.
+   *
+   * 52.8% on Standard English Conventions reads like a middling result
+   * and is nothing of the kind — the same mistake that briefly reported
+   * 848 maths items as the bank's worst cohorts. The measurement is
+   * kept (it is real, and deleting it to avoid misreading it is its own
+   * distortion) but it is shown as n/a with the figure in the title.
+   */
+  it('does not print a blind score for a cohort the attack cannot judge', async () => {
+    render(<LiveBankState />)
+    await waitFor(() => expect(screen.getByText('0%')).toBeInTheDocument())
+
+    // The bare percentage must not appear anywhere on the page.
+    expect(screen.queryByText('52.8%')).not.toBeInTheDocument()
+
+    const cell = screen.getByTitle(/describes the solver, not the item/)
+    expect(cell).toHaveTextContent('n/a')
+    // The real figure survives, in the explanation.
+    expect(cell.getAttribute('title')).toContain('52.8%')
+
+    // ...and a judgeable cohort still prints its score normally.
+    expect(screen.getByText('97.4%')).toBeInTheDocument()
   })
 })
