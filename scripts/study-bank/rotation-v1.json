@@ -1,0 +1,71 @@
+{
+  "cohort": "rotation-v1",
+  "authoredFor": "choose_response",
+  "hypothesis": "The residual +40.4 no-source margin is RELATIONAL: distractors written as mutations of the key make the recipe invertible, so a solver reconstructs the withheld utterance from the option set. Removing the recipe should collapse the margin toward the fixed-letter control.",
+  "construction": "Four FAMILIES of four items. Within a family the four items share ONE option set, and every option is the real key for exactly one of the four stimuli. No option is derived from another; there is no filler. A blind solver therefore cannot do better than chance across a family by construction — any fixed strategy scores exactly 1 of 4 — while every option stays a genuine, tempting reply once the stimulus is heard.",
+  "whyNotTheEndpointsAlreadyMeasured": "Options from UNRELATED items scored +9.9 no-source but 0% hard with-source (obviously wrong once you hear it). Options as mutations of the key kept with-source difficulty but sat at +40.4. This draws options from related-but-distinct stimuli in the SAME scenario family, aiming at the corridor between the two measured endpoints.",
+  "servingConstraint": "Items sharing a family MUST NOT be served in the same test. They share an option set verbatim; a student seeing two of them could pair them. This is the production analogue of the mirror-pair pilot's finding that pairs are spottable.",
+  "stoppingRule": "If the no-source margin does not fall at least 10 points below the +40.4 baseline, the mutation-recipe hypothesis is wrong. Stop; do not author a round 2. The previous pilot's round 2 bought 0.4 points.",
+  "families": [
+    {
+      "id": "advisor-registration",
+      "options": [
+        "Put me down as waiting, then, and I'll take it if a place frees up.",
+        "The lab matters more, so I'll look for another slot for this one.",
+        "That was settled, yes — thanks for not waiting for me to confirm.",
+        "If it repeats that much of last term I'd rather take something new."
+      ],
+      "items": [
+        { "stimulus": "You've left it late — registration shut on Friday. I can still slot you in if somebody drops, but I can't promise.", "keyIndex": 0, "act": "contingent offer resting on a third party" },
+        { "stimulus": "I can register you for it, that's no trouble — but it runs straight into the Thursday lab you told me you needed.", "keyIndex": 1, "act": "consent carrying a warning" },
+        { "stimulus": "I went ahead and registered you for it on Monday — your email read like that was settled.", "keyIndex": 2, "act": "pre-emptive action needing confirmation" },
+        { "stimulus": "It's full, and to be honest two thirds of the reading is what you covered last term anyway.", "keyIndex": 3, "act": "refusal plus a reason the request is pointless" }
+      ]
+    },
+    {
+      "id": "equipment-desk",
+      "options": [
+        "Then I'll bring it back before five rather than risk the flag.",
+        "An hour's enough for what I'm recording, so I'll take that one.",
+        "Park's my supervisor — she booked it for me. Should it be under mine?",
+        "I'll try downstairs then — do I need to book that separately?"
+      ],
+      "items": [
+        { "stimulus": "The recorder's yours till five, but if you're not back by then it's flagged overdue automatically — I can't override it.", "keyIndex": 0, "act": "hard limit with no discretion" },
+        { "stimulus": "We do have one free, though it's the older model — the battery goes after about an hour.", "keyIndex": 1, "act": "offer disclosing a defect" },
+        { "stimulus": "You booked it under a different name — I've got a Jae-won Park here, not Jae-won Kim.", "keyIndex": 2, "act": "flagging a mismatch without accusing" },
+        { "stimulus": "Everything's out until Thursday, but the media lab downstairs has the same kit and nobody uses it.", "keyIndex": 3, "act": "refusal redirected to an alternative" }
+      ]
+    },
+    {
+      "id": "group-project",
+      "options": [
+        "We never did decide — let's settle it now and I'll write it up.",
+        "That's on me — I'll send the figures within the hour.",
+        "Let's pick one voice and I'll smooth the whole thing over.",
+        "I'll handle the stats questions — you take the rest."
+      ],
+      "items": [
+        { "stimulus": "I've done my section, but I've left the conclusion because I genuinely don't know what we decided.", "keyIndex": 0, "act": "handing back an unresolved decision" },
+        { "stimulus": "I can put the slides together tonight, only I haven't got your figures yet.", "keyIndex": 1, "act": "offer blocked by the listener's omission" },
+        { "stimulus": "Honestly the whole second half reads like two people wrote it, which, well, it is.", "keyIndex": 2, "act": "criticism that implicates the speaker too" },
+        { "stimulus": "I'm fine presenting, but I'd rather not be the one taking questions on the stats.", "keyIndex": 3, "act": "acceptance carving out one part" }
+      ]
+    },
+    {
+      "id": "housing-office",
+      "options": [
+        "Twenty minutes is fine — I'd take that over waiting.",
+        "Is there any chance of moving up if places open late?",
+        "I'd still prefer a single — can I go on a list if one comes up?",
+        "Good — so there's nothing else for me to do before I move in."
+      ],
+      "items": [
+        { "stimulus": "There's a room free in the annexe, though I should say it's a twenty-minute walk from the main campus.", "keyIndex": 0, "act": "offer disclosing a drawback" },
+        { "stimulus": "Your application's in, but it's dated after the deadline, so it sits behind everyone else's.", "keyIndex": 1, "act": "accepted but deprioritised" },
+        { "stimulus": "We've got you in a shared flat — you ticked the single-room box, but there weren't any.", "keyIndex": 2, "act": "assignment contradicting a stated preference" },
+        { "stimulus": "The deposit's already been taken from the card you used for tuition, so there's nothing more to pay now.", "keyIndex": 3, "act": "reporting an action already completed" }
+      ]
+    }
+  ]
+}

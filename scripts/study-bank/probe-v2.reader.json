@@ -1,0 +1,6 @@
+{
+  "1": {"pick": "A", "mode": "inference", "alsoDefensible": []},
+  "2": {"pick": "C", "mode": "obvious", "alsoDefensible": []},
+  "3": {"pick": "D", "mode": "obvious", "alsoDefensible": ["C"]},
+  "4": {"pick": "B", "mode": "inference", "alsoDefensible": []}
+}

@@ -1,0 +1,18 @@
+{
+  "1":  {"pick": "B", "mode": "obvious",   "alsoDefensible": []},
+  "2":  {"pick": "C", "mode": "obvious",   "alsoDefensible": []},
+  "3":  {"pick": "D", "mode": "obvious",   "alsoDefensible": []},
+  "4":  {"pick": "C", "mode": "obvious",   "alsoDefensible": []},
+  "5":  {"pick": "B", "mode": "inference", "alsoDefensible": []},
+  "6":  {"pick": "C", "mode": "obvious",   "alsoDefensible": []},
+  "7":  {"pick": "A", "mode": "obvious",   "alsoDefensible": []},
+  "8":  {"pick": "D", "mode": "obvious",   "alsoDefensible": []},
+  "9":  {"pick": "D", "mode": "obvious",   "alsoDefensible": []},
+  "10": {"pick": "D", "mode": "inference", "alsoDefensible": []},
+  "11": {"pick": "A", "mode": "inference", "alsoDefensible": []},
+  "12": {"pick": "A", "mode": "obvious",   "alsoDefensible": []},
+  "13": {"pick": "C", "mode": "obvious",   "alsoDefensible": []},
+  "14": {"pick": "A", "mode": "obvious",   "alsoDefensible": ["C"]},
+  "15": {"pick": "B", "mode": "obvious",   "alsoDefensible": []},
+  "16": {"pick": "B", "mode": "inference", "alsoDefensible": ["D"]}
+}
