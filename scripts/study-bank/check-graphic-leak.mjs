@@ -80,7 +80,16 @@ const numsIn = s => (String(s).match(/-?\d+(?:\.\d+)?/g) ?? []).map(Number)
 const hasToken = (hay, needle) =>
   new RegExp(`(^|[^\\w.])${needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^\\w.]|$)`, 'i').test(hay)
 
-const FIG_NUM = /\b(figure|fig\.?|item|question|q)\s*\d+/i
+/*
+ * A figure/item NUMBER in the caption — a position tell.
+ *
+ * Bare `q` was in this list on the first run and produced the sweep's
+ * only "defect": a bar labelled "Q1", meaning Quarter 1, on a revenue
+ * chart. A checker whose sole finding is a false positive is worse than
+ * one that finds nothing, because it spends the reader's trust. `q` is
+ * gone; "question" still matches, and so does "Fig. 3".
+ */
+const FIG_NUM = /\b(figure|fig\.|item|question)\s*\d+/i
 
 /** Scan ONE item. Extracted so --selftest can drive it without a DB. */
 function scanItem(row, findings, suspicious) {
@@ -162,6 +171,16 @@ if (process.argv.includes('--selftest')) {
     ['figure merely plots the key\'s point', null, {
       correct_answer: '(3, 8)', choices: ['(3, 8)', '(4, 9)', '(2, 7)', '(5, 1)'],
       graphic: { type: 'scatter', xLabel: 'time (s)', yLabel: 'height (m)', points: [[3, 8]] },
+    }],
+    // Must stay QUIET: a quarter label on a revenue chart. This was the
+    // live sweep's only finding until the bare `q` came out of FIG_NUM.
+    ['quarter labels on a bar chart', null, {
+      correct_answer: '500', choices: ['410', '460', '540', '500'],
+      graphic: {
+        type: 'bar', caption: 'Bar graph', xLabel: 'Quarter', yLabel: 'Revenue',
+        bars: [{ label: 'Q1', value: 120 }, { label: 'Q2', value: 90 },
+               { label: 'Q3', value: 150 }, { label: 'Q4', value: 140 }],
+      },
     }],
     ['clean figure', null, {
       correct_answer: '24', choices: ['18', '20', '24', '30'],
